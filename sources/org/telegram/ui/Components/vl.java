@@ -1,30 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.R;
-public final class vl extends AnimatorListenerAdapter {
-    public final ChatAttachAlertPhotoLayout f29135a;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.PhotoViewer;
+public final class vl extends yl0 {
+    public final int X2;
+    public final ChatAttachAlertPhotoLayout Y2;
 
-    public vl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f29135a = chatAttachAlertPhotoLayout;
+    public vl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
+        this.X2 = i10;
+        this.Y2 = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f29135a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f22180r0;
-        gm gmVar = chatAttachAlertPhotoLayout.P;
-        if (gmVar != null && gmVar.isFrontface()) {
-            i10 = R.drawable.camera_revert1;
-        } else {
-            i10 = R.drawable.camera_revert2;
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.X2) {
+            case 1:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f27075b.f29922b2[0] - AndroidUtilities.dp(80.0f)) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
         }
-        imageView.setImageResource(i10);
-        ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.f22180r0, View.SCALE_X, 1.0f).setDuration(100L).start();
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.X2) {
+            case 1:
+                super.onLayout(z10, i10, i11, i12, i13);
+                PhotoViewer.t1().y0();
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.X2) {
+            case 1:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f27075b.f29922b2[0] - AndroidUtilities.dp(80.0f)) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void requestLayout() {
+        switch (this.X2) {
+            case 0:
+                if (!this.Y2.J0) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.requestLayout();
+                return;
+        }
     }
 }

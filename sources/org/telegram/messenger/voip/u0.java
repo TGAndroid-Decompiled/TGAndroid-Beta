@@ -1,28 +1,33 @@
 package org.telegram.messenger.voip;
 
 import org.telegram.messenger.voip.VoIPService;
-public abstract class u0 {
-    public static void a(VoIPService.StateListener stateListener) {
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.webrtc.VideoSink;
+public final class u0 implements Runnable {
+    public final int f17966a;
+    public final boolean f17967b;
+    public final Object f17968c;
+    public final Object d;
+    public final Object e;
+
+    public u0(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
+        this.f17966a = i10;
+        this.f17968c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f17967b = z10;
     }
 
-    public static void b(VoIPService.StateListener stateListener) {
-    }
-
-    public static void c(VoIPService.StateListener stateListener, boolean z10) {
-    }
-
-    public static void e(VoIPService.StateListener stateListener, boolean z10) {
-    }
-
-    public static void f(VoIPService.StateListener stateListener, int i10) {
-    }
-
-    public static void g(VoIPService.StateListener stateListener, int i10) {
-    }
-
-    public static void h(VoIPService.StateListener stateListener, boolean z10) {
-    }
-
-    public static void d(VoIPService.StateListener stateListener, int i10, int i11) {
+    @Override
+    public final void run() {
+        switch (this.f17966a) {
+            case 0:
+                ((VoIPService.AnonymousClass5) this.f17968c).lambda$onFrame$0((String) this.d, (VideoSink) this.e, this.f17967b);
+                return;
+            default:
+                ((VoIPService) this.f17968c).lambda$acknowledgeCall$12((TLObject) this.d, (TLRPC.TL_error) this.e, this.f17967b);
+                return;
+        }
     }
 }

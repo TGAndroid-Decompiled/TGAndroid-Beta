@@ -7,16 +7,30 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vb1 extends org.telegram.ui.Cells.pa {
-    public final int f38776q3 = 1;
-    public final Object f38777r3;
+    public final int j3 = 1;
+    public final Object f38687k3;
 
     public vb1(Context context, org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, ArrayList arrayList2, org.telegram.ui.ActionBar.z2 z2Var) {
         super(context, m2Var, 2, arrayList, arrayList2);
-        this.f38777r3 = z2Var;
+        this.f38687k3 = z2Var;
     }
 
     @Override
-    public void B1(org.telegram.ui.ActionBar.g6 g6Var) {
+    public final void A1() {
+        Runnable runnable;
+        switch (this.j3) {
+            case 0:
+                ((yb1) this.f38687k3).e.A0(false);
+                return;
+            default:
+                runnable = ((org.telegram.ui.ActionBar.z2) this.f38687k3).f19951a.dismissRunnable;
+                runnable.run();
+                return;
+        }
+    }
+
+    @Override
+    public void z1(org.telegram.ui.ActionBar.g6 g6Var) {
         boolean z10;
         String string;
         String str;
@@ -24,14 +38,14 @@ public final class vb1 extends org.telegram.ui.Cells.pa {
         CharSequence[] charSequenceArr;
         boolean z11;
         int[] iArr;
-        switch (this.f38776q3) {
+        switch (this.j3) {
             case 0:
-                yb1 yb1Var = ((yb1) this.f38777r3).e.f31909a;
+                yb1 yb1Var = ((yb1) this.f38687k3).e.f31837a;
                 ThemeActivity themeActivity = yb1Var.e;
                 if (themeActivity.getParentActivity() != null) {
-                    if ((g6Var.F == null || g6Var.U) && themeActivity.f31917f != 1) {
+                    if ((g6Var.F == null || g6Var.U) && themeActivity.f31845f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
-                        if (g6Var.f18951b == null) {
+                        if (g6Var.f18936b == null) {
                             charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};
                             iArr = new int[]{0, R.drawable.msg_shareout};
                             z11 = false;
@@ -67,13 +81,13 @@ public final class vb1 extends org.telegram.ui.Cells.pa {
                             iArr = new int[]{R.drawable.msg_share, R.drawable.msg_shareout, R.drawable.msg_edit, R.drawable.msg_link, R.drawable.msg_delete};
                         }
                         lg.j jVar = new lg.j(13, yb1Var, g6Var);
-                        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18678a;
+                        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18663a;
                         a2Var.P = charSequenceArr;
                         a2Var.Q = iArr;
                         a2Var.M = jVar;
                         themeActivity.showDialog(a2Var);
                         if (z11) {
-                            a2Var.l(a2Var.N0.size() - 1, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19315q7, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19296p7, false));
+                            a2Var.l(a2Var.N0.size() - 1, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19300q7, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19281p7, false));
                             return;
                         }
                         return;
@@ -86,22 +100,8 @@ public final class vb1 extends org.telegram.ui.Cells.pa {
         }
     }
 
-    @Override
-    public final void C1() {
-        Runnable runnable;
-        switch (this.f38776q3) {
-            case 0:
-                ((yb1) this.f38777r3).e.A0(false);
-                return;
-            default:
-                runnable = ((org.telegram.ui.ActionBar.z2) this.f38777r3).f19966a.dismissRunnable;
-                runnable.run();
-                return;
-        }
-    }
-
     public vb1(yb1 yb1Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10, ArrayList arrayList, ArrayList arrayList2) {
         super(context, m2Var, i10, arrayList, arrayList2);
-        this.f38777r3 = yb1Var;
+        this.f38687k3 = yb1Var;
     }
 }

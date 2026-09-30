@@ -3,9 +3,9 @@ package rg;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class i0 extends LinearLayout {
-    public TextView f42694a;
-    public TextView f42695b;
-    public final tg.b f42696c;
+    public TextView f42591a;
+    public TextView f42592b;
+    public final tg.b f42593c;
     public LinearLayout d;
     public final j0 e;
 

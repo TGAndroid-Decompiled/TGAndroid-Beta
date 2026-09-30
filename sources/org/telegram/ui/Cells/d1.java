@@ -2,33 +2,33 @@ package org.telegram.ui.Cells;
 
 import android.util.Property;
 import android.view.View;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.sk0;
 import org.telegram.ui.cv0;
 public final class d1 extends Property {
-    public final int f20141a;
+    public final int f20126a;
 
     public d1(Class cls, String str, int i10) {
         super(cls, str);
-        this.f20141a = i10;
+        this.f20126a = i10;
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f20141a) {
+        switch (this.f20126a) {
             case 0:
                 return Float.valueOf(((u1) obj).Ae);
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
-                return Float.valueOf(((tk0) obj).v);
+                return Float.valueOf(((sk0) obj).v);
             default:
-                return Float.valueOf(((cv0) obj).f32879a);
+                return Float.valueOf(((cv0) obj).f32801a);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f20141a) {
+        switch (this.f20126a) {
             case 0:
                 ((u1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;
@@ -36,7 +36,7 @@ public final class d1 extends Property {
                 ((View) obj).setTranslationY(((Integer) obj2).intValue());
                 return;
             case 2:
-                ((tk0) obj).setTransitionProgress(((Float) obj2).floatValue());
+                ((sk0) obj).setTransitionProgress(((Float) obj2).floatValue());
                 return;
             default:
                 ((cv0) obj).b(((Float) obj2).floatValue());

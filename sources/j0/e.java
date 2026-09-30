@@ -5,16 +5,16 @@ import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 public final class e extends Drawable.ConstantState {
-    public int f12555a;
-    public Drawable.ConstantState f12556b;
-    public ColorStateList f12557c;
+    public int f12540a;
+    public Drawable.ConstantState f12541b;
+    public ColorStateList f12542c;
     public PorterDuff.Mode d;
 
     @Override
     public final int getChangingConfigurations() {
         int i10;
-        int i11 = this.f12555a;
-        Drawable.ConstantState constantState = this.f12556b;
+        int i11 = this.f12540a;
+        Drawable.ConstantState constantState = this.f12541b;
         if (constantState != null) {
             i10 = constantState.getChangingConfigurations();
         } else {
@@ -32,7 +32,7 @@ public final class e extends Drawable.ConstantState {
     public final Drawable newDrawable(Resources resources) {
         ?? drawable = new Drawable();
         drawable.d = this;
-        Drawable.ConstantState constantState = this.f12556b;
+        Drawable.ConstantState constantState = this.f12541b;
         if (constantState != null) {
             drawable.h(constantState.newDrawable(resources));
         }

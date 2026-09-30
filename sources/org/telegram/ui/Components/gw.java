@@ -6,61 +6,61 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.UserConfig;
 public final class gw implements Runnable {
-    public final int f24680a;
-    public final nz f24681b;
+    public final int f24631a;
+    public final mz f24632b;
 
-    public gw(nz nzVar, int i10) {
-        this.f24680a = i10;
-        this.f24681b = nzVar;
+    public gw(mz mzVar, int i10) {
+        this.f24631a = i10;
+        this.f24632b = mzVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f24680a) {
+        switch (this.f24631a) {
             case 0:
-                nz nzVar = this.f24681b;
-                nzVar.X(false);
-                nzVar.E();
+                mz mzVar = this.f24632b;
+                mzVar.X(false);
+                mzVar.E();
                 return;
             case 1:
-                wx wxVar = this.f24681b.R;
-                if (wxVar != null) {
-                    wxVar.F(true);
+                vx vxVar = this.f24632b.R;
+                if (vxVar != null) {
+                    vxVar.F(true);
                     return;
                 }
                 return;
             case 2:
-                nz nzVar2 = this.f24681b;
-                oy oyVar = nzVar2.f26871t1;
-                if (oyVar != null) {
-                    oyVar.t(nzVar2.R.h);
+                mz mzVar2 = this.f24632b;
+                ny nyVar = mzVar2.f26584t1;
+                if (nyVar != null) {
+                    nyVar.t(mzVar2.R.h);
                     return;
                 }
                 return;
             case 3:
-                oy oyVar2 = this.f24681b.f26871t1;
-                if (oyVar2 != null) {
-                    oyVar2.q();
+                ny nyVar2 = this.f24632b.f26584t1;
+                if (nyVar2 != null) {
+                    nyVar2.q();
                     return;
                 }
                 return;
             case 4:
-                nz nzVar3 = this.f24681b;
-                nzVar3.getClass();
+                mz mzVar3 = this.f24632b;
+                mzVar3.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", UserConfig.getInstance(nzVar3.f26818c1).getClientUserId());
-                nzVar3.Y1.presentFragment(new org.telegram.ui.wn(bundle));
+                bundle.putLong("user_id", UserConfig.getInstance(mzVar3.f26531c1).getClientUserId());
+                mzVar3.Y1.presentFragment(new org.telegram.ui.wn(bundle));
                 return;
             default:
-                nz nzVar4 = this.f24681b;
-                ArrayList<ay> emojipacks = nzVar4.getEmojipacks();
+                mz mzVar4 = this.f24632b;
+                ArrayList<zx> emojipacks = mzVar4.getEmojipacks();
                 for (int i10 = 0; i10 < emojipacks.size(); i10++) {
-                    if (emojipacks.get(i10).f22729i) {
-                        int i11 = nzVar4.R.f30079s.get(EmojiData.dataColored.length + i10);
-                        nzVar4.P.C0();
-                        nzVar4.U(i11);
-                        nzVar4.G(i11, AndroidUtilities.dp(-9.0f));
-                        nzVar4.n(0, null);
+                    if (emojipacks.get(i10).f30985i) {
+                        int i11 = mzVar4.R.f29754s.get(EmojiData.dataColored.length + i10);
+                        mzVar4.P.B0();
+                        mzVar4.U(i11);
+                        mzVar4.G(i11, AndroidUtilities.dp(-9.0f));
+                        mzVar4.n(0, null);
                     }
                 }
                 return;

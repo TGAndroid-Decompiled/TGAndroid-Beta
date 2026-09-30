@@ -1,23 +1,41 @@
 package org.telegram.ui.Components;
-public abstract class hl0 extends yl0 {
-    public boolean E(zl0 zl0Var) {
-        return true;
-    }
 
-    public abstract String F(int i10);
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewParent;
+public final class hl0 implements View.OnTouchListener {
+    public float f24832a;
+    public float f24833b;
+    public boolean f24834c;
 
-    public abstract void G(zl0 zl0Var, float f7, int[] iArr);
-
-    public float H(zl0 zl0Var) {
-        return zl0Var.computeVerticalScrollOffset() / ((k() * zl0Var.getChildAt(0).getMeasuredHeight()) - zl0Var.getMeasuredHeight());
-    }
-
-    public void I() {
-    }
-
-    public void J(zl0 zl0Var) {
-    }
-
-    public void K() {
+    @Override
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        ViewParent parent = view.getParent();
+        if (parent != null) {
+            if (motionEvent.getAction() == 0) {
+                this.f24832a = motionEvent.getX();
+                this.f24833b = motionEvent.getY();
+                this.f24834c = true;
+                parent.requestDisallowInterceptTouchEvent(true);
+            }
+            if (motionEvent.getAction() == 2) {
+                float x10 = this.f24832a - motionEvent.getX();
+                float y3 = this.f24833b - motionEvent.getY();
+                float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+                if (this.f24834c) {
+                    if (Math.sqrt((y3 * y3) + (x10 * x10)) > scaledTouchSlop) {
+                        this.f24834c = false;
+                        parent.requestDisallowInterceptTouchEvent(false);
+                        return false;
+                    }
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                this.f24834c = false;
+                parent.requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        }
+        return false;
     }
 }

@@ -5,31 +5,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.s20;
+import org.telegram.ui.Components.r20;
 import org.telegram.ui.LaunchActivity;
 public final class z9 implements Runnable {
-    public final int f1795a;
+    public final int f1788a;
 
     public z9(int i10) {
-        this.f1795a = i10;
+        this.f1788a = i10;
     }
 
     @Override
     public final void run() {
         boolean z10 = true;
-        switch (this.f1795a) {
+        switch (this.f1788a) {
             case 0:
                 Math.abs(Utilities.random.nextInt() % 3);
-                s20[] s20VarArr = ia.f1002a;
+                r20[] r20VarArr = ia.f1000a;
                 NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
-                AndroidUtilities.runOnUIThread(ia.f1013o, 1000L);
+                AndroidUtilities.runOnUIThread(ia.f1011o, 1000L);
                 LaunchActivity.R().getFragmentView();
                 return;
             case 1:
                 try {
-                    int i10 = n0.g.f15095a;
+                    int i10 = n0.g.f15080a;
                     Trace.beginSection("EmojiCompat.EmojiCompatInitializer.run");
-                    if (androidx.emoji2.text.l.f2336j == null) {
+                    if (androidx.emoji2.text.l.f2329j == null) {
                         z10 = false;
                     }
                     if (z10) {
@@ -38,18 +38,18 @@ public final class z9 implements Runnable {
                     Trace.endSection();
                     return;
                 } catch (Throwable th2) {
-                    int i11 = n0.g.f15095a;
+                    int i11 = n0.g.f15080a;
                     Trace.endSection();
                     throw th2;
                 }
             case 2:
                 return;
             case 3:
-                org.telegram.ui.ActionBar.h6.f19177j = false;
+                org.telegram.ui.ActionBar.h6.f19162j = false;
                 org.telegram.ui.ActionBar.h6.l(false);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.h6.f19196k = false;
+                org.telegram.ui.ActionBar.h6.f19181k = false;
                 org.telegram.ui.ActionBar.h6.l(true);
                 return;
             case 5:
@@ -57,7 +57,7 @@ public final class z9 implements Runnable {
             case 6:
                 org.telegram.ui.Components.voip.n2 n2Var = org.telegram.ui.Components.voip.n2.U;
                 if (n2Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(n2Var.f29423b.f29417f.M);
+                    AndroidUtilities.cancelRunOnUIThread(n2Var.f29417b.f29411f.M);
                     return;
                 }
                 return;
@@ -67,7 +67,7 @@ public final class z9 implements Runnable {
     }
 
     public z9(org.telegram.ui.u2 u2Var) {
-        this.f1795a = 5;
+        this.f1788a = 5;
     }
 
     private final void a() {

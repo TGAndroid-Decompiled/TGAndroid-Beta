@@ -3,19 +3,19 @@ package org.telegram.ui;
 import java.util.regex.Pattern;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public final class kf implements org.telegram.ui.ActionBar.z1, MessagesController.ErrorDelegate, mo0 {
-    public final int f35137a;
-    public final Runnable f35138b;
+public final class kf implements org.telegram.ui.ActionBar.z1, MessagesController.ErrorDelegate, no0 {
+    public final int f35050a;
+    public final Runnable f35051b;
 
     public kf(int i10, Runnable runnable) {
-        this.f35137a = i10;
-        this.f35138b = runnable;
+        this.f35050a = i10;
+        this.f35051b = runnable;
     }
 
     @Override
     public void a(int i10) {
-        int i11 = this.f35137a;
-        Runnable runnable = this.f35138b;
+        int i11 = this.f35050a;
+        Runnable runnable = this.f35051b;
         switch (i11) {
             case 9:
                 Pattern pattern = LaunchActivity.B1;
@@ -35,15 +35,15 @@ public final class kf implements org.telegram.ui.ActionBar.z1, MessagesControlle
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f35137a) {
+        switch (this.f35050a) {
             case 0:
-                this.f35138b.run();
+                this.f35051b.run();
                 return;
             case 1:
-                this.f35138b.run();
+                this.f35051b.run();
                 return;
             default:
-                Runnable runnable = this.f35138b;
+                Runnable runnable = this.f35051b;
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -54,24 +54,24 @@ public final class kf implements org.telegram.ui.ActionBar.z1, MessagesControlle
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f35137a) {
+        switch (this.f35050a) {
             case 3:
-                this.f35138b.run();
+                this.f35051b.run();
                 return true;
             case 4:
-                this.f35138b.run();
+                this.f35051b.run();
                 return true;
             case 5:
-                this.f35138b.run();
+                this.f35051b.run();
                 return true;
             case 6:
-                this.f35138b.run();
+                this.f35051b.run();
                 return true;
             case 7:
-                this.f35138b.run();
+                this.f35051b.run();
                 return true;
             default:
-                this.f35138b.run();
+                this.f35051b.run();
                 return true;
         }
     }

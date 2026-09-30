@@ -5,31 +5,31 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 public final class p2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f1386a;
-    public final r2 f1387b;
+    public final int f1383a;
+    public final r2 f1384b;
 
     public p2(r2 r2Var, int i10) {
-        this.f1386a = i10;
-        this.f1387b = r2Var;
+        this.f1383a = i10;
+        this.f1384b = r2Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f1386a) {
+        switch (this.f1383a) {
             case 0:
-                this.f1387b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f1384b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                r2 r2Var = this.f1387b;
+                r2 r2Var = this.f1384b;
                 r2Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                r2Var.f1462n = floatValue;
-                View view = r2Var.f1459b;
+                r2Var.f1457n = floatValue;
+                View view = r2Var.f1454b;
                 view.setAlpha(1.0f - floatValue);
-                view.setScaleX(1.0f - r2Var.f1462n);
-                view.setScaleY(1.0f - r2Var.f1462n);
-                r2Var.f1460c.setColorFilter(new PorterDuffColorFilter(i0.a.d(r2Var.f1462n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-                r2Var.f1458a.invalidate();
+                view.setScaleX(1.0f - r2Var.f1457n);
+                view.setScaleY(1.0f - r2Var.f1457n);
+                r2Var.f1455c.setColorFilter(new PorterDuffColorFilter(i0.a.d(r2Var.f1457n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+                r2Var.f1453a.invalidate();
                 return;
         }
     }

@@ -13,12 +13,12 @@ public final class xy extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        c1Var.f43068a.setPressed(false);
+        c1Var.f42962a.setPressed(false);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (c1Var.f43071f != 3) {
+        if (c1Var.f42965f != 3) {
             return s4.v.l(0, 0);
         }
         return s4.v.l(3, 0);
@@ -28,32 +28,32 @@ public final class xy extends s4.v {
     public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
         boolean z10;
         boolean z11 = false;
-        if (c1Var.f43071f != c1Var2.f43071f) {
+        if (c1Var.f42965f != c1Var2.f42965f) {
             return false;
         }
         int b10 = c1Var.b();
         int b11 = c1Var2.b();
         zy zyVar = this.e;
-        wy wyVar = zyVar.f40693a;
+        wy wyVar = zyVar.f40596a;
         zy zyVar2 = wyVar.d;
-        int i10 = zyVar2.f40697n;
+        int i10 = zyVar2.f40600n;
         ArrayList arrayList = zyVar2.e;
         int i11 = b10 - i10;
         int i12 = b11 - i10;
-        int i13 = zyVar2.f40698r - i10;
+        int i13 = zyVar2.f40601r - i10;
         if (i11 >= 0 && i12 >= 0 && i11 < i13 && i12 < i13) {
             arrayList.set(i11, (Long) arrayList.get(i12));
             arrayList.set(i12, (Long) arrayList.get(i11));
             wyVar.p(b10, b11);
-            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) c1Var.f43068a;
-            if (b11 != zyVar.f40698r - 1) {
+            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) c1Var.f42962a;
+            if (b11 != zyVar.f40601r - 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             g4Var.setDrawDivider(z10);
-            org.telegram.ui.Cells.g4 g4Var2 = (org.telegram.ui.Cells.g4) c1Var2.f43068a;
-            if (b10 != zyVar.f40698r - 1) {
+            org.telegram.ui.Cells.g4 g4Var2 = (org.telegram.ui.Cells.g4) c1Var2.f42962a;
+            if (b10 != zyVar.f40601r - 1) {
                 z11 = true;
             }
             g4Var2.setDrawDivider(z11);
@@ -66,10 +66,10 @@ public final class xy extends s4.v {
     public final void p(s4.c1 c1Var, int i10) {
         zy zyVar = this.e;
         if (i10 != 0) {
-            zyVar.f40694b.J0(false);
-            c1Var.f43068a.setPressed(true);
+            zyVar.f40597b.I0(false);
+            c1Var.f42962a.setPressed(true);
         } else if (this.d) {
-            yy yyVar = zyVar.f40696f;
+            yy yyVar = zyVar.f40599f;
             if (yyVar != null) {
                 yyVar.a();
             }

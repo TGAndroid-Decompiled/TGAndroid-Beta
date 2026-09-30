@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.os.Build;
 import androidx.recyclerview.widget.RecyclerView;
 public final class r91 extends s4.s0 {
-    public final int f37373a;
-    public final sa1 f37374b;
+    public final int f37272a;
+    public final sa1 f37273b;
 
     public r91(sa1 sa1Var, int i10) {
-        this.f37373a = i10;
-        this.f37374b = sa1Var;
+        this.f37272a = i10;
+        this.f37273b = sa1Var;
     }
 
     @Override
@@ -18,10 +18,10 @@ public final class r91 extends s4.s0 {
         ah.h hVar2;
         sa1 sa1Var2;
         ah.h hVar3;
-        switch (this.f37373a) {
+        switch (this.f37272a) {
             case 0:
-                sa1 sa1Var3 = this.f37374b;
-                if (sa1Var3.f37785r0.size() != sa1Var3.f37787s0.size() && !sa1Var3.f37792w0 && sa1Var3.U.N0() > sa1Var3.X.f39982c0 - 20) {
+                sa1 sa1Var3 = this.f37273b;
+                if (sa1Var3.f37689r0.size() != sa1Var3.f37691s0.size() && !sa1Var3.f37696w0 && sa1Var3.U.N0() > sa1Var3.X.f39884c0 - 20) {
                     sa1Var3.h0();
                 }
                 if (Build.VERSION.SDK_INT >= 31 && (hVar = sa1Var3.C0) != null) {
@@ -31,14 +31,14 @@ public final class r91 extends s4.s0 {
                 }
                 return;
             case 1:
-                if (Build.VERSION.SDK_INT >= 31 && (hVar2 = (sa1Var = this.f37374b).C0) != null) {
+                if (Build.VERSION.SDK_INT >= 31 && (hVar2 = (sa1Var = this.f37273b).C0) != null) {
                     hVar2.f(i10, i11);
                     sa1.W(sa1Var);
                     return;
                 }
                 return;
             default:
-                if (Build.VERSION.SDK_INT >= 31 && (hVar3 = (sa1Var2 = this.f37374b).C0) != null) {
+                if (Build.VERSION.SDK_INT >= 31 && (hVar3 = (sa1Var2 = this.f37273b).C0) != null) {
                     hVar3.f(i10, i11);
                     sa1.W(sa1Var2);
                     return;

@@ -16,20 +16,20 @@ public final class m3 extends View {
     public final Camera F;
     public final g20 G;
     public final RectF H;
-    public h3 f47819a;
-    public h3 f47820b;
-    public h3 f47821c;
+    public h3 f47713a;
+    public h3 f47714b;
+    public h3 f47715c;
     public float d;
     public float e;
-    public float f47822f;
+    public float f47716f;
     public boolean h;
-    public boolean f47823n;
-    public boolean f47824r;
-    public g3 f47825s;
+    public boolean f47717n;
+    public boolean f47718r;
+    public g3 f47719s;
     public g3 v;
-    public g3 f47826w;
-    public float f47827x;
-    public float f47828y;
+    public g3 f47720w;
+    public float f47721x;
+    public float f47722y;
 
     public m3(Context context) {
         super(context);
@@ -44,7 +44,7 @@ public final class m3 extends View {
         float f14;
         if (g3Var != null) {
             Matrix matrix = g3Var.d;
-            Paint paint = g3Var.f47540c;
+            Paint paint = g3Var.f47434c;
             if (paint != null) {
                 float f15 = (f7 - 0.5f) / 1.5f;
                 float clamp01 = Utilities.clamp01(1.0f - Math.abs(f15));
@@ -75,7 +75,7 @@ public final class m3 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr[i10] = org.telegram.ui.ActionBar.h6.v(iArr[i10], org.telegram.ui.ActionBar.h6.l1(clamp01 * f14, g3Var.f47542g));
+                    iArr[i10] = org.telegram.ui.ActionBar.h6.v(iArr[i10], org.telegram.ui.ActionBar.h6.l1(clamp01 * f14, g3Var.f47436g));
                 }
                 for (int i11 = 0; i11 < iArr2.length; i11++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -84,7 +84,7 @@ public final class m3 extends View {
                     } else {
                         f13 = 0.0f;
                     }
-                    iArr2[i11] = org.telegram.ui.ActionBar.h6.v(iArr2[i11], org.telegram.ui.ActionBar.h6.l1(clamp01 * f13, g3Var.f47541f));
+                    iArr2[i11] = org.telegram.ui.ActionBar.h6.v(iArr2[i11], org.telegram.ui.ActionBar.h6.l1(clamp01 * f13, g3Var.f47435f));
                 }
                 for (int i12 = 0; i12 < iArr3.length; i12++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i12;
@@ -140,26 +140,26 @@ public final class m3 extends View {
 
     public final void c() {
         boolean z10;
-        if (this.f47819a == null && this.f47820b == null && this.f47821c == null && this.f47825s == null && this.v == null && this.f47826w == null) {
+        if (this.f47713a == null && this.f47714b == null && this.f47715c == null && this.f47719s == null && this.v == null && this.f47720w == null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f47821c = null;
-        this.f47820b = null;
-        this.f47819a = null;
-        this.f47822f = 0.0f;
+        this.f47715c = null;
+        this.f47714b = null;
+        this.f47713a = null;
+        this.f47716f = 0.0f;
         this.e = 0.0f;
         this.d = 0.0f;
-        this.f47824r = false;
-        this.f47823n = false;
+        this.f47718r = false;
+        this.f47717n = false;
         this.h = false;
-        this.f47826w = null;
+        this.f47720w = null;
         this.v = null;
-        this.f47825s = null;
+        this.f47719s = null;
         this.E = 0.0f;
-        this.f47828y = 0.0f;
-        this.f47827x = 0.0f;
+        this.f47722y = 0.0f;
+        this.f47721x = 0.0f;
         if (z10) {
             invalidate();
         }
@@ -167,8 +167,8 @@ public final class m3 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f47819a, this.d, this.h);
-        b(canvas, this.f47820b, this.e, this.f47823n);
-        b(canvas, this.f47821c, this.f47822f, this.f47824r);
+        b(canvas, this.f47713a, this.d, this.h);
+        b(canvas, this.f47714b, this.e, this.f47717n);
+        b(canvas, this.f47715c, this.f47716f, this.f47718r);
     }
 }

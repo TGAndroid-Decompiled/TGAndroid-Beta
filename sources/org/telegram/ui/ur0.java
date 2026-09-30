@@ -5,11 +5,11 @@ import android.graphics.drawable.Drawable;
 public final class ur0 implements ValueAnimator.AnimatorUpdateListener {
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.Components.vb vbVar;
+        org.telegram.ui.Components.ub ubVar;
         Drawable[] drawableArr = PhotoViewer.U8;
-        org.telegram.ui.Components.rc rcVar = org.telegram.ui.Components.rc.f27939w;
-        if (rcVar != null && (vbVar = rcVar.e) != null) {
-            vbVar.updatePosition();
+        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27634w;
+        if (qcVar != null && (ubVar = qcVar.e) != null) {
+            ubVar.updatePosition();
         }
     }
 }

@@ -28,53 +28,53 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.i21;
-import org.telegram.ui.Components.nx0;
-import org.telegram.ui.Components.rc;
+import org.telegram.ui.Components.h21;
+import org.telegram.ui.Components.mx0;
+import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.vv;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.n80;
+import org.telegram.ui.m80;
 public final class m0 implements Utilities.Callback {
-    public final int f9135a;
-    public final int f9136b;
-    public final Object f9137c;
+    public final int f9123a;
+    public final int f9124b;
+    public final Object f9125c;
     public final Object d;
     public final Object e;
 
     public m0(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f9135a = i11;
-        this.f9137c = obj;
-        this.f9136b = i10;
+        this.f9123a = i11;
+        this.f9125c = obj;
+        this.f9124b = i10;
         this.d = obj2;
         this.e = obj3;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f9135a;
+        int i10 = this.f9123a;
         boolean z10 = true;
-        int i11 = this.f9136b;
+        int i11 = this.f9124b;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f9137c;
+        Object obj4 = this.f9125c;
         switch (i10) {
             case 0:
                 m2 m2Var = (m2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j3 = ((TLRPC.Chat) obj2).f18352id;
+                long j3 = ((TLRPC.Chat) obj2).f18337id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean isChannel = ChatObject.isChannel(chat);
-                int i12 = this.f9136b;
+                int i12 = this.f9124b;
                 if (!isChannel) {
                     a2 a2Var = new a2(m2Var.getContext(), 3, null);
                     a2Var.q(250L);
-                    MessagesController.getInstance(i12).convertToMegaGroup(m2Var.getParentActivity(), chat.f18352id, m2Var, new n0(a2Var, m2Var, i12, j3, booleanValue));
+                    MessagesController.getInstance(i12).convertToMegaGroup(m2Var.getParentActivity(), chat.f18337id, m2Var, new n0(a2Var, m2Var, i12, j3, booleanValue));
                     return;
                 }
-                long j10 = chat.f18352id;
+                long j10 = chat.f18337id;
                 MessagesController.getInstance(i12).linkCommunity(-j10, j3, booleanValue, new o0(m2Var, j10, 0));
                 return;
             case 1:
@@ -82,8 +82,8 @@ public final class m0 implements Utilities.Callback {
                 ii.a aVar = (ii.a) obj3;
                 String str = (String) obj2;
                 SpannableString spannableString = (SpannableString) obj;
-                if (i11 == e6Var.I && e6Var.f11368x == aVar) {
-                    Editable text = e6Var.f11363f.getText();
+                if (i11 == e6Var.I && e6Var.f11354x == aVar) {
+                    Editable text = e6Var.f11349f.getText();
                     if (TextUtils.equals(str, text)) {
                         for (CodeHighlighting.ColorSpan colorSpan : (CodeHighlighting.ColorSpan[]) text.getSpans(0, text.length(), CodeHighlighting.ColorSpan.class)) {
                             text.removeSpan(colorSpan);
@@ -107,25 +107,25 @@ public final class m0 implements Utilities.Callback {
                 vv vvVar = (vv) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                m2 m2Var2 = vvVar.f29726c;
+                m2 m2Var2 = vvVar.f29735c;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
                 }
                 if (iArr[0] == i11 && iArr[1] > 0) {
                     vvVar.dismiss();
-                    rc.g(m2Var2, new nx0(m2Var2.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, m2Var2.getResourceProvider()), 1500).j();
+                    qc.g(m2Var2, new mx0(m2Var2.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, m2Var2.getResourceProvider()), 1500).j();
                     return;
                 }
                 return;
             case 3:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
-                n80 n80Var = (n80) obj3;
+                m80 m80Var = (m80) obj3;
                 Long l4 = (Long) obj2;
                 TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
                 Pattern pattern = LaunchActivity.B1;
                 try {
-                    n80Var.run();
+                    m80Var.run();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -157,19 +157,19 @@ public final class m0 implements Utilities.Callback {
                 MessageObject messageObject = (MessageObject) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f31388o5 = str2;
-                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f31388o5)) {
-                        if (photoViewer.f31379n5) {
-                            photoViewer.f31383o0.K(20);
-                            photoViewer.f31383o0.r(19);
+                    photoViewer.f31316o5 = str2;
+                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f31316o5)) {
+                        if (photoViewer.f31307n5) {
+                            photoViewer.f31311o0.K(20);
+                            photoViewer.f31311o0.r(19);
                             return;
                         }
-                        photoViewer.f31383o0.K(19);
-                        photoViewer.f31383o0.r(20);
+                        photoViewer.f31311o0.K(19);
+                        photoViewer.f31311o0.r(20);
                         return;
                     }
-                    photoViewer.f31383o0.r(19);
-                    photoViewer.f31383o0.r(20);
+                    photoViewer.f31311o0.r(19);
+                    photoViewer.f31311o0.r(20);
                     return;
                 }
                 return;
@@ -180,7 +180,7 @@ public final class m0 implements Utilities.Callback {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(adVar.getText());
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) bd.b(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new i21(this.f9136b, context, d6Var, savedStarGift, 18), d6Var, null));
+                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) bd.b(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new h21(this.f9124b, context, d6Var, savedStarGift, 18), d6Var, null));
                     adVar.setText(spannableStringBuilder);
                     return;
                 }
@@ -189,18 +189,18 @@ public final class m0 implements Utilities.Callback {
     }
 
     public m0(vv vvVar, int[] iArr, int i10, ArrayList arrayList) {
-        this.f9135a = 2;
-        this.f9137c = vvVar;
+        this.f9123a = 2;
+        this.f9125c = vvVar;
         this.d = iArr;
-        this.f9136b = i10;
+        this.f9124b = i10;
         this.e = arrayList;
     }
 
-    public m0(LaunchActivity launchActivity, n80 n80Var, Long l4, int i10) {
-        this.f9135a = 3;
-        this.f9137c = launchActivity;
-        this.d = n80Var;
+    public m0(LaunchActivity launchActivity, m80 m80Var, Long l4, int i10) {
+        this.f9123a = 3;
+        this.f9125c = launchActivity;
+        this.d = m80Var;
         this.e = l4;
-        this.f9136b = i10;
+        this.f9124b = i10;
     }
 }

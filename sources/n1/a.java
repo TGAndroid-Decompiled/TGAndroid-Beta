@@ -5,12 +5,12 @@ import kotlin.jvm.internal.i;
 import kotlin.jvm.internal.j;
 import rd.l;
 public final class a extends j implements l {
-    public static final a f15096b = new j(1);
+    public static final a f15081b = new j(1);
 
     @Override
     public final Object invoke(Object obj) {
         Map.Entry entry = (Map.Entry) obj;
         i.e(entry, "entry");
-        return "  " + ((d) entry.getKey()).f15102a + " = " + entry.getValue();
+        return "  " + ((d) entry.getKey()).f15087a + " = " + entry.getValue();
     }
 }

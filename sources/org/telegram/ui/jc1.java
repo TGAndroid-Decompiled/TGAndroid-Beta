@@ -6,27 +6,27 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-public final class jc1 extends org.telegram.ui.Components.zl0 {
-    public boolean f34838e3;
-    public float f34839f3;
-    public final od1 f34840g3;
+public final class jc1 extends org.telegram.ui.Components.yl0 {
+    public boolean X2;
+    public float Y2;
+    public final od1 Z2;
 
     public jc1(Context context, od1 od1Var) {
         super(context, null);
-        this.f34840g3 = od1Var;
+        this.Z2 = od1Var;
     }
 
     @Override
-    public final boolean G0(View view) {
+    public final boolean F0(View view) {
         s4.c1 T;
-        jc1 jc1Var = this.f34840g3.f36343u0;
+        jc1 jc1Var = this.Z2.f36200u0;
         View F = jc1Var.F(view);
         if (F == null) {
             T = null;
         } else {
             T = jc1Var.T(F);
         }
-        if (T != null && T.f43071f == 2) {
+        if (T != null && T.f42965f == 2) {
             return false;
         }
         return true;
@@ -43,9 +43,9 @@ public final class jc1 extends org.telegram.ui.Components.zl0 {
             if (avatarImage != null) {
                 int top = view.getTop();
                 boolean m32 = u1Var.m3();
-                od1 od1Var = this.f34840g3;
-                if (m32 && (T = od1Var.f36343u0.T(view)) != null) {
-                    if (od1Var.f36343u0.K(T.b() - 1) != null) {
+                od1 od1Var = this.Z2;
+                if (m32 && (T = od1Var.f36200u0.T(view)) != null) {
+                    if (od1Var.f36200u0.K(T.b() - 1) != null) {
                         avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
                         avatarImage.draw(canvas);
                         return drawChild;
@@ -53,19 +53,19 @@ public final class jc1 extends org.telegram.ui.Components.zl0 {
                 }
                 float translationX = u1Var.getTranslationX();
                 int layoutHeight = u1Var.getLayoutHeight() + view.getTop();
-                int measuredHeight = od1Var.f36343u0.getMeasuredHeight() - od1Var.f36343u0.getPaddingBottom();
+                int measuredHeight = od1Var.f36200u0.getMeasuredHeight() - od1Var.f36200u0.getPaddingBottom();
                 if (layoutHeight > measuredHeight) {
                     layoutHeight = measuredHeight;
                 }
-                if (u1Var.n3() && (r11 = od1Var.f36343u0.T(view)) != null) {
+                if (u1Var.n3() && (r11 = od1Var.f36200u0.T(view)) != null) {
                     int i10 = 0;
                     while (i10 < 20) {
                         i10++;
-                        s4.c1 T2 = od1Var.f36343u0.K(T2.b() + 1);
+                        s4.c1 T2 = od1Var.f36200u0.K(T2.b() + 1);
                         if (T2 == null) {
                             break;
                         }
-                        View view2 = T2.f43068a;
+                        View view2 = T2.f42962a;
                         int top2 = view2.getTop();
                         if (layoutHeight - AndroidUtilities.dp(48.0f) < view2.getBottom()) {
                             translationX = Math.min(view2.getTranslationX(), translationX);
@@ -97,53 +97,53 @@ public final class jc1 extends org.telegram.ui.Components.zl0 {
     }
 
     @Override
-    public final void k1(View view, float f7, float f10, boolean z10) {
+    public final void h1(View view, float f7, float f10, boolean z10) {
         if (z10 && (view instanceof org.telegram.ui.Cells.u1) && !((org.telegram.ui.Cells.u1) view).i3(f7)) {
             return;
         }
-        super.k1(view, f7, f10, z10);
+        super.h1(view, f7, f10, z10);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f34840g3.V0();
+        this.Z2.V0();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        od1 od1Var = this.f34840g3;
+        od1 od1Var = this.Z2;
         if (action == 1) {
-            if (!od1Var.f36336r0 && (od1Var.B1 instanceof yi1) && od1Var.L0[0].getVisibility() == 0) {
+            if (!od1Var.f36193r0 && (od1Var.B1 instanceof yi1) && od1Var.L0[0].getVisibility() == 0) {
                 od1Var.f1(0, false, true);
             }
-            od1Var.f36336r0 = false;
+            od1Var.f36193r0 = false;
         }
         if (od1Var.a2) {
             if (motionEvent.getAction() == 0) {
-                this.f34839f3 = motionEvent.getX();
+                this.Y2 = motionEvent.getX();
                 motionEvent.getY();
                 if (getParent() != null) {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
-                this.f34838e3 = true;
+                this.X2 = true;
             } else if (motionEvent.getAction() == 2) {
-                if (!this.f34838e3 && Math.abs(this.f34839f3 - motionEvent.getX()) > AndroidUtilities.touchSlop) {
+                if (!this.X2 && Math.abs(this.Y2 - motionEvent.getX()) > AndroidUtilities.touchSlop) {
                     if (getParent() != null) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
-                    this.f34838e3 = true;
+                    this.X2 = true;
                 }
             } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-                this.f34838e3 = false;
+                this.X2 = false;
                 if (getParent() != null) {
                     getParent().requestDisallowInterceptTouchEvent(false);
                 }
             }
             od1Var.S1.a(motionEvent);
         }
-        if (!this.f34838e3 && !super.onTouchEvent(motionEvent)) {
+        if (!this.X2 && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
@@ -152,7 +152,7 @@ public final class jc1 extends org.telegram.ui.Components.zl0 {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        od1 od1Var = this.f34840g3;
+        od1 od1Var = this.Z2;
         int i10 = 0;
         if (od1Var.J0 != null) {
             int i11 = 0;

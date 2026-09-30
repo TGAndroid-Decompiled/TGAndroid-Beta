@@ -13,22 +13,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class hf0 implements RequestDelegate {
-    public final int f34303a;
-    public final tf0 f34304b;
-    public final TLRPC.TL_auth_signIn f34305c;
+    public final int f34213a;
+    public final tf0 f34214b;
+    public final TLRPC.TL_auth_signIn f34215c;
 
     public hf0(tf0 tf0Var, TLRPC.TL_auth_signIn tL_auth_signIn, int i10) {
-        this.f34303a = i10;
-        this.f34304b = tf0Var;
-        this.f34305c = tL_auth_signIn;
+        this.f34213a = i10;
+        this.f34214b = tf0Var;
+        this.f34215c = tL_auth_signIn;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f34303a) {
+        switch (this.f34213a) {
             case 0:
-                final tf0 tf0Var = this.f34304b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f34305c;
+                final tf0 tf0Var = this.f34214b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f34215c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,13 +39,13 @@ public final class hf0 implements RequestDelegate {
                         switch (r5) {
                             case 0:
                                 final tf0 tf0Var2 = tf0Var;
-                                int i14 = tf0Var2.f38193f0;
-                                qg0 qg0Var = tf0Var2.f38208s0;
+                                int i14 = tf0Var2.f38083f0;
+                                qg0 qg0Var = tf0Var2.f38098s0;
                                 tf0Var2.z(false);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 TLRPC.TL_auth_signIn tL_auth_signIn2 = tL_auth_signIn;
                                 if (tL_error2 == null) {
-                                    tf0Var2.f38190d0 = false;
+                                    tf0Var2.f38080d0 = false;
                                     qg0Var.v1(false, true);
                                     tf0Var2.w();
                                     tf0Var2.v();
@@ -53,31 +53,31 @@ public final class hf0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            qg0Var.f37004p0 = tL_help_termsOfService;
+                                            qg0Var.f36905p0 = tL_help_termsOfService;
                                         }
                                         final Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", tf0Var2.d);
-                                        bundle.putString("phoneHash", tf0Var2.f38188c);
+                                        bundle.putString("phoneHash", tf0Var2.f38078c);
                                         bundle.putString("code", tL_auth_signIn2.phone_code);
                                         tf0Var2.q(new Runnable() {
                                             @Override
                                             public final void run() {
                                                 switch (r3) {
                                                     case 0:
-                                                        tf0Var2.f38208s0.u1(5, true, bundle, false);
+                                                        tf0Var2.f38098s0.u1(5, true, bundle, false);
                                                         return;
                                                     default:
-                                                        tf0Var2.f38208s0.u1(6, true, bundle, false);
+                                                        tf0Var2.f38098s0.u1(6, true, bundle, false);
                                                         return;
                                                 }
                                             }
                                         });
                                     } else {
-                                        tf0Var2.q(new n80(24, tf0Var2, tLObject2));
+                                        tf0Var2.q(new m80(25, tf0Var2, tLObject2));
                                     }
                                 } else {
                                     String str = tL_error2.text;
-                                    tf0Var2.f38191e0 = str;
+                                    tf0Var2.f38081e0 = str;
                                     if (str.contains("SESSION_PASSWORD_NEEDED")) {
                                         TL_account.getPassword getpassword = new TL_account.getPassword();
                                         i13 = ((org.telegram.ui.ActionBar.m2) qg0Var).currentAccount;
@@ -85,9 +85,9 @@ public final class hf0 implements RequestDelegate {
                                         tf0Var2.w();
                                         tf0Var2.v();
                                     } else {
-                                        tf0Var2.f38190d0 = false;
+                                        tf0Var2.f38080d0 = false;
                                         qg0Var.v1(false, true);
-                                        if ((i14 == 3 && ((i12 = tf0Var2.f38194g0) == 4 || i12 == 2 || i12 == 17 || i12 == 16)) || ((i14 == 2 && ((i11 = tf0Var2.f38194g0) == 4 || i11 == 3)) || (i14 == 4 && ((i10 = tf0Var2.f38194g0) == 2 || i10 == 17 || i10 == 16)))) {
+                                        if ((i14 == 3 && ((i12 = tf0Var2.f38084g0) == 4 || i12 == 2 || i12 == 17 || i12 == 16)) || ((i14 == 2 && ((i11 = tf0Var2.f38084g0) == 4 || i11 == 3)) || (i14 == 4 && ((i10 = tf0Var2.f38084g0) == 2 || i10 == 17 || i10 == 16)))) {
                                             tf0Var2.u();
                                         }
                                         if (i14 == 15) {
@@ -98,9 +98,9 @@ public final class hf0 implements RequestDelegate {
                                         } else if (i14 == 3) {
                                             AndroidUtilities.setWaitingForCall(true);
                                             NotificationCenter.getGlobalInstance().addObserver(tf0Var2, NotificationCenter.didReceiveCall);
-                                            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.uh(24));
+                                            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.th(24));
                                         }
-                                        tf0Var2.f38189c0 = true;
+                                        tf0Var2.f38079c0 = true;
                                         if (i14 != 3) {
                                             if (tL_error2.text.contains("PHONE_NUMBER_INVALID")) {
                                                 qg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
@@ -121,8 +121,8 @@ public final class hf0 implements RequestDelegate {
                                             }
                                             int i15 = 0;
                                             while (true) {
-                                                yr yrVar = tf0Var2.f38192f;
-                                                as[] asVarArr = yrVar.f40347f;
+                                                yr yrVar = tf0Var2.f38082f;
+                                                as[] asVarArr = yrVar.f40237f;
                                                 if (i15 < asVarArr.length) {
                                                     asVarArr[i15].setText("");
                                                     i15++;
@@ -145,8 +145,8 @@ public final class hf0 implements RequestDelegate {
                                 return;
                             default:
                                 final tf0 tf0Var3 = tf0Var;
-                                tf0Var3.f38190d0 = false;
-                                qg0 qg0Var2 = tf0Var3.f38208s0;
+                                tf0Var3.f38080d0 = false;
+                                qg0 qg0Var2 = tf0Var3.f38098s0;
                                 qg0Var2.v1(false, true);
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 == null) {
@@ -160,17 +160,17 @@ public final class hf0 implements RequestDelegate {
                                     password.serializeToStream(serializedData);
                                     bundle2.putString("password", Utilities.bytesToHex(serializedData.toByteArray()));
                                     bundle2.putString("phoneFormated", tf0Var3.d);
-                                    bundle2.putString("phoneHash", tf0Var3.f38188c);
+                                    bundle2.putString("phoneHash", tf0Var3.f38078c);
                                     bundle2.putString("code", tL_auth_signIn.phone_code);
                                     tf0Var3.q(new Runnable() {
                                         @Override
                                         public final void run() {
                                             switch (r3) {
                                                 case 0:
-                                                    tf0Var3.f38208s0.u1(5, true, bundle2, false);
+                                                    tf0Var3.f38098s0.u1(5, true, bundle2, false);
                                                     return;
                                                 default:
-                                                    tf0Var3.f38208s0.u1(6, true, bundle2, false);
+                                                    tf0Var3.f38098s0.u1(6, true, bundle2, false);
                                                     return;
                                             }
                                         }
@@ -184,8 +184,8 @@ public final class hf0 implements RequestDelegate {
                 });
                 return;
             default:
-                final tf0 tf0Var2 = this.f34304b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f34305c;
+                final tf0 tf0Var2 = this.f34214b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f34215c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -196,13 +196,13 @@ public final class hf0 implements RequestDelegate {
                         switch (r5) {
                             case 0:
                                 final tf0 tf0Var22 = tf0Var2;
-                                int i14 = tf0Var22.f38193f0;
-                                qg0 qg0Var = tf0Var22.f38208s0;
+                                int i14 = tf0Var22.f38083f0;
+                                qg0 qg0Var = tf0Var22.f38098s0;
                                 tf0Var22.z(false);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 TLRPC.TL_auth_signIn tL_auth_signIn22 = tL_auth_signIn2;
                                 if (tL_error2 == null) {
-                                    tf0Var22.f38190d0 = false;
+                                    tf0Var22.f38080d0 = false;
                                     qg0Var.v1(false, true);
                                     tf0Var22.w();
                                     tf0Var22.v();
@@ -210,31 +210,31 @@ public final class hf0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            qg0Var.f37004p0 = tL_help_termsOfService;
+                                            qg0Var.f36905p0 = tL_help_termsOfService;
                                         }
                                         final Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", tf0Var22.d);
-                                        bundle.putString("phoneHash", tf0Var22.f38188c);
+                                        bundle.putString("phoneHash", tf0Var22.f38078c);
                                         bundle.putString("code", tL_auth_signIn22.phone_code);
                                         tf0Var22.q(new Runnable() {
                                             @Override
                                             public final void run() {
                                                 switch (r3) {
                                                     case 0:
-                                                        tf0Var22.f38208s0.u1(5, true, bundle, false);
+                                                        tf0Var22.f38098s0.u1(5, true, bundle, false);
                                                         return;
                                                     default:
-                                                        tf0Var22.f38208s0.u1(6, true, bundle, false);
+                                                        tf0Var22.f38098s0.u1(6, true, bundle, false);
                                                         return;
                                                 }
                                             }
                                         });
                                     } else {
-                                        tf0Var22.q(new n80(24, tf0Var22, tLObject2));
+                                        tf0Var22.q(new m80(25, tf0Var22, tLObject2));
                                     }
                                 } else {
                                     String str = tL_error2.text;
-                                    tf0Var22.f38191e0 = str;
+                                    tf0Var22.f38081e0 = str;
                                     if (str.contains("SESSION_PASSWORD_NEEDED")) {
                                         TL_account.getPassword getpassword = new TL_account.getPassword();
                                         i13 = ((org.telegram.ui.ActionBar.m2) qg0Var).currentAccount;
@@ -242,9 +242,9 @@ public final class hf0 implements RequestDelegate {
                                         tf0Var22.w();
                                         tf0Var22.v();
                                     } else {
-                                        tf0Var22.f38190d0 = false;
+                                        tf0Var22.f38080d0 = false;
                                         qg0Var.v1(false, true);
-                                        if ((i14 == 3 && ((i12 = tf0Var22.f38194g0) == 4 || i12 == 2 || i12 == 17 || i12 == 16)) || ((i14 == 2 && ((i11 = tf0Var22.f38194g0) == 4 || i11 == 3)) || (i14 == 4 && ((i10 = tf0Var22.f38194g0) == 2 || i10 == 17 || i10 == 16)))) {
+                                        if ((i14 == 3 && ((i12 = tf0Var22.f38084g0) == 4 || i12 == 2 || i12 == 17 || i12 == 16)) || ((i14 == 2 && ((i11 = tf0Var22.f38084g0) == 4 || i11 == 3)) || (i14 == 4 && ((i10 = tf0Var22.f38084g0) == 2 || i10 == 17 || i10 == 16)))) {
                                             tf0Var22.u();
                                         }
                                         if (i14 == 15) {
@@ -255,9 +255,9 @@ public final class hf0 implements RequestDelegate {
                                         } else if (i14 == 3) {
                                             AndroidUtilities.setWaitingForCall(true);
                                             NotificationCenter.getGlobalInstance().addObserver(tf0Var22, NotificationCenter.didReceiveCall);
-                                            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.uh(24));
+                                            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.th(24));
                                         }
-                                        tf0Var22.f38189c0 = true;
+                                        tf0Var22.f38079c0 = true;
                                         if (i14 != 3) {
                                             if (tL_error2.text.contains("PHONE_NUMBER_INVALID")) {
                                                 qg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
@@ -278,8 +278,8 @@ public final class hf0 implements RequestDelegate {
                                             }
                                             int i15 = 0;
                                             while (true) {
-                                                yr yrVar = tf0Var22.f38192f;
-                                                as[] asVarArr = yrVar.f40347f;
+                                                yr yrVar = tf0Var22.f38082f;
+                                                as[] asVarArr = yrVar.f40237f;
                                                 if (i15 < asVarArr.length) {
                                                     asVarArr[i15].setText("");
                                                     i15++;
@@ -302,8 +302,8 @@ public final class hf0 implements RequestDelegate {
                                 return;
                             default:
                                 final tf0 tf0Var3 = tf0Var2;
-                                tf0Var3.f38190d0 = false;
-                                qg0 qg0Var2 = tf0Var3.f38208s0;
+                                tf0Var3.f38080d0 = false;
+                                qg0 qg0Var2 = tf0Var3.f38098s0;
                                 qg0Var2.v1(false, true);
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 == null) {
@@ -317,17 +317,17 @@ public final class hf0 implements RequestDelegate {
                                     password.serializeToStream(serializedData);
                                     bundle2.putString("password", Utilities.bytesToHex(serializedData.toByteArray()));
                                     bundle2.putString("phoneFormated", tf0Var3.d);
-                                    bundle2.putString("phoneHash", tf0Var3.f38188c);
+                                    bundle2.putString("phoneHash", tf0Var3.f38078c);
                                     bundle2.putString("code", tL_auth_signIn2.phone_code);
                                     tf0Var3.q(new Runnable() {
                                         @Override
                                         public final void run() {
                                             switch (r3) {
                                                 case 0:
-                                                    tf0Var3.f38208s0.u1(5, true, bundle2, false);
+                                                    tf0Var3.f38098s0.u1(5, true, bundle2, false);
                                                     return;
                                                 default:
-                                                    tf0Var3.f38208s0.u1(6, true, bundle2, false);
+                                                    tf0Var3.f38098s0.u1(6, true, bundle2, false);
                                                     return;
                                             }
                                         }

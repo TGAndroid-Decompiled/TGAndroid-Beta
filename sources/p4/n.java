@@ -2,15 +2,15 @@ package p4;
 
 import android.os.Bundle;
 public final class n {
-    public final Bundle f40986a;
-    public r f40987b;
+    public final Bundle f40889a;
+    public r f40890b;
 
     public n(r rVar, boolean z10) {
         if (rVar != null) {
             Bundle bundle = new Bundle();
-            this.f40986a = bundle;
-            this.f40987b = rVar;
-            bundle.putBundle("selector", rVar.f41009a);
+            this.f40889a = bundle;
+            this.f40890b = rVar;
+            bundle.putBundle("selector", rVar.f40912a);
             bundle.putBoolean("activeScan", z10);
             return;
         }
@@ -18,26 +18,26 @@ public final class n {
     }
 
     public final void a() {
-        if (this.f40987b == null) {
-            r b10 = r.b(this.f40986a.getBundle("selector"));
-            this.f40987b = b10;
+        if (this.f40890b == null) {
+            r b10 = r.b(this.f40889a.getBundle("selector"));
+            this.f40890b = b10;
             if (b10 == null) {
-                this.f40987b = r.f41008c;
+                this.f40890b = r.f40911c;
             }
         }
     }
 
     public final boolean b() {
-        return this.f40986a.getBoolean("activeScan");
+        return this.f40889a.getBoolean("activeScan");
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof n) {
             n nVar = (n) obj;
             a();
-            r rVar = this.f40987b;
+            r rVar = this.f40890b;
             nVar.a();
-            if (rVar.equals(nVar.f40987b) && b() == nVar.b()) {
+            if (rVar.equals(nVar.f40890b) && b() == nVar.b()) {
                 return true;
             }
         }
@@ -46,20 +46,20 @@ public final class n {
 
     public final int hashCode() {
         a();
-        return this.f40987b.hashCode() ^ b();
+        return this.f40890b.hashCode() ^ b();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("DiscoveryRequest{ selector=");
         a();
-        sb2.append(this.f40987b);
+        sb2.append(this.f40890b);
         sb2.append(", activeScan=");
         sb2.append(b());
         sb2.append(", isValid=");
         a();
-        r rVar = this.f40987b;
+        r rVar = this.f40890b;
         rVar.a();
-        sb2.append(!rVar.f41010b.contains(null));
+        sb2.append(!rVar.f40913b.contains(null));
         sb2.append(" }");
         return sb2.toString();
     }

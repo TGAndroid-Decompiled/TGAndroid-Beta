@@ -6,7 +6,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
-public final class t6 extends ob {
+public final class t6 extends nb {
     public t6(LaunchActivity launchActivity, org.telegram.ui.fb0 fb0Var) {
         super(launchActivity, null);
         org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
@@ -18,10 +18,10 @@ public final class t6 extends ob {
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(Typeface.SANS_SERIF);
         addView(textView, w7.y5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(fb0Var.f33701b));
+        qVar.setImageDrawable(launchActivity.getDrawable(fb0Var.f33617b));
         qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
-        qVar.setForeground(fb0Var.f33702c);
+        qVar.setForeground(fb0Var.f33618c);
         org.telegram.messenger.ok.q(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(fb0Var.d)}, textView);
     }
 }

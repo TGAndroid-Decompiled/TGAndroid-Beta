@@ -11,21 +11,21 @@ import rg.z1;
 import yh.k7;
 import yh.o2;
 import yh.p2;
-import yh.z5;
+import yh.r5;
 public final class d0 extends AnimatorListenerAdapter {
-    public final int f41186a;
-    public final Object f41187b;
+    public final int f41089a;
+    public final Object f41090b;
 
     public d0(Object obj, int i10) {
-        this.f41186a = i10;
-        this.f41187b = obj;
+        this.f41089a = i10;
+        this.f41090b = obj;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f41186a) {
+        switch (this.f41089a) {
             case 3:
-                ((r0.m0) this.f41187b).a();
+                ((r0.m0) this.f41090b).a();
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -37,122 +37,122 @@ public final class d0 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         float f7;
         boolean z10;
-        switch (this.f41186a) {
+        switch (this.f41089a) {
             case 0:
-                e0 e0Var = (e0) this.f41187b;
-                e0Var.f41198a.getPainting().c(null, e0Var.f41198a.getCurrentColor(), true, null);
-                e0Var.f41212r = null;
+                e0 e0Var = (e0) this.f41090b;
+                e0Var.f41101a.getPainting().c(null, e0Var.f41101a.getCurrentColor(), true, null);
+                e0Var.f41115r = null;
                 return;
             case 1:
                 super.onAnimationEnd(animator);
-                qg.m0 m0Var = (qg.m0) this.f41187b;
-                ImageView imageView = m0Var.f41859c;
-                m0Var.f41859c = m0Var.d;
+                qg.m0 m0Var = (qg.m0) this.f41090b;
+                ImageView imageView = m0Var.f41760c;
+                m0Var.f41760c = m0Var.d;
                 m0Var.d = imageView;
                 imageView.bringToFront();
                 m0Var.d.setVisibility(8);
                 m0Var.h = null;
                 return;
             case 2:
-                qg.s1 s1Var = (qg.s1) this.f41187b;
-                if (animator == s1Var.f42024r) {
-                    s1Var.f42022f = s1Var.h;
+                qg.s1 s1Var = (qg.s1) this.f41090b;
+                if (animator == s1Var.f41925r) {
+                    s1Var.f41923f = s1Var.h;
                     s1Var.h = -1;
-                    s1Var.f42024r = null;
+                    s1Var.f41925r = null;
                     return;
                 }
                 return;
             case 3:
-                ((r0.m0) this.f41187b).c();
+                ((r0.m0) this.f41090b).c();
                 return;
             case 4:
-                rg.p0 p0Var = (rg.p0) this.f41187b;
+                rg.p0 p0Var = (rg.p0) this.f41090b;
                 if (p0Var.h) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                p0Var.f42817n = f7;
+                p0Var.f42711n = f7;
                 p0Var.e();
                 return;
             case 5:
-                z1 z1Var = (z1) ((ci.c0) this.f41187b).f4436b;
+                z1 z1Var = (z1) ((ci.c0) this.f41090b).f4429b;
                 z1Var.F = true;
                 z1Var.invalidate();
                 return;
             case 6:
                 super.onAnimationEnd(animator);
-                sg.e eVar = (sg.e) ((j6) this.f41187b).f1034b;
-                eVar.f43333b.d = 0.0f;
+                sg.e eVar = (sg.e) ((j6) this.f41090b).f1032b;
+                eVar.f43227b.d = 0.0f;
                 eVar.T = null;
                 eVar.h(eVar.I);
                 return;
             case 7:
-                tg.b bVar = (tg.b) this.f41187b;
-                bVar.f43486b = 1.0f;
+                tg.b bVar = (tg.b) this.f41090b;
+                bVar.f43380b = 1.0f;
                 bVar.invalidate();
                 return;
             case 8:
-                vh.g gVar = (vh.g) this.f41187b;
+                vh.g gVar = (vh.g) this.f41090b;
                 Iterator it = gVar.h.iterator();
                 while (it.hasNext()) {
                     vh.c cVar = (vh.c) it.next();
-                    if (gVar.f44794c.size() < gVar.d) {
-                        gVar.f44794c.push(cVar);
+                    if (gVar.f44688c.size() < gVar.d) {
+                        gVar.f44688c.push(cVar);
                     }
                     it.remove();
                 }
-                Runnable runnable = gVar.f44805q;
+                Runnable runnable = gVar.f44699q;
                 if (runnable != null) {
                     runnable.run();
-                    gVar.f44805q = null;
+                    gVar.f44699q = null;
                 }
-                gVar.f44806r = null;
+                gVar.f44700r = null;
                 gVar.invalidateSelf();
                 return;
             case 9:
-                ((xh.h0) this.f41187b).f46269b.f46307w.setVisibility(8);
+                ((xh.h0) this.f41090b).f46163b.f46201w.setVisibility(8);
                 return;
             case 10:
-                p2 p2Var = (p2) this.f41187b;
+                p2 p2Var = (p2) this.f41090b;
                 p2Var.E = 1.0f;
                 p2Var.F = -1;
                 o2 o2Var = p2Var.H;
-                if (o2Var != null && (z10 = o2Var.f47916l) && z10) {
-                    o2Var.f47916l = false;
+                if (o2Var != null && (z10 = o2Var.f47810l) && z10) {
+                    o2Var.f47810l = false;
                     o2Var.b();
                 }
                 p2Var.G = null;
                 return;
             case 11:
-                o00 o00Var = ((k7) this.f41187b).f47731c;
+                o00 o00Var = ((k7) this.f41090b).f47625c;
                 o00Var.setScaleX(1.0f);
                 o00Var.setScaleY(1.0f);
                 return;
             case 12:
-                ((z5) this.f41187b).run();
+                ((r5) this.f41090b).run();
                 return;
             case 13:
-                zg.t tVar = (zg.t) this.f41187b;
+                zg.t tVar = (zg.t) this.f41090b;
                 tVar.setVisibility(8);
-                zg.s sVar = tVar.f49548b;
+                zg.s sVar = tVar.f49442b;
                 if (sVar != null) {
                     tVar.removeView(sVar);
-                    tVar.f49548b = null;
+                    tVar.f49442b = null;
                 }
                 tVar.e = null;
                 return;
             default:
-                ((zg.h0) this.f41187b).f49428x.c();
+                ((zg.h0) this.f41090b).f49322x.c();
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f41186a) {
+        switch (this.f41089a) {
             case 3:
-                ((r0.m0) this.f41187b).b();
+                ((r0.m0) this.f41090b).b();
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -161,7 +161,7 @@ public final class d0 extends AnimatorListenerAdapter {
     }
 
     public d0(r0.m0 m0Var, View view) {
-        this.f41186a = 3;
-        this.f41187b = m0Var;
+        this.f41089a = 3;
+        this.f41090b = m0Var;
     }
 }

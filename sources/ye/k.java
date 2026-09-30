@@ -2,12 +2,12 @@ package ye;
 
 import bf.o;
 public final class k extends df.a {
-    public final bf.n f47152a;
-    public boolean f47153b;
-    public int f47154c;
+    public final bf.n f47046a;
+    public boolean f47047b;
+    public int f47048c;
 
     public k(bf.n nVar) {
-        this.f47152a = nVar;
+        this.f47046a = nVar;
     }
 
     @Override
@@ -15,15 +15,15 @@ public final class k extends df.a {
         if (!(aVar instanceof o)) {
             return false;
         }
-        if (this.f47153b && this.f47154c == 1) {
-            this.f47153b = false;
+        if (this.f47047b && this.f47048c == 1) {
+            this.f47047b = false;
         }
         return true;
     }
 
     @Override
     public final bf.a e() {
-        return this.f47152a;
+        return this.f47046a;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class k extends df.a {
     @Override
     public final q3.h h(d dVar) {
         if (dVar.h) {
-            this.f47153b = true;
-            this.f47154c = 0;
-        } else if (this.f47153b) {
-            this.f47154c++;
+            this.f47047b = true;
+            this.f47048c = 0;
+        } else if (this.f47047b) {
+            this.f47048c++;
         }
-        return q3.h.a(dVar.f47107b);
+        return q3.h.a(dVar.f47001b);
     }
 }

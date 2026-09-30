@@ -1,18 +1,31 @@
 package org.telegram.ui.Components;
 
+import android.app.Dialog;
 import android.view.ViewTreeObserver;
-public final class hf implements ViewTreeObserver.OnDrawListener {
-    public final tv0 f24853a;
-    public final kp0 f24854b;
+public final class hf implements ViewTreeObserver.OnPreDrawListener {
+    public final int f24792a;
+    public final Dialog f24793b;
+    public final ChatActivityEnterView f24794c;
 
-    public hf(tv0 tv0Var, kp0 kp0Var) {
-        this.f24853a = tv0Var;
-        this.f24854b = kp0Var;
+    public hf(ChatActivityEnterView chatActivityEnterView, Dialog dialog, int i10) {
+        this.f24792a = i10;
+        this.f24794c = chatActivityEnterView;
+        this.f24793b = dialog;
     }
 
     @Override
-    public final void onDraw() {
-        tv0 tv0Var = this.f24853a;
-        tv0Var.post(new org.telegram.messenger.video.o(this, tv0Var, this.f24854b, 11));
+    public final boolean onPreDraw() {
+        switch (this.f24792a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f24794c;
+                chatActivityEnterView.f22043p0.getViewTreeObserver().removeOnPreDrawListener(this);
+                chatActivityEnterView.f22043p0.postDelayed(new pg(this.f24793b, 18), 100L);
+                return true;
+            default:
+                ChatActivityEnterView chatActivityEnterView2 = this.f24794c;
+                chatActivityEnterView2.f22043p0.getViewTreeObserver().removeOnPreDrawListener(this);
+                chatActivityEnterView2.f22043p0.postDelayed(new pg(this.f24793b, 18), 100L);
+                return true;
+        }
     }
 }

@@ -11,10 +11,10 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.rg0;
-import org.telegram.ui.Components.xr;
-import org.telegram.ui.Components.yu;
+import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.qg0;
+import org.telegram.ui.Components.wr;
+import org.telegram.ui.Components.xu;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -39,7 +39,7 @@ public final class e2 implements View.OnClickListener {
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 3:
-                int i11 = ei.n.f8489n;
+                int i11 = ei.n.f8477n;
                 return;
             case 4:
                 return;
@@ -68,28 +68,28 @@ public final class e2 implements View.OnClickListener {
                 }
                 return;
             case 9:
-                int i14 = pq.f27443e0;
+                int i14 = oq.f27156e0;
                 return;
             case 10:
-                int i15 = xr.f30488s;
+                int i15 = wr.f30152s;
                 return;
             case 11:
                 float[] fArr = FragmentContextView.P0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 12:
-                rg0 rg0Var = rg0.f27987p0;
-                yu yuVar = rg0Var.U;
-                if (yuVar != null) {
-                    yuVar.H();
+                qg0 qg0Var = qg0.f27682p0;
+                xu xuVar = qg0Var.U;
+                if (xuVar != null) {
+                    xuVar.H();
                 } else {
-                    PhotoViewer photoViewer = rg0Var.V;
+                    PhotoViewer photoViewer = qg0Var.V;
                     if (photoViewer != null) {
                         photoViewer.P0();
                         MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                rg0.j(false);
+                qg0.j(false);
                 return;
             case 13:
                 org.telegram.ui.Components.voip.k1.j();
@@ -111,7 +111,7 @@ public final class e2 implements View.OnClickListener {
                 tg.m1.e0(0, null);
                 return;
             case 17:
-                ArrayList arrayList = ExternalActionActivity.f31149x;
+                ArrayList arrayList = ExternalActionActivity.f31077x;
                 return;
             case 18:
                 return;
@@ -143,10 +143,10 @@ public final class e2 implements View.OnClickListener {
                 int i16 = xh.m.A0;
                 return;
             case 25:
-                ad[] adVarArr = xh.v.f46536p0;
+                ad[] adVarArr = xh.v.f46430p0;
                 return;
             case 26:
-                int i17 = xh.c0.f46202f0;
+                int i17 = xh.c0.f46096f0;
                 return;
             case 27:
                 int i18 = yh.s0.D0;

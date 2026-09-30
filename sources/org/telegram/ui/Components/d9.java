@@ -16,32 +16,32 @@ import org.telegram.tgnet.TLRPC;
 public abstract class d9 extends FrameLayout {
     public float E;
     public final e9 F;
-    public long f23581a;
-    public TLRPC.Document f23582b;
-    public final ai.y5 f23583c;
-    public final s20 d;
-    public final s20 e;
-    public float f23584f;
+    public long f23591a;
+    public TLRPC.Document f23592b;
+    public final ai.y5 f23593c;
+    public final r20 d;
+    public final r20 e;
+    public float f23594f;
     public a9 h;
-    public boolean f23585n;
-    public final PorterDuffColorFilter f23586r;
-    public final e6 f23587s;
+    public boolean f23595n;
+    public final PorterDuffColorFilter f23596r;
+    public final e6 f23597s;
     public boolean v;
-    public float f23588w;
-    public float f23589x;
-    public float f23590y;
+    public float f23598w;
+    public float f23599x;
+    public float f23600y;
 
     public d9(e9 e9Var, Context context) {
         super(context);
         this.F = e9Var;
-        this.d = new s20();
-        this.e = new s20();
-        this.f23584f = 1.0f;
-        this.f23586r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        this.f23587s = new e6(this, 200L, tr.f28637g);
-        this.f23588w = -1.0f;
+        this.d = new r20();
+        this.e = new r20();
+        this.f23594f = 1.0f;
+        this.f23596r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f23597s = new e6(this, 200L, sr.f28347g);
+        this.f23598w = -1.0f;
         ai.y5 y5Var = new ai.y5(this, context, 7);
-        this.f23583c = y5Var;
+        this.f23593c = y5Var;
         y5Var.getImageReceiver().setAutoRepeatCount(1);
         y5Var.getImageReceiver().setAspectFit(true);
         setClipChildren(false);
@@ -49,7 +49,7 @@ public abstract class d9 extends FrameLayout {
     }
 
     public final void a(Canvas canvas, float f7, float f10, float f11, float f12, Paint paint) {
-        float f13 = this.f23587s.f23852c;
+        float f13 = this.f23597s.f23862c;
         if (f13 == 0.0f) {
             canvas.drawCircle(f7, f10, f12, paint);
             return;
@@ -63,12 +63,12 @@ public abstract class d9 extends FrameLayout {
     public final void b(a9 a9Var, boolean z10) {
         a9 a9Var2 = this.h;
         if (a9Var2 != null) {
-            this.e.d(a9Var2.f22588c, a9Var2.d, a9Var2.e, a9Var2.f22589f);
-            this.f23584f = 0.0f;
-            this.F.f23920n = true;
+            this.e.d(a9Var2.f22616c, a9Var2.d, a9Var2.e, a9Var2.f22617f);
+            this.f23594f = 0.0f;
+            this.F.f23947n = true;
         }
         this.h = a9Var;
-        this.f23585n = z10;
+        this.f23595n = z10;
         if (Build.VERSION.SDK_INT >= 23) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         }
@@ -81,11 +81,11 @@ public abstract class d9 extends FrameLayout {
     }
 
     public long getDuration() {
-        ai.y5 y5Var = this.f23583c;
+        ai.y5 y5Var = this.f23593c;
         ImageReceiver imageReceiver = y5Var.getImageReceiver();
         q5 q5Var = y5Var.e;
         if (q5Var != null) {
-            imageReceiver = q5Var.f27555k;
+            imageReceiver = q5Var.f27544k;
         }
         if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
             return imageReceiver.getLottieAnimation().r();
@@ -94,12 +94,12 @@ public abstract class d9 extends FrameLayout {
     }
 
     public ImageReceiver getImageReceiver() {
-        ai.y5 y5Var = this.f23583c;
+        ai.y5 y5Var = this.f23593c;
         ImageReceiver imageReceiver = y5Var.getImageReceiver();
         q5 q5Var = y5Var.e;
         if (q5Var != null) {
-            ai.l4 l4Var = q5Var.f27555k;
-            q5Var.setColorFilter(this.f23586r);
+            ai.l4 l4Var = q5Var.f27544k;
+            q5Var.setColorFilter(this.f23596r);
             return l4Var;
         }
         return imageReceiver;
@@ -127,12 +127,12 @@ public abstract class d9 extends FrameLayout {
         }
         this.v = z10;
         if (z10) {
-            ai.y5 y5Var = this.f23583c;
+            ai.y5 y5Var = this.f23593c;
             q5 q5Var = y5Var.e;
-            if (q5Var != null && (l4Var = q5Var.f27555k) != null) {
+            if (q5Var != null && (l4Var = q5Var.f27544k) != null) {
                 l4Var.startAnimation();
             }
-            y5Var.f29863a.startAnimation();
+            y5Var.f29872a.startAnimation();
         }
         if (Build.VERSION.SDK_INT >= 23) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);

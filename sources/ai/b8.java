@@ -26,7 +26,7 @@ import org.telegram.messenger.lk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.xv0;
+import org.telegram.ui.Components.wv0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.a71;
 import org.telegram.ui.zk0;
@@ -62,44 +62,44 @@ public final class b8 implements Runnable {
                 l9 l9Var = (l9) obj3;
                 TL_stories.TL_stories_getAllStories tL_stories_getAllStories = (TL_stories.TL_stories_getAllStories) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i11 = l9Var.f1194a;
-                SharedPreferences sharedPreferences = l9Var.f1202l;
+                int i11 = l9Var.f1192a;
+                SharedPreferences sharedPreferences = l9Var.f1200l;
                 if (z12) {
-                    l9Var.f1208r = false;
+                    l9Var.f1206r = false;
                 } else {
-                    l9Var.f1207q = false;
+                    l9Var.f1205q = false;
                 }
                 FileLog.d("StoriesController loaded stories from server state=" + tL_stories_getAllStories.state + " more=" + tL_stories_getAllStories.next + "  " + tLObject);
                 if (tLObject instanceof TL_stories.TL_stories_allStories) {
                     TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) tLObject;
                     MessagesStorage.getInstance(i11).putUsersAndChats(tL_stories_allStories.users, null, true, true);
                     if (!z12) {
-                        l9Var.f1211u = tL_stories_allStories.count;
-                        l9Var.f1206p = tL_stories_allStories.has_more;
-                        l9Var.f1205o = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1205o).putBoolean("last_stories_has_more", l9Var.f1206p).putInt("total_stores", l9Var.f1211u).apply();
+                        l9Var.f1209u = tL_stories_allStories.count;
+                        l9Var.f1204p = tL_stories_allStories.has_more;
+                        l9Var.f1203o = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1203o).putBoolean("last_stories_has_more", l9Var.f1204p).putInt("total_stores", l9Var.f1209u).apply();
                     } else {
                         l9Var.v = tL_stories_allStories.count;
-                        l9Var.f1215z = tL_stories_allStories.has_more;
-                        l9Var.f1214y = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1214y).putBoolean("last_stories_has_more_hidden", l9Var.f1215z).putInt("total_stores_hidden", l9Var.v).apply();
+                        l9Var.f1213z = tL_stories_allStories.has_more;
+                        l9Var.f1212y = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1212y).putBoolean("last_stories_has_more_hidden", l9Var.f1213z).putInt("total_stores_hidden", l9Var.v).apply();
                     }
                     l9Var.Y(tL_stories_allStories, z12, false, z11);
                     return;
                 } else if (tLObject instanceof TL_stories.TL_stories_allStoriesNotModified) {
                     if (!z12) {
-                        l9Var.f1206p = sharedPreferences.getBoolean("last_stories_has_more", false);
-                        l9Var.f1205o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1205o).apply();
+                        l9Var.f1204p = sharedPreferences.getBoolean("last_stories_has_more", false);
+                        l9Var.f1203o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1203o).apply();
                     } else {
-                        l9Var.f1215z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
-                        l9Var.f1214y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1214y).apply();
+                        l9Var.f1213z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
+                        l9Var.f1212y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1212y).apply();
                     }
                     if (z12) {
-                        z10 = l9Var.f1215z;
+                        z10 = l9Var.f1213z;
                     } else {
-                        z10 = l9Var.f1206p;
+                        z10 = l9Var.f1204p;
                     }
                     if (z10) {
                         NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -113,8 +113,8 @@ public final class b8 implements Runnable {
                 y9 y9Var = (y9) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 f fVar = (f) obj;
-                int i12 = y9Var.f1768a;
-                MessagesStorage messagesStorage = y9Var.f1769b;
+                int i12 = y9Var.f1761a;
+                MessagesStorage messagesStorage = y9Var.f1762b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i13);
@@ -123,7 +123,7 @@ public final class b8 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f18587id, peerDialogId);
+                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f18572id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f7);
                                 }
@@ -310,11 +310,11 @@ public final class b8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.s0 s0Var = ((pg.d1) obj3).f41197y.f41224c;
-                xv0 xv0Var = s0Var.f41324g;
-                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, xv0Var.f30521a, xv0Var.f30522b), false, z12, z11);
+                pg.s0 s0Var = ((pg.d1) obj3).f41100y.f41127c;
+                wv0 wv0Var = s0Var.f41227g;
+                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, wv0Var.f30182a, wv0Var.f30183b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f15426b;
+                    bitmapArr[0] = (Bitmap) h.f15411b;
                 }
                 countDownLatch.countDown();
                 return;

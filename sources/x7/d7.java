@@ -11,14 +11,14 @@ public enum d7 implements a0 {
     UI_IMAGE(6),
     CV_PIXEL_BUFFER_REF(9);
     
-    public final int f45776a;
+    public final int f45670a;
 
     d7(int i10) {
-        this.f45776a = i10;
+        this.f45670a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f45776a;
+        return this.f45670a;
     }
 }

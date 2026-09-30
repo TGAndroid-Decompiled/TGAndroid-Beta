@@ -13,23 +13,23 @@ import n2.e;
 import r0.i0;
 import s0.d;
 public abstract class b extends r0.b {
-    public static final Rect f12559n = new Rect(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
+    public static final Rect f12544n = new Rect(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
     public final AccessibilityManager h;
-    public final View f12562i;
-    public a f12563j;
+    public final View f12547i;
+    public a f12548j;
     public final Rect d = new Rect();
     public final Rect e = new Rect();
-    public final Rect f12560f = new Rect();
-    public final int[] f12561g = new int[2];
-    public int f12564k = Integer.MIN_VALUE;
-    public int f12565l = Integer.MIN_VALUE;
-    public int f12566m = Integer.MIN_VALUE;
+    public final Rect f12545f = new Rect();
+    public final int[] f12546g = new int[2];
+    public int f12549k = Integer.MIN_VALUE;
+    public int f12550l = Integer.MIN_VALUE;
+    public int f12551m = Integer.MIN_VALUE;
 
     public b(View view) {
-        this.f12562i = view;
+        this.f12547i = view;
         this.h = (AccessibilityManager) view.getContext().getSystemService("accessibility");
         view.setFocusable(true);
-        WeakHashMap weakHashMap = i0.f42233a;
+        WeakHashMap weakHashMap = i0.f42130a;
         if (view.getImportantForAccessibility() == 0) {
             view.setImportantForAccessibility(1);
         }
@@ -37,24 +37,24 @@ public abstract class b extends r0.b {
 
     @Override
     public final e a(View view) {
-        if (this.f12563j == null) {
-            this.f12563j = new a(this);
+        if (this.f12548j == null) {
+            this.f12548j = new a(this);
         }
-        return this.f12563j;
+        return this.f12548j;
     }
 
     @Override
     public final void c(View view, d dVar) {
-        this.f42201a.onInitializeAccessibilityNodeInfo(view, dVar.f43017a);
+        this.f42098a.onInitializeAccessibilityNodeInfo(view, dVar.f42911a);
     }
 
     public final AccessibilityEvent e(int i10, int i11) {
-        View view = this.f12562i;
+        View view = this.f12547i;
         if (i10 != -1) {
             AccessibilityEvent obtain = AccessibilityEvent.obtain(i11);
             d j3 = j(i10);
             obtain.getText().add(j3.g());
-            AccessibilityNodeInfo accessibilityNodeInfo = j3.f43017a;
+            AccessibilityNodeInfo accessibilityNodeInfo = j3.f42911a;
             obtain.setContentDescription(accessibilityNodeInfo.getContentDescription());
             obtain.setScrollable(accessibilityNodeInfo.isScrollable());
             obtain.setPassword(accessibilityNodeInfo.isPassword());
@@ -79,9 +79,9 @@ public abstract class b extends r0.b {
         if (accessibilityManager.isEnabled() && accessibilityManager.isTouchExplorationEnabled()) {
             int action = motionEvent.getAction();
             if (action != 7 && action != 9) {
-                if (action == 10 && (i10 = this.f12566m) != Integer.MIN_VALUE) {
+                if (action == 10 && (i10 = this.f12551m) != Integer.MIN_VALUE) {
                     if (i10 != Integer.MIN_VALUE) {
-                        this.f12566m = Integer.MIN_VALUE;
+                        this.f12551m = Integer.MIN_VALUE;
                         m(Integer.MIN_VALUE, 128);
                         m(i10, 256);
                         return true;
@@ -91,9 +91,9 @@ public abstract class b extends r0.b {
                 }
             } else {
                 int g10 = g(motionEvent.getX(), motionEvent.getY());
-                int i11 = this.f12566m;
+                int i11 = this.f12551m;
                 if (i11 != g10) {
-                    this.f12566m = g10;
+                    this.f12551m = g10;
                     m(g10, 128);
                     m(i11, 256);
                 }
@@ -113,7 +113,7 @@ public abstract class b extends r0.b {
     public final void i() {
         View view;
         ViewParent parent;
-        if (this.h.isEnabled() && (parent = (view = this.f12562i).getParent()) != null) {
+        if (this.h.isEnabled() && (parent = (view = this.f12547i).getParent()) != null) {
             AccessibilityEvent e = e(-1, 2048);
             e.setContentChangeTypes(1);
             parent.requestSendAccessibilityEvent(view, e);
@@ -122,11 +122,11 @@ public abstract class b extends r0.b {
 
     public final d j(int i10) {
         boolean z10;
-        View view = this.f12562i;
+        View view = this.f12547i;
         if (i10 == -1) {
             AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(view);
             d dVar = new d(obtain);
-            WeakHashMap weakHashMap = i0.f42233a;
+            WeakHashMap weakHashMap = i0.f42130a;
             view.onInitializeAccessibilityNodeInfo(obtain);
             ArrayList arrayList = new ArrayList();
             h(arrayList);
@@ -135,7 +135,7 @@ public abstract class b extends r0.b {
             }
             int size = arrayList.size();
             for (int i11 = 0; i11 < size; i11++) {
-                dVar.f43017a.addChild(view, ((Integer) arrayList.get(i11)).intValue());
+                dVar.f42911a.addChild(view, ((Integer) arrayList.get(i11)).intValue());
             }
             return dVar;
         }
@@ -144,7 +144,7 @@ public abstract class b extends r0.b {
         obtain2.setEnabled(true);
         obtain2.setFocusable(true);
         dVar2.i("android.view.View");
-        Rect rect = f12559n;
+        Rect rect = f12544n;
         dVar2.h(rect);
         obtain2.setBoundsInScreen(rect);
         obtain2.setParent(view);
@@ -159,16 +159,16 @@ public abstract class b extends r0.b {
             if ((actions & 64) == 0) {
                 if ((actions & 128) == 0) {
                     obtain2.setPackageName(view.getContext().getPackageName());
-                    dVar2.f43018b = i10;
+                    dVar2.f42912b = i10;
                     obtain2.setSource(view, i10);
-                    if (this.f12564k == i10) {
+                    if (this.f12549k == i10) {
                         obtain2.setAccessibilityFocused(true);
                         dVar2.a(128);
                     } else {
                         obtain2.setAccessibilityFocused(false);
                         dVar2.a(64);
                     }
-                    if (this.f12565l == i10) {
+                    if (this.f12550l == i10) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -179,7 +179,7 @@ public abstract class b extends r0.b {
                         dVar2.a(1);
                     }
                     obtain2.setFocused(z10);
-                    int[] iArr = this.f12561g;
+                    int[] iArr = this.f12546g;
                     view.getLocationOnScreen(iArr);
                     Rect rect3 = this.d;
                     obtain2.getBoundsInScreen(rect3);
@@ -187,7 +187,7 @@ public abstract class b extends r0.b {
                         obtain2.getBoundsInParent(rect3);
                         rect3.offset(iArr[0] - view.getScrollX(), iArr[1] - view.getScrollY());
                     }
-                    Rect rect4 = this.f12560f;
+                    Rect rect4 = this.f12545f;
                     if (view.getLocalVisibleRect(rect4)) {
                         rect4.offset(iArr[0] - view.getScrollX(), iArr[1] - view.getScrollY());
                         if (rect3.intersect(rect4)) {
@@ -224,7 +224,7 @@ public abstract class b extends r0.b {
     public final void m(int i10, int i11) {
         View view;
         ViewParent parent;
-        if (i10 != Integer.MIN_VALUE && this.h.isEnabled() && (parent = (view = this.f12562i).getParent()) != null) {
+        if (i10 != Integer.MIN_VALUE && this.h.isEnabled() && (parent = (view = this.f12547i).getParent()) != null) {
             parent.requestSendAccessibilityEvent(view, e(i10, i11));
         }
     }

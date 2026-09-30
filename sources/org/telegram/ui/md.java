@@ -7,31 +7,31 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 public final class md implements Runnable {
-    public final int f35623a;
-    public final je f35624b;
-    public final int f35625c;
+    public final int f35537a;
+    public final je f35538b;
+    public final int f35539c;
 
     public md(je jeVar, int i10, int i11) {
-        this.f35623a = i11;
-        this.f35624b = jeVar;
-        this.f35625c = i10;
+        this.f35537a = i11;
+        this.f35538b = jeVar;
+        this.f35539c = i10;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String formatPluralStringSpaced;
-        int i10 = this.f35623a;
-        int i11 = this.f35625c;
-        je jeVar = this.f35624b;
+        int i10 = this.f35537a;
+        int i11 = this.f35539c;
+        je jeVar = this.f35538b;
         switch (i10) {
             case 0:
                 nf.f.s(jeVar.getContext(), LocaleController.getString(i11));
                 return;
             case 1:
-                md mdVar = jeVar.f34853i1;
+                md mdVar = jeVar.f34762i1;
                 fi.o oVar = jeVar.Y0;
-                org.telegram.ui.Components.rc.e();
+                org.telegram.ui.Components.qc.e();
                 if (jeVar.N0.amount < MessagesController.getInstance(i11).starsRevenueWithdrawalMin) {
                     jeVar.W0 = true;
                     jeVar.X0 = jeVar.N0.amount;
@@ -47,7 +47,7 @@ public final class md implements Runnable {
                 mdVar.run();
                 return;
             default:
-                md mdVar2 = jeVar.f34853i1;
+                md mdVar2 = jeVar.f34762i1;
                 int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
                 ae aeVar = jeVar.Q0;
                 if (jeVar.X0 <= 0 && jeVar.L0 <= currentTime) {
@@ -58,20 +58,20 @@ public final class md implements Runnable {
                 aeVar.setEnabled(z10);
                 if (currentTime < jeVar.L0) {
                     aeVar.g(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true, true);
-                    if (jeVar.f34852h1 == null) {
-                        jeVar.f34852h1 = new SpannableStringBuilder("l");
-                        org.telegram.ui.Components.rq rqVar = new org.telegram.ui.Components.rq(R.drawable.mini_switch_lock, 0);
-                        rqVar.setTopOffset(1);
-                        jeVar.f34852h1.setSpan(rqVar, 0, 1, 33);
+                    if (jeVar.f34761h1 == null) {
+                        jeVar.f34761h1 = new SpannableStringBuilder("l");
+                        org.telegram.ui.Components.qq qqVar = new org.telegram.ui.Components.qq(R.drawable.mini_switch_lock, 0);
+                        qqVar.setTopOffset(1);
+                        jeVar.f34761h1.setSpan(qqVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) jeVar.f34852h1).append((CharSequence) yh.g.j0(jeVar.L0 - currentTime));
+                    spannableStringBuilder.append((CharSequence) jeVar.f34761h1).append((CharSequence) yh.g.j0(jeVar.L0 - currentTime));
                     aeVar.f(spannableStringBuilder, true);
-                    org.telegram.ui.Components.rc rcVar = jeVar.Z0;
-                    if (rcVar != null) {
-                        org.telegram.ui.Components.vb vbVar = rcVar.e;
-                        if ((vbVar instanceof org.telegram.ui.Components.zb) && vbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.ok.q(R.string.BotStarsWithdrawalToast, new Object[]{yh.g.j0(jeVar.L0 - currentTime)}, ((org.telegram.ui.Components.zb) jeVar.Z0.e).f30942b);
+                    org.telegram.ui.Components.qc qcVar = jeVar.Z0;
+                    if (qcVar != null) {
+                        org.telegram.ui.Components.ub ubVar = qcVar.e;
+                        if ((ubVar instanceof org.telegram.ui.Components.yb) && ubVar.isAttachedToWindow()) {
+                            org.telegram.messenger.ok.q(R.string.BotStarsWithdrawalToast, new Object[]{yh.g.j0(jeVar.L0 - currentTime)}, ((org.telegram.ui.Components.yb) jeVar.Z0.e).f30634b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(mdVar2);

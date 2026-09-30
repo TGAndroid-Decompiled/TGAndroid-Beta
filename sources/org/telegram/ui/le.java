@@ -16,12 +16,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class le implements Runnable {
-    public final int f35425a;
-    public final wn f35426b;
+    public final int f35317a;
+    public final wn f35318b;
 
     public le(wn wnVar, int i10) {
-        this.f35425a = i10;
-        this.f35426b = wnVar;
+        this.f35317a = i10;
+        this.f35318b = wnVar;
     }
 
     @Override
@@ -30,18 +30,18 @@ public final class le implements Runnable {
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
         int i10;
-        int i11 = this.f35425a;
+        int i11 = this.f35317a;
         TLRPC.ChatTheme chatTheme = null;
         char c10 = 1;
         int i12 = 0;
-        wn wnVar = this.f35426b;
+        wn wnVar = this.f35318b;
         switch (i11) {
             case 0:
                 wnVar.L5 = null;
                 if (wnVar.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar.getParentActivity(), 0, wnVar.f39562ea);
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar.getParentActivity(), 0, wnVar.f39469ea);
                     boolean isChannel = ChatObject.isChannel(wnVar.e);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18678a;
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18663a;
                     if (isChannel && !wnVar.e.megagroup) {
                         a2Var.T = LocaleController.getString(R.string.JoinByPeekChannelText);
                         a2Var.R = LocaleController.getString(R.string.JoinByPeekChannelTitle);
@@ -62,8 +62,8 @@ public final class le implements Runnable {
                 wn.g0(wnVar);
                 return;
             case 3:
-                wnVar.oa(null, wnVar.f39732s8);
-                wnVar.f39732s8 = null;
+                wnVar.oa(null, wnVar.f39639s8);
+                wnVar.f39639s8 = null;
                 return;
             case 4:
                 if (!org.telegram.ui.ActionBar.m2.hasSheets(wnVar) && (jkVar = wnVar.Y) != null) {
@@ -74,7 +74,7 @@ public final class le implements Runnable {
                 return;
             case 5:
                 wnVar.o9();
-                AndroidUtilities.forEachViews((RecyclerView) wnVar.f39788x0, (Utilities.Callback<View>) new af(wnVar, 5));
+                AndroidUtilities.forEachViews((RecyclerView) wnVar.f39695x0, (Utilities.Callback<View>) new af(wnVar, 5));
                 wnVar.u7();
                 ak akVar = wnVar.X2;
                 if (akVar != null) {
@@ -93,22 +93,22 @@ public final class le implements Runnable {
                 return;
             case 6:
                 se1 a02 = se1.a0(-wnVar.T5, 0L);
-                a02.f37827y = wnVar;
+                a02.f37731y = wnVar;
                 wnVar.presentFragment(a02);
                 return;
             case 7:
                 wnVar.getNotificationCenter().onAnimationFinish(wnVar.F9);
                 return;
             case 8:
-                wnVar.f39614j1.d(true);
+                wnVar.f39521j1.d(true);
                 return;
             case 9:
                 AndroidUtilities.removeFromParent(wnVar.K0);
                 return;
             case 10:
-                int childCount = wnVar.f39788x0.getChildCount();
+                int childCount = wnVar.f39695x0.getChildCount();
                 while (i12 < childCount) {
-                    View childAt = wnVar.f39788x0.getChildAt(i12);
+                    View childAt = wnVar.f39695x0.getChildAt(i12);
                     if (childAt instanceof org.telegram.ui.Cells.u1) {
                         org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) childAt;
                         if (u1Var2.getMessageObject().type == 4) {
@@ -126,14 +126,14 @@ public final class le implements Runnable {
                 wn.J0(wnVar);
                 return;
             case 13:
-                al alVar = wnVar.f39511ab;
+                al alVar = wnVar.f39418ab;
                 if (alVar != null) {
                     alVar.requestLayout();
                     return;
                 }
                 return;
             case 14:
-                TLRPC.UserFull userFull = wnVar.f39508a8;
+                TLRPC.UserFull userFull = wnVar.f39415a8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
@@ -174,7 +174,7 @@ public final class le implements Runnable {
                 wnVar.Y.H0();
                 return;
             case 22:
-                AndroidUtilities.forEachViews((RecyclerView) wnVar.f39788x0, (Utilities.Callback<View>) new ai.i(10));
+                AndroidUtilities.forEachViews((RecyclerView) wnVar.f39695x0, (Utilities.Callback<View>) new ai.i(10));
                 jm jmVar = wnVar.A0;
                 if (jmVar != null) {
                     jmVar.O(true);
@@ -182,106 +182,106 @@ public final class le implements Runnable {
                 }
                 return;
             case 23:
-                wn wnVar2 = this.f35426b;
-                int i13 = wnVar2.f39695pb;
+                wn wnVar2 = this.f35318b;
+                int i13 = wnVar2.f39602pb;
                 if (i13 != 0) {
-                    wnVar2.F(i13, wnVar2.f39707qb, wnVar2.f39735sb, wnVar2.f39760ub, wnVar2.f39721rb, wnVar2.f39747tb);
-                    wnVar2.f39695pb = 0;
+                    wnVar2.F(i13, wnVar2.f39614qb, wnVar2.f39642sb, wnVar2.f39667ub, wnVar2.f39628rb, wnVar2.f39654tb);
+                    wnVar2.f39602pb = 0;
                     return;
                 }
                 return;
             case 24:
-                if (!wnVar.f39640l3 && wnVar.f39788x0 != null && wnVar.getParentActivity() != null && wnVar.fragmentView != null) {
-                    org.telegram.ui.Components.tp tpVar = wnVar.f39764v2;
-                    if (tpVar == null || tpVar.getTag() == null) {
-                        if (wnVar.f39764v2 == null) {
+                if (!wnVar.f39547l3 && wnVar.f39695x0 != null && wnVar.getParentActivity() != null && wnVar.fragmentView != null) {
+                    org.telegram.ui.Components.sp spVar = wnVar.f39671v2;
+                    if (spVar == null || spVar.getTag() == null) {
+                        if (wnVar.f39671v2 == null) {
                             pm pmVar = wnVar.X0;
                             int indexOfChild = pmVar.indexOfChild(wnVar.S);
                             if (indexOfChild != -1) {
-                                org.telegram.ui.Components.tp tpVar2 = new org.telegram.ui.Components.tp(wnVar.getParentActivity(), wnVar.f39562ea);
-                                wnVar.f39764v2 = tpVar2;
-                                pmVar.addView(tpVar2, indexOfChild + 1, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
-                                wnVar.f39764v2.setAlpha(0.0f);
-                                wnVar.f39764v2.setVisibility(4);
+                                org.telegram.ui.Components.sp spVar2 = new org.telegram.ui.Components.sp(wnVar.getParentActivity(), wnVar.f39469ea);
+                                wnVar.f39671v2 = spVar2;
+                                pmVar.addView(spVar2, indexOfChild + 1, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+                                wnVar.f39671v2.setAlpha(0.0f);
+                                wnVar.f39671v2.setVisibility(4);
                             } else {
                                 return;
                             }
                         }
-                        int childCount2 = wnVar.f39788x0.getChildCount();
+                        int childCount2 = wnVar.f39695x0.getChildCount();
                         int i14 = 0;
                         while (i14 < childCount2) {
-                            View childAt2 = wnVar.f39788x0.getChildAt(i14);
+                            View childAt2 = wnVar.f39695x0.getChildAt(i14);
                             if ((childAt2 instanceof org.telegram.ui.Cells.u1) && (messageObject = (u1Var = (org.telegram.ui.Cells.u1) childAt2).getMessageObject()) != null && messageObject.isOutOwner() && messageObject.isSent()) {
-                                org.telegram.ui.Components.tp tpVar3 = wnVar.f39764v2;
-                                ImageView imageView = tpVar3.f28621c;
-                                org.telegram.ui.Components.qg qgVar = tpVar3.e;
-                                if (qgVar != null) {
-                                    AndroidUtilities.cancelRunOnUIThread(qgVar);
-                                    tpVar3.e = null;
+                                org.telegram.ui.Components.sp spVar3 = wnVar.f39671v2;
+                                ImageView imageView = spVar3.f28331c;
+                                org.telegram.ui.Components.pg pgVar = spVar3.e;
+                                if (pgVar != null) {
+                                    AndroidUtilities.cancelRunOnUIThread(pgVar);
+                                    spVar3.e = null;
                                 }
                                 int[] iArr = new int[2];
                                 u1Var.getLocationInWindow(iArr);
                                 int i15 = iArr[c10];
-                                ((View) tpVar3.getParent()).getLocationInWindow(iArr);
+                                ((View) spVar3.getParent()).getLocationInWindow(iArr);
                                 int i16 = i15 - iArr[1];
                                 View view = (View) u1Var.getParent();
-                                tpVar3.measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
-                                if (i16 > AndroidUtilities.dp(10.0f) + tpVar3.getMeasuredHeight()) {
+                                spVar3.measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
+                                if (i16 > AndroidUtilities.dp(10.0f) + spVar3.getMeasuredHeight()) {
                                     int C = org.telegram.messenger.f0.C(6.0f, u1Var.getChecksY(), i16);
                                     int dp = AndroidUtilities.dp(5.0f) + u1Var.getChecksX();
                                     int measuredWidth = view.getMeasuredWidth();
-                                    float measuredHeight = C - tpVar3.getMeasuredHeight();
-                                    tpVar3.f28622f = measuredHeight;
-                                    tpVar3.setTranslationY(measuredHeight);
+                                    float measuredHeight = C - spVar3.getMeasuredHeight();
+                                    spVar3.f28332f = measuredHeight;
+                                    spVar3.setTranslationY(measuredHeight);
                                     int left = u1Var.getLeft() + dp;
                                     int dp2 = AndroidUtilities.dp(15.0f);
                                     if (left > view.getMeasuredWidth() / 2) {
-                                        int measuredWidth2 = (measuredWidth - tpVar3.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
-                                        tpVar3.setTranslationX(measuredWidth2);
+                                        int measuredWidth2 = (measuredWidth - spVar3.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
+                                        spVar3.setTranslationX(measuredWidth2);
                                         dp2 += measuredWidth2;
                                     } else {
-                                        tpVar3.setTranslationX(0.0f);
+                                        spVar3.setTranslationX(0.0f);
                                     }
                                     float left2 = ((u1Var.getLeft() + dp) - dp2) - (imageView.getMeasuredWidth() / 2);
                                     imageView.setTranslationX(left2);
                                     if (left > view.getMeasuredWidth() / 2) {
                                         if (left2 < AndroidUtilities.dp(10.0f)) {
                                             float dp3 = left2 - AndroidUtilities.dp(10.0f);
-                                            tpVar3.setTranslationX(tpVar3.getTranslationX() + dp3);
+                                            spVar3.setTranslationX(spVar3.getTranslationX() + dp3);
                                             imageView.setTranslationX(left2 - dp3);
                                         }
-                                    } else if (left2 > tpVar3.getMeasuredWidth() - AndroidUtilities.dp(24.0f)) {
-                                        float measuredWidth3 = (left2 - tpVar3.getMeasuredWidth()) + AndroidUtilities.dp(24.0f);
-                                        tpVar3.setTranslationX(measuredWidth3);
+                                    } else if (left2 > spVar3.getMeasuredWidth() - AndroidUtilities.dp(24.0f)) {
+                                        float measuredWidth3 = (left2 - spVar3.getMeasuredWidth()) + AndroidUtilities.dp(24.0f);
+                                        spVar3.setTranslationX(measuredWidth3);
                                         imageView.setTranslationX(left2 - measuredWidth3);
                                     } else if (left2 < AndroidUtilities.dp(10.0f)) {
                                         float dp4 = left2 - AndroidUtilities.dp(10.0f);
-                                        tpVar3.setTranslationX(tpVar3.getTranslationX() + dp4);
+                                        spVar3.setTranslationX(spVar3.getTranslationX() + dp4);
                                         imageView.setTranslationX(left2 - dp4);
                                     }
-                                    tpVar3.setPivotX(left2);
-                                    tpVar3.setPivotY(tpVar3.getMeasuredHeight());
-                                    AnimatorSet animatorSet = tpVar3.d;
+                                    spVar3.setPivotX(left2);
+                                    spVar3.setPivotY(spVar3.getMeasuredHeight());
+                                    AnimatorSet animatorSet = spVar3.d;
                                     if (animatorSet != null) {
                                         animatorSet.cancel();
-                                        tpVar3.d = null;
+                                        spVar3.d = null;
                                     }
-                                    tpVar3.setTag(1);
-                                    tpVar3.setVisibility(0);
+                                    spVar3.setTag(1);
+                                    spVar3.setVisibility(0);
                                     AnimatorSet animatorSet2 = new AnimatorSet();
-                                    tpVar3.d = animatorSet2;
-                                    animatorSet2.playTogether(ObjectAnimator.ofFloat(tpVar3, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(tpVar3, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(tpVar3, View.SCALE_Y, 0.0f, 1.0f));
-                                    tpVar3.d.addListener(new org.telegram.ui.Components.sp(tpVar3, 0));
-                                    tpVar3.d.setDuration(180L);
-                                    tpVar3.d.start();
+                                    spVar3.d = animatorSet2;
+                                    animatorSet2.playTogether(ObjectAnimator.ofFloat(spVar3, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(spVar3, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(spVar3, View.SCALE_Y, 0.0f, 1.0f));
+                                    spVar3.d.addListener(new org.telegram.ui.Components.rp(spVar3, 0));
+                                    spVar3.d.setDuration(180L);
+                                    spVar3.d.start();
                                     while (i12 < 2) {
-                                        ViewPropertyAnimator interpolator = tpVar3.f28619a[i12].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.tr.f28638i);
+                                        ViewPropertyAnimator interpolator = spVar3.f28329a[i12].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.sr.f28348i);
                                         if (i12 == 0) {
                                             i10 = 132;
                                         } else {
                                             i10 = 500;
                                         }
-                                        interpolator.setStartDelay(i10 + 140).setDuration(100L).setListener(new ei.v2(tpVar3, i12, 6)).start();
+                                        interpolator.setStartDelay(i10 + 140).setDuration(100L).setListener(new ei.v2(spVar3, i12, 6)).start();
                                         i12++;
                                     }
                                     wnVar.getMessagesController().removeSuggestion(0L, "NEWCOMER_TICKS");
@@ -297,7 +297,7 @@ public final class le implements Runnable {
                 }
                 return;
             case 25:
-                AndroidUtilities.forEachViews((RecyclerView) wnVar.f39788x0, (Utilities.Callback<View>) new ai.i(11));
+                AndroidUtilities.forEachViews((RecyclerView) wnVar.f39695x0, (Utilities.Callback<View>) new ai.i(11));
                 jm jmVar2 = wnVar.A0;
                 if (jmVar2 != null) {
                     jmVar2.O(false);
@@ -315,9 +315,9 @@ public final class le implements Runnable {
                 }
                 return;
             case 28:
-                org.telegram.ui.Components.to toVar = ((org.telegram.ui.Components.to[]) wnVar.f39501a0.f866b)[0];
-                org.telegram.ui.ActionBar.h5 h5Var = toVar.d;
-                org.telegram.ui.ActionBar.h5 h5Var2 = toVar.e;
+                org.telegram.ui.Components.so soVar = ((org.telegram.ui.Components.so[]) wnVar.f39408a0.f866b)[0];
+                org.telegram.ui.ActionBar.h5 h5Var = soVar.d;
+                org.telegram.ui.ActionBar.h5 h5Var2 = soVar.e;
                 wnVar.F1 = !wnVar.F1;
                 h5Var.setPivotX(0.0f);
                 h5Var2.setPivotX(0.0f);

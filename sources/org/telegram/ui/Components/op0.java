@@ -1,34 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class op0 {
-    public final qu f27163a;
-    public final long f27164b;
-    public final float f27165c;
-    public final float d;
-    public final float e;
+import org.telegram.messenger.NotificationCenter;
+public final class op0 implements o1.g {
+    public final int f27153a;
+    public final int[] f27154b;
+    public final NotificationCenter.NotificationCenterDelegate f27155c;
+    public final View d;
 
-    public op0(View view) {
-        qu quVar = new qu(1, view);
-        this.f27164b = System.currentTimeMillis();
-        this.f27163a = quVar;
-        this.f27165c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
-        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
-        this.e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+    public op0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, View view, int[] iArr, int i10) {
+        this.f27153a = i10;
+        this.f27155c = notificationCenterDelegate;
+        this.d = view;
+        this.f27154b = iArr;
     }
 
-    public final void a(Canvas canvas, float f7) {
-        qu quVar;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f27164b)) / 1000.0f;
-        canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.f27165c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
-        canvas.translate(-0.0f, -0.0f);
-        if (f7 > 0.0f && (quVar = this.f27163a) != null) {
-            quVar.run();
+    @Override
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f27153a) {
+            case 0:
+                ((wq0) this.f27155c).Q0((org.telegram.ui.Cells.g7) this.d, this.f27154b, f7 / 1000.0f);
+                return;
+            default:
+                ((dq0) this.f27155c).d.Q0(this.d, this.f27154b, f7 / 1000.0f);
+                return;
         }
     }
 }

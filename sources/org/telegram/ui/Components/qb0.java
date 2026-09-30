@@ -1,59 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
-public final class qb0 extends s4.t {
-    public final cc0 S;
+public final class qb0 extends g.p {
+    public final bc0 f27633c;
 
-    public qb0(cc0 cc0Var) {
-        super(true);
-        this.S = cc0Var;
+    public qb0(bc0 bc0Var) {
+        this.f27633c = bc0Var;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        cc0 cc0Var = this.S;
-        MessageObject messageObject = cc0Var.f23267r.previewMessages.get(i10);
-        MessageObject.GroupedMessages a2 = cc0.a(cc0Var, messageObject);
-        if (a2 != null) {
-            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = a2.posArray.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
-                    }
-                }
+    public final int i(int i10) {
+        MessageObject messageObject;
+        MessageObject.GroupedMessages a2;
+        if (i10 >= 0) {
+            bc0 bc0Var = this.f27633c;
+            if (i10 < bc0Var.f22941r.previewMessages.size() && (a2 = bc0.a(bc0Var, (messageObject = bc0Var.f22941r.previewMessages.get(i10)))) != null) {
+                return a2.getPosition(messageObject).spanSize;
             }
+            return 1000;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        return false;
-    }
-
-    @Override
-    public final void b0(of.e eVar, s4.z0 z0Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            super.b0(eVar, z0Var);
-            return;
-        }
-        try {
-            super.b0(eVar, z0Var);
-        } catch (Exception e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new aq(this, 29));
-        }
+        return 1000;
     }
 }

@@ -1,4 +1,22 @@
 package org.telegram.ui.Components;
-public interface vm0 {
-    void a(int i10);
+public final class vm0 {
+    public static final vm0 f29147a;
+    public static final vm0 f29148b;
+    public static final vm0[] f29149c;
+
+    static {
+        ?? r02 = new Enum("LINE", 0);
+        f29147a = r02;
+        ?? r12 = new Enum("TAB", 1);
+        f29148b = r12;
+        f29149c = new vm0[]{r02, r12};
+    }
+
+    public static vm0 valueOf(String str) {
+        return (vm0) Enum.valueOf(vm0.class, str);
+    }
+
+    public static vm0[] values() {
+        return (vm0[]) f29149c.clone();
+    }
 }

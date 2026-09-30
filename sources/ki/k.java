@@ -3,11 +3,11 @@ package ki;
 import android.media.MediaCodec;
 import java.nio.ByteBuffer;
 public final class k {
-    public final ByteBuffer f13773a;
-    public final MediaCodec.BufferInfo f13774b;
+    public final ByteBuffer f13758a;
+    public final MediaCodec.BufferInfo f13759b;
 
     public k(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
-        this.f13773a = byteBuffer;
-        this.f13774b = bufferInfo;
+        this.f13758a = byteBuffer;
+        this.f13759b = bufferInfo;
     }
 }

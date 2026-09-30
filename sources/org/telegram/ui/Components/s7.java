@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.accessibility.AccessibilityNodeInfo;
-public final class s7 extends oj0 {
-    public float f28208r;
-    public float f28209s;
+public final class s7 extends nj0 {
+    public float f28141r;
+    public float f28142s;
     public boolean v;
-    public final org.telegram.ui.Cells.t6 f28210w;
-    public final float f28211x;
-    public final j8 f28212y;
+    public final org.telegram.ui.Cells.t6 f28143w;
+    public final float f28144x;
+    public final j8 f28145y;
 
     public s7(j8 j8Var, Context context, float f7) {
         super(context);
-        this.f28212y = j8Var;
-        this.f28211x = f7;
-        this.f28210w = new org.telegram.ui.Cells.t6(this, 4);
+        this.f28145y = j8Var;
+        this.f28144x = f7;
+        this.f28143w = new org.telegram.ui.Cells.t6(this, 4);
     }
 
     @Override

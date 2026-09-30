@@ -1,74 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class gq0 extends AnimatorListenerAdapter {
-    public final int f24660a;
-    public final boolean f24661b;
-    public final xq0 f24662c;
+import org.telegram.messenger.AndroidUtilities;
+public final class gq0 extends org.telegram.ui.ActionBar.o1 {
+    public final hq0 f24616x;
 
-    public gq0(xq0 xq0Var, boolean z10, int i10) {
-        this.f24660a = i10;
-        this.f24662c = xq0Var;
-        this.f24661b = z10;
+    public gq0(hq0 hq0Var, hq0 hq0Var2) {
+        super(hq0Var2);
+        this.f24616x = hq0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f24660a) {
-            case 0:
-                AnimatorSet[] animatorSetArr = this.f24662c.T;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
-                    return;
-                }
-                return;
-            default:
-                xq0 xq0Var = this.f24662c;
-                if (animator.equals(xq0Var.f30485y)) {
-                    xq0Var.f30485y = null;
-                    return;
-                }
-                return;
+    public final boolean b() {
+        wq0 wq0Var = this.f24616x.H0;
+        if (!wq0Var.isDismissed() && wq0Var.Y) {
+            return !wq0Var.d.m();
         }
+        return false;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24660a) {
-            case 0:
-                xq0 xq0Var = this.f24662c;
-                AnimatorSet[] animatorSetArr = xq0Var.T;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f24661b) {
-                        xq0Var.S[0].setVisibility(4);
-                    }
-                    animatorSetArr[0] = null;
-                    return;
-                }
-                return;
-            default:
-                xq0 xq0Var2 = this.f24662c;
-                FrameLayout frameLayout = xq0Var2.h;
-                if (animator.equals(xq0Var2.f30485y)) {
-                    if (!this.f24661b) {
-                        xq0Var2.f30457c.setVisibility(4);
-                        FrameLayout frameLayout2 = xq0Var2.f30458c0;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
-                        }
-                        xq0Var2.f30461f.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
-                    }
-                    xq0Var2.f30485y = null;
-                    return;
-                }
-                return;
+    public final void e(float r9, float r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gq0.e(float, float, boolean):void");
+    }
+
+    @Override
+    public final void f() {
+        wq0 wq0Var = this.f24616x.H0;
+        bq0 bq0Var = wq0Var.d;
+        if (bq0Var == null || !bq0Var.m()) {
+            int i10 = wq0Var.N0;
+            AndroidUtilities.dp(20.0f);
         }
+        wq0Var.f30139r0 = false;
+        int i11 = wq0Var.f30136p0;
+        wq0Var.f30137q0 = i11;
+        wq0Var.F.setTopGlowOffset(i11);
+        wq0Var.f30119b.setTranslationY(wq0Var.f30136p0);
+        wq0Var.Q.setTranslationY(wq0Var.f30136p0);
+        wq0Var.F.setTranslationY(0.0f);
+        wq0Var.G.setTranslationY(0.0f);
+        wq0Var.Y0();
+    }
+
+    @Override
+    public final void g(int i10, boolean z10) {
+        int i11;
+        hq0 hq0Var = this.f24616x;
+        wq0 wq0Var = hq0Var.H0;
+        int i12 = wq0Var.f30137q0;
+        int i13 = wq0Var.f30136p0;
+        if (i12 != i13) {
+            hq0Var.B0 = i12;
+            hq0Var.C0 = i13;
+            wq0Var.f30139r0 = true;
+            wq0Var.f30136p0 = i12;
+        } else {
+            hq0Var.B0 = -1;
+        }
+        int i14 = hq0Var.f24853z0;
+        int i15 = hq0Var.A0;
+        if (i14 != i15) {
+            hq0Var.D0 = 0;
+            hq0Var.E0 = 0;
+            wq0Var.f30139r0 = true;
+            if (!z10) {
+                hq0Var.E0 = 0 - (i14 - i15);
+            } else {
+                hq0Var.E0 = i14 - i15;
+            }
+            if (z10) {
+                i11 = hq0Var.B0;
+            } else {
+                i11 = hq0Var.C0;
+            }
+            wq0Var.f30136p0 = i11;
+        } else {
+            hq0Var.D0 = -1;
+        }
+        wq0Var.F.setTopGlowOffset((int) (wq0Var.f30142t0 + wq0Var.f30136p0));
+        wq0Var.f30119b.setTranslationY(wq0Var.f30142t0 + wq0Var.f30136p0);
+        wq0Var.Q.setTranslationY(wq0Var.f30142t0 + wq0Var.f30136p0);
+        hq0Var.invalidate();
     }
 }

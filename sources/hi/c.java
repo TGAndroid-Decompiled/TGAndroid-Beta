@@ -15,26 +15,26 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.cb;
+import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.qq;
 import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.Components.yl0;
-import org.telegram.ui.Components.zl0;
 import w7.y5;
-public final class c extends cb {
+public final class c extends bb {
     public final d1 X;
-    public m61 Y;
+    public l61 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, (d6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        zl0 zl0Var = this.d;
+        yl0 yl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        zl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        yl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -62,7 +62,7 @@ public final class c extends cb {
         textView2.setTextColor(getThemedColor(i13));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
-        spannableStringBuilder.setSpan(new rq(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
+        spannableStringBuilder.setSpan(new qq(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
         if (isChannelAndNotMegaGroup) {
             i11 = R.string.CommunityInviteOnlyChannelInfo;
         } else {
@@ -77,11 +77,11 @@ public final class c extends cb {
     }
 
     @Override
-    public final yl0 v(zl0 zl0Var) {
-        m61 m61Var = new m61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = m61Var;
-        m61Var.f26223r = false;
-        return m61Var;
+    public final xl0 v(yl0 yl0Var) {
+        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = l61Var;
+        l61Var.f25924r = false;
+        return l61Var;
     }
 
     @Override

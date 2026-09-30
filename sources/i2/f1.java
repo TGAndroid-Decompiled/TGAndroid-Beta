@@ -2,23 +2,23 @@ package i2;
 
 import java.util.ArrayList;
 public final class f1 implements x0 {
-    public final u2.a0 f10696a;
+    public final u2.a0 f10682a;
     public int d;
     public boolean e;
-    public final ArrayList f10698c = new ArrayList();
-    public final Object f10697b = new Object();
+    public final ArrayList f10684c = new ArrayList();
+    public final Object f10683b = new Object();
 
     public f1(u2.a aVar, boolean z10) {
-        this.f10696a = new u2.a0(aVar, z10);
+        this.f10682a = new u2.a0(aVar, z10);
     }
 
     @Override
     public final Object a() {
-        return this.f10697b;
+        return this.f10683b;
     }
 
     @Override
     public final b2.k1 b() {
-        return this.f10696a.f43699o;
+        return this.f10682a.f43593o;
     }
 }

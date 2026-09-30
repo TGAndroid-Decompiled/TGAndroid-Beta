@@ -1,87 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.util.SparseArray;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class el0 {
-    public final zl0 f24004a;
-    public boolean d;
-    public final boolean e;
-    public final SparseArray f24005b = new SparseArray();
-    public final HashSet f24006c = new HashSet();
-    public final boolean f24007f = true;
-    public final ArrayList f24008g = new ArrayList();
-    public final ArrayList h = new ArrayList();
+public final class el0 extends Drawable {
+    public final Paint f24023a = new Paint(1);
+    public final View f24024b;
+    public final Path f24025c;
+    public final RectF d;
+    public final yl0 e;
 
-    public el0(zl0 zl0Var, boolean z10) {
-        this.f24004a = zl0Var;
-        this.e = z10;
-        zl0Var.setItemsEnterAnimator(this);
+    public el0(yl0 yl0Var, View view, Path path, RectF rectF) {
+        this.e = yl0Var;
+        this.f24024b = view;
+        this.f24025c = path;
+        this.d = rectF;
     }
 
-    public final void a() {
-        ArrayList arrayList = this.f24008g;
-        int i10 = 0;
-        if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList(arrayList);
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                ((AnimatorSet) arrayList2.get(i11)).end();
-                ((AnimatorSet) arrayList2.get(i11)).cancel();
-            }
-        }
-        arrayList.clear();
-        while (true) {
-            ArrayList arrayList3 = this.h;
-            int size = arrayList3.size();
-            zl0 zl0Var = this.f24004a;
-            if (i10 < size) {
-                zl0Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i10));
-                i10++;
-            } else {
-                arrayList3.clear();
-                this.f24005b.clear();
-                zl0Var.invalidate();
-                this.d = true;
-                return;
-            }
-        }
+    @Override
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        View view = this.f24024b;
+        canvas.translate(-view.getX(), -view.getY());
+        canvas.clipPath(this.f24025c);
+        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19061d6, this.e.f30700p2);
+        Paint paint = this.f24023a;
+        paint.setColor(i0.a.k(v02, paint.getAlpha()));
+        canvas.drawRect(this.d, paint);
+        canvas.restore();
     }
 
-    public final void b(int i10) {
-        Animator ofFloat;
-        zl0 zl0Var = this.f24004a;
-        int childCount = zl0Var.getChildCount();
-        w00 w00Var = null;
-        for (int i11 = 0; i11 < childCount; i11++) {
-            View childAt = zl0Var.getChildAt(i11);
-            if (RecyclerView.R(childAt) >= 0 && (childAt instanceof w00)) {
-                w00Var = childAt;
-            }
-        }
-        s4.o0 layoutManager = zl0Var.getLayoutManager();
-        if (w00Var != null && layoutManager != null) {
-            zl0Var.removeView(w00Var);
-            this.f24006c.add(w00Var);
-            zl0Var.addView(w00Var);
-            layoutManager.M(w00Var);
-            if (this.f24007f) {
-                ofFloat = ObjectAnimator.ofFloat(w00Var, View.ALPHA, w00Var.getAlpha(), 0.0f);
-            } else {
-                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            }
-            ofFloat.addListener(new ai.z(this, w00Var, layoutManager));
-            ofFloat.start();
-            i10--;
-        }
-        org.telegram.ui.wq wqVar = new org.telegram.ui.wq(this, w00Var, i10, 2);
-        this.h.add(wqVar);
-        zl0Var.getViewTreeObserver().addOnPreDrawListener(wqVar);
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f24023a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

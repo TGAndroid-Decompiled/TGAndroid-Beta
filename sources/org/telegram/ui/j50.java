@@ -4,14 +4,14 @@ import android.graphics.Canvas;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.support.LongSparseIntArray;
-public final class j50 extends org.telegram.ui.Components.zl0 {
-    public final LongSparseIntArray f34732e3;
-    public final d60 f34733f3;
+public final class j50 extends org.telegram.ui.Components.yl0 {
+    public final LongSparseIntArray X2;
+    public final d60 Y2;
 
     public j50(d60 d60Var, LaunchActivity launchActivity) {
         super(launchActivity, null);
-        this.f34733f3 = d60Var;
-        this.f34732e3 = new LongSparseIntArray();
+        this.Y2 = d60Var;
+        this.X2 = new LongSparseIntArray();
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class j50 extends org.telegram.ui.Components.zl0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f34733f3.X2) {
+        if (view == this.Y2.X2) {
             return false;
         }
         return super.drawChild(canvas, view, j3);
@@ -31,15 +31,15 @@ public final class j50 extends org.telegram.ui.Components.zl0 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         super.onLayout(z10, i10, i11, i12, i13);
-        r50 r50Var = this.f34733f3.X;
+        r50 r50Var = this.Y2.X;
         HashSet hashSet = r50Var.I;
         d60 d60Var = r50Var.L;
         HashSet hashSet2 = r50Var.H;
         if (r50Var.G == null) {
             hashSet2.clear();
-            hashSet2.addAll(r50Var.f43127q);
+            hashSet2.addAll(r50Var.f43021q);
             hashSet.clear();
-            hashSet.addAll(r50Var.f43126p);
+            hashSet.addAll(r50Var.f43020p);
             r50Var.J = 0.0f;
             r50Var.K = Float.MAX_VALUE;
             if (hashSet2.isEmpty() && hashSet.isEmpty()) {
@@ -50,7 +50,7 @@ public final class j50 extends org.telegram.ui.Components.zl0 {
             for (int i15 = 0; i15 < childCount; i15++) {
                 View childAt = j50Var.getChildAt(i15);
                 s4.c1 G = j50Var.G(childAt);
-                if (G != null && (i14 = G.f43071f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
+                if (G != null && (i14 = G.f42965f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
                     r50Var.J = Math.max(r50Var.J, childAt.getY() + childAt.getMeasuredHeight());
                     r50Var.K = Math.min(r50Var.K, Math.max(0.0f, childAt.getY()));
                 }
@@ -73,7 +73,7 @@ public final class j50 extends org.telegram.ui.Components.zl0 {
                     } else {
                         z10 = false;
                     }
-                    d60.N(this.f34733f3, lVar, z10);
+                    d60.N(this.Y2, lVar, z10);
                 }
             }
         }

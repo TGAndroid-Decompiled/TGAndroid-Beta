@@ -16,7 +16,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class pm extends org.telegram.ui.Components.dw0 {
+public final class pm extends org.telegram.ui.Components.cw0 {
     public final ArrayList A0;
     public final ArrayList B0;
     public final ArrayList C0;
@@ -27,16 +27,16 @@ public final class pm extends org.telegram.ui.Components.dw0 {
     public long H0;
     public boolean I0;
     public final wn J0;
-    public int f36680w0;
-    public int f36681x0;
-    public int f36682y0;
-    public final ArrayList f36683z0;
+    public int f36576w0;
+    public int f36577x0;
+    public int f36578y0;
+    public final ArrayList f36579z0;
 
     public pm(wn wnVar, Context context, org.telegram.ui.ActionBar.b5 b5Var) {
         super(context, b5Var);
         this.J0 = wnVar;
-        this.f36680w0 = 0;
-        this.f36683z0 = new ArrayList();
+        this.f36576w0 = 0;
+        this.f36579z0 = new ArrayList();
         this.A0 = new ArrayList();
         this.B0 = new ArrayList();
         this.C0 = new ArrayList();
@@ -50,9 +50,9 @@ public final class pm extends org.telegram.ui.Components.dw0 {
         wnVar.X0.setTranslationY(f7);
         kVar = ((org.telegram.ui.ActionBar.m2) wnVar).actionBar;
         kVar.setTranslationY(0.0f);
-        al alVar = wnVar.f39511ab;
+        al alVar = wnVar.f39418ab;
         if (alVar != null) {
-            vk vkVar = wnVar.f39674o1;
+            vk vkVar = wnVar.f39581o1;
             if (vkVar != null) {
                 i10 = vkVar.getCurrentHeight();
             } else {
@@ -60,28 +60,28 @@ public final class pm extends org.telegram.ui.Components.dw0 {
             }
             alVar.setTranslationY(i10);
         }
-        ci.e4 e4Var = wnVar.f39776w1;
+        ci.e4 e4Var = wnVar.f39683w1;
         if (e4Var != null) {
             e4Var.setTranslationY(0.0f);
         }
-        ci.e4 e4Var2 = wnVar.f39763v1;
+        ci.e4 e4Var2 = wnVar.f39670v1;
         if (e4Var2 != null) {
             e4Var2.setTranslationY(0.0f);
         }
         wnVar.Q0.setTranslationY(0.0f);
         wnVar.P.setTranslationY(0.0f);
-        wnVar.f39784w9 = 0.0f;
-        wnVar.f39797x9 = 0.0f;
+        wnVar.f39691w9 = 0.0f;
+        wnVar.f39704x9 = 0.0f;
         wnVar.X0.setBackgroundTranslation(0);
-        org.telegram.ui.Components.k60 k60Var = wnVar.f39517b3;
-        if (k60Var != null) {
-            k60Var.e(0.0f);
+        org.telegram.ui.Components.j60 j60Var = wnVar.f39424b3;
+        if (j60Var != null) {
+            j60Var.e(0.0f);
         }
-        ci.r6 r6Var = wnVar.f39803y2;
+        ci.r6 r6Var = wnVar.f39710y2;
         if (r6Var != null) {
-            org.telegram.ui.Components.ga gaVar = (org.telegram.ui.Components.ga) r6Var.f5466b;
-            gaVar.f24502u = 0.0f;
-            gaVar.d.invalidate();
+            org.telegram.ui.Components.fa faVar = (org.telegram.ui.Components.fa) r6Var.f5457b;
+            faVar.f24170u = 0.0f;
+            faVar.d.invalidate();
         }
         wnVar.setFragmentPanTranslationOffset(0);
         wnVar.o9();
@@ -100,8 +100,8 @@ public final class pm extends org.telegram.ui.Components.dw0 {
     @Override
     public final void U(Drawable drawable) {
         boolean z10;
-        if (drawable instanceof org.telegram.ui.Components.pc0) {
-            ((org.telegram.ui.Components.pc0) drawable).p();
+        if (drawable instanceof org.telegram.ui.Components.oc0) {
+            ((org.telegram.ui.Components.oc0) drawable).p();
         }
         wn wnVar = this.J0;
         fh.a c10 = wnVar.W.c(drawable);
@@ -118,7 +118,7 @@ public final class pm extends org.telegram.ui.Components.dw0 {
             z11 = true;
         }
         wnVar.Db = z11;
-        wnVar.L.f9075a = c10;
+        wnVar.L.f9063a = c10;
         jh.f fVar = wnVar.X;
         if (fVar != null) {
             fVar.invalidate();
@@ -135,14 +135,14 @@ public final class pm extends org.telegram.ui.Components.dw0 {
         float f10;
         int save = canvas.save();
         wn wnVar = this.J0;
-        float x10 = u1Var.getX() + wnVar.f39788x0.getLeft();
-        float y3 = u1Var.getY() + wnVar.f39788x0.getY() + u1Var.getPaddingTop();
+        float x10 = u1Var.getX() + wnVar.f39695x0.getLeft();
+        float y3 = u1Var.getY() + wnVar.f39695x0.getY() + u1Var.getPaddingTop();
         if (u1Var.a()) {
             f10 = u1Var.getAlpha();
         } else {
             f10 = 1.0f;
         }
-        canvas.clipRect(wnVar.f39788x0.getLeft(), f7, wnVar.f39788x0.getRight(), ((((wnVar.f39788x0.getY() + wnVar.f39788x0.getMeasuredHeight()) - wnVar.Aa) - wnVar.v.d()) - wnVar.f39722rc) - AndroidUtilities.dp(9.0f));
+        canvas.clipRect(wnVar.f39695x0.getLeft(), f7, wnVar.f39695x0.getRight(), ((((wnVar.f39695x0.getY() + wnVar.f39695x0.getMeasuredHeight()) - wnVar.Aa) - wnVar.v.d()) - wnVar.f39629rc) - AndroidUtilities.dp(9.0f));
         canvas.translate(x10, y3);
         boolean z10 = true;
         u1Var.setInvalidatesParent(true);
@@ -175,7 +175,7 @@ public final class pm extends org.telegram.ui.Components.dw0 {
 
     @Override
     public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        org.telegram.ui.Components.tg tgVar;
+        org.telegram.ui.Components.sg sgVar;
         int i11;
         wn wnVar = this.J0;
         ah.c cVar = wnVar.J;
@@ -197,18 +197,18 @@ public final class pm extends org.telegram.ui.Components.dw0 {
         jk jkVar2 = wnVar.Y;
         if (jkVar2 != null && view == jkVar2.m0) {
             ei.y yVar = (ei.y) view;
-            yVar.setBackgroundDrawable(cVar.c(yVar.f8734c, wnVar.f39787x, false));
+            yVar.setBackgroundDrawable(cVar.c(yVar.f8722c, wnVar.f39694x, false));
         }
         jk jkVar3 = wnVar.Y;
-        if (jkVar3 != null && view == (tgVar = jkVar3.O1)) {
-            tgVar.setBlurredBackgroundFactory(cVar);
+        if (jkVar3 != null && view == (sgVar = jkVar3.O1)) {
+            sgVar.setBlurredBackgroundFactory(cVar);
         }
     }
 
     public final boolean b0(View view) {
         if (view != this.L) {
             wn wnVar = this.J0;
-            if (view != wnVar.f39803y2 && view != wnVar.f39698q1 && view != wnVar.f39657m9 && view != wnVar.X && view != wnVar.K3) {
+            if (view != wnVar.f39710y2 && view != wnVar.f39605q1 && view != wnVar.f39564m9 && view != wnVar.X && view != wnVar.K3) {
                 return false;
             }
             return true;
@@ -224,7 +224,7 @@ public final class pm extends org.telegram.ui.Components.dw0 {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         el elVar;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1 && (elVar = this.J0.Ea) != null && elVar.f25077s) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1 && (elVar = this.J0.Ea) != null && elVar.f24778s) {
             elVar.a(true);
             return true;
         }
@@ -243,7 +243,7 @@ public final class pm extends org.telegram.ui.Components.dw0 {
 
     @Override
     public float getBottomOffset() {
-        return this.J0.f39788x0.getBottom();
+        return this.J0.f39695x0.getBottom();
     }
 
     public wn getChatActivity() {
@@ -265,12 +265,12 @@ public final class pm extends org.telegram.ui.Components.dw0 {
 
     @Override
     public float getListTranslationY() {
-        return this.J0.f39788x0.getTranslationY();
+        return this.J0.f39695x0.getTranslationY();
     }
 
     @Override
     public Drawable getNewDrawable() {
-        Drawable d = this.J0.f39562ea.d();
+        Drawable d = this.J0.f39469ea.d();
         if (d != null) {
             return d;
         }
@@ -279,7 +279,7 @@ public final class pm extends org.telegram.ui.Components.dw0 {
 
     @Override
     public boolean getNewDrawableMotion() {
-        TLRPC.WallPaper wallPaper = this.J0.f39562ea.h;
+        TLRPC.WallPaper wallPaper = this.J0.f39469ea.h;
         if (wallPaper == null) {
             return super.getNewDrawableMotion();
         }
@@ -292,7 +292,7 @@ public final class pm extends org.telegram.ui.Components.dw0 {
 
     @Override
     public int getScrollOffset() {
-        return this.J0.f39788x0.computeVerticalScrollOffset();
+        return this.J0.f39695x0.computeVerticalScrollOffset();
     }
 
     @Override
@@ -306,26 +306,26 @@ public final class pm extends org.telegram.ui.Components.dw0 {
             b5Var = ((org.telegram.ui.ActionBar.m2) wnVar).parentLayout;
             if (b5Var != null) {
                 b5Var2 = ((org.telegram.ui.ActionBar.m2) wnVar).parentLayout;
-                if (((ActionBarLayout) b5Var2).f18622b) {
+                if (((ActionBarLayout) b5Var2).f18607b) {
                     org.telegram.ui.ActionBar.o1 o1Var = this.H;
                     b5Var3 = ((org.telegram.ui.ActionBar.m2) wnVar).parentLayout;
-                    o1Var.f19687b = (FrameLayout) b5Var3.getView().getParent().getParent().getParent().getParent();
+                    o1Var.f19672b = (FrameLayout) b5Var3.getView().getParent().getParent().getParent().getParent();
                 }
             }
         } else {
-            this.H.f19687b = wnVar.X0;
+            this.H.f19672b = wnVar.X0;
         }
         this.H.c();
         wnVar.Y.setAdjustPanLayoutHelper(this.H);
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && ((playingMessageObject.isRoundVideo() || playingMessageObject.isVideo()) && playingMessageObject.eventId == 0 && playingMessageObject.getDialogId() == wnVar.T5)) {
-            MediaController.getInstance().setTextureView(wnVar.N7(false), wnVar.f39770v8, wnVar.f39745t8, true);
+            MediaController.getInstance().setTextureView(wnVar.N7(false), wnVar.f39677v8, wnVar.f39652t8, true);
         }
         up upVar = wnVar.P9;
         if (upVar != null) {
             upVar.f();
         }
-        wnVar.f39798xa.j();
+        wnVar.f39705xa.j();
     }
 
     @Override
@@ -336,17 +336,17 @@ public final class pm extends org.telegram.ui.Components.dw0 {
         wn wnVar = this.J0;
         up upVar = wnVar.P9;
         if (upVar != null) {
-            NotificationCenter.getInstance(upVar.f38615e0).removeObserver(upVar, NotificationCenter.updateInterfaces);
+            NotificationCenter.getInstance(upVar.f38527e0).removeObserver(upVar, NotificationCenter.updateInterfaces);
             upVar.F.onDetachedFromWindow();
-            org.telegram.ui.Components.q5 q5Var = upVar.f38622k0;
-            if (q5Var != null && (view = upVar.f38609a0) != null) {
+            org.telegram.ui.Components.q5 q5Var = upVar.f38534k0;
+            if (q5Var != null && (view = upVar.f38521a0) != null) {
                 q5Var.o(view);
             }
             upVar.Q = 0.0f;
             upVar.P = 0L;
             wnVar.P9 = null;
         }
-        wnVar.f39798xa.k();
+        wnVar.f39705xa.k();
         AndroidUtilities.runOnUIThread(new ai.f(19));
     }
 
@@ -355,7 +355,7 @@ public final class pm extends org.telegram.ui.Components.dw0 {
         wn wnVar;
         ci.r6 r6Var;
         if (getTag(67108867) == null) {
-            if (getTag(67108867) == null && (r6Var = (wnVar = this.J0).f39803y2) != null && r6Var.a() && wnVar.f39803y2.getTag() != null) {
+            if (getTag(67108867) == null && (r6Var = (wnVar = this.J0).f39710y2) != null && r6Var.a() && wnVar.f39710y2.getTag() != null) {
                 return;
             }
             super.onDraw(canvas);
@@ -376,7 +376,7 @@ public final class pm extends org.telegram.ui.Components.dw0 {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         wn wnVar = this.J0;
-        gh.d.c(wnVar.f39821z8, wnVar.fragmentView);
+        gh.d.c(wnVar.f39728z8, wnVar.fragmentView);
         wnVar.A8.d();
     }
 

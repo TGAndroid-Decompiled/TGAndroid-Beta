@@ -17,61 +17,61 @@ import org.telegram.messenger.camera.CameraSession;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.xa0;
+import org.telegram.ui.Components.wa0;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.wn;
 public final class y0 implements Runnable {
-    public final int f9982a;
-    public final boolean f9983b;
-    public final Object f9984c;
+    public final int f9968a;
+    public final boolean f9969b;
+    public final Object f9970c;
     public final Object d;
     public final Object e;
-    public final Object f9985f;
+    public final Object f9971f;
     public final Object h;
-    public final Object f9986n;
-    public final Object f9987r;
+    public final Object f9972n;
+    public final Object f9973r;
 
     public y0(k1 k1Var, String str, boolean z10, TLObject tLObject, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
-        this.f9982a = 0;
-        this.f9984c = k1Var;
+        this.f9968a = 0;
+        this.f9970c = k1Var;
         this.d = str;
-        this.f9983b = z10;
+        this.f9969b = z10;
         this.h = tLObject;
-        this.f9986n = user;
+        this.f9972n = user;
         this.e = str2;
-        this.f9987r = messagesStorage;
-        this.f9985f = str3;
+        this.f9973r = messagesStorage;
+        this.f9971f = str3;
     }
 
     @Override
     public final void run() {
         boolean z10;
         boolean z11;
-        switch (this.f9982a) {
+        switch (this.f9968a) {
             case 0:
-                k1 k1Var = (k1) this.f9984c;
+                k1 k1Var = (k1) this.f9970c;
                 String str = (String) this.d;
                 TLObject tLObject = (TLObject) this.h;
-                TLRPC.User user = (TLRPC.User) this.f9986n;
+                TLRPC.User user = (TLRPC.User) this.f9972n;
                 String str2 = (String) this.e;
-                MessagesStorage messagesStorage = (MessagesStorage) this.f9987r;
-                String str3 = (String) this.f9985f;
-                xa0 xa0Var = k1Var.V;
-                if (str.equals(k1Var.f9828r0)) {
+                MessagesStorage messagesStorage = (MessagesStorage) this.f9973r;
+                String str3 = (String) this.f9971f;
+                wa0 wa0Var = k1Var.V;
+                if (str.equals(k1Var.f9816r0)) {
                     int i10 = 0;
-                    k1Var.f9832u0 = 0;
-                    boolean z12 = this.f9983b;
+                    k1Var.f9820u0 = 0;
+                    boolean z12 = this.f9969b;
                     if (z12 && tLObject == null) {
                         k1Var.T(false, user, str, str2);
-                    } else if (xa0Var != null) {
-                        xa0Var.b(false);
+                    } else if (wa0Var != null) {
+                        wa0Var.b(false);
                     }
                     if (tLObject instanceof TLRPC.TL_messages_botResults) {
                         TLRPC.TL_messages_botResults tL_messages_botResults = (TLRPC.TL_messages_botResults) tLObject;
                         if (!z12 && tL_messages_botResults.cache_time != 0) {
                             messagesStorage.saveBotCache(str3, tL_messages_botResults);
                         }
-                        k1Var.f9830s0 = tL_messages_botResults.next_offset;
+                        k1Var.f9818s0 = tL_messages_botResults.next_offset;
                         if (k1Var.T == null) {
                             k1Var.T = tL_messages_botResults.switch_pm;
                         }
@@ -89,36 +89,36 @@ public final class y0 implements Runnable {
                         if (k1Var.R != null && str2.length() != 0) {
                             k1Var.R.addAll(tL_messages_botResults.results);
                             if (tL_messages_botResults.results.isEmpty()) {
-                                k1Var.f9830s0 = "";
+                                k1Var.f9818s0 = "";
                             }
                             z10 = true;
                         } else {
                             k1Var.R = tL_messages_botResults.results;
-                            k1Var.f9837x0 = tL_messages_botResults.gallery;
+                            k1Var.f9825x0 = tL_messages_botResults.gallery;
                             z10 = false;
                         }
-                        t tVar = k1Var.f9825p0;
+                        t tVar = k1Var.f9813p0;
                         if (tVar != null) {
                             AndroidUtilities.cancelRunOnUIThread(tVar);
-                            k1Var.f9825p0 = null;
+                            k1Var.f9813p0 = null;
                         }
                         k1Var.I = null;
                         k1Var.A0 = null;
-                        k1Var.f9836x = null;
-                        k1Var.f9838y = null;
+                        k1Var.f9824x = null;
+                        k1Var.f9826y = null;
                         k1Var.J = null;
                         k1Var.Q = null;
                         k1Var.M = null;
                         k1Var.N = null;
                         k1Var.K = null;
                         k1Var.P = null;
-                        k1Var.f9824o0 = false;
+                        k1Var.f9812o0 = false;
                         if (k1Var.R.isEmpty() && k1Var.T == null && k1Var.U == null) {
                             z11 = false;
                         } else {
                             z11 = true;
                         }
-                        xa0Var.a(z11);
+                        wa0Var.a(z11);
                         if (z10) {
                             i10 = (k1Var.T == null && k1Var.U == null) ? 1 : 1;
                             k1Var.m(((k1Var.R.size() - tL_messages_botResults.results.size()) + i10) - 1);
@@ -132,53 +132,53 @@ public final class y0 implements Runnable {
                 }
                 return;
             case 1:
-                ((ContactsController) this.f9984c).lambda$performSyncPhoneBook$19((HashMap) this.d, (HashMap) this.e, this.f9983b, (HashMap) this.f9985f, (ArrayList) this.h, (HashMap) this.f9986n, (boolean[]) this.f9987r);
+                ((ContactsController) this.f9970c).lambda$performSyncPhoneBook$19((HashMap) this.d, (HashMap) this.e, this.f9969b, (HashMap) this.f9971f, (ArrayList) this.h, (HashMap) this.f9972n, (boolean[]) this.f9973r);
                 return;
             case 2:
-                ((MediaDataController) this.f9984c).lambda$broadcastPinnedMessage$169((ArrayList) this.d, this.f9983b, (ArrayList) this.e, (ArrayList) this.f9985f, (ArrayList) this.h, (a0.i) this.f9986n, (a0.i) this.f9987r);
+                ((MediaDataController) this.f9970c).lambda$broadcastPinnedMessage$169((ArrayList) this.d, this.f9969b, (ArrayList) this.e, (ArrayList) this.f9971f, (ArrayList) this.h, (a0.i) this.f9972n, (a0.i) this.f9973r);
                 return;
             case 3:
-                ((SendMessagesHelper) this.f9984c).lambda$sendCallback$43((TLRPC.TL_error) this.d, (TLObject) this.h, (TwoStepVerificationActivity) this.e, this.f9983b, (MessageObject) this.f9985f, (TL_keyboard.KeyboardButtonProto) this.f9986n, (wn) this.f9987r);
+                ((SendMessagesHelper) this.f9970c).lambda$sendCallback$43((TLRPC.TL_error) this.d, (TLObject) this.h, (TwoStepVerificationActivity) this.e, this.f9969b, (MessageObject) this.f9971f, (TL_keyboard.KeyboardButtonProto) this.f9972n, (wn) this.f9973r);
                 return;
             default:
-                ((CameraController) this.f9984c).lambda$recordVideo$14((Camera) this.d, (CameraSession) this.e, this.f9983b, (File) this.f9985f, (CameraInfo) this.h, (CameraController.VideoTakeCallback) this.f9986n, (Runnable) this.f9987r);
+                ((CameraController) this.f9970c).lambda$recordVideo$14((Camera) this.d, (CameraSession) this.e, this.f9969b, (File) this.f9971f, (CameraInfo) this.h, (CameraController.VideoTakeCallback) this.f9972n, (Runnable) this.f9973r);
                 return;
         }
     }
 
     public y0(Object obj, Object obj2, Object obj3, boolean z10, Serializable serializable, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f9982a = i10;
-        this.f9984c = obj;
+        this.f9968a = i10;
+        this.f9970c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f9983b = z10;
-        this.f9985f = serializable;
+        this.f9969b = z10;
+        this.f9971f = serializable;
         this.h = obj4;
-        this.f9986n = obj5;
-        this.f9987r = obj6;
+        this.f9972n = obj5;
+        this.f9973r = obj6;
     }
 
     public y0(MediaDataController mediaDataController, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, a0.i iVar, a0.i iVar2) {
-        this.f9982a = 2;
-        this.f9984c = mediaDataController;
+        this.f9968a = 2;
+        this.f9970c = mediaDataController;
         this.d = arrayList;
-        this.f9983b = z10;
+        this.f9969b = z10;
         this.e = arrayList2;
-        this.f9985f = arrayList3;
+        this.f9971f = arrayList3;
         this.h = arrayList4;
-        this.f9986n = iVar;
-        this.f9987r = iVar2;
+        this.f9972n = iVar;
+        this.f9973r = iVar2;
     }
 
     public y0(MessageObject messageObject, SendMessagesHelper sendMessagesHelper, TLObject tLObject, TLRPC.TL_error tL_error, TL_keyboard.KeyboardButtonProto keyboardButtonProto, wn wnVar, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10) {
-        this.f9982a = 3;
-        this.f9984c = sendMessagesHelper;
+        this.f9968a = 3;
+        this.f9970c = sendMessagesHelper;
         this.d = tL_error;
         this.h = tLObject;
         this.e = twoStepVerificationActivity;
-        this.f9983b = z10;
-        this.f9985f = messageObject;
-        this.f9986n = keyboardButtonProto;
-        this.f9987r = wnVar;
+        this.f9969b = z10;
+        this.f9971f = messageObject;
+        this.f9972n = keyboardButtonProto;
+        this.f9973r = wnVar;
     }
 }

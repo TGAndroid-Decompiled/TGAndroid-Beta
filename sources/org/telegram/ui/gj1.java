@@ -3,14 +3,14 @@ package org.telegram.ui;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public final class gj1 {
-    public final hj1 f34095a;
+    public final hj1 f33957a;
 
     public gj1(hj1 hj1Var) {
-        this.f34095a = hj1Var;
+        this.f33957a = hj1Var;
     }
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        AndroidUtilities.runOnUIThread(new p81(25, this, str));
+        AndroidUtilities.runOnUIThread(new n81(26, this, str));
     }
 }

@@ -3,16 +3,16 @@ package n4;
 import android.os.Build;
 import android.text.TextUtils;
 public final class a0 {
-    public c0 f15173a;
+    public c0 f15158a;
 
     public a0(String str, int i10, int i11) {
         if (str != null) {
             if (!TextUtils.isEmpty(str)) {
                 if (Build.VERSION.SDK_INT >= 28) {
-                    this.f15173a = new c0(str, i10, i11);
+                    this.f15158a = new c0(str, i10, i11);
                     return;
                 } else {
-                    this.f15173a = new c0(str, i10, i11);
+                    this.f15158a = new c0(str, i10, i11);
                     return;
                 }
             }
@@ -28,10 +28,10 @@ public final class a0 {
         if (!(obj instanceof a0)) {
             return false;
         }
-        return this.f15173a.equals(((a0) obj).f15173a);
+        return this.f15158a.equals(((a0) obj).f15158a);
     }
 
     public final int hashCode() {
-        return this.f15173a.hashCode();
+        return this.f15158a.hashCode();
     }
 }

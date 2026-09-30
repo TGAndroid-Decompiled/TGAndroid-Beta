@@ -1,42 +1,24 @@
 package org.telegram.ui;
+public final class fj0 implements Runnable {
+    public final int f33692a;
+    public final lj0 f33693b;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class fj0 implements View.OnClickListener {
-    public final int f33776a;
-    public final kj0 f33777b;
-
-    public fj0(kj0 kj0Var, int i10) {
-        this.f33776a = i10;
-        this.f33777b = kj0Var;
+    public fj0(lj0 lj0Var, int i10) {
+        this.f33692a = i10;
+        this.f33693b = lj0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f33776a) {
+    public final void run() {
+        switch (this.f33692a) {
             case 0:
-                kj0 kj0Var = this.f33777b;
-                jj0 jj0Var = kj0Var.f35184q0;
-                HashSet hashSet = kj0Var.f35172d0;
-                if (hashSet.size() != 0 && jj0Var != null) {
-                    ArrayList arrayList = new ArrayList();
-                    for (TLRPC.User user : kj0Var.f35177i0.values()) {
-                        if (hashSet.contains(Long.valueOf(user.f18499id))) {
-                            arrayList.add(Long.valueOf(user.f18499id));
-                        }
-                    }
-                    jj0Var.a(arrayList);
-                    kj0Var.dismiss();
-                    return;
-                }
+                this.f33693b.dismiss();
+                return;
+            case 1:
+                this.f33693b.U(true, false);
                 return;
             default:
-                kj0 kj0Var2 = this.f33777b;
-                kj0Var2.f35172d0.clear();
-                kj0Var2.Y.d.b(true);
-                kj0Var2.U(true, false);
+                this.f33693b.U(true, false);
                 return;
         }
     }

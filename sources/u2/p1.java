@@ -2,19 +2,19 @@ package u2;
 public final class p1 {
     public static final p1 d = new p1(new b2.l1[0]);
     public static final String e;
-    public final int f43858a;
-    public final e9.a1 f43859b;
-    public int f43860c;
+    public final int f43752a;
+    public final e9.a1 f43753b;
+    public int f43754c;
 
     static {
-        String str = e2.d0.f7882a;
+        String str = e2.d0.f7870a;
         e = Integer.toString(0, 36);
     }
 
     public p1(b2.l1... l1VarArr) {
         e9.a1 w10 = e9.i0.w(l1VarArr);
-        this.f43859b = w10;
-        this.f43858a = l1VarArr.length;
+        this.f43753b = w10;
+        this.f43752a = l1VarArr.length;
         int i10 = 0;
         while (i10 < w10.d) {
             int i11 = i10 + 1;
@@ -28,11 +28,11 @@ public final class p1 {
     }
 
     public final b2.l1 a(int i10) {
-        return (b2.l1) this.f43859b.get(i10);
+        return (b2.l1) this.f43753b.get(i10);
     }
 
     public final int b(b2.l1 l1Var) {
-        int indexOf = this.f43859b.indexOf(l1Var);
+        int indexOf = this.f43753b.indexOf(l1Var);
         if (indexOf >= 0) {
             return indexOf;
         }
@@ -43,7 +43,7 @@ public final class p1 {
         if (this != obj) {
             if (obj != null && p1.class == obj.getClass()) {
                 p1 p1Var = (p1) obj;
-                if (this.f43858a == p1Var.f43858a && this.f43859b.equals(p1Var.f43859b)) {
+                if (this.f43752a == p1Var.f43752a && this.f43753b.equals(p1Var.f43753b)) {
                     return true;
                 }
                 return false;
@@ -54,13 +54,13 @@ public final class p1 {
     }
 
     public final int hashCode() {
-        if (this.f43860c == 0) {
-            this.f43860c = this.f43859b.hashCode();
+        if (this.f43754c == 0) {
+            this.f43754c = this.f43753b.hashCode();
         }
-        return this.f43860c;
+        return this.f43754c;
     }
 
     public final String toString() {
-        return this.f43859b.toString();
+        return this.f43753b.toString();
     }
 }

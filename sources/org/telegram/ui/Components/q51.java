@@ -1,42 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-public final class q51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27571a;
-    public int f27572b;
-    public final int f27573c;
-    public final Object d;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public abstract class q51 {
+    public String[] f27550a = new String[0];
 
-    public q51(org.telegram.ui.zu zuVar, int i10, int i11) {
-        this.f27571a = 1;
-        this.d = zuVar;
-        this.f27572b = i10;
-        this.f27573c = i11;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27571a) {
-            case 0:
-                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f27573c);
-                u51 u51Var = (u51) this.d;
-                u51Var.N = true;
-                u51Var.f28767n.scrollBy(0, floatValue - this.f27572b);
-                u51Var.N = false;
-                this.f27572b = floatValue;
-                return;
-            default:
-                ((org.telegram.ui.zu) this.d).f40680c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f27572b, this.f27573c), PorterDuff.Mode.SRC_IN));
-                return;
-        }
+    public String[] b() {
+        return this.f27550a;
     }
 
-    public q51(u51 u51Var, int i10) {
-        this.f27571a = 0;
-        this.d = u51Var;
-        this.f27573c = i10;
-        this.f27572b = 0;
+    public boolean c() {
+        return false;
+    }
+
+    public boolean d(j51 j51Var, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean e(j51 j51Var, j jVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f27550a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
     }
 }

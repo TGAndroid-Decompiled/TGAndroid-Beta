@@ -2,71 +2,71 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class lb implements Runnable {
-    public final int f16932a;
-    public final MessagesController f16933b;
-    public final long f16934c;
+    public final int f16916a;
+    public final MessagesController f16917b;
+    public final long f16918c;
     public final long d;
     public final int e;
-    public final ArrayList f16935f;
+    public final ArrayList f16919f;
 
     public lb(MessagesController messagesController, long j3, int i10, long j10, ArrayList arrayList, int i11) {
-        this.f16932a = i11;
-        this.f16933b = messagesController;
-        this.f16934c = j3;
+        this.f16916a = i11;
+        this.f16917b = messagesController;
+        this.f16918c = j3;
         this.e = i10;
         this.d = j10;
-        this.f16935f = arrayList;
+        this.f16919f = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f16932a) {
+        switch (this.f16916a) {
             case 0:
                 int i10 = this.e;
-                ArrayList arrayList = this.f16935f;
-                this.f16933b.lambda$checkUnreadReactionsInternal2$424(this.f16934c, this.d, i10, arrayList);
+                ArrayList arrayList = this.f16919f;
+                this.f16917b.lambda$checkUnreadReactionsInternal2$424(this.f16918c, this.d, i10, arrayList);
                 return;
             case 1:
                 int i11 = this.e;
-                ArrayList arrayList2 = this.f16935f;
-                this.f16933b.lambda$checkUnreadPollVotesInternal2$435(this.f16934c, this.d, i11, arrayList2);
+                ArrayList arrayList2 = this.f16919f;
+                this.f16917b.lambda$checkUnreadPollVotesInternal2$435(this.f16918c, this.d, i11, arrayList2);
                 return;
             case 2:
                 int i12 = this.e;
-                ArrayList arrayList3 = this.f16935f;
-                this.f16933b.lambda$checkUnreadReactionsInternal2$426(this.f16934c, this.d, i12, arrayList3);
+                ArrayList arrayList3 = this.f16919f;
+                this.f16917b.lambda$checkUnreadReactionsInternal2$426(this.f16918c, this.d, i12, arrayList3);
                 return;
             case 3:
                 int i13 = this.e;
-                ArrayList arrayList4 = this.f16935f;
-                this.f16933b.lambda$checkUnreadPollVotesInternal2$433(this.f16934c, this.d, i13, arrayList4);
+                ArrayList arrayList4 = this.f16919f;
+                this.f16917b.lambda$checkUnreadPollVotesInternal2$433(this.f16918c, this.d, i13, arrayList4);
                 return;
             case 4:
                 int i14 = this.e;
-                ArrayList arrayList5 = this.f16935f;
-                this.f16933b.lambda$checkUnreadReactionsInternal2$428(this.f16934c, this.d, i14, arrayList5);
+                ArrayList arrayList5 = this.f16919f;
+                this.f16917b.lambda$checkUnreadReactionsInternal2$428(this.f16918c, this.d, i14, arrayList5);
                 return;
             case 5:
                 long j3 = this.d;
-                ArrayList arrayList6 = this.f16935f;
+                ArrayList arrayList6 = this.f16919f;
                 int i15 = this.e;
-                this.f16933b.lambda$checkUnreadReactionsInternal2$422(this.f16934c, i15, j3, arrayList6);
+                this.f16917b.lambda$checkUnreadReactionsInternal2$422(this.f16918c, i15, j3, arrayList6);
                 return;
             default:
                 long j10 = this.d;
-                ArrayList arrayList7 = this.f16935f;
+                ArrayList arrayList7 = this.f16919f;
                 int i16 = this.e;
-                this.f16933b.lambda$checkUnreadPollVotesInternal2$429(this.f16934c, i16, j10, arrayList7);
+                this.f16917b.lambda$checkUnreadPollVotesInternal2$429(this.f16918c, i16, j10, arrayList7);
                 return;
         }
     }
 
     public lb(MessagesController messagesController, long j3, long j10, int i10, ArrayList arrayList, int i11) {
-        this.f16932a = i11;
-        this.f16933b = messagesController;
-        this.f16934c = j3;
+        this.f16916a = i11;
+        this.f16917b = messagesController;
+        this.f16918c = j3;
         this.d = j10;
         this.e = i10;
-        this.f16935f = arrayList;
+        this.f16919f = arrayList;
     }
 }

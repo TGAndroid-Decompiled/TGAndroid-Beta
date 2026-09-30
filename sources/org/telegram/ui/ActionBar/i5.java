@@ -4,24 +4,24 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.wp;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vp;
 public abstract class i5 extends TextView {
-    public boolean f19499a;
-    public final org.telegram.ui.Components.e6 f19500b;
-    public final wp f19501c;
+    public boolean f19484a;
+    public final org.telegram.ui.Components.e6 f19485b;
+    public final vp f19486c;
 
     public i5(Context context) {
         super(context);
-        this.f19499a = false;
-        this.f19500b = new org.telegram.ui.Components.e6(this, 320L, tr.h);
-        this.f19501c = new wp(-1);
+        this.f19484a = false;
+        this.f19485b = new org.telegram.ui.Components.e6(this, 320L, sr.h);
+        this.f19486c = new vp(-1);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float e = this.f19500b.e(this.f19499a);
+        float e = this.f19485b.e(this.f19484a);
         if (e < 1.0f) {
             if (e <= 0.0f) {
                 canvas.save();
@@ -39,10 +39,10 @@ public abstract class i5 extends TextView {
         if (e > 0.0f) {
             int height = getHeight() / 2;
             int width = (getWidth() / 2) - ((int) ((1.0f - e) * AndroidUtilities.dp(6.0f)));
-            wp wpVar = this.f19501c;
-            wpVar.setAlpha((int) (e * 255.0f));
-            wpVar.setBounds(width - (wpVar.getIntrinsicWidth() / 2), height - (wpVar.getIntrinsicWidth() / 2), (wpVar.getIntrinsicWidth() / 2) + width, (wpVar.getIntrinsicHeight() / 2) + height);
-            wpVar.draw(canvas2);
+            vp vpVar = this.f19486c;
+            vpVar.setAlpha((int) (e * 255.0f));
+            vpVar.setBounds(width - (vpVar.getIntrinsicWidth() / 2), height - (vpVar.getIntrinsicWidth() / 2), (vpVar.getIntrinsicWidth() / 2) + width, (vpVar.getIntrinsicHeight() / 2) + height);
+            vpVar.draw(canvas2);
             invalidate();
         }
     }
@@ -50,6 +50,6 @@ public abstract class i5 extends TextView {
     @Override
     public void setTextColor(int i10) {
         super.setTextColor(i10);
-        this.f19501c.b(i10);
+        this.f19486c.b(i10);
     }
 }

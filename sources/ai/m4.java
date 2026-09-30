@@ -6,21 +6,21 @@ import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class m4 extends FrameLayout {
-    public final int f1247a;
-    public final e6 f1248b;
+    public final int f1245a;
+    public final e6 f1246b;
 
     public m4(e6 e6Var, Context context, int i10) {
         super(context);
-        this.f1247a = i10;
-        this.f1248b = e6Var;
+        this.f1245a = i10;
+        this.f1246b = e6Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int x10;
-        switch (this.f1247a) {
+        switch (this.f1245a) {
             case 0:
-                e6 e6Var = this.f1248b;
+                e6 e6Var = this.f1246b;
                 if (e6Var.F2.getVisibility() == 0 && e6Var.F2.getLayoutParams().width != (x10 = (int) (((e6Var.A2.getX() + e6Var.A2.getMeasuredWidth()) - e6Var.F2.getX()) + AndroidUtilities.dp(10.0f)))) {
                     e6Var.F2.getLayoutParams().width = x10;
                     e6Var.F2.invalidate();
@@ -30,7 +30,7 @@ public final class m4 extends FrameLayout {
                 return;
             case 1:
                 super.dispatchDraw(canvas);
-                e6 e6Var2 = this.f1248b;
+                e6 e6Var2 = this.f1246b;
                 if (e6Var2.D1 && e6Var2.R0 != null) {
                     canvas.save();
                     float f7 = 0.0f;
@@ -42,7 +42,7 @@ public final class m4 extends FrameLayout {
                     float d = e6Var3.d(f7, false);
                     canvas.scale(d, d, e6Var2.R0.d() / 2.0f, AndroidUtilities.dp(20.0f));
                     org.telegram.ui.Components.o6 o6Var = e6Var2.R0;
-                    o6Var.f27008w = 255;
+                    o6Var.f26964w = 255;
                     o6Var.draw(canvas);
                     canvas.restore();
                     return;
@@ -50,7 +50,7 @@ public final class m4 extends FrameLayout {
                 return;
             default:
                 super.dispatchDraw(canvas);
-                e6 e6Var4 = this.f1248b;
+                e6 e6Var4 = this.f1246b;
                 if (e6Var4.D1 && e6Var4.Q0 != null) {
                     canvas.save();
                     float f10 = 0.0f;
@@ -62,7 +62,7 @@ public final class m4 extends FrameLayout {
                     float d10 = e6Var5.d(f10, false);
                     canvas.scale(d10, d10, e6Var4.Q0.d() / 2.0f, AndroidUtilities.dp(20.0f));
                     org.telegram.ui.Components.o6 o6Var2 = e6Var4.Q0;
-                    o6Var2.f27008w = 255;
+                    o6Var2.f26964w = 255;
                     o6Var2.draw(canvas);
                     canvas.restore();
                     return;
@@ -73,14 +73,14 @@ public final class m4 extends FrameLayout {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f1247a) {
+        switch (this.f1245a) {
             case 1:
-                if (drawable != this.f1248b.R0 && !super.verifyDrawable(drawable)) {
+                if (drawable != this.f1246b.R0 && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
             case 2:
-                if (drawable != this.f1248b.Q0 && !super.verifyDrawable(drawable)) {
+                if (drawable != this.f1246b.Q0 && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;

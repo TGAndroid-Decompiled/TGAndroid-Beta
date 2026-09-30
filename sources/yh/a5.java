@@ -2,19 +2,19 @@ package yh;
 
 import org.telegram.messenger.Utilities;
 public final class a5 implements Utilities.Callback {
-    public final int f47313a = 0;
-    public final s5 f47314b;
-    public final boolean[] f47315c;
+    public final int f47207a = 0;
+    public final t5 f47208b;
+    public final boolean[] f47209c;
     public final int d;
     public final Utilities.Callback e;
-    public final Utilities.Callback f47316f;
+    public final Utilities.Callback f47210f;
 
-    public a5(s5 s5Var, int i10, Utilities.Callback callback, boolean[] zArr, Utilities.Callback callback2) {
-        this.f47314b = s5Var;
+    public a5(t5 t5Var, int i10, Utilities.Callback callback, boolean[] zArr, Utilities.Callback callback2) {
+        this.f47208b = t5Var;
         this.d = i10;
         this.e = callback;
-        this.f47315c = zArr;
-        this.f47316f = callback2;
+        this.f47209c = zArr;
+        this.f47210f = callback2;
     }
 
     @Override
@@ -22,17 +22,17 @@ public final class a5 implements Utilities.Callback {
         String str;
         String str2;
         Boolean bool = (Boolean) obj;
-        switch (this.f47313a) {
+        switch (this.f47207a) {
             case 0:
                 if (this.d > 0) {
-                    this.f47314b.S();
+                    this.f47208b.S();
                 }
                 Utilities.Callback callback = this.e;
                 if (callback != null) {
                     callback.run(Boolean.TRUE);
                 }
-                this.f47315c[0] = true;
-                Utilities.Callback callback2 = this.f47316f;
+                this.f47209c[0] = true;
+                Utilities.Callback callback2 = this.f47210f;
                 if (callback2 != null) {
                     if (bool.booleanValue()) {
                         str = "paid";
@@ -44,9 +44,9 @@ public final class a5 implements Utilities.Callback {
                 }
                 return;
             default:
-                this.f47315c[0] = true;
+                this.f47209c[0] = true;
                 if (this.d > 0) {
-                    this.f47314b.S();
+                    this.f47208b.S();
                 }
                 Utilities.Callback callback3 = this.e;
                 if (callback3 != null) {
@@ -57,7 +57,7 @@ public final class a5 implements Utilities.Callback {
                     }
                     callback3.run(str2);
                 }
-                Utilities.Callback callback4 = this.f47316f;
+                Utilities.Callback callback4 = this.f47210f;
                 if (callback4 != null) {
                     callback4.run(Boolean.TRUE);
                     return;
@@ -66,11 +66,11 @@ public final class a5 implements Utilities.Callback {
         }
     }
 
-    public a5(s5 s5Var, boolean[] zArr, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
-        this.f47314b = s5Var;
-        this.f47315c = zArr;
+    public a5(t5 t5Var, boolean[] zArr, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
+        this.f47208b = t5Var;
+        this.f47209c = zArr;
         this.d = i10;
         this.e = callback;
-        this.f47316f = callback2;
+        this.f47210f = callback2;
     }
 }

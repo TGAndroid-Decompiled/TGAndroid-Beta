@@ -4,21 +4,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class k0 extends o6.a implements x8.g {
     public static final Parcelable.Creator<k0> CREATOR = new c(27);
-    public final int f46768a;
-    public final String f46769b;
-    public final byte[] f46770c;
+    public final int f46662a;
+    public final String f46663b;
+    public final byte[] f46664c;
     public final String d;
 
     public k0(int i10, String str, String str2, byte[] bArr) {
-        this.f46768a = i10;
-        this.f46769b = str;
-        this.f46770c = bArr;
+        this.f46662a = i10;
+        this.f46663b = str;
+        this.f46664c = bArr;
         this.d = str2;
     }
 
     public final String toString() {
         Object valueOf;
-        byte[] bArr = this.f46770c;
+        byte[] bArr = this.f46664c;
         if (bArr == null) {
             valueOf = "null";
         } else {
@@ -26,9 +26,9 @@ public final class k0 extends o6.a implements x8.g {
         }
         String obj = valueOf.toString();
         StringBuilder sb2 = new StringBuilder("MessageEventParcelable[");
-        sb2.append(this.f46768a);
+        sb2.append(this.f46662a);
         sb2.append(",");
-        sb2.append(this.f46769b);
+        sb2.append(this.f46663b);
         sb2.append(", size=");
         return a4.a.t(sb2, obj, "]");
     }
@@ -37,9 +37,9 @@ public final class k0 extends o6.a implements x8.g {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
         w7.f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f46768a);
-        w7.f0.l(parcel, 3, this.f46769b);
-        w7.f0.c(parcel, 4, this.f46770c);
+        parcel.writeInt(this.f46662a);
+        w7.f0.l(parcel, 3, this.f46663b);
+        w7.f0.c(parcel, 4, this.f46664c);
         w7.f0.l(parcel, 5, this.d);
         w7.f0.r(parcel, q6);
     }

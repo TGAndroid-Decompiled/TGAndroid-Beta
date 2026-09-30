@@ -1,25 +1,25 @@
 package yh;
 public final class q5 implements Runnable {
-    public final int f48019a;
-    public final r5 f48020b;
-    public final long f48021c;
+    public final int f47913a;
+    public final s5 f47914b;
+    public final long f47915c;
 
-    public q5(r5 r5Var, long j3, int i10) {
-        this.f48019a = i10;
-        this.f48020b = r5Var;
-        this.f48021c = j3;
+    public q5(s5 s5Var, long j3, int i10) {
+        this.f47913a = i10;
+        this.f47914b = s5Var;
+        this.f47915c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f48019a) {
+        switch (this.f47913a) {
             case 0:
-                r5 r5Var = this.f48020b;
-                r5Var.f48077q.d0(r5Var.f48065b, r5Var.f48066c, this.f48021c, true, true, r5Var.f48074n);
+                s5 s5Var = this.f47914b;
+                s5Var.f48015q.d0(s5Var.f48003b, s5Var.f48004c, this.f47915c, true, true, s5Var.f48012n);
                 return;
             default:
-                r5 r5Var2 = this.f48020b;
-                r5Var2.f48077q.d0(r5Var2.f48065b, r5Var2.f48066c, this.f48021c, true, true, r5Var2.f48074n);
+                s5 s5Var2 = this.f47914b;
+                s5Var2.f48015q.d0(s5Var2.f48003b, s5Var2.f48004c, this.f47915c, true, true, s5Var2.f48012n);
                 return;
         }
     }

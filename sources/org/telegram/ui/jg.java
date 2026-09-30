@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
 public final class jg implements Utilities.Callback2 {
-    public final int f34890a;
-    public final wn f34891b;
-    public final String f34892c;
+    public final int f34799a;
+    public final wn f34800b;
+    public final String f34801c;
 
     public jg(wn wnVar, String str, int i10) {
-        this.f34890a = i10;
-        this.f34891b = wnVar;
-        this.f34892c = str;
+        this.f34799a = i10;
+        this.f34800b = wnVar;
+        this.f34801c = str;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         Boolean bool = (Boolean) obj;
         Boolean bool2 = (Boolean) obj2;
-        switch (this.f34890a) {
+        switch (this.f34799a) {
             case 0:
-                wn wnVar = this.f34891b;
+                wn wnVar = this.f34800b;
                 wnVar.getClass();
                 if (bool.booleanValue()) {
                     boolean booleanValue = bool2.booleanValue();
-                    String str = this.f34892c;
+                    String str = this.f34801c;
                     if (booleanValue) {
                         wnVar.getMessagesController().addWebBrowserException(str, true);
                     }
@@ -33,8 +33,8 @@ public final class jg implements Utilities.Callback2 {
             default:
                 if (bool.booleanValue()) {
                     boolean booleanValue2 = bool2.booleanValue();
-                    wn wnVar2 = this.f34891b;
-                    String str2 = this.f34892c;
+                    wn wnVar2 = this.f34800b;
+                    String str2 = this.f34801c;
                     if (booleanValue2) {
                         wnVar2.getMessagesController().addWebBrowserException(str2, false);
                     }

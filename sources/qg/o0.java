@@ -6,20 +6,20 @@ import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class o0 extends TLObject {
-    public static final int f41938j = 0;
-    public int f41939a;
-    public String f41940b;
-    public String f41941c;
+    public static final int f41839j = 0;
+    public int f41840a;
+    public String f41841b;
+    public String f41842c;
     public TLRPC.WebPage d;
     public boolean e;
-    public boolean f41942f = true;
-    public int f41943i;
+    public boolean f41843f = true;
+    public int f41844i;
 
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
         boolean z11;
         int readInt32 = inputSerializedData.readInt32(z10);
-        this.f41939a = readInt32;
+        this.f41840a = readInt32;
         boolean z12 = false;
         if ((readInt32 & 8) != 0) {
             z11 = true;
@@ -30,16 +30,16 @@ public final class o0 extends TLObject {
         if ((readInt32 & 16) != 0) {
             z12 = true;
         }
-        this.f41942f = z12;
-        this.f41941c = inputSerializedData.readString(z10);
-        if ((this.f41939a & 1) != 0) {
+        this.f41843f = z12;
+        this.f41842c = inputSerializedData.readString(z10);
+        if ((this.f41840a & 1) != 0) {
             this.d = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
-        if ((this.f41939a & 2) != 0) {
-            this.f41940b = inputSerializedData.readString(z10);
+        if ((this.f41840a & 2) != 0) {
+            this.f41841b = inputSerializedData.readString(z10);
         }
-        if ((this.f41939a & 4) != 0) {
-            this.f41943i = inputSerializedData.readInt32(z10);
+        if ((this.f41840a & 4) != 0) {
+            this.f41844i = inputSerializedData.readInt32(z10);
         }
     }
 
@@ -51,39 +51,39 @@ public final class o0 extends TLObject {
         int i13;
         outputSerializedData.writeInt32(-625858389);
         if (this.d != null) {
-            i10 = this.f41939a | 1;
+            i10 = this.f41840a | 1;
         } else {
-            i10 = this.f41939a & (-2);
+            i10 = this.f41840a & (-2);
         }
-        this.f41939a = i10;
-        if (!TextUtils.isEmpty(this.f41940b)) {
-            i11 = this.f41939a | 2;
+        this.f41840a = i10;
+        if (!TextUtils.isEmpty(this.f41841b)) {
+            i11 = this.f41840a | 2;
         } else {
-            i11 = this.f41939a & (-3);
+            i11 = this.f41840a & (-3);
         }
-        this.f41939a = i11;
+        this.f41840a = i11;
         if (this.e) {
             i12 = i11 | 8;
         } else {
             i12 = i11 & (-9);
         }
-        this.f41939a = i12;
-        if (this.f41942f) {
+        this.f41840a = i12;
+        if (this.f41843f) {
             i13 = i12 | 16;
         } else {
             i13 = i12 & (-17);
         }
-        this.f41939a = i13;
+        this.f41840a = i13;
         outputSerializedData.writeInt32(i13);
-        outputSerializedData.writeString(this.f41941c);
-        if ((this.f41939a & 1) != 0) {
+        outputSerializedData.writeString(this.f41842c);
+        if ((this.f41840a & 1) != 0) {
             this.d.serializeToStream(outputSerializedData);
         }
-        if ((this.f41939a & 2) != 0) {
-            outputSerializedData.writeString(this.f41940b);
+        if ((this.f41840a & 2) != 0) {
+            outputSerializedData.writeString(this.f41841b);
         }
-        if ((this.f41939a & 4) != 0) {
-            outputSerializedData.writeInt32(this.f41943i);
+        if ((this.f41840a & 4) != 0) {
+            outputSerializedData.writeInt32(this.f41844i);
         }
     }
 }

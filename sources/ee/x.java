@@ -2,21 +2,21 @@ package ee;
 
 import zd.b2;
 public final class x extends kotlin.jvm.internal.j implements rd.p {
-    public static final x f8198c = new x(2, 0);
+    public static final x f8186c = new x(2, 0);
     public static final x d = new x(2, 1);
     public static final x e = new x(2, 2);
-    public final int f8199b;
+    public final int f8187b;
 
     public x(int i10, int i11) {
         super(i10);
-        this.f8199b = i11;
+        this.f8187b = i11;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
         Integer num;
         int i10;
-        switch (this.f8199b) {
+        switch (this.f8187b) {
             case 0:
                 id.f fVar = (id.f) obj2;
                 if (fVar instanceof b2) {

@@ -4,30 +4,30 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.NotificationCenter;
 public final class c41 extends AnimatorListenerAdapter {
-    public final int f32644a;
-    public final d41 f32645b;
+    public final int f32560a;
+    public final d41 f32561b;
 
     public c41(d41 d41Var, int i10) {
-        this.f32644a = i10;
-        this.f32645b = d41Var;
+        this.f32560a = i10;
+        this.f32561b = d41Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f32644a) {
+        switch (this.f32560a) {
             case 0:
-                d41 d41Var = this.f32645b;
+                d41 d41Var = this.f32561b;
                 if (d41Var.h != null) {
                     d41Var.h = null;
                     d41Var.e = 0.0f;
                     d41Var.g();
-                    d41Var.f32992n.unlock();
-                    rx rxVar = d41Var.f32988a;
+                    d41Var.f32914n.unlock();
+                    rx rxVar = d41Var.f32910a;
                     if (rxVar != null) {
                         rxVar.onPause();
-                        d41Var.f32988a.onFragmentDestroy();
+                        d41Var.f32910a.onFragmentDestroy();
                         d41Var.removeAllViews();
-                        d41Var.f32988a = null;
+                        d41Var.f32910a = null;
                         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
                     }
                     d41Var.d(false);
@@ -35,7 +35,7 @@ public final class c41 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                d41 d41Var2 = this.f32645b;
+                d41 d41Var2 = this.f32561b;
                 if (d41Var2.h != null) {
                     d41Var2.h = null;
                     d41Var2.d(true);

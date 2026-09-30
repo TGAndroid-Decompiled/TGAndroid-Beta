@@ -6,15 +6,15 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class oa0 implements Utilities.Callback {
-    public final int f36251a;
-    public final LaunchActivity f36252b;
-    public final n80 f36253c;
+    public final int f36108a;
+    public final LaunchActivity f36109b;
+    public final m80 f36110c;
     public final Long d;
 
-    public oa0(LaunchActivity launchActivity, n80 n80Var, Long l4, int i10) {
-        this.f36251a = i10;
-        this.f36252b = launchActivity;
-        this.f36253c = n80Var;
+    public oa0(LaunchActivity launchActivity, m80 m80Var, Long l4, int i10) {
+        this.f36108a = i10;
+        this.f36109b = launchActivity;
+        this.f36110c = m80Var;
         this.d = l4;
     }
 
@@ -26,16 +26,16 @@ public final class oa0 implements Utilities.Callback {
         org.telegram.ui.Components.yc X2;
         int i12;
         int i13;
-        int i14 = this.f36251a;
+        int i14 = this.f36108a;
         Long l4 = this.d;
-        n80 n80Var = this.f36253c;
-        LaunchActivity launchActivity = this.f36252b;
+        m80 m80Var = this.f36110c;
+        LaunchActivity launchActivity = this.f36109b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i14) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
                 try {
-                    n80Var.run();
+                    m80Var.run();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -70,7 +70,7 @@ public final class oa0 implements Utilities.Callback {
             default:
                 Pattern pattern2 = LaunchActivity.B1;
                 try {
-                    n80Var.run();
+                    m80Var.run();
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }

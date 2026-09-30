@@ -3,39 +3,39 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jg implements Runnable {
-    public final int f16763a = 0;
-    public final long f16764b;
-    public final long f16765c;
+    public final int f16747a = 0;
+    public final long f16748b;
+    public final long f16749c;
     public final boolean d;
     public final Object e;
-    public final TLObject f16766f;
+    public final TLObject f16750f;
 
     public jg(MessagesStorage messagesStorage, long j3, boolean z10, TLRPC.InputPeer inputPeer, long j10) {
         this.e = messagesStorage;
-        this.f16764b = j3;
+        this.f16748b = j3;
         this.d = z10;
-        this.f16766f = inputPeer;
-        this.f16765c = j10;
+        this.f16750f = inputPeer;
+        this.f16749c = j10;
     }
 
     @Override
     public final void run() {
         TLRPC.PeerSettings peerSettings;
-        int i10 = this.f16763a;
-        TLObject tLObject = this.f16766f;
+        int i10 = this.f16747a;
+        TLObject tLObject = this.f16750f;
         Object obj = this.e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f16764b, this.d, (TLRPC.InputPeer) tLObject, this.f16765c);
+                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f16748b, this.d, (TLRPC.InputPeer) tLObject, this.f16749c);
                 return;
             default:
-                yh.s5 s5Var = (yh.s5) obj;
-                int i11 = s5Var.f48119a;
+                yh.t5 t5Var = (yh.t5) obj;
+                int i11 = t5Var.f48041a;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    long j3 = this.f16764b;
-                    long j10 = this.f16765c;
+                    long j3 = this.f16748b;
+                    long j10 = this.f16749c;
                     if (j3 != 0) {
-                        s5Var.b0(-j3, j10, this.d);
+                        t5Var.b0(-j3, j10, this.d);
                         return;
                     }
                     TLRPC.UserFull userFull = MessagesController.getInstance(i11).getUserFull(j10);
@@ -53,11 +53,11 @@ public final class jg implements Runnable {
         }
     }
 
-    public jg(yh.s5 s5Var, TLObject tLObject, long j3, long j10, boolean z10) {
-        this.e = s5Var;
-        this.f16766f = tLObject;
-        this.f16764b = j3;
-        this.f16765c = j10;
+    public jg(yh.t5 t5Var, TLObject tLObject, long j3, long j10, boolean z10) {
+        this.e = t5Var;
+        this.f16750f = tLObject;
+        this.f16748b = j3;
+        this.f16749c = j10;
         this.d = z10;
     }
 }

@@ -5,38 +5,38 @@ import android.animation.AnimatorListenerAdapter;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class u3 extends AnimatorListenerAdapter {
-    public final int f1578a;
-    public final boolean f1579b;
-    public final e6 f1580c;
+    public final int f1573a;
+    public final boolean f1574b;
+    public final e6 f1575c;
 
     public u3(e6 e6Var, boolean z10, int i10) {
-        this.f1578a = i10;
-        this.f1580c = e6Var;
-        this.f1579b = z10;
+        this.f1573a = i10;
+        this.f1575c = e6Var;
+        this.f1574b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         float hideInterfaceAlpha;
-        switch (this.f1578a) {
+        switch (this.f1573a) {
             case 0:
-                if (!this.f1579b) {
-                    e6 e6Var = this.f1580c;
+                if (!this.f1574b) {
+                    e6 e6Var = this.f1575c;
                     e6Var.f823r3.setVisibility(8);
                     e6Var.f823r3.n();
                     return;
                 }
                 return;
             default:
-                e6 e6Var2 = this.f1580c;
+                e6 e6Var2 = this.f1575c;
                 nb nbVar = e6Var2.C0;
                 w5 w5Var = e6Var2.f844y0;
                 ImageView imageView = e6Var2.f840x0;
                 ImageView imageView2 = e6Var2.f836w0;
                 a6 a6Var = e6Var2.f812o1;
                 float f10 = 0.0f;
-                if (this.f1579b) {
+                if (this.f1574b) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;

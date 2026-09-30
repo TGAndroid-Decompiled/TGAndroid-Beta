@@ -1,70 +1,128 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.text.Editable;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class fi extends mu {
-    public final xi V;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+public final class fi implements TextWatcher {
+    public boolean f24226a;
+    public boolean f24227b;
+    public final org.telegram.ui.ActionBar.m2 f24228c;
+    public final wi d;
 
-    public fi(xi xiVar, Context context, ni niVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, niVar, null, 1, true, d6Var);
-        this.V = xiVar;
+    public fi(wi wiVar, org.telegram.ui.ActionBar.m2 m2Var) {
+        this.d = wiVar;
+        this.f24228c = m2Var;
     }
 
     @Override
-    public final void f() {
-        super.f();
-        nz emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f26880w0 = false;
-            emojiView.f26882w2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
-        }
-    }
-
-    @Override
-    public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.V.f30270f0;
-        if (m2Var instanceof org.telegram.ui.wn) {
-            org.telegram.ui.wn.k8(menu, ((org.telegram.ui.wn) m2Var).h, true, true, true, true);
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        xi xiVar = this.V;
-        fi fiVar = xiVar.P0;
-        if (!xiVar.f30317u1) {
-            if (motionEvent.getX() > fiVar.getEditText().getLeft() && motionEvent.getX() < fiVar.getEditText().getRight() && motionEvent.getY() > fiVar.getEditText().getTop() && motionEvent.getY() < fiVar.getEditText().getBottom()) {
-                xiVar.t1(fiVar.getEditText(), true);
-            } else {
-                xiVar.t1(fiVar.getEditText(), false);
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.V.b2();
-    }
-
-    @Override
-    public final void q(int i10, int i11) {
+    public final void afterTextChanged(Editable editable) {
         boolean z10;
-        xi xiVar = this.V;
-        xiVar.b2();
-        if (xiVar.f30260c0) {
-            if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
-                z10 = true;
-            } else {
-                z10 = false;
+        boolean z11;
+        int i10;
+        boolean z12;
+        wi wiVar = this.d;
+        p6 p6Var = wiVar.f29973s;
+        ei eiVar = wiVar.P0;
+        int i11 = wiVar.J1;
+        p6 p6Var2 = wiVar.v;
+        if (this.f24227b != TextUtils.isEmpty(editable)) {
+            oi oiVar = wiVar.f29995y0;
+            if (oiVar != null) {
+                oiVar.A(oiVar.getSelectedItemsCount());
             }
-            xiVar.M1(z10);
+            this.f24227b = !this.f24227b;
         }
+        boolean z13 = false;
+        if (this.f24226a) {
+            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                editable.removeSpan(imageSpan);
+            }
+            Emoji.replaceEmoji(editable, eiVar.getEditText().getPaint().getFontMetricsInt(), false);
+            this.f24226a = false;
+        }
+        int codePointCount = Character.codePointCount(editable, 0, editable.length());
+        wiVar.L = codePointCount;
+        le.c cVar = wiVar.e;
+        if (codePointCount > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        cVar.a(z10, true);
+        int i12 = wiVar.K;
+        if (i12 > 0 && (i10 = i12 - wiVar.L) <= 100) {
+            if (i10 < -9999) {
+                i10 = -9999;
+            }
+            long j3 = i10;
+            String formatNumber = LocaleController.formatNumber(j3, ',');
+            if (p6Var2.getVisibility() == 0) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            p6Var2.c(formatNumber, z12, true);
+            if (p6Var2.getVisibility() != 0) {
+                p6Var2.setVisibility(0);
+                p6Var2.setAlpha(0.0f);
+                p6Var2.setScaleX(0.5f);
+                p6Var2.setScaleY(0.5f);
+            }
+            p6Var2.animate().setListener(null).cancel();
+            p6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            if (i10 < 0) {
+                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19281p7));
+                z11 = false;
+            } else {
+                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19444y6));
+                z11 = true;
+            }
+            p6Var.c(LocaleController.formatNumber(j3, ','), false, true);
+            p6Var.setAlpha(1.0f);
+        } else {
+            p6Var2.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new r8(this, 5));
+            p6Var.setAlpha(0.0f);
+            z11 = true;
+        }
+        if (wiVar.U0 != z11) {
+            wiVar.U0 = z11;
+            wiVar.I0.invalidate();
+        }
+        if (!wiVar.f29945i2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && wiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && wiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            wiVar.f29945i2 = true;
+            wiVar.O1(this.f24228c);
+        }
+        if (wiVar.f29924c0) {
+            if (eiVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(eiVar.getText().toString().trim())) {
+                z13 = true;
+            }
+            wiVar.M1(z13);
+        }
+        wiVar.d1(true);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        if (i12 - i11 >= 1) {
+            this.f24226a = true;
+        }
+        wi wiVar = this.d;
+        if (wiVar.B2 == null) {
+            wi.Q(wiVar);
+        }
+        if (wiVar.B2.getAdapter() != null) {
+            wiVar.B2.setReversed(true);
+            wiVar.B2.getAdapter().U(charSequence, wiVar.P0.getEditText().getSelectionStart(), null, false, false);
+            wiVar.U1();
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

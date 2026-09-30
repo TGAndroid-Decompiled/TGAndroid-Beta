@@ -1,37 +1,59 @@
 package org.telegram.ui.Components;
 
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-public final class wb0 implements Runnable {
-    public final int f29881a;
-    public final xb0 f29882b;
+public final class wb0 extends ji.n {
+    public int W;
+    public Runnable X;
+    public final bc0 Y;
 
-    public wb0(xb0 xb0Var, int i10) {
-        this.f29881a = i10;
-        this.f29882b = xb0Var;
+    public wb0(bc0 bc0Var, ub0 ub0Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(null, ub0Var, d6Var);
+        this.Y = bc0Var;
+        this.W = -1;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29881a) {
-            case 0:
-                xb0 xb0Var = this.f29882b;
-                if (xb0Var.W != -1) {
-                    NotificationCenter.getInstance(xb0Var.Y.f23264c0.f25078w).onAnimationFinish(xb0Var.W);
-                    xb0Var.W = -1;
-                    return;
-                }
-                return;
-            case 1:
-                this.f29882b.Y.h();
-                return;
-            default:
-                xb0 xb0Var2 = this.f29882b;
-                if (xb0Var2.W != -1) {
-                    NotificationCenter.getInstance(xb0Var2.Y.f23264c0.f25078w).onAnimationFinish(xb0Var2.W);
-                    xb0Var2.W = -1;
-                    return;
-                }
-                return;
+    public final void N() {
+        super.N();
+        Runnable runnable = this.X;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
         }
+        vb0 vb0Var = new vb0(this, 0);
+        this.X = vb0Var;
+        AndroidUtilities.runOnUIThread(vb0Var);
+        bc0 bc0Var = this.Y;
+        if (bc0Var.V) {
+            bc0Var.V = false;
+            AndroidUtilities.runOnUIThread(new vb0(this, 1));
+        }
+    }
+
+    @Override
+    public final void W() {
+        hc0 hc0Var = this.Y.f22938c0;
+        AndroidUtilities.cancelRunOnUIThread(hc0Var.f24781y);
+        hc0Var.f24781y.run();
+        if (this.W == -1) {
+            this.W = NotificationCenter.getInstance(hc0Var.f24779w).setAnimationInProgress(this.W, null, false);
+        }
+        Runnable runnable = this.X;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.X = null;
+        }
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.X;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        vb0 vb0Var = new vb0(this, 2);
+        this.X = vb0Var;
+        AndroidUtilities.runOnUIThread(vb0Var);
     }
 }

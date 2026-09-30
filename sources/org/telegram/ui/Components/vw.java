@@ -7,45 +7,45 @@ import android.view.MotionEvent;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 public final class vw extends og.d {
-    public boolean f29734f3;
-    public final nz f29735g3;
+    public boolean Y2;
+    public final mz Z2;
 
-    public vw(nz nzVar, Context context) {
+    public vw(mz mzVar, Context context) {
         super(context, null);
-        this.f29735g3 = nzVar;
+        this.Z2 = mzVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.f29735g3.f26848m2.h++;
+        this.Z2.f26561m2.h++;
     }
 
     @Override
-    public final void l0(int i10, int i11) {
+    public final void k0(int i10, int i11) {
         int i12;
         ah.h hVar;
-        nz nzVar = this.f29735g3;
-        iz izVar = nzVar.f26891z0;
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = nzVar.f26841j2) != null) {
+        mz mzVar = this.Z2;
+        hz hzVar = mzVar.f26604z0;
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = mzVar.f26554j2) != null) {
             hVar.f(i10, i11);
         }
-        if (nzVar.C0 != null) {
-            ax axVar = nzVar.B0;
-            if (nzVar.D0.canScrollVertically(-1)) {
+        if (mzVar.C0 != null) {
+            zw zwVar = mzVar.B0;
+            if (mzVar.D0.canScrollVertically(-1)) {
                 i12 = AndroidUtilities.getShadowHeight();
             } else {
                 i12 = 0;
             }
-            axVar.setUnderlineHeight(i12);
+            zwVar.setUnderlineHeight(i12);
         }
-        if (izVar != null && getAdapter() == izVar && izVar.d == 0) {
-            iz izVar2 = izVar.O.f24694w;
-            if (!izVar2.Q.G0.F && !izVar2.f25246y) {
-                if (nzVar.E0.N0() + 50 > izVar.h()) {
-                    gz gzVar = izVar.O;
-                    Objects.requireNonNull(gzVar);
-                    AndroidUtilities.runOnUIThread(new uw(gzVar, 0));
+        if (hzVar != null && getAdapter() == hzVar && hzVar.d == 0) {
+            hz hzVar2 = hzVar.O.f24359w;
+            if (!hzVar2.Q.G0.F && !hzVar2.f24931y) {
+                if (mzVar.E0.N0() + 50 > hzVar.h()) {
+                    fz fzVar = hzVar.O;
+                    Objects.requireNonNull(fzVar);
+                    AndroidUtilities.runOnUIThread(new uw(fzVar, 0));
                 }
             }
         }
@@ -53,12 +53,12 @@ public final class vw extends og.d {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        nz nzVar = this.f29735g3;
-        if (!nzVar.f26826f) {
+        mz mzVar = this.Z2;
+        if (!mzVar.f26539f) {
             org.telegram.ui.nt q6 = org.telegram.ui.nt.q();
-            vw vwVar = nzVar.D0;
-            nzVar.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, vwVar, nzVar.f26832g2, this.f31015p2);
+            vw vwVar = mzVar.D0;
+            mzVar.getMeasuredHeight();
+            boolean r10 = q6.r(motionEvent, vwVar, mzVar.f26545g2, this.f30700p2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -69,20 +69,20 @@ public final class vw extends og.d {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        nz nzVar = this.f29735g3;
-        if (nzVar.I0 && nzVar.f26888y0.h() > 0) {
-            this.f29734f3 = true;
-            nzVar.E0.h1(0, 0);
-            nzVar.I0 = false;
-            this.f29734f3 = false;
+        mz mzVar = this.Z2;
+        if (mzVar.I0 && mzVar.f26601y0.h() > 0) {
+            this.Y2 = true;
+            mzVar.E0.h1(0, 0);
+            mzVar.I0 = false;
+            this.Y2 = false;
         }
         super.onLayout(z10, i10, i11, i12, i13);
-        nzVar.q(true);
+        mzVar.q(true);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f29734f3) {
+        if (this.Y2) {
             return;
         }
         super.requestLayout();

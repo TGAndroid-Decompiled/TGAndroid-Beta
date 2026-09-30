@@ -5,46 +5,46 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class d80 implements TextWatcher {
-    public final e80 f33134a;
+    public final e80 f33056a;
 
     public d80(e80 e80Var) {
-        this.f33134a = e80Var;
+        this.f33056a = e80Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        g80 g80Var = this.f33134a.f33382f;
+        g80 g80Var = this.f33056a.f33288f;
         if (g80Var.d.d.length() != 0) {
             g80Var.E = true;
-            g80Var.f33999y = true;
-            c80 c80Var = g80Var.f33996s;
+            g80Var.f33859y = true;
+            c80 c80Var = g80Var.f33856s;
             if (!c80Var.h) {
                 c80Var.h = true;
                 c80Var.l();
             }
-            g80Var.f33996s.E(g80Var.d.d.toString());
+            g80Var.f33856s.E(g80Var.d.d.toString());
             g80Var.h.setFastScrollVisible(false);
             g80Var.h.setVerticalScrollBarEnabled(true);
-            g80Var.f33995r.e(true, true);
-            g80Var.f33995r.setStickerType(1);
-            g80Var.f33995r.d.setText(LocaleController.getString(R.string.NoResult));
-            g80Var.f33995r.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+            g80Var.f33855r.e(true, true);
+            g80Var.f33855r.setStickerType(1);
+            g80Var.f33855r.d.setText(LocaleController.getString(R.string.NoResult));
+            g80Var.f33855r.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
             return;
         }
         g80Var.E = false;
-        g80Var.f33999y = false;
-        c80 c80Var2 = g80Var.f33996s;
+        g80Var.f33859y = false;
+        c80 c80Var2 = g80Var.f33856s;
         if (c80Var2.h) {
             c80Var2.h = false;
             c80Var2.l();
         }
-        g80Var.f33996s.E(null);
+        g80Var.f33856s.E(null);
         g80Var.h.setFastScrollVisible(true);
         g80Var.h.setVerticalScrollBarEnabled(false);
-        g80Var.f33995r.e(false, true);
-        g80Var.f33995r.setStickerType(0);
-        g80Var.f33995r.d.setText(LocaleController.getString(R.string.NoContacts));
-        g80Var.f33995r.e.setText("");
+        g80Var.f33855r.e(false, true);
+        g80Var.f33855r.setStickerType(0);
+        g80Var.f33855r.d.setText(LocaleController.getString(R.string.NoContacts));
+        g80Var.f33855r.e.setText("");
     }
 
     @Override

@@ -8,27 +8,27 @@ import y2.g;
 import y2.i;
 import y2.l;
 public final class b implements g, y61 {
-    public final Object f48458a;
+    public final Object f48352a;
 
     public b(Object obj) {
-        this.f48458a = obj;
+        this.f48352a = obj;
     }
 
     @Override
     public d m(i iVar, long j3, long j10, IOException iOException, int i10) {
-        ((l2.d) this.f48458a).f14054a.x(iOException);
+        ((l2.d) this.f48352a).f14039a.x(iOException);
         return l.e;
     }
 
     @Override
     public void o(i iVar, long j3, long j10) {
         boolean z10;
-        l2.d dVar = (l2.d) this.f48458a;
-        synchronized (c.f48460b) {
-            z10 = c.f48461c;
+        l2.d dVar = (l2.d) this.f48352a;
+        synchronized (c.f48354b) {
+            z10 = c.f48355c;
         }
         if (!z10) {
-            dVar.f14054a.x(new IOException(new ConcurrentModificationException()));
+            dVar.f14039a.x(new IOException(new ConcurrentModificationException()));
             return;
         }
         dVar.a();

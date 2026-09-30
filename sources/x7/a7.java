@@ -1,18 +1,18 @@
 package x7;
 public final class a7 {
-    public final Long f45747a;
-    public final Long f45748b;
-    public final Long f45749c;
+    public final Long f45641a;
+    public final Long f45642b;
+    public final Long f45643c;
     public final Long d;
     public final Long e;
-    public final Long f45750f;
+    public final Long f45644f;
 
     public a7(z6 z6Var) {
-        this.f45747a = z6Var.f46070a;
-        this.f45748b = z6Var.f46071b;
-        this.f45749c = z6Var.f46072c;
+        this.f45641a = z6Var.f45964a;
+        this.f45642b = z6Var.f45965b;
+        this.f45643c = z6Var.f45966c;
         this.d = z6Var.d;
         this.e = z6Var.e;
-        this.f45750f = z6Var.f46073f;
+        this.f45644f = z6Var.f45967f;
     }
 }

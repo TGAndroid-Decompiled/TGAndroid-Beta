@@ -15,7 +15,7 @@ public final class l7 extends m6 {
         super(context);
         this.O = s7Var;
         this.N = jcVar;
-        this.f1258w = -1;
+        this.f1256w = -1;
         this.E = new ArrayList();
         this.F = new ArrayList();
         this.G = new ArrayList();
@@ -29,7 +29,7 @@ public final class l7 extends m6 {
         fc fcVar;
         s7 s7Var = this.O;
         m7 m7Var = s7Var.E;
-        if (!s7Var.f1510w) {
+        if (!s7Var.f1505w) {
             if (m7Var.getCurrentItem() != i10) {
                 try {
                     m7Var.x(i10, false);
@@ -40,11 +40,11 @@ public final class l7 extends m6 {
                 }
             }
             jc jcVar = this.N;
-            if (jcVar.O0 != null && (fcVar = jcVar.f1103t0) != null) {
+            if (jcVar.O0 != null && (fcVar = jcVar.f1101t0) != null) {
                 if (i10 < 10) {
                     fcVar.b(false);
                 } else if (i10 >= this.E.size() - 10) {
-                    jcVar.f1103t0.b(true);
+                    jcVar.f1101t0.b(true);
                 }
             }
         }

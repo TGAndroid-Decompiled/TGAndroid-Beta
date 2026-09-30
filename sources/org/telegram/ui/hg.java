@@ -12,19 +12,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class hg implements Utilities.Callback2 {
-    public final int f34307a = 0;
-    public final wn f34308b;
-    public final org.telegram.ui.Cells.u1 f34309c;
+    public final int f34217a = 0;
+    public final wn f34218b;
+    public final org.telegram.ui.Cells.u1 f34219c;
     public final nf.e d;
     public final Serializable e;
-    public final Object f34310f;
+    public final Object f34220f;
 
     public hg(wn wnVar, wi wiVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
-        this.f34308b = wnVar;
+        this.f34218b = wnVar;
         this.d = wiVar;
-        this.f34309c = u1Var;
+        this.f34219c = u1Var;
         this.e = str;
-        this.f34310f = characterStyle;
+        this.f34220f = characterStyle;
     }
 
     @Override
@@ -40,32 +40,32 @@ public final class hg implements Utilities.Callback2 {
         TL_iv.RichMessage richMessage;
         TLRPC.Message message;
         org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f34307a) {
+        switch (this.f34217a) {
             case 0:
                 String str = (String) this.e;
-                CharacterStyle characterStyle = (CharacterStyle) this.f34310f;
+                CharacterStyle characterStyle = (CharacterStyle) this.f34220f;
                 TLObject tLObject = (TLObject) obj;
                 Boolean bool2 = (Boolean) obj2;
                 this.d.b();
                 if (tLObject instanceof TLRPC.User) {
-                    j3 = ((TLRPC.User) tLObject).f18499id;
+                    j3 = ((TLRPC.User) tLObject).f18484id;
                     z10 = false;
                     z11 = true;
                 } else if (tLObject instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                     z10 = ChatObject.isChannelAndNotMegaGroup(chat);
-                    j3 = -chat.f18352id;
+                    j3 = -chat.f18337id;
                     z11 = false;
                 } else {
                     z10 = false;
                     z11 = false;
                     j3 = 0;
                 }
-                wn wnVar = this.f34308b;
-                org.telegram.ui.Cells.u1 u1Var2 = this.f34309c;
-                org.telegram.ui.Components.b80 I = org.telegram.ui.Components.b80.I(wnVar, u1Var2);
-                org.telegram.ui.Components.pm0 pm0Var = new org.telegram.ui.Components.pm0(wnVar.getParentActivity(), wnVar.f39562ea);
-                I.f22867p = new qe(pm0Var, 0);
+                wn wnVar = this.f34218b;
+                org.telegram.ui.Cells.u1 u1Var2 = this.f34219c;
+                org.telegram.ui.Components.a80 I = org.telegram.ui.Components.a80.I(wnVar, u1Var2);
+                org.telegram.ui.Components.om0 om0Var = new org.telegram.ui.Components.om0(wnVar.getParentActivity(), wnVar.f39469ea);
+                I.f22599p = new qe(om0Var, 0);
                 int i13 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 if (i13 != 0) {
                     if (z10) {
@@ -86,7 +86,7 @@ public final class hg implements Utilities.Callback2 {
                     z12 = false;
                 }
                 boolean z13 = z10;
-                I.c(R.drawable.msg_copy, LocaleController.getString(R.string.ProfileCopyUsername), new xe(wnVar, pm0Var, str, 2), z12);
+                I.c(R.drawable.msg_copy, LocaleController.getString(R.string.ProfileCopyUsername), new xe(wnVar, om0Var, str, 2), z12);
                 if (bool.booleanValue()) {
                     I.c(R.drawable.outline_gram_24, LocaleController.getString(R.string.BuyUsernameOnFragment), new se(wnVar, str, 11), z12);
                 }
@@ -103,18 +103,18 @@ public final class hg implements Utilities.Callback2 {
                 } else {
                     I.p(13, AndroidUtilities.dp(200.0f), LocaleController.getString(R.string.NoUsernameFound2));
                 }
-                pm0Var.e(I);
-                pm0Var.f(u1Var2, characterStyle, null, false);
-                wnVar.showDialog(pm0Var);
+                om0Var.e(I);
+                om0Var.f(u1Var2, characterStyle, null, false);
+                wnVar.showDialog(om0Var);
                 return;
             default:
                 xi xiVar = (xi) this.d;
                 int[] iArr = (int[]) this.e;
-                MessageObject messageObject = (MessageObject) this.f34310f;
+                MessageObject messageObject = (MessageObject) this.f34220f;
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                wn wnVar2 = this.f34308b;
-                if (wnVar2.f39824zb == xiVar) {
+                wn wnVar2 = this.f34218b;
+                if (wnVar2.f39731zb == xiVar) {
                     iArr[0] = 0;
                     xiVar.c(false);
                     if (messages_messages != null) {
@@ -134,8 +134,8 @@ public final class hg implements Utilities.Callback2 {
                         if (richMessage != null && (message = messageObject.messageOwner) != null) {
                             message.rich_message = richMessage;
                             messageObject.richLayout = null;
-                            in inVar = wnVar2.f39684oc;
-                            if (inVar != null && (u1Var = this.f34309c) != null) {
+                            in inVar = wnVar2.f39591oc;
+                            if (inVar != null && (u1Var = this.f34219c) != null) {
                                 inVar.l(u1Var, true, false, true);
                                 return;
                             }
@@ -150,10 +150,10 @@ public final class hg implements Utilities.Callback2 {
     }
 
     public hg(wn wnVar, xi xiVar, int[] iArr, org.telegram.ui.Cells.u1 u1Var, MessageObject messageObject) {
-        this.f34308b = wnVar;
+        this.f34218b = wnVar;
         this.d = xiVar;
         this.e = iArr;
-        this.f34309c = u1Var;
-        this.f34310f = messageObject;
+        this.f34219c = u1Var;
+        this.f34220f = messageObject;
     }
 }

@@ -15,27 +15,27 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 public final class j7 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f47685a;
-    public final Drawable f47686b;
-    public final Drawable f47687c;
+    public final org.telegram.ui.ActionBar.d6 f47579a;
+    public final Drawable f47580b;
+    public final Drawable f47581c;
     public final TextView d;
     public final org.telegram.ui.Components.p6 e;
-    public SpannableString f47688f;
+    public SpannableString f47582f;
     public boolean h;
-    public int f47689n;
-    public final org.telegram.ui.Components.e6 f47690r;
+    public int f47583n;
+    public final org.telegram.ui.Components.e6 f47584r;
 
     public j7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         int i10;
-        this.f47690r = new org.telegram.ui.Components.e6(this, 0L, 500L, tr.h);
-        this.f47685a = d6Var;
+        this.f47584r = new org.telegram.ui.Components.e6(this, 0L, 500L, sr.h);
+        this.f47579a = d6Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
-        this.f47686b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19146h5, d6Var), PorterDuff.Mode.SRC_IN));
-        this.f47687c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        this.f47580b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19131h5, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f47581c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.d = textView;
@@ -45,7 +45,7 @@ public final class j7 extends FrameLayout {
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, false, false, false);
         this.e = p6Var;
         p6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        p6Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19478z6, d6Var));
+        p6Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19463z6, d6Var));
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
@@ -63,7 +63,7 @@ public final class j7 extends FrameLayout {
         float dp2;
         int i10;
         super.onDraw(canvas);
-        float d = this.f47690r.d(this.f47689n, false);
+        float d = this.f47584r.d(this.f47583n, false);
         if (LocaleController.isRTL) {
             f7 = -1.0f;
         } else {
@@ -85,25 +85,25 @@ public final class j7 extends FrameLayout {
             int i12 = (int) measuredHeight;
             int i13 = (int) (f10 + dp3);
             int i14 = (int) (measuredHeight + dp4);
-            Drawable drawable = this.f47686b;
+            Drawable drawable = this.f47580b;
             drawable.setBounds(i11, i12, i13, i14);
             int i15 = (int) (clamp * 255.0f);
             drawable.setAlpha(i15);
             drawable.draw(canvas);
-            Drawable drawable2 = this.f47687c;
+            Drawable drawable2 = this.f47581c;
             drawable2.setBounds(i11, i12, i13, i14);
             drawable2.setAlpha(i15);
             drawable2.draw(canvas);
         }
         if (this.h) {
-            org.telegram.ui.ActionBar.d6 d6Var = this.f47685a;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f47579a;
             if (d6Var != null) {
                 paint = d6Var.G("paintDivider");
             } else {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.h6.f19197k0;
+                paint = org.telegram.ui.ActionBar.h6.f19182k0;
             }
             Paint paint2 = paint;
             if (LocaleController.isRTL) {

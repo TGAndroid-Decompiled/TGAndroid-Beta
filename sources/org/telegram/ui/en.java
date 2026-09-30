@@ -13,19 +13,19 @@ public final class en extends nf.e {
     @Override
     public final void c(boolean z10) {
         if (!z10) {
-            AndroidUtilities.runOnUIThread(new xj(this.e.f34642a, 8), 250L);
+            AndroidUtilities.runOnUIThread(new xj(this.e.f34559a, 8), 250L);
         }
     }
 
     @Override
     public final void d() {
         in inVar = this.e;
-        wn wnVar = inVar.f34642a;
+        wn wnVar = inVar.f34559a;
         org.telegram.ui.Cells.u1 u1Var = this.d;
-        wnVar.f39772vb = u1Var.getMessageObject().getId();
-        wn wnVar2 = inVar.f34642a;
-        wnVar2.f39786wb = 2;
-        wnVar2.f39799xb = null;
+        wnVar.f39679vb = u1Var.getMessageObject().getId();
+        wn wnVar2 = inVar.f34559a;
+        wnVar2.f39693wb = 2;
+        wnVar2.f39706xb = null;
         u1Var.invalidate();
     }
 }

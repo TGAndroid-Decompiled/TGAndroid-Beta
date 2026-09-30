@@ -4,25 +4,25 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import org.telegram.messenger.MessagesController;
 public final class uy implements DialogInterface.OnClickListener {
-    public final int f38661a;
-    public final int f38662b;
-    public final Object f38663c;
+    public final int f38572a;
+    public final int f38573b;
+    public final Object f38574c;
 
     public uy(Object obj, int i10, int i11) {
-        this.f38661a = i11;
-        this.f38663c = obj;
-        this.f38662b = i10;
+        this.f38572a = i11;
+        this.f38574c = obj;
+        this.f38573b = i10;
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f38661a) {
+        switch (this.f38572a) {
             case 0:
-                zy zyVar = ((vy) this.f38663c).f38936b;
+                zy zyVar = ((vy) this.f38574c).f38848b;
                 if (i10 == 0) {
-                    zyVar.e.remove(this.f38662b - zyVar.f40697n);
+                    zyVar.e.remove(this.f38573b - zyVar.f40600n);
                     zyVar.Z();
-                    yy yyVar = zyVar.f40696f;
+                    yy yyVar = zyVar.f40599f;
                     if (yyVar != null) {
                         yyVar.a();
                         return;
@@ -31,17 +31,17 @@ public final class uy implements DialogInterface.OnClickListener {
                 }
                 return;
             case 1:
-                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f38663c, this.f38662b, i10);
+                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f38574c, this.f38573b, i10);
                 return;
             default:
-                ThemeActivity themeActivity = (ThemeActivity) this.f38663c;
+                ThemeActivity themeActivity = (ThemeActivity) this.f38574c;
                 themeActivity.getClass();
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                 edit.putInt("sortContactsBy", i10);
                 edit.commit();
-                yb1 yb1Var = themeActivity.f31909a;
+                yb1 yb1Var = themeActivity.f31837a;
                 if (yb1Var != null) {
-                    yb1Var.m(this.f38662b);
+                    yb1Var.m(this.f38573b);
                     return;
                 }
                 return;

@@ -1,7 +1,7 @@
 package ei;
 
-import org.telegram.ui.Components.dw0;
-public final class m1 extends dw0 {
+import org.telegram.ui.Components.cw0;
+public final class m1 extends cw0 {
     @Override
     public final boolean P() {
         return false;

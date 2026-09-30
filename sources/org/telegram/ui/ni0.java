@@ -4,26 +4,26 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-public final class ni0 extends org.telegram.ui.Components.dw0 {
+public final class ni0 extends org.telegram.ui.Components.cw0 {
     public final g20 A0;
     public final Paint B0;
     public final org.telegram.ui.ActionBar.d6 C0;
     public final vi0 D0;
-    public final int[] f36004w0;
-    public final int[] f36005x0;
-    public int f36006y0;
-    public final int[] f36007z0;
+    public final int[] f35897w0;
+    public final int[] f35898x0;
+    public int f35899y0;
+    public final int[] f35900z0;
 
     public ni0(vi0 vi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null);
         this.D0 = vi0Var;
         this.C0 = d6Var;
-        this.f36004w0 = new int[2];
-        this.f36005x0 = new int[2];
-        this.f36006y0 = 0;
-        this.f36007z0 = new int[2];
+        this.f35897w0 = new int[2];
+        this.f35898x0 = new int[2];
+        this.f35899y0 = 0;
+        this.f35900z0 = new int[2];
         this.A0 = new g20();
-        org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.f28636f;
+        org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.f28346f;
         this.B0 = new Paint(1);
     }
 
@@ -35,7 +35,7 @@ public final class ni0 extends org.telegram.ui.Components.dw0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         vi0 vi0Var = this.D0;
-        if (vi0Var.f38844w) {
+        if (vi0Var.f38754w) {
             if (view != vi0Var.X) {
                 org.telegram.ui.Cells.u1 u1Var = vi0Var.Q;
                 if (view == u1Var && u1Var != null && u1Var.getCurrentPosition() == null) {

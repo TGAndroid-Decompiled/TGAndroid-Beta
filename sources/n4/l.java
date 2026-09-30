@@ -9,43 +9,43 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class l implements Parcelable {
     public static final Parcelable.Creator<l> CREATOR = new m8.h(3);
-    public final String f15204a;
-    public final CharSequence f15205b;
-    public final CharSequence f15206c;
+    public final String f15189a;
+    public final CharSequence f15190b;
+    public final CharSequence f15191c;
     public final CharSequence d;
     public final Bitmap e;
-    public final Uri f15207f;
+    public final Uri f15192f;
     public final Bundle h;
-    public final Uri f15208n;
-    public MediaDescription f15209r;
+    public final Uri f15193n;
+    public MediaDescription f15194r;
 
     public l(String str, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, Bitmap bitmap, Uri uri, Bundle bundle, Uri uri2) {
-        this.f15204a = str;
-        this.f15205b = charSequence;
-        this.f15206c = charSequence2;
+        this.f15189a = str;
+        this.f15190b = charSequence;
+        this.f15191c = charSequence2;
         this.d = charSequence3;
         this.e = bitmap;
-        this.f15207f = uri;
+        this.f15192f = uri;
         this.h = bundle;
-        this.f15208n = uri2;
+        this.f15193n = uri2;
     }
 
     public final MediaDescription a() {
         Bundle bundle;
-        MediaDescription mediaDescription = this.f15209r;
+        MediaDescription mediaDescription = this.f15194r;
         if (mediaDescription != null) {
             return mediaDescription;
         }
         MediaDescription.Builder builder = new MediaDescription.Builder();
-        builder.setMediaId(this.f15204a);
-        builder.setTitle(this.f15205b);
-        builder.setSubtitle(this.f15206c);
+        builder.setMediaId(this.f15189a);
+        builder.setTitle(this.f15190b);
+        builder.setSubtitle(this.f15191c);
         builder.setDescription(this.d);
         builder.setIconBitmap(this.e);
-        builder.setIconUri(this.f15207f);
+        builder.setIconUri(this.f15192f);
         int i10 = Build.VERSION.SDK_INT;
         Bundle bundle2 = this.h;
-        Uri uri = this.f15208n;
+        Uri uri = this.f15193n;
         if (i10 < 23 && uri != null) {
             if (bundle2 == null) {
                 bundle = a4.a.i("android.support.v4.media.description.NULL_BUNDLE_FLAG", true);
@@ -61,7 +61,7 @@ public final class l implements Parcelable {
             e0.b.E(builder, uri);
         }
         MediaDescription build = builder.build();
-        this.f15209r = build;
+        this.f15194r = build;
         return build;
     }
 
@@ -71,7 +71,7 @@ public final class l implements Parcelable {
     }
 
     public final String toString() {
-        return ((Object) this.f15205b) + ", " + ((Object) this.f15206c) + ", " + ((Object) this.d);
+        return ((Object) this.f15190b) + ", " + ((Object) this.f15191c) + ", " + ((Object) this.d);
     }
 
     @Override

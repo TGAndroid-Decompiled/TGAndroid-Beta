@@ -3,18 +3,18 @@ package fi;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class x implements TextWatcher {
-    public final k0 f9193a;
+    public final k0 f9181a;
 
     public x(k0 k0Var) {
-        this.f9193a = k0Var;
+        this.f9181a = k0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj = editable.toString();
-        k0 k0Var = this.f9193a;
+        k0 k0Var = this.f9181a;
         k0Var.S = obj;
-        k0Var.G.f28778f3.N(true);
+        k0Var.G.Y2.N(true);
     }
 
     @Override

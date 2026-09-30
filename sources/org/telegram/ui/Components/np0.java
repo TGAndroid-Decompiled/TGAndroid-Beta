@@ -1,141 +1,34 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class np0 extends zw0 {
-    public boolean f26767a = false;
-    public long f26768b = 0;
-    public boolean f26769c = false;
-    public float d;
-    public final Paint e;
+import org.telegram.messenger.Utilities;
+public final class np0 {
+    public final pu f26845a;
+    public final long f26846b;
+    public final float f26847c;
+    public final float d;
+    public final float e;
 
-    public np0(boolean z10) {
-        if (z10) {
-            Paint paint = new Paint(1);
-            this.e = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    public np0(View view) {
+        pu puVar = new pu(1, view);
+        this.f26846b = System.currentTimeMillis();
+        this.f26845a = puVar;
+        this.f26847c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+    }
+
+    public final void a(Canvas canvas, float f7) {
+        pu puVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f26846b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f26847c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
+        canvas.translate(-0.0f, -0.0f);
+        if (f7 > 0.0f && (puVar = this.f26845a) != null) {
+            puVar.run();
         }
-    }
-
-    @Override
-    public final void b(int i10) {
-        Paint paint = this.e;
-        if (paint != null) {
-            paint.setColor(i10);
-        }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        this.f26767a = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f26768b = System.currentTimeMillis();
-        this.f26769c = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        float f10;
-        float f11;
-        Paint paint = this.e;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f19072d2;
-        }
-        Paint paint2 = paint;
-        int i10 = 0;
-        while (i10 < 3) {
-            if (i10 == 0) {
-                paint2.setAlpha((int) (this.d * 255.0f));
-            } else if (i10 == 2) {
-                paint2.setAlpha((int) ((1.0f - this.d) * 255.0f));
-            } else {
-                paint2.setAlpha(255);
-            }
-            float dp = (AndroidUtilities.dp(5.0f) * i10) + (AndroidUtilities.dp(5.0f) * this.d);
-            if (this.f26767a) {
-                f7 = 3.0f;
-            } else {
-                f7 = 4.0f;
-            }
-            float dp2 = AndroidUtilities.dp(f7);
-            float dp3 = dp + AndroidUtilities.dp(4.0f);
-            float f12 = 8.0f;
-            if (this.f26767a) {
-                f10 = 7.0f;
-            } else {
-                f10 = 8.0f;
-            }
-            float dp4 = AndroidUtilities.dp(f10);
-            Canvas canvas2 = canvas;
-            canvas2.drawLine(dp, dp2, dp3, dp4, paint2);
-            if (this.f26767a) {
-                f11 = 11.0f;
-            } else {
-                f11 = 12.0f;
-            }
-            float dp5 = AndroidUtilities.dp(f11);
-            float dp6 = dp + AndroidUtilities.dp(4.0f);
-            if (this.f26767a) {
-                f12 = 7.0f;
-            }
-            canvas2.drawLine(dp, dp5, dp6, AndroidUtilities.dp(f12), paint2);
-            i10++;
-            canvas = canvas2;
-        }
-        if (this.f26769c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f26768b;
-            this.f26768b = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            this.d = (((float) j3) / 500.0f) + this.d;
-            while (true) {
-                float f13 = this.d;
-                if (f13 > 1.0f) {
-                    this.d = f13 - 1.0f;
-                } else {
-                    a();
-                    return;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void e() {
-        this.f26769c = false;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(14.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

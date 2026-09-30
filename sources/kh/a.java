@@ -5,26 +5,26 @@ import le.c;
 import le.e;
 import le.f;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.voip.w2;
 public final class a implements e {
-    public final f f13645a;
-    public final f f13646b;
-    public final c f13647c;
+    public final f f13630a;
+    public final f f13631b;
+    public final c f13632c;
     public final c d;
     public final w2 e;
-    public final h0 f13648f;
+    public final h0 f13633f;
     public boolean h;
 
     public a(w2 w2Var, h0 h0Var) {
-        tr trVar = tr.h;
-        this.f13645a = new f(1, this, trVar, 350L);
-        this.f13646b = new f(2, this, trVar, 350L);
-        this.f13647c = new c(0, this, trVar, 350L, true);
-        this.d = new c(3, this, trVar, 350L, true);
+        sr srVar = sr.h;
+        this.f13630a = new f(1, this, srVar, 350L);
+        this.f13631b = new f(2, this, srVar, 350L);
+        this.f13632c = new c(0, this, srVar, 350L, true);
+        this.d = new c(3, this, srVar, 350L, true);
         this.h = true;
         this.e = w2Var;
-        this.f13648f = h0Var;
+        this.f13633f = h0Var;
     }
 
     @Override
@@ -32,13 +32,13 @@ public final class a implements e {
         int i11;
         w2 w2Var = this.e;
         if (i10 == 1) {
-            w2Var.setTranslationX(this.f13645a.e);
+            w2Var.setTranslationX(this.f13630a.e);
         }
         if (i10 == 2) {
-            w2Var.setTranslationY(this.f13646b.e);
+            w2Var.setTranslationY(this.f13631b.e);
         }
         c cVar = this.d;
-        c cVar2 = this.f13647c;
+        c cVar2 = this.f13632c;
         if (i10 == 0) {
             w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, cVar.e) * cVar2.e);
             w2Var.setScaleX(AndroidUtilities.lerp(0.3f, 1.0f, f7));
@@ -53,7 +53,7 @@ public final class a implements e {
         if (i10 == 3) {
             w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, cVar.e) * cVar2.e);
         }
-        h0 h0Var = this.f13648f;
+        h0 h0Var = this.f13633f;
         if (h0Var != null) {
             h0Var.run();
         }

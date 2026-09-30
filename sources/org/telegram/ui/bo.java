@@ -13,23 +13,23 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.Switch;
 public final class bo implements View.OnClickListener {
-    public final int f32539a;
-    public final long f32540b;
-    public final Object f32541c;
+    public final int f32457a;
+    public final long f32458b;
+    public final Object f32459c;
     public final Object d;
 
     public bo(Object obj, Object obj2, long j3, int i10) {
-        this.f32539a = i10;
-        this.f32541c = obj;
+        this.f32457a = i10;
+        this.f32459c = obj;
         this.d = obj2;
-        this.f32540b = j3;
+        this.f32458b = j3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f32539a) {
+        switch (this.f32457a) {
             case 0:
-                final ro roVar = (ro) this.f32541c;
+                final ro roVar = (ro) this.f32459c;
                 final boolean[] zArr = (boolean[]) this.d;
                 if (!zArr[0]) {
                     final org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(roVar.getParentActivity(), 3, null);
@@ -40,19 +40,19 @@ public final class bo implements View.OnClickListener {
                         roVar.M.setChecked(z10);
                     }
                     ChannelBoostsController boostsController = roVar.getMessagesController().getBoostsController();
-                    final long j3 = this.f32540b;
+                    final long j3 = this.f32458b;
                     boostsController.getBoostsStats(j3, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
                             int i10;
                             TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                             ro roVar2 = ro.this;
-                            TLRPC.Chat chat = roVar2.f37513x0;
+                            TLRPC.Chat chat = roVar2.f37420x0;
                             int i11 = chat.level;
                             int i12 = tL_premium_boostsStatus.level;
                             if (i11 != i12) {
                                 chat.level = i12;
-                                roVar2.getMessagesController().putChat(roVar2.f37513x0, false);
+                                roVar2.getMessagesController().putChat(roVar2.f37420x0, false);
                             }
                             Switch checkBox = roVar2.M.getCheckBox();
                             if (tL_premium_boostsStatus.level < roVar2.getMessagesController().channelAutotranslationLevelMin) {
@@ -74,7 +74,7 @@ public final class bo implements View.OnClickListener {
                             }
                             TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
                             roVar2.getMessagesController();
-                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(roVar2.f37513x0);
+                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(roVar2.f37420x0);
                             tL_channels_toggleAutotranslation.enabled = z11;
                             roVar2.M.setChecked(z11);
                             zArr2[0] = false;
@@ -86,20 +86,20 @@ public final class bo implements View.OnClickListener {
                 }
                 return;
             case 1:
-                ((org.telegram.ui.ActionBar.a2[]) this.f32541c)[0].dismiss();
-                ((org.telegram.ui.Components.es) this.d).run(-this.f32540b);
+                ((org.telegram.ui.ActionBar.a2[]) this.f32459c)[0].dismiss();
+                ((org.telegram.ui.Components.ds) this.d).run(-this.f32458b);
                 return;
             case 2:
-                ((org.telegram.ui.ActionBar.a2[]) this.f32541c)[0].dismiss();
-                ((org.telegram.ui.Components.es) this.d).run(-this.f32540b);
+                ((org.telegram.ui.ActionBar.a2[]) this.f32459c)[0].dismiss();
+                ((org.telegram.ui.Components.ds) this.d).run(-this.f32458b);
                 return;
             case 3:
-                org.telegram.ui.Components.p70.N((org.telegram.ui.Components.p70) this.f32541c, (Context) this.d, this.f32540b);
+                org.telegram.ui.Components.o70.N((org.telegram.ui.Components.o70) this.f32459c, (Context) this.d, this.f32458b);
                 return;
             case 4:
-                qy qyVar = (qy) this.f32541c;
+                qy qyVar = (qy) this.f32459c;
                 boolean hasUnread = ((org.telegram.ui.Cells.s2) this.d).getHasUnread();
-                long j10 = this.f32540b;
+                long j10 = this.f32458b;
                 if (hasUnread) {
                     qyVar.j4(j10);
                 } else {
@@ -108,24 +108,24 @@ public final class bo implements View.OnClickListener {
                 qyVar.finishPreviewFragment();
                 return;
             case 5:
-                no0 no0Var = (no0) this.f32541c;
-                no0Var.getClass();
+                oo0 oo0Var = (oo0) this.f32459c;
+                oo0Var.getClass();
                 long longValue = ((Long) ((TextView) this.d).getTag()).longValue();
-                Long l4 = no0Var.H0;
+                Long l4 = oo0Var.H0;
                 if (l4 != null && longValue == l4.longValue()) {
-                    no0Var.m0 = true;
-                    no0Var.f36062f[0].setText("");
-                    no0Var.m0 = false;
-                    no0Var.H0 = 0L;
-                    no0Var.L0();
+                    oo0Var.m0 = true;
+                    oo0Var.f36292f[0].setText("");
+                    oo0Var.m0 = false;
+                    oo0Var.H0 = 0L;
+                    oo0Var.L0();
                 } else {
-                    no0Var.f36062f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f32540b, false, true, true, no0Var.C0.invoice.currency));
+                    oo0Var.f36292f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f32458b, false, true, true, oo0Var.C0.invoice.currency));
                 }
-                EditTextBoldCursor editTextBoldCursor = no0Var.f36062f[0];
+                EditTextBoldCursor editTextBoldCursor = oo0Var.f36292f[0];
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 return;
             default:
-                yh.x3.Y0((yh.x3) this.f32541c, (String) this.d, this.f32540b);
+                yh.x3.Y0((yh.x3) this.f32459c, (String) this.d, this.f32458b);
                 return;
         }
     }

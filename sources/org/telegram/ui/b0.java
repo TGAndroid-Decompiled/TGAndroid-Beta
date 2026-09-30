@@ -4,24 +4,24 @@ import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class b0 implements Runnable {
-    public final int f32339a;
-    public final i4 f32340b;
+    public final int f32267a;
+    public final i4 f32268b;
 
     public b0(i4 i4Var, int i10) {
-        this.f32339a = i10;
-        this.f32340b = i4Var;
+        this.f32267a = i10;
+        this.f32268b = i4Var;
     }
 
     @Override
     public final void run() {
         float f7;
-        switch (this.f32339a) {
+        switch (this.f32267a) {
             case 0:
-                i4 i4Var = this.f32340b;
+                i4 i4Var = this.f32268b;
                 i4Var.getClass();
                 try {
-                    if (i4Var.f34488f0.getParent() != null) {
-                        ((WindowManager) i4Var.L.getSystemService("window")).removeView(i4Var.f34488f0);
+                    if (i4Var.f34396f0.getParent() != null) {
+                        ((WindowManager) i4Var.L.getSystemService("window")).removeView(i4Var.f34396f0);
                         return;
                     }
                     return;
@@ -30,9 +30,9 @@ public final class b0 implements Runnable {
                     return;
                 }
             case 1:
-                i4 i4Var2 = this.f32340b;
-                k0 k0Var = i4Var2.f34489g0;
-                if (k0Var != null && i4Var2.f34488f0 != null) {
+                i4 i4Var2 = this.f32268b;
+                k0 k0Var = i4Var2.f34397g0;
+                if (k0Var != null && i4Var2.f34396f0 != null) {
                     k0Var.setLayerType(0, null);
                     i4Var2.Z = 0;
                     AndroidUtilities.hideKeyboard(i4Var2.L.getCurrentFocus());
@@ -40,35 +40,35 @@ public final class b0 implements Runnable {
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new b0(this.f32340b, 11));
+                AndroidUtilities.runOnUIThread(new b0(this.f32268b, 11));
                 return;
             case 3:
-                i4 i4Var3 = this.f32340b;
-                float currentProgress = 0.7f - i4Var3.f34490h0.f39321d0.getCurrentProgress();
+                i4 i4Var3 = this.f32268b;
+                float currentProgress = 0.7f - i4Var3.f34398h0.f39232d0.getCurrentProgress();
                 if (currentProgress > 0.0f) {
                     if (currentProgress < 0.25f) {
                         f7 = 0.01f;
                     } else {
                         f7 = 0.02f;
                     }
-                    org.telegram.ui.Components.a90 a90Var = i4Var3.f34490h0.f39321d0;
-                    a90Var.a(a90Var.getCurrentProgress() + f7, true);
-                    AndroidUtilities.runOnUIThread(i4Var3.f34492j0, 100L);
+                    org.telegram.ui.Components.z80 z80Var = i4Var3.f34398h0.f39232d0;
+                    z80Var.a(z80Var.getCurrentProgress() + f7, true);
+                    AndroidUtilities.runOnUIThread(i4Var3.f34400j0, 100L);
                     return;
                 }
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new b0(this.f32340b, 11));
+                AndroidUtilities.runOnUIThread(new b0(this.f32268b, 11));
                 return;
             case 5:
-                this.f32340b.K.dismiss(true);
+                this.f32268b.K.dismiss(true);
                 return;
             case 6:
-                this.f32340b.K.dismiss(true);
+                this.f32268b.K.dismiss(true);
                 return;
             case 7:
-                i4 i4Var4 = this.f32340b;
-                k0 k0Var2 = i4Var4.f34489g0;
+                i4 i4Var4 = this.f32268b;
+                k0 k0Var2 = i4Var4.f34397g0;
                 if (k0Var2 != null) {
                     k0Var2.setLayerType(0, null);
                     i4Var4.Z = 0;
@@ -77,22 +77,22 @@ public final class b0 implements Runnable {
                 }
                 return;
             case 8:
-                this.f32340b.c0();
+                this.f32268b.c0();
                 return;
             case 9:
-                this.f32340b.h0();
+                this.f32268b.h0();
                 return;
             case 10:
                 org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != 0) {
                     ?? obj = new Object();
-                    obj.f19598a = true;
-                    U.showAsSheet(new org.telegram.ui.web.z1(new s(this.f32340b, 3)), obj);
+                    obj.f19583a = true;
+                    U.showAsSheet(new org.telegram.ui.web.z1(new s(this.f32268b, 3)), obj);
                     return;
                 }
                 return;
             default:
-                this.f32340b.f0();
+                this.f32268b.f0();
                 return;
         }
     }

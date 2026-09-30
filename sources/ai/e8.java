@@ -30,7 +30,7 @@ public final class e8 implements Comparator {
         switch (this.f852a) {
             case 0:
                 l9 l9Var = (l9) this.f853b;
-                int i11 = l9Var.f1194a;
+                int i11 = l9Var.f1192a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
@@ -113,7 +113,7 @@ public final class e8 implements Comparator {
             case 5:
                 return ((Collator) this.f853b).compare((String) obj, (String) obj2);
             default:
-                float[] fArr = ((yh.p2) this.f853b).f47972r;
+                float[] fArr = ((yh.p2) this.f853b).f47866r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
         }
     }

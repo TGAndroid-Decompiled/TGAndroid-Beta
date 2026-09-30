@@ -1,19 +1,19 @@
 package org.telegram.ui;
 public final class ng implements q0.a {
-    public final int f35985a;
-    public final wn f35986b;
+    public final int f35878a;
+    public final wn f35879b;
 
     public ng(wn wnVar, int i10) {
-        this.f35985a = i10;
-        this.f35986b = wnVar;
+        this.f35878a = i10;
+        this.f35879b = wnVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f35985a) {
+        switch (this.f35878a) {
             case 0:
                 Integer num = (Integer) obj;
-                wn wnVar = this.f35986b;
+                wn wnVar = this.f35879b;
                 wnVar.getClass();
                 if (num.intValue() == 0) {
                     wnVar.l1 = 0;
@@ -26,16 +26,16 @@ public final class ng implements q0.a {
                 return;
             case 1:
                 Integer num2 = (Integer) obj;
-                wn wnVar2 = this.f35986b;
+                wn wnVar2 = this.f35879b;
                 wnVar2.getClass();
                 if (num2.intValue() == 0) {
-                    wnVar2.f39649m1 = 0;
+                    wnVar2.f39556m1 = 0;
                     wnVar2.Ac(true);
                     wnVar2.getMessagesController().markPollVotesAsRead(wnVar2.T5, wnVar2.d());
                     return;
                 }
-                int i10 = wnVar2.f39649m1 - 1;
-                wnVar2.f39649m1 = i10;
+                int i10 = wnVar2.f39556m1 - 1;
+                wnVar2.f39556m1 = i10;
                 if (i10 <= 0) {
                     wnVar2.getMessagesController().markPollVotesAsRead(wnVar2.T5, wnVar2.d());
                 }
@@ -43,7 +43,7 @@ public final class ng implements q0.a {
                 wnVar2.F(num2.intValue(), 0, 0, 0, false, true);
                 return;
             default:
-                wn wnVar3 = this.f35986b;
+                wn wnVar3 = this.f35879b;
                 wnVar3.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 wnVar3.f7 = booleanValue;

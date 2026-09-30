@@ -1,17 +1,43 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class hp0 extends org.telegram.ui.Cells.ia {
-    public static void b(hp0 hp0Var, Canvas canvas) {
-        super.draw(canvas);
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class hp0 extends s4.s0 {
+    public final int f34273a;
+    public final np0 f34274b;
+
+    public hp0(np0 np0Var, int i10) {
+        this.f34274b = np0Var;
+        this.f34273a = i10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (canvas.isHardwareAccelerated()) {
-            super.draw(canvas);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        yh.k5 k5Var;
+        ah.h hVar;
+        np0 np0Var = this.f34274b;
+        tp0 tp0Var = np0Var.f35949p0;
+        if (i11 != 0) {
+            tp0Var.D0(1);
+        }
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = tp0Var.f38173f0) != null) {
+            hVar.f(i10, i11);
+        }
+        np0Var.h();
+        if (np0Var.K != null) {
+            if (np0Var.J != null && np0Var.c()) {
+                np0Var.J.g(false);
+                return;
+            }
+            return;
+        }
+        if (this.f34273a == 1) {
+            k5Var = tp0Var.f38168c;
         } else {
-            yf.i0.a(canvas, this, new t3(this, 15));
+            k5Var = tp0Var.f38166b;
+        }
+        if (k5Var != null && np0Var.c()) {
+            k5Var.a();
         }
     }
 }

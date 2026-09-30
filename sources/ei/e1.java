@@ -32,25 +32,25 @@ import org.telegram.ui.web.HttpGetFileTask;
 import org.telegram.ui.wn;
 import org.telegram.ui.z90;
 public final class e1 implements Runnable {
-    public final int f8304a = 0;
-    public final TLObject f8305b;
-    public final int f8306c;
+    public final int f8292a = 0;
+    public final TLObject f8293b;
+    public final int f8294c;
     public final long d;
     public final Object e;
-    public final Object f8307f;
+    public final Object f8295f;
     public final Object h;
-    public final Object f8308n;
-    public final Object f8309r;
+    public final Object f8296n;
+    public final Object f8297r;
 
     public e1(TLObject tLObject, int i10, org.telegram.ui.ActionBar.a2 a2Var, Context context, long j3, d6 d6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
-        this.f8305b = tLObject;
-        this.f8306c = i10;
+        this.f8293b = tLObject;
+        this.f8294c = i10;
         this.e = a2Var;
-        this.f8307f = context;
+        this.f8295f = context;
         this.d = j3;
         this.h = d6Var;
-        this.f8308n = sVar;
-        this.f8309r = eVar;
+        this.f8296n = sVar;
+        this.f8297r = eVar;
     }
 
     @Override
@@ -61,19 +61,19 @@ public final class e1 implements Runnable {
         qy qyVar;
         TLObject tLObject;
         String[] split;
-        switch (this.f8304a) {
+        switch (this.f8292a) {
             case 0:
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) this.e;
-                Context context = (Context) this.f8307f;
+                Context context = (Context) this.f8295f;
                 d6 d6Var = (d6) this.h;
-                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f8308n;
-                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f8309r;
-                TLObject tLObject2 = this.f8305b;
+                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f8296n;
+                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f8297r;
+                TLObject tLObject2 = this.f8293b;
                 if (tLObject2 instanceof TLRPC.TL_messages_preparedInlineMessage) {
                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) tLObject2;
                     TLRPC.BotInlineMessage botInlineMessage = tL_messages_preparedInlineMessage.result.send_message;
                     boolean z10 = botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaWebPage;
-                    int i11 = this.f8306c;
+                    int i11 = this.f8294c;
                     long j3 = this.d;
                     if (z10) {
                         TLRPC.TL_botInlineMessageMediaWebPage tL_botInlineMessageMediaWebPage = (TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage;
@@ -122,17 +122,17 @@ public final class e1 implements Runnable {
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) this.e;
-                String str3 = (String) this.f8307f;
+                String str3 = (String) this.f8295f;
                 String str4 = (String) this.h;
-                TLRPC.User user = (TLRPC.User) this.f8308n;
-                String str5 = (String) this.f8309r;
-                ArrayList arrayList = launchActivity.f31184f0;
-                ArrayList arrayList2 = launchActivity.f31180d0;
+                TLRPC.User user = (TLRPC.User) this.f8296n;
+                String str5 = (String) this.f8297r;
+                ArrayList arrayList = launchActivity.f31112f0;
+                ArrayList arrayList2 = launchActivity.f31108d0;
                 ArrayList arrayList3 = launchActivity.E0;
-                TLObject tLObject3 = this.f8305b;
+                TLObject tLObject3 = this.f8293b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
                     TLRPC.TL_attachMenuBotsBot tL_attachMenuBotsBot = (TLRPC.TL_attachMenuBotsBot) tLObject3;
-                    int i12 = this.f8306c;
+                    int i12 = this.f8294c;
                     MessagesController.getInstance(i12).putUsers(tL_attachMenuBotsBot.users, false);
                     TLRPC.TL_attachMenuBot tL_attachMenuBot = tL_attachMenuBotsBot.bot;
                     if (str3 != null) {
@@ -190,7 +190,7 @@ public final class e1 implements Runnable {
                                 a02 = yc.a0(m2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                wnVar.W9(user.f18499id, str5, false);
+                                wnVar.W9(user.f18484id, str5, false);
                                 return;
                             }
                         } else {
@@ -199,7 +199,7 @@ public final class e1 implements Runnable {
                         }
                     } else {
                         w6 w6Var = new w6(launchActivity);
-                        w6Var.setColor(h6.w0(null, h6.f19169ia, false));
+                        w6Var.setColor(h6.w0(null, h6.f19154ia, false));
                         w6Var.setBackgroundColor(h6.w0(null, h6.L5, false));
                         w6Var.setAttachBot(tL_attachMenuBot);
                         ej1.a(launchActivity, new uq(launchActivity, i12, this.d, qyVar, m2Var, user, str5), null);
@@ -216,12 +216,12 @@ public final class e1 implements Runnable {
 
     public e1(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, String str2, TLRPC.User user, String str3, long j3) {
         this.e = launchActivity;
-        this.f8305b = tLObject;
-        this.f8306c = i10;
-        this.f8307f = str;
+        this.f8293b = tLObject;
+        this.f8294c = i10;
+        this.f8295f = str;
         this.h = str2;
-        this.f8308n = user;
-        this.f8309r = str3;
+        this.f8296n = user;
+        this.f8297r = str3;
         this.d = j3;
     }
 }

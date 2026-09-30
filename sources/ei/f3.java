@@ -21,26 +21,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.nd0;
-import org.telegram.ui.Components.rc;
+import org.telegram.ui.Components.md0;
+import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.jk;
-import org.telegram.ui.no0;
+import org.telegram.ui.oo0;
 import org.telegram.ui.qy;
 import org.telegram.ui.wn;
-import yh.s5;
+import yh.t5;
 public final class f3 implements org.telegram.ui.web.g0 {
-    public boolean f8327a;
-    public final Context f8328b;
-    public final d6 f8329c;
+    public boolean f8315a;
+    public final Context f8316b;
+    public final d6 f8317c;
     public final k3 d;
 
     public f3(k3 k3Var, Context context, d6 d6Var) {
         this.d = k3Var;
-        this.f8328b = context;
-        this.f8329c = d6Var;
+        this.f8316b = context;
+        this.f8317c = d6Var;
     }
 
     @Override
@@ -48,9 +48,9 @@ public final class f3 implements org.telegram.ui.web.g0 {
         k3 k3Var = this.d;
         TLRPC.User user = MessagesController.getInstance(k3Var.G).getUser(Long.valueOf(k3Var.H));
         o0.a aVar = new o0.a(3, (byte) 0);
-        aVar.f15498b = new c3(this, 0);
-        rc V = new yc(k3Var.f8439p0, k3Var.E).V(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequestGranted, UserObject.getUserName(user))), null, aVar);
-        V.f27946j = 5000;
+        aVar.f15483b = new c3(this, 0);
+        qc V = new yc(k3Var.f8427p0, k3Var.E).V(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequestGranted, UserObject.getUserName(user))), null, aVar);
+        V.f27641j = 5000;
         V.k(true);
     }
 
@@ -74,14 +74,14 @@ public final class f3 implements org.telegram.ui.web.g0 {
     @Override
     public final void d(TLRPC.Document document) {
         k3 k3Var = this.d;
-        new yc(k3Var.f8439p0, k3Var.E).r(document, LocaleController.getString(R.string.BotEmojiStatusUpdated)).k(true);
+        new yc(k3Var.f8427p0, k3Var.E).r(document, LocaleController.getString(R.string.BotEmojiStatusUpdated)).k(true);
     }
 
     @Override
     public final void e(String str) {
         k3 k3Var = this.d;
-        if (k3Var.J == 0 && !this.f8327a) {
-            this.f8327a = true;
+        if (k3Var.J == 0 && !this.f8315a) {
+            this.f8315a = true;
             TLRPC.TL_messages_sendWebViewData tL_messages_sendWebViewData = new TLRPC.TL_messages_sendWebViewData();
             tL_messages_sendWebViewData.bot = MessagesController.getInstance(k3Var.G).getInputUser(k3Var.H);
             tL_messages_sendWebViewData.random_id = Utilities.random.nextLong();
@@ -101,13 +101,13 @@ public final class f3 implements org.telegram.ui.web.g0 {
         } else {
             formatPluralString = LocaleController.formatPluralString("BotSharedToMany", arrayList.size(), new Object[0]);
         }
-        new yc(k3Var.f8439p0, k3Var.E).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatPluralString)).k(true);
+        new yc(k3Var.f8427p0, k3Var.E).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatPluralString)).k(true);
     }
 
     @Override
     public final String g(boolean z10, boolean z11) {
         k3 k3Var = this.d;
-        boolean z12 = k3Var.f8426d0;
+        boolean z12 = k3Var.f8414d0;
         if (z12 == z10) {
             if (!z12) {
                 return null;
@@ -132,7 +132,7 @@ public final class f3 implements org.telegram.ui.web.g0 {
         int i10;
         k3 k3Var = this.d;
         ImageView backButton = k3Var.W.getBackButton();
-        k3Var.f8449w0 = z10;
+        k3Var.f8437w0 = z10;
         if (z10) {
             i10 = R.drawable.ic_ab_back;
         } else {
@@ -152,35 +152,35 @@ public final class f3 implements org.telegram.ui.web.g0 {
 
     @Override
     public final void k(boolean z10) {
-        this.d.f8442r0 = z10;
+        this.d.f8430r0 = z10;
     }
 
     @Override
     public final void l(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13, String str2) {
         k3 k3Var = this.d;
-        g3 g3Var = k3Var.f8435l0;
+        g3 g3Var = k3Var.f8423l0;
         ?? obj = new Object();
-        obj.f8685a = z10;
-        obj.f8686b = z11;
-        obj.f8687c = z12;
+        obj.f8673a = z10;
+        obj.f8674b = z11;
+        obj.f8675c = z12;
         obj.d = z13;
         obj.e = str;
-        obj.f8688f = j3;
-        obj.f8689g = i10;
+        obj.f8676f = j3;
+        obj.f8677g = i10;
         obj.h = i11;
-        obj.f8690i = str2;
+        obj.f8678i = str2;
         int totalHeight = g3Var.getTotalHeight();
         g3Var.e.d = obj;
-        x.b(g3Var.f8710f[1].f8659l, obj, true);
+        x.b(g3Var.f8698f[1].f8647l, obj, true);
         g3Var.invalidate();
-        if (totalHeight != g3Var.getTotalHeight() && g3Var.f8712r != null) {
+        if (totalHeight != g3Var.getTotalHeight() && g3Var.f8700r != null) {
             if (totalHeight < g3Var.getTotalHeight()) {
-                AndroidUtilities.runOnUIThread(g3Var.f8712r, 200L);
+                AndroidUtilities.runOnUIThread(g3Var.f8700r, 200L);
             } else {
-                g3Var.f8712r.run();
+                g3Var.f8700r.run();
             }
         }
-        if (k3Var.f8426d0) {
+        if (k3Var.f8414d0) {
             k3Var.D();
             k3Var.G();
         }
@@ -196,30 +196,30 @@ public final class f3 implements org.telegram.ui.web.g0 {
         k3 k3Var = this.d;
         a3 a3Var = k3Var.v;
         j3 j3Var = k3Var.e;
-        org.telegram.ui.ActionBar.m2 lastFragment = ((LaunchActivity) k3Var.f8434k0).O().getLastFragment();
-        no0 no0Var = null;
+        org.telegram.ui.ActionBar.m2 lastFragment = ((LaunchActivity) k3Var.f8422k0).O().getLastFragment();
+        oo0 oo0Var = null;
         if (tLObject instanceof TLRPC.TL_payments_paymentFormStars) {
             AndroidUtilities.hideKeyboard(j3Var);
             org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(k3Var.getContext(), 3, null);
             a2Var.q(150L);
-            s5.y(k3Var.G, false).Y(null, inputInvoice, (TLRPC.TL_payments_paymentFormStars) tLObject, new e3(a2Var, 0), new ai.g3(12, this, str));
+            t5.y(k3Var.G, false).Y(null, inputInvoice, (TLRPC.TL_payments_paymentFormStars) tLObject, new e3(a2Var, 0), new ai.g3(12, this, str));
             return;
         }
         if (tLObject instanceof TLRPC.PaymentForm) {
             TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
             MessagesController.getInstance(k3Var.G).putUsers(paymentForm.users, false);
-            no0Var = new no0(paymentForm, null, str, lastFragment);
+            oo0Var = new oo0(paymentForm, null, str, lastFragment);
         } else if (tLObject instanceof TLRPC.PaymentReceipt) {
-            no0Var = new no0((TLRPC.PaymentReceipt) tLObject);
+            oo0Var = new oo0((TLRPC.PaymentReceipt) tLObject);
         }
-        if (no0Var != null) {
+        if (oo0Var != null) {
             a3Var.e(a3Var.getTopActionBarOffsetY() + (-a3Var.getOffsetY()));
             AndroidUtilities.hideKeyboard(j3Var);
-            nd0 nd0Var = new nd0(this.f8328b);
-            nd0Var.show();
-            no0Var.Z0 = new q5(this, nd0Var, str, 8);
-            no0Var.Y0 = this.f8329c;
-            nd0Var.c(no0Var);
+            md0 md0Var = new md0(this.f8316b);
+            md0Var.show();
+            oo0Var.Z0 = new q5(this, md0Var, str, 8);
+            oo0Var.Y0 = this.f8317c;
+            md0Var.c(oo0Var);
         }
     }
 
@@ -231,39 +231,39 @@ public final class f3 implements org.telegram.ui.web.g0 {
     @Override
     public final void q(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13) {
         k3 k3Var = this.d;
-        g3 g3Var = k3Var.f8435l0;
+        g3 g3Var = k3Var.f8423l0;
         ?? obj = new Object();
-        obj.f8685a = z10;
-        obj.f8686b = z11;
-        obj.f8687c = z12;
+        obj.f8673a = z10;
+        obj.f8674b = z11;
+        obj.f8675c = z12;
         obj.d = z13;
         obj.e = str;
-        obj.f8688f = j3;
-        obj.f8689g = i10;
+        obj.f8676f = j3;
+        obj.f8677g = i10;
         obj.h = i11;
-        obj.f8690i = null;
+        obj.f8678i = null;
         int totalHeight = g3Var.getTotalHeight();
         g3Var.e.f278c = obj;
-        v[] vVarArr = g3Var.f8710f;
-        vVarArr[0].f8659l.b();
-        if (obj.f8688f != 0) {
+        v[] vVarArr = g3Var.f8698f;
+        vVarArr[0].f8647l.b();
+        if (obj.f8676f != 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) obj.e);
-            spannableStringBuilder.setSpan(new z5(obj.f8688f, 1.4f, vVarArr[0].f8659l.f26990a.getFontMetricsInt()), 0, 1, 33);
-            vVarArr[0].f8659l.q(spannableStringBuilder, true, true);
+            spannableStringBuilder.setSpan(new z5(obj.f8676f, 1.4f, vVarArr[0].f8647l.f26946a.getFontMetricsInt()), 0, 1, 33);
+            vVarArr[0].f8647l.q(spannableStringBuilder, true, true);
         } else {
-            vVarArr[0].f8659l.q(obj.e, true, true);
+            vVarArr[0].f8647l.q(obj.e, true, true);
         }
         g3Var.invalidate();
-        if (totalHeight != g3Var.getTotalHeight() && g3Var.f8712r != null) {
+        if (totalHeight != g3Var.getTotalHeight() && g3Var.f8700r != null) {
             if (totalHeight < g3Var.getTotalHeight()) {
-                AndroidUtilities.runOnUIThread(g3Var.f8712r, 200L);
+                AndroidUtilities.runOnUIThread(g3Var.f8700r, 200L);
             } else {
-                g3Var.f8712r.run();
+                g3Var.f8700r.run();
             }
         }
-        if (k3Var.f8426d0) {
+        if (k3Var.f8414d0) {
             k3Var.D();
             k3Var.G();
         }
@@ -277,7 +277,7 @@ public final class f3 implements org.telegram.ui.web.g0 {
     @Override
     public final void s() {
         a3 a3Var = this.d.v;
-        if (a3Var.f8544c) {
+        if (a3Var.f8532c) {
             return;
         }
         a3Var.e(a3Var.getTopActionBarOffsetY() + (-a3Var.getOffsetY()));
@@ -285,13 +285,13 @@ public final class f3 implements org.telegram.ui.web.g0 {
 
     @Override
     public final void t(boolean z10) {
-        this.d.f8423b0 = z10;
+        this.d.f8411b0 = z10;
     }
 
     @Override
     public final void u(int i10, int i11, boolean z10) {
         k3 k3Var = this.d;
-        k3Var.f8446u0 = i10;
+        k3Var.f8434u0 = i10;
         k3Var.t(i11, z10, true);
     }
 
@@ -300,7 +300,7 @@ public final class f3 implements org.telegram.ui.web.g0 {
         boolean isEmpty = arrayList.isEmpty();
         k3 k3Var = this.d;
         if (isEmpty) {
-            Activity activity = k3Var.f8434k0;
+            Activity activity = k3Var.f8422k0;
             if (activity instanceof LaunchActivity) {
                 org.telegram.ui.ActionBar.m2 lastFragment = ((LaunchActivity) activity).O().getLastFragment();
                 if (lastFragment instanceof wn) {
@@ -324,24 +324,24 @@ public final class f3 implements org.telegram.ui.web.g0 {
         bundle.putBoolean("allowBots", arrayList.contains("bots"));
         qy qyVar = new qy(bundle);
         AndroidUtilities.hideKeyboard(k3Var.e);
-        nd0 nd0Var = new nd0(this.f8328b);
-        qyVar.C2 = new a1.d(this, user, str, nd0Var, 2);
-        nd0Var.show();
-        nd0Var.c(qyVar);
+        md0 md0Var = new md0(this.f8316b);
+        qyVar.C2 = new a1.d(this, user, str, md0Var, 2);
+        md0Var.show();
+        md0Var.c(qyVar);
     }
 
     @Override
     public final void w(boolean z10) {
         k3 k3Var = this.d;
         d6 d6Var = k3Var.E;
-        FrameLayout frameLayout = k3Var.f8439p0;
+        FrameLayout frameLayout = k3Var.f8427p0;
         TLRPC.User user = MessagesController.getInstance(k3Var.G).getUser(Long.valueOf(k3Var.H));
         if (z10) {
             o0.a aVar = new o0.a(3, (byte) 0);
             LocaleController.getString(R.string.UndoNoCaps);
-            aVar.f15498b = new c3(this, 1);
-            rc V = new yc(frameLayout, d6Var).V(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestGranted, UserObject.getUserName(user))), null, aVar);
-            V.f27946j = 5000;
+            aVar.f15483b = new c3(this, 1);
+            qc V = new yc(frameLayout, d6Var).V(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestGranted, UserObject.getUserName(user))), null, aVar);
+            V.f27641j = 5000;
             V.k(true);
             return;
         }
@@ -349,8 +349,8 @@ public final class f3 implements org.telegram.ui.web.g0 {
         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestDeniedApp, UserObject.getUserName(user))));
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.BotLocationPermissionRequestDeniedAppSettings), new c3(this, 2)), true));
-        rc P = new yc(frameLayout, d6Var).P(R.raw.error, spannableStringBuilder);
-        P.f27946j = 5000;
+        qc P = new yc(frameLayout, d6Var).P(R.raw.error, spannableStringBuilder);
+        P.f27641j = 5000;
         P.k(true);
     }
 
@@ -371,9 +371,9 @@ public final class f3 implements org.telegram.ui.web.g0 {
     public final a1 z() {
         k3 k3Var = this.d;
         if (k3Var.B0 == null) {
-            a1 a1Var = new a1(this.f8328b);
+            a1 a1Var = new a1(this.f8316b);
             k3Var.B0 = a1Var;
-            a1Var.f8218k = k3Var.f8450x.getWebView();
+            a1Var.f8206k = k3Var.f8438x.getWebView();
         }
         return k3Var.B0;
     }

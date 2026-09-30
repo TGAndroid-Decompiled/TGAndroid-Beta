@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class xd1 implements View.OnClickListener {
-    public final org.telegram.ui.Components.b80 f40003a;
+    public final org.telegram.ui.Components.a80 f39905a;
 
-    public xd1(org.telegram.ui.Components.b80 b80Var) {
-        this.f40003a = b80Var;
+    public xd1(org.telegram.ui.Components.a80 a80Var) {
+        this.f39905a = a80Var;
     }
 
     @Override
     public final void onClick(View view) {
-        org.telegram.ui.Components.rc.e();
-        this.f40003a.s();
+        org.telegram.ui.Components.qc.e();
+        this.f39905a.s();
     }
 }

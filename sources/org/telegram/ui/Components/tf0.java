@@ -1,104 +1,85 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-public final class tf0 {
-    public float f28500a = 0.0f;
-    public float f28501b = 25.0f;
-    public float f28502c = 50.0f;
-    public float d = 75.0f;
-    public float e = 100.0f;
-    public float[] f28503f;
+import android.graphics.Canvas;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class tf0 extends View {
+    public long E;
+    public float F;
+    public float G;
+    public float H;
+    public kc0 I;
+    public TextPaint f28543a;
+    public TextPaint f28544b;
+    public StaticLayout f28545c;
+    public float d;
+    public float e;
+    public StaticLayout f28546f;
+    public float h;
+    public float f28547n;
+    public boolean f28548r;
+    public e6 f28549s;
+    public boolean v;
+    public vf0 f28550w;
+    public ci.ha f28551x;
+    public boolean f28552y;
 
-    public final float[] a() {
-        float f7 = this.f28500a;
-        float f10 = this.e;
-        int i10 = 5;
-        float[] fArr = {-0.001f, f7 / 100.0f, 0.0f, f7 / 100.0f, 0.25f, this.f28501b / 100.0f, 0.5f, this.f28502c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f10 / 100.0f, 1.001f, f10 / 100.0f};
-        int i11 = 100;
-        ArrayList arrayList = new ArrayList(100);
-        ArrayList arrayList2 = new ArrayList(100);
-        arrayList2.add(Float.valueOf(fArr[0]));
-        arrayList2.add(Float.valueOf(fArr[1]));
-        int i12 = 1;
-        while (i12 < i10) {
-            int i13 = (i12 - 1) * 2;
-            float f11 = fArr[i13];
-            float f12 = fArr[i13 + 1];
-            int i14 = i12 * 2;
-            float f13 = fArr[i14];
-            float f14 = fArr[i14 + 1];
-            int i15 = i12 + 1;
-            int i16 = i15 * 2;
-            float f15 = fArr[i16];
-            float f16 = fArr[i16 + 1];
-            int i17 = (i12 + 2) * 2;
-            float f17 = fArr[i17];
-            float f18 = fArr[i17 + 1];
-            int i18 = 1;
-            while (i18 < i11) {
-                float f19 = i18 * 0.01f;
-                float f20 = f19 * f19;
-                float f21 = f20 * f19;
-                float z10 = ((((((f13 * 3.0f) - f11) - (f15 * 3.0f)) + f17) * f21) + ((((f15 * 4.0f) + ((f11 * 2.0f) - (f13 * 5.0f))) - f17) * f20) + com.google.android.gms.internal.vision.e2.z(f15, f11, f19, f13 * 2.0f)) * 0.5f;
-                float max = Math.max(0.0f, Math.min(1.0f, ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f21) + ((((4.0f * f16) + ((2.0f * f12) - (5.0f * f14))) - f18) * f20) + com.google.android.gms.internal.vision.e2.z(f16, f12, f19, f14 * 2.0f)) * 0.5f));
-                if (z10 > f11) {
-                    arrayList2.add(Float.valueOf(z10));
-                    arrayList2.add(Float.valueOf(max));
-                }
-                if ((i18 - 1) % 2 == 0) {
-                    arrayList.add(Float.valueOf(max));
-                }
-                i18++;
-                i11 = 100;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float e = this.f28549s.e(this.f28548r);
+        if (e > 0.0f && this.f28545c != null && this.f28546f != null) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (e * 255.0f), 31);
+            canvas.save();
+            canvas.translate(((getWidth() - this.d) / 2.0f) - this.e, getHeight() * 0.22f);
+            this.f28545c.draw(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f28547n, (getHeight() * 0.22f) + AndroidUtilities.dp(60.0f));
+            this.f28546f.draw(canvas);
+            canvas.restore();
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
+        TextPaint textPaint = this.f28543a;
+        textPaint.setColor(-1);
+        float f10 = 0.0f;
+        textPaint.setShadowLayer(AndroidUtilities.dp(8.0f), 0.0f, 0.0f, 805306368);
+        textPaint.setTextSize(AndroidUtilities.dp(34.0f));
+        TextPaint textPaint2 = this.f28544b;
+        textPaint2.setColor(-1);
+        textPaint2.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 805306368);
+        textPaint2.setTextSize(AndroidUtilities.dp(58.0f));
+        if (this.f28545c == null) {
+            StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Enhance), textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f28545c = staticLayout;
+            if (staticLayout.getLineCount() > 0) {
+                f7 = this.f28545c.getLineWidth(0);
+            } else {
+                f7 = 0.0f;
             }
-            arrayList2.add(Float.valueOf(f15));
-            arrayList2.add(Float.valueOf(f16));
-            i12 = i15;
-            i10 = 5;
-            i11 = 100;
-        }
-        arrayList2.add(Float.valueOf(fArr[12]));
-        arrayList2.add(Float.valueOf(fArr[13]));
-        this.f28503f = new float[arrayList.size()];
-        int i19 = 0;
-        while (true) {
-            float[] fArr2 = this.f28503f;
-            if (i19 >= fArr2.length) {
-                break;
+            this.d = f7;
+            if (this.f28545c.getLineCount() > 0) {
+                f10 = this.f28545c.getLineLeft(0);
             }
-            fArr2[i19] = ((Float) arrayList.get(i19)).floatValue();
-            i19++;
+            this.e = f10;
         }
-        int size = arrayList2.size();
-        float[] fArr3 = new float[size];
-        for (int i20 = 0; i20 < size; i20++) {
-            fArr3[i20] = ((Float) arrayList2.get(i20)).floatValue();
-        }
-        return fArr3;
     }
 
-    public final boolean b() {
-        if (Math.abs(this.f28500a - 0.0f) < 1.0E-5d && Math.abs(this.f28501b - 25.0f) < 1.0E-5d && Math.abs(this.f28502c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.e - 100.0f) < 1.0E-5d) {
-            return true;
-        }
-        return false;
+    public void setAllowTouch(boolean z10) {
+        this.v = z10;
     }
 
-    public final void c(InputSerializedData inputSerializedData, boolean z10) {
-        this.f28500a = inputSerializedData.readFloat(z10);
-        this.f28501b = inputSerializedData.readFloat(z10);
-        this.f28502c = inputSerializedData.readFloat(z10);
-        this.d = inputSerializedData.readFloat(z10);
-        this.e = inputSerializedData.readFloat(z10);
-    }
-
-    public final void d(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeFloat(this.f28500a);
-        outputSerializedData.writeFloat(this.f28501b);
-        outputSerializedData.writeFloat(this.f28502c);
-        outputSerializedData.writeFloat(this.d);
-        outputSerializedData.writeFloat(this.e);
+    public void setFilterView(vf0 vf0Var) {
+        this.f28550w = vf0Var;
     }
 }

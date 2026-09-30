@@ -8,36 +8,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class qv implements DialogInterface.OnClickListener {
-    public final int f37098a;
-    public final NotificationCenter.NotificationCenterDelegate f37099b;
+    public final int f36998a;
+    public final NotificationCenter.NotificationCenterDelegate f36999b;
 
     public qv(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f37098a = i10;
-        this.f37099b = notificationCenterDelegate;
+        this.f36998a = i10;
+        this.f36999b = notificationCenterDelegate;
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i10) {
         String str;
         int i11 = 0;
-        switch (this.f37098a) {
+        switch (this.f36998a) {
             case 0:
-                qy qyVar = (qy) this.f37099b;
+                qy qyVar = (qy) this.f36999b;
                 if (i10 == 0) {
                     qyVar.getMessagesStorage().readAllDialogs(1);
                     return;
-                } else if (i10 != 1 || qyVar.f37134e0 == null) {
+                } else if (i10 != 1 || qyVar.f37034e0 == null) {
                     return;
                 } else {
                     while (true) {
-                        py[] pyVarArr = qyVar.f37134e0;
+                        py[] pyVarArr = qyVar.f37034e0;
                         if (i11 < pyVarArr.length) {
                             py pyVar = pyVarArr[i11];
-                            if (pyVar.f36800s == 0 && pyVar.getVisibility() == 0) {
-                                org.telegram.ui.Cells.s2 Q3 = qy.Q3(qyVar.f37134e0[i11]);
-                                my myVar = qyVar.f37134e0[i11].f36794a;
-                                int i12 = my.C3;
-                                myVar.B1(true, Q3);
+                            if (pyVar.f36701s == 0 && pyVar.getVisibility() == 0) {
+                                org.telegram.ui.Cells.s2 Q3 = qy.Q3(qyVar.f37034e0[i11]);
+                                my myVar = qyVar.f37034e0[i11].f36695a;
+                                int i12 = my.f35689v3;
+                                myVar.z1(true, Q3);
                             }
                             i11++;
                         } else {
@@ -47,7 +47,7 @@ public final class qv implements DialogInterface.OnClickListener {
                 }
                 break;
             case 1:
-                pg0 pg0Var = (pg0) this.f37099b;
+                pg0 pg0Var = (pg0) this.f36999b;
                 if (i10 == 0) {
                     BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
                     ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
@@ -74,21 +74,21 @@ public final class qv implements DialogInterface.OnClickListener {
                 ProfileActivity.H4(pg0Var.V.getParentActivity(), false);
                 return;
             case 2:
-                fn0 fn0Var = (fn0) this.f37099b;
+                gn0 gn0Var = (gn0) this.f36999b;
                 if (i10 == 0) {
-                    fn0Var.f33836w = "male";
-                    fn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+                    gn0Var.f34021w = "male";
+                    gn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
                     return;
                 } else if (i10 == 1) {
-                    fn0Var.f33836w = "female";
-                    fn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
+                    gn0Var.f34021w = "female";
+                    gn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
                     return;
                 } else {
-                    fn0Var.getClass();
+                    gn0Var.getClass();
                     return;
                 }
             default:
-                z81.d0((z81) this.f37099b, i10);
+                z81.d0((z81) this.f36999b, i10);
                 return;
         }
     }

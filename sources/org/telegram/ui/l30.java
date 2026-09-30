@@ -16,36 +16,36 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class l30 implements View.OnClickListener {
-    public final w5 f35300a = new w5(this, 5);
-    public final d60 f35301b;
+    public final w5 f35194a = new w5(this, 5);
+    public final d60 f35195b;
 
     public l30(d60 d60Var) {
-        this.f35301b = d60Var;
+        this.f35195b = d60Var;
     }
 
     @Override
     public final void onClick(View view) {
-        org.telegram.ui.Components.m40 m40Var;
+        org.telegram.ui.Components.l40 l40Var;
         int i10;
         TLObject chat;
         LaunchActivity launchActivity;
-        d60 d60Var = this.f35301b;
-        j30 j30Var = d60Var.f33107x;
-        ArrayList arrayList = d60Var.f33076q0;
-        org.telegram.ui.Components.voip.w2 w2Var = d60Var.f33102w;
-        org.telegram.ui.Components.lj0 lj0Var = d60Var.K0;
+        d60 d60Var = this.f35195b;
+        j30 j30Var = d60Var.f33029x;
+        ArrayList arrayList = d60Var.f32998q0;
+        org.telegram.ui.Components.voip.w2 w2Var = d60Var.f33024w;
+        org.telegram.ui.Components.kj0 kj0Var = d60Var.K0;
         AccountInstance accountInstance = d60Var.d;
-        if (d60Var.f33013a1 != null && d60Var.F1 != 3) {
+        if (d60Var.f32935a1 != null && d60Var.F1 != 3) {
             int i11 = 6;
             int i12 = 0;
-            if (d60Var.r1() && !d60Var.f33013a1.isScheduled()) {
+            if (d60Var.r1() && !d60Var.f32935a1.isScheduled()) {
                 v30 v30Var = d60Var.a2;
-                if (v30Var != null && v30Var.f29379b && (AndroidUtilities.isTablet() || d60.F3 == d60Var.q1())) {
+                if (v30Var != null && v30Var.f29373b && (AndroidUtilities.isTablet() || d60.F3 == d60Var.q1())) {
                     d60Var.e1(null);
                     if (d60.F3) {
                         AndroidUtilities.runOnUIThread(new c10(this, 5), 200L);
                     }
-                    d60Var.f33046i0.setRequestedOrientation(-1);
+                    d60Var.f32968i0.setRequestedOrientation(-1);
                     return;
                 } else if (!arrayList.isEmpty()) {
                     ChatObject.VideoParticipant videoParticipant = (ChatObject.VideoParticipant) arrayList.get(0);
@@ -57,10 +57,10 @@ public final class l30 implements View.OnClickListener {
                         d60Var.e1(videoParticipant);
                     }
                     if (d60Var.q1()) {
-                        d60Var.f33046i0.setRequestedOrientation(6);
+                        d60Var.f32968i0.setRequestedOrientation(6);
                         return;
                     } else {
-                        d60Var.f33046i0.setRequestedOrientation(1);
+                        d60Var.f32968i0.setRequestedOrientation(1);
                         return;
                     }
                 } else {
@@ -76,30 +76,30 @@ public final class l30 implements View.OnClickListener {
                     }
                     d60Var.H1 = true;
                     TL_phone.startScheduledGroupCall startscheduledgroupcall = new TL_phone.startScheduledGroupCall();
-                    startscheduledgroupcall.call = d60Var.f33013a1.getInputGroupCall();
+                    startscheduledgroupcall.call = d60Var.f32935a1.getInputGroupCall();
                     accountInstance.getConnectionsManager().sendRequest(startscheduledgroupcall, new RequestDelegate(this) {
-                        public final l30 f35010b;
+                        public final l30 f34923b;
 
                         {
-                            this.f35010b = this;
+                            this.f34923b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r2) {
                                 case 0:
-                                    l30 l30Var = this.f35010b;
+                                    l30 l30Var = this.f34923b;
                                     if (tLObject != null) {
-                                        l30Var.f35301b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                                        l30Var.f35195b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
                                         return;
                                     } else {
                                         l30Var.getClass();
                                         return;
                                     }
                                 default:
-                                    l30 l30Var2 = this.f35010b;
+                                    l30 l30Var2 = this.f34923b;
                                     if (tLObject != null) {
-                                        l30Var2.f35301b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                                        l30Var2.f35195b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
                                         return;
                                     } else {
                                         l30Var2.getClass();
@@ -115,8 +115,8 @@ public final class l30 implements View.OnClickListener {
                     if (i14 != 2 && i14 != 4) {
                         try {
                             if (i14 == 0) {
-                                if (Build.VERSION.SDK_INT >= 23 && (launchActivity = d60Var.f33046i0) != null && launchActivity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-                                    org.telegram.ui.Components.qe0.e(R.raw.permission_request_microphone, R.string.VoipNeedMicPermissionWithHint, new String[]{"android.permission.RECORD_AUDIO"}, new String[]{"android.permission.RECORD_AUDIO"}, new ai.i(16));
+                                if (Build.VERSION.SDK_INT >= 23 && (launchActivity = d60Var.f32968i0) != null && launchActivity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
+                                    org.telegram.ui.Components.pe0.e(R.raw.permission_request_microphone, R.string.VoipNeedMicPermissionWithHint, new String[]{"android.permission.RECORD_AUDIO"}, new String[]{"android.permission.RECORD_AUDIO"}, new ai.i(16));
                                     return;
                                 }
                                 d60Var.J1(1, true);
@@ -156,13 +156,13 @@ public final class l30 implements View.OnClickListener {
                                 }
                             }
                         }
-                        lj0Var.P(i15);
-                        lj0Var.S(i15 - 1, this.f35300a);
-                        j30Var.setAnimation(lj0Var);
-                        lj0Var.M(i12);
+                        kj0Var.P(i15);
+                        kj0Var.S(i15 - 1, this.f35194a);
+                        j30Var.setAnimation(kj0Var);
+                        kj0Var.M(i12);
                         j30Var.d();
                         if (d60Var.F1 == 2) {
-                            long peerId = MessageObject.getPeerId(((TLRPC.GroupCallParticipant) d60Var.f33013a1.participants.f(MessageObject.getPeerId(d60Var.A0))).peer);
+                            long peerId = MessageObject.getPeerId(((TLRPC.GroupCallParticipant) d60Var.f32935a1.participants.f(MessageObject.getPeerId(d60Var.A0))).peer);
                             if (DialogObject.isUserDialog(peerId)) {
                                 chat = accountInstance.getMessagesController().getUser(Long.valueOf(peerId));
                             } else {
@@ -174,38 +174,38 @@ public final class l30 implements View.OnClickListener {
                     }
                 }
             } else {
-                if (i13 == 6 && (m40Var = d60Var.f33064n0) != null) {
-                    m40Var.b(true);
+                if (i13 == 6 && (l40Var = d60Var.f32986n0) != null) {
+                    l40Var.b(true);
                 }
                 TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
-                togglegroupcallstartsubscription.call = d60Var.f33013a1.getInputGroupCall();
-                TLRPC.GroupCall groupCall = d60Var.f33013a1.call;
+                togglegroupcallstartsubscription.call = d60Var.f32935a1.getInputGroupCall();
+                TLRPC.GroupCall groupCall = d60Var.f32935a1.call;
                 boolean z10 = !groupCall.schedule_start_subscribed;
                 groupCall.schedule_start_subscribed = z10;
                 togglegroupcallstartsubscription.subscribed = z10;
                 accountInstance.getConnectionsManager().sendRequest(togglegroupcallstartsubscription, new RequestDelegate(this) {
-                    public final l30 f35010b;
+                    public final l30 f34923b;
 
                     {
-                        this.f35010b = this;
+                        this.f34923b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r2) {
                             case 0:
-                                l30 l30Var = this.f35010b;
+                                l30 l30Var = this.f34923b;
                                 if (tLObject != null) {
-                                    l30Var.f35301b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                                    l30Var.f35195b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
                                     return;
                                 } else {
                                     l30Var.getClass();
                                     return;
                                 }
                             default:
-                                l30 l30Var2 = this.f35010b;
+                                l30 l30Var2 = this.f34923b;
                                 if (tLObject != null) {
-                                    l30Var2.f35301b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                                    l30Var2.f35195b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
                                     return;
                                 } else {
                                     l30Var2.getClass();
@@ -214,7 +214,7 @@ public final class l30 implements View.OnClickListener {
                         }
                     }
                 });
-                if (d60Var.f33013a1.call.schedule_start_subscribed) {
+                if (d60Var.f32935a1.call.schedule_start_subscribed) {
                     i11 = 7;
                 }
                 d60Var.J1(i11, true);

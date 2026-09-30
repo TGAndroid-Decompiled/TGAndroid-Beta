@@ -4,26 +4,26 @@ import n4.y;
 import u2.a1;
 import u2.b1;
 public final class f implements b1 {
-    public final h f44238a;
-    public final a1 f44239b;
-    public final int f44240c;
+    public final h f44132a;
+    public final a1 f44133b;
+    public final int f44134c;
     public boolean d;
     public final h e;
 
     public f(h hVar, h hVar2, a1 a1Var, int i10) {
         this.e = hVar;
-        this.f44238a = hVar2;
-        this.f44239b = a1Var;
-        this.f44240c = i10;
+        this.f44132a = hVar2;
+        this.f44133b = a1Var;
+        this.f44134c = i10;
     }
 
     public final void b() {
         if (!this.d) {
             h hVar = this.e;
             a5.a aVar = hVar.h;
-            int[] iArr = hVar.f44242b;
-            int i10 = this.f44240c;
-            aVar.k(iArr[i10], hVar.f44243c[i10], 0, null, hVar.J);
+            int[] iArr = hVar.f44136b;
+            int i10 = this.f44134c;
+            aVar.k(iArr[i10], hVar.f44137c[i10], 0, null, hVar.J);
             this.d = true;
         }
     }
@@ -31,7 +31,7 @@ public final class f implements b1 {
     @Override
     public final boolean e() {
         h hVar = this.e;
-        if (!hVar.y() && this.f44239b.x(hVar.O)) {
+        if (!hVar.y() && this.f44133b.x(hVar.O)) {
             return true;
         }
         return false;
@@ -42,8 +42,8 @@ public final class f implements b1 {
         h hVar2 = this.e;
         if (!hVar2.y()) {
             a aVar = hVar2.L;
-            a1 a1Var = this.f44239b;
-            if (aVar != null && aVar.d(this.f44240c + 1) <= a1Var.t()) {
+            a1 a1Var = this.f44133b;
+            if (aVar != null && aVar.d(this.f44134c + 1) <= a1Var.t()) {
                 return -3;
             }
             b();
@@ -59,11 +59,11 @@ public final class f implements b1 {
             return 0;
         }
         boolean z10 = hVar.O;
-        a1 a1Var = this.f44239b;
+        a1 a1Var = this.f44133b;
         int v = a1Var.v(j3, z10);
         a aVar = hVar.L;
         if (aVar != null) {
-            v = Math.min(v, aVar.d(this.f44240c + 1) - a1Var.t());
+            v = Math.min(v, aVar.d(this.f44134c + 1) - a1Var.t());
         }
         a1Var.H(v);
         if (v > 0) {

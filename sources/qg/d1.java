@@ -3,18 +3,18 @@ package qg;
 import ci.b6;
 import org.telegram.messenger.MessageObject;
 public final class d1 extends g.p {
-    public final b6 f41712c;
+    public final b6 f41615c;
 
     public d1(b6 b6Var) {
-        this.f41712c = b6Var;
+        this.f41615c = b6Var;
     }
 
     @Override
     public final int i(int i10) {
         MessageObject.GroupedMessagePosition position;
-        b6 b6Var = this.f41712c;
-        int size = (b6Var.f41730s0.size() - 1) - i10;
-        MessageObject.GroupedMessages groupedMessages = b6Var.f41731t0;
+        b6 b6Var = this.f41615c;
+        int size = (b6Var.f41633s0.size() - 1) - i10;
+        MessageObject.GroupedMessages groupedMessages = b6Var.f41634t0;
         if (groupedMessages != null && size >= 0 && size < groupedMessages.messages.size() && (position = groupedMessages.getPosition(groupedMessages.messages.get(size))) != null) {
             return position.spanSize;
         }

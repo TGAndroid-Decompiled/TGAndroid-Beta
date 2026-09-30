@@ -3,15 +3,15 @@ package k2;
 import android.media.AudioTimestamp;
 import android.media.AudioTrack;
 public final class q {
-    public final AudioTrack f13348a;
-    public final AudioTimestamp f13349b = new AudioTimestamp();
-    public long f13350c;
+    public final AudioTrack f13333a;
+    public final AudioTimestamp f13334b = new AudioTimestamp();
+    public long f13335c;
     public long d;
     public long e;
-    public boolean f13351f;
-    public long f13352g;
+    public boolean f13336f;
+    public long f13337g;
 
     public q(AudioTrack audioTrack) {
-        this.f13348a = audioTrack;
+        this.f13333a = audioTrack;
     }
 }

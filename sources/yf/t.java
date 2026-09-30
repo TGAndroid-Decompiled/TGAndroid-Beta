@@ -2,9 +2,9 @@ package yf;
 
 import android.util.SparseIntArray;
 public final class t {
-    public final a0.i f47240a = new a0.i();
+    public final a0.i f47134a = new a0.i();
 
     public final SparseIntArray a(long j3) {
-        return (SparseIntArray) this.f47240a.f(j3);
+        return (SparseIntArray) this.f47134a.f(j3);
     }
 }

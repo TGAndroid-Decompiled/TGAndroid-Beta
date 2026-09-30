@@ -3,14 +3,14 @@ public enum l implements ka.g {
     EVENT_TYPE_UNKNOWN(0),
     SESSION_START(1);
     
-    public final int f49190a;
+    public final int f49084a;
 
     l(int i10) {
-        this.f49190a = i10;
+        this.f49084a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f49190a;
+        return this.f49084a;
     }
 }

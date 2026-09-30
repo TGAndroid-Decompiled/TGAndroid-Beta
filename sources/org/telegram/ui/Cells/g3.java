@@ -7,39 +7,39 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.dw0;
-import org.telegram.ui.Components.eu;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.du;
+import org.telegram.ui.Components.sr;
 public abstract class g3 extends FrameLayout {
-    public boolean f20344a;
-    public final e3 f20345b;
-    public final int f20346c;
+    public boolean f20329a;
+    public final e3 f20330b;
+    public final int f20331c;
     public boolean d;
     public int e;
-    public boolean f20347f;
+    public boolean f20332f;
     public boolean h;
-    public boolean f20348n;
-    public final org.telegram.ui.Components.h5 f20349r;
-    public int f20350s;
+    public boolean f20333n;
+    public final org.telegram.ui.Components.h5 f20334r;
+    public int f20335s;
     public final org.telegram.ui.Components.o6 v;
-    public boolean f20351w;
+    public boolean f20336w;
 
-    public g3(Context context, dw0 dw0Var, String str, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+    public g3(Context context, cw0 cw0Var, String str, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = -1;
-        this.f20348n = true;
+        this.f20333n = true;
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
         this.v = o6Var;
-        o6Var.k(0.2f, 160L, tr.h);
+        o6Var.k(0.2f, 160L, sr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
-        o6Var.f26991b = 5;
-        this.f20346c = i10;
-        e3 e3Var = new e3(this, context, dw0Var, d6Var, z10);
-        this.f20345b = e3Var;
-        eu editText = e3Var.getEditText();
+        o6Var.f26947b = 5;
+        this.f20331c = i10;
+        e3 e3Var = new e3(this, context, cw0Var, d6Var, z10);
+        this.f20330b = e3Var;
+        du editText = e3Var.getEditText();
         editText.setDelegate(new n7.z0(this, editText, false, 3));
         e3Var.setWillNotDraw(false);
-        this.f20349r = new org.telegram.ui.Components.h5(e3Var);
+        this.f20334r = new org.telegram.ui.Components.h5(e3Var);
         o6Var.setCallback(e3Var);
         editText.setTextSize(1, 17.0f);
         editText.setHintTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.H6, d6Var));
@@ -73,19 +73,19 @@ public abstract class g3 extends FrameLayout {
 
     public final void c() {
         int i10;
-        e3 e3Var = this.f20345b;
+        e3 e3Var = this.f20330b;
         if (e3Var != null && e3Var.getEditText() != null) {
-            this.f20350s = this.f20346c - getText().length();
+            this.f20335s = this.f20331c - getText().length();
             String str = "";
-            if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f20347f || this.h) && ((i10 = this.e) == -1 || this.f20350s <= i10))) {
-                str = "" + this.f20350s;
+            if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f20332f || this.h) && ((i10 = this.e) == -1 || this.f20335s <= i10))) {
+                str = "" + this.f20335s;
             }
             this.v.q(str, true, true);
         }
     }
 
     public CharSequence getText() {
-        return this.f20345b.getText();
+        return this.f20330b.getText();
     }
 
     @Override
@@ -93,7 +93,7 @@ public abstract class g3 extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f20351w) {
+        if (this.f20336w) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -106,7 +106,7 @@ public abstract class g3 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19197k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19182k0);
         }
     }
 
@@ -116,16 +116,16 @@ public abstract class g3 extends FrameLayout {
     }
 
     public void setDivider(boolean z10) {
-        this.f20351w = z10;
+        this.f20336w = z10;
         setWillNotDraw(!z10);
     }
 
     public void setEmojiViewCacheType(int i10) {
-        this.f20345b.setEmojiViewCacheType(i10);
+        this.f20330b.setEmojiViewCacheType(i10);
     }
 
     public void setShowLimitOnFocus(boolean z10) {
-        this.f20347f = z10;
+        this.f20332f = z10;
     }
 
     public void setShowLimitWhenEmpty(boolean z10) {
@@ -141,11 +141,11 @@ public abstract class g3 extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f20344a = true;
-        e3 e3Var = this.f20345b;
+        this.f20329a = true;
+        e3 e3Var = this.f20330b;
         e3Var.setText(charSequence);
         e3Var.setSelection(e3Var.getText().length());
-        this.f20344a = false;
+        this.f20329a = false;
     }
 
     public void b() {

@@ -17,42 +17,42 @@ import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.nj0;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.t90;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.wp;
+import org.telegram.ui.Components.s90;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vp;
+import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.yq;
-import org.telegram.ui.Components.zq;
 import org.telegram.ui.c70;
 import w7.a6;
 import w7.y5;
-public class p0 extends FrameLayout implements t90 {
+public class p0 extends FrameLayout implements s90 {
     public boolean E;
     public boolean F;
-    public zq G;
+    public yq G;
     public boolean H;
     public boolean I;
     public final e6 J;
     public final e6 K;
-    public wp L;
+    public vp L;
     public float M;
     public boolean N;
     public ValueAnimator O;
-    public final Paint f42813a;
-    public float f42814b;
-    public boolean f42815c;
+    public final Paint f42707a;
+    public float f42708b;
+    public boolean f42709c;
     public final o0 d;
     public final o0 e;
-    public final int f42816f;
+    public final int f42710f;
     public boolean h;
-    public float f42817n;
-    public final ai.f0 f42818r;
-    public ValueAnimator f42819s;
+    public float f42711n;
+    public final ai.f0 f42712r;
+    public ValueAnimator f42713s;
     public final Path v;
-    public final org.telegram.ui.Components.voip.h f42820w;
-    public boolean f42821x;
-    public final oj0 f42822y;
+    public final org.telegram.ui.Components.voip.h f42714w;
+    public boolean f42715x;
+    public final nj0 f42716y;
 
     public p0(Context context, d6 d6Var, boolean z10) {
         this(AndroidUtilities.dp(8.0f), context, d6Var, z10);
@@ -64,11 +64,11 @@ public class p0 extends FrameLayout implements t90 {
         }
         this.E = true;
         o0 o0Var = this.d;
-        if (z10 && o0Var.f27250c.f()) {
+        if (z10 && o0Var.f27267c.f()) {
             o0Var.a();
         }
         o0Var.c(str, z10, true);
-        ai.f0 f0Var = this.f42818r;
+        ai.f0 f0Var = this.f42712r;
         f0Var.setContentDescription(str);
         if (!this.I) {
             f0Var.setOnClickListener(onClickListener);
@@ -77,7 +77,7 @@ public class p0 extends FrameLayout implements t90 {
 
     public final void b(CharSequence charSequence, boolean z10, boolean z11) {
         this.h = true;
-        this.f42821x = z10;
+        this.f42715x = z10;
         o0 o0Var = this.e;
         o0Var.c(charSequence, z11, true);
         o0Var.setContentDescription(charSequence);
@@ -90,76 +90,76 @@ public class p0 extends FrameLayout implements t90 {
     }
 
     public final void d(boolean z10) {
-        ValueAnimator valueAnimator = this.f42819s;
+        ValueAnimator valueAnimator = this.f42713s;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f42819s.cancel();
+            this.f42713s.cancel();
         }
         float f7 = 0.0f;
         if (!z10) {
             if (this.h) {
                 f7 = 1.0f;
             }
-            this.f42817n = f7;
+            this.f42711n = f7;
             e();
             return;
         }
-        float f10 = this.f42817n;
+        float f10 = this.f42711n;
         if (this.h) {
             f7 = 1.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f42819s = ofFloat;
+        this.f42713s = ofFloat;
         ofFloat.addUpdateListener(new k6(this, 11));
-        this.f42819s.addListener(new pg.d0(this, 4));
-        this.f42819s.setDuration(250L);
-        this.f42819s.setInterpolator(tr.f28636f);
-        this.f42819s.start();
+        this.f42713s.addListener(new pg.d0(this, 4));
+        this.f42713s.setDuration(250L);
+        this.f42713s.setInterpolator(sr.f28346f);
+        this.f42713s.start();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int dp;
-        zq zqVar = this.G;
+        yq yqVar = this.G;
         o0 o0Var = this.e;
-        if (zqVar != null) {
-            yq yqVar = zqVar.f31050a;
-            if (yqVar.h == 0) {
+        if (yqVar != null) {
+            xq xqVar = yqVar.f30733a;
+            if (xqVar.h == 0) {
                 dp = 0;
             } else {
-                dp = AndroidUtilities.dp(yqVar.C - 0.5f) + yqVar.f30790s;
+                dp = AndroidUtilities.dp(xqVar.C - 0.5f) + xqVar.f30454s;
             }
             e6 e6Var = this.J;
             e6Var.d(((dp * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f, false);
             float e = (o0Var.getDrawable().e() / 2.0f) + (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(3.0f);
             e6 e6Var2 = this.K;
             e6Var2.d(e, false);
-            o0Var.setTranslationX(-e6Var.f23852c);
-            this.G.setTranslationX(e6Var2.f23852c - e6Var.f23852c);
+            o0Var.setTranslationX(-e6Var.f23862c);
+            this.G.setTranslationX(e6Var2.f23862c - e6Var.f23862c);
         } else if (o0Var != null) {
             o0Var.setTranslationX(0.0f);
         }
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        float f7 = this.f42817n;
-        Paint paint = this.f42813a;
-        int i10 = this.f42816f;
-        if (f7 != 1.0f || !this.f42821x) {
-            if (this.f42815c) {
-                float f10 = this.f42814b + 0.016f;
-                this.f42814b = f10;
+        float f7 = this.f42711n;
+        Paint paint = this.f42707a;
+        int i10 = this.f42710f;
+        if (f7 != 1.0f || !this.f42715x) {
+            if (this.f42709c) {
+                float f10 = this.f42708b + 0.016f;
+                this.f42708b = f10;
                 if (f10 > 3.0f) {
-                    this.f42815c = false;
+                    this.f42709c = false;
                 }
             } else {
-                float f11 = this.f42814b - 0.016f;
-                this.f42814b = f11;
+                float f11 = this.f42708b - 0.016f;
+                this.f42708b = f11;
                 if (f11 < 1.0f) {
-                    this.f42815c = true;
+                    this.f42709c = true;
                 }
             }
             if (this.H) {
-                a1.d().f((-getMeasuredWidth()) * 0.1f * this.f42814b, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                a1.d().f((-getMeasuredWidth()) * 0.1f * this.f42708b, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 float f12 = i10;
                 canvas.drawRoundRect(rectF, f12, f12, a1.d().e());
             } else {
@@ -171,17 +171,17 @@ public class p0 extends FrameLayout implements t90 {
         }
         if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.F) {
             int measuredWidth = getMeasuredWidth();
-            org.telegram.ui.Components.voip.h hVar = this.f42820w;
-            hVar.f29285f = measuredWidth;
+            org.telegram.ui.Components.voip.h hVar = this.f42714w;
+            hVar.f29279f = measuredWidth;
             hVar.a(i10, canvas, rectF, null);
         }
-        float f14 = this.f42817n;
-        if (f14 != 0.0f && this.f42821x) {
+        float f14 = this.f42711n;
+        if (f14 != 0.0f && this.f42715x) {
             paint.setAlpha((int) (f14 * 255.0f));
-            if (this.f42817n != 1.0f) {
+            if (this.f42711n != 1.0f) {
                 Path path = this.v;
                 path.rewind();
-                path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.f42817n, Path.Direction.CW);
+                path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.f42711n, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
                 float f15 = i10;
@@ -197,29 +197,29 @@ public class p0 extends FrameLayout implements t90 {
 
     public final void e() {
         int i10;
-        float f7 = this.f42817n;
+        float f7 = this.f42711n;
         o0 o0Var = this.e;
         o0Var.setAlpha(f7);
-        o0Var.setTranslationY((1.0f - this.f42817n) * AndroidUtilities.dp(12.0f));
-        ai.f0 f0Var = this.f42818r;
-        f0Var.setAlpha(1.0f - this.f42817n);
-        f0Var.setTranslationY((-AndroidUtilities.dp(12.0f)) * this.f42817n);
+        o0Var.setTranslationY((1.0f - this.f42711n) * AndroidUtilities.dp(12.0f));
+        ai.f0 f0Var = this.f42712r;
+        f0Var.setAlpha(1.0f - this.f42711n);
+        f0Var.setTranslationY((-AndroidUtilities.dp(12.0f)) * this.f42711n);
         int i11 = 0;
-        if (this.f42817n == 1.0f) {
+        if (this.f42711n == 1.0f) {
             i10 = 4;
         } else {
             i10 = 0;
         }
         f0Var.setVisibility(i10);
-        if (this.f42817n == 0.0f) {
+        if (this.f42711n == 0.0f) {
             i11 = 4;
         }
         o0Var.setVisibility(i11);
         invalidate();
     }
 
-    public oj0 getIconView() {
-        return this.f42822y;
+    public nj0 getIconView() {
+        return this.f42716y;
     }
 
     public p6 getTextView() {
@@ -228,7 +228,7 @@ public class p0 extends FrameLayout implements t90 {
 
     @Override
     public final boolean isEnabled() {
-        return this.f42818r.isEnabled();
+        return this.f42712r.isEnabled();
     }
 
     @Override
@@ -239,7 +239,7 @@ public class p0 extends FrameLayout implements t90 {
     @Override
     public void setEnabled(boolean z10) {
         super.setEnabled(z10);
-        this.f42818r.setEnabled(z10);
+        this.f42712r.setEnabled(z10);
     }
 
     public void setFlickerDisabled(boolean z10) {
@@ -248,13 +248,13 @@ public class p0 extends FrameLayout implements t90 {
     }
 
     public void setIcon(int i10) {
-        oj0 oj0Var = this.f42822y;
-        oj0Var.f(i10, 24, 24, null);
-        org.telegram.ui.Components.voip.h hVar = this.f42820w;
-        hVar.f29286g = 2.0f;
-        hVar.f29294p = new org.telegram.ui.web.q0(this, 27);
+        nj0 nj0Var = this.f42716y;
+        nj0Var.f(i10, 24, 24, null);
+        org.telegram.ui.Components.voip.h hVar = this.f42714w;
+        hVar.f29280g = 2.0f;
+        hVar.f29288p = new org.telegram.ui.web.q0(this, 27);
         invalidate();
-        oj0Var.setVisibility(0);
+        nj0Var.setVisibility(0);
     }
 
     @Override
@@ -278,7 +278,7 @@ public class p0 extends FrameLayout implements t90 {
             ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(this, 16));
             this.O.addListener(new c70(16, this, z10));
             this.O.setDuration(320L);
-            this.O.setInterpolator(tr.h);
+            this.O.setInterpolator(sr.h);
             this.O.start();
         }
     }
@@ -286,39 +286,39 @@ public class p0 extends FrameLayout implements t90 {
     public p0(int i10, Context context, d6 d6Var, boolean z10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f42813a = paint;
+        this.f42707a = paint;
         this.v = new Path();
         this.H = true;
         this.J = new e6(this);
         this.K = new e6(this);
         this.M = 0.0f;
-        this.f42816f = i10;
+        this.f42710f = i10;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f42820w = hVar;
-        hVar.f29292n = 1.2f;
-        hVar.f29289k = false;
-        hVar.f29291m = 4.0f;
+        this.f42714w = hVar;
+        hVar.f29286n = 1.2f;
+        hVar.f29283k = false;
+        hVar.f29285m = 4.0f;
         LinearLayout f7 = ok.f(context, 0);
         o0 o0Var = new o0(this, context, 0);
         this.d = o0Var;
-        o0Var.b(0.35f, 350L, tr.h);
+        o0Var.b(0.35f, 350L, sr.h);
         o0Var.setGravity(17);
         o0Var.setTextColor(-1);
         o0Var.setTextSize(AndroidUtilities.dp(14.0f));
         o0Var.setTypeface(AndroidUtilities.bold());
         ?? imageView = new ImageView(context);
-        this.f42822y = imageView;
+        this.f42716y = imageView;
         imageView.setColorFilter(-1);
         imageView.setVisibility(8);
         ai.f0 f0Var = new ai.f0(this, context, 27);
-        this.f42818r = f0Var;
+        this.f42712r = f0Var;
         f0Var.addView(f7, y5.e(-2, -2, 17));
         int k10 = i0.a.k(-1, 120);
         f0Var.setBackground(h6.i0(i10, i10, i10, i10, 0, k10, k10));
         f7.addView(o0Var, y5.q(-2, -2, 16));
         f7.addView((View) imageView, y5.p(24, 24, 0.0f, 16, 4, 0, 0, 0));
         addView(f0Var);
-        setOutlineProvider(yf.i0.f47220b);
+        setOutlineProvider(yf.i0.f47114b);
         setClipToOutline(true);
         a6.b(this, 0.02f, 1.2f);
         if (z10) {

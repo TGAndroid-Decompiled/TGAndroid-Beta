@@ -5,16 +5,16 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class dp extends org.telegram.ui.Components.yl0 {
-    public final ep f33250c;
+public final class dp extends org.telegram.ui.Components.xl0 {
+    public final ep f33156c;
 
     public dp(ep epVar) {
-        this.f33250c = epVar;
+        this.f33156c = epVar;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f43071f == 1) {
+        if (c1Var.f42965f == 1) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class dp extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int h() {
-        return this.f33250c.f33538h3.N.size() + 2;
+        return this.f33156c.f33456a3.N.size() + 2;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class dp extends org.telegram.ui.Components.yl0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 <= this.f33250c.f33538h3.N.size()) {
+        if (i10 <= this.f33156c.f33456a3.N.size()) {
             return 1;
         }
         return 2;
@@ -39,16 +39,16 @@ public final class dp extends org.telegram.ui.Components.yl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
-        ep epVar = this.f33250c;
-        fp fpVar = epVar.f33538h3;
-        int i11 = c1Var.f43071f;
-        View view = c1Var.f43068a;
+        ep epVar = this.f33156c;
+        fp fpVar = epVar.f33456a3;
+        int i11 = c1Var.f42965f;
+        View view = c1Var.f42962a;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 == 2) {
                     org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
                     e9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
-                    e9Var.setBackground(org.telegram.ui.ActionBar.h6.V0(epVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f19040b7));
+                    e9Var.setBackground(org.telegram.ui.ActionBar.h6.V0(epVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f19025b7));
                     return;
                 }
                 return;
@@ -71,14 +71,14 @@ public final class dp extends org.telegram.ui.Components.yl0 {
             return;
         }
         org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19076d6, epVar.f31015p2));
+        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19061d6, epVar.f30700p2));
         m4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        ep epVar = this.f33250c;
-        org.telegram.ui.ActionBar.d6 d6Var = epVar.f31015p2;
+        ep epVar = this.f33156c;
+        org.telegram.ui.ActionBar.d6 d6Var = epVar.f30700p2;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

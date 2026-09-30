@@ -1,85 +1,63 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class su extends WebView {
-    public final int f28349a;
-    public final Context f28350b;
-    public final KeyEvent.Callback f28351c;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class su extends WebViewClient {
+    public final xu f28367a;
 
-    public su(KeyEvent.Callback callback, Context context, Context context2, int i10) {
-        super(context);
-        this.f28349a = i10;
-        this.f28351c = callback;
-        this.f28350b = context2;
+    public su(xu xuVar) {
+        this.f28367a = xuVar;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.f28349a) {
-            case 1:
-                org.telegram.ui.au0 au0Var = (org.telegram.ui.au0) this.f28351c;
-                super.draw(canvas);
-                if (rg0.f27987p0.f27996f == this && au0Var.h.getVisibility() == 0) {
-                    canvas.drawColor(-16777216);
-                    au0Var.j(canvas, getWidth(), getHeight());
-                    return;
-                }
-                return;
-            default:
-                super.draw(canvas);
-                return;
+    public final void onPageFinished(WebView webView, String str) {
+        super.onPageFinished(webView, str);
+        xu xuVar = this.f28367a;
+        ImageView imageView = xuVar.f30480x;
+        if (!xuVar.f30481y) {
+            xuVar.f30476n.setVisibility(4);
+            xuVar.h.setVisibility(4);
+            imageView.setEnabled(true);
+            imageView.setAlpha(1.0f);
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        switch (this.f28349a) {
-            case 0:
-                AndroidUtilities.checkAndroidTheme(this.f28350b, true);
-                super.onAttachedToWindow();
-                return;
-            default:
-                AndroidUtilities.checkAndroidTheme(this.f28350b, true);
-                super.onAttachedToWindow();
-                return;
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        org.telegram.ui.ActionBar.d6 d6Var;
+        xu xuVar = this.f28367a;
+        try {
+            if (!AndroidUtilities.isSafeToShow(xuVar.getContext())) {
+                return true;
+            }
+            Context context = xuVar.getContext();
+            d6Var = ((org.telegram.ui.ActionBar.e3) xuVar).resourcesProvider;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+            alertDialog$Builder.f18663a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f18663a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new zp(this, 10));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        switch (this.f28349a) {
-            case 0:
-                AndroidUtilities.checkAndroidTheme(this.f28350b, false);
-                super.onDetachedFromWindow();
-                return;
-            default:
-                AndroidUtilities.checkAndroidTheme(this.f28350b, false);
-                super.onDetachedFromWindow();
-                return;
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        if (this.f28367a.f30481y) {
+            nf.f.s(webView.getContext(), str);
+            return true;
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f28349a) {
-            case 0:
-                yu yuVar = (yu) this.f28351c;
-                boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if (onTouchEvent) {
-                    if (motionEvent.getAction() == 1) {
-                        yuVar.setDisableScroll(false);
-                    } else {
-                        yuVar.setDisableScroll(true);
-                    }
-                }
-                return onTouchEvent;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
+        return super.shouldOverrideUrlLoading(webView, str);
     }
 }

@@ -11,9 +11,9 @@ import e2.d0;
 import j$.util.Objects;
 import k2.b0;
 public final class k {
-    public final Spatializer f45570a;
-    public final boolean f45571b;
-    public final Handler f45572c;
+    public final Spatializer f45464a;
+    public final boolean f45465b;
+    public final Handler f45466c;
     public final j d;
 
     public k(Context context, p pVar, Boolean bool) {
@@ -25,26 +25,26 @@ public final class k {
         }
         if (e != null && (bool == null || !bool.booleanValue())) {
             Spatializer spatializer = e.getSpatializer();
-            this.f45570a = spatializer;
-            this.f45571b = spatializer.getImmersiveAudioLevel() != 0;
+            this.f45464a = spatializer;
+            this.f45465b = spatializer.getImmersiveAudioLevel() != 0;
             j jVar = new j(pVar);
             this.d = jVar;
             Looper myLooper = Looper.myLooper();
             e2.d.h(myLooper);
             Handler handler = new Handler(myLooper);
-            this.f45572c = handler;
+            this.f45466c = handler;
             spatializer.addOnSpatializerStateChangedListener(new b0(handler, 0), jVar);
             return;
         }
-        this.f45570a = null;
-        this.f45571b = false;
-        this.f45572c = null;
+        this.f45464a = null;
+        this.f45465b = false;
+        this.f45466c = null;
         this.d = null;
     }
 
     public final boolean a(b2.e eVar, b2.s sVar) {
-        String str = sVar.f3308r;
-        String str2 = sVar.f3308r;
+        String str = sVar.f3301r;
+        String str2 = sVar.f3301r;
         int i10 = sVar.J;
         if (Objects.equals(str, "audio/eac3-joc")) {
             if (i10 == 16) {
@@ -66,19 +66,19 @@ public final class k {
         if (i11 != -1) {
             channelMask.setSampleRate(i11);
         }
-        Spatializer spatializer = this.f45570a;
+        Spatializer spatializer = this.f45464a;
         spatializer.getClass();
-        return spatializer.canBeSpatialized((AudioAttributes) eVar.b().f3343a, channelMask.build());
+        return spatializer.canBeSpatialized((AudioAttributes) eVar.b().f3336a, channelMask.build());
     }
 
     public final boolean b() {
-        Spatializer spatializer = this.f45570a;
+        Spatializer spatializer = this.f45464a;
         spatializer.getClass();
         return spatializer.isAvailable();
     }
 
     public final boolean c() {
-        Spatializer spatializer = this.f45570a;
+        Spatializer spatializer = this.f45464a;
         spatializer.getClass();
         return spatializer.isEnabled();
     }
@@ -86,8 +86,8 @@ public final class k {
     public final void d() {
         j jVar;
         Handler handler;
-        Spatializer spatializer = this.f45570a;
-        if (spatializer != null && (jVar = this.d) != null && (handler = this.f45572c) != null) {
+        Spatializer spatializer = this.f45464a;
+        if (spatializer != null && (jVar = this.d) != null && (handler = this.f45466c) != null) {
             spatializer.removeOnSpatializerStateChangedListener(jVar);
             handler.removeCallbacksAndMessages(null);
         }

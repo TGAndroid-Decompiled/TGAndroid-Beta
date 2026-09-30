@@ -14,47 +14,47 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class zk0 implements Utilities.Callback {
-    public final int f40632a = 1;
-    public final String f40633b;
-    public final boolean f40634c;
+    public final int f40524a = 1;
+    public final String f40525b;
+    public final boolean f40526c;
     public final boolean d;
     public final Object e;
-    public final Object f40635f;
-    public final Object f40636g;
+    public final Object f40527f;
+    public final Object f40528g;
     public final Serializable h;
-    public final Object f40637i;
-    public final Object f40638j;
-    public final Object f40639k;
-    public final Object f40640l;
+    public final Object f40529i;
+    public final Object f40530j;
+    public final Object f40531k;
+    public final Object f40532l;
 
     public zk0(a71 a71Var, String str, boolean z10, ArrayList arrayList, HashMap hashMap, ArrayList arrayList2, LinkedHashSet linkedHashSet, LinkedHashSet linkedHashSet2, ArrayList arrayList3, ArrayList arrayList4, boolean z11) {
         this.e = a71Var;
-        this.f40633b = str;
-        this.f40634c = z10;
-        this.f40635f = arrayList;
-        this.f40636g = hashMap;
+        this.f40525b = str;
+        this.f40526c = z10;
+        this.f40527f = arrayList;
+        this.f40528g = hashMap;
         this.h = arrayList2;
-        this.f40637i = linkedHashSet;
-        this.f40638j = linkedHashSet2;
-        this.f40639k = arrayList3;
-        this.f40640l = arrayList4;
+        this.f40529i = linkedHashSet;
+        this.f40530j = linkedHashSet2;
+        this.f40531k = arrayList3;
+        this.f40532l = arrayList4;
         this.d = z11;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f40632a) {
+        switch (this.f40524a) {
             case 0:
-                final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.f40635f;
-                final org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.f40636g;
-                final boolean z10 = this.f40634c;
-                final String str = this.f40633b;
-                final TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) this.f40637i;
-                final String[] strArr = (String[]) this.f40638j;
+                final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.f40527f;
+                final org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.f40528g;
+                final boolean z10 = this.f40526c;
+                final String str = this.f40525b;
+                final TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) this.f40529i;
+                final String[] strArr = (String[]) this.f40530j;
                 final boolean z11 = this.d;
-                final org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f40639k;
+                final org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f40531k;
                 final String str2 = (String) this.h;
-                final org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f40640l;
+                final org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f40532l;
                 final Integer num = (Integer) obj;
                 if (((int[]) this.e)[0] != num.intValue()) {
                     final org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(ApplicationLoader.applicationContext, 3, null);
@@ -94,15 +94,15 @@ public final class zk0 implements Utilities.Callback {
                 return;
             default:
                 final a71 a71Var = (a71) this.e;
-                final String str3 = this.f40633b;
-                final boolean z12 = this.f40634c;
-                final ArrayList arrayList = (ArrayList) this.f40635f;
-                final HashMap hashMap = (HashMap) this.f40636g;
+                final String str3 = this.f40525b;
+                final boolean z12 = this.f40526c;
+                final ArrayList arrayList = (ArrayList) this.f40527f;
+                final HashMap hashMap = (HashMap) this.f40528g;
                 final ArrayList arrayList2 = (ArrayList) this.h;
-                final LinkedHashSet linkedHashSet = (LinkedHashSet) this.f40637i;
-                final LinkedHashSet linkedHashSet2 = (LinkedHashSet) this.f40638j;
-                final ArrayList arrayList3 = (ArrayList) this.f40639k;
-                final ArrayList arrayList4 = (ArrayList) this.f40640l;
+                final LinkedHashSet linkedHashSet = (LinkedHashSet) this.f40529i;
+                final LinkedHashSet linkedHashSet2 = (LinkedHashSet) this.f40530j;
+                final ArrayList arrayList3 = (ArrayList) this.f40531k;
+                final ArrayList arrayList4 = (ArrayList) this.f40532l;
                 final boolean z13 = this.d;
                 Runnable runnable = (Runnable) obj;
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -114,14 +114,14 @@ public final class zk0 implements Utilities.Callback {
                             AndroidUtilities.cancelRunOnUIThread(d51Var);
                             a71Var2.I1 = null;
                         }
-                        String str4 = a71Var2.f32142z1;
+                        String str4 = a71Var2.f32070z1;
                         String str5 = str3;
                         if (str5 != str4) {
                             return;
                         }
-                        a71Var2.f32140y1 = true;
+                        a71Var2.f32068y1 = true;
                         a71Var2.z(true, z12);
-                        r51 r51Var = a71Var2.f32097f0;
+                        r51 r51Var = a71Var2.f32025f0;
                         if (r51Var != null) {
                             r51Var.d(true);
                         }
@@ -150,7 +150,7 @@ public final class zk0 implements Utilities.Callback {
                             arrayList8.clear();
                         }
                         int i10 = 0;
-                        a71Var2.f32103i0.v0(0);
+                        a71Var2.f32031i0.u0(0);
                         int i11 = a71Var2.W;
                         if (i11 == 1 || i11 == 14 || i11 == 11 || i11 == 2) {
                             ArrayList arrayList9 = arrayList;
@@ -174,7 +174,7 @@ public final class zk0 implements Utilities.Callback {
                             ArrayList arrayList11 = a71Var2.A1;
                             ?? obj2 = new Object();
                             long longValue = l4.longValue();
-                            obj2.f49505g = longValue;
+                            obj2.f49399g = longValue;
                             obj2.h = longValue;
                             arrayList11.add(obj2);
                         }
@@ -190,7 +190,7 @@ public final class zk0 implements Utilities.Callback {
                             i10++;
                             a71Var2.C1.addAll((ArrayList) obj3);
                         }
-                        a71Var2.f32118q0.E(true ^ z13);
+                        a71Var2.f32046q0.E(true ^ z13);
                     }
                 });
                 return;
@@ -199,15 +199,15 @@ public final class zk0 implements Utilities.Callback {
 
     public zk0(int[] iArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.ActionBar.e3 e3Var, boolean z10, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z11, org.telegram.ui.web.b1 b1Var, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         this.e = iArr;
-        this.f40635f = tL_messages_requestUrlAuth;
-        this.f40636g = e3Var;
-        this.f40634c = z10;
-        this.f40633b = str;
-        this.f40637i = urlAuthResult;
-        this.f40638j = strArr;
+        this.f40527f = tL_messages_requestUrlAuth;
+        this.f40528g = e3Var;
+        this.f40526c = z10;
+        this.f40525b = str;
+        this.f40529i = urlAuthResult;
+        this.f40530j = strArr;
         this.d = z11;
-        this.f40639k = b1Var;
+        this.f40531k = b1Var;
         this.h = str2;
-        this.f40640l = d6Var;
+        this.f40532l = d6Var;
     }
 }

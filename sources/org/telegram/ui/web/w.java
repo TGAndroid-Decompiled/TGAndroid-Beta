@@ -4,28 +4,28 @@ import ai.da;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 public final class w implements Runnable {
-    public final int f39350a;
-    public final String[] f39351b;
-    public final int f39352c;
+    public final int f39261a;
+    public final String[] f39262b;
+    public final int f39263c;
     public final y0 d;
     public final da e;
 
     public w(String[] strArr, int i10, y0 y0Var, da daVar, int i11) {
-        this.f39350a = i11;
-        this.f39351b = strArr;
-        this.f39352c = i10;
+        this.f39261a = i11;
+        this.f39262b = strArr;
+        this.f39263c = i10;
         this.d = y0Var;
         this.e = daVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f39350a) {
+        switch (this.f39261a) {
             case 0:
-                int i10 = this.f39352c;
+                int i10 = this.f39263c;
                 y0 y0Var = this.d;
                 da daVar = this.e;
-                String[] strArr = this.f39351b;
+                String[] strArr = this.f39262b;
                 if (strArr[0] != null) {
                     try {
                         JSONObject jSONObject = new JSONObject();
@@ -39,8 +39,8 @@ public final class w implements Runnable {
                 }
                 return;
             default:
-                String[] strArr2 = this.f39351b;
-                int i11 = this.f39352c;
+                String[] strArr2 = this.f39262b;
+                int i11 = this.f39263c;
                 y0 y0Var2 = this.d;
                 da daVar2 = this.e;
                 try {

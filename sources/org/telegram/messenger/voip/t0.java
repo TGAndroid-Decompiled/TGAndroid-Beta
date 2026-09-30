@@ -1,32 +1,27 @@
 package org.telegram.messenger.voip;
 
+import android.media.AudioManager;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.webrtc.VideoSink;
 public final class t0 implements Runnable {
-    public final int f17981a;
-    public final boolean f17982b;
-    public final Object f17983c;
-    public final Object d;
-    public final Object e;
+    public final int f17962a;
+    public final AudioManager f17963b;
 
-    public t0(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f17981a = i10;
-        this.f17983c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f17982b = z10;
+    public t0(AudioManager audioManager, int i10) {
+        this.f17962a = i10;
+        this.f17963b = audioManager;
     }
 
     @Override
     public final void run() {
-        switch (this.f17981a) {
+        switch (this.f17962a) {
             case 0:
-                ((VoIPService.AnonymousClass5) this.f17983c).lambda$onFrame$0((String) this.d, (VideoSink) this.e, this.f17982b);
+                VoIPService.AnonymousClass1.lambda$run$1(this.f17963b);
+                return;
+            case 1:
+                VoIPService.lambda$onDestroy$98(this.f17963b);
                 return;
             default:
-                ((VoIPService) this.f17983c).lambda$acknowledgeCall$12((TLObject) this.d, (TLRPC.TL_error) this.e, this.f17982b);
+                VoipAudioManager.a(this.f17963b);
                 return;
         }
     }

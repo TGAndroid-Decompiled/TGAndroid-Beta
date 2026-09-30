@@ -1,36 +1,36 @@
 package org.telegram.ui.Components;
 public final class kd implements Runnable {
-    public final int f25748a;
-    public final nd f25749b;
-    public final boolean f25750c;
+    public final int f25675a;
+    public final md f25676b;
+    public final boolean f25677c;
 
-    public kd(nd ndVar, boolean z10, int i10) {
-        this.f25748a = i10;
-        this.f25749b = ndVar;
-        this.f25750c = z10;
+    public kd(md mdVar, boolean z10, int i10) {
+        this.f25675a = i10;
+        this.f25676b = mdVar;
+        this.f25677c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f25748a) {
+        switch (this.f25675a) {
             case 0:
-                boolean z10 = this.f25750c;
-                nd ndVar = this.f25749b;
+                boolean z10 = this.f25677c;
+                md mdVar = this.f25676b;
                 if (!z10) {
-                    ndVar.Z0.setVisibility(8);
+                    mdVar.Z0.setVisibility(8);
                     return;
                 } else {
-                    ndVar.getClass();
+                    mdVar.getClass();
                     return;
                 }
             default:
-                boolean z11 = this.f25750c;
-                nd ndVar2 = this.f25749b;
+                boolean z11 = this.f25677c;
+                md mdVar2 = this.f25676b;
                 if (!z11) {
-                    ndVar2.V0.setVisibility(8);
+                    mdVar2.V0.setVisibility(8);
                     return;
                 } else {
-                    ndVar2.getClass();
+                    mdVar2.getClass();
                     return;
                 }
         }

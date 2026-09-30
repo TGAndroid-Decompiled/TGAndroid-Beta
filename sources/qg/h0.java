@@ -6,9 +6,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.st0;
 public final class h0 extends d {
     public final Paint h;
-    public long f41750n;
-    public float f41751r;
-    public float f41752s;
+    public long f41653n;
+    public float f41654r;
+    public float f41655s;
     public final st0 v;
 
     public h0(st0 st0Var, Context context, g0 g0Var) {

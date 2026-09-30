@@ -2,41 +2,41 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-public final class hb0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.gw0 {
-    public final int f34273a;
-    public final rb0 f34274b;
+public final class hb0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.fw0 {
+    public final int f34183a;
+    public final rb0 f34184b;
 
     public hb0(rb0 rb0Var, int i10) {
-        this.f34273a = i10;
-        this.f34274b = rb0Var;
+        this.f34183a = i10;
+        this.f34184b = rb0Var;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        this.f34274b.V(i10);
+        this.f34184b.V(i10);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        rb0 rb0Var = this.f34274b;
+        rb0 rb0Var = this.f34184b;
         rb0Var.T.a(rb0Var.e);
         rb0Var.finishFragment();
     }
 
     @Override
     public void h(int i10) {
-        switch (this.f34273a) {
+        switch (this.f34183a) {
             case 2:
-                rb0 rb0Var = this.f34274b;
+                rb0 rb0Var = this.f34184b;
                 ArrayList arrayList = rb0Var.P;
                 if (i10 < arrayList.size()) {
-                    rb0Var.f37390w.setText(LocaleController.formatDateAudio(rb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+                    rb0Var.f37289w.setText(LocaleController.formatDateAudio(rb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
                     return;
                 }
-                rb0Var.f37390w.setText("");
+                rb0Var.f37289w.setText("");
                 return;
             default:
-                rb0 rb0Var2 = this.f34274b;
+                rb0 rb0Var2 = this.f34184b;
                 rb0Var2.F.clearFocus();
                 rb0Var2.O = true;
                 ArrayList arrayList2 = rb0Var2.R;
@@ -52,7 +52,7 @@ public final class hb0 implements org.telegram.ui.Components.d5, org.telegram.ui
 
     @Override
     public void n() {
-        int i10 = this.f34273a;
+        int i10 = this.f34183a;
     }
 
     private final void a() {

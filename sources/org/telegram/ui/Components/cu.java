@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface cu {
-    void j();
+    void run(String str);
 }

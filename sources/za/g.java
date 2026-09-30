@@ -1,8 +1,8 @@
 package za;
 public final class g implements ia.d {
-    public static final g f49154a = new Object();
-    public static final ia.c f49155b = ia.c.c("eventType");
-    public static final ia.c f49156c = ia.c.c("sessionData");
+    public static final g f49048a = new Object();
+    public static final ia.c f49049b = ia.c.c("eventType");
+    public static final ia.c f49050c = ia.c.c("sessionData");
     public static final ia.c d = ia.c.c("applicationInfo");
 
     @Override
@@ -10,8 +10,8 @@ public final class g implements ia.d {
         c0 c0Var = (c0) obj;
         ia.e eVar = (ia.e) obj2;
         c0Var.getClass();
-        eVar.a(f49155b, l.SESSION_START);
-        eVar.a(f49156c, c0Var.f49136a);
-        eVar.a(d, c0Var.f49137b);
+        eVar.a(f49049b, l.SESSION_START);
+        eVar.a(f49050c, c0Var.f49030a);
+        eVar.a(d, c0Var.f49031b);
     }
 }

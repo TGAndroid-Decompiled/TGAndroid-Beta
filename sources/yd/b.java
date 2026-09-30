@@ -1,6 +1,6 @@
 package yd;
 public abstract class b {
-    public static final int f47090a = 0;
+    public static final int f46984a = 0;
 
     static {
         ThreadLocal[] threadLocalArr = new ThreadLocal[4];

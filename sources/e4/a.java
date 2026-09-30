@@ -18,9 +18,9 @@ import z3.m;
 public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f7973a = new StringBuilder();
-    public final ArrayList f7974b = new ArrayList();
-    public final v f7975c = new v();
+    public final StringBuilder f7961a = new StringBuilder();
+    public final ArrayList f7962b = new ArrayList();
+    public final v f7963c = new v();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
@@ -58,8 +58,8 @@ public final class a implements m {
         String k10;
         String str;
         a aVar = this;
-        long j3 = lVar.f48482a;
-        v vVar = aVar.f7975c;
+        long j3 = lVar.f48376a;
+        v vVar = aVar.f7963c;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
         Charset F = vVar.F();
@@ -67,7 +67,7 @@ public final class a implements m {
             F = StandardCharsets.UTF_8;
         }
         long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && lVar.f48483b) {
+        if (j3 != -9223372036854775807L && lVar.f48377b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -91,9 +91,9 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f7973a;
+                    StringBuilder sb2 = aVar.f7961a;
                     sb2.setLength(0);
-                    ArrayList arrayList2 = aVar.f7974b;
+                    ArrayList arrayList2 = aVar.f7962b;
                     arrayList2.clear();
                     String k12 = vVar.k(F);
                     while (!TextUtils.isEmpty(k12)) {

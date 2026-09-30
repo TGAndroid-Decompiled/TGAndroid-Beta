@@ -20,12 +20,12 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.dg0;
-import org.telegram.ui.Components.eg;
-import org.telegram.ui.Components.jh0;
-import org.telegram.ui.Components.mh0;
+import org.telegram.ui.Components.cg0;
+import org.telegram.ui.Components.dg;
+import org.telegram.ui.Components.ih0;
+import org.telegram.ui.Components.lh0;
 import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.zf0;
+import org.telegram.ui.Components.yf0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
@@ -36,27 +36,27 @@ import org.telegram.ui.sa1;
 import org.telegram.ui.wn;
 import org.telegram.ui.yb0;
 public final class j implements Runnable {
-    public final int f1021a;
-    public final long f1022b;
-    public final Object f1023c;
+    public final int f1019a;
+    public final long f1020b;
+    public final Object f1021c;
 
     public j(Object obj, long j3, int i10) {
-        this.f1021a = i10;
-        this.f1023c = obj;
-        this.f1022b = j3;
+        this.f1019a = i10;
+        this.f1021c = obj;
+        this.f1020b = j3;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.d6 d6Var;
         ci.gc gcVar;
-        int i10 = this.f1021a;
+        int i10 = this.f1019a;
         org.telegram.ui.ActionBar.d6 d6Var2 = null;
         boolean z10 = false;
         r7 = 0;
         int i11 = 0;
-        long j3 = this.f1022b;
-        Object obj = this.f1023c;
+        long j3 = this.f1020b;
+        Object obj = this.f1021c;
         switch (i10) {
             case 0:
                 ((b0) obj).f567s.e0(j3, false);
@@ -72,13 +72,13 @@ public final class j implements Runnable {
                 AndroidUtilities.runOnUIThread((m5) obj, Math.max(0L, 500 - (System.currentTimeMillis() - j3)));
                 return;
             case 3:
-                org.telegram.ui.ActionBar.m2 d02 = sa1.d0(MessagesController.getInstance(((l9) obj).f1194a).getChat(Long.valueOf(-j3)), true);
+                org.telegram.ui.ActionBar.m2 d02 = sa1.d0(MessagesController.getInstance(((l9) obj).f1192a).getChat(Long.valueOf(-j3)), true);
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != 0) {
                     ci.lc lcVar = ci.lc.F2;
                     if (lcVar != null && lcVar.d) {
                         ?? obj2 = new Object();
-                        obj2.f19598a = true;
+                        obj2.f19583a = true;
                         R.showAsSheet(d02, obj2);
                         return;
                     }
@@ -87,7 +87,7 @@ public final class j implements Runnable {
                 }
                 return;
             case 4:
-                MessagesStorage messagesStorage = ((y9) obj).f1769b;
+                MessagesStorage messagesStorage = ((y9) obj).f1762b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 try {
                     Locale locale = Locale.US;
@@ -112,7 +112,7 @@ public final class j implements Runnable {
                     gcVar2.f(true);
                     lcVar2.F = null;
                 }
-                ci.cc ccVar = lcVar2.f5107x;
+                ci.cc ccVar = lcVar2.f5100x;
                 if (ccVar != null) {
                     gcVar = ccVar.a(j3);
                 } else {
@@ -120,33 +120,33 @@ public final class j implements Runnable {
                 }
                 lcVar2.F = gcVar;
                 if (gcVar != null) {
-                    lcVar2.J = gcVar.f4743a;
-                    lcVar2.f5086r.c();
-                    ci.xb xbVar = lcVar2.f5057h0;
+                    lcVar2.J = gcVar.f4735a;
+                    lcVar2.f5079r.c();
+                    ci.xb xbVar = lcVar2.f5050h0;
                     int i12 = lcVar2.J;
                     if (i12 != 1 && i12 != 0) {
                         i11 = -14737633;
                     }
                     xbVar.setBackgroundColor(i11);
-                    lcVar2.H.set(lcVar2.F.f4745c);
+                    lcVar2.H.set(lcVar2.F.f4737c);
                     ci.gc gcVar3 = lcVar2.F;
-                    lcVar2.G = gcVar3.f4744b;
+                    lcVar2.G = gcVar3.f4736b;
                     gcVar3.e();
                     if (SharedConfig.getDevicePerformanceClass() > 1) {
                         LiteMode.isEnabled(360928);
                     }
                 }
-                lcVar2.f5107x = null;
-                Activity activity = lcVar2.f5036b;
+                lcVar2.f5100x = null;
+                Activity activity = lcVar2.f5029b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f31222z0.post(new ci.ha(lcVar2, 5));
+                    ((LaunchActivity) activity).f31150z0.post(new ci.ha(lcVar2, 5));
                     return;
                 } else {
                     lcVar2.q(true);
                     return;
                 }
             case 7:
-                ci.pc pcVar = ((wc) obj).f5755a;
+                ci.pc pcVar = ((wc) obj).f5743a;
                 if (pcVar != null) {
                     pcVar.n(j3, false);
                     return;
@@ -157,9 +157,9 @@ public final class j implements Runnable {
                 return;
             case 9:
                 fi.t0 t0Var = (fi.t0) obj;
-                t0Var.f9178i = null;
-                t0Var.f9177g.l(j3);
-                t0Var.f9181l++;
+                t0Var.f9166i = null;
+                t0Var.f9165g.l(j3);
+                t0Var.f9169l++;
                 t0Var.a();
                 fi.s0 s0Var = t0Var.h;
                 if (s0Var != null) {
@@ -169,15 +169,15 @@ public final class j implements Runnable {
                 return;
             case 10:
                 ii.r rVar = (ii.r) obj;
-                org.telegram.ui.Components.e5.M(rVar.f27362b.f30270f0.getParentActivity(), j3, new a6.m(rVar, 26), rVar.f27361a);
+                org.telegram.ui.Components.e5.M(rVar.f27075b.f29934f0.getParentActivity(), j3, new a6.m(rVar, 26), rVar.f27074a);
                 return;
             case 11:
                 ii.e2 e2Var = (ii.e2) obj;
                 org.telegram.ui.Components.e5.M(e2Var.getParentActivity(), j3, new xa.c(e2Var, 27), e2Var.getResourceProvider());
                 return;
             case 12:
-                String str = e2.d0.f7882a;
-                j2.f fVar = ((i2.c0) ((k2.j) ((n4.y) obj).f15239c)).f10630a.f10689s;
+                String str = e2.d0.f7870a;
+                j2.f fVar = ((i2.c0) ((k2.j) ((n4.y) obj).f15224c)).f10616a.f10675s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1010, new j2.c(p5, j3));
                 return;
@@ -208,22 +208,22 @@ public final class j implements Runnable {
                 }
                 return;
             case 19:
-                org.telegram.ui.Components.rc Q = yc.a0((org.telegram.ui.z6) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j3)));
-                Q.f27954r = false;
+                org.telegram.ui.Components.qc Q = yc.a0((org.telegram.ui.z6) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j3)));
+                Q.f27649r = false;
                 Q.j();
                 return;
             case 20:
-                eg egVar = (eg) obj;
-                egVar.getClass();
-                egVar.presentFragment(wn.R9(j3));
+                dg dgVar = (dg) obj;
+                dgVar.getClass();
+                dgVar.presentFragment(wn.R9(j3));
                 return;
             case 21:
-                dg0 dg0Var = (dg0) obj;
-                dg0Var.h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
-                AndroidUtilities.runOnUIThread(new zf0(dg0Var, 1), 100L);
+                cg0 cg0Var = (cg0) obj;
+                cg0Var.h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
+                AndroidUtilities.runOnUIThread(new yf0(cg0Var, 1), 100L);
                 return;
             case 22:
-                mh0 mh0Var = (mh0) obj;
+                lh0 lh0Var = (lh0) obj;
                 Activity activity2 = AndroidUtilities.getActivity();
                 org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
                 if (!PhotoViewer.t1().R1() && (U2 == null || !U2.hasShownSheet())) {
@@ -233,7 +233,7 @@ public final class j implements Runnable {
                 } else {
                     d6Var2 = new d();
                 }
-                new yh.l7(activity2, d6Var2, this.f1022b, 15, "", new jh0(mh0Var, 0), 0L).show();
+                new yh.l7(activity2, d6Var2, this.f1020b, 15, "", new ih0(lh0Var, 0), 0L).show();
                 return;
             case 23:
                 qy qyVar = (qy) obj;
@@ -270,7 +270,7 @@ public final class j implements Runnable {
                 return;
             default:
                 tg.z0 z0Var = (tg.z0) obj;
-                HashSet hashSet = z0Var.f43623e0;
+                HashSet hashSet = z0Var.f43517e0;
                 hashSet.remove(Long.valueOf(j3));
                 z0Var.Y.b(true, hashSet, new tg.t0(z0Var, 5), null);
                 z0Var.b0(true, false);

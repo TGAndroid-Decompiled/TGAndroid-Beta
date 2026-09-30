@@ -4,12 +4,12 @@ import android.text.Editable;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.q9;
 public final class j5 implements h1 {
-    public final s5 f11470a;
-    public final p5 f11471b;
+    public final s5 f11456a;
+    public final p5 f11457b;
 
     public j5(p5 p5Var, s5 s5Var) {
-        this.f11471b = p5Var;
-        this.f11470a = s5Var;
+        this.f11457b = p5Var;
+        this.f11456a = s5Var;
     }
 
     @Override
@@ -17,13 +17,13 @@ public final class j5 implements h1 {
         d3 d3Var;
         final q9 textSelectionHelper;
         final int k10;
-        p5 p5Var = this.f11471b;
-        if (!p5Var.G && i10 != i11 && (d3Var = p5Var.E) != null && (textSelectionHelper = d3Var.f11307a.getTextSelectionHelper()) != null) {
-            if ((!textSelectionHelper.y() || textSelectionHelper.W != p5Var) && (k10 = p5Var.k(this.f11470a.f11631b)) >= 0) {
+        p5 p5Var = this.f11457b;
+        if (!p5Var.G && i10 != i11 && (d3Var = p5Var.E) != null && (textSelectionHelper = d3Var.f11293a.getTextSelectionHelper()) != null) {
+            if ((!textSelectionHelper.y() || textSelectionHelper.W != p5Var) && (k10 = p5Var.k(this.f11456a.f11617b)) >= 0) {
                 p5Var.post(new Runnable() {
                     @Override
                     public final void run() {
-                        p5 p5Var2 = j5.this.f11471b;
+                        p5 p5Var2 = j5.this.f11457b;
                         i1 i1Var2 = i1Var;
                         int length = i1Var2.length();
                         int i12 = i11;
@@ -40,47 +40,47 @@ public final class j5 implements h1 {
 
     @Override
     public final void K(CharSequence charSequence) {
-        d3 d3Var = this.f11471b.E;
+        d3 d3Var = this.f11457b.E;
         if (d3Var != null && charSequence != null && charSequence.length() > 0) {
-            d3Var.f11307a.v4(charSequence.toString());
+            d3Var.f11293a.t4(charSequence.toString());
         }
     }
 
     @Override
     public final void U(Editable editable) {
-        TL_iv.pageTableCell pagetablecell = this.f11470a.f11631b;
+        TL_iv.pageTableCell pagetablecell = this.f11456a.f11617b;
         if (pagetablecell != null) {
             i6.d(pagetablecell, editable);
         }
-        p5 p5Var = this.f11471b;
+        p5 p5Var = this.f11457b;
         p5Var.v.requestLayout();
         d3 d3Var = p5Var.E;
-        if (d3Var != null && p5Var.f11221a != null) {
+        if (d3Var != null && p5Var.f11207a != null) {
             d3Var.a();
         }
     }
 
     @Override
     public final boolean X(boolean z10) {
-        return this.f11471b.s(this.f11470a, z10);
+        return this.f11457b.s(this.f11456a, z10);
     }
 
     @Override
     public final void c(i1 i1Var) {
-        d3 d3Var = this.f11471b.E;
+        d3 d3Var = this.f11457b.E;
         if (d3Var != null) {
-            x3 x3Var = d3Var.f11307a;
-            x3.O1(x3Var, i1Var);
-            x3Var.f11748o3.t(i1Var, true);
+            x3 x3Var = d3Var.f11293a;
+            x3.M1(x3Var, i1Var);
+            x3Var.f11728h3.t(i1Var, true);
         }
     }
 
     @Override
     public final boolean f() {
-        p5 p5Var = this.f11471b;
+        p5 p5Var = this.f11457b;
         d3 d3Var = p5Var.E;
-        if (d3Var != null && p5Var.f11221a != null) {
-            return d3Var.f11307a.U4();
+        if (d3Var != null && p5Var.f11207a != null) {
+            return d3Var.f11293a.S4();
         }
         return false;
     }
@@ -88,9 +88,9 @@ public final class j5 implements h1 {
     @Override
     public final void j(int i10, int i11) {
         i2 i2Var;
-        p5 p5Var = this.f11471b;
+        p5 p5Var = this.f11457b;
         d3 d3Var = p5Var.E;
-        if (d3Var != null && p5Var.f11221a != null && (i2Var = d3Var.f11307a.Q3) != null) {
+        if (d3Var != null && p5Var.f11207a != null && (i2Var = d3Var.f11293a.J3) != null) {
             i2Var.f(i10, i11);
         }
     }

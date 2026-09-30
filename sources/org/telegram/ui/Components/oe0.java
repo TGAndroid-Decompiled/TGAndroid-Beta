@@ -1,32 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-public final class oe0 implements Utilities.Callback {
-    public final int f27073a;
-    public final String[] f27074b;
-    public final Activity f27075c;
-    public final Utilities.Callback d;
+public final class oe0 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f27052a;
+    public final Utilities.Callback f27053b;
+    public final NotificationCenter.NotificationCenterDelegate[] f27054c;
 
-    public oe0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
-        this.f27073a = i10;
-        this.f27074b = strArr;
-        this.f27075c = activity;
-        this.d = callback;
+    public oe0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+        this.f27052a = i10;
+        this.f27053b = callback;
+        this.f27054c = notificationCenterDelegateArr;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f27073a;
-        int[] iArr = (int[]) obj;
-        String[] strArr = this.f27074b;
-        switch (i10) {
-            case 0:
-                qe0.a(strArr, this.f27075c, this.d);
-                return;
-            default:
-                qe0.b(strArr, this.f27075c, this.d);
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.activityPermissionsGranted;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.f27052a) {
+                Utilities.Callback callback = this.f27053b;
+                if (callback != null) {
+                    callback.run(iArr);
+                }
+                NotificationCenter.getGlobalInstance().removeObserver(this.f27054c[0], i12);
+            }
         }
     }
 }

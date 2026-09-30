@@ -16,12 +16,12 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.k8;
 public final class p implements Runnable {
-    public final int f19710a;
-    public final Object f19711b;
+    public final int f19695a;
+    public final Object f19696b;
 
     public p(Object obj, int i10) {
-        this.f19710a = i10;
-        this.f19711b = obj;
+        this.f19695a = i10;
+        this.f19696b = obj;
     }
 
     @Override
@@ -29,11 +29,11 @@ public final class p implements Runnable {
         int dp;
         DialogInterface.OnDismissListener onDismissListener;
         DialogInterface.OnDismissListener onDismissListener2;
-        int i10 = this.f19710a;
-        Object obj = this.f19711b;
+        int i10 = this.f19695a;
+        Object obj = this.f19696b;
         switch (i10) {
             case 0:
-                Drawable drawable = ActionBarLayout.f18616p1;
+                Drawable drawable = ActionBarLayout.f18601p1;
                 AndroidUtilities.runOnUIThread((c9) obj);
                 return;
             case 1:
@@ -58,8 +58,8 @@ public final class p implements Runnable {
                 View view = (View) obj;
                 if (view instanceof i5) {
                     i5 i5Var = (i5) view;
-                    if (!i5Var.f19499a) {
-                        i5Var.f19499a = true;
+                    if (!i5Var.f19484a) {
+                        i5Var.f19484a = true;
                         i5Var.invalidate();
                         return;
                     }
@@ -95,13 +95,13 @@ public final class p implements Runnable {
                 }
             case 7:
                 e2 e2Var = (e2) obj;
-                e2Var.f18862f1.setVisibility(0);
-                e2Var.f18864h1.setAlpha(0.0f);
-                e2Var.f18863g1.startAnimation(AnimationUtils.loadAnimation(e2Var.getContext(), e2Var.f18860d1));
-                e2Var.f18864h1.animate().setDuration(300L).alpha(1.0f).setListener(new b2(e2Var, 0)).start();
+                e2Var.f18847f1.setVisibility(0);
+                e2Var.f18849h1.setAlpha(0.0f);
+                e2Var.f18848g1.startAnimation(AnimationUtils.loadAnimation(e2Var.getContext(), e2Var.f18845d1));
+                e2Var.f18849h1.animate().setDuration(300L).alpha(1.0f).setListener(new b2(e2Var, 0)).start();
                 return;
             case 8:
-                e3 e3Var = (e3) ((w2) obj).f19916c;
+                e3 e3Var = (e3) ((w2) obj).f19901c;
                 onDismissListener = e3Var.onHideListener;
                 if (onDismissListener != null) {
                     onDismissListener2 = e3Var.onHideListener;
@@ -118,7 +118,7 @@ public final class p implements Runnable {
                 v2 v2Var = (v2) obj;
                 v2Var.getClass();
                 try {
-                    v2Var.f19869b.dismissInternal();
+                    v2Var.f19854b.dismissInternal();
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
@@ -135,23 +135,23 @@ public final class p implements Runnable {
                 ((v3) obj).f();
                 return;
             case 12:
-                t4 t4Var = (t4) ((c2) obj).f18789b;
+                t4 t4Var = (t4) ((c2) obj).f18774b;
                 t4Var.k();
                 t4Var.j();
                 return;
             case 13:
-                t4 t4Var2 = ((q4) obj).f19733b;
-                t4Var2.f19777c.dismiss();
-                t4Var2.f19778f.removeAllViews();
+                t4 t4Var2 = ((q4) obj).f19718b;
+                t4Var2.f19762c.dismiss();
+                t4Var2.f19763f.removeAllViews();
                 return;
             case 14:
-                ((q4) obj).f19733b.f19777c.dismiss();
+                ((q4) obj).f19718b.f19762c.dismiss();
                 return;
             case 15:
                 Drawable drawable2 = (Drawable) obj;
                 h6.d = null;
                 h6.N();
-                if (!h6.f19032b) {
+                if (!h6.f19017b) {
                     h6.i(drawable2);
                     h6.h(drawable2);
                 }
@@ -164,9 +164,9 @@ public final class p implements Runnable {
                 ok.m(1, (m2) obj);
                 return;
             case 18:
-                k8 k8Var = (k8) h6.f19094e5.remove((MessageObject) obj);
+                k8 k8Var = (k8) h6.f19079e5.remove((MessageObject) obj);
                 if (k8Var != null) {
-                    k8Var.f25670i = null;
+                    k8Var.f25629i = null;
                     return;
                 }
                 return;

@@ -1,8 +1,8 @@
 package zd;
 public final class b1 {
-    public final a1 f49251a;
+    public final a1 f49145a;
 
     public b1(a1 a1Var) {
-        this.f49251a = a1Var;
+        this.f49145a = a1Var;
     }
 }

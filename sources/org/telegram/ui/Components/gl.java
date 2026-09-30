@@ -1,33 +1,38 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Point;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class gl extends FrameLayout {
-    public final HashMap f24591a;
-    public final jl f24592b;
+import android.widget.TextView;
+public final class gl extends TextView {
+    public final int f24568a;
+    public float f24569b;
+    public float f24570c;
 
-    public gl(jl jlVar, Context context) {
+    public gl(Context context, int i10) {
         super(context);
-        this.f24592b = jlVar;
-        this.f24591a = new HashMap();
+        this.f24568a = i10;
     }
 
-    public final void a() {
-        IMapsProvider.IMap iMap = this.f24592b.H;
-        if (iMap != null) {
-            IMapsProvider.IProjection projection = iMap.getProjection();
-            for (Map.Entry entry : this.f24591a.entrySet()) {
-                View view = (View) entry.getValue();
-                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
-                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
-                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
-            }
+    @Override
+    public final float getTranslationX() {
+        switch (this.f24568a) {
+            case 0:
+                return this.f24569b;
+            default:
+                return this.f24569b;
+        }
+    }
+
+    @Override
+    public final void setTranslationX(float f7) {
+        switch (this.f24568a) {
+            case 0:
+                this.f24569b = f7;
+                setTranslationY(this.f24570c + f7);
+                return;
+            default:
+                this.f24569b = f7;
+                setTranslationY(this.f24570c + f7);
+                return;
         }
     }
 }

@@ -14,12 +14,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class c10 implements Runnable {
-    public final int f32629a;
-    public final Object f32630b;
+    public final int f32545a;
+    public final Object f32546b;
 
     public c10(Object obj, int i10) {
-        this.f32629a = i10;
-        this.f32630b = obj;
+        this.f32545a = i10;
+        this.f32546b = obj;
     }
 
     @Override
@@ -28,25 +28,25 @@ public final class c10 implements Runnable {
         w70 w70Var;
         EGLDisplay eGLDisplay;
         EGLSurface eGLSurface;
-        int i11 = this.f32629a;
-        Object obj = this.f32630b;
+        int i11 = this.f32545a;
+        Object obj = this.f32546b;
         switch (i11) {
             case 0:
                 t10 t10Var = (t10) obj;
-                AndroidUtilities.cancelRunOnUIThread(t10Var.f38044n0);
-                t10Var.f38027a.a(false, true);
+                AndroidUtilities.cancelRunOnUIThread(t10Var.f37936n0);
+                t10Var.f37919a.a(false, true);
                 return;
             case 1:
-                t10 t10Var2 = ((i10) obj).f34437a;
-                t10Var2.h(t10Var2.E, t10Var2.F, t10Var2.H, t10Var2.G, t10Var2.f38053y, t10Var2.J, t10Var2.f38051w, false);
+                t10 t10Var2 = ((i10) obj).f34345a;
+                t10Var2.h(t10Var2.E, t10Var2.F, t10Var2.H, t10Var2.G, t10Var2.f37945y, t10Var2.J, t10Var2.f37943w, false);
                 return;
             case 2:
-                ((FiltersSetupActivity) ((ai.w0) obj).f1647f3).getMessagesController().lockFiltersInternal();
+                ((FiltersSetupActivity) ((ai.w0) obj).Y2).getMessagesController().lockFiltersInternal();
                 return;
             case 3:
                 v10 v10Var = (v10) obj;
-                v10Var.f38684s.a();
-                v10Var.f38682n.invalidate();
+                v10Var.f38595s.a();
+                v10Var.f38593n.invalidate();
                 v10Var.E.Z(true);
                 return;
             case 4:
@@ -55,7 +55,7 @@ public final class c10 implements Runnable {
                     ArrayList<MessagesController.DialogFilter> dialogFilters = filtersSetupActivity.getMessagesController().getDialogFilters();
                     for (int i12 = 0; i12 < dialogFilters.size(); i12++) {
                         if (dialogFilters.get(i12).isDefault() && i12 != 0) {
-                            FiltersSetupActivity filtersSetupActivity2 = filtersSetupActivity.f31160b.e;
+                            FiltersSetupActivity filtersSetupActivity2 = filtersSetupActivity.f31088b.e;
                             ArrayList<MessagesController.DialogFilter> arrayList = filtersSetupActivity2.getMessagesController().dialogFilters;
                             if (i12 < 0 || i12 >= arrayList.size()) {
                                 i10 = 1;
@@ -68,7 +68,7 @@ public final class c10 implements Runnable {
                                 filtersSetupActivity2.e = true;
                                 filtersSetupActivity2.Z(true);
                             }
-                            filtersSetupActivity.f31159a.v0(0);
+                            filtersSetupActivity.f31087a.u0(0);
                             try {
                                 filtersSetupActivity.fragmentView.performHapticFeedback(3, i10);
                             } catch (Exception unused) {
@@ -86,36 +86,36 @@ public final class c10 implements Runnable {
                 }
                 return;
             case 5:
-                d60 d60Var = ((l30) obj).f35301b;
-                d60Var.f33052j2 = null;
+                d60 d60Var = ((l30) obj).f35195b;
+                d60Var.f32974j2 = null;
                 d60Var.J1(d60Var.F1, true);
                 return;
             case 6:
                 k50 k50Var = (k50) obj;
-                d60 d60Var2 = k50Var.f35027f;
-                x30 x30Var = d60Var2.f33015b;
+                d60 d60Var2 = k50Var.f34940f;
+                x30 x30Var = d60Var2.f32937b;
                 ImageLocation imageLocation = k50Var.d;
                 if (imageLocation != null) {
                     x30Var.K0 = imageLocation;
-                    x30Var.f23337q1 = null;
-                    x30Var.f23338r1 = null;
+                    x30Var.f22993q1 = null;
+                    x30Var.f22994r1 = null;
                     k50Var.d = null;
                 }
                 TLRPC.Chat chat = d60Var2.d.getMessagesController().getChat(Long.valueOf(-k50Var.e));
                 ImageLocation forChat = ImageLocation.getForChat(chat, 0);
                 ImageLocation forChat2 = ImageLocation.getForChat(chat, 1);
-                if (ImageLocation.getForLocal(k50Var.f35025b) == null) {
-                    forChat2 = ImageLocation.getForLocal(k50Var.f35026c);
+                if (ImageLocation.getForLocal(k50Var.f34938b) == null) {
+                    forChat2 = ImageLocation.getForLocal(k50Var.f34939c);
                 }
                 x30Var.setCreateThumbFromParent(false);
                 x30Var.H(null, forChat, forChat2, true);
-                k50Var.f35026c = null;
-                k50Var.f35025b = null;
+                k50Var.f34939c = null;
+                k50Var.f34938b = null;
                 AndroidUtilities.updateVisibleRows(d60Var2.Q);
                 k50Var.a(1.0f);
                 return;
             case 7:
-                n50 n50Var = ((o50) obj).f36192g;
+                n50 n50Var = ((o50) obj).f36048g;
                 if (n50Var != null) {
                     n50Var.invalidate();
                     return;
@@ -123,7 +123,7 @@ public final class c10 implements Runnable {
                 return;
             case 8:
                 g70 g70Var = (g70) obj;
-                g70Var.f33985y = null;
+                g70Var.f33845y = null;
                 g70Var.E = null;
                 g70Var.F = null;
                 g70Var.G = null;
@@ -131,26 +131,26 @@ public final class c10 implements Runnable {
                 g70Var.H = null;
                 g70Var.J = 0.0d;
                 g70Var.Z(false, true);
-                g70Var.d.h(null, null, g70Var.f33981r, null);
-                g70Var.f33979f.setAnimation(g70Var.R);
+                g70Var.d.h(null, null, g70Var.f33841r, null);
+                g70Var.f33839f.setAnimation(g70Var.R);
                 g70Var.R.M(0);
                 return;
             case 9:
-                org.telegram.messenger.f0.p(R.string.GroupsEmojiPackUpdated, org.telegram.ui.Components.yc.a0(((j70) obj).f34764c), R.raw.done, 36);
+                org.telegram.messenger.f0.p(R.string.GroupsEmojiPackUpdated, org.telegram.ui.Components.yc.a0(((j70) obj).f34677c), R.raw.done, 36);
                 return;
             case 10:
                 y70 y70Var = (y70) obj;
                 w70 w70Var2 = y70Var.I;
                 int i16 = R.drawable.intro_powerful_mask;
-                int i17 = org.telegram.ui.ActionBar.h6.f19076d6;
+                int i17 = org.telegram.ui.ActionBar.h6.f19061d6;
                 int w02 = org.telegram.ui.ActionBar.h6.w0(null, i17, false);
-                int i18 = w70.f39002y;
+                int i18 = w70.f38914y;
                 w70Var2.b(i16, 17, w02, true);
-                int[] iArr = y70Var.I.f39007n;
+                int[] iArr = y70Var.I.f38919n;
                 Intro.setPowerfulTextures(iArr[17], iArr[18], iArr[16], iArr[15]);
                 w70 w70Var3 = y70Var.I;
                 w70Var3.c(w70Var3.v, 23, true);
-                int[] iArr2 = y70Var.I.f39007n;
+                int[] iArr2 = y70Var.I.f38919n;
                 Intro.setTelegramTextures(iArr2[22], iArr2[21], iArr2[23]);
                 Intro.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, i17, false));
                 return;
@@ -158,14 +158,14 @@ public final class c10 implements Runnable {
                 u70 u70Var = (u70) obj;
                 u70Var.getClass();
                 long currentTimeMillis = System.currentTimeMillis();
-                y70 y70Var2 = (y70) u70Var.f38428b;
+                y70 y70Var2 = (y70) u70Var.f38338b;
                 Intro.setPage(y70Var2.H);
                 Intro.setDate(((float) (currentTimeMillis - y70Var2.J)) / 1000.0f);
                 Intro.onDrawFrame(0);
                 w70 w70Var4 = y70Var2.I;
-                if (w70Var4 != null && w70Var4.isAlive() && (eGLDisplay = (w70Var = y70Var2.I).f39005c) != null && (eGLSurface = w70Var.f39006f) != null) {
+                if (w70Var4 != null && w70Var4.isAlive() && (eGLDisplay = (w70Var = y70Var2.I).f38917c) != null && (eGLSurface = w70Var.f38918f) != null) {
                     try {
-                        w70Var.f39004b.eglSwapBuffers(eGLDisplay, eGLSurface);
+                        w70Var.f38916b.eglSwapBuffers(eGLDisplay, eGLSurface);
                         return;
                     } catch (Exception unused2) {
                         return;
@@ -173,7 +173,7 @@ public final class c10 implements Runnable {
                 }
                 return;
             case 12:
-                y70 y70Var3 = ((v70) obj).f38747b;
+                y70 y70Var3 = ((v70) obj).f38658b;
                 y70Var3.presentFragment(new qg0(), true);
                 y70Var3.M = true;
                 return;
@@ -189,14 +189,14 @@ public final class c10 implements Runnable {
                 ((nf.e) obj).b();
                 return;
             case 15:
-                ((ra0) obj).f37379a.C0.setVisibility(8);
+                ((ra0) obj).f37278a.C0.setVisibility(8);
                 return;
             case 16:
                 ((xb0) obj).g0();
                 return;
             case 17:
                 try {
-                    org.telegram.ui.Components.zl0 currentListView = ((ad0) obj).f32209y0.K0.getCurrentListView();
+                    org.telegram.ui.Components.yl0 currentListView = ((ad0) obj).f32137y0.K0.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -206,7 +206,7 @@ public final class c10 implements Runnable {
                     return;
                 }
             case 18:
-                EditTextBoldCursor[] editTextBoldCursorArr = ((ge0) obj).f34056b;
+                EditTextBoldCursor[] editTextBoldCursorArr = ((ge0) obj).f33916b;
                 if (editTextBoldCursorArr != null) {
                     editTextBoldCursorArr[0].requestFocus();
                     EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
@@ -217,26 +217,26 @@ public final class c10 implements Runnable {
                 return;
             case 19:
                 je0 je0Var = (je0) obj;
-                org.telegram.ui.Components.oj0 oj0Var = je0Var.e;
-                EditTextBoldCursor editTextBoldCursor2 = je0Var.f34871a;
+                org.telegram.ui.Components.nj0 nj0Var = je0Var.e;
+                EditTextBoldCursor editTextBoldCursor2 = je0Var.f34780a;
                 if (editTextBoldCursor2 != null) {
                     editTextBoldCursor2.requestFocus();
                     editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                    qg0.T0(je0Var.f34880y, editTextBoldCursor2);
-                    oj0Var.getAnimatedDrawable().N(0, false, false);
-                    oj0Var.d();
+                    qg0.T0(je0Var.f34789y, editTextBoldCursor2);
+                    nj0Var.getAnimatedDrawable().N(0, false, false);
+                    nj0Var.d();
                     return;
                 }
                 return;
             case 20:
-                ((org.telegram.ui.Components.oj0) obj).d();
+                ((org.telegram.ui.Components.nj0) obj).d();
                 return;
             case 21:
-                ((re0) ((ci.h2) obj).f4758c).getClass();
+                ((re0) ((ci.h2) obj).f4750c).getClass();
                 return;
             case 22:
                 double currentTimeMillis2 = System.currentTimeMillis();
-                re0 re0Var = ((qe0) obj).f36972a;
+                re0 re0Var = ((qe0) obj).f36873a;
                 double d = re0Var.Q;
                 rf0 rf0Var = re0Var.v;
                 re0Var.Q = currentTimeMillis2;
@@ -280,15 +280,15 @@ public final class c10 implements Runnable {
                 return;
             case 23:
                 double currentTimeMillis3 = System.currentTimeMillis();
-                tf0 tf0Var = (tf0) ((ci.o2) obj).f5244b;
-                double d10 = currentTimeMillis3 - tf0Var.f38187b0;
-                tf0Var.f38187b0 = currentTimeMillis3;
+                tf0 tf0Var = (tf0) ((ci.o2) obj).f5237b;
+                double d10 = currentTimeMillis3 - tf0Var.f38077b0;
+                tf0Var.f38077b0 = currentTimeMillis3;
                 int i27 = (int) (tf0Var.W - d10);
                 tf0Var.W = i27;
                 if (i27 <= 1000) {
                     tf0.p(tf0Var);
                     tf0Var.v.setVisibility(8);
-                    rf0 rf0Var2 = tf0Var.f38210x;
+                    rf0 rf0Var2 = tf0Var.f38100x;
                     if (rf0Var2 != null) {
                         rf0Var2.setVisibility(0);
                     }
@@ -298,19 +298,19 @@ public final class c10 implements Runnable {
                 return;
             case 24:
                 double currentTimeMillis4 = System.currentTimeMillis();
-                tf0 tf0Var2 = ((sf0) obj).f37830a;
-                double d11 = tf0Var2.f38185a0;
+                tf0 tf0Var2 = ((sf0) obj).f37734a;
+                double d11 = tf0Var2.f38075a0;
                 rf0 rf0Var3 = tf0Var2.v;
-                tf0Var2.f38185a0 = currentTimeMillis4;
+                tf0Var2.f38075a0 = currentTimeMillis4;
                 int i28 = (int) (tf0Var2.V - (currentTimeMillis4 - d11));
                 tf0Var2.V = i28;
                 if (i28 >= 1000) {
                     int i29 = i28 / 1000;
                     int i30 = i29 / 60;
                     int i31 = i29 - (i30 * 60);
-                    int i32 = tf0Var2.f38194g0;
+                    int i32 = tf0Var2.f38084g0;
                     if (i32 != 4 && i32 != 3 && i32 != 11) {
-                        if (tf0Var2.f38193f0 == 2 && (i32 == 2 || i32 == 17 || i32 == 16)) {
+                        if (tf0Var2.f38083f0 == 2 && (i32 == 2 || i32 == 17 || i32 == 16)) {
                             rf0Var3.setText(LocaleController.formatString("ResendSmsAvailableIn", R.string.ResendSmsAvailableIn, Integer.valueOf(i30), Integer.valueOf(i31)));
                             return;
                         } else if (i32 == 2 || i32 == 17 || i32 == 16) {
@@ -324,7 +324,7 @@ public final class c10 implements Runnable {
                     return;
                 }
                 tf0Var2.w();
-                int i33 = tf0Var2.f38194g0;
+                int i33 = tf0Var2.f38084g0;
                 if (i33 == 3 || i33 == 4 || i33 == 2 || i33 == 17 || i33 == 16 || i33 == 11) {
                     if (i33 == 4) {
                         rf0Var3.setText(LocaleController.getString("RequestCallButton", R.string.RequestCallButton));
@@ -340,16 +340,16 @@ public final class c10 implements Runnable {
                 }
                 return;
             case 25:
-                ((org.telegram.ui.Components.yn0) obj).run();
+                ((org.telegram.ui.Components.xn0) obj).run();
                 return;
             case 26:
                 ah0.j((ah0) obj);
                 return;
             case 27:
-                ((org.telegram.ui.Components.wi) obj).setVisibility(8);
+                ((org.telegram.ui.Components.vi) obj).setVisibility(8);
                 return;
             case 28:
-                AndroidUtilities.showKeyboard(((wj0) ((g) obj).f33927b).Q);
+                AndroidUtilities.showKeyboard(((wj0) ((g) obj).f33787b).Q);
                 return;
             default:
                 NotificationsSettingsActivity.V((NotificationsSettingsActivity) obj);

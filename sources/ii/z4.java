@@ -1,11 +1,11 @@
 package ii;
 public final class z4 implements Runnable {
-    public final int f11808a;
-    public final b5 f11809b;
+    public final int f11793a;
+    public final b5 f11794b;
 
     public z4(b5 b5Var, int i10) {
-        this.f11808a = i10;
-        this.f11809b = b5Var;
+        this.f11793a = i10;
+        this.f11794b = b5Var;
     }
 
     @Override

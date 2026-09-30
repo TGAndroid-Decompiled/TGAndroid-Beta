@@ -7,23 +7,23 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Pattern;
 public final class u {
-    public static final Pattern f45369g = Pattern.compile("[^\\p{Alnum}]");
+    public static final Pattern f45263g = Pattern.compile("[^\\p{Alnum}]");
     public static final String h = Pattern.quote("/");
-    public final ee.v f45370a;
-    public final Context f45371b;
-    public final String f45372c;
+    public final ee.v f45264a;
+    public final Context f45265b;
+    public final String f45266c;
     public final qa.d d;
     public final r e;
-    public c f45373f;
+    public c f45267f;
 
     public u(Context context, String str, qa.d dVar, r rVar) {
         if (context != null) {
             if (str != null) {
-                this.f45371b = context;
-                this.f45372c = str;
+                this.f45265b = context;
+                this.f45266c = str;
                 this.d = dVar;
                 this.e = rVar;
-                this.f45370a = new ee.v(4);
+                this.f45264a = new ee.v(4);
                 return;
             }
             throw new IllegalArgumentException("appIdentifier must not be null");
@@ -37,7 +37,7 @@ public final class u {
         if (uuid == null) {
             lowerCase = null;
         } else {
-            lowerCase = f45369g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
+            lowerCase = f45263g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
         }
         String str2 = "Created new Crashlytics installation ID: " + lowerCase + " for FID: " + str;
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -49,13 +49,13 @@ public final class u {
 
     public final synchronized c b() {
         String str;
-        c cVar = this.f45373f;
-        if (cVar != null && (cVar.f45304b != null || !this.e.a())) {
-            return this.f45373f;
+        c cVar = this.f45267f;
+        if (cVar != null && (cVar.f45198b != null || !this.e.a())) {
+            return this.f45267f;
         }
-        t9.b bVar = t9.b.f43446a;
+        t9.b bVar = t9.b.f43340a;
         bVar.c("Determining Crashlytics installation ID...");
-        SharedPreferences sharedPreferences = this.f45371b.getSharedPreferences("com.google.firebase.crashlytics", 0);
+        SharedPreferences sharedPreferences = this.f45265b.getSharedPreferences("com.google.firebase.crashlytics", 0);
         String string = sharedPreferences.getString("firebase.installation.id", null);
         bVar.c("Cached Firebase Installation ID: " + string);
         if (this.e.a()) {
@@ -74,36 +74,36 @@ public final class u {
                 }
             }
             if (str.equals(string)) {
-                this.f45373f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
+                this.f45267f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
             } else {
-                this.f45373f = new c(a(str, sharedPreferences), str);
+                this.f45267f = new c(a(str, sharedPreferences), str);
             }
         } else if (string != null && string.startsWith("SYN_")) {
-            this.f45373f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
+            this.f45267f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
         } else {
-            this.f45373f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
+            this.f45267f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
         }
-        bVar.c("Install IDs: " + this.f45373f);
-        return this.f45373f;
+        bVar.c("Install IDs: " + this.f45267f);
+        return this.f45267f;
     }
 
     public final String c() {
         String str;
-        ee.v vVar = this.f45370a;
-        Context context = this.f45371b;
+        ee.v vVar = this.f45264a;
+        Context context = this.f45265b;
         synchronized (vVar) {
             try {
-                if (vVar.f8196b == null) {
+                if (vVar.f8184b == null) {
                     String installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
                     if (installerPackageName == null) {
                         installerPackageName = "";
                     }
-                    vVar.f8196b = installerPackageName;
+                    vVar.f8184b = installerPackageName;
                 }
-                if ("".equals(vVar.f8196b)) {
+                if ("".equals(vVar.f8184b)) {
                     str = null;
                 } else {
-                    str = vVar.f8196b;
+                    str = vVar.f8184b;
                 }
             } finally {
             }

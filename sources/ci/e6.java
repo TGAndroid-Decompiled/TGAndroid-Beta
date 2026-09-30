@@ -12,13 +12,13 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.oy;
-import org.telegram.ui.Components.u51;
-public final class e6 implements oy {
-    public final q6 f4646a;
+import org.telegram.ui.Components.ny;
+import org.telegram.ui.Components.t51;
+public final class e6 implements ny {
+    public final q6 f4638a;
 
     public e6(q6 q6Var) {
-        this.f4646a = q6Var;
+        this.f4638a = q6Var;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class e6 implements oy {
 
     @Override
     public final boolean k() {
-        qg.b editText = ((qg.v2) this.f4646a.J0).getEditText();
+        qg.b editText = ((qg.v2) this.f4638a.J0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -71,7 +71,7 @@ public final class e6 implements oy {
         qg.v2 v2Var;
         qg.b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        qg.j jVar = this.f4646a.J0;
+        qg.j jVar = this.f4638a.J0;
         if ((jVar instanceof qg.v2) && (editText = (v2Var = (qg.v2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -97,10 +97,10 @@ public final class e6 implements oy {
 
     @Override
     public final void n() {
-        q6 q6Var = this.f4646a;
+        q6 q6Var = this.f4638a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(q6Var.getContext(), 0, q6Var.G1);
-        alertDialog$Builder.f18678a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18678a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f18663a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18663a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 19));
         hg.c.p(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -113,7 +113,7 @@ public final class e6 implements oy {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.z5 z5Var;
-        qg.b editText = ((qg.v2) this.f4646a.J0).getEditText();
+        qg.b editText = ((qg.v2) this.f4638a.J0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -122,7 +122,7 @@ public final class e6 implements oy {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    z5Var = new org.telegram.ui.Components.z5(document.f18358id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(document.f18343id, 1.0f, editText.getPaint().getFontMetricsInt());
                     z5Var.document = document;
                 } else {
                     z5Var = new org.telegram.ui.Components.z5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -153,7 +153,7 @@ public final class e6 implements oy {
     }
 
     @Override
-    public final void o(u51 u51Var) {
+    public final void o(t51 t51Var) {
     }
 
     @Override

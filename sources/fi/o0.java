@@ -11,21 +11,21 @@ import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 public final class o0 implements Utilities.Callback2 {
-    public final int f9143a;
-    public final long f9144b;
-    public final Object f9145c;
+    public final int f9131a;
+    public final long f9132b;
+    public final Object f9133c;
 
     public o0(Object obj, long j3, int i10) {
-        this.f9143a = i10;
-        this.f9145c = obj;
-        this.f9144b = j3;
+        this.f9131a = i10;
+        this.f9133c = obj;
+        this.f9132b = j3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f9143a;
-        long j3 = this.f9144b;
-        Object obj3 = this.f9145c;
+        int i10 = this.f9131a;
+        long j3 = this.f9132b;
+        Object obj3 = this.f9133c;
         switch (i10) {
             case 0:
                 m2 m2Var = (m2) obj3;
@@ -50,7 +50,7 @@ public final class o0 implements Utilities.Callback2 {
                 Long l4 = (Long) obj2;
                 Pattern pattern = LaunchActivity.B1;
                 if ("paid".equals((String) obj) && l4.longValue() != 0) {
-                    AndroidUtilities.runOnUIThread(new a3.h0(launchActivity, l4, this.f9144b, 26));
+                    AndroidUtilities.runOnUIThread(new a3.h0(launchActivity, l4, this.f9132b, 26));
                     return;
                 }
                 return;

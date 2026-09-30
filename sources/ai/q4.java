@@ -16,17 +16,17 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.io.IOException;
 public final class q4 implements Runnable {
-    public final int f1424a;
-    public final Object f1425b;
+    public final int f1419a;
+    public final Object f1420b;
 
     public q4(com.google.android.gms.common.api.internal.m1 m1Var, c5.b0 b0Var) {
-        this.f1424a = 17;
-        this.f1425b = b0Var;
+        this.f1419a = 17;
+        this.f1420b = b0Var;
     }
 
     private final void a() {
-        g6.o oVar = (g6.o) this.f1425b;
-        synchronized (g6.o.f9448i) {
+        g6.o oVar = (g6.o) this.f1420b;
+        synchronized (g6.o.f9436i) {
             try {
                 if (!oVar.d()) {
                     return;
@@ -43,9 +43,9 @@ public final class q4 implements Runnable {
         Object obj;
         i2.f0 f0Var;
         m.h hVar;
-        switch (this.f1424a) {
+        switch (this.f1419a) {
             case 0:
-                e6 e6Var = (e6) this.f1425b;
+                e6 e6Var = (e6) this.f1420b;
                 if (e6Var.K1 && e6Var.f772b1) {
                     jc jcVar = ((ac) e6Var.Q1).d;
                     jcVar.l1 = false;
@@ -54,16 +54,16 @@ public final class q4 implements Runnable {
                 }
                 return;
             case 1:
-                ((zb) this.f1425b).L0 = false;
+                ((zb) this.f1420b).L0 = false;
                 return;
             case 2:
-                oa oaVar = (oa) this.f1425b;
-                oaVar.f1367b = false;
+                oa oaVar = (oa) this.f1420b;
+                oaVar.f1364b = false;
                 oaVar.invalidate();
                 return;
             case 3:
                 try {
-                    androidx.activity.l.n((androidx.activity.l) this.f1425b);
+                    androidx.activity.l.n((androidx.activity.l) this.f1420b);
                     return;
                 } catch (IllegalStateException e) {
                     if (TextUtils.equals(e.getMessage(), "Can not perform this action after onSaveInstanceState")) {
@@ -77,7 +77,7 @@ public final class q4 implements Runnable {
                     return;
                 }
             case 4:
-                androidx.biometric.e0 e0Var = (androidx.biometric.e0) this.f1425b;
+                androidx.biometric.e0 e0Var = (androidx.biometric.e0) this.f1420b;
                 Context n10 = e0Var.n();
                 if (n10 == null) {
                     Log.w("FingerprintFragment", "Not resetting the dialog. Context is null.");
@@ -87,64 +87,64 @@ public final class q4 implements Runnable {
                 e0Var.C0.e(n10.getString(2131689607));
                 return;
             case 5:
-                androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f1425b;
-                pVar.f2465n0.onDismiss(pVar.f2473v0);
+                androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f1420b;
+                pVar.f2458n0.onDismiss(pVar.f2466v0);
                 return;
             case 6:
-                androidx.fragment.app.s sVar = (androidx.fragment.app.s) this.f1425b;
+                androidx.fragment.app.s sVar = (androidx.fragment.app.s) this.f1420b;
                 if (sVar.Y != null) {
                     sVar.j().getClass();
                     return;
                 }
                 return;
             case 7:
-                ((androidx.fragment.app.k0) this.f1425b).A(true);
+                ((androidx.fragment.app.k0) this.f1420b).A(true);
                 return;
             case 8:
-                synchronized (((androidx.lifecycle.z) this.f1425b).f2616a) {
-                    obj = ((androidx.lifecycle.z) this.f1425b).f2619f;
-                    ((androidx.lifecycle.z) this.f1425b).f2619f = androidx.lifecycle.z.f2615k;
+                synchronized (((androidx.lifecycle.z) this.f1420b).f2609a) {
+                    obj = ((androidx.lifecycle.z) this.f1420b).f2612f;
+                    ((androidx.lifecycle.z) this.f1420b).f2612f = androidx.lifecycle.z.f2608k;
                 }
-                ((androidx.lifecycle.z) this.f1425b).j(obj);
+                ((androidx.lifecycle.z) this.f1420b).j(obj);
                 return;
             case 9:
-                androidx.mediarouter.app.u uVar = (androidx.mediarouter.app.u) this.f1425b;
+                androidx.mediarouter.app.u uVar = (androidx.mediarouter.app.u) this.f1420b;
                 uVar.i(true);
                 uVar.U.requestLayout();
                 uVar.U.getViewTreeObserver().addOnGlobalLayoutListener(new androidx.mediarouter.app.j(uVar, 0));
                 return;
             case 10:
-                androidx.mediarouter.app.u uVar2 = ((androidx.mediarouter.app.s) this.f1425b).f2798b;
-                if (uVar2.f2803c0 != null) {
-                    uVar2.f2803c0 = null;
-                    if (uVar2.f2821s0) {
-                        uVar2.q(uVar2.f2822t0);
+                androidx.mediarouter.app.u uVar2 = ((androidx.mediarouter.app.s) this.f1420b).f2791b;
+                if (uVar2.f2796c0 != null) {
+                    uVar2.f2796c0 = null;
+                    if (uVar2.f2814s0) {
+                        uVar2.q(uVar2.f2815t0);
                         return;
                     }
                     return;
                 }
                 return;
             case 11:
-                c5.y yVar = (c5.y) this.f1425b;
+                c5.y yVar = (c5.y) this.f1420b;
                 c5.c cVar = yVar.d;
                 cVar.k(0);
-                c5.h hVar2 = c5.g0.f3885i;
+                c5.h hVar2 = c5.g0.f3878i;
                 cVar.j(24, hVar2);
                 yVar.c(hVar2);
                 return;
             case 12:
-                qg.j jVar = ((ci.nb) this.f1425b).J0;
+                qg.j jVar = ((ci.nb) this.f1420b).J0;
                 if (jVar instanceof qg.v2) {
                     ((qg.v2) jVar).getEditText();
                     return;
                 }
                 return;
             case 13:
-                com.google.android.gms.common.api.internal.g0 g0Var = (com.google.android.gms.common.api.internal.g0) this.f1425b;
+                com.google.android.gms.common.api.internal.g0 g0Var = (com.google.android.gms.common.api.internal.g0) this.f1420b;
                 k6.e eVar = g0Var.d;
-                Context context = g0Var.f6077c;
+                Context context = g0Var.f6065c;
                 eVar.getClass();
-                if (!k6.g.f13514a.getAndSet(true)) {
+                if (!k6.g.f13499a.getAndSet(true)) {
                     try {
                         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
                         if (notificationManager != null) {
@@ -159,46 +159,46 @@ public final class q4 implements Runnable {
                 }
                 return;
             case 14:
-                ((com.google.android.gms.common.api.internal.p0) this.f1425b).f();
+                ((com.google.android.gms.common.api.internal.p0) this.f1420b).f();
                 return;
             case 15:
-                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((a6.m) this.f1425b).f307b).f6142b;
+                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((a6.m) this.f1420b).f307b).f6130b;
                 cVar2.d(cVar2.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 16:
-                ((com.google.android.gms.common.api.internal.d1) this.f1425b).f6069j.b(new k6.a(4));
+                ((com.google.android.gms.common.api.internal.d1) this.f1420b).f6057j.b(new k6.a(4));
                 return;
             case 17:
                 return;
             case 18:
-                com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f1425b;
-                xVar.f6192o.lock();
+                com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f1420b;
+                xVar.f6180o.lock();
                 try {
                     com.google.android.gms.common.api.internal.x.l(xVar);
                     return;
                 } finally {
-                    xVar.f6192o.unlock();
+                    xVar.f6180o.unlock();
                 }
             case 19:
-                ((f6.i) this.f1425b).g(false);
+                ((f6.i) this.f1420b).g(false);
                 return;
             case 20:
                 a();
                 return;
             case 21:
-                i.e eVar2 = (i.e) this.f1425b;
+                i.e eVar2 = (i.e) this.f1420b;
                 eVar2.a(true);
                 eVar2.invalidateSelf();
                 return;
             case 22:
-                if (((TaskCompletionSource) this.f1425b).trySetException(new IOException("TIMEOUT"))) {
+                if (((TaskCompletionSource) this.f1420b).trySetException(new IOException("TIMEOUT"))) {
                     Log.w("Rpc", "No response");
                     return;
                 }
                 return;
             case 23:
-                kg.e eVar3 = (kg.e) this.f1425b;
-                eVar3.f13614f.animate().setDuration(120L).alpha(0.0f);
+                kg.e eVar3 = (kg.e) this.f1420b;
+                eVar3.f13599f.animate().setDuration(120L).alpha(0.0f);
                 eVar3.h.animate().setListener(null).start();
                 if (eVar3.h.getVisibility() != 0) {
                     eVar3.h.setVisibility(0);
@@ -207,52 +207,52 @@ public final class q4 implements Runnable {
                 eVar3.h.animate().setDuration(120L).alpha(1.0f).start();
                 return;
             case 24:
-                ki.s0 s0Var = (ki.s0) this.f1425b;
-                if (s0Var.W == 5 && (f0Var = s0Var.S) != null && s0Var.f13877x) {
+                ki.s0 s0Var = (ki.s0) this.f1420b;
+                if (s0Var.W == 5 && (f0Var = s0Var.S) != null && s0Var.f13862x) {
                     long J0 = f0Var.J0();
                     long j3 = s0Var.G;
                     if (J0 < j3 || J0 >= s0Var.H) {
                         s0Var.S.W0(5, j3);
                     }
                     s0Var.d.getClass();
-                    s0Var.f13863i.postDelayed(this, 33L);
+                    s0Var.f13848i.postDelayed(this, 33L);
                     return;
                 }
                 return;
             case 25:
-                m.r1 r1Var = (m.r1) this.f1425b;
-                r1Var.f14558w = null;
+                m.r1 r1Var = (m.r1) this.f1420b;
+                r1Var.f14543w = null;
                 r1Var.drawableStateChanged();
                 return;
             case 26:
-                ActionMenuView actionMenuView = ((Toolbar) this.f1425b).f2024a;
+                ActionMenuView actionMenuView = ((Toolbar) this.f1420b).f2017a;
                 if (actionMenuView != null && (hVar = actionMenuView.J) != null) {
                     hVar.l();
                     return;
                 }
                 return;
             case 27:
-                Object obj2 = ((a6.i) this.f1425b).f303b;
+                Object obj2 = ((a6.i) this.f1420b).f303b;
                 return;
             case 28:
-                org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1425b;
-                if (a0Var.f20019b == null) {
-                    a0Var.f20019b = new androidx.emoji2.text.j(a0Var, 3);
+                org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1420b;
+                if (a0Var.f20004b == null) {
+                    a0Var.f20004b = new androidx.emoji2.text.j(a0Var, 3);
                 }
-                androidx.emoji2.text.j jVar2 = a0Var.f20019b;
-                int i10 = a0Var.f20020c + 1;
-                a0Var.f20020c = i10;
-                jVar2.f2333b = i10;
+                androidx.emoji2.text.j jVar2 = a0Var.f20004b;
+                int i10 = a0Var.f20005c + 1;
+                a0Var.f20005c = i10;
+                jVar2.f2326b = i10;
                 a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             default:
-                org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1425b;
-                TextView textView = v5Var.f21706b;
+                org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1420b;
+                TextView textView = v5Var.f21686b;
                 textView.setTag(null);
                 AnimatorSet animatorSet = new AnimatorSet();
                 v5Var.d = animatorSet;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f21705a, property, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f21685a, property, 1.0f));
                 v5Var.d.setDuration(250L);
                 v5Var.d.setInterpolator(new DecelerateInterpolator());
                 v5Var.d.addListener(new org.telegram.ui.t4(this, 9));
@@ -262,12 +262,12 @@ public final class q4 implements Runnable {
     }
 
     public q4(Object obj, int i10) {
-        this.f1424a = i10;
-        this.f1425b = obj;
+        this.f1419a = i10;
+        this.f1420b = obj;
     }
 
     public q4(a6.i iVar, int i10) {
-        this.f1424a = 27;
-        this.f1425b = iVar;
+        this.f1419a = 27;
+        this.f1420b = iVar;
     }
 }

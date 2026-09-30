@@ -1,71 +1,123 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.view.View;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class bi extends View {
-    public final int f22943a;
-    public final xi f22944b;
+public final class bi extends lu {
+    public boolean V;
+    public int W;
+    public int f22975a0;
+    public ValueAnimator f22976b0;
+    public final wi f22977c0;
 
-    public bi(xi xiVar, Context context, int i10) {
-        super(context);
-        this.f22943a = i10;
-        this.f22944b = xiVar;
+    public bi(wi wiVar, Context context, mi miVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, miVar, null, 1, true, d6Var);
+        this.f22977c0 = wiVar;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.f22943a) {
-            case 0:
-                super.draw(canvas);
-                this.f22944b.f30256b0.draw(canvas);
-                return;
-            default:
-                super.draw(canvas);
-                return;
+    public final void c(float f7) {
+        wi wiVar = this.f22977c0;
+        wiVar.f29939g2 = f7;
+        yh yhVar = wiVar.D0;
+        yhVar.setTranslationY(f7);
+        yhVar.invalidate();
+        wiVar.g1();
+        wiVar.X1(wiVar.f29995y0, 0);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.V) {
+            du editText = this.f22977c0.E0.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f22975a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new ai.x(14, this, editText));
+            ValueAnimator valueAnimator = this.f22976b0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f22976b0 = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(sr.f28346f);
+            ofFloat.start();
+            this.V = false;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void e() {
+        super/*org.telegram.ui.ActionBar.e3*/.dismiss();
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        mz emojiView = getEmojiView();
+        if (emojiView != null) {
+            emojiView.f26593w0 = false;
+            emojiView.f26595w2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f22943a) {
-            case 1:
-                xi xiVar = this.f22944b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, xiVar.f30331y0.getSelectedItemsCount())));
-                int ceil = (int) Math.ceil(xiVar.J0.measureText(format));
-                int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
-                int measuredWidth = getMeasuredWidth() / 2;
-                int themedColor = xiVar.getThemedColor(org.telegram.ui.ActionBar.h6.C5);
-                xiVar.J0.setColor(i0.a.k(themedColor, (int) (((xiVar.V0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
-                xiVar.L0.setColor(xiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19146h5));
-                int i10 = max / 2;
-                int i11 = measuredWidth - i10;
-                int i12 = i10 + measuredWidth;
-                xiVar.K0.set(i11, 0.0f, i12, getMeasuredHeight());
-                canvas.drawRoundRect(xiVar.K0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), xiVar.L0);
-                xiVar.L0.setColor(xiVar.getThemedColor(org.telegram.ui.ActionBar.h6.W9));
-                xiVar.K0.set(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp(2.0f), i12 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
-                canvas.drawRoundRect(xiVar.K0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), xiVar.L0);
-                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), xiVar.J0);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+    public final void i(Menu menu) {
+        org.telegram.ui.ActionBar.m2 m2Var = this.f22977c0.f29934f0;
+        if (m2Var instanceof org.telegram.ui.wn) {
+            org.telegram.ui.wn.k8(menu, ((org.telegram.ui.wn) m2Var).h, true, true, true, true);
         }
     }
 
     @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f22943a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                this.f22944b.f30256b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        wi wiVar = this.f22977c0;
+        bi biVar = wiVar.E0;
+        if (!wiVar.f29981u1) {
+            if (motionEvent.getX() > biVar.getEditText().getLeft() && motionEvent.getX() < biVar.getEditText().getRight() && motionEvent.getY() > biVar.getEditText().getTop() && motionEvent.getY() < biVar.getEditText().getBottom()) {
+                wiVar.t1(biVar.getEditText(), true);
+            } else {
+                wiVar.t1(biVar.getEditText(), false);
+            }
         }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f22977c0.U1();
+    }
+
+    @Override
+    public final void q(int i10, int i11) {
+        wi wiVar = this.f22977c0;
+        yh yhVar = wiVar.D0;
+        boolean z10 = false;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.V = true;
+            this.W = getEditText().getMeasuredHeight();
+            this.f22975a0 = getEditText().getScrollY();
+            invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.V = false;
+        }
+        if (!wiVar.f29924c0) {
+            if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
+                z10 = true;
+            }
+            wiVar.M1(z10);
+        }
+        wiVar.W1 = yhVar.getTop() + wiVar.V1;
+        yhVar.invalidate();
+        wiVar.U1();
     }
 }

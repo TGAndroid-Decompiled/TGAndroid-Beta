@@ -6,10 +6,10 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class w00 implements TextWatcher {
-    public final y00 f38946a;
+    public final y00 f38858a;
 
     public w00(y00 y00Var) {
-        this.f38946a = y00Var;
+        this.f38858a = y00Var;
     }
 
     @Override
@@ -18,19 +18,19 @@ public final class w00 implements TextWatcher {
         org.telegram.ui.ActionBar.k kVar2;
         String str;
         int i10;
-        b10 b10Var = this.f38946a.e;
-        if (!TextUtils.equals(editable, b10Var.f32355w)) {
-            b10Var.f32352n = !TextUtils.isEmpty(editable);
-            b10Var.f32355w = org.telegram.ui.Components.z5.onlyEmojiSpans(editable);
+        b10 b10Var = this.f38858a.e;
+        if (!TextUtils.equals(editable, b10Var.f32283w)) {
+            b10Var.f32280n = !TextUtils.isEmpty(editable);
+            b10Var.f32283w = org.telegram.ui.Components.z5.onlyEmojiSpans(editable);
             p00 p00Var = b10Var.I;
             if (p00Var != null) {
-                p00Var.e(org.telegram.ui.Components.z5.cloneSpans(b10Var.f32355w, -1, p00Var.f36478s.getPaint().getFontMetricsInt(), 0.5f), true);
+                p00Var.e(org.telegram.ui.Components.z5.cloneSpans(b10Var.f32283w, -1, p00Var.f36375s.getPaint().getFontMetricsInt(), 0.5f), true);
             }
             q00 q00Var = b10Var.J;
             if (q00Var != null) {
-                org.telegram.ui.Cells.u3 u3Var = q00Var.f36819r;
-                if (b10.k0(b10Var.f32355w)) {
-                    if (b10Var.f32356x) {
+                org.telegram.ui.Cells.u3 u3Var = q00Var.f36720r;
+                if (b10.k0(b10Var.f32283w)) {
+                    if (b10Var.f32284x) {
                         i10 = R.string.FilterNameAnimationsDisable;
                     } else {
                         i10 = R.string.FilterNameAnimationsEnable;
@@ -42,7 +42,7 @@ public final class w00 implements TextWatcher {
                 u3Var.setText(str);
             }
             kVar = ((org.telegram.ui.ActionBar.m2) b10Var).actionBar;
-            CharSequence charSequence = b10Var.f32355w;
+            CharSequence charSequence = b10Var.f32283w;
             kVar2 = ((org.telegram.ui.ActionBar.m2) b10Var).actionBar;
             kVar.setTitle(org.telegram.ui.Components.z5.cloneSpans(charSequence, -1, kVar2.getTitleFontMetricsInt()));
         }

@@ -8,13 +8,13 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ih;
-import org.telegram.ui.Components.vi;
-public final class h4 implements vi {
-    public final e6 f943a;
+import org.telegram.ui.Components.hh;
+import org.telegram.ui.Components.ui;
+public final class h4 implements ui {
+    public final e6 f941a;
 
     public h4(e6 e6Var) {
-        this.f943a = e6Var;
+        this.f941a = e6Var;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class h4 implements vi {
         boolean z16;
         String str;
         String str2;
-        e6 e6Var = this.f943a;
+        e6 e6Var = this.f941a;
         if (e6Var.J0.m0 && (storyItem = e6Var.O1.f642a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || e6Var.I2.f30282j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || e6Var.I2.f29946j0.getSelectedPhotos().isEmpty())) {
                 g4 g4Var = e6Var.I2;
                 if (g4Var != null) {
                     g4Var.dismissWithButtonClick(i10);
@@ -39,8 +39,8 @@ public final class h4 implements vi {
             if (i10 != 8) {
                 e6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = e6Var.I2.f30282j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = e6Var.I2.f30282j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = e6Var.I2.f29946j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = e6Var.I2.f29946j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -116,7 +116,7 @@ public final class h4 implements vi {
 
     @Override
     public final void K0() {
-        this.f943a.f773b2.P();
+        this.f941a.f773b2.P();
     }
 
     @Override
@@ -129,7 +129,7 @@ public final class h4 implements vi {
         AccountInstance accountInstance;
         CharSequence charSequence2;
         boolean z12;
-        e6 e6Var = this.f943a;
+        e6 e6Var = this.f941a;
         TL_stories.StoryItem storyItem = e6Var.O1.f642a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = e6Var.getAccountInstance();
@@ -150,12 +150,12 @@ public final class h4 implements vi {
 
     @Override
     public final boolean c0() {
-        return this.f943a.N0();
+        return this.f941a.N0();
     }
 
     @Override
-    public final void x0(ih ihVar) {
-        NotificationCenter.getInstance(this.f943a.C2).doOnIdle(ihVar);
+    public final void x0(hh hhVar) {
+        NotificationCenter.getInstance(this.f941a.C2).doOnIdle(hhVar);
     }
 
     @Override

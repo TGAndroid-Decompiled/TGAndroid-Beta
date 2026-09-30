@@ -1,81 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.WindowManager;
-import org.telegram.messenger.FileLog;
-public final class ac extends tk0 {
-    public final int l1 = 0;
-    public final Object f22609m1;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class ac implements rk0 {
+    public final bc f22634a;
 
-    public ac(org.telegram.ui.nt ntVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(4, i10, context, null, d6Var);
-        this.f22609m1 = ntVar;
+    public ac(bc bcVar) {
+        this.f22634a = bcVar;
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        rc rcVar;
-        switch (this.l1) {
-            case 0:
-                cc ccVar = (cc) this.f22609m1;
-                if (motionEvent.getAction() == 0) {
-                    rc rcVar2 = ccVar.f23258n;
-                    if (rcVar2 != null) {
-                        rcVar2.i(false);
-                    }
-                } else if (motionEvent.getAction() == 1 && (rcVar = ccVar.f23258n) != null) {
-                    rcVar.i(true);
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+    public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
+        boolean z12;
+        bc bcVar = this.f22634a;
+        org.telegram.ui.ActionBar.m2 m2Var = bcVar.f22931f;
+        if (bcVar.e == null) {
+            return;
         }
+        long clientUserId = UserConfig.getInstance(m2Var.getCurrentAccount()).getClientUserId();
+        if ((m2Var instanceof org.telegram.ui.wn) && ((org.telegram.ui.wn) m2Var).a() == clientUserId) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        int i10 = 0;
+        for (int i11 = 0; i11 < bcVar.e.size(); i11++) {
+            int keyAt = bcVar.e.keyAt(i11);
+            TLRPC.Message message = new TLRPC.Message();
+            message.dialog_id = m2Var.getUserConfig().getClientUserId();
+            message.f18358id = keyAt;
+            MessageObject messageObject = new MessageObject(m2Var.getCurrentAccount(), message, false, false);
+            ArrayList<zg.o0> arrayList = new ArrayList<>();
+            arrayList.add(o0Var);
+            m2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, o0Var, false, false, bcVar.f22931f, null);
+            i10 = message.f18358id;
+        }
+        bcVar.f();
+        qc.e();
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.qj(this, o0Var, !z12, m2Var.getCurrentAccount(), i10), 300L);
     }
 
     @Override
-    public void j() {
-        switch (this.l1) {
-            case 1:
-                super.j();
-                org.telegram.ui.nt ntVar = (org.telegram.ui.nt) this.f22609m1;
-                if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = ntVar.f36134x;
-                    layoutParams.flags &= -131073;
-                    layoutParams.softInputMode = 16;
-                } else {
-                    ntVar.f36134x.flags |= 131072;
-                }
-                try {
-                    ((WindowManager) ntVar.f36133w.getSystemService("window")).updateViewLayout(ntVar.f36135y, ntVar.f36134x);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            default:
-                super.j();
-                return;
-        }
+    public final boolean j() {
+        return true;
     }
 
     @Override
-    public void m() {
-        switch (this.l1) {
-            case 0:
-                rc rcVar = rc.f27939w;
-                if (rcVar != null) {
-                    rcVar.i(false);
-                }
-                ((cc) this.f22609m1).d.getReactionsWindow().f49355c.setOnClickListener(new f0(this, 5));
-                return;
-            default:
-                return;
-        }
+    public final boolean k() {
+        return false;
     }
 
-    public ac(cc ccVar, org.telegram.ui.ActionBar.m2 m2Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(3, i10, context, m2Var, d6Var);
-        this.f22609m1 = ccVar;
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void m(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

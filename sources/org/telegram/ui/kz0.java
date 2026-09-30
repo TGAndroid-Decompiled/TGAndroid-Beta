@@ -22,7 +22,7 @@ public final class kz0 extends hv0 {
         if (f7 > 0.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
             ProfileActivity profileActivity = this.T;
-            rectF.set(0.0f, 0.0f, profileActivity.f31689n0.getMeasuredWidth(), AndroidUtilities.dp(30.0f) + profileActivity.f31689n0.getMeasuredHeight());
+            rectF.set(0.0f, 0.0f, profileActivity.f31617n0.getMeasuredWidth(), AndroidUtilities.dp(30.0f) + profileActivity.f31617n0.getMeasuredHeight());
             canvas.saveLayerAlpha(rectF, (int) (255.0f * f7), 31);
             profileActivity.Z.draw(canvas);
             canvas.save();
@@ -33,8 +33,8 @@ public final class kz0 extends hv0 {
             kVar3 = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
             kVar3.draw(canvas);
             canvas.restore();
-            org.telegram.ui.Components.oj0 oj0Var = profileActivity.v;
-            if (oj0Var != null && oj0Var.getVisibility() == 0 && profileActivity.v.getAlpha() > 0.0f) {
+            org.telegram.ui.Components.nj0 nj0Var = profileActivity.v;
+            if (nj0Var != null && nj0Var.getVisibility() == 0 && profileActivity.v.getAlpha() > 0.0f) {
                 canvas.save();
                 float f14 = (f7 * 0.5f) + 0.5f;
                 canvas.scale(f14, f14, (profileActivity.v.getMeasuredWidth() / 2.0f) + profileActivity.v.getX(), (profileActivity.v.getMeasuredHeight() / 2.0f) + profileActivity.v.getY());
@@ -51,18 +51,18 @@ public final class kz0 extends hv0 {
         super.e();
         ProfileActivity profileActivity = this.T;
         profileActivity.fragmentView.invalidate();
-        for (int i10 = 0; i10 < profileActivity.f31689n0.getChildCount(); i10++) {
-            profileActivity.f31689n0.getChildAt(i10).invalidate();
+        for (int i10 = 0; i10 < profileActivity.f31617n0.getChildCount(); i10++) {
+            profileActivity.f31617n0.getChildAt(i10).invalidate();
         }
-        org.telegram.ui.Components.oj0 oj0Var = profileActivity.v;
-        if (oj0Var != null) {
-            oj0Var.invalidate();
+        org.telegram.ui.Components.nj0 nj0Var = profileActivity.v;
+        if (nj0Var != null) {
+            nj0Var.invalidate();
         }
     }
 
     @Override
     public final boolean j(View view, ImageReceiver imageReceiver) {
-        if (super.j(view, imageReceiver) && this.T.f31598a.getScrollState() != 1) {
+        if (super.j(view, imageReceiver) && this.T.f31526a.getScrollState() != 1) {
             return true;
         }
         return false;

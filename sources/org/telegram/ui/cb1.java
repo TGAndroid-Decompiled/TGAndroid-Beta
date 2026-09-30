@@ -30,35 +30,35 @@ public final class cb1 implements vh0 {
     public final RectF Q;
     public float[] R;
     public final float S;
-    public float f32712a;
-    public final Paint f32713b;
-    public final boolean f32714c;
+    public float f32626a;
+    public final Paint f32627b;
+    public final boolean f32628c;
     public final ValueAnimator d;
     public final float e;
-    public final float f32715f;
-    public final float f32716g;
+    public final float f32629f;
+    public final float f32630g;
     public final int h;
-    public final int f32717i;
-    public final float f32718j;
-    public final MessageObject f32719k;
-    public final float f32720l;
-    public final float f32721m;
-    public final boolean f32722n;
-    public final boolean f32723o;
-    public final StaticLayout f32724p;
-    public final StaticLayout f32725q;
-    public final org.telegram.ui.Cells.u1 f32726r;
-    public final org.telegram.ui.Components.zl0 f32727s;
-    public final org.telegram.ui.Components.wi f32728t;
-    public final Matrix f32729u;
+    public final int f32631i;
+    public final float f32632j;
+    public final MessageObject f32633k;
+    public final float f32634l;
+    public final float f32635m;
+    public final boolean f32636n;
+    public final boolean f32637o;
+    public final StaticLayout f32638p;
+    public final StaticLayout f32639q;
+    public final org.telegram.ui.Cells.u1 f32640r;
+    public final org.telegram.ui.Components.yl0 f32641s;
+    public final org.telegram.ui.Components.vi f32642t;
+    public final Matrix f32643u;
     public final Paint v;
-    public final int f32730w;
-    public final float f32731x;
-    public final float f32732y;
-    public final float f32733z;
+    public final int f32644w;
+    public final float f32645x;
+    public final float f32646y;
+    public final float f32647z;
 
-    public cb1(org.telegram.ui.Cells.u1 r35, org.telegram.ui.wn r36, org.telegram.ui.Components.zl0 r37, org.telegram.ui.Components.wi r38, org.telegram.ui.ActionBar.d6 r39) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cb1.<init>(org.telegram.ui.Cells.u1, org.telegram.ui.wn, org.telegram.ui.Components.zl0, org.telegram.ui.Components.wi, org.telegram.ui.ActionBar.d6):void");
+    public cb1(org.telegram.ui.Cells.u1 r35, org.telegram.ui.wn r36, org.telegram.ui.Components.yl0 r37, org.telegram.ui.Components.vi r38, org.telegram.ui.ActionBar.d6 r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cb1.<init>(org.telegram.ui.Cells.u1, org.telegram.ui.wn, org.telegram.ui.Components.yl0, org.telegram.ui.Components.vi, org.telegram.ui.ActionBar.d6):void");
     }
 
     @Override

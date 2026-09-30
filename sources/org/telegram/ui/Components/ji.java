@@ -1,34 +1,83 @@
 package org.telegram.ui.Components;
 
+import android.content.Intent;
 import java.util.ArrayList;
-import java.util.HashMap;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class ji implements sj {
-    public final xi f25452a;
+public final class ji implements hk {
+    public final wi f25466a;
 
-    public ji(xi xiVar) {
-        this.f25452a = xiVar;
+    public ji(wi wiVar) {
+        this.f25466a = wiVar;
     }
 
     @Override
-    public final void a(TLRPC.User user, boolean z10, int i10, long j3) {
-        org.telegram.ui.wn wnVar = (org.telegram.ui.wn) this.f25452a.f30270f0;
-        if (wnVar.f7()) {
-            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, wnVar.T5, wnVar.f39667n5, wnVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
-            of2.sendMessageChatArguments = wnVar.C8();
-            of2.effect_id = 0L;
-            of2.invert_media = false;
-            of2.payStars = j3;
-            of2.monoForumPeer = wnVar.N8();
-            of2.suggestionParams = wnVar.f39582g5;
-            wnVar.getSendMessagesHelper().sendMessage(of2);
-            wnVar.y6();
+    public final void O() {
+        this.f25466a.B1(true);
+    }
+
+    @Override
+    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
+        wi wiVar = this.f25466a;
+        hk hkVar = wiVar.X;
+        if (hkVar != null) {
+            hkVar.k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
+            return;
+        }
+        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f29934f0;
+        if (m2Var instanceof hk) {
+            ((hk) m2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
+        } else if (m2Var instanceof org.telegram.ui.gn0) {
+            org.telegram.ui.gn0 gn0Var = (org.telegram.ui.gn0) m2Var;
+            ArrayList arrayList4 = new ArrayList();
+            int size = arrayList.size();
+            for (int i11 = 0; i11 < size; i11++) {
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                sendingMediaInfo.path = (String) arrayList.get(i11);
+                arrayList4.add(sendingMediaInfo);
+            }
+            gn0Var.G1(arrayList4);
         }
     }
 
     @Override
-    public final void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
-        ((org.telegram.ui.wn) this.f25452a.f30270f0).db(arrayList, str, z10, i10, j3, z11);
+    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
+        wi wiVar = this.f25466a;
+        hk hkVar = wiVar.X;
+        if (hkVar != null) {
+            hkVar.l(j3, arrayList, z10, i10);
+            return;
+        }
+        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f29934f0;
+        if (m2Var instanceof org.telegram.ui.wn) {
+            ((org.telegram.ui.wn) m2Var).l(j3, arrayList, z10, i10);
+        } else if (m2Var instanceof org.telegram.ui.gn0) {
+            ((org.telegram.ui.gn0) m2Var).G1(arrayList);
+        }
+    }
+
+    @Override
+    public final void w() {
+        wi wiVar = this.f25466a;
+        hk hkVar = wiVar.X;
+        if (hkVar != null) {
+            hkVar.w();
+            return;
+        }
+        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f29934f0;
+        if (m2Var instanceof hk) {
+            ((hk) m2Var).w();
+        } else if (m2Var instanceof org.telegram.ui.gn0) {
+            org.telegram.ui.gn0 gn0Var = (org.telegram.ui.gn0) m2Var;
+            gn0Var.getClass();
+            try {
+                Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
+                intent.setType("*/*");
+                gn0Var.startActivityForResult(intent, 21);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
     }
 }

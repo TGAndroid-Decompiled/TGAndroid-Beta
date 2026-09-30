@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class mw extends az {
-    public final nz H;
+public final class mw extends zy {
+    public final mz H;
 
-    public mw(nz nzVar, Context context) {
-        super(nzVar, context, 1);
-        this.H = nzVar;
+    public mw(mz mzVar, Context context) {
+        super(mzVar, context, 1);
+        this.H = mzVar;
     }
 
     @Override

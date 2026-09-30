@@ -5,15 +5,15 @@ import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class a extends ReplacementSpan {
-    public final int f46138a;
+    public final int f46032a;
 
     public a(int i10) {
-        this.f46138a = i10;
+        this.f46032a = i10;
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.f46138a);
+        return AndroidUtilities.dp(this.f46032a);
     }
 
     @Override

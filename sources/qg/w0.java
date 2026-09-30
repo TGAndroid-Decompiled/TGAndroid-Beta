@@ -1,20 +1,20 @@
 package qg;
 
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.rt0;
 public final class w0 implements pg.e1 {
-    public final x0 f42079a;
+    public final x0 f41978a;
 
     public w0(x0 x0Var) {
-        this.f42079a = x0Var;
+        this.f41978a = x0Var;
     }
 
     @Override
     public final void a() {
-        x0 x0Var = this.f42079a;
-        x0Var.e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new org.telegram.ui.Components.voip.r0(x0Var, 8)).setInterpolator(tr.h);
+        x0 x0Var = this.f41978a;
+        x0Var.e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new org.telegram.ui.Components.voip.r0(x0Var, 8)).setInterpolator(sr.h);
     }
 
     @Override
@@ -24,9 +24,9 @@ public final class w0 implements pg.e1 {
 
     @Override
     public final void e() {
-        x0 x0Var = this.f42079a;
-        x0Var.f42086b.f41400a.e();
-        x0Var.f42092w.setViewHidden(false);
+        x0 x0Var = this.f41978a;
+        x0Var.f41985b.f41303a.e();
+        x0Var.f41991w.setViewHidden(false);
         PhotoViewer photoViewer = ((rt0) x0Var).K;
         Drawable[] drawableArr = PhotoViewer.U8;
         photoViewer.X2(true, true);
@@ -34,7 +34,7 @@ public final class w0 implements pg.e1 {
 
     @Override
     public final void f() {
-        this.f42079a.f42092w.setViewHidden(true);
+        this.f41978a.f41991w.setViewHidden(true);
     }
 
     @Override

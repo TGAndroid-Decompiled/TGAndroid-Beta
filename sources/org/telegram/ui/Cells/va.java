@@ -5,23 +5,23 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.wp;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vp;
 public final class va extends TextView {
-    public boolean f21728a;
-    public final org.telegram.ui.Components.e6 f21729b;
-    public wp f21730c;
+    public boolean f21708a;
+    public final org.telegram.ui.Components.e6 f21709b;
+    public vp f21710c;
 
     public va(Context context) {
         super(context);
-        this.f21729b = new org.telegram.ui.Components.e6(this, 0L, 350L, tr.h);
+        this.f21709b = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
     }
 
     public final void a(boolean z10, boolean z11) {
-        this.f21728a = z10;
+        this.f21708a = z10;
         boolean z12 = true;
         if (!z11) {
-            this.f21729b.f(z10, true);
+            this.f21709b.f(z10, true);
         }
         if (!isPressed() && !z10) {
             z12 = false;
@@ -33,7 +33,7 @@ public final class va extends TextView {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float e = this.f21729b.e(this.f21728a);
+        float e = this.f21709b.e(this.f21708a);
         if (e > 0.0f) {
             if (e < 1.0f) {
                 canvas2 = canvas;
@@ -46,16 +46,16 @@ public final class va extends TextView {
             } else {
                 canvas2 = canvas;
             }
-            if (this.f21730c == null) {
-                wp wpVar = new wp(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(2.0f), getCurrentTextColor());
-                this.f21730c = wpVar;
-                wpVar.setCallback(this);
+            if (this.f21710c == null) {
+                vp vpVar = new vp(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(2.0f), getCurrentTextColor());
+                this.f21710c = vpVar;
+                vpVar.setCallback(this);
             }
-            this.f21730c.b(getCurrentTextColor());
+            this.f21710c.b(getCurrentTextColor());
             float f10 = 1.0f - e;
-            this.f21730c.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (AndroidUtilities.dp(12.0f) * f10)), getWidth() / 2, (getHeight() / 2) + ((int) (f10 * AndroidUtilities.dp(12.0f))));
-            this.f21730c.setAlpha((int) (e * 255.0f));
-            this.f21730c.draw(canvas2);
+            this.f21710c.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (AndroidUtilities.dp(12.0f) * f10)), getWidth() / 2, (getHeight() / 2) + ((int) (f10 * AndroidUtilities.dp(12.0f))));
+            this.f21710c.setAlpha((int) (e * 255.0f));
+            this.f21710c.draw(canvas2);
             invalidate();
             return;
         }
@@ -65,7 +65,7 @@ public final class va extends TextView {
     @Override
     public final void setPressed(boolean z10) {
         boolean z11;
-        if (!z10 && !this.f21728a) {
+        if (!z10 && !this.f21708a) {
             z11 = false;
         } else {
             z11 = true;
@@ -75,7 +75,7 @@ public final class va extends TextView {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f21730c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f21710c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -6,29 +6,29 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ih;
-import org.telegram.ui.Components.vi;
-import org.telegram.ui.Components.xi;
-public final class t1 implements vi {
-    public final xi f11637a;
-    public final e2 f11638b;
+import org.telegram.ui.Components.hh;
+import org.telegram.ui.Components.ui;
+import org.telegram.ui.Components.wi;
+public final class t1 implements ui {
+    public final wi f11623a;
+    public final e2 f11624b;
 
-    public t1(e2 e2Var, xi xiVar) {
-        this.f11638b = e2Var;
-        this.f11637a = xiVar;
+    public t1(e2 e2Var, wi wiVar) {
+        this.f11624b = e2Var;
+        this.f11623a = wiVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        xi xiVar = this.f11637a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f30282j0;
-        e2 e2Var = this.f11638b;
+        wi wiVar = this.f11623a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29946j0;
+        e2 e2Var = this.f11624b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             x3 x3Var = e2Var.P;
-            a aVar = x3Var.f11741i4;
-            x3Var.f11741i4 = null;
+            a aVar = x3Var.f11720b4;
+            x3Var.f11720b4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -37,17 +37,17 @@ public final class t1 implements vi {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
                 if (obj instanceof MediaController.PhotoEntry) {
                     if (aVar != null) {
-                        e2Var.P.V1(aVar, (MediaController.PhotoEntry) obj);
+                        e2Var.P.T1(aVar, (MediaController.PhotoEntry) obj);
                     } else {
-                        e2Var.P.h2((MediaController.PhotoEntry) obj);
+                        e2Var.P.f2((MediaController.PhotoEntry) obj);
                     }
                 } else {
                     i13++;
                 }
             }
         }
-        e2Var.P.f11741i4 = null;
-        xiVar.dismiss(true);
+        e2Var.P.f11720b4 = null;
+        wiVar.dismiss(true);
     }
 
     @Override
@@ -61,8 +61,8 @@ public final class t1 implements vi {
     }
 
     @Override
-    public final void x0(ih ihVar) {
-        NotificationCenter.getInstance(this.f11638b.getCurrentAccount()).doOnIdle(ihVar);
+    public final void x0(hh hhVar) {
+        NotificationCenter.getInstance(this.f11624b.getCurrentAccount()).doOnIdle(hhVar);
     }
 
     @Override

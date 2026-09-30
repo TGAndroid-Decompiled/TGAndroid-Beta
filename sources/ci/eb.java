@@ -2,19 +2,19 @@ package ci;
 
 import org.telegram.messenger.camera.CameraController;
 public final class eb implements Runnable {
-    public final int f4668a;
-    public final gb f4669b;
+    public final int f4660a;
+    public final gb f4661b;
 
     public eb(gb gbVar, int i10) {
-        this.f4668a = i10;
-        this.f4669b = gbVar;
+        this.f4660a = i10;
+        this.f4661b = gbVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f4668a) {
+        switch (this.f4660a) {
             case 0:
-                lc lcVar = this.f4669b.f4742a;
+                lc lcVar = this.f4661b.f4734a;
                 f7 f7Var = lcVar.C0;
                 if (f7Var != null) {
                     f7Var.c(false);
@@ -26,13 +26,13 @@ public final class eb implements Runnable {
                 }
                 return;
             case 1:
-                this.f4669b.f4742a.K(1, true);
+                this.f4661b.f4734a.K(1, true);
                 return;
             case 2:
-                this.f4669b.f4742a.K(1, true);
+                this.f4661b.f4734a.K(1, true);
                 return;
             default:
-                this.f4669b.f4742a.K(1, true);
+                this.f4661b.f4734a.K(1, true);
                 return;
         }
     }

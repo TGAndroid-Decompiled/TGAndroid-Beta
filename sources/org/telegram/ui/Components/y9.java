@@ -9,62 +9,62 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 public final class y9 extends Drawable {
-    public TextPaint f30679a;
-    public final Paint f30680b;
-    public final Paint f30681c;
+    public TextPaint f30622a;
+    public final Paint f30623b;
+    public final Paint f30624c;
     public final Paint d;
     public final float e;
-    public float f30682f;
-    public float f30683g;
+    public float f30625f;
+    public float f30626g;
     public final RectF h;
-    public ValueAnimator f30684i;
+    public ValueAnimator f30627i;
 
     public y9() {
         Paint paint = new Paint(1);
-        this.f30680b = paint;
-        this.f30681c = new Paint(1);
+        this.f30623b = paint;
+        this.f30624c = new Paint(1);
         this.d = new Paint(1);
         this.e = 1.0f;
-        this.f30682f = 0.0f;
-        this.f30683g = 1.0f;
+        this.f30625f = 0.0f;
+        this.f30626g = 1.0f;
         this.h = new RectF();
         paint.setStyle(Paint.Style.STROKE);
     }
 
     public final void a(float f7, boolean z10) {
         float max = Math.max(Math.min(f7, 1.0f), 0.0f);
-        ValueAnimator valueAnimator = this.f30684i;
+        ValueAnimator valueAnimator = this.f30627i;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f30684i = null;
+            this.f30627i = null;
         }
         if (!z10) {
-            this.f30683g = max;
+            this.f30626g = max;
             invalidateSelf();
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f30683g, max);
-        this.f30684i = ofFloat;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f30626g, max);
+        this.f30627i = ofFloat;
         ofFloat.addUpdateListener(new k6(this, 5));
-        this.f30684i.addListener(new org.telegram.ui.ActionBar.y0(this, max, 4));
-        this.f30684i.setInterpolator(tr.h);
-        this.f30684i.setDuration(200L);
-        this.f30684i.start();
+        this.f30627i.addListener(new org.telegram.ui.ActionBar.y0(this, max, 4));
+        this.f30627i.setInterpolator(sr.h);
+        this.f30627i.setDuration(200L);
+        this.f30627i.start();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         if (getBounds() != null) {
             int i10 = getBounds().left;
-            int i11 = getBounds().top + ((int) this.f30682f);
+            int i11 = getBounds().top + ((int) this.f30625f);
             int width = getBounds().width();
             int height = getBounds().height();
             int centerX = getBounds().centerX();
-            int centerY = getBounds().centerY() + ((int) this.f30682f);
-            TextPaint textPaint = this.f30679a;
+            int centerY = getBounds().centerY() + ((int) this.f30625f);
+            TextPaint textPaint = this.f30622a;
             Paint paint = this.d;
-            Paint paint2 = this.f30681c;
-            Paint paint3 = this.f30680b;
+            Paint paint2 = this.f30624c;
+            Paint paint3 = this.f30623b;
             if (textPaint != null) {
                 int color = textPaint.getColor();
                 paint3.setColor(color);
@@ -84,7 +84,7 @@ public final class y9 extends Drawable {
             RectF rectF = this.h;
             rectF.set((((f11 - AndroidUtilities.dpf2(16.33f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.33f), ((f13 - AndroidUtilities.dpf2(10.33f)) / 2.0f) + f12, (((AndroidUtilities.dpf2(16.33f) + f11) / 2.0f) + f10) - AndroidUtilities.dpf2(1.33f), ((AndroidUtilities.dpf2(10.33f) + f13) / 2.0f) + f12);
             canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(2.33f), paint3);
-            rectF.set((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f), ((f13 - AndroidUtilities.dpf2(7.33f)) / 2.0f) + f12, Math.max(AndroidUtilities.dpf2(1.1f), this.f30683g * AndroidUtilities.dpf2(13.0f)) + ((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f)), ((AndroidUtilities.dpf2(7.33f) + f13) / 2.0f) + f12);
+            rectF.set((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f), ((f13 - AndroidUtilities.dpf2(7.33f)) / 2.0f) + f12, Math.max(AndroidUtilities.dpf2(1.1f), this.f30626g * AndroidUtilities.dpf2(13.0f)) + ((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f)), ((AndroidUtilities.dpf2(7.33f) + f13) / 2.0f) + f12);
             canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(0.83f), AndroidUtilities.dpf2(0.83f), paint);
             float f14 = centerY;
             rectF.set((((AndroidUtilities.dpf2(17.5f) + f11) - AndroidUtilities.dpf2(4.66f)) / 2.0f) + f10, f14 - AndroidUtilities.dpf2(2.65f), ((AndroidUtilities.dpf2(4.66f) + (AndroidUtilities.dpf2(17.5f) + f11)) / 2.0f) + f10, AndroidUtilities.dpf2(2.65f) + f14);
@@ -112,23 +112,23 @@ public final class y9 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f30680b.setAlpha(i10);
-        this.f30681c.setAlpha(i10);
+        this.f30623b.setAlpha(i10);
+        this.f30624c.setAlpha(i10);
         this.d.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f30680b.setColorFilter(colorFilter);
-        this.f30681c.setColorFilter(colorFilter);
+        this.f30623b.setColorFilter(colorFilter);
+        this.f30624c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
     }
 
     public y9(float f7, int i10) {
         this();
         a(f7, false);
-        this.f30680b.setColor(-1);
-        this.f30681c.setColor(-1);
+        this.f30623b.setColor(-1);
+        this.f30624c.setColor(-1);
         this.d.setColor(i10);
         this.e = 1.3f;
         invalidateSelf();

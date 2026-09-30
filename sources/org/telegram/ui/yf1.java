@@ -3,20 +3,20 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class yf1 implements m11 {
-    public final TLRPC.TL_forumTopic f40248a;
-    public final zf1 f40249b;
+    public final TLRPC.TL_forumTopic f40143a;
+    public final zf1 f40144b;
 
     public yf1(zf1 zf1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f40249b = zf1Var;
-        this.f40248a = tL_forumTopic;
+        this.f40144b = zf1Var;
+        this.f40143a = tL_forumTopic;
     }
 
     @Override
     public final void c0() {
-        cg1 cg1Var = this.f40249b.f40577a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f40248a;
-        cg1.U(cg1Var, tL_forumTopic.f18404id);
-        AndroidUtilities.runOnUIThread(new p81(13, this, tL_forumTopic), 300L);
+        cg1 cg1Var = this.f40144b.f40467a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f40143a;
+        cg1.U(cg1Var, tL_forumTopic.f18389id);
+        AndroidUtilities.runOnUIThread(new n81(14, this, tL_forumTopic), 300L);
     }
 
     @Override

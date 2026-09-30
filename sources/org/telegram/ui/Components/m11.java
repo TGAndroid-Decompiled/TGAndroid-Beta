@@ -1,45 +1,97 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.TextureView;
 import android.view.View;
 import java.util.ArrayList;
-public final class m11 {
-    public final View f26171a;
-    public final ArrayList f26172b;
-    public final Runnable f26173c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class m11 extends TextureView {
+    public static Boolean f26226f;
+    public k11 f26227a;
+    public final o1.a f26228b;
+    public final ArrayList f26229c;
     public Runnable d;
-    public final Bitmap e;
-    public final Matrix f26174f;
-    public float f26175g;
+    public boolean e;
 
-    public m11(View view, Runnable runnable) {
-        this.f26175g = 1.0f;
-        this.f26171a = view;
-        this.f26172b = null;
-        this.f26173c = null;
+    public m11(Context context, Runnable runnable) {
+        super(context);
+        this.f26228b = new o1.a(this, 1);
+        this.f26229c = new ArrayList();
         this.d = runnable;
-        this.e = null;
-        this.f26174f = null;
+        setOpaque(false);
+        setSurfaceTextureListener(new ki.d(this, 3));
     }
 
-    public m11(ArrayList arrayList, gg.t tVar) {
-        this.f26175g = 1.0f;
-        this.f26171a = null;
-        this.f26172b = arrayList;
-        this.f26173c = null;
-        this.d = tVar;
-        this.e = null;
-        this.f26174f = null;
+    public static void b(Runnable runnable) {
+        if (runnable == null) {
+            return;
+        }
+        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+            AndroidUtilities.runOnUIThread(runnable);
+        } else {
+            runnable.run();
+        }
     }
 
-    public m11(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.f26175g = 1.0f;
-        this.f26171a = null;
-        this.f26172b = null;
-        this.f26173c = runnable;
-        this.d = runnable2;
-        this.f26174f = matrix;
-        this.e = bitmap;
+    public static boolean c() {
+        if (f26226f == null) {
+            f26226f = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
+        }
+        Boolean bool = f26226f;
+        if (bool != null && bool.booleanValue()) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void a(View view) {
+        int i10 = 0;
+        int i11 = 0;
+        boolean z10 = false;
+        while (true) {
+            ArrayList arrayList = this.f26229c;
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            l11 l11Var = (l11) arrayList.get(i11);
+            if (l11Var.f25872a == view) {
+                Runnable runnable = l11Var.d;
+                if (runnable != null) {
+                    b(runnable);
+                    l11Var.d = null;
+                }
+                arrayList.remove(i11);
+                i11--;
+                z10 = true;
+            }
+            i11++;
+        }
+        if (!z10) {
+            k11 k11Var = this.f26227a;
+            ArrayList arrayList2 = k11Var.W;
+            if (k11Var.f25569b.get()) {
+                Handler handler = k11Var.getHandler();
+                if (handler == null) {
+                    while (i10 < arrayList2.size()) {
+                        j11 j11Var = (j11) arrayList2.get(i10);
+                        if (j11Var.f25246a.contains(view)) {
+                            Runnable runnable2 = j11Var.f25249f;
+                            if (runnable2 != null) {
+                                b(runnable2);
+                                j11Var.f25249f = null;
+                            }
+                            arrayList2.remove(i10);
+                            i10--;
+                        }
+                        i10++;
+                    }
+                    return;
+                }
+                handler.sendMessage(handler.obtainMessage(5, view));
+            }
+        }
     }
 }

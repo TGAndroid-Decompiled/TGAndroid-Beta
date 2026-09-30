@@ -1,83 +1,45 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public final class aj0 extends ca1 {
-    public final bj0 v;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public final class aj0 extends org.telegram.ui.Components.go {
+    public final ej0 f32181v0;
 
-    public aj0(bj0 bj0Var, Context context, int i10, ig.f fVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, fVar, d6Var);
-        this.v = bj0Var;
+    public aj0(ej0 ej0Var, Context context) {
+        super(context, null, false, null);
+        this.f32181v0 = ej0Var;
     }
 
     @Override
-    public final void c() {
-        int i10;
-        int i11;
-        int i12;
-        dj0 dj0Var = this.v.d;
-        if (this.f32705r.f33429c <= 0) {
-            performClick();
-            ig.g gVar = this.f32701b;
-            if (gVar.f11166t0.G) {
-                long selectedDate = gVar.getSelectedDate();
-                if (this.f32706s == 4) {
-                    ea1 ea1Var = this.f32705r;
-                    ea1Var.e = new jg.e(ea1Var.d, selectedDate);
-                    g(false);
-                } else if (this.f32705r.f33431g == null) {
-                } else {
-                    f();
-                    String str = this.f32705r.f33431g + "_" + selectedDate;
-                    jg.b bVar = (jg.b) dj0Var.v.get(str);
-                    if (bVar != null) {
-                        this.f32705r.e = bVar;
-                        g(false);
-                        return;
-                    }
-                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f32705r.f33431g;
-                    if (selectedDate != 0) {
-                        tL_loadAsyncGraph.f18581x = selectedDate;
-                        tL_loadAsyncGraph.flags |= 1;
-                    }
-                    ?? obj = new Object();
-                    dj0Var.f33222w = obj;
-                    dj0Var.f33218f.getClass();
-                    obj.f37380a = RecyclerView.R(this);
-                    gVar.f11166t0.d(true, false);
-                    i10 = ((org.telegram.ui.ActionBar.m2) dj0Var).currentAccount;
-                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new aa(this, str, (Object) obj, 25), null, null, 0, dj0Var.f33210a.stats_dc, 1, true);
-                    i11 = ((org.telegram.ui.ActionBar.m2) dj0Var).currentAccount;
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
-                    i12 = ((org.telegram.ui.ActionBar.m2) dj0Var).classGuid;
-                    connectionsManager.bindRequestToGuid(sendRequest, i12);
-                }
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        ej0 ej0Var = this.f32181v0;
+        ej0Var.W.setImageCoords(ej0Var.f33420b0.getAvatarImageView().getX(), ej0Var.f33420b0.getAvatarImageView().getY(), ej0Var.f33420b0.getAvatarImageView().getWidth(), ej0Var.f33420b0.getAvatarImageView().getHeight());
+        if (ej0Var.Y) {
+            canvas.save();
+            canvas.scale(0.9f, 0.9f, ej0Var.W.getCenterX(), ej0Var.W.getCenterY());
+            ej0Var.W.draw(canvas);
+            canvas.restore();
+        }
+        if (ej0Var.X) {
+            int centerX = (int) (ej0Var.W.getCenterX() - (org.telegram.ui.ActionBar.h6.U0.getIntrinsicWidth() / 2));
+            int centerY = (int) (ej0Var.W.getCenterY() - (org.telegram.ui.ActionBar.h6.U0.getIntrinsicHeight() / 2));
+            Drawable drawable = org.telegram.ui.ActionBar.h6.U0;
+            drawable.setBounds(centerX, centerY, drawable.getIntrinsicWidth() + centerX, org.telegram.ui.ActionBar.h6.U0.getIntrinsicHeight() + centerY);
+            org.telegram.ui.ActionBar.h6.U0.draw(canvas);
         }
     }
 
     @Override
-    public final void f() {
-        bj0 bj0Var = this.v;
-        dj0 dj0Var = bj0Var.d;
-        ra1 ra1Var = dj0Var.f33222w;
-        if (ra1Var != null) {
-            ra1Var.f37381b = true;
-        }
-        int childCount = dj0Var.f33218f.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = bj0Var.d.f33218f.getChildAt(i10);
-            if (childAt instanceof ca1) {
-                ((ca1) childAt).f32701b.f11166t0.d(false, true);
-            }
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f32181v0.W.onAttachedToWindow();
     }
 
     @Override
-    public final void b(ea1 ea1Var) {
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f32181v0.W.onDetachedFromWindow();
     }
 }

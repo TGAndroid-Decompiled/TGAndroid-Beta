@@ -65,8 +65,8 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.pc0;
+import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.oc0;
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
     public static final String AUTOPLAY_FILTER_NONLOOP = "gl";
@@ -216,7 +216,7 @@ public class ImageLoader {
                             cVar.getClass();
                             cacheOutTask = new ff.b(i12, cacheOutTask);
                         }
-                        cVar.f9058a.execute(cacheOutTask);
+                        cVar.f9046a.execute(cacheOutTask);
                     } else {
                         ImageLoader.this.cacheThumbOutQueue.postRunnable(cacheOutTask);
                     }
@@ -708,14 +708,14 @@ public class ImageLoader {
                         if (cacheOutTask == null) {
                             cVar.getClass();
                         } else {
-                            cVar.f9058a.remove(cacheOutTask);
+                            cVar.f9046a.remove(cacheOutTask);
                         }
                         ff.c cVar2 = ImageLoader.this.cacheOutQueue;
                         Runnable runnable = this.runningTask;
                         if (runnable == null) {
                             cVar2.getClass();
                         } else {
-                            cVar2.f9058a.remove(runnable);
+                            cVar2.f9046a.remove(runnable);
                         }
                     } else {
                         ImageLoader.this.cacheThumbOutQueue.cancelRunnable(this.cacheTask);
@@ -838,12 +838,12 @@ public class ImageLoader {
                     } else {
                         k10 = i0.a.k(i11, 255);
                     }
-                    int g10 = pc0.g(k13, k14, k15, k10);
-                    pc0 pc0Var = new pc0();
-                    pc0Var.n(k13, k14, k15, k10);
-                    pc0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                    pc0Var.t(bitmap, wallPaper.settings.intensity);
-                    pc0Var.draw(canvas);
+                    int g10 = oc0.g(k13, k14, k15, k10);
+                    oc0 oc0Var = new oc0();
+                    oc0Var.n(k13, k14, k15, k10);
+                    oc0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                    oc0Var.t(bitmap, wallPaper.settings.intensity);
+                    oc0Var.draw(canvas);
                     i10 = g10;
                     z10 = false;
                 }
@@ -870,24 +870,24 @@ public class ImageLoader {
             Drawable drawable2;
             String str;
             BitmapDrawable bitmapDrawable;
-            lj0 lj0Var;
+            kj0 kj0Var;
             boolean z10 = false;
-            if (drawable instanceof lj0) {
-                lj0 lj0Var2 = (lj0) drawable;
+            if (drawable instanceof kj0) {
+                kj0 kj0Var2 = (kj0) drawable;
                 Drawable drawable3 = (Drawable) ImageLoader.this.lottieMemCache.get(this.cacheImage.key);
                 if (drawable3 == null) {
-                    ImageLoader.this.lottieMemCache.put(this.cacheImage.key, lj0Var2);
-                    lj0Var = lj0Var2;
+                    ImageLoader.this.lottieMemCache.put(this.cacheImage.key, kj0Var2);
+                    kj0Var = kj0Var2;
                 } else {
-                    lj0Var2.C(false);
-                    lj0Var = drawable3;
+                    kj0Var2.C(false);
+                    kj0Var = drawable3;
                 }
                 ImageLoader.this.incrementUseCount(this.cacheImage.key);
                 str = this.cacheImage.key;
-                drawable2 = lj0Var;
+                drawable2 = kj0Var;
             } else if (drawable instanceof org.telegram.ui.Components.d6) {
                 org.telegram.ui.Components.d6 d6Var = (org.telegram.ui.Components.d6) drawable;
-                if (d6Var.f23540n0) {
+                if (d6Var.f23511n0) {
                     BitmapDrawable fromLottieCache = ImageLoader.this.getFromLottieCache(this.cacheImage.key);
                     if (fromLottieCache == null) {
                         ImageLoader.this.lottieMemCache.put(this.cacheImage.key, d6Var);
@@ -937,7 +937,7 @@ public class ImageLoader {
             ImageLoader.this.imageLoadQueue.postRunnable(new g0(this, drawable2, str, 2), this.cacheImage.priority);
         }
 
-        private void loadLastFrame(lj0 lj0Var, int i10, int i11, boolean z10, boolean z11) {
+        private void loadLastFrame(kj0 kj0Var, int i10, int i11, boolean z10, boolean z11) {
             Bitmap createBitmap;
             Canvas canvas;
             int i12;
@@ -952,16 +952,16 @@ public class ImageLoader {
                 createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
                 canvas = new Canvas(createBitmap);
             }
-            lj0Var.b();
-            Bitmap createBitmap2 = Bitmap.createBitmap(lj0Var.f26009b, lj0Var.f26011c, Bitmap.Config.ARGB_8888);
+            kj0Var.b();
+            Bitmap createBitmap2 = Bitmap.createBitmap(kj0Var.f25717b, kj0Var.f25719c, Bitmap.Config.ARGB_8888);
             if (z10) {
-                i12 = lj0Var.e[0] - 1;
+                i12 = kj0Var.e[0] - 1;
             } else {
                 i12 = 0;
             }
-            lj0Var.C0 = i12;
-            lj0Var.a(createBitmap2);
-            lj0Var.c();
+            kj0Var.C0 = i12;
+            kj0Var.a(createBitmap2);
+            kj0Var.c();
             canvas.save();
             if (!z10 || !z11) {
                 canvas.scale(createBitmap2.getWidth() / i10, createBitmap2.getHeight() / i11, i10 / 2.0f, i11 / 2.0f);
@@ -975,7 +975,7 @@ public class ImageLoader {
                 canvas.drawBitmap(createBitmap2, 0.0f, 0.0f, paint);
                 bitmapDrawable = new BitmapDrawable(createBitmap);
             }
-            lj0Var.C(false);
+            kj0Var.C(false);
             createBitmap2.recycle();
             onPostExecute(bitmapDrawable);
         }
@@ -1179,7 +1179,7 @@ public class ImageLoader {
         public PhotoSizeFromPhoto(TLRPC.Photo photo) {
             this.photo = photo;
             TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-            tL_inputPhoto.f18371id = photo.f18376id;
+            tL_inputPhoto.f18356id = photo.f18361id;
             tL_inputPhoto.file_reference = photo.file_reference;
             tL_inputPhoto.access_hash = photo.access_hash;
             this.inputPhoto = tL_inputPhoto;
@@ -1249,7 +1249,7 @@ public class ImageLoader {
                     removeTask();
                     return;
                 }
-                String str = "q_" + this.info.parentDocument.dc_id + "_" + this.info.parentDocument.f18358id;
+                String str = "q_" + this.info.parentDocument.dc_id + "_" + this.info.parentDocument.f18343id;
                 File file = new File(FileLoader.getDirectory(4), str + ".jpg");
                 if (!file.exists() && this.originalPath.exists()) {
                     if (this.info.big) {
@@ -1332,7 +1332,7 @@ public class ImageLoader {
         int i10;
         ?? obj = new Object();
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        obj.f9058a = new ff.a(obj, new PriorityBlockingQueue(10, new fb.i(1)));
+        obj.f9046a = new ff.a(obj, new PriorityBlockingQueue(10, new fb.i(1)));
         this.cacheOutQueue = obj;
         this.cacheThumbOutQueue = new DispatchQueue("cacheThumbOutQueue");
         this.thumbGeneratingQueue = new DispatchQueue("thumbGeneratingQueue");
@@ -1441,8 +1441,8 @@ public class ImageLoader {
                     if (z12) {
                         ((org.telegram.ui.Components.d6) bitmapDrawable).u();
                     }
-                    if (bitmapDrawable instanceof lj0) {
-                        ((lj0) bitmapDrawable).C(false);
+                    if (bitmapDrawable instanceof kj0) {
+                        ((kj0) bitmapDrawable).C(false);
                     }
                 }
             }
@@ -1700,7 +1700,7 @@ public class ImageLoader {
             tL_fileLocationToBeDeprecated.file_reference = new byte[0];
             TLRPC.TL_photoSize_layer127 tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
             tL_photoSize_layer127.location = tL_fileLocationToBeDeprecated;
-            tL_photoSize_layer127.f18377w = i10;
+            tL_photoSize_layer127.f18362w = i10;
             tL_photoSize_layer127.h = i11;
             if (i10 <= 100 && i11 <= 100) {
                 tL_photoSize_layer127.type = "s";
@@ -1825,13 +1825,13 @@ public class ImageLoader {
         if (findPhotoCachedSize != null && (bArr = findPhotoCachedSize.bytes) != null && bArr.length != 0) {
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
             TLRPC.TL_photoSize_layer127 tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
-            tL_photoSize_layer127.f18377w = findPhotoCachedSize.f18377w;
+            tL_photoSize_layer127.f18362w = findPhotoCachedSize.f18362w;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.size = findPhotoCachedSize.size;
             tL_photoSize_layer127.type = findPhotoCachedSize.type;
             if (pathToAttach.exists() && message.grouped_id == 0) {
-                PointF C2 = org.telegram.ui.Cells.u1.C2(findPhotoCachedSize.f18377w, findPhotoCachedSize.h, 0, 0);
+                PointF C2 = org.telegram.ui.Cells.u1.C2(findPhotoCachedSize.f18362w, findPhotoCachedSize.h, 0, 0);
                 Locale locale = Locale.US;
                 String str = findPhotoCachedSize.location.volume_id + "_" + findPhotoCachedSize.location.local_id + "@" + ((int) (C2.x / AndroidUtilities.density)) + "_" + ((int) (C2.y / AndroidUtilities.density)) + "_b";
                 if (!getInstance().isInMemCache(str, false)) {
@@ -1862,7 +1862,7 @@ public class ImageLoader {
                         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(message.media.document.thumbs, 320);
                         if (closestPhotoSizeWithSize != null) {
                             i11 = closestPhotoSizeWithSize.h;
-                            i10 = closestPhotoSizeWithSize.f18377w;
+                            i10 = closestPhotoSizeWithSize.f18362w;
                         } else {
                             int i13 = 0;
                             while (true) {
@@ -1870,7 +1870,7 @@ public class ImageLoader {
                                     if (message.media.document.attributes.get(i13) instanceof TLRPC.TL_documentAttributeVideo) {
                                         TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) message.media.document.attributes.get(i13);
                                         i11 = tL_documentAttributeVideo.h;
-                                        i10 = tL_documentAttributeVideo.f18359w;
+                                        i10 = tL_documentAttributeVideo.f18344w;
                                         break;
                                     }
                                     i13++;
@@ -1914,7 +1914,7 @@ public class ImageLoader {
         BitmapDrawable bitmapDrawable = this.lottieMemCache.get(str);
         if (bitmapDrawable instanceof org.telegram.ui.Components.d6) {
             org.telegram.ui.Components.d6 d6Var = (org.telegram.ui.Components.d6) bitmapDrawable;
-            if (!d6Var.f23528c0 && d6Var.G0 < 15) {
+            if (!d6Var.f23499c0 && d6Var.G0 < 15) {
                 return bitmapDrawable;
             }
             this.lottieMemCache.remove(str);
@@ -2215,7 +2215,7 @@ public class ImageLoader {
                         cVar.getClass();
                         cacheOutTask = new ff.b(i13, cacheOutTask);
                     }
-                    cVar.f9058a.execute(cacheOutTask);
+                    cVar.f9046a.execute(cacheOutTask);
                 }
             }
         }
@@ -2478,12 +2478,12 @@ public class ImageLoader {
             tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
             tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         }
-        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.f18377w <= 50) {
+        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.f18362w <= 50) {
             tL_photoSize_layer127 = new TLRPC.TL_photoStrippedSize();
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tL_photoSize_layer127.f18377w = findPhotoCachedSize.f18377w;
+            tL_photoSize_layer127.f18362w = findPhotoCachedSize.f18362w;
         } else {
             boolean z10 = true;
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
@@ -2521,7 +2521,7 @@ public class ImageLoader {
                 randomAccessFile2.close();
             }
             tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
-            tL_photoSize_layer127.f18377w = findPhotoCachedSize.f18377w;
+            tL_photoSize_layer127.f18362w = findPhotoCachedSize.f18362w;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.size = findPhotoCachedSize.size;
@@ -2611,11 +2611,11 @@ public class ImageLoader {
     public int sizeOfBitmapDrawable(BitmapDrawable bitmapDrawable) {
         if (bitmapDrawable instanceof org.telegram.ui.Components.d6) {
             org.telegram.ui.Components.d6 d6Var = (org.telegram.ui.Components.d6) bitmapDrawable;
-            return Math.max(d6Var.getIntrinsicHeight() * d6Var.getIntrinsicWidth(), d6Var.f23536j0 * d6Var.f23535i0) * 12;
-        } else if (bitmapDrawable instanceof lj0) {
-            lj0 lj0Var = (lj0) bitmapDrawable;
-            int i10 = lj0Var.f26009b * lj0Var.f26011c;
-            if (lj0Var.G) {
+            return Math.max(d6Var.getIntrinsicHeight() * d6Var.getIntrinsicWidth(), d6Var.f23507j0 * d6Var.f23506i0) * 12;
+        } else if (bitmapDrawable instanceof kj0) {
+            kj0 kj0Var = (kj0) bitmapDrawable;
+            int i10 = kj0Var.f25717b * kj0Var.f25719c;
+            if (kj0Var.G) {
                 return i10 * 2;
             }
             return i10 * 8;
@@ -2663,7 +2663,7 @@ public class ImageLoader {
         if (imageReceiver == null) {
             return;
         }
-        HashMap hashMap = org.telegram.ui.web.i2.f39192f;
+        HashMap hashMap = org.telegram.ui.web.i2.f39103f;
         if (hashMap != null) {
             Iterator it = hashMap.entrySet().iterator();
             while (true) {
@@ -2685,7 +2685,7 @@ public class ImageLoader {
                     }
                 }
                 if (arrayList.isEmpty()) {
-                    org.telegram.ui.web.i2.f39192f.remove(str);
+                    org.telegram.ui.web.i2.f39103f.remove(str);
                     break;
                 }
             }
@@ -2784,10 +2784,10 @@ public class ImageLoader {
             str3 = fileLocation.volume_id + "_" + fileLocation.local_id;
         } else if (tLObject instanceof TLRPC.Document) {
             TLRPC.Document document = (TLRPC.Document) tLObject;
-            str3 = document.dc_id + "_" + document.f18358id;
+            str3 = document.dc_id + "_" + document.f18343id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
-            str3 = secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f18487id;
+            str3 = secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f18472id;
         } else if (tLObject instanceof WebFile) {
             str3 = Utilities.MD5(((WebFile) tLObject).url);
         }
@@ -2875,7 +2875,7 @@ public class ImageLoader {
 
     public void onFragmentStackChanged() {
         for (int i10 = 0; i10 < this.cachedAnimatedFileDrawables.size(); i10++) {
-            this.cachedAnimatedFileDrawables.get(i10).f23556y0 = 0;
+            this.cachedAnimatedFileDrawables.get(i10).f23527y0 = 0;
         }
     }
 
@@ -2927,7 +2927,7 @@ public class ImageLoader {
 
     public void checkMediaPaths(Runnable runnable) {
         ff.c cVar = this.cacheOutQueue;
-        cVar.f9058a.execute(new c2(12, this, runnable));
+        cVar.f9046a.execute(new c2(12, this, runnable));
     }
 
     public void loadImageForImageReceiver(org.telegram.messenger.ImageReceiver r37, java.util.List<org.telegram.messenger.ImageReceiver> r38) {
@@ -3058,12 +3058,12 @@ public class ImageLoader {
             tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         }
         int i10 = 0;
-        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.f18377w <= 50) {
+        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.f18362w <= 50) {
             tL_photoSize_layer127 = new TLRPC.TL_photoStrippedSize();
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tL_photoSize_layer127.f18377w = findPhotoCachedSize.f18377w;
+            tL_photoSize_layer127.f18362w = findPhotoCachedSize.f18362w;
         } else {
             boolean z10 = true;
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
@@ -3101,7 +3101,7 @@ public class ImageLoader {
                 randomAccessFile2.close();
             }
             tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
-            tL_photoSize_layer127.f18377w = findPhotoCachedSize.f18377w;
+            tL_photoSize_layer127.f18362w = findPhotoCachedSize.f18362w;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.size = findPhotoCachedSize.size;

@@ -1,18 +1,24 @@
 package org.telegram.ui.Components;
+public final class cq implements fw0 {
+    public final aq f23362a;
+    public final eq f23363b;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-public final class cq extends LinearLayout {
-    public final fq f23396a;
-
-    public cq(fq fqVar, Context context) {
-        super(context);
-        this.f23396a = fqVar;
+    public cq(eq eqVar, aq aqVar) {
+        this.f23363b = eqVar;
+        this.f23362a = aqVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        fq.m(this.f23396a);
+    public final void h(int i10) {
+        eq eqVar = this.f23363b;
+        eqVar.f24043r = i10;
+        eqVar.p(true);
+    }
+
+    @Override
+    public final void n() {
+        int measuredHeight = this.f23363b.f24040c.getMeasuredHeight();
+        aq aqVar = this.f23362a;
+        aqVar.y(0 - aqVar.getScrollX(), measuredHeight - aqVar.getScrollY(), false);
     }
 }

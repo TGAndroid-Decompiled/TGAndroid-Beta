@@ -8,25 +8,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class ib extends rb {
-    public final hh.l f34569x0;
-    public final ub f34570y0;
+    public final hh.l f34477x0;
+    public final ub f34478y0;
 
     public ib(ub ubVar, Context context) {
         super(ubVar, context);
-        this.f34570y0 = ubVar;
-        this.f34569x0 = new hh.l();
+        this.f34478y0 = ubVar;
+        this.f34477x0 = new hh.l();
     }
 
     @Override
     public final void U(Drawable drawable) {
-        if (drawable instanceof org.telegram.ui.Components.pc0) {
-            ((org.telegram.ui.Components.pc0) drawable).p();
+        if (drawable instanceof org.telegram.ui.Components.oc0) {
+            ((org.telegram.ui.Components.oc0) drawable).p();
         }
-        hh.l lVar = this.f34569x0;
+        hh.l lVar = this.f34477x0;
         fh.a c10 = lVar.c(drawable);
         AndroidUtilities.computePerceivedBrightness(lVar.a(c10));
-        ub ubVar = this.f34570y0;
-        ubVar.f38477a.f9075a = c10;
+        ub ubVar = this.f34478y0;
+        ubVar.f38387a.f9063a = c10;
         jh.f fVar = ubVar.W;
         if (fVar != null) {
             fVar.invalidate();
@@ -36,7 +36,7 @@ public final class ib extends rb {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         com.google.firebase.messaging.m mVar = com.google.firebase.messaging.m.e;
-        if (mVar != null && mVar.f7321a) {
+        if (mVar != null && mVar.f7309a) {
             r4 r4Var = (r4) com.google.firebase.messaging.m.k().d;
             if (r4Var != null) {
                 r4Var.onTouchEvent(motionEvent);
@@ -53,9 +53,9 @@ public final class ib extends rb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            ub ubVar = this.f34570y0;
-            if (dialogId == (-ubVar.f38485f.f18352id)) {
-                MediaController.getInstance().setTextureView(ubVar.Q0(false), ubVar.f38484e0, ubVar.f38483d0, true);
+            ub ubVar = this.f34478y0;
+            if (dialogId == (-ubVar.f38395f.f18337id)) {
+                MediaController.getInstance().setTextureView(ubVar.Q0(false), ubVar.f38394e0, ubVar.f38393d0, true);
             }
         }
     }
@@ -73,8 +73,8 @@ public final class ib extends rb {
         org.telegram.ui.ActionBar.k kVar4;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        ub ubVar = this.f34570y0;
-        fh.a aVar = ubVar.f38477a.f9075a;
+        ub ubVar = this.f34478y0;
+        fh.a aVar = ubVar.f38387a.f9063a;
         if (aVar instanceof fh.b) {
             ((fh.b) aVar).c(size, size2);
         }
@@ -94,7 +94,7 @@ public final class ib extends rb {
             if (childAt != null && childAt.getVisibility() != 8) {
                 kVar4 = ((org.telegram.ui.ActionBar.m2) ubVar).actionBar;
                 if (childAt != kVar4) {
-                    if (childAt != ubVar.v && childAt != ubVar.f38493n) {
+                    if (childAt != ubVar.v && childAt != ubVar.f38403n) {
                         if (childAt == ubVar.H) {
                             childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                         } else {

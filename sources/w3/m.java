@@ -1,10 +1,10 @@
 package w3;
 public final class m {
-    public final long f44943a;
-    public final int f44944b;
+    public final long f44837a;
+    public final int f44838b;
 
     public m(long j3, int i10) {
-        this.f44943a = j3;
-        this.f44944b = i10;
+        this.f44837a = j3;
+        this.f44838b = i10;
     }
 }

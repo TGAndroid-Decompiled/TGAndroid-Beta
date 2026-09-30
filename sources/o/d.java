@@ -2,40 +2,40 @@ package o;
 
 import java.util.Iterator;
 public final class d extends e implements Iterator {
-    public c f15491a;
-    public boolean f15492b = true;
-    public final f f15493c;
+    public c f15476a;
+    public boolean f15477b = true;
+    public final f f15478c;
 
     public d(f fVar) {
-        this.f15493c = fVar;
+        this.f15478c = fVar;
     }
 
     @Override
     public final void a(c cVar) {
         boolean z10;
-        c cVar2 = this.f15491a;
+        c cVar2 = this.f15476a;
         if (cVar == cVar2) {
             c cVar3 = cVar2.d;
-            this.f15491a = cVar3;
+            this.f15476a = cVar3;
             if (cVar3 == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f15492b = z10;
+            this.f15477b = z10;
         }
     }
 
     @Override
     public final boolean hasNext() {
-        if (this.f15492b) {
-            if (this.f15493c.f15494a == null) {
+        if (this.f15477b) {
+            if (this.f15478c.f15479a == null) {
                 return false;
             }
             return true;
         }
-        c cVar = this.f15491a;
-        if (cVar == null || cVar.f15490c == null) {
+        c cVar = this.f15476a;
+        if (cVar == null || cVar.f15475c == null) {
             return false;
         }
         return true;
@@ -44,18 +44,18 @@ public final class d extends e implements Iterator {
     @Override
     public final Object next() {
         c cVar;
-        if (this.f15492b) {
-            this.f15492b = false;
-            this.f15491a = this.f15493c.f15494a;
+        if (this.f15477b) {
+            this.f15477b = false;
+            this.f15476a = this.f15478c.f15479a;
         } else {
-            c cVar2 = this.f15491a;
+            c cVar2 = this.f15476a;
             if (cVar2 != null) {
-                cVar = cVar2.f15490c;
+                cVar = cVar2.f15475c;
             } else {
                 cVar = null;
             }
-            this.f15491a = cVar;
+            this.f15476a = cVar;
         }
-        return this.f15491a;
+        return this.f15476a;
     }
 }

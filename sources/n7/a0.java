@@ -2,20 +2,20 @@ package n7;
 
 import java.io.Serializable;
 public final class a0 extends w implements Serializable {
-    public final w f15350a;
+    public final w f15335a;
 
     public a0(w wVar) {
-        this.f15350a = wVar;
+        this.f15335a = wVar;
     }
 
     @Override
     public final w a() {
-        return this.f15350a;
+        return this.f15335a;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        return this.f15350a.compare(obj2, obj);
+        return this.f15335a.compare(obj2, obj);
     }
 
     @Override
@@ -24,16 +24,16 @@ public final class a0 extends w implements Serializable {
             return true;
         }
         if (obj instanceof a0) {
-            return this.f15350a.equals(((a0) obj).f15350a);
+            return this.f15335a.equals(((a0) obj).f15335a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return -this.f15350a.hashCode();
+        return -this.f15335a.hashCode();
     }
 
     public final String toString() {
-        return this.f15350a.toString().concat(".reverse()");
+        return this.f15335a.toString().concat(".reverse()");
     }
 }

@@ -9,44 +9,44 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class au implements View.OnClickListener {
-    public final int f32309a = 1;
-    public final int f32310b;
-    public final Object f32311c;
+    public final int f32237a = 1;
+    public final int f32238b;
+    public final Object f32239c;
     public final Object d;
     public final KeyEvent.Callback[] e;
-    public final Object f32312f;
+    public final Object f32240f;
     public final Object h;
-    public final Object f32313n;
+    public final Object f32241n;
 
     public au(ci.d dVar, TL_stars.StarsSubscription starsSubscription, int i10, org.telegram.ui.ActionBar.e3[] e3VarArr, org.telegram.ui.ActionBar.d6 d6Var, boolean[] zArr, Activity activity) {
-        this.f32311c = dVar;
+        this.f32239c = dVar;
         this.d = starsSubscription;
-        this.f32310b = i10;
+        this.f32238b = i10;
         this.e = e3VarArr;
-        this.f32312f = d6Var;
+        this.f32240f = d6Var;
         this.h = zArr;
-        this.f32313n = activity;
+        this.f32241n = activity;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f32309a) {
+        switch (this.f32237a) {
             case 0:
-                DataAutoDownloadActivity.U((DataAutoDownloadActivity) this.f32311c, (org.telegram.ui.Cells.s8) this.d, (org.telegram.ui.Cells.s8[]) this.e, this.f32310b, (org.telegram.ui.Cells.d5[]) this.f32312f, (org.telegram.ui.Cells.w8[]) this.h, (AnimatorSet[]) this.f32313n, view);
+                DataAutoDownloadActivity.U((DataAutoDownloadActivity) this.f32239c, (org.telegram.ui.Cells.s8) this.d, (org.telegram.ui.Cells.s8[]) this.e, this.f32238b, (org.telegram.ui.Cells.d5[]) this.f32240f, (org.telegram.ui.Cells.w8[]) this.h, (AnimatorSet[]) this.f32241n, view);
                 return;
             default:
-                ci.d dVar = (ci.d) this.f32311c;
+                ci.d dVar = (ci.d) this.f32239c;
                 TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) this.d;
                 org.telegram.ui.ActionBar.e3[] e3VarArr = (org.telegram.ui.ActionBar.e3[]) this.e;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f32312f;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f32240f;
                 boolean[] zArr = (boolean[]) this.h;
-                Activity activity = (Activity) this.f32313n;
+                Activity activity = (Activity) this.f32241n;
                 if (!dVar.N) {
                     dVar.setLoading(true);
                     if (starsSubscription.chat_invite_hash != null) {
                         TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite = new TLRPC.TL_messages_checkChatInvite();
                         tL_messages_checkChatInvite.hash = starsSubscription.chat_invite_hash;
-                        int i10 = this.f32310b;
+                        int i10 = this.f32238b;
                         ConnectionsManager.getInstance(i10).sendRequest(tL_messages_checkChatInvite, new ai.ya(dVar, e3VarArr, d6Var, i10, tL_messages_checkChatInvite, 14));
                         return;
                     } else if (starsSubscription.invoice_slug != null) {
@@ -62,12 +62,12 @@ public final class au implements View.OnClickListener {
     }
 
     public au(DataAutoDownloadActivity dataAutoDownloadActivity, org.telegram.ui.Cells.s8 s8Var, org.telegram.ui.Cells.s8[] s8VarArr, int i10, org.telegram.ui.Cells.d5[] d5VarArr, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
-        this.f32311c = dataAutoDownloadActivity;
+        this.f32239c = dataAutoDownloadActivity;
         this.d = s8Var;
         this.e = s8VarArr;
-        this.f32310b = i10;
-        this.f32312f = d5VarArr;
+        this.f32238b = i10;
+        this.f32240f = d5VarArr;
         this.h = w8VarArr;
-        this.f32313n = animatorSetArr;
+        this.f32241n = animatorSetArr;
     }
 }

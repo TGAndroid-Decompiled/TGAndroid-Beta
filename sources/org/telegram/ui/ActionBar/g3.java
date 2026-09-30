@@ -4,25 +4,25 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.widget.FrameLayout;
 public final class g3 extends FrameLayout implements t3 {
-    public final t3 f18932a;
+    public final t3 f18917a;
 
     public g3(t3 t3Var) {
         super(t3Var.getContext());
-        this.f18932a = t3Var;
+        this.f18917a = t3Var;
     }
 
     @Override
     public RectF getRect() {
-        return this.f18932a.getRect();
+        return this.f18917a.getRect();
     }
 
     @Override
     public void setDrawingFromOverlay(boolean z10) {
-        this.f18932a.setDrawingFromOverlay(z10);
+        this.f18917a.setDrawingFromOverlay(z10);
     }
 
     @Override
     public final float x(Canvas canvas, RectF rectF, float f7, RectF rectF2, float f10) {
-        return this.f18932a.x(canvas, rectF, f7, rectF2, f10);
+        return this.f18917a.x(canvas, rectF, f7, rectF2, f10);
     }
 }

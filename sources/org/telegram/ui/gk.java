@@ -7,40 +7,40 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class gk extends org.telegram.ui.Components.p81 {
-    public final Context f34096a;
-    public final wn f34097b;
+    public final Context f33958a;
+    public final wn f33959b;
 
     public gk(wn wnVar, Context context) {
-        this.f34097b = wnVar;
-        this.f34096a = context;
+        this.f33959b = wnVar;
+        this.f33958a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         if (view instanceof yn) {
-            ((yn) view).f40301a.Jc(this.f34097b.f39752u3);
+            ((yn) view).f40193a.Jc(this.f33959b.f39659u3);
         }
-        WeakHashMap weakHashMap = r0.i0.f42233a;
+        WeakHashMap weakHashMap = r0.i0.f42130a;
         r0.y.c(view);
     }
 
     @Override
     public final View d(int i10) {
-        Context context = this.f34096a;
-        wn wnVar = this.f34097b;
+        Context context = this.f33958a;
+        wn wnVar = this.f33959b;
         if (i10 == 0) {
             return new kn(wnVar, context);
         }
         Bundle bundle = new Bundle();
         bundle.putInt("chatMode", 7);
         bundle.putInt("searchType", i10);
-        bundle.putString("searchHashtag", wnVar.f39752u3);
+        bundle.putString("searchHashtag", wnVar.f39659u3);
         fk fkVar = new fk(context, wnVar.getParentLayout(), bundle, 0);
         fkVar.h = false;
-        xn xnVar = fkVar.f40301a;
-        xnVar.L.f9075a = wnVar.L;
-        xnVar.f39538ca = wnVar.f39562ea;
-        xnVar.f39550da = wnVar;
+        xn xnVar = fkVar.f40193a;
+        xnVar.L.f9063a = wnVar.L;
+        xnVar.f39445ca = wnVar.f39469ea;
+        xnVar.f39457da = wnVar;
         xnVar.V8 = new g(this, 13);
         return fkVar;
     }

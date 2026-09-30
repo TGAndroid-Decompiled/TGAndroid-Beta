@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class jp implements f70 {
-    public final rp f34940a;
+    public final rp f34850a;
 
     public jp(rp rpVar) {
-        this.f34940a = rpVar;
+        this.f34850a = rpVar;
     }
 
     @Override
     public final void a(g70 g70Var, long j3) {
-        rp rpVar = this.f34940a;
+        rp rpVar = this.f34850a;
         rpVar.Y(rpVar.getMessagesController().getChat(Long.valueOf(j3)), g70Var);
     }
 }

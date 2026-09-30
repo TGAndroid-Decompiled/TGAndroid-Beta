@@ -7,10 +7,10 @@ public final class jd extends RadialProgressView {
     public final int K;
     public final Object L;
 
-    public jd(org.telegram.ui.Components.x40 x40Var, Context context, int i10) {
+    public jd(org.telegram.ui.Components.w40 w40Var, Context context, int i10) {
         super(context, null);
         this.K = i10;
-        this.L = x40Var;
+        this.L = w40Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class jd extends RadialProgressView {
         switch (this.K) {
             case 3:
                 super.invalidate();
-                nu0 nu0Var = ((PhotoViewer) this.L).f31297e0;
+                nu0 nu0Var = ((PhotoViewer) this.L).f31225e0;
                 if (nu0Var != null) {
                     nu0Var.invalidate();
                     return;
@@ -35,7 +35,7 @@ public final class jd extends RadialProgressView {
         switch (this.K) {
             case 0:
                 super.setAlpha(f7);
-                ((ld) this.L).f35398f.invalidate();
+                ((ld) this.L).f35290f.invalidate();
                 return;
             case 1:
                 super.setAlpha(f7);
@@ -47,7 +47,7 @@ public final class jd extends RadialProgressView {
                 return;
             default:
                 super.setAlpha(f7);
-                nu0 nu0Var = ((PhotoViewer) this.L).f31297e0;
+                nu0 nu0Var = ((PhotoViewer) this.L).f31225e0;
                 if (nu0Var != null) {
                     nu0Var.invalidate();
                     return;

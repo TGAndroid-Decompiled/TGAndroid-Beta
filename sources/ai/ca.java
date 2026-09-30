@@ -12,8 +12,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.Components.zc;
-import org.telegram.ui.Components.zl0;
 import org.telegram.ui.LaunchActivity;
 public class ca {
     public int A;
@@ -100,7 +100,7 @@ public class ca {
                     if (zcVar == null) {
                         this.H = new zc(view, 1.5f, 5.0f);
                     } else {
-                        zcVar.f30944a = view;
+                        zcVar.f30863a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -124,7 +124,7 @@ public class ca {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
                 zc zcVar2 = this.H;
                 if (zcVar2 != null) {
-                    zcVar2.f30944a = view;
+                    zcVar2.f30863a = view;
                     zcVar2.c(false);
                 }
                 ba baVar3 = this.Q;
@@ -137,7 +137,7 @@ public class ca {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             zc zcVar3 = this.H;
             if (zcVar3 != null) {
-                zcVar3.f30944a = view;
+                zcVar3.f30863a = view;
                 zcVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f675x)) {
@@ -200,7 +200,7 @@ public class ca {
             R.getOrCreateStoryViewer().getClass();
             ViewParent parent = this.R.getParent();
             if (parent instanceof RecyclerView) {
-                u9Var = u9.a((zl0) parent);
+                u9Var = u9.a((yl0) parent);
             } else {
                 u9Var = null;
             }

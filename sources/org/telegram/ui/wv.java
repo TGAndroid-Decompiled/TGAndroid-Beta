@@ -4,22 +4,22 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-public final class wv implements org.telegram.ui.Components.nl0 {
-    public final int f39860a;
-    public final qy f39861b;
+public final class wv implements org.telegram.ui.Components.ml0 {
+    public final int f39765a;
+    public final qy f39766b;
 
     public wv(qy qyVar, int i10) {
-        this.f39860a = i10;
-        this.f39861b = qyVar;
+        this.f39765a = i10;
+        this.f39766b = qyVar;
     }
 
     @Override
     public final void d(int i10, View view) {
         gg.q0 q0Var;
-        switch (this.f39860a) {
+        switch (this.f39765a) {
             case 0:
-                qy qyVar = this.f39861b;
-                Object obj = qyVar.C0.f27155v0.G(i10).G;
+                qy qyVar = this.f39766b;
+                Object obj = qyVar.C0.f26837v0.G(i10).G;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
                     Bundle bundle = new Bundle();
@@ -38,17 +38,17 @@ public final class wv implements org.telegram.ui.Components.nl0 {
                     Bundle g10 = org.telegram.ui.Cells.c1.g(3, "type");
                     g10.putString("hashtag", v8Var.C);
                     g10.putInt("storiesCount", v8Var.J);
-                    qyVar.presentFragment(new org.telegram.ui.Components.qa0(g10, null));
+                    qyVar.presentFragment(new org.telegram.ui.Components.pa0(g10, null));
                     return;
                 } else {
                     return;
                 }
             default:
-                qy qyVar2 = this.f39861b;
-                qyVar2.f37118b0.J0(true);
-                ArrayList arrayList = qyVar2.f37118b0.f9914e3;
+                qy qyVar2 = this.f39766b;
+                qyVar2.f37018b0.I0(true);
+                ArrayList arrayList = qyVar2.f37018b0.X2;
                 if (arrayList.isEmpty()) {
-                    q0Var = gg.s0.j3[i10];
+                    q0Var = gg.s0.f9896c3[i10];
                 } else {
                     q0Var = (gg.q0) arrayList.get(i10);
                 }

@@ -5,62 +5,62 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.dk0;
 public final class b implements ValueAnimator.AnimatorUpdateListener {
-    public final int f20052a = 1;
-    public final float f20053b;
-    public final float f20054c;
+    public final int f20037a = 1;
+    public final float f20038b;
+    public final float f20039c;
     public final FrameLayout d;
     public final Object e;
-    public final Object f20055f;
+    public final Object f20040f;
 
-    public b(HorizontalScrollView horizontalScrollView, float f7, float f10, ek0 ek0Var, ek0 ek0Var2) {
+    public b(HorizontalScrollView horizontalScrollView, float f7, float f10, dk0 dk0Var, dk0 dk0Var2) {
         this.d = horizontalScrollView;
-        this.f20053b = f7;
-        this.f20054c = f10;
-        this.e = ek0Var;
-        this.f20055f = ek0Var2;
+        this.f20038b = f7;
+        this.f20039c = f10;
+        this.e = dk0Var;
+        this.f20040f = dk0Var2;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f20052a) {
+        switch (this.f20037a) {
             case 0:
                 j jVar = (j) this.d;
-                o1.e eVar = (o1.e) this.f20055f;
+                o1.e eVar = (o1.e) this.f20040f;
                 FrameLayout frameLayout = jVar.J;
                 Float f7 = (Float) valueAnimator.getAnimatedValue();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f10 = this.f20053b;
-                float f11 = this.f20054c;
+                float f10 = this.f20038b;
+                float f11 = this.f20039c;
                 AndroidUtilities.lerp(f10, f11, floatValue);
                 float min = Math.min((f7.floatValue() - ((Float) ((AtomicReference) this.e).getAndSet(f7)).floatValue()) * 1000.0f * 8.0f, 250.0f);
                 while (min > 0.0f) {
                     float min2 = Math.min(min, 18.0f);
-                    float f12 = eVar.f15529a;
-                    float f13 = eVar.f15530b;
+                    float f12 = eVar.f15514a;
+                    float f13 = eVar.f15515b;
                     float f14 = (((((-0.020170001f) * f13) + ((f12 - 1.0f) * (-3.8E-4f))) / 1.0f) * min2) + f13;
-                    eVar.f15530b = f14;
-                    eVar.f15529a = (f14 * min2) + f12;
+                    eVar.f15515b = f14;
+                    eVar.f15514a = (f14 * min2) + f12;
                     min -= min2;
                 }
-                float lerp = AndroidUtilities.lerp(f10, f11, eVar.f15529a);
+                float lerp = AndroidUtilities.lerp(f10, f11, eVar.f15514a);
                 jVar.T = lerp;
                 if (lerp > 0.8f && frameLayout.getBackground() == null) {
                     frameLayout.setBackground(jVar.K);
                 }
-                jVar.f20499r.setAlpha(1.0f - jVar.T);
-                jVar.f20500s.setAlpha((float) Math.pow(1.0f - jVar.T, 2.0d));
+                jVar.f20484r.setAlpha(1.0f - jVar.T);
+                jVar.f20485s.setAlpha((float) Math.pow(1.0f - jVar.T, 2.0d));
                 jVar.i();
                 frameLayout.invalidate();
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f15 = this.f20054c;
-                float f16 = this.f20053b;
+                float f15 = this.f20039c;
+                float f16 = this.f20038b;
                 ((HorizontalScrollView) this.d).setScrollX((int) com.google.android.gms.internal.vision.e2.z(f15, f16, floatValue2, f16));
-                ((ek0) this.e).setOutlineProgress(1.0f - floatValue2);
-                ((ek0) this.f20055f).setOutlineProgress(floatValue2);
+                ((dk0) this.e).setOutlineProgress(1.0f - floatValue2);
+                ((dk0) this.f20040f).setOutlineProgress(floatValue2);
                 return;
         }
     }
@@ -68,8 +68,8 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
     public b(j jVar, AtomicReference atomicReference, float f7, float f10, o1.e eVar) {
         this.d = jVar;
         this.e = atomicReference;
-        this.f20053b = f7;
-        this.f20054c = f10;
-        this.f20055f = eVar;
+        this.f20038b = f7;
+        this.f20039c = f10;
+        this.f20040f = eVar;
     }
 }

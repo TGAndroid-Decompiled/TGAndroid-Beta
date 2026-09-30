@@ -26,7 +26,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.pc0;
+import org.telegram.ui.Components.oc0;
 import org.telegram.ui.Components.v9;
 public final class g6 implements NotificationCenter.NotificationCenterDelegate {
     public int E;
@@ -51,40 +51,40 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
     public int X;
     public int Y;
     public int Z;
-    public String f18949a;
-    public SparseArray f18950a0;
-    public String f18951b;
-    public ArrayList f18952b0;
-    public String f18953c;
-    public LongSparseArray f18954c0;
+    public String f18934a;
+    public SparseArray f18935a0;
+    public String f18936b;
+    public ArrayList f18937b0;
+    public String f18938c;
+    public LongSparseArray f18939c0;
     public String d;
-    public final LongSparseArray f18955d0;
+    public final LongSparseArray f18940d0;
     public String e;
-    public int f18956e0;
-    public boolean f18957f;
-    public int f18958f0;
-    public String f18959g0;
+    public int f18941e0;
+    public boolean f18942f;
+    public int f18943f0;
+    public String f18944g0;
     public boolean h;
-    public String f18960h0;
-    public z5 f18961i0;
-    public int f18962j0;
-    public boolean f18963n;
-    public int f18964r;
-    public int f18965s;
+    public String f18945h0;
+    public z5 f18946i0;
+    public int f18947j0;
+    public boolean f18948n;
+    public int f18949r;
+    public int f18950s;
     public int v;
-    public int f18966w;
-    public int f18967x;
-    public int f18968y;
+    public int f18951w;
+    public int f18952x;
+    public int f18953y;
 
     public g6() {
-        this.f18967x = 45;
+        this.f18952x = 45;
         this.G = true;
         this.U = true;
         this.Z = -1;
-        this.f18955d0 = new LongSparseArray();
-        this.f18956e0 = 0;
-        this.f18958f0 = 100;
-        this.f18962j0 = -1;
+        this.f18940d0 = new LongSparseArray();
+        this.f18941e0 = 0;
+        this.f18943f0 = 100;
+        this.f18947j0 = -1;
     }
 
     public static boolean a(f6 f6Var, TLRPC.ThemeSettings themeSettings) {
@@ -153,7 +153,7 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
                 str = wallPaper2.slug;
                 f7 = wallPaper2.settings.intensity / 100.0f;
                 long j12 = j10;
-                if (themeSettings.accent_color != f6Var.f18904c && themeSettings.outbox_accent_color == f6Var.d && i10 == f6Var.e && i11 == f6Var.f18905f && i12 == f6Var.f18906g && i13 == f6Var.h && themeSettings.message_colors_animated == f6Var.f18907i && i14 == f6Var.f18908j && j3 == f6Var.f18909k && j12 == f6Var.f18910l && j11 == f6Var.f18911m && i15 == f6Var.f18912n && TextUtils.equals(str, f6Var.f18913o) && Math.abs(f7 - f6Var.f18914p) < 0.001d) {
+                if (themeSettings.accent_color != f6Var.f18889c && themeSettings.outbox_accent_color == f6Var.d && i10 == f6Var.e && i11 == f6Var.f18890f && i12 == f6Var.f18891g && i13 == f6Var.h && themeSettings.message_colors_animated == f6Var.f18892i && i14 == f6Var.f18893j && j3 == f6Var.f18894k && j12 == f6Var.f18895l && j11 == f6Var.f18896m && i15 == f6Var.f18897n && TextUtils.equals(str, f6Var.f18898o) && Math.abs(f7 - f6Var.f18899p) < 0.001d) {
                     return z11;
                 }
                 return z10;
@@ -171,89 +171,89 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         }
         f7 = 0.0f;
         long j122 = j10;
-        if (themeSettings.accent_color != f6Var.f18904c) {
+        if (themeSettings.accent_color != f6Var.f18889c) {
         }
         return z10;
     }
 
     public static void b(g6 g6Var, int[] iArr, int[] iArr2, int[] iArr3, int[] iArr4, int[] iArr5, int[] iArr6, int[] iArr7, int[] iArr8, String[] strArr, int[] iArr9, int[] iArr10) {
         g6Var.W = iArr.length;
-        g6Var.f18952b0 = new ArrayList();
-        g6Var.f18950a0 = new SparseArray();
-        g6Var.f18954c0 = new LongSparseArray();
+        g6Var.f18937b0 = new ArrayList();
+        g6Var.f18935a0 = new SparseArray();
+        g6Var.f18939c0 = new LongSparseArray();
         for (int i10 = 0; i10 < iArr.length; i10++) {
             f6 f6Var = new f6();
-            f6Var.f18902a = iArr8[i10];
+            f6Var.f18887a = iArr8[i10];
             if (h6.g1(f6Var)) {
-                f6Var.f18923z = true;
+                f6Var.f18908z = true;
             }
-            f6Var.f18904c = iArr[i10];
-            f6Var.f18903b = g6Var;
+            f6Var.f18889c = iArr[i10];
+            f6Var.f18888b = g6Var;
             f6Var.e = iArr2[i10];
-            f6Var.f18905f = iArr3[i10];
+            f6Var.f18890f = iArr3[i10];
             long j3 = iArr4[i10];
-            f6Var.f18908j = j3;
+            f6Var.f18893j = j3;
             boolean z10 = g6Var.S;
-            if (z10 && f6Var.f18902a == h6.f19253n) {
-                f6Var.f18908j = 4294967296L;
+            if (z10 && f6Var.f18887a == h6.f19238n) {
+                f6Var.f18893j = 4294967296L;
             } else {
-                f6Var.f18908j = j3;
+                f6Var.f18893j = j3;
             }
-            if (z10 && f6Var.f18902a == h6.f19253n) {
-                f6Var.f18909k = 4294967296L;
+            if (z10 && f6Var.f18887a == h6.f19238n) {
+                f6Var.f18894k = 4294967296L;
             } else {
-                f6Var.f18909k = iArr5[i10];
+                f6Var.f18894k = iArr5[i10];
             }
             if (iArr6 != null) {
-                if (z10 && f6Var.f18902a == h6.f19253n) {
-                    f6Var.f18910l = 4294967296L;
+                if (z10 && f6Var.f18887a == h6.f19238n) {
+                    f6Var.f18895l = 4294967296L;
                 } else {
-                    f6Var.f18910l = iArr6[i10];
+                    f6Var.f18895l = iArr6[i10];
                 }
             }
             if (iArr7 != null) {
-                if (z10 && f6Var.f18902a == h6.f19253n) {
-                    f6Var.f18911m = 4294967296L;
+                if (z10 && f6Var.f18887a == h6.f19238n) {
+                    f6Var.f18896m = 4294967296L;
                 } else {
-                    f6Var.f18911m = iArr7[i10];
+                    f6Var.f18896m = iArr7[i10];
                 }
             }
-            f6Var.f18914p = iArr10[i10] / 100.0f;
-            f6Var.f18912n = iArr9[i10];
-            f6Var.f18913o = strArr[i10];
-            if ((h6.g1(f6Var) && g6Var.f18949a.equals("Dark Blue")) || g6Var.f18949a.equals("Night")) {
+            f6Var.f18899p = iArr10[i10] / 100.0f;
+            f6Var.f18897n = iArr9[i10];
+            f6Var.f18898o = strArr[i10];
+            if ((h6.g1(f6Var) && g6Var.f18934a.equals("Dark Blue")) || g6Var.f18934a.equals("Night")) {
                 f6Var.e = -14316059;
-                f6Var.f18905f = -12422433;
-                f6Var.f18906g = -8304937;
+                f6Var.f18890f = -12422433;
+                f6Var.f18891g = -8304937;
                 f6Var.h = -6340950;
-                if (g6Var.f18949a.equals("Night")) {
-                    f6Var.f18914p = -0.57f;
-                    f6Var.f18908j = -9666650L;
-                    f6Var.f18909k = -13749173L;
-                    f6Var.f18910l = -8883033L;
-                    f6Var.f18911m = -13421992L;
+                if (g6Var.f18934a.equals("Night")) {
+                    f6Var.f18899p = -0.57f;
+                    f6Var.f18893j = -9666650L;
+                    f6Var.f18894k = -13749173L;
+                    f6Var.f18895l = -8883033L;
+                    f6Var.f18896m = -13421992L;
                 }
             }
-            g6Var.f18950a0.put(f6Var.f18902a, f6Var);
-            g6Var.f18952b0.add(f6Var);
+            g6Var.f18935a0.put(f6Var.f18887a, f6Var);
+            g6Var.f18937b0.add(f6Var);
         }
-        g6Var.X = ((f6) g6Var.f18950a0.get(0)).f18904c;
+        g6Var.X = ((f6) g6Var.f18935a0.get(0)).f18889c;
     }
 
     public static void c(g6 g6Var, SharedPreferences sharedPreferences) {
-        ArrayList arrayList = g6Var.f18952b0;
+        ArrayList arrayList = g6Var.f18937b0;
         if (arrayList != null && !arrayList.isEmpty()) {
-            int size = g6Var.f18952b0.size();
+            int size = g6Var.f18937b0.size();
             for (int i10 = 0; i10 < size; i10++) {
-                f6 f6Var = (f6) g6Var.f18952b0.get(i10);
+                f6 f6Var = (f6) g6Var.f18937b0.get(i10);
                 StringBuilder sb2 = new StringBuilder();
-                sb2.append(g6Var.f18949a);
+                sb2.append(g6Var.f18934a);
                 sb2.append("_");
-                g6Var.r(sharedPreferences, f6Var, a4.a.o(f6Var.f18902a, "_owp", sb2));
+                g6Var.r(sharedPreferences, f6Var, a4.a.o(f6Var.f18887a, "_owp", sb2));
             }
             return;
         }
-        g6Var.r(sharedPreferences, null, a4.a.t(new StringBuilder(), g6Var.f18949a, "_owp"));
+        g6Var.r(sharedPreferences, null, a4.a.t(new StringBuilder(), g6Var.f18934a, "_owp"));
     }
 
     public static g6 g(JSONObject jSONObject) {
@@ -262,8 +262,8 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         }
         try {
             g6 g6Var = new g6();
-            g6Var.f18949a = jSONObject.getString("name");
-            g6Var.f18951b = jSONObject.getString("path");
+            g6Var.f18934a = jSONObject.getString("name");
+            g6Var.f18936b = jSONObject.getString("path");
             if (jSONObject.has("account")) {
                 g6Var.E = jSONObject.getInt("account");
             }
@@ -290,8 +290,8 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
             return null;
         }
         g6 g6Var = new g6();
-        g6Var.f18949a = split[0];
-        g6Var.f18951b = split[1];
+        g6Var.f18934a = split[0];
+        g6Var.f18936b = split[1];
         return g6Var;
     }
 
@@ -301,7 +301,7 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         int i12;
         int i13;
         TLRPC.WallPaperSettings wallPaperSettings;
-        f6Var.f18904c = themeSettings.accent_color;
+        f6Var.f18889c = themeSettings.accent_color;
         f6Var.d = themeSettings.outbox_accent_color;
         if (themeSettings.message_colors.size() > 0) {
             i10 = themeSettings.message_colors.get(0).intValue() | (-16777216);
@@ -314,56 +314,56 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         } else {
             i11 = 0;
         }
-        f6Var.f18905f = i11;
+        f6Var.f18890f = i11;
         if (f6Var.e == i11) {
-            f6Var.f18905f = 0;
+            f6Var.f18890f = 0;
         }
         if (themeSettings.message_colors.size() > 2) {
             i12 = themeSettings.message_colors.get(2).intValue() | (-16777216);
         } else {
             i12 = 0;
         }
-        f6Var.f18906g = i12;
+        f6Var.f18891g = i12;
         if (themeSettings.message_colors.size() > 3) {
             i13 = themeSettings.message_colors.get(3).intValue() | (-16777216);
         } else {
             i13 = 0;
         }
         f6Var.h = i13;
-        f6Var.f18907i = themeSettings.message_colors_animated;
+        f6Var.f18892i = themeSettings.message_colors_animated;
         TLRPC.WallPaper wallPaper = themeSettings.wallpaper;
         if (wallPaper != null && (wallPaperSettings = wallPaper.settings) != null) {
             int i14 = wallPaperSettings.background_color;
             if (i14 == 0) {
-                f6Var.f18908j = 4294967296L;
+                f6Var.f18893j = 4294967296L;
             } else {
-                f6Var.f18908j = h6.X0(i14);
+                f6Var.f18893j = h6.X0(i14);
             }
             TLRPC.WallPaperSettings wallPaperSettings2 = themeSettings.wallpaper.settings;
             if ((wallPaperSettings2.flags & 16) != 0 && wallPaperSettings2.second_background_color == 0) {
-                f6Var.f18909k = 4294967296L;
+                f6Var.f18894k = 4294967296L;
             } else {
-                f6Var.f18909k = h6.X0(wallPaperSettings2.second_background_color);
+                f6Var.f18894k = h6.X0(wallPaperSettings2.second_background_color);
             }
             TLRPC.WallPaperSettings wallPaperSettings3 = themeSettings.wallpaper.settings;
             if ((wallPaperSettings3.flags & 32) != 0 && wallPaperSettings3.third_background_color == 0) {
-                f6Var.f18910l = 4294967296L;
+                f6Var.f18895l = 4294967296L;
             } else {
-                f6Var.f18910l = h6.X0(wallPaperSettings3.third_background_color);
+                f6Var.f18895l = h6.X0(wallPaperSettings3.third_background_color);
             }
             TLRPC.WallPaperSettings wallPaperSettings4 = themeSettings.wallpaper.settings;
             if ((wallPaperSettings4.flags & 64) != 0 && wallPaperSettings4.fourth_background_color == 0) {
-                f6Var.f18911m = 4294967296L;
+                f6Var.f18896m = 4294967296L;
             } else {
-                f6Var.f18911m = h6.X0(wallPaperSettings4.fourth_background_color);
+                f6Var.f18896m = h6.X0(wallPaperSettings4.fourth_background_color);
             }
-            f6Var.f18912n = AndroidUtilities.getWallpaperRotation(themeSettings.wallpaper.settings.rotation, false);
+            f6Var.f18897n = AndroidUtilities.getWallpaperRotation(themeSettings.wallpaper.settings.rotation, false);
             TLRPC.WallPaper wallPaper2 = themeSettings.wallpaper;
             if (!(wallPaper2 instanceof TLRPC.TL_wallPaperNoFile) && wallPaper2.pattern) {
-                f6Var.f18913o = wallPaper2.slug;
+                f6Var.f18898o = wallPaper2.slug;
                 TLRPC.WallPaperSettings wallPaperSettings5 = wallPaper2.settings;
-                f6Var.f18914p = wallPaperSettings5.intensity / 100.0f;
-                f6Var.f18915q = wallPaperSettings5.motion;
+                f6Var.f18899p = wallPaperSettings5.intensity / 100.0f;
+                f6Var.f18900q = wallPaperSettings5.motion;
             }
         }
     }
@@ -373,27 +373,27 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         int patternColor;
         try {
             Bitmap scaledBitmap = AndroidUtilities.getScaledBitmap(AndroidUtilities.dp(640.0f), AndroidUtilities.dp(360.0f), file.getAbsolutePath(), null, 0);
-            if (scaledBitmap != null && this.f18964r != 0) {
+            if (scaledBitmap != null && this.f18949r != 0) {
                 Bitmap createBitmap = Bitmap.createBitmap(scaledBitmap.getWidth(), scaledBitmap.getHeight(), scaledBitmap.getConfig());
                 Canvas canvas = new Canvas(createBitmap);
                 int i10 = this.v;
                 if (i10 != 0) {
-                    patternColor = pc0.g(this.f18964r, this.f18965s, i10, this.f18966w);
+                    patternColor = oc0.g(this.f18949r, this.f18950s, i10, this.f18951w);
                 } else {
-                    int i11 = this.f18965s;
+                    int i11 = this.f18950s;
                     if (i11 != 0) {
-                        patternColor = AndroidUtilities.getAverageColor(this.f18964r, i11);
-                        GradientDrawable gradientDrawable = new GradientDrawable(v9.d(this.f18967x), new int[]{this.f18964r, this.f18965s});
+                        patternColor = AndroidUtilities.getAverageColor(this.f18949r, i11);
+                        GradientDrawable gradientDrawable = new GradientDrawable(v9.d(this.f18952x), new int[]{this.f18949r, this.f18950s});
                         gradientDrawable.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
                         gradientDrawable.draw(canvas);
                     } else {
-                        patternColor = AndroidUtilities.getPatternColor(this.f18964r);
-                        canvas.drawColor(this.f18964r);
+                        patternColor = AndroidUtilities.getPatternColor(this.f18949r);
+                        canvas.drawColor(this.f18949r);
                     }
                 }
                 Paint paint = new Paint(2);
                 paint.setColorFilter(new PorterDuffColorFilter(patternColor, PorterDuff.Mode.SRC_IN));
-                paint.setAlpha((int) ((this.f18968y / 100.0f) * 255.0f));
+                paint.setAlpha((int) ((this.f18953y / 100.0f) * 255.0f));
                 canvas.drawBitmap(scaledBitmap, 0.0f, 0.0f, paint);
                 canvas.setBitmap(null);
                 scaledBitmap = createBitmap;
@@ -423,24 +423,24 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
             String str = (String) objArr[0];
             TLRPC.TL_theme tL_theme = this.F;
             if (tL_theme != null && tL_theme.document != null) {
-                if (str.equals(this.f18959g0)) {
-                    this.f18959g0 = null;
-                    Utilities.globalQueue.postRunnable(new a6(1, this, (File) objArr[1]));
+                if (str.equals(this.f18944g0)) {
+                    this.f18944g0 = null;
+                    Utilities.globalQueue.postRunnable(new a6(2, this, (File) objArr[1]));
                 } else if (str.equals(FileLoader.getAttachFileName(this.F.document))) {
                     t();
                     if (i10 == i12) {
-                        File file = new File(this.f18951b);
+                        File file = new File(this.f18936b);
                         TLRPC.TL_theme tL_theme2 = this.F;
                         g6 k02 = h6.k0(file, tL_theme2.title, tL_theme2);
-                        if (k02 != null && k02.f18953c != null && !new File(k02.f18953c).exists()) {
-                            this.f18964r = k02.f18964r;
-                            this.f18965s = k02.f18965s;
+                        if (k02 != null && k02.f18938c != null && !new File(k02.f18938c).exists()) {
+                            this.f18949r = k02.f18949r;
+                            this.f18950s = k02.f18950s;
                             this.v = k02.v;
-                            this.f18966w = k02.f18966w;
-                            this.f18967x = k02.f18967x;
+                            this.f18951w = k02.f18951w;
+                            this.f18952x = k02.f18952x;
                             this.h = k02.h;
-                            this.f18968y = k02.f18968y;
-                            this.f18960h0 = k02.f18953c;
+                            this.f18953y = k02.f18953y;
+                            this.f18945h0 = k02.f18938c;
                             TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
                             TLRPC.TL_inputWallPaperSlug tL_inputWallPaperSlug = new TLRPC.TL_inputWallPaperSlug();
                             tL_inputWallPaperSlug.slug = k02.e;
@@ -457,38 +457,38 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
 
     public final f6 e(long j3, TLRPC.ThemeSettings themeSettings, TLRPC.TL_theme tL_theme, int i10, boolean z10) {
         if (z10) {
-            LongSparseArray longSparseArray = this.f18955d0;
+            LongSparseArray longSparseArray = this.f18940d0;
             f6 f6Var = (f6) longSparseArray.get(j3);
             if (f6Var != null) {
                 return f6Var;
             }
-            int i11 = this.f18956e0 + 1;
-            this.f18956e0 = i11;
+            int i11 = this.f18941e0 + 1;
+            this.f18941e0 = i11;
             f6 f6Var2 = new f6();
             i(f6Var2, themeSettings);
-            f6Var2.f18903b = this;
-            f6Var2.f18902a = i11;
-            f6Var2.f18916r = tL_theme;
-            f6Var2.f18918t = i10;
+            f6Var2.f18888b = this;
+            f6Var2.f18887a = i11;
+            f6Var2.f18901r = tL_theme;
+            f6Var2.f18903t = i10;
             longSparseArray.put(i11, f6Var2);
             return f6Var2;
         }
-        f6 f6Var3 = (f6) this.f18954c0.get(j3);
+        f6 f6Var3 = (f6) this.f18939c0.get(j3);
         if (f6Var3 != null) {
             return f6Var3;
         }
-        int i12 = this.f18958f0 + 1;
-        this.f18958f0 = i12;
+        int i12 = this.f18943f0 + 1;
+        this.f18943f0 = i12;
         f6 f6Var4 = new f6();
         i(f6Var4, themeSettings);
-        f6Var4.f18903b = this;
-        f6Var4.f18902a = i12;
-        f6Var4.f18916r = tL_theme;
-        f6Var4.f18918t = i10;
-        this.f18950a0.put(i12, f6Var4);
-        this.f18952b0.add(0, f6Var4);
+        f6Var4.f18888b = this;
+        f6Var4.f18887a = i12;
+        f6Var4.f18901r = tL_theme;
+        f6Var4.f18903t = i10;
+        this.f18935a0.put(i12, f6Var4);
+        this.f18937b0.add(0, f6Var4);
         h6.D1(this);
-        this.f18954c0.put(j3, f6Var4);
+        this.f18939c0.put(j3, f6Var4);
         return f6Var4;
     }
 
@@ -500,7 +500,7 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         if (i11 < tL_theme.settings.size()) {
             themeSettings = tL_theme.settings.get(i11);
         }
-        return e(tL_theme.f18489id, themeSettings, tL_theme, i10, false);
+        return e(tL_theme.f18474id, themeSettings, tL_theme, i10, false);
     }
 
     public final String j(f6 f6Var, boolean z10) {
@@ -513,14 +513,14 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
             StringBuilder sb2 = new StringBuilder();
             if (z10) {
                 StringBuilder sb3 = new StringBuilder();
-                sb3.append(this.f18949a);
+                sb3.append(this.f18934a);
                 sb3.append("_");
-                o9 = a4.a.o(f6Var.f18902a, "_wp_o", sb3);
+                o9 = a4.a.o(f6Var.f18887a, "_wp_o", sb3);
             } else {
                 StringBuilder sb4 = new StringBuilder();
-                sb4.append(this.f18949a);
+                sb4.append(this.f18934a);
                 sb4.append("_");
-                o9 = a4.a.o(f6Var.f18902a, "_wp", sb4);
+                o9 = a4.a.o(f6Var.f18887a, "_wp", sb4);
             }
             sb2.append(o9);
             sb2.append(Utilities.random.nextInt());
@@ -529,9 +529,9 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         }
         StringBuilder sb5 = new StringBuilder();
         if (z10) {
-            t10 = a4.a.t(new StringBuilder(), this.f18949a, "_wp_o");
+            t10 = a4.a.t(new StringBuilder(), this.f18934a, "_wp_o");
         } else {
-            t10 = a4.a.t(new StringBuilder(), this.f18949a, "_wp");
+            t10 = a4.a.t(new StringBuilder(), this.f18934a, "_wp");
         }
         sb5.append(t10);
         sb5.append(Utilities.random.nextInt());
@@ -541,86 +541,86 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
 
     public final f6 k(boolean z10) {
         f6 f6Var;
-        if (this.f18952b0 == null || (f6Var = (f6) this.f18950a0.get(this.Y)) == null) {
+        if (this.f18937b0 == null || (f6Var = (f6) this.f18935a0.get(this.Y)) == null) {
             return null;
         }
         if (z10) {
-            int i10 = this.f18958f0 + 1;
-            this.f18958f0 = i10;
+            int i10 = this.f18943f0 + 1;
+            this.f18943f0 = i10;
             f6 f6Var2 = new f6();
-            f6Var2.f18904c = f6Var.f18904c;
+            f6Var2.f18889c = f6Var.f18889c;
             f6Var2.d = f6Var.d;
             f6Var2.e = f6Var.e;
-            f6Var2.f18905f = f6Var.f18905f;
-            f6Var2.f18906g = f6Var.f18906g;
+            f6Var2.f18890f = f6Var.f18890f;
+            f6Var2.f18891g = f6Var.f18891g;
             f6Var2.h = f6Var.h;
-            f6Var2.f18907i = f6Var.f18907i;
-            f6Var2.f18908j = f6Var.f18908j;
-            f6Var2.f18909k = f6Var.f18909k;
-            f6Var2.f18910l = f6Var.f18910l;
-            f6Var2.f18911m = f6Var.f18911m;
-            f6Var2.f18912n = f6Var.f18912n;
-            f6Var2.f18913o = f6Var.f18913o;
-            f6Var2.f18914p = f6Var.f18914p;
-            f6Var2.f18915q = f6Var.f18915q;
-            f6Var2.f18903b = this;
-            z5 z5Var = this.f18961i0;
+            f6Var2.f18892i = f6Var.f18892i;
+            f6Var2.f18893j = f6Var.f18893j;
+            f6Var2.f18894k = f6Var.f18894k;
+            f6Var2.f18895l = f6Var.f18895l;
+            f6Var2.f18896m = f6Var.f18896m;
+            f6Var2.f18897n = f6Var.f18897n;
+            f6Var2.f18898o = f6Var.f18898o;
+            f6Var2.f18899p = f6Var.f18899p;
+            f6Var2.f18900q = f6Var.f18900q;
+            f6Var2.f18888b = this;
+            z5 z5Var = this.f18946i0;
             if (z5Var != null) {
                 ?? obj = new Object();
-                obj.f19975a = "";
-                obj.f19976b = "";
-                obj.f19977c = "";
-                obj.f19977c = z5Var.f19977c;
+                obj.f19960a = "";
+                obj.f19961b = "";
+                obj.f19962c = "";
+                obj.f19962c = z5Var.f19962c;
                 obj.d = z5Var.d;
                 obj.e = z5Var.e;
-                obj.f19978f = z5Var.f19978f;
-                obj.f19979g = z5Var.f19979g;
+                obj.f19963f = z5Var.f19963f;
+                obj.f19964g = z5Var.f19964g;
                 obj.h = z5Var.h;
-                obj.f19980i = z5Var.f19980i;
-                obj.f19981j = z5Var.f19981j;
-                obj.f19982k = z5Var.f19982k;
-                obj.f19987p = this;
-                obj.f19988q = f6Var2;
-                if (!TextUtils.isEmpty(z5Var.f19975a)) {
+                obj.f19965i = z5Var.f19965i;
+                obj.f19966j = z5Var.f19966j;
+                obj.f19967k = z5Var.f19967k;
+                obj.f19972p = this;
+                obj.f19973q = f6Var2;
+                if (!TextUtils.isEmpty(z5Var.f19960a)) {
                     try {
-                        File file = new File(ApplicationLoader.getFilesDirFixed(), z5Var.f19975a);
+                        File file = new File(ApplicationLoader.getFilesDirFixed(), z5Var.f19960a);
                         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                        String j3 = obj.f19987p.j(obj.f19988q, false);
-                        obj.f19975a = j3;
+                        String j3 = obj.f19972p.j(obj.f19973q, false);
+                        obj.f19960a = j3;
                         AndroidUtilities.copyFile(file, new File(filesDirFixed, j3));
                     } catch (Exception e) {
-                        obj.f19975a = "";
+                        obj.f19960a = "";
                         FileLog.e(e);
                     }
                 } else {
-                    obj.f19975a = "";
+                    obj.f19960a = "";
                 }
-                if (!TextUtils.isEmpty(z5Var.f19976b)) {
-                    if (!z5Var.f19976b.equals(z5Var.f19975a)) {
+                if (!TextUtils.isEmpty(z5Var.f19961b)) {
+                    if (!z5Var.f19961b.equals(z5Var.f19960a)) {
                         try {
-                            File file2 = new File(ApplicationLoader.getFilesDirFixed(), z5Var.f19976b);
+                            File file2 = new File(ApplicationLoader.getFilesDirFixed(), z5Var.f19961b);
                             File filesDirFixed2 = ApplicationLoader.getFilesDirFixed();
-                            String j10 = obj.f19987p.j(obj.f19988q, true);
-                            obj.f19976b = j10;
+                            String j10 = obj.f19972p.j(obj.f19973q, true);
+                            obj.f19961b = j10;
                             AndroidUtilities.copyFile(file2, new File(filesDirFixed2, j10));
                         } catch (Exception e7) {
-                            obj.f19976b = "";
+                            obj.f19961b = "";
                             FileLog.e(e7);
                         }
                     } else {
-                        obj.f19976b = obj.f19975a;
+                        obj.f19961b = obj.f19960a;
                     }
                 } else {
-                    obj.f19976b = "";
+                    obj.f19961b = "";
                 }
-                f6Var2.f18922y = obj;
+                f6Var2.f18907y = obj;
             }
             this.Z = this.Y;
-            f6Var2.f18902a = i10;
+            f6Var2.f18887a = i10;
             this.Y = i10;
-            this.f18961i0 = f6Var2.f18922y;
-            this.f18950a0.put(i10, f6Var2);
-            this.f18952b0.add(0, f6Var2);
+            this.f18946i0 = f6Var2.f18907y;
+            this.f18935a0.put(i10, f6Var2);
+            this.f18937b0.add(0, f6Var2);
             h6.D1(this);
             return f6Var2;
         }
@@ -628,76 +628,76 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final int l(int i10) {
-        f6 f6Var = (f6) this.f18950a0.get(i10);
+        f6 f6Var = (f6) this.f18935a0.get(i10);
         if (f6Var != null) {
-            return f6Var.f18904c;
+            return f6Var.f18889c;
         }
         return 0;
     }
 
     public final String m() {
         if (this.F != null) {
-            return "remote" + this.F.f18489id;
+            return "remote" + this.F.f18474id;
         }
-        return this.f18949a;
+        return this.f18934a;
     }
 
     public final String n() {
-        if ("Blue".equals(this.f18949a)) {
+        if ("Blue".equals(this.f18934a)) {
             return LocaleController.getString(R.string.ThemeClassic);
         }
-        if ("Dark Blue".equals(this.f18949a)) {
+        if ("Dark Blue".equals(this.f18934a)) {
             return LocaleController.getString(R.string.ThemeDark);
         }
-        if ("Arctic Blue".equals(this.f18949a)) {
+        if ("Arctic Blue".equals(this.f18934a)) {
             return LocaleController.getString(R.string.ThemeArcticBlue);
         }
-        if ("Day".equals(this.f18949a)) {
+        if ("Day".equals(this.f18934a)) {
             return LocaleController.getString(R.string.ThemeDay);
         }
-        if ("Night".equals(this.f18949a)) {
+        if ("Night".equals(this.f18934a)) {
             return LocaleController.getString(R.string.ThemeNight);
         }
         TLRPC.TL_theme tL_theme = this.F;
         if (tL_theme != null) {
             return tL_theme.title;
         }
-        return this.f18949a;
+        return this.f18934a;
     }
 
     public final int o() {
-        if (this.S && this.Y == h6.f19253n) {
+        if (this.S && this.Y == h6.f19238n) {
             return -3155485;
         }
         return this.L;
     }
 
     public final int p() {
-        if (this.S && this.Y == h6.f19253n) {
+        if (this.S && this.Y == h6.f19238n) {
             return -983328;
         }
         return this.R;
     }
 
     public final boolean q() {
-        int i10 = this.f18962j0;
+        int i10 = this.f18947j0;
         if (i10 != -1) {
             if (i10 != 1) {
                 return false;
             }
             return true;
         }
-        if (!"Dark Blue".equals(this.f18949a) && !"Night".equals(this.f18949a)) {
-            if ("Blue".equals(this.f18949a) || "Arctic Blue".equals(this.f18949a) || "Day".equals(this.f18949a)) {
-                this.f18962j0 = 0;
+        if (!"Dark Blue".equals(this.f18934a) && !"Night".equals(this.f18934a)) {
+            if ("Blue".equals(this.f18934a) || "Arctic Blue".equals(this.f18934a) || "Day".equals(this.f18934a)) {
+                this.f18947j0 = 0;
             }
         } else {
-            this.f18962j0 = 1;
+            this.f18947j0 = 1;
         }
-        if (this.f18962j0 == -1) {
-            h6.G(h6.Q0(new File(this.f18951b), null, new String[1]), this);
+        if (this.f18947j0 == -1) {
+            h6.G(h6.Q0(new File(this.f18936b), null, new String[1]), this);
         }
-        if (this.f18962j0 != 1) {
+        if (this.f18947j0 != 1) {
             return false;
         }
         return true;
@@ -709,26 +709,26 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
             if (!TextUtils.isEmpty(string)) {
                 JSONObject jSONObject = new JSONObject(string);
                 z5 z5Var = new z5();
-                z5Var.f19975a = jSONObject.getString("wall");
-                z5Var.f19976b = jSONObject.getString("owall");
+                z5Var.f19960a = jSONObject.getString("wall");
+                z5Var.f19961b = jSONObject.getString("owall");
                 z5Var.d = jSONObject.getInt("pColor");
                 z5Var.e = jSONObject.getInt("pGrColor");
-                z5Var.f19978f = jSONObject.optInt("pGrColor2");
-                z5Var.f19979g = jSONObject.optInt("pGrColor3");
+                z5Var.f19963f = jSONObject.optInt("pGrColor2");
+                z5Var.f19964g = jSONObject.optInt("pGrColor3");
                 z5Var.h = jSONObject.getInt("pGrAngle");
-                z5Var.f19977c = jSONObject.getString("wallSlug");
-                z5Var.f19980i = jSONObject.getBoolean("wBlur");
-                z5Var.f19981j = jSONObject.getBoolean("wMotion");
-                z5Var.f19982k = (float) jSONObject.getDouble("pIntensity");
-                z5Var.f19987p = this;
-                z5Var.f19988q = f6Var;
+                z5Var.f19962c = jSONObject.getString("wallSlug");
+                z5Var.f19965i = jSONObject.getBoolean("wBlur");
+                z5Var.f19966j = jSONObject.getBoolean("wMotion");
+                z5Var.f19967k = (float) jSONObject.getDouble("pIntensity");
+                z5Var.f19972p = this;
+                z5Var.f19973q = f6Var;
                 if (f6Var != null) {
-                    f6Var.f18922y = z5Var;
+                    f6Var.f18907y = z5Var;
                 } else {
-                    this.f18961i0 = z5Var;
+                    this.f18946i0 = z5Var;
                 }
                 if (jSONObject.has("wallId") && jSONObject.getLong("wallId") == 1000001) {
-                    z5Var.f19977c = "d";
+                    z5Var.f19962c = "d";
                 }
             }
         } catch (Throwable th2) {
@@ -762,52 +762,52 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         this.Y = i10;
         f6 k10 = k(false);
         if (k10 != null) {
-            this.f18961i0 = k10.f18922y;
+            this.f18946i0 = k10.f18907y;
         }
     }
 
     public final void v(z5 z5Var) {
-        if (this.f18961i0 != z5Var) {
+        if (this.f18946i0 != z5Var) {
             f6 k10 = k(false);
-            z5 z5Var2 = this.f18961i0;
+            z5 z5Var2 = this.f18946i0;
             if (z5Var2 != null) {
                 z5.a(z5Var2);
             }
             if (z5Var != null) {
-                z5Var.f19988q = k10;
-                z5Var.f19987p = this;
+                z5Var.f19973q = k10;
+                z5Var.f19972p = this;
                 z5Var.c();
             }
-            this.f18961i0 = z5Var;
+            this.f18946i0 = z5Var;
             if (k10 != null) {
-                k10.f18922y = z5Var;
+                k10.f18907y = z5Var;
             }
         }
     }
 
     public g6(g6 g6Var) {
-        this.f18967x = 45;
+        this.f18952x = 45;
         this.G = true;
         this.U = true;
         this.Z = -1;
-        this.f18955d0 = new LongSparseArray();
-        this.f18956e0 = 0;
-        this.f18958f0 = 100;
-        this.f18962j0 = -1;
-        this.f18949a = g6Var.f18949a;
-        this.f18951b = g6Var.f18951b;
-        this.f18953c = g6Var.f18953c;
+        this.f18940d0 = new LongSparseArray();
+        this.f18941e0 = 0;
+        this.f18943f0 = 100;
+        this.f18947j0 = -1;
+        this.f18934a = g6Var.f18934a;
+        this.f18936b = g6Var.f18936b;
+        this.f18938c = g6Var.f18938c;
         this.d = g6Var.d;
         this.e = g6Var.e;
-        this.f18957f = g6Var.f18957f;
+        this.f18942f = g6Var.f18942f;
         this.h = g6Var.h;
-        this.f18963n = g6Var.f18963n;
-        this.f18964r = g6Var.f18964r;
-        this.f18965s = g6Var.f18965s;
+        this.f18948n = g6Var.f18948n;
+        this.f18949r = g6Var.f18949r;
+        this.f18950s = g6Var.f18950s;
         this.v = g6Var.v;
-        this.f18966w = g6Var.f18966w;
-        this.f18967x = g6Var.f18967x;
-        this.f18968y = g6Var.f18968y;
+        this.f18951w = g6Var.f18951w;
+        this.f18952x = g6Var.f18952x;
+        this.f18953y = g6Var.f18953y;
         this.E = g6Var.E;
         this.F = g6Var.F;
         this.G = g6Var.G;
@@ -830,12 +830,12 @@ public final class g6 implements NotificationCenter.NotificationCenterDelegate {
         this.X = g6Var.X;
         this.Y = g6Var.Y;
         this.Z = g6Var.Z;
-        this.f18950a0 = g6Var.f18950a0;
-        this.f18952b0 = g6Var.f18952b0;
-        this.f18954c0 = g6Var.f18954c0;
-        this.f18958f0 = g6Var.f18958f0;
-        this.f18959g0 = g6Var.f18959g0;
-        this.f18960h0 = g6Var.f18960h0;
-        this.f18961i0 = g6Var.f18961i0;
+        this.f18935a0 = g6Var.f18935a0;
+        this.f18937b0 = g6Var.f18937b0;
+        this.f18939c0 = g6Var.f18939c0;
+        this.f18943f0 = g6Var.f18943f0;
+        this.f18944g0 = g6Var.f18944g0;
+        this.f18945h0 = g6Var.f18945h0;
+        this.f18946i0 = g6Var.f18946i0;
     }
 }

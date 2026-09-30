@@ -1,36 +1,25 @@
 package org.telegram.ui;
 
-import android.os.AsyncTask;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class do0 extends AsyncTask {
-    public final uc.a f33248a;
-    public final no0 f33249b;
+public final class do0 {
+    public final oo0 f33155a;
 
-    public do0(no0 no0Var, uc.a aVar) {
-        this.f33249b = no0Var;
-        this.f33248a = aVar;
+    public do0(oo0 oo0Var) {
+        this.f33155a = oo0Var;
     }
 
-    @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.do0.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        no0 no0Var = this.f33249b;
-        if (no0Var.Q0) {
+    public final void a(Exception exc) {
+        oo0 oo0Var = this.f33155a;
+        if (oo0Var.Q0) {
             return;
         }
-        if (str == null) {
-            org.telegram.ui.Components.e5.w0(no0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+        oo0Var.H0(true, false);
+        oo0Var.D0(false);
+        if (!(exc instanceof tc.a) && !(exc instanceof tc.b)) {
+            org.telegram.ui.Components.e5.w0(oo0Var, exc.getMessage());
         } else {
-            no0Var.f36084w0 = str;
-            no0Var.t0();
+            org.telegram.ui.Components.e5.w0(oo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
         }
-        no0Var.H0(true, false);
-        no0Var.D0(false);
     }
 }

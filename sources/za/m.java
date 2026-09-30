@@ -2,15 +2,15 @@ package za;
 
 import com.google.firebase.sessions.FirebaseSessionsRegistrar;
 public final class m implements q9.d {
-    public final int f49195a;
+    public final int f49089a;
 
     public m(int i10) {
-        this.f49195a = i10;
+        this.f49089a = i10;
     }
 
     @Override
     public Object G(cf.c cVar) {
-        switch (this.f49195a) {
+        switch (this.f49089a) {
             case 1:
                 return FirebaseSessionsRegistrar.e(cVar);
             case 2:

@@ -3,31 +3,31 @@ package org.telegram.ui;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class sx0 implements Runnable {
-    public final int f37989a;
-    public final PrivacySettingsActivity f37990b;
+    public final int f37881a;
+    public final PrivacySettingsActivity f37882b;
 
     public sx0(PrivacySettingsActivity privacySettingsActivity, int i10) {
-        this.f37989a = i10;
-        this.f37990b = privacySettingsActivity;
+        this.f37881a = i10;
+        this.f37882b = privacySettingsActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f37989a) {
+        switch (this.f37881a) {
             case 0:
-                PrivacySettingsActivity privacySettingsActivity = this.f37990b;
-                privacySettingsActivity.f31585a.l();
+                PrivacySettingsActivity privacySettingsActivity = this.f37882b;
+                privacySettingsActivity.f31513a.l();
                 privacySettingsActivity.R = true;
                 return;
             case 1:
-                this.f37990b.f31589c.dismiss();
+                this.f37882b.f31517c.dismiss();
                 return;
             default:
-                PrivacySettingsActivity privacySettingsActivity2 = this.f37990b;
-                org.telegram.ui.Components.zb zbVar = new org.telegram.ui.Components.zb(privacySettingsActivity2.getParentActivity(), null);
-                zbVar.d(R.raw.email_check_inbox, new String[0]);
-                zbVar.f30942b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
-                org.telegram.ui.Components.rc.g(privacySettingsActivity2, zbVar, 1500).j();
+                PrivacySettingsActivity privacySettingsActivity2 = this.f37882b;
+                org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(privacySettingsActivity2.getParentActivity(), null);
+                ybVar.d(R.raw.email_check_inbox, new String[0]);
+                ybVar.f30634b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
+                org.telegram.ui.Components.qc.g(privacySettingsActivity2, ybVar, 1500).j();
                 try {
                     privacySettingsActivity2.fragmentView.performHapticFeedback(3, 2);
                 } catch (Exception unused) {

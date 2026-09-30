@@ -40,7 +40,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.m90;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.hx;
 import org.telegram.ui.qy;
@@ -89,7 +89,7 @@ public final class d implements Runnable {
                 m2Var.T = false;
                 return;
             case 6:
-                ((u4) this.f77b).f1581a.Q0();
+                ((u4) this.f77b).f1576a.Q0();
                 return;
             case 7:
                 e6 e6Var = ((a5) this.f77b).f519x;
@@ -97,7 +97,7 @@ public final class d implements Runnable {
                 if (x5Var != null) {
                     if (!e6Var.T1 && !e6Var.U1 && !e6Var.V1) {
                         jc jcVar = ((ac) x5Var).d;
-                        if (!jcVar.f1089n0.getCurrentPeerView().d1(true) && !jcVar.f1089n0.E(true)) {
+                        if (!jcVar.f1087n0.getCurrentPeerView().d1(true) && !jcVar.f1087n0.E(true)) {
                             jcVar.q(true);
                             return;
                         }
@@ -120,7 +120,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f77b;
-                int i10 = ProfileStoriesView.f31878s0;
+                int i10 = ProfileStoriesView.f31806s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -139,8 +139,8 @@ public final class d implements Runnable {
                 return;
             case 13:
                 b1 b1Var = (b1) this.f77b;
-                b1Var.c(b1Var.f4375b);
-                b1Var.f4376c = false;
+                b1Var.c(b1Var.f4368b);
+                b1Var.f4369c = false;
                 return;
             case 14:
                 p9 p9Var = (p9) this.f77b;
@@ -155,12 +155,12 @@ public final class d implements Runnable {
                 return;
             case 17:
                 ma maVar = (ma) this.f77b;
-                ArrayList arrayList = maVar.f1272c;
+                ArrayList arrayList = maVar.f1270c;
                 if (arrayList != null) {
-                    maVar.f1270a.f848z1 = arrayList;
+                    maVar.f1268a.f848z1 = arrayList;
                 }
-                e6 e6Var2 = maVar.f1270a;
-                long j3 = maVar.f1271b;
+                e6 e6Var2 = maVar.f1268a;
+                long j3 = maVar.f1269b;
                 if (e6Var2.B1 != j3 || e6Var2.f848z1 != null) {
                     e6Var2.B1 = j3;
                     e6Var2.j1();
@@ -182,17 +182,17 @@ public final class d implements Runnable {
                 }
                 return;
             case 18:
-                ((n90) this.f77b).d(true);
+                ((m90) this.f77b).d(true);
                 return;
             case 19:
                 ((db) this.f77b).requestLayout();
                 return;
             case 20:
                 mb mbVar = (mb) this.f77b;
-                e4 e4Var = mbVar.f1275c;
+                e4 e4Var = mbVar.f1273c;
                 if (e4Var != null) {
                     e4Var.e(true);
-                    mbVar.f1275c = null;
+                    mbVar.f1273c = null;
                 }
                 mbVar.b(false);
                 return;
@@ -203,22 +203,22 @@ public final class d implements Runnable {
                     kbVar.F = System.currentTimeMillis();
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     kbVar.e = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
-                    kbVar.f1159f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
+                    kbVar.f1157f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
                     kbVar.invalidate();
                     return;
                 }
                 return;
             case 22:
-                jc jcVar2 = ((sb) this.f77b).f1538b;
+                jc jcVar2 = ((sb) this.f77b).f1533b;
                 try {
-                    xb xbVar = jcVar2.f1100s;
+                    xb xbVar = jcVar2.f1098s;
                     if (xbVar != null) {
-                        if (jcVar2.f1063b) {
+                        if (jcVar2.f1061b) {
                             AndroidUtilities.removeFromParent(xbVar);
                         } else {
-                            jcVar2.f1088n.removeView(xbVar);
+                            jcVar2.f1086n.removeView(xbVar);
                         }
-                        jcVar2.f1100s = null;
+                        jcVar2.f1098s = null;
                         return;
                     }
                     return;
@@ -236,10 +236,10 @@ public final class d implements Runnable {
                 return;
             case 26:
                 androidx.activity.k kVar = (androidx.activity.k) this.f77b;
-                Runnable runnable = kVar.f1892b;
+                Runnable runnable = kVar.f1885b;
                 if (runnable != null) {
                     runnable.run();
-                    kVar.f1892b = null;
+                    kVar.f1885b = null;
                     return;
                 }
                 return;
@@ -259,18 +259,18 @@ public final class d implements Runnable {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f15095a;
+                                    int i12 = n0.g.f15080a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
-                                    t7.u uVar = pVar.f2353c;
-                                    Context context = pVar.f2351a;
+                                    t7.u uVar = pVar.f2346c;
+                                    Context context = pVar.f2344a;
                                     uVar.getClass();
                                     o0.i[] iVarArr = {d};
-                                    i8 i8Var = i0.e.f10596a;
+                                    i8 i8Var = i0.e.f10582a;
                                     a8.a("TypefaceCompat.createFromFontInfo");
                                     try {
-                                        Typeface b10 = i0.e.f10596a.b(context, iVarArr, 0);
+                                        Typeface b10 = i0.e.f10582a.b(context, iVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e = j8.e(pVar.f2351a, d.f15516a);
+                                        MappedByteBuffer e = j8.e(pVar.f2344a, d.f15501a);
                                         if (e != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
@@ -285,7 +285,7 @@ public final class d implements Runnable {
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f15095a;
+                                                int i13 = n0.g.f15080a;
                                                 throw th2;
                                             }
                                         }

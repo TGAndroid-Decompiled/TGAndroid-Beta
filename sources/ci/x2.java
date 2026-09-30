@@ -18,38 +18,38 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.LaunchActivity;
 public final class x2 {
-    public final Context f5819a;
-    public final u2 f5820b;
-    public final u2 f5821c;
+    public final Context f5807a;
+    public final u2 f5808b;
+    public final u2 f5809c;
     public final WindowManager e;
-    public final View f5822f;
-    public final WindowManager.LayoutParams f5823g;
-    public ValueAnimator f5824i;
-    public int f5825j;
-    public int f5826k;
-    public int f5827l;
-    public float f5828m;
-    public int f5829n;
-    public RadialGradient f5833r;
-    public final Paint f5834s;
+    public final View f5810f;
+    public final WindowManager.LayoutParams f5811g;
+    public ValueAnimator f5812i;
+    public int f5813j;
+    public int f5814k;
+    public int f5815l;
+    public float f5816m;
+    public int f5817n;
+    public RadialGradient f5821r;
+    public final Paint f5822s;
     public final ArrayList d = new ArrayList();
     public float h = 0.0f;
-    public float f5830o = 0.75f;
-    public float f5831p = 1.0f;
-    public final Matrix f5832q = new Matrix();
+    public float f5818o = 0.75f;
+    public float f5819p = 1.0f;
+    public final Matrix f5820q = new Matrix();
 
     public x2(Context context, WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
         Paint paint = new Paint(1);
-        this.f5834s = paint;
-        this.f5819a = context;
+        this.f5822s = paint;
+        this.f5807a = context;
         this.e = windowManager;
-        this.f5822f = view;
-        this.f5823g = layoutParams;
-        this.f5820b = new u2(this, context, 0);
-        this.f5821c = new u2(this, context, 1);
+        this.f5810f = view;
+        this.f5811g = layoutParams;
+        this.f5808b = new u2(this, context, 0);
+        this.f5809c = new u2(this, context, 1);
         paint.setAlpha(0);
     }
 
@@ -66,23 +66,23 @@ public final class x2 {
     }
 
     public final void b(Canvas canvas, boolean z10) {
-        if (this.f5833r != null) {
+        if (this.f5821r != null) {
             g();
-            this.f5833r.setLocalMatrix(this.f5832q);
-            Paint paint = this.f5834s;
+            this.f5821r.setLocalMatrix(this.f5820q);
+            Paint paint = this.f5822s;
             if (z10) {
-                canvas.drawRect(0.0f, 0.0f, this.f5825j, this.f5826k, paint);
+                canvas.drawRect(0.0f, 0.0f, this.f5813j, this.f5814k, paint);
                 return;
             }
             RectF rectF = AndroidUtilities.rectTmp;
-            u2 u2Var = this.f5821c;
+            u2 u2Var = this.f5809c;
             rectF.set(0.0f, 0.0f, u2Var.getMeasuredWidth(), u2Var.getMeasuredHeight());
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) - 2, AndroidUtilities.dp(12.0f) - 2, paint);
         }
     }
 
     public final void c(fb fbVar) {
-        h(this.f5831p);
+        h(this.f5819p);
         e(1.0f, 320L, fbVar);
     }
 
@@ -92,10 +92,10 @@ public final class x2 {
     }
 
     public final void e(float f7, long j3, Runnable runnable) {
-        ValueAnimator valueAnimator = this.f5824i;
+        ValueAnimator valueAnimator = this.f5812i;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f5824i = null;
+            this.f5812i = null;
         }
         if (j3 <= 0) {
             this.h = f7;
@@ -107,41 +107,41 @@ public final class x2 {
             return;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.h, f7);
-        this.f5824i = ofFloat;
+        this.f5812i = ofFloat;
         ofFloat.addUpdateListener(new ai.a(this, 17));
-        this.f5824i.addListener(new ai.t2(this, f7, runnable, 1));
-        this.f5824i.setDuration(j3);
-        this.f5824i.setInterpolator(tr.f28638i);
-        this.f5824i.start();
+        this.f5812i.addListener(new ai.t2(this, f7, runnable, 1));
+        this.f5812i.setDuration(j3);
+        this.f5812i.setInterpolator(sr.f28348i);
+        this.f5812i.start();
     }
 
     public final void g() {
-        int i10 = this.f5827l;
-        int i11 = this.f5829n;
-        u2 u2Var = this.f5820b;
-        if (i10 != i11 || this.f5825j != u2Var.getMeasuredWidth() || this.f5826k != u2Var.getMeasuredHeight() || Math.abs(this.f5828m - this.h) > 0.005f) {
-            this.f5827l = this.f5829n;
-            this.f5825j = u2Var.getMeasuredWidth();
+        int i10 = this.f5815l;
+        int i11 = this.f5817n;
+        u2 u2Var = this.f5808b;
+        if (i10 != i11 || this.f5813j != u2Var.getMeasuredWidth() || this.f5814k != u2Var.getMeasuredHeight() || Math.abs(this.f5816m - this.h) > 0.005f) {
+            this.f5815l = this.f5817n;
+            this.f5813j = u2Var.getMeasuredWidth();
             int measuredHeight = u2Var.getMeasuredHeight();
-            this.f5826k = measuredHeight;
-            this.f5828m = this.h;
-            if (this.f5825j > 0 && measuredHeight > 0) {
+            this.f5814k = measuredHeight;
+            this.f5816m = this.h;
+            if (this.f5813j > 0 && measuredHeight > 0) {
                 if (Build.VERSION.SDK_INT >= 29) {
-                    int i12 = this.f5825j;
-                    int i13 = this.f5826k;
+                    int i12 = this.f5813j;
+                    int i13 = this.f5814k;
                     float min = (2.0f - this.h) * (Math.min(i12, i13) / 2.0f) * 1.35f;
                     ColorSpace.Named named = ColorSpace.Named.EXTENDED_SRGB;
                     float[] fArr = {AndroidUtilities.lerp(0.9f, 0.22f, this.h), 1.0f};
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    this.f5833r = ah.e.b(i12 * 0.5f, i13 * 0.4f, min, new long[]{Color.valueOf(Color.red(this.f5829n) / 255.0f, Color.green(this.f5829n) / 255.0f, Color.blue(this.f5829n) / 255.0f, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.f5829n) / 255.0f, Color.green(this.f5829n) / 255.0f, Color.blue(this.f5829n) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, fArr);
+                    this.f5821r = ah.e.b(i12 * 0.5f, i13 * 0.4f, min, new long[]{Color.valueOf(Color.red(this.f5817n) / 255.0f, Color.green(this.f5817n) / 255.0f, Color.blue(this.f5817n) / 255.0f, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.f5817n) / 255.0f, Color.green(this.f5817n) / 255.0f, Color.blue(this.f5817n) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, fArr);
                 } else {
-                    int i14 = this.f5825j;
-                    int i15 = this.f5826k;
-                    this.f5833r = new RadialGradient(i14 * 0.5f, i15 * 0.4f, (2.0f - this.h) * (Math.min(i14, i15) / 2.0f) * 1.35f, new int[]{i0.a.k(this.f5829n, 0), this.f5829n}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.h), 1.0f}, Shader.TileMode.CLAMP);
+                    int i14 = this.f5813j;
+                    int i15 = this.f5814k;
+                    this.f5821r = new RadialGradient(i14 * 0.5f, i15 * 0.4f, (2.0f - this.h) * (Math.min(i14, i15) / 2.0f) * 1.35f, new int[]{i0.a.k(this.f5817n, 0), this.f5817n}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.h), 1.0f}, Shader.TileMode.CLAMP);
                 }
-                this.f5834s.setShader(this.f5833r);
+                this.f5822s.setShader(this.f5821r);
                 u2Var.invalidate();
-                this.f5821c.invalidate();
+                this.f5809c.invalidate();
             }
         }
     }
@@ -149,8 +149,8 @@ public final class x2 {
     public final void h(float f7) {
         Window window;
         WindowManager.LayoutParams layoutParams;
-        View view = this.f5822f;
-        if (view != null && (layoutParams = this.f5823g) != null) {
+        View view = this.f5810f;
+        if (view != null && (layoutParams = this.f5811g) != null) {
             layoutParams.screenBrightness = f7;
             WindowManager windowManager = this.e;
             if (windowManager != null) {
@@ -159,7 +159,7 @@ public final class x2 {
             }
             return;
         }
-        Activity findActivity = AndroidUtilities.findActivity(this.f5819a);
+        Activity findActivity = AndroidUtilities.findActivity(this.f5807a);
         if (findActivity == null) {
             findActivity = LaunchActivity.G1;
         }
@@ -179,9 +179,9 @@ public final class x2 {
                 ((w2) arrayList.get(i10)).invalidate();
                 i10++;
             } else {
-                this.f5834s.setAlpha((int) (this.f5831p * 255.0f * this.h));
-                this.f5820b.invalidate();
-                this.f5821c.invalidate();
+                this.f5822s.setAlpha((int) (this.f5819p * 255.0f * this.h));
+                this.f5808b.invalidate();
+                this.f5809c.invalidate();
                 return;
             }
         }

@@ -4,37 +4,37 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.tgnet.TLRPC;
 public final class w0 extends AnimatorListenerAdapter {
-    public final i4 f38945a;
+    public final i4 f38857a;
 
     public w0(i4 i4Var) {
-        this.f38945a = i4Var;
+        this.f38857a = i4Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        i4 i4Var = this.f38945a;
-        if (i4Var.f34488f0.f19996f) {
-            i4Var.f34502u0[0].setBackgroundDrawable(null);
-            m3[] m3VarArr = i4Var.f34502u0;
+        i4 i4Var = this.f38857a;
+        if (i4Var.f34396f0.f19981f) {
+            i4Var.f34410u0[0].setBackgroundDrawable(null);
+            m3[] m3VarArr = i4Var.f34410u0;
             m3 m3Var = m3VarArr[1];
             m3VarArr[1] = m3VarArr[0];
             m3VarArr[0] = m3Var;
-            i4Var.f34490h0.i();
-            i4Var.Z0.a(i4Var.f34502u0[0].getBackgroundColor(), true);
-            i4Var.f34483a1.a(i4Var.f34502u0[1].getBackgroundColor(), true);
+            i4Var.f34398h0.i();
+            i4Var.Z0.a(i4Var.f34410u0[0].getBackgroundColor(), true);
+            i4Var.f34391a1.a(i4Var.f34410u0[1].getBackgroundColor(), true);
             v3 v3Var = i4Var.K;
             if (v3Var != null) {
                 v3Var.m();
             }
-            Object x10 = hg.c.x(1, i4Var.f34486d0);
-            i4Var.O0.T(i4Var.f34502u0[0].f35550b);
+            Object x10 = hg.c.x(1, i4Var.f34394d0);
+            i4Var.O0.T(i4Var.f34410u0[0].f35463b);
             org.telegram.ui.Cells.q9 q9Var = i4Var.O0;
-            q9Var.E0 = i4Var.f34502u0[0].d;
+            q9Var.E0 = i4Var.f34410u0[0].d;
             q9Var.f(true);
             i4Var.i0(false);
             i4Var.f0();
-            i4Var.f34502u0[1].b();
-            i4Var.f34502u0[1].setVisibility(8);
+            i4Var.f34410u0[1].b();
+            i4Var.f34410u0[1].setVisibility(8);
             if (x10 instanceof z2) {
                 ((z2) x10).a();
             }
@@ -45,8 +45,8 @@ public final class w0 extends AnimatorListenerAdapter {
             i4Var.U();
             i4Var.M();
         }
-        ArticleViewer$WindowView articleViewer$WindowView = i4Var.f34488f0;
-        articleViewer$WindowView.f19996f = false;
+        ArticleViewer$WindowView articleViewer$WindowView = i4Var.f34396f0;
+        articleViewer$WindowView.f19981f = false;
         articleViewer$WindowView.d = false;
         i4Var.T0 = false;
     }

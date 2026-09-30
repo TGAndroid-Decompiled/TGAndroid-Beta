@@ -1,81 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class yl extends AnimatorListenerAdapter {
-    public final int f30735a;
-    public final ChatAttachAlertPhotoLayout f30736b;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.messenger.R;
+import org.telegram.messenger.camera.CameraView;
+public final class yl implements CameraView.CameraViewDelegate {
+    public final ChatAttachAlertPhotoLayout f30670a;
 
-    public yl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f30735a = i10;
-        this.f30736b = chatAttachAlertPhotoLayout;
+    public yl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+        this.f30670a = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f30735a) {
-            case 0:
-                this.f30736b.m0 = null;
-                return;
-            case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30736b;
-                chatAttachAlertPhotoLayout.f22158f1.unlock();
-                chatAttachAlertPhotoLayout.f22153d0 = false;
-                gm gmVar = chatAttachAlertPhotoLayout.P;
-                if (gmVar != null) {
-                    gmVar.invalidateOutline();
-                    chatAttachAlertPhotoLayout.P.invalidate();
+    public final void onCameraInit() {
+        int i10;
+        float f7;
+        int i11;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30670a;
+        ImageView imageView = chatAttachAlertPhotoLayout.f22160r0;
+        ImageView[] imageViewArr = chatAttachAlertPhotoLayout.S;
+        String currentFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode();
+        String nextFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getNextFlashMode();
+        if (currentFlashMode != null && nextFlashMode != null) {
+            int i12 = 4;
+            if (currentFlashMode.equals(nextFlashMode)) {
+                for (int i13 = 0; i13 < 2; i13++) {
+                    imageViewArr[i13].setVisibility(4);
+                    imageViewArr[i13].setAlpha(0.0f);
+                    imageViewArr[i13].setTranslationY(0.0f);
                 }
-                if (chatAttachAlertPhotoLayout.f22149b0) {
-                    chatAttachAlertPhotoLayout.f27362b.Z1.K0();
+            } else {
+                ChatAttachAlertPhotoLayout.o0(imageViewArr[0], chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode());
+                for (int i14 = 0; i14 < 2; i14++) {
+                    ImageView imageView2 = imageViewArr[i14];
+                    if (i14 == 0) {
+                        i10 = 0;
+                    } else {
+                        i10 = 4;
+                    }
+                    imageView2.setVisibility(i10);
+                    ImageView imageView3 = imageViewArr[i14];
+                    if (i14 == 0 && chatAttachAlertPhotoLayout.f22129b0) {
+                        f7 = 1.0f;
+                    } else {
+                        f7 = 0.0f;
+                    }
+                    imageView3.setAlpha(f7);
+                    imageViewArr[i14].setTranslationY(0.0f);
                 }
-                gm gmVar2 = chatAttachAlertPhotoLayout.P;
-                if (gmVar2 != null) {
-                    gmVar2.setSystemUiVisibility(1028);
-                }
-                wl wlVar = chatAttachAlertPhotoLayout.E;
-                if (wlVar != null) {
-                    wlVar.invalidate();
-                    return;
-                }
-                return;
-            default:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f30736b;
-                t91 t91Var = chatAttachAlertPhotoLayout2.f22169l0;
-                chatAttachAlertPhotoLayout2.f22158f1.unlock();
-                chatAttachAlertPhotoLayout2.f22164i1 = false;
-                chatAttachAlertPhotoLayout2.f27362b.getWindow().clearFlags(128);
-                chatAttachAlertPhotoLayout2.setCameraOpenProgress(0.0f);
-                chatAttachAlertPhotoLayout2.f22153d0 = false;
-                wl wlVar2 = chatAttachAlertPhotoLayout2.E;
-                if (wlVar2 != null) {
-                    wlVar2.invalidate();
-                }
-                gm gmVar3 = chatAttachAlertPhotoLayout2.P;
-                if (gmVar3 != null) {
-                    gmVar3.invalidateOutline();
-                    chatAttachAlertPhotoLayout2.P.invalidate();
-                }
-                chatAttachAlertPhotoLayout2.f22149b0 = false;
-                ai.f0 f0Var = chatAttachAlertPhotoLayout2.f22165j0;
-                if (f0Var != null) {
-                    f0Var.setVisibility(8);
-                }
-                if (t91Var != null) {
-                    t91Var.setVisibility(8);
-                    t91Var.setTag(null);
-                }
-                wl wlVar3 = chatAttachAlertPhotoLayout2.f22179r;
-                if (wlVar3 != null) {
-                    wlVar3.setVisibility(8);
-                }
-                gm gmVar4 = chatAttachAlertPhotoLayout2.P;
-                if (gmVar4 != null) {
-                    gmVar4.setFpsLimit(30);
-                    chatAttachAlertPhotoLayout2.P.setSystemUiVisibility(1024);
-                    return;
-                }
-                return;
+            }
+            if (chatAttachAlertPhotoLayout.P.isFrontface()) {
+                i11 = R.drawable.camera_revert1;
+            } else {
+                i11 = R.drawable.camera_revert2;
+            }
+            imageView.setImageResource(i11);
+            if (chatAttachAlertPhotoLayout.P.hasFrontFaceCamera()) {
+                i12 = 0;
+            }
+            imageView.setVisibility(i12);
+            if (!chatAttachAlertPhotoLayout.f22129b0) {
+                AnimatorSet animatorSet = new AnimatorSet();
+                chatAttachAlertPhotoLayout.O = animatorSet;
+                animatorSet.playTogether(ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.P, View.ALPHA, 0.0f, 1.0f));
+                chatAttachAlertPhotoLayout.O.setDuration(180L);
+                chatAttachAlertPhotoLayout.O.addListener(new r8(this, 9));
+                chatAttachAlertPhotoLayout.O.start();
+            }
         }
     }
 }

@@ -9,28 +9,28 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 public final class o7 extends g7 {
-    public org.telegram.ui.Cells.s7 f36200n;
-    public final ArrayList f36201r;
-    public org.telegram.ui.Components.sq f36202s;
+    public org.telegram.ui.Cells.s7 f36057n;
+    public final ArrayList f36058r;
+    public org.telegram.ui.Components.rq f36059s;
     public final s7 v;
 
     public o7(s7 s7Var) {
         super(s7Var, 1);
         this.v = s7Var;
-        this.f36201r = new ArrayList();
+        this.f36058r = new ArrayList();
     }
 
     @Override
     public final void F() {
         boolean z10;
         super.F();
-        ArrayList arrayList = this.f36201r;
+        ArrayList arrayList = this.f36058r;
         arrayList.clear();
         int i10 = 0;
         while (true) {
             ArrayList arrayList2 = this.e;
             if (i10 < arrayList2.size()) {
-                String path = ((m7) arrayList2.get(i10)).d.f49572a.getPath();
+                String path = ((m7) arrayList2.get(i10)).d.f49466a.getPath();
                 if (((m7) arrayList2.get(i10)).d.d == 1) {
                     z10 = true;
                 } else {
@@ -47,15 +47,15 @@ public final class o7 extends g7 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
-        if (this.f36202s == null) {
-            org.telegram.ui.Components.sq sqVar = new org.telegram.ui.Components.sq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.X9, false)), org.telegram.ui.ActionBar.h6.R4);
-            this.f36202s = sqVar;
-            sqVar.f28328w = true;
+        if (this.f36059s == null) {
+            org.telegram.ui.Components.rq rqVar = new org.telegram.ui.Components.rq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.X9, false)), org.telegram.ui.ActionBar.h6.R4);
+            this.f36059s = rqVar;
+            rqVar.f28033w = true;
         }
-        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) c1Var.f43068a;
+        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) c1Var.f42962a;
         zh.a aVar = ((m7) this.e.get(i10)).d;
         Object tag = t7Var.getTag();
-        ImageReceiver imageReceiver = t7Var.f21236c;
+        ImageReceiver imageReceiver = t7Var.f21216c;
         if (aVar == tag) {
             z10 = true;
         } else {
@@ -64,23 +64,23 @@ public final class o7 extends g7 {
         t7Var.setTag(aVar);
         int max = (int) Math.max(100.0f, AndroidUtilities.getRealScreenSize().x / AndroidUtilities.density);
         int i11 = aVar.d;
-        File file = aVar.f49572a;
+        File file = aVar.f49466a;
         if (i11 == 1) {
-            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a4.a.l(max, max, "_"), this.f36202s, null, null, 0);
-            t7Var.m(AndroidUtilities.formatFileSize(aVar.f49574c), true);
+            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a4.a.l(max, max, "_"), this.f36059s, null, null, 0);
+            t7Var.m(AndroidUtilities.formatFileSize(aVar.f49468c), true);
         } else {
-            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a4.a.l(max, max, "_"), this.f36202s, null, null, 0);
-            t7Var.m(AndroidUtilities.formatFileSize(aVar.f49574c), false);
+            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a4.a.l(max, max, "_"), this.f36059s, null, null, 0);
+            t7Var.m(AndroidUtilities.formatFileSize(aVar.f49468c), false);
         }
-        t7Var.i(this.v.f37706f.f49583j.contains(aVar), z10);
+        t7Var.i(this.v.f37610f.f49477j.contains(aVar), z10);
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        if (this.f36200n == null) {
-            this.f36200n = new org.telegram.ui.Cells.s7(viewGroup.getContext(), null);
+        if (this.f36057n == null) {
+            this.f36057n = new org.telegram.ui.Cells.s7(viewGroup.getContext(), null);
         }
-        n7 n7Var = new n7(this, viewGroup.getContext(), this.f36200n, this.v.d.getCurrentAccount());
+        n7 n7Var = new n7(this, viewGroup.getContext(), this.f36057n, this.v.d.getCurrentAccount());
         n7Var.setStyle(1);
         return new s4.c1(n7Var);
     }

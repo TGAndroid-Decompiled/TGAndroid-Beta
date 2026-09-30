@@ -1,51 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class z31 extends s4.s0 {
-    public final l41 f30889a;
+public final class z31 extends s4.j {
+    public final k41 F;
 
-    public z31(l41 l41Var) {
-        this.f30889a = l41Var;
+    public z31(k41 k41Var) {
+        this.F = k41Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        l41 l41Var = this.f30889a;
-        y31 y31Var = l41Var.H;
-        if (i10 == 0) {
-            l41Var.G = false;
-        }
-        if ((i10 == 0 || i10 == 2) && l41Var.z(false) > 0.0f && l41Var.z(false) < AndroidUtilities.dp(96.0f) && y31Var.canScrollVertically(1) && l41.u(l41Var)) {
-            l41Var.G = true;
-            y31Var.w0(0, (int) l41Var.z(false), null);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
+    public final void O() {
         ViewGroup viewGroup;
-        float f7;
-        l41 l41Var = this.f30889a;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) l41Var).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) this.F).containerView;
         viewGroup.invalidate();
-        boolean canScrollVertically = l41Var.H.canScrollVertically(1);
-        View view = l41Var.L;
-        Boolean bool = l41Var.Q;
-        if (bool != null && bool.booleanValue() == canScrollVertically) {
-            return;
-        }
-        l41Var.Q = Boolean.valueOf(canScrollVertically);
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (canScrollVertically) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        org.telegram.messenger.ok.s(animate.alpha(f7), tr.h, 320L);
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        ViewGroup viewGroup;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) this.F).containerView;
+        viewGroup.invalidate();
     }
 }

@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class b40 implements lh.g {
-    public final d60 f32387a;
+    public final d60 f32315a;
 
     public b40(d60 d60Var) {
-        this.f32387a = d60Var;
+        this.f32315a = d60Var;
     }
 }

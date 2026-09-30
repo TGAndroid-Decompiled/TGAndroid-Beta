@@ -1,80 +1,8 @@
 package org.telegram.ui.Components;
-
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.os.PowerManager;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class mt implements SensorEventListener {
-    public int E;
-    public int F;
-    public long G;
-    public boolean I;
-    public boolean J;
-    public float L;
-    public final SensorManager f26369a;
-    public final AudioManager f26370b;
-    public final Sensor f26371c;
-    public final Sensor d;
-    public final Sensor e;
-    public final Sensor f26372f;
-    public final PowerManager.WakeLock h;
-    public boolean f26373n;
-    public boolean f26374r;
-    public v71 f26375s;
-    public boolean v;
-    public long f26376w;
-    public int f26377x;
-    public int f26378y;
-    public long H = 0;
-    public float K = -100.0f;
-    public final float[] M = new float[3];
-    public final float[] N = new float[3];
-    public final float[] O = new float[3];
-
-    public mt() {
-        SensorManager sensorManager = (SensorManager) ApplicationLoader.applicationContext.getSystemService("sensor");
-        this.f26369a = sensorManager;
-        this.f26371c = sensorManager.getDefaultSensor(8);
-        Sensor defaultSensor = sensorManager.getDefaultSensor(10);
-        this.e = defaultSensor;
-        Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
-        this.f26372f = defaultSensor2;
-        if (defaultSensor == null || defaultSensor2 == null) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("gravity or linear sensor not found");
-            }
-            this.d = sensorManager.getDefaultSensor(1);
-            this.e = null;
-            this.f26372f = null;
-        }
-        this.h = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f26370b = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
-    }
-
-    public final void a() {
-        int i10;
-        v71 v71Var = this.f26375s;
-        if (v71Var == null) {
-            return;
-        }
-        if (this.f26374r) {
-            i10 = 0;
-        } else {
-            i10 = 3;
-        }
-        v71Var.S(i10);
-    }
-
-    @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mt.onSensorChanged(android.hardware.SensorEvent):void");
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
-    }
+public abstract class mt {
+    public static final sr f26493a = new sr(0.39d, 0.575d, 0.565d, 1.0d);
+    public static final sr f26494b = new sr(0.445d, 0.05d, 0.55d, 0.95d);
+    public static final sr f26495c = new sr(0.55d, 0.085d, 0.68d, 0.53d);
+    public static final sr d = new sr(0.25d, 0.46d, 0.45d, 0.94d);
+    public static final sr e = new sr(0.455d, 0.03d, 0.515d, 0.955d);
 }

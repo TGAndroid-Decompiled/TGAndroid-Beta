@@ -17,18 +17,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.nn;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.mn;
+import org.telegram.ui.Components.sr;
 public final class v8 extends FrameLayout {
-    public int f21721a;
-    public final TextView f21722b;
-    public final TextView f21723c;
+    public int f21701a;
+    public final TextView f21702b;
+    public final TextView f21703c;
     public final Switch d;
     public boolean e;
-    public LinearLayout f21724f;
+    public LinearLayout f21704f;
     public org.telegram.ui.Components.p6 h;
-    public View f21725n;
-    public nn f21726r;
+    public View f21705n;
+    public mn f21706r;
 
     public v8(Context context) {
         super(context);
@@ -41,7 +41,7 @@ public final class v8 extends FrameLayout {
         float f11;
         float f12;
         TextView textView = new TextView(context);
-        this.f21722b = textView;
+        this.f21702b = textView;
         ok.n(org.telegram.ui.ActionBar.h6.G6, null, textView, 1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -73,8 +73,8 @@ public final class v8 extends FrameLayout {
         }
         addView(textView, w7.y5.d(-2, -1.0f, i14, f7, 0.0f, f10, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f21723c = textView2;
-        ok.n(org.telegram.ui.ActionBar.h6.f19478z6, null, textView2, 1, 13.0f);
+        this.f21703c = textView2;
+        ok.n(org.telegram.ui.ActionBar.h6.f19463z6, null, textView2, 1, 13.0f);
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
@@ -113,9 +113,9 @@ public final class v8 extends FrameLayout {
     public final void a(Runnable runnable, String str, boolean z10) {
         float f7;
         int i10;
-        if (this.f21724f == null) {
+        if (this.f21704f == null) {
             LinearLayout linearLayout = new LinearLayout(getContext());
-            this.f21724f = linearLayout;
+            this.f21704f = linearLayout;
             linearLayout.setOrientation(0);
             org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(getContext(), false, true, true);
             this.h = p6Var;
@@ -125,37 +125,37 @@ public final class v8 extends FrameLayout {
             int i11 = org.telegram.ui.ActionBar.h6.G6;
             p6Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
             this.h.setTypeface(AndroidUtilities.bold());
-            this.h.b(0.4f, 320L, tr.h);
-            this.f21724f.addView(this.h, w7.y5.c(20.0f, -2));
-            this.f21725n = new View(getContext());
+            this.h.b(0.4f, 320L, sr.h);
+            this.f21704f.addView(this.h, w7.y5.c(20.0f, -2));
+            this.f21705n = new View(getContext());
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i11, false), PorterDuff.Mode.MULTIPLY));
-            this.f21725n.setBackground(mutate);
-            this.f21724f.addView(this.f21725n, w7.y5.q(16, 16, 16));
-            this.f21724f.setClipChildren(false);
+            this.f21705n.setBackground(mutate);
+            this.f21704f.addView(this.f21705n, w7.y5.q(16, 16, 16));
+            this.f21704f.setClipChildren(false);
             setClipChildren(false);
-            addView(this.f21724f, w7.y5.e(-2, -2, 16));
-            nn nnVar = new nn(getContext(), 9);
-            this.f21726r = nnVar;
-            nnVar.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19165i6, false), 2, -1));
-            nn nnVar2 = this.f21726r;
+            addView(this.f21704f, w7.y5.e(-2, -2, 16));
+            mn mnVar = new mn(getContext(), 9);
+            this.f21706r = mnVar;
+            mnVar.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19150i6, false), 2, -1));
+            mn mnVar2 = this.f21706r;
             if (LocaleController.isRTL) {
                 i10 = 3;
             } else {
                 i10 = 5;
             }
-            addView(nnVar2, w7.y5.e(76, -1, i10));
+            addView(mnVar2, w7.y5.e(76, -1, i10));
         }
         this.h.setText(str);
-        this.f21725n.animate().cancel();
-        ViewPropertyAnimator animate = this.f21725n.animate();
+        this.f21705n.animate().cancel();
+        ViewPropertyAnimator animate = this.f21705n.animate();
         if (z10) {
             f7 = 0.0f;
         } else {
             f7 = 180.0f;
         }
-        animate.rotation(f7).setDuration(340L).setInterpolator(tr.h).start();
-        this.f21726r.setOnClickListener(new a(runnable, 11));
+        animate.rotation(f7).setDuration(340L).setInterpolator(sr.h).start();
+        this.f21706r.setOnClickListener(new a(runnable, 11));
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -163,8 +163,8 @@ public final class v8 extends FrameLayout {
         float f10;
         super.setEnabled(z10);
         Switch r02 = this.d;
-        TextView textView = this.f21723c;
-        TextView textView2 = this.f21722b;
+        TextView textView = this.f21703c;
+        TextView textView2 = this.f21702b;
         float f11 = 0.5f;
         if (z11) {
             textView2.clearAnimation();
@@ -205,11 +205,11 @@ public final class v8 extends FrameLayout {
     }
 
     public final void d(String str, boolean z10, boolean z11, boolean z12) {
-        TextView textView = this.f21722b;
+        TextView textView = this.f21702b;
         textView.setText(str);
         this.d.c(z10, z12);
         this.e = z11;
-        this.f21723c.setVisibility(8);
+        this.f21703c.setVisibility(8);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
         layoutParams.height = -1;
         layoutParams.topMargin = 0;
@@ -238,7 +238,7 @@ public final class v8 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19197k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19182k0);
         }
     }
 
@@ -253,12 +253,12 @@ public final class v8 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        LinearLayout linearLayout = this.f21724f;
+        LinearLayout linearLayout = this.f21704f;
         if (linearLayout != null) {
             boolean z11 = LocaleController.isRTL;
-            TextView textView = this.f21722b;
+            TextView textView = this.f21702b;
             if (z11) {
-                linearLayout.setTranslationX((textView.getLeft() - this.f21724f.getMeasuredWidth()) - AndroidUtilities.dp(8.0f));
+                linearLayout.setTranslationX((textView.getLeft() - this.f21704f.getMeasuredWidth()) - AndroidUtilities.dp(8.0f));
                 return;
             }
             linearLayout.setTranslationX(AndroidUtilities.dp(8.0f) + textView.getRight());
@@ -269,7 +269,7 @@ public final class v8 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         float f7;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f21723c.getVisibility() == 0) {
+        if (this.f21703c.getVisibility() == 0) {
             f7 = 64.0f;
         } else {
             f7 = 50.0f;
@@ -284,9 +284,9 @@ public final class v8 extends FrameLayout {
     @Override
     public void setEnabled(boolean z10) {
         super.setEnabled(z10);
-        TextView textView = this.f21722b;
+        TextView textView = this.f21702b;
         textView.clearAnimation();
-        TextView textView2 = this.f21723c;
+        TextView textView2 = this.f21703c;
         textView2.clearAnimation();
         Switch r22 = this.d;
         r22.clearAnimation();
@@ -298,7 +298,7 @@ public final class v8 extends FrameLayout {
             if (p6Var != null) {
                 p6Var.setAlpha(1.0f);
             }
-            View view = this.f21725n;
+            View view = this.f21705n;
             if (view != null) {
                 view.setAlpha(1.0f);
                 return;
@@ -312,7 +312,7 @@ public final class v8 extends FrameLayout {
         if (p6Var2 != null) {
             p6Var2.setAlpha(0.6f);
         }
-        View view2 = this.f21725n;
+        View view2 = this.f21705n;
         if (view2 != null) {
             view2.setAlpha(0.6f);
         }

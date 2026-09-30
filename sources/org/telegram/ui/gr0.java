@@ -18,12 +18,12 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class gr0 implements Utilities.Callback {
-    public final int f34134a;
-    public final PhotoViewer f34135b;
+    public final int f34044a;
+    public final PhotoViewer f34045b;
 
     public gr0(PhotoViewer photoViewer, int i10) {
-        this.f34134a = i10;
-        this.f34135b = photoViewer;
+        this.f34044a = i10;
+        this.f34045b = photoViewer;
     }
 
     @Override
@@ -37,13 +37,13 @@ public final class gr0 implements Utilities.Callback {
         boolean z12;
         boolean z13;
         int i10;
-        switch (this.f34134a) {
+        switch (this.f34044a) {
             case 0:
-                PhotoViewer photoViewer = this.f34135b;
+                PhotoViewer photoViewer = this.f34045b;
                 qg.k2 k2Var = (qg.k2) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 try {
-                    boolean isEmpty = TextUtils.isEmpty(((MediaController.MediaEditState) photoViewer.f31321g7.get(photoViewer.P4)).filterPath);
+                    boolean isEmpty = TextUtils.isEmpty(((MediaController.MediaEditState) photoViewer.f31249g7.get(photoViewer.P4)).filterPath);
                     qg.n2 n2Var = photoViewer.p5;
                     n2Var.L = true;
                     n2Var.E = k2Var;
@@ -58,9 +58,9 @@ public final class gr0 implements Utilities.Callback {
                         b10 = k2Var2.b();
                     }
                     photoViewer.C4.setImageBitmap(b10);
-                    photoViewer.f31433t5.setUndoCutState(true);
+                    photoViewer.f31361t5.setUndoCutState(true);
                     photoViewer.a3(true, true);
-                    photoViewer.f31433t5.post(new ar0(photoViewer, 9));
+                    photoViewer.f31361t5.post(new ar0(photoViewer, 9));
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -68,34 +68,34 @@ public final class gr0 implements Utilities.Callback {
                 }
             case 1:
                 Uri uri = (Uri) obj;
-                org.telegram.ui.Components.yc.F(this.f34135b.f31297e0, true).j();
+                org.telegram.ui.Components.yc.F(this.f34045b.f31225e0, true).j();
                 return;
             case 2:
-                PhotoViewer photoViewer2 = this.f34135b;
-                photoViewer2.L1.f41885h2 = photoViewer2.K1.c();
-                photoViewer2.f31297e0.invalidate();
-                int max = Math.max(((Integer) obj).intValue(), photoViewer2.L1.f41889j2);
+                PhotoViewer photoViewer2 = this.f34045b;
+                photoViewer2.L1.f41786h2 = photoViewer2.K1.c();
+                photoViewer2.f31225e0.invalidate();
+                int max = Math.max(((Integer) obj).intValue(), photoViewer2.L1.f41790j2);
                 if ((photoViewer2.L1.S0 instanceof qg.v2) && max > 0) {
                     f7 = ((AndroidUtilities.displaySize.y - max) - AndroidUtilities.dp(80.0f)) - photoViewer2.L1.getSelectedEntityBottom();
                 } else {
                     f7 = 0.0f;
                 }
-                ValueAnimator valueAnimator = photoViewer2.f31426s7;
+                ValueAnimator valueAnimator = photoViewer2.f31354s7;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    photoViewer2.f31426s7 = null;
+                    photoViewer2.f31354s7 = null;
                 }
-                if (photoViewer2.f31441u4 != 3) {
+                if (photoViewer2.f31369u4 != 3) {
                     f7 = 0.0f;
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(photoViewer2.Z5, f7);
-                photoViewer2.f31426s7 = ofFloat;
+                photoViewer2.f31354s7 = ofFloat;
                 ofFloat.addUpdateListener(new zq0(photoViewer2, 9));
-                photoViewer2.f31426s7.setDuration(320L);
-                ValueAnimator valueAnimator2 = photoViewer2.f31426s7;
-                org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.h;
-                valueAnimator2.setInterpolator(trVar);
-                photoViewer2.f31426s7.start();
+                photoViewer2.f31354s7.setDuration(320L);
+                ValueAnimator valueAnimator2 = photoViewer2.f31354s7;
+                org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.h;
+                valueAnimator2.setInterpolator(srVar);
+                photoViewer2.f31354s7.start();
                 AnimatorSet animatorSet = photoViewer2.J1;
                 if (animatorSet != null) {
                     animatorSet.cancel();
@@ -108,8 +108,8 @@ public final class gr0 implements Utilities.Callback {
                 Property property = View.TRANSLATION_Y;
                 int i11 = -max;
                 ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(x1Var, property, i11 / 2.5f);
-                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(photoViewer2.L1.f41874c1, property, Math.min(0, AndroidUtilities.dp(40.0f) + i11));
-                ci.w5 w5Var = photoViewer2.L1.f41880f1;
+                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(photoViewer2.L1.f41775c1, property, Math.min(0, AndroidUtilities.dp(40.0f) + i11));
+                ci.w5 w5Var = photoViewer2.L1.f41781f1;
                 Property property2 = View.ALPHA;
                 float f12 = 1.0f;
                 if (max > AndroidUtilities.dp(20.0f)) {
@@ -131,42 +131,42 @@ public final class gr0 implements Utilities.Callback {
                 }
                 animatorSet2.playTogether(ofFloat3, ofFloat4, ofFloat5, ofFloat6, ObjectAnimator.ofFloat(k1Var, property2, f12), ofFloat2);
                 animatorSet2.setDuration(320L);
-                animatorSet2.setInterpolator(trVar);
+                animatorSet2.setInterpolator(srVar);
                 animatorSet2.start();
                 st0 st0Var = photoViewer2.L1;
-                qg.p1 p1Var = st0Var.f41903u1;
+                qg.p1 p1Var = st0Var.f41804u1;
                 if (p1Var != null) {
-                    if (st0Var.f41885h2) {
+                    if (st0Var.f41786h2) {
                         p1Var.a(R.drawable.input_smile);
-                    } else if (st0Var.f41883g2) {
+                    } else if (st0Var.f41784g2) {
                         p1Var.a(R.drawable.input_keyboard);
                     } else {
                         p1Var.a(R.drawable.msg_add);
                     }
                 }
-                TextView textView = st0Var.f41907y1;
-                if (!st0Var.f41885h2 && !st0Var.f41883g2) {
+                TextView textView = st0Var.f41808y1;
+                if (!st0Var.f41786h2 && !st0Var.f41784g2) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 AndroidUtilities.updateViewShow(textView, z10, false, 1.0f, true, null);
-                ImageView imageView = st0Var.f41905w1;
-                if (!st0Var.f41885h2 && !st0Var.f41883g2) {
+                ImageView imageView = st0Var.f41806w1;
+                if (!st0Var.f41786h2 && !st0Var.f41784g2) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 AndroidUtilities.updateViewShow(imageView, z11, false, 1.0f, true, null);
                 TextView textView2 = st0Var.A1;
-                if (!st0Var.f41885h2 && !st0Var.f41883g2) {
+                if (!st0Var.f41786h2 && !st0Var.f41784g2) {
                     z12 = false;
                 } else {
                     z12 = true;
                 }
                 AndroidUtilities.updateViewShow(textView2, z12, false, 1.0f, true, null);
-                TextView textView3 = st0Var.f41908z1;
-                if (!st0Var.f41885h2 && !st0Var.f41883g2) {
+                TextView textView3 = st0Var.f41809z1;
+                if (!st0Var.f41786h2 && !st0Var.f41784g2) {
                     z13 = false;
                 } else {
                     z13 = true;
@@ -174,24 +174,24 @@ public final class gr0 implements Utilities.Callback {
                 AndroidUtilities.updateViewShow(textView3, z13, false, 1.0f, true, null);
                 return;
             case 3:
-                PhotoViewer photoViewer3 = this.f34135b;
+                PhotoViewer photoViewer3 = this.f34045b;
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                if (!photoViewer3.f31405q5.f30240b.N && (i10 = photoViewer3.P4) >= 0 && i10 < photoViewer3.f31321g7.size() && (photoViewer3.f31321g7.get(photoViewer3.P4) instanceof MediaController.PhotoEntry)) {
-                    org.telegram.ui.Components.xf0 xf0Var = photoViewer3.f31405q5;
-                    ci.a4 a4Var = xf0Var.h;
+                if (!photoViewer3.f31333q5.f29904b.N && (i10 = photoViewer3.P4) >= 0 && i10 < photoViewer3.f31249g7.size() && (photoViewer3.f31249g7.get(photoViewer3.P4) instanceof MediaController.PhotoEntry)) {
+                    org.telegram.ui.Components.wf0 wf0Var = photoViewer3.f31333q5;
+                    ci.a4 a4Var = wf0Var.h;
                     if (a4Var != null) {
                         a4Var.dismiss();
-                        xf0Var.h = null;
+                        wf0Var.h = null;
                     }
-                    photoViewer3.f31405q5.f30240b.setLoading(true);
-                    Utilities.globalQueue.postRunnable(new org.telegram.ui.Components.yn0(photoViewer3, photoEntry, (MediaController.PhotoEntry) photoViewer3.f31321g7.get(photoViewer3.P4), PhotoViewer.y1(), 29));
+                    photoViewer3.f31333q5.f29904b.setLoading(true);
+                    Utilities.globalQueue.postRunnable(new org.telegram.ui.Components.xn0(photoViewer3, photoEntry, (MediaController.PhotoEntry) photoViewer3.f31249g7.get(photoViewer3.P4), PhotoViewer.y1(), 29));
                     return;
                 }
                 return;
             case 4:
-                PhotoViewer photoViewer4 = this.f34135b;
+                PhotoViewer photoViewer4 = this.f34045b;
                 Integer num = (Integer) obj;
-                Object obj2 = photoViewer4.f31321g7.get(photoViewer4.P4);
+                Object obj2 = photoViewer4.f31249g7.get(photoViewer4.P4);
                 if (obj2 instanceof MediaController.PhotoEntry) {
                     ((MediaController.PhotoEntry) obj2).ttl = num.intValue();
                 } else if (obj2 instanceof MediaController.SearchImage) {
@@ -203,15 +203,15 @@ public final class gr0 implements Utilities.Callback {
                 photoViewer4.V1.setTimer(num.intValue());
                 return;
             case 5:
-                PhotoViewer photoViewer5 = this.f34135b;
+                PhotoViewer photoViewer5 = this.f34045b;
                 Integer num2 = (Integer) obj;
                 FrameLayout frameLayout = photoViewer5.R7;
                 if (frameLayout != null && frameLayout.getVisibility() != 8) {
                     photoViewer5.R7.setTranslationY(photoViewer5.P0.getTranslationY() - (photoViewer5.U1.getAlpha() * org.telegram.messenger.f0.b(46.0f, photoViewer5.U1.getEditTextHeight(), 0)));
                 }
-                photoViewer5.f31298e1.setTranslationY(photoViewer5.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, num2.intValue(), 0)));
-                photoViewer5.f31307f1.setTranslationY(photoViewer5.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, num2.intValue(), 0)));
-                photoViewer5.f31315g1.setTranslationY(photoViewer5.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, num2.intValue(), 0)));
+                photoViewer5.f31226e1.setTranslationY(photoViewer5.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, num2.intValue(), 0)));
+                photoViewer5.f31235f1.setTranslationY(photoViewer5.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, num2.intValue(), 0)));
+                photoViewer5.f31243g1.setTranslationY(photoViewer5.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, num2.intValue(), 0)));
                 ci.i iVar = photoViewer5.U1.M;
                 if (iVar != null) {
                     iVar.setTranslationY((-num2.intValue()) - AndroidUtilities.dp(14.0f));
@@ -219,9 +219,9 @@ public final class gr0 implements Utilities.Callback {
                 }
                 return;
             case 6:
-                PhotoViewer photoViewer6 = this.f34135b;
+                PhotoViewer photoViewer6 = this.f34045b;
                 Integer num3 = (Integer) obj;
-                Object obj3 = photoViewer6.f31321g7.get(photoViewer6.P4);
+                Object obj3 = photoViewer6.f31249g7.get(photoViewer6.P4);
                 if (obj3 instanceof MediaController.PhotoEntry) {
                     ((MediaController.PhotoEntry) obj3).ttl = num3.intValue();
                 } else if (obj3 instanceof MediaController.SearchImage) {
@@ -234,20 +234,20 @@ public final class gr0 implements Utilities.Callback {
                 return;
             case 7:
                 Integer num4 = (Integer) obj;
-                ci.i iVar2 = this.f34135b.V1.M;
+                ci.i iVar2 = this.f34045b.V1.M;
                 if (iVar2 != null) {
                     iVar2.setTranslationY(num4.intValue());
                     return;
                 }
                 return;
             case 8:
-                PhotoViewer photoViewer7 = this.f34135b;
+                PhotoViewer photoViewer7 = this.f34045b;
                 Boolean bool = (Boolean) obj;
                 Drawable[] drawableArr2 = PhotoViewer.U8;
                 photoViewer7.B0(0, false);
                 return;
             default:
-                PhotoViewer photoViewer8 = this.f34135b;
+                PhotoViewer photoViewer8 = this.f34045b;
                 Boolean bool2 = (Boolean) obj;
                 Drawable[] drawableArr3 = PhotoViewer.U8;
                 photoViewer8.B0(0, false);

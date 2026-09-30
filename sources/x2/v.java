@@ -4,9 +4,9 @@ import b2.s1;
 import i2.n1;
 import j$.util.Objects;
 public final class v {
-    public final int f45604a;
-    public final n1[] f45605b;
-    public final r[] f45606c;
+    public final int f45498a;
+    public final n1[] f45499b;
+    public final r[] f45500c;
     public final s1 d;
     public final Object e;
 
@@ -18,22 +18,22 @@ public final class v {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f45605b = n1VarArr;
-        this.f45606c = (r[]) rVarArr.clone();
+        this.f45499b = n1VarArr;
+        this.f45500c = (r[]) rVarArr.clone();
         this.d = s1Var;
         this.e = obj;
-        this.f45604a = n1VarArr.length;
+        this.f45498a = n1VarArr.length;
     }
 
     public final boolean a(v vVar, int i10) {
-        if (vVar == null || !Objects.equals(this.f45605b[i10], vVar.f45605b[i10]) || !Objects.equals(this.f45606c[i10], vVar.f45606c[i10])) {
+        if (vVar == null || !Objects.equals(this.f45499b[i10], vVar.f45499b[i10]) || !Objects.equals(this.f45500c[i10], vVar.f45500c[i10])) {
             return false;
         }
         return true;
     }
 
     public final boolean b(int i10) {
-        if (this.f45605b[i10] != null) {
+        if (this.f45499b[i10] != null) {
             return true;
         }
         return false;

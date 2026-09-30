@@ -13,31 +13,31 @@ import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.w9;
 import w7.y5;
 public final class i0 extends FrameLayout {
-    public static final int f43522f = 0;
-    public final w9 f43523a;
-    public final h0 f43524b;
-    public final Paint f43525c;
+    public static final int f43416f = 0;
+    public final w9 f43417a;
+    public final h0 f43418b;
+    public final Paint f43419c;
     public boolean d;
     public final h9 e;
 
     public i0(Context context, float f7) {
         super(context);
         Paint paint = new Paint(1);
-        this.f43525c = paint;
+        this.f43419c = paint;
         this.d = true;
         this.e = new h9((d6) null);
         w9 w9Var = new w9(getContext());
-        this.f43523a = w9Var;
+        this.f43417a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(f7));
         ?? view = new View(context);
         TextPaint textPaint = new TextPaint(1);
-        view.f43520a = textPaint;
+        view.f43414a = textPaint;
         textPaint.setTextAlign(Paint.Align.CENTER);
-        int i10 = h6.f19020a7;
+        int i10 = h6.f19005a7;
         textPaint.setColor(h6.w0(null, i10, false));
         textPaint.setTextSize(AndroidUtilities.dp(11.5f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        this.f43524b = view;
+        this.f43418b = view;
         view.setAlpha(0.0f);
         addView(w9Var, y5.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
         addView((View) view, y5.d(26, 26.0f, 85, 0.0f, 0.0f, 1.0f, 3.0f));
@@ -47,7 +47,7 @@ public final class i0 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         if (this.d) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f43525c);
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f43419c);
         }
         super.dispatchDraw(canvas);
     }

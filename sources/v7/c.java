@@ -1,18 +1,18 @@
 package v7;
 public final class c extends i9 {
-    public final transient Object[] f44313c;
+    public final transient Object[] f44207c;
     public final transient int d;
     public final transient int e = 1;
 
     public c(int i10, Object[] objArr) {
-        this.f44313c = objArr;
+        this.f44207c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         w7.x7.a(i10, this.e);
-        Object obj = this.f44313c[i10 + i10 + this.d];
+        Object obj = this.f44207c[i10 + i10 + this.d];
         obj.getClass();
         return obj;
     }

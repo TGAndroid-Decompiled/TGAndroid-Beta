@@ -13,7 +13,7 @@ import java.util.function.UnaryOperator;
 import v7.t6;
 import v7.u6;
 public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List {
-    public static final g0 f8078b = new g0(a1.e, 0);
+    public static final g0 f8066b = new g0(a1.e, 0);
 
     public static a1 A(Object obj, Object obj2) {
         Object[] objArr = {obj, obj2};
@@ -56,7 +56,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
         if (collection instanceof d0) {
             i0 i10 = ((d0) collection).i();
             if (i10.r()) {
-                Object[] array = i10.toArray(d0.f8060a);
+                Object[] array = i10.toArray(d0.f8048a);
                 return t(array.length, array);
             }
             return i10;
@@ -227,7 +227,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
     public final g0 listIterator(int i10) {
         u6.e(i10, size());
         if (isEmpty()) {
-            return f8078b;
+            return f8066b;
         }
         return new g0(this, i10);
     }

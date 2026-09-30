@@ -4,11 +4,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.R;
-public final class dv extends org.telegram.ui.Components.yl0 {
-    public final fv f33281c;
+public final class dv extends org.telegram.ui.Components.xl0 {
+    public final fv f33187c;
 
     public dv(fv fvVar) {
-        this.f33281c = fvVar;
+        this.f33187c = fvVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class dv extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int h() {
-        if (this.f33281c.f33911g0.h()) {
+        if (this.f33187c.f33771g0.h()) {
             return 1;
         }
         return 3;
@@ -29,11 +29,11 @@ public final class dv extends org.telegram.ui.Components.yl0 {
         View view;
         int i11;
         int i12;
-        fv fvVar = this.f33281c;
+        fv fvVar = this.f33187c;
         if (i10 == 0) {
-            view = fvVar.f33908d0;
+            view = fvVar.f33768d0;
         } else if (i10 == 2) {
-            view = fvVar.f33909e0;
+            view = fvVar.f33769e0;
             s4.p0 p0Var = new s4.p0(-1, -2);
             i11 = ((org.telegram.ui.ActionBar.e3) fvVar).backgroundPaddingLeft;
             ((ViewGroup.MarginLayoutParams) p0Var).leftMargin = i11;
@@ -43,9 +43,9 @@ public final class dv extends org.telegram.ui.Components.yl0 {
         } else {
             org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(viewGroup.getContext());
             e9Var.setFixedSize(12);
-            org.telegram.ui.Components.sq sqVar = new org.telegram.ui.Components.sq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19020a7, false)), org.telegram.ui.ActionBar.h6.V0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f19040b7));
-            sqVar.f28328w = true;
-            e9Var.setBackgroundDrawable(sqVar);
+            org.telegram.ui.Components.rq rqVar = new org.telegram.ui.Components.rq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19005a7, false)), org.telegram.ui.ActionBar.h6.V0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f19025b7));
+            rqVar.f28033w = true;
+            e9Var.setBackgroundDrawable(rqVar);
             view = e9Var;
         }
         return new s4.c1(view);

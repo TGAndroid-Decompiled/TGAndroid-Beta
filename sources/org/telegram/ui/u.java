@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import android.view.KeyEvent;
 import android.view.View;
-public final class u implements ev0, org.telegram.ui.Components.pl0, org.telegram.ui.ActionBar.k1 {
-    public final i4 f38351a;
+public final class u implements ev0, org.telegram.ui.Components.ol0, org.telegram.ui.ActionBar.k1 {
+    public final i4 f38261a;
 
     public u(i4 i4Var) {
-        this.f38351a = i4Var;
+        this.f38261a = i4Var;
     }
 
     @Override
     public void b(float[] fArr) {
-        i4 i4Var = this.f38351a;
+        i4 i4Var = this.f38261a;
         fArr[0] = i4Var.I0;
-        fArr[1] = i4Var.f34502u0[0].f35550b.getMeasuredHeight();
+        fArr[1] = i4Var.f34410u0[0].f35463b.getMeasuredHeight();
     }
 
     @Override
     public boolean d(int i10, View view) {
-        i4 i4Var = this.f38351a;
+        i4 i4Var = this.f38261a;
         i4Var.getClass();
         if (view instanceof i2) {
-            c4 c4Var = ((i2) view).f34444n;
-            i4Var.Z(c4Var.f32641a.articles.get(c4Var.f32642b).url);
+            c4 c4Var = ((i2) view).f34352n;
+            i4Var.Z(c4Var.f32557a.articles.get(c4Var.f32558b).url);
             return true;
         }
         return false;
@@ -31,7 +31,7 @@ public final class u implements ev0, org.telegram.ui.Components.pl0, org.telegra
     @Override
     public void p(KeyEvent keyEvent) {
         org.telegram.ui.ActionBar.m1 m1Var;
-        i4 i4Var = this.f38351a;
+        i4 i4Var = this.f38261a;
         i4Var.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var = i4Var.H) != null && m1Var.isShowing()) {
             i4Var.H.d(true);

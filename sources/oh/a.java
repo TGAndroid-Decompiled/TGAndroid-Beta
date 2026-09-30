@@ -6,12 +6,12 @@ public enum a {
     CALLS(R.raw.tab_calls),
     CHATS(R.raw.tab_chats),
     SETTINGS(R.raw.tab_settings),
-    f15738s("CHECKLIST", R.raw.tab_checklist_reverse),
+    f15722s("CHECKLIST", R.raw.tab_checklist_reverse),
     v("COLORS", R.raw.tab_colors_reverse),
-    f15739w("FILES", R.raw.tab_files_reverse),
-    f15740x("GALLERY", R.raw.tab_gallery_reverse),
+    f15723w("FILES", R.raw.tab_files_reverse),
+    f15724x("GALLERY", R.raw.tab_gallery_reverse),
     EF7("GIFT", R.raw.tab_gift_reverse),
-    f15741y("LOCATION", R.raw.tab_location_reverse),
+    f15725y("LOCATION", R.raw.tab_location_reverse),
     E("STICKER", R.raw.tab_sticker_reverse),
     F("EMOJI", R.raw.tab_emoji_reverse),
     G("MODELS", R.raw.tab_models_reverse),
@@ -25,41 +25,41 @@ public enum a {
     BOOSTS(R.raw.boosts, 25, 49),
     MONETIZATION(R.raw.monetize, 19, 45);
     
-    public final int f15742a;
-    public final int f15743b;
-    public final int f15744c;
+    public final int f15726a;
+    public final int f15727b;
+    public final int f15728c;
     public final int d;
     public final int e;
 
     a(int i10, int i11, int i12) {
-        this.f15742a = i10;
-        this.f15743b = i10;
+        this.f15726a = i10;
+        this.f15727b = i10;
         this.d = i11;
         this.e = i12;
-        this.f15744c = -1;
+        this.f15728c = -1;
     }
 
     a(int i10) {
-        this.f15744c = i10;
-        this.f15742a = -1;
-        this.f15743b = -1;
+        this.f15728c = i10;
+        this.f15726a = -1;
+        this.f15727b = -1;
         this.d = -1;
         this.e = -1;
     }
 
     a(int i10) {
-        this.f15742a = i10;
-        this.f15743b = i10;
+        this.f15726a = i10;
+        this.f15727b = i10;
         this.d = -1;
         this.e = -1;
-        this.f15744c = -1;
+        this.f15728c = -1;
     }
 
     a(String str, int i10) {
-        this.f15742a = r2;
-        this.f15743b = i10;
+        this.f15726a = r2;
+        this.f15727b = i10;
         this.d = -1;
         this.e = -1;
-        this.f15744c = -1;
+        this.f15728c = -1;
     }
 }

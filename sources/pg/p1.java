@@ -1,22 +1,22 @@
 package pg;
 public final class p1 extends r1 {
-    public final int f41298f;
-    public final o1 f41299g;
+    public final int f41201f;
+    public final o1 f41202g;
     public final s1 h;
 
     public p1(s1 s1Var, o1 o1Var, int i10) {
-        this.f41298f = i10;
+        this.f41201f = i10;
         this.h = s1Var;
-        this.f41299g = o1Var;
+        this.f41202g = o1Var;
     }
 
     @Override
     public final void a() {
-        switch (this.f41298f) {
+        switch (this.f41201f) {
             case 0:
                 i1 i1Var = this.h.h;
-                float f7 = i1Var.f41244i;
-                float f10 = i1Var.f41245j;
+                float f7 = i1Var.f41147i;
+                float f10 = i1Var.f41148j;
                 this.d = f7;
                 this.e = f10;
                 return;
@@ -32,14 +32,14 @@ public final class p1 extends r1 {
 
     @Override
     public final void b(float f7, float f10) {
-        switch (this.f41298f) {
+        switch (this.f41201f) {
             case 0:
                 i1 i1Var = this.h.h;
-                i1Var.f41244i = f7;
-                i1Var.f41245j = f10;
+                i1Var.f41147i = f7;
+                i1Var.f41148j = f10;
                 this.d = f7;
                 this.e = f10;
-                this.f41299g.a();
+                this.f41202g.a();
                 return;
             default:
                 i1 i1Var2 = this.h.h;
@@ -47,7 +47,7 @@ public final class p1 extends r1 {
                 i1Var2.e = f10;
                 this.d = f7;
                 this.e = f10;
-                this.f41299g.a();
+                this.f41202g.a();
                 return;
         }
     }

@@ -20,20 +20,20 @@ import r0.v0;
 import w7.d0;
 public final class e extends b2.g {
     public static final RectF e;
-    public static final Rect f41433f;
-    public final ViewGroup f41434b;
-    public int f41435c;
+    public static final Rect f41336f;
+    public final ViewGroup f41337b;
+    public int f41338c;
     public final pe.b d = new pe.b();
 
     static {
         new PointF();
         e = new RectF();
-        f41433f = new Rect();
+        f41336f = new Rect();
     }
 
     public e(ViewGroup viewGroup) {
-        this.f41434b = viewGroup;
-        WeakHashMap weakHashMap = i0.f42233a;
+        this.f41337b = viewGroup;
+        WeakHashMap weakHashMap = i0.f42130a;
         if (Build.VERSION.SDK_INT >= 30) {
             t0.g(viewGroup, this);
             return;
@@ -50,7 +50,7 @@ public final class e extends b2.g {
         if (view != null && view2 != null && l1Var != null) {
             RectF rectF = e;
             if (k.c(view, view2, rectF)) {
-                Rect rect = f41433f;
+                Rect rect = f41336f;
                 rectF.round(rect);
                 int i10 = rect.left;
                 int i11 = rect.top;
@@ -59,7 +59,7 @@ public final class e extends b2.g {
                 if (i10 == 0 && i11 == 0 && width == 0 && height == 0) {
                     return l1Var;
                 }
-                return l1Var.f42245a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
+                return l1Var.f42142a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
             }
             return null;
         }
@@ -68,8 +68,8 @@ public final class e extends b2.g {
 
     @Override
     public final void S0() {
-        int i10 = this.f41435c - 1;
-        this.f41435c = i10;
+        int i10 = this.f41338c - 1;
+        this.f41338c = i10;
         if (i10 == 0) {
             Iterator it = this.d.iterator();
             while (it.hasNext()) {
@@ -83,13 +83,13 @@ public final class e extends b2.g {
         Iterator it = list.iterator();
         int i10 = 0;
         while (it.hasNext()) {
-            i10 |= ((v0) it.next()).f42268a.c();
+            i10 |= ((v0) it.next()).f42165a.c();
         }
         if (d0.a(i10, 8)) {
             Iterator it2 = this.d.iterator();
             while (it2.hasNext()) {
                 d dVar = (d) it2.next();
-                l1 Z0 = Z0(l1Var, dVar.N(), this.f41434b);
+                l1 Z0 = Z0(l1Var, dVar.N(), this.f41337b);
                 if (Z0 != null) {
                     dVar.j(Z0);
                 }

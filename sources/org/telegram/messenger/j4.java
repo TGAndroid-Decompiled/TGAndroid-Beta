@@ -4,21 +4,21 @@ import android.view.MotionEvent;
 import org.telegram.messenger.GoogleMapsProvider;
 import org.telegram.messenger.IMapsProvider;
 public final class j4 implements IMapsProvider.ICallableMethod {
-    public final int f16722a;
-    public final GoogleMapsProvider.GoogleMapView.AnonymousClass1 f16723b;
+    public final int f16706a;
+    public final GoogleMapsProvider.GoogleMapView.AnonymousClass1 f16707b;
 
     public j4(GoogleMapsProvider.GoogleMapView.AnonymousClass1 anonymousClass1, int i10) {
-        this.f16722a = i10;
-        this.f16723b = anonymousClass1;
+        this.f16706a = i10;
+        this.f16707b = anonymousClass1;
     }
 
     @Override
     public final Object call(Object obj) {
-        switch (this.f16722a) {
+        switch (this.f16706a) {
             case 0:
-                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.a(this.f16723b, (MotionEvent) obj);
+                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.a(this.f16707b, (MotionEvent) obj);
             default:
-                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.b(this.f16723b, (MotionEvent) obj);
+                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.b(this.f16707b, (MotionEvent) obj);
         }
     }
 }

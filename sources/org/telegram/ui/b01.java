@@ -5,19 +5,19 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 public final class b01 implements ci.cc {
-    public final ProfileActivity f32343a;
+    public final ProfileActivity f32271a;
 
     public b01(ProfileActivity profileActivity) {
-        this.f32343a = profileActivity;
+        this.f32271a = profileActivity;
     }
 
     @Override
     public final ci.gc a(long j3) {
         float f7;
-        ProfileActivity profileActivity = this.f32343a;
+        ProfileActivity profileActivity = this.f32271a;
         if (j3 == profileActivity.a()) {
-            profileActivity.f31628e0.setRoundRadiusForExpand((int) AndroidUtilities.lerp(profileActivity.c4(), 0.0f, profileActivity.f31672k2));
-            fz0 fz0Var = profileActivity.f31628e0;
+            profileActivity.f31556e0.setRoundRadiusForExpand((int) AndroidUtilities.lerp(profileActivity.c4(), 0.0f, profileActivity.f31600k2));
+            fz0 fz0Var = profileActivity.f31556e0;
             boolean isForum = ChatObject.isForum(profileActivity.E2);
             if (fz0Var != null && fz0Var.getRootView() != null) {
                 float scaleX = ((View) fz0Var.getParent()).getScaleX();
@@ -34,9 +34,9 @@ public final class b01 implements ci.cc {
                 AndroidUtilities.getViewPositionInParent(fz0Var, (ViewGroup) fz0Var.getRootView(), fArr);
                 float imageX = (fz0Var.getImageReceiver().getImageX() * scaleX) + iArr[0] + fArr[0];
                 float imageY = (fz0Var.getImageReceiver().getImageY() * scaleX) + iArr[1] + fArr[1];
-                ecVar.f4745c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
+                ecVar.f4737c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
                 ecVar.e = fz0Var.getImageReceiver();
-                ecVar.f4744b = f7;
+                ecVar.f4736b = f7;
                 return ecVar;
             }
             return null;
@@ -46,11 +46,11 @@ public final class b01 implements ci.cc {
 
     @Override
     public final void b(long j3, ai.j jVar) {
-        ProfileActivity profileActivity = this.f32343a;
-        profileActivity.f31628e0.setHasStories(profileActivity.j4());
-        if (j3 == profileActivity.a() && profileActivity.f31698o2 && profileActivity.f31672k2 > 0.0f) {
-            profileActivity.f31613c.h1(0, profileActivity.T3() - profileActivity.f31598a.getPaddingTop());
-            profileActivity.f31598a.post(new sb0(profileActivity, 14));
+        ProfileActivity profileActivity = this.f32271a;
+        profileActivity.f31556e0.setHasStories(profileActivity.j4());
+        if (j3 == profileActivity.a() && profileActivity.f31626o2 && profileActivity.f31600k2 > 0.0f) {
+            profileActivity.f31541c.h1(0, profileActivity.T3() - profileActivity.f31526a.getPaddingTop());
+            profileActivity.f31526a.post(new sb0(profileActivity, 14));
         }
         AndroidUtilities.runOnUIThread(jVar, 30L);
     }

@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class ig implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34608a;
-    public final float f34609b;
-    public final Object f34610c;
+    public final int f34516a;
+    public final float f34517b;
+    public final Object f34518c;
 
     public ig(Object obj, float f7, int i10) {
-        this.f34608a = i10;
-        this.f34610c = obj;
-        this.f34609b = f7;
+        this.f34516a = i10;
+        this.f34518c = obj;
+        this.f34517b = f7;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         int i10;
-        switch (this.f34608a) {
+        switch (this.f34516a) {
             case 0:
-                wn wnVar = (wn) this.f34610c;
+                wn wnVar = (wn) this.f34518c;
                 wnVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 wnVar.H8 = floatValue;
-                wnVar.L8 = floatValue / this.f34609b;
+                wnVar.L8 = floatValue / this.f34517b;
                 View view = wnVar.fragmentView;
                 if (view != null) {
                     view.invalidate();
@@ -34,41 +34,41 @@ public final class ig implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                ArrayList arrayList = (ArrayList) this.f34610c;
+                ArrayList arrayList = (ArrayList) this.f34518c;
                 float floatValue2 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     View view2 = (View) arrayList.get(i11);
                     if (view2 != null) {
-                        view2.setTranslationY(this.f34609b * floatValue2);
+                        view2.setTranslationY(this.f34517b * floatValue2);
                     }
                 }
                 return;
             case 2:
-                ((org.telegram.ui.Components.xn) this.f34610c).E.setTranslationY(AndroidUtilities.lerp(this.f34609b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                ((org.telegram.ui.Components.wn) this.f34518c).E.setTranslationY(AndroidUtilities.lerp(this.f34517b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
             case 3:
-                ((rv0) this.f34610c).R.setTranslationY(AndroidUtilities.lerp(this.f34609b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                ((rv0) this.f34518c).R.setTranslationY(AndroidUtilities.lerp(this.f34517b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
             default:
-                x11 x11Var = (x11) this.f34610c;
+                x11 x11Var = (x11) this.f34518c;
                 x11Var.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float lerp = AndroidUtilities.lerp(0.0f, this.f34609b, floatValue3);
-                x11Var.f39891a.setTranslationX(lerp);
-                x11Var.f39892b.setTranslationX(lerp);
-                ImageView imageView = x11Var.f39893c;
+                float lerp = AndroidUtilities.lerp(0.0f, this.f34517b, floatValue3);
+                x11Var.f39793a.setTranslationX(lerp);
+                x11Var.f39794b.setTranslationX(lerp);
+                ImageView imageView = x11Var.f39795c;
                 imageView.setTranslationX(lerp);
-                org.telegram.ui.Components.qp qpVar = x11Var.f39894f;
+                org.telegram.ui.Components.pp ppVar = x11Var.f39796f;
                 if (LocaleController.isRTL) {
                     i10 = AndroidUtilities.dp(32.0f);
                 } else {
                     i10 = -AndroidUtilities.dp(32.0f);
                 }
-                qpVar.setTranslationX(i10 + lerp);
+                ppVar.setTranslationX(i10 + lerp);
                 float f7 = (floatValue3 * 0.5f) + 0.5f;
-                qpVar.setScaleX(f7);
-                qpVar.setScaleY(f7);
-                qpVar.setAlpha(floatValue3);
+                ppVar.setScaleX(f7);
+                ppVar.setScaleY(f7);
+                ppVar.setAlpha(floatValue3);
                 float f10 = 1.0f - floatValue3;
                 float f11 = (f10 * 0.5f) + 0.5f;
                 imageView.setScaleX(f11);

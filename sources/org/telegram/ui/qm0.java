@@ -1,82 +1,109 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
-public final class qm0 implements Runnable {
-    public final int f37045a;
-    public final rm0 f37046b;
-    public final TLRPC.TL_error f37047c;
-    public final TLObject d;
+public final class qm0 implements RequestDelegate {
+    public final int f36946a;
+    public final sm0 f36947b;
 
-    public qm0(rm0 rm0Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f37045a = 0;
-        this.f37046b = rm0Var;
-        this.d = tLObject;
-        this.f37047c = tL_error;
+    public qm0(sm0 sm0Var, int i10) {
+        this.f36946a = i10;
+        this.f36947b = sm0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37045a) {
+    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f36946a) {
             case 0:
-                rm0 rm0Var = this.f37046b;
-                TLObject tLObject = this.d;
-                TLRPC.TL_error tL_error = this.f37047c;
-                fn0 fn0Var = rm0Var.e;
-                if (tLObject instanceof Vector) {
-                    fn0Var.f33842y = new TL_account.authorizationForm();
-                    Vector vector = (Vector) tLObject;
-                    int size = vector.objects.size();
-                    for (int i10 = 0; i10 < size; i10++) {
-                        fn0Var.f33842y.values.add((TLRPC.TL_secureValue) vector.objects.get(i10));
-                    }
-                    rm0Var.a();
-                    return;
-                }
-                if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
-                    org.telegram.ui.Components.e5.x0(fn0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
-                } else {
-                    fn0Var.M1(LocaleController.getString(R.string.AppName), tL_error.text);
-                }
-                fn0Var.N1(true, false);
+                AndroidUtilities.runOnUIThread(new rm0(this.f36947b, tLObject, tL_error));
                 return;
             case 1:
-                rm0 rm0Var2 = this.f37046b;
-                TLRPC.TL_error tL_error2 = this.f37047c;
-                TLObject tLObject2 = this.d;
-                if (tL_error2 == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject2;
-                    rm0Var2.e.J = password;
-                    TwoStepVerificationActivity.m0(password);
-                    rm0Var2.b();
-                    return;
-                }
-                rm0Var2.getClass();
+                final sm0 sm0Var = this.f36947b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10;
+                        int i11;
+                        switch (r3) {
+                            case 0:
+                                sm0 sm0Var2 = sm0Var;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                gn0 gn0Var = sm0Var2.e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.m2) gn0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new qm0(sm0Var2, 4), 8);
+                                    return;
+                                }
+                                if (gn0Var.f34027y == null) {
+                                    gn0Var.f34027y = new TL_account.authorizationForm();
+                                }
+                                sm0Var2.a();
+                                return;
+                            default:
+                                sm0 sm0Var3 = sm0Var;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i11 = ((org.telegram.ui.ActionBar.m2) sm0Var3.e).currentAccount;
+                                    ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new qm0(sm0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.globalQueue.postRunnable(new jf0(sm0Var3, sm0Var3.f37828b, sm0Var3.d, 12));
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 2:
+                final sm0 sm0Var2 = this.f36947b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10;
+                        int i11;
+                        switch (r3) {
+                            case 0:
+                                sm0 sm0Var22 = sm0Var2;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                gn0 gn0Var = sm0Var22.e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.m2) gn0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new qm0(sm0Var22, 4), 8);
+                                    return;
+                                }
+                                if (gn0Var.f34027y == null) {
+                                    gn0Var.f34027y = new TL_account.authorizationForm();
+                                }
+                                sm0Var22.a();
+                                return;
+                            default:
+                                sm0 sm0Var3 = sm0Var2;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i11 = ((org.telegram.ui.ActionBar.m2) sm0Var3.e).currentAccount;
+                                    ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new qm0(sm0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.globalQueue.postRunnable(new jf0(sm0Var3, sm0Var3.f37828b, sm0Var3.d, 12));
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new rm0(this.f36947b, tL_error, tLObject, 1));
                 return;
             default:
-                rm0 rm0Var3 = this.f37046b;
-                TLRPC.TL_error tL_error3 = this.f37047c;
-                TLObject tLObject3 = this.d;
-                if (tL_error3 == null) {
-                    TL_account.Password password2 = (TL_account.Password) tLObject3;
-                    rm0Var3.e.J = password2;
-                    TwoStepVerificationActivity.m0(password2);
-                    Utilities.globalQueue.postRunnable(new jf0(rm0Var3, rm0Var3.f37479b, rm0Var3.d, 12));
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new rm0(this.f36947b, tL_error, tLObject, 2));
                 return;
         }
-    }
-
-    public qm0(rm0 rm0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f37045a = i10;
-        this.f37046b = rm0Var;
-        this.f37047c = tL_error;
-        this.d = tLObject;
     }
 }

@@ -23,38 +23,38 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.qe0;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.pe0;
+import org.telegram.ui.Components.r91;
 import org.telegram.ui.Components.s91;
-import org.telegram.ui.Components.t91;
-import org.telegram.ui.Components.wf0;
+import org.telegram.ui.Components.vf0;
+import org.telegram.ui.Components.xz;
 import org.telegram.ui.Components.yz;
-import org.telegram.ui.Components.zz;
-public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.z1, s91, Utilities.CallbackVoidReturn, k71, h9, j8 {
-    public final int f5393a;
-    public final lc f5394b;
+public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.z1, r91, Utilities.CallbackVoidReturn, j71, h9, j8 {
+    public final int f5384a;
+    public final lc f5385b;
 
     public qa(lc lcVar, int i10) {
-        this.f5393a = i10;
-        this.f5394b = lcVar;
+        this.f5384a = i10;
+        this.f5385b = lcVar;
     }
 
     @Override
     public r0.l1 Q0(View view, r0.l1 l1Var) {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        int i10 = defaultWindowInsets.f10590a;
-        lc lcVar = this.f5394b;
+        int i10 = defaultWindowInsets.f10576a;
+        lc lcVar = this.f5385b;
         lcVar.Y = i10;
-        lcVar.Z = defaultWindowInsets.f10591b;
-        lcVar.f5034a0 = defaultWindowInsets.f10592c;
-        lcVar.f5037b0 = defaultWindowInsets.d;
-        lcVar.f5073n.requestLayout();
-        return r0.l1.f42244b;
+        lcVar.Z = defaultWindowInsets.f10577b;
+        lcVar.f5027a0 = defaultWindowInsets.f10578c;
+        lcVar.f5030b0 = defaultWindowInsets.d;
+        lcVar.f5066n.requestLayout();
+        return r0.l1.f42141b;
     }
 
     @Override
     public void a(float f7) {
-        lc lcVar = this.f5394b;
+        lc lcVar = this.f5385b;
         ob obVar = lcVar.B0;
         if (obVar != null) {
             lcVar.T1 = f7;
@@ -64,13 +64,13 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
     }
 
     @Override
-    public void c(yz yzVar) {
+    public void c(xz xzVar) {
         MediaController.SavedFilterState savedFilterState;
-        lc lcVar = this.f5394b;
-        if (yzVar != null) {
+        lc lcVar = this.f5385b;
+        if (xzVar != null) {
             l8 l8Var = lcVar.K1;
-            if (l8Var != null && (savedFilterState = l8Var.f4973a1) != null) {
-                yzVar.f(new zz(savedFilterState));
+            if (l8Var != null && (savedFilterState = l8Var.f4966a1) != null) {
+                xzVar.f(new yz(savedFilterState));
                 return;
             }
             return;
@@ -80,26 +80,26 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f5393a) {
+        switch (this.f5384a) {
             case 2:
-                lc lcVar = this.f5394b;
+                lc lcVar = this.f5385b;
                 lcVar.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    lcVar.f5036b.startActivity(intent);
+                    lcVar.f5029b.startActivity(intent);
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
                     return;
                 }
             case 3:
-                lc lcVar2 = this.f5394b;
+                lc lcVar2 = this.f5385b;
                 lcVar2.getClass();
                 try {
                     Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    lcVar2.f5036b.startActivity(intent2);
+                    lcVar2.f5029b.startActivity(intent2);
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
@@ -109,53 +109,53 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
             case 6:
             case 7:
             default:
-                lc lcVar3 = this.f5394b;
+                lc lcVar3 = this.f5385b;
                 lcVar3.getClass();
                 try {
                     Intent intent3 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent3.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    lcVar3.f5036b.startActivity(intent3);
+                    lcVar3.f5029b.startActivity(intent3);
                     return;
                 } catch (Exception e10) {
                     FileLog.e(e10);
                     return;
                 }
             case 5:
-                lc lcVar4 = this.f5394b;
+                lc lcVar4 = this.f5385b;
                 lcVar4.getClass();
                 try {
                     Intent intent4 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent4.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    lcVar4.f5036b.startActivity(intent4);
+                    lcVar4.f5029b.startActivity(intent4);
                     return;
                 } catch (Exception e11) {
                     FileLog.e(e11);
                     return;
                 }
             case 8:
-                lc lcVar5 = this.f5394b;
-                int i11 = lcVar5.f5040c;
+                lc lcVar5 = this.f5385b;
+                int i11 = lcVar5.f5033c;
                 l8 l8Var = lcVar5.K1;
                 if (l8Var != null) {
                     l8Var.D0 = MessagesController.getInstance(i11).storyEntitiesAllowed();
-                    lcVar5.V1 = !lcVar5.K1.f4977c;
+                    lcVar5.V1 = !lcVar5.K1.f4970c;
                     lcVar5.i(null);
                     lcVar5.l();
                     lcVar5.m();
                     lcVar5.y();
                     l8 l8Var2 = lcVar5.K1;
                     l8Var2.i(true);
-                    l8Var2.C0 = lcVar5.f5042c1.getText();
+                    l8Var2.C0 = lcVar5.f5035c1.getText();
                     lcVar5.K1 = null;
                     lcVar5.W(l8Var2, true);
-                    b1 b1Var = MessagesController.getInstance(i11).getStoriesController().f1212w;
-                    if (l8Var2.f4977c) {
+                    b1 b1Var = MessagesController.getInstance(i11).getStoriesController().f1210w;
+                    if (l8Var2.f4970c) {
                         b1Var.d(l8Var2);
                     } else {
-                        ArrayList arrayList = b1Var.f4375b;
-                        if (!l8Var2.f5012u) {
+                        ArrayList arrayList = b1Var.f4368b;
+                        if (!l8Var2.f5005u) {
                             b1Var.e(l8Var2);
-                            l8Var2.f4974b = Utilities.random.nextLong();
+                            l8Var2.f4967b = Utilities.random.nextLong();
                             a1 a1Var = new a1(l8Var2);
                             arrayList.remove(l8Var2);
                             arrayList.add(0, l8Var2);
@@ -167,14 +167,14 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
                 }
                 return;
             case 9:
-                lc lcVar6 = this.f5394b;
+                lc lcVar6 = this.f5385b;
                 l8 l8Var3 = lcVar6.K1;
-                if (l8Var3 != null && !l8Var3.f4986g && ((!l8Var3.f4998n || l8Var3.f5012u) && l8Var3.f4977c)) {
-                    MessagesController.getInstance(lcVar6.f5040c).getStoriesController().f1212w.b(lcVar6.K1);
+                if (l8Var3 != null && !l8Var3.f4979g && ((!l8Var3.f4991n || l8Var3.f5005u) && l8Var3.f4970c)) {
+                    MessagesController.getInstance(lcVar6.f5033c).getStoriesController().f1210w.b(lcVar6.K1);
                     lcVar6.K1 = null;
                 }
                 l8 l8Var4 = lcVar6.K1;
-                if (l8Var4 != null && (l8Var4.f5000o || l8Var4.f4986g || (l8Var4.f4998n && !l8Var4.f5012u))) {
+                if (l8Var4 != null && (l8Var4.f4993o || l8Var4.f4979g || (l8Var4.f4991n && !l8Var4.f5005u))) {
                     lcVar6.q(true);
                     return;
                 } else {
@@ -186,20 +186,20 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
 
     @Override
     public Bitmap g(BitmapFactory.Options options) {
-        return BitmapFactory.decodeFile(this.f5394b.K1.L.getAbsolutePath(), options);
+        return BitmapFactory.decodeFile(this.f5385b.K1.L.getAbsolutePath(), options);
     }
 
     @Override
     public void k(final da daVar, final boolean z10, final boolean z11, boolean z12, final boolean z13, final TLRPC.InputPeer inputPeer, final int i10, y8 y8Var, final androidx.fragment.app.a0 a0Var) {
-        switch (this.f5393a) {
+        switch (this.f5384a) {
             case 10:
-                ArrayList arrayList = daVar.f4554b;
-                lc lcVar = this.f5394b;
+                ArrayList arrayList = daVar.f4547b;
+                lc lcVar = this.f5385b;
                 if (lcVar.K1 != null) {
                     lcVar.X0.x(5, true);
                     lcVar.K1.E0 = daVar;
-                    int i11 = lcVar.f5040c;
-                    int i12 = ga.f4741a;
+                    int i11 = lcVar.f5033c;
+                    int i12 = ga.f4733a;
                     SerializedData serializedData = new SerializedData(true);
                     ga.c(serializedData, daVar);
                     SerializedData serializedData2 = new SerializedData(serializedData.length());
@@ -213,8 +213,8 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
                     l8Var.F0.clear();
                     lcVar.K1.F0.addAll(arrayList);
                     l8 l8Var2 = lcVar.K1;
-                    l8Var2.f4995l = true;
-                    l8Var2.f5014v0 = inputPeer;
+                    l8Var2.f4988l = true;
+                    l8Var2.f5007v0 = inputPeer;
                     ArrayList arrayList2 = lcVar.H1;
                     if (arrayList2 != null) {
                         int size = arrayList2.size();
@@ -229,8 +229,8 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
                             l8Var3.H0 = z11;
                             arrayList3.clear();
                             arrayList3.addAll(arrayList);
-                            l8Var3.f4995l = true;
-                            l8Var3.f5014v0 = inputPeer;
+                            l8Var3.f4988l = true;
+                            l8Var3.f5007v0 = inputPeer;
                         }
                     }
                     lcVar.i(new na(lcVar, y8Var, 0));
@@ -241,15 +241,15 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
                 int i14 = R.raw.permission_request_camera;
                 int i15 = R.string.PermissionNoCameraMicVideo;
                 String[] strArr = z13 ? new String[0] : new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"};
-                final lc lcVar2 = this.f5394b;
-                qe0.d(i14, i15, strArr, new Utilities.Callback() {
+                final lc lcVar2 = this.f5385b;
+                pe0.d(i14, i15, strArr, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
                         final boolean z14;
                         TLRPC.InputPeer inputPeer2;
                         long clientUserId;
                         final lc lcVar3 = lc.this;
-                        int i16 = lcVar3.f5040c;
+                        int i16 = lcVar3.f5033c;
                         boolean booleanValue = ((Boolean) obj2).booleanValue();
                         final androidx.fragment.app.a0 a0Var2 = a0Var;
                         if (!booleanValue) {
@@ -277,7 +277,7 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
                             clientUserId = UserConfig.getInstance(i16).getClientUserId();
                         }
                         final long j3 = clientUserId;
-                        tL_startLive.privacy_rules.addAll(daVar.f4554b);
+                        tL_startLive.privacy_rules.addAll(daVar.f4547b);
                         tL_startLive.random_id = Utilities.random.nextLong();
                         final boolean z15 = z13;
                         tL_startLive.rtmp_stream = z15;
@@ -297,20 +297,20 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
 
     @Override
     public void onCameraInit() {
-        lc lcVar = this.f5394b;
+        lc lcVar = this.f5385b;
         String C = lcVar.C();
         String str = null;
         if (TextUtils.equals(C, lcVar.F())) {
             C = null;
         }
-        if (lcVar.f5051f0 == 0) {
+        if (lcVar.f5044f0 == 0) {
             str = C;
         }
         lcVar.e0(str);
-        t91 t91Var = lcVar.V0;
-        if (t91Var != null) {
+        s91 s91Var = lcVar.V0;
+        if (s91Var != null) {
             lcVar.T1 = 0.0f;
-            t91Var.b(0.0f, false);
+            s91Var.b(0.0f, false);
         }
         lcVar.m0(true);
     }
@@ -319,10 +319,10 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
     public Object run() {
         Bitmap bitmap;
         zb zbVar;
-        lc lcVar = this.f5394b;
-        wf0 wf0Var = lcVar.B1;
-        if (wf0Var != null) {
-            bitmap = wf0Var.getUiBlurBitmap();
+        lc lcVar = this.f5385b;
+        vf0 vf0Var = lcVar.B1;
+        if (vf0Var != null) {
+            bitmap = vf0Var.getUiBlurBitmap();
         } else {
             bitmap = null;
         }

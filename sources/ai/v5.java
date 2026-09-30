@@ -12,32 +12,32 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.as;
-import org.telegram.ui.Components.ih0;
+import org.telegram.ui.Components.hh0;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.qr;
-public final class v5 extends as {
-    public boolean f1611c;
+public final class v5 extends zr {
+    public boolean f1606c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final jc e;
-    public final boolean f1612f;
-    public final boolean f1613g;
+    public final boolean f1607f;
+    public final boolean f1608g;
     public final boolean h;
-    public final Context f1614i;
-    public final b6 f1615j;
-    public final boolean[] f1616k;
-    public final e6 f1617l;
+    public final Context f1609i;
+    public final b6 f1610j;
+    public final boolean[] f1611k;
+    public final e6 f1612l;
 
     public v5(e6 e6Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.ActionBar.d6 d6Var2, jc jcVar, boolean z10, boolean z11, boolean z12, Context context2, b6 b6Var, boolean[] zArr) {
         super(context, d6Var, true);
-        this.f1617l = e6Var;
+        this.f1612l = e6Var;
         this.d = d6Var2;
         this.e = jcVar;
-        this.f1612f = z10;
-        this.f1613g = z11;
+        this.f1607f = z10;
+        this.f1608g = z11;
         this.h = z12;
-        this.f1614i = context2;
-        this.f1615j = b6Var;
-        this.f1616k = zArr;
+        this.f1609i = context2;
+        this.f1610j = b6Var;
+        this.f1611k = zArr;
     }
 
     @Override
@@ -47,27 +47,27 @@ public final class v5 extends as {
 
     @Override
     public final void c() {
-        if (!this.f1611c && !this.f1616k[0]) {
+        if (!this.f1606c && !this.f1611k[0]) {
             AndroidUtilities.runOnUIThread(new m5(this, 0));
         }
-        e6 e6Var = this.f1617l;
+        e6 e6Var = this.f1612l;
         e6Var.f827t1 = null;
         e6Var.f824s1 = null;
     }
 
     public final void d(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, boolean z10) {
         c6 c6Var;
-        boolean z11 = this.f1612f;
-        e6 e6Var = this.f1617l;
+        boolean z11 = this.f1607f;
+        e6 e6Var = this.f1612l;
         if (z11 && ((c6Var = e6Var.O1) == null || c6Var.f643b == null)) {
             Context context = e6Var.getContext();
-            ih0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
+            hh0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
             final of.b bVar = new of.b(2, this, actionBarPopupWindow$ActionBarPopupWindowLayout);
             ?? obj = new Object();
             org.telegram.ui.ActionBar.e1[] e1VarArr = new org.telegram.ui.ActionBar.e1[5];
-            obj.f38888c = e1VarArr;
+            obj.f38800c = e1VarArr;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, context, null);
-            obj.f38886a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            obj.f38798a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
             actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
             org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
             c10.setOnClickListener(new qr(swipeBack, 1));
@@ -85,7 +85,7 @@ public final class v5 extends as {
             layoutParams.height = AndroidUtilities.dp(8.0f);
             w5Var.setLayoutParams(layoutParams);
             org.telegram.ui.ActionBar.a1 a1Var = new org.telegram.ui.ActionBar.a1(context, null);
-            obj.f38887b = a1Var;
+            obj.f38799b = a1Var;
             a1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
             a1Var.setDrawShadow(false);
             a1Var.setBackgroundColor(-14540254);
@@ -249,11 +249,11 @@ public final class v5 extends as {
             layoutParams3.width = -1;
             layoutParams3.height = AndroidUtilities.dp(48.0f);
             e6Var.D3.setLayoutParams(layoutParams3);
-            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(e6Var.C3.f38886a);
+            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(e6Var.C3.f38798a);
             org.telegram.ui.ActionBar.e1 e1Var2 = e6Var.D3;
             e1Var2.G = new n5(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
             e1Var2.setOnClickListener(new i5(this, 11));
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f18670c = true;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f18655c = true;
             if (z10) {
                 org.telegram.ui.ActionBar.j1 j1Var = new org.telegram.ui.ActionBar.j1(e6Var.getContext(), org.telegram.ui.ActionBar.h6.H8, this.d);
                 j1Var.setTag(R.id.fit_width_tag, 1);
@@ -268,11 +268,11 @@ public final class v5 extends as {
 
     public final void e(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, TL_stories.StoryItem storyItem) {
         TLRPC.Chat chat;
-        e6 e6Var = this.f1617l;
+        e6 e6Var = this.f1612l;
         if (e6Var.D1 && storyItem != null && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && (chat = MessagesController.getInstance(e6Var.C2).getChat(Long.valueOf(-e6Var.B1))) != null) {
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(e6Var.C2).getChatFull(chat.f18352id);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(e6Var.C2).getChatFull(chat.f18337id);
             if (chatFull == null) {
-                chatFull = MessagesStorage.getInstance(e6Var.C2).loadChatInfo(chat.f18352id, true, new CountDownLatch(1), false, false);
+                chatFull = MessagesStorage.getInstance(e6Var.C2).loadChatInfo(chat.f18337id, true, new CountDownLatch(1), false, false);
             }
             if (chatFull != null && chatFull.can_view_stats) {
                 org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_stats, LocaleController.getString(R.string.ViewStatistics), false, this.d).setOnClickListener(new o5(this, storyItem, this.e, chat, 0));

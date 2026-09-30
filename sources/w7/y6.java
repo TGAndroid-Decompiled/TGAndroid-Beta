@@ -11,14 +11,14 @@ public enum y6 implements b {
     UI_IMAGE(6),
     CV_PIXEL_BUFFER_REF(9);
     
-    public final int f45267a;
+    public final int f45161a;
 
     y6(int i10) {
-        this.f45267a = i10;
+        this.f45161a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f45267a;
+        return this.f45161a;
     }
 }

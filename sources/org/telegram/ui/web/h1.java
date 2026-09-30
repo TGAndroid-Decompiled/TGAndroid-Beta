@@ -1,61 +1,179 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.ui.bt;
-public final class h1 extends AsyncTask {
-    public final HashMap f39175a = new HashMap();
-    public final bt f39176b;
-    public Exception f39177c;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.TimeZone;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.NumberTextView;
+import org.telegram.ui.Components.kx0;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.wg0;
+import org.telegram.ui.Components.x51;
+import w7.y5;
+public final class h1 extends o61 {
+    public final Utilities.Callback d;
+    public boolean h;
+    public String f39085n;
+    public NumberTextView f39086r;
+    public org.telegram.ui.ActionBar.u0 v;
+    public kx0 f39088w;
+    public ArrayList e = d1.a(new ii.q1(this, 4));
+    public final ArrayList f39084f = new ArrayList();
+    public final HashSet f39087s = new HashSet();
 
-    public h1(bt btVar) {
-        this.f39176b = btVar;
+    public h1(org.telegram.ui.b0 b0Var, Utilities.Callback callback) {
+        this.d = callback;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f39175a.entrySet()) {
-                if (entry.getKey() != null && entry.getValue() != null) {
-                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
+    public final void U(ArrayList arrayList, l61 l61Var) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getDefault());
+        int i10 = 5;
+        int i11 = 2;
+        if (TextUtils.isEmpty(this.f39085n)) {
+            ArrayList arrayList2 = this.e;
+            if (arrayList2 != null) {
+                int i12 = 0;
+                for (int size = arrayList2.size() - 1; size >= 0; size--) {
+                    c1 c1Var = (c1) this.e.get(size);
+                    calendar.setTimeInMillis(c1Var.f39040b);
+                    int i13 = calendar.get(5) + (calendar.get(2) * 100) + (calendar.get(1) * 10000);
+                    if (i12 != i13) {
+                        arrayList.add(x51.q(LocaleController.formatDateChat(c1Var.f39040b / 1000)));
+                        i12 = i13;
+                    }
+                    String str = this.f39085n;
+                    int i14 = g.f39063a;
+                    x51 J = x51.J(g.class);
+                    J.f30291z = 3;
+                    J.f30283q = false;
+                    J.H = c1Var;
+                    J.f30279m = str;
+                    arrayList.add(J);
                 }
             }
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setDoInput(true);
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode >= 200 && responseCode < 300) {
-                if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                    return SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
+        } else {
+            ArrayList arrayList3 = this.f39084f;
+            int size2 = arrayList3.size() - 1;
+            int i15 = 0;
+            while (size2 >= 0) {
+                c1 c1Var2 = (c1) arrayList3.get(size2);
+                calendar.setTimeInMillis(c1Var2.f39040b);
+                int i16 = calendar.get(i10) + (calendar.get(i11) * 100) + (calendar.get(1) * 10000);
+                if (i15 != i16) {
+                    arrayList.add(x51.q(LocaleController.formatDateChat(c1Var2.f39040b / 1000)));
+                    i15 = i16;
                 }
-                return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
+                String str2 = this.f39085n;
+                int i17 = g.f39063a;
+                x51 J2 = x51.J(g.class);
+                J2.f30291z = 3;
+                J2.f30283q = false;
+                J2.H = c1Var2;
+                J2.f30279m = str2;
+                arrayList.add(J2);
+                size2--;
+                i10 = 5;
+                i11 = 2;
             }
-            httpURLConnection.disconnect();
-            return null;
-        } catch (Exception e) {
-            this.f39177c = e;
-            return null;
+            if (this.h) {
+                arrayList.add(x51.n(32));
+                arrayList.add(x51.n(32));
+                arrayList.add(x51.n(32));
+            }
+        }
+        if (!arrayList.isEmpty()) {
+            arrayList.add(x51.B(null));
         }
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        bt btVar = this.f39176b;
-        if (btVar != null) {
-            if (this.f39177c == null) {
-                btVar.run(bitmap);
-            } else {
-                btVar.run(null);
-            }
+    public final CharSequence V() {
+        return LocaleController.getString(R.string.WebHistory);
+    }
+
+    @Override
+    public final void W(x51 x51Var, View view) {
+        if (x51Var.G(g.class) && !this.actionBar.s()) {
+            finishFragment();
+            this.d.run((c1) x51Var.H);
         }
+    }
+
+    @Override
+    public final boolean X(x51 x51Var, View view) {
+        return false;
+    }
+
+    @Override
+    public final View createView(Context context) {
+        int i10;
+        this.fragmentView = super.createView(context);
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        int i11 = h6.f19061d6;
+        kVar.setBackgroundColor(getThemedColor(i11));
+        this.actionBar.setActionModeColor(h6.w0(null, i11, false));
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
+        int i12 = h6.G6;
+        kVar2.setTitleColor(getThemedColor(i12));
+        this.actionBar.A(getThemedColor(h6.f19465z8), false);
+        this.actionBar.B(getThemedColor(i12), false);
+        this.actionBar.B(getThemedColor(i12), true);
+        this.actionBar.setCastShadows(true);
+        this.actionBar.setActionBarMenuOnItemClick(new e1(this));
+        org.telegram.ui.ActionBar.y j3 = this.actionBar.j(null);
+        NumberTextView numberTextView = new NumberTextView(j3.getContext());
+        this.f39086r = numberTextView;
+        numberTextView.setTextSize(18);
+        this.f39086r.setTypeface(AndroidUtilities.bold());
+        this.f39086r.setTextColor(getThemedColor(h6.f19446y8));
+        this.f39086r.setOnTouchListener(new bi.d(2));
+        j3.addView(this.f39086r, y5.m(1.0f, 0, -1, 65, 0, 0));
+        org.telegram.ui.ActionBar.u0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
+        c10.F();
+        c10.H = new g1(this);
+        this.v = c10;
+        c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        this.v.setContentDescription(LocaleController.getString(R.string.Search));
+        EditTextBoldCursor searchField = this.v.getSearchField();
+        searchField.setTextColor(getThemedColor(i12));
+        searchField.setHintTextColor(getThemedColor(h6.Si));
+        searchField.setCursorColor(getThemedColor(i12));
+        kx0 kx0Var = new kx0(context, null, 1, null);
+        this.f39088w = kx0Var;
+        if (TextUtils.isEmpty(this.f39085n)) {
+            i10 = R.string.WebNoHistory;
+        } else {
+            i10 = R.string.WebNoSearchedHistory;
+        }
+        kx0Var.d.setText(LocaleController.getString(i10));
+        this.f39088w.e.setVisibility(8);
+        this.f39088w.e(false, false);
+        this.f39088w.setAnimateLayoutChange(true);
+        ((FrameLayout) this.fragmentView).addView(this.f39088w, y5.c(-1.0f, -1));
+        this.f26972a.setEmptyView(this.f39088w);
+        this.f26972a.j(new wg0(this, 10));
+        return this.fragmentView;
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        if (AndroidUtilities.computePerceivedBrightness(getThemedColor(h6.f19061d6)) > 0.721f) {
+            return true;
+        }
+        return false;
     }
 }

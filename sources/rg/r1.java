@@ -8,7 +8,7 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.nj0;
 import yh.i8;
 public final class r1 extends r8 {
     public final i8 Q;
@@ -52,10 +52,10 @@ public final class r1 extends r8 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        oj0 oj0Var = this.e;
-        float width = (oj0Var.getWidth() / 2.0f) + oj0Var.getX();
-        float y3 = oj0Var.getY();
-        float height = ((oj0Var.getHeight() / 2.0f) + (y3 + oj0Var.getPaddingTop())) - AndroidUtilities.dp(3.0f);
+        nj0 nj0Var = this.e;
+        float width = (nj0Var.getWidth() / 2.0f) + nj0Var.getX();
+        float y3 = nj0Var.getY();
+        float height = ((nj0Var.getHeight() / 2.0f) + (y3 + nj0Var.getPaddingTop())) - AndroidUtilities.dp(3.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(width - AndroidUtilities.dp(16.0f), height - AndroidUtilities.dp(16.0f), width + AndroidUtilities.dp(16.0f), height + AndroidUtilities.dp(16.0f));
         this.Q.g(rectF);

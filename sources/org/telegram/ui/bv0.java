@@ -8,26 +8,26 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class bv0 extends org.telegram.ui.Components.zl0 {
-    public final Drawable f32585e3;
-    public final Paint f32586f3;
-    public final RectF f32587g3;
+public final class bv0 extends org.telegram.ui.Components.yl0 {
+    public final Drawable X2;
+    public final Paint Y2;
+    public final RectF Z2;
 
     public bv0(Context context) {
         super(context, null);
         Paint paint = new Paint(1);
-        this.f32586f3 = paint;
-        this.f32587g3 = new RectF();
+        this.Y2 = paint;
+        this.Z2 = new RectF();
         setWillNotDraw(false);
         setClipToPadding(false);
         setTranslationY(-AndroidUtilities.dp(10.0f));
         av0 av0Var = new av0(this);
         setItemAnimator(av0Var);
         av0Var.C = false;
-        av0Var.f43103m = false;
+        av0Var.f42997m = false;
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
         paint.setColor(2130706432);
-        this.f32585e3 = context.getResources().getDrawable(R.drawable.photo_tooltip2).mutate();
+        this.X2 = context.getResources().getDrawable(R.drawable.photo_tooltip2).mutate();
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class bv0 extends org.telegram.ui.Components.zl0 {
         int childCount = getChildCount();
         if (childCount > 0) {
             int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(87.0f);
-            Drawable drawable = this.f32585e3;
+            Drawable drawable = this.X2;
             drawable.setBounds(measuredWidth, 0, drawable.getIntrinsicWidth() + measuredWidth, AndroidUtilities.dp(6.0f));
             drawable.draw(canvas);
             int i10 = Integer.MAX_VALUE;
@@ -47,9 +47,9 @@ public final class bv0 extends org.telegram.ui.Components.zl0 {
                 i11 = (int) Math.max(i11, Math.ceil(childAt.getX() + childAt.getMeasuredWidth()));
             }
             if (i10 != Integer.MAX_VALUE && i11 != Integer.MIN_VALUE) {
-                RectF rectF = this.f32587g3;
+                RectF rectF = this.Z2;
                 rectF.set(i10 - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f) + i11, AndroidUtilities.dp(103.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f32586f3);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.Y2);
             }
         }
     }

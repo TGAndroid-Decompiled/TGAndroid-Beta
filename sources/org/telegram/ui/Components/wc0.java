@@ -1,74 +1,86 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
 public final class wc0 extends Drawable {
-    public vc0 f29888a;
-    public final Paint f29889b;
-    public int f29890c;
-    public int d;
-    public final long e;
-    public int f29891f;
+    public final Drawable f29895a;
+    public final Paint f29896b;
+    public final Paint f29897c;
+    public final e6 d;
+    public boolean e;
 
-    public wc0() {
+    public wc0(Context context) {
         Paint paint = new Paint(1);
-        this.f29889b = paint;
-        this.f29890c = 255;
-        this.d = 255;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.e = System.currentTimeMillis();
-    }
-
-    public final void a(int i10) {
-        if (i10 != this.f29891f) {
-            int alpha = Color.alpha(i10);
-            this.d = alpha;
-            this.f29889b.setColor(i0.a.k(i10, (int) ((alpha / 255.0f) * this.f29890c)));
-        }
-        this.f29891f = i10;
+        this.f29896b = paint;
+        Paint paint2 = new Paint(1);
+        this.f29897c = paint2;
+        this.d = new e6(new kc0(this, 3), 200L, sr.f28347g, 0);
+        this.f29895a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.566f));
+        paint.setColor(-1);
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        Paint.Join join = Paint.Join.ROUND;
+        paint.setStrokeJoin(join);
+        paint2.setStyle(style);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(4.5f));
+        paint2.setColor(-65536);
+        paint2.setStrokeCap(cap);
+        paint2.setStrokeJoin(join);
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        int min = Math.min(bounds.width(), bounds.height());
-        Paint paint = this.f29889b;
-        canvas.drawCircle(bounds.centerX(), bounds.centerY(), (min >> 1) - AndroidUtilities.dp(0.5f), paint);
-        long currentTimeMillis = System.currentTimeMillis();
-        canvas.save();
-        long j3 = this.e;
-        canvas.rotate(((((float) (currentTimeMillis - j3)) % 1500.0f) * 360.0f) / 1500.0f, bounds.centerX(), bounds.centerY());
-        canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY() - AndroidUtilities.dp(3.0f), paint);
-        canvas.restore();
-        canvas.save();
-        canvas.rotate(((((float) (currentTimeMillis - j3)) % 4500.0f) * 360.0f) / 4500.0f, bounds.centerX(), bounds.centerY());
-        canvas.drawLine(bounds.centerX(), bounds.centerY(), AndroidUtilities.dp(2.3f) + bounds.centerX(), bounds.centerY(), paint);
-        canvas.restore();
-    }
-
-    @Override
-    public final Drawable.ConstantState getConstantState() {
-        if (this.f29888a == null) {
-            this.f29888a = new Drawable.ConstantState();
+        canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+        Drawable drawable = this.f29895a;
+        drawable.setBounds(bounds);
+        drawable.draw(canvas);
+        float e = this.d.e(this.e);
+        if (e > 0.0f) {
+            float dpf2 = AndroidUtilities.dpf2(0.783f);
+            float centerX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + dpf2;
+            float centerY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + dpf2;
+            float dp = (AndroidUtilities.dp(9.0f) + bounds.centerX()) - dpf2;
+            float dp2 = (AndroidUtilities.dp(9.0f) + bounds.centerY()) - dpf2;
+            if (this.e) {
+                centerX = AndroidUtilities.lerp(dp, centerX, e);
+                centerY = AndroidUtilities.lerp(dp2, centerY, e);
+            } else {
+                dp = AndroidUtilities.lerp(centerX, dp, e);
+                dp2 = AndroidUtilities.lerp(centerY, dp2, e);
+            }
+            float f7 = dp2;
+            float f10 = centerX;
+            float f11 = centerY;
+            float f12 = dp;
+            canvas.drawLine(f10, f11, f12, f7, this.f29897c);
+            Paint paint = this.f29896b;
+            paint.setAlpha((int) (Math.min(1.0f, e * 10.0f) * 255.0f));
+            canvas.drawLine(f10, f11, f12, f7, paint);
         }
-        return this.f29888a;
+        canvas.restore();
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(12.0f);
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(12.0f);
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
@@ -78,10 +90,7 @@ public final class wc0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        if (this.f29890c != i10) {
-            this.f29890c = i10;
-            this.f29889b.setAlpha((int) ((this.d / 255.0f) * i10));
-        }
+        this.f29895a.setAlpha(i10);
     }
 
     @Override

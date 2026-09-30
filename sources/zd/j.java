@@ -2,40 +2,40 @@ package zd;
 
 import java.util.concurrent.ScheduledFuture;
 public final class j implements k {
-    public final int f49283a;
-    public final Object f49284b;
+    public final int f49177a;
+    public final Object f49178b;
 
     public j(Object obj, int i10) {
-        this.f49283a = i10;
-        this.f49284b = obj;
+        this.f49177a = i10;
+        this.f49178b = obj;
     }
 
     @Override
     public final void a(Throwable th2) {
-        switch (this.f49283a) {
+        switch (this.f49177a) {
             case 0:
                 if (th2 != null) {
-                    ((ScheduledFuture) this.f49284b).cancel(false);
+                    ((ScheduledFuture) this.f49178b).cancel(false);
                     return;
                 }
                 return;
             case 1:
-                ((rd.l) this.f49284b).invoke(th2);
+                ((rd.l) this.f49178b).invoke(th2);
                 return;
             default:
-                ((o0) this.f49284b).dispose();
+                ((o0) this.f49178b).dispose();
                 return;
         }
     }
 
     public final String toString() {
-        switch (this.f49283a) {
+        switch (this.f49177a) {
             case 0:
-                return "CancelFutureOnCancel[" + ((ScheduledFuture) this.f49284b) + ']';
+                return "CancelFutureOnCancel[" + ((ScheduledFuture) this.f49178b) + ']';
             case 1:
-                return "CancelHandler.UserSupplied[" + ((rd.l) this.f49284b).getClass().getSimpleName() + '@' + e0.k(this) + ']';
+                return "CancelHandler.UserSupplied[" + ((rd.l) this.f49178b).getClass().getSimpleName() + '@' + e0.k(this) + ']';
             default:
-                return "DisposeOnCancel[" + ((o0) this.f49284b) + ']';
+                return "DisposeOnCancel[" + ((o0) this.f49178b) + ']';
         }
     }
 }

@@ -6,17 +6,17 @@ import android.os.SystemClock;
 import android.view.View;
 import j$.util.Objects;
 public final class cg implements bh.a {
-    public final int f32799a;
-    public final pm f32800b;
+    public final int f32713a;
+    public final pm f32714b;
 
     public cg(pm pmVar, int i10) {
-        this.f32799a = i10;
-        this.f32800b = pmVar;
+        this.f32713a = i10;
+        this.f32714b = pmVar;
     }
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f32799a) {
+        switch (this.f32713a) {
             case 0:
             default:
                 aVar.f417a = true;
@@ -27,11 +27,11 @@ public final class cg implements bh.a {
     @Override
     public final void f(Canvas canvas, RectF rectF) {
         pm pmVar;
-        switch (this.f32799a) {
+        switch (this.f32713a) {
             case 0:
-                pm pmVar2 = this.f32800b;
+                pm pmVar2 = this.f32714b;
                 wn wnVar = pmVar2.J0;
-                wn wnVar2 = wnVar.f39550da;
+                wn wnVar2 = wnVar.f39457da;
                 if (wnVar2 != null) {
                     pmVar = wnVar2.X0;
                 } else {
@@ -42,21 +42,21 @@ public final class cg implements bh.a {
                 int i10 = (int) ((1.0f - f7) * 255.0f);
                 int i11 = (int) (255.0f * f7);
                 if (f7 > 0.0f) {
-                    canvas.drawColor(org.telegram.ui.ActionBar.h6.l1(f7 * 0.85f, wnVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19076d6)));
+                    canvas.drawColor(org.telegram.ui.ActionBar.h6.l1(f7 * 0.85f, wnVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19061d6)));
                 }
-                gh.d.b(new cg(pmVar2, 1), canvas, rectF, wnVar.f39788x0, pmVar3, i10);
+                gh.d.b(new cg(pmVar2, 1), canvas, rectF, wnVar.f39695x0, pmVar3, i10);
                 ai.w0 w0Var = wnVar.L3;
                 if (w0Var != null) {
                     gh.d.b(w0Var, canvas, rectF, w0Var, pmVar3, i11);
                 }
-                ci.i1 i1Var = wnVar.f39698q1;
+                ci.i1 i1Var = wnVar.f39605q1;
                 if (i1Var != null && i1Var.getVisibility() == 0) {
-                    int childCount = wnVar.f39698q1.getChildCount();
+                    int childCount = wnVar.f39605q1.getChildCount();
                     for (int i12 = 0; i12 < childCount; i12++) {
-                        View childAt = wnVar.f39698q1.getChildAt(i12);
+                        View childAt = wnVar.f39605q1.getChildAt(i12);
                         if ((childAt instanceof yn) && childAt.getVisibility() == 0) {
                             yn ynVar = (yn) childAt;
-                            xn xnVar = ynVar.f40301a;
+                            xn xnVar = ynVar.f40193a;
                             pm pmVar4 = xnVar.X0;
                             Objects.requireNonNull(pmVar4);
                             gh.d.a(new cg(pmVar4, 0), canvas, rectF, xnVar.X0, ynVar);
@@ -67,14 +67,14 @@ public final class cg implements bh.a {
                 return;
             default:
                 long uptimeMillis = SystemClock.uptimeMillis();
-                wn wnVar3 = this.f32800b.J0;
-                if (wnVar3.f39788x0.a1()) {
-                    wnVar3.f39788x0.f(canvas, rectF);
+                wn wnVar3 = this.f32714b.J0;
+                if (wnVar3.f39695x0.Z0()) {
+                    wnVar3.f39695x0.f(canvas, rectF);
                     return;
                 }
-                wnVar3.f39788x0.y1(canvas, rectF);
-                for (int i13 = 0; i13 < wnVar3.f39788x0.getChildCount(); i13++) {
-                    View childAt2 = wnVar3.f39788x0.getChildAt(i13);
+                wnVar3.f39695x0.w1(canvas, rectF);
+                for (int i13 = 0; i13 < wnVar3.f39695x0.getChildCount(); i13++) {
+                    View childAt2 = wnVar3.f39695x0.getChildAt(i13);
                     if (!wn.d2(wnVar3, childAt2, rectF)) {
                         if (childAt2 instanceof org.telegram.ui.Cells.u1) {
                             canvas.save();
@@ -87,7 +87,7 @@ public final class cg implements bh.a {
                                 canvas.restore();
                             }
                             canvas.restore();
-                            wnVar3.f39788x0.drawChild(canvas, childAt2, uptimeMillis);
+                            wnVar3.f39695x0.drawChild(canvas, childAt2, uptimeMillis);
                             if (u1Var.U2()) {
                                 canvas.save();
                                 canvas.translate(u1Var.getX(), u1Var.getY());
@@ -95,17 +95,17 @@ public final class cg implements bh.a {
                                 canvas.restore();
                             }
                         } else if (childAt2 instanceof org.telegram.ui.Cells.w0) {
-                            wnVar3.f39788x0.drawChild(canvas, childAt2, uptimeMillis);
+                            wnVar3.f39695x0.drawChild(canvas, childAt2, uptimeMillis);
                             canvas.save();
                             canvas.translate(childAt2.getX(), childAt2.getY());
                             ((org.telegram.ui.Cells.w0) childAt2).z(canvas);
                             canvas.restore();
                         } else {
-                            wnVar3.f39788x0.drawChild(canvas, childAt2, uptimeMillis);
+                            wnVar3.f39695x0.drawChild(canvas, childAt2, uptimeMillis);
                         }
                     }
                 }
-                wnVar3.f39788x0.z1(canvas, rectF);
+                wnVar3.f39695x0.x1(canvas, rectF);
                 return;
         }
     }

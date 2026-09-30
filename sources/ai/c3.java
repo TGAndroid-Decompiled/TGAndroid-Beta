@@ -87,10 +87,10 @@ public final class c3 implements Runnable {
                 if (findActivity != null) {
                     a1.e eVar = new a1.e(11, e6Var3, findActivity);
                     jc jcVar2 = ((ac) e6Var3.Q1).d;
-                    ic icVar = jcVar2.f1116z0;
+                    ic icVar = jcVar2.f1114z0;
                     if (icVar != null) {
                         z10 = icVar.release(eVar);
-                        jcVar2.f1116z0 = null;
+                        jcVar2.f1114z0 = null;
                     } else {
                         z10 = false;
                     }
@@ -103,7 +103,7 @@ public final class c3 implements Runnable {
                 return;
             case 9:
                 jc jcVar3 = ((ac) this.f638b.Q1).d;
-                jcVar3.f1081i1 = false;
+                jcVar3.f1079i1 = false;
                 jcVar3.P();
                 return;
             case 10:

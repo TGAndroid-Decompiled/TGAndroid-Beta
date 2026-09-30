@@ -7,39 +7,39 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class cn extends org.telegram.ui.Components.xq0 {
-    public final MessageObject f32835b1;
-    public final in f32836c1;
+public final class cn extends org.telegram.ui.Components.wq0 {
+    public final MessageObject f32749b1;
+    public final in f32750c1;
 
     public cn(in inVar, Activity activity, wn wnVar, ArrayList arrayList, boolean z10, boolean z11, org.telegram.ui.ActionBar.d6 d6Var, boolean z12, MessageObject messageObject) {
         super(activity, wnVar, arrayList, null, null, z10, null, null, false, false, z11, null, d6Var);
-        this.f32836c1 = inVar;
-        this.f32835b1 = messageObject;
-        this.f30454a0 = z12;
+        this.f32750c1 = inVar;
+        this.f32749b1 = messageObject;
+        this.f30118a0 = z12;
     }
 
     @Override
     public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        in inVar = this.f32836c1;
-        wn wnVar = inVar.f34642a;
+        in inVar = this.f32750c1;
+        wn wnVar = inVar.f34559a;
         int i11 = wn.Gc;
         wnVar.Q7();
-        if (inVar.f34642a.y3 != null && z10) {
+        if (inVar.f34559a.y3 != null && z10) {
             if (iVar.m() == 1) {
-                if (((TLRPC.Dialog) iVar.n(0)).f18356id != inVar.f34642a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.yc.a0(inVar.f34642a).e0(i10, ((TLRPC.Dialog) iVar.n(0)).f18356id)) {
-                    inVar.f34642a.y3.k(((TLRPC.Dialog) iVar.n(0)).f18356id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) iVar.n(0)).f18341id != inVar.f34559a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.yc.a0(inVar.f34559a).e0(i10, ((TLRPC.Dialog) iVar.n(0)).f18341id)) {
+                    inVar.f34559a.y3.k(((TLRPC.Dialog) iVar.n(0)).f18341id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            inVar.f34642a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+            inVar.f34559a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
         }
     }
 
     @Override
     public final void S0(final View view) {
         ci.ec ecVar;
-        wn wnVar = this.f32836c1.f34642a;
+        wn wnVar = this.f32750c1.f34559a;
         MessageObject.GroupedMessages groupedMessages = null;
         if (view instanceof org.telegram.ui.Cells.g7) {
             ecVar = ci.gc.b((org.telegram.ui.Cells.g7) view);
@@ -47,9 +47,9 @@ public final class cn extends org.telegram.ui.Components.xq0 {
             ecVar = null;
         }
         ArrayList arrayList = new ArrayList();
-        MessageObject messageObject = this.f32835b1;
+        MessageObject messageObject = this.f32749b1;
         if (messageObject.getGroupId() != 0) {
-            groupedMessages = (MessageObject.GroupedMessages) wnVar.f39794x6.f(messageObject.getGroupId());
+            groupedMessages = (MessageObject.GroupedMessages) wnVar.f39701x6.f(messageObject.getGroupId());
         }
         if (groupedMessages != null) {
             arrayList.addAll(groupedMessages.messages);
@@ -68,7 +68,7 @@ public final class cn extends org.telegram.ui.Components.xq0 {
                 ci.ec ecVar2 = null;
                 if (booleanValue) {
                     cn cnVar = cn.this;
-                    AndroidUtilities.runOnUIThread(new fh(12, cnVar, l10));
+                    AndroidUtilities.runOnUIThread(new dh(13, cnVar, l10));
                     cnVar.dismiss();
                     lcVar.Y(null);
                 } else {
@@ -87,7 +87,7 @@ public final class cn extends org.telegram.ui.Components.xq0 {
     @Override
     public final void dismissInternal() {
         int i10;
-        wn wnVar = this.f32836c1.f34642a;
+        wn wnVar = this.f32750c1.f34559a;
         Activity parentActivity = wnVar.getParentActivity();
         i10 = ((org.telegram.ui.ActionBar.m2) wnVar).classGuid;
         AndroidUtilities.requestAdjustResize(parentActivity, i10);

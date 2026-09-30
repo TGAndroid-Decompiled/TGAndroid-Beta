@@ -1,13 +1,13 @@
 package qa;
 public final class a {
-    public final String f41596a;
-    public final long f41597b;
-    public final long f41598c;
+    public final String f41499a;
+    public final long f41500b;
+    public final long f41501c;
 
     public a(long j3, long j10, String str) {
-        this.f41596a = str;
-        this.f41597b = j3;
-        this.f41598c = j10;
+        this.f41499a = str;
+        this.f41500b = j3;
+        this.f41501c = j10;
     }
 
     public final boolean equals(Object obj) {
@@ -16,7 +16,7 @@ public final class a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.f41596a.equals(aVar.f41596a) && this.f41597b == aVar.f41597b && this.f41598c == aVar.f41598c) {
+            if (this.f41499a.equals(aVar.f41499a) && this.f41500b == aVar.f41500b && this.f41501c == aVar.f41501c) {
                 return true;
             }
         }
@@ -24,17 +24,17 @@ public final class a {
     }
 
     public final int hashCode() {
-        long j3 = this.f41597b;
-        long j10 = this.f41598c;
-        return ((((this.f41596a.hashCode() ^ 1000003) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
+        long j3 = this.f41500b;
+        long j10 = this.f41501c;
+        return ((((this.f41499a.hashCode() ^ 1000003) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("InstallationTokenResult{token=");
-        sb2.append(this.f41596a);
+        sb2.append(this.f41499a);
         sb2.append(", tokenExpirationTimestamp=");
-        sb2.append(this.f41597b);
+        sb2.append(this.f41500b);
         sb2.append(", tokenCreationTimestamp=");
-        return a4.a.s(sb2, this.f41598c, "}");
+        return a4.a.s(sb2, this.f41501c, "}");
     }
 }

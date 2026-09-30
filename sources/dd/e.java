@@ -1,20 +1,20 @@
 package dd;
 public final class e extends k {
-    public final StringBuilder f7679c;
+    public final StringBuilder f7667c;
 
     public e() {
         super(4, 0);
-        this.f7679c = new StringBuilder();
+        this.f7667c = new StringBuilder();
     }
 
     @Override
     public final k b() {
-        k.c(this.f7679c);
+        k.c(this.f7667c);
         return this;
     }
 
     @Override
     public final String toString() {
-        return "<!--" + this.f7679c.toString() + "-->";
+        return "<!--" + this.f7667c.toString() + "-->";
     }
 }

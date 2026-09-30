@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public abstract class x81 extends FrameLayout {
-    public static final int f30178s0 = 0;
+    public static final int f30307s0 = 0;
     public final int E;
     public int F;
     public int G;
@@ -36,53 +36,53 @@ public abstract class x81 extends FrameLayout {
     public int U;
     public boolean V;
     public float W;
-    public float f30179a;
-    public final tr f30180a0;
-    public Utilities.Callback2Return f30181b;
-    public final SparseIntArray f30182b0;
-    public final TextPaint f30183c;
-    public final SparseIntArray f30184c0;
+    public float f30308a;
+    public final sr f30309a0;
+    public Utilities.Callback2Return f30310b;
+    public final SparseIntArray f30311b0;
+    public final TextPaint f30312c;
+    public final SparseIntArray f30313c0;
     public final TextPaint d;
-    public final SparseIntArray f30185d0;
+    public final SparseIntArray f30314d0;
     public final TextPaint e;
-    public final SparseIntArray f30186e0;
-    public final Paint f30187f;
-    public float f30188f0;
-    public int f30189g0;
+    public final SparseIntArray f30315e0;
+    public final Paint f30316f;
+    public float f30317f0;
+    public int f30318g0;
     public final ArrayList h;
-    public int f30190h0;
-    public final org.telegram.ui.Cells.t6 f30191i0;
-    public final org.telegram.ui.ActionBar.d6 f30192j0;
-    public ValueAnimator f30193k0;
-    public Utilities.Callback2Return f30194l0;
+    public int f30319h0;
+    public final org.telegram.ui.Cells.t6 f30320i0;
+    public final org.telegram.ui.ActionBar.d6 f30321j0;
+    public ValueAnimator f30322k0;
+    public Utilities.Callback2Return f30323l0;
     public boolean m0;
-    public boolean f30195n;
-    public s4.y f30196n0;
-    public t81 f30197o0;
-    public float f30198p0;
-    public final Paint f30199q0;
-    public int f30200r;
-    public ch.d f30201r0;
-    public boolean f30202s;
+    public boolean f30324n;
+    public s4.y f30325n0;
+    public t81 f30326o0;
+    public float f30327p0;
+    public final Paint f30328q0;
+    public int f30329r;
+    public ch.d f30330r0;
+    public boolean f30331s;
     public final ai.w0 v;
-    public final gg.j0 f30203w;
-    public final mg.g f30204x;
-    public w81 f30205y;
+    public final gg.j0 f30332w;
+    public final mg.g f30333x;
+    public w81 f30334y;
 
     public x81(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context);
         float f7;
         int i11;
-        this.f30179a = 1.0f;
+        this.f30308a = 1.0f;
         TextPaint textPaint = new TextPaint(1);
-        this.f30183c = textPaint;
+        this.f30312c = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.d = textPaint2;
         TextPaint textPaint3 = new TextPaint(1);
         this.e = textPaint3;
-        this.f30187f = new Paint(1);
+        this.f30316f = new Paint(1);
         this.h = new ArrayList();
-        this.f30200r = 16;
+        this.f30329r = 16;
         this.G = -1;
         this.L = -1;
         this.M = -1;
@@ -91,15 +91,15 @@ public abstract class x81 extends FrameLayout {
         this.Q = org.telegram.ui.ActionBar.h6.Fh;
         this.R = org.telegram.ui.ActionBar.h6.Eh;
         this.S = org.telegram.ui.ActionBar.h6.Hh;
-        this.T = org.telegram.ui.ActionBar.h6.f19354s8;
-        this.f30180a0 = tr.h;
-        this.f30182b0 = new SparseIntArray(5);
-        this.f30184c0 = new SparseIntArray(5);
-        this.f30185d0 = new SparseIntArray(5);
-        this.f30186e0 = new SparseIntArray(5);
-        this.f30191i0 = new org.telegram.ui.Cells.t6(this, 26);
-        this.f30199q0 = new Paint(1);
-        this.f30192j0 = d6Var;
+        this.T = org.telegram.ui.ActionBar.h6.f19339s8;
+        this.f30309a0 = sr.h;
+        this.f30311b0 = new SparseIntArray(5);
+        this.f30313c0 = new SparseIntArray(5);
+        this.f30314d0 = new SparseIntArray(5);
+        this.f30315e0 = new SparseIntArray(5);
+        this.f30320i0 = new org.telegram.ui.Cells.t6(this, 26);
+        this.f30328q0 = new Paint(1);
+        this.f30321j0 = d6Var;
         this.E = i10;
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         textPaint2.setTypeface(AndroidUtilities.bold());
@@ -150,18 +150,18 @@ public abstract class x81 extends FrameLayout {
         }
         w0Var.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(this.S, d6Var));
         gg.j0 j0Var = new gg.j0((ViewGroup) this, 6);
-        this.f30203w = j0Var;
+        this.f30332w = j0Var;
         w0Var.setLayoutManager(j0Var);
         w0Var.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), 0);
         w0Var.setClipToPadding(false);
         w0Var.setDrawSelectorBehind(true);
         mg.g gVar = new mg.g(this, context);
-        this.f30204x = gVar;
+        this.f30333x = gVar;
         gVar.C(z10);
         w0Var.setAdapter(gVar);
         w0Var.setOnItemClickListener(new q81(this));
         w0Var.setOnItemLongClickListener(new q81(this));
-        w0Var.setOnScrollListener(new xg0(this, 8));
+        w0Var.setOnScrollListener(new wg0(this, 8));
         if (i10 != 9 && i10 != 10) {
             addView(w0Var, w7.y5.c(-1.0f, -1));
         } else {
@@ -175,17 +175,17 @@ public abstract class x81 extends FrameLayout {
         if (size == 0 && this.G == -1) {
             this.G = i10;
         }
-        this.f30182b0.put(size, i10);
-        this.f30184c0.put(i10, size);
+        this.f30311b0.put(size, i10);
+        this.f30313c0.put(i10, size);
         int i11 = this.G;
         if (i11 != -1 && i11 == i10) {
             this.F = size;
         }
         ?? obj = new Object();
-        obj.f28799a = i10;
-        obj.f28800b = charSequence;
+        obj.f28786a = i10;
+        obj.f28787b = charSequence;
         int i12 = this.H;
-        this.H = org.telegram.messenger.f0.C(this.f30200r * 2, obj.a(this.f30183c), i12);
+        this.H = org.telegram.messenger.f0.C(this.f30329r * 2, obj.a(this.f30312c), i12);
         arrayList.add(obj);
     }
 
@@ -220,7 +220,7 @@ public abstract class x81 extends FrameLayout {
                 } else {
                     f14 = 1.0f;
                 }
-                scaleX.scaleY(f14).setInterpolator(tr.f28636f).setDuration(220L).start();
+                scaleX.scaleY(f14).setInterpolator(sr.f28346f).setDuration(220L).start();
                 i10++;
             }
         } else {
@@ -260,9 +260,9 @@ public abstract class x81 extends FrameLayout {
             this.N = i10;
             ai.w0 w0Var = this.v;
             if (w0Var.getVisibility() != 8 && w0Var.getMeasuredWidth() != 0) {
-                w0Var.y0(i10);
+                w0Var.x0(i10);
             } else {
-                AndroidUtilities.runOnUIThread(new md(this, i10, 12), 100L);
+                AndroidUtilities.runOnUIThread(new ld(this, i10, 12), 100L);
             }
         }
     }
@@ -277,29 +277,29 @@ public abstract class x81 extends FrameLayout {
             z10 = false;
         }
         this.N = -1;
-        this.f30189g0 = i13;
-        this.f30190h0 = this.G;
-        w81 w81Var = this.f30205y;
+        this.f30318g0 = i13;
+        this.f30319h0 = this.G;
+        w81 w81Var = this.f30334y;
         if (w81Var != null) {
-            p81 p81Var = ((y81) ((l.d) w81Var).f13940a).L;
+            p81 p81Var = ((y81) ((l.d) w81Var).f13925a).L;
         }
         this.F = i11;
         this.G = i10;
-        ValueAnimator valueAnimator = this.f30193k0;
+        ValueAnimator valueAnimator = this.f30322k0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         if (this.J) {
             this.J = false;
         }
-        this.f30188f0 = 0.0f;
+        this.f30317f0 = 0.0f;
         this.K = 0.0f;
         this.J = true;
         setEnabled(false);
-        w81 w81Var2 = this.f30205y;
+        w81 w81Var2 = this.f30334y;
         if (w81Var2 != null) {
-            y81 y81Var = (y81) ((l.d) w81Var2).f13940a;
-            y81Var.f30678y = z10;
+            y81 y81Var = (y81) ((l.d) w81Var2).f13925a;
+            y81Var.f30621y = z10;
             View[] viewArr = y81Var.e;
             y81Var.d = i11;
             y81Var.I(1);
@@ -321,12 +321,12 @@ public abstract class x81 extends FrameLayout {
         }
         c(this.F);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f30193k0 = ofFloat;
-        ofFloat.addUpdateListener(new v61(2, this));
-        this.f30193k0.setDuration(250L);
-        this.f30193k0.setInterpolator(tr.f28636f);
-        this.f30193k0.addListener(new s81(this, 0));
-        this.f30193k0.start();
+        this.f30322k0 = ofFloat;
+        ofFloat.addUpdateListener(new u61(2, this));
+        this.f30322k0.setDuration(250L);
+        this.f30322k0.setInterpolator(sr.f28346f);
+        this.f30322k0.addListener(new s81(this, 0));
+        this.f30322k0.start();
     }
 
     @Override
@@ -337,7 +337,7 @@ public abstract class x81 extends FrameLayout {
     public abstract void e(float f7, int i10, int i11);
 
     public final void f(float f7, int i10) {
-        int i11 = this.f30184c0.get(i10, -1);
+        int i11 = this.f30313c0.get(i10, -1);
         if (i11 >= 0) {
             if (f7 < 0.0f) {
                 f7 = 0.0f;
@@ -352,7 +352,7 @@ public abstract class x81 extends FrameLayout {
                 this.M = -1;
             }
             this.K = f7;
-            this.v.h1();
+            this.v.f1();
             invalidate();
             c(i11);
             if (f7 >= 1.0f) {
@@ -377,18 +377,18 @@ public abstract class x81 extends FrameLayout {
     }
 
     public int getFirstTabId() {
-        return this.f30182b0.get(0, 0);
+        return this.f30311b0.get(0, 0);
     }
 
     public int getPreviousPosition() {
-        return this.f30189g0;
+        return this.f30318g0;
     }
 
     public Drawable getSelectorDrawable() {
         return this.O;
     }
 
-    public zl0 getTabsContainer() {
+    public yl0 getTabsContainer() {
         return this.v;
     }
 
@@ -400,10 +400,10 @@ public abstract class x81 extends FrameLayout {
             this.U = i14;
             this.N = -1;
             if (this.J) {
-                AndroidUtilities.cancelRunOnUIThread(this.f30191i0);
+                AndroidUtilities.cancelRunOnUIThread(this.f30320i0);
                 this.J = false;
                 setEnabled(true);
-                w81 w81Var = this.f30205y;
+                w81 w81Var = this.f30334y;
                 if (w81Var != null) {
                     ((l.d) w81Var).L(1.0f);
                 }
@@ -431,21 +431,21 @@ public abstract class x81 extends FrameLayout {
                 this.I = 0;
             }
             if (i14 != this.I) {
-                this.f30202s = true;
-                this.f30204x.l();
-                this.f30202s = false;
+                this.f30331s = true;
+                this.f30333x.l();
+                this.f30331s = false;
             }
-            SparseIntArray sparseIntArray = this.f30186e0;
+            SparseIntArray sparseIntArray = this.f30315e0;
             sparseIntArray.clear();
-            SparseIntArray sparseIntArray2 = this.f30185d0;
+            SparseIntArray sparseIntArray2 = this.f30314d0;
             sparseIntArray2.clear();
             int dp = AndroidUtilities.dp(7.0f);
             int size2 = arrayList.size();
             for (int i16 = 0; i16 < size2; i16++) {
-                int a2 = ((u81) arrayList.get(i16)).a(this.f30183c);
+                int a2 = ((u81) arrayList.get(i16)).a(this.f30312c);
                 sparseIntArray2.put(i16, a2);
                 sparseIntArray.put(i16, (this.I / 2) + dp);
-                dp += AndroidUtilities.dp(this.f30200r * 2) + a2 + this.I;
+                dp += AndroidUtilities.dp(this.f30329r * 2) + a2 + this.I;
             }
         }
         super.onMeasure(i10, i11);
@@ -453,7 +453,7 @@ public abstract class x81 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f30202s) {
+        if (this.f30331s) {
             return;
         }
         super.requestLayout();
@@ -461,35 +461,35 @@ public abstract class x81 extends FrameLayout {
 
     public void setAnimationIdicatorProgress(float f7) {
         this.K = f7;
-        this.v.h1();
+        this.v.f1();
         invalidate();
-        w81 w81Var = this.f30205y;
+        w81 w81Var = this.f30334y;
         if (w81Var != null) {
             ((l.d) w81Var).L(f7);
         }
     }
 
     public void setBlurredBackground(ch.d dVar) {
-        this.f30201r0 = dVar;
+        this.f30330r0 = dVar;
         setBackground(dVar);
     }
 
     public void setDelegate(w81 w81Var) {
-        this.f30205y = w81Var;
+        this.f30334y = w81Var;
     }
 
     public void setIsEditing(boolean z10) {
-        this.f30195n = z10;
-        this.v.h1();
+        this.f30324n = z10;
+        this.v.f1();
         invalidate();
     }
 
     public void setOnTabLongClick(Utilities.Callback2Return<Integer, View, Boolean> callback2Return) {
-        this.f30181b = callback2Return;
+        this.f30310b = callback2Return;
     }
 
     public void setPreTabClick(Utilities.Callback2Return<Integer, Integer, Boolean> callback2Return) {
-        this.f30194l0 = callback2Return;
+        this.f30323l0 = callback2Return;
     }
 
     public void setReordering(boolean z10) {
@@ -498,18 +498,18 @@ public abstract class x81 extends FrameLayout {
             return;
         }
         this.m0 = z10;
-        if (z10 && this.f30196n0 == null) {
-            this.f30196n0 = new s4.y(new bi.g(this, 5));
+        if (z10 && this.f30325n0 == null) {
+            this.f30325n0 = new s4.y(new bi.g(this, 5));
         }
-        if (this.m0 && this.f30197o0 == null) {
+        if (this.m0 && this.f30326o0 == null) {
             t81 t81Var = new t81(this);
-            this.f30197o0 = t81Var;
-            t81Var.f43103m = false;
+            this.f30326o0 = t81Var;
+            t81Var.f42997m = false;
             t81Var.C = false;
-            t81Var.o(tr.h);
-            this.f30197o0.n(350L);
+            t81Var.o(sr.h);
+            this.f30326o0.n(350L);
         }
-        s4.y yVar = this.f30196n0;
+        s4.y yVar = this.f30325n0;
         t81 t81Var2 = null;
         ai.w0 w0Var2 = this.v;
         if (yVar != null) {
@@ -521,7 +521,7 @@ public abstract class x81 extends FrameLayout {
             yVar.e(w0Var);
         }
         if (z10) {
-            t81Var2 = this.f30197o0;
+            t81Var2 = this.f30326o0;
         }
         w0Var2.setItemAnimator(t81Var2);
         AndroidUtilities.forEachViews((RecyclerView) w0Var2, (Utilities.Callback<View>) new ai.i3(5, this, z10));

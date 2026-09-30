@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 public final class a5 extends i0 {
     public final org.telegram.ui.Components.e6 d;
     public final org.telegram.ui.Components.e6 e;
@@ -24,16 +24,16 @@ public final class a5 extends i0 {
         this.f519x = e6Var;
         this.v = b6Var;
         this.f518w = jcVar;
-        tr trVar = tr.f28636f;
-        this.d = new org.telegram.ui.Components.e6(this, 150L, trVar);
-        this.e = new org.telegram.ui.Components.e6(this, 150L, trVar);
+        sr srVar = sr.f28346f;
+        this.d = new org.telegram.ui.Components.e6(this, 150L, srVar);
+        this.e = new org.telegram.ui.Components.e6(this, 150L, srVar);
         this.f514f = new org.telegram.ui.Components.voip.h(32, 102, 240);
         org.telegram.ui.Components.e6 e6Var2 = new org.telegram.ui.Components.e6(this);
         this.h = e6Var2;
         org.telegram.ui.Components.e6 e6Var3 = new org.telegram.ui.Components.e6(this);
         this.f515n = e6Var3;
-        e6Var2.f23854g = 500L;
-        e6Var3.f23854g = 100L;
+        e6Var2.f23864g = 500L;
+        e6Var3.f23864g = 100L;
     }
 
     public final void b(android.graphics.Canvas r34) {
@@ -60,8 +60,8 @@ public final class a5 extends i0 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view != this.f519x.f799j1) {
             if (this.f516r) {
-                org.telegram.ui.Components.rc rcVar = org.telegram.ui.Components.rc.f27939w;
-                if (rcVar != null && view == rcVar.e) {
+                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27634w;
+                if (qcVar != null && view == qcVar.e) {
                     if (this.f517s) {
                         return super.drawChild(canvas, view, j3);
                     }
@@ -78,7 +78,7 @@ public final class a5 extends i0 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.f519x.f801k1.j();
-        org.telegram.ui.Components.rc.a(this, new w4(this, 0));
+        org.telegram.ui.Components.qc.a(this, new w4(this, 0));
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class a5 extends i0 {
         super.onDetachedFromWindow();
         e6 e6Var = this.f519x;
         e6Var.f801k1.k();
-        org.telegram.ui.Components.rc.h(this);
+        org.telegram.ui.Components.qc.h(this);
         x5 x5Var = e6Var.Q1;
         if (x5Var != null) {
             jc jcVar = ((ac) x5Var).d;

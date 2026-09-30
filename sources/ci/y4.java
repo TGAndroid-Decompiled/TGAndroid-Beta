@@ -1,28 +1,28 @@
 package ci;
 
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.cb0;
+import org.telegram.ui.Components.bb0;
 public final class y4 implements o1.f {
-    public final int f5882a;
-    public final FrameLayout f5883b;
-    public final boolean f5884c;
+    public final int f5870a;
+    public final FrameLayout f5871b;
+    public final boolean f5872c;
 
     public y4(FrameLayout frameLayout, boolean z10, int i10) {
-        this.f5882a = i10;
-        this.f5883b = frameLayout;
-        this.f5884c = z10;
+        this.f5870a = i10;
+        this.f5871b = frameLayout;
+        this.f5872c = z10;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
         int i10;
-        switch (this.f5882a) {
+        switch (this.f5870a) {
             case 0:
-                q6 q6Var = (q6) this.f5883b;
-                q5 q5Var = q6Var.f5382w1;
+                q6 q6Var = (q6) this.f5871b;
+                q5 q5Var = q6Var.f5373w1;
                 if (hVar == q6Var.C1) {
                     q6Var.C1 = null;
-                    if (!this.f5884c) {
+                    if (!this.f5872c) {
                         q5Var.setVisibility(8);
                         pg.u0.e(q6Var.F1).g();
                         q5Var.getAdapter().l();
@@ -32,11 +32,11 @@ public final class y4 implements o1.f {
                 }
                 return;
             case 1:
-                q6 q6Var2 = (q6) this.f5883b;
-                qg.u1 u1Var = q6Var2.f5362m1;
-                if (hVar == q6Var2.f5380v1) {
-                    q6Var2.f5380v1 = null;
-                    if (!this.f5884c) {
+                q6 q6Var2 = (q6) this.f5871b;
+                qg.u1 u1Var = q6Var2.f5353m1;
+                if (hVar == q6Var2.f5371v1) {
+                    q6Var2.f5371v1 = null;
+                    if (!this.f5872c) {
                         u1Var.setVisibility(8);
                     }
                     u1Var.setMaskProvider(null);
@@ -44,21 +44,21 @@ public final class y4 implements o1.f {
                 }
                 return;
             default:
-                cb0 cb0Var = (cb0) this.f5883b;
+                bb0 bb0Var = (bb0) this.f5871b;
                 if (!z10) {
-                    cb0Var.K = null;
-                    boolean z11 = this.f5884c;
+                    bb0Var.K = null;
+                    boolean z11 = this.f5872c;
                     if (z11) {
                         i10 = 8;
                     } else {
                         i10 = 0;
                     }
-                    cb0Var.setVisibility(i10);
-                    if (cb0Var.N && z11) {
-                        cb0Var.N = false;
-                        cb0Var.f23248b.setLayoutManager(cb0Var.getNeededLayoutManager());
-                        cb0Var.I = true;
-                        cb0Var.o(true);
+                    bb0Var.setVisibility(i10);
+                    if (bb0Var.N && z11) {
+                        bb0Var.N = false;
+                        bb0Var.f22922b.setLayoutManager(bb0Var.getNeededLayoutManager());
+                        bb0Var.I = true;
+                        bb0Var.o(true);
                         return;
                     }
                     return;

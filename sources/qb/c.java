@@ -4,16 +4,16 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
 public abstract class c {
-    public static final lf.g f41622a = new lf.g("CommonUtils", "");
+    public static final lf.g f41525a = new lf.g("CommonUtils", "");
 
     public static String a(Context context) {
         try {
             return String.valueOf(context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode);
         } catch (PackageManager.NameNotFoundException e) {
             String concat = "Exception thrown when trying to get app version ".concat(e.toString());
-            lf.g gVar = f41622a;
-            if (Log.isLoggable(gVar.f14260b, 6)) {
-                String str = gVar.f14261c;
+            lf.g gVar = f41525a;
+            if (Log.isLoggable(gVar.f14245b, 6)) {
+                String str = gVar.f14246c;
                 if (str != null) {
                     concat = str.concat(concat);
                 }

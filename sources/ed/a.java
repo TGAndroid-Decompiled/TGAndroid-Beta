@@ -6,7 +6,7 @@ import com.google.android.gms.internal.vision.e2;
 import java.util.regex.Pattern;
 public final class a extends h {
     public static final Pattern e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f8146f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+    public static final Pattern f8134f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
 
     @Override
     public final p b() {
@@ -17,7 +17,7 @@ public final class a extends h {
             kVar.b(new s(i10));
             return kVar;
         }
-        String a10 = a(f8146f);
+        String a10 = a(f8134f);
         if (a10 == null) {
             return null;
         }

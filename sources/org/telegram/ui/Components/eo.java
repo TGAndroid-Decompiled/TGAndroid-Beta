@@ -1,49 +1,21 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class eo implements n8 {
-    public final org.telegram.ui.ActionBar.m1[] f24023a;
-    public final ho f24024b;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class eo extends org.telegram.ui.ActionBar.m1 {
+    public final go f24033o;
 
-    public eo(ho hoVar, org.telegram.ui.ActionBar.m1[] m1VarArr) {
-        this.f24024b = hoVar;
-        this.f24023a = m1VarArr;
-    }
-
-    @Override
-    public final void U0(int i10, int i11) {
-        int i12;
-        org.telegram.ui.wn wnVar = this.f24024b.G;
-        if (wnVar != null) {
-            wnVar.getMessagesController().setDialogHistoryTTL(wnVar.a(), i10);
-            TLRPC.ChatFull chatFull = wnVar.Z7;
-            TLRPC.UserFull userFull = wnVar.f39508a8;
-            if (userFull != null || chatFull != null) {
-                wnVar.Q7();
-                UndoView undoView = wnVar.y3;
-                if (undoView != null) {
-                    long a2 = wnVar.a();
-                    TLRPC.User i13 = wnVar.i();
-                    if (userFull != null) {
-                        i12 = userFull.ttl_period;
-                    } else {
-                        i12 = chatFull.ttl_period;
-                    }
-                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
-                }
-            }
-        }
+    public eo(go goVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f24033o = goVar;
     }
 
     @Override
     public final void dismiss() {
-        org.telegram.ui.ActionBar.m1 m1Var = this.f24023a[0];
-        if (m1Var != null) {
-            m1Var.dismiss();
+        d(true);
+        org.telegram.ui.wn wnVar = this.f24033o.G;
+        if (wnVar != null) {
+            wnVar.getClass();
+            wnVar.g8(false, true, 0.0f);
         }
-    }
-
-    @Override
-    public final void j1() {
     }
 }

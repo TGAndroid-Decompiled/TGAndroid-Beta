@@ -6,28 +6,28 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class c51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32657a;
-    public final a71 f32658b;
+    public final int f32573a;
+    public final a71 f32574b;
 
     public c51(a71 a71Var, int i10) {
-        this.f32657a = i10;
-        this.f32658b = a71Var;
+        this.f32573a = i10;
+        this.f32574b = a71Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32657a) {
+        switch (this.f32573a) {
             case 0:
-                a71 a71Var = this.f32658b;
+                a71 a71Var = this.f32574b;
                 a71Var.getClass();
                 a71Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                this.f32658b.m();
+                this.f32574b.m();
                 return;
             case 2:
-                a71 a71Var2 = this.f32658b;
-                View view = a71Var2.f32126t0;
+                a71 a71Var2 = this.f32574b;
+                View view = a71Var2.f32054t0;
                 if (view != null) {
                     view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 }
@@ -36,24 +36,24 @@ public final class c51 implements ValueAnimator.AnimatorUpdateListener {
                 if (view2 != null) {
                     view2.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
                 }
-                org.telegram.ui.Components.nn nnVar = a71Var2.f32112n0;
-                if (nnVar != null) {
-                    nnVar.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
+                org.telegram.ui.Components.mn mnVar = a71Var2.f32040n0;
+                if (mnVar != null) {
+                    mnVar.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
                     return;
                 }
                 return;
             default:
-                a71 a71Var3 = this.f32658b;
-                u51 u51Var = a71Var3.f32084a0;
+                a71 a71Var3 = this.f32574b;
+                u51 u51Var = a71Var3.f32012a0;
                 float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 a71Var3.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(8.0f));
                 View view3 = a71Var3.m0;
                 if (view3 != null) {
                     view3.setAlpha(floatValue);
                 }
-                org.telegram.ui.Components.nn nnVar2 = a71Var3.f32112n0;
-                if (nnVar2 != null) {
-                    nnVar2.setAlpha(floatValue * floatValue);
+                org.telegram.ui.Components.mn mnVar2 = a71Var3.f32040n0;
+                if (mnVar2 != null) {
+                    mnVar2.setAlpha(floatValue * floatValue);
                 }
                 u51Var.setAlpha(floatValue);
                 u51Var.invalidate();

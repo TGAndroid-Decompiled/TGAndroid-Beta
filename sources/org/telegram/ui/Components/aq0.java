@@ -1,32 +1,113 @@
 package org.telegram.ui.Components;
-public final class aq0 extends g.p {
-    public final int f22688c;
-    public final xq0 d;
 
-    public aq0(xq0 xq0Var, int i10) {
-        this.f22688c = i10;
-        this.d = xq0Var;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class aq0 extends FrameLayout {
+    public final int f22705a;
+    public final wq0 f22706b;
+
+    public aq0(wq0 wq0Var, Context context, int i10) {
+        super(context);
+        this.f22705a = i10;
+        this.f22706b = wq0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        switch (this.f22688c) {
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f22705a) {
             case 0:
-                if (i10 == 0) {
-                    return this.d.H.J;
-                }
-                return 1;
-            case 1:
-                tq0 tq0Var = this.d.M;
-                if (i10 != tq0Var.f28633w && i10 != tq0Var.f28634x && i10 != tq0Var.f28635y && i10 != tq0Var.F && tq0Var.j(i10) != 0) {
-                    return 1;
-                }
-                return 4;
+                wq0 wq0Var = this.f22706b;
+                wq0Var.X0.setBounds(0, (int) wq0Var.f30143u0, getMeasuredWidth(), getMeasuredHeight());
+                wq0Var.X0.draw(canvas);
+                canvas.save();
+                canvas.clipRect(0.0f, wq0Var.f30143u0, getMeasuredWidth(), getMeasuredHeight());
+                super.dispatchDraw(canvas);
+                canvas.restore();
+                return;
             default:
-                if (i10 == 0) {
-                    return this.d.I.J;
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f22705a) {
+            case 0:
+                wq0 wq0Var = this.f22706b;
+                aq0 aq0Var = wq0Var.f30121c;
+                float f7 = wq0Var.f30144v0;
+                if (f7 != 0.0f && f7 != aq0Var.getTop() + wq0Var.f30144v0) {
+                    ValueAnimator valueAnimator = wq0Var.f30146w0;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                    }
+                    float top = wq0Var.f30144v0 - (aq0Var.getTop() + wq0Var.f30143u0);
+                    wq0Var.f30143u0 = top;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                    wq0Var.f30146w0 = ofFloat;
+                    ofFloat.addUpdateListener(new u70(this, 17));
+                    wq0Var.f30146w0.setInterpolator(sr.f28346f);
+                    wq0Var.f30146w0.setDuration(200L);
+                    wq0Var.f30146w0.start();
+                    wq0Var.f30144v0 = 0.0f;
                 }
-                return 1;
+                wq0Var.S[1].setTranslationY((-(aq0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + wq0Var.f30143u0 + wq0Var.f30142t0 + ((1.0f - getAlpha()) * (aq0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f22705a) {
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f22706b.U.m(), new Object[0]));
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        switch (this.f22705a) {
+            case 0:
+                super.setAlpha(f7);
+                invalidate();
+                return;
+            default:
+                super.setAlpha(f7);
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.f22705a) {
+            case 0:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    this.f22706b.S[1].setTranslationY(0.0f);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
         }
     }
 }

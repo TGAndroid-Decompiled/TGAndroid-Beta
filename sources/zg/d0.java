@@ -16,17 +16,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.eu;
-import yh.z5;
-public abstract class d0 extends eu {
-    public final d6 f49394c;
+import org.telegram.ui.Components.du;
+import yh.r5;
+public abstract class d0 extends du {
+    public final d6 f49288c;
     public final n2.e d;
     public Runnable e;
-    public int f49395f;
+    public int f49289f;
 
     public d0(Context context, int i10, d6 d6Var) {
         super(context, d6Var);
-        this.f49394c = d6Var;
+        this.f49288c = d6Var;
         this.d = new n2.e(getContext(), new GestureDetector.SimpleOnGestureListener());
         setBackground(null);
         setIncludeFontPadding(true);
@@ -34,19 +34,19 @@ public abstract class d0 extends eu {
         setShowSoftInputOnFocus(false);
         setSingleLine(false);
         setMaxLines(50);
-        this.f49395f = i10;
+        this.f49289f = i10;
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         setTextSize(1, 22.0f);
         setGravity(80);
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
         setTextColor(h6.v0(h6.Ud, d6Var));
-        setLinkTextColor(h6.v0(h6.f19152hc, d6Var));
-        setHighlightColor(h6.v0(h6.f19398uf, d6Var));
+        setLinkTextColor(h6.v0(h6.f19137hc, d6Var));
+        setHighlightColor(h6.v0(h6.f19383uf, d6Var));
         int i12 = h6.Vd;
         setHintColor(h6.v0(i12, d6Var));
         setHintTextColor(h6.v0(i12, d6Var));
         setCursorColor(h6.v0(h6.Wd, d6Var));
-        setHandlesColor(h6.v0(h6.f19415vf, d6Var));
+        setHandlesColor(h6.v0(h6.f19400vf, d6Var));
         if (i11 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -58,7 +58,7 @@ public abstract class d0 extends eu {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.d.f15132b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.d.f15117b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -96,8 +96,8 @@ public abstract class d0 extends eu {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         if (((b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)).length == 0) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
-            b bVar = new b(this.f49394c);
-            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f49352f, 255);
+            b bVar = new b(this.f49288c);
+            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f49246f, 255);
             ofInt.addUpdateListener(new a(bVar, this, 0));
             ofInt.setDuration(200L);
             ofInt.start();
@@ -110,16 +110,16 @@ public abstract class d0 extends eu {
         b[] bVarArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         for (b bVar : (b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)) {
-            z5 z5Var = new z5(6, this, bVar);
+            r5 r5Var = new r5(7, this, bVar);
             if (z10) {
                 setCursorVisible(false);
-                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f49352f, 0);
+                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f49246f, 0);
                 ofInt.addUpdateListener(new a(bVar, this, 1));
-                ofInt.addListener(new pg.d0(z5Var, 12));
+                ofInt.addListener(new pg.d0(r5Var, 12));
                 ofInt.setDuration(200L);
                 ofInt.start();
             } else {
-                z5Var.run();
+                r5Var.run();
             }
         }
     }
@@ -133,8 +133,8 @@ public abstract class d0 extends eu {
     }
 
     public void setMaxLength(int i10) {
-        if (this.f49395f != i10) {
-            this.f49395f = i10;
+        if (this.f49289f != i10) {
+            this.f49289f = i10;
             setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         }
     }

@@ -1,20 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesStorage;
-public final class sx0 implements org.telegram.ui.ActionBar.q0, MessagesStorage.StringCallback {
-    public final iy0 f28361a;
+import org.telegram.messenger.MessagesController;
+public final class sx0 implements Runnable {
+    public final int f28383a;
+    public final hy0 f28384b;
 
-    public sx0(iy0 iy0Var) {
-        this.f28361a = iy0Var;
+    public sx0(hy0 hy0Var, int i10) {
+        this.f28383a = i10;
+        this.f28384b = hy0Var;
     }
 
     @Override
-    public void m(int i10) {
-        iy0.B(this.f28361a, i10);
-    }
-
-    @Override
-    public void run(String str) {
-        new a50(r1.getContext(), r1.f25228o0, null, this.f28361a.resourcesProvider).show();
+    public final void run() {
+        switch (this.f28383a) {
+            case 0:
+                this.f28384b.d.l();
+                return;
+            case 1:
+                this.f28384b.d.l();
+                return;
+            case 2:
+                hy0.t(this.f28384b);
+                return;
+            case 3:
+                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f28384b.L, 1);
+                return;
+            default:
+                hy0.s(this.f28384b);
+                return;
+        }
     }
 }

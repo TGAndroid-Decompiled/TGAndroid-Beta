@@ -1,30 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
+import android.content.Context;
+import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
-public final class eg extends org.telegram.ui.wn {
-    public boolean Pc;
-    public final TLRPC.User Qc;
-    public final TLRPC.User Rc;
-    public final long Sc;
+public final class eg extends mz {
+    public final ChatActivityEnterView P2;
 
-    public eg(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j3) {
-        super(bundle);
-        this.Qc = user;
-        this.Rc = user2;
-        this.Sc = j3;
+    public eg(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.m2 m2Var, boolean z10, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z11, org.telegram.ui.ActionBar.d6 d6Var, boolean z12, boolean z13) {
+        super(m2Var, z10, true, true, context, true, chatFull, viewGroup, z11, d6Var, z12, z13);
+        this.P2 = chatActivityEnterView;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Pc) {
-            this.Pc = true;
-            yc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Rc)), new ai.j(this, this.Sc, 20)), R.raw.contact_check).j();
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        ChatActivityEnterView chatActivityEnterView = this.P2;
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f22041o3 == 0) {
+            chatActivityEnterView.Z2.y(f7);
         }
     }
 }

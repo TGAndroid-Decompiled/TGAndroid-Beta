@@ -1,47 +1,88 @@
 package org.telegram.ui.Components;
-public final class uz0 {
-    public static final uz0 e = new uz0(false, new rz0(Integer.MIN_VALUE, -2147483647), xz0.R, 0.0f);
-    public final boolean f28958a;
-    public final rz0 f28959b;
-    public final jz0 f28960c;
-    public final float d;
 
-    public uz0(boolean z10, rz0 rz0Var, jz0 jz0Var, float f7) {
-        this.f28958a = z10;
-        this.f28959b = rz0Var;
-        this.f28960c = jz0Var;
-        this.d = f7;
+import android.graphics.Rect;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class uz0 extends j1.b {
+    public final Rect f28900o;
+    public final wz0 f28901p;
+
+    public uz0(wz0 wz0Var, wz0 wz0Var2) {
+        super(wz0Var2);
+        this.f28901p = wz0Var;
+        this.f28900o = new Rect();
     }
 
-    public static jz0 a(uz0 uz0Var, boolean z10) {
-        jz0 jz0Var = uz0Var.f28960c;
-        if (jz0Var != xz0.R) {
-            return jz0Var;
-        }
-        if (uz0Var.d == 0.0f) {
-            if (z10) {
-                return xz0.S;
+    @Override
+    public final int g(float f7, float f10) {
+        int i10;
+        wz0 wz0Var = this.f28901p;
+        int childCount = wz0Var.getChildCount();
+        for (int i11 = 0; i11 < childCount; i11++) {
+            pz0 d = wz0Var.d(i11);
+            int i12 = d.f27461k;
+            if (i12 > 0 && (i10 = d.f27462l) > 0) {
+                int i13 = d.f27466p;
+                if (f7 >= i13 && f7 < i13 + i12) {
+                    int i14 = d.f27467q;
+                    if (f10 >= i14 && f10 < i14 + i10) {
+                        return i11;
+                    }
+                }
             }
-            return xz0.T;
         }
-        return xz0.U;
+        return Integer.MIN_VALUE;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void h(ArrayList arrayList) {
+        wz0 wz0Var = this.f28901p;
+        int childCount = wz0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            pz0 d = wz0Var.d(i10);
+            if (d.f27461k > 0 && d.f27462l > 0) {
+                arrayList.add(Integer.valueOf(i10));
+            }
         }
-        if (obj == null || uz0.class != obj.getClass()) {
-            return false;
-        }
-        uz0 uz0Var = (uz0) obj;
-        if (this.f28960c.equals(uz0Var.f28960c) && this.f28959b.equals(uz0Var.f28959b)) {
-            return true;
-        }
+    }
+
+    @Override
+    public final boolean k(int i10, int i11) {
         return false;
     }
 
-    public final int hashCode() {
-        return this.f28960c.hashCode() + (this.f28959b.hashCode() * 31);
+    @Override
+    public final void l(int i10, s0.d dVar) {
+        String str;
+        Rect rect = this.f28900o;
+        if (i10 >= 0) {
+            wz0 wz0Var = this.f28901p;
+            if (i10 < wz0Var.getChildCount()) {
+                pz0 d = wz0Var.d(i10);
+                int i11 = d.f27466p;
+                int i12 = d.f27467q;
+                rect.set(i11, i12, d.f27461k + i11, d.f27462l + i12);
+                dVar.h(rect);
+                dVar.i("android.widget.TextView");
+                dVar.f42911a.setEnabled(true);
+                oz0 oz0Var = d.f27455b;
+                if (oz0Var != null) {
+                    str = oz0Var.getText();
+                } else {
+                    str = null;
+                }
+                dVar.o((str == null || str.length() == 0) ? " " : " ");
+                TL_iv.pageTableCell pagetablecell = d.f27456c;
+                if (pagetablecell != null && pagetablecell.header) {
+                    dVar.k(true);
+                    return;
+                }
+                return;
+            }
+        }
+        rect.set(0, 0, 1, 1);
+        dVar.h(rect);
+        dVar.p(false);
+        dVar.j("");
     }
 }

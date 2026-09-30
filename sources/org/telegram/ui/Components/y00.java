@@ -1,23 +1,79 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class y00 implements Utilities.Callback {
-    public final int f30557a = 1;
-    public final org.telegram.ui.ActionBar.b5 f30558b;
-    public final org.telegram.ui.oc f30559c;
+import android.view.ViewGroup;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class y00 extends xl0 {
+    public final e10 f30533c;
 
-    public y00(org.telegram.ui.ActionBar.b5 b5Var, org.telegram.ui.oc ocVar) {
-        this.f30558b = b5Var;
-        this.f30559c = ocVar;
+    public y00(e10 e10Var) {
+        this.f30533c = e10Var;
     }
 
     @Override
-    public final void run(java.lang.Object r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y00.run(java.lang.Object):void");
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f42965f == 2) {
+            int b10 = c1Var.b();
+            e10 e10Var = this.f30533c;
+            if (b10 >= e10Var.f23802r0 && c1Var.b() <= e10Var.f23803s0) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
-    public y00(org.telegram.ui.oc ocVar, org.telegram.ui.ActionBar.b5 b5Var) {
-        this.f30559c = ocVar;
-        this.f30558b = b5Var;
+    @Override
+    public final int h() {
+        return this.f30533c.f23799o0;
+    }
+
+    @Override
+    public final int j(int i10) {
+        e10 e10Var = this.f30533c;
+        e10Var.getClass();
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 != e10Var.f23800p0 && i10 != e10Var.f23804t0 && i10 != e10Var.f23808x0) {
+            if (i10 != e10Var.f23801q0 && i10 != e10Var.f23805u0) {
+                return 2;
+            }
+            return 3;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.c1 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y00.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        d10 d10Var;
+        d10 d10Var2;
+        e10 e10Var = this.f30533c;
+        if (i10 == 0) {
+            boolean z10 = false;
+            d10Var = new d10(e10Var, e10Var.getContext(), ((e10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) || e10Var.f23786a0 != null) ? true : true, e10Var.f23791f0, e10Var.f23789d0, e10Var.f23790e0);
+            e10Var.f23798n0 = d10Var;
+        } else {
+            d10Var = null;
+            if (i10 == 1) {
+                ?? e9Var = new org.telegram.ui.Cells.e9(e10Var.getContext());
+                e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19005a7, false));
+                d10Var2 = e9Var;
+            } else if (i10 == 2) {
+                ?? g4Var = new org.telegram.ui.Cells.g4(e10Var.getContext(), 1, 0, false);
+                g4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19061d6, false));
+                d10Var = g4Var;
+            } else if (i10 == 3) {
+                ?? b10Var = new b10(e10Var.getContext());
+                b10Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19061d6, false));
+                d10Var2 = b10Var;
+            }
+            d10Var = d10Var2;
+        }
+        return new s4.c1(d10Var);
     }
 }

@@ -6,16 +6,16 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 public final class d6 implements org.telegram.ui.ActionBar.d6 {
-    public PorterDuffColorFilter f4522a;
-    public final org.telegram.ui.ActionBar.d6 f4523b;
+    public PorterDuffColorFilter f4515a;
+    public final org.telegram.ui.ActionBar.d6 f4516b;
 
     public d6(org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f4523b = d6Var;
+        this.f4516b = d6Var;
     }
 
     @Override
     public final Paint G(String str) {
-        return this.f4523b.G(str);
+        return this.f4516b.G(str);
     }
 
     @Override
@@ -26,13 +26,13 @@ public final class d6 implements org.telegram.ui.ActionBar.d6 {
         if (i10 == org.telegram.ui.ActionBar.h6.E8) {
             return -1;
         }
-        if (i10 == org.telegram.ui.ActionBar.h6.f19146h5) {
+        if (i10 == org.telegram.ui.ActionBar.h6.f19131h5) {
             return -14737633;
         }
-        if (i10 == org.telegram.ui.ActionBar.h6.f19182j5) {
+        if (i10 == org.telegram.ui.ActionBar.h6.f19167j5) {
             return -592138;
         }
-        if (i10 == org.telegram.ui.ActionBar.h6.f19332r5) {
+        if (i10 == org.telegram.ui.ActionBar.h6.f19317r5) {
             return -8553091;
         }
         if (i10 == org.telegram.ui.ActionBar.h6.He) {
@@ -51,7 +51,7 @@ public final class d6 implements org.telegram.ui.ActionBar.d6 {
         if (i10 == i11) {
             return -11754001;
         }
-        if (i10 == org.telegram.ui.ActionBar.h6.f19165i6) {
+        if (i10 == org.telegram.ui.ActionBar.h6.f19150i6) {
             return 536870911;
         }
         if (i10 == org.telegram.ui.ActionBar.h6.Fh || i10 == org.telegram.ui.ActionBar.h6.Eh || i10 == org.telegram.ui.ActionBar.h6.Gh) {
@@ -64,10 +64,10 @@ public final class d6 implements org.telegram.ui.ActionBar.d6 {
             if (i10 == org.telegram.ui.ActionBar.h6.Ie) {
                 return 780633991;
             }
-            if (i10 == org.telegram.ui.ActionBar.h6.f19020a7) {
+            if (i10 == org.telegram.ui.ActionBar.h6.f19005a7) {
                 return -15921907;
             }
-            org.telegram.ui.ActionBar.d6 d6Var = this.f4523b;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f4516b;
             if (d6Var != null) {
                 return d6Var.G0(i10);
             }
@@ -108,10 +108,10 @@ public final class d6 implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final ColorFilter x() {
-        if (this.f4522a == null) {
-            this.f4522a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        if (this.f4515a == null) {
+            this.f4515a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
         }
-        return this.f4522a;
+        return this.f4515a;
     }
 
     @Override

@@ -13,11 +13,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.f60;
-import org.telegram.ui.Components.m40;
-import org.telegram.ui.Components.pg;
+import org.telegram.ui.Components.e60;
+import org.telegram.ui.Components.l40;
+import org.telegram.ui.Components.og;
 import org.telegram.ui.mn;
-public final class b4 implements pg {
+public final class b4 implements og {
     public final e6 f582a;
 
     public b4(e6 e6Var) {
@@ -75,9 +75,9 @@ public final class b4 implements pg {
 
     @Override
     public final void K(float f7, int i10) {
-        f60 f60Var = this.f582a.J2;
-        if (f60Var != null) {
-            f60Var.b(f7, i10);
+        e60 e60Var = this.f582a.J2;
+        if (e60Var != null) {
+            e60Var.b(f7, i10);
         }
     }
 
@@ -127,8 +127,8 @@ public final class b4 implements pg {
 
     @Override
     public final boolean i1() {
-        f60 f60Var = this.f582a.J2;
-        if (f60Var != null && !f60Var.f24198j0) {
+        e60 e60Var = this.f582a.J2;
+        if (e60Var != null && !e60Var.f23886j0) {
             return true;
         }
         return false;
@@ -144,9 +144,9 @@ public final class b4 implements pg {
             return;
         }
         if (e6Var.W2 == null) {
-            m40 m40Var = new m40(9, e6Var.getContext(), e6Var.B0, false);
-            e6Var.W2 = m40Var;
-            m40Var.setVisibility(8);
+            l40 l40Var = new l40(9, e6Var.getContext(), e6Var.B0, false);
+            e6Var.W2 = l40Var;
+            l40Var.setVisibility(8);
             e6Var.addView(e6Var.W2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
         }
         if (e6Var.B1 >= 0) {
@@ -159,13 +159,13 @@ public final class b4 implements pg {
                 str = "";
             }
         }
-        m40 m40Var2 = e6Var.W2;
-        if (e6Var.f773b2.f21990c1) {
+        l40 l40Var2 = e6Var.W2;
+        if (e6Var.f773b2.f21970c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
         }
-        m40Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
+        l40Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
         e6Var.W2.f(e6Var.f773b2.getAudioVideoButtonContainer(), true);
     }
 
@@ -174,22 +174,22 @@ public final class b4 implements pg {
         e6 e6Var = this.f582a;
         boolean z11 = false;
         if (e6Var.J2 == null && CameraView.isCameraAllowed()) {
-            e6Var.J2 = new f60(e6Var.getContext(), new r4(e6Var), e6Var.B0, false);
+            e6Var.J2 = new e60(e6Var.getContext(), new r4(e6Var), e6Var.B0, false);
             e6Var.addView(e6Var.J2, Math.min(e6Var.indexOfChild(e6Var.f773b2.getRecordCircle()), e6Var.indexOfChild(e6Var.f773b2.O1)), w7.y5.e(-1, -1, 51));
         }
-        f60 f60Var = e6Var.J2;
-        if (f60Var != null) {
+        e60 e60Var = e6Var.J2;
+        if (e60Var != null) {
             if (i10 == 0) {
-                f60Var.h(false);
+                e60Var.h(false);
             } else if (i10 != 1 && i10 != 3 && i10 != 4) {
                 if (i10 == 2 || i10 == 5) {
                     if (i10 == 2) {
                         z11 = true;
                     }
-                    f60Var.a(z11);
+                    e60Var.a(z11);
                 }
             } else {
-                f60Var.f(i10, i11, i12, j3, j10, z10);
+                e60Var.f(i10, i11, i12, j3, j10, z10);
             }
         }
     }
@@ -198,7 +198,7 @@ public final class b4 implements pg {
     public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
         e6 e6Var = this.f582a;
         if (e6Var.f782d3 == null) {
-            c4 c4Var = new c4(e6Var, e6Var.getContext(), e6Var.B1, e6Var.J0.f1073f, e6Var.B0);
+            c4 c4Var = new c4(e6Var, e6Var.getContext(), e6Var.B1, e6Var.J0.f1071f, e6Var.B0);
             e6Var.f782d3 = c4Var;
             c4Var.p(new f4(e6Var));
             e6Var.addView(e6Var.f782d3, w7.y5.e(-1, -1, 83));
@@ -207,8 +207,8 @@ public final class b4 implements pg {
             e6Var.f782d3.setDialogId(e6Var.B1);
             if (e6Var.O1.f645f) {
                 gg.k1 adapter = e6Var.f782d3.getAdapter();
-                if (adapter.f9819j0 == 0 && adapter.f9832u0 == 0 && adapter.f9831t0 == 0 && adapter.E0 == 0) {
-                    adapter.f9835w0 = null;
+                if (adapter.f9807j0 == 0 && adapter.f9820u0 == 0 && adapter.f9819t0 == 0 && adapter.E0 == 0) {
+                    adapter.f9823w0 = null;
                     adapter.F = null;
                     ArrayList arrayList = adapter.A0;
                     if (arrayList != null) {
@@ -220,7 +220,7 @@ public final class b4 implements pg {
                     }
                     adapter.T = null;
                     adapter.U = null;
-                    ArrayList arrayList3 = adapter.f9836x;
+                    ArrayList arrayList3 = adapter.f9824x;
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
@@ -247,7 +247,7 @@ public final class b4 implements pg {
                 MessagesController.getInstance(e6Var.C2).getUser(Long.valueOf(e6Var.B1));
                 TLRPC.Chat chat = MessagesController.getInstance(e6Var.C2).getChat(Long.valueOf(-e6Var.B1));
                 adapter2.getClass();
-                adapter2.f9821l0 = chat;
+                adapter2.f9809l0 = chat;
                 e6Var.f782d3.getAdapter().U(charSequence, e6Var.f773b2.getCursorPosition(), null, false, false);
             }
         }
@@ -261,9 +261,9 @@ public final class b4 implements pg {
 
     @Override
     public final void n1() {
-        f60 f60Var = this.f582a.J2;
-        if (f60Var != null) {
-            f60Var.i();
+        e60 e60Var = this.f582a.J2;
+        if (e60Var != null) {
+            e60Var.i();
         }
     }
 

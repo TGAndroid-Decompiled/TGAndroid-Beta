@@ -7,25 +7,25 @@ import zd.g0;
 import zd.j0;
 import zd.o0;
 public final class i extends a0 implements j0 {
-    public static final AtomicIntegerFieldUpdater f8178n = AtomicIntegerFieldUpdater.newUpdater(i.class, "runningWorkers$volatile");
-    public final a0 f8179c;
+    public static final AtomicIntegerFieldUpdater f8166n = AtomicIntegerFieldUpdater.newUpdater(i.class, "runningWorkers$volatile");
+    public final a0 f8167c;
     public final int d;
     public final j0 e;
-    public final l f8180f;
+    public final l f8168f;
     public final Object h;
     private volatile int runningWorkers$volatile;
 
     public i(a0 a0Var, int i10) {
         j0 j0Var;
-        this.f8179c = a0Var;
+        this.f8167c = a0Var;
         this.d = i10;
         if (a0Var instanceof j0) {
             j0Var = (j0) a0Var;
         } else {
             j0Var = null;
         }
-        this.e = j0Var == null ? g0.f49278a : j0Var;
-        this.f8180f = new l();
+        this.e = j0Var == null ? g0.f49172a : j0Var;
+        this.f8168f = new l();
         this.h = new Object();
     }
 
@@ -41,8 +41,8 @@ public final class i extends a0 implements j0 {
 
     @Override
     public final void c(id.h hVar, Runnable runnable) {
-        this.f8180f.a(runnable);
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f8178n;
+        this.f8168f.a(runnable);
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f8166n;
         if (atomicIntegerFieldUpdater.get(this) < this.d) {
             synchronized (this.h) {
                 if (atomicIntegerFieldUpdater.get(this) >= this.d) {
@@ -51,7 +51,7 @@ public final class i extends a0 implements j0 {
                 atomicIntegerFieldUpdater.incrementAndGet(this);
                 Runnable f7 = f();
                 if (f7 != null) {
-                    this.f8179c.c(this, new i9.s(this, f7, false, 13));
+                    this.f8167c.c(this, new i9.s(this, f7, false, 13));
                 }
             }
         }
@@ -59,12 +59,12 @@ public final class i extends a0 implements j0 {
 
     public final Runnable f() {
         while (true) {
-            Runnable runnable = (Runnable) this.f8180f.d();
+            Runnable runnable = (Runnable) this.f8168f.d();
             if (runnable == null) {
                 synchronized (this.h) {
-                    AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f8178n;
+                    AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f8166n;
                     atomicIntegerFieldUpdater.decrementAndGet(this);
-                    if (this.f8180f.c() == 0) {
+                    if (this.f8168f.c() == 0) {
                         return null;
                     }
                     atomicIntegerFieldUpdater.incrementAndGet(this);

@@ -1,52 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.aj1;
-import org.telegram.ui.bj1;
-import org.telegram.ui.od1;
-public final class lj extends org.telegram.ui.Cells.eb {
-    public final int f26005w;
-    public final yl0 f26006x;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class lj extends oi {
+    public ai.w0 f26002n;
+    public int f26003r;
+    public bi.l f26004s;
+    public za v;
+    public int f26005w;
+    public q0.a f26006x;
 
-    public lj(yl0 yl0Var, Context context, int i10) {
-        super(context, 5);
-        this.f26005w = i10;
-        this.f26006x = yl0Var;
+    @Override
+    public final void E(oi oiVar) {
+        wi wiVar = this.f27075b;
+        try {
+            wiVar.X0.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
+        }
+        wiVar.X0.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.f26004s.h1(0, 0);
     }
 
     @Override
-    public final void a(int i10, Object obj) {
-        switch (this.f26005w) {
-            case 0:
-                q0.a aVar = ((mj) ((ab) this.f26006x).f22607f).f26308x;
-                if (aVar != null) {
-                    aVar.accept(obj);
-                    return;
-                }
-                return;
-            case 1:
-                WallpapersListActivity.r0(((aj1) this.f26006x).d, this, obj, i10);
-                return;
-            default:
-                ((bj1) this.f26006x).E.presentFragment(new od1(obj, null, true));
-                return;
-        }
+    public final void G() {
+        this.f26002n.x0(0);
     }
 
     @Override
-    public boolean b(Object obj, int i10) {
-        switch (this.f26005w) {
-            case 1:
-                return WallpapersListActivity.s0(((aj1) this.f26006x).d, this, obj, i10);
-            default:
-                return super.b(obj, i10);
+    public int getCurrentItemTop() {
+        ai.w0 w0Var = this.f26002n;
+        if (w0Var.getChildCount() <= 0) {
+            w0Var.setTopGlowOffset(w0Var.getPaddingTop());
+            return Integer.MAX_VALUE;
         }
+        View childAt = w0Var.getChildAt(0);
+        il0 il0Var = (il0) w0Var.G(childAt);
+        int top = childAt.getTop();
+        int dp = AndroidUtilities.dp(7.0f);
+        if (top < AndroidUtilities.dp(7.0f) || il0Var == null || il0Var.b() != 0) {
+            top = dp;
+        }
+        w0Var.setTopGlowOffset(top);
+        return top;
     }
 
-    public lj(ab abVar, Context context) {
-        super(context, 1);
-        this.f26005w = 0;
-        this.f26006x = abVar;
+    @Override
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(56.0f) + getListTopPadding();
+    }
+
+    @Override
+    public int getListTopPadding() {
+        return this.f26002n.getPaddingTop();
+    }
+
+    @Override
+    public final int h() {
+        return 1;
+    }
+
+    public void setDelegate(q0.a aVar) {
+        this.f26006x = aVar;
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        this.f27075b.getSheetContainer().invalidate();
+        invalidate();
+    }
+
+    @Override
+    public final void y(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lj.y(int, int):void");
     }
 }

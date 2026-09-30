@@ -7,30 +7,30 @@ import android.text.TextPaint;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class c4 extends LinearLayout {
-    public final int f23147a = 1;
-    public boolean f23148b;
-    public final hd0 f23149c;
+    public final int f23178a = 1;
+    public boolean f23179b;
+    public final gd0 f23180c;
     public final Object d;
-    public final hd0 e;
-    public final hd0 f23150f;
+    public final gd0 e;
+    public final gd0 f23181f;
 
-    public c4(Context context, c5 c5Var, hd0 hd0Var, tg.g gVar, tg.h hVar) {
+    public c4(Context context, c5 c5Var, gd0 gd0Var, tg.g gVar, tg.h hVar) {
         super(context);
-        this.f23149c = hd0Var;
+        this.f23180c = gd0Var;
         this.e = gVar;
-        this.f23150f = hVar;
-        this.f23148b = false;
+        this.f23181f = hVar;
+        this.f23179b = false;
         TextPaint textPaint = new TextPaint(1);
         this.d = textPaint;
         setWillNotDraw(false);
         textPaint.setTextSize(AndroidUtilities.dp(20.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setColor(c5Var.f23154a);
+        textPaint.setColor(c5Var.f23184a);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f23147a) {
+        switch (this.f23178a) {
             case 1:
                 super.onDraw(canvas);
                 canvas.drawText(":", ((tg.g) this.e).getRight() - AndroidUtilities.dp(12.0f), (getHeight() / 2.0f) - AndroidUtilities.dp(11.0f), (TextPaint) this.d);
@@ -45,48 +45,48 @@ public final class c4 extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         int i12;
         int i13;
-        switch (this.f23147a) {
+        switch (this.f23178a) {
             case 0:
-                hd0 hd0Var = (hd0) this.d;
-                this.f23148b = true;
+                gd0 gd0Var = (gd0) this.d;
+                this.f23179b = true;
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
                     i12 = 3;
                 } else {
                     i12 = 5;
                 }
-                hd0 hd0Var2 = this.f23149c;
-                hd0Var2.setItemCount(i12);
-                hd0Var.setItemCount(i12);
-                hd0 hd0Var3 = this.e;
-                hd0Var3.setItemCount(i12);
-                hd0 hd0Var4 = this.f23150f;
-                hd0Var4.setItemCount(i12);
-                hd0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                hd0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                hd0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                hd0Var4.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                this.f23148b = false;
+                gd0 gd0Var2 = this.f23180c;
+                gd0Var2.setItemCount(i12);
+                gd0Var.setItemCount(i12);
+                gd0 gd0Var3 = this.e;
+                gd0Var3.setItemCount(i12);
+                gd0 gd0Var4 = this.f23181f;
+                gd0Var4.setItemCount(i12);
+                gd0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+                gd0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+                gd0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+                gd0Var4.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+                this.f23179b = false;
                 super.onMeasure(i10, i11);
                 return;
             default:
-                tg.h hVar = (tg.h) this.f23150f;
+                tg.h hVar = (tg.h) this.f23181f;
                 tg.g gVar = (tg.g) this.e;
-                this.f23148b = true;
+                this.f23179b = true;
                 Point point2 = AndroidUtilities.displaySize;
                 if (point2.x > point2.y) {
                     i13 = 3;
                 } else {
                     i13 = 5;
                 }
-                hd0 hd0Var5 = this.f23149c;
-                hd0Var5.setItemCount(i13);
+                gd0 gd0Var5 = this.f23180c;
+                gd0Var5.setItemCount(i13);
                 gVar.setItemCount(i13);
                 hVar.setItemCount(i13);
-                hd0Var5.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
+                gd0Var5.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
                 gVar.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
                 hVar.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
-                this.f23148b = false;
+                this.f23179b = false;
                 super.onMeasure(i10, i11);
                 return;
         }
@@ -94,15 +94,15 @@ public final class c4 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        switch (this.f23147a) {
+        switch (this.f23178a) {
             case 0:
-                if (!this.f23148b) {
+                if (!this.f23179b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             default:
-                if (!this.f23148b) {
+                if (!this.f23179b) {
                     super.requestLayout();
                     return;
                 }
@@ -110,12 +110,12 @@ public final class c4 extends LinearLayout {
         }
     }
 
-    public c4(Context context, hd0 hd0Var, hd0 hd0Var2, hd0 hd0Var3, hd0 hd0Var4) {
+    public c4(Context context, gd0 gd0Var, gd0 gd0Var2, gd0 gd0Var3, gd0 gd0Var4) {
         super(context);
-        this.f23149c = hd0Var;
-        this.d = hd0Var2;
-        this.e = hd0Var3;
-        this.f23150f = hd0Var4;
-        this.f23148b = false;
+        this.f23180c = gd0Var;
+        this.d = gd0Var2;
+        this.e = gd0Var3;
+        this.f23181f = gd0Var4;
+        this.f23179b = false;
     }
 }

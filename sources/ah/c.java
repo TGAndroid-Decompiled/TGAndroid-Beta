@@ -38,7 +38,7 @@ public final class c {
         int i10 = this.f423b;
         int i11 = this.f424c;
         d.h = i10;
-        d.f4286i = i11;
+        d.f4279i = i11;
         pe.b bVar = this.e;
         if (bVar != null && view != null) {
             bVar.add(view);

@@ -2,23 +2,23 @@ package gb;
 
 import java.lang.reflect.Field;
 public final class u extends t {
-    public final fb.n f9586b;
+    public final fb.n f9574b;
 
     public u(fb.n nVar, v vVar) {
         super(vVar);
-        this.f9586b = nVar;
+        this.f9574b = nVar;
     }
 
     @Override
     public final Object a() {
-        return this.f9586b.p2();
+        return this.f9574b.p2();
     }
 
     @Override
     public final void c(Object obj, lb.a aVar, s sVar) {
-        Field field = sVar.f9581b;
-        Object read = sVar.f9583f.read(aVar);
-        if (read == null && sVar.f9584g) {
+        Field field = sVar.f9569b;
+        Object read = sVar.f9571f.read(aVar);
+        if (read == null && sVar.f9572g) {
             return;
         }
         if (!sVar.h) {

@@ -4,11 +4,11 @@ import org.telegram.messenger.AndroidUtilities;
 public final class bn extends nf.e {
     public final int d;
     public final org.telegram.ui.Cells.a0 e;
-    public final Object f32528f;
+    public final Object f32455f;
 
     public bn(Object obj, org.telegram.ui.Cells.a0 a0Var, int i10) {
         this.d = i10;
-        this.f32528f = obj;
+        this.f32455f = obj;
         this.e = a0Var;
     }
 
@@ -17,43 +17,43 @@ public final class bn extends nf.e {
         switch (this.d) {
             case 0:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32528f).f34642a, 2), 250L);
+                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32455f).f34559a, 2), 250L);
                     return;
                 }
                 return;
             case 1:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32528f).f34642a, 3), 250L);
+                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32455f).f34559a, 3), 250L);
                     return;
                 }
                 return;
             case 2:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32528f).f34642a, 4), 250L);
+                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32455f).f34559a, 4), 250L);
                     return;
                 }
                 return;
             case 3:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32528f).f34642a, 5), 250L);
+                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32455f).f34559a, 5), 250L);
                     return;
                 }
                 return;
             case 4:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32528f).f34642a, 6), 250L);
+                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32455f).f34559a, 6), 250L);
                     return;
                 }
                 return;
             case 5:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32528f).f34642a, 7), 250L);
+                    AndroidUtilities.runOnUIThread(new xj(((in) this.f32455f).f34559a, 7), 250L);
                     return;
                 }
                 return;
             default:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new fh(10, this, (org.telegram.ui.Cells.w0) this.e), 250L);
+                    AndroidUtilities.runOnUIThread(new dh(11, this, (org.telegram.ui.Cells.w0) this.e), 250L);
                     return;
                 }
                 return;
@@ -64,73 +64,73 @@ public final class bn extends nf.e {
     public final void d() {
         switch (this.d) {
             case 0:
-                in inVar = (in) this.f32528f;
-                wn wnVar = inVar.f34642a;
+                in inVar = (in) this.f32455f;
+                wn wnVar = inVar.f34559a;
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.e;
-                wnVar.f39772vb = u1Var.getMessageObject().getId();
-                wn wnVar2 = inVar.f34642a;
-                wnVar2.f39786wb = 2;
-                wnVar2.f39799xb = null;
+                wnVar.f39679vb = u1Var.getMessageObject().getId();
+                wn wnVar2 = inVar.f34559a;
+                wnVar2.f39693wb = 2;
+                wnVar2.f39706xb = null;
                 u1Var.invalidate();
                 return;
             case 1:
-                in inVar2 = (in) this.f32528f;
-                wn wnVar3 = inVar2.f34642a;
+                in inVar2 = (in) this.f32455f;
+                wn wnVar3 = inVar2.f34559a;
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) this.e;
-                wnVar3.f39772vb = u1Var2.getMessageObject().getId();
-                wn wnVar4 = inVar2.f34642a;
-                wnVar4.f39786wb = 2;
-                wnVar4.f39799xb = null;
+                wnVar3.f39679vb = u1Var2.getMessageObject().getId();
+                wn wnVar4 = inVar2.f34559a;
+                wnVar4.f39693wb = 2;
+                wnVar4.f39706xb = null;
                 u1Var2.invalidate();
                 return;
             case 2:
-                in inVar3 = (in) this.f32528f;
-                wn wnVar5 = inVar3.f34642a;
+                in inVar3 = (in) this.f32455f;
+                wn wnVar5 = inVar3.f34559a;
                 org.telegram.ui.Cells.u1 u1Var3 = (org.telegram.ui.Cells.u1) this.e;
-                wnVar5.f39772vb = u1Var3.getMessageObject().getId();
-                wn wnVar6 = inVar3.f34642a;
-                wnVar6.f39786wb = 2;
-                wnVar6.f39799xb = null;
+                wnVar5.f39679vb = u1Var3.getMessageObject().getId();
+                wn wnVar6 = inVar3.f34559a;
+                wnVar6.f39693wb = 2;
+                wnVar6.f39706xb = null;
                 u1Var3.invalidate();
                 return;
             case 3:
-                in inVar4 = (in) this.f32528f;
-                wn wnVar7 = inVar4.f34642a;
+                in inVar4 = (in) this.f32455f;
+                wn wnVar7 = inVar4.f34559a;
                 org.telegram.ui.Cells.u1 u1Var4 = (org.telegram.ui.Cells.u1) this.e;
-                wnVar7.f39772vb = u1Var4.getMessageObject().getId();
-                wn wnVar8 = inVar4.f34642a;
-                wnVar8.f39786wb = 2;
-                wnVar8.f39799xb = null;
+                wnVar7.f39679vb = u1Var4.getMessageObject().getId();
+                wn wnVar8 = inVar4.f34559a;
+                wnVar8.f39693wb = 2;
+                wnVar8.f39706xb = null;
                 u1Var4.invalidate();
                 return;
             case 4:
-                in inVar5 = (in) this.f32528f;
-                wn wnVar9 = inVar5.f34642a;
+                in inVar5 = (in) this.f32455f;
+                wn wnVar9 = inVar5.f34559a;
                 org.telegram.ui.Cells.u1 u1Var5 = (org.telegram.ui.Cells.u1) this.e;
-                wnVar9.f39772vb = u1Var5.getMessageObject().getId();
-                wn wnVar10 = inVar5.f34642a;
-                wnVar10.f39786wb = 2;
-                wnVar10.f39799xb = null;
+                wnVar9.f39679vb = u1Var5.getMessageObject().getId();
+                wn wnVar10 = inVar5.f34559a;
+                wnVar10.f39693wb = 2;
+                wnVar10.f39706xb = null;
                 u1Var5.invalidate();
                 return;
             case 5:
-                in inVar6 = (in) this.f32528f;
-                wn wnVar11 = inVar6.f34642a;
+                in inVar6 = (in) this.f32455f;
+                wn wnVar11 = inVar6.f34559a;
                 org.telegram.ui.Cells.u1 u1Var6 = (org.telegram.ui.Cells.u1) this.e;
-                wnVar11.f39772vb = u1Var6.getMessageObject().getId();
-                wn wnVar12 = inVar6.f34642a;
-                wnVar12.f39786wb = 2;
-                wnVar12.f39799xb = null;
+                wnVar11.f39679vb = u1Var6.getMessageObject().getId();
+                wn wnVar12 = inVar6.f34559a;
+                wnVar12.f39693wb = 2;
+                wnVar12.f39706xb = null;
                 u1Var6.invalidate();
                 return;
             default:
-                am amVar = (am) this.f32528f;
-                wn wnVar13 = amVar.f32271a.Q;
+                am amVar = (am) this.f32455f;
+                wn wnVar13 = amVar.f32200a.Q;
                 org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) this.e;
-                wnVar13.f39772vb = w0Var.getMessageObject().getId();
-                wn wnVar14 = amVar.f32271a.Q;
-                wnVar14.f39786wb = 4;
-                wnVar14.f39799xb = null;
+                wnVar13.f39679vb = w0Var.getMessageObject().getId();
+                wn wnVar14 = amVar.f32200a.Q;
+                wnVar14.f39693wb = 4;
+                wnVar14.f39706xb = null;
                 w0Var.getMessageObject().flickerLoading = true;
                 w0Var.invalidate();
                 return;

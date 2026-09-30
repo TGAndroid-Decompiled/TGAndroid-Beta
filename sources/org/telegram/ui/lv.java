@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class lv implements Runnable {
-    public final int f35504a;
-    public final qy f35505b;
+    public final int f35417a;
+    public final qy f35418b;
 
     public lv(qy qyVar, int i10) {
-        this.f35504a = i10;
-        this.f35505b = qyVar;
+        this.f35417a = i10;
+        this.f35418b = qyVar;
     }
 
     @Override

@@ -16,19 +16,19 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class qv extends FrameLayout {
-    public final q90 f27728a;
-    public final TextView f27729b;
-    public final TextView f27730c;
+    public final p90 f27830a;
+    public final TextView f27831b;
+    public final TextView f27832c;
     public final TextView d;
     public final rg.p0 e;
-    public final org.telegram.ui.ActionBar.u0 f27731f;
+    public final org.telegram.ui.ActionBar.u0 f27833f;
     public final boolean h;
-    public final ai.y3 f27732n;
-    public TLRPC.TL_messages_stickerSet f27733r;
-    public boolean f27734s;
+    public final ai.y3 f27834n;
+    public TLRPC.TL_messages_stickerSet f27835r;
+    public boolean f27836s;
     public float v;
-    public ValueAnimator f27735w;
-    public final vv f27736x;
+    public ValueAnimator f27837w;
+    public final vv f27838x;
 
     public qv(vv vvVar, Context context, boolean z10) {
         super(context);
@@ -41,9 +41,9 @@ public final class qv extends FrameLayout {
         float f10;
         float f11;
         org.telegram.ui.ActionBar.d6 d6Var4;
-        this.f27736x = vvVar;
-        this.f27732n = new ai.y3(this, 5);
-        this.f27734s = false;
+        this.f27838x = vvVar;
+        this.f27834n = new ai.y3(this, 5);
+        this.f27836s = false;
         this.v = 0.0f;
         this.h = z10;
         if (!z10) {
@@ -57,38 +57,38 @@ public final class qv extends FrameLayout {
                 rg.p0 p0Var = new rg.p0(dp, context, d6Var4, false);
                 this.e = p0Var;
                 p0Var.a(LocaleController.getString(R.string.Unlock), new View.OnClickListener(this) {
-                    public final qv f26787b;
+                    public final qv f26862b;
 
                     {
-                        this.f26787b = this;
+                        this.f26862b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i12 = r2;
-                        qv qvVar = this.f26787b;
+                        qv qvVar = this.f26862b;
                         switch (i12) {
                             case 0:
-                                vv vvVar2 = qvVar.f27736x;
+                                vv vvVar2 = qvVar.f27838x;
                                 vvVar2.Q = SystemClock.elapsedRealtime();
                                 vvVar2.Z();
                                 return;
                             case 1:
-                                vv.W(qvVar.f27732n, qvVar.f27733r, true, null, null);
+                                vv.W(qvVar.f27834n, qvVar.f27835r, true, null, null);
                                 qvVar.a(true, true);
                                 return;
                             case 2:
-                                ai.y3 y3Var = qvVar.f27732n;
-                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = qvVar.f27733r;
-                                aq aqVar = new aq(qvVar, 12);
+                                ai.y3 y3Var = qvVar.f27834n;
+                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = qvVar.f27835r;
+                                zp zpVar = new zp(qvVar, 12);
                                 Pattern pattern = vv.V;
                                 if (y3Var != null && tL_messages_stickerSet != null && y3Var.getFragmentView() != null) {
-                                    MediaDataController.getInstance(y3Var.getCurrentAccount()).toggleStickerSet(y3Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, y3Var, true, true, aqVar, true);
+                                    MediaDataController.getInstance(y3Var.getCurrentAccount()).toggleStickerSet(y3Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, y3Var, true, true, zpVar, true);
                                 }
                                 qvVar.a(false, true);
                                 return;
                             default:
-                                qvVar.f27731f.M(null, null);
+                                qvVar.f27833f.M(null, null);
                                 return;
                         }
                     }
@@ -110,7 +110,7 @@ public final class qv extends FrameLayout {
                 f11 = 16.0f;
             }
             TextView textView = new TextView(context);
-            this.f27730c = textView;
+            this.f27832c = textView;
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(vvVar.getThemedColor(org.telegram.ui.ActionBar.h6.Sh));
             int i12 = org.telegram.ui.ActionBar.h6.Oh;
@@ -118,38 +118,38 @@ public final class qv extends FrameLayout {
             textView.setPadding(org.telegram.ui.Cells.c1.c(18.0f, R.string.Add, textView), 0, AndroidUtilities.dp(18.0f), 0);
             textView.setGravity(17);
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final qv f26787b;
+                public final qv f26862b;
 
                 {
-                    this.f26787b = this;
+                    this.f26862b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    qv qvVar = this.f26787b;
+                    qv qvVar = this.f26862b;
                     switch (i122) {
                         case 0:
-                            vv vvVar2 = qvVar.f27736x;
+                            vv vvVar2 = qvVar.f27838x;
                             vvVar2.Q = SystemClock.elapsedRealtime();
                             vvVar2.Z();
                             return;
                         case 1:
-                            vv.W(qvVar.f27732n, qvVar.f27733r, true, null, null);
+                            vv.W(qvVar.f27834n, qvVar.f27835r, true, null, null);
                             qvVar.a(true, true);
                             return;
                         case 2:
-                            ai.y3 y3Var = qvVar.f27732n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = qvVar.f27733r;
-                            aq aqVar = new aq(qvVar, 12);
+                            ai.y3 y3Var = qvVar.f27834n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = qvVar.f27835r;
+                            zp zpVar = new zp(qvVar, 12);
                             Pattern pattern = vv.V;
                             if (y3Var != null && tL_messages_stickerSet != null && y3Var.getFragmentView() != null) {
-                                MediaDataController.getInstance(y3Var.getCurrentAccount()).toggleStickerSet(y3Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, y3Var, true, true, aqVar, true);
+                                MediaDataController.getInstance(y3Var.getCurrentAccount()).toggleStickerSet(y3Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, y3Var, true, true, zpVar, true);
                             }
                             qvVar.a(false, true);
                             return;
                         default:
-                            qvVar.f27731f.M(null, null);
+                            qvVar.f27833f.M(null, null);
                             return;
                     }
                 }
@@ -165,38 +165,38 @@ public final class qv extends FrameLayout {
             textView2.setPadding(org.telegram.ui.Cells.c1.c(12.0f, R.string.StickersRemove, textView2), 0, AndroidUtilities.dp(12.0f), 0);
             textView2.setGravity(17);
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final qv f26787b;
+                public final qv f26862b;
 
                 {
-                    this.f26787b = this;
+                    this.f26862b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    qv qvVar = this.f26787b;
+                    qv qvVar = this.f26862b;
                     switch (i122) {
                         case 0:
-                            vv vvVar2 = qvVar.f27736x;
+                            vv vvVar2 = qvVar.f27838x;
                             vvVar2.Q = SystemClock.elapsedRealtime();
                             vvVar2.Z();
                             return;
                         case 1:
-                            vv.W(qvVar.f27732n, qvVar.f27733r, true, null, null);
+                            vv.W(qvVar.f27834n, qvVar.f27835r, true, null, null);
                             qvVar.a(true, true);
                             return;
                         case 2:
-                            ai.y3 y3Var = qvVar.f27732n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = qvVar.f27733r;
-                            aq aqVar = new aq(qvVar, 12);
+                            ai.y3 y3Var = qvVar.f27834n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = qvVar.f27835r;
+                            zp zpVar = new zp(qvVar, 12);
                             Pattern pattern = vv.V;
                             if (y3Var != null && tL_messages_stickerSet != null && y3Var.getFragmentView() != null) {
-                                MediaDataController.getInstance(y3Var.getCurrentAccount()).toggleStickerSet(y3Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, y3Var, true, true, aqVar, true);
+                                MediaDataController.getInstance(y3Var.getCurrentAccount()).toggleStickerSet(y3Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, y3Var, true, true, zpVar, true);
                             }
                             qvVar.a(false, true);
                             return;
                         default:
-                            qvVar.f27731f.M(null, null);
+                            qvVar.f27833f.M(null, null);
                             return;
                     }
                 }
@@ -212,30 +212,30 @@ public final class qv extends FrameLayout {
             f7 = 32.0f;
         }
         d6Var = ((org.telegram.ui.ActionBar.e3) vvVar).resourcesProvider;
-        q90 q90Var = new q90(context, d6Var);
-        this.f27728a = q90Var;
-        q90Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        q90Var.setTypeface(AndroidUtilities.bold());
+        p90 p90Var = new p90(context, d6Var);
+        this.f27830a = p90Var;
+        p90Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
+        p90Var.setTypeface(AndroidUtilities.bold());
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        q90Var.setEllipsize(truncateAt);
-        q90Var.setSingleLine(true);
-        q90Var.setLines(1);
+        p90Var.setEllipsize(truncateAt);
+        p90Var.setSingleLine(true);
+        p90Var.setLines(1);
         int i13 = org.telegram.ui.ActionBar.h6.J6;
         d6Var2 = ((org.telegram.ui.ActionBar.e3) vvVar).resourcesProvider;
-        q90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i13, d6Var2));
-        q90Var.setTextColor(vvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19182j5));
+        p90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i13, d6Var2));
+        p90Var.setTextColor(vvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19167j5));
         if (z10) {
-            q90Var.setTextSize(1, 20.0f);
-            addView(q90Var, w7.y5.i(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f7, 0.0f));
+            p90Var.setTextSize(1, 20.0f);
+            addView(p90Var, w7.y5.i(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f7, 0.0f));
         } else {
-            q90Var.setTextSize(1, 17.0f);
-            addView(q90Var, w7.y5.i(-1.0f, -2.0f, 8388659, 6.0f, 10.0f, f7, 0.0f));
+            p90Var.setTextSize(1, 17.0f);
+            addView(p90Var, w7.y5.i(-1.0f, -2.0f, 8388659, 6.0f, 10.0f, f7, 0.0f));
         }
         if (!z10) {
             TextView textView3 = new TextView(context);
-            this.f27729b = textView3;
+            this.f27831b = textView3;
             textView3.setTextSize(1, 13.0f);
-            textView3.setTextColor(vvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19314q5));
+            textView3.setTextColor(vvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19299q5));
             textView3.setEllipsize(truncateAt);
             textView3.setSingleLine(true);
             textView3.setLines(1);
@@ -245,7 +245,7 @@ public final class qv extends FrameLayout {
             int themedColor = vvVar.getThemedColor(org.telegram.ui.ActionBar.h6.Ji);
             d6Var3 = ((org.telegram.ui.ActionBar.e3) vvVar).resourcesProvider;
             org.telegram.ui.ActionBar.u0 u0Var = new org.telegram.ui.ActionBar.u0(context, null, 0, themedColor, false, d6Var3);
-            this.f27731f = u0Var;
+            this.f27833f = u0Var;
             u0Var.setLongClickEnabled(false);
             u0Var.setSubMenuOpenSide(2);
             u0Var.setIcon(R.drawable.ic_ab_other);
@@ -255,38 +255,38 @@ public final class qv extends FrameLayout {
             u0Var.e(1, R.drawable.msg_share, LocaleController.getString(R.string.StickersShare));
             u0Var.e(2, R.drawable.msg_link, LocaleController.getString(R.string.CopyLink));
             u0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final qv f26787b;
+                public final qv f26862b;
 
                 {
-                    this.f26787b = this;
+                    this.f26862b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    qv qvVar = this.f26787b;
+                    qv qvVar = this.f26862b;
                     switch (i122) {
                         case 0:
-                            vv vvVar2 = qvVar.f27736x;
+                            vv vvVar2 = qvVar.f27838x;
                             vvVar2.Q = SystemClock.elapsedRealtime();
                             vvVar2.Z();
                             return;
                         case 1:
-                            vv.W(qvVar.f27732n, qvVar.f27733r, true, null, null);
+                            vv.W(qvVar.f27834n, qvVar.f27835r, true, null, null);
                             qvVar.a(true, true);
                             return;
                         case 2:
-                            ai.y3 y3Var = qvVar.f27732n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = qvVar.f27733r;
-                            aq aqVar = new aq(qvVar, 12);
+                            ai.y3 y3Var = qvVar.f27834n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = qvVar.f27835r;
+                            zp zpVar = new zp(qvVar, 12);
                             Pattern pattern = vv.V;
                             if (y3Var != null && tL_messages_stickerSet != null && y3Var.getFragmentView() != null) {
-                                MediaDataController.getInstance(y3Var.getCurrentAccount()).toggleStickerSet(y3Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, y3Var, true, true, aqVar, true);
+                                MediaDataController.getInstance(y3Var.getCurrentAccount()).toggleStickerSet(y3Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, y3Var, true, true, zpVar, true);
                             }
                             qvVar.a(false, true);
                             return;
                         default:
-                            qvVar.f27731f.M(null, null);
+                            qvVar.f27833f.M(null, null);
                             return;
                     }
                 }
@@ -304,14 +304,14 @@ public final class qv extends FrameLayout {
         float f12;
         float f13;
         float f14;
-        if (this.f27734s != z10) {
-            this.f27734s = z10;
-            ValueAnimator valueAnimator = this.f27735w;
+        if (this.f27836s != z10) {
+            this.f27836s = z10;
+            ValueAnimator valueAnimator = this.f27837w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f27735w = null;
+                this.f27837w = null;
             }
-            TextView textView2 = this.f27730c;
+            TextView textView2 = this.f27832c;
             if (textView2 != null && (textView = this.d) != null) {
                 textView2.setClickable(!z10);
                 textView.setClickable(z10);
@@ -322,11 +322,11 @@ public final class qv extends FrameLayout {
                         f15 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f16, f15);
-                    this.f27735w = ofFloat;
+                    this.f27837w = ofFloat;
                     ofFloat.addUpdateListener(new k6(this, 18));
-                    this.f27735w.setInterpolator(tr.h);
-                    this.f27735w.setDuration(250L);
-                    this.f27735w.start();
+                    this.f27837w.setInterpolator(sr.h);
+                    this.f27837w.setDuration(250L);
+                    this.f27837w.start();
                     return;
                 }
                 if (z10) {

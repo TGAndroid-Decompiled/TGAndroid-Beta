@@ -8,30 +8,30 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.cs0;
-import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.xq0;
+import org.telegram.ui.Components.bs0;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.wq0;
 import org.telegram.ui.Components.yc;
-public final class z1 extends xq0 {
-    public final org.telegram.ui.ActionBar.m2 f46609b1;
-    public final cs0 f46610c1;
+public final class z1 extends wq0 {
+    public final org.telegram.ui.ActionBar.m2 f46503b1;
+    public final bs0 f46504c1;
 
-    public z1(cs0 cs0Var, Context context, String str, String str2, d6 d6Var, org.telegram.ui.ActionBar.m2 m2Var) {
+    public z1(bs0 bs0Var, Context context, String str, String str2, d6 d6Var, org.telegram.ui.ActionBar.m2 m2Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f46610c1 = cs0Var;
-        this.f46609b1 = m2Var;
+        this.f46504c1 = bs0Var;
+        this.f46503b1 = m2Var;
     }
 
     @Override
     public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         yc a02;
         String str;
-        if (z10 && (a02 = yc.a0(this.f46609b1)) != null) {
+        if (z10 && (a02 = yc.a0(this.f46503b1)) != null) {
             if (iVar.m() == 1) {
                 long j3 = iVar.j(0);
                 if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    rc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
-                    G.f27954r = false;
+                    qc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
+                    G.f27649r = false;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
@@ -42,21 +42,21 @@ public final class z1 extends xq0 {
                     } else {
                         str = chat.title;
                     }
-                    rc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f27954r = false;
+                    qc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f27649r = false;
                     G2.j();
                 } else {
-                    rc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f27954r = false;
+                    qc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
+                    G3.f27649r = false;
                     G3.j();
                 }
             } else {
-                rc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f27954r = false;
+                qc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
+                Q.f27649r = false;
                 Q.j();
             }
             try {
-                this.f46610c1.performHapticFeedback(3);
+                this.f46504c1.performHapticFeedback(3);
             } catch (Exception unused) {
             }
         }

@@ -1,22 +1,22 @@
 package u2;
 public final class c implements b1 {
-    public final b1 f43731a;
-    public boolean f43732b;
-    public final d f43733c;
+    public final b1 f43625a;
+    public boolean f43626b;
+    public final d f43627c;
 
     public c(d dVar, b1 b1Var) {
-        this.f43733c = dVar;
-        this.f43731a = b1Var;
+        this.f43627c = dVar;
+        this.f43625a = b1Var;
     }
 
     @Override
     public final void a() {
-        this.f43731a.a();
+        this.f43625a.a();
     }
 
     @Override
     public final boolean e() {
-        if (!this.f43733c.a() && this.f43731a.e()) {
+        if (!this.f43627c.a() && this.f43625a.e()) {
             return true;
         }
         return false;
@@ -24,18 +24,18 @@ public final class c implements b1 {
 
     @Override
     public final int f(n4.y yVar, h2.h hVar, int i10) {
-        d dVar = this.f43733c;
+        d dVar = this.f43627c;
         if (dVar.a()) {
             return -3;
         }
-        if (this.f43732b) {
+        if (this.f43626b) {
             hVar.setFlags(4);
             return -4;
         }
         long s10 = dVar.s();
-        int f7 = this.f43731a.f(yVar, hVar, i10);
+        int f7 = this.f43625a.f(yVar, hVar, i10);
         if (f7 == -5) {
-            b2.s sVar = (b2.s) yVar.f15239c;
+            b2.s sVar = (b2.s) yVar.f15224c;
             sVar.getClass();
             int i11 = sVar.N;
             int i12 = sVar.M;
@@ -45,20 +45,20 @@ public final class c implements b1 {
             if (dVar.e != 0) {
                 i12 = 0;
             }
-            if (dVar.f43737f != Long.MIN_VALUE) {
+            if (dVar.f43631f != Long.MIN_VALUE) {
                 i11 = 0;
             }
             b2.r a2 = sVar.a();
             a2.L = i12;
             a2.M = i11;
-            yVar.f15239c = new b2.s(a2);
+            yVar.f15224c = new b2.s(a2);
             return -5;
         }
-        long j3 = dVar.f43737f;
+        long j3 = dVar.f43631f;
         if (j3 != Long.MIN_VALUE && ((f7 == -4 && hVar.e >= j3) || (f7 == -3 && s10 == Long.MIN_VALUE && !hVar.d))) {
             hVar.clear();
             hVar.setFlags(4);
-            this.f43732b = true;
+            this.f43626b = true;
             return -4;
         }
         return f7;
@@ -66,9 +66,9 @@ public final class c implements b1 {
 
     @Override
     public final int j(long j3) {
-        if (this.f43733c.a()) {
+        if (this.f43627c.a()) {
             return -3;
         }
-        return this.f43731a.j(j3);
+        return this.f43625a.j(j3);
     }
 }

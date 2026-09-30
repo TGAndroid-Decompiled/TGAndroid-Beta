@@ -1,34 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-public final class qs0 extends org.telegram.ui.wn {
-    public boolean Pc;
-    public final int Qc;
-    public final mv0 Rc;
+import androidx.recyclerview.widget.RecyclerView;
+public final class qs0 extends s4.s0 {
+    public final hs0 f27821a;
+    public final is0 f27822b;
+    public final lv0 f27823c;
 
-    public qs0(mv0 mv0Var, Bundle bundle, int i10) {
-        super(bundle);
-        this.Rc = mv0Var;
-        this.Qc = i10;
-        this.Pc = true;
+    public qs0(lv0 lv0Var, hs0 hs0Var, is0 is0Var) {
+        this.f27823c = lv0Var;
+        this.f27821a = hs0Var;
+        this.f27822b = is0Var;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
-        mv0 mv0Var = this.Rc;
-        xu0 xu0Var = mv0Var.S;
-        if (this.Pc) {
-            if (this.f39613j0 != null) {
-                la("");
-                this.f39613j0.H(xu0Var.f30512w, false);
-            }
-            org.telegram.ui.vk vkVar = this.f39674o1;
-            if (vkVar != null) {
-                vkVar.e(xu0Var.f30513x, false);
-            }
-            mv0Var.f26449v1.getMediaDataController().portSavedSearchResults(getClassGuid(), xu0Var.f30513x, xu0Var.f30512w, xu0Var.f30509n, xu0Var.h, this.Qc, xu0Var.v, xu0Var.f30511s);
-            this.Pc = false;
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        if (i10 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        super.onTransitionAnimationStart(z10, z11);
+        this.f27823c.f26109b1 = z10;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        int i13;
+        lv0 lv0Var = this.f27823c;
+        av0[] av0VarArr = lv0Var.f26150t1;
+        is0 is0Var = this.f27822b;
+        hs0 hs0Var = this.f27821a;
+        lv0Var.G(hs0Var, (yl0) recyclerView, is0Var);
+        if (i11 != 0 && ((i13 = lv0Var.f26130k0[0].F) == 0 || i13 == 5)) {
+            av0VarArr[0].f22728a.isEmpty();
+        }
+        if (i11 != 0 && ((i12 = hs0Var.F) == 0 || lv0.p0(i12))) {
+            lv0.q(hs0Var, av0VarArr, true);
+        }
+        hs0Var.h.L0(true);
+        if (hs0Var.G != null) {
+            hs0Var.invalidate();
+        }
+        lv0Var.o0();
     }
 }

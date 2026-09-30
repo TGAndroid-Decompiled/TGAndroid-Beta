@@ -5,13 +5,13 @@ import android.os.Looper;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 public abstract class g {
-    public static final Class f7771a;
-    public static final Field f7772b;
-    public static final Field f7773c;
+    public static final Class f7759a;
+    public static final Field f7760b;
+    public static final Field f7761c;
     public static final Method d;
     public static final Method e;
-    public static final Method f7774f;
-    public static final Handler f7775g = new Handler(Looper.getMainLooper());
+    public static final Method f7762f;
+    public static final Handler f7763g = new Handler(Looper.getMainLooper());
 
     static {
         throw new UnsupportedOperationException("Method not decompiled: e0.g.<clinit>():void");

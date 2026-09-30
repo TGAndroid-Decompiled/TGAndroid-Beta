@@ -6,12 +6,12 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.jl0;
+import org.telegram.ui.Components.il0;
 public final class t extends s4.n0 {
-    public final int f1544a;
+    public final int f1539a;
 
     public t(int i10) {
-        this.f1544a = i10;
+        this.f1539a = i10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class t extends s4.n0 {
         int dp;
         int dp2;
         int dp3;
-        switch (this.f1544a) {
+        switch (this.f1539a) {
             case 0:
                 recyclerView.getClass();
                 int S = RecyclerView.S(view);
@@ -56,9 +56,9 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(2.0f);
                 return;
             case 5:
-                jl0 jl0Var = (jl0) recyclerView.T(view);
-                if (jl0Var != null) {
-                    int b10 = jl0Var.b() % 4;
+                il0 il0Var = (il0) recyclerView.T(view);
+                if (il0Var != null) {
+                    int b10 = il0Var.b() % 4;
                     int i10 = 0;
                     if (b10 == 0) {
                         dp = 0;
@@ -76,9 +76,9 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(4.0f);
                 return;
             case 6:
-                jl0 jl0Var2 = (jl0) recyclerView.T(view);
-                if (jl0Var2 != null) {
-                    int b11 = jl0Var2.b() % 4;
+                il0 il0Var2 = (il0) recyclerView.T(view);
+                if (il0Var2 != null) {
+                    int b11 = il0Var2.b() % 4;
                     int i11 = 0;
                     if (b11 == 0) {
                         dp2 = 0;
@@ -96,15 +96,15 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(4.0f);
                 return;
             case 7:
-                jl0 jl0Var3 = (jl0) recyclerView.T(view);
-                if (jl0Var3 != null) {
+                il0 il0Var3 = (il0) recyclerView.T(view);
+                if (il0Var3 != null) {
                     int i12 = 0;
-                    if (jl0Var3.f43071f != 5) {
+                    if (il0Var3.f42965f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;
                     }
-                    int b12 = jl0Var3.b() % 4;
+                    int b12 = il0Var3.b() % 4;
                     if (b12 == 0) {
                         dp3 = 0;
                     } else {
@@ -149,7 +149,7 @@ public final class t extends s4.n0 {
         View view;
         float dp;
         int i10;
-        switch (this.f1544a) {
+        switch (this.f1539a) {
             case 10:
                 int width = recyclerView.getWidth();
                 int childCount = recyclerView.getChildCount();
@@ -174,7 +174,7 @@ public final class t extends s4.n0 {
                         } else {
                             i10 = 0;
                         }
-                        canvas.drawLine(dp, f7, width - i10, f7, org.telegram.ui.ActionBar.h6.f19197k0);
+                        canvas.drawLine(dp, f7, width - i10, f7, org.telegram.ui.ActionBar.h6.f19182k0);
                     }
                 }
                 return;

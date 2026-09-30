@@ -2,17 +2,17 @@ package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class u implements Runnable {
-    public final boolean f19800a;
-    public final m2 f19801b;
-    public final m2 f19802c;
+    public final boolean f19785a;
+    public final m2 f19786b;
+    public final m2 f19787c;
     public final boolean d;
     public final ActionBarLayout e;
 
     public u(ActionBarLayout actionBarLayout, boolean z10, m2 m2Var, m2 m2Var2, boolean z11) {
         this.e = actionBarLayout;
-        this.f19800a = z10;
-        this.f19801b = m2Var;
-        this.f19802c = m2Var2;
+        this.f19785a = z10;
+        this.f19786b = m2Var;
+        this.f19787c = m2Var2;
         this.d = z11;
     }
 
@@ -21,12 +21,12 @@ public final class u implements Runnable {
         ActionBarLayout actionBarLayout = this.e;
         if (actionBarLayout.d == this) {
             actionBarLayout.d = null;
-            if (this.f19800a) {
-                m2 m2Var = this.f19801b;
+            if (this.f19785a) {
+                m2 m2Var = this.f19786b;
                 if (m2Var != null) {
                     m2Var.onTransitionAnimationStart(false, false);
                 }
-                this.f19802c.onTransitionAnimationStart(true, false);
+                this.f19787c.onTransitionAnimationStart(true, false);
                 actionBarLayout.d0(true, true, this.d);
                 return;
             }

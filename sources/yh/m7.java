@@ -9,90 +9,90 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.cb;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.q90;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.u00;
-import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.p90;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.t00;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.Components.yl0;
-import org.telegram.ui.Components.zl0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.jk;
 import org.telegram.ui.wn;
-public final class m7 extends cb implements NotificationCenter.NotificationCenterDelegate {
+public final class m7 extends bb implements NotificationCenter.NotificationCenterDelegate {
     public final FrameLayout X;
-    public m61 Y;
+    public l61 Y;
     public boolean Z;
 
     public m7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, false, false, d6Var);
-        zl0 zl0Var = this.d;
+        yl0 yl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        zl0Var.setPadding(i10, 0, i10, 0);
+        yl0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.g(this, 24));
         s4.j jVar = new s4.j();
-        jVar.f43103m = false;
+        jVar.f42997m = false;
         jVar.C = false;
-        jVar.o(tr.h);
+        jVar.o(sr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        int i11 = org.telegram.ui.ActionBar.h6.f19076d6;
+        int i11 = org.telegram.ui.ActionBar.h6.f19061d6;
         setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         fixNavigationBar(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         this.e.setTitle(LocaleController.getString(R.string.StarsBuy));
         FrameLayout frameLayout = new FrameLayout(context);
         this.X = frameLayout;
-        q90 q90Var = new q90(context, d6Var);
+        p90 p90Var = new p90(context, d6Var);
         frameLayout.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
-        q90Var.setTextSize(1, 12.0f);
-        q90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.B6, d6Var));
-        q90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, d6Var));
-        q90Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTOS), new r2(this, 8)));
-        q90Var.setGravity(17);
-        q90Var.setMaxWidth(ci.e4.a(q90Var.getText(), q90Var.getPaint()));
-        frameLayout.addView(q90Var, w7.y5.e(-2, -1, 17));
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19146h5, d6Var));
-        this.containerView.addView(new u00(getContext()), w7.y5.c(-1.0f, -1));
-        m61 m61Var = this.Y;
-        if (m61Var != null) {
-            m61Var.N(false);
+        p90Var.setTextSize(1, 12.0f);
+        p90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.B6, d6Var));
+        p90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, d6Var));
+        p90Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTOS), new r2(this, 8)));
+        p90Var.setGravity(17);
+        p90Var.setMaxWidth(ci.e4.a(p90Var.getText(), p90Var.getPaint()));
+        frameLayout.addView(p90Var, w7.y5.e(-2, -1, 17));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19131h5, d6Var));
+        this.containerView.addView(new t00(getContext()), w7.y5.c(-1.0f, -1));
+        l61 l61Var = this.Y;
+        if (l61Var != null) {
+            l61Var.N(false);
         }
     }
 
     public static void P(m7 m7Var, int i10) {
-        y51 G;
-        m61 m61Var = m7Var.Y;
-        if (m61Var != null && (G = m61Var.G(i10 - 1)) != null) {
-            m61 m61Var2 = m7Var.Y;
+        x51 G;
+        l61 l61Var = m7Var.Y;
+        if (l61Var != null && (G = l61Var.G(i10 - 1)) != null) {
+            l61 l61Var2 = m7Var.Y;
             if (G.d == -1) {
                 m7Var.Z = !m7Var.Z;
-                m61Var2.N(true);
-                m7Var.d.w0(0, AndroidUtilities.dp(300.0f), null);
+                l61Var2.N(true);
+                m7Var.d.v0(0, AndroidUtilities.dp(300.0f), null);
             } else if (G.G(i7.class) && (G.G instanceof TL_stars.TL_starsTopupOption)) {
                 Activity findActivity = AndroidUtilities.findActivity(m7Var.getContext());
                 if (findActivity == null) {
                     findActivity = LaunchActivity.G1;
                 }
                 if (findActivity != null) {
-                    s5.y(m7Var.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new ai.m0(26, m7Var, G), null);
+                    t5.y(m7Var.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new ai.m0(26, m7Var, G), null);
                 }
             }
         }
     }
 
-    public static void Q(m7 m7Var, y51 y51Var, Boolean bool, String str) {
+    public static void Q(m7 m7Var, x51 x51Var, Boolean bool, String str) {
         if (m7Var.getContext() != null) {
             m7Var.dismiss();
-            s5.y(m7Var.currentAccount, false).T(true);
+            t5.y(m7Var.currentAccount, false).T(true);
             org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
             if (U != null) {
                 if (bool.booleanValue()) {
-                    yc.a0(U).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) y51Var.B, new Object[0])), R.raw.stars_topup).j();
+                    yc.a0(U).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) x51Var.B, new Object[0])), R.raw.stars_topup).j();
                     LaunchActivity launchActivity = LaunchActivity.G1;
                     if (launchActivity != null) {
-                        launchActivity.f31218x0.c(true);
+                        launchActivity.f31146x0.c(true);
                     }
                 } else if (str != null) {
                     hg.c.q(R.string.UnknownErrorCode, new Object[]{str}, yc.a0(U), R.raw.error, 36);
@@ -101,10 +101,10 @@ public final class m7 extends cb implements NotificationCenter.NotificationCente
         }
     }
 
-    public final void R(ArrayList arrayList, m61 m61Var) {
+    public final void R(ArrayList arrayList, l61 l61Var) {
         int i10;
         com.google.android.gms.internal.vision.e2.n(R.string.TelegramStarsChoose, arrayList);
-        ArrayList z10 = s5.y(this.currentAccount, false).z();
+        ArrayList z10 = t5.y(this.currentAccount, false).z();
         if (z10 != null && !z10.isEmpty()) {
             int i11 = 0;
             int i12 = 1;
@@ -125,29 +125,29 @@ public final class m7 extends cb implements NotificationCenter.NotificationCente
                     i10 = R.string.NotifyMoreOptions;
                 }
                 String string = LocaleController.getString(i10);
-                int i14 = e7.f47454a;
-                y51 J = y51.J(e7.class);
+                int i14 = e7.f47348a;
+                x51 J = x51.J(e7.class);
                 J.d = -1;
-                J.f30637l = string;
-                J.f30632f = !this.Z;
-                J.f30642q = true;
+                J.f30278l = string;
+                J.f30273f = !this.Z;
+                J.f30283q = true;
                 arrayList.add(J);
             }
         } else {
-            arrayList.add(y51.n(31));
-            arrayList.add(y51.n(31));
-            arrayList.add(y51.n(31));
-            arrayList.add(y51.n(31));
-            arrayList.add(y51.n(31));
+            arrayList.add(x51.n(31));
+            arrayList.add(x51.n(31));
+            arrayList.add(x51.n(31));
+            arrayList.add(x51.n(31));
+            arrayList.add(x51.n(31));
         }
-        arrayList.add(y51.k(this.X));
+        arrayList.add(x51.k(this.X));
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        m61 m61Var;
-        if ((i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) && (m61Var = this.Y) != null) {
-            m61Var.N(true);
+        l61 l61Var;
+        if ((i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) && (l61Var = this.Y) != null) {
+            l61Var.N(true);
         }
     }
 
@@ -161,7 +161,7 @@ public final class m7 extends cb implements NotificationCenter.NotificationCente
     @Override
     public final void show() {
         jk jkVar;
-        long j3 = s5.y(this.currentAccount, false).p().amount;
+        long j3 = t5.y(this.currentAccount, false).p().amount;
         org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
         if (R instanceof wn) {
             wn wnVar = (wn) R;
@@ -175,11 +175,11 @@ public final class m7 extends cb implements NotificationCenter.NotificationCente
     }
 
     @Override
-    public final yl0 v(zl0 zl0Var) {
-        m61 m61Var = new m61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 29), this.resourcesProvider);
-        this.Y = m61Var;
-        m61Var.f26223r = false;
-        return m61Var;
+    public final xl0 v(yl0 yl0Var) {
+        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 29), this.resourcesProvider);
+        this.Y = l61Var;
+        l61Var.f25924r = false;
+        return l61Var;
     }
 
     @Override

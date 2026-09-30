@@ -7,40 +7,40 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a extends og.a {
-    public CharSequence f44095c;
+    public CharSequence f43989c;
     public TLRPC.InputPeer d;
     public TLRPC.Chat e;
-    public Object f44096f;
-    public boolean f44097g;
+    public Object f43990f;
+    public boolean f43991g;
     public long h;
-    public int f44098i;
-    public int f44099j;
-    public List f44100k;
-    public int f44101l;
-    public TLObject f44102m;
+    public int f43992i;
+    public int f43993j;
+    public List f43994k;
+    public int f43995l;
+    public TLObject f43996m;
 
     public static a b(TLRPC.Chat chat, int i10, boolean z10) {
         ?? aVar = new og.a(9, false);
         aVar.e = chat;
         aVar.d = null;
-        aVar.f44097g = z10;
-        aVar.f44098i = i10;
+        aVar.f43991g = z10;
+        aVar.f43992i = i10;
         return aVar;
     }
 
     public static a c(CharSequence charSequence, boolean z10) {
         ?? aVar = new og.a(7, false);
-        aVar.f44095c = charSequence;
-        aVar.f44097g = z10;
+        aVar.f43989c = charSequence;
+        aVar.f43991g = z10;
         return aVar;
     }
 
     public static a d(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i10, long j3, boolean z10, boolean z11) {
         ?? aVar = new og.a(17, z10);
-        aVar.f44098i = i10;
+        aVar.f43992i = i10;
         aVar.h = j3;
-        aVar.f44102m = tL_starsGiveawayOption;
-        aVar.f44097g = z11;
+        aVar.f43996m = tL_starsGiveawayOption;
+        aVar.f43991g = z11;
         return aVar;
     }
 
@@ -52,15 +52,15 @@ public final class a extends og.a {
             z11 = false;
         }
         ?? aVar = new og.a(11, z11);
-        aVar.f44101l = i10;
-        aVar.f44097g = z10;
-        aVar.f44096f = arrayList;
+        aVar.f43995l = i10;
+        aVar.f43991g = z10;
+        aVar.f43990f = arrayList;
         return aVar;
     }
 
     public static a f(String str) {
         ?? aVar = new og.a(6, false);
-        aVar.f44095c = str;
+        aVar.f43989c = str;
         return aVar;
     }
 
@@ -85,23 +85,23 @@ public final class a extends og.a {
         int i10;
         int i11;
         if (this != aVar) {
-            if (a.class == aVar.getClass() && (i10 = (aVar2 = (a) aVar).f15731a) == (i11 = this.f15731a)) {
+            if (a.class == aVar.getClass() && (i10 = (aVar2 = (a) aVar).f15716a) == (i11 = this.f15716a)) {
                 if (i11 == 0) {
-                    if (this.f44097g == aVar2.f44097g) {
+                    if (this.f43991g == aVar2.f43991g) {
                         return true;
                     }
                     return false;
                 } else if (i10 == 17) {
-                    if (this.f44098i == aVar2.f44098i && this.h == aVar2.h && this.f44102m == aVar2.f44102m && this.f44097g == aVar2.f44097g && this.f15732b == aVar2.f15732b) {
+                    if (this.f43992i == aVar2.f43992i && this.h == aVar2.h && this.f43996m == aVar2.f43996m && this.f43991g == aVar2.f43991g && this.f15717b == aVar2.f15717b) {
                         return true;
                     }
                     return false;
                 } else if (i11 == 5) {
-                    if (this.f44098i == aVar2.f44098i && g(this.f44100k, aVar2.f44100k)) {
+                    if (this.f43992i == aVar2.f43992i && g(this.f43994k, aVar2.f43994k)) {
                         return true;
                     }
                     return false;
-                } else if (i11 == 13 && this.f44098i == aVar2.f44098i && TextUtils.equals(this.f44095c, aVar2.f44095c)) {
+                } else if (i11 == 13 && this.f43992i == aVar2.f43992i && TextUtils.equals(this.f43989c, aVar2.f43989c)) {
                     return true;
                 } else {
                     return false;
@@ -116,21 +116,21 @@ public final class a extends og.a {
         if (this != obj) {
             if (obj != null && a.class == obj.getClass()) {
                 a aVar = (a) obj;
-                int i10 = this.f15731a;
-                if (i10 == aVar.f15731a) {
+                int i10 = this.f15716a;
+                if (i10 == aVar.f15716a) {
                     if (i10 != 0) {
                         if (i10 == 17) {
-                            if (this.f44098i == aVar.f44098i && this.f44102m == aVar.f44102m) {
+                            if (this.f43992i == aVar.f43992i && this.f43996m == aVar.f43996m) {
                                 return true;
                             }
                             return false;
                         } else if (i10 == 5) {
-                            return g(this.f44100k, aVar.f44100k);
+                            return g(this.f43994k, aVar.f43994k);
                         } else {
                             if (i10 == 13) {
-                                return TextUtils.equals(this.f44095c, aVar.f44095c);
+                                return TextUtils.equals(this.f43989c, aVar.f43989c);
                             }
-                            if (this.e == aVar.e && this.f44096f == aVar.f44096f && this.d == aVar.d && this.f44102m == aVar.f44102m && this.f44097g == aVar.f44097g && this.f44098i == aVar.f44098i && this.f44099j == aVar.f44099j && this.h == aVar.h && this.f44101l == aVar.f44101l && TextUtils.equals(this.f44095c, aVar.f44095c)) {
+                            if (this.e == aVar.e && this.f43990f == aVar.f43990f && this.d == aVar.d && this.f43996m == aVar.f43996m && this.f43991g == aVar.f43991g && this.f43992i == aVar.f43992i && this.f43993j == aVar.f43993j && this.h == aVar.h && this.f43995l == aVar.f43995l && TextUtils.equals(this.f43989c, aVar.f43989c)) {
                                 return true;
                             }
                             return false;

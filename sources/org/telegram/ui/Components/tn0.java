@@ -1,33 +1,18 @@
 package org.telegram.ui.Components;
-public final class tn0 extends s4.o {
-    public final xn0 f28612b;
+public final class tn0 {
+    public zg.o0 f28596a;
+    public int f28597b;
+    public String f28598c;
+    public int d;
 
-    public tn0(xn0 xn0Var) {
-        this.f28612b = xn0Var;
-    }
-
-    @Override
-    public final boolean a(int i10, int i11) {
-        xn0 xn0Var = this.f28612b;
-        return ((un0) xn0Var.f30430n.get(i10)).equals(xn0Var.f30431r.get(i11));
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        xn0 xn0Var = this.f28612b;
-        if (((un0) xn0Var.f30430n.get(i10)).f28898a.h == ((un0) xn0Var.f30431r.get(i11)).f28898a.h) {
-            return true;
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof tn0)) {
+            return false;
         }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f28612b.f30431r.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f28612b.f30430n.size();
+        tn0 tn0Var = (tn0) obj;
+        if (this.f28597b != tn0Var.f28597b || this.f28596a.h != tn0Var.f28596a.h || this.d != tn0Var.d) {
+            return false;
+        }
+        return true;
     }
 }

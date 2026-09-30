@@ -10,7 +10,7 @@ import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.t61;
 import w7.y5;
 public final class j0 extends h0 {
     public final k0 h;
@@ -27,52 +27,52 @@ public final class j0 extends h0 {
         t tVar = new t(k0Var, 5);
         u uVar = new u(k0Var, 5);
         d6Var = ((e3) k0Var).resourcesProvider;
-        u61 u61Var = new u61(context, i10, 0, false, tVar, uVar, null, d6Var);
-        this.d = u61Var;
-        u61Var.s1();
-        u61 u61Var2 = this.d;
-        u61Var2.f28778f3.f26223r = false;
-        u61Var2.setClipToPadding(false);
+        t61 t61Var = new t61(context, i10, 0, false, tVar, uVar, null, d6Var);
+        this.d = t61Var;
+        t61Var.p1();
+        t61 t61Var2 = this.d;
+        t61Var2.Y2.f25924r = false;
+        t61Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.d.j(new ai.r(this, 7));
-        this.f9106c.addView(this.d, 0, y5.c(-1.0f, -1));
+        this.f9094c.addView(this.d, 0, y5.c(-1.0f, -1));
         d6Var2 = ((e3) k0Var).resourcesProvider;
         org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, d6Var2);
-        this.f9104a = kVar;
+        this.f9092a = kVar;
         kVar.setOccupyStatusBar(false);
-        org.telegram.ui.ActionBar.k kVar2 = this.f9104a;
+        org.telegram.ui.ActionBar.k kVar2 = this.f9092a;
         int i11 = h6.G6;
         kVar2.setTitleColor(k0Var.getThemedColor(i11));
-        this.f9104a.A(k0Var.getThemedColor(h6.f19480z8), false);
-        this.f9104a.setBackButtonImage(R.drawable.ic_ab_back);
-        this.f9104a.B(k0Var.getThemedColor(h6.f19461y8), false);
-        this.f9104a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
-        this.f9104a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
-        this.f9104a.setActionBarMenuOnItemClick(new ei.t(this, 8));
-        this.f9106c.addView(this.f9104a, y5.e(-1, 56, 48));
+        this.f9092a.A(k0Var.getThemedColor(h6.f19465z8), false);
+        this.f9092a.setBackButtonImage(R.drawable.ic_ab_back);
+        this.f9092a.B(k0Var.getThemedColor(h6.f19446y8), false);
+        this.f9092a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
+        this.f9092a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
+        this.f9092a.setActionBarMenuOnItemClick(new ei.t(this, 8));
+        this.f9094c.addView(this.f9092a, y5.e(-1, 56, 48));
         LinearLayout f7 = ok.f(context, 0);
         f7.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(12.0f));
         d6Var3 = ((e3) k0Var).resourcesProvider;
         ci.d dVar = new ci.d(context, d6Var3, true);
         dVar.d();
-        dVar.setColor(i0.a.d(0.125f, k0Var.getThemedColor(h6.f19076d6), k0Var.getThemedColor(i11)));
+        dVar.setColor(i0.a.d(0.125f, k0Var.getThemedColor(h6.f19061d6), k0Var.getThemedColor(i11)));
         dVar.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         dVar.e();
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f9111b;
+            public final j0 f9099b;
 
             {
-                this.f9111b = this;
+                this.f9099b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f9111b.h.M.f(false, true);
+                        this.f9099b.h.M.f(false, true);
                         return;
                     default:
-                        this.f9111b.h.M.f(true, true);
+                        this.f9099b.h.M.f(true, true);
                         return;
                 }
             }
@@ -83,26 +83,26 @@ public final class j0 extends h0 {
         dVar2.setText(LocaleController.getString(R.string.CommunityPendingRequestAddAll));
         dVar2.e();
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f9111b;
+            public final j0 f9099b;
 
             {
-                this.f9111b = this;
+                this.f9099b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f9111b.h.M.f(false, true);
+                        this.f9099b.h.M.f(false, true);
                         return;
                     default:
-                        this.f9111b.h.M.f(true, true);
+                        this.f9099b.h.M.f(true, true);
                         return;
                 }
             }
         });
         f7.addView(dVar2, y5.p(0, 48, 1.0f, 0, 4, 0, 4, 0));
-        this.f9106c.addView(f7, y5.f(-2.0f, 80, 0, 0, 0, AndroidUtilities.navigationBarHeight));
+        this.f9094c.addView(f7, y5.f(-2.0f, 80, 0, 0, 0, AndroidUtilities.navigationBarHeight));
         a();
     }
 }

@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 public final class r extends db.u {
-    public static final p f9577c = new p(db.t.f7606a, 1);
-    public final db.g f9578a;
-    public final db.t f9579b;
+    public static final p f9565c = new p(db.t.f7594a, 1);
+    public final db.g f9566a;
+    public final db.t f9567b;
 
     public r(db.g gVar, db.t tVar) {
-        this.f9578a = gVar;
-        this.f9579b = tVar;
+        this.f9566a = gVar;
+        this.f9567b = tVar;
     }
 
     public final Serializable a(lb.a aVar, int i10) {
@@ -28,7 +28,7 @@ public final class r extends db.u {
                 }
                 return Boolean.valueOf(aVar.n());
             }
-            return this.f9579b.a(aVar);
+            return this.f9567b.a(aVar);
         }
         return aVar.v();
     }
@@ -114,7 +114,7 @@ public final class r extends db.u {
             return;
         }
         Class<?> cls = obj.getClass();
-        db.g gVar = this.f9578a;
+        db.g gVar = this.f9566a;
         gVar.getClass();
         db.u b10 = gVar.b(new kb.a(cls));
         if (b10 instanceof r) {

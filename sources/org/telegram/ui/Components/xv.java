@@ -14,27 +14,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class xv extends LinearLayout {
-    public final a0.i f30515a;
-    public final Paint f30516b;
-    public final RectF f30517c;
+    public final a0.i f30486a;
+    public final Paint f30487b;
+    public final RectF f30488c;
     public final RectF d;
     public final RectF e;
-    public final Path f30518f;
+    public final Path f30489f;
     public final boolean h;
-    public final boolean f30519n;
-    public final fw f30520r;
+    public final boolean f30490n;
+    public final fw f30491r;
 
     public xv(fw fwVar, Context context, boolean z10, boolean z11) {
         super(context);
-        this.f30520r = fwVar;
+        this.f30491r = fwVar;
         this.h = z10;
-        this.f30519n = z11;
-        this.f30515a = new a0.i();
-        this.f30516b = new Paint(1);
-        this.f30517c = new RectF();
+        this.f30490n = z11;
+        this.f30486a = new a0.i();
+        this.f30487b = new Paint(1);
+        this.f30488c = new RectF();
         this.d = new RectF();
         this.e = new RectF();
-        this.f30518f = new Path();
+        this.f30489f = new Path();
     }
 
     public final void a(RectF rectF, int i10) {
@@ -50,8 +50,8 @@ public final class xv extends LinearLayout {
     public final void dispatchDraw(Canvas canvas) {
         float f7;
         float f10;
-        fw fwVar = this.f30520r;
-        boolean z10 = fwVar.f24367n;
+        fw fwVar = this.f30491r;
+        boolean z10 = fwVar.f24341n;
         dw dwVar = fwVar.G;
         for (Map.Entry entry : fwVar.H.entrySet()) {
             View view = (View) entry.getKey();
@@ -64,12 +64,12 @@ public final class xv extends LinearLayout {
                 canvas.restore();
             }
         }
-        if (fwVar.f24369s == null) {
-            fwVar.f24369s = new e6(this, 350L, tr.h);
+        if (fwVar.f24343s == null) {
+            fwVar.f24343s = new e6(this, 350L, sr.h);
         }
-        e6 e6Var = fwVar.f24369s;
+        e6 e6Var = fwVar.f24343s;
         float f11 = 0.0f;
-        if (fwVar.f24368r) {
+        if (fwVar.f24342r) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
@@ -77,7 +77,7 @@ public final class xv extends LinearLayout {
         int i10 = 0;
         float d = e6Var.d(f7, false);
         int floor = (int) Math.floor(fwVar.K);
-        RectF rectF = this.f30517c;
+        RectF rectF = this.f30488c;
         a(rectF, floor);
         RectF rectF2 = this.d;
         a(rectF2, (int) Math.ceil(fwVar.K));
@@ -98,16 +98,16 @@ public final class xv extends LinearLayout {
         rectF3.set(rectF3.centerX() - B, rectF3.centerY() - height, rectF3.centerX() + B, rectF3.centerY() + height);
         float dp = AndroidUtilities.dp(AndroidUtilities.lerp(8.0f, 16.0f, f11));
         int k10 = fwVar.k();
-        Paint paint = this.f30516b;
+        Paint paint = this.f30487b;
         paint.setColor(k10);
         if (z10) {
             paint.setAlpha((int) ((1.0f - (f11 * 0.5f)) * paint.getAlpha() * d));
         } else {
             paint.setAlpha((int) (paint.getAlpha() * d));
         }
-        Path path = this.f30518f;
+        Path path = this.f30489f;
         path.rewind();
-        boolean z11 = this.f30519n;
+        boolean z11 = this.f30490n;
         if (z11) {
             f10 = rectF3.height() / 2.0f;
         } else {
@@ -135,9 +135,9 @@ public final class xv extends LinearLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f30520r.G) {
+        if (view == this.f30491r.G) {
             canvas.save();
-            canvas.clipPath(this.f30518f);
+            canvas.clipPath(this.f30489f);
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -150,7 +150,7 @@ public final class xv extends LinearLayout {
         a0.i iVar;
         long j3;
         TLRPC.StickerSet stickerSet;
-        fw fwVar = this.f30520r;
+        fw fwVar = this.f30491r;
         bw bwVar = fwVar.F;
         int i14 = (i13 - i11) / 2;
         if (this.h) {
@@ -158,7 +158,7 @@ public final class xv extends LinearLayout {
             int i15 = 0;
             while (true) {
                 int childCount = getChildCount();
-                iVar = this.f30515a;
+                iVar = this.f30486a;
                 if (i15 >= childCount) {
                     break;
                 }
@@ -169,17 +169,17 @@ public final class xv extends LinearLayout {
                     Long l4 = null;
                     if (z11) {
                         bw bwVar2 = (bw) childAt;
-                        Long l10 = bwVar2.f23035a;
+                        Long l10 = bwVar2.f23097a;
                         if (l10 == null) {
-                            ay ayVar = bwVar2.v;
-                            if (ayVar != null && (stickerSet = ayVar.f22725b) != null) {
-                                l4 = Long.valueOf(stickerSet.f18379id);
+                            zx zxVar = bwVar2.v;
+                            if (zxVar != null && (stickerSet = zxVar.f30981b) != null) {
+                                l4 = Long.valueOf(stickerSet.f18364id);
                             } else {
-                                l10 = bwVar2.f23040r;
+                                l10 = bwVar2.f23102r;
                                 if (l10 == null) {
-                                    TLRPC.Document document = bwVar2.f23041s;
+                                    TLRPC.Document document = bwVar2.f23103s;
                                     if (document != null) {
-                                        l4 = Long.valueOf(document.f18358id);
+                                        l4 = Long.valueOf(document.f18343id);
                                     }
                                 }
                             }
@@ -190,8 +190,8 @@ public final class xv extends LinearLayout {
                     }
                     if (fwVar.O && z11) {
                         bw bwVar3 = (bw) childAt;
-                        if (bwVar3.f23036b) {
-                            bwVar3.f23036b = false;
+                        if (bwVar3.f23098b) {
+                            bwVar3.f23098b = false;
                             childAt.setScaleX(0.0f);
                             childAt.setScaleY(0.0f);
                             childAt.setAlpha(0.0f);
@@ -201,25 +201,25 @@ public final class xv extends LinearLayout {
                             } else {
                                 j3 = 200;
                             }
-                            alpha.setDuration(j3).setInterpolator(tr.h).start();
+                            alpha.setDuration(j3).setInterpolator(sr.h).start();
                         }
                     }
                     if (l4 != null) {
                         Integer num = (Integer) iVar.f(l4.longValue());
                         if (num != null && num.intValue() != paddingLeft && Math.abs(num.intValue() - paddingLeft) < AndroidUtilities.dp(45.0f)) {
                             childAt.setTranslationX(num.intValue() - paddingLeft);
-                            childAt.animate().translationX(0.0f).setDuration(250L).setInterpolator(tr.h).start();
+                            childAt.animate().translationX(0.0f).setDuration(250L).setInterpolator(sr.h).start();
                         }
                         iVar.k(Integer.valueOf(paddingLeft), l4.longValue());
                     }
-                    if ((childAt != fwVar.f24372y || fwVar.W) && (childAt != fwVar.E || fwVar.f24364b0)) {
+                    if ((childAt != fwVar.f24346y || fwVar.W) && (childAt != fwVar.E || fwVar.f24338b0)) {
                         paddingLeft = org.telegram.messenger.f0.C(3.0f, childAt.getMeasuredWidth(), paddingLeft);
                     }
                 }
                 i15++;
             }
             if (bwVar != null) {
-                Long l11 = bwVar.f23035a;
+                Long l11 = bwVar.f23097a;
                 if (getPaddingRight() + bwVar.getMeasuredWidth() + paddingLeft <= fwVar.getMeasuredWidth()) {
                     int i16 = i12 - i10;
                     paddingLeft = (i16 - getPaddingRight()) - bwVar.getMeasuredWidth();
@@ -239,11 +239,11 @@ public final class xv extends LinearLayout {
             }
             return;
         }
-        int childCount2 = (getChildCount() - (!fwVar.W ? 1 : 0)) - (!fwVar.f24364b0 ? 1 : 0);
+        int childCount2 = (getChildCount() - (!fwVar.W ? 1 : 0)) - (!fwVar.f24338b0 ? 1 : 0);
         int B = (int) (org.telegram.messenger.ok.B(30.0f, childCount2, ((i12 - i10) - getPaddingLeft()) - getPaddingRight()) / Math.max(1, childCount2 - 1));
         int paddingLeft2 = getPaddingLeft();
         for (int i17 = 0; i17 < childCount2; i17++) {
-            View childAt2 = getChildAt((!fwVar.W ? 1 : 0) + (!fwVar.f24364b0 ? 1 : 0) + i17);
+            View childAt2 = getChildAt((!fwVar.W ? 1 : 0) + (!fwVar.f24338b0 ? 1 : 0) + i17);
             if (childAt2 != null) {
                 childAt2.layout(paddingLeft2, i14 - (childAt2.getMeasuredHeight() / 2), childAt2.getMeasuredWidth() + paddingLeft2, (childAt2.getMeasuredHeight() / 2) + i14);
                 paddingLeft2 = childAt2.getMeasuredWidth() + B + paddingLeft2;
@@ -259,15 +259,15 @@ public final class xv extends LinearLayout {
         bw bwVar2;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(99999999, Integer.MIN_VALUE);
         int paddingRight = getPaddingRight() + getPaddingLeft();
-        fw fwVar = this.f30520r;
+        fw fwVar = this.f30491r;
         float f10 = 0.0f;
-        if (!fwVar.W && (bwVar2 = fwVar.f24372y) != null) {
+        if (!fwVar.W && (bwVar2 = fwVar.f24346y) != null) {
             f7 = bwVar2.getAlpha() * AndroidUtilities.dp(33.0f);
         } else {
             f7 = 0.0f;
         }
         int i13 = paddingRight - ((int) f7);
-        if (!fwVar.f24364b0 && (bwVar = fwVar.E) != null) {
+        if (!fwVar.f24338b0 && (bwVar = fwVar.E) != null) {
             f10 = bwVar.getAlpha() * AndroidUtilities.dp(33.0f);
         }
         int i14 = i13 - ((int) f10);

@@ -1,13 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-public final class hn0 extends FrameLayout {
-    public org.telegram.ui.Cells.k7 f24893a;
-
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class hn0 extends org.telegram.ui.Cells.j7 {
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f24893a.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+    public final boolean d(MessageObject messageObject) {
+        return MediaController.getInstance().playMessage(messageObject);
     }
 }

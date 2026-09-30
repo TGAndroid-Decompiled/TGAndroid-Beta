@@ -4,34 +4,34 @@ import android.content.SharedPreferences;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class f9 implements Runnable {
-    public final int f16379a;
-    public final MediaDataController f16380b;
-    public final TLRPC.TL_error f16381c;
+    public final int f16363a;
+    public final MediaDataController f16364b;
+    public final TLRPC.TL_error f16365c;
     public final TLObject d;
     public final SharedPreferences e;
-    public final boolean[] f16382f;
+    public final boolean[] f16366f;
 
     public f9(MediaDataController mediaDataController, TLRPC.TL_error tL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr, int i10) {
-        this.f16379a = i10;
-        this.f16380b = mediaDataController;
-        this.f16381c = tL_error;
+        this.f16363a = i10;
+        this.f16364b = mediaDataController;
+        this.f16365c = tL_error;
         this.d = tLObject;
         this.e = sharedPreferences;
-        this.f16382f = zArr;
+        this.f16366f = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f16379a) {
+        switch (this.f16363a) {
             case 0:
                 SharedPreferences sharedPreferences = this.e;
-                boolean[] zArr = this.f16382f;
-                this.f16380b.lambda$loadRecentAndTopReactions$238(this.f16381c, this.d, sharedPreferences, zArr);
+                boolean[] zArr = this.f16366f;
+                this.f16364b.lambda$loadRecentAndTopReactions$238(this.f16365c, this.d, sharedPreferences, zArr);
                 return;
             default:
                 SharedPreferences sharedPreferences2 = this.e;
-                boolean[] zArr2 = this.f16382f;
-                this.f16380b.lambda$loadRecentAndTopReactions$236(this.f16381c, this.d, sharedPreferences2, zArr2);
+                boolean[] zArr2 = this.f16366f;
+                this.f16364b.lambda$loadRecentAndTopReactions$236(this.f16365c, this.d, sharedPreferences2, zArr2);
                 return;
         }
     }

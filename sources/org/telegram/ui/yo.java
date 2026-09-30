@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.messenger.ChatObject;
-public final class yo implements org.telegram.ui.Components.i90 {
-    public final Context f40305a;
-    public final fp f40306b;
+public final class yo implements org.telegram.ui.Components.h90 {
+    public final Context f40198a;
+    public final fp f40199b;
 
     public yo(fp fpVar, Context context) {
-        this.f40306b = fpVar;
-        this.f40305a = context;
+        this.f40199b = fpVar;
+        this.f40198a = context;
     }
 
     @Override
     public final void e() {
-        this.f40306b.X(true);
+        this.f40199b.X(true);
     }
 
     @Override
     public final void j() {
-        fp fpVar = this.f40306b;
-        org.telegram.ui.Components.f70 f70Var = new org.telegram.ui.Components.f70(this.f40305a, fpVar.f33866l0, fpVar.Y, fpVar.f33869o0, fpVar, fpVar.Z, true, ChatObject.isChannel(fpVar.X));
-        fp fpVar2 = this.f40306b;
-        fpVar2.f33870p0 = f70Var;
-        fpVar2.f33870p0.show();
+        fp fpVar = this.f40199b;
+        org.telegram.ui.Components.e70 e70Var = new org.telegram.ui.Components.e70(this.f40198a, fpVar.f33725l0, fpVar.Y, fpVar.f33728o0, fpVar, fpVar.Z, true, ChatObject.isChannel(fpVar.X));
+        fp fpVar2 = this.f40199b;
+        fpVar2.f33729p0 = e70Var;
+        fpVar2.f33729p0.show();
     }
 
     @Override

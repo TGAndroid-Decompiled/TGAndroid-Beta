@@ -5,32 +5,32 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 public final class g1 extends AnimatorListenerAdapter {
-    public final int f18929a;
-    public final m1 f18930b;
+    public final int f18914a;
+    public final m1 f18915b;
 
     public g1(m1 m1Var, int i10) {
-        this.f18929a = i10;
-        this.f18930b = m1Var;
+        this.f18914a = i10;
+        this.f18915b = m1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout;
         float f7;
-        switch (this.f18929a) {
+        switch (this.f18914a) {
             case 0:
-                m1 m1Var = this.f18930b;
+                m1 m1Var = this.f18915b;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = null;
-                m1Var.f19650a = null;
+                m1Var.f19635a = null;
                 ViewGroup viewGroup = (ViewGroup) m1Var.getContentView();
                 if (viewGroup instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
                     actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup;
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.f18672n = false;
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.f18657n = false;
                 } else {
                     for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
                         if (viewGroup.getChildAt(i10) instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
                             actionBarPopupWindow$ActionBarPopupWindowLayout2 = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup.getChildAt(i10);
-                            actionBarPopupWindow$ActionBarPopupWindowLayout2.f18672n = false;
+                            actionBarPopupWindow$ActionBarPopupWindowLayout2.f18657n = false;
                         }
                     }
                     actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarPopupWindow$ActionBarPopupWindowLayout2;
@@ -49,8 +49,8 @@ public final class g1 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                m1 m1Var2 = this.f18930b;
-                m1Var2.f19650a = null;
+                m1 m1Var2 = this.f18915b;
+                m1Var2.f19635a = null;
                 m1Var2.d = false;
                 m1Var2.setFocusable(false);
                 try {
@@ -59,7 +59,7 @@ public final class g1 extends AnimatorListenerAdapter {
                 }
                 m1Var2.j();
                 if (m1Var2.e) {
-                    m1Var2.f19656j.unlock();
+                    m1Var2.f19641j.unlock();
                     return;
                 }
                 return;

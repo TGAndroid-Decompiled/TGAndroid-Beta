@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
-public final class p80 extends org.telegram.ui.Components.yl0 {
-    public final Context f36539c;
+public final class p80 extends org.telegram.ui.Components.xl0 {
+    public final Context f36436c;
     public final boolean d;
     public final LanguageSelectActivity e;
 
     public p80(LanguageSelectActivity languageSelectActivity, Context context, boolean z10) {
         this.e = languageSelectActivity;
-        this.f36539c = context;
+        this.f36436c = context;
         this.d = z10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f43071f;
+        int i10 = c1Var.f42965f;
         if (i10 != 0 && i10 != 4 && i10 != 5 && i10 != 2) {
             return false;
         }
@@ -59,7 +59,7 @@ public final class p80 extends org.telegram.ui.Components.yl0 {
             }
             i11 = i10 + 1;
         }
-        int size = languageSelectActivity.f31171f.size() + i11 + 1;
+        int size = languageSelectActivity.f31099f.size() + i11 + 1;
         if (!languageSelectActivity.h.isEmpty()) {
             return languageSelectActivity.h.size() + 1 + size;
         }
@@ -88,7 +88,7 @@ public final class p80 extends org.telegram.ui.Components.yl0 {
         float f12;
         org.telegram.ui.Cells.b7 b7Var;
         int i15 = 5;
-        Context context = this.f36539c;
+        Context context = this.f36436c;
         if (i10 != 0) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -110,9 +110,9 @@ public final class p80 extends org.telegram.ui.Components.yl0 {
         } else {
             ?? frameLayout = new FrameLayout(context);
             frameLayout.e = 50;
-            frameLayout.f20388r = 21;
+            frameLayout.f20373r = 21;
             TextView textView = new TextView(context);
-            frameLayout.f20383a = textView;
+            frameLayout.f20368a = textView;
             org.telegram.messenger.ok.t(textView, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, 16.0f, 1);
             textView.setMaxLines(1);
             textView.setSingleLine(true);
@@ -143,8 +143,8 @@ public final class p80 extends org.telegram.ui.Components.yl0 {
             }
             frameLayout.addView(textView, w7.y5.d(-1, -1.0f, i16, f7, 0.0f, f10, 0.0f));
             TextView textView2 = new TextView(context);
-            frameLayout.f20384b = textView2;
-            textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19478z6, false));
+            frameLayout.f20369b = textView2;
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19463z6, false));
             textView2.setTextSize(1, 13.0f);
             if (LocaleController.isRTL) {
                 i13 = 5;
@@ -176,14 +176,14 @@ public final class p80 extends org.telegram.ui.Components.yl0 {
             }
             frameLayout.addView(textView2, w7.y5.d(-2, -2.0f, i17, f11, 36.0f, f12, 0.0f));
             RadioButton radioButton = new RadioButton(context);
-            frameLayout.f20385c = radioButton;
+            frameLayout.f20370c = radioButton;
             radioButton.setSize(AndroidUtilities.dp(20.0f));
-            radioButton.b(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19131g7, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19148h7, false));
+            radioButton.b(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19116g7, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19133h7, false));
             if (!LocaleController.isRTL) {
                 i15 = 3;
             }
             frameLayout.addView(radioButton, w7.y5.d(20, 20.0f, i15 | 16, 22.0f, 0.0f, 22.0f, 0.0f));
-            frameLayout.f20387n = LocaleController.isRTL;
+            frameLayout.f20372n = LocaleController.isRTL;
             frameLayout.setClipChildren(false);
             b7Var = frameLayout;
         }
@@ -192,7 +192,7 @@ public final class p80 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final void y(s4.c1 c1Var) {
-        View view = c1Var.f43068a;
+        View view = c1Var.f42962a;
         if (view instanceof org.telegram.ui.Cells.g9) {
             ((org.telegram.ui.Cells.g9) view).c();
         }

@@ -7,22 +7,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_fragment;
 public final class j01 extends ClickableSpan {
-    public final TLRPC.TL_username f34700a;
-    public final String f34701b;
-    public final q01 f34702c;
+    public final TLRPC.TL_username f34615a;
+    public final String f34616b;
+    public final q01 f34617c;
 
     public j01(q01 q01Var, TLRPC.TL_username tL_username, String str) {
-        this.f34702c = q01Var;
-        this.f34700a = tL_username;
-        this.f34701b = str;
+        this.f34617c = q01Var;
+        this.f34615a = tL_username;
+        this.f34616b = str;
     }
 
     @Override
     public final void onClick(View view) {
-        ProfileActivity profileActivity = this.f34702c.e;
-        TLRPC.TL_username tL_username = this.f34700a;
+        ProfileActivity profileActivity = this.f34617c.e;
+        TLRPC.TL_username tL_username = this.f34615a;
         if (!tL_username.editable) {
-            if (profileActivity.f31662i5 != this) {
+            if (profileActivity.f31590i5 != this) {
                 profileActivity.M4(this);
                 TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
                 TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
@@ -34,7 +34,7 @@ public final class j01 extends ClickableSpan {
             return;
         }
         profileActivity.M4(null);
-        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f34701b;
+        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f34616b;
         TLRPC.Chat chat = profileActivity.E2;
         if (chat != null && chat.noforwards) {
             return;

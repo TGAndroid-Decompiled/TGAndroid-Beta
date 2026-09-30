@@ -1,41 +1,121 @@
 package org.telegram.ui.Components;
-public final class za extends s4.j0 {
-    public final s4.j0 f30939a;
-    public final ab f30940b;
 
-    public za(ab abVar, s4.j0 j0Var) {
-        this.f30940b = abVar;
-        this.f30939a = j0Var;
+import android.content.Context;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class za extends xl0 {
+    public final int f30858c;
+    public final Context d;
+    public final Object e;
+    public final KeyEvent.Callback f30859f;
+
+    public za(lj ljVar, Context context) {
+        this.f30858c = 1;
+        this.f30859f = ljVar;
+        this.e = new ArrayList();
+        this.d = context;
     }
 
     @Override
-    public final void a() {
-        this.f30939a.a();
+    public void B(s4.j0 j0Var) {
+        switch (this.f30858c) {
+            case 0:
+                ((xl0) this.e).B(new ya(this, j0Var));
+                return;
+            default:
+                super.B(j0Var);
+                return;
+        }
     }
 
     @Override
-    public final void b(int i10, int i11) {
-        this.f30939a.b(i10 + (!((cb) this.f30940b.f22607f).P ? 1 : 0), i11);
+    public final boolean D(s4.c1 c1Var) {
+        switch (this.f30858c) {
+            case 0:
+                return ((xl0) this.e).D(c1Var);
+            default:
+                if (c1Var.f42965f == 0) {
+                    return true;
+                }
+                return false;
+        }
     }
 
     @Override
-    public final void c(int i10, int i11, Object obj) {
-        this.f30939a.c(i10 + (!((cb) this.f30940b.f22607f).P ? 1 : 0), i11, obj);
+    public final int h() {
+        switch (this.f30858c) {
+            case 0:
+                return ((xl0) this.e).h() + 1;
+            default:
+                return ((ArrayList) this.e).size();
+        }
     }
 
     @Override
-    public final void d(int i10, int i11) {
-        this.f30939a.d(i10 + (!((cb) this.f30940b.f22607f).P ? 1 : 0), i11);
+    public final int j(int i10) {
+        int i11;
+        switch (this.f30858c) {
+            case 0:
+                bb bbVar = (bb) this.f30859f;
+                if (bbVar.P) {
+                    i11 = h() - 1;
+                } else {
+                    i11 = 0;
+                }
+                if (i10 == i11) {
+                    return -1000;
+                }
+                return ((xl0) this.e).j(i10 - (!bbVar.P ? 1 : 0));
+            default:
+                return 0;
+        }
     }
 
     @Override
-    public final void e(int i10, int i11) {
-        int i12 = !((cb) this.f30940b.f22607f).P ? 1 : 0;
-        this.f30939a.e(i10 + i12, i11 + i12);
+    public final void v(s4.c1 c1Var, int i10) {
+        int i11;
+        switch (this.f30858c) {
+            case 0:
+                bb bbVar = (bb) this.f30859f;
+                if (bbVar.P) {
+                    i11 = h() - 1;
+                } else {
+                    i11 = 0;
+                }
+                if (i10 != i11) {
+                    ((xl0) this.e).v(c1Var, i10 - (!bbVar.P ? 1 : 0));
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Cells.eb ebVar = (org.telegram.ui.Cells.eb) c1Var.f42962a;
+                ebVar.d(1, false, false);
+                ebVar.setSize(((lj) this.f30859f).f26003r);
+                ebVar.e(1, ((ArrayList) this.e).get(i10), null, 0);
+                return;
+        }
     }
 
     @Override
-    public final void f(int i10, int i11) {
-        this.f30939a.f(i10 + (!((cb) this.f30940b.f22607f).P ? 1 : 0), i11);
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        switch (this.f30858c) {
+            case 0:
+                if (i10 == -1000) {
+                    return new s4.c1(new ci.bb((bb) this.f30859f, this.d));
+                }
+                return ((xl0) this.e).x(viewGroup, i10);
+            default:
+                kj kjVar = new kj(this, this.d);
+                kjVar.f20268b = false;
+                return new s4.c1(kjVar);
+        }
+    }
+
+    public za(bb bbVar, xl0 xl0Var, Context context) {
+        this.f30858c = 0;
+        this.f30859f = bbVar;
+        this.e = xl0Var;
+        this.d = context;
     }
 }

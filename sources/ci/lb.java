@@ -1,14 +1,14 @@
 package ci;
 public final class lb implements pc {
-    public final bi.v f5032a;
+    public final bi.v f5025a;
 
     public lb(bi.v vVar) {
-        this.f5032a = vVar;
+        this.f5025a = vVar;
     }
 
     @Override
     public final void F(float f7, boolean z10) {
-        this.f5032a.run(Boolean.FALSE, Float.valueOf(f7));
+        this.f5025a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override

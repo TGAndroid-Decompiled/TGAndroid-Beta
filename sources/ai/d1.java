@@ -10,8 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.q90;
+import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.p90;
 public final class d1 extends LinearLayout {
     public final int f691a;
     public Object f692b;
@@ -52,7 +52,7 @@ public final class d1 extends LinearLayout {
         switch (this.f691a) {
             case 0:
                 Path path = (Path) this.f693c;
-                if (((h1) this.d).f929a) {
+                if (((h1) this.d).f927a) {
                     path.rewind();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -85,11 +85,11 @@ public final class d1 extends LinearLayout {
             case 3:
                 RectF rectF = (RectF) this.f692b;
                 Paint paint = (Paint) this.f693c;
-                pq pqVar = (pq) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19164i5, pqVar.f27450d0));
-                int left = pqVar.E[0].getLeft() - AndroidUtilities.dp(13.0f);
+                oq oqVar = (oq) this.d;
+                paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19149i5, oqVar.f27163d0));
+                int left = oqVar.E[0].getLeft() - AndroidUtilities.dp(13.0f);
                 float dp = AndroidUtilities.dp(91.0f);
-                org.telegram.ui.ActionBar.j0 j0Var = pqVar.F;
+                org.telegram.ui.ActionBar.j0 j0Var = oqVar.F;
                 if (j0Var.getVisibility() == 0) {
                     f7 = j0Var.getAlpha() * AndroidUtilities.dp(25.0f);
                 } else {
@@ -104,10 +104,10 @@ public final class d1 extends LinearLayout {
         }
     }
 
-    public d1(pq pqVar, Context context) {
+    public d1(oq oqVar, Context context) {
         super(context);
         this.f691a = 3;
-        this.d = pqVar;
+        this.d = oqVar;
         this.f692b = new RectF();
         this.f693c = new Paint(1);
     }
@@ -131,17 +131,17 @@ public final class d1 extends LinearLayout {
                 TextView textView = new TextView(context);
                 this.f693c = textView;
                 com.google.android.gms.internal.vision.e2.l(20.0f, 1, textView);
-                int i11 = org.telegram.ui.ActionBar.h6.f19182j5;
+                int i11 = org.telegram.ui.ActionBar.h6.f19167j5;
                 textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
                 textView.setGravity(17);
                 addView(textView, w7.y5.t(-2, -2, 1, 0, 2, 0, 0));
-                q90 q90Var = new q90(context, d6Var);
-                this.d = q90Var;
-                q90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, d6Var));
-                q90Var.setTextSize(1, 14.0f);
-                q90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
-                q90Var.setGravity(17);
-                addView(q90Var, w7.y5.t(-2, -2, 1, 0, 9, 0, 18));
+                p90 p90Var = new p90(context, d6Var);
+                this.d = p90Var;
+                p90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, d6Var));
+                p90Var.setTextSize(1, 14.0f);
+                p90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
+                p90Var.setGravity(17);
+                addView(p90Var, w7.y5.t(-2, -2, 1, 0, 9, 0, 18));
                 return;
             default:
                 setOrientation(1);
@@ -152,9 +152,9 @@ public final class d1 extends LinearLayout {
                 frameLayout2.addView(dVar, w7.y5.c(-1.0f, -1));
                 sg.e eVar = new sg.e(context, 1, 4);
                 this.f692b = eVar;
-                sg.a aVar = eVar.f43333b;
-                aVar.f43321w = org.telegram.ui.ActionBar.h6.fk;
-                aVar.f43322x = org.telegram.ui.ActionBar.h6.gk;
+                sg.a aVar = eVar.f43227b;
+                aVar.f43215w = org.telegram.ui.ActionBar.h6.fk;
+                aVar.f43216x = org.telegram.ui.ActionBar.h6.gk;
                 aVar.b();
                 eVar.setStarParticlesView(dVar);
                 frameLayout2.addView(eVar, w7.y5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
@@ -163,7 +163,7 @@ public final class d1 extends LinearLayout {
                 TextView textView2 = new TextView(context);
                 this.f693c = textView2;
                 com.google.android.gms.internal.vision.e2.l(20.0f, 1, textView2);
-                int i12 = org.telegram.ui.ActionBar.h6.f19182j5;
+                int i12 = org.telegram.ui.ActionBar.h6.f19167j5;
                 textView2.setTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
                 textView2.setGravity(17);
                 addView(textView2, w7.y5.t(-2, -2, 1, 0, 2, 0, 0));

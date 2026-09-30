@@ -1,20 +1,20 @@
 package pi;
 public final class c {
-    public volatile boolean f41454a;
-    public volatile int f41455b;
+    public volatile boolean f41357a;
+    public volatile int f41358b;
 
     public final int a() {
-        if (!this.f41454a) {
+        if (!this.f41357a) {
             synchronized (this) {
                 try {
-                    if (!this.f41454a) {
-                        this.f41455b = d.f41456a.getInt("round_video_video_bitrate", 1000000);
-                        this.f41454a = true;
+                    if (!this.f41357a) {
+                        this.f41358b = d.f41359a.getInt("round_video_video_bitrate", 1000000);
+                        this.f41357a = true;
                     }
                 } finally {
                 }
             }
         }
-        return this.f41455b;
+        return this.f41358b;
     }
 }

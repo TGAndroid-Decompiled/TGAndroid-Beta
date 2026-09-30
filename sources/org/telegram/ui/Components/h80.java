@@ -1,15 +1,6 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class h80 extends s4.s0 {
-    public final k80 f24769a;
-
-    public h80(k80 k80Var) {
-        this.f24769a = k80Var;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        k80.o(this.f24769a);
-    }
+import org.telegram.tgnet.TLRPC;
+public interface h80 {
+    void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12);
 }

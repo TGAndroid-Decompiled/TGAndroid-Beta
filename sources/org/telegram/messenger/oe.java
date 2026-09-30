@@ -2,81 +2,81 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class oe implements Runnable {
-    public final int f17232a;
-    public final MessagesStorage f17233b;
-    public final ArrayList f17234c;
+    public final int f17216a;
+    public final MessagesStorage f17217b;
+    public final ArrayList f17218c;
 
     public oe(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f17232a = i10;
-        this.f17233b = messagesStorage;
-        this.f17234c = arrayList;
+        this.f17216a = i10;
+        this.f17217b = messagesStorage;
+        this.f17218c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f17232a) {
+        switch (this.f17216a) {
             case 0:
-                this.f17233b.lambda$markMessagesAsDeletedInternal$230(this.f17234c);
+                this.f17217b.lambda$markMessagesAsDeletedInternal$230(this.f17218c);
                 return;
             case 1:
-                this.f17233b.lambda$markVoiceMessageContentAsRead$216(this.f17234c);
+                this.f17217b.lambda$markVoiceMessageContentAsRead$216(this.f17218c);
                 return;
             case 2:
-                this.f17233b.lambda$emptyMessagesMedia$96(this.f17234c);
+                this.f17217b.lambda$emptyMessagesMedia$96(this.f17218c);
                 return;
             case 3:
-                this.f17233b.lambda$emptyMessagesMedia$97(this.f17234c);
+                this.f17217b.lambda$emptyMessagesMedia$97(this.f17218c);
                 return;
             case 4:
-                this.f17233b.lambda$loadUserInfo$128(this.f17234c);
+                this.f17217b.lambda$loadUserInfo$128(this.f17218c);
                 return;
             case 5:
-                this.f17233b.lambda$replaceMessageIfExists$233(this.f17234c);
+                this.f17217b.lambda$replaceMessageIfExists$233(this.f17218c);
                 return;
             case 6:
-                this.f17233b.lambda$markMessagesAsDeletedByRandoms$220(this.f17234c);
+                this.f17217b.lambda$markMessagesAsDeletedByRandoms$220(this.f17218c);
                 return;
             case 7:
-                this.f17233b.lambda$deleteFromDownloadQueue$183(this.f17234c);
+                this.f17217b.lambda$deleteFromDownloadQueue$183(this.f17218c);
                 return;
             case 8:
-                this.f17233b.lambda$deleteContacts$147(this.f17234c);
+                this.f17217b.lambda$deleteContacts$147(this.f17218c);
                 return;
             case 9:
-                this.f17233b.lambda$updateMessageVerifyFlags$195(this.f17234c);
+                this.f17217b.lambda$updateMessageVerifyFlags$195(this.f17218c);
                 return;
             case 10:
-                this.f17233b.lambda$putMessagesInternal$198(this.f17234c);
+                this.f17217b.lambda$putMessagesInternal$198(this.f17218c);
                 return;
             case 11:
-                this.f17233b.lambda$putMessagesInternal$197(this.f17234c);
+                this.f17217b.lambda$putMessagesInternal$197(this.f17218c);
                 return;
             case 12:
-                this.f17233b.lambda$markMessagesAsDeletedByRandoms$221(this.f17234c);
+                this.f17217b.lambda$markMessagesAsDeletedByRandoms$221(this.f17218c);
                 return;
             case 13:
-                this.f17233b.lambda$markMessagesAsDeletedInternal$224(this.f17234c);
+                this.f17217b.lambda$markMessagesAsDeletedInternal$224(this.f17218c);
                 return;
             case 14:
-                this.f17233b.lambda$markMessagesAsDeletedInternal$227(this.f17234c);
+                this.f17217b.lambda$markMessagesAsDeletedInternal$227(this.f17218c);
                 return;
             case 15:
-                this.f17233b.lambda$onReactionsUpdate$105(this.f17234c);
+                this.f17217b.lambda$onReactionsUpdate$105(this.f17218c);
                 return;
             case 16:
-                this.f17233b.lambda$deleteDialog$88(this.f17234c);
+                this.f17217b.lambda$deleteDialog$88(this.f17218c);
                 return;
             case 17:
-                this.f17233b.lambda$saveDialogFiltersOrder$75(this.f17234c);
+                this.f17217b.lambda$saveDialogFiltersOrder$75(this.f17218c);
                 return;
             case 18:
-                this.f17233b.lambda$putMessages$236(this.f17234c);
+                this.f17217b.lambda$putMessages$236(this.f17218c);
                 return;
             case 19:
-                this.f17233b.lambda$putMessages$237(this.f17234c);
+                this.f17217b.lambda$putMessages$237(this.f17218c);
                 return;
             default:
-                this.f17233b.lambda$putWebPages$187(this.f17234c);
+                this.f17217b.lambda$putWebPages$187(this.f17218c);
                 return;
         }
     }

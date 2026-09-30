@@ -1,12 +1,12 @@
 package ai;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class wb implements org.telegram.ui.Components.pb {
-    public final float[] f1680a = new float[2];
-    public final xb f1681b;
+public final class wb implements org.telegram.ui.Components.ob {
+    public final float[] f1673a = new float[2];
+    public final xb f1674b;
 
     public wb(xb xbVar) {
-        this.f1681b = xbVar;
+        this.f1674b = xbVar;
     }
 
     @Override
@@ -21,15 +21,15 @@ public final class wb implements org.telegram.ui.Components.pb {
 
     @Override
     public final int f(int i10) {
-        xb xbVar = this.f1681b;
+        xb xbVar = this.f1674b;
         jc jcVar = xbVar.I0;
         e6 t10 = jcVar.t();
         if (t10 == null) {
             return 0;
         }
         a5 a5Var = t10.f776c1;
-        xb xbVar2 = jcVar.f1100s;
-        float[] fArr = this.f1680a;
+        xb xbVar2 = jcVar.f1098s;
+        float[] fArr = this.f1673a;
         AndroidUtilities.getViewPositionInParent(a5Var, xbVar2, fArr);
         return (int) (xbVar.getMeasuredHeight() - (fArr[1] + a5Var.getMeasuredHeight()));
     }
@@ -45,7 +45,7 @@ public final class wb implements org.telegram.ui.Components.pb {
     }
 
     @Override
-    public final void b(org.telegram.ui.Components.rc rcVar) {
+    public final void b(org.telegram.ui.Components.qc qcVar) {
     }
 
     @Override
@@ -53,6 +53,6 @@ public final class wb implements org.telegram.ui.Components.pb {
     }
 
     @Override
-    public final void d(org.telegram.ui.Components.rc rcVar) {
+    public final void d(org.telegram.ui.Components.qc qcVar) {
     }
 }

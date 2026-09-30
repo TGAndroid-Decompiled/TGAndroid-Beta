@@ -1,87 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.widget.ImageView;
-public final class df extends ImageView {
-    public final int f23620a;
-    public final ChatActivityEnterView f23621b;
+public final class df extends AnimatorListenerAdapter {
+    public final int f23634a;
+    public final boolean f23635b;
+    public final ChatActivityEnterView f23636c;
 
-    public df(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
-        super(context);
-        this.f23620a = i10;
-        this.f23621b = chatActivityEnterView;
+    public df(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
+        this.f23634a = i10;
+        this.f23636c = chatActivityEnterView;
+        this.f23635b = z10;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f23620a) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                post(new ke(this.f23621b, 5));
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f23620a) {
-            case 2:
-                if (getAlpha() <= 0.0f) {
-                    return false;
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f23634a) {
+            case 1:
+                ChatActivityEnterView chatActivityEnterView = this.f23636c;
+                if (animator.equals(chatActivityEnterView.f22062s2)) {
+                    chatActivityEnterView.f22062s2 = null;
+                    return;
                 }
-                return super.onTouchEvent(motionEvent);
+                return;
             default:
-                return super.onTouchEvent(motionEvent);
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        switch (this.f23620a) {
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        af afVar;
+        float f7;
+        switch (this.f23634a) {
             case 0:
-                super.setAlpha(f7);
-                bf bfVar = this.f23621b.J1;
-                if (bfVar != null) {
-                    bfVar.setTranslationX(bfVar.f22928a);
+                ChatActivityEnterView chatActivityEnterView = this.f23636c;
+                if (chatActivityEnterView.f22026l5) {
+                    ImageView imageView = chatActivityEnterView.f22082w1;
+                    if (this.f23635b) {
+                        i10 = 0;
+                    } else {
+                        i10 = 8;
+                    }
+                    imageView.setVisibility(i10);
                     return;
                 }
                 return;
             case 1:
-                super.setAlpha(f7);
-                bf bfVar2 = this.f23621b.J1;
-                if (bfVar2 != null) {
-                    bfVar2.setTranslationX(bfVar2.f22928a);
+                ChatActivityEnterView chatActivityEnterView2 = this.f23636c;
+                if (animator.equals(chatActivityEnterView2.f22062s2)) {
+                    chatActivityEnterView2.f22044p1.setVisibility(8);
+                    if (this.f23635b && (afVar = chatActivityEnterView2.J1) != null) {
+                        afVar.setVisibility(8);
+                    }
+                    chatActivityEnterView2.f22062s2 = null;
                     return;
                 }
                 return;
-            default:
-                super.setAlpha(f7);
-                we weVar = this.f23621b.Z0;
-                if (weVar != null) {
-                    weVar.invalidate();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f23620a) {
             case 2:
-                super.setVisibility(i10);
-                we weVar = this.f23621b.Z0;
-                if (weVar != null) {
-                    weVar.invalidate();
+                ChatActivityEnterView chatActivityEnterView3 = this.f23636c;
+                chatActivityEnterView3.M1 = null;
+                if (!this.f23635b) {
+                    chatActivityEnterView3.J1.setVisibility(8);
                     return;
                 }
                 return;
             default:
-                super.setVisibility(i10);
+                if (this.f23635b) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                ChatActivityEnterView chatActivityEnterView4 = this.f23636c;
+                chatActivityEnterView4.f22081w0 = f7;
+                eg egVar = chatActivityEnterView4.U0;
+                if (egVar != null) {
+                    egVar.Y();
+                    return;
+                }
                 return;
         }
     }

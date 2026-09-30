@@ -15,30 +15,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.tj0;
-import org.telegram.ui.Components.xw;
-import org.telegram.ui.Components.z21;
+import org.telegram.ui.Components.dv;
+import org.telegram.ui.Components.sj0;
+import org.telegram.ui.Components.y21;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.sq;
 public final class u1 implements RequestDelegate {
-    public final int f1573a;
-    public final long f1574b;
-    public final Object f1575c;
+    public final int f1568a;
+    public final long f1569b;
+    public final Object f1570c;
     public final Object d;
 
     public u1(Object obj, long j3, Object obj2, int i10) {
-        this.f1573a = i10;
-        this.f1575c = obj;
-        this.f1574b = j3;
+        this.f1568a = i10;
+        this.f1570c = obj;
+        this.f1569b = j3;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f1573a;
-        long j3 = this.f1574b;
+        int i10 = this.f1568a;
+        long j3 = this.f1569b;
         Object obj = this.d;
-        Object obj2 = this.f1575c;
+        Object obj2 = this.f1570c;
         switch (i10) {
             case 0:
                 d2 d2Var = (d2) obj2;
@@ -73,12 +73,12 @@ public final class u1 implements RequestDelegate {
                 }
                 return;
             case 1:
-                ((ConferenceCall) obj2).lambda$requestLastBlock$3(this.f1574b, (Runnable) obj, tLObject, tL_error);
+                ((ConferenceCall) obj2).lambda$requestLastBlock$3(this.f1569b, (Runnable) obj, tLObject, tL_error);
                 return;
             case 2:
-                final tj0 tj0Var = (tj0) obj2;
+                final sj0 sj0Var = (sj0) obj2;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                int i14 = tj0Var.f28544f;
+                int i14 = sj0Var.f28254f;
                 if (tLObject instanceof Vector) {
                     final ArrayList arrayList3 = new ArrayList();
                     final ArrayList arrayList4 = new ArrayList();
@@ -107,23 +107,23 @@ public final class u1 implements RequestDelegate {
                     arrayList3.add(Long.valueOf(j3));
                     arrayList4.add(0);
                     final ArrayList arrayList6 = new ArrayList();
-                    final xw xwVar = new xw(28, tj0Var, arrayList6);
+                    final dv dvVar = new dv(29, sj0Var, arrayList6);
                     if (ChatObject.isChannel(chat)) {
                         TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
                         tL_channels_getParticipants.limit = MessagesController.getInstance(i14).chatReadMarkSizeThreshold;
                         tL_channels_getParticipants.offset = 0;
                         tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
-                        tL_channels_getParticipants.channel = MessagesController.getInstance(i14).getInputChannel(chat.f18352id);
+                        tL_channels_getParticipants.channel = MessagesController.getInstance(i14).getInputChannel(chat.f18337id);
                         ConnectionsManager.getInstance(i14).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
                             @Override
                             public final void run(final TLObject tLObject2, TLRPC.TL_error tL_error2) {
                                 switch (r6) {
                                     case 0:
-                                        final tj0 tj0Var2 = tj0Var;
+                                        final sj0 sj0Var2 = sj0Var;
                                         final ArrayList arrayList7 = arrayList3;
                                         final ArrayList arrayList8 = arrayList6;
                                         final ArrayList arrayList9 = arrayList4;
-                                        final xw xwVar2 = xwVar;
+                                        final dv dvVar2 = dvVar;
                                         AndroidUtilities.runOnUIThread(new Runnable() {
                                             @Override
                                             public final void run() {
@@ -134,14 +134,14 @@ public final class u1 implements RequestDelegate {
                                                             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject3;
                                                             for (int i17 = 0; i17 < tL_channels_channelParticipants.users.size(); i17++) {
                                                                 TLRPC.User user = tL_channels_channelParticipants.users.get(i17);
-                                                                MessagesController.getInstance(tj0Var2.f28544f).putUser(user, false);
-                                                                int indexOf = arrayList7.indexOf(Long.valueOf(user.f18499id));
+                                                                MessagesController.getInstance(sj0Var2.f28254f).putUser(user, false);
+                                                                int indexOf = arrayList7.indexOf(Long.valueOf(user.f18484id));
                                                                 if (!user.self && indexOf >= 0) {
-                                                                    arrayList8.add(new sj0(((Integer) arrayList9.get(indexOf)).intValue(), user));
+                                                                    arrayList8.add(new rj0(((Integer) arrayList9.get(indexOf)).intValue(), user));
                                                                 }
                                                             }
                                                         }
-                                                        xwVar2.run();
+                                                        dvVar2.run();
                                                         return;
                                                     default:
                                                         TLObject tLObject4 = tLObject2;
@@ -149,25 +149,25 @@ public final class u1 implements RequestDelegate {
                                                             TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject4;
                                                             for (int i18 = 0; i18 < tL_messages_chatFull.users.size(); i18++) {
                                                                 TLRPC.User user2 = tL_messages_chatFull.users.get(i18);
-                                                                MessagesController.getInstance(tj0Var2.f28544f).putUser(user2, false);
-                                                                int indexOf2 = arrayList7.indexOf(Long.valueOf(user2.f18499id));
+                                                                MessagesController.getInstance(sj0Var2.f28254f).putUser(user2, false);
+                                                                int indexOf2 = arrayList7.indexOf(Long.valueOf(user2.f18484id));
                                                                 if (!user2.self && indexOf2 >= 0) {
-                                                                    arrayList8.add(new sj0(((Integer) arrayList9.get(indexOf2)).intValue(), user2));
+                                                                    arrayList8.add(new rj0(((Integer) arrayList9.get(indexOf2)).intValue(), user2));
                                                                 }
                                                             }
                                                         }
-                                                        xwVar2.run();
+                                                        dvVar2.run();
                                                         return;
                                                 }
                                             }
                                         });
                                         return;
                                     default:
-                                        final tj0 tj0Var3 = tj0Var;
+                                        final sj0 sj0Var3 = sj0Var;
                                         final ArrayList arrayList10 = arrayList3;
                                         final ArrayList arrayList11 = arrayList6;
                                         final ArrayList arrayList12 = arrayList4;
-                                        final xw xwVar3 = xwVar;
+                                        final dv dvVar3 = dvVar;
                                         AndroidUtilities.runOnUIThread(new Runnable() {
                                             @Override
                                             public final void run() {
@@ -178,14 +178,14 @@ public final class u1 implements RequestDelegate {
                                                             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject3;
                                                             for (int i17 = 0; i17 < tL_channels_channelParticipants.users.size(); i17++) {
                                                                 TLRPC.User user = tL_channels_channelParticipants.users.get(i17);
-                                                                MessagesController.getInstance(tj0Var3.f28544f).putUser(user, false);
-                                                                int indexOf = arrayList10.indexOf(Long.valueOf(user.f18499id));
+                                                                MessagesController.getInstance(sj0Var3.f28254f).putUser(user, false);
+                                                                int indexOf = arrayList10.indexOf(Long.valueOf(user.f18484id));
                                                                 if (!user.self && indexOf >= 0) {
-                                                                    arrayList11.add(new sj0(((Integer) arrayList12.get(indexOf)).intValue(), user));
+                                                                    arrayList11.add(new rj0(((Integer) arrayList12.get(indexOf)).intValue(), user));
                                                                 }
                                                             }
                                                         }
-                                                        xwVar3.run();
+                                                        dvVar3.run();
                                                         return;
                                                     default:
                                                         TLObject tLObject4 = tLObject2;
@@ -193,14 +193,14 @@ public final class u1 implements RequestDelegate {
                                                             TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject4;
                                                             for (int i18 = 0; i18 < tL_messages_chatFull.users.size(); i18++) {
                                                                 TLRPC.User user2 = tL_messages_chatFull.users.get(i18);
-                                                                MessagesController.getInstance(tj0Var3.f28544f).putUser(user2, false);
-                                                                int indexOf2 = arrayList10.indexOf(Long.valueOf(user2.f18499id));
+                                                                MessagesController.getInstance(sj0Var3.f28254f).putUser(user2, false);
+                                                                int indexOf2 = arrayList10.indexOf(Long.valueOf(user2.f18484id));
                                                                 if (!user2.self && indexOf2 >= 0) {
-                                                                    arrayList11.add(new sj0(((Integer) arrayList12.get(indexOf2)).intValue(), user2));
+                                                                    arrayList11.add(new rj0(((Integer) arrayList12.get(indexOf2)).intValue(), user2));
                                                                 }
                                                             }
                                                         }
-                                                        xwVar3.run();
+                                                        dvVar3.run();
                                                         return;
                                                 }
                                             }
@@ -212,17 +212,17 @@ public final class u1 implements RequestDelegate {
                         return;
                     }
                     TLRPC.TL_messages_getFullChat tL_messages_getFullChat = new TLRPC.TL_messages_getFullChat();
-                    tL_messages_getFullChat.chat_id = chat.f18352id;
+                    tL_messages_getFullChat.chat_id = chat.f18337id;
                     ConnectionsManager.getInstance(i14).sendRequest(tL_messages_getFullChat, new RequestDelegate() {
                         @Override
                         public final void run(final TLObject tLObject2, TLRPC.TL_error tL_error2) {
                             switch (r6) {
                                 case 0:
-                                    final tj0 tj0Var2 = tj0Var;
+                                    final sj0 sj0Var2 = sj0Var;
                                     final ArrayList arrayList7 = arrayList3;
                                     final ArrayList arrayList8 = arrayList6;
                                     final ArrayList arrayList9 = arrayList4;
-                                    final xw xwVar2 = xwVar;
+                                    final dv dvVar2 = dvVar;
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
@@ -233,14 +233,14 @@ public final class u1 implements RequestDelegate {
                                                         TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject3;
                                                         for (int i17 = 0; i17 < tL_channels_channelParticipants.users.size(); i17++) {
                                                             TLRPC.User user = tL_channels_channelParticipants.users.get(i17);
-                                                            MessagesController.getInstance(tj0Var2.f28544f).putUser(user, false);
-                                                            int indexOf = arrayList7.indexOf(Long.valueOf(user.f18499id));
+                                                            MessagesController.getInstance(sj0Var2.f28254f).putUser(user, false);
+                                                            int indexOf = arrayList7.indexOf(Long.valueOf(user.f18484id));
                                                             if (!user.self && indexOf >= 0) {
-                                                                arrayList8.add(new sj0(((Integer) arrayList9.get(indexOf)).intValue(), user));
+                                                                arrayList8.add(new rj0(((Integer) arrayList9.get(indexOf)).intValue(), user));
                                                             }
                                                         }
                                                     }
-                                                    xwVar2.run();
+                                                    dvVar2.run();
                                                     return;
                                                 default:
                                                     TLObject tLObject4 = tLObject2;
@@ -248,25 +248,25 @@ public final class u1 implements RequestDelegate {
                                                         TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject4;
                                                         for (int i18 = 0; i18 < tL_messages_chatFull.users.size(); i18++) {
                                                             TLRPC.User user2 = tL_messages_chatFull.users.get(i18);
-                                                            MessagesController.getInstance(tj0Var2.f28544f).putUser(user2, false);
-                                                            int indexOf2 = arrayList7.indexOf(Long.valueOf(user2.f18499id));
+                                                            MessagesController.getInstance(sj0Var2.f28254f).putUser(user2, false);
+                                                            int indexOf2 = arrayList7.indexOf(Long.valueOf(user2.f18484id));
                                                             if (!user2.self && indexOf2 >= 0) {
-                                                                arrayList8.add(new sj0(((Integer) arrayList9.get(indexOf2)).intValue(), user2));
+                                                                arrayList8.add(new rj0(((Integer) arrayList9.get(indexOf2)).intValue(), user2));
                                                             }
                                                         }
                                                     }
-                                                    xwVar2.run();
+                                                    dvVar2.run();
                                                     return;
                                             }
                                         }
                                     });
                                     return;
                                 default:
-                                    final tj0 tj0Var3 = tj0Var;
+                                    final sj0 sj0Var3 = sj0Var;
                                     final ArrayList arrayList10 = arrayList3;
                                     final ArrayList arrayList11 = arrayList6;
                                     final ArrayList arrayList12 = arrayList4;
-                                    final xw xwVar3 = xwVar;
+                                    final dv dvVar3 = dvVar;
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
@@ -277,14 +277,14 @@ public final class u1 implements RequestDelegate {
                                                         TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject3;
                                                         for (int i17 = 0; i17 < tL_channels_channelParticipants.users.size(); i17++) {
                                                             TLRPC.User user = tL_channels_channelParticipants.users.get(i17);
-                                                            MessagesController.getInstance(tj0Var3.f28544f).putUser(user, false);
-                                                            int indexOf = arrayList10.indexOf(Long.valueOf(user.f18499id));
+                                                            MessagesController.getInstance(sj0Var3.f28254f).putUser(user, false);
+                                                            int indexOf = arrayList10.indexOf(Long.valueOf(user.f18484id));
                                                             if (!user.self && indexOf >= 0) {
-                                                                arrayList11.add(new sj0(((Integer) arrayList12.get(indexOf)).intValue(), user));
+                                                                arrayList11.add(new rj0(((Integer) arrayList12.get(indexOf)).intValue(), user));
                                                             }
                                                         }
                                                     }
-                                                    xwVar3.run();
+                                                    dvVar3.run();
                                                     return;
                                                 default:
                                                     TLObject tLObject4 = tLObject2;
@@ -292,14 +292,14 @@ public final class u1 implements RequestDelegate {
                                                         TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject4;
                                                         for (int i18 = 0; i18 < tL_messages_chatFull.users.size(); i18++) {
                                                             TLRPC.User user2 = tL_messages_chatFull.users.get(i18);
-                                                            MessagesController.getInstance(tj0Var3.f28544f).putUser(user2, false);
-                                                            int indexOf2 = arrayList10.indexOf(Long.valueOf(user2.f18499id));
+                                                            MessagesController.getInstance(sj0Var3.f28254f).putUser(user2, false);
+                                                            int indexOf2 = arrayList10.indexOf(Long.valueOf(user2.f18484id));
                                                             if (!user2.self && indexOf2 >= 0) {
-                                                                arrayList11.add(new sj0(((Integer) arrayList12.get(indexOf2)).intValue(), user2));
+                                                                arrayList11.add(new rj0(((Integer) arrayList12.get(indexOf2)).intValue(), user2));
                                                             }
                                                         }
                                                     }
-                                                    xwVar3.run();
+                                                    dvVar3.run();
                                                     return;
                                             }
                                         }
@@ -313,7 +313,7 @@ public final class u1 implements RequestDelegate {
                 return;
             case 3:
                 Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new z21(tLObject, (MessagesController) obj2, this.f1574b, (sq) obj, 3));
+                AndroidUtilities.runOnUIThread(new y21(tLObject, (MessagesController) obj2, this.f1569b, (sq) obj, 3));
                 return;
             case 4:
                 MessagesController messagesController = (MessagesController) obj2;
@@ -325,29 +325,29 @@ public final class u1 implements RequestDelegate {
                     for (int i17 = 0; i17 < tL_contacts_found.chats.size(); i17++) {
                         TLRPC.Chat chat2 = tL_contacts_found.chats.get(i17);
                         TLRPC.InputPeer inputPeer = MessagesController.getInputPeer(chat2);
-                        if (chat2.f18352id != j3 && ChatObject.isBoostSupported(chat2)) {
+                        if (chat2.f18337id != j3 && ChatObject.isBoostSupported(chat2)) {
                             arrayList7.add(inputPeer);
                         }
                     }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.web.o1(22, w0Var, arrayList7));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(23, w0Var, arrayList7));
                     return;
                 }
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new z21((yh.s5) obj2, tLObject, this.f1574b, (Utilities.Callback) obj, 10));
+                AndroidUtilities.runOnUIThread(new y21((yh.t5) obj2, tLObject, this.f1569b, (Utilities.Callback) obj, 10));
                 return;
             default:
-                yh.r5 r5Var = (yh.r5) obj2;
-                r5Var.getClass();
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(r5Var, tLObject, (MessagesController) obj, tL_error, this.f1574b));
+                yh.s5 s5Var = (yh.s5) obj2;
+                s5Var.getClass();
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(s5Var, tLObject, (MessagesController) obj, tL_error, this.f1569b));
                 return;
         }
     }
 
     public u1(Object obj, Object obj2, long j3, int i10) {
-        this.f1573a = i10;
-        this.f1575c = obj;
+        this.f1568a = i10;
+        this.f1570c = obj;
         this.d = obj2;
-        this.f1574b = j3;
+        this.f1569b = j3;
     }
 }

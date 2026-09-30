@@ -1,40 +1,56 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class uo0 extends yo0 {
-    public int G;
-    public final sp0 H;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+public final class uo0 implements Utilities.Callback2 {
+    public final int f38516a;
+    public final TL_stars.TL_starGiftUnique f38517b;
+    public final long f38518c;
+    public final NotificationCenter.NotificationCenterDelegate d;
+    public final Object e;
+    public final Object f38519f;
 
-    public uo0(sp0 sp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.H = sp0Var;
-        this.G = 0;
+    public uo0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, Object obj2, int i10) {
+        this.f38516a = i10;
+        this.d = notificationCenterDelegate;
+        this.e = obj;
+        this.f38517b = tL_starGiftUnique;
+        this.f38518c = j3;
+        this.f38519f = obj2;
     }
 
     @Override
-    public final void a() {
-        sp0 sp0Var = this.H;
-        if (sp0Var.getParentActivity() != null) {
-            AndroidUtilities.setLightStatusBar(sp0Var.getParentActivity(), sp0Var.isLightStatusBar());
+    public final void run(Object obj, Object obj2) {
+        boolean z10;
+        switch (this.f38516a) {
+            case 0:
+                tp0.U((tp0) this.d, (boolean[]) this.e, this.f38517b, this.f38518c, (qo0) this.f38519f, (yh.a3) obj, (nf.e) obj2);
+                return;
+            default:
+                yh.x3 x3Var = (yh.x3) this.d;
+                xh.j0 j0Var = (xh.j0) this.f38519f;
+                String str = (String) obj2;
+                ((nf.e) this.e).b();
+                if (((Boolean) obj).booleanValue()) {
+                    yh.j2 j2Var = x3Var.O0;
+                    if (j2Var != null) {
+                        if (j0Var != null) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        j2Var.b(this.f38517b, this.f38518c, z10);
+                    }
+                    if (j0Var != null) {
+                        AndroidUtilities.runOnUIThread(new xh.d0(j0Var, 2));
+                        x3Var.skipDismissAnimation();
+                    }
+                    x3Var.dismiss();
+                    return;
+                }
+                return;
         }
-        int actionBarButtonColor = getActionBarButtonColor();
-        if (this.G != actionBarButtonColor) {
-            ImageView imageView = sp0Var.J;
-            if (imageView != null) {
-                this.G = actionBarButtonColor;
-                imageView.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
-            }
-            ImageView imageView2 = sp0Var.K;
-            if (imageView2 != null) {
-                this.G = actionBarButtonColor;
-                imageView2.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
-            }
-        }
-        sp0Var.G0();
-        sp0Var.A0();
     }
 }

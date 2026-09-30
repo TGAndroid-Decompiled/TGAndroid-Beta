@@ -1,61 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.style.ImageSpan;
-import org.telegram.messenger.Emoji;
-public final class rn implements TextWatcher {
-    public final qn f28090a;
-    public final int f28091b;
-    public final vn f28092c;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class rn extends org.telegram.ui.Cells.d6 {
+    public final un F;
 
-    public rn(vn vnVar, qn qnVar, int i10) {
-        this.f28092c = vnVar;
-        this.f28090a = qnVar;
-        this.f28091b = i10;
+    public rn(un unVar, Context context, int i10) {
+        super(context, i10, null, null);
+        this.F = unVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        xn xnVar = this.f28092c.d;
-        qn qnVar = this.f28090a;
-        if (qnVar.getTag() != null) {
-            return;
-        }
-        int i11 = this.f28091b;
-        if (i11 == 11) {
-            i10 = xnVar.f30408n0;
-        } else {
-            i10 = xnVar.m0;
-        }
-        s4.c1 K = xnVar.f30414s.K(i10);
-        if (K != null && xnVar.f30421x != null) {
-            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
-                editable.removeSpan(imageSpan);
+    public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
+        if (c6Var.isFocused() && c6Var.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.wn.k8(menu, ((org.telegram.ui.wn) this.F.d.f27075b.f29934f0).h, false, true, true, true);
             }
-            Emoji.replaceEmoji(editable, qnVar.getEditField().getPaint().getFontMetricsInt(), false);
-            xnVar.f30421x.setDirection(1);
-            xnVar.f30421x.setDelegate(qnVar);
-            xnVar.f30421x.setTranslationY(K.f43068a.getY());
-            xnVar.f30421x.e();
         }
-        if (i11 == 11) {
-            xnVar.O = editable;
-        } else {
-            xnVar.N = editable;
-        }
-        if (K != null) {
-            xn.L(xnVar, K.f43068a, i10);
-        }
-        xnVar.T();
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void i(boolean z10) {
+        wn.M(this.F.d, this, z10);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void j(org.telegram.ui.Cells.d6 d6Var) {
+        wn.N(this.F.d, d6Var);
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.c6 c6Var) {
+        this.F.d.f27075b.t1(c6Var, true);
     }
 }

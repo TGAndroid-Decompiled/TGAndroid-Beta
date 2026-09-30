@@ -7,34 +7,34 @@ import c3.h0;
 import java.math.RoundingMode;
 import java.util.Map;
 public final class l implements k4.b {
-    public int f9368a;
-    public long f9369b;
-    public int f9370c;
+    public int f9356a;
+    public long f9357b;
+    public int f9358c;
     public long d;
     public Object e;
-    public Object f9371f;
-    public Object f9372g;
+    public Object f9359f;
+    public Object f9360g;
     public Object h;
 
     public l(c3.q qVar, h0 h0Var, e2.q qVar2, String str, int i10) {
         this.e = qVar;
-        this.f9371f = h0Var;
-        this.f9372g = qVar2;
-        int i11 = qVar2.f7916a;
-        int i12 = qVar2.f7917b;
+        this.f9359f = h0Var;
+        this.f9360g = qVar2;
+        int i11 = qVar2.f7904a;
+        int i12 = qVar2.f7905b;
         int i13 = (qVar2.d * i11) / 8;
-        int i14 = qVar2.f7918c;
+        int i14 = qVar2.f7906c;
         if (i14 == i13) {
             int i15 = i12 * i13;
             int i16 = i15 * 8;
             int max = Math.max(i13, i15 / 10);
-            this.f9368a = max;
+            this.f9356a = max;
             b2.r rVar = new b2.r();
-            rVar.f3251p = r0.n("audio/wav");
-            rVar.f3252q = r0.n(str);
+            rVar.f3244p = r0.n("audio/wav");
+            rVar.f3245q = r0.n(str);
             rVar.h = i16;
-            rVar.f3244i = i16;
-            rVar.f3253r = max;
+            rVar.f3237i = i16;
+            rVar.f3246r = max;
             rVar.I = i11;
             rVar.J = i12;
             rVar.K = i10;
@@ -46,8 +46,8 @@ public final class l implements k4.b {
 
     @Override
     public void a(long j3) {
-        this.f9369b = j3;
-        this.f9370c = 0;
+        this.f9357b = j3;
+        this.f9358c = 0;
         this.d = 0L;
     }
 
@@ -59,30 +59,30 @@ public final class l implements k4.b {
         long j10 = j3;
         while (true) {
             i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-            if (i10 <= 0 || (i11 = this.f9370c) >= (i12 = this.f9368a)) {
+            if (i10 <= 0 || (i11 = this.f9358c) >= (i12 = this.f9356a)) {
                 break;
             }
-            int a2 = ((h0) this.f9371f).a(pVar, (int) Math.min(i12 - i11, j10), true);
+            int a2 = ((h0) this.f9359f).a(pVar, (int) Math.min(i12 - i11, j10), true);
             if (a2 == -1) {
                 j10 = 0;
             } else {
-                this.f9370c += a2;
+                this.f9358c += a2;
                 j10 -= a2;
             }
         }
-        e2.q qVar = (e2.q) this.f9372g;
-        int i13 = qVar.f7918c;
-        int i14 = this.f9370c / i13;
+        e2.q qVar = (e2.q) this.f9360g;
+        int i13 = qVar.f7906c;
+        int i14 = this.f9358c / i13;
         if (i14 > 0) {
-            long j11 = this.f9369b;
+            long j11 = this.f9357b;
             long j12 = this.d;
-            long j13 = qVar.f7917b;
-            String str = e2.d0.f7882a;
+            long j13 = qVar.f7905b;
+            String str = e2.d0.f7870a;
             int i15 = i14 * i13;
-            int i16 = this.f9370c - i15;
-            ((h0) this.f9371f).c(j11 + e2.d0.Y(j12, 1000000L, j13, RoundingMode.DOWN), 1, i15, i16, null);
+            int i16 = this.f9358c - i15;
+            ((h0) this.f9359f).c(j11 + e2.d0.Y(j12, 1000000L, j13, RoundingMode.DOWN), 1, i15, i16, null);
             this.d += i14;
-            this.f9370c = i16;
+            this.f9358c = i16;
         }
         if (i10 <= 0) {
             return true;
@@ -92,12 +92,12 @@ public final class l implements k4.b {
 
     @Override
     public void c(int i10, long j3) {
-        ((c3.q) this.e).X1(new k4.f((e2.q) this.f9372g, 1, i10, j3));
-        ((h0) this.f9371f).b((b2.s) this.h);
+        ((c3.q) this.e).X1(new k4.f((e2.q) this.f9360g, 1, i10, j3));
+        ((h0) this.f9359f).b((b2.s) this.h);
     }
 
     public m d() {
         e2.d.i((Uri) this.e, "The uri must be set.");
-        return new m((Uri) this.e, this.f9368a, (byte[]) this.f9371f, (Map) this.f9372g, this.f9369b, this.d, (String) this.h, this.f9370c);
+        return new m((Uri) this.e, this.f9356a, (byte[]) this.f9359f, (Map) this.f9360g, this.f9357b, this.d, (String) this.h, this.f9358c);
     }
 }

@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class y9 extends EditTextBoldCursor {
-    public final int f40196b;
-    public final z9 f40197c;
+    public final int f40091b;
+    public final z9 f40092c;
 
     public y9(z9 z9Var, Context context, int i10) {
         super(context);
-        this.f40196b = i10;
-        this.f40197c = z9Var;
+        this.f40091b = i10;
+        this.f40092c = z9Var;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.d6 getResourcesProvider() {
-        switch (this.f40196b) {
+        switch (this.f40091b) {
             case 0:
-                return this.f40197c.d;
+                return this.f40092c.d;
             default:
-                return this.f40197c.d;
+                return this.f40092c.d;
         }
     }
 }

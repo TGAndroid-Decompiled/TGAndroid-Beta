@@ -4,20 +4,20 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.ui.Components.p81;
 public final class j1 extends p81 {
-    public final boolean f4820a;
-    public final Context f4821b;
-    public final s2 f4822c;
+    public final boolean f4812a;
+    public final Context f4813b;
+    public final s2 f4814c;
 
     public j1(s2 s2Var, boolean z10, Context context) {
-        this.f4822c = s2Var;
-        this.f4820a = z10;
-        this.f4821b = context;
+        this.f4814c = s2Var;
+        this.f4812a = z10;
+        this.f4813b = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         a2 a2Var = (a2) view;
-        if (this.f4820a) {
+        if (this.f4812a) {
             i10 = 1;
         }
         a2Var.a(i10);
@@ -25,8 +25,8 @@ public final class j1 extends p81 {
 
     @Override
     public final View d(int i10) {
-        Context context = this.f4821b;
-        s2 s2Var = this.f4822c;
+        Context context = this.f4813b;
+        s2 s2Var = this.f4814c;
         if (i10 == 1) {
             return new z1(s2Var, context);
         }
@@ -35,7 +35,7 @@ public final class j1 extends p81 {
 
     @Override
     public final int e() {
-        if (this.f4820a) {
+        if (this.f4812a) {
             return 1;
         }
         return 3;

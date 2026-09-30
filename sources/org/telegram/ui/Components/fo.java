@@ -1,21 +1,42 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class fo extends org.telegram.ui.ActionBar.m1 {
-    public final ho f24322o;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class fo extends AnimatorListenerAdapter {
+    public final int f24306a;
+    public final go f24307b;
 
-    public fo(ho hoVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f24322o = hoVar;
+    public fo(go goVar, int i10) {
+        this.f24306a = i10;
+        this.f24307b = goVar;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        org.telegram.ui.wn wnVar = this.f24322o.G;
-        if (wnVar != null) {
-            wnVar.getClass();
-            wnVar.g8(false, true, 0.0f);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f24306a) {
+            case 0:
+                this.f24307b.Q = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24306a) {
+            case 0:
+                go goVar = this.f24307b;
+                if (goVar.Q == animator) {
+                    goVar.getSubtitleTextView().setVisibility(4);
+                    goVar.Q = null;
+                    return;
+                }
+                return;
+            default:
+                this.f24307b.Q = null;
+                return;
         }
     }
 }

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 public final class c extends g {
-    public long f10946b;
-    public long[] f10947c;
+    public long f10932b;
+    public long[] f10933c;
     public long[] d;
 
     public static Serializable Z0(int i10, v vVar) {
@@ -79,8 +79,8 @@ public final class c extends g {
 
     public static String b1(v vVar) {
         int D = vVar.D();
-        int i10 = vVar.f7929b;
+        int i10 = vVar.f7917b;
         vVar.K(D);
-        return new String(vVar.f7928a, i10, D);
+        return new String(vVar.f7916a, i10, D);
     }
 }

@@ -8,17 +8,17 @@ import b2.w1;
 import ci.rc;
 import gg.x1;
 import java.util.ArrayList;
-import org.telegram.ui.Components.v71;
+import org.telegram.ui.Components.u71;
 public final class c0 implements a3.l0, k2.j, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-    public final f0 f10630a;
+    public final f0 f10616a;
 
     public c0(f0 f0Var) {
-        this.f10630a = f0Var;
+        this.f10616a = f0Var;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        f0 f0Var = this.f10630a;
+        f0 f0Var = this.f10616a;
         org.telegram.messenger.d1 d1Var = f0Var.m0;
         if (d1Var != null) {
             d1Var.execute(new a0(this, surfaceTexture, i10, i11, 0));
@@ -32,14 +32,14 @@ public final class c0 implements a3.l0, k2.j, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f10630a;
-        ArrayList arrayList = f0Var.f10684n0;
+        f0 f0Var = this.f10616a;
+        ArrayList arrayList = f0Var.f10670n0;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            if (((v71) ((w1) obj)).J.onSurfaceDestroyed(surfaceTexture)) {
+            if (((u71) ((w1) obj)).J.onSurfaceDestroyed(surfaceTexture)) {
                 return false;
             }
         }
@@ -55,7 +55,7 @@ public final class c0 implements a3.l0, k2.j, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        f0 f0Var = this.f10630a;
+        f0 f0Var = this.f10616a;
         org.telegram.messenger.d1 d1Var = f0Var.m0;
         if (d1Var != null) {
             d1Var.execute(new gg.n(this, surfaceTexture, i10, i11));
@@ -66,30 +66,30 @@ public final class c0 implements a3.l0, k2.j, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f10630a;
+        f0 f0Var = this.f10616a;
         org.telegram.messenger.d1 d1Var = f0Var.m0;
         if (d1Var != null) {
             d1Var.execute(new x1(10, this, surfaceTexture));
             return;
         }
-        ArrayList arrayList = f0Var.f10684n0;
+        ArrayList arrayList = f0Var.f10670n0;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((v71) ((w1) obj)).J.onSurfaceTextureUpdated(surfaceTexture);
+            ((u71) ((w1) obj)).J.onSurfaceTextureUpdated(surfaceTexture);
         }
     }
 
     @Override
     public final void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
-        this.f10630a.m1(i11, i12);
+        this.f10616a.m1(i11, i12);
     }
 
     @Override
     public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f10630a;
+        f0 f0Var = this.f10616a;
         if (f0Var.U) {
             f0Var.t1(surfaceHolder.getSurface());
         }
@@ -97,7 +97,7 @@ public final class c0 implements a3.l0, k2.j, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f10630a;
+        f0 f0Var = this.f10616a;
         if (f0Var.U) {
             f0Var.t1(null);
         }

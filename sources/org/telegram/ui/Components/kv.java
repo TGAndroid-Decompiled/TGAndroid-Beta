@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SharedConfig;
-public final class kv extends lt {
+public final class kv extends kt {
     public int M;
     public ArrayList N;
     public final ArrayList O = new ArrayList();
@@ -57,7 +57,7 @@ public final class kv extends lt {
             ArrayList arrayList = this.O;
             if (i10 < arrayList.size()) {
                 mv mvVar = (mv) arrayList.get(i10);
-                mvVar.f26395b.draw(canvas, mvVar.f26394a[this.K]);
+                mvVar.f26500b.draw(canvas, mvVar.f26499a[this.K]);
                 i10++;
             } else {
                 return;
@@ -71,8 +71,8 @@ public final class kv extends lt {
         if (this.N != null) {
             for (int i10 = 0; i10 < this.N.size(); i10++) {
                 mv mvVar = (mv) this.N.get(i10);
-                z5 z5Var = mvVar.f26396c;
-                if (z5Var != null && (q5Var = (q5) this.P.f26125y.f29725b.get(z5Var.getDocumentId())) != null && q5Var.f27555k != null && mvVar.f26395b != null) {
+                z5 z5Var = mvVar.f26501c;
+                if (z5Var != null && (q5Var = (q5) this.P.f26101y.f29734b.get(z5Var.getDocumentId())) != null && q5Var.f27544k != null && mvVar.f26500b != null) {
                     q5Var.setAlpha((int) (mvVar.getAlpha() * 255.0f * f7));
                     float width = ((mvVar.getWidth() - mvVar.getPaddingLeft()) - mvVar.getPaddingRight()) / 2.0f;
                     float height = ((mvVar.getHeight() - mvVar.getPaddingTop()) - mvVar.getPaddingBottom()) / 2.0f;
@@ -97,11 +97,11 @@ public final class kv extends lt {
         while (true) {
             ArrayList arrayList = this.O;
             if (i10 >= arrayList.size()) {
-                viewGroup = ((org.telegram.ui.ActionBar.e3) this.P.f26125y).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.e3) this.P.f26101y).containerView;
                 viewGroup.invalidate();
                 return;
             }
-            ((mv) arrayList.get(i10)).f26394a[this.K].release();
+            ((mv) arrayList.get(i10)).f26499a[this.K].release();
             i10++;
         }
     }
@@ -109,16 +109,16 @@ public final class kv extends lt {
     @Override
     public final void i(long j3) {
         q5 q5Var;
-        vv vvVar = this.P.f26125y;
+        vv vvVar = this.P.f26101y;
         ArrayList arrayList = this.O;
         arrayList.clear();
         for (int i10 = 0; i10 < this.N.size(); i10++) {
             mv mvVar = (mv) this.N.get(i10);
-            z5 z5Var = mvVar.f26396c;
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = mvVar.f26394a;
-            if (z5Var != null && (q5Var = (q5) vvVar.f29725b.get(z5Var.getDocumentId())) != null && q5Var.f27555k != null) {
+            z5 z5Var = mvVar.f26501c;
+            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = mvVar.f26499a;
+            if (z5Var != null && (q5Var = (q5) vvVar.f29734b.get(z5Var.getDocumentId())) != null && q5Var.f27544k != null) {
                 q5Var.t(j3);
-                ai.l4 l4Var = q5Var.f27555k;
+                ai.l4 l4Var = q5Var.f27544k;
                 int i11 = this.K;
                 ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = l4Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
                 backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
@@ -133,7 +133,7 @@ public final class kv extends lt {
                     vvVar.T = new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN);
                 }
                 q5Var.setColorFilter(vvVar.T);
-                mvVar.f26395b = q5Var.f27555k;
+                mvVar.f26500b = q5Var.f27544k;
                 arrayList.add(mvVar);
             }
         }

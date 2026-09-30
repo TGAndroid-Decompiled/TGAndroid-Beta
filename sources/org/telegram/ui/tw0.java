@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class tw0 extends org.telegram.ui.Components.yl0 {
-    public final PremiumPreviewFragment f38338c;
+public final class tw0 extends org.telegram.ui.Components.xl0 {
+    public final PremiumPreviewFragment f38248c;
 
     public tw0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f38338c = premiumPreviewFragment;
+        this.f38248c = premiumPreviewFragment;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f43071f;
+        int i10 = c1Var.f42965f;
         if (i10 == 1 || i10 == 8) {
             return true;
         }
@@ -21,25 +21,25 @@ public final class tw0 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int h() {
-        return this.f38338c.h;
+        return this.f38248c.h;
     }
 
     @Override
     public final int j(int i10) {
         if (i10 != 0) {
-            PremiumPreviewFragment premiumPreviewFragment = this.f38338c;
-            if (i10 < premiumPreviewFragment.f31531n || i10 >= premiumPreviewFragment.f31536r) {
-                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f31543w) {
+            PremiumPreviewFragment premiumPreviewFragment = this.f38248c;
+            if (i10 < premiumPreviewFragment.f31459n || i10 >= premiumPreviewFragment.f31464r) {
+                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f31471w) {
                     return 1;
                 }
                 if (i10 == 0) {
                     return 4;
                 }
-                if (i10 != premiumPreviewFragment.f31545x && i10 != premiumPreviewFragment.f31547y && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
+                if (i10 != premiumPreviewFragment.f31473x && i10 != premiumPreviewFragment.f31475y && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
                     if (i10 == premiumPreviewFragment.F) {
                         return 6;
                     }
-                    if (i10 != premiumPreviewFragment.f31538s && i10 != premiumPreviewFragment.G) {
+                    if (i10 != premiumPreviewFragment.f31466s && i10 != premiumPreviewFragment.G) {
                         if (i10 == premiumPreviewFragment.showAdsRow) {
                             return 8;
                         }
@@ -90,7 +90,7 @@ public final class tw0 extends org.telegram.ui.Components.yl0 {
                 sw0Var = new org.telegram.ui.Cells.m4(context);
                 break;
             case 8:
-                d6Var = ((org.telegram.ui.ActionBar.m2) this.f38338c).resourceProvider;
+                d6Var = ((org.telegram.ui.ActionBar.m2) this.f38248c).resourceProvider;
                 sw0Var = new org.telegram.ui.Cells.r8(23, context, d6Var, false, true);
                 break;
         }

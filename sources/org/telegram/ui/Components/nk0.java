@@ -1,162 +1,33 @@
 package org.telegram.ui.Components;
+public final class nk0 implements Runnable {
+    public final int f26797a;
+    public final qk0 f26798b;
 
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import androidx.recyclerview.widget.RecyclerView;
-public final class nk0 extends s4.s0 {
-    public boolean f26730a;
-    public boolean f26731b;
-    public ValueAnimator f26732c;
-    public ValueAnimator d;
-    public final tk0 e;
-
-    public nk0(tk0 tk0Var) {
-        this.e = tk0Var;
-    }
-
-    public static ValueAnimator c(float f7, float f10, q0.a aVar, Runnable runnable) {
-        ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(Math.abs(f10 - f7) * 150.0f);
-        duration.addUpdateListener(new v70(aVar, 8));
-        duration.addListener(new org.telegram.ui.r0(1, runnable));
-        duration.start();
-        return duration;
+    public nk0(qk0 qk0Var, int i10) {
+        this.f26797a = i10;
+        this.f26798b = qk0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        float f7;
-        tk0 tk0Var = this.e;
-        gg.j0 j0Var = tk0Var.W;
-        boolean z11 = false;
-        if (j0Var.L0() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        float f10 = 0.0f;
-        if (z10 != this.f26730a) {
-            ValueAnimator valueAnimator = this.f26732c;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f11 = tk0Var.f28583r;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            this.f26732c = c(f11, f7, new q0.a(this) {
-                public final nk0 f26047b;
-
-                {
-                    this.f26047b = this;
+    public final void run() {
+        switch (this.f26797a) {
+            case 0:
+                if (this.f26798b.f27745a.getImageReceiver().getLottieAnimation() != null && !this.f26798b.f27745a.getImageReceiver().getLottieAnimation().f25729k0 && !this.f26798b.f27745a.getImageReceiver().getLottieAnimation().y()) {
+                    this.f26798b.f27745a.getImageReceiver().getLottieAnimation().start();
                 }
-
-                @Override
-                public final void accept(Object obj) {
-                    Float f12 = (Float) obj;
-                    switch (r2) {
-                        case 0:
-                            tk0 tk0Var2 = this.f26047b.e;
-                            Paint paint = tk0Var2.h;
-                            float floatValue = f12.floatValue();
-                            tk0Var2.f28583r = floatValue;
-                            paint.setAlpha((int) (floatValue * 255.0f));
-                            tk0Var2.invalidate();
-                            return;
-                        default:
-                            tk0 tk0Var3 = this.f26047b.e;
-                            Paint paint2 = tk0Var3.f28578n;
-                            float floatValue2 = f12.floatValue();
-                            tk0Var3.f28585s = floatValue2;
-                            paint2.setAlpha((int) (floatValue2 * 255.0f));
-                            tk0Var3.invalidate();
-                            return;
-                    }
+                this.f26798b.E = false;
+                return;
+            default:
+                qk0 qk0Var = this.f26798b;
+                sk0 sk0Var = qk0Var.P;
+                try {
+                    qk0Var.performHapticFeedback(0);
+                } catch (Exception unused) {
                 }
-            }, new Runnable(this) {
-                public final nk0 f26317b;
-
-                {
-                    this.f26317b = this;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r2) {
-                        case 0:
-                            this.f26317b.f26732c = null;
-                            return;
-                        default:
-                            this.f26317b.d = null;
-                            return;
-                    }
-                }
-            });
-            this.f26730a = z10;
-        }
-        if (j0Var.N0() != tk0Var.f28553a0.h() - 1) {
-            z11 = true;
-        }
-        if (z11 != this.f26731b) {
-            ValueAnimator valueAnimator2 = this.d;
-            if (valueAnimator2 != null) {
-                valueAnimator2.cancel();
-            }
-            float f12 = tk0Var.f28585s;
-            if (z11) {
-                f10 = 1.0f;
-            }
-            this.d = c(f12, f10, new q0.a(this) {
-                public final nk0 f26047b;
-
-                {
-                    this.f26047b = this;
-                }
-
-                @Override
-                public final void accept(Object obj) {
-                    Float f122 = (Float) obj;
-                    switch (r2) {
-                        case 0:
-                            tk0 tk0Var2 = this.f26047b.e;
-                            Paint paint = tk0Var2.h;
-                            float floatValue = f122.floatValue();
-                            tk0Var2.f28583r = floatValue;
-                            paint.setAlpha((int) (floatValue * 255.0f));
-                            tk0Var2.invalidate();
-                            return;
-                        default:
-                            tk0 tk0Var3 = this.f26047b.e;
-                            Paint paint2 = tk0Var3.f28578n;
-                            float floatValue2 = f122.floatValue();
-                            tk0Var3.f28585s = floatValue2;
-                            paint2.setAlpha((int) (floatValue2 * 255.0f));
-                            tk0Var3.invalidate();
-                            return;
-                    }
-                }
-            }, new Runnable(this) {
-                public final nk0 f26317b;
-
-                {
-                    this.f26317b = this;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r2) {
-                        case 0:
-                            this.f26317b.f26732c = null;
-                            return;
-                        default:
-                            this.f26317b.d = null;
-                            return;
-                    }
-                }
-            });
-            this.f26731b = z11;
+                sk0Var.m0 = sk0Var.T.indexOf(qk0Var.e);
+                sk0Var.f28287l0 = qk0Var.e;
+                sk0Var.invalidate();
+                return;
         }
     }
 }

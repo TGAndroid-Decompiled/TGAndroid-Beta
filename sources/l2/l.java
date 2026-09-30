@@ -5,19 +5,19 @@ import e2.d0;
 import n4.y;
 import u2.b1;
 public final class l implements b1 {
-    public final s f14096a;
-    public long[] f14098c;
+    public final s f14081a;
+    public long[] f14083c;
     public boolean d;
     public m2.g e;
-    public boolean f14099f;
+    public boolean f14084f;
     public int h;
-    public final y f14097b = new y(27);
-    public long f14100n = -9223372036854775807L;
+    public final y f14082b = new y(27);
+    public long f14085n = -9223372036854775807L;
 
     public l(m2.g gVar, s sVar, boolean z10) {
-        this.f14096a = sVar;
+        this.f14081a = sVar;
         this.e = gVar;
-        this.f14098c = gVar.f14673b;
+        this.f14083c = gVar.f14658b;
         b(gVar, z10);
     }
 
@@ -28,20 +28,20 @@ public final class l implements b1 {
         if (i10 == 0) {
             j3 = -9223372036854775807L;
         } else {
-            j3 = this.f14098c[i10 - 1];
+            j3 = this.f14083c[i10 - 1];
         }
         this.d = z10;
         this.e = gVar;
-        long[] jArr = gVar.f14673b;
-        this.f14098c = jArr;
-        long j11 = this.f14100n;
+        long[] jArr = gVar.f14658b;
+        this.f14083c = jArr;
+        long j11 = this.f14085n;
         if (j11 != -9223372036854775807L) {
             int a2 = d0.a(jArr, j11, true);
             this.h = a2;
-            if (this.d && a2 == this.f14098c.length) {
+            if (this.d && a2 == this.f14083c.length) {
                 j10 = j11;
             }
-            this.f14100n = j10;
+            this.f14085n = j10;
         } else if (j3 != -9223372036854775807L) {
             this.h = d0.a(jArr, j3, false);
         }
@@ -56,7 +56,7 @@ public final class l implements b1 {
     public final int f(y yVar, h2.h hVar, int i10) {
         boolean z10;
         int i11 = this.h;
-        if (i11 == this.f14098c.length) {
+        if (i11 == this.f14083c.length) {
             z10 = true;
         } else {
             z10 = false;
@@ -64,7 +64,7 @@ public final class l implements b1 {
         if (z10 && !this.d) {
             hVar.setFlags(4);
             return -4;
-        } else if ((i10 & 2) == 0 && this.f14099f) {
+        } else if ((i10 & 2) == 0 && this.f14084f) {
             if (z10) {
                 return -3;
             }
@@ -72,23 +72,23 @@ public final class l implements b1 {
                 this.h = i11 + 1;
             }
             if ((i10 & 4) == 0) {
-                byte[] N = this.f14097b.N(this.e.f14672a[i11]);
+                byte[] N = this.f14082b.N(this.e.f14657a[i11]);
                 hVar.b(N.length);
-                hVar.f10092c.put(N);
+                hVar.f10078c.put(N);
             }
-            hVar.e = this.f14098c[i11];
+            hVar.e = this.f14083c[i11];
             hVar.setFlags(1);
             return -4;
         } else {
-            yVar.f15239c = this.f14096a;
-            this.f14099f = true;
+            yVar.f15224c = this.f14081a;
+            this.f14084f = true;
             return -5;
         }
     }
 
     @Override
     public final int j(long j3) {
-        int max = Math.max(this.h, d0.a(this.f14098c, j3, true));
+        int max = Math.max(this.h, d0.a(this.f14083c, j3, true));
         int i10 = max - this.h;
         this.h = max;
         return i10;

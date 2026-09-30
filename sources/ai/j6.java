@@ -8,21 +8,21 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rl0;
+import org.telegram.ui.Components.ql0;
 public final class j6 implements GestureDetector.OnGestureListener {
-    public final int f1033a;
-    public final View f1034b;
+    public final int f1031a;
+    public final View f1032b;
 
     public j6(int i10, View view) {
-        this.f1033a = i10;
-        this.f1034b = view;
+        this.f1031a = i10;
+        this.f1032b = view;
     }
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        switch (this.f1033a) {
+        switch (this.f1031a) {
             case 0:
-                l7 l7Var = (l7) this.f1034b;
+                l7 l7Var = (l7) this.f1032b;
                 l7Var.d.abortAnimation();
                 ValueAnimator valueAnimator = l7Var.M;
                 if (valueAnimator != null) {
@@ -31,10 +31,10 @@ public final class j6 implements GestureDetector.OnGestureListener {
                     l7Var.M = null;
                 }
                 l7Var.L = false;
-                l7Var.O.f1510w = false;
+                l7Var.O.f1505w = false;
                 return true;
             default:
-                sg.e eVar = (sg.e) this.f1034b;
+                sg.e eVar = (sg.e) this.f1032b;
                 ValueAnimator valueAnimator2 = eVar.S;
                 if (valueAnimator2 != null) {
                     valueAnimator2.removeAllListeners();
@@ -48,17 +48,17 @@ public final class j6 implements GestureDetector.OnGestureListener {
                     eVar.T = null;
                 }
                 AndroidUtilities.cancelRunOnUIThread(eVar.U);
-                eVar.f43331a = true;
+                eVar.f43225a = true;
                 return true;
         }
     }
 
     @Override
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        switch (this.f1033a) {
+        switch (this.f1031a) {
             case 0:
-                l7 l7Var = (l7) this.f1034b;
-                l7Var.d.fling((int) l7Var.e, 0, (int) (-f7), 0, (int) l7Var.f1254f, (int) l7Var.h, 0, 0);
+                l7 l7Var = (l7) this.f1032b;
+                l7Var.d.fling((int) l7Var.e, 0, (int) (-f7), 0, (int) l7Var.f1252f, (int) l7Var.h, 0, 0);
                 l7Var.invalidate();
                 return false;
             default:
@@ -68,23 +68,23 @@ public final class j6 implements GestureDetector.OnGestureListener {
 
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
-        switch (this.f1033a) {
+        switch (this.f1031a) {
             case 0:
                 return;
             default:
-                ((sg.e) this.f1034b).g();
+                ((sg.e) this.f1032b).g();
                 return;
         }
     }
 
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        switch (this.f1033a) {
+        switch (this.f1031a) {
             case 0:
-                l7 l7Var = (l7) this.f1034b;
+                l7 l7Var = (l7) this.f1032b;
                 float f11 = l7Var.e + f7;
                 l7Var.e = f11;
-                float f12 = l7Var.f1254f;
+                float f12 = l7Var.f1252f;
                 if (f11 < f12) {
                     l7Var.e = f12;
                 }
@@ -96,29 +96,29 @@ public final class j6 implements GestureDetector.OnGestureListener {
                 l7Var.invalidate();
                 return false;
             default:
-                sg.a aVar = ((sg.e) this.f1034b).f43333b;
+                sg.a aVar = ((sg.e) this.f1032b).f43227b;
                 aVar.d = (f7 * 0.5f) + aVar.d;
-                aVar.f43307g = (f10 * 0.05f) + aVar.f43307g;
+                aVar.f43201g = (f10 * 0.05f) + aVar.f43201g;
                 return true;
         }
     }
 
     @Override
     public final void onShowPress(MotionEvent motionEvent) {
-        int i10 = this.f1033a;
+        int i10 = this.f1031a;
     }
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        switch (this.f1033a) {
+        switch (this.f1031a) {
             case 0:
-                l7 l7Var = (l7) this.f1034b;
+                l7 l7Var = (l7) this.f1032b;
                 ArrayList arrayList = l7Var.G;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     l6 l6Var = (l6) arrayList.get(i10);
-                    if (((l6) arrayList.get(i10)).f1186a.getDrawRegion().contains(motionEvent.getX(), motionEvent.getY())) {
+                    if (((l6) arrayList.get(i10)).f1184a.getDrawRegion().contains(motionEvent.getX(), motionEvent.getY())) {
                         int i11 = l7Var.K;
-                        int i12 = l6Var.f1187b;
+                        int i12 = l6Var.f1185b;
                         if (i11 != i12) {
                             l7Var.c(i12, true, false);
                         } else {
@@ -128,8 +128,8 @@ public final class j6 implements GestureDetector.OnGestureListener {
                 }
                 return false;
             default:
-                float measuredWidth = ((sg.e) this.f1034b).getMeasuredWidth() / 2.0f;
-                AndroidUtilities.runOnUIThread(new rl0(this, ((measuredWidth - motionEvent.getX()) * (Utilities.random.nextInt(30) + 40)) / measuredWidth, ((measuredWidth - motionEvent.getY()) * (Utilities.random.nextInt(30) + 40)) / measuredWidth, 1), 16L);
+                float measuredWidth = ((sg.e) this.f1032b).getMeasuredWidth() / 2.0f;
+                AndroidUtilities.runOnUIThread(new ql0(this, ((measuredWidth - motionEvent.getX()) * (Utilities.random.nextInt(30) + 40)) / measuredWidth, ((measuredWidth - motionEvent.getY()) * (Utilities.random.nextInt(30) + 40)) / measuredWidth, 1), 16L);
                 return true;
         }
     }

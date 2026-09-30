@@ -13,20 +13,20 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 public final class e8 extends FrameLayout {
-    public final int f4654a;
-    public final org.telegram.ui.Components.h9 f4655b;
-    public final org.telegram.ui.Components.w9 f4656c;
+    public final int f4646a;
+    public final org.telegram.ui.Components.h9 f4647b;
+    public final org.telegram.ui.Components.w9 f4648c;
     public final TextView d;
     public ViewPropertyAnimator e;
 
     public e8(Activity activity, int i10) {
         super(activity);
-        this.f4654a = i10;
-        this.f4655b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f4646a = i10;
+        this.f4647b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f4656c = w9Var;
+        this.f4648c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
         addView(w9Var, w7.y5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(activity);
@@ -60,7 +60,7 @@ public final class e8 extends FrameLayout {
             if (z10) {
                 f7 = 1.0f;
             }
-            ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(tr.h).withEndAction(new bi.f(4, this, z10)).setDuration(320L);
+            ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(sr.h).withEndAction(new bi.f(4, this, z10)).setDuration(320L);
             this.e = duration;
             duration.start();
             return;
@@ -78,15 +78,15 @@ public final class e8 extends FrameLayout {
     public void set(TLRPC.InputPeer inputPeer) {
         long peerDialogId;
         String str;
-        int i10 = this.f4654a;
+        int i10 = this.f4646a;
         if (inputPeer == null) {
             peerDialogId = UserConfig.getInstance(i10).getClientUserId();
         } else {
             peerDialogId = DialogObject.getPeerDialogId(inputPeer);
         }
         TextView textView = this.d;
-        org.telegram.ui.Components.w9 w9Var = this.f4656c;
-        org.telegram.ui.Components.h9 h9Var = this.f4655b;
+        org.telegram.ui.Components.w9 w9Var = this.f4648c;
+        org.telegram.ui.Components.h9 h9Var = this.f4647b;
         if (peerDialogId >= 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
             h9Var.r(user);

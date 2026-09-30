@@ -4,26 +4,26 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
 public final class d0 {
-    public static final d0 f49143a = new Object();
-    public static final ka.c f49144b;
+    public static final d0 f49037a = new Object();
+    public static final ka.c f49038b;
 
     static {
         ka.e eVar = new ka.e();
-        eVar.a(c0.class, g.f49154a);
-        eVar.a(l0.class, h.f49164a);
-        eVar.a(j.class, e.f49145a);
-        eVar.a(b.class, d.f49138a);
-        eVar.a(a.class, c.f49131a);
-        eVar.a(r.class, f.f49148a);
+        eVar.a(c0.class, g.f49048a);
+        eVar.a(l0.class, h.f49058a);
+        eVar.a(j.class, e.f49039a);
+        eVar.a(b.class, d.f49032a);
+        eVar.a(a.class, c.f49025a);
+        eVar.a(r.class, f.f49042a);
         eVar.d = true;
-        f49144b = new ka.c(eVar, 0);
+        f49038b = new ka.c(eVar, 0);
     }
 
     public static b a(k9.h hVar) {
         String valueOf;
         String str;
         hVar.a();
-        Context context = hVar.f13549a;
+        Context context = hVar.f13534a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
         String packageName = context.getPackageName();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
@@ -34,7 +34,7 @@ public final class d0 {
         }
         String str2 = valueOf;
         hVar.a();
-        String str3 = hVar.f13551c.f13560b;
+        String str3 = hVar.f13536c.f13545b;
         kotlin.jvm.internal.i.d(str3, "firebaseApp.options.applicationId");
         String MODEL = Build.MODEL;
         kotlin.jvm.internal.i.d(MODEL, "MODEL");

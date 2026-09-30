@@ -2,29 +2,29 @@ package v7;
 
 import android.content.Context;
 public final class c9 implements y8 {
-    public final q9.n f44322a;
-    public final w8 f44323b;
+    public final q9.n f44216a;
+    public final w8 f44217b;
 
     public c9(Context context, w8 w8Var) {
-        this.f44323b = w8Var;
+        this.f44217b = w8Var;
         j5.a aVar = j5.a.e;
         l5.s.b(context);
         l5.q c10 = l5.s.a().c(aVar);
         if (j5.a.d.contains(new i5.c("json"))) {
             new q9.n(new b9(c10, 0));
         }
-        this.f44322a = new q9.n(new b9(c10, 1));
+        this.f44216a = new q9.n(new b9(c10, 1));
     }
 
     @Override
     public final void a(a5.a aVar) {
         i5.a aVar2;
-        this.f44323b.getClass();
-        l5.r rVar = (l5.r) this.f44322a.get();
+        this.f44217b.getClass();
+        l5.r rVar = (l5.r) this.f44216a.get();
         if (aVar.f277b != 0) {
-            aVar2 = new i5.a(null, aVar.B(), i5.d.f10997a, null);
+            aVar2 = new i5.a(null, aVar.B(), i5.d.f10983a, null);
         } else {
-            aVar2 = new i5.a(null, aVar.B(), i5.d.f10998b, null);
+            aVar2 = new i5.a(null, aVar.B(), i5.d.f10984b, null);
         }
         rVar.a(aVar2, new j2.e(19));
     }

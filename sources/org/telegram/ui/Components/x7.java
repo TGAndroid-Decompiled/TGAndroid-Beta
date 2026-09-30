@@ -5,29 +5,29 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 public final class x7 extends FrameLayout {
-    public final RectF f30148a;
-    public boolean f30149b;
-    public int f30150c;
+    public final RectF f30295a;
+    public boolean f30296b;
+    public int f30297c;
     public int d;
     public final j8 e;
 
     public x7(j8 j8Var, Context context) {
         super(context);
         this.e = j8Var;
-        this.f30148a = new RectF();
-        this.f30149b = false;
+        this.f30295a = new RectF();
+        this.f30296b = false;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        rc.a(this, new ai.w4(this, 4));
+        qc.a(this, new ai.w4(this, 4));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        rc.h(this);
+        qc.h(this);
     }
 
     @Override
@@ -63,7 +63,7 @@ public final class x7 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f30149b) {
+        if (this.f30296b) {
             return;
         }
         super.requestLayout();

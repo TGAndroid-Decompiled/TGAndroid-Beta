@@ -1,28 +1,120 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import org.telegram.ui.od1;
-public final class dp extends od1 {
-    public final int f23694k2;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.zi1;
+public final class dp implements ui {
+    public final wi f23688a;
+    public final TL_stories.TL_premium_boostsStatus f23689b;
+    public final org.telegram.ui.ActionBar.d6 f23690c;
+    public final org.telegram.ui.g d;
+    public final long e;
+    public final org.telegram.ui.ec f23691f;
+    public final org.telegram.ui.ad h;
 
-    public dp(Object obj, Bitmap bitmap, boolean z10, int i10) {
-        super(obj, bitmap, z10);
-        this.f23694k2 = i10;
+    public dp(wi wiVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.g gVar, long j3, org.telegram.ui.ec ecVar, org.telegram.ui.ad adVar) {
+        this.f23688a = wiVar;
+        this.f23689b = tL_premium_boostsStatus;
+        this.f23690c = d6Var;
+        this.d = gVar;
+        this.e = j3;
+        this.f23691f = ecVar;
+        this.h = adVar;
     }
 
     @Override
-    public final boolean U0() {
-        switch (this.f23694k2) {
-            case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            default:
-                return true;
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        wi wiVar = this.f23688a;
+        try {
+            HashMap<Object, Object> selectedPhotos = wiVar.f29946j0.getSelectedPhotos();
+            if (!selectedPhotos.isEmpty()) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
+                String str = photoEntry.imagePath;
+                if (str == null) {
+                    str = photoEntry.path;
+                }
+                if (str != null) {
+                    File directory = FileLoader.getDirectory(4);
+                    File file = new File(directory, Utilities.random.nextInt() + ".jpg");
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+                    cp cpVar = new cp(new zi1(file, file, ""), loadBitmap, false, 0);
+                    cpVar.V1 = this.f23689b;
+                    cpVar.f36146a.f36133a = this.f23690c;
+                    cpVar.f36189p1 = this.d;
+                    cpVar.F1 = false;
+                    cpVar.E1 = false;
+                    cpVar.f36185n1 = 0.2f;
+                    cpVar.c1(this.e);
+                    cpVar.I1 = new bp(wiVar, this.f23691f, 0);
+                    ?? obj = new Object();
+                    obj.f19583a = true;
+                    obj.e = true;
+                    this.h.showAsSheet(cpVar, obj);
+                    wiVar.dismiss();
+                }
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
+    }
+
+    @Override
+    public final boolean S1() {
+        System.currentTimeMillis();
+        return true;
+    }
+
+    @Override
+    public final void U0(Object obj) {
+        cp cpVar = new cp(obj, null, true, 1);
+        cpVar.V1 = this.f23689b;
+        cpVar.f36146a.f36133a = this.f23690c;
+        cpVar.f36189p1 = this.d;
+        cpVar.c1(this.e);
+        cpVar.I1 = new bp(this.f23688a, this.f23691f, 1);
+        ?? obj2 = new Object();
+        obj2.f19583a = true;
+        obj2.e = true;
+        this.h.showAsSheet(cpVar, obj2);
+    }
+
+    @Override
+    public final boolean c0() {
+        return false;
+    }
+
+    @Override
+    public final void x0(hh hhVar) {
+        hhVar.run();
+    }
+
+    @Override
+    public final void K0() {
+    }
+
+    @Override
+    public final void j1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void u0() {
+    }
+
+    @Override
+    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

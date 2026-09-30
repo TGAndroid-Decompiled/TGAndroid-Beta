@@ -10,15 +10,15 @@ import e9.q;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.dd0;
+import org.telegram.ui.Components.cd0;
 import u2.d0;
 import u2.o1;
 import u2.y0;
-public final class b implements s5.f, pa.a, q9.d, z1, dd0, d9.e, e2.h {
-    public final int f43010a;
+public final class b implements s5.f, pa.a, q9.d, z1, cd0, d9.e, e2.h {
+    public final int f42904a;
 
     public b(int i10) {
-        this.f43010a = i10;
+        this.f42904a = i10;
     }
 
     @Override
@@ -28,13 +28,13 @@ public final class b implements s5.f, pa.a, q9.d, z1, dd0, d9.e, e2.h {
 
     @Override
     public void accept(Object obj) {
-        ((y0) obj).f43930b.release();
+        ((y0) obj).f43824b.release();
     }
 
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f43010a) {
+        switch (this.f42904a) {
             case 16:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
@@ -59,13 +59,13 @@ public final class b implements s5.f, pa.a, q9.d, z1, dd0, d9.e, e2.h {
             case 27:
                 return ((o) obj).c().getClass().getSimpleName();
             default:
-                return i0.v(q.w(((d0) obj).r().f43859b, new o1(0)));
+                return i0.v(q.w(((d0) obj).r().f43753b, new o1(0)));
         }
     }
 
     @Override
     public void f(a2 a2Var, int i10) {
-        switch (this.f43010a) {
+        switch (this.f42904a) {
             case 22:
                 return;
             case 25:
@@ -79,7 +79,7 @@ public final class b implements s5.f, pa.a, q9.d, z1, dd0, d9.e, e2.h {
 
     @Override
     public void g(pa.b bVar) {
-        switch (this.f43010a) {
+        switch (this.f42904a) {
             case 17:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
@@ -94,7 +94,7 @@ public final class b implements s5.f, pa.a, q9.d, z1, dd0, d9.e, e2.h {
 
     @Override
     public String j(int i10) {
-        switch (this.f43010a) {
+        switch (this.f42904a) {
             case 23:
                 return String.valueOf(i10);
             default:
@@ -103,7 +103,7 @@ public final class b implements s5.f, pa.a, q9.d, z1, dd0, d9.e, e2.h {
     }
 
     public b(Object obj, int i10) {
-        this.f43010a = i10;
+        this.f42904a = i10;
     }
 
     private final void a(a2 a2Var, int i10) {

@@ -10,35 +10,35 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.h5;
 import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 public final class s1 extends EditTextBoldCursor {
-    public final h5 f10406b;
-    public int f10407c;
+    public final h5 f10392b;
+    public int f10393c;
     public final o6 d;
     public final d6 e;
 
     public s1(Context context, d6 d6Var) {
         super(context);
         this.e = d6Var;
-        this.f10406b = new h5(this);
+        this.f10392b = new h5(this);
         o6 o6Var = new o6(false, true, true, false);
         this.d = o6Var;
-        o6Var.k(0.2f, 160L, tr.h);
+        o6Var.k(0.2f, 160L, sr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
         o6Var.setCallback(this);
-        o6Var.f26991b = 5;
+        o6Var.f26947b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f10407c < 0) {
-            i10 = h6.f19296p7;
+        if (this.f10393c < 0) {
+            i10 = h6.f19281p7;
         } else {
             i10 = h6.P5;
         }
-        int a2 = this.f10406b.a(h6.v0(i10, this.e), false);
+        int a2 = this.f10392b.a(h6.v0(i10, this.e), false);
         o6 o6Var = this.d;
         o6Var.r(a2);
         o6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -55,11 +55,11 @@ public final class s1 extends EditTextBoldCursor {
         super.onTextChanged(charSequence, i10, i11, i12);
         o6 o6Var = this.d;
         if (o6Var != null) {
-            this.f10407c = 32 - charSequence.length();
+            this.f10393c = 32 - charSequence.length();
             o6Var.b();
             String str = "";
-            if (this.f10407c <= 4) {
-                str = "" + this.f10407c;
+            if (this.f10393c <= 4) {
+                str = "" + this.f10393c;
             }
             o6Var.q(str, true, true);
         }

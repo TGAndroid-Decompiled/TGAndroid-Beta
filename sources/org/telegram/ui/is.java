@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class is extends org.telegram.ui.ActionBar.j {
-    public final ms f34661a;
+    public final ms f34576a;
 
     public is(ms msVar) {
-        this.f34661a = msVar;
+        this.f34576a = msVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class is extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i11;
         int i12;
-        ms msVar = this.f34661a;
+        ms msVar = this.f34576a;
         if (i10 == -1) {
             msVar.finishFragment();
-        } else if (i10 == 1 && msVar.f35767b.getText().length() != 0) {
+        } else if (i10 == 1 && msVar.f35657b.getText().length() != 0) {
             TLRPC.User user = msVar.getMessagesController().getUser(Long.valueOf(msVar.H));
             TLRPC.UserFull userFull = msVar.getMessagesController().getUserFull(msVar.H);
-            user.first_name = msVar.f35767b.getText().toString();
-            user.last_name = msVar.f35768c.getText().toString();
+            user.first_name = msVar.f35657b.getText().toString();
+            user.last_name = msVar.f35658c.getText().toString();
             user.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = msVar.d.getTextWithEntities();
             msVar.getMessagesController().putUser(user, false);
@@ -49,7 +49,7 @@ public final class is extends org.telegram.ui.ActionBar.j {
                 }
                 i12 = ((org.telegram.ui.ActionBar.m2) msVar).currentAccount;
                 MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
-                msVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f18500id), userFull);
+                msVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f18485id), userFull);
             }
             msVar.finishFragment();
             ls lsVar = msVar.O;

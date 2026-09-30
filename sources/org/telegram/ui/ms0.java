@@ -3,15 +3,15 @@ package org.telegram.ui;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessageObject;
 public final class ms0 implements Runnable {
-    public final PhotoViewer f35776a;
+    public final PhotoViewer f35666a;
 
     public ms0(PhotoViewer photoViewer) {
-        this.f35776a = photoViewer;
+        this.f35666a = photoViewer;
     }
 
     @Override
     public final void run() {
-        PhotoViewer photoViewer = this.f35776a;
+        PhotoViewer photoViewer = this.f35666a;
         MessageObject messageObject = photoViewer.T4;
         if (messageObject == null) {
             return;

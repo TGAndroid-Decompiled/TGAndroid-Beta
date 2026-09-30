@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ik;
-import org.telegram.ui.Components.xi;
-public final class o implements ik {
-    public final xi f11531a;
-    public final r f11532b;
+import org.telegram.ui.Components.hk;
+import org.telegram.ui.Components.wi;
+public final class o implements hk {
+    public final wi f11517a;
+    public final r f11518b;
 
-    public o(r rVar, xi xiVar) {
-        this.f11532b = rVar;
-        this.f11531a = xiVar;
+    public o(r rVar, wi wiVar) {
+        this.f11518b = rVar;
+        this.f11517a = wiVar;
     }
 
     @Override
     public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
         String str2;
-        x3 x3Var = this.f11532b.f11586r;
+        x3 x3Var = this.f11518b.f11572r;
         if (!arrayList.isEmpty()) {
-            x3Var.e2((String) arrayList.get(0));
+            x3Var.c2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
             MessageObject messageObject = (MessageObject) arrayList3.get(0);
             x3Var.getClass();
@@ -33,10 +33,10 @@ public final class o implements ik {
                 } else {
                     str2 = null;
                 }
-                x3Var.f2(document, str2);
+                x3Var.d2(document, str2);
             }
         }
-        this.f11531a.dismiss(true);
+        this.f11517a.dismiss(true);
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class o implements ik {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f11532b.f27362b.f30270f0.startActivityForResult(intent, 21);
+            this.f11518b.f27075b.f29934f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

@@ -1,95 +1,94 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
-public final class le extends Property {
-    public final int f25970a;
-    public final ChatActivityEnterView f25971b;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotForumHelper;
+public final class le extends FrameLayout {
+    public final int f25971a;
+    public final ChatActivityEnterView f25972b;
 
-    public le(ChatActivityEnterView chatActivityEnterView, int i10) {
-        super(Float.class, "emoji_button_scale");
-        this.f25970a = i10;
-        switch (i10) {
+    public le(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
+        super(context);
+        this.f25971a = i10;
+        this.f25972b = chatActivityEnterView;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f25971a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f25972b;
+                ei.f4 f4Var = chatActivityEnterView.f22017k0;
+                if (f4Var != null && f4Var.getVisibility() == 0) {
+                    return chatActivityEnterView.f22017k0.dispatchTouchEvent(motionEvent);
+                }
+                return super.dispatchTouchEvent(motionEvent);
             case 1:
-                this.f25971b = chatActivityEnterView;
-                super(Float.class, "attach_scale");
-                return;
-            case 2:
-                this.f25971b = chatActivityEnterView;
-                super(Float.class, "emoji_button_alpha");
-                return;
-            case 3:
-                this.f25971b = chatActivityEnterView;
-                super(Float.class, "attach_layout_translation_x");
-                return;
-            case 4:
-                this.f25971b = chatActivityEnterView;
-                super(Float.class, "message_text_translation_x");
+                ChatActivityEnterView chatActivityEnterView2 = this.f25972b;
+                if (chatActivityEnterView2.J && chatActivityEnterView2.T4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        switch (this.f25971a) {
+            case 1:
+                ChatActivityEnterView chatActivityEnterView = this.f25972b;
+                if (view == chatActivityEnterView.J0 && chatActivityEnterView.f22000h0) {
+                    return true;
+                }
+                return super.drawChild(canvas, view, j3);
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f25971a) {
+            case 1:
+                super.onSizeChanged(i10, i11, i12, i13);
+                setPivotX(i10 - AndroidUtilities.dp(22.0f));
+                setPivotY(i11 - AndroidUtilities.dp(22.0f));
                 return;
             default:
-                this.f25971b = chatActivityEnterView;
+                super.onSizeChanged(i10, i11, i12, i13);
                 return;
         }
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f25970a) {
-            case 0:
-                View view = (View) obj;
-                return Float.valueOf(this.f25971b.h);
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f25971a) {
             case 1:
-                View view2 = (View) obj;
-                return Float.valueOf(this.f25971b.E);
-            case 2:
-                View view3 = (View) obj;
-                return Float.valueOf(this.f25971b.f22052n);
-            case 3:
-                View view4 = (View) obj;
-                return Float.valueOf(this.f25971b.f22106x);
+                ChatActivityEnterView chatActivityEnterView = this.f25972b;
+                if (chatActivityEnterView.J && chatActivityEnterView.T4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
             default:
-                View view5 = (View) obj;
-                return Float.valueOf(this.f25971b.G);
+                return super.onTouchEvent(motionEvent);
         }
     }
 
     @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.f25970a) {
-            case 0:
-                View view = (View) obj;
-                float floatValue = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView = this.f25971b;
-                chatActivityEnterView.h = floatValue;
-                chatActivityEnterView.F1();
-                return;
-            case 1:
-                View view2 = (View) obj;
-                float floatValue2 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView2 = this.f25971b;
-                chatActivityEnterView2.E = floatValue2;
-                chatActivityEnterView2.A1();
-                return;
+    public void setVisibility(int i10) {
+        switch (this.f25971a) {
             case 2:
-                View view3 = (View) obj;
-                float floatValue3 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView3 = this.f25971b;
-                chatActivityEnterView3.f22052n = floatValue3;
-                chatActivityEnterView3.F1();
-                return;
-            case 3:
-                View view4 = (View) obj;
-                float floatValue4 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView4 = this.f25971b;
-                chatActivityEnterView4.f22106x = floatValue4;
-                chatActivityEnterView4.A1();
+                super.setVisibility(i10);
+                this.f25972b.P1(true);
                 return;
             default:
-                View view5 = (View) obj;
-                float floatValue5 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView5 = this.f25971b;
-                chatActivityEnterView5.G = floatValue5;
-                chatActivityEnterView5.J1();
+                super.setVisibility(i10);
                 return;
         }
     }

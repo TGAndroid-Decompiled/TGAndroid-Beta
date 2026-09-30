@@ -2,9 +2,9 @@ package ci;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ih;
-import org.telegram.ui.Components.vi;
-public final class a6 implements vi {
+import org.telegram.ui.Components.hh;
+import org.telegram.ui.Components.ui;
+public final class a6 implements ui {
     @Override
     public final boolean S1() {
         return false;
@@ -16,8 +16,8 @@ public final class a6 implements vi {
     }
 
     @Override
-    public final void x0(ih ihVar) {
-        ihVar.run();
+    public final void x0(hh hhVar) {
+        hhVar.run();
     }
 
     @Override

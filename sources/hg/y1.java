@@ -27,20 +27,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.qp;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.w01;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.v01;
 import w7.y5;
 public final class y1 extends FrameLayout {
-    public final h9 f10479a;
-    public final ImageReceiver f10480b;
-    public final vh.n f10481c;
-    public final qp d;
+    public final h9 f10465a;
+    public final ImageReceiver f10466b;
+    public final vh.n f10467c;
+    public final pp d;
     public final ImageView e;
-    public final d6 f10482f;
+    public final d6 f10468f;
     public boolean h;
-    public final int[] f10483n;
-    public boolean f10484r;
+    public final int[] f10469n;
+    public boolean f10470r;
 
     public y1(Context context, d6 d6Var, boolean z10) {
         super(context);
@@ -48,10 +48,10 @@ public final class y1 extends FrameLayout {
         float f7;
         float f10;
         int i11;
-        this.f10479a = new h9((d6) null);
-        this.f10480b = new ImageReceiver(this);
-        this.f10483n = new int[1];
-        this.f10482f = d6Var;
+        this.f10465a = new h9((d6) null);
+        this.f10466b = new ImageReceiver(this);
+        this.f10469n = new int[1];
+        this.f10468f = d6Var;
         setWillNotDraw(false);
         if (z10) {
             i10 = 42;
@@ -59,10 +59,10 @@ public final class y1 extends FrameLayout {
             i10 = 16;
         }
         vh.n nVar = new vh.n(context);
-        this.f10481c = nVar;
+        this.f10467c = nVar;
         nVar.setLines(2);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
-        nVar.setTextColor(h6.v0(h6.f19478z6, d6Var));
+        nVar.setTextColor(h6.v0(h6.f19463z6, d6Var));
         nVar.setTextSize(1, 14.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -92,12 +92,12 @@ public final class y1 extends FrameLayout {
         } else {
             this.e = null;
         }
-        qp qpVar = new qp(getContext(), 21, d6Var);
-        this.d = qpVar;
-        qpVar.b(-1, h6.f19076d6, h6.f19204k7);
-        qpVar.setDrawUnchecked(false);
-        qpVar.setDrawBackgroundAsArc(3);
-        addView(qpVar, y5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        pp ppVar = new pp(getContext(), 21, d6Var);
+        this.d = ppVar;
+        ppVar.b(-1, h6.f19061d6, h6.f19189k7);
+        ppVar.setDrawUnchecked(false);
+        ppVar.setDrawBackgroundAsArc(3);
+        addView(ppVar, y5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     public final void a(b2 b2Var, String str, boolean z10) {
@@ -112,7 +112,7 @@ public final class y1 extends FrameLayout {
         int length;
         String str3 = str;
         if (b2Var != null) {
-            z11 = b2Var.f10223g;
+            z11 = b2Var.f10209g;
         } else {
             z11 = false;
         }
@@ -121,13 +121,13 @@ public final class y1 extends FrameLayout {
         if (str3 != null && str3.length() > 0 && !str3.startsWith("/")) {
             str3 = "/".concat(str3);
         }
-        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) b2Var.f10220b);
-        spannableStringBuilder.setSpan(new v51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) b2Var.f10206b);
+        spannableStringBuilder.setSpan(new u51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         int i10 = h6.G6;
-        d6 d6Var = this.f10482f;
+        d6 d6Var = this.f10468f;
         spannableStringBuilder.setSpan(new ForegroundColorSpan(h6.v0(i10, d6Var)), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(h6.v0(h6.f19277o6, d6Var));
+            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(h6.v0(h6.f19262o6, d6Var));
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -136,7 +136,7 @@ public final class y1 extends FrameLayout {
             spannableStringBuilder.setSpan(foregroundColorSpan, 0, Math.min(length, spannableStringBuilder.length()), 33);
         }
         MessageObject messageObject = b2Var.e;
-        vh.n nVar = this.f10481c;
+        vh.n nVar = this.f10467c;
         if (messageObject != null) {
             spannableStringBuilder.append((CharSequence) " ");
             CharSequence charSequence = b2Var.e.caption;
@@ -156,7 +156,7 @@ public final class y1 extends FrameLayout {
             int i11 = x1.d;
             SpannableString spannableString = new SpannableString("+");
             x1 x1Var = new x1(b2Var.a() - 1);
-            this.f10483n[0] = (int) (((w01) x1Var.f10472c).f29768c + AndroidUtilities.dp(10.0f));
+            this.f10469n[0] = (int) (((v01) x1Var.f10458c).f28922c + AndroidUtilities.dp(10.0f));
             spannableString.setSpan(x1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, nVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -169,7 +169,7 @@ public final class y1 extends FrameLayout {
         int i12 = UserConfig.selectedAccount;
         TLRPC.MessageMedia media = MessageObject.getMedia(b2Var.e);
         long j10 = 0;
-        ImageReceiver imageReceiver = this.f10480b;
+        ImageReceiver imageReceiver = this.f10466b;
         if (media != null && (photo2 = media.photo) != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, AndroidUtilities.dp(36.0f), true, null, true);
             ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
@@ -208,12 +208,12 @@ public final class y1 extends FrameLayout {
             imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         } else {
             TLRPC.User currentUser = UserConfig.getInstance(i12).getCurrentUser();
-            h9 h9Var = this.f10479a;
+            h9 h9Var = this.f10465a;
             h9Var.r(currentUser);
             imageReceiver.setForUserOrChat(UserConfig.getInstance(i12).getCurrentUser(), h9Var);
             imageReceiver.setRoundRadius(AndroidUtilities.dp(36.0f));
         }
-        this.f10484r = z10;
+        this.f10470r = z10;
         invalidate();
     }
 
@@ -227,14 +227,14 @@ public final class y1 extends FrameLayout {
             dp = AndroidUtilities.dp(15.0f);
         }
         float f10 = dp;
-        ImageReceiver imageReceiver = this.f10480b;
+        ImageReceiver imageReceiver = this.f10466b;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        if (this.f10484r) {
-            Paint T0 = h6.T0("paintDivider", this.f10482f);
+        if (this.f10470r) {
+            Paint T0 = h6.T0("paintDivider", this.f10468f);
             if (T0 == null) {
-                T0 = h6.f19197k0;
+                T0 = h6.f19182k0;
             }
             Paint paint = T0;
             float f11 = 64.0f;
@@ -255,7 +255,7 @@ public final class y1 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f10484r ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f10470r ? 1 : 0), 1073741824));
     }
 
     public void setReorder(boolean z10) {

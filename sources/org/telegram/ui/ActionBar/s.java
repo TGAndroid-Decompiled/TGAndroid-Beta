@@ -1,18 +1,18 @@
 package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 public final class s implements Runnable {
-    public final boolean f19742a;
-    public final boolean f19743b;
-    public final boolean f19744c;
+    public final boolean f19727a;
+    public final boolean f19728b;
+    public final boolean f19729c;
     public final ActionBarLayout d;
 
     public s(ActionBarLayout actionBarLayout, boolean z10, boolean z11, boolean z12) {
         this.d = actionBarLayout;
-        this.f19742a = z10;
-        this.f19743b = z11;
-        this.f19744c = z12;
+        this.f19727a = z10;
+        this.f19728b = z11;
+        this.f19729c = z12;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class s implements Runnable {
         }
         Integer num2 = null;
         actionBarLayout.D0 = null;
-        boolean z10 = this.f19742a;
+        boolean z10 = this.f19727a;
         if (z10) {
-            actionBarLayout.f18660v0 = System.currentTimeMillis();
+            actionBarLayout.f18645v0 = System.currentTimeMillis();
         }
         long nanoTime = System.nanoTime() / 1000000;
         long j3 = nanoTime - actionBarLayout.F0;
@@ -38,8 +38,8 @@ public final class s implements Runnable {
             j3 = 18;
         }
         actionBarLayout.F0 = nanoTime;
-        boolean z11 = this.f19744c;
-        boolean z12 = this.f19743b;
+        boolean z11 = this.f19729c;
+        boolean z12 = this.f19728b;
         if (z12 && z11) {
             f7 = 190.0f;
         } else {
@@ -93,32 +93,32 @@ public final class s implements Runnable {
             if (z11) {
                 interpolation = actionBarLayout.M.getInterpolation(actionBarLayout.E0);
             } else {
-                interpolation = tr.h.getInterpolation(actionBarLayout.E0);
+                interpolation = sr.h.getInterpolation(actionBarLayout.E0);
             }
         } else {
             interpolation = actionBarLayout.L.getInterpolation(actionBarLayout.E0);
         }
         if (z11) {
             float a2 = w7.q.a(interpolation, 0.0f, 1.0f);
-            actionBarLayout.f18656s.setAlpha(a2);
+            actionBarLayout.f18641s.setAlpha(a2);
             if (z12) {
                 float f11 = (0.3f * interpolation) + 0.7f;
-                actionBarLayout.f18656s.setScaleX(f11);
-                actionBarLayout.f18656s.setScaleY(f11);
+                actionBarLayout.f18641s.setScaleX(f11);
+                actionBarLayout.f18641s.setScaleY(f11);
                 if (actionBarLayout.J != null) {
                     float f12 = 1.0f - interpolation;
-                    actionBarLayout.f18656s.setTranslationY(AndroidUtilities.dp(40.0f) * f12);
+                    actionBarLayout.f18641s.setTranslationY(AndroidUtilities.dp(40.0f) * f12);
                     actionBarLayout.J.setTranslationY((-AndroidUtilities.dp(70.0f)) * f12);
                     float f13 = (interpolation * 0.05f) + 0.95f;
                     actionBarLayout.J.setScaleX(f13);
                     actionBarLayout.J.setScaleY(f13);
                 }
-                actionBarLayout.f18654r.setAlpha((int) (46.0f * a2));
-                h6.f19346s0.setAlpha((int) (a2 * 255.0f));
-                actionBarLayout.f18656s.invalidate();
+                actionBarLayout.f18639r.setAlpha((int) (46.0f * a2));
+                h6.f19331s0.setAlpha((int) (a2 * 255.0f));
+                actionBarLayout.f18641s.invalidate();
                 actionBarLayout.invalidate();
             } else {
-                actionBarLayout.f18656s.setTranslationX((1.0f - interpolation) * AndroidUtilities.dp(48.0f));
+                actionBarLayout.f18641s.setTranslationX((1.0f - interpolation) * AndroidUtilities.dp(48.0f));
             }
         } else {
             float f14 = 1.0f - interpolation;
@@ -128,11 +128,11 @@ public final class s implements Runnable {
                 float f15 = (f14 * 0.1f) + 0.9f;
                 actionBarLayout.v.setScaleX(f15);
                 actionBarLayout.v.setScaleY(f15);
-                actionBarLayout.f18654r.setAlpha((int) (46.0f * a10));
+                actionBarLayout.f18639r.setAlpha((int) (46.0f * a10));
                 if (actionBarLayout.J == null) {
-                    h6.f19346s0.setAlpha((int) (a10 * 255.0f));
+                    h6.f19331s0.setAlpha((int) (a10 * 255.0f));
                 }
-                actionBarLayout.f18656s.invalidate();
+                actionBarLayout.f18641s.invalidate();
                 actionBarLayout.invalidate();
             } else {
                 actionBarLayout.v.setTranslationX(AndroidUtilities.dp(48.0f) * interpolation);

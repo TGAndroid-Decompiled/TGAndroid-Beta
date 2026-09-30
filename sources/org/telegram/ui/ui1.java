@@ -11,68 +11,68 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ui1 implements RequestDelegate {
-    public final int f38577a;
-    public final Object f38578b;
-    public final Object f38579c;
+    public final int f38487a;
+    public final Object f38488b;
+    public final Object f38489c;
 
     public ui1(int i10, Object obj, Object obj2) {
-        this.f38577a = i10;
-        this.f38578b = obj;
-        this.f38579c = obj2;
+        this.f38487a = i10;
+        this.f38488b = obj;
+        this.f38489c = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38577a) {
+        switch (this.f38487a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new p81(22, (vi1) this.f38578b, (int[]) this.f38579c));
+                AndroidUtilities.runOnUIThread(new n81(23, (vi1) this.f38488b, (int[]) this.f38489c));
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new jr0((qg.n2) this.f38578b, tLObject, (qg.l2) this.f38579c, tL_error, 25));
+                AndroidUtilities.runOnUIThread(new jr0((qg.n2) this.f38488b, tLObject, (qg.l2) this.f38489c, tL_error, 25));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.fn0(tLObject, (MessagesController) this.f38578b, (tg.x0) this.f38579c, 28));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.en0(tLObject, (MessagesController) this.f38488b, (tg.x0) this.f38489c, 28));
                 return;
             case 3:
-                MessagesController messagesController = (MessagesController) this.f38578b;
-                bt btVar = (bt) this.f38579c;
+                MessagesController messagesController = (MessagesController) this.f38488b;
+                bt btVar = (bt) this.f38489c;
                 if (tLObject instanceof TLRPC.TL_contacts_found) {
                     TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
                     messagesController.putUsers(tL_contacts_found.users, false);
                     ArrayList arrayList = new ArrayList();
                     for (int i10 = 0; i10 < tL_contacts_found.users.size(); i10++) {
                         TLRPC.User user = tL_contacts_found.users.get(i10);
-                        if (!user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f18499id)) {
+                        if (!user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f18484id)) {
                             arrayList.add(user);
                         }
                     }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.web.o1(24, btVar, arrayList));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(25, btVar, arrayList));
                     return;
                 }
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new tg.r((org.telegram.ui.Components.cs0) this.f38578b, tL_error, (org.telegram.ui.ActionBar.m2) this.f38579c, 4));
+                AndroidUtilities.runOnUIThread(new tg.r((org.telegram.ui.Components.bs0) this.f38488b, tL_error, (org.telegram.ui.ActionBar.m2) this.f38489c, 4));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new tg.r((xh.v3) this.f38578b, tLObject, (TL_stars.getResaleStarGifts) this.f38579c, 7));
+                AndroidUtilities.runOnUIThread(new tg.r((xh.v3) this.f38488b, tLObject, (TL_stars.getResaleStarGifts) this.f38489c, 7));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new tg.r((yh.g) this.f38578b, tLObject, (Context) this.f38579c, 8));
+                AndroidUtilities.runOnUIThread(new tg.r((yh.g) this.f38488b, tLObject, (Context) this.f38489c, 8));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new yh.j1((yh.x3) this.f38578b, tLObject, (tg.r) this.f38579c, tL_error, 0));
+                AndroidUtilities.runOnUIThread(new yh.j1((yh.x3) this.f38488b, tLObject, (tg.r) this.f38489c, tL_error, 0));
                 return;
             case 8:
-                yh.x3.f1(tLObject, tL_error, (TL_stars.InputSavedStarGift) this.f38579c, (yh.x3) this.f38578b);
+                yh.x3.f1(tLObject, tL_error, (TL_stars.InputSavedStarGift) this.f38489c, (yh.x3) this.f38488b);
                 return;
             case 9:
-                yh.x3.V0((yh.x3) this.f38578b, (org.telegram.ui.ActionBar.a2) this.f38579c, tLObject, tL_error);
+                yh.x3.V0((yh.x3) this.f38488b, (org.telegram.ui.ActionBar.a2) this.f38489c, tLObject, tL_error);
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new tg.r((yh.s5) this.f38578b, tLObject, tL_error, (Utilities.Callback) this.f38579c, 17));
+                AndroidUtilities.runOnUIThread(new tg.r((yh.t5) this.f38488b, tLObject, tL_error, (Utilities.Callback) this.f38489c, 17));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new tg.r((yh.s5) this.f38578b, tLObject, (Runnable) this.f38579c, 18));
+                AndroidUtilities.runOnUIThread(new tg.r((yh.t5) this.f38488b, tLObject, (Runnable) this.f38489c, 18));
                 return;
         }
     }

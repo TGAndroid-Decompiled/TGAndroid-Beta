@@ -1,37 +1,66 @@
 package org.telegram.ui.web;
 
-import java.io.File;
-import java.io.FileInputStream;
-public final class j1 extends FileInputStream {
-    public final long f39202a;
+import android.os.AsyncTask;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.Utilities;
+public final class j1 extends AsyncTask {
+    public final HashMap f39113a = new HashMap();
+    public final Utilities.Callback f39114b;
+    public Exception f39115c;
 
-    public j1(long j3, long j10, File file) {
-        super(file);
-        this.f39202a = j10;
-        if (j3 > 0 && skip(j3) != j3) {
-            throw new RuntimeException("BoundedInputStream failed to skip");
+    public j1(Utilities.Callback callback) {
+        this.f39114b = callback;
+    }
+
+    @Override
+    public final Object doInBackground(Object[] objArr) {
+        BufferedReader bufferedReader;
+        try {
+            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
+            for (Map.Entry entry : this.f39113a.entrySet()) {
+                if (entry.getKey() != null && entry.getValue() != null) {
+                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
+                }
+            }
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setDoInput(true);
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode >= 200 && responseCode < 300) {
+                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            } else {
+                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+            }
+            StringBuilder sb2 = new StringBuilder();
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine != null) {
+                    sb2.append(readLine);
+                } else {
+                    bufferedReader.close();
+                    return sb2.toString();
+                }
+            }
+        } catch (Exception e) {
+            this.f39115c = e;
+            return null;
         }
     }
 
     @Override
-    public final int read() {
-        if (getChannel().position() >= this.f39202a) {
-            return -1;
+    public final void onPostExecute(Object obj) {
+        String str = (String) obj;
+        Utilities.Callback callback = this.f39114b;
+        if (callback != null) {
+            if (this.f39115c == null) {
+                callback.run(str);
+            } else {
+                callback.run(null);
+            }
         }
-        return super.read();
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        long position = getChannel().position();
-        long j3 = this.f39202a;
-        if (position >= j3) {
-            return -1;
-        }
-        long position2 = j3 - getChannel().position();
-        if (i11 > position2) {
-            i11 = (int) position2;
-        }
-        return super.read(bArr, i10, i11);
     }
 }

@@ -10,10 +10,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 public final class cd1 extends org.telegram.ui.ActionBar.j {
-    public final od1 f32778a;
+    public final od1 f32692a;
 
     public cd1(od1 od1Var) {
-        this.f32778a = od1Var;
+        this.f32692a = od1Var;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class cd1 extends org.telegram.ui.ActionBar.j {
         String str;
         int i11;
         String str2;
-        od1 od1Var = this.f32778a;
-        org.telegram.ui.ActionBar.f6 f6Var = od1Var.f36338s;
+        od1 od1Var = this.f32692a;
+        org.telegram.ui.ActionBar.f6 f6Var = od1Var.f36195s;
         int i12 = 0;
         if (i10 == -1) {
             if (od1Var.Q0(true)) {
@@ -47,26 +47,26 @@ public final class cd1 extends org.telegram.ui.ActionBar.j {
             } else {
                 str2 = "";
             }
-            f6Var.f18913o = str2;
-            f6Var.f18914p = od1Var.l1;
-            f6Var.f18915q = od1Var.E1;
-            if (((int) f6Var.f18908j) == 0) {
-                f6Var.f18908j = 4294967296L;
+            f6Var.f18898o = str2;
+            f6Var.f18899p = od1Var.l1;
+            f6Var.f18900q = od1Var.E1;
+            if (((int) f6Var.f18893j) == 0) {
+                f6Var.f18893j = 4294967296L;
             }
-            if (((int) f6Var.f18909k) == 0) {
-                f6Var.f18909k = 4294967296L;
+            if (((int) f6Var.f18894k) == 0) {
+                f6Var.f18894k = 4294967296L;
             }
-            if (((int) f6Var.f18910l) == 0) {
-                f6Var.f18910l = 4294967296L;
+            if (((int) f6Var.f18895l) == 0) {
+                f6Var.f18895l = 4294967296L;
             }
-            if (((int) f6Var.f18911m) == 0) {
-                f6Var.f18911m = 4294967296L;
+            if (((int) f6Var.f18896m) == 0) {
+                f6Var.f18896m = 4294967296L;
             }
             od1Var.W0();
             NotificationCenter.getGlobalInstance().removeObserver(od1Var, NotificationCenter.wallpapersDidLoad);
-            org.telegram.ui.ActionBar.h6.t1(od1Var.f36303e0, true, false, false, true, false);
+            org.telegram.ui.ActionBar.h6.t1(od1Var.f36160e0, true, false, false, true, false);
             org.telegram.ui.ActionBar.h6.o();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, od1Var.f36303e0, Boolean.valueOf(od1Var.f36307f0), null, -1);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, od1Var.f36160e0, Boolean.valueOf(od1Var.f36164f0), null, -1);
             od1Var.finishFragment();
         } else if (i10 == 5) {
             if (od1Var.getParentActivity() != null) {
@@ -100,19 +100,19 @@ public final class cd1 extends org.telegram.ui.ActionBar.j {
                     } else {
                         str = "c";
                     }
-                    yi1 yi1Var = new yi1(str, od1Var.Z0, od1Var.f36294b1, od1Var.f36298c1, od1Var.f36301d1, od1Var.f36314h1, od1Var.l1, od1Var.E1, null);
-                    yi1Var.f40277g = tL_wallPaper2;
+                    yi1 yi1Var = new yi1(str, od1Var.Z0, od1Var.f36151b1, od1Var.f36155c1, od1Var.f36158d1, od1Var.f36171h1, od1Var.l1, od1Var.E1, null);
+                    yi1Var.f40171g = tL_wallPaper2;
                     b10 = yi1Var.b();
                 } else if (BuildVars.DEBUG_PRIVATE_VERSION && (k10 = org.telegram.ui.ActionBar.h6.I.k(false)) != null) {
-                    yi1 yi1Var2 = new yi1(k10.f18913o, (int) k10.f18908j, (int) k10.f18909k, (int) k10.f18910l, (int) k10.f18911m, k10.f18912n, k10.f18914p, k10.f18915q, null);
+                    yi1 yi1Var2 = new yi1(k10.f18898o, (int) k10.f18893j, (int) k10.f18894k, (int) k10.f18895l, (int) k10.f18896m, k10.f18897n, k10.f18899p, k10.f18900q, null);
                     int size = od1Var.U0.size();
                     while (true) {
                         if (i12 >= size) {
                             break;
                         }
                         TLRPC.TL_wallPaper tL_wallPaper3 = (TLRPC.TL_wallPaper) od1Var.U0.get(i12);
-                        if (tL_wallPaper3.pattern && k10.f18913o.equals(tL_wallPaper3.slug)) {
-                            yi1Var2.f40277g = tL_wallPaper3;
+                        if (tL_wallPaper3.pattern && k10.f18898o.equals(tL_wallPaper3.slug)) {
+                            yi1Var2.f40171g = tL_wallPaper3;
                             break;
                         }
                         i12++;
@@ -128,28 +128,28 @@ public final class cd1 extends org.telegram.ui.ActionBar.j {
                 SharedConfig.dayNightWallpaperSwitchHint = 10;
                 SharedConfig.increaseDayNightWallpaperSiwtchHint();
             }
-            boolean a2 = od1Var.f36332p1.a();
-            fd1 fd1Var = od1Var.f36332p1;
+            boolean a2 = od1Var.f36189p1.a();
+            fd1 fd1Var = od1Var.f36189p1;
             if (fd1Var != null) {
                 if (!fd1Var.Y0()) {
                     od1Var.g1();
                     return;
                 }
-                od1Var.f36332p1.o1(true);
-                org.telegram.ui.Components.lj0 lj0Var = od1Var.N1;
-                lj0Var.h = true;
+                od1Var.f36189p1.o1(true);
+                org.telegram.ui.Components.kj0 kj0Var = od1Var.N1;
+                kj0Var.h = true;
                 if (a2) {
-                    lj0Var.P(0);
+                    kj0Var.P(0);
                 } else {
-                    lj0Var.P(36);
+                    kj0Var.P(36);
                 }
                 od1Var.N1.start();
                 if (od1Var.M1) {
-                    fd1 fd1Var2 = od1Var.f36332p1;
+                    fd1 fd1Var2 = od1Var.f36189p1;
                     float f7 = 0.0f;
                     if (fd1Var2 != null && fd1Var2.a()) {
                         od1Var.R1.setVisibility(0);
-                        od1Var.R1.a(od1Var.f36328n1);
+                        od1Var.R1.a(od1Var.f36185n1);
                     } else {
                         od1Var.R1.a(0.0f);
                     }
@@ -158,16 +158,16 @@ public final class cd1 extends org.telegram.ui.ActionBar.j {
                         valueAnimator.removeAllListeners();
                         od1Var.P1.cancel();
                     }
-                    float f10 = od1Var.f36330o1;
-                    if (od1Var.f36332p1.a()) {
+                    float f10 = od1Var.f36187o1;
+                    if (od1Var.f36189p1.a()) {
                         f7 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
                     od1Var.P1 = ofFloat;
                     ofFloat.addUpdateListener(new q11(this, 14));
-                    od1Var.P1.addListener(new wo0(this, 23));
+                    od1Var.P1.addListener(new xo0(this, 23));
                     od1Var.P1.setDuration(250L);
-                    od1Var.P1.setInterpolator(org.telegram.ui.Components.tr.f28636f);
+                    od1Var.P1.setInterpolator(org.telegram.ui.Components.sr.f28346f);
                     od1Var.P1.start();
                 }
             }

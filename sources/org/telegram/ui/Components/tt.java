@@ -1,35 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class tt implements Utilities.Callback0Return {
-    public final int f28655a;
-    public final Object f28656b;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class tt implements ViewTreeObserver.OnPreDrawListener {
+    public final int f28623a;
+    public final View f28624b;
 
-    public tt(Object obj, int i10) {
-        this.f28655a = i10;
-        this.f28656b = obj;
+    public tt(int i10, View view) {
+        this.f28623a = i10;
+        this.f28624b = view;
     }
 
     @Override
-    public final Object run() {
-        boolean z10;
-        Editable text;
-        fj0[] fj0VarArr;
-        int i10 = this.f28655a;
-        Object obj = this.f28656b;
-        switch (i10) {
+    public final boolean onPreDraw() {
+        switch (this.f28623a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
-                int i11 = EditTextBoldCursor.f22276a;
-                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((fj0VarArr = (fj0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), fj0.class)) == null || fj0VarArr.length == 0)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                org.telegram.ui.ActionBar.g4 g4Var = ((EditTextBoldCursor) this.f28624b).floatingActionMode;
+                if (g4Var != null) {
+                    g4Var.e();
+                    return true;
                 }
-                return Boolean.valueOf(z10);
+                return true;
             default:
-                return ((x40) obj).getCloseIntoObject();
+                ((y70) this.f28624b).invalidate();
+                return true;
         }
     }
 }

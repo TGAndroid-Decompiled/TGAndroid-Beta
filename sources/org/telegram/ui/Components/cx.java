@@ -1,64 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
-public final class cx extends z4.g {
-    public final nz f23442w0;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class cx extends ImageView {
+    public final mz f23436a;
 
-    public cx(nz nzVar, Context context) {
+    public cx(mz mzVar, Context context) {
         super(context);
-        this.f23442w0 = nzVar;
+        this.f23436a = mzVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f23442w0.f26826f) {
-            return false;
-        }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-        }
-        try {
-            return super.onInterceptTouchEvent(motionEvent);
-        } catch (IllegalArgumentException unused) {
-            return false;
-        }
-    }
-
-    @Override
-    public final void x(int i10, boolean z10) {
-        boolean z11;
-        nz nzVar = this.f23442w0;
-        rx rxVar = nzVar.I;
-        if (i10 == 1) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        nz.a(nzVar, z11);
-        if (i10 == getCurrentItem()) {
-            if (i10 == 0) {
-                nzVar.Q0[1] = 0;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(rxVar, ViewGroup.TRANSLATION_Y, 0.0f);
-                ofFloat.setDuration(150L);
-                ofFloat.setInterpolator(tr.h);
-                ofFloat.start();
-                nzVar.G(1, 0);
-                if (rxVar != null) {
-                    rxVar.j(0, true);
-                    return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ny nyVar;
+        int action = motionEvent.getAction();
+        mz mzVar = this.f23436a;
+        if (action == 0) {
+            mzVar.P1 = true;
+            mzVar.Q1 = false;
+            AndroidUtilities.runOnUIThread(new ld(mzVar, 350, 3), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            mzVar.P1 = false;
+            if (!mzVar.Q1 && (nyVar = mzVar.f26584t1) != null && nyVar.k()) {
+                try {
+                    mzVar.f26596x.performHapticFeedback(3);
+                } catch (Exception unused) {
                 }
-                return;
-            } else if (i10 == 1) {
-                nzVar.f26833h0.y0(0);
-                return;
-            } else {
-                nzVar.D0.y0(1);
-                return;
             }
         }
-        super.x(i10, z10);
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

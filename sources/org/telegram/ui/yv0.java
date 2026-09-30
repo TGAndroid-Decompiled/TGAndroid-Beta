@@ -8,30 +8,30 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class yv0 extends FrameLayout {
-    public final int f40371a;
-    public final dw0 f40372b;
+    public final int f40261a;
+    public final dw0 f40262b;
 
     public yv0(dw0 dw0Var, Context context, int i10) {
         super(context);
-        this.f40371a = i10;
-        this.f40372b = dw0Var;
+        this.f40261a = i10;
+        this.f40262b = dw0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f40371a) {
+        switch (this.f40261a) {
             case 0:
-                dw0 dw0Var = this.f40372b;
-                if (dw0Var.f33301y > 0.0f && dw0Var.f33299w != null) {
-                    dw0Var.f33300x.reset();
-                    float width = getWidth() / dw0Var.f33298s.getWidth();
-                    dw0Var.f33300x.postScale(width, width);
-                    dw0Var.v.setLocalMatrix(dw0Var.f33300x);
-                    dw0Var.f33299w.setAlpha((int) (dw0Var.f33301y * 255.0f));
+                dw0 dw0Var = this.f40262b;
+                if (dw0Var.f33207y > 0.0f && dw0Var.f33205w != null) {
+                    dw0Var.f33206x.reset();
+                    float width = getWidth() / dw0Var.f33204s.getWidth();
+                    dw0Var.f33206x.postScale(width, width);
+                    dw0Var.v.setLocalMatrix(dw0Var.f33206x);
+                    dw0Var.f33205w.setAlpha((int) (dw0Var.f33207y * 255.0f));
                     canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), dw0Var.f33299w);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), dw0Var.f33205w);
                 } else {
                     canvas2 = canvas;
                 }
@@ -50,10 +50,10 @@ public final class yv0 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f40371a) {
+        switch (this.f40261a) {
             case 0:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f40372b.c(true);
+                    this.f40262b.c(true);
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -64,14 +64,14 @@ public final class yv0 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f40371a) {
+        switch (this.f40261a) {
             case 1:
-                dw0 dw0Var = this.f40372b;
+                dw0 dw0Var = this.f40262b;
                 if (view != dw0Var.K && view != dw0Var.J) {
                     return super.drawChild(canvas, view, j3);
                 }
                 canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(dw0Var.M, 0.0f, dw0Var.f33301y), getWidth(), AndroidUtilities.lerp(dw0Var.N, getHeight(), dw0Var.f33301y));
+                canvas.clipRect(0.0f, AndroidUtilities.lerp(dw0Var.M, 0.0f, dw0Var.f33207y), getWidth(), AndroidUtilities.lerp(dw0Var.N, getHeight(), dw0Var.f33207y));
                 boolean drawChild = super.drawChild(canvas, view, j3);
                 canvas.restore();
                 return drawChild;
@@ -82,10 +82,10 @@ public final class yv0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f40371a) {
+        switch (this.f40261a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
-                this.f40372b.d();
+                this.f40262b.d();
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -95,11 +95,11 @@ public final class yv0 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f40371a) {
+        switch (this.f40261a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
-                dw0 dw0Var = this.f40372b;
+                dw0 dw0Var = this.f40262b;
                 dw0Var.e();
                 for (int i12 = 0; i12 < getChildCount(); i12++) {
                     View childAt = getChildAt(i12);
@@ -117,9 +117,9 @@ public final class yv0 extends FrameLayout {
                             viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                         }
                     }
-                    org.telegram.ui.Components.tk0 tk0Var = dw0Var.Q;
-                    if (childAt == tk0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(tk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    org.telegram.ui.Components.sk0 sk0Var = dw0Var.Q;
+                    if (childAt == sk0Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(sk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     } else {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     }
@@ -134,11 +134,11 @@ public final class yv0 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f40371a) {
+        switch (this.f40261a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
-                dw0 dw0Var = this.f40372b;
-                gh.d.c(dw0Var.F, dw0Var.f33289c);
+                dw0 dw0Var = this.f40262b;
+                gh.d.c(dw0Var.F, dw0Var.f33195c);
                 dw0Var.G.d();
                 return;
             default:

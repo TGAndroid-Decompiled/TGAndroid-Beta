@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.yc;
 public abstract class c {
     public static void A(n2.h hVar, n2.h hVar2) {
@@ -423,7 +423,7 @@ public abstract class c {
     }
 
     public static void n(int i10, ArrayList arrayList) {
-        arrayList.add(y51.B(LocaleController.getString(i10)));
+        arrayList.add(x51.B(LocaleController.getString(i10)));
     }
 
     public static void o(int i10, HashMap hashMap, String str, int i11, String str2) {

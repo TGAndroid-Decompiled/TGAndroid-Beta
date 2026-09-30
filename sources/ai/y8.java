@@ -2,18 +2,18 @@ package ai;
 
 import org.telegram.messenger.NotificationCenter;
 public final class y8 implements Runnable {
-    public final int f1766a;
-    public final d9 f1767b;
+    public final int f1759a;
+    public final d9 f1760b;
 
     public y8(d9 d9Var, int i10) {
-        this.f1766a = i10;
-        this.f1767b = d9Var;
+        this.f1759a = i10;
+        this.f1760b = d9Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f1766a;
-        d9 d9Var = this.f1767b;
+        int i10 = this.f1759a;
+        d9 d9Var = this.f1760b;
         switch (i10) {
             case 0:
                 NotificationCenter.getInstance(d9Var.f722c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesListUpdated, d9Var);

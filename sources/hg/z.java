@@ -11,19 +11,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class z implements RequestDelegate {
-    public final int f10485a;
-    public final a0 f10486b;
+    public final int f10471a;
+    public final a0 f10472b;
 
     public z(a0 a0Var, int i10) {
-        this.f10485a = i10;
-        this.f10486b = a0Var;
+        this.f10471a = i10;
+        this.f10472b = a0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f10485a) {
+        switch (this.f10471a) {
             case 0:
-                final a0 a0Var = this.f10486b;
+                final a0 a0Var = this.f10472b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -32,10 +32,10 @@ public final class z implements RequestDelegate {
                         a0 a0Var2 = a0Var;
                         switch (i10) {
                             case 0:
-                                int i11 = a0Var2.f10206a;
+                                int i11 = a0Var2.f10192a;
                                 if (tLObject2 instanceof TL_account.TL_businessChatLink) {
                                     TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
-                                    a0Var2.f10207b.add(tL_businessChatLink);
+                                    a0Var2.f10193b.add(tL_businessChatLink);
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinkCreated, tL_businessChatLink);
                                     a0Var2.f();
@@ -43,8 +43,8 @@ public final class z implements RequestDelegate {
                                 }
                                 return;
                             default:
-                                ArrayList arrayList = a0Var2.f10207b;
-                                int i12 = a0Var2.f10206a;
+                                ArrayList arrayList = a0Var2.f10193b;
+                                int i12 = a0Var2.f10192a;
                                 if (tLObject2 instanceof TL_account.businessChatLinks) {
                                     TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
                                     arrayList.clear();
@@ -57,7 +57,7 @@ public final class z implements RequestDelegate {
                                 } else {
                                     FileLog.e(new RuntimeException("Unexpected response from server!"));
                                 }
-                                a0Var2.f10208c = false;
+                                a0Var2.f10194c = false;
                                 a0Var2.d = true;
                                 return;
                         }
@@ -65,7 +65,7 @@ public final class z implements RequestDelegate {
                 });
                 return;
             default:
-                final a0 a0Var2 = this.f10486b;
+                final a0 a0Var2 = this.f10472b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -74,10 +74,10 @@ public final class z implements RequestDelegate {
                         a0 a0Var22 = a0Var2;
                         switch (i10) {
                             case 0:
-                                int i11 = a0Var22.f10206a;
+                                int i11 = a0Var22.f10192a;
                                 if (tLObject2 instanceof TL_account.TL_businessChatLink) {
                                     TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
-                                    a0Var22.f10207b.add(tL_businessChatLink);
+                                    a0Var22.f10193b.add(tL_businessChatLink);
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinkCreated, tL_businessChatLink);
                                     a0Var22.f();
@@ -85,8 +85,8 @@ public final class z implements RequestDelegate {
                                 }
                                 return;
                             default:
-                                ArrayList arrayList = a0Var22.f10207b;
-                                int i12 = a0Var22.f10206a;
+                                ArrayList arrayList = a0Var22.f10193b;
+                                int i12 = a0Var22.f10192a;
                                 if (tLObject2 instanceof TL_account.businessChatLinks) {
                                     TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
                                     arrayList.clear();
@@ -99,7 +99,7 @@ public final class z implements RequestDelegate {
                                 } else {
                                     FileLog.e(new RuntimeException("Unexpected response from server!"));
                                 }
-                                a0Var22.f10208c = false;
+                                a0Var22.f10194c = false;
                                 a0Var22.d = true;
                                 return;
                         }

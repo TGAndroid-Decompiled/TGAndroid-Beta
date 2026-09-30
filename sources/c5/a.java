@@ -6,18 +6,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import n7.z0;
 public final class a {
-    public String f3840a;
-    public String f3841b;
+    public String f3833a;
+    public String f3834b;
 
     public a(String str, String str2) {
-        this.f3840a = str;
-        this.f3841b = str2;
+        this.f3833a = str;
+        this.f3834b = str2;
     }
 
     public r a() {
-        if (!"first_party".equals(this.f3841b)) {
-            if (this.f3840a != null) {
-                if (this.f3841b != null) {
+        if (!"first_party".equals(this.f3834b)) {
+            if (this.f3833a != null) {
+                if (this.f3834b != null) {
                     return new r(this);
                 }
                 throw new IllegalArgumentException("Product type must be provided.");
@@ -28,12 +28,12 @@ public final class a {
     }
 
     public a(z0 z0Var) {
-        Context context = (Context) z0Var.f15426b;
+        Context context = (Context) z0Var.f15411b;
         int e = w9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
         if (e != 0) {
-            this.f3840a = "Unity";
+            this.f3833a = "Unity";
             String string = context.getResources().getString(e);
-            this.f3841b = string;
+            this.f3834b = string;
             String g10 = v7.j.g("Unity Editor version is: ", string);
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", g10, null);
@@ -47,19 +47,19 @@ public final class a {
                 if (open != null) {
                     open.close();
                 }
-                this.f3840a = "Flutter";
-                this.f3841b = null;
+                this.f3833a = "Flutter";
+                this.f3834b = null;
                 if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                     Log.v("FirebaseCrashlytics", "Development platform is: Flutter", null);
                     return;
                 }
                 return;
             } catch (IOException unused) {
-                this.f3840a = null;
-                this.f3841b = null;
+                this.f3833a = null;
+                this.f3834b = null;
             }
         }
-        this.f3840a = null;
-        this.f3841b = null;
+        this.f3833a = null;
+        this.f3834b = null;
     }
 }

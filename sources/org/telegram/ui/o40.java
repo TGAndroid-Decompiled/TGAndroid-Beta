@@ -5,18 +5,18 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class o40 implements dv0 {
-    public final d60 f36185a;
+    public final d60 f36041a;
 
     public o40(d60 d60Var) {
-        this.f36185a = d60Var;
+        this.f36041a = d60Var;
     }
 
     @Override
     public final void E0(MessageObject messageObject) {
         ViewGroup viewGroup;
-        d60 d60Var = this.f36185a;
-        d60Var.Q.J0(true);
-        d60Var.f33023c2.f34393f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
+        d60 d60Var = this.f36041a;
+        d60Var.Q.I0(true);
+        d60Var.f32945c2.f34301f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
         viewGroup = ((org.telegram.ui.ActionBar.e3) d60Var).containerView;
         viewGroup.invalidate();
     }
@@ -24,7 +24,7 @@ public final class o40 implements dv0 {
     @Override
     public final void H(MessageObject messageObject) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) this.f36185a).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) this.f36041a).containerView;
         viewGroup.invalidate();
     }
 

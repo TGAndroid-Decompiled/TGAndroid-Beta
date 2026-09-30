@@ -5,53 +5,54 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 public final class zs extends AnimatorListenerAdapter {
-    public final int f31054a = 1;
-    public final s4.c1 f31055b;
-    public final View f31056c;
-    public final ViewPropertyAnimator d;
-    public final dt e;
+    public final int f30964a;
+    public final s4.c1 f30965b;
+    public final int f30966c;
+    public final View d;
+    public final int e;
+    public final ViewPropertyAnimator f30967f;
+    public final s4.f1 h;
 
-    public zs(dt dtVar, s4.c1 c1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.e = dtVar;
-        this.f31055b = c1Var;
-        this.d = viewPropertyAnimator;
-        this.f31056c = view;
+    public zs(s4.f1 f1Var, s4.c1 c1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
+        this.f30964a = i12;
+        this.h = f1Var;
+        this.f30965b = c1Var;
+        this.f30966c = i10;
+        this.d = view;
+        this.e = i11;
+        this.f30967f = viewPropertyAnimator;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f31054a) {
-            case 1:
-                this.f31056c.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31054a) {
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f30964a) {
             case 0:
-                this.d.setListener(null);
-                this.f31056c.setAlpha(1.0f);
-                dt dtVar = this.e;
-                s4.c1 c1Var = this.f31055b;
-                dtVar.d(c1Var);
-                dtVar.f23725x.remove(c1Var);
-                dtVar.A();
-                return;
+                int i10 = this.f30966c;
+                View view = this.d;
+                if (i10 != 0) {
+                    view.setTranslationX(0.0f);
+                }
+                if (this.e != 0) {
+                    view.setTranslationY(0.0f);
+                }
+                View view2 = this.f30965b.f42962a;
+                if (view2 instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view2).setMoving(false);
+                    return;
+                } else if (view2 instanceof gg.l) {
+                    ((gg.l) view2).f9829a = false;
+                    return;
+                } else {
+                    return;
+                }
             default:
-                this.d.setListener(null);
-                dt dtVar2 = this.e;
-                s4.c1 c1Var2 = this.f31055b;
-                dtVar2.u(c1Var2);
-                dtVar2.v.remove(c1Var2);
-                dtVar2.A();
-                View view = c1Var2.f43068a;
-                if (view instanceof org.telegram.ui.Cells.s2) {
-                    ((org.telegram.ui.Cells.s2) view).setMoving(false);
+                int i11 = this.f30966c;
+                View view3 = this.d;
+                if (i11 != 0) {
+                    view3.setTranslationX(0.0f);
+                }
+                if (this.e != 0) {
+                    view3.setTranslationY(0.0f);
                     return;
                 }
                 return;
@@ -59,21 +60,47 @@ public final class zs extends AnimatorListenerAdapter {
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f31054a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f30964a) {
             case 0:
-                this.e.y();
+                this.f30967f.setListener(null);
+                ct ctVar = (ct) this.h;
+                s4.c1 c1Var = this.f30965b;
+                ctVar.v(c1Var);
+                ctVar.f23388w.remove(c1Var);
+                ctVar.A();
+                View view = c1Var.f42962a;
+                if (view instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view).setMoving(false);
+                } else if (view instanceof gg.l) {
+                    ((gg.l) view).f9829a = false;
+                }
+                View view2 = this.d;
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
                 return;
             default:
-                this.e.getClass();
+                this.f30967f.setListener(null);
+                s4.j jVar = (s4.j) this.h;
+                s4.c1 c1Var2 = this.f30965b;
+                jVar.P(c1Var2);
+                jVar.v(c1Var2);
+                jVar.f43029z.remove(c1Var2);
+                jVar.G();
+                jVar.z(c1Var2);
                 return;
         }
     }
 
-    public zs(dt dtVar, s4.c1 c1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.e = dtVar;
-        this.f31055b = c1Var;
-        this.f31056c = view;
-        this.d = viewPropertyAnimator;
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f30964a) {
+            case 0:
+                ((ct) this.h).getClass();
+                return;
+            default:
+                ((s4.j) this.h).getClass();
+                return;
+        }
     }
 }

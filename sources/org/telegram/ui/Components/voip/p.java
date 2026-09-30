@@ -13,60 +13,60 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.ui.Components.s81;
 import org.telegram.ui.d60;
 public final class p extends t2 {
-    public float f29444g0;
-    public final ChatObject.Call f29445h0;
-    public final m0 f29446i0;
-    public final TextPaint f29447j0;
-    public final StaticLayout f29448k0;
-    public final TextPaint f29449l0;
+    public float f29438g0;
+    public final ChatObject.Call f29439h0;
+    public final m0 f29440i0;
+    public final TextPaint f29441j0;
+    public final StaticLayout f29442k0;
+    public final TextPaint f29443l0;
     public final String m0;
-    public final float f29450n0;
-    public final StaticLayout f29451o0;
-    public final d60 f29452p0;
-    public final String f29453q0;
-    public final float f29454r0;
-    public final u f29455s0;
+    public final float f29444n0;
+    public final StaticLayout f29445o0;
+    public final d60 f29446p0;
+    public final String f29447q0;
+    public final float f29448r0;
+    public final u f29449s0;
 
     public p(u uVar, Context context, ChatObject.Call call, m0 m0Var, TextPaint textPaint, StaticLayout staticLayout, TextPaint textPaint2, String str, float f7, StaticLayout staticLayout2, d60 d60Var, String str2, float f10) {
         super(context, false, false, true, true);
-        this.f29455s0 = uVar;
-        this.f29445h0 = call;
-        this.f29446i0 = m0Var;
-        this.f29447j0 = textPaint;
-        this.f29448k0 = staticLayout;
-        this.f29449l0 = textPaint2;
+        this.f29449s0 = uVar;
+        this.f29439h0 = call;
+        this.f29440i0 = m0Var;
+        this.f29441j0 = textPaint;
+        this.f29442k0 = staticLayout;
+        this.f29443l0 = textPaint2;
         this.m0 = str;
-        this.f29450n0 = f7;
-        this.f29451o0 = staticLayout2;
-        this.f29452p0 = d60Var;
-        this.f29453q0 = str2;
-        this.f29454r0 = f10;
+        this.f29444n0 = f7;
+        this.f29445o0 = staticLayout2;
+        this.f29446p0 = d60Var;
+        this.f29447q0 = str2;
+        this.f29448r0 = f10;
     }
 
     @Override
     public final void a() {
         super.a();
-        this.f29444g0 = this.f29455s0.f29589w0;
+        this.f29438g0 = this.f29449s0.f29583w0;
     }
 
     @Override
     public final void b() {
         int i10;
         ChatObject.VideoParticipant videoParticipant;
-        u uVar = this.f29455s0;
+        u uVar = this.f29449s0;
         TextView textView = uVar.O;
-        p pVar = uVar.f29560a;
+        p pVar = uVar.f29554a;
         invalidate();
-        ChatObject.Call call = this.f29445h0;
-        if (call != null && call.call.rtmp_stream && uVar.f29594z0) {
+        ChatObject.Call call = this.f29439h0;
+        if (call != null && call.call.rtmp_stream && uVar.f29588z0) {
             AndroidUtilities.cancelRunOnUIThread(uVar.A0);
-            uVar.f29594z0 = false;
+            uVar.f29588z0 = false;
             textView.animate().cancel();
             textView.animate().alpha(0.0f).setDuration(150L).start();
             pVar.animate().cancel();
             pVar.animate().alpha(1.0f).setDuration(150L).start();
         }
-        boolean z10 = uVar.f29584s0;
+        boolean z10 = uVar.f29578s0;
         s2 s2Var = this.d;
         if (!z10 && s2Var.getAlpha() != 1.0f) {
             s2Var.animate().setDuration(300L).alpha(1.0f);
@@ -75,16 +75,16 @@ public final class p extends t2 {
         if (textureView != null && textureView.getAlpha() != 1.0f) {
             textureView.animate().setDuration(300L).alpha(1.0f);
         }
-        ImageView imageView = uVar.f29591x0;
+        ImageView imageView = uVar.f29585x0;
         if (imageView != null && imageView.getParent() != null) {
-            if (uVar.f29591x0.getAlpha() == 1.0f) {
-                uVar.f29591x0.animate().alpha(0.0f).setDuration(300L).setListener(new s81(this, 4)).start();
-            } else if (uVar.f29591x0.getParent() != null) {
-                pVar.removeView(uVar.f29591x0);
+            if (uVar.f29585x0.getAlpha() == 1.0f) {
+                uVar.f29585x0.animate().alpha(0.0f).setDuration(300L).setListener(new s81(this, 4)).start();
+            } else if (uVar.f29585x0.getParent() != null) {
+                pVar.removeView(uVar.f29585x0);
             }
         }
         int i11 = s2Var.rotatedFrameHeight;
-        if (i11 != 0 && (i10 = s2Var.rotatedFrameWidth) != 0 && (videoParticipant = uVar.f29588w) != null) {
+        if (i11 != 0 && (i10 = s2Var.rotatedFrameWidth) != 0 && (videoParticipant = uVar.f29582w) != null) {
             videoParticipant.setAspectRatio(i10, i11, call);
         }
     }
@@ -96,12 +96,12 @@ public final class p extends t2 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        u uVar = this.f29455s0;
-        if (uVar.f29573j0 && view == uVar.f29560a.d) {
+        u uVar = this.f29449s0;
+        if (uVar.f29567j0 && view == uVar.f29554a.d) {
             canvas.save();
-            float f7 = uVar.f29567e0;
-            canvas.scale(f7, f7, uVar.f29569f0, uVar.f29570g0);
-            canvas.translate(uVar.f29571h0, uVar.f29572i0);
+            float f7 = uVar.f29561e0;
+            canvas.scale(f7, f7, uVar.f29563f0, uVar.f29564g0);
+            canvas.translate(uVar.f29565h0, uVar.f29566i0);
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -112,19 +112,19 @@ public final class p extends t2 {
     @Override
     public final void e() {
         super.e();
-        u uVar = this.f29455s0;
-        p pVar = uVar.f29560a;
-        ImageView imageView = uVar.f29591x0;
+        u uVar = this.f29449s0;
+        p pVar = uVar.f29554a;
+        ImageView imageView = uVar.f29585x0;
         if (imageView != null && imageView.getParent() != null) {
-            uVar.f29591x0.getLayoutParams().width = pVar.d.getMeasuredWidth();
-            uVar.f29591x0.getLayoutParams().height = pVar.d.getMeasuredHeight();
+            uVar.f29585x0.getLayoutParams().width = pVar.d.getMeasuredWidth();
+            uVar.f29585x0.getLayoutParams().height = pVar.d.getMeasuredHeight();
         }
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        u uVar = this.f29455s0;
+        u uVar = this.f29449s0;
         uVar.Q = true;
         uVar.invalidate();
         uVar.Q = false;
@@ -134,34 +134,34 @@ public final class p extends t2 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         ChatObject.VideoParticipant videoParticipant;
-        u uVar = this.f29455s0;
-        p pVar = uVar.f29560a;
+        u uVar = this.f29449s0;
+        p pVar = uVar.f29554a;
         boolean z11 = uVar.v;
         s2 s2Var = this.d;
         if (z11 && uVar.R && s2Var.rotatedFrameHeight != 0 && s2Var.rotatedFrameWidth != 0) {
             if (uVar.h) {
-                pVar.f29545a0 = 1;
-            } else if (uVar.f29562b) {
-                pVar.f29545a0 = 1;
-            } else if (this.f29446i0.f29379b) {
-                pVar.f29545a0 = 0;
-            } else if (uVar.f29588w.presentation) {
-                pVar.f29545a0 = 1;
+                pVar.f29539a0 = 1;
+            } else if (uVar.f29556b) {
+                pVar.f29539a0 = 1;
+            } else if (this.f29440i0.f29373b) {
+                pVar.f29539a0 = 0;
+            } else if (uVar.f29582w.presentation) {
+                pVar.f29539a0 = 1;
             } else {
-                pVar.f29545a0 = 2;
+                pVar.f29539a0 = 2;
             }
             uVar.R = false;
         }
         super.onLayout(z10, i10, i11, i12, i13);
         int i15 = s2Var.rotatedFrameHeight;
-        if (i15 != 0 && (i14 = s2Var.rotatedFrameWidth) != 0 && (videoParticipant = uVar.f29588w) != null) {
-            videoParticipant.setAspectRatio(i14, i15, this.f29445h0);
+        if (i15 != 0 && (i14 = s2Var.rotatedFrameWidth) != 0 && (videoParticipant = uVar.f29582w) != null) {
+            videoParticipant.setAspectRatio(i14, i15, this.f29439h0);
         }
     }
 
     @Override
     public final void requestLayout() {
-        this.f29455s0.requestLayout();
+        this.f29449s0.requestLayout();
         super.requestLayout();
     }
 }

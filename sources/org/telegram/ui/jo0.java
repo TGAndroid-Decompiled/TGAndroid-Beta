@@ -1,81 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class jo0 extends FrameLayout {
-    public final Paint f34937a;
-    public float f34938b;
-    public o1.k f34939c;
-    public final no0 d;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class jo0 implements TextWatcher {
+    public int f34847a = -1;
+    public boolean f34848b;
+    public int f34849c;
+    public final oo0 d;
 
-    public jo0(no0 no0Var, Context context) {
-        super(context);
-        this.d = no0Var;
-        this.f34937a = new Paint(1);
-        setWillNotDraw(false);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        float f10;
-        o1.k kVar = this.f34939c;
-        if (kVar != null) {
-            kVar.c();
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        if (z11) {
-            float f11 = this.f34938b;
-            if (f11 == f7) {
-                return;
-            }
-            o1.k kVar2 = new o1.k(new o1.j(f11 * 100.0f));
-            o1.l lVar = new o1.l(f7 * 100.0f);
-            if (z10) {
-                f10 = 500.0f;
-            } else {
-                f10 = 650.0f;
-            }
-            lVar.b(f10);
-            lVar.a(1.0f);
-            kVar2.f15549u = lVar;
-            this.f34939c = kVar2;
-            kVar2.b(new nd0(this, 1));
-            this.f34939c.a(new n9(this, 1));
-            this.f34939c.f();
-            return;
-        }
-        this.f34938b = f7;
-        TextView textView = this.d.U;
-        if (textView != null) {
-            textView.setAlpha((f7 * 0.2f) + 0.8f);
-        }
-        invalidate();
+    public jo0(oo0 oo0Var) {
+        this.d = oo0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp;
-        super.onDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.h6.O6;
-        no0 no0Var = this.d;
-        canvas.drawColor(no0Var.getThemedColor(i10));
-        int themedColor = no0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19104ei);
-        Paint paint = this.f34937a;
-        paint.setColor(themedColor);
-        if (LocaleController.isRTL) {
-            dp = getWidth() - AndroidUtilities.dp(28.0f);
+    public final void afterTextChanged(android.text.Editable r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.jo0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        boolean z10 = false;
+        if (i11 == 0 && i12 == 1) {
+            if (TextUtils.indexOf((CharSequence) this.d.f36292f[1].getText(), '/') != -1) {
+                z10 = true;
+            }
+            this.f34848b = z10;
+            this.f34847a = 1;
+        } else if (i11 == 1 && i12 == 0) {
+            if (charSequence.charAt(i10) == '/' && i10 > 0) {
+                this.f34848b = false;
+                this.f34847a = 3;
+                this.f34849c = i10 - 1;
+                return;
+            }
+            this.f34847a = 2;
         } else {
-            dp = AndroidUtilities.dp(28.0f);
+            this.f34847a = -1;
         }
-        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f34938b, paint);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

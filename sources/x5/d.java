@@ -6,28 +6,28 @@ import java.util.Arrays;
 import w7.f0;
 public final class d extends o6.a {
     public static final Parcelable.Creator<d> CREATOR = new h(0);
-    public final boolean f45721a;
+    public final boolean f45615a;
 
     public d(boolean z10) {
-        this.f45721a = z10;
+        this.f45615a = z10;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof d) || this.f45721a != ((d) obj).f45721a) {
+        if (!(obj instanceof d) || this.f45615a != ((d) obj).f45615a) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f45721a)});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f45615a)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f45721a ? 1 : 0);
+        parcel.writeInt(this.f45615a ? 1 : 0);
         f0.r(parcel, q6);
     }
 }

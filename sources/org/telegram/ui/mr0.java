@@ -4,21 +4,21 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class mr0 implements Runnable {
-    public final int f35763a;
-    public final PhotoViewer f35764b;
-    public final Bitmap f35765c;
+    public final int f35653a;
+    public final PhotoViewer f35654b;
+    public final Bitmap f35655c;
 
     public mr0(PhotoViewer photoViewer, Bitmap bitmap, int i10) {
-        this.f35763a = i10;
-        this.f35764b = photoViewer;
-        this.f35765c = bitmap;
+        this.f35653a = i10;
+        this.f35654b = photoViewer;
+        this.f35655c = bitmap;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f35763a;
-        Bitmap bitmap = this.f35765c;
-        PhotoViewer photoViewer = this.f35764b;
+        int i10 = this.f35653a;
+        Bitmap bitmap = this.f35655c;
+        PhotoViewer photoViewer = this.f35654b;
         switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.U8;
@@ -41,17 +41,17 @@ public final class mr0 implements Runnable {
                 return;
             case 4:
                 photoViewer.C4.setImageBitmap(bitmap);
-                photoViewer.f31433t5.setUndoCutState(true);
+                photoViewer.f31361t5.setUndoCutState(true);
                 photoViewer.a3(true, true);
                 return;
             case 5:
                 photoViewer.C4.setImageBitmap(bitmap);
-                photoViewer.f31433t5.setUndoCutState(true);
+                photoViewer.f31361t5.setUndoCutState(true);
                 photoViewer.a3(true, true);
                 return;
             default:
                 photoViewer.C4.setImageBitmap(bitmap);
-                photoViewer.f31433t5.setUndoCutState(true);
+                photoViewer.f31361t5.setUndoCutState(true);
                 photoViewer.a3(true, true);
                 return;
         }

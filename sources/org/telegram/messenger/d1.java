@@ -2,14 +2,14 @@ package org.telegram.messenger;
 
 import java.util.concurrent.Executor;
 public final class d1 implements Executor {
-    public final DispatchQueue f16179a;
+    public final DispatchQueue f16163a;
 
     public d1(DispatchQueue dispatchQueue) {
-        this.f16179a = dispatchQueue;
+        this.f16163a = dispatchQueue;
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        this.f16179a.postRunnable(runnable);
+        this.f16163a.postRunnable(runnable);
     }
 }

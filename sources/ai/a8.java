@@ -13,7 +13,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.mv0;
+import org.telegram.ui.Components.lv0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.v90;
 import org.telegram.ui.wn;
@@ -35,18 +35,18 @@ public final class a8 implements Runnable {
         switch (this.f529a) {
             case 0:
                 l9 l9Var = (l9) this.d;
-                LongSparseIntArray longSparseIntArray = l9Var.f1197f;
+                LongSparseIntArray longSparseIntArray = l9Var.f1195f;
                 long j3 = this.f531c;
                 int i10 = longSparseIntArray.get(j3, 0);
                 int i11 = this.f530b;
                 int max = Math.max(i10, i11);
-                l9Var.f1197f.put(j3, max);
-                l9Var.f1201k.i(max, j3);
+                l9Var.f1195f.put(j3, max);
+                l9Var.f1199k.i(max, j3);
                 TL_stories.PeerStories y3 = l9Var.y(j3);
                 if (y3 != null && i11 > y3.max_read_id) {
                     y3.max_read_id = i11;
-                    Collections.sort(l9Var.f1198g, l9Var.J);
-                    NotificationCenter.getInstance(l9Var.f1194a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                    Collections.sort(l9Var.f1196g, l9Var.J);
+                    NotificationCenter.getInstance(l9Var.f1192a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                     return;
                 }
                 return;
@@ -73,7 +73,7 @@ public final class a8 implements Runnable {
                 }
                 return;
             case 7:
-                mv0.n((mv0) this.d, this.f531c, this.f530b);
+                lv0.n((lv0) this.d, this.f531c, this.f530b);
                 return;
             default:
                 Long l4 = (Long) this.d;

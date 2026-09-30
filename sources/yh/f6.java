@@ -3,31 +3,31 @@ package yh;
 import android.view.View;
 import org.telegram.ui.LaunchActivity;
 public final class f6 implements View.OnClickListener {
-    public final int f47496a;
-    public final k7 f47497b;
+    public final int f47390a;
+    public final k7 f47391b;
 
     public f6(k7 k7Var, int i10) {
-        this.f47496a = i10;
-        this.f47497b = k7Var;
+        this.f47390a = i10;
+        this.f47391b = k7Var;
     }
 
     @Override
     public final void onClick(View view) {
         org.telegram.ui.ActionBar.m2 R;
         org.telegram.ui.ActionBar.m2 R2;
-        switch (this.f47496a) {
+        switch (this.f47390a) {
             case 0:
-                if (this.f47497b.f47732f > 0 && (R = LaunchActivity.R()) != 0) {
+                if (this.f47391b.f47626f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f19598a = true;
+                    obj.f19583a = true;
                     R.showAsSheet(new w7(), obj);
                     return;
                 }
                 return;
             default:
-                if (this.f47497b.f47732f > 0 && (R2 = LaunchActivity.R()) != 0) {
+                if (this.f47391b.f47626f > 0 && (R2 = LaunchActivity.R()) != 0) {
                     ?? obj2 = new Object();
-                    obj2.f19598a = true;
+                    obj2.f19583a = true;
                     R2.showAsSheet(new w7(), obj2);
                     return;
                 }

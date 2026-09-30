@@ -3,22 +3,22 @@ package za;
 import java.util.Locale;
 import java.util.UUID;
 public final class k0 {
-    public final r0 f49185a;
-    public final rd.a f49186b;
-    public final String f49187c;
+    public final r0 f49079a;
+    public final rd.a f49080b;
+    public final String f49081c;
     public int d;
     public b0 e;
 
     public k0() {
-        j0 j0Var = j0.f49183a;
-        this.f49185a = r0.f49212a;
-        this.f49186b = j0Var;
-        this.f49187c = a();
+        j0 j0Var = j0.f49077a;
+        this.f49079a = r0.f49106a;
+        this.f49080b = j0Var;
+        this.f49081c = a();
         this.d = -1;
     }
 
     public final String a() {
-        String uuid = ((UUID) this.f49186b.invoke()).toString();
+        String uuid = ((UUID) this.f49080b.invoke()).toString();
         kotlin.jvm.internal.i.d(uuid, "uuidGenerator().toString()");
         String lowerCase = xd.j.g(uuid, "-", "").toLowerCase(Locale.ROOT);
         kotlin.jvm.internal.i.d(lowerCase, "this as java.lang.String).toLowerCase(Locale.ROOT)");

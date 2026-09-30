@@ -2,19 +2,40 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-public final class fb0 extends z5 {
-    public final ib0 f24268a;
+import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
+public final class fb0 extends ReplacementSpan {
+    public final int f24198a;
+    public final KeyEvent.Callback f24199b;
 
-    public fb0(ib0 ib0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
-        super(document, fontMetricsInt);
-        this.f24268a = ib0Var;
+    public fb0(KeyEvent.Callback callback, int i10) {
+        this.f24198a = i10;
+        this.f24199b = callback;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = i14 + i12;
-        int i16 = this.measuredSize;
-        this.f24268a.f25060c.set((int) f7, (i15 - i16) / 2, (int) (f7 + i16), (i15 + i16) / 2);
+        int i15 = this.f24198a;
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f24198a) {
+            case 0:
+                return ((hb0) this.f24199b).f24767x;
+            case 1:
+                return (int) ((org.telegram.ui.lj0) this.f24199b).f35375n0;
+            default:
+                return (int) ((tg.m1) this.f24199b).f43456t0;
+        }
+    }
+
+    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

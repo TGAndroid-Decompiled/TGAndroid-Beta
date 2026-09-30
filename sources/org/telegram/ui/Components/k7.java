@@ -2,44 +2,44 @@ package org.telegram.ui.Components;
 
 import android.view.ViewGroup;
 public final class k7 implements o1.g {
-    public final int f25660a;
-    public final Object f25661b;
+    public final int f25612a;
+    public final Object f25613b;
 
     public k7(Object obj, int i10) {
-        this.f25660a = i10;
-        this.f25661b = obj;
+        this.f25612a = i10;
+        this.f25613b = obj;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
         ViewGroup viewGroup;
-        switch (this.f25660a) {
+        switch (this.f25612a) {
             case 0:
-                ((j8) this.f25661b).T.setBufferedProgress(f7 / 1000.0f);
+                ((j8) this.f25613b).T.setBufferedProgress(f7 / 1000.0f);
                 return;
             case 1:
-                rc rcVar = (rc) this.f25661b;
-                rcVar.f27951o = (int) f7;
-                rcVar.l();
+                qc qcVar = (qc) this.f25613b;
+                qcVar.f27646o = (int) f7;
+                qcVar.l();
                 return;
             case 2:
-                if (Math.abs(f7) > ((vb) this.f25661b).getWidth()) {
+                if (Math.abs(f7) > ((ub) this.f25613b).getWidth()) {
                     hVar.c();
                     return;
                 }
                 return;
             case 3:
-                xi xiVar = (xi) ((ii) this.f25661b).d;
-                pi piVar = xiVar.f30334z0;
-                if (piVar == xiVar.m0 || piVar == xiVar.f30293n0 || (xiVar.F && xiVar.f30314t1 != null)) {
-                    xiVar.a2(1);
+                wi wiVar = (wi) ((hi) this.f25613b).d;
+                oi oiVar = wiVar.f29998z0;
+                if (oiVar == wiVar.m0 || oiVar == wiVar.f29957n0 || (wiVar.F && wiVar.f29978t1 != null)) {
+                    wiVar.a2(1);
                 }
-                xiVar.f30334z0.k(xiVar.f30289l2);
-                viewGroup = ((org.telegram.ui.ActionBar.e3) xiVar).containerView;
+                wiVar.f29998z0.k(wiVar.f29953l2);
+                viewGroup = ((org.telegram.ui.ActionBar.e3) wiVar).containerView;
                 viewGroup.invalidate();
                 return;
             default:
-                ((pc0) this.f25661b).z();
+                ((oc0) this.f25613b).z();
                 return;
         }
     }

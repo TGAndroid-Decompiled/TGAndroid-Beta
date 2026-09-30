@@ -4,11 +4,11 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class gw0 extends RelativeLayout {
-    public final PopupNotificationActivity f34165a;
+    public final PopupNotificationActivity f34075a;
 
     public gw0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
         super(popupNotificationActivity2);
-        this.f34165a = popupNotificationActivity;
+        this.f34075a = popupNotificationActivity;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class gw0 extends RelativeLayout {
             View childAt = getChildAt(i14);
             if (childAt.getTag() instanceof String) {
                 int left = childAt.getLeft();
-                PopupNotificationActivity popupNotificationActivity = this.f34165a;
-                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f31506b.getTop(), childAt.getRight(), popupNotificationActivity.f31506b.getBottom());
+                PopupNotificationActivity popupNotificationActivity = this.f34075a;
+                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f31434b.getTop(), childAt.getRight(), popupNotificationActivity.f31434b.getBottom());
             }
         }
     }
@@ -27,9 +27,9 @@ public final class gw0 extends RelativeLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        PopupNotificationActivity popupNotificationActivity = this.f34165a;
-        int measuredWidth = popupNotificationActivity.f31506b.getMeasuredWidth();
-        int measuredHeight = popupNotificationActivity.f31506b.getMeasuredHeight();
+        PopupNotificationActivity popupNotificationActivity = this.f34075a;
+        int measuredWidth = popupNotificationActivity.f31434b.getMeasuredWidth();
+        int measuredHeight = popupNotificationActivity.f31434b.getMeasuredHeight();
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             View childAt = getChildAt(i12);
             if (childAt.getTag() instanceof String) {

@@ -18,23 +18,23 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class v6 extends FrameLayout {
-    public final int f5684a;
-    public int f5685b;
-    public final ai.w7 f5686c;
+    public final int f5672a;
+    public int f5673b;
+    public final ai.w7 f5674c;
     public final FrameLayout d;
     public final ai.xa e;
-    public boolean f5687f;
+    public boolean f5675f;
     public boolean h;
 
     public v6(Activity activity, int i10, ai.d dVar) {
         super(activity);
-        this.f5685b = 1;
-        this.f5687f = false;
+        this.f5673b = 1;
+        this.f5675f = false;
         this.h = false;
-        this.f5684a = i10;
+        this.f5672a = i10;
         TLRPC.User currentUser = UserConfig.getInstance(i10).getCurrentUser();
         ai.w7 w7Var = new ai.w7(this, getContext());
-        this.f5686c = w7Var;
+        this.f5674c = w7Var;
         ai.a6 a6Var = new ai.a6(getContext(), null);
         a6Var.f520a.getAvatarDrawable().m(i10, currentUser);
         ai.y5 y5Var = a6Var.f520a;
@@ -51,7 +51,7 @@ public final class v6 extends FrameLayout {
         this.d = frameLayout;
         ai.xa xaVar = new ai.xa(getContext(), dVar);
         this.e = xaVar;
-        xaVar.f1735s0 = true;
+        xaVar.f1728s0 = true;
         xaVar.setTranslationY(AndroidUtilities.dp(8.0f));
         frameLayout.addView(xaVar, w7.y5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
         ImageView imageView2 = new ImageView(activity);
@@ -81,8 +81,8 @@ public final class v6 extends FrameLayout {
         View view;
         float f7;
         if (z10) {
-            if (this.f5687f != z11) {
-                this.f5687f = z11;
+            if (this.f5675f != z11) {
+                this.f5675f = z11;
             } else {
                 return;
             }
@@ -92,7 +92,7 @@ public final class v6 extends FrameLayout {
             return;
         }
         if (z10) {
-            view = this.f5686c;
+            view = this.f5674c;
         } else {
             view = this.d;
         }
@@ -120,7 +120,7 @@ public final class v6 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.e.f1719b0.b(org.telegram.ui.Components.z5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.e.f1712b0.b(org.telegram.ui.Components.z5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

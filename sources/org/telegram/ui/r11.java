@@ -8,18 +8,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class r11 extends org.telegram.ui.Components.p81 {
-    public boolean f37267a;
-    public final org.telegram.ui.Components.hs0 f37268b;
+    public boolean f37167a;
+    public final org.telegram.ui.Components.gs0 f37168b;
 
-    public r11(org.telegram.ui.Components.hs0 hs0Var) {
-        this.f37268b = hs0Var;
+    public r11(org.telegram.ui.Components.gs0 gs0Var) {
+        this.f37168b = gs0Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        org.telegram.ui.Components.hs0 hs0Var = this.f37268b;
-        vz0 vz0Var = hs0Var.G;
-        org.telegram.ui.Components.x81 x81Var = hs0Var.f37662n;
+        org.telegram.ui.Components.gs0 gs0Var = this.f37168b;
+        vz0 vz0Var = gs0Var.G;
+        org.telegram.ui.Components.x81 x81Var = gs0Var.f37566n;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -34,7 +34,7 @@ public final class r11 extends org.telegram.ui.Components.p81 {
             }
         }
         int f7 = f(x81Var.getCurrentPosition());
-        ai.x8 x8Var = hs0Var.f37663r;
+        ai.x8 x8Var = gs0Var.f37567r;
         x8Var.getClass();
         HashMap hashMap = new HashMap();
         ArrayList arrayList3 = x8Var.h;
@@ -73,7 +73,7 @@ public final class r11 extends org.telegram.ui.Components.p81 {
         if (i10 == 0) {
             return false;
         }
-        if (this.f37267a && i10 == e() - 1) {
+        if (this.f37167a && i10 == e() - 1) {
             return false;
         }
         return true;
@@ -84,12 +84,12 @@ public final class r11 extends org.telegram.ui.Components.p81 {
         if (i10 == -1) {
             return null;
         }
-        return new View(this.f37268b.getContext());
+        return new View(this.f37168b.getContext());
     }
 
     @Override
     public final int e() {
-        return this.f37268b.f37663r.h.size() + 1 + (this.f37267a ? 1 : 0);
+        return this.f37168b.f37567r.h.size() + 1 + (this.f37167a ? 1 : 0);
     }
 
     @Override
@@ -97,10 +97,10 @@ public final class r11 extends org.telegram.ui.Components.p81 {
         if (i10 == 0) {
             return 0;
         }
-        if (this.f37267a && i10 == e() - 1) {
+        if (this.f37167a && i10 == e() - 1) {
             return -1;
         }
-        return ((ai.e9) this.f37268b.f37663r.h.get(i10 - 1)).f854a;
+        return ((ai.e9) this.f37168b.f37567r.h.get(i10 - 1)).f854a;
     }
 
     @Override
@@ -108,20 +108,20 @@ public final class r11 extends org.telegram.ui.Components.p81 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.StoriesAlbumNameAllStories);
         }
-        if (this.f37267a && i10 == e() - 1) {
+        if (this.f37167a && i10 == e() - 1) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoriesAlbumAddAlbum));
-            org.telegram.ui.Components.rq rqVar = new org.telegram.ui.Components.rq(R.drawable.poll_add_plus, 0);
-            rqVar.spaceScaleX = 0.8f;
-            spannableStringBuilder.setSpan(rqVar, 0, 1, 33);
+            org.telegram.ui.Components.qq qqVar = new org.telegram.ui.Components.qq(R.drawable.poll_add_plus, 0);
+            qqVar.spaceScaleX = 0.8f;
+            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
             return spannableStringBuilder;
         }
-        return ((ai.e9) this.f37268b.f37663r.h.get(i10 - 1)).f855b;
+        return ((ai.e9) this.f37168b.f37567r.h.get(i10 - 1)).f855b;
     }
 
     @Override
     public final int h(int i10) {
-        if (this.f37267a && i10 == e() - 1) {
+        if (this.f37167a && i10 == e() - 1) {
             return -1;
         }
         return i10;
@@ -131,7 +131,7 @@ public final class r11 extends org.telegram.ui.Components.p81 {
         if (i10 == 0) {
             return 0;
         }
-        int c10 = this.f37268b.f37663r.c(i10);
+        int c10 = this.f37168b.f37567r.c(i10);
         if (c10 == -1) {
             return -1;
         }

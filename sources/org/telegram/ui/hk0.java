@@ -2,33 +2,33 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class hk0 extends og.a {
-    public int f34336c;
+    public int f34246c;
     public int d;
     public CharSequence e;
-    public CharSequence f34337f;
-    public nk0 f34338g;
+    public CharSequence f34247f;
+    public nk0 f34248g;
     public int h;
-    public boolean f34339i;
+    public boolean f34249i;
 
     public static hk0 b(int i10, String str, boolean z10) {
         ?? aVar = new og.a(1, true);
-        aVar.f34336c = i10;
+        aVar.f34246c = i10;
         aVar.e = str;
-        aVar.f34339i = z10;
+        aVar.f34249i = z10;
         return aVar;
     }
 
     public static hk0 c(int i10, String str, String str2) {
         ?? aVar = new og.a(5, true);
-        aVar.f34336c = i10;
+        aVar.f34246c = i10;
         aVar.e = str;
-        aVar.f34337f = str2;
+        aVar.f34247f = str2;
         return aVar;
     }
 
     public static hk0 d(int i10, String str) {
         ?? aVar = new og.a(4, true);
-        aVar.f34336c = i10;
+        aVar.f34246c = i10;
         aVar.e = str;
         return aVar;
     }
@@ -38,7 +38,7 @@ public final class hk0 extends og.a {
         if (this != aVar) {
             if (hk0.class == aVar.getClass()) {
                 hk0 hk0Var = (hk0) aVar;
-                if (this.f34336c == hk0Var.f34336c && this.d == hk0Var.d && this.h == hk0Var.h && this.f34339i == hk0Var.f34339i && Objects.equals(this.e, hk0Var.e) && Objects.equals(this.f34337f, hk0Var.f34337f) && this.f34338g == hk0Var.f34338g) {
+                if (this.f34246c == hk0Var.f34246c && this.d == hk0Var.d && this.h == hk0Var.h && this.f34249i == hk0Var.f34249i && Objects.equals(this.e, hk0Var.e) && Objects.equals(this.f34247f, hk0Var.f34247f) && this.f34248g == hk0Var.f34248g) {
                     return true;
                 }
                 return false;
@@ -54,7 +54,7 @@ public final class hk0 extends og.a {
         }
         if (obj != null && hk0.class == obj.getClass()) {
             hk0 hk0Var = (hk0) obj;
-            if (this.f34336c == hk0Var.f34336c && this.h == hk0Var.h && ((this.f15731a == 8 || (this.d == hk0Var.d && Objects.equals(this.e, hk0Var.e) && (this.f15731a == 6 || Objects.equals(this.f34337f, hk0Var.f34337f)))) && this.f34338g == hk0Var.f34338g)) {
+            if (this.f34246c == hk0Var.f34246c && this.h == hk0Var.h && ((this.f15716a == 8 || (this.d == hk0Var.d && Objects.equals(this.e, hk0Var.e) && (this.f15716a == 6 || Objects.equals(this.f34247f, hk0Var.f34247f)))) && this.f34248g == hk0Var.f34248g)) {
                 return true;
             }
         }

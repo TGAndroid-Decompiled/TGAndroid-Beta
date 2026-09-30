@@ -9,7 +9,7 @@ public abstract class g extends b implements f, vd.e {
 
     @Override
     public vd.b computeReflected() {
-        q.f13924a.getClass();
+        q.f13909a.getClass();
         return this;
     }
 

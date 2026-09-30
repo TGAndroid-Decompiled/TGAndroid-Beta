@@ -18,15 +18,15 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fn0;
+import org.telegram.ui.Components.en0;
 import org.telegram.ui.db1;
 public final class n8 implements RequestDelegate {
-    public final int f1305a;
-    public final Object f1306b;
+    public final int f1303a;
+    public final Object f1304b;
 
     public n8(Object obj, int i10) {
-        this.f1305a = i10;
-        this.f1306b = obj;
+        this.f1303a = i10;
+        this.f1304b = obj;
     }
 
     @Override
@@ -35,8 +35,8 @@ public final class n8 implements RequestDelegate {
         Locale locale;
         final Comparator db1Var2;
         Locale locale2;
-        int i10 = this.f1305a;
-        Object obj = this.f1306b;
+        int i10 = this.f1303a;
+        Object obj = this.f1304b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new a3.d((ci.m9) obj, 12));
@@ -99,7 +99,7 @@ public final class n8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new gg.x1(17, (ii.b5) obj, tLObject));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.o1((org.telegram.ui.web.g2) obj, tLObject, 3));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(4, (org.telegram.ui.web.g2) obj, tLObject));
                 return;
             case 19:
                 tg.x0 x0Var = (tg.x0) obj;
@@ -152,7 +152,7 @@ public final class n8 implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new fn0((Object) x0Var, (Serializable) hashMap, arrayList, 27));
+                    AndroidUtilities.runOnUIThread(new en0((Object) x0Var, (Serializable) hashMap, arrayList, 27));
                     return;
                 }
                 return;
@@ -218,10 +218,10 @@ public final class n8 implements RequestDelegate {
                 }
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.o1(28, (tg.m1) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(29, (tg.m1) obj, tLObject));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new u2.p0(1, (uf.c) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.i0(2, (uf.c) obj, tLObject));
                 return;
             case 23:
                 AndroidUtilities.runOnUIThread(new tg.r((uf.d) obj, tLObject, tL_error, 1));
@@ -230,21 +230,21 @@ public final class n8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new tg.r((yh.g) obj, tLObject, tL_error, 9));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new u2.p0(13, (yh.l) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.i0(14, (yh.l) obj, tLObject));
                 return;
             case 26:
-                AndroidUtilities.runOnUIThread(new u2.p0(14, (yh.m) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.i0(15, (yh.m) obj, tLObject));
                 return;
             case 27:
-                AndroidUtilities.runOnUIThread(new u2.p0(26, tLObject, (ii.q1) obj));
+                AndroidUtilities.runOnUIThread(new u2.i0(27, tLObject, (ii.q1) obj));
                 return;
             case 28:
-                AndroidUtilities.runOnUIThread(new u2.p0(28, (yh.k5) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.i0(29, (yh.k5) obj, tLObject));
                 return;
             default:
                 yh.o8 o8Var = (yh.o8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(o8Var.f47954c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(o8Var.f47848c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     o8Var.getClass();

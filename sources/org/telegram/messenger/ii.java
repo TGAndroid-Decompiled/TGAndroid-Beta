@@ -2,28 +2,28 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class ii implements Runnable {
-    public final int f16684a;
-    public final SendMessagesHelper f16685b;
-    public final TLRPC.Updates f16686c;
+    public final int f16668a;
+    public final SendMessagesHelper f16669b;
+    public final TLRPC.Updates f16670c;
     public final TLRPC.Message d;
     public final boolean e;
 
     public ii(SendMessagesHelper sendMessagesHelper, TLRPC.Updates updates, TLRPC.Message message, boolean z10, int i10) {
-        this.f16684a = i10;
-        this.f16685b = sendMessagesHelper;
-        this.f16686c = updates;
+        this.f16668a = i10;
+        this.f16669b = sendMessagesHelper;
+        this.f16670c = updates;
         this.d = message;
         this.e = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f16684a) {
+        switch (this.f16668a) {
             case 0:
-                this.f16685b.lambda$performSendMessageRequest$88(this.f16686c, this.d, this.e);
+                this.f16669b.lambda$performSendMessageRequest$88(this.f16670c, this.d, this.e);
                 return;
             default:
-                this.f16685b.lambda$performSendMessageRequest$85(this.f16686c, this.d, this.e);
+                this.f16669b.lambda$performSendMessageRequest$85(this.f16670c, this.d, this.e);
                 return;
         }
     }

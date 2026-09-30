@@ -3,25 +3,25 @@ package org.telegram.ui;
 import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.voip.NativeInstance;
-public final class n20 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.Components.pl0, r0.n, NativeInstance.AudioLevelsCallback, org.telegram.ui.ActionBar.k1 {
-    public final int f35848a;
-    public final d60 f35849b;
+public final class n20 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.Components.ol0, r0.n, NativeInstance.AudioLevelsCallback, org.telegram.ui.ActionBar.k1 {
+    public final int f35741a;
+    public final d60 f35742b;
 
     public n20(d60 d60Var, int i10) {
-        this.f35848a = i10;
-        this.f35849b = d60Var;
+        this.f35741a = i10;
+        this.f35742b = d60Var;
     }
 
     @Override
     public r0.l1 Q0(View view, r0.l1 l1Var) {
-        return d60.z(this.f35849b, l1Var);
+        return d60.z(this.f35742b, l1Var);
     }
 
     @Override
     public boolean d(int i10, View view) {
-        switch (this.f35848a) {
+        switch (this.f35741a) {
             case 1:
-                d60 d60Var = this.f35849b;
+                d60 d60Var = this.f35742b;
                 if (d60Var.F1(view)) {
                     try {
                         d60Var.Q.performHapticFeedback(0);
@@ -30,16 +30,16 @@ public final class n20 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.
                 }
                 return false;
             default:
-                d60 d60Var2 = this.f35849b;
+                d60 d60Var2 = this.f35742b;
                 if (!d60Var2.r1()) {
                     if (view instanceof org.telegram.ui.Components.voip.l) {
                         return d60Var2.F1(view);
                     }
                     if (view instanceof org.telegram.ui.Cells.e4) {
                         d60Var2.I1();
-                        org.telegram.ui.Components.oj0 oj0Var = ((org.telegram.ui.Cells.e4) view).f20250f;
-                        if (oj0Var.isEnabled()) {
-                            oj0Var.callOnClick();
+                        org.telegram.ui.Components.nj0 nj0Var = ((org.telegram.ui.Cells.e4) view).f20235f;
+                        if (nj0Var.isEnabled()) {
+                            nj0Var.callOnClick();
                             return true;
                         }
                     }
@@ -50,20 +50,20 @@ public final class n20 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.
 
     @Override
     public void m(int i10) {
-        this.f35849b.O.getActionBarMenuOnItemClick().b(i10);
+        this.f35742b.O.getActionBarMenuOnItemClick().b(i10);
     }
 
     @Override
     public void p(KeyEvent keyEvent) {
         d60 d60Var;
         d50 d50Var;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (d50Var = (d60Var = this.f35849b).f33037f3) != null && d50Var.isShowing()) {
-            d60Var.f33037f3.dismiss();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (d50Var = (d60Var = this.f35742b).f32959f3) != null && d50Var.isShowing()) {
+            d60Var.f32959f3.dismiss();
         }
     }
 
     @Override
     public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-        d60.B(this.f35849b, iArr, fArr);
+        d60.B(this.f35742b, iArr, fArr);
     }
 }

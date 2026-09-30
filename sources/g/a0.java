@@ -6,18 +6,18 @@ import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 public final class a0 extends k.a implements l.j {
-    public final Context f9197c;
+    public final Context f9185c;
     public final l.l d;
     public n4.y e;
-    public WeakReference f9198f;
+    public WeakReference f9186f;
     public final b0 h;
 
     public a0(b0 b0Var, Context context, n4.y yVar) {
         this.h = b0Var;
-        this.f9197c = context;
+        this.f9185c = context;
         this.e = yVar;
         l.l lVar = new l.l(context);
-        lVar.f13982l = 1;
+        lVar.f13967l = 1;
         this.d = lVar;
         lVar.e = this;
     }
@@ -25,28 +25,28 @@ public final class a0 extends k.a implements l.j {
     @Override
     public final void a() {
         b0 b0Var = this.h;
-        if (b0Var.f9208i != this) {
+        if (b0Var.f9196i != this) {
             return;
         }
-        if (b0Var.f9215p) {
-            b0Var.f9209j = this;
-            b0Var.f9210k = this.e;
+        if (b0Var.f9203p) {
+            b0Var.f9197j = this;
+            b0Var.f9198k = this.e;
         } else {
             this.e.T(this);
         }
         this.e = null;
         b0Var.a(false);
-        ActionBarContextView actionBarContextView = b0Var.f9206f;
+        ActionBarContextView actionBarContextView = b0Var.f9194f;
         if (actionBarContextView.v == null) {
             actionBarContextView.e();
         }
-        b0Var.f9205c.setHideOnContentScrollEnabled(b0Var.f9219t);
-        b0Var.f9208i = null;
+        b0Var.f9193c.setHideOnContentScrollEnabled(b0Var.f9207t);
+        b0Var.f9196i = null;
     }
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f9198f;
+        WeakReference weakReference = this.f9186f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -60,22 +60,22 @@ public final class a0 extends k.a implements l.j {
 
     @Override
     public final k.h d() {
-        return new k.h(this.f9197c);
+        return new k.h(this.f9185c);
     }
 
     @Override
     public final CharSequence e() {
-        return this.h.f9206f.getSubtitle();
+        return this.h.f9194f.getSubtitle();
     }
 
     @Override
     public final CharSequence f() {
-        return this.h.f9206f.getTitle();
+        return this.h.f9194f.getTitle();
     }
 
     @Override
     public final void g() {
-        if (this.h.f9208i != this) {
+        if (this.h.f9196i != this) {
             return;
         }
         l.l lVar = this.d;
@@ -89,46 +89,46 @@ public final class a0 extends k.a implements l.j {
 
     @Override
     public final boolean h() {
-        return this.h.f9206f.I;
+        return this.h.f9194f.I;
     }
 
     @Override
     public final void i(View view) {
-        this.h.f9206f.setCustomView(view);
-        this.f9198f = new WeakReference(view);
+        this.h.f9194f.setCustomView(view);
+        this.f9186f = new WeakReference(view);
     }
 
     @Override
     public final void j(int i10) {
-        k(this.h.f9203a.getResources().getString(i10));
+        k(this.h.f9191a.getResources().getString(i10));
     }
 
     @Override
     public final void k(CharSequence charSequence) {
-        this.h.f9206f.setSubtitle(charSequence);
+        this.h.f9194f.setSubtitle(charSequence);
     }
 
     @Override
     public final void l(int i10) {
-        m(this.h.f9203a.getResources().getString(i10));
+        m(this.h.f9191a.getResources().getString(i10));
     }
 
     @Override
     public final void m(CharSequence charSequence) {
-        this.h.f9206f.setTitle(charSequence);
+        this.h.f9194f.setTitle(charSequence);
     }
 
     @Override
     public final void n(boolean z10) {
-        this.f13111b = z10;
-        this.h.f9206f.setTitleOptional(z10);
+        this.f13096b = z10;
+        this.h.f9194f.setTitleOptional(z10);
     }
 
     @Override
     public final void r(l.l lVar) {
         if (this.e != null) {
             g();
-            m.h hVar = this.h.f9206f.d;
+            m.h hVar = this.h.f9194f.d;
             if (hVar != null) {
                 hVar.l();
             }
@@ -139,7 +139,7 @@ public final class a0 extends k.a implements l.j {
     public final boolean t(l.l lVar, MenuItem menuItem) {
         n4.y yVar = this.e;
         if (yVar != null) {
-            return ((oi.f) yVar.f15238b).G(this, menuItem);
+            return ((oi.f) yVar.f15223b).G(this, menuItem);
         }
         return false;
     }

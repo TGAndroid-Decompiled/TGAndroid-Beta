@@ -9,28 +9,28 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class b90 implements Runnable {
-    public final int f32431a;
-    public final LaunchActivity f32432b;
+    public final int f32359a;
+    public final LaunchActivity f32360b;
 
     public b90(LaunchActivity launchActivity, int i10) {
-        this.f32431a = i10;
-        this.f32432b = launchActivity;
+        this.f32359a = i10;
+        this.f32360b = launchActivity;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f32431a;
+        int i10 = this.f32359a;
         org.telegram.ui.ActionBar.m2 m2Var = null;
-        LaunchActivity launchActivity = this.f32432b;
+        LaunchActivity launchActivity = this.f32360b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
-                org.telegram.ui.Components.zb zbVar = new org.telegram.ui.Components.zb(launchActivity, null);
-                zbVar.d(R.raw.email_check_inbox, new String[0]);
-                zbVar.f30942b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
+                org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(launchActivity, null);
+                ybVar.d(R.raw.email_check_inbox, new String[0]);
+                ybVar.f30634b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null) {
-                    org.telegram.ui.Components.rc.g(R, zbVar, 1500).j();
+                    org.telegram.ui.Components.qc.g(R, ybVar, 1500).j();
                     try {
                         R.fragmentView.performHapticFeedback(3, 2);
                         return;
@@ -55,20 +55,20 @@ public final class b90 implements Runnable {
                 }
                 return;
             case 3:
-                if (!launchActivity.f31204q0.getFragmentStack().isEmpty()) {
-                    launchActivity.f31204q0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.iy0(launchActivity, launchActivity.f31192j0, launchActivity.f31188h0, launchActivity.f31190i0));
+                if (!launchActivity.f31132q0.getFragmentStack().isEmpty()) {
+                    launchActivity.f31132q0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.hy0(launchActivity, launchActivity.f31120j0, launchActivity.f31116h0, launchActivity.f31118i0));
                     return;
                 }
                 return;
             case 4:
                 Pattern pattern3 = LaunchActivity.B1;
                 launchActivity.getClass();
-                org.telegram.ui.Components.d30.f23498e0 = false;
-                org.telegram.ui.Components.d30.j(launchActivity);
+                org.telegram.ui.Components.c30.f23160e0 = false;
+                org.telegram.ui.Components.c30.j(launchActivity);
                 return;
             case 5:
-                ArrayList arrayList = launchActivity.f31180d0;
-                ArrayList arrayList2 = launchActivity.f31182e0;
+                ArrayList arrayList = launchActivity.f31108d0;
+                ArrayList arrayList2 = launchActivity.f31110e0;
                 if (AndroidUtilities.isTablet()) {
                     if (!arrayList2.isEmpty()) {
                         m2Var = (org.telegram.ui.ActionBar.m2) hg.c.g(1, arrayList2);
@@ -82,11 +82,11 @@ public final class b90 implements Runnable {
                 }
                 return;
             case 6:
-                if (!launchActivity.f31215v1) {
+                if (!launchActivity.f31143v1) {
                     try {
                         org.telegram.ui.ActionBar.a2 C = org.telegram.ui.Components.e5.C(launchActivity);
                         C.setOnDismissListener(new d90(launchActivity, 0));
-                        launchActivity.f31215v1 = true;
+                        launchActivity.f31143v1 = true;
                         C.show();
                     } catch (Throwable unused2) {
                         return;
@@ -95,7 +95,7 @@ public final class b90 implements Runnable {
                 return;
             case 7:
                 if (launchActivity.T0 != null) {
-                    File file = new File(ApplicationLoader.getFilesDirFixed(), a4.a.s(new StringBuilder("remote"), launchActivity.T0.f18489id, ".attheme"));
+                    File file = new File(ApplicationLoader.getFilesDirFixed(), a4.a.s(new StringBuilder("remote"), launchActivity.T0.f18474id, ".attheme"));
                     TLRPC.TL_theme tL_theme = launchActivity.T0;
                     org.telegram.ui.ActionBar.g6 u10 = org.telegram.ui.ActionBar.h6.u(file, tL_theme.title, tL_theme, true);
                     if (u10 != null) {
@@ -111,10 +111,10 @@ public final class b90 implements Runnable {
                 launchActivity.p0(new hc0());
                 return;
             case 9:
-                launchActivity.f31211t1 = null;
+                launchActivity.f31139t1 = null;
                 return;
             default:
-                launchActivity.f31213u1 = null;
+                launchActivity.f31141u1 = null;
                 return;
         }
     }

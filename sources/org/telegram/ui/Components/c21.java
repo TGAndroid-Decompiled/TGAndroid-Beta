@@ -1,7 +1,28 @@
 package org.telegram.ui.Components;
-public final class c21 extends iq {
+
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class c21 extends EditTextBoldCursor {
+    public final e21 f23154b;
+
+    public c21(e21 e21Var, Context context) {
+        super(context);
+        this.f23154b = e21Var;
+    }
+
     @Override
-    public final int a() {
-        return -6182737;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        ViewGroup viewGroup;
+        MotionEvent obtain = MotionEvent.obtain(motionEvent);
+        float rawX = obtain.getRawX();
+        float rawY = obtain.getRawY();
+        ThemeEditorView.EditorAlert editorAlert = this.f23154b.f23829c;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) editorAlert).containerView;
+        obtain.setLocation(rawX, rawY - viewGroup.getTranslationY());
+        editorAlert.f22444c.dispatchTouchEvent(obtain);
+        obtain.recycle();
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

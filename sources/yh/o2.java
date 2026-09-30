@@ -6,43 +6,43 @@ import android.opengl.Matrix;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.sr;
 public final class o2 {
-    public final p2 f47908a;
+    public final p2 f47802a;
     public j1 d;
-    public int f47911f;
-    public int f47912g;
-    public float f47914j;
-    public float f47915k;
-    public final ArrayList f47909b = new ArrayList();
-    public int f47910c = 0;
+    public int f47805f;
+    public int f47806g;
+    public float f47808j;
+    public float f47809k;
+    public final ArrayList f47803b = new ArrayList();
+    public int f47804c = 0;
     public boolean e = false;
     public final float[] h = new float[16];
-    public float[] f47913i = new float[16];
-    public boolean f47916l = false;
+    public float[] f47807i = new float[16];
+    public boolean f47810l = false;
 
     public o2(p2 p2Var) {
-        this.f47908a = p2Var;
+        this.f47802a = p2Var;
     }
 
     public final void a(int i10) {
-        this.f47909b.add(new n2(3, 0.0f, 0.0f, i10, -1, 0.0f, null, null));
+        this.f47803b.add(new n2(3, 0.0f, 0.0f, i10, -1, 0.0f, null, null));
     }
 
     public final void b() {
         j1 j1Var;
         boolean z10 = this.e;
-        p2 p2Var = this.f47908a;
+        p2 p2Var = this.f47802a;
         if (!z10) {
-            int i10 = this.f47910c;
-            ArrayList arrayList = this.f47909b;
+            int i10 = this.f47804c;
+            ArrayList arrayList = this.f47803b;
             if (i10 < arrayList.size()) {
-                n2 n2Var = (n2) arrayList.get(this.f47910c);
+                n2 n2Var = (n2) arrayList.get(this.f47804c);
                 boolean z11 = true;
-                this.f47910c++;
-                int i11 = n2Var.f47866a;
+                this.f47804c++;
+                int i11 = n2Var.f47760a;
                 int i12 = n2Var.e;
-                float f7 = n2Var.f47867b;
+                float f7 = n2Var.f47761b;
                 int i13 = n2Var.d;
                 int c10 = m1.j.c(i11);
                 if (c10 != 0) {
@@ -54,14 +54,14 @@ public final class o2 {
                                         if (f7 <= 0.0f) {
                                             z11 = false;
                                         }
-                                        p2Var.f47970f = z11;
+                                        p2Var.f47864f = z11;
                                         b();
                                         return;
                                     }
                                     return;
                                 }
-                                this.f47916l = true;
-                                View view = n2Var.f47870g;
+                                this.f47810l = true;
+                                View view = n2Var.f47764g;
                                 ValueAnimator valueAnimator = p2Var.G;
                                 if (valueAnimator != null) {
                                     valueAnimator.cancel();
@@ -76,8 +76,8 @@ public final class o2 {
                                 int childCount = p2Var.getChildCount();
                                 p2Var.addView(view, w7.y5.e(64, 64, 17));
                                 p2Var.v.add(Integer.valueOf(i12));
-                                p2Var.f47974w.put(Integer.valueOf(childCount), Integer.valueOf(i12));
-                                p2Var.f47975x.put(Integer.valueOf(childCount), rectF);
+                                p2Var.f47868w.put(Integer.valueOf(childCount), Integer.valueOf(i12));
+                                p2Var.f47869x.put(Integer.valueOf(childCount), rectF);
                                 p2Var.F = childCount;
                                 p2Var.E = 0.0f;
                                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -85,12 +85,12 @@ public final class o2 {
                                 ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(p2Var, 22));
                                 p2Var.G.addListener(new pg.d0(p2Var, 10));
                                 p2Var.G.setDuration(i13 * 16);
-                                p2Var.G.setInterpolator(tr.h);
+                                p2Var.G.setInterpolator(sr.h);
                                 p2Var.G.start();
                                 return;
                             }
-                            System.arraycopy(p2Var.f47969c, 0, this.h, 0, 16);
-                            float f10 = n2Var.f47869f;
+                            System.arraycopy(p2Var.f47863c, 0, this.h, 0, 16);
+                            float f10 = n2Var.f47763f;
                             float[] fArr = new float[16];
                             Matrix.setIdentityM(fArr, 0);
                             if (f10 != 0.0f) {
@@ -115,21 +115,21 @@ public final class o2 {
                             } else {
                                 Matrix.rotateM(fArr, 0, 90.0f, 0.0f, 1.0f, 0.0f);
                             }
-                            this.f47913i = fArr;
-                            this.f47912g = i13;
-                            this.f47911f = i13;
-                            this.f47914j = p2Var.d;
-                            this.f47915k = p2Var.e;
+                            this.f47807i = fArr;
+                            this.f47806g = i13;
+                            this.f47805f = i13;
+                            this.f47808j = p2Var.d;
+                            this.f47809k = p2Var.e;
                             return;
                         }
-                        this.f47911f = i13;
-                        this.f47912g = i13;
+                        this.f47805f = i13;
+                        this.f47806g = i13;
                         return;
                     }
-                    p2Var.d = (n2Var.f47868c * 0.01f) + p2Var.d;
+                    p2Var.d = (n2Var.f47762c * 0.01f) + p2Var.d;
                     p2Var.e = (f7 * 0.01f) + p2Var.e;
-                    this.f47911f = 1;
-                    this.f47912g = 1;
+                    this.f47805f = 1;
+                    this.f47806g = 1;
                     return;
                 }
                 Runnable runnable = n2Var.h;
@@ -147,7 +147,7 @@ public final class o2 {
     }
 
     public final void c(float f7, float f10) {
-        this.f47909b.add(new n2(2, f7, f10, 0, -1, 0.0f, null, null));
+        this.f47803b.add(new n2(2, f7, f10, 0, -1, 0.0f, null, null));
     }
 
     public final void d(boolean z10) {
@@ -157,10 +157,10 @@ public final class o2 {
         } else {
             f7 = -1.0f;
         }
-        this.f47909b.add(new n2(6, f7, 0.0f, 0, -1, 0.0f, null, null));
+        this.f47803b.add(new n2(6, f7, 0.0f, 0, -1, 0.0f, null, null));
     }
 
     public final void e(v2 v2Var, int i10, float f7) {
-        this.f47909b.add(new n2(5, 0.0f, 0.0f, 32, i10, f7, v2Var, null));
+        this.f47803b.add(new n2(5, 0.0f, 0.0f, 32, i10, f7, v2Var, null));
     }
 }

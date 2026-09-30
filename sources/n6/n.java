@@ -4,16 +4,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class n extends o6.a {
     public static final Parcelable.Creator<n> CREATOR = new m8.h(17);
-    public final int f15314a;
-    public final boolean f15315b;
-    public final boolean f15316c;
+    public final int f15299a;
+    public final boolean f15300b;
+    public final boolean f15301c;
     public final int d;
     public final int e;
 
     public n(int i10, int i11, int i12, boolean z10, boolean z11) {
-        this.f15314a = i10;
-        this.f15315b = z10;
-        this.f15316c = z11;
+        this.f15299a = i10;
+        this.f15300b = z10;
+        this.f15301c = z11;
         this.d = i11;
         this.e = i12;
     }
@@ -22,11 +22,11 @@ public final class n extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
         w7.f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f15314a);
+        parcel.writeInt(this.f15299a);
         w7.f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f15315b ? 1 : 0);
+        parcel.writeInt(this.f15300b ? 1 : 0);
         w7.f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f15316c ? 1 : 0);
+        parcel.writeInt(this.f15301c ? 1 : 0);
         w7.f0.s(parcel, 4, 4);
         parcel.writeInt(this.d);
         w7.f0.s(parcel, 5, 4);

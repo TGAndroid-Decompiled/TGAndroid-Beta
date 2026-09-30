@@ -10,7 +10,7 @@ public final class l extends m implements vd.f {
 
     @Override
     public final vd.b computeReflected() {
-        q.f13924a.getClass();
+        q.f13909a.getClass();
         return this;
     }
 

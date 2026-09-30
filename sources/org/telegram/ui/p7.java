@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class p7 extends org.telegram.ui.Cells.j7 {
-    public final k7 f36523l0;
+    public final k7 f36420l0;
     public final q7 m0;
 
     public p7(q7 q7Var, Context context, k7 k7Var) {
         super(context, 0, null);
         this.m0 = q7Var;
-        this.f36523l0 = k7Var;
+        this.f36420l0 = k7Var;
     }
 
     @Override
     public final void a() {
-        s7 s7Var = this.m0.f36908n;
-        k7 k7Var = this.f36523l0;
+        s7 s7Var = this.m0.f36809n;
+        k7 k7Var = this.f36420l0;
         s7.b(s7Var, (zh.a) k7Var.getTag(), k7Var);
     }
 }

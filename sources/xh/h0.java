@@ -8,16 +8,16 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.pg;
 import org.telegram.ui.mn;
-public final class h0 implements pg {
-    public final TL_stars.TL_starGiftUnique f46268a;
-    public final j0 f46269b;
+public final class h0 implements og {
+    public final TL_stars.TL_starGiftUnique f46162a;
+    public final j0 f46163b;
 
     public h0(j0 j0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f46269b = j0Var;
-        this.f46268a = tL_starGiftUnique;
+        this.f46163b = j0Var;
+        this.f46162a = tL_starGiftUnique;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class h0 implements pg {
         int i10;
         int i11;
         boolean z10;
-        j0 j0Var = this.f46269b;
-        p6 p6Var = j0Var.f46307w;
-        a5 a5Var = j0Var.f46301b;
+        j0 j0Var = this.f46163b;
+        p6 p6Var = j0Var.f46201w;
+        a5 a5Var = j0Var.f46195b;
         i10 = ((org.telegram.ui.ActionBar.e3) j0Var).currentAccount;
-        a5Var.a(this.f46268a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f46304n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        a5Var.a(this.f46162a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f46198n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         j0Var.F = codePointCount;
         int i12 = j0Var.E;
@@ -62,10 +62,10 @@ public final class h0 implements pg {
             p6Var.animate().setListener(null).cancel();
             p6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                p6Var.setTextColor(j0Var.getThemedColor(h6.f19296p7));
+                p6Var.setTextColor(j0Var.getThemedColor(h6.f19281p7));
                 return;
             } else {
-                p6Var.setTextColor(j0Var.getThemedColor(h6.f19459y6));
+                p6Var.setTextColor(j0Var.getThemedColor(h6.f19444y6));
                 return;
             }
         }

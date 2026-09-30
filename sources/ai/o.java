@@ -4,13 +4,13 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.sq;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.hx;
-public final class o extends sq {
+public final class o extends rq {
     public final Drawable E;
     public final Drawable F;
     public final hx G;
-    public int f1326y;
+    public int f1324y;
 
     public o(hx hxVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super(drawable, drawable2);
@@ -26,13 +26,13 @@ public final class o extends sq {
         hx hxVar = this.G;
         int i12 = hxVar.f546b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f19354s8;
+            i10 = org.telegram.ui.ActionBar.h6.f19339s8;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.M8;
         }
         int f7 = hxVar.f(i10);
-        if (this.f1326y != f7) {
-            this.f1326y = f7;
+        if (this.f1324y != f7) {
+            this.f1324y = f7;
             if (i12 == 0) {
                 i11 = org.telegram.ui.ActionBar.h6.A8;
             } else {

@@ -13,14 +13,14 @@ public final class g extends n6.g {
 
     public g(Context context, Looper looper, p3 p3Var, w5.b bVar, k kVar, l lVar) {
         super(context, looper, 68, p3Var, kVar, lVar, 0);
-        bVar = bVar == null ? w5.b.f44981c : bVar;
+        bVar = bVar == null ? w5.b.f44875c : bVar;
         o0.a aVar = new o0.a(21, (byte) 0);
-        aVar.f15498b = Boolean.FALSE;
-        w5.b bVar2 = w5.b.f44981c;
+        aVar.f15483b = Boolean.FALSE;
+        w5.b bVar2 = w5.b.f44875c;
         bVar.getClass();
-        aVar.f15498b = Boolean.valueOf(bVar.f44982a);
-        aVar.f15499c = bVar.f44983b;
-        aVar.f15499c = e.a();
+        aVar.f15483b = Boolean.valueOf(bVar.f44876a);
+        aVar.f15484c = bVar.f44877b;
+        aVar.f15484c = e.a();
         this.U = new w5.b(aVar);
     }
 
@@ -47,8 +47,8 @@ public final class g extends n6.g {
         bVar.getClass();
         Bundle bundle = new Bundle();
         bundle.putString("consumer_package", null);
-        bundle.putBoolean("force_save_dialog", bVar.f44982a);
-        bundle.putString("log_session_id", bVar.f44983b);
+        bundle.putBoolean("force_save_dialog", bVar.f44876a);
+        bundle.putString("log_session_id", bVar.f44877b);
         return bundle;
     }
 

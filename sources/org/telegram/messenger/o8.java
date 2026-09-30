@@ -6,85 +6,85 @@ import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ProfileActivity;
 public final class o8 implements Runnable {
-    public final int f17197a;
-    public final Object f17198b;
-    public final long f17199c;
+    public final int f17181a;
+    public final Object f17182b;
+    public final long f17183c;
     public final boolean d;
     public final Object e;
 
     public o8(Object obj, boolean z10, long j3, Object obj2, int i10) {
-        this.f17197a = i10;
-        this.f17198b = obj;
+        this.f17181a = i10;
+        this.f17182b = obj;
         this.d = z10;
-        this.f17199c = j3;
+        this.f17183c = j3;
         this.e = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f17197a) {
+        switch (this.f17181a) {
             case 0:
-                ((MediaDataController) this.f17198b).lambda$loadFeaturedStickers$57((TLObject) this.e, this.d, this.f17199c);
+                ((MediaDataController) this.f17182b).lambda$loadFeaturedStickers$57((TLObject) this.e, this.d, this.f17183c);
                 return;
             case 1:
-                ((MediaDataController) this.f17198b).lambda$processLoadedFeaturedStickers$60((ArrayList) this.e, this.f17199c, this.d);
+                ((MediaDataController) this.f17182b).lambda$processLoadedFeaturedStickers$60((ArrayList) this.e, this.f17183c, this.d);
                 return;
             case 2:
-                ((MessagesController) this.f17198b).lambda$processUpdates$376(this.d, this.f17199c, (ArrayList) this.e);
+                ((MessagesController) this.f17182b).lambda$processUpdates$376(this.d, this.f17183c, (ArrayList) this.e);
                 return;
             case 3:
-                ((MessagesController) this.f17198b).lambda$getChannelRecommendations$481((TLObject) this.e, this.d, this.f17199c);
+                ((MessagesController) this.f17182b).lambda$getChannelRecommendations$481((TLObject) this.e, this.d, this.f17183c);
                 return;
             case 4:
                 boolean z10 = this.d;
-                ((MessagesController) this.f17198b).lambda$processLoadedChannelAdmins$66(this.f17199c, (a0.i) this.e, z10);
+                ((MessagesController) this.f17182b).lambda$processLoadedChannelAdmins$66(this.f17183c, (a0.i) this.e, z10);
                 return;
             case 5:
-                ((MessagesStorage) this.f17198b).lambda$createTaskForMid$115(this.d, this.f17199c, (ArrayList) this.e);
+                ((MessagesStorage) this.f17182b).lambda$createTaskForMid$115(this.d, this.f17183c, (ArrayList) this.e);
                 return;
             case 6:
-                ((MessagesStorage) this.f17198b).lambda$loadPendingTasks$24((org.telegram.ui.ActionBar.z5) this.e, this.d, this.f17199c);
+                ((MessagesStorage) this.f17182b).lambda$loadPendingTasks$24((org.telegram.ui.ActionBar.z5) this.e, this.d, this.f17183c);
                 return;
             case 7:
-                ((VideoPlayerHolderBase) this.f17198b).lambda$seekTo$12(this.f17199c, this.d, (Runnable) this.e);
+                ((VideoPlayerHolderBase) this.f17182b).lambda$seekTo$12(this.f17183c, this.d, (Runnable) this.e);
                 return;
             case 8:
-                org.telegram.ui.z6.U((org.telegram.ui.z6) this.f17198b, this.d, this.f17199c, (org.telegram.ui.m6) this.e);
+                org.telegram.ui.z6.U((org.telegram.ui.z6) this.f17182b, this.d, this.f17183c, (org.telegram.ui.m6) this.e);
                 return;
             default:
-                ((ProfileActivity) this.f17198b).getMessagesController().getStoriesController().o0(this.f17199c, (ArrayList) this.e, this.d, null);
+                ((ProfileActivity) this.f17182b).getMessagesController().getStoriesController().o0(this.f17183c, (ArrayList) this.e, this.d, null);
                 return;
         }
     }
 
     public o8(BaseController baseController, Object obj, boolean z10, long j3, int i10) {
-        this.f17197a = i10;
-        this.f17198b = baseController;
+        this.f17181a = i10;
+        this.f17182b = baseController;
         this.e = obj;
         this.d = z10;
-        this.f17199c = j3;
+        this.f17183c = j3;
     }
 
     public o8(MediaDataController mediaDataController, ArrayList arrayList, long j3, boolean z10) {
-        this.f17197a = 1;
-        this.f17198b = mediaDataController;
+        this.f17181a = 1;
+        this.f17182b = mediaDataController;
         this.e = arrayList;
-        this.f17199c = j3;
+        this.f17183c = j3;
         this.d = z10;
     }
 
     public o8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j3, Cloneable cloneable, boolean z10, int i10) {
-        this.f17197a = i10;
-        this.f17198b = notificationCenterDelegate;
-        this.f17199c = j3;
+        this.f17181a = i10;
+        this.f17182b = notificationCenterDelegate;
+        this.f17183c = j3;
         this.e = cloneable;
         this.d = z10;
     }
 
     public o8(VideoPlayerHolderBase videoPlayerHolderBase, long j3, boolean z10, Runnable runnable) {
-        this.f17197a = 7;
-        this.f17198b = videoPlayerHolderBase;
-        this.f17199c = j3;
+        this.f17181a = 7;
+        this.f17182b = videoPlayerHolderBase;
+        this.f17183c = j3;
         this.d = z10;
         this.e = runnable;
     }

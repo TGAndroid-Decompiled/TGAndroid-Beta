@@ -34,7 +34,7 @@ public final class hl extends org.telegram.ui.ActionBar.h5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((qp0) this.N0).f37064s.a();
+                ((rp0) this.N0).f37442s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class hl extends org.telegram.ui.ActionBar.h5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((qp0) this.N0).f37064s.b();
+                ((rp0) this.N0).f37442s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class hl extends org.telegram.ui.ActionBar.h5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f31688n != null) {
+                    if (profileActivity.h != null || profileActivity.f31616n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f31688n != null) {
+                        if (profileActivity.f31616n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f31688n);
+                            sb2.append(profileActivity.f31616n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -114,10 +114,10 @@ public final class hl extends org.telegram.ui.ActionBar.h5 {
                 wn wnVar = (wn) this.N0;
                 if (this == wnVar.D2[0] && wnVar.H2[1] != null) {
                     if (wnVar.O4 && f7 < 0.0f) {
-                        wnVar.f39815z2.setTranslationY(f7 / 2.0f);
+                        wnVar.f39722z2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {
-                        wnVar.f39815z2.setTranslationY(0.0f);
+                        wnVar.f39722z2.setTranslationY(0.0f);
                         return;
                     }
                 }

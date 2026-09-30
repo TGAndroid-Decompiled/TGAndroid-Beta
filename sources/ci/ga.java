@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class ga extends View {
-    public static final int f4741a = 0;
+    public static final int f4733a = 0;
 
     public static void a(int i10, l8 l8Var) {
         da daVar;
@@ -26,11 +26,11 @@ public abstract class ga extends View {
                     SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
                     daVar = b(serializedData);
                     serializedData.cleanup();
-                    if (daVar.f4556f.isEmpty() && daVar.f4554b.isEmpty()) {
+                    if (daVar.f4549f.isEmpty() && daVar.f4547b.isEmpty()) {
                         daVar = new da();
                     } else {
                         HashSet hashSet = new HashSet();
-                        hashSet.addAll(daVar.f4555c);
+                        hashSet.addAll(daVar.f4548c);
                         for (ArrayList arrayList : daVar.d.values()) {
                             hashSet.addAll(arrayList);
                         }
@@ -46,7 +46,7 @@ public abstract class ga extends View {
             }
             l8Var.E0 = daVar;
             l8Var.F0.clear();
-            l8Var.F0.addAll(l8Var.E0.f4554b);
+            l8Var.F0.addAll(l8Var.E0.f4547b);
             if (UserConfig.getInstance(i10).isPremium()) {
                 l8Var.I0 = MessagesController.getInstance(i10).getMainSettings().getInt("story_period", 86400);
             } else {
@@ -91,7 +91,7 @@ public abstract class ga extends View {
                         hashSet.addAll(arrayList4);
                     }
                     da daVar = new da(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = daVar.f4555c;
+                    ArrayList arrayList5 = daVar.f4548c;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     HashMap hashMap2 = daVar.d;
@@ -107,9 +107,9 @@ public abstract class ga extends View {
     }
 
     public static void c(SerializedData serializedData, da daVar) {
-        int i10 = daVar.f4553a;
+        int i10 = daVar.f4546a;
         HashMap hashMap = daVar.d;
-        ArrayList arrayList = daVar.f4555c;
+        ArrayList arrayList = daVar.f4548c;
         serializedData.writeInt32(i10);
         serializedData.writeInt32(481674261);
         ArrayList arrayList2 = daVar.e;

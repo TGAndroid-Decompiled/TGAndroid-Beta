@@ -3,25 +3,25 @@ package xh;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.c01;
 public final class s1 implements Runnable {
-    public final int f46502a;
-    public final ProfileActivity f46503b;
+    public final int f46396a;
+    public final ProfileActivity f46397b;
 
     public s1(ProfileActivity profileActivity, int i10) {
-        this.f46502a = i10;
-        this.f46503b = profileActivity;
+        this.f46396a = i10;
+        this.f46397b = profileActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f46502a) {
+        switch (this.f46396a) {
             case 0:
-                this.f46503b.G4(true);
+                this.f46397b.G4(true);
                 return;
             case 1:
-                this.f46503b.G4(true);
+                this.f46397b.G4(true);
                 return;
             default:
-                ProfileActivity profileActivity = this.f46503b;
+                ProfileActivity profileActivity = this.f46397b;
                 c01 c01Var = profileActivity.O;
                 if (c01Var != null) {
                     c01Var.Y0(14);

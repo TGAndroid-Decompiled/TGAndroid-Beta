@@ -1,9 +1,121 @@
 package org.telegram.ui.Components;
-public final class fc implements o1.g {
+
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class fc extends GestureDetector.SimpleOnGestureListener {
+    public final ub f24200a;
+    public final ib f24201b;
+
+    public fc(ib ibVar, ub ubVar) {
+        this.f24201b = ibVar;
+        this.f24200a = ubVar;
+    }
+
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        if (f7 <= 0.0f) {
-            hVar.c();
+    public final boolean onDown(MotionEvent motionEvent) {
+        ib ibVar = this.f24201b;
+        if (ibVar.f25039s) {
+            return false;
         }
+        ub ubVar = this.f24200a;
+        ibVar.v = ub.access$1400(ubVar, true);
+        ibVar.f25040w = ub.access$1400(ubVar, false);
+        return true;
+    }
+
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        boolean z10 = false;
+        if (Math.abs(f7) <= 2000.0f) {
+            return false;
+        }
+        ib ibVar = this.f24201b;
+        if ((f7 < 0.0f && ibVar.v) || (f7 > 0.0f && ibVar.f25040w)) {
+            z10 = true;
+        }
+        float signum = Math.signum(f7);
+        ub ubVar = this.f24200a;
+        o1.k kVar = new o1.k(ubVar, o1.h.f15516m, signum * ubVar.getWidth() * 2.0f);
+        if (!z10) {
+            kVar.a(new o1.f(this) {
+                public final fc f23628b;
+
+                {
+                    this.f23628b = this;
+                }
+
+                @Override
+                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
+                    switch (r2) {
+                        case 0:
+                            this.f23628b.f24201b.f25042y.b();
+                            return;
+                        default:
+                            this.f23628b.f24201b.f25042y.b();
+                            return;
+                    }
+                }
+            });
+            kVar.b(new k7(ubVar, 2));
+        }
+        kVar.f15534u.a(1.0f);
+        kVar.f15534u.b(100.0f);
+        kVar.f15524a = f7;
+        kVar.f();
+        if (z10) {
+            o1.k kVar2 = new o1.k(ubVar, o1.h.f15523t, 0.0f);
+            kVar2.a(new o1.f(this) {
+                public final fc f23628b;
+
+                {
+                    this.f23628b = this;
+                }
+
+                @Override
+                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
+                    switch (r2) {
+                        case 0:
+                            this.f23628b.f24201b.f25042y.b();
+                            return;
+                        default:
+                            this.f23628b.f24201b.f25042y.b();
+                            return;
+                    }
+                }
+            });
+            kVar2.b(new Object());
+            kVar.f15534u.a(1.0f);
+            kVar.f15534u.b(10.0f);
+            kVar.f15524a = f7;
+            kVar2.f();
+        }
+        ibVar.f25039s = true;
+        return true;
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        ib ibVar = this.f24201b;
+        float f11 = ibVar.h + f7;
+        ibVar.h = f11;
+        float f12 = ibVar.f25037n + f10;
+        ibVar.f25037n = f12;
+        if (Utilities.dist(0.0f, 0.0f, f11, f12) > AndroidUtilities.touchSlop) {
+            ibVar.f25038r = true;
+        }
+        if (!ibVar.d) {
+            return false;
+        }
+        float f13 = ibVar.f25036f - f7;
+        ibVar.f25036f = f13;
+        ub ubVar = this.f24200a;
+        ubVar.setTranslationX(f13);
+        float f14 = ibVar.f25036f;
+        if (f14 == 0.0f || ((f14 < 0.0f && ibVar.v) || (f14 > 0.0f && ibVar.f25040w))) {
+            ubVar.setAlpha(1.0f - (Math.abs(f14) / ubVar.getWidth()));
+        }
+        return true;
     }
 }

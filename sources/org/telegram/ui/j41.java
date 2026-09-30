@@ -3,12 +3,12 @@ package org.telegram.ui;
 import j$.util.Objects;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 public final class j41 extends og.a {
-    public final SaveToGallerySettingsHelper.DialogException f34728c;
+    public final SaveToGallerySettingsHelper.DialogException f34643c;
     public final String d;
 
     public j41(int i10) {
         super(i10, false);
-        this.f34728c = null;
+        this.f34643c = null;
     }
 
     public final boolean equals(Object obj) {
@@ -20,15 +20,15 @@ public final class j41 extends og.a {
             return false;
         }
         j41 j41Var = (j41) obj;
-        if (this.f15731a != j41Var.f15731a) {
+        if (this.f15716a != j41Var.f15716a) {
             return false;
         }
         String str = this.d;
         if (str != null) {
             return Objects.equals(str, j41Var.d);
         }
-        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f34728c;
-        if (dialogException2 == null || (dialogException = j41Var.f34728c) == null || dialogException2.dialogId == dialogException.dialogId) {
+        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f34643c;
+        if (dialogException2 == null || (dialogException = j41Var.f34643c) == null || dialogException2.dialogId == dialogException.dialogId) {
             return true;
         }
         return false;
@@ -36,12 +36,12 @@ public final class j41 extends og.a {
 
     public j41(SaveToGallerySettingsHelper.DialogException dialogException) {
         super(2, false);
-        this.f34728c = dialogException;
+        this.f34643c = dialogException;
     }
 
     public j41(int i10, String str) {
         super(i10, false);
         this.d = str;
-        this.f34728c = null;
+        this.f34643c = null;
     }
 }

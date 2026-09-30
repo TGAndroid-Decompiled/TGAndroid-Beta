@@ -18,15 +18,15 @@ public final class e1 extends r0.b {
             RecyclerView recyclerView = (RecyclerView) view;
             if (recyclerView.getLayoutManager() != null) {
                 c0 c0Var = (c0) recyclerView.getLayoutManager();
-                RecyclerView recyclerView2 = c0Var.f43161b;
-                of.e eVar = recyclerView2.f2839b;
+                RecyclerView recyclerView2 = c0Var.f43055b;
+                of.e eVar = recyclerView2.f2832b;
                 if (accessibilityEvent != null) {
                     boolean z10 = true;
-                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f43161b.canScrollVertically(-1) && !c0Var.f43161b.canScrollHorizontally(-1) && !c0Var.f43161b.canScrollHorizontally(1)) {
+                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f43055b.canScrollVertically(-1) && !c0Var.f43055b.canScrollHorizontally(-1) && !c0Var.f43055b.canScrollHorizontally(1)) {
                         z10 = false;
                     }
                     accessibilityEvent.setScrollable(z10);
-                    h0 h0Var = c0Var.f43161b.f2865w;
+                    h0 h0Var = c0Var.f43055b.f2858w;
                     if (h0Var != null) {
                         accessibilityEvent.setItemCount(h0Var.h());
                     }
@@ -41,12 +41,12 @@ public final class e1 extends r0.b {
 
     @Override
     public final void c(View view, s0.d dVar) {
-        this.f42201a.onInitializeAccessibilityNodeInfo(view, dVar.f43017a);
+        this.f42098a.onInitializeAccessibilityNodeInfo(view, dVar.f42911a);
         RecyclerView recyclerView = this.d;
         if (!recyclerView.Z() && recyclerView.getLayoutManager() != null) {
             o0 layoutManager = recyclerView.getLayoutManager();
-            RecyclerView recyclerView2 = layoutManager.f43161b;
-            layoutManager.S(recyclerView2.f2839b, recyclerView2.f2862t0, dVar);
+            RecyclerView recyclerView2 = layoutManager.f43055b;
+            layoutManager.S(recyclerView2.f2832b, recyclerView2.f2855t0, dVar);
         }
     }
 

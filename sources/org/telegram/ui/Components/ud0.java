@@ -1,36 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class ud0 implements Runnable {
-    public final int f28839a;
-    public final fe0 f28840b;
+public final class ud0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28799a;
+    public final ee0 f28800b;
 
-    public ud0(fe0 fe0Var, int i10) {
-        this.f28839a = i10;
-        this.f28840b = fe0Var;
+    public ud0(ee0 ee0Var, int i10) {
+        this.f28799a = i10;
+        this.f28800b = ee0Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f28839a;
-        fe0 fe0Var = this.f28840b;
-        switch (i10) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f28799a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = fe0Var.f24284r;
-                if (fe0Var.f24287x.getVisibility() != 0 && editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    AndroidUtilities.showKeyboard(editTextBoldCursor);
-                    return;
-                }
+                ee0 ee0Var = this.f28800b;
+                ee0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ee0Var.P = floatValue;
+                ee0Var.f(floatValue);
+                ee0Var.setAlpha(ee0Var.P);
                 return;
             default:
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(fe0Var.P, 0.0f);
-                ofFloat.addUpdateListener(new vd0(fe0Var, 0));
-                ofFloat.addListener(new id0(fe0Var, 1));
-                ofFloat.setDuration(420L);
-                ofFloat.setInterpolator(tr.h);
-                ofFloat.start();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ee0 ee0Var2 = this.f28800b;
+                ai.w5 w5Var = ee0Var2.e;
+                w5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
+                w5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
+                w5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
+                TextView textView = ee0Var2.f23997w;
+                textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
+                textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
+                textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue2));
+                ee0Var2.f23996s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
                 return;
         }
     }

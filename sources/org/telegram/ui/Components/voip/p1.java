@@ -5,30 +5,30 @@ import android.widget.FrameLayout;
 import org.telegram.ui.uh1;
 import w7.y5;
 public final class p1 extends FrameLayout {
-    public final m1 f29466a;
-    public final FrameLayout f29467b;
-    public final o1[] f29468c;
+    public final m1 f29460a;
+    public final FrameLayout f29461b;
+    public final o1[] f29462c;
     public uh1 d;
 
     public p1(Activity activity, r1 r1Var) {
         super(activity);
-        this.f29468c = new o1[5];
+        this.f29462c = new o1[5];
         setWillNotDraw(false);
         m1 m1Var = new m1(activity, r1Var);
-        this.f29466a = m1Var;
+        this.f29460a = m1Var;
         FrameLayout frameLayout = new FrameLayout(activity);
-        this.f29467b = frameLayout;
+        this.f29461b = frameLayout;
         m1Var.setVisibility(8);
         frameLayout.setVisibility(8);
         for (int i10 = 0; i10 < 5; i10++) {
-            this.f29468c[i10] = new o1(activity);
-            this.f29468c[i10].setAllStarsProvider(new le.b(this, 13));
-            o1 o1Var = this.f29468c[i10];
+            this.f29462c[i10] = new o1(activity);
+            this.f29462c[i10].setAllStarsProvider(new le.b(this, 13));
+            o1 o1Var = this.f29462c[i10];
             o1Var.d = new org.telegram.ui.Components.w2(20, this, activity);
-            o1Var.f29439f = i10;
-            this.f29467b.addView(o1Var, y5.d(-2, -2.0f, 51, i10 * 41, 0.0f, 0.0f, 0.0f));
+            o1Var.f29433f = i10;
+            this.f29461b.addView(o1Var, y5.d(-2, -2.0f, 51, i10 * 41, 0.0f, 0.0f, 0.0f));
         }
-        addView(this.f29466a, y5.d(300, 152.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
-        addView(this.f29467b, y5.d(201, 100.0f, 49, 0.0f, 90.0f, 0.0f, 0.0f));
+        addView(this.f29460a, y5.d(300, 152.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
+        addView(this.f29461b, y5.d(201, 100.0f, 49, 0.0f, 90.0f, 0.0f, 0.0f));
     }
 }

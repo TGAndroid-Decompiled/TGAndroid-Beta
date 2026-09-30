@@ -1,50 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class d00 implements ol0, pl0 {
-    public final n00 f23459a;
+import android.animation.ValueAnimator;
+public final class d00 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f23453a;
+    public final k00 f23454b;
 
-    public d00(n00 n00Var) {
-        this.f23459a = n00Var;
+    public d00(k00 k00Var, int i10) {
+        this.f23453a = i10;
+        this.f23454b = k00Var;
     }
 
     @Override
-    public void c(float f7, float f10, int i10, View view) {
-        n00 n00Var = this.f23459a;
-        h00 h00Var = n00Var.J;
-        if (!((org.telegram.ui.pw) h00Var).f36786b.f37162j2) {
-            l00 l00Var = (l00) view;
-            if (n00Var.f26492n) {
-                if (i10 != 0) {
-                    int dp = AndroidUtilities.dp(6.0f);
-                    RectF rectF = l00Var.f25852f;
-                    float f11 = dp;
-                    if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
-                        org.telegram.ui.pw pwVar = (org.telegram.ui.pw) n00Var.J;
-                        pwVar.d(pwVar.f36786b.getMessagesController().getDialogFilters().get(l00Var.f25846b.f25251a));
-                    }
-                }
-            } else if (i10 == n00Var.K && h00Var != null) {
-                ((org.telegram.ui.pw) h00Var).f36786b.x4(true, false);
-            } else {
-                n00Var.f(l00Var.f25846b, i10);
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f23453a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k00 k00Var = this.f23454b;
+                k00Var.f25556x = floatValue;
+                k00Var.invalidate();
+                return;
+            default:
+                k00 k00Var2 = this.f23454b;
+                k00Var2.getClass();
+                k00Var2.f25557y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k00Var2.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public boolean d(int r24, android.view.View r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d00.d(int, android.view.View):boolean");
-    }
-
-    @Override
-    public boolean d1(View view) {
-        return false;
-    }
-
-    @Override
-    public void r0(View view, float f7, float f10) {
     }
 }

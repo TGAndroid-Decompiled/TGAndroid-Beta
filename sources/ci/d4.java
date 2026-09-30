@@ -9,37 +9,37 @@ import androidx.appcompat.widget.ActionBarContainer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.w01;
+import org.telegram.ui.Components.v01;
 public final class d4 extends Drawable {
-    public final int f4518a;
-    public final Object f4519b;
+    public final int f4511a;
+    public final Object f4512b;
 
     public d4(Object obj, int i10) {
-        this.f4518a = i10;
-        this.f4519b = obj;
+        this.f4511a = i10;
+        this.f4512b = obj;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 0:
                 canvas.save();
-                e4 e4Var = (e4) this.f4519b;
-                canvas.drawPath(e4Var.f4633t0, e4Var.f4611b0);
+                e4 e4Var = (e4) this.f4512b;
+                canvas.drawPath(e4Var.f4625t0, e4Var.f4603b0);
                 canvas.restore();
                 return;
             case 1:
                 canvas.save();
                 canvas.translate(0.0f, AndroidUtilities.dp(1.0f));
-                ei.k3 k3Var = (ei.k3) this.f4519b;
+                ei.k3 k3Var = (ei.k3) this.f4512b;
                 k3Var.I0.setBounds(getBounds());
                 k3Var.I0.draw(canvas);
                 canvas.restore();
                 return;
             case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f4519b;
+                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f4512b;
                 if (actionBarContainer.h) {
-                    Drawable drawable = actionBarContainer.f1969f;
+                    Drawable drawable = actionBarContainer.f1962f;
                     if (drawable != null) {
                         drawable.draw(canvas);
                         return;
@@ -51,33 +51,33 @@ public final class d4 extends Drawable {
                     drawable2.draw(canvas);
                 }
                 Drawable drawable3 = actionBarContainer.e;
-                if (drawable3 != null && actionBarContainer.f1970n) {
+                if (drawable3 != null && actionBarContainer.f1963n) {
                     drawable3.draw(canvas);
                     return;
                 }
                 return;
             case 3:
-                rg.z0 z0Var = (rg.z0) this.f4519b;
+                rg.z0 z0Var = (rg.z0) this.f4512b;
                 Rect bounds = getBounds();
                 z0Var.getClass();
                 z0Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, z0Var.f42948f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, z0Var.f42842f);
                 return;
             case 4:
-                ImageReceiver imageReceiver = (ImageReceiver) this.f4519b;
+                ImageReceiver imageReceiver = (ImageReceiver) this.f4512b;
                 imageReceiver.setImageCoords(getBounds());
                 imageReceiver.draw(canvas);
                 return;
             case 5:
                 Rect bounds2 = getBounds();
-                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), AndroidUtilities.dp(18.0f), ((Switch) this.f4519b).J);
+                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), AndroidUtilities.dp(18.0f), ((Switch) this.f4512b).J);
                 return;
             case 6:
-                ((w01) this.f4519b).c(getBounds().centerX() - (((w01) this.f4519b).f29768c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false), canvas);
+                ((v01) this.f4512b).c(getBounds().centerX() - (((v01) this.f4512b).f28922c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false), canvas);
                 return;
             case 7:
                 canvas.save();
-                Drawable drawable4 = (Drawable) this.f4519b;
+                Drawable drawable4 = (Drawable) this.f4512b;
                 if (drawable4.getBounds() != null) {
                     canvas.scale(0.8333333f, 0.8333333f, drawable4.getBounds().centerX(), drawable4.getBounds().centerY());
                 }
@@ -87,7 +87,7 @@ public final class d4 extends Drawable {
             default:
                 canvas.save();
                 canvas.translate(getBounds().left, getBounds().top);
-                ((b7) this.f4519b).draw(canvas);
+                ((b7) this.f4512b).draw(canvas);
                 canvas.restore();
                 return;
         }
@@ -95,13 +95,13 @@ public final class d4 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 1:
                 return AndroidUtilities.dp(20.0f);
             case 4:
                 return AndroidUtilities.dp(30.0f);
             case 8:
-                return ((b7) this.f4519b).getHeight();
+                return ((b7) this.f4512b).getHeight();
             default:
                 return super.getIntrinsicHeight();
         }
@@ -109,13 +109,13 @@ public final class d4 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 1:
                 return AndroidUtilities.dp(20.0f);
             case 4:
                 return AndroidUtilities.dp(30.0f);
             case 8:
-                return ((b7) this.f4519b).getWidth();
+                return ((b7) this.f4512b).getWidth();
             default:
                 return super.getIntrinsicWidth();
         }
@@ -123,7 +123,7 @@ public final class d4 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 0:
                 return -2;
             case 1:
@@ -139,7 +139,7 @@ public final class d4 extends Drawable {
             case 6:
                 return -2;
             case 7:
-                return ((Drawable) this.f4519b).getOpacity();
+                return ((Drawable) this.f4512b).getOpacity();
             default:
                 return -2;
         }
@@ -147,11 +147,11 @@ public final class d4 extends Drawable {
 
     @Override
     public void getOutline(Outline outline) {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f4519b;
+                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f4512b;
                 if (actionBarContainer.h) {
-                    if (actionBarContainer.f1969f != null) {
+                    if (actionBarContainer.f1962f != null) {
                         actionBarContainer.d.getOutline(outline);
                         return;
                     }
@@ -171,23 +171,23 @@ public final class d4 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 0:
                 return;
             case 1:
-                ((ei.k3) this.f4519b).I0.setAlpha(i10);
+                ((ei.k3) this.f4512b).I0.setAlpha(i10);
                 return;
             case 2:
             case 3:
                 return;
             case 4:
-                ((ImageReceiver) this.f4519b).setAlpha(i10 / 255.0f);
+                ((ImageReceiver) this.f4512b).setAlpha(i10 / 255.0f);
                 return;
             case 5:
             case 6:
                 return;
             case 7:
-                ((Drawable) this.f4519b).setAlpha(i10);
+                ((Drawable) this.f4512b).setAlpha(i10);
                 return;
             default:
                 return;
@@ -196,9 +196,9 @@ public final class d4 extends Drawable {
 
     @Override
     public void setBounds(Rect rect) {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 7:
-                ((Drawable) this.f4519b).setBounds(rect);
+                ((Drawable) this.f4512b).setBounds(rect);
                 return;
             default:
                 super.setBounds(rect);
@@ -208,23 +208,23 @@ public final class d4 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 0:
                 return;
             case 1:
-                ((ei.k3) this.f4519b).I0.setColorFilter(colorFilter);
+                ((ei.k3) this.f4512b).I0.setColorFilter(colorFilter);
                 return;
             case 2:
             case 3:
                 return;
             case 4:
-                ((ImageReceiver) this.f4519b).setColorFilter(colorFilter);
+                ((ImageReceiver) this.f4512b).setColorFilter(colorFilter);
                 return;
             case 5:
             case 6:
                 return;
             case 7:
-                ((Drawable) this.f4519b).setColorFilter(colorFilter);
+                ((Drawable) this.f4512b).setColorFilter(colorFilter);
                 return;
             default:
                 return;
@@ -232,15 +232,15 @@ public final class d4 extends Drawable {
     }
 
     public d4(ActionBarContainer actionBarContainer) {
-        this.f4518a = 2;
-        this.f4519b = actionBarContainer;
+        this.f4511a = 2;
+        this.f4512b = actionBarContainer;
     }
 
     @Override
     public void setBounds(int i10, int i11, int i12, int i13) {
-        switch (this.f4518a) {
+        switch (this.f4511a) {
             case 7:
-                ((Drawable) this.f4519b).setBounds(i10, i11, i12, i13);
+                ((Drawable) this.f4512b).setBounds(i10, i11, i12, i13);
                 return;
             default:
                 super.setBounds(i10, i11, i12, i13);
@@ -249,8 +249,8 @@ public final class d4 extends Drawable {
     }
 
     public d4(String str) {
-        this.f4518a = 6;
-        this.f4519b = new w01(str.substring(0, !str.isEmpty()), 14.0f, AndroidUtilities.bold());
+        this.f4511a = 6;
+        this.f4512b = new v01(str.substring(0, !str.isEmpty()), 14.0f, AndroidUtilities.bold());
     }
 
     private final void a(int i10) {

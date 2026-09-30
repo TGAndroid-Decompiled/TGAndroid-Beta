@@ -5,10 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.n31;
 public abstract class d6 {
-    public static int a(o31 o31Var) {
-        o31Var.getClass();
+    public static int a(n31 n31Var) {
+        n31Var.getClass();
         return Math.max(1, (int) Math.ceil(0.5f * AndroidUtilities.density)) + (((int) Math.ceil(1.9f * AndroidUtilities.density)) * 2);
     }
 

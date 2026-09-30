@@ -1,22 +1,21 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-public final class qt0 implements View.OnClickListener {
-    public final long f27722a;
-    public final org.telegram.ui.ActionBar.d6 f27723b;
-    public final Context f27724c;
-    public final mv0 d;
+public final class qt0 extends fv0 {
+    public final lv0 h;
 
-    public qt0(mv0 mv0Var, long j3, org.telegram.ui.ActionBar.d6 d6Var, Context context) {
-        this.d = mv0Var;
-        this.f27722a = j3;
-        this.f27723b = d6Var;
-        this.f27724c = context;
+    public qt0(lv0 lv0Var, Context context) {
+        super(lv0Var, context);
+        this.h = lv0Var;
     }
 
     @Override
-    public final void onClick(android.view.View r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qt0.onClick(android.view.View):void");
+    public final void l() {
+        super.l();
+        lv0 lv0Var = this.h;
+        eu0 W = lv0Var.W(0);
+        if (W != null && W.f24067r.getVisibility() == 0) {
+            lv0Var.I.l();
+        }
     }
 }

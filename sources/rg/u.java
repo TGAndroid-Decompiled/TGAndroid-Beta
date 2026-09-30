@@ -3,42 +3,42 @@ package rg;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class u implements View.OnClickListener {
-    public final int f42869a;
-    public final j0 f42870b;
+    public final int f42763a;
+    public final j0 f42764b;
 
     public u(j0 j0Var, int i10) {
-        this.f42869a = i10;
-        this.f42870b = j0Var;
+        this.f42763a = i10;
+        this.f42764b = j0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f42869a) {
+        switch (this.f42763a) {
             case 0:
-                j0 j0Var = this.f42870b;
+                j0 j0Var = this.f42764b;
                 AndroidUtilities.addToClipboard(j0Var.p1());
                 j0Var.dismiss();
                 return;
             case 1:
-                z zVar = this.f42870b.E0;
+                z zVar = this.f42764b.E0;
                 if (zVar.h) {
                     zVar.e.performClick();
                     return;
                 } else {
-                    zVar.f42818r.performClick();
+                    zVar.f42712r.performClick();
                     return;
                 }
             case 2:
-                z zVar2 = this.f42870b.E0;
+                z zVar2 = this.f42764b.E0;
                 if (zVar2.h) {
                     zVar2.e.performClick();
                     return;
                 } else {
-                    zVar2.f42818r.performClick();
+                    zVar2.f42712r.performClick();
                     return;
                 }
             default:
-                j0.S(this.f42870b);
+                j0.S(this.f42764b);
                 return;
         }
     }
