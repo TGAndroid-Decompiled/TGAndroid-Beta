@@ -13,12 +13,12 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.hj;
 import org.telegram.ui.Components.u61;
 public final class u7 implements Utilities.Callback2 {
-    public final int f6072a;
-    public final c8 f6073b;
+    public final int f6073a;
+    public final c8 f6074b;
 
     public u7(c8 c8Var, int i10) {
-        this.f6072a = i10;
-        this.f6073b = c8Var;
+        this.f6073a = i10;
+        this.f6074b = c8Var;
     }
 
     @Override
@@ -27,74 +27,74 @@ public final class u7 implements Utilities.Callback2 {
         int i11;
         boolean z10;
         boolean z11;
-        switch (this.f6072a) {
+        switch (this.f6073a) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 u61 u61Var = (u61) obj2;
-                c8 c8Var = this.f6073b;
-                MessagesController.SavedMusicList savedMusicList = c8Var.f4814e0;
+                c8 c8Var = this.f6074b;
+                MessagesController.SavedMusicList savedMusicList = c8Var.f4815e0;
                 u61Var.E = 1;
                 int dp = AndroidUtilities.dp(64.0f);
                 arrayList.add(g61.C(AndroidUtilities.dp(64.0f)));
-                if (c8Var.Z || c8Var.f4817h0) {
-                    dp += c8Var.W(true, arrayList, LocaleController.getString(R.string.AudioSearchLocal), c8Var.f4811b0, false, false, -1);
+                if (c8Var.Z || c8Var.f4818h0) {
+                    dp += c8Var.W(true, arrayList, LocaleController.getString(R.string.AudioSearchLocal), c8Var.f4812b0, false, false, -1);
                 }
                 if (!c8Var.Z) {
-                    if (TextUtils.isEmpty(c8Var.f4825q0) && !c8Var.f4817h0) {
+                    if (TextUtils.isEmpty(c8Var.f4826q0) && !c8Var.f4818h0) {
                         u61Var.U();
                         g61 c10 = g61.c(1, R.drawable.msg2_folder, LocaleController.getString(R.string.StoryMusicSelectFromFiles));
-                        c10.f26674q = true;
+                        c10.f26679q = true;
                         arrayList.add(c10);
                         u61Var.T();
                         dp += AndroidUtilities.dp(50.0f);
                     }
-                    if (!c8Var.f4817h0 && savedMusicList != null) {
+                    if (!c8Var.f4818h0 && savedMusicList != null) {
                         dp += c8Var.W(true, arrayList, LocaleController.getString(R.string.AudioSearchProfile), savedMusicList.list, savedMusicList.loading, !savedMusicList.endReached, 2);
                     }
                     String string = LocaleController.getString(R.string.AudioSearchChats);
-                    ArrayList arrayList2 = c8Var.f4812c0;
-                    if (!c8Var.f4829u0 && !c8Var.f4828t0) {
+                    ArrayList arrayList2 = c8Var.f4813c0;
+                    if (!c8Var.f4830u0 && !c8Var.f4829t0) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    int W = dp + c8Var.W(false, arrayList, string, arrayList2, z10, c8Var.f4827s0, 3);
+                    int W = dp + c8Var.W(false, arrayList, string, arrayList2, z10, c8Var.f4828s0, 3);
                     String string2 = LocaleController.getString(R.string.AudioSearchGlobal);
-                    ArrayList arrayList3 = c8Var.f4813d0;
+                    ArrayList arrayList3 = c8Var.f4814d0;
                     if (!c8Var.B0 && !c8Var.A0) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
-                    dp = W + c8Var.W(false, arrayList, string2, arrayList3, z11, c8Var.f4834z0, 4);
+                    dp = W + c8Var.W(false, arrayList, string2, arrayList3, z11, c8Var.f4835z0, 4);
                 }
                 int size = arrayList.size();
-                if (!c8Var.Z && TextUtils.isEmpty(c8Var.f4825q0) && !c8Var.f4817h0) {
+                if (!c8Var.Z && TextUtils.isEmpty(c8Var.f4826q0) && !c8Var.f4818h0) {
                     i10 = 2;
                 } else {
                     i10 = 1;
                 }
                 if (size <= i10) {
-                    if (TextUtils.isEmpty(c8Var.f4825q0)) {
+                    if (TextUtils.isEmpty(c8Var.f4826q0)) {
                         String string3 = LocaleController.getString(R.string.NoAudioFound);
                         String string4 = LocaleController.getString(R.string.NoAudioFilesInfo);
-                        int i12 = hj.f27145a;
+                        int i12 = hj.f27150a;
                         g61 J = g61.J(hj.class);
-                        J.f26669l = string3;
-                        J.f26670m = string4;
+                        J.f26674l = string3;
+                        J.f26675m = string4;
                         arrayList.add(J);
                     } else {
                         String string5 = LocaleController.getString(R.string.NoAudioFound);
-                        if (c8Var.f4825q0.length() >= 3) {
+                        if (c8Var.f4826q0.length() >= 3) {
                             i11 = R.string.NoAudioFoundInfo2;
                         } else {
                             i11 = R.string.NoAudioFoundInfo;
                         }
-                        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i11, c8Var.f4825q0));
-                        int i13 = hj.f27145a;
+                        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i11, c8Var.f4826q0));
+                        int i13 = hj.f27150a;
                         g61 J2 = g61.J(hj.class);
-                        J2.f26669l = string5;
-                        J2.f26670m = replaceTags;
+                        J2.f26674l = string5;
+                        J2.f26675m = replaceTags;
                         arrayList.add(J2);
                     }
                 }
@@ -103,7 +103,7 @@ public final class u7 implements Utilities.Callback2 {
                 return;
             default:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                c8.P(this.f6073b, (TLRPC.messages_BotResults) obj);
+                c8.P(this.f6074b, (TLRPC.messages_BotResults) obj);
                 return;
         }
     }

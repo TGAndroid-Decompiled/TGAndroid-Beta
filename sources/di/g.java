@@ -10,21 +10,21 @@ import org.telegram.ui.ActionBar.i6;
 import rg.x1;
 import rg.y1;
 public final class g extends y1 {
-    public Paint[] f8371n;
-    public final int f8372r;
-    public final int f8373s;
+    public Paint[] f8372n;
+    public final int f8373r;
+    public final int f8374s;
 
     public g(Context context, int i10, int i11) {
         super(context);
-        this.f8372r = i10;
-        this.f8373s = i11;
+        this.f8373r = i10;
+        this.f8374s = i11;
         b();
     }
 
     @Override
     public final void a() {
-        x1 x1Var = new x1(this.f8372r);
-        this.f46393a = x1Var;
+        x1 x1Var = new x1(this.f8373r);
+        this.f46400a = x1Var;
         x1Var.N = 106;
         int i10 = 0;
         x1Var.M = false;
@@ -32,24 +32,24 @@ public final class g extends y1 {
         x1Var.K = true;
         x1Var.H = true;
         x1Var.J = false;
-        x1Var.f46368m = true;
+        x1Var.f46375m = true;
         x1Var.h = true;
-        if (this.f8373s == 1) {
-            x1Var.f46366k = AndroidUtilities.dp(24.0f);
+        if (this.f8374s == 1) {
+            x1Var.f46373k = AndroidUtilities.dp(24.0f);
         }
-        this.f8371n = new Paint[20];
+        this.f8372n = new Paint[20];
         while (true) {
-            Paint[] paintArr = this.f8371n;
+            Paint[] paintArr = this.f8372n;
             if (i10 < paintArr.length) {
                 paintArr[i10] = new Paint(1);
-                this.f8371n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f8371n.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
+                this.f8372n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f8372n.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
                 i10++;
             } else {
-                x1 x1Var2 = this.f46393a;
-                x1Var2.f46367l = new y7(this, 1);
-                x1Var2.f46373r = 17;
-                x1Var2.f46374s = 18;
-                x1Var2.f46375t = 19;
+                x1 x1Var2 = this.f46400a;
+                x1Var2.f46374l = new y7(this, 1);
+                x1Var2.f46380r = 17;
+                x1Var2.f46381s = 18;
+                x1Var2.f46382t = 19;
                 x1Var2.P = i6.G6;
                 x1Var2.c();
                 return;

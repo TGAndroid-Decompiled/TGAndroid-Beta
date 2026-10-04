@@ -6,7 +6,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.RenderNode;
 import java.util.ArrayList;
-import java.util.List;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
 public final class i {
@@ -238,25 +237,25 @@ public final class i {
         }
     }
 
-    public final void g(int i10, List list) {
-        ArrayList arrayList;
+    public final void g(int i10, ArrayList arrayList) {
+        ArrayList arrayList2;
         this.f499k = i10;
         while (true) {
             int i11 = this.f499k;
-            arrayList = this.f498j;
-            if (i11 <= arrayList.size()) {
+            arrayList2 = this.f498j;
+            if (i11 <= arrayList2.size()) {
                 break;
             }
-            arrayList.add(new h(this));
+            arrayList2.add(new h(this));
         }
         for (int i12 = 0; i12 < this.f499k; i12++) {
-            h.a((h) arrayList.get(i12), (RectF) list.get(i12));
+            h.a((h) arrayList2.get(i12), (RectF) arrayList.get(i12));
         }
     }
 
     public final void h(ni.a aVar) {
         ArrayList arrayList;
-        this.f499k = aVar.f16910b;
+        this.f499k = aVar.f16914b;
         while (true) {
             int i10 = this.f499k;
             arrayList = this.f498j;

@@ -37,18 +37,18 @@ import x2.i;
 import x2.m;
 import x2.p;
 public final class b implements g, MessagesStorage.LongCallback, a2, MessagesController.ErrorDelegate, m {
-    public final int f4517a;
-    public final boolean f4518b;
-    public final Object f4519c;
+    public final int f4518a;
+    public final boolean f4519b;
+    public final Object f4520c;
     public final Object d;
-    public final Object f4520e;
+    public final Object f4521e;
 
     public b(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f4517a = i10;
-        this.f4519c = obj;
+        this.f4518a = i10;
+        this.f4520c = obj;
         this.d = obj2;
-        this.f4520e = obj3;
-        this.f4518b = z10;
+        this.f4521e = obj3;
+        this.f4519b = z10;
     }
 
     @Override
@@ -58,14 +58,14 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
 
     @Override
     public a1 b(int i10, l1 l1Var, int[] iArr) {
-        p pVar = (p) this.f4519c;
+        p pVar = (p) this.f4520c;
         i iVar = (i) this.d;
         pVar.getClass();
         d dVar = new d(pVar, iVar);
-        int i11 = ((int[]) this.f4520e)[i10];
+        int i11 = ((int[]) this.f4521e)[i10];
         f0 u10 = i0.u();
         for (int i12 = 0; i12 < l1Var.f3336a; i12++) {
-            u10.b(new e(i10, l1Var, i12, iVar, iArr[i12], this.f4518b, dVar, i11));
+            u10.b(new e(i10, l1Var, i12, iVar, iArr[i12], this.f4519b, dVar, i11));
         }
         return u10.i();
     }
@@ -77,13 +77,13 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
         long j3;
         TL_keyboard.PageButton pageButton2;
         ai.d dVar;
-        switch (this.f4517a) {
+        switch (this.f4518a) {
             case 2:
-                boolean z10 = this.f4518b;
-                s4 s4Var = (s4) this.f4519c;
+                boolean z10 = this.f4519b;
+                s4 s4Var = (s4) this.f4520c;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                u3 u3Var = (u3) this.f4520e;
-                int i11 = u3Var.f12684b;
+                u3 u3Var = (u3) this.f4521e;
+                int i11 = u3Var.f12685b;
                 if (!z10) {
                     s4Var.run();
                     return;
@@ -130,18 +130,18 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
                 }
                 return;
             case 3:
-                yn ynVar = (yn) this.f4519c;
-                boolean z11 = this.f4518b;
+                yn ynVar = (yn) this.f4520c;
+                boolean z11 = this.f4519b;
                 ((MessagesController) this.d).secretWebpagePreview = 1;
                 MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", ynVar.getMessagesController().secretWebpagePreview).commit();
                 ynVar.F5 = null;
-                ynVar.Xa((CharSequence) this.f4520e, z11);
+                ynVar.Xa((CharSequence) this.f4521e, z11);
                 return;
             case 4:
-                boolean z12 = this.f4518b;
-                Context context = (Context) this.f4519c;
+                boolean z12 = this.f4519b;
+                Context context = (Context) this.f4520c;
                 AtomicBoolean atomicBoolean = (AtomicBoolean) this.d;
-                q0.a aVar = (q0.a) this.f4520e;
+                q0.a aVar = (q0.a) this.f4521e;
                 if (z12) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -157,10 +157,10 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
                 aVar.accept(Boolean.TRUE);
                 return;
             default:
-                uy0 uy0Var = (uy0) this.f4519c;
+                uy0 uy0Var = (uy0) this.f4520c;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.d;
-                Context context2 = (Context) this.f4520e;
-                boolean z13 = this.f4518b;
+                Context context2 = (Context) this.f4521e;
+                boolean z13 = this.f4519b;
                 String trim2 = uy0Var.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim2) && !TextUtils.isEmpty(AndroidUtilities.translitSafe(trim2.toString()))) {
                     AndroidUtilities.hideKeyboard(uy0Var);
@@ -184,36 +184,36 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        return ProfileActivity.Y((ProfileActivity) this.f4519c, (boolean[]) this.d, this.f4518b, (n2) this.f4520e, tL_error);
+        return ProfileActivity.Y((ProfileActivity) this.f4520c, (boolean[]) this.d, this.f4519b, (n2) this.f4521e, tL_error);
     }
 
     public b(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
-        this.f4517a = i10;
-        this.f4519c = obj;
+        this.f4518a = i10;
+        this.f4520c = obj;
         this.d = obj2;
-        this.f4518b = z10;
-        this.f4520e = obj3;
+        this.f4519b = z10;
+        this.f4521e = obj3;
     }
 
     @Override
     public void run(long j3) {
-        f fVar = (f) this.f4519c;
-        String str = (String) this.f4520e;
+        f fVar = (f) this.f4520c;
+        String str = (String) this.f4521e;
         fVar.getClass();
         ((b2) this.d).dismiss();
         if (j3 == 0) {
             return;
         }
-        fVar.f9884a = -j3;
-        fVar.f9885b = fVar.getMessagesController().getChat(Long.valueOf(j3));
-        fVar.T(str, this.f4518b);
+        fVar.f9885a = -j3;
+        fVar.f9886b = fVar.getMessagesController().getChat(Long.valueOf(j3));
+        fVar.T(str, this.f4519b);
     }
 
     public b(boolean z10, Object obj, Object obj2, Object obj3, int i10) {
-        this.f4517a = i10;
-        this.f4518b = z10;
-        this.f4519c = obj;
+        this.f4518a = i10;
+        this.f4519b = z10;
+        this.f4520c = obj;
         this.d = obj2;
-        this.f4520e = obj3;
+        this.f4521e = obj3;
     }
 }

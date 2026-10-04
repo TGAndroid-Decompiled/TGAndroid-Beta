@@ -8,20 +8,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ed0 extends org.telegram.ui.Components.lw0 implements r0.m {
-    public final b2.q0 f35986w0;
-    public boolean f35987x0;
-    public final gd0 f35988y0;
+    public final b2.q0 f35991w0;
+    public boolean f35992x0;
+    public final gd0 f35993y0;
 
     public ed0(gd0 gd0Var, Context context) {
         super(context, null);
-        this.f35988y0 = gd0Var;
-        this.f35987x0 = true;
-        this.f35986w0 = new Object();
+        this.f35993y0 = gd0Var;
+        this.f35992x0 = true;
+        this.f35991w0 = new Object();
     }
 
     @Override
     public final void L(Canvas canvas, ArrayList arrayList) {
-        gd0 gd0Var = this.f35988y0;
+        gd0 gd0Var = this.f35993y0;
         if (gd0Var.K0 != null) {
             canvas.save();
             canvas.translate(0.0f, gd0Var.U.getY());
@@ -37,7 +37,7 @@ public final class ed0 extends org.telegram.ui.Components.lw0 implements r0.m {
         org.telegram.ui.ActionBar.c5 c5Var2;
         org.telegram.ui.ActionBar.k kVar2;
         boolean drawChild = super.drawChild(canvas, view, j3);
-        gd0 gd0Var = this.f35988y0;
+        gd0 gd0Var = this.f35993y0;
         kVar = ((org.telegram.ui.ActionBar.n2) gd0Var).actionBar;
         if (view == kVar) {
             c5Var = ((org.telegram.ui.ActionBar.n2) gd0Var).parentLayout;
@@ -52,13 +52,13 @@ public final class ed0 extends org.telegram.ui.Components.lw0 implements r0.m {
 
     @Override
     public final void m(int i10, View view) {
-        this.f35986w0.f3454a = 0;
+        this.f35991w0.f3454a = 0;
     }
 
     @Override
     public final void n(View view, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         wc0 wc0Var;
-        gd0 gd0Var = this.f35988y0;
+        gd0 gd0Var = this.f35993y0;
         try {
             if (view == gd0Var.U && (wc0Var = gd0Var.K0) != null && wc0Var.isAttachedToWindow()) {
                 org.telegram.ui.Components.zl0 currentListView = gd0Var.K0.getCurrentListView();
@@ -77,10 +77,10 @@ public final class ed0 extends org.telegram.ui.Components.lw0 implements r0.m {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        gd0 gd0Var = this.f35988y0;
+        gd0 gd0Var = this.f35993y0;
         if (z10) {
-            gd0Var.k0(this.f35987x0);
-            this.f35987x0 = false;
+            gd0Var.k0(this.f35992x0);
+            this.f35992x0 = false;
             return;
         }
         gd0Var.A0(true);
@@ -88,7 +88,7 @@ public final class ed0 extends org.telegram.ui.Components.lw0 implements r0.m {
 
     @Override
     public final boolean p(View view, View view2, int i10, int i11) {
-        if (this.f35988y0.K0 != null && i10 == 2) {
+        if (this.f35993y0.K0 != null && i10 == 2) {
             return true;
         }
         return false;
@@ -96,7 +96,7 @@ public final class ed0 extends org.telegram.ui.Components.lw0 implements r0.m {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f35986w0.f3454a = i10;
+        this.f35991w0.f3454a = i10;
     }
 
     @Override
@@ -106,10 +106,10 @@ public final class ed0 extends org.telegram.ui.Components.lw0 implements r0.m {
         int i13;
         org.telegram.ui.Components.zl0 currentListView;
         int max;
-        gd0 gd0Var = this.f35988y0;
+        gd0 gd0Var = this.f35993y0;
         if (view == gd0Var.U && (wc0Var = gd0Var.K0) != null && wc0Var.isAttachedToWindow()) {
             kVar = ((org.telegram.ui.ActionBar.n2) gd0Var).actionBar;
-            boolean z10 = kVar.f21277n0;
+            boolean z10 = kVar.f21281n0;
             int top = gd0Var.K0.getTop();
             boolean z11 = false;
             if (i11 < 0) {
@@ -119,7 +119,7 @@ public final class ed0 extends org.telegram.ui.Components.lw0 implements r0.m {
                     if (L0 != -1) {
                         s4.c1 K = currentListView.K(L0);
                         if (K != null) {
-                            i14 = K.f46524a.getTop();
+                            i14 = K.f46531a.getTop();
                         }
                         int paddingTop = currentListView.getPaddingTop();
                         if (i14 != paddingTop || L0 != 0) {

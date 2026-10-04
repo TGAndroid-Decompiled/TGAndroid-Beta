@@ -6,25 +6,25 @@ import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.camera.CameraView;
 public final class gm extends CameraView {
-    public final ai.w4 f26885a;
-    public boolean f26886b;
-    public final ChatAttachAlertPhotoLayout f26887c;
+    public final ai.w4 f26890a;
+    public boolean f26891b;
+    public final ChatAttachAlertPhotoLayout f26892c;
 
     public gm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, boolean z10, boolean z11) {
         super(context, z10, z11);
-        this.f26887c = chatAttachAlertPhotoLayout;
-        this.f26885a = new ai.w4(this, 7);
+        this.f26892c = chatAttachAlertPhotoLayout;
+        this.f26890a = new ai.w4(this, 7);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26887c;
-        xi xiVar = chatAttachAlertPhotoLayout.f29643b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26892c;
+        xi xiVar = chatAttachAlertPhotoLayout.f29648b;
         if (AndroidUtilities.makingGlobalBlurBitmap) {
             return;
         }
-        if (!this.f26886b && (chatAttachAlertPhotoLayout.f24029d0 || !chatAttachAlertPhotoLayout.f24025b0)) {
+        if (!this.f26891b && (chatAttachAlertPhotoLayout.f24033d0 || !chatAttachAlertPhotoLayout.f24029b0)) {
             float translationY = (xiVar.getContainerView().getTranslationY() + (xiVar.G0[1] + chatAttachAlertPhotoLayout.W0)) - chatAttachAlertPhotoLayout.P.getTranslationY();
             ci.i iVar = xiVar.B2;
             if (iVar != null) {
@@ -33,16 +33,16 @@ public final class gm extends CameraView {
                 f7 = 0.0f;
             }
             int min = (int) Math.min(translationY - f7, getMeasuredHeight());
-            boolean z10 = chatAttachAlertPhotoLayout.f24029d0;
+            boolean z10 = chatAttachAlertPhotoLayout.f24033d0;
             if (z10) {
                 RectF rectF = AndroidUtilities.rectTmp;
-                float f10 = chatAttachAlertPhotoLayout.f24049n1;
-                boolean z11 = ChatAttachAlertPhotoLayout.f24018q1;
-                float f11 = 1.0f - chatAttachAlertPhotoLayout.f24031e0;
-                rectF.set((0.0f * f11) + f10, (f11 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f24044k1, chatAttachAlertPhotoLayout.f24046m1, AndroidUtilities.lerp(Math.min(min, chatAttachAlertPhotoLayout.l1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f24031e0));
-            } else if (!z10 && !chatAttachAlertPhotoLayout.f24025b0) {
+                float f10 = chatAttachAlertPhotoLayout.f24053n1;
+                boolean z11 = ChatAttachAlertPhotoLayout.f24022q1;
+                float f11 = 1.0f - chatAttachAlertPhotoLayout.f24035e0;
+                rectF.set((0.0f * f11) + f10, (f11 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f24048k1, chatAttachAlertPhotoLayout.f24050m1, AndroidUtilities.lerp(Math.min(min, chatAttachAlertPhotoLayout.l1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f24035e0));
+            } else if (!z10 && !chatAttachAlertPhotoLayout.f24029b0) {
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                boolean z12 = ChatAttachAlertPhotoLayout.f24018q1;
+                boolean z12 = ChatAttachAlertPhotoLayout.f24022q1;
                 rectF2.set(0.0f, chatAttachAlertPhotoLayout.W, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
                 return;
             } else {
@@ -60,26 +60,26 @@ public final class gm extends CameraView {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26887c;
-        rc.a(chatAttachAlertPhotoLayout.P, this.f26885a);
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26892c;
+        rc.a(chatAttachAlertPhotoLayout.P, this.f26890a);
         chatAttachAlertPhotoLayout.E.invalidate();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        rc.h(this.f26887c.P);
+        rc.h(this.f26892c.P);
     }
 
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        this.f26887c.E.invalidate();
+        this.f26892c.E.invalidate();
     }
 
     @Override
     public final void showTexture(boolean z10, boolean z11) {
         super.showTexture(z10, z11);
-        this.f26887c.E.invalidate();
+        this.f26892c.E.invalidate();
     }
 }

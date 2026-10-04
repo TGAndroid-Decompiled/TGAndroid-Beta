@@ -17,7 +17,7 @@ public abstract class va extends cb {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f25302e.setTitle(charSequence);
+        this.f25307e.setTitle(charSequence);
     }
 
     @Override

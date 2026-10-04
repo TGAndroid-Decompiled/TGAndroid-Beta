@@ -5,9 +5,9 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class j extends l {
     public static final Parcelable.Creator<j> CREATOR = new r0(16);
-    public final n7.s0 f4436a;
-    public final n7.s0 f4437b;
-    public final n7.s0 f4438c;
+    public final n7.s0 f4437a;
+    public final n7.s0 f4438b;
+    public final n7.s0 f4439c;
     public final String[] d;
 
     public j(byte[] bArr, byte[] bArr2, byte[] bArr3, String[] strArr) {
@@ -17,9 +17,9 @@ public final class j extends l {
         n7.s0 t11 = n7.s0.t(bArr2.length, bArr2);
         n6.l.h(bArr3);
         n7.s0 t12 = n7.s0.t(bArr3.length, bArr3);
-        this.f4436a = t10;
-        this.f4437b = t11;
-        this.f4438c = t12;
+        this.f4437a = t10;
+        this.f4438b = t11;
+        this.f4439c = t12;
         n6.l.h(strArr);
         this.d = strArr;
     }
@@ -31,7 +31,7 @@ public final class j extends l {
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (n6.l.l(this.f4436a, jVar.f4436a) && n6.l.l(this.f4437b, jVar.f4437b) && n6.l.l(this.f4438c, jVar.f4438c)) {
+            if (n6.l.l(this.f4437a, jVar.f4437a) && n6.l.l(this.f4438b, jVar.f4438b) && n6.l.l(this.f4439c, jVar.f4439c)) {
                 return true;
             }
             return false;
@@ -40,17 +40,17 @@ public final class j extends l {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4436a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4437b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4438c}))});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4437a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4438b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4439c}))});
     }
 
     public final String toString() {
         la.h hVar = new la.h(getClass().getSimpleName());
         n7.k0 k0Var = n7.m0.d;
-        byte[] u10 = this.f4436a.u();
+        byte[] u10 = this.f4437a.u();
         hVar.Z(k0Var.c(u10.length, u10), "keyHandle");
-        byte[] u11 = this.f4437b.u();
+        byte[] u11 = this.f4438b.u();
         hVar.Z(k0Var.c(u11.length, u11), "clientDataJSON");
-        byte[] u12 = this.f4438c.u();
+        byte[] u12 = this.f4439c.u();
         hVar.Z(k0Var.c(u12.length, u12), "attestationObject");
         hVar.Z(Arrays.toString(this.d), "transports");
         return hVar.toString();
@@ -59,9 +59,9 @@ public final class j extends l {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.c(parcel, 2, this.f4436a.u());
-        w7.g0.c(parcel, 3, this.f4437b.u());
-        w7.g0.c(parcel, 4, this.f4438c.u());
+        w7.g0.c(parcel, 2, this.f4437a.u());
+        w7.g0.c(parcel, 3, this.f4438b.u());
+        w7.g0.c(parcel, 4, this.f4439c.u());
         w7.g0.m(parcel, 5, this.d);
         w7.g0.r(parcel, q6);
     }

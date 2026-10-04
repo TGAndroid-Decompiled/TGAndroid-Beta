@@ -8,13 +8,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 public final class a extends u {
-    public static final C0000a f14058b = new C0000a();
-    public final SimpleDateFormat f14059a;
+    public static final C0000a f14059b = new C0000a();
+    public final SimpleDateFormat f14060a;
 
     public class C0000a implements v {
         @Override
         public final u create(g gVar, kb.a aVar) {
-            if (aVar.f14746a == Date.class) {
+            if (aVar.f14747a == Date.class) {
                 return new a(0);
             }
             return null;
@@ -34,10 +34,10 @@ public final class a extends u {
         }
         String v = aVar.v();
         synchronized (this) {
-            TimeZone timeZone = this.f14059a.getTimeZone();
+            TimeZone timeZone = this.f14060a.getTimeZone();
             try {
-                date = new Date(this.f14059a.parse(v).getTime());
-                this.f14059a.setTimeZone(timeZone);
+                date = new Date(this.f14060a.parse(v).getTime());
+                this.f14060a.setTimeZone(timeZone);
             } catch (ParseException e7) {
                 throw new RuntimeException("Failed parsing '" + v + "' as SQL Date; at path " + aVar.j(), e7);
             }
@@ -54,12 +54,12 @@ public final class a extends u {
             return;
         }
         synchronized (this) {
-            format = this.f14059a.format((java.util.Date) date);
+            format = this.f14060a.format((java.util.Date) date);
         }
         bVar.r(format);
     }
 
     private a() {
-        this.f14059a = new SimpleDateFormat("MMM d, yyyy");
+        this.f14060a = new SimpleDateFormat("MMM d, yyyy");
     }
 }

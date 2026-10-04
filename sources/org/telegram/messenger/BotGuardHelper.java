@@ -63,11 +63,11 @@ public class BotGuardHelper extends BaseController {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
                 ei.l3 l3Var = (ei.l3) it.next();
-                ei.f5 f5Var = l3Var.f9177v0;
-                if (f5Var != null && f5Var.f9041g == 5) {
-                    long j11 = f5Var.f9037b;
+                ei.f5 f5Var = l3Var.f9178v0;
+                if (f5Var != null && f5Var.f9042g == 5) {
+                    long j11 = f5Var.f9038b;
                     if (j11 == j3 || j11 == 0) {
-                        TLObject tLObject = f5Var.f9050q;
+                        TLObject tLObject = f5Var.f9051q;
                         if ((tLObject instanceof TLRPC.TL_webViewResultUrl) && ((TLRPC.TL_webViewResultUrl) tLObject).query_id == j10) {
                             l3Var.k(false);
                             return;
@@ -104,7 +104,7 @@ public class BotGuardHelper extends BaseController {
         ei.l3 l3Var = new ei.l3(LaunchActivity.G1, null);
         l3Var.w(false);
         l3Var.A0 = true;
-        l3Var.f9164k0 = LaunchActivity.G1;
+        l3Var.f9165k0 = LaunchActivity.G1;
         l3Var.s(R2, b10);
         l3Var.show();
     }

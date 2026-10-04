@@ -5,15 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.ui.Components.zl0;
 public final class t1 extends zl0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Path f45342e3;
-    public q0.a f45343f3;
+    public final Path f45349e3;
+    public q0.a f45350f3;
 
     public t1(Context context) {
         super(context, null);
-        this.f45342e3 = new Path();
+        this.f45349e3 = new Path();
         setWillNotDraw(false);
         setLayoutManager(new s4.c0());
         setAdapter(new s4.h0());
@@ -35,15 +35,15 @@ public final class t1 extends zl0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void draw(Canvas canvas) {
-        q0.a aVar = this.f45343f3;
+        q0.a aVar = this.f45350f3;
         if (aVar != null) {
-            Path path = this.f45342e3;
+            Path path = this.f45349e3;
             aVar.accept(path);
             canvas.save();
             canvas.clipPath(path);
         }
         super.draw(canvas);
-        if (this.f45343f3 != null) {
+        if (this.f45350f3 != null) {
             canvas.restore();
         }
     }
@@ -62,11 +62,11 @@ public final class t1 extends zl0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, ok.B(16.0f, AndroidUtilities.dp(48.0f) * Math.min(pg.k0.c().size(), 6), 1073741824));
+        super.onMeasure(i10, bi.B(16.0f, AndroidUtilities.dp(48.0f) * Math.min(pg.k0.c().size(), 6), 1073741824));
     }
 
     public void setMaskProvider(q0.a aVar) {
-        this.f45343f3 = aVar;
+        this.f45350f3 = aVar;
         invalidate();
     }
 }

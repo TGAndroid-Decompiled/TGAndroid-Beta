@@ -21,9 +21,9 @@ public final class dl extends gg.u0 {
         if (v0Var != null) {
             v0Var.setShowSearchProgress(dlVar.J);
         }
-        TextView textView = jlVar.f27832y;
+        TextView textView = jlVar.f27837y;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, dlVar.f10524x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, dlVar.f10525x)));
         }
         super.l();
     }

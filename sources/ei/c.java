@@ -11,16 +11,16 @@ import org.telegram.ui.Cells.e9;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.a20;
 public final class c implements Utilities.CallbackReturn {
-    public final int f8946a;
+    public final int f8947a;
 
     public c(int i10) {
-        this.f8946a = i10;
+        this.f8947a = i10;
     }
 
     @Override
     public final Object run(Object obj) {
         boolean z10 = true;
-        switch (this.f8946a) {
+        switch (this.f8947a) {
             case 0:
                 return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
             case 1:

@@ -6,24 +6,24 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.NativeByteBuffer;
 public final class z0 implements Runnable {
-    public final int f6357a;
-    public final MessagesStorage f6358b;
-    public final a1 f6359c;
+    public final int f6358a;
+    public final MessagesStorage f6359b;
+    public final a1 f6360c;
 
     public z0(MessagesStorage messagesStorage, a1 a1Var, int i10) {
-        this.f6357a = i10;
-        this.f6358b = messagesStorage;
-        this.f6359c = a1Var;
+        this.f6358a = i10;
+        this.f6359b = messagesStorage;
+        this.f6360c = a1Var;
     }
 
     @Override
     public final void run() {
         SQLiteDatabase database;
         SQLiteDatabase database2;
-        switch (this.f6357a) {
+        switch (this.f6358a) {
             case 0:
-                MessagesStorage messagesStorage = this.f6358b;
-                a1 a1Var = this.f6359c;
+                MessagesStorage messagesStorage = this.f6359b;
+                a1 a1Var = this.f6360c;
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
@@ -48,8 +48,8 @@ public final class z0 implements Runnable {
                     a1Var.b(nativeByteBuffer);
                     NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(nativeByteBuffer.length());
                     a1Var.b(nativeByteBuffer2);
-                    sQLitePreparedStatement.bindLong(1, a1Var.f4656a);
-                    sQLitePreparedStatement.bindLong(2, a1Var.f4658b);
+                    sQLitePreparedStatement.bindLong(1, a1Var.f4657a);
+                    sQLitePreparedStatement.bindLong(2, a1Var.f4659b);
                     sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer2);
                     if (!a1Var.G) {
                         if (a1Var.M) {
@@ -67,8 +67,8 @@ public final class z0 implements Runnable {
                 }
                 return;
             default:
-                MessagesStorage messagesStorage2 = this.f6358b;
-                a1 a1Var2 = this.f6359c;
+                MessagesStorage messagesStorage2 = this.f6359b;
+                a1 a1Var2 = this.f6360c;
                 SQLitePreparedStatement sQLitePreparedStatement2 = null;
                 try {
                     try {
@@ -87,8 +87,8 @@ public final class z0 implements Runnable {
                         a1Var2.b(nativeByteBuffer3);
                         NativeByteBuffer nativeByteBuffer4 = new NativeByteBuffer(nativeByteBuffer3.length());
                         a1Var2.b(nativeByteBuffer4);
-                        sQLitePreparedStatement2.bindLong(1, a1Var2.f4656a);
-                        sQLitePreparedStatement2.bindLong(2, a1Var2.f4658b);
+                        sQLitePreparedStatement2.bindLong(1, a1Var2.f4657a);
+                        sQLitePreparedStatement2.bindLong(2, a1Var2.f4659b);
                         sQLitePreparedStatement2.bindByteBuffer(3, nativeByteBuffer4);
                         if (!a1Var2.G) {
                             if (a1Var2.M) {

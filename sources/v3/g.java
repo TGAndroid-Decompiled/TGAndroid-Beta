@@ -4,30 +4,30 @@ import c3.a0;
 import c3.c0;
 import e2.d0;
 public final class g implements f {
-    public final long[] f47830a;
-    public final long[] f47831b;
-    public final long f47832c;
+    public final long[] f47838a;
+    public final long[] f47839b;
+    public final long f47840c;
     public final long d;
-    public final long f47833e;
-    public final int f47834f;
+    public final long f47841e;
+    public final int f47842f;
 
     public g(long[] jArr, long[] jArr2, long j3, long j10, long j11, int i10) {
-        this.f47830a = jArr;
-        this.f47831b = jArr2;
-        this.f47832c = j3;
+        this.f47838a = jArr;
+        this.f47839b = jArr2;
+        this.f47840c = j3;
         this.d = j10;
-        this.f47833e = j11;
-        this.f47834f = i10;
+        this.f47841e = j11;
+        this.f47842f = i10;
     }
 
     @Override
     public final long a(long j3) {
-        return this.f47830a[d0.e(this.f47831b, j3, true)];
+        return this.f47838a[d0.e(this.f47839b, j3, true)];
     }
 
     @Override
     public final long d() {
-        return this.f47833e;
+        return this.f47841e;
     }
 
     @Override
@@ -42,10 +42,10 @@ public final class g implements f {
 
     @Override
     public final a0 j(long j3) {
-        long[] jArr = this.f47830a;
+        long[] jArr = this.f47838a;
         int e7 = d0.e(jArr, j3, true);
         long j10 = jArr[e7];
-        long[] jArr2 = this.f47831b;
+        long[] jArr2 = this.f47839b;
         c0 c0Var = new c0(j10, jArr2[e7]);
         if (j10 < j3 && e7 != jArr.length - 1) {
             int i10 = e7 + 1;
@@ -56,11 +56,11 @@ public final class g implements f {
 
     @Override
     public final int k() {
-        return this.f47834f;
+        return this.f47842f;
     }
 
     @Override
     public final long l() {
-        return this.f47832c;
+        return this.f47840c;
     }
 }

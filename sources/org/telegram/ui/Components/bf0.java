@@ -32,19 +32,19 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
     public final ArrayList L;
     public final ArrayList M;
     public final TLRPC.TL_userContact_old2 N;
-    public final ye0 f24933b;
-    public final te0 f24934c;
+    public final ye0 f24937b;
+    public final te0 f24938c;
     public final LinearLayout d;
-    public final ue0 f24935e;
-    public final View f24936f;
+    public final ue0 f24939e;
+    public final View f24940f;
     public final View h;
-    public final TextView f24937n;
-    public final org.telegram.ui.ActionBar.n2 f24938r;
-    public boolean f24939s;
+    public final TextView f24941n;
+    public final org.telegram.ui.ActionBar.n2 f24942r;
+    public boolean f24943s;
     public final Paint v;
-    public int f24940w;
-    public AnimatorSet f24941x;
-    public AnimatorSet f24942y;
+    public int f24944w;
+    public AnimatorSet f24945x;
+    public AnimatorSet f24946y;
 
     public bf0(org.telegram.ui.ActionBar.n2 r14, org.telegram.messenger.ContactsController.Contact r15, org.telegram.tgnet.TLRPC.User r16, android.net.Uri r17, java.io.File r18, java.lang.String r19, java.lang.String r20, java.lang.String r21, final org.telegram.ui.ActionBar.d6 r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bf0.<init>(org.telegram.ui.ActionBar.n2, org.telegram.messenger.ContactsController$Contact, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, org.telegram.ui.ActionBar.d6):void");
@@ -55,11 +55,11 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
         long j3;
         ArrayList arrayList = bf0Var.L;
         ArrayList arrayList2 = bf0Var.M;
-        org.telegram.ui.ActionBar.n2 n2Var = bf0Var.f24938r;
+        org.telegram.ui.ActionBar.n2 n2Var = bf0Var.f24942r;
         TLRPC.TL_userContact_old2 tL_userContact_old2 = bf0Var.N;
         if (bf0Var.J) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bf0Var.getContext());
-            alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.AddContactTitle);
+            alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.AddContactTitle);
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.CreateNewContact), LocaleController.getString(R.string.AddToExistingContact)}, new we0(bf0Var));
             alertDialog$Builder.o();
@@ -132,7 +132,7 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
             return false;
         }
         ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", vcardItem.getValue(false)));
-        if (yc.a(bf0Var.f24938r)) {
+        if (yc.a(bf0Var.f24942r)) {
             if (vcardItem.type == 3) {
                 new yc((FrameLayout) bf0Var.containerView, d6Var).k(false).j();
                 return true;
@@ -140,14 +140,14 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
             jc jcVar = new jc(context, d6Var);
             int i13 = vcardItem.type;
             if (i13 == 0) {
-                jcVar.f27721b.setText(LocaleController.getString(R.string.PhoneCopied));
-                jcVar.f27720a.setImageResource(R.drawable.msg_calls);
+                jcVar.f27726b.setText(LocaleController.getString(R.string.PhoneCopied));
+                jcVar.f27725a.setImageResource(R.drawable.msg_calls);
             } else if (i13 == 1) {
-                jcVar.f27721b.setText(LocaleController.getString(R.string.EmailCopied));
-                jcVar.f27720a.setImageResource(R.drawable.msg_mention);
+                jcVar.f27726b.setText(LocaleController.getString(R.string.EmailCopied));
+                jcVar.f27725a.setImageResource(R.drawable.msg_mention);
             } else {
-                jcVar.f27721b.setText(LocaleController.getString(R.string.TextCopied));
-                jcVar.f27720a.setImageResource(R.drawable.msg_info);
+                jcVar.f27726b.setText(LocaleController.getString(R.string.TextCopied));
+                jcVar.f27725a.setImageResource(R.drawable.msg_info);
             }
             if (AndroidUtilities.shouldShowClipboardToast()) {
                 rc.f((FrameLayout) bf0Var.containerView, jcVar, 1500).j();
@@ -167,7 +167,7 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
         float f13;
         float f14;
         Integer num2 = 1;
-        te0 te0Var = this.f24934c;
+        te0 te0Var = this.f24938c;
         View childAt = te0Var.getChildAt(0);
         int top = childAt.getTop() - te0Var.getScrollY();
         if (top < 0) {
@@ -178,7 +178,7 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
         } else {
             z11 = false;
         }
-        ue0 ue0Var = this.f24935e;
+        ue0 ue0Var = this.f24939e;
         if ((z11 && ue0Var.getTag() == null) || (!z11 && ue0Var.getTag() != null)) {
             if (z11) {
                 num = num2;
@@ -186,17 +186,17 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
                 num = null;
             }
             ue0Var.setTag(num);
-            AnimatorSet animatorSet = this.f24941x;
+            AnimatorSet animatorSet = this.f24945x;
             if (animatorSet != null) {
                 animatorSet.cancel();
-                this.f24941x = null;
+                this.f24945x = null;
             }
-            View view = this.f24936f;
+            View view = this.f24940f;
             if (z10) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f24941x = animatorSet2;
+                this.f24945x = animatorSet2;
                 animatorSet2.setDuration(180L);
-                AnimatorSet animatorSet3 = this.f24941x;
+                AnimatorSet animatorSet3 = this.f24945x;
                 Property property = View.ALPHA;
                 if (z11) {
                     f13 = 1.0f;
@@ -210,8 +210,8 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
                     f14 = 0.0f;
                 }
                 animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property, f14));
-                this.f24941x.addListener(new xe0(this, 0));
-                this.f24941x.start();
+                this.f24945x.addListener(new xe0(this, 0));
+                this.f24945x.start();
             } else {
                 if (z11) {
                     f11 = 1.0f;
@@ -227,8 +227,8 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
                 view.setAlpha(f12);
             }
         }
-        if (this.f24940w != top) {
-            this.f24940w = top;
+        if (this.f24944w != top) {
+            this.f24944w = top;
             this.containerView.invalidate();
         }
         childAt.getBottom();
@@ -244,16 +244,16 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
                 num2 = null;
             }
             view2.setTag(num2);
-            AnimatorSet animatorSet4 = this.f24942y;
+            AnimatorSet animatorSet4 = this.f24946y;
             if (animatorSet4 != null) {
                 animatorSet4.cancel();
-                this.f24942y = null;
+                this.f24946y = null;
             }
             if (z10) {
                 AnimatorSet animatorSet5 = new AnimatorSet();
-                this.f24942y = animatorSet5;
+                this.f24946y = animatorSet5;
                 animatorSet5.setDuration(180L);
-                AnimatorSet animatorSet6 = this.f24942y;
+                AnimatorSet animatorSet6 = this.f24946y;
                 Property property2 = View.ALPHA;
                 if (z12) {
                     f10 = 1.0f;
@@ -261,8 +261,8 @@ public final class bf0 extends org.telegram.ui.ActionBar.f3 {
                     f10 = 0.0f;
                 }
                 animatorSet6.playTogether(ObjectAnimator.ofFloat(view2, property2, f10));
-                this.f24942y.addListener(new xe0(this, 1));
-                this.f24942y.start();
+                this.f24946y.addListener(new xe0(this, 1));
+                this.f24946y.start();
                 return;
             }
             if (z12) {

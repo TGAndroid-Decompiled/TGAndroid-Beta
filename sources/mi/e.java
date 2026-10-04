@@ -6,18 +6,18 @@ import android.graphics.RenderNode;
 import android.graphics.RuntimeShader;
 import w7.z;
 public final class e extends z {
-    public final RenderNode f16449a = ah.f.o();
-    public final RuntimeShader f16450b = d.a();
-    public int f16451c = -1;
+    public final RenderNode f16453a = ah.f.o();
+    public final RuntimeShader f16454b = d.a();
+    public int f16455c = -1;
     public int d = -1;
-    public int f16452e;
-    public RenderEffect[] f16453f;
-    public float[] f16454g;
+    public int f16456e;
+    public RenderEffect[] f16457f;
+    public float[] f16458g;
     public float[] h;
-    public final f f16455i;
+    public final f f16459i;
 
     public e(f fVar) {
-        this.f16455i = fVar;
+        this.f16459i = fVar;
     }
 
     @Override
@@ -27,22 +27,22 @@ public final class e extends z {
 
     @Override
     public final void b() {
-        this.f16449a.discardDisplayList();
-        this.f16451c = -1;
+        this.f16453a.discardDisplayList();
+        this.f16455c = -1;
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f16449a);
+        canvas.drawRenderNode(this.f16453a);
     }
 
     @Override
     public final boolean d() {
-        return this.f16449a.hasDisplayList();
+        return this.f16453a.hasDisplayList();
     }
 
     @Override
     public final void e(float f7) {
-        this.f16449a.setAlpha(f7);
+        this.f16453a.setAlpha(f7);
     }
 }

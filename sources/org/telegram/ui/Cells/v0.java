@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 public final class v0 {
-    public boolean f23538a;
-    public boolean f23539b;
-    public float f23540c = 1.0f;
+    public boolean f23542a;
+    public boolean f23543b;
+    public float f23544c = 1.0f;
     public final w0 d;
 
     public v0(w0 w0Var) {
@@ -10,7 +10,7 @@ public final class v0 {
     }
 
     public final void a() {
-        this.f23538a = true;
+        this.f23542a = true;
         this.d.C0.r();
     }
 }

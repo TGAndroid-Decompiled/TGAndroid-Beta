@@ -15,7 +15,7 @@ import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.n11;
 import org.telegram.ui.Components.xw0;
 public abstract class h6 {
-    public static final int[] f12417a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
+    public static final int[] f12418a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
     public static void a(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i10, TL_iv.PageBlock pageBlock, boolean z10) {
         String str;
@@ -41,7 +41,7 @@ public abstract class h6 {
                 a(spannableStringBuilder, textdiff.old_text, i10, pageBlock, z10);
                 if (spannableStringBuilder.length() > length) {
                     ?? obj = new Object();
-                    obj.f28497a = 8192;
+                    obj.f28502a = 8192;
                     spannableStringBuilder.setSpan(new n11(obj, 0), length, spannableStringBuilder.length(), 33);
                     return;
                 }
@@ -51,7 +51,7 @@ public abstract class h6 {
             if (j10) {
                 if (spannableStringBuilder.length() > length) {
                     ?? obj2 = new Object();
-                    obj2.f28497a = 4096;
+                    obj2.f28502a = 4096;
                     spannableStringBuilder.setSpan(new n11(obj2, 0), length, spannableStringBuilder.length(), 33);
                 }
             } else if (spannableStringBuilder.length() > length) {
@@ -93,7 +93,7 @@ public abstract class h6 {
                 tL_messageEntityFormattedDate.date = textdate.date;
                 tL_messageEntityFormattedDate.applyFlags();
                 ?? obj3 = new Object();
-                obj3.f28497a |= 128;
+                obj3.f28502a |= 128;
                 spannableStringBuilder.setSpan(new k10(charSequence2, obj3, tL_messageEntityFormattedDate), length4, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textMath) {
@@ -173,7 +173,7 @@ public abstract class h6 {
         n11[] n11VarArr = (n11[]) spanned.getSpans(i10, i11, n11.class);
         int i12 = 0;
         for (n11 n11Var : n11VarArr) {
-            int i13 = n11Var.f28818b.f28497a;
+            int i13 = n11Var.f28823b.f28502a;
             if ((i13 & 512) != 0) {
                 i13 |= 256;
             }
@@ -296,7 +296,7 @@ public abstract class h6 {
 
     public static m61 k(String str) {
         ?? obj = new Object();
-        obj.f28497a = 1024;
+        obj.f28502a = 1024;
         return new m61(str, obj);
     }
 
@@ -384,7 +384,7 @@ public abstract class h6 {
             for (n11 n11Var : (n11[]) spannable.getSpans(max, max2, n11.class)) {
                 int spanStart = spannable.getSpanStart(n11Var);
                 int spanEnd = spannable.getSpanEnd(n11Var);
-                int i14 = n11Var.f28818b.f28497a;
+                int i14 = n11Var.f28823b.f28502a;
                 spannable.removeSpan(n11Var);
                 c(spannable, spanStart, max, i14, pageBlock);
                 c(spannable, max2, spanEnd, i14, pageBlock);
@@ -412,20 +412,20 @@ public abstract class h6 {
     public static n11 p(int i10, TL_iv.PageBlock pageBlock) {
         boolean z10;
         ?? obj = new Object();
-        obj.f28497a = i10;
+        obj.f28502a = i10;
         if (!(pageBlock instanceof TL_iv.pageBlockTitle) && !(pageBlock instanceof TL_iv.pageBlockSubheader) && !(pageBlock instanceof TL_iv.pageBlockHeader) && !(pageBlock instanceof TL_iv.pageBlockHeading1) && !(pageBlock instanceof TL_iv.pageBlockHeading2) && !(pageBlock instanceof TL_iv.pageBlockHeading3) && !(pageBlock instanceof TL_iv.pageBlockHeading4) && !(pageBlock instanceof TL_iv.pageBlockHeading5) && !(pageBlock instanceof TL_iv.pageBlockHeading6)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        obj.f28500e = z10;
+        obj.f28505e = z10;
         return new n11(obj, 0);
     }
 
     public static int q(int i10, int i11, CharSequence charSequence) {
         int i12 = 0;
         for (int i13 = 0; i13 < 9; i13++) {
-            int i14 = f12417a[i13];
+            int i14 = f12418a[i13];
             if (i(i10, i11, i14, charSequence)) {
                 i12 |= i14;
             }
@@ -441,13 +441,13 @@ public abstract class h6 {
 
     public static TL_iv.RichText s(String str, g6 g6Var) {
         TL_iv.textCustomEmoji textcustomemoji;
-        l4 l4Var = g6Var.f12400f;
+        l4 l4Var = g6Var.f12401f;
         if (l4Var != null) {
-            return l4Var.f12508a;
+            return l4Var.f12509a;
         }
-        if (g6Var.f12399e != null) {
+        if (g6Var.f12400e != null) {
             TL_iv.textMath textmath = new TL_iv.textMath();
-            textmath.source = g6Var.f12399e;
+            textmath.source = g6Var.f12400e;
             return textmath;
         }
         long j3 = g6Var.d;
@@ -464,7 +464,7 @@ public abstract class h6 {
             textplain.text = str;
             textcustomemoji = textplain;
         }
-        int i10 = g6Var.f12396a;
+        int i10 = g6Var.f12397a;
         TL_iv.RichText richText = textcustomemoji;
         if ((i10 & 1) != 0) {
             TL_iv.RichText textbold = new TL_iv.textBold();
@@ -520,15 +520,15 @@ public abstract class h6 {
             richText9 = textmarked;
         }
         TL_iv.RichText richText10 = richText9;
-        if (g6Var.f12397b != null) {
+        if (g6Var.f12398b != null) {
             TL_iv.RichText texturl = new TL_iv.textUrl();
             texturl.text = richText9;
-            texturl.url = g6Var.f12397b;
+            texturl.url = g6Var.f12398b;
             richText10 = texturl;
         }
-        k10 k10Var = g6Var.f12398c;
+        k10 k10Var = g6Var.f12399c;
         if (k10Var != null) {
-            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = k10Var.f27937b;
+            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = k10Var.f27942b;
             TL_iv.textDate textdate = new TL_iv.textDate();
             textdate.text = richText10;
             textdate.flags = tL_messageEntityFormattedDate.flags;

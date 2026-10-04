@@ -14,15 +14,15 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
 import org.telegram.ui.yf1;
 public final class w1 implements Utilities.Callback {
-    public final yf1 f9421a;
-    public final uy f9422b;
-    public final long f9423c;
+    public final yf1 f9422a;
+    public final uy f9423b;
+    public final long f9424c;
     public final int d;
 
     public w1(yf1 yf1Var, uy uyVar, long j3, int i10) {
-        this.f9421a = yf1Var;
-        this.f9422b = uyVar;
-        this.f9423c = j3;
+        this.f9422a = yf1Var;
+        this.f9423b = uyVar;
+        this.f9424c = j3;
         this.d = i10;
     }
 
@@ -32,8 +32,8 @@ public final class w1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        yf1 yf1Var = this.f9421a;
-        uy uyVar = this.f9422b;
+        yf1 yf1Var = this.f9422a;
+        uy uyVar = this.f9423b;
         if (yf1Var != null) {
             yf1Var.finishFragment();
             uyVar.removeSelfFromStack();
@@ -44,7 +44,7 @@ public final class w1 implements Utilities.Callback {
         if (U == null) {
             return;
         }
-        long j3 = this.f9423c;
+        long j3 = this.f9424c;
         int i11 = this.d;
         if (j3 >= 0) {
             TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));

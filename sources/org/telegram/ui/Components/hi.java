@@ -5,26 +5,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SendMessagesHelper;
 public final class hi implements ik {
-    public final xi f27143a;
+    public final xi f27148a;
 
     public hi(xi xiVar) {
-        this.f27143a = xiVar;
+        this.f27148a = xiVar;
     }
 
     @Override
     public final void M() {
-        this.f27143a.y1(true);
+        this.f27148a.A1(true);
     }
 
     @Override
     public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        xi xiVar = this.f27143a;
+        xi xiVar = this.f27148a;
         ik ikVar = xiVar.X;
         if (ikVar != null) {
             ikVar.k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32813f0;
+        org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32819f0;
         if (n2Var instanceof ik) {
             ((ik) n2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
         } else if (n2Var instanceof org.telegram.ui.kn0) {
@@ -42,13 +42,13 @@ public final class hi implements ik {
 
     @Override
     public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        xi xiVar = this.f27143a;
+        xi xiVar = this.f27148a;
         ik ikVar = xiVar.X;
         if (ikVar != null) {
             ikVar.l(j3, arrayList, z10, i10);
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32813f0;
+        org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32819f0;
         if (n2Var instanceof org.telegram.ui.yn) {
             ((org.telegram.ui.yn) n2Var).l(j3, arrayList, z10, i10);
         } else if (n2Var instanceof org.telegram.ui.kn0) {
@@ -58,13 +58,13 @@ public final class hi implements ik {
 
     @Override
     public final void w() {
-        xi xiVar = this.f27143a;
+        xi xiVar = this.f27148a;
         ik ikVar = xiVar.X;
         if (ikVar != null) {
             ikVar.w();
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32813f0;
+        org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32819f0;
         if (n2Var instanceof ik) {
             ((ik) n2Var).w();
         } else if (n2Var instanceof org.telegram.ui.kn0) {

@@ -9,49 +9,49 @@ import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.zq;
 import w7.z5;
 public final class b extends FrameLayout {
-    public final d6 f12181a;
-    public a f12182b;
-    public zq f12183c;
+    public final d6 f12182a;
+    public a f12183b;
+    public zq f12184c;
     public boolean d;
 
     public b(Context context, d6 d6Var) {
         super(context);
-        this.f12181a = d6Var;
+        this.f12182a = d6Var;
     }
 
     public final void a(int i10, boolean z10) {
-        if (this.f12183c == null) {
-            zq zqVar = new zq(getContext(), this.f12181a);
-            this.f12183c = zqVar;
+        if (this.f12184c == null) {
+            zq zqVar = new zq(getContext(), this.f12182a);
+            this.f12184c = zqVar;
             zqVar.setReverse(this.d);
-            addView(this.f12183c, z5.e(-1, 28, 48));
+            addView(this.f12184c, z5.e(-1, 28, 48));
         }
-        this.f12183c.f33595a.c(i10, z10);
+        this.f12184c.f33601a.c(i10, z10);
     }
 
     public final void b(boolean z10, boolean z11) {
         super.setEnabled(z10);
-        this.f12182b.e(z10, z11);
+        this.f12183b.e(z10, z11);
     }
 
     public final void c(boolean z10, boolean z11) {
-        a aVar = this.f12182b;
+        a aVar = this.f12183b;
         if (aVar.d == null) {
             if (!z10) {
                 return;
             }
             wp wpVar = new wp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
-            aVar.f12178e = wpVar;
-            wpVar.f32594f = 90.0f;
+            aVar.f12179e = wpVar;
+            wpVar.f32600f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
-            imageView.setBackground(aVar.f12178e);
+            imageView.setBackground(aVar.f12179e);
             aVar.d.setVisibility(8);
             aVar.addView(aVar.d, z5.e(46, 46, 17));
         }
-        le.b bVar = aVar.f12175a;
-        if (!bVar.f15436f && bVar.f15435e == 0.0f) {
-            aVar.f12178e.f32592c = -1L;
+        le.b bVar = aVar.f12176a;
+        if (!bVar.f15437f && bVar.f15436e == 0.0f) {
+            aVar.f12179e.f32598c = -1L;
         }
         bVar.a(z10, z11);
     }

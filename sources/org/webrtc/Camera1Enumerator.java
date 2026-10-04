@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.hardware.Camera;
 import android.os.SystemClock;
-import hg.k0;
 import java.util.ArrayList;
 import java.util.List;
 import org.webrtc.CameraEnumerationAndroid;
@@ -61,7 +60,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                     Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i10, e7);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                StringBuilder j3 = k0.j(i10, "Get supported formats for camera index ", " done. Time spent: ");
+                StringBuilder j3 = hg.c.j(i10, "Get supported formats for camera index ", " done. Time spent: ");
                 j3.append(elapsedRealtime2 - elapsedRealtime);
                 j3.append(" ms.");
                 Logging.d("Camera1Enumerator", j3.toString());
@@ -89,7 +88,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i10;
             }
         }
-        throw new IllegalArgumentException(t8.b.i("No such camera: ", str));
+        throw new IllegalArgumentException(sa.e.i("No such camera: ", str));
     }
 
     private static Camera.CameraInfo getCameraInfo(int i10) {

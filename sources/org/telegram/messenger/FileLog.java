@@ -93,7 +93,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.o("_", name == null ? db.k.f8210a : new db.m(name));
+            lVar.o("_", name == null ? db.k.f8211a : new db.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -168,8 +168,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(db.b bVar) {
                     HashSet hashSet4 = FileLog.privateFields;
-                    Field field = bVar.f8193a;
-                    Field field2 = bVar.f8193a;
+                    Field field = bVar.f8194a;
+                    Field field2 = bVar.f8194a;
                     if (!hashSet4.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -179,26 +179,26 @@ public class FileLog {
                     return true;
                 }
             };
-            fb.f fVar = fb.f.f9803c;
+            fb.f fVar = fb.f.f9804c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             db.c cVar = db.g.h;
-            db.p pVar = db.g.f8201i;
-            db.q qVar = db.g.f8202j;
+            db.p pVar = db.g.f8202i;
+            db.q qVar = db.g.f8203j;
             ArrayDeque arrayDeque = new ArrayDeque();
             db.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
             fb.f clone = fVar.clone();
-            ArrayList arrayList3 = new ArrayList(fVar.f9804a);
-            clone.f9804a = arrayList3;
+            ArrayList arrayList3 = new ArrayList(fVar.f9805a);
+            clone.f9805a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z11 = byteArrayHexAdapter instanceof db.o;
             if (!db.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
                     kb.a aVar2 = new kb.a(byte[].class);
-                    if (aVar2.f14747b == aVar2.f14746a) {
+                    if (aVar2.f14748b == aVar2.f14747a) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -206,7 +206,7 @@ public class FileLog {
                     arrayList.add(new gb.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
                 kb.a aVar3 = new kb.a(byte[].class);
-                gb.x0 x0Var = gb.h1.f10380a;
+                gb.x0 x0Var = gb.h1.f10381a;
                 arrayList.add(new gb.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
@@ -220,7 +220,7 @@ public class FileLog {
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z12 = jb.f.f14065a;
+                    boolean z12 = jb.f.f14066a;
                     gson = new db.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }

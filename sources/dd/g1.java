@@ -6,12 +6,12 @@ public enum g1 extends b2 {
 
     @Override
     public final void d(l lVar, a aVar) {
-        f fVar = lVar.f8315m;
+        f fVar = lVar.f8316m;
         boolean o9 = aVar.o();
-        h1 h1Var = b2.f8274p0;
+        h1 h1Var = b2.f8275p0;
         if (o9) {
             fVar.b();
-            lVar.f8307c = h1Var;
+            lVar.f8308c = h1Var;
             return;
         }
         char d = aVar.d();
@@ -20,8 +20,8 @@ public enum g1 extends b2 {
                 if (d != 65535) {
                     if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
                         fVar.b();
-                        fVar.f8292c.append(d);
-                        lVar.f8307c = h1Var;
+                        fVar.f8293c.append(d);
+                        lVar.f8308c = h1Var;
                         return;
                     }
                     return;
@@ -30,14 +30,14 @@ public enum g1 extends b2 {
                 fVar.b();
                 fVar.getClass();
                 lVar.j();
-                lVar.f8307c = b2.f8254a;
+                lVar.f8308c = b2.f8255a;
                 return;
             }
             return;
         }
         lVar.m(this);
         fVar.b();
-        fVar.f8292c.append((char) 65533);
-        lVar.f8307c = h1Var;
+        fVar.f8293c.append((char) 65533);
+        lVar.f8308c = h1Var;
     }
 }

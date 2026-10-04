@@ -6,15 +6,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class fp extends org.telegram.ui.Components.yl0 {
-    public final gp f36356c;
+    public final gp f36361c;
 
     public fp(gp gpVar) {
-        this.f36356c = gpVar;
+        this.f36361c = gpVar;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46528f == 1) {
+        if (c1Var.f46535f == 1) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class fp extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int h() {
-        return this.f36356c.f36696h3.N.size() + 2;
+        return this.f36361c.f36701h3.N.size() + 2;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class fp extends org.telegram.ui.Components.yl0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 <= this.f36356c.f36696h3.N.size()) {
+        if (i10 <= this.f36361c.f36701h3.N.size()) {
             return 1;
         }
         return 2;
@@ -39,16 +39,16 @@ public final class fp extends org.telegram.ui.Components.yl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
-        gp gpVar = this.f36356c;
-        hp hpVar = gpVar.f36696h3;
-        int i11 = c1Var.f46528f;
-        View view = c1Var.f46524a;
+        gp gpVar = this.f36361c;
+        hp hpVar = gpVar.f36701h3;
+        int i11 = c1Var.f46535f;
+        View view = c1Var.f46531a;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 == 2) {
                     org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
                     e9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
-                    e9Var.setBackground(org.telegram.ui.ActionBar.i6.V0(gpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f20782b7));
+                    e9Var.setBackground(org.telegram.ui.ActionBar.i6.V0(gpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f20786b7));
                     return;
                 }
                 return;
@@ -71,14 +71,14 @@ public final class fp extends org.telegram.ui.Components.yl0 {
             return;
         }
         org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20818d6, gpVar.f33546p2));
+        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20822d6, gpVar.f33552p2));
         m4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        gp gpVar = this.f36356c;
-        org.telegram.ui.ActionBar.d6 d6Var = gpVar.f33546p2;
+        gp gpVar = this.f36361c;
+        org.telegram.ui.ActionBar.d6 d6Var = gpVar.f33552p2;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

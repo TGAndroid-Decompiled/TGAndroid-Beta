@@ -14,19 +14,19 @@ import org.telegram.ui.d6;
 import org.telegram.ui.zu;
 import yh.x7;
 public final class f implements bh.a {
-    public final int f8368a;
-    public final Object f8369b;
-    public final Object f8370c;
+    public final int f8369a;
+    public final Object f8370b;
+    public final Object f8371c;
 
     public f(int i10, Object obj, Object obj2) {
-        this.f8368a = i10;
-        this.f8369b = obj;
-        this.f8370c = obj2;
+        this.f8369a = i10;
+        this.f8370b = obj;
+        this.f8371c = obj2;
     }
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f8368a) {
+        switch (this.f8369a) {
             case 0:
             case 1:
             case 2:
@@ -40,23 +40,23 @@ public final class f implements bh.a {
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f8368a) {
+        switch (this.f8369a) {
             case 0:
-                ((k) this.f8369b).S.c0(canvas, rectF, (e) this.f8370c);
+                ((k) this.f8370b).S.c0(canvas, rectF, (e) this.f8371c);
                 return;
             case 1:
-                zl0 zl0Var = (zl0) this.f8369b;
-                gh.d.a(zl0Var, canvas, rectF, zl0Var, (FrameLayout) this.f8370c);
+                zl0 zl0Var = (zl0) this.f8370b;
+                gh.d.a(zl0Var, canvas, rectF, zl0Var, (FrameLayout) this.f8371c);
                 return;
             case 2:
-                ((a7) this.f8369b).f34681b0.c0(canvas, rectF, (d6) this.f8370c);
+                ((a7) this.f8370b).f34687b0.c0(canvas, rectF, (d6) this.f8371c);
                 return;
             case 3:
-                zu zuVar = (zu) this.f8369b;
-                w5 w5Var = (w5) this.f8370c;
-                int childCount = zuVar.f43897a.getChildCount();
+                zu zuVar = (zu) this.f8370b;
+                w5 w5Var = (w5) this.f8371c;
+                int childCount = zuVar.f43904a.getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = zuVar.f43897a.getChildAt(i10);
+                    View childAt = zuVar.f43904a.getChildAt(i10);
                     if (childAt instanceof zl0) {
                         zl0 zl0Var2 = (zl0) childAt;
                         gh.d.a(zl0Var2, canvas, rectF, zl0Var2, w5Var);
@@ -64,15 +64,15 @@ public final class f implements bh.a {
                 }
                 return;
             case 4:
-                ((n) this.f8370c).f(canvas, rectF);
-                mh mhVar = ((ProfileActivity) this.f8369b).O.f29760c2;
+                ((n) this.f8371c).f(canvas, rectF);
+                mh mhVar = ((ProfileActivity) this.f8370b).O.f29765c2;
                 if (mhVar != null) {
                     mhVar.f(canvas, rectF);
                     return;
                 }
                 return;
             default:
-                ((x7) this.f8369b).S.c0(canvas, rectF, (e) this.f8370c);
+                ((x7) this.f8370b).S.c0(canvas, rectF, (e) this.f8371c);
                 return;
         }
     }

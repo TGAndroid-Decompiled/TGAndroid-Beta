@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 public abstract class d5 extends FrameLayout {
-    public TextView f21916a;
-    public TextView f21917b;
-    public j0 f21918c;
+    public TextView f21920a;
+    public TextView f21921b;
+    public j0 f21922c;
     public long d;
 
     public final void a(ArrayList arrayList, boolean z10) {
@@ -22,9 +22,9 @@ public abstract class d5 extends FrameLayout {
         float f10;
         float f11;
         float f12;
-        TextView textView = this.f21917b;
-        j0 j0Var = this.f21918c;
-        TextView textView2 = this.f21916a;
+        TextView textView = this.f21921b;
+        j0 j0Var = this.f21922c;
+        TextView textView2 = this.f21920a;
         super.setEnabled(z10);
         float f13 = 0.5f;
         if (arrayList != null) {
@@ -92,7 +92,7 @@ public abstract class d5 extends FrameLayout {
         } else {
             i10 = 0;
         }
-        canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20941k0);
+        canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20945k0);
     }
 
     @Override
@@ -108,10 +108,10 @@ public abstract class d5 extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(80.0f));
         int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(42.0f);
-        TextView textView = this.f21917b;
+        TextView textView = this.f21921b;
         textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-        this.f21916a.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.f0.b(8.0f, measuredWidth - textView.getMeasuredWidth(), AndroidUtilities.dp(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-        this.f21918c.measure(ok.c(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        this.f21920a.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.q.b(8.0f, measuredWidth - textView.getMeasuredWidth(), AndroidUtilities.dp(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        this.f21922c.measure(bi.c(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
     }
 
     @Override
@@ -127,7 +127,7 @@ public abstract class d5 extends FrameLayout {
         float f7;
         float f10;
         this.d = j3;
-        this.f21917b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
+        this.f21921b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
         long j10 = j3 - 512000;
         if (j10 < 536576) {
             f10 = Math.max(0.0f, ((float) j10) / 536576.0f) * 0.25f;
@@ -147,10 +147,10 @@ public abstract class d5 extends FrameLayout {
                 f10 = max + f7;
             }
         }
-        this.f21918c.setProgress(Math.min(1.0f, f10));
+        this.f21922c.setProgress(Math.min(1.0f, f10));
     }
 
     public void setText(String str) {
-        this.f21916a.setText(str);
+        this.f21920a.setText(str);
     }
 }

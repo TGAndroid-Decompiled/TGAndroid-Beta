@@ -13,51 +13,51 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.h9;
 public final class y2 extends View {
-    public final l3 f52285a;
-    public final ImageReceiver f52286b;
-    public final Drawable f52287c;
+    public final l3 f52290a;
+    public final ImageReceiver f52291b;
+    public final Drawable f52292c;
 
     public y2(Context context, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLObject tLObject) {
         super(context);
         l3 l3Var = new l3(this, tL_starGiftUnique, 60, 0.27f);
-        this.f52285a = l3Var;
-        l3Var.f51577t = 3;
+        this.f52290a = l3Var;
+        l3Var.f51582t = 3;
         h9 h9Var = new h9((org.telegram.ui.ActionBar.d6) null);
         h9Var.p(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f52286b = imageReceiver;
+        this.f52291b = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
         imageReceiver.setForUserOrChat(tLObject, h9Var);
         Drawable mutate = context.getDrawable(R.drawable.chats_undo).mutate();
-        this.f52287c = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21224z6, false), PorterDuff.Mode.MULTIPLY));
+        this.f52292c = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21228z6, false), PorterDuff.Mode.MULTIPLY));
         mutate.setBounds(AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f52286b.onAttachedToWindow();
+        this.f52291b.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f52286b.onDetachedFromWindow();
+        this.f52291b.onDetachedFromWindow();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
         int height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
-        l3 l3Var = this.f52285a;
+        l3 l3Var = this.f52290a;
         l3Var.setBounds(width, height, AndroidUtilities.dp(60.0f) + width, AndroidUtilities.dp(60.0f) + height);
         l3Var.draw(canvas);
         canvas.save();
         canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-        this.f52287c.draw(canvas);
+        this.f52292c.draw(canvas);
         canvas.restore();
-        ImageReceiver imageReceiver = this.f52286b;
+        ImageReceiver imageReceiver = this.f52291b;
         imageReceiver.setImageCoords(AndroidUtilities.dp(96.0f) + width, height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
         imageReceiver.draw(canvas);
     }

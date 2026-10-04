@@ -12,7 +12,7 @@ public final class q61 extends org.telegram.ui.Components.rx0 {
 
     @Override
     public final boolean C1() {
-        if (!LiteMode.isEnabled(16388) && this.G3.f39937y.W != 4) {
+        if (!LiteMode.isEnabled(16388) && this.G3.f39942y.W != 4) {
             return false;
         }
         return true;

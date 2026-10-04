@@ -23,7 +23,7 @@ public abstract class c0 {
                 g2.k kVar = new g2.k(b0Var, mVar2);
                 try {
                     byte[] b10 = f9.b.b(kVar);
-                    String str2 = e2.d0.f8537a;
+                    String str2 = e2.d0.f8538a;
                     try {
                         kVar.close();
                     } catch (IOException unused) {
@@ -32,15 +32,15 @@ public abstract class c0 {
                 } catch (g2.x e7) {
                     int i12 = e7.d;
                     String str3 = null;
-                    if ((i12 == 307 || i12 == 308) && i11 < 5 && (map2 = e7.f10228e) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
+                    if ((i12 == 307 || i12 == 308) && i11 < 5 && (map2 = e7.f10229e) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
                         str3 = (String) list.get(i10);
                     }
                     if (str3 != null) {
                         i11++;
                         g2.l a2 = mVar2.a();
-                        a2.f10189e = Uri.parse(str3);
+                        a2.f10190e = Uri.parse(str3);
                         mVar2 = a2.d();
-                        String str4 = e2.d0.f8537a;
+                        String str4 = e2.d0.f8538a;
                         try {
                             kVar.close();
                         } catch (IOException unused2) {
@@ -50,7 +50,7 @@ public abstract class c0 {
                     }
                 }
             } catch (Exception e10) {
-                throw new n2.w(mVar, b0Var.f10161c, b0Var.f10159a.getResponseHeaders(), b0Var.f10160b, e10);
+                throw new n2.w(mVar, b0Var.f10162c, b0Var.f10160a.getResponseHeaders(), b0Var.f10161b, e10);
             }
         }
     }

@@ -2,16 +2,16 @@ package gd;
 
 import java.io.Serializable;
 public final class e implements Serializable {
-    public final Throwable f10446a;
+    public final Throwable f10447a;
 
     public e(Throwable exception) {
         kotlin.jvm.internal.i.e(exception, "exception");
-        this.f10446a = exception;
+        this.f10447a = exception;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof e) {
-            if (kotlin.jvm.internal.i.a(this.f10446a, ((e) obj).f10446a)) {
+            if (kotlin.jvm.internal.i.a(this.f10447a, ((e) obj).f10447a)) {
                 return true;
             }
             return false;
@@ -20,10 +20,10 @@ public final class e implements Serializable {
     }
 
     public final int hashCode() {
-        return this.f10446a.hashCode();
+        return this.f10447a.hashCode();
     }
 
     public final String toString() {
-        return "Failure(" + this.f10446a + ')';
+        return "Failure(" + this.f10447a + ')';
     }
 }

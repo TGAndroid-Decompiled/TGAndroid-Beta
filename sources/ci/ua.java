@@ -11,38 +11,38 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
 public final class ua implements Runnable {
-    public final int f6078a = 0;
-    public final long f6079b;
-    public final boolean f6080c;
+    public final int f6079a = 0;
+    public final long f6080b;
+    public final boolean f6081c;
     public final boolean d;
-    public final NotificationCenter.NotificationCenterDelegate f6081e;
-    public final TLObject f6082f;
+    public final NotificationCenter.NotificationCenterDelegate f6082e;
+    public final TLObject f6083f;
     public final TLObject h;
 
     public ua(kc kcVar, boolean z10, TL_stories.StoryItem storyItem, long j3, TLRPC.InputGroupCall inputGroupCall, boolean z11) {
-        this.f6081e = kcVar;
-        this.f6080c = z10;
-        this.f6082f = storyItem;
-        this.f6079b = j3;
+        this.f6082e = kcVar;
+        this.f6081c = z10;
+        this.f6083f = storyItem;
+        this.f6080b = j3;
         this.h = inputGroupCall;
         this.d = z11;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f6078a;
+        int i10 = this.f6079a;
         TLObject tLObject = this.h;
-        TLObject tLObject2 = this.f6082f;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f6081e;
+        TLObject tLObject2 = this.f6083f;
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f6082e;
         switch (i10) {
             case 0:
                 kc kcVar = (kc) notificationCenterDelegate;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
                 TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
-                boolean z10 = this.f6080c;
-                long j3 = this.f6079b;
+                boolean z10 = this.f6081c;
+                long j3 = this.f6080b;
                 if (!z10) {
-                    ai.d2.W = new ai.d2(kcVar.f5376b, kcVar.f5380c, storyItem, j3, storyItem.f20275id, z10, inputGroupCall, true, this.d);
+                    ai.d2.W = new ai.d2(kcVar.f5377b, kcVar.f5381c, storyItem, j3, storyItem.f20279id, z10, inputGroupCall, true, this.d);
                 }
                 fc fcVar = kcVar.F;
                 if (fcVar != null) {
@@ -58,15 +58,15 @@ public final class ua implements Runnable {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 storyItem.dialogId = j3;
                 storyItem.justUploaded = true;
-                U.getOrCreateStoryViewer().F(kcVar.f5376b, storyItem, null);
-                NotificationCenter.getInstance(kcVar.f5380c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20055id));
+                U.getOrCreateStoryViewer().F(kcVar.f5377b, storyItem, null);
+                NotificationCenter.getInstance(kcVar.f5381c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20059id));
                 return;
             default:
                 uy uyVar = (uy) notificationCenterDelegate;
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
                 TLRPC.User user = (TLRPC.User) tLObject;
-                long j10 = this.f6079b;
-                boolean z11 = this.f6080c;
+                long j10 = this.f6080b;
+                boolean z11 = this.f6081c;
                 if (chat != null) {
                     uyVar.getClass();
                     if (ChatObject.isNotInChat(chat)) {
@@ -77,7 +77,7 @@ public final class ua implements Runnable {
                 } else {
                     uyVar.getMessagesController().deleteDialog(j10, 0, z11);
                     if (user != null && user.bot && this.d) {
-                        uyVar.getMessagesController().blockPeer(user.f20185id);
+                        uyVar.getMessagesController().blockPeer(user.f20189id);
                     }
                 }
                 uyVar.getMessagesController().checkIfFolderEmpty(uyVar.V2);
@@ -86,10 +86,10 @@ public final class ua implements Runnable {
     }
 
     public ua(uy uyVar, TLRPC.Chat chat, long j3, boolean z10, TLRPC.User user, boolean z11) {
-        this.f6081e = uyVar;
-        this.f6082f = chat;
-        this.f6079b = j3;
-        this.f6080c = z10;
+        this.f6082e = uyVar;
+        this.f6083f = chat;
+        this.f6080b = j3;
+        this.f6081c = z10;
         this.h = user;
         this.d = z11;
     }

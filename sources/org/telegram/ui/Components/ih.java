@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.text.TextUtils;
 public final class ih implements Runnable {
-    public final int f27413a;
-    public final xi f27414b;
+    public final int f27418a;
+    public final xi f27419b;
 
     public ih(xi xiVar, int i10) {
-        this.f27413a = i10;
-        this.f27414b = xiVar;
+        this.f27418a = i10;
+        this.f27419b = xiVar;
     }
 
     @Override
@@ -15,11 +15,11 @@ public final class ih implements Runnable {
         mu muVar;
         boolean z10;
         long j3;
-        boolean D1;
-        switch (this.f27413a) {
+        boolean F1;
+        switch (this.f27418a) {
             case 0:
-                xi xiVar = this.f27414b;
-                if (xiVar.f32802c0) {
+                xi xiVar = this.f27419b;
+                if (xiVar.f32808c0) {
                     muVar = xiVar.P0;
                 } else {
                     muVar = xiVar.E0;
@@ -29,11 +29,11 @@ public final class ih implements Runnable {
                 } else {
                     z10 = false;
                 }
-                xiVar.J1(z10);
+                xiVar.L1(z10);
                 return;
             case 1:
-                xi xiVar2 = this.f27414b;
-                of ofVar = xiVar2.f32819h0;
+                xi xiVar2 = this.f27419b;
+                of ofVar = xiVar2.f32825h0;
                 if (ofVar != null) {
                     j3 = ofVar.k();
                 } else {
@@ -43,27 +43,27 @@ public final class ih implements Runnable {
                 ei eiVar = xiVar2.I0;
                 xiVar2.N0 = j10;
                 eiVar.setEffect(j10);
-                pi piVar = xiVar2.f32874y0;
-                if (piVar != xiVar2.f32825j0 && piVar != xiVar2.f32845q0) {
-                    if (!piVar.G(0, false, 0, xiVar2.p1(), j10)) {
+                pi piVar = xiVar2.f32880y0;
+                if (piVar != xiVar2.f32831j0 && piVar != xiVar2.f32851q0) {
+                    if (!piVar.G(0, false, 0, xiVar2.r1(), j10)) {
                         xiVar2.dismiss();
                     }
-                    D1 = false;
+                    F1 = false;
                 } else {
-                    D1 = xiVar2.D1(0, false, 0, xiVar2.p1(), j10);
+                    F1 = xiVar2.F1(0, false, 0, xiVar2.r1(), j10);
                 }
-                of ofVar2 = xiVar2.f32819h0;
+                of ofVar2 = xiVar2.f32825h0;
                 if (ofVar2 != null) {
-                    ofVar2.h(!D1);
-                    xiVar2.f32819h0 = null;
+                    ofVar2.h(!F1);
+                    xiVar2.f32825h0 = null;
                     return;
                 }
                 return;
             case 2:
-                this.f27414b.C1();
+                this.f27419b.E1();
                 return;
             default:
-                xi.n(this.f27414b);
+                xi.n(this.f27419b);
                 return;
         }
     }

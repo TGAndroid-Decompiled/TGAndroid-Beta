@@ -8,21 +8,21 @@ import org.telegram.ui.ActionBar.i6;
 import s4.n0;
 import yf.y;
 public final class d extends n0 {
-    public final y f47147a = new y(2);
-    public final d6 f47148b;
-    public final f f47149c;
+    public final y f47155a = new y(2);
+    public final d6 f47156b;
+    public final f f47157c;
 
     public d(f fVar, d6 d6Var) {
-        this.f47149c = fVar;
-        this.f47148b = d6Var;
+        this.f47157c = fVar;
+        this.f47156b = d6Var;
     }
 
     @Override
     public final void d(Canvas canvas, RecyclerView recyclerView) {
-        f fVar = this.f47149c;
-        int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f47158g0.getTranslationY()) + ((int) fVar.X.f15443e));
-        int v02 = i6.v0(i6.f20890h5, this.f47148b);
-        y yVar = this.f47147a;
+        f fVar = this.f47157c;
+        int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f47166g0.getTranslationY()) + ((int) fVar.X.f15444e));
+        int v02 = i6.v0(i6.f20894h5, this.f47156b);
+        y yVar = this.f47155a;
         yVar.b(v02);
         yVar.setBounds(0, max, recyclerView.getWidth(), AndroidUtilities.dp(8.0f) + max);
         yVar.draw(canvas);

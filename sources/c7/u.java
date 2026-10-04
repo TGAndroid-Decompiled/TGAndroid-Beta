@@ -8,14 +8,14 @@ import n7.k1;
 import n7.l1;
 public final class u extends o6.a {
     public static final Parcelable.Creator<u> CREATOR = new w.a(25);
-    public final String f4477a;
-    public final String f4478b;
-    public final n7.s0 f4479c;
+    public final String f4478a;
+    public final String f4479b;
+    public final n7.s0 f4480c;
     public final j d;
-    public final i f4480e;
-    public final k f4481f;
+    public final i f4481e;
+    public final k f4482f;
     public final g h;
-    public final String f4482n;
+    public final String f4483n;
 
     public u(String str, String str2, byte[] bArr, j jVar, i iVar, k kVar, g gVar, String str3) {
         n7.s0 t10;
@@ -36,20 +36,20 @@ public final class u extends o6.a {
             z11 = true;
         }
         n6.l.a("Must provide id and rawId if not an error response.", z11);
-        this.f4477a = str;
-        this.f4478b = str2;
-        this.f4479c = t10;
+        this.f4478a = str;
+        this.f4479b = str2;
+        this.f4480c = t10;
         this.d = jVar;
-        this.f4480e = iVar;
-        this.f4481f = kVar;
+        this.f4481e = iVar;
+        this.f4482f = kVar;
         this.h = gVar;
-        this.f4482n = str3;
+        this.f4483n = str3;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof u) {
             u uVar = (u) obj;
-            if (n6.l.l(this.f4477a, uVar.f4477a) && n6.l.l(this.f4478b, uVar.f4478b) && n6.l.l(this.f4479c, uVar.f4479c) && n6.l.l(this.d, uVar.d) && n6.l.l(this.f4480e, uVar.f4480e) && n6.l.l(this.f4481f, uVar.f4481f) && n6.l.l(this.h, uVar.h) && n6.l.l(this.f4482n, uVar.f4482n)) {
+            if (n6.l.l(this.f4478a, uVar.f4478a) && n6.l.l(this.f4479b, uVar.f4479b) && n6.l.l(this.f4480c, uVar.f4480c) && n6.l.l(this.d, uVar.d) && n6.l.l(this.f4481e, uVar.f4481e) && n6.l.l(this.f4482f, uVar.f4482f) && n6.l.l(this.h, uVar.h) && n6.l.l(this.f4483n, uVar.f4483n)) {
                 return true;
             }
             return false;
@@ -58,12 +58,12 @@ public final class u extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4477a, this.f4478b, this.f4479c, this.f4480e, this.d, this.f4481f, this.h, this.f4482n});
+        return Arrays.hashCode(new Object[]{this.f4478a, this.f4479b, this.f4480c, this.f4481e, this.d, this.f4482f, this.h, this.f4483n});
     }
 
     public final String toString() {
         byte[] u10;
-        n7.s0 s0Var = this.f4479c;
+        n7.s0 s0Var = this.f4480c;
         if (s0Var == null) {
             u10 = null;
         } else {
@@ -71,23 +71,23 @@ public final class u extends o6.a {
         }
         String c10 = u6.b.c(u10);
         String valueOf = String.valueOf(this.d);
-        String valueOf2 = String.valueOf(this.f4480e);
-        String valueOf3 = String.valueOf(this.f4481f);
+        String valueOf2 = String.valueOf(this.f4481e);
+        String valueOf3 = String.valueOf(this.f4482f);
         String valueOf4 = String.valueOf(this.h);
-        StringBuilder w10 = a4.a.w("PublicKeyCredential{\n id='", this.f4477a, "', \n type='", this.f4478b, "', \n rawId=");
-        a4.a.z(w10, c10, ", \n registerResponse=", valueOf, ", \n signResponse=");
-        a4.a.z(w10, valueOf2, ", \n errorResponse=", valueOf3, ", \n extensionsClientOutputs=");
-        w10.append(valueOf4);
-        w10.append(", \n authenticatorAttachment='");
-        w10.append(this.f4482n);
-        w10.append("'}");
-        return w10.toString();
+        StringBuilder x10 = a4.a.x("PublicKeyCredential{\n id='", this.f4478a, "', \n type='", this.f4479b, "', \n rawId=");
+        a4.a.A(x10, c10, ", \n registerResponse=", valueOf, ", \n signResponse=");
+        a4.a.A(x10, valueOf2, ", \n errorResponse=", valueOf3, ", \n extensionsClientOutputs=");
+        x10.append(valueOf4);
+        x10.append(", \n authenticatorAttachment='");
+        x10.append(this.f4483n);
+        x10.append("'}");
+        return x10.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        k1 k1Var = (k1) j1.f16796b.f16797a.f16771a;
-        l1.f16802a.q();
+        k1 k1Var = (k1) j1.f16800b.f16801a.f16775a;
+        l1.f16806a.q();
         throw null;
     }
 }

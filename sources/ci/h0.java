@@ -7,31 +7,31 @@ import org.telegram.ui.Components.gf0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.os0;
 public final class h0 implements lg.e {
-    public final int f5126a;
-    public final FrameLayout f5127b;
+    public final int f5127a;
+    public final FrameLayout f5128b;
 
     public h0(int i10, FrameLayout frameLayout) {
-        this.f5126a = i10;
-        this.f5127b = frameLayout;
+        this.f5127a = i10;
+        this.f5128b = frameLayout;
     }
 
     @Override
     public final boolean a() {
-        int i10 = this.f5126a;
-        FrameLayout frameLayout = this.f5127b;
+        int i10 = this.f5127a;
+        FrameLayout frameLayout = this.f5128b;
         switch (i10) {
             case 0:
                 j0 j0Var = (j0) frameLayout;
                 j0Var.d.invalidate();
-                return j0Var.f5192f.j();
+                return j0Var.f5193f.j();
             case 1:
                 m0 m0Var = (m0) frameLayout;
-                m0Var.f5547e.invalidate();
+                m0Var.f5548e.invalidate();
                 return m0Var.h.j();
             default:
-                ff0 ff0Var = ((gf0) frameLayout).f26850a;
+                ff0 ff0Var = ((gf0) frameLayout).f26855a;
                 if (ff0Var != null) {
-                    PhotoViewer photoViewer = ((os0) ff0Var).f39272a;
+                    PhotoViewer photoViewer = ((os0) ff0Var).f39277a;
                     Drawable[] drawableArr = PhotoViewer.U8;
                     return photoViewer.N0();
                 }
@@ -41,42 +41,42 @@ public final class h0 implements lg.e {
 
     @Override
     public final void b() {
-        switch (this.f5126a) {
+        switch (this.f5127a) {
             case 0:
-                ((j0) this.f5127b).f5192f.o();
+                ((j0) this.f5128b).f5193f.o();
                 return;
             case 1:
-                ((m0) this.f5127b).h.o();
+                ((m0) this.f5128b).h.o();
                 return;
             default:
-                ((gf0) this.f5127b).f26851b.o();
+                ((gf0) this.f5128b).f26856b.o();
                 return;
         }
     }
 
     @Override
     public final void c() {
-        switch (this.f5126a) {
+        switch (this.f5127a) {
             case 0:
-                ((j0) this.f5127b).f5192f.f15575a.g(1, true);
+                ((j0) this.f5128b).f5193f.f15576a.g(1, true);
                 return;
             case 1:
-                ((m0) this.f5127b).h.f15575a.g(1, true);
+                ((m0) this.f5128b).h.f15576a.g(1, true);
                 return;
             default:
-                ((gf0) this.f5127b).f26851b.f15575a.g(1, true);
+                ((gf0) this.f5128b).f26856b.f15576a.g(1, true);
                 return;
         }
     }
 
     @Override
     public final boolean d() {
-        int i10 = this.f5126a;
-        FrameLayout frameLayout = this.f5127b;
+        int i10 = this.f5127a;
+        FrameLayout frameLayout = this.f5128b;
         switch (i10) {
             case 0:
                 j0 j0Var = (j0) frameLayout;
-                g0 g0Var = j0Var.f5192f;
+                g0 g0Var = j0Var.f5193f;
                 boolean m10 = g0Var.m(-90.0f);
                 g0Var.i();
                 j0Var.d.invalidate();
@@ -86,14 +86,14 @@ public final class h0 implements lg.e {
                 g0 g0Var2 = m0Var.h;
                 boolean m11 = g0Var2.m(-90.0f);
                 g0Var2.i();
-                m0Var.f5547e.invalidate();
+                m0Var.f5548e.invalidate();
                 return m11;
             default:
-                ff0 ff0Var = ((gf0) frameLayout).f26850a;
+                ff0 ff0Var = ((gf0) frameLayout).f26855a;
                 if (ff0Var == null) {
                     return false;
                 }
-                PhotoViewer photoViewer = ((os0) ff0Var).f39272a;
+                PhotoViewer photoViewer = ((os0) ff0Var).f39277a;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return photoViewer.O0(-90.0f, false, null);
         }
@@ -101,33 +101,33 @@ public final class h0 implements lg.e {
 
     @Override
     public final void e() {
-        switch (this.f5126a) {
+        switch (this.f5127a) {
             case 0:
-                ((j0) this.f5127b).f5192f.k();
+                ((j0) this.f5128b).f5193f.k();
                 return;
             case 1:
-                ((m0) this.f5127b).h.k();
+                ((m0) this.f5128b).h.k();
                 return;
             default:
-                ((gf0) this.f5127b).f26851b.k();
+                ((gf0) this.f5128b).f26856b.k();
                 return;
         }
     }
 
     @Override
     public final void f(float f7) {
-        switch (this.f5126a) {
+        switch (this.f5127a) {
             case 0:
-                ((j0) this.f5127b).f5192f.setRotation(f7);
+                ((j0) this.f5128b).f5193f.setRotation(f7);
                 return;
             case 1:
-                ((m0) this.f5127b).h.setRotation(f7);
+                ((m0) this.f5128b).h.setRotation(f7);
                 return;
             default:
-                gf0 gf0Var = (gf0) this.f5127b;
-                gf0Var.f26851b.setRotation(f7);
+                gf0 gf0Var = (gf0) this.f5128b;
+                gf0Var.f26856b.setRotation(f7);
                 gf0Var.getClass();
-                ff0 ff0Var = gf0Var.f26850a;
+                ff0 ff0Var = gf0Var.f26855a;
                 if (ff0Var != null) {
                     ((os0) ff0Var).a(false);
                     return;

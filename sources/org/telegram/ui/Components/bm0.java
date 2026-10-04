@@ -6,21 +6,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public class bm0 extends g91 {
-    public final aw0 U;
-    public boolean V;
-    public View W;
-    public View f25005a0;
+    public final aw0 V;
+    public boolean W;
+    public View f25009a0;
+    public View f25010b0;
 
     public bm0(Context context, org.telegram.ui.ActionBar.d6 d6Var, aw0 aw0Var) {
         super(context, d6Var);
-        this.U = aw0Var;
+        this.V = aw0Var;
         setClipChildren(false);
         setClipToPadding(false);
     }
 
     @Override
     public final void A(int i10) {
-        aw0 aw0Var = this.U;
+        aw0 aw0Var = this.V;
         aw0Var.f0("PAGER_TAB_END");
         aw0Var.k0();
     }
@@ -34,9 +34,9 @@ public class bm0 extends g91 {
             View view = viewPages[0];
             View view2 = viewPages[1];
             if (view != null && view2 != null && view.getTranslationX() == 0.0f && view.getMeasuredWidth() > 0 && Math.abs(view2.getTranslationX()) >= view.getMeasuredWidth()) {
-                this.W = view;
-                this.f25005a0 = view2;
-                aw0 aw0Var = this.U;
+                this.f25009a0 = view;
+                this.f25010b0 = view2;
+                aw0 aw0Var = this.V;
                 aw0Var.f0("PAGER_DRAG_ABORTED");
                 aw0Var.k0();
             }
@@ -49,19 +49,19 @@ public class bm0 extends g91 {
         if (view.getTranslationX() == f7) {
             return;
         }
-        view.setTranslationX(f7);
+        super.F(view, f7);
         invalidate();
     }
 
     public final void L(View view) {
-        this.W = null;
-        this.f25005a0 = null;
-        aw0 aw0Var = this.U;
+        this.f25009a0 = null;
+        this.f25010b0 = null;
+        aw0 aw0Var = this.V;
         aw0Var.e0("PAGE_BOUND", view, 0, 0, true);
         if (aw0Var.U0 == null) {
             return;
         }
-        if (aw0Var.f24692g1) {
+        if (aw0Var.f24696g1) {
             aw0Var.h0("page_bound");
         }
         RecyclerView i10 = aw0Var.U0.i(view);
@@ -75,9 +75,9 @@ public class bm0 extends g91 {
         if (motionEvent != null && motionEvent.getActionMasked() == 0) {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
-            aw0 aw0Var = this.U;
+            aw0 aw0Var = this.V;
             boolean i02 = aw0Var.i0(x10, y3);
-            this.V = i02;
+            this.W = i02;
             if (i02) {
                 str = "PAGER_DOWN_COMMON";
             } else {
@@ -91,7 +91,7 @@ public class bm0 extends g91 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         int save = canvas.save();
         float x10 = view.getX();
-        aw0 aw0Var = this.U;
+        aw0 aw0Var = this.V;
         canvas.clipRect(x10, -aw0Var.getTopBleed(), view.getX() + view.getWidth(), aw0Var.getBottomBleed() + getHeight());
         boolean drawChild = super.drawChild(canvas, view, j3);
         canvas.restoreToCount(save);
@@ -105,7 +105,7 @@ public class bm0 extends g91 {
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        if (!this.V && this.U.b0()) {
+        if (!this.W && this.V.b0()) {
             return true;
         }
         return false;
@@ -114,7 +114,7 @@ public class bm0 extends g91 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         M(motionEvent);
-        if (!this.V && super.onInterceptTouchEvent(motionEvent)) {
+        if (!this.W && super.onInterceptTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -123,10 +123,10 @@ public class bm0 extends g91 {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         String str;
-        aw0 aw0Var = this.U;
+        aw0 aw0Var = this.V;
         if (motionEvent == null) {
             aw0Var.f0("PAGER_CANCEL_NULL");
-            this.V = false;
+            this.W = false;
             return B(null);
         }
         M(motionEvent);
@@ -138,7 +138,7 @@ public class bm0 extends g91 {
             }
             aw0Var.f0(str);
         }
-        if (this.V || !B(motionEvent)) {
+        if (this.W || !B(motionEvent)) {
             return false;
         }
         return true;
@@ -146,19 +146,19 @@ public class bm0 extends g91 {
 
     @Override
     public final void u() {
-        aw0 aw0Var = this.U;
+        aw0 aw0Var = this.V;
         aw0Var.f0("PAGER_SCROLL_END");
         aw0Var.k0();
     }
 
     @Override
     public final void v() {
-        this.W = null;
-        this.f25005a0 = null;
+        this.f25009a0 = null;
+        this.f25010b0 = null;
     }
 
     @Override
     public final void w(boolean z10) {
-        this.U.k0();
+        this.V.k0();
     }
 }

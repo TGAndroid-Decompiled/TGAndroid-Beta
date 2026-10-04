@@ -1,22 +1,21 @@
 package lf;
 
 import com.google.android.gms.common.api.internal.n1;
-import hg.k0;
 import java.io.EOFException;
 import java.io.InputStream;
 public final class e {
-    public static final n1 f15476e = new n1(1);
-    public final mf.a f15477a;
-    public final i f15478b;
-    public final f f15479c;
+    public static final n1 f15477e = new n1(1);
+    public final mf.a f15478a;
+    public final i f15479b;
+    public final f f15480c;
     public final l2.g d;
 
     public e(InputStream inputStream, long j3, int i10, i iVar, f fVar) {
         mf.a aVar = new mf.a(inputStream, j3, i10);
-        this.f15477a = aVar;
+        this.f15478a = aVar;
         this.d = new l2.g(aVar, 1);
-        this.f15478b = iVar;
-        this.f15479c = fVar;
+        this.f15479b = iVar;
+        this.f15480c = fVar;
     }
 
     public static String a(byte[] bArr, int i10, b bVar, boolean z10) {
@@ -25,7 +24,7 @@ public final class e {
             for (int i12 = 0; i12 < i10; i12++) {
                 if (bArr[i12] == 0 && (bVar != b.UTF_16 || i11 != 0 || i12 % 2 == 0)) {
                     i11++;
-                    int i13 = bVar.f15474b;
+                    int i13 = bVar.f15475b;
                     if (i11 == i13) {
                         i10 = (i12 + 1) - i13;
                         break;
@@ -36,7 +35,7 @@ public final class e {
             }
         }
         try {
-            String str = new String(bArr, 0, i10, bVar.f15473a.name());
+            String str = new String(bArr, 0, i10, bVar.f15474a.name());
             if (str.length() > 0 && str.charAt(0) == 65279) {
                 return str.substring(1);
             }
@@ -54,7 +53,7 @@ public final class e {
                     if (D == 3) {
                         return b.UTF_8;
                     }
-                    throw new Exception(k0.h(D, "Invalid encoding: "));
+                    throw new Exception(hg.c.h(D, "Invalid encoding: "));
                 }
                 return b.UTF_16BE;
             }
@@ -64,22 +63,22 @@ public final class e {
     }
 
     public final String c(int i10, b bVar) {
-        if (i10 <= this.f15477a.e()) {
-            d dVar = (d) f15476e.get();
-            byte[] bArr = dVar.f15475a;
+        if (i10 <= this.f15478a.e()) {
+            d dVar = (d) f15477e.get();
+            byte[] bArr = dVar.f15476a;
             if (i10 > bArr.length) {
                 int length = bArr.length;
                 do {
                     length *= 2;
                 } while (i10 > length);
-                dVar.f15475a = new byte[length];
+                dVar.f15476a = new byte[length];
             }
-            byte[] bArr2 = dVar.f15475a;
+            byte[] bArr2 = dVar.f15476a;
             int i11 = 0;
             while (true) {
                 l2.g gVar = this.d;
                 if (i11 < i10) {
-                    int read = ((com.google.firebase.messaging.d) gVar.f15267b).read(bArr2, i11, i10 - i11);
+                    int read = ((com.google.firebase.messaging.d) gVar.f15268b).read(bArr2, i11, i10 - i11);
                     if (read > 0) {
                         i11 += read;
                     } else {
@@ -91,29 +90,29 @@ public final class e {
                 }
             }
         } else {
-            throw new Exception(k0.h(i10, "Could not read fixed-length string of length: "));
+            throw new Exception(hg.c.h(i10, "Could not read fixed-length string of length: "));
         }
     }
 
     public final String d(int i10, b bVar) {
-        int min = Math.min(i10, (int) this.f15477a.e());
-        d dVar = (d) f15476e.get();
-        byte[] bArr = dVar.f15475a;
+        int min = Math.min(i10, (int) this.f15478a.e());
+        d dVar = (d) f15477e.get();
+        byte[] bArr = dVar.f15476a;
         if (min > bArr.length) {
             int length = bArr.length;
             do {
                 length *= 2;
             } while (min > length);
-            dVar.f15475a = new byte[length];
+            dVar.f15476a = new byte[length];
         }
-        byte[] bArr2 = dVar.f15475a;
+        byte[] bArr2 = dVar.f15476a;
         int i11 = 0;
         for (int i12 = 0; i12 < min; i12++) {
             byte D = this.d.D();
             bArr2[i12] = D;
             if (D == 0 && (bVar != b.UTF_16 || i11 != 0 || i12 % 2 == 0)) {
                 i11++;
-                int i13 = bVar.f15474b;
+                int i13 = bVar.f15475b;
                 if (i11 == i13) {
                     return a(bArr2, (i12 + 1) - i13, bVar, false);
                 }
@@ -126,8 +125,8 @@ public final class e {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("id3v2frame[pos=");
-        mf.a aVar = this.f15477a;
-        sb2.append(aVar.f7876b);
+        mf.a aVar = this.f15478a;
+        sb2.append(aVar.f7877b);
         sb2.append(", ");
         sb2.append(aVar.e());
         sb2.append(" left]");

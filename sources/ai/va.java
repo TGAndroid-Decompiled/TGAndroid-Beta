@@ -56,7 +56,7 @@ public final class va {
         this.f1772k = new vh.l(waVar, arrayList, new a1.c(this, 9));
         u90 u90Var = new u90();
         this.f1780s = u90Var;
-        u90Var.f31347x = path;
+        u90Var.f31353x = path;
         u90Var.j(4.0f);
         u90Var.f(org.telegram.ui.ActionBar.i6.l1(0.3f, -1), org.telegram.ui.ActionBar.i6.l1(0.1f, -1), org.telegram.ui.ActionBar.i6.l1(0.2f, -1), org.telegram.ui.ActionBar.i6.l1(0.7f, -1));
         u90Var.setCallback(waVar);
@@ -204,7 +204,7 @@ public final class va {
                             arrayList2 = arrayList;
                             i11 = i13;
                             float lerp = AndroidUtilities.lerp(f11, f12, waVar.f1819w);
-                            float lerp2 = AndroidUtilities.lerp(taVar.d, taVar.f1703f, tr.f31142g.getInterpolation(waVar.f1819w));
+                            float lerp2 = AndroidUtilities.lerp(taVar.d, taVar.f1703f, tr.f31148g.getInterpolation(waVar.f1819w));
                             canvas.translate(waVar.E + lerp, waVar.F + i10 + lerp2);
                             if (z10) {
                                 f(taVar.f1700b, waVar.E + lerp, waVar.F + i10 + lerp2);
@@ -284,7 +284,7 @@ public final class va {
             }
             sa saVar2 = this.f1777p;
             if (saVar2 != null) {
-                this.f1773l = org.telegram.messenger.f0.C(4.0f, saVar2.b(), this.f1773l);
+                this.f1773l = org.telegram.messenger.q.C(4.0f, saVar2.b(), this.f1773l);
             }
             this.f1774m = this.f1773l;
             if (this == vaVarArr[0]) {
@@ -306,7 +306,7 @@ public final class va {
         }
         sa saVar4 = this.f1777p;
         if (saVar4 != null) {
-            this.f1773l = org.telegram.messenger.f0.C(8.0f, saVar4.b(), this.f1773l);
+            this.f1773l = org.telegram.messenger.q.C(8.0f, saVar4.b(), this.f1773l);
         }
         this.f1773l += i11;
         float measureText = textPaint2.measureText(" ");
@@ -412,7 +412,7 @@ public final class va {
         int i17 = waVar.E;
         int i18 = waVar.F;
         vh.l lVar = this.f1772k;
-        lVar.f48429c = i17;
+        lVar.f48437c = i17;
         lVar.d = i18;
     }
 
@@ -451,8 +451,8 @@ public final class va {
             saVar.f1662s = uaVar;
             new jm0(waVar);
             saVar.f1653j.setCallback(waVar);
-            saVar.h.f25932a = waVar;
-            saVar.f1652i.f33468a = waVar;
+            saVar.h.f25937a = waVar;
+            saVar.f1652i.f33474a = waVar;
             saVar.c();
         }
         sa saVar3 = this.f1777p;
@@ -462,8 +462,8 @@ public final class va {
             saVar3.f1662s = uaVar2;
             new jm0(waVar);
             saVar3.f1653j.setCallback(waVar);
-            saVar3.h.f25932a = waVar;
-            saVar3.f1652i.f33468a = waVar;
+            saVar3.h.f25937a = waVar;
+            saVar3.f1652i.f33474a = waVar;
             saVar3.c();
         }
         waVar.f1818s = 0;

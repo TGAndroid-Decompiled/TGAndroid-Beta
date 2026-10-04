@@ -6,11 +6,11 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
 public final class c extends Binder implements b {
-    public static final int f3902b = 0;
-    public final d f3903a;
+    public static final int f3903b = 0;
+    public final d f3904a;
 
     public c(d dVar) {
-        this.f3903a = dVar;
+        this.f3904a = dVar;
         attachInterface(this, b.h);
     }
 
@@ -34,7 +34,7 @@ public final class c extends Binder implements b {
             } else {
                 obj = null;
             }
-            this.f3903a.a(readInt, (Bundle) obj);
+            this.f3904a.a(readInt, (Bundle) obj);
             return true;
         }
     }

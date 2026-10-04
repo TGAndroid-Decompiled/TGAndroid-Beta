@@ -67,10 +67,10 @@ public final class v0 implements View.OnClickListener {
                 return;
             case 7:
                 ci.m mVar = (ci.m) this.f1735b;
-                ci.g gVar = mVar.f5517f;
+                ci.g gVar = mVar.f5518f;
                 gVar.d();
                 gVar.k(true);
-                ci.e eVar = mVar.f5513c0;
+                ci.e eVar = mVar.f5514c0;
                 AndroidUtilities.cancelRunOnUIThread(eVar);
                 eVar.run();
                 return;
@@ -84,8 +84,8 @@ public final class v0 implements View.OnClickListener {
                 ((s1) this.f1735b).run();
                 return;
             case 11:
-                ci.u6 u6Var = ((ci.t6) this.f1735b).f5985x;
-                if (u6Var.f6070r && (callback = u6Var.f6068f) != null) {
+                ci.u6 u6Var = ((ci.t6) this.f1735b).f5986x;
+                if (u6Var.f6071r && (callback = u6Var.f6069f) != null) {
                     callback.run(5);
                     return;
                 }
@@ -104,7 +104,7 @@ public final class v0 implements View.OnClickListener {
                 ((yf) this.f1735b).run();
                 return;
             case 15:
-                ChatActivityEnterView.h(((ce) ((ei.q0) this.f1735b).d).f25353a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.h(((ce) ((ei.q0) this.f1735b).d).f25358a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 16:
                 ((h5) this.f1735b).run();
@@ -112,16 +112,16 @@ public final class v0 implements View.OnClickListener {
             case 17:
                 fi.p pVar = (fi.p) this.f1735b;
                 TLRPC.Chat chat = pVar.H;
-                if (chat != null && !chat.title.equals(((fi.o) pVar.f9950n.f935b).getText().toString())) {
-                    pVar.getMessagesController().changeChatTitle(pVar.H.f20038id, ((fi.o) pVar.f9950n.f935b).getText().toString(), new fi.h(pVar, 1));
+                if (chat != null && !chat.title.equals(((fi.o) pVar.f9951n.f935b).getText().toString())) {
+                    pVar.getMessagesController().changeChatTitle(pVar.H.f20042id, ((fi.o) pVar.f9951n.f935b).getText().toString(), new fi.h(pVar, 1));
                 }
                 TLRPC.Chat chat2 = pVar.H;
-                if (chat2 != null && pVar.h != pVar.f9949f) {
+                if (chat2 != null && pVar.h != pVar.f9950f) {
                     if (chat2.default_banned_rights == null) {
                         chat2.default_banned_rights = new TLRPC.TL_chatBannedRights();
                     }
                     pVar.H.default_banned_rights.manage_linked_peers = !pVar.h;
-                    pVar.getMessagesController().setDefaultBannedRole(pVar.f9946b, pVar.H.default_banned_rights, false, pVar);
+                    pVar.getMessagesController().setDefaultBannedRole(pVar.f9947b, pVar.H.default_banned_rights, false, pVar);
                 }
                 pVar.finishFragment();
                 return;
@@ -129,7 +129,7 @@ public final class v0 implements View.OnClickListener {
                 ((fi.e0) this.f1735b).h.d.E(0);
                 return;
             case 19:
-                fi.k0.x(((fi.f0) this.f1735b).f9891r);
+                fi.k0.x(((fi.f0) this.f1735b).f9892r);
                 return;
             case 20:
                 gg.m mVar2 = (gg.m) this.f1735b;
@@ -145,13 +145,13 @@ public final class v0 implements View.OnClickListener {
                 return;
             case 23:
                 gg.g2 g2Var = (gg.g2) this.f1735b;
-                LongSparseArray longSparseArray = g2Var.f10594n;
+                LongSparseArray longSparseArray = g2Var.f10595n;
                 org.telegram.ui.Cells.s3 s3Var = (org.telegram.ui.Cells.s3) view.getParent();
                 TLRPC.StickerSetCovered stickerSet = s3Var.getStickerSet();
-                if (stickerSet != null && g2Var.h.indexOfKey(stickerSet.set.f20065id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20065id) < 0) {
-                    if (s3Var.f22907r) {
-                        longSparseArray.put(stickerSet.set.f20065id, stickerSet);
-                        g2Var.f10592e.f29926a.h(s3Var.getStickerSet());
+                if (stickerSet != null && g2Var.h.indexOfKey(stickerSet.set.f20069id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20069id) < 0) {
+                    if (s3Var.f22911r) {
+                        longSparseArray.put(stickerSet.set.f20069id, stickerSet);
+                        g2Var.f10593e.f29931a.h(s3Var.getStickerSet());
                         return;
                     }
                     g2Var.F(stickerSet, s3Var);
@@ -159,12 +159,12 @@ public final class v0 implements View.OnClickListener {
                 }
                 return;
             case 24:
-                hg.e eVar2 = (hg.e) this.f1735b;
-                org.telegram.ui.Components.p6 p6Var = eVar2.f11157f;
-                int i12 = eVar2.f11153a;
-                boolean z10 = eVar2.f11159r;
-                eVar2.f11159r = !z10;
-                gq gqVar = eVar2.h;
+                hg.f fVar = (hg.f) this.f1735b;
+                org.telegram.ui.Components.p6 p6Var = fVar.f11175f;
+                int i12 = fVar.f11171a;
+                boolean z10 = fVar.f11177r;
+                fVar.f11177r = !z10;
+                gq gqVar = fVar.h;
                 if (!z10) {
                     i10 = R.string.BizBotStart;
                 } else {
@@ -172,25 +172,25 @@ public final class v0 implements View.OnClickListener {
                 }
                 gqVar.c(LocaleController.getString(i10), true, true);
                 p6Var.a();
-                if (eVar2.f11159r) {
+                if (fVar.f11177r) {
                     i11 = R.string.BizBotStatusStopped;
                 } else {
                     i11 = R.string.BizBotStatusManages;
                 }
                 p6Var.c(LocaleController.getString(i11), true, true);
-                if (eVar2.f11159r) {
-                    eVar2.f11161w |= 1;
+                if (fVar.f11177r) {
+                    fVar.f11179w |= 1;
                 } else {
-                    eVar2.f11161w &= -2;
+                    fVar.f11179w &= -2;
                 }
-                MessagesController.getNotificationsSettings(i12).edit().putInt("dialog_botflags" + eVar2.f11160s, eVar2.f11161w).apply();
+                MessagesController.getNotificationsSettings(i12).edit().putInt("dialog_botflags" + fVar.f11178s, fVar.f11179w).apply();
                 TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
-                toggleconnectedbotpaused.peer = MessagesController.getInstance(i12).getInputPeer(eVar2.f11160s);
-                toggleconnectedbotpaused.paused = eVar2.f11159r;
+                toggleconnectedbotpaused.peer = MessagesController.getInstance(i12).getInputPeer(fVar.f11178s);
+                toggleconnectedbotpaused.paused = fVar.f11177r;
                 ConnectionsManager.getInstance(i12).sendRequest(toggleconnectedbotpaused, null);
                 return;
             case 25:
-                TL_account.TL_businessChatLink tL_businessChatLink = ((hg.t) this.f1735b).f11328f;
+                TL_account.TL_businessChatLink tL_businessChatLink = ((hg.u) this.f1735b).f11333f;
                 if (tL_businessChatLink != null) {
                     AndroidUtilities.addToClipboard(tL_businessChatLink.link);
                     yc.a0(LaunchActivity.R()).k(false).j();
@@ -213,17 +213,17 @@ public final class v0 implements View.OnClickListener {
             case 28:
                 ii.u0 u0Var = (ii.u0) this.f1735b;
                 ii.e3 e3Var = u0Var.h;
-                if (e3Var != null && (aVar = u0Var.f12678f) != null) {
-                    ii.x3 x3Var = e3Var.f12348a;
+                if (e3Var != null && (aVar = u0Var.f12679f) != null) {
+                    ii.x3 x3Var = e3Var.f12349a;
                     x3Var.getClass();
                     if (ii.x3.z3(aVar)) {
-                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f12186b;
+                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f12187b;
                         ii.i2 i2Var = x3Var.Q3;
                         if (i2Var != null) {
                             i2Var.d();
                         }
                         pageblockdetails.open = !pageblockdetails.open;
-                        x3Var.f25245f3.N(true);
+                        x3Var.f25250f3.N(true);
                         ii.i2 i2Var2 = x3Var.Q3;
                         if (i2Var2 != null) {
                             i2Var2.h();
@@ -236,9 +236,9 @@ public final class v0 implements View.OnClickListener {
                 return;
             default:
                 ii.q4 q4Var = (ii.q4) this.f1735b;
-                ii.a aVar2 = q4Var.f12203a;
+                ii.a aVar2 = q4Var.f12204a;
                 if (aVar2 != null && (o4Var = q4Var.G) != null) {
-                    ((ii.t3) o4Var).f12657a.f12769o3.D(aVar2);
+                    ((ii.t3) o4Var).f12658a.f12770o3.D(aVar2);
                     return;
                 }
                 return;

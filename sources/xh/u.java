@@ -8,23 +8,23 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.zq0;
 public final class u extends org.telegram.ui.ActionBar.j {
-    public final TL_stars.StarGift f50237a;
-    public final Context f50238b;
-    public final d6 f50239c;
+    public final TL_stars.StarGift f50245a;
+    public final Context f50246b;
+    public final d6 f50247c;
 
     public u(Context context, TL_stars.StarGift starGift, d6 d6Var) {
-        this.f50237a = starGift;
-        this.f50238b = context;
-        this.f50239c = d6Var;
+        this.f50245a = starGift;
+        this.f50246b = context;
+        this.f50247c = d6Var;
     }
 
     @Override
     public final void b(int i10) {
-        Context context = this.f50238b;
-        TL_stars.StarGift starGift = this.f50237a;
+        Context context = this.f50246b;
+        TL_stars.StarGift starGift = this.f50245a;
         if (i10 != 3 && i10 != 2) {
             if (i10 == 4) {
-                v.S(context, starGift, this.f50239c);
+                v.S(context, starGift, this.f50247c);
                 return;
             }
             return;

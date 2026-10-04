@@ -39,7 +39,7 @@ public abstract class d {
                         Charset charset = StandardCharsets.UTF_8;
                         crc32.update(l4.getBytes(charset));
                         crc32.update(pollAnswer.option);
-                        crc32.update(Long.toString(poll.f20064id).getBytes(charset));
+                        crc32.update(Long.toString(poll.f20068id).getBytes(charset));
                         pollAnswer.shuffle_hash = crc32.getValue();
                     }
                 }
@@ -150,5 +150,25 @@ public abstract class d {
         tL_inputGeoPoint.lat = geoPoint.lat;
         tL_inputGeoPoint._long = geoPoint._long;
         return tL_inputMediaGeoPoint;
+    }
+
+    public static void i(String str, ArrayList arrayList) {
+        int i10;
+        int i11;
+        int i12;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            if (str != null) {
+                i10 = str.length();
+            } else {
+                i10 = 0;
+            }
+            for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                TLRPC.MessageEntity messageEntity = (TLRPC.MessageEntity) arrayList.get(i13);
+                if (messageEntity == null || (i11 = messageEntity.offset) < 0 || i11 > i10 || (i12 = messageEntity.length) <= 0 || i12 > i10 - i11) {
+                    arrayList.clear();
+                    return;
+                }
+            }
+        }
     }
 }

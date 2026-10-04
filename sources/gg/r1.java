@@ -3,15 +3,15 @@ package gg;
 import java.util.ArrayList;
 import org.telegram.ui.xs;
 public final class r1 implements b2 {
-    public final xs f10768a;
+    public final xs f10769a;
 
     public r1(xs xsVar) {
-        this.f10768a = xsVar;
+        this.f10769a = xsVar;
     }
 
     @Override
     public final void a(int i10) {
-        xs xsVar = this.f10768a;
+        xs xsVar = this.f10769a;
         xsVar.l();
         if (i10 != 0) {
             xsVar.F();

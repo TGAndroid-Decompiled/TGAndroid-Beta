@@ -15,20 +15,20 @@ public final class mx0 extends nj0 {
     public ValueAnimator F;
     public ValueAnimator G;
     public final rx0 H;
-    public int f28744r;
-    public float f28745s;
+    public int f28749r;
+    public float f28750s;
     public ValueAnimator v;
-    public boolean f28746w;
-    public long f28747x;
-    public float f28748y;
+    public boolean f28751w;
+    public long f28752x;
+    public float f28753y;
 
     public mx0(rx0 rx0Var, Context context) {
         super(context);
         int v02;
-        org.telegram.ui.ActionBar.d6 d6Var = rx0Var.f33546p2;
+        org.telegram.ui.ActionBar.d6 d6Var = rx0Var.f33552p2;
         this.H = rx0Var;
-        this.f28746w = false;
-        this.f28748y = 1.0f;
+        this.f28751w = false;
+        this.f28753y = 1.0f;
         if (rx0Var.D3) {
             v02 = i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Wk, d6Var), (int) 102.0f);
         } else {
@@ -41,14 +41,14 @@ public final class mx0 extends nj0 {
 
     @Override
     public final void c() {
-        this.f28746w = true;
-        if (this.f28748y < 1.0f) {
+        this.f28751w = true;
+        if (this.f28753y < 1.0f) {
             ValueAnimator valueAnimator = this.G;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
                 this.G = null;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28748y, 1.0f);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28753y, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new jx0(this, 2));
             this.G.addListener(new lx0(this, 0));
@@ -68,7 +68,7 @@ public final class mx0 extends nj0 {
                 this.H.invalidate();
             }
         }
-        float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.E, 0.15f, 0.85f) * this.f28748y;
+        float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.E, 0.15f, 0.85f) * this.f28753y;
         int i10 = (z10 > 1.0f ? 1 : (z10 == 1.0f ? 0 : -1));
         if (i10 != 0) {
             canvas.save();
@@ -81,8 +81,8 @@ public final class mx0 extends nj0 {
     }
 
     public final void j() {
-        if (System.currentTimeMillis() - this.f28747x > 250) {
-            this.f28747x = System.currentTimeMillis();
+        if (System.currentTimeMillis() - this.f28752x > 250) {
+            this.f28752x = System.currentTimeMillis();
             kj0 animatedDrawable = getAnimatedDrawable();
             if (animatedDrawable == null && getImageReceiver() != null) {
                 animatedDrawable = getImageReceiver().getLottieAnimation();
@@ -99,14 +99,14 @@ public final class mx0 extends nj0 {
     }
 
     public final void k(int i10) {
-        if (this.f28744r != i10) {
-            this.f28744r = i10;
+        if (this.f28749r != i10) {
+            this.f28749r = i10;
             setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
     }
 
     public final void l(boolean z10, boolean z11) {
-        if (Math.abs(this.f28745s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
+        if (Math.abs(this.f28750s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
             ValueAnimator valueAnimator = this.v;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -114,7 +114,7 @@ public final class mx0 extends nj0 {
             }
             float f7 = 0.0f;
             if (z11) {
-                float f10 = this.f28745s;
+                float f10 = this.f28750s;
                 if (z10) {
                     f7 = 1.0f;
                 }
@@ -135,13 +135,13 @@ public final class mx0 extends nj0 {
     }
 
     public final void m(float f7) {
-        this.f28745s = f7;
+        this.f28750s = f7;
         rx0 rx0Var = this.H;
-        org.telegram.ui.ActionBar.d6 d6Var = rx0Var.f33546p2;
+        org.telegram.ui.ActionBar.d6 d6Var = rx0Var.f33552p2;
         if (rx0Var.D3) {
             k(i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Wk, d6Var), (int) (AndroidUtilities.lerp(0.4f, 0.8f, f7) * 255.0f)));
         } else {
-            k(i0.a.d(this.f28745s, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Me, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oe, d6Var)));
+            k(i0.a.d(this.f28750s, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Me, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oe, d6Var)));
         }
         invalidate();
     }
@@ -149,7 +149,7 @@ public final class mx0 extends nj0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i11);
-        super.onMeasure(org.telegram.messenger.ok.c(4.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+        super.onMeasure(org.telegram.messenger.bi.c(4.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.view.View;
 import org.telegram.ui.Cells.f8;
 import org.telegram.ui.Components.zl0;
 public abstract class d extends zl0 {
-    public boolean f17186e3;
+    public boolean f17190e3;
 
     @Override
     public final void K0(Canvas canvas, RectF rectF, long j3) {
@@ -32,7 +32,7 @@ public abstract class d extends zl0 {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        this.f17186e3 = false;
+        this.f17190e3 = false;
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             if (getChildAt(i10) instanceof c) {
                 c cVar = (c) getChildAt(i10);
@@ -50,10 +50,10 @@ public abstract class d extends zl0 {
 
     @Override
     public final void invalidate() {
-        if (this.f17186e3) {
+        if (this.f17190e3) {
             return;
         }
         super.invalidate();
-        this.f17186e3 = true;
+        this.f17190e3 = true;
     }
 }

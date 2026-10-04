@@ -18,45 +18,45 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class fq extends org.telegram.ui.ActionBar.f3 {
-    public final Drawable f26546b;
-    public final cq f26547c;
+    public final Drawable f26551b;
+    public final cq f26552c;
     public final eq d;
-    public final boolean f26548e;
-    public int f26549f;
+    public final boolean f26553e;
+    public int f26554f;
     public final int[] h;
-    public final int f26550n;
-    public int f26551r;
-    public boolean f26552s;
+    public final int f26555n;
+    public int f26556r;
+    public boolean f26557s;
     public org.telegram.ui.eb v;
 
     public fq(Activity activity, TLRPC.Chat chat) {
         super(1, (Context) activity, (org.telegram.ui.ActionBar.d6) null, false);
         int i10;
         this.h = new int[2];
-        this.f26548e = true;
+        this.f26553e = true;
         setApplyBottomPadding(false);
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(chat.f20038id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(chat.f20042id);
         if (chatFull != null) {
             i10 = chatFull.ttl_period;
         } else {
             i10 = 0;
         }
         if (i10 == 0) {
-            this.f26550n = 0;
-            this.f26551r = 0;
+            this.f26555n = 0;
+            this.f26556r = 0;
         } else if (i10 == 86400) {
-            this.f26550n = 1;
-            this.f26551r = 1;
+            this.f26555n = 1;
+            this.f26556r = 1;
         } else if (i10 == 604800) {
-            this.f26550n = 2;
-            this.f26551r = 2;
+            this.f26555n = 2;
+            this.f26556r = 2;
         } else {
-            this.f26550n = 3;
-            this.f26551r = 3;
+            this.f26555n = 3;
+            this.f26556r = 3;
         }
         Drawable mutate = activity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.f26546b = mutate;
-        int i11 = org.telegram.ui.ActionBar.i6.f20890h5;
+        this.f26551b = mutate;
+        int i11 = org.telegram.ui.ActionBar.i6.f20894h5;
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
         bq bqVar = new bq(this, activity);
         bqVar.setFillViewport(true);
@@ -66,7 +66,7 @@ public final class fq extends org.telegram.ui.ActionBar.f3 {
         bqVar.setPadding(i12, 0, i12, 0);
         this.containerView = bqVar;
         cq cqVar = new cq(this, activity);
-        this.f26547c = cqVar;
+        this.f26552c = cqVar;
         cqVar.setOrientation(1);
         bqVar.addView(cqVar, w7.z5.x(-1, -2, 80));
         setCustomView(cqVar);
@@ -79,13 +79,13 @@ public final class fq extends org.telegram.ui.ActionBar.f3 {
         imageView.d();
         cqVar.addView((View) imageView, w7.z5.t(160, 160, 49, 17, 0, 17, 0));
         TextView textView = new TextView(activity);
-        org.telegram.messenger.ok.k(24.0f, 1, textView);
-        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20926j5));
+        org.telegram.messenger.bi.j(24.0f, 1, textView);
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20930j5));
         textView.setText(LocaleController.getString(R.string.AutoDeleteAlertTitle));
         cqVar.addView(textView, w7.z5.t(-2, -2, 49, 17, 18, 17, 0));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.f21077r5));
+        textView2.setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.f21081r5));
         textView2.setGravity(1);
         if (ChatObject.isChannel(chat) && !chat.megagroup) {
             textView2.setText(LocaleController.getString(R.string.AutoDeleteAlertChannelInfo));
@@ -95,11 +95,11 @@ public final class fq extends org.telegram.ui.ActionBar.f3 {
         cqVar.addView(textView2, w7.z5.t(-2, -2, 49, 30, 22, 30, 20));
         pw0 pw0Var = new pw0(activity, null);
         pw0Var.setCallback(new dq(this, bqVar));
-        pw0Var.b(this.f26550n, null, LocaleController.getString(R.string.AutoDeleteNever), LocaleController.getString(R.string.AutoDelete24Hours), LocaleController.getString(R.string.AutoDelete7Days), LocaleController.getString(R.string.AutoDelete1Month));
+        pw0Var.b(this.f26555n, null, LocaleController.getString(R.string.AutoDeleteNever), LocaleController.getString(R.string.AutoDelete24Hours), LocaleController.getString(R.string.AutoDelete7Days), LocaleController.getString(R.string.AutoDelete1Month));
         cqVar.addView(pw0Var, w7.z5.k(0.0f, 8.0f, 0.0f, 0.0f, -1, -2));
         FrameLayout frameLayout = new FrameLayout(activity);
-        sq sqVar = new sq(new ColorDrawable(getThemedColor(org.telegram.ui.ActionBar.i6.f20762a7)), org.telegram.ui.ActionBar.i6.V0(activity, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f20782b7));
-        sqVar.f30857w = true;
+        sq sqVar = new sq(new ColorDrawable(getThemedColor(org.telegram.ui.ActionBar.i6.f20766a7)), org.telegram.ui.ActionBar.i6.V0(activity, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f20786b7));
+        sqVar.f30863w = true;
         frameLayout.setBackgroundDrawable(sqVar);
         cqVar.addView(frameLayout, w7.z5.n(-1, -2));
         org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(activity, null);
@@ -109,25 +109,25 @@ public final class fq extends org.telegram.ui.ActionBar.f3 {
         this.d = eqVar;
         eqVar.setBackgroundColor(getThemedColor(i11));
         eqVar.setText(LocaleController.getString(R.string.AutoDeleteSet));
-        eqVar.f26102a.setOnClickListener(new f0(this, 9));
+        eqVar.f26107a.setOnClickListener(new f0(this, 9));
         frameLayout.addView(eqVar);
         p(false);
     }
 
     public static void m(fq fqVar) {
         float f7;
-        View childAt = fqVar.f26547c.getChildAt(0);
+        View childAt = fqVar.f26552c.getChildAt(0);
         int[] iArr = fqVar.h;
         childAt.getLocationInWindow(iArr);
         int i10 = iArr[1];
-        if (fqVar.f26548e) {
+        if (fqVar.f26553e) {
             f7 = 6.0f;
         } else {
             f7 = 19.0f;
         }
         int max = Math.max(i10 - AndroidUtilities.dp(f7), 0);
-        if (fqVar.f26549f != max) {
-            fqVar.f26549f = max;
+        if (fqVar.f26554f != max) {
+            fqVar.f26554f = max;
             fqVar.containerView.invalidate();
         }
     }
@@ -138,10 +138,10 @@ public final class fq extends org.telegram.ui.ActionBar.f3 {
     }
 
     public final void p(boolean z10) {
-        int i10 = this.f26550n;
-        int i11 = this.f26551r;
+        int i10 = this.f26555n;
+        int i11 = this.f26556r;
         eq eqVar = this.d;
-        if (i10 == i11 && !this.f26548e) {
+        if (i10 == i11 && !this.f26553e) {
             if (z10) {
                 eqVar.animate().alpha(0.0f).setDuration(180L).start();
                 return;

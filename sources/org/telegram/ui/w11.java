@@ -13,12 +13,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class w11 extends org.telegram.ui.ActionBar.j {
-    public final Context f41889a;
-    public final ProxyListActivity f41890b;
+    public final Context f41896a;
+    public final ProxyListActivity f41897b;
 
     public w11(ProxyListActivity proxyListActivity, Context context) {
-        this.f41890b = proxyListActivity;
-        this.f41889a = context;
+        this.f41897b = proxyListActivity;
+        this.f41896a = context;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class w11 extends org.telegram.ui.ActionBar.j {
         int i12;
         StringBuilder sb2;
         boolean z10;
-        ProxyListActivity proxyListActivity = this.f41890b;
+        ProxyListActivity proxyListActivity = this.f41897b;
         ArrayList arrayList = proxyListActivity.F;
         if (i10 != -1) {
             int i13 = 1;
@@ -44,11 +44,11 @@ public final class w11 extends org.telegram.ui.ActionBar.j {
                             sb3.append("\n\n");
                         }
                         qi.b bVar = proxyInfo.settings;
-                        String str = bVar.f45516e;
+                        String str = bVar.f45523e;
                         String str2 = bVar.d;
-                        String str3 = bVar.f45514b;
-                        String str4 = bVar.f45517f;
-                        int i15 = bVar.f45513a;
+                        String str3 = bVar.f45521b;
+                        String str4 = bVar.f45524f;
+                        int i15 = bVar.f45520a;
                         int c10 = m1.j.c(i15);
                         if (c10 != i13) {
                             if (c10 != 2) {
@@ -64,7 +64,7 @@ public final class w11 extends org.telegram.ui.ActionBar.j {
                             sb2.append(URLEncoder.encode(str3, "UTF-8"));
                             if (i15 != 3) {
                                 sb2.append("&port=");
-                                sb2.append(bVar.f45515c);
+                                sb2.append(bVar.f45522c);
                             }
                             if (!TextUtils.isEmpty(str2)) {
                                 sb2.append("&user=");
@@ -112,8 +112,8 @@ public final class w11 extends org.telegram.ui.ActionBar.j {
                     }
                     Intent createChooser = Intent.createChooser(intent, LocaleController.getString(i12));
                     createChooser.setFlags(268435456);
-                    this.f41889a.startActivity(createChooser);
-                    x11 x11Var = proxyListActivity.f34383a;
+                    this.f41896a.startActivity(createChooser);
+                    x11 x11Var = proxyListActivity.f34389a;
                     if (x11Var != null) {
                         x11Var.F();
                         return;
@@ -128,20 +128,20 @@ public final class w11 extends org.telegram.ui.ActionBar.j {
             } else {
                 i11 = R.string.DeleteProxyConfirm;
             }
-            alertDialog$Builder.f20368a.T = LocaleController.getString(i11);
+            alertDialog$Builder.f20372a.T = LocaleController.getString(i11);
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.DeleteProxyTitle);
+            alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.DeleteProxyTitle);
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new jl0(this, 15));
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20368a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
             proxyListActivity.showDialog(b2Var);
             TextView textView = (TextView) b2Var.d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21059q7, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21063q7, false));
             }
         } else if (arrayList.isEmpty()) {
             proxyListActivity.finishFragment();
         } else {
-            proxyListActivity.f34383a.F();
+            proxyListActivity.f34389a.F();
         }
     }
 }

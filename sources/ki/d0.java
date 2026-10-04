@@ -14,14 +14,14 @@ import org.telegram.ui.Components.s81;
 import org.telegram.ui.jk;
 import org.telegram.ui.re;
 public final class d0 implements Runnable {
-    public final int f14863a;
-    public final s0 f14864b;
-    public final long f14865c;
+    public final int f14864a;
+    public final s0 f14865b;
+    public final long f14866c;
 
     public d0(s0 s0Var, long j3, int i10) {
-        this.f14863a = i10;
-        this.f14864b = s0Var;
-        this.f14865c = j3;
+        this.f14864a = i10;
+        this.f14865b = s0Var;
+        this.f14866c = j3;
     }
 
     @Override
@@ -38,40 +38,40 @@ public final class d0 implements Runnable {
         jk jkVar;
         s81 s81Var;
         b2.c0 c0Var;
-        switch (this.f14863a) {
+        switch (this.f14864a) {
             case 0:
-                s0 s0Var = this.f14864b;
-                long j12 = this.f14865c;
+                s0 s0Var = this.f14865b;
+                long j12 = this.f14866c;
                 if (s0Var.W == 6) {
                     s0Var.E = j12;
                     s0Var.K = 0L;
                     s0Var.G = 0L;
                     s0Var.H = j12;
                     s0Var.v(2);
-                    s0Var.f15052l.C(s0Var.Q, s0Var.E * 1000, s0Var.f15056p);
+                    s0Var.f15053l.C(s0Var.Q, s0Var.E * 1000, s0Var.f15057p);
                     return;
                 }
                 return;
             default:
-                s0 s0Var2 = this.f14864b;
-                long j13 = this.f14865c;
+                s0 s0Var2 = this.f14865b;
+                long j13 = this.f14866c;
                 if (s0Var2.W == 4) {
                     s0Var2.K = j13;
-                    long min = Math.min(s0Var2.f15055o, j13);
+                    long min = Math.min(s0Var2.f15056o, j13);
                     s0Var2.E = min;
                     s0Var2.G = 0L;
                     s0Var2.H = min;
-                    s0Var2.f15044b.setSurfaceTextureListener(null);
-                    s0Var2.f15044b.setTransform(s0Var2.h);
-                    i2.f0 a2 = new i2.p(s0Var2.f15043a).a();
+                    s0Var2.f15045b.setSurfaceTextureListener(null);
+                    s0Var2.f15045b.setTransform(s0Var2.h);
+                    i2.f0 a2 = new i2.p(s0Var2.f15044a).a();
                     s0Var2.S = a2;
-                    a2.v1(s0Var2.f15044b);
+                    a2.v1(s0Var2.f15045b);
                     i2.f0 f0Var2 = s0Var2.S;
                     Uri fromFile = Uri.fromFile(s0Var2.R);
                     b2.y yVar = new b2.y();
                     b2.b0 b0Var = new b2.b0();
                     List list = Collections.EMPTY_LIST;
-                    a1 a1Var = a1.f8720e;
+                    a1 a1Var = a1.f8721e;
                     b2.d0 d0Var2 = new b2.d0();
                     b2.g0 g0Var = b2.g0.d;
                     if (b0Var.f3165b != null && b0Var.f3164a == null) {
@@ -106,17 +106,17 @@ public final class d0 implements Runnable {
                     s0Var2.S.n0(s0Var2.V);
                     s0Var2.S.b();
                     s0Var2.S.W0(5, s0Var2.G);
-                    s0Var2.f15053m.b("preview player prepared: durationMs=" + s0Var2.E + ", trim=" + s0Var2.G + ".." + s0Var2.H);
+                    s0Var2.f15054m.b("preview player prepared: durationMs=" + s0Var2.E + ", trim=" + s0Var2.G + ".." + s0Var2.H);
                     s0Var2.v(5);
                     l2.g gVar = s0Var2.d;
                     long j14 = s0Var2.E;
                     long j15 = s0Var2.G;
                     long j16 = s0Var2.H;
-                    ((e60) gVar.f15267b).f25966w.setProgress(((float) j14) / 60000.0f);
-                    e60 e60Var = (e60) gVar.f15267b;
-                    e60Var.f25949h0 = r32;
+                    ((e60) gVar.f15268b).f25971w.setProgress(((float) j14) / 60000.0f);
+                    e60 e60Var = (e60) gVar.f15268b;
+                    e60Var.f25954h0 = r32;
                     e60Var.I.setAlpha(0.0f);
-                    s0 s0Var3 = ((e60) gVar.f15267b).P;
+                    s0 s0Var3 = ((e60) gVar.f15268b).P;
                     if (s0Var3 == null) {
                         file = null;
                     } else {
@@ -124,9 +124,9 @@ public final class d0 implements Runnable {
                         file = s0Var3.R;
                     }
                     if (file != null) {
-                        e60 e60Var2 = (e60) gVar.f15267b;
+                        e60 e60Var2 = (e60) gVar.f15268b;
                         e60Var2.U = e60Var2.p(file, j14, null);
-                        e60 e60Var3 = (e60) gVar.f15267b;
+                        e60 e60Var3 = (e60) gVar.f15268b;
                         VideoEditedInfo videoEditedInfo = e60Var3.U;
                         if (j15 > j3) {
                             j10 = j15;
@@ -142,8 +142,8 @@ public final class d0 implements Runnable {
                         videoEditedInfo.endTime = j11;
                         NotificationCenter notificationCenter = NotificationCenter.getInstance(e60Var3.h);
                         int i10 = NotificationCenter.audioDidSent;
-                        Integer valueOf = Integer.valueOf(((e60) gVar.f15267b).f25954n);
-                        VideoEditedInfo videoEditedInfo2 = ((e60) gVar.f15267b).U;
+                        Integer valueOf = Integer.valueOf(((e60) gVar.f15268b).f25959n);
+                        VideoEditedInfo videoEditedInfo2 = ((e60) gVar.f15268b).U;
                         String absolutePath = file.getAbsolutePath();
                         ArrayList arrayList = new ArrayList();
                         Object[] objArr = new Object[4];
@@ -155,11 +155,11 @@ public final class d0 implements Runnable {
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        j60 j60Var = ((e60) gVar.f15267b).f27968b;
-                        if (j60Var != null && (jkVar = ((re) j60Var).f40103b.W) != null && (s81Var = jkVar.f23883f1) != null) {
+                        j60 j60Var = ((e60) gVar.f15268b).f27973b;
+                        if (j60Var != null && (jkVar = ((re) j60Var).f40108b.W) != null && (s81Var = jkVar.f23887f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            s81Var.f30651b = max2;
-                            s81Var.f30652c = Math.max(max2, Math.min(1.0f, f10));
+                            s81Var.f30657b = max2;
+                            s81Var.f30658c = Math.max(max2, Math.min(1.0f, f10));
                             s81Var.invalidate();
                         }
                     }

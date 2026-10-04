@@ -17,11 +17,11 @@ public final class e {
     public final ve a() {
         ?? obj = new Object();
         Boolean bool = Boolean.FALSE;
-        obj.f4602a = bool;
-        obj.f4603b = Boolean.valueOf(this.f414a);
-        obj.f4604c = Boolean.valueOf(this.f415b);
+        obj.f4603a = bool;
+        obj.f4604b = Boolean.valueOf(this.f414a);
+        obj.f4605c = Boolean.valueOf(this.f415b);
         obj.d = bool;
-        obj.f4605e = Boolean.valueOf(this.f416c);
+        obj.f4606e = Boolean.valueOf(this.f416c);
         return new ve(obj);
     }
 

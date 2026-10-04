@@ -12,39 +12,39 @@ public final class d implements View.OnTouchListener {
     public boolean E;
     public boolean F;
     public final r1 G;
-    public final a f47175a;
-    public final AccelerateInterpolator f47176b;
-    public final r1 f47177c;
+    public final a f47183a;
+    public final AccelerateInterpolator f47184b;
+    public final r1 f47185c;
     public c1 d;
-    public final float[] f47178e;
-    public final float[] f47179f;
+    public final float[] f47186e;
+    public final float[] f47187f;
     public final int h;
-    public final int f47180n;
-    public final float[] f47181r;
-    public final float[] f47182s;
+    public final int f47188n;
+    public final float[] f47189r;
+    public final float[] f47190s;
     public final float[] v;
-    public boolean f47183w;
-    public boolean f47184x;
-    public boolean f47185y;
+    public boolean f47191w;
+    public boolean f47192x;
+    public boolean f47193y;
 
     public d(r1 r1Var) {
         ?? obj = new Object();
-        obj.f47171e = Long.MIN_VALUE;
-        obj.f47173g = -1L;
-        obj.f47172f = 0L;
-        this.f47175a = obj;
-        this.f47176b = new AccelerateInterpolator();
+        obj.f47179e = Long.MIN_VALUE;
+        obj.f47181g = -1L;
+        obj.f47180f = 0L;
+        this.f47183a = obj;
+        this.f47184b = new AccelerateInterpolator();
         float[] fArr = {0.0f, 0.0f};
-        this.f47178e = fArr;
+        this.f47186e = fArr;
         float[] fArr2 = {Float.MAX_VALUE, Float.MAX_VALUE};
-        this.f47179f = fArr2;
+        this.f47187f = fArr2;
         float[] fArr3 = {0.0f, 0.0f};
-        this.f47181r = fArr3;
+        this.f47189r = fArr3;
         float[] fArr4 = {0.0f, 0.0f};
-        this.f47182s = fArr4;
+        this.f47190s = fArr4;
         float[] fArr5 = {Float.MAX_VALUE, Float.MAX_VALUE};
         this.v = fArr5;
-        this.f47177c = r1Var;
+        this.f47185c = r1Var;
         float f7 = Resources.getSystem().getDisplayMetrics().density;
         float f10 = ((int) ((1575.0f * f7) + 0.5f)) / 1000.0f;
         fArr5[0] = f10;
@@ -59,9 +59,9 @@ public final class d implements View.OnTouchListener {
         fArr[1] = 0.2f;
         fArr3[0] = 0.001f;
         fArr3[1] = 0.001f;
-        this.f47180n = H;
-        obj.f47168a = 500;
-        obj.f47169b = 500;
+        this.f47188n = H;
+        obj.f47176a = 500;
+        obj.f47177b = 500;
         this.G = r1Var;
     }
 
@@ -100,31 +100,31 @@ public final class d implements View.OnTouchListener {
 
     public final void d() {
         int i10 = 0;
-        if (this.f47184x) {
+        if (this.f47192x) {
             this.E = false;
             return;
         }
         long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-        a aVar = this.f47175a;
-        int i11 = (int) (currentAnimationTimeMillis - aVar.f47171e);
-        int i12 = aVar.f47169b;
+        a aVar = this.f47183a;
+        int i11 = (int) (currentAnimationTimeMillis - aVar.f47179e);
+        int i12 = aVar.f47177b;
         if (i11 > i12) {
             i10 = i12;
         } else if (i11 >= 0) {
             i10 = i11;
         }
-        aVar.f47174i = i10;
+        aVar.f47182i = i10;
         aVar.h = aVar.a(currentAnimationTimeMillis);
-        aVar.f47173g = currentAnimationTimeMillis;
+        aVar.f47181g = currentAnimationTimeMillis;
     }
 
     public final boolean e() {
         r1 r1Var;
         int count;
-        a aVar = this.f47175a;
+        a aVar = this.f47183a;
         float f7 = aVar.d;
         int abs = (int) (f7 / Math.abs(f7));
-        Math.abs(aVar.f47170c);
+        Math.abs(aVar.f47178c);
         if (abs != 0 && (count = (r1Var = this.G).getCount()) != 0) {
             int childCount = r1Var.getChildCount();
             int firstVisiblePosition = r1Var.getFirstVisiblePosition();

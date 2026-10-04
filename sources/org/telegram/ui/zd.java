@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public class zd extends LinearLayout {
-    public static float f43750b = 1.0f;
-    public final int f43751a;
+    public static float f43757b = 1.0f;
+    public final int f43758a;
 
     public zd(Context context, int i10) {
         super(context);
-        this.f43751a = i10;
+        this.f43758a = i10;
     }
 
     @Override
@@ -21,13 +21,13 @@ public class zd extends LinearLayout {
         View childAt;
         boolean z10;
         boolean z11;
-        switch (this.f43751a) {
+        switch (this.f43758a) {
             case 4:
                 if (getParent() instanceof org.telegram.ui.Components.ro0) {
                     org.telegram.ui.Components.ro0 ro0Var = (org.telegram.ui.Components.ro0) getParent();
                     canvas.save();
-                    LinearLayout linearLayout = ro0Var.f30481b;
-                    Path path = ro0Var.f30485n;
+                    LinearLayout linearLayout = ro0Var.f30487b;
+                    Path path = ro0Var.f30491n;
                     if (view != null && org.telegram.ui.Components.ro0.e(view)) {
                         int indexOfChild = linearLayout.indexOfChild(view);
                         int i10 = indexOfChild - 1;
@@ -73,7 +73,7 @@ public class zd extends LinearLayout {
                         }
                         if (!z10 && !z11) {
                             path.rewind();
-                            float f7 = ro0Var.f30482c;
+                            float f7 = ro0Var.f30488c;
                             path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z10) {
@@ -82,7 +82,7 @@ public class zd extends LinearLayout {
                             canvas.clipPath(path);
                         } else if (!z11) {
                             path.rewind();
-                            path.addRoundRect(rectF, ro0Var.f30483e, Path.Direction.CW);
+                            path.addRoundRect(rectF, ro0Var.f30489e, Path.Direction.CW);
                             canvas.clipPath(path);
                         }
                     }
@@ -98,7 +98,7 @@ public class zd extends LinearLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f43751a) {
+        switch (this.f43758a) {
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
                 setPivotX(getWidth());
@@ -119,7 +119,7 @@ public class zd extends LinearLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f43751a) {
+        switch (this.f43758a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
                 return;
@@ -159,7 +159,7 @@ public class zd extends LinearLayout {
 
     public zd(Context context) {
         super(context);
-        this.f43751a = 4;
+        this.f43758a = 4;
         setWillNotDraw(false);
     }
 }

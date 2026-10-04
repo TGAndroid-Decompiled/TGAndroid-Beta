@@ -6,32 +6,32 @@ import java.util.ArrayList;
 import yh.q8;
 import yh.r8;
 public final class w implements ValueAnimator.AnimatorUpdateListener {
-    public final int f53540a;
-    public final Object f53541b;
-    public final Object f53542c;
+    public final int f53545a;
+    public final Object f53546b;
+    public final Object f53547c;
 
     public w(int i10, Object obj, Object obj2) {
-        this.f53540a = i10;
-        this.f53541b = obj;
-        this.f53542c = obj2;
+        this.f53545a = i10;
+        this.f53546b = obj;
+        this.f53547c = obj2;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f53540a) {
+        switch (this.f53545a) {
             case 0:
-                b0 b0Var = (b0) this.f53541b;
-                ArrayList arrayList = (ArrayList) this.f53542c;
+                b0 b0Var = (b0) this.f53546b;
+                ArrayList arrayList = (ArrayList) this.f53547c;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     b0.g((View) arrayList.get(i10), floatValue);
                 }
-                b0Var.f53327m.f35321k0.invalidate();
+                b0Var.f53332m.f35326k0.invalidate();
                 return;
             default:
-                r8 r8Var = (r8) this.f53541b;
+                r8 r8Var = (r8) this.f53546b;
                 r8Var.getClass();
-                ((q8) this.f53542c).d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((q8) this.f53547c).d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 r8Var.a1();
                 return;
         }

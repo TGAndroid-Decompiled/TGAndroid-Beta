@@ -14,27 +14,27 @@ import zd.f1;
 import zd.g2;
 import zd.w0;
 public abstract class a {
-    public static final com.google.android.gms.internal.clearcut.e f8860a = new com.google.android.gms.internal.clearcut.e("NO_DECISION", 1);
-    public static final com.google.android.gms.internal.clearcut.e f8861b = new com.google.android.gms.internal.clearcut.e("CLOSED", 1);
-    public static final com.google.android.gms.internal.clearcut.e f8862c = new com.google.android.gms.internal.clearcut.e("UNDEFINED", 1);
+    public static final com.google.android.gms.internal.clearcut.e f8861a = new com.google.android.gms.internal.clearcut.e("NO_DECISION", 1);
+    public static final com.google.android.gms.internal.clearcut.e f8862b = new com.google.android.gms.internal.clearcut.e("CLOSED", 1);
+    public static final com.google.android.gms.internal.clearcut.e f8863c = new com.google.android.gms.internal.clearcut.e("UNDEFINED", 1);
     public static final com.google.android.gms.internal.clearcut.e d = new com.google.android.gms.internal.clearcut.e("REUSABLE_CLAIMED", 1);
-    public static final com.google.android.gms.internal.clearcut.e f8863e = new com.google.android.gms.internal.clearcut.e("CONDITION_FALSE", 1);
-    public static final com.google.android.gms.internal.clearcut.e f8864f = new com.google.android.gms.internal.clearcut.e("NO_THREAD_ELEMENTS", 1);
+    public static final com.google.android.gms.internal.clearcut.e f8864e = new com.google.android.gms.internal.clearcut.e("CONDITION_FALSE", 1);
+    public static final com.google.android.gms.internal.clearcut.e f8865f = new com.google.android.gms.internal.clearcut.e("NO_THREAD_ELEMENTS", 1);
 
     public static final Object a(t tVar, long j3, rd.p pVar) {
         while (true) {
-            if (tVar.f8892c >= j3 && !tVar.d()) {
+            if (tVar.f8893c >= j3 && !tVar.d()) {
                 return tVar;
             }
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f8867a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f8868a;
             Object obj = atomicReferenceFieldUpdater.get(tVar);
-            com.google.android.gms.internal.clearcut.e eVar = f8861b;
+            com.google.android.gms.internal.clearcut.e eVar = f8862b;
             if (obj == eVar) {
                 return eVar;
             }
             t tVar2 = (t) ((d) obj);
             if (tVar2 == null) {
-                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f8892c + 1), tVar);
+                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f8893c + 1), tVar);
                 while (!atomicReferenceFieldUpdater.compareAndSet(tVar, null, tVar2)) {
                     if (atomicReferenceFieldUpdater.get(tVar) != null) {
                         break;
@@ -49,7 +49,7 @@ public abstract class a {
     }
 
     public static final t b(Object obj) {
-        if (obj != f8861b) {
+        if (obj != f8862b) {
             return (t) obj;
         }
         throw new IllegalStateException("Does not contain segment");
@@ -57,7 +57,7 @@ public abstract class a {
 
     public static final void c(id.h hVar, Throwable th2) {
         Throwable runtimeException;
-        for (ae.b bVar : f.f8870a) {
+        for (ae.b bVar : f.f8871a) {
             try {
                 bVar.c(th2);
             } catch (Throwable th3) {
@@ -80,7 +80,7 @@ public abstract class a {
     }
 
     public static final boolean d(Object obj) {
-        if (obj == f8861b) {
+        if (obj == f8862b) {
             return true;
         }
         return false;
@@ -101,22 +101,22 @@ public abstract class a {
     }
 
     public static final void f(id.h hVar, Object obj) {
-        if (obj != f8864f) {
+        if (obj != f8865f) {
             if (obj instanceof y) {
                 y yVar = (y) obj;
-                b2[] b2VarArr = yVar.f8901b;
+                b2[] b2VarArr = yVar.f8902b;
                 int length = b2VarArr.length - 1;
                 if (length < 0) {
                     return;
                 }
                 b2 b2Var = b2VarArr[length];
                 kotlin.jvm.internal.i.b(null);
-                Object obj2 = yVar.f8900a[length];
+                Object obj2 = yVar.f8901a[length];
                 throw null;
             }
             Object fold = hVar.fold(null, w.d);
             kotlin.jvm.internal.i.c(fold, "null cannot be cast to non-null type kotlinx.coroutines.ThreadContextElement<kotlin.Any?>");
-            a4.a.y(fold);
+            a4.a.z(fold);
             throw null;
         }
     }
@@ -127,7 +127,7 @@ public abstract class a {
         if (cVar instanceof h) {
             h hVar = (h) cVar;
             a0 a0Var = hVar.d;
-            kd.c cVar2 = hVar.f8873e;
+            kd.c cVar2 = hVar.f8874e;
             Throwable a2 = gd.f.a(obj);
             if (a2 == null) {
                 vVar = obj;
@@ -136,26 +136,26 @@ public abstract class a {
             }
             cVar2.getContext();
             if (a0Var.e()) {
-                hVar.f8874f = vVar;
-                hVar.f53238c = 1;
+                hVar.f8875f = vVar;
+                hVar.f53243c = 1;
                 a0Var.c(cVar2.getContext(), hVar);
                 return;
             }
             w0 a10 = c2.a();
-            if (a10.f53284c >= 4294967296L) {
-                hVar.f8874f = vVar;
-                hVar.f53238c = 1;
-                hd.e eVar = a10.f53285e;
+            if (a10.f53289c >= 4294967296L) {
+                hVar.f8875f = vVar;
+                hVar.f53243c = 1;
+                hd.e eVar = a10.f53290e;
                 if (eVar == null) {
                     eVar = new hd.e();
-                    a10.f53285e = eVar;
+                    a10.f53290e = eVar;
                 }
                 eVar.addLast(hVar);
                 return;
             }
             a10.h(true);
             try {
-                f1 f1Var = (f1) cVar2.getContext().get(b0.f53195b);
+                f1 f1Var = (f1) cVar2.getContext().get(b0.f53200b);
                 if (f1Var != null && !f1Var.isActive()) {
                     CancellationException cancellationException = f1Var.getCancellationException();
                     hVar.c(vVar, cancellationException);
@@ -164,7 +164,7 @@ public abstract class a {
                     Object obj2 = hVar.h;
                     id.h context = cVar2.getContext();
                     Object k10 = k(context, obj2);
-                    if (k10 != f8864f) {
+                    if (k10 != f8865f) {
                         g2Var = e0.v(cVar2, context, k10);
                     } else {
                         g2Var = null;
@@ -203,16 +203,16 @@ public abstract class a {
 
     public static final Object k(id.h hVar, Object obj) {
         if (obj == null) {
-            obj = hVar.fold(0, w.f8895c);
+            obj = hVar.fold(0, w.f8896c);
             kotlin.jvm.internal.i.b(obj);
         }
         if (obj == 0) {
-            return f8864f;
+            return f8865f;
         }
         if (obj instanceof Integer) {
-            return hVar.fold(new y(((Number) obj).intValue(), hVar), w.f8896e);
+            return hVar.fold(new y(((Number) obj).intValue(), hVar), w.f8897e);
         }
-        a4.a.y(obj);
+        a4.a.z(obj);
         throw null;
     }
 }

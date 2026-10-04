@@ -13,26 +13,26 @@ import m.v0;
 import m.w0;
 import r0.i0;
 public final class a0 {
-    public int f8522a;
-    public int f8523b;
-    public Object f8524c = new long[10];
+    public int f8523a;
+    public int f8524b;
+    public Object f8525c = new long[10];
     public Object d = new Object[10];
 
     public synchronized void a(Object obj, long j3) {
-        int i10 = this.f8523b;
+        int i10 = this.f8524b;
         if (i10 > 0) {
-            if (j3 <= ((long[]) this.f8524c)[((this.f8522a + i10) - 1) % ((Object[]) this.d).length]) {
+            if (j3 <= ((long[]) this.f8525c)[((this.f8523a + i10) - 1) % ((Object[]) this.d).length]) {
                 c();
             }
         }
         d();
-        int i11 = this.f8522a;
-        int i12 = this.f8523b;
+        int i11 = this.f8523a;
+        int i12 = this.f8524b;
         Object[] objArr = (Object[]) this.d;
         int length = (i11 + i12) % objArr.length;
-        ((long[]) this.f8524c)[length] = j3;
+        ((long[]) this.f8525c)[length] = j3;
         objArr[length] = obj;
-        this.f8523b = i12 + 1;
+        this.f8524b = i12 + 1;
     }
 
     public void b() {
@@ -40,38 +40,38 @@ public final class a0 {
     }
 
     public synchronized void c() {
-        this.f8522a = 0;
-        this.f8523b = 0;
+        this.f8523a = 0;
+        this.f8524b = 0;
         Arrays.fill((Object[]) this.d, (Object) null);
     }
 
     public void d() {
         int length = ((Object[]) this.d).length;
-        if (this.f8523b < length) {
+        if (this.f8524b < length) {
             return;
         }
         int i10 = length * 2;
         long[] jArr = new long[i10];
         Object[] objArr = new Object[i10];
-        int i11 = this.f8522a;
+        int i11 = this.f8523a;
         int i12 = length - i11;
-        System.arraycopy((long[]) this.f8524c, i11, jArr, 0, i12);
-        System.arraycopy((Object[]) this.d, this.f8522a, objArr, 0, i12);
-        int i13 = this.f8522a;
+        System.arraycopy((long[]) this.f8525c, i11, jArr, 0, i12);
+        System.arraycopy((Object[]) this.d, this.f8523a, objArr, 0, i12);
+        int i13 = this.f8523a;
         if (i13 > 0) {
-            System.arraycopy((long[]) this.f8524c, 0, jArr, i12, i13);
-            System.arraycopy((Object[]) this.d, 0, objArr, i12, this.f8522a);
+            System.arraycopy((long[]) this.f8525c, 0, jArr, i12, i13);
+            System.arraycopy((Object[]) this.d, 0, objArr, i12, this.f8523a);
         }
-        this.f8524c = jArr;
+        this.f8525c = jArr;
         this.d = objArr;
-        this.f8522a = 0;
+        this.f8523a = 0;
     }
 
     public void e(Typeface typeface) {
         int i10;
         boolean z10;
-        if (Build.VERSION.SDK_INT >= 28 && (i10 = this.f8522a) != -1) {
-            if ((this.f8523b & 2) != 0) {
+        if (Build.VERSION.SDK_INT >= 28 && (i10 = this.f8523a) != -1) {
+            if ((this.f8524b & 2) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -79,16 +79,16 @@ public final class a0 {
             typeface = v0.a(typeface, i10, z10);
         }
         w0 w0Var = (w0) this.d;
-        WeakReference weakReference = (WeakReference) this.f8524c;
-        if (w0Var.f15913m) {
-            w0Var.f15912l = typeface;
+        WeakReference weakReference = (WeakReference) this.f8525c;
+        if (w0Var.f15917m) {
+            w0Var.f15916l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = i0.f45596a;
+                WeakHashMap weakHashMap = i0.f45603a;
                 if (textView.isAttachedToWindow()) {
-                    textView.post(new androidx.activity.g(textView, typeface, w0Var.f15910j, 5));
+                    textView.post(new androidx.activity.g(textView, typeface, w0Var.f15914j, 5));
                 } else {
-                    textView.setTypeface(typeface, w0Var.f15910j);
+                    textView.setTypeface(typeface, w0Var.f15914j);
                 }
             }
         }
@@ -96,7 +96,7 @@ public final class a0 {
 
     public synchronized Object f() {
         Object h;
-        if (this.f8523b == 0) {
+        if (this.f8524b == 0) {
             h = null;
         } else {
             h = h();
@@ -107,7 +107,7 @@ public final class a0 {
     public synchronized Object g(long j3) {
         Object obj;
         obj = null;
-        while (this.f8523b > 0 && j3 - ((long[]) this.f8524c)[this.f8522a] >= 0) {
+        while (this.f8524b > 0 && j3 - ((long[]) this.f8525c)[this.f8523a] >= 0) {
             obj = h();
         }
         return obj;
@@ -115,22 +115,22 @@ public final class a0 {
 
     public Object h() {
         boolean z10;
-        if (this.f8523b > 0) {
+        if (this.f8524b > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         d.g(z10);
         Object[] objArr = (Object[]) this.d;
-        int i10 = this.f8522a;
+        int i10 = this.f8523a;
         Object obj = objArr[i10];
         objArr[i10] = null;
-        this.f8522a = (i10 + 1) % objArr.length;
-        this.f8523b--;
+        this.f8523a = (i10 + 1) % objArr.length;
+        this.f8524b--;
         return obj;
     }
 
     public synchronized int i() {
-        return this.f8523b;
+        return this.f8524b;
     }
 }

@@ -1,82 +1,82 @@
 package u2;
 public final class o1 implements d0, c0 {
-    public final d0 f47351a;
-    public final long f47352b;
-    public c0 f47353c;
+    public final d0 f47359a;
+    public final long f47360b;
+    public c0 f47361c;
 
     public o1(d0 d0Var, long j3) {
-        this.f47351a = d0Var;
-        this.f47352b = j3;
+        this.f47359a = d0Var;
+        this.f47360b = j3;
     }
 
     @Override
     public final void b(d0 d0Var) {
-        c0 c0Var = this.f47353c;
+        c0 c0Var = this.f47361c;
         c0Var.getClass();
         c0Var.b(this);
     }
 
     @Override
     public final boolean c() {
-        return this.f47351a.c();
+        return this.f47359a.c();
     }
 
     @Override
     public final long d() {
-        long d = this.f47351a.d();
+        long d = this.f47359a.d();
         if (d == Long.MIN_VALUE) {
             return Long.MIN_VALUE;
         }
-        return d + this.f47352b;
+        return d + this.f47360b;
     }
 
     @Override
     public final void f(e1 e1Var) {
         d0 d0Var = (d0) e1Var;
-        c0 c0Var = this.f47353c;
+        c0 c0Var = this.f47361c;
         c0Var.getClass();
         c0Var.f(this);
     }
 
     @Override
     public final void g() {
-        this.f47351a.g();
+        this.f47359a.g();
     }
 
     @Override
     public final long h(long j3) {
-        long j10 = this.f47352b;
-        return this.f47351a.h(j3 - j10) + j10;
+        long j10 = this.f47360b;
+        return this.f47359a.h(j3 - j10) + j10;
     }
 
     @Override
     public final void i(long j3) {
-        this.f47351a.i(j3 - this.f47352b);
+        this.f47359a.i(j3 - this.f47360b);
     }
 
     @Override
     public final void k(c0 c0Var, long j3) {
-        this.f47353c = c0Var;
-        this.f47351a.k(this, j3 - this.f47352b);
+        this.f47361c = c0Var;
+        this.f47359a.k(this, j3 - this.f47360b);
     }
 
     @Override
     public final long l() {
-        long l4 = this.f47351a.l();
+        long l4 = this.f47359a.l();
         if (l4 == -9223372036854775807L) {
             return -9223372036854775807L;
         }
-        return l4 + this.f47352b;
+        return l4 + this.f47360b;
     }
 
     @Override
     public final boolean m(i2.s0 s0Var) {
         ?? obj = new Object();
-        long j3 = s0Var.f11835a;
-        obj.f11826b = s0Var.f11836b;
-        obj.f11827c = s0Var.f11837c;
-        obj.f11825a = j3 - this.f47352b;
-        return this.f47351a.m(new i2.s0(obj));
+        long j3 = s0Var.f11836a;
+        obj.f11827b = s0Var.f11837b;
+        obj.f11828c = s0Var.f11838c;
+        obj.f11826a = j3 - this.f47360b;
+        return this.f47359a.m(new i2.s0(obj));
     }
 
     @Override
@@ -90,13 +90,13 @@ public final class o1 implements d0, c0 {
             }
             n1 n1Var = (n1) c1VarArr[i10];
             if (n1Var != null) {
-                c1Var = n1Var.f47344a;
+                c1Var = n1Var.f47352a;
             }
             c1VarArr2[i10] = c1Var;
             i10++;
         }
-        d0 d0Var = this.f47351a;
-        long j10 = this.f47352b;
+        d0 d0Var = this.f47359a;
+        long j10 = this.f47360b;
         long n10 = d0Var.n(rVarArr, zArr, c1VarArr2, zArr2, j3 - j10);
         for (int i11 = 0; i11 < c1VarArr.length; i11++) {
             c1 c1Var2 = c1VarArr2[i11];
@@ -104,7 +104,7 @@ public final class o1 implements d0, c0 {
                 c1VarArr[i11] = null;
             } else {
                 c1 c1Var3 = c1VarArr[i11];
-                if (c1Var3 == null || ((n1) c1Var3).f47344a != c1Var2) {
+                if (c1Var3 == null || ((n1) c1Var3).f47352a != c1Var2) {
                     c1VarArr[i11] = new n1(c1Var2, j10);
                 }
             }
@@ -114,26 +114,26 @@ public final class o1 implements d0, c0 {
 
     @Override
     public final p1 o() {
-        return this.f47351a.o();
+        return this.f47359a.o();
     }
 
     @Override
     public final long p() {
-        long p5 = this.f47351a.p();
+        long p5 = this.f47359a.p();
         if (p5 == Long.MIN_VALUE) {
             return Long.MIN_VALUE;
         }
-        return p5 + this.f47352b;
+        return p5 + this.f47360b;
     }
 
     @Override
     public final long q(long j3, i2.q1 q1Var) {
-        long j10 = this.f47352b;
-        return this.f47351a.q(j3 - j10, q1Var) + j10;
+        long j10 = this.f47360b;
+        return this.f47359a.q(j3 - j10, q1Var) + j10;
     }
 
     @Override
     public final void r(long j3) {
-        this.f47351a.r(j3 - this.f47352b);
+        this.f47359a.r(j3 - this.f47360b);
     }
 }

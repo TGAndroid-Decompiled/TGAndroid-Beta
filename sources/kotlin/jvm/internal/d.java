@@ -12,9 +12,9 @@ import rd.v;
 import rd.w;
 import w7.w6;
 public final class d implements vd.c, c {
-    public static final Map f15106b;
-    public static final LinkedHashMap f15107c;
-    public final Class f15108a;
+    public static final Map f15107b;
+    public static final LinkedHashMap f15108c;
+    public final Class f15109a;
 
     static {
         int i10 = 0;
@@ -29,7 +29,7 @@ public final class d implements vd.c, c {
                 throw new ArithmeticException("Index overflow has happened.");
             }
         }
-        f15106b = hd.r.d(arrayList);
+        f15107b = hd.r.d(arrayList);
         HashMap hashMap = new HashMap();
         hashMap.put("boolean", "kotlin.Boolean");
         hashMap.put("char", "kotlin.Char");
@@ -79,7 +79,7 @@ public final class d implements vd.c, c {
             sb2.append("CompanionObject");
             hashMap3.put(sb2.toString(), str.concat(".Companion"));
         }
-        for (Map.Entry entry : f15106b.entrySet()) {
+        for (Map.Entry entry : f15107b.entrySet()) {
             int intValue = ((Number) entry.getValue()).intValue();
             String name = ((Class) entry.getKey()).getName();
             hashMap3.put(name, "kotlin.Function" + intValue);
@@ -91,17 +91,17 @@ public final class d implements vd.c, c {
             i.b(str2);
             linkedHashMap.put(key, xd.j.j(str2, str2));
         }
-        f15107c = linkedHashMap;
+        f15108c = linkedHashMap;
     }
 
     public d(Class jClass) {
         i.e(jClass, "jClass");
-        this.f15108a = jClass;
+        this.f15109a = jClass;
     }
 
     @Override
     public final Class a() {
-        return this.f15108a;
+        return this.f15109a;
     }
 
     public final boolean equals(Object obj) {
@@ -116,6 +116,6 @@ public final class d implements vd.c, c {
     }
 
     public final String toString() {
-        return this.f15108a + " (Kotlin reflection is not available)";
+        return this.f15109a + " (Kotlin reflection is not available)";
     }
 }

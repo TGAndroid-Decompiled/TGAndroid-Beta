@@ -9,14 +9,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 public final class di implements TextWatcher {
-    public boolean f25733a;
-    public boolean f25734b;
-    public final org.telegram.ui.ActionBar.n2 f25735c;
+    public boolean f25738a;
+    public boolean f25739b;
+    public final org.telegram.ui.ActionBar.n2 f25740c;
     public final xi d;
 
     public di(xi xiVar, org.telegram.ui.ActionBar.n2 n2Var) {
         this.d = xiVar;
-        this.f25735c = n2Var;
+        this.f25740c = n2Var;
     }
 
     @Override
@@ -26,28 +26,28 @@ public final class di implements TextWatcher {
         int i10;
         boolean z12;
         xi xiVar = this.d;
-        p6 p6Var = xiVar.f32852s;
+        p6 p6Var = xiVar.f32858s;
         bi biVar = xiVar.P0;
         int i11 = xiVar.J1;
         p6 p6Var2 = xiVar.v;
-        if (this.f25734b != TextUtils.isEmpty(editable)) {
-            pi piVar = xiVar.f32874y0;
+        if (this.f25739b != TextUtils.isEmpty(editable)) {
+            pi piVar = xiVar.f32880y0;
             if (piVar != null) {
                 piVar.A(piVar.getSelectedItemsCount());
             }
-            this.f25734b = !this.f25734b;
+            this.f25739b = !this.f25739b;
         }
         boolean z13 = false;
-        if (this.f25733a) {
+        if (this.f25738a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, biVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f25733a = false;
+            this.f25738a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         xiVar.L = codePointCount;
-        le.b bVar = xiVar.f32808e;
+        le.b bVar = xiVar.f32814e;
         if (codePointCount > 0) {
             z10 = true;
         } else {
@@ -76,10 +76,10 @@ public final class di implements TextWatcher {
             p6Var2.animate().setListener(null).cancel();
             p6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                p6Var2.setTextColor(xiVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21040p7));
+                p6Var2.setTextColor(xiVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21044p7));
                 z11 = false;
             } else {
-                p6Var2.setTextColor(xiVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21205y6));
+                p6Var2.setTextColor(xiVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21209y6));
                 z11 = true;
             }
             p6Var.c(LocaleController.formatNumber(j3, ','), false, true);
@@ -93,23 +93,23 @@ public final class di implements TextWatcher {
             xiVar.U0 = z11;
             xiVar.I0.invalidate();
         }
-        if (!xiVar.f32824i2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && xiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && xiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
-            xiVar.f32824i2 = true;
-            xiVar.L1(this.f25735c);
+        if (!xiVar.f32830i2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && xiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && xiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            xiVar.f32830i2 = true;
+            xiVar.N1(this.f25740c);
         }
-        if (xiVar.f32802c0) {
+        if (xiVar.f32808c0) {
             if (biVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(biVar.getText().toString().trim())) {
                 z13 = true;
             }
-            xiVar.J1(z13);
+            xiVar.L1(z13);
         }
-        xiVar.b1(true);
+        xiVar.d1(true);
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f25733a = true;
+            this.f25738a = true;
         }
         xi xiVar = this.d;
         if (xiVar.B2 == null) {
@@ -118,7 +118,7 @@ public final class di implements TextWatcher {
         if (xiVar.B2.getAdapter() != null) {
             xiVar.B2.setReversed(true);
             xiVar.B2.getAdapter().U(charSequence, xiVar.P0.getEditText().getSelectionStart(), null, false, false);
-            xiVar.R1();
+            xiVar.T1();
         }
     }
 

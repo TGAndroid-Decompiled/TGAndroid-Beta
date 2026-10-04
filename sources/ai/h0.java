@@ -33,11 +33,11 @@ public final class h0 extends org.telegram.ui.Components.k9 {
         int f7;
         switch (this.f1004e) {
             case 1:
-                int i12 = this.f28026a.f27672n;
+                int i12 = this.f28031a.f27677n;
                 if (i12 == 0) {
                     f7 = 0;
                 } else {
-                    f7 = hg.k0.f(i12, 1, 20, 24);
+                    f7 = hg.c.f(i12, 1, 20, 24);
                 }
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824), i11);
                 return;

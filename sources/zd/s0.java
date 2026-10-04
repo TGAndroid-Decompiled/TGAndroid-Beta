@@ -1,19 +1,19 @@
 package zd;
 public final class s0 extends t0 {
-    public final e2 f53267c;
+    public final e2 f53272c;
 
     public s0(long j3, e2 e2Var) {
         super(j3);
-        this.f53267c = e2Var;
+        this.f53272c = e2Var;
     }
 
     @Override
     public final void run() {
-        this.f53267c.run();
+        this.f53272c.run();
     }
 
     @Override
     public final String toString() {
-        return super.toString() + this.f53267c;
+        return super.toString() + this.f53272c;
     }
 }

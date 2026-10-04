@@ -97,7 +97,7 @@ public class GroupCallMessagesController extends BaseController {
         ConferenceCall conferenceCall;
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f20048id != j3) {
+        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f20052id != j3) {
             return null;
         }
         long callId = conferenceCall.getCallId();
@@ -115,10 +115,10 @@ public class GroupCallMessagesController extends BaseController {
         TLRPC.TL_groupCallMessage tL_groupCallMessage = null;
         try {
             byte[] groupCallMessageDecrypt = groupCallMessageDecrypt(j3, j10, bArr);
-            if (groupCallMessageDecrypt != null) {
+            if (groupCallMessageDecrypt != null && groupCallMessageDecrypt.length <= 8192) {
                 tL_groupCallMessage = TLRPC.TL_groupCallMessage.TLJsonDeserialize(new TLJsonParser(new JSONObject(new String(groupCallMessageDecrypt))));
             }
-        } catch (Exception e7) {
+        } catch (Exception | StackOverflowError e7) {
             FileLog.e(e7);
         }
         if (tL_groupCallMessage != null) {
@@ -208,9 +208,9 @@ public class GroupCallMessagesController extends BaseController {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
-        long j3 = tL_updateGroupCallMessage.call.f20055id;
+        long j3 = tL_updateGroupCallMessage.call.f20059id;
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallMessage.message.from_id);
-        long j10 = tL_updateGroupCallMessage.message.f20049id;
+        long j10 = tL_updateGroupCallMessage.message.f20053id;
         if (getUserConfig().clientUserId == peerDialogId) {
             return;
         }
@@ -226,7 +226,7 @@ public class GroupCallMessagesController extends BaseController {
             long nextRandomId = getSendMessagesHelper().getNextRandomId();
             if (sharedInstance.isConference()) {
                 ConferenceCall conferenceCall = sharedInstance.conference;
-                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f20048id == j10) {
+                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f20052id == j10) {
                     long callId = conferenceCall.getCallId();
                     if (callId != -1) {
                         TLRPC.TL_groupCallMessage tL_groupCallMessage = new TLRPC.TL_groupCallMessage();
@@ -285,7 +285,7 @@ public class GroupCallMessagesController extends BaseController {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallEncryptedMessage tL_updateGroupCallEncryptedMessage) {
-        long j3 = tL_updateGroupCallEncryptedMessage.call.f20055id;
+        long j3 = tL_updateGroupCallEncryptedMessage.call.f20059id;
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallEncryptedMessage.from_id);
         byte[] bArr = tL_updateGroupCallEncryptedMessage.encrypted_message;
         if (getUserConfig().clientUserId == peerDialogId) {

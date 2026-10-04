@@ -1,27 +1,27 @@
 package ci;
 public final class t5 implements qg.v1 {
-    public final int f5973a;
-    public final qg.v2 f5974b;
-    public final float f5975c;
+    public final int f5974a;
+    public final qg.v2 f5975b;
+    public final float f5976c;
 
     public t5(qg.v2 v2Var, float f7, int i10) {
-        this.f5973a = i10;
-        this.f5974b = v2Var;
-        this.f5975c = f7;
+        this.f5974a = i10;
+        this.f5975b = v2Var;
+        this.f5976c = f7;
     }
 
     @Override
     public final void E(float f7) {
-        switch (this.f5973a) {
+        switch (this.f5974a) {
             case 0:
-                qg.v2 v2Var = this.f5974b;
-                v2Var.f45375z0 = true;
-                v2Var.setBaseFontSize((int) (this.f5975c * f7));
+                qg.v2 v2Var = this.f5975b;
+                v2Var.f45382z0 = true;
+                v2Var.setBaseFontSize((int) (this.f5976c * f7));
                 return;
             default:
-                qg.v2 v2Var2 = this.f5974b;
-                v2Var2.f45375z0 = true;
-                v2Var2.setBaseFontSize((int) (this.f5975c * f7));
+                qg.v2 v2Var2 = this.f5975b;
+                v2Var2.f45382z0 = true;
+                v2Var2.setBaseFontSize((int) (this.f5976c * f7));
                 return;
         }
     }
@@ -30,14 +30,14 @@ public final class t5 implements qg.v1 {
     public final float get() {
         float baseFontSize;
         float f7;
-        switch (this.f5973a) {
+        switch (this.f5974a) {
             case 0:
-                baseFontSize = this.f5974b.getBaseFontSize();
-                f7 = this.f5975c;
+                baseFontSize = this.f5975b.getBaseFontSize();
+                f7 = this.f5976c;
                 break;
             default:
-                baseFontSize = this.f5974b.getBaseFontSize();
-                f7 = this.f5975c;
+                baseFontSize = this.f5975b.getBaseFontSize();
+                f7 = this.f5976c;
                 break;
         }
         return baseFontSize / f7;

@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class fa extends View {
-    public static final int f5088a = 0;
+    public static final int f5089a = 0;
 
     public static void a(int i10, k8 k8Var) {
         ca caVar;
@@ -26,11 +26,11 @@ public abstract class fa extends View {
                     SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
                     caVar = b(serializedData);
                     serializedData.cleanup();
-                    if (caVar.f4840f.isEmpty() && caVar.f4837b.isEmpty()) {
+                    if (caVar.f4841f.isEmpty() && caVar.f4838b.isEmpty()) {
                         caVar = new ca();
                     } else {
                         HashSet hashSet = new HashSet();
-                        hashSet.addAll(caVar.f4838c);
+                        hashSet.addAll(caVar.f4839c);
                         for (ArrayList arrayList : caVar.d.values()) {
                             hashSet.addAll(arrayList);
                         }
@@ -46,7 +46,7 @@ public abstract class fa extends View {
             }
             k8Var.E0 = caVar;
             k8Var.F0.clear();
-            k8Var.F0.addAll(k8Var.E0.f4837b);
+            k8Var.F0.addAll(k8Var.E0.f4838b);
             if (UserConfig.getInstance(i10).isPremium()) {
                 k8Var.I0 = MessagesController.getInstance(i10).getMainSettings().getInt("story_period", 86400);
             } else {
@@ -91,7 +91,7 @@ public abstract class fa extends View {
                         hashSet.addAll(arrayList4);
                     }
                     ca caVar = new ca(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = caVar.f4838c;
+                    ArrayList arrayList5 = caVar.f4839c;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     HashMap hashMap2 = caVar.d;
@@ -107,12 +107,12 @@ public abstract class fa extends View {
     }
 
     public static void c(SerializedData serializedData, ca caVar) {
-        int i10 = caVar.f4836a;
+        int i10 = caVar.f4837a;
         HashMap hashMap = caVar.d;
-        ArrayList arrayList = caVar.f4838c;
+        ArrayList arrayList = caVar.f4839c;
         serializedData.writeInt32(i10);
         serializedData.writeInt32(481674261);
-        ArrayList arrayList2 = caVar.f4839e;
+        ArrayList arrayList2 = caVar.f4840e;
         serializedData.writeInt32(arrayList2.size());
         int size = arrayList2.size();
         int i11 = 0;

@@ -18,25 +18,25 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.v31;
 import org.telegram.ui.yn;
 public final class f2 implements Runnable {
-    public final int f9032a;
-    public final l3 f9033b;
+    public final int f9033a;
+    public final l3 f9034b;
 
     public f2(l3 l3Var, int i10) {
-        this.f9032a = i10;
-        this.f9033b = l3Var;
+        this.f9033a = i10;
+        this.f9034b = l3Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f9032a;
+        int i10 = this.f9033a;
         int i11 = 1;
-        l3 l3Var = this.f9033b;
+        l3 l3Var = this.f9034b;
         switch (i10) {
             case 0:
                 l3.d(l3Var);
                 return;
             case 1:
-                if (!l3Var.f9154c0 && l3Var.J != 0) {
+                if (!l3Var.f9155c0 && l3Var.J != 0) {
                     TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
                     tL_messages_prolongWebView.bot = MessagesController.getInstance(l3Var.G).getInputUser(l3Var.H);
                     tL_messages_prolongWebView.peer = MessagesController.getInstance(l3Var.G).getInputPeer(l3Var.I);
@@ -67,13 +67,13 @@ public final class f2 implements Runnable {
                 l3Var.v.requestLayout();
                 return;
             case 4:
-                if (!l3Var.f9180x.D()) {
+                if (!l3Var.f9181x.D()) {
                     l3Var.q();
                     return;
                 }
                 return;
             case 5:
-                l3Var.f9181x0 = true;
+                l3Var.f9182x0 = true;
                 l3Var.k(true);
                 return;
             case 6:
@@ -87,21 +87,21 @@ public final class f2 implements Runnable {
                 } else {
                     paint.setAlpha(64);
                 }
-                l3Var.f9156e.invalidate();
-                l3Var.f9180x.o(false, false);
-                if (l3Var.f9153c != null) {
+                l3Var.f9157e.invalidate();
+                l3Var.f9181x.o(false, false);
+                if (l3Var.f9154c != null) {
                     if (1.0f - (Math.min(b3Var.getTopActionBarOffsetY(), b3Var.getTranslationY() - b3Var.getTopActionBarOffsetY()) / b3Var.getTopActionBarOffsetY()) <= 0.5f) {
                         i11 = 0;
                     }
                     float f7 = i11 * 100.0f;
-                    o1.k kVar = l3Var.f9153c;
-                    o1.l lVar = kVar.f16984u;
-                    if (((float) lVar.f16991i) != f7) {
-                        lVar.f16991i = f7;
+                    o1.k kVar = l3Var.f9154c;
+                    o1.l lVar = kVar.f16988u;
+                    if (((float) lVar.f16995i) != f7) {
+                        lVar.f16995i = f7;
                         kVar.f();
                     }
                 }
-                if (l3Var.f9155d0) {
+                if (l3Var.f9156d0) {
                     int i12 = l3Var.h.bottom;
                 } else {
                     Math.max(0.0f, b3Var.getSwipeOffsetY());
@@ -109,24 +109,24 @@ public final class f2 implements Runnable {
                 System.currentTimeMillis();
                 return;
             case 8:
-                l3Var.f9180x.o(true, false);
+                l3Var.f9181x.o(true, false);
                 return;
             case 9:
-                Activity activity = l3Var.f9164k0;
+                Activity activity = l3Var.f9165k0;
                 if (activity instanceof LaunchActivity) {
                     ((LaunchActivity) activity).p0(yn.Q9(l3Var.H));
                 }
                 l3Var.k(true);
                 return;
             case 10:
-                c3 c3Var = l3Var.f9180x;
+                c3 c3Var = l3Var.f9181x;
                 c3Var.getClass();
                 c3Var.P = System.currentTimeMillis();
                 c3Var.z("settings_button_pressed", null);
                 return;
             case 11:
-                j3 j3Var = l3Var.f9182y;
-                c3 c3Var2 = l3Var.f9180x;
+                j3 j3Var = l3Var.f9183y;
+                c3 c3Var2 = l3Var.f9181x;
                 if (c3Var2.getWebView() != null) {
                     c3Var2.getWebView().animate().cancel();
                     c3Var2.getWebView().animate().alpha(0.0f).start();

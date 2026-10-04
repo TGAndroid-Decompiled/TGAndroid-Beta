@@ -37,6 +37,6 @@ public class s0 extends IOException {
         sb2.append("{contentIsMalformed=");
         sb2.append(this.f3572a);
         sb2.append(", dataType=");
-        return a4.a.n(this.f3573b, "}", sb2);
+        return a4.a.o(this.f3573b, "}", sb2);
     }
 }

@@ -15,18 +15,18 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.tr;
 public final class d8 extends FrameLayout {
-    public final int f4913a;
-    public final org.telegram.ui.Components.h9 f4914b;
-    public final org.telegram.ui.Components.w9 f4915c;
+    public final int f4914a;
+    public final org.telegram.ui.Components.h9 f4915b;
+    public final org.telegram.ui.Components.w9 f4916c;
     public final TextView d;
-    public ViewPropertyAnimator f4916e;
+    public ViewPropertyAnimator f4917e;
 
     public d8(Activity activity, int i10) {
         super(activity);
-        this.f4913a = i10;
-        this.f4914b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f4914a = i10;
+        this.f4915b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f4915c = w9Var;
+        this.f4916c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
         addView(w9Var, w7.z5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(activity);
@@ -47,10 +47,10 @@ public final class d8 extends FrameLayout {
     }
 
     public final void a(boolean z10, boolean z11) {
-        ViewPropertyAnimator viewPropertyAnimator = this.f4916e;
+        ViewPropertyAnimator viewPropertyAnimator = this.f4917e;
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
-            this.f4916e = null;
+            this.f4917e = null;
         }
         float f7 = 0.0f;
         int i10 = 0;
@@ -61,7 +61,7 @@ public final class d8 extends FrameLayout {
                 f7 = 1.0f;
             }
             ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(tr.h).withEndAction(new bi.f(4, this, z10)).setDuration(320L);
-            this.f4916e = duration;
+            this.f4917e = duration;
             duration.start();
             return;
         }
@@ -78,15 +78,15 @@ public final class d8 extends FrameLayout {
     public void set(TLRPC.InputPeer inputPeer) {
         long peerDialogId;
         String str;
-        int i10 = this.f4913a;
+        int i10 = this.f4914a;
         if (inputPeer == null) {
             peerDialogId = UserConfig.getInstance(i10).getClientUserId();
         } else {
             peerDialogId = DialogObject.getPeerDialogId(inputPeer);
         }
         TextView textView = this.d;
-        org.telegram.ui.Components.w9 w9Var = this.f4915c;
-        org.telegram.ui.Components.h9 h9Var = this.f4914b;
+        org.telegram.ui.Components.w9 w9Var = this.f4916c;
+        org.telegram.ui.Components.h9 h9Var = this.f4915b;
         if (peerDialogId >= 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
             h9Var.r(user);

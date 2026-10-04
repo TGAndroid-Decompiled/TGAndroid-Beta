@@ -14,14 +14,14 @@ import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.vh0;
 import org.telegram.ui.yq;
 public final class w2 extends AnimatorListenerAdapter {
-    public final int f9424a;
-    public final int f9425b;
-    public final Object f9426c;
+    public final int f9425a;
+    public final int f9426b;
+    public final Object f9427c;
 
     public w2(Object obj, int i10, int i11) {
-        this.f9424a = i11;
-        this.f9426c = obj;
-        this.f9425b = i10;
+        this.f9425a = i11;
+        this.f9427c = obj;
+        this.f9426b = i10;
     }
 
     @Override
@@ -29,12 +29,12 @@ public final class w2 extends AnimatorListenerAdapter {
         boolean z10;
         int i10;
         int i11;
-        switch (this.f9424a) {
+        switch (this.f9425a) {
             case 0:
-                l3 l3Var = (l3) this.f9426c;
-                l3Var.P.setColor(this.f9425b);
+                l3 l3Var = (l3) this.f9427c;
+                l3Var.P.setColor(this.f9426b);
                 l3Var.A();
-                l3Var.f9156e.invalidate();
+                l3Var.f9157e.invalidate();
                 org.telegram.ui.d3 d3Var = l3Var.U0;
                 if (d3Var != null) {
                     if (AndroidUtilities.computePerceivedBrightness(l3Var.P.getColor()) <= 0.721f) {
@@ -48,85 +48,85 @@ public final class w2 extends AnimatorListenerAdapter {
                 l3Var.F();
                 return;
             case 1:
-                r4 r4Var = (r4) this.f9426c;
-                k4 k4Var = r4Var.f9306n;
+                r4 r4Var = (r4) this.f9427c;
+                k4 k4Var = r4Var.f9307n;
                 if (k4Var.getWebView() != null) {
-                    k4Var.getWebView().setScrollY(this.f9425b);
+                    k4Var.getWebView().setScrollY(this.f9426b);
                 }
-                if (animator == r4Var.f9307r) {
-                    r4Var.f9307r = null;
+                if (animator == r4Var.f9308r) {
+                    r4Var.f9308r = null;
                     return;
                 }
                 return;
             case 2:
-                ii.w4 w4Var = (ii.w4) this.f9426c;
-                w4Var.W = this.f9425b;
-                w4Var.f12724a0 = 0.0f;
+                ii.w4 w4Var = (ii.w4) this.f9427c;
+                w4Var.W = this.f9426b;
+                w4Var.f12725a0 = 0.0f;
                 w4Var.requestLayout();
                 w4Var.invalidate();
                 return;
             case 3:
-                org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) this.f9426c;
+                org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) this.f9427c;
                 if (!e4Var.c()) {
-                    e4Var.b(this.f9425b);
+                    e4Var.b(this.f9426b);
                 }
-                e4Var.f22022d0 = null;
+                e4Var.f22026d0 = null;
                 return;
             case 4:
-                ((o6) this.f9426c).r(this.f9425b);
+                ((o6) this.f9427c).r(this.f9426b);
                 return;
             case 5:
-                ((d8) this.f9426c).f25617a[this.f9425b].setVisibility(8);
+                ((d8) this.f9427c).f25622a[this.f9426b].setVisibility(8);
                 return;
             case 6:
-                ((tp) this.f9426c).f31131a[this.f9425b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(tr.f31142g).setStartDelay(0L).setDuration(100L).start();
+                ((tp) this.f9427c).f31137a[this.f9426b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(tr.f31148g).setStartDelay(0L).setDuration(100L).start();
                 return;
             case 7:
-                fy fyVar = (fy) this.f9426c;
+                fy fyVar = (fy) this.f9427c;
                 rg.q0 q0Var = fyVar.h;
                 int i12 = 8;
-                int i13 = this.f9425b;
+                int i13 = this.f9426b;
                 if (i13 == 1) {
                     i10 = 0;
                 } else {
                     i10 = 8;
                 }
                 q0Var.setVisibility(i10);
-                TextView textView = fyVar.f26594e;
+                TextView textView = fyVar.f26599e;
                 if (i13 == 2) {
                     i11 = 0;
                 } else {
                     i11 = 8;
                 }
                 textView.setVisibility(i11);
-                TextView textView2 = fyVar.f26595f;
+                TextView textView2 = fyVar.f26600f;
                 if (i13 == 3) {
                     i12 = 0;
                 }
                 textView2.setVisibility(i12);
                 return;
             case 8:
-                vh0 vh0Var = (vh0) this.f9426c;
+                vh0 vh0Var = (vh0) this.f9427c;
                 vh0Var.H = null;
-                vh0Var.P.f24963d1.delete(this.f9425b);
+                vh0Var.P.f24967d1.delete(this.f9426b);
                 return;
             case 9:
-                yq yqVar = (yq) this.f9426c;
-                ((dl0) yqVar.d).f25758b.remove(this.f9425b);
+                yq yqVar = (yq) this.f9427c;
+                ((dl0) yqVar.d).f25763b.remove(this.f9426b);
                 dl0 dl0Var = (dl0) yqVar.d;
                 dl0Var.d = true;
-                dl0Var.f25757a.invalidate();
+                dl0Var.f25762a.invalidate();
                 return;
             case 10:
-                kt0 kt0Var = (kt0) this.f9426c;
-                kt0Var.f28198e.O1.remove(this.f9425b);
-                kt0Var.f28195a.invalidate();
+                kt0 kt0Var = (kt0) this.f9427c;
+                kt0Var.f28203e.O1.remove(this.f9426b);
+                kt0Var.f28200a.invalidate();
                 return;
             default:
-                org.telegram.ui.Components.voip.d1 d1Var = (org.telegram.ui.Components.voip.d1) this.f9426c;
-                d1Var.f31812x = -1;
-                d1Var.v = this.f9425b;
-                d1Var.f31810s = 0.0f;
+                org.telegram.ui.Components.voip.d1 d1Var = (org.telegram.ui.Components.voip.d1) this.f9427c;
+                d1Var.f31818x = -1;
+                d1Var.v = this.f9426b;
+                d1Var.f31816s = 0.0f;
                 d1Var.U = null;
                 d1Var.e();
                 return;
@@ -135,12 +135,12 @@ public final class w2 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f9424a) {
+        switch (this.f9425a) {
             case 7:
-                fy fyVar = (fy) this.f9426c;
+                fy fyVar = (fy) this.f9427c;
                 fyVar.h.setVisibility(0);
-                fyVar.f26594e.setVisibility(0);
-                fyVar.f26595f.setVisibility(0);
+                fyVar.f26599e.setVisibility(0);
+                fyVar.f26600f.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

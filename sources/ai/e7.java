@@ -29,7 +29,7 @@ public final class e7 extends yl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46528f == 1) {
+        if (c1Var.f46535f == 1) {
             return true;
         }
         return false;
@@ -138,11 +138,11 @@ public final class e7 extends yl0 {
         TLRPC.Message message2;
         k7 k7Var = this.d;
         int i16 = k7Var.v;
-        if (c1Var.f46528f == 1 && i10 >= 0) {
+        if (c1Var.f46535f == 1 && i10 >= 0) {
             ArrayList arrayList = this.f919c;
             if (i10 < arrayList.size()) {
                 z6 z6Var = (z6) arrayList.get(i10);
-                org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) c1Var.f46524a;
+                org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) c1Var.f46531a;
                 TL_stories.StoryView storyView = z6Var.f1935b;
                 TL_stories.StoryReaction storyReaction = z6Var.f1936c;
                 if (storyView != null) {
@@ -175,7 +175,7 @@ public final class e7 extends yl0 {
                 boolean remove = k7Var.F.f1131p.remove(Long.valueOf(j3));
                 if (storyView != null) {
                     TLRPC.Reaction reaction3 = storyView.reaction;
-                    if (reaction3 != null && (str2 = zg.o0.d(reaction3).f53480f) != null && str2.equals("❤")) {
+                    if (reaction3 != null && (str2 = zg.o0.d(reaction3).f53485f) != null && str2.equals("❤")) {
                         j11 = 0;
                         z11 = true;
                     } else {
@@ -224,7 +224,7 @@ public final class e7 extends yl0 {
                     } else {
                         z12 = true;
                     }
-                    o6Var.f22596a = z12;
+                    o6Var.f22600a = z12;
                     if (k7Var.d(storyView)) {
                         f7 = 1.0f;
                     } else {
@@ -238,7 +238,7 @@ public final class e7 extends yl0 {
                     if (storyReaction instanceof TL_stories.TL_storyReaction) {
                         TL_stories.TL_storyReaction tL_storyReaction = (TL_stories.TL_storyReaction) storyReaction;
                         TLRPC.Reaction reaction4 = tL_storyReaction.reaction;
-                        if (reaction4 != null && (str = zg.o0.d(reaction4).f53480f) != null && str.equals("❤")) {
+                        if (reaction4 != null && (str = zg.o0.d(reaction4).f53485f) != null && str.equals("❤")) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -279,7 +279,7 @@ public final class e7 extends yl0 {
                     if (i12 != 1 && i12 != 11 && i12 != i11) {
                         z13 = false;
                     }
-                    o6Var.f22596a = z13;
+                    o6Var.f22600a = z13;
                     o6Var.a(1.0f, false);
                 }
             }
@@ -313,7 +313,7 @@ public final class e7 extends yl0 {
                 w00 w00Var = new w00(k7Var.getContext(), dVar);
                 w00Var.setIsSingleCell(true);
                 w00Var.setViewType(28);
-                w00Var.f32417w = false;
+                w00Var.f32423w = false;
                 q90Var = w00Var;
                 break;
             case 5:
@@ -344,7 +344,7 @@ public final class e7 extends yl0 {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString(R.string.ExpiredViewsStub)));
                     boolean premiumFeaturesBlocked = MessagesController.getInstance(i12).premiumFeaturesBlocked();
-                    q90 q90Var2 = d7Var.f31195e;
+                    q90 q90Var2 = d7Var.f31201e;
                     if (!premiumFeaturesBlocked) {
                         spannableStringBuilder.append((CharSequence) "\n\n");
                         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ExpiredViewsStubPremiumDescription), new Runnable() {
@@ -378,7 +378,7 @@ public final class e7 extends yl0 {
                         TextView textView = new TextView(d7Var.getContext());
                         textView.setText(string);
                         int i13 = org.telegram.ui.ActionBar.i6.Sh;
-                        org.telegram.ui.ActionBar.d6 d6Var = d7Var.f31197n;
+                        org.telegram.ui.ActionBar.d6 d6Var = d7Var.f31203n;
                         textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i13, d6Var));
                         textView.setPadding(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f));
                         textView.setGravity(17);
@@ -392,7 +392,7 @@ public final class e7 extends yl0 {
                         w5Var.setBackground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, v02, k10, k10));
                         w7.b6.b(w5Var, 0.05f, 1.5f);
                         w5Var.addView(textView);
-                        xb1 xb1Var = d7Var.f31192a;
+                        xb1 xb1Var = d7Var.f31198a;
                         xb1Var.setClipChildren(false);
                         xb1Var.addView(w5Var, w7.z5.t(-2, -2, 1, 0, 28, 0, 4));
                     }
@@ -416,14 +416,14 @@ public final class e7 extends yl0 {
                 w00Var2.setIgnoreHeightCheck(true);
                 w00Var2.setItemsCount(20);
                 w00Var2.setViewType(28);
-                w00Var2.f32417w = false;
+                w00Var2.f32423w = false;
                 q90Var = w00Var2;
                 break;
             case 11:
             case 12:
                 q90 q90Var3 = new q90(k7Var.getContext(), null);
                 q90Var3.setTextSize(1, 13.0f);
-                q90Var3.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21205y6, dVar));
+                q90Var3.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21209y6, dVar));
                 q90Var3.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.J6, dVar));
                 int dp2 = AndroidUtilities.dp(16.0f);
                 int dp3 = AndroidUtilities.dp(21.0f);

@@ -8,23 +8,23 @@ import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 public final class fa0 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f36228a;
-    public final Object f36229b;
+    public final int f36233a;
+    public final Object f36234b;
 
     public fa0(Object obj, int i10) {
-        this.f36228a = i10;
-        this.f36229b = obj;
+        this.f36233a = i10;
+        this.f36234b = obj;
     }
 
     @Override
     public final void onGlobalLayout() {
-        int i10 = this.f36228a;
-        Object obj = this.f36229b;
+        int i10 = this.f36233a;
+        Object obj = this.f36234b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
                 int measuredHeight = ((View) obj).getMeasuredHeight();
-                org.telegram.messenger.f0.n(AndroidUtilities.displaySize.y, hg.k0.j(measuredHeight, "height = ", " displayHeight = "));
+                org.telegram.messenger.q.n(AndroidUtilities.displaySize.y, hg.c.j(measuredHeight, "height = ", " displayHeight = "));
                 int i11 = (measuredHeight - AndroidUtilities.navigationBarHeight) - AndroidUtilities.statusBarHeight;
                 if (i11 > AndroidUtilities.dp(100.0f) && i11 < AndroidUtilities.displaySize.y) {
                     int dp = AndroidUtilities.dp(100.0f) + i11;
@@ -32,7 +32,7 @@ public final class fa0 implements ViewTreeObserver.OnGlobalLayoutListener {
                     if (dp > point.y) {
                         point.y = i11;
                         if (BuildVars.LOGS_ENABLED) {
-                            org.telegram.messenger.f0.n(AndroidUtilities.displaySize.y, new StringBuilder("fix display size y to "));
+                            org.telegram.messenger.q.n(AndroidUtilities.displaySize.y, new StringBuilder("fix display size y to "));
                             return;
                         }
                         return;
@@ -43,7 +43,7 @@ public final class fa0 implements ViewTreeObserver.OnGlobalLayoutListener {
             default:
                 rd1 rd1Var = (rd1) obj;
                 rd1Var.P = SystemClock.elapsedRealtime() + 1500;
-                rd1Var.f40066k0.invalidate();
+                rd1Var.f40071k0.invalidate();
                 return;
         }
     }

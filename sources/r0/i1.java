@@ -4,8 +4,8 @@ import android.os.Build;
 import android.view.View;
 import j$.util.Objects;
 public class i1 {
-    public static final l1 f45600b;
-    public final l1 f45601a;
+    public static final l1 f45607b;
+    public final l1 f45608a;
 
     static {
         b1 x0Var;
@@ -19,23 +19,23 @@ public class i1 {
         } else {
             x0Var = new x0();
         }
-        f45600b = x0Var.b().f45610a.a().f45610a.b().f45610a.c();
+        f45607b = x0Var.b().f45617a.a().f45617a.b().f45617a.c();
     }
 
     public i1(l1 l1Var) {
-        this.f45601a = l1Var;
+        this.f45608a = l1Var;
     }
 
     public l1 a() {
-        return this.f45601a;
+        return this.f45608a;
     }
 
     public l1 b() {
-        return this.f45601a;
+        return this.f45608a;
     }
 
     public l1 c() {
-        return this.f45601a;
+        return this.f45608a;
     }
 
     public i e() {
@@ -57,12 +57,12 @@ public class i1 {
     }
 
     public i0.b f(int i10) {
-        return i0.b.f11524e;
+        return i0.b.f11525e;
     }
 
     public i0.b g(int i10) {
         if ((i10 & 8) == 0) {
-            return i0.b.f11524e;
+            return i0.b.f11525e;
         }
         throw new IllegalArgumentException("Unable to query the maximum insets for IME");
     }
@@ -76,7 +76,7 @@ public class i1 {
     }
 
     public i0.b i() {
-        return i0.b.f11524e;
+        return i0.b.f11525e;
     }
 
     public i0.b j() {
@@ -84,7 +84,7 @@ public class i1 {
     }
 
     public i0.b k() {
-        return i0.b.f11524e;
+        return i0.b.f11525e;
     }
 
     public i0.b l() {
@@ -92,7 +92,7 @@ public class i1 {
     }
 
     public l1 m(int i10, int i11, int i12, int i13) {
-        return f45600b;
+        return f45607b;
     }
 
     public boolean n() {

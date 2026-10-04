@@ -11,29 +11,29 @@ import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.x81;
 public final class v7 extends x81 {
-    public final Context f52131a;
-    public final int f52132b;
-    public final boolean f52133c;
+    public final Context f52136a;
+    public final int f52137b;
+    public final boolean f52138c;
     public final int d;
-    public final org.telegram.ui.ActionBar.d6 f52134e;
-    public final long f52135f;
-    public bm0 f52136g;
-    public li.m h;
-    public final ArrayList f52137i = new ArrayList();
+    public final org.telegram.ui.ActionBar.d6 f52139e;
+    public final long f52140f;
+    public bm0 f52141g;
+    public li.n h;
+    public final ArrayList f52142i = new ArrayList();
 
     public v7(Context context, int i10, boolean z10, long j3, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f52131a = context;
-        this.f52132b = i10;
-        this.f52133c = z10;
+        this.f52136a = context;
+        this.f52137b = i10;
+        this.f52138c = z10;
         this.d = i11;
-        this.f52134e = d6Var;
-        this.f52135f = j3;
+        this.f52139e = d6Var;
+        this.f52140f = j3;
         i();
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        bm0 bm0Var = this.f52136g;
+        bm0 bm0Var = this.f52141g;
         if (bm0Var != null) {
             bm0Var.L(view);
         }
@@ -41,19 +41,19 @@ public final class v7 extends x81 {
 
     @Override
     public final View d(int i10) {
-        u7 u7Var = new u7(this.f52131a, this.f52133c, this.f52135f, i10, this.f52132b, this.d, this.f52134e);
-        if (this.f52136g != null) {
+        u7 u7Var = new u7(this.f52136a, this.f52138c, this.f52140f, i10, this.f52137b, this.d, this.f52139e);
+        if (this.f52141g != null) {
             u7Var.setClipChildren(false);
             u7Var.setClipToPadding(false);
-            c71 c71Var = u7Var.f52103a;
+            c71 c71Var = u7Var.f52108a;
             c71Var.setClipToPadding(false);
             c71Var.t1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
-            c71Var.f25245f3.f31307r = false;
+            c71Var.f25250f3.f31313r = false;
             c71Var.setCaptureSectionsDecoratorAllowed(true);
             c71Var.setOverScrollMode(0);
-            li.m mVar = this.h;
-            if (mVar != null) {
-                mVar.b(c71Var);
+            li.n nVar = this.h;
+            if (nVar != null) {
+                nVar.b(c71Var);
             }
         }
         return u7Var;
@@ -61,7 +61,7 @@ public final class v7 extends x81 {
 
     @Override
     public final int e() {
-        return this.f52137i.size();
+        return this.f52142i.size();
     }
 
     @Override
@@ -82,9 +82,9 @@ public final class v7 extends x81 {
     @Override
     public final int h(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f52137i;
+            ArrayList arrayList = this.f52142i;
             if (i10 < arrayList.size()) {
-                return ((g61) arrayList.get(i10)).f26682z;
+                return ((g61) arrayList.get(i10)).f26687z;
             }
             return 0;
         }
@@ -92,12 +92,12 @@ public final class v7 extends x81 {
     }
 
     public final void i() {
-        ArrayList arrayList = this.f52137i;
+        ArrayList arrayList = this.f52142i;
         arrayList.clear();
-        int i10 = this.f52132b;
-        long j3 = this.f52135f;
+        int i10 = this.f52137b;
+        long j3 = this.f52140f;
         if (j3 == 0) {
-            t5 y3 = t5.y(i10, this.f52133c);
+            t5 y3 = t5.y(i10, this.f52138c);
             arrayList.add(g61.C(0));
             if (y3.O(1)) {
                 arrayList.add(g61.C(1));
@@ -110,10 +110,10 @@ public final class v7 extends x81 {
         }
         o g10 = o.g(i10);
         arrayList.add(g61.C(0));
-        if (!g10.k(j3).f51667a[1].isEmpty()) {
+        if (!g10.k(j3).f51672a[1].isEmpty()) {
             arrayList.add(g61.C(1));
         }
-        if (!g10.k(j3).f51667a[2].isEmpty()) {
+        if (!g10.k(j3).f51672a[2].isEmpty()) {
             arrayList.add(g61.C(2));
         }
     }

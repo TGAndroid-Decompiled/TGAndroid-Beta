@@ -4,38 +4,38 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 public final class t70 implements View.OnClickListener {
-    public final int f30980a;
-    public final b80 f30981b;
-    public final Runnable f30982c;
+    public final int f30986a;
+    public final b80 f30987b;
+    public final Runnable f30988c;
 
     public t70(b80 b80Var, Runnable runnable, int i10) {
-        this.f30980a = i10;
-        this.f30981b = b80Var;
-        this.f30982c = runnable;
+        this.f30986a = i10;
+        this.f30987b = b80Var;
+        this.f30988c = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f30980a) {
+        switch (this.f30986a) {
             case 0:
-                this.f30981b.u();
-                Runnable runnable = this.f30982c;
+                this.f30987b.u();
+                Runnable runnable = this.f30988c;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 1:
-                this.f30982c.run();
-                b80 b80Var = this.f30981b;
+                this.f30988c.run();
+                b80 b80Var = this.f30987b;
                 if (b80Var.J) {
                     b80Var.u();
                     return;
                 }
                 return;
             case 2:
-                b80 b80Var2 = this.f30981b;
-                Runnable runnable2 = this.f30982c;
+                b80 b80Var2 = this.f30987b;
+                Runnable runnable2 = this.f30988c;
                 if (runnable2 != null) {
                     int i10 = -b80Var2.K;
                     b80Var2.K = i10;
@@ -47,30 +47,30 @@ public final class t70 implements View.OnClickListener {
                 b80Var2.getClass();
                 return;
             case 3:
-                Runnable runnable3 = this.f30982c;
+                Runnable runnable3 = this.f30988c;
                 if (runnable3 != null) {
                     runnable3.run();
                 }
-                b80 b80Var3 = this.f30981b;
+                b80 b80Var3 = this.f30987b;
                 if (b80Var3.J) {
                     b80Var3.u();
                     return;
                 }
                 return;
             case 4:
-                this.f30982c.run();
-                b80 b80Var4 = this.f30981b;
+                this.f30988c.run();
+                b80 b80Var4 = this.f30987b;
                 if (b80Var4.J) {
                     b80Var4.u();
                     return;
                 }
                 return;
             default:
-                Runnable runnable4 = this.f30982c;
+                Runnable runnable4 = this.f30988c;
                 if (runnable4 != null) {
                     runnable4.run();
                 }
-                b80 b80Var5 = this.f30981b;
+                b80 b80Var5 = this.f30987b;
                 if (b80Var5.J) {
                     b80Var5.u();
                     return;

@@ -89,14 +89,14 @@ public final class e extends Drawable {
             ch.d dVar = this.f465b;
             fh.a t10 = dVar.t();
             while (t10 instanceof fh.e) {
-                t10 = ((fh.e) t10).f9866a;
+                t10 = ((fh.e) t10).f9867a;
             }
             boolean z11 = this.f477p;
             Matrix matrix = this.f466c;
             int i11 = 0;
             Matrix matrix2 = this.f467e;
             if (!z11 && (t10 instanceof fh.c)) {
-                int i12 = ((fh.c) t10).f9857b;
+                int i12 = ((fh.c) t10).f9858b;
                 int i13 = this.f476o;
                 Paint paint = this.f475n;
                 if (i13 != i12 || this.f468f == null) {
@@ -148,10 +148,10 @@ public final class e extends Drawable {
                     matrix2.set(matrix);
                     matrix2.postTranslate(bounds.left, bounds.top + i11);
                     this.f468f.setLocalMatrix(matrix2);
-                    Matrix matrix3 = bVar.f9851b;
+                    Matrix matrix3 = bVar.f9852b;
                     Matrix matrix4 = this.f470i;
                     matrix4.set(matrix3);
-                    matrix4.postTranslate(-dVar.f15650c, -dVar.d);
+                    matrix4.postTranslate(-dVar.f15651c, -dVar.d);
                     this.f469g.setLocalMatrix(matrix4);
                     paint2.setAlpha(this.f478q);
                     canvas.drawRect(bounds, paint2);

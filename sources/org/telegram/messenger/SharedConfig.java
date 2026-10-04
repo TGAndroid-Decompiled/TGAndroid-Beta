@@ -229,8 +229,8 @@ public class SharedConfig {
             if (readString == null) {
                 readString = "";
             }
-            a2.f45507b = readString;
-            a2.f45508c = inputSerializedData.readInt32(false);
+            a2.f45514b = readString;
+            a2.f45515c = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -240,12 +240,12 @@ public class SharedConfig {
             if (readString3 == null) {
                 readString3 = "";
             }
-            a2.f45509e = readString3;
+            a2.f45516e = readString3;
             String readString4 = inputSerializedData.readString(false);
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f45510f = str;
+            a2.f45517f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j3 = inputSerializedData.readInt64(false);
@@ -259,12 +259,12 @@ public class SharedConfig {
                 if (e7 == 0) {
                     e7 = 1;
                 }
-                a2.f45506a = e7;
+                a2.f45513a = e7;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f45506a = i11;
+                a2.f45513a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.a());
             proxyInfo.availableCheckTime = j10;
@@ -277,14 +277,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f45514b);
-            outputSerializedData.writeInt32(this.settings.f45515c);
+            outputSerializedData.writeString(this.settings.f45521b);
+            outputSerializedData.writeInt32(this.settings.f45522c);
             outputSerializedData.writeString(this.settings.d);
-            outputSerializedData.writeString(this.settings.f45516e);
-            outputSerializedData.writeString(this.settings.f45517f);
+            outputSerializedData.writeString(this.settings.f45523e);
+            outputSerializedData.writeString(this.settings.f45524f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f45513a);
+            int c10 = m1.j.c(this.settings.f45520a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -910,10 +910,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new w1(21));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f20368a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f20372a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20368a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20372a;
             b2Var.setCanceledOnTouchOutside(false);
             b2Var.show();
         }
@@ -1049,8 +1049,8 @@ public class SharedConfig {
             i12 = (i11 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i11 == 8 && i10 <= 23)) ? 1 : 2;
         }
         if (BuildVars.LOGS_ENABLED) {
-            StringBuilder k10 = hg.k0.k("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
-            hg.k0.s(k10, ceil, ", memoryClass = ", memoryClass, ", android version ");
+            StringBuilder k10 = hg.c.k("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
+            hg.c.t(k10, ceil, ", memoryClass = ", memoryClass, ", android version ");
             k10.append(i10);
             k10.append(", manufacture ");
             k10.append(Build.MANUFACTURER);

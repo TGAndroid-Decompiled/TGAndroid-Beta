@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class o7 extends og.a {
-    public u6 f39115c;
+    public u6 f39120c;
     public zh.a d;
 
     public final boolean equals(Object obj) {
@@ -15,15 +15,15 @@ public final class o7 extends og.a {
         }
         if (obj != null && o7.class == obj.getClass()) {
             o7 o7Var = (o7) obj;
-            int i10 = this.f17183a;
-            if (i10 == o7Var.f17183a) {
-                if (i10 == 1 && (u6Var = this.f39115c) != null && (u6Var2 = o7Var.f39115c) != null) {
-                    if (u6Var.f41066a == u6Var2.f41066a) {
+            int i10 = this.f17187a;
+            if (i10 == o7Var.f17187a) {
+                if (i10 == 1 && (u6Var = this.f39120c) != null && (u6Var2 = o7Var.f39120c) != null) {
+                    if (u6Var.f41072a == u6Var2.f41072a) {
                         return true;
                     }
                     return false;
                 } else if (i10 == 2 && (aVar = this.d) != null && (aVar2 = o7Var.d) != null) {
-                    return Objects.equals(aVar.f53551a, aVar2.f53551a);
+                    return Objects.equals(aVar.f53556a, aVar2.f53556a);
                 }
             }
         }

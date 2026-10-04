@@ -10,15 +10,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import u2.y0;
 public abstract class c {
-    public static final byte[] f48470a;
+    public static final byte[] f48478a;
 
     static {
-        String str = d0.f8537a;
-        f48470a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        String str = d0.f8538a;
+        f48478a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(v vVar) {
-        int i10 = vVar.f8590b;
+        int i10 = vVar.f8591b;
         vVar.K(4);
         if (vVar.j() != 1751411826) {
             i10 += 4;
@@ -89,10 +89,10 @@ public abstract class c {
         f2.d e10 = cVar.e(1801812339);
         f2.d e11 = cVar.e(1768715124);
         if (e7 != null && e10 != null && e11 != null) {
-            v vVar = e7.f9553c;
+            v vVar = e7.f9554c;
             vVar.J(16);
             if (vVar.j() == 1835299937) {
-                v vVar2 = e10.f9553c;
+                v vVar2 = e10.f9554c;
                 vVar2.J(12);
                 int j3 = vVar2.j();
                 String[] strArr = new String[j3];
@@ -101,18 +101,18 @@ public abstract class c {
                     vVar2.K(4);
                     strArr[i10] = vVar2.v(j10 - 8, StandardCharsets.UTF_8);
                 }
-                v vVar3 = e11.f9553c;
+                v vVar3 = e11.f9554c;
                 vVar3.J(8);
                 ArrayList arrayList = new ArrayList();
                 while (vVar3.a() > 8) {
-                    int i11 = vVar3.f8590b;
+                    int i11 = vVar3.f8591b;
                     int j11 = vVar3.j();
                     int j12 = vVar3.j() - 1;
                     if (j12 >= 0 && j12 < j3) {
                         String str = strArr[j12];
                         int i12 = i11 + j11;
                         while (true) {
-                            int i13 = vVar3.f8590b;
+                            int i13 = vVar3.f8591b;
                             if (i13 < i12) {
                                 int j13 = vVar3.j();
                                 if (vVar3.j() == 1684108385) {
@@ -171,7 +171,7 @@ public abstract class c {
         int i13;
         Integer num2;
         boolean z13;
-        int i14 = vVar.f8590b;
+        int i14 = vVar.f8591b;
         while (i14 - i10 < i11) {
             vVar.J(i14);
             int j3 = vVar.j();
@@ -267,7 +267,7 @@ public abstract class c {
                         z14 = true;
                     }
                     c3.b.c("tenc atom is mandatory", z14);
-                    String str2 = d0.f8537a;
+                    String str2 = d0.f8538a;
                     create = Pair.create(num, pVar);
                 }
                 if (create != null) {

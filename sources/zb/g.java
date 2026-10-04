@@ -1,17 +1,17 @@
 package zb;
 public final class g implements q9.d {
-    public static final g f53182b = new g(0);
-    public static final g f53183c = new g(1);
+    public static final g f53187b = new g(0);
+    public static final g f53188c = new g(1);
     public static final g d = new g(2);
-    public final int f53184a;
+    public final int f53189a;
 
     public g(int i10) {
-        this.f53184a = i10;
+        this.f53189a = i10;
     }
 
     @Override
     public final Object E(cf.c cVar) {
-        switch (this.f53184a) {
+        switch (this.f53189a) {
             case 0:
                 return new e((qb.g) cVar.a(qb.g.class));
             case 1:

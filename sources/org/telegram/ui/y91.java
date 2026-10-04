@@ -5,7 +5,7 @@ public final class y91 extends org.telegram.ui.Cells.c8 {
     @Override
     public final void onDraw(Canvas canvas) {
         if (getTranslationY() != 0.0f) {
-            canvas.drawColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20818d6, false));
+            canvas.drawColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20822d6, false));
         }
         super.onDraw(canvas);
     }

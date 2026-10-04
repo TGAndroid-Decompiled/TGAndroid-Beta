@@ -1,33 +1,33 @@
 package org.telegram.messenger;
 public final class o2 implements Runnable {
-    public final int f18745a;
-    public final FileLoadOperation f18746b;
+    public final int f18741a;
+    public final FileLoadOperation f18742b;
 
     public o2(FileLoadOperation fileLoadOperation, int i10) {
-        this.f18745a = i10;
-        this.f18746b = fileLoadOperation;
+        this.f18741a = i10;
+        this.f18742b = fileLoadOperation;
     }
 
     @Override
     public final void run() {
-        switch (this.f18745a) {
+        switch (this.f18741a) {
             case 0:
-                this.f18746b.lambda$clearOperation$26();
+                FileLoadOperation.w(this.f18742b);
                 return;
             case 1:
-                this.f18746b.lambda$start$10();
+                FileLoadOperation.a(this.f18742b);
                 return;
             case 2:
-                this.f18746b.lambda$pause$7();
+                FileLoadOperation.k(this.f18742b);
                 return;
             case 3:
-                this.f18746b.lambda$onFinishLoadingFile$18();
+                FileLoadOperation.m(this.f18742b);
                 return;
             case 4:
-                this.f18746b.lambda$cancelOnStage$14();
+                FileLoadOperation.q(this.f18742b);
                 return;
             default:
-                this.f18746b.lambda$new$6();
+                FileLoadOperation.j(this.f18742b);
                 return;
         }
     }

@@ -45,19 +45,19 @@ public final class i extends kd.j implements p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f3749a) {
             case 0:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
             case 1:
-                return ((i) create((t) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((i) create((t) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
             case 2:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
             case 3:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
             case 4:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
             case 5:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
             default:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
         }
     }
 

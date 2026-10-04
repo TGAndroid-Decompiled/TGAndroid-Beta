@@ -20,37 +20,37 @@ import org.telegram.ui.Components.e11;
 import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.tr;
 public final class o8 extends View {
-    public final boolean f51779a;
-    public final ArrayList f51780b;
-    public final ArrayList f51781c;
+    public final boolean f51776a;
+    public final ArrayList f51777b;
+    public final ArrayList f51778c;
     public final Paint d;
-    public final org.telegram.ui.Components.e6 f51782e;
-    public float f51783f;
+    public final org.telegram.ui.Components.e6 f51779e;
+    public float f51780f;
     public n8 h;
-    public Utilities.Callback f51784n;
-    public final p8 f51785r;
+    public Utilities.Callback f51781n;
+    public final p8 f51782r;
 
     public o8(p8 p8Var, Context context, boolean z10) {
         super(context);
-        this.f51785r = p8Var;
-        this.f51780b = new ArrayList();
-        this.f51781c = new ArrayList();
+        this.f51782r = p8Var;
+        this.f51777b = new ArrayList();
+        this.f51778c = new ArrayList();
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f51782e = new org.telegram.ui.Components.e6(this, 0L, 320L, tr.h);
-        this.f51779a = z10;
+        this.f51779e = new org.telegram.ui.Components.e6(this, 0L, 320L, tr.h);
+        this.f51776a = z10;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20890h5, p8Var.f51830b));
+        paint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20894h5, p8Var.f51826b));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.f51780b;
-        this.f51783f = this.f51782e.d(arrayList.size(), false);
+        ArrayList arrayList = this.f51777b;
+        this.f51780f = this.f51779e.d(arrayList.size(), false);
         int i10 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f51781c;
+            ArrayList arrayList2 = this.f51778c;
             if (i10 >= arrayList2.size()) {
                 break;
             }
@@ -67,9 +67,9 @@ public final class o8 extends View {
         super.onAttachedToWindow();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f51780b;
+            ArrayList arrayList = this.f51777b;
             if (i10 < arrayList.size()) {
-                ((n8) arrayList.get(i10)).f51701k.onAttachedToWindow();
+                ((n8) arrayList.get(i10)).f51702k.onAttachedToWindow();
                 i10++;
             } else {
                 return;
@@ -82,9 +82,9 @@ public final class o8 extends View {
         super.onDetachedFromWindow();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f51780b;
+            ArrayList arrayList = this.f51777b;
             if (i10 < arrayList.size()) {
-                ((n8) arrayList.get(i10)).f51701k.onDetachedFromWindow();
+                ((n8) arrayList.get(i10)).f51702k.onDetachedFromWindow();
                 i10++;
             } else {
                 return;
@@ -99,15 +99,15 @@ public final class o8 extends View {
         if (motionEvent.getAction() == 0) {
             n8 n8Var2 = this.h;
             if (n8Var2 != null) {
-                n8Var2.f51707q.c(false);
+                n8Var2.f51708q.c(false);
             }
             this.h = null;
             int i10 = 0;
             while (true) {
-                ArrayList arrayList = this.f51780b;
+                ArrayList arrayList = this.f51777b;
                 if (i10 >= arrayList.size()) {
                     break;
-                } else if (((n8) arrayList.get(i10)).f51694b.contains(motionEvent.getX(), motionEvent.getY())) {
+                } else if (((n8) arrayList.get(i10)).f51695b.contains(motionEvent.getX(), motionEvent.getY())) {
                     this.h = (n8) arrayList.get(i10);
                     break;
                 } else {
@@ -116,15 +116,15 @@ public final class o8 extends View {
             }
             n8 n8Var3 = this.h;
             if (n8Var3 != null) {
-                n8Var3.f51707q.c(true);
+                n8Var3.f51708q.c(true);
             }
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (motionEvent.getAction() == 1 && (n8Var = this.h) != null && !n8Var.f51706p && n8Var.f51694b.contains(motionEvent.getX(), motionEvent.getY()) && (callback = this.f51784n) != null) {
-                callback.run(Long.valueOf(this.h.f51700j));
+            if (motionEvent.getAction() == 1 && (n8Var = this.h) != null && !n8Var.f51707p && n8Var.f51695b.contains(motionEvent.getX(), motionEvent.getY()) && (callback = this.f51781n) != null) {
+                callback.run(Long.valueOf(this.h.f51701j));
             }
             n8 n8Var4 = this.h;
             if (n8Var4 != null) {
-                n8Var4.f51707q.c(false);
+                n8Var4.f51708q.c(false);
             }
             this.h = null;
         }
@@ -137,10 +137,10 @@ public final class o8 extends View {
     public void setMyPrivacy(long j3) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f51780b;
+            ArrayList arrayList = this.f51777b;
             if (i10 < arrayList.size()) {
                 n8 n8Var = (n8) arrayList.get(i10);
-                if (n8Var.f51699i) {
+                if (n8Var.f51700i) {
                     n8Var.b(j3);
                     return;
                 }
@@ -152,7 +152,7 @@ public final class o8 extends View {
     }
 
     public void setOnSenderClickListener(Utilities.Callback<Long> callback) {
-        this.f51784n = callback;
+        this.f51781n = callback;
     }
 
     public void setSenders(ArrayList<k8> arrayList) {
@@ -165,11 +165,11 @@ public final class o8 extends View {
         ArrayList<k8> arrayList4 = arrayList;
         int i10 = 0;
         while (true) {
-            arrayList2 = this.f51780b;
+            arrayList2 = this.f51777b;
             int size = arrayList2.size();
             rqVarArr = null;
             k8 k8Var = null;
-            arrayList3 = this.f51781c;
+            arrayList3 = this.f51778c;
             r82 = 1;
             if (i10 >= size) {
                 break;
@@ -177,17 +177,17 @@ public final class o8 extends View {
             n8 n8Var2 = (n8) arrayList2.get(i10);
             for (int i11 = 0; i11 < arrayList4.size(); i11++) {
                 k8 k8Var2 = arrayList4.get(i11);
-                boolean z10 = k8Var2.f51544b;
-                if ((z10 && n8Var2.f51699i) || (!n8Var2.f51699i && !z10 && k8Var2.f51545c == n8Var2.f51700j)) {
+                boolean z10 = k8Var2.f51549b;
+                if ((z10 && n8Var2.f51700i) || (!n8Var2.f51700i && !z10 && k8Var2.f51550c == n8Var2.f51701j)) {
                     k8Var = arrayList4.get(i11);
                     break;
                 }
             }
             if (k8Var == null) {
-                n8Var2.f51701k.onDetachedFromWindow();
+                n8Var2.f51702k.onDetachedFromWindow();
                 arrayList2.remove(i10);
                 i10--;
-                n8Var2.f51693a = -1;
+                n8Var2.f51694a = -1;
                 arrayList3.add(n8Var2);
             }
             i10++;
@@ -197,8 +197,8 @@ public final class o8 extends View {
             k8 k8Var3 = arrayList4.get(i12);
             for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                 n8 n8Var3 = (n8) arrayList2.get(i13);
-                boolean z11 = n8Var3.f51699i;
-                if ((z11 && k8Var3.f51544b) || (!z11 && !k8Var3.f51544b && n8Var3.f51700j == k8Var3.f51545c)) {
+                boolean z11 = n8Var3.f51700i;
+                if ((z11 && k8Var3.f51549b) || (!z11 && !k8Var3.f51549b && n8Var3.f51701j == k8Var3.f51550c)) {
                     n8Var = (n8) arrayList2.get(i13);
                     break;
                 }
@@ -207,74 +207,74 @@ public final class o8 extends View {
             if (n8Var == null) {
                 for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                     n8 n8Var4 = (n8) arrayList3.get(i14);
-                    boolean z12 = n8Var4.f51699i;
-                    if ((z12 && k8Var3.f51544b) || (!z12 && !k8Var3.f51544b && n8Var4.f51700j == k8Var3.f51545c)) {
+                    boolean z12 = n8Var4.f51700i;
+                    if ((z12 && k8Var3.f51549b) || (!z12 && !k8Var3.f51549b && n8Var4.f51701j == k8Var3.f51550c)) {
                         n8Var = (n8) arrayList3.get(i14);
                         break;
                     }
                 }
                 if (n8Var != null) {
                     arrayList3.remove(n8Var);
-                    n8Var.f51701k.onAttachedToWindow();
+                    n8Var.f51702k.onAttachedToWindow();
                     arrayList2.add(n8Var);
                 }
             }
             if (n8Var == null) {
-                n8Var = new n8(this, k8Var3.f51544b, k8Var3.f51545c);
+                n8Var = new n8(this, k8Var3.f51549b, k8Var3.f51550c);
                 n8Var.d.d(0.0f, r82);
                 arrayList2.add(n8Var);
-                n8Var.f51695c.d((arrayList4.size() - r82) - i12, r82);
+                n8Var.f51696c.d((arrayList4.size() - r82) - i12, r82);
             }
-            o8 o8Var = n8Var.f51712w;
-            p8 p8Var = o8Var.f51785r;
-            n8Var.f51693a = (arrayList4.size() - r82) - i12;
+            o8 o8Var = n8Var.f51713w;
+            p8 p8Var = o8Var.f51782r;
+            n8Var.f51694a = (arrayList4.size() - r82) - i12;
             long j3 = k8Var3.d;
             Paint paint = n8Var.h;
-            n8Var.f51705o = new e11(x7.X0(org.telegram.messenger.f0.h(j3, ',', new StringBuilder("⭐️")), 0.85f, rqVarArr), 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-            boolean z13 = o8Var.f51779a;
-            int i15 = p8Var.f51831c;
+            n8Var.f51706o = new e11(x7.X0(org.telegram.messenger.q.h(j3, ',', new StringBuilder("⭐️")), 0.85f, rqVarArr), 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+            boolean z13 = o8Var.f51776a;
+            int i15 = p8Var.f51827c;
             if (z13) {
                 int i16 = (int) j3;
-                n8Var.f51697f = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), new int[]{ai.g0.b(i15, i16, 4), ai.g0.b(i15, i16, 3)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                n8Var.f51708r = i0.a.d(0.5f, ai.g0.b(i15, i16, 4), ai.g0.b(i15, i16, 3));
-                paint.setShader(n8Var.f51697f);
+                n8Var.f51698f = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), new int[]{ai.g0.b(i15, i16, 4), ai.g0.b(i15, i16, 3)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                n8Var.f51709r = i0.a.d(0.5f, ai.g0.b(i15, i16, 4), ai.g0.b(i15, i16, 3));
+                paint.setShader(n8Var.f51698f);
             } else {
                 paint.setShader(null);
-                n8Var.f51708r = -1002750;
+                n8Var.f51709r = -1002750;
                 paint.setColor(-1002750);
             }
-            Drawable drawable = n8Var.f51709s;
+            Drawable drawable = n8Var.f51710s;
             if (drawable != null) {
-                drawable.setColorFilter(new PorterDuffColorFilter(n8Var.f51708r, PorterDuff.Mode.SRC_IN));
+                drawable.setColorFilter(new PorterDuffColorFilter(n8Var.f51709r, PorterDuff.Mode.SRC_IN));
             }
-            if (this.f51779a) {
+            if (this.f51776a) {
                 int i17 = i12 + 1;
                 n8Var.v = i17;
-                n8Var.f51711u = new e11(hg.k0.h(i17, ""), 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-                if (i17 > 0 && n8Var.f51709s == null) {
+                n8Var.f51712u = new e11(hg.c.h(i17, ""), 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+                if (i17 > 0 && n8Var.f51710s == null) {
                     Drawable mutate = o8Var.getContext().getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
-                    n8Var.f51709s = mutate;
-                    int i18 = n8Var.f51708r;
+                    n8Var.f51710s = mutate;
+                    int i18 = n8Var.f51709r;
                     PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                     mutate.setColorFilter(new PorterDuffColorFilter(i18, mode));
                     Drawable mutate2 = o8Var.getContext().getResources().getDrawable(R.drawable.filled_stream_crown_outline).mutate();
-                    n8Var.f51710t = mutate2;
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20890h5, p8Var.f51830b), mode));
+                    n8Var.f51711t = mutate2;
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20894h5, p8Var.f51826b), mode));
                 }
             }
-            if (k8Var3.f51544b) {
-                n8Var.b(this.f51785r.E);
+            if (k8Var3.f51549b) {
+                n8Var.b(this.f51782r.E);
             } else {
-                boolean z14 = k8Var3.f51543a;
-                if (!n8Var.f51699i && n8Var.f51706p != z14) {
-                    n8Var.f51706p = z14;
+                boolean z14 = k8Var3.f51548a;
+                if (!n8Var.f51700i && n8Var.f51707p != z14) {
+                    n8Var.f51707p = z14;
                     if (z14) {
                         shortName = LocaleController.getString(R.string.StarsReactionAnonymous);
                     } else {
-                        shortName = DialogObject.getShortName(n8Var.f51700j);
+                        shortName = DialogObject.getShortName(n8Var.f51701j);
                     }
                     rqVarArr = null;
-                    n8Var.f51704n = new e11(shortName, 12.0f, null);
+                    n8Var.f51705n = new e11(shortName, 12.0f, null);
                     o8Var.invalidate();
                     i12++;
                     arrayList4 = arrayList;

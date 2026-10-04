@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n2;
@@ -25,29 +25,29 @@ import org.telegram.ui.Components.w9;
 import w7.z5;
 import yh.t7;
 public final class e2 extends n2 implements NotificationCenter.NotificationCenterDelegate {
-    public c71 f11175a;
-    public LinearLayout f11176b;
-    public g3 f11177c;
+    public c71 f11165a;
+    public LinearLayout f11166b;
+    public g3 f11167c;
     public boolean d;
-    public String f11178e;
-    public String f11179f;
+    public String f11168e;
+    public String f11169f;
     public boolean h;
-    public String f11180n;
+    public String f11170n;
 
     public static void S(e2 e2Var, g61 g61Var, View view) {
         if (g61Var.d == -1) {
             boolean z10 = e2Var.h;
             e2Var.h = !z10;
             if (!z10) {
-                String str = e2Var.f11179f;
-                e2Var.f11180n = str;
-                g3 g3Var = e2Var.f11177c;
+                String str = e2Var.f11169f;
+                e2Var.f11170n = str;
+                g3 g3Var = e2Var.f11167c;
                 if (g3Var != null) {
                     g3Var.run(str);
                 }
             }
             ((w8) view).setChecked(e2Var.h);
-            e2Var.f11175a.f25245f3.N(true);
+            e2Var.f11165a.f25250f3.N(true);
         } else if (view.isEnabled()) {
             f2 b10 = f2.b(e2Var.currentAccount);
             ArrayList arrayList = b10.d;
@@ -57,16 +57,16 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
                 if (i10 < arrayList.size()) {
                     b10.g();
                     e2Var.h = false;
-                    String str2 = ((TLRPC.TL_timezone) arrayList.get(g61Var.d)).f20176id;
-                    e2Var.f11180n = str2;
-                    g3 g3Var2 = e2Var.f11177c;
+                    String str2 = ((TLRPC.TL_timezone) arrayList.get(g61Var.d)).f20180id;
+                    e2Var.f11170n = str2;
+                    g3 g3Var2 = e2Var.f11167c;
                     if (g3Var2 != null) {
                         g3Var2.run(str2);
                     }
                     if (e2Var.d) {
                         e2Var.actionBar.h(true);
                     }
-                    e2Var.f11175a.f25245f3.N(true);
+                    e2Var.f11165a.f25250f3.N(true);
                 }
             }
         }
@@ -75,7 +75,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
     public static void T(e2 e2Var, ArrayList arrayList, u61 u61Var) {
         boolean z10;
         boolean z11;
-        if (e2Var.d && !TextUtils.isEmpty(e2Var.f11178e)) {
+        if (e2Var.d && !TextUtils.isEmpty(e2Var.f11168e)) {
             z10 = true;
         } else {
             z10 = false;
@@ -87,11 +87,11 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
             String string = LocaleController.getString(R.string.TimezoneDetectAutomatically);
             g61 g61Var = new g61(9);
             g61Var.d = -1;
-            g61Var.f26669l = string;
+            g61Var.f26674l = string;
             g61Var.K(e2Var.h);
             arrayList.add(g61Var);
             u61Var.T();
-            arrayList.add(g61.B(LocaleController.formatString(R.string.TimezoneDetectAutomaticallyInfo, b10.d(e2Var.f11180n, true))));
+            arrayList.add(g61.B(LocaleController.formatString(R.string.TimezoneDetectAutomaticallyInfo, b10.d(e2Var.f11170n, true))));
         }
         u61Var.U();
         if (!z10) {
@@ -109,9 +109,9 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
             CharSequence e7 = f2.e(tL_timezone, false);
             if (z10) {
                 String replace = AndroidUtilities.translitSafe(tL_timezone.name).toLowerCase().replace("/", " ");
-                String lowerCase = AndroidUtilities.translitSafe(e2Var.f11178e).toLowerCase();
-                if (org.telegram.messenger.f0.w(" ", lowerCase, replace) || replace.startsWith(lowerCase)) {
-                    e7 = AndroidUtilities.highlightText(e7, e2Var.f11178e, e2Var.resourceProvider);
+                String lowerCase = AndroidUtilities.translitSafe(e2Var.f11168e).toLowerCase();
+                if (bi.u(" ", lowerCase, replace) || replace.startsWith(lowerCase)) {
+                    e7 = AndroidUtilities.highlightText(e7, e2Var.f11168e, e2Var.resourceProvider);
                 } else {
                     i10++;
                 }
@@ -119,22 +119,22 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
             String f7 = f2.f(tL_timezone);
             g61 g61Var2 = new g61(10);
             g61Var2.d = i10;
-            g61Var2.f26669l = e7;
-            g61Var2.f26671n = f7;
-            g61Var2.K(TextUtils.equals(tL_timezone.f20176id, e2Var.f11180n));
+            g61Var2.f26674l = e7;
+            g61Var2.f26676n = f7;
+            g61Var2.K(TextUtils.equals(tL_timezone.f20180id, e2Var.f11170n));
             if (e2Var.h && !z10) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            g61Var2.f26665g = z11;
+            g61Var2.f26670g = z11;
             arrayList.add(g61Var2);
             z12 = false;
             i10++;
         }
         u61Var.T();
         if (z12) {
-            arrayList.add(g61.m(e2Var.f11176b));
+            arrayList.add(g61.m(e2Var.f11166b));
         } else {
             arrayList.add(g61.B(null));
         }
@@ -151,25 +151,25 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
         a2.H = new d2(this, 0);
         a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(i6.w0(null, i6.f20762a7, false));
+        frameLayout.setBackgroundColor(i6.w0(null, i6.f20766a7, false));
         c71 c71Var = new c71(this, new t7(this, 1), new ei.f(this, 7), null);
-        this.f11175a = c71Var;
+        this.f11165a = c71Var;
         c71Var.s1();
-        this.actionBar.setAdaptiveBackground(this.f11175a);
-        frameLayout.addView(this.f11175a, z5.c(-1.0f, -1));
-        this.f11175a.setOnScrollListener(new ai.r(this, 11));
+        this.actionBar.setAdaptiveBackground(this.f11165a);
+        frameLayout.addView(this.f11165a, z5.c(-1.0f, -1));
+        this.f11165a.setOnScrollListener(new ai.r(this, 11));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f11176b = linearLayout;
+        this.f11166b = linearLayout;
         linearLayout.setOrientation(1);
-        this.f11176b.setMinimumHeight(AndroidUtilities.dp(500.0f));
+        this.f11166b.setMinimumHeight(AndroidUtilities.dp(500.0f));
         w9 w9Var = new w9(context);
         w9Var.getImageReceiver().setAllowLoadingOnAttachedOnly(false);
         MediaDataController.getInstance(this.currentAccount).setPlaceholderImage(w9Var, "RestrictedEmoji", "🌖", "130_130");
-        this.f11176b.addView(w9Var, z5.t(130, 130, 49, 0, 42, 0, 12));
+        this.f11166b.addView(w9Var, z5.t(130, 130, 49, 0, 42, 0, 12));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString(R.string.TimezoneNotFound));
-        ok.n(i6.f21205y6, this.resourceProvider, textView, 1, 15.0f);
-        this.f11176b.addView(textView, z5.t(-2, -2, 49, 0, 0, 0, 0));
+        bi.m(i6.f21209y6, this.resourceProvider, textView, 1, 15.0f);
+        this.f11166b.addView(textView, z5.t(-2, -2, 49, 0, 0, 0, 0));
         this.fragmentView = frameLayout;
         return frameLayout;
     }
@@ -178,7 +178,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         c71 c71Var;
         u61 u61Var;
-        if (i10 == NotificationCenter.timezonesUpdated && (c71Var = this.f11175a) != null && (u61Var = c71Var.f25245f3) != null) {
+        if (i10 == NotificationCenter.timezonesUpdated && (c71Var = this.f11165a) != null && (u61Var = c71Var.f25250f3) != null) {
             u61Var.N(true);
         }
     }
@@ -191,8 +191,8 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
     @Override
     public final boolean onFragmentCreate() {
         String c10 = f2.b(this.currentAccount).c();
-        this.f11179f = c10;
-        this.h = TextUtils.equals(c10, this.f11180n);
+        this.f11169f = c10;
+        this.h = TextUtils.equals(c10, this.f11170n);
         getNotificationCenter().addObserver(this, NotificationCenter.timezonesUpdated);
         return super.onFragmentCreate();
     }
@@ -205,7 +205,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f11175a.setPadding(0, 0, 0, i13);
-        this.f11175a.setClipToPadding(false);
+        this.f11165a.setPadding(0, 0, 0, i13);
+        this.f11165a.setClipToPadding(false);
     }
 }

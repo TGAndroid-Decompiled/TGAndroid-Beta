@@ -5,49 +5,49 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class yg0 implements Runnable {
-    public final int f43214a;
-    public final ch0 f43215b;
+    public final int f43221a;
+    public final ch0 f43222b;
 
     public yg0(ch0 ch0Var, int i10) {
-        this.f43214a = i10;
-        this.f43215b = ch0Var;
+        this.f43221a = i10;
+        this.f43222b = ch0Var;
     }
 
     @Override
     public final void run() {
         oh.b[] bVarArr;
-        switch (this.f43214a) {
+        switch (this.f43221a) {
             case 0:
-                ch0.Z(this.f43215b);
+                ch0.Z(this.f43222b);
                 return;
             case 1:
-                ch0 ch0Var = this.f43215b;
+                ch0 ch0Var = this.f43222b;
                 ch0Var.getClass();
                 m9.g0(ch0Var);
                 return;
             case 2:
-                ch0.c0(this.f43215b);
+                ch0.c0(this.f43222b);
                 return;
             case 3:
-                ch0.Y(this.f43215b);
+                ch0.Y(this.f43222b);
                 return;
             case 4:
-                ch0 ch0Var2 = this.f43215b;
+                ch0 ch0Var2 = this.f43222b;
                 ch0Var2.getClass();
                 new ak0(ch0Var2.getParentActivity(), ch0Var2).show();
                 return;
             case 5:
-                ch0 ch0Var3 = this.f43215b;
+                ch0 ch0Var3 = this.f43222b;
                 ch0Var3.getClass();
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("needFinishFragment", false);
                 ch0Var3.presentFragment(new m9(bundle));
                 return;
             case 6:
-                ch0 ch0Var4 = this.f43215b;
+                ch0 ch0Var4 = this.f43222b;
                 if (ch0Var4.getParentActivity() != null && (bVarArr = ch0Var4.K) != null) {
                     oh.b bVar = bVarArr[4];
-                    float width = ((bVar.getWidth() / 2.0f) + (ch0Var4.f40848b.getWidth() - ((bVar.getX() + ch0Var4.F.getX()) + bVar.getWidth()))) / AndroidUtilities.density;
+                    float width = ((bVar.getWidth() / 2.0f) + (ch0Var4.f40854b.getWidth() - ((bVar.getX() + ch0Var4.F.getX()) + bVar.getWidth()))) / AndroidUtilities.density;
                     ci.e4 e4Var = new ci.e4(ch0Var4.getParentActivity(), 3);
                     ch0Var4.P = e4Var;
                     e4Var.setTranslationY(AndroidUtilities.dp(4.0f) + (-ch0Var4.L));
@@ -56,17 +56,17 @@ public final class yg0 implements Runnable {
                     ch0Var4.P.i();
                     ch0Var4.P.s(LocaleController.getString(R.string.SwitchAccountHint));
                     ch0Var4.P.l(1.0f, (-width) + 7.33f);
-                    ch0Var4.f40848b.addView(ch0Var4.P, w7.z5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
+                    ch0Var4.f40854b.addView(ch0Var4.P, w7.z5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
                     ci.e4 e4Var2 = ch0Var4.P;
-                    e4Var2.f4997l0 = new yg0(ch0Var4, 7);
+                    e4Var2.f4998l0 = new yg0(ch0Var4, 7);
                     e4Var2.d = 8000L;
                     e4Var2.u();
-                    org.telegram.ui.Components.n40.f28857r.b();
+                    org.telegram.ui.Components.n40.f28862r.b();
                     return;
                 }
                 return;
             default:
-                AndroidUtilities.removeFromParent(this.f43215b.P);
+                AndroidUtilities.removeFromParent(this.f43222b.P);
                 return;
         }
     }

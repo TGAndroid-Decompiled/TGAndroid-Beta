@@ -394,10 +394,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f17260id;
+        private int f17264id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f17260id = i10;
+            this.f17264id = i10;
             this.args = objArr;
         }
     }
@@ -475,7 +475,7 @@ public class NotificationCenter {
                 } else {
                     lVar.getClass();
                 }
-                StringBuilder j3 = hg.k0.j(i11, "Index ", " must be in 0..");
+                StringBuilder j3 = hg.c.j(i11, "Index ", " must be in 0..");
                 j3.append(lVar.f30b - 1);
                 throw new IndexOutOfBoundsException(j3.toString());
             }
@@ -911,7 +911,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(hg.k0.h(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(hg.c.h(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -959,7 +959,7 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder k10 = hg.k0.k("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                StringBuilder k10 = hg.c.k("key=", keyAt, " CHANGED: ", intValue, " -> ");
                 k10.append(intValue2);
                 Log.i("ObserverDiff", k10.toString());
             }
@@ -967,7 +967,7 @@ public class NotificationCenter {
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder j3 = hg.k0.j(keyAt2, "key=", " ADDED (size=");
+                StringBuilder j3 = hg.c.j(keyAt2, "key=", " ADDED (size=");
                 j3.append(sparseArray2.valueAt(i11));
                 j3.append(")");
                 Log.i("ObserverDiff", j3.toString());
@@ -1391,7 +1391,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f17260id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f17264id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

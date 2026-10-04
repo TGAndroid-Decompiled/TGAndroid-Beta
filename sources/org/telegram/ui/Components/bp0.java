@@ -26,37 +26,37 @@ public final class bp0 {
     public float K;
     public float L;
     public ap0 M;
-    public int f25018a;
-    public int f25019b;
-    public float f25020c;
+    public int f25023a;
+    public int f25024b;
+    public float f25025c;
     public float d;
-    public boolean f25021e;
-    public boolean f25022f;
-    public int f25023g;
+    public boolean f25026e;
+    public boolean f25027f;
+    public int f25028g;
     public int h;
-    public int f25024i;
-    public int f25025j;
-    public org.telegram.ui.Cells.u1 f25026k;
-    public byte[] f25027l;
-    public MessageObject f25028m;
-    public org.telegram.ui.Cells.u1 f25029n;
-    public boolean f25030o;
-    public int f25031p;
-    public int f25032q;
-    public int f25033r;
-    public float f25034s;
-    public float f25035t;
-    public boolean f25036u;
+    public int f25029i;
+    public int f25030j;
+    public org.telegram.ui.Cells.u1 f25031k;
+    public byte[] f25032l;
+    public MessageObject f25033m;
+    public org.telegram.ui.Cells.u1 f25034n;
+    public boolean f25035o;
+    public int f25036p;
+    public int f25037q;
+    public int f25038r;
+    public float f25039s;
+    public float f25040t;
+    public boolean f25041u;
     public e6 v;
-    public float f25037w;
-    public Path f25038x;
-    public Path f25039y;
-    public boolean f25040z;
+    public float f25042w;
+    public Path f25043x;
+    public Path f25044y;
+    public boolean f25045z;
 
     public final void a(Path path, float f7, float f10) {
         float dpf2 = AndroidUtilities.dpf2(2.0f);
-        int z10 = org.telegram.messenger.ok.z(14.0f, this.h, 2);
-        float f11 = f10 * this.f25037w;
+        int z10 = org.telegram.messenger.bi.z(14.0f, this.h, 2);
+        float f11 = f10 * this.f25042w;
         RectF rectF = AndroidUtilities.rectTmp;
         float f12 = dpf2 / 2.0f;
         rectF.set((AndroidUtilities.dpf2(1.0f) + f7) - f12, ((-f11) - f12) + AndroidUtilities.dp(7.0f) + z10, AndroidUtilities.dpf2(1.0f) + f7 + f12, f11 + f12 + AndroidUtilities.dp(7.0f) + z10);
@@ -64,7 +64,7 @@ public final class bp0 {
     }
 
     public final float[] b(int i10) {
-        byte[] bArr = this.f25027l;
+        byte[] bArr = this.f25032l;
         if (bArr != null && i10 > 0) {
             float[] fArr = new float[i10];
             int i11 = 5;
@@ -88,10 +88,10 @@ public final class bp0 {
                     int i19 = i17 - (i18 * 8);
                     int i20 = 8 - i19;
                     int i21 = 5 - i20;
-                    byte min = (byte) ((this.f25027l[i18] >> i19) & ((2 << (Math.min(i11, i20) - 1)) - 1));
+                    byte min = (byte) ((this.f25032l[i18] >> i19) & ((2 << (Math.min(i11, i20) - 1)) - 1));
                     if (i21 > 0) {
                         int i22 = i18 + 1;
-                        byte[] bArr2 = this.f25027l;
+                        byte[] bArr2 = this.f25032l;
                         if (i22 < bArr2.length) {
                             min = (byte) (((byte) (min << i21)) | (bArr2[i22] & ((2 << (4 - i20)) - 1)));
                         }
@@ -127,49 +127,49 @@ public final class bp0 {
         Paint paint2;
         e6 e6Var = this.B;
         float dpf2 = AndroidUtilities.dpf2(2.0f);
-        MessageObject messageObject = this.f25028m;
-        if (messageObject != null && messageObject.isContentUnread() && !this.f25028m.isOut() && this.f25020c <= 0.0f) {
+        MessageObject messageObject = this.f25033m;
+        if (messageObject != null && messageObject.isContentUnread() && !this.f25033m.isOut() && this.f25025c <= 0.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f25036u = z10;
+        this.f25041u = z10;
         Paint paint3 = N;
         if (z10) {
-            i10 = this.f25032q;
-        } else if (this.f25030o) {
-            i10 = this.f25033r;
+            i10 = this.f25037q;
+        } else if (this.f25035o) {
+            i10 = this.f25038r;
         } else {
-            i10 = this.f25031p;
+            i10 = this.f25036p;
         }
         paint3.setColor(i10);
-        O.setColor(this.f25032q);
-        e6Var.f25932a = this.f25029n;
-        boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.f25028m);
-        if (this.f25040z && !isPlayingMessage) {
+        O.setColor(this.f25037q);
+        e6Var.f25937a = this.f25034n;
+        boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.f25033m);
+        if (this.f25045z && !isPlayingMessage) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
         float d = e6Var.d(f10, false);
         Paint paint4 = N;
-        paint4.setColor(i0.a.d(d, paint4.getColor(), this.f25031p));
+        paint4.setColor(i0.a.d(d, paint4.getColor(), this.f25036p));
         float f11 = 1.0f - d;
         O.setAlpha((int) (paint.getAlpha() * f11 * f7));
         N.setAlpha((int) (paint2.getAlpha() * f7));
-        canvas.drawRect(0.0f, 0.0f, this.f25023g + dpf2, this.h, N);
+        canvas.drawRect(0.0f, 0.0f, this.f25028g + dpf2, this.h, N);
         if (d < 1.0f) {
-            canvas.drawRect(0.0f, 0.0f, (this.f25023g + dpf2) * this.f25020c * f11, this.h, O);
+            canvas.drawRect(0.0f, 0.0f, (this.f25028g + dpf2) * this.f25025c * f11, this.h, O);
         }
         if (d > 0.0f) {
-            if (this.C == null || Math.abs(this.D - this.f25023g) > AndroidUtilities.dp(8.0f) || this.E != this.f25031p || this.F != this.f25032q) {
+            if (this.C == null || Math.abs(this.D - this.f25028g) > AndroidUtilities.dp(8.0f) || this.E != this.f25036p || this.F != this.f25037q) {
                 if (this.C == null) {
                     this.C = new Paint(1);
                 }
-                this.E = this.f25031p;
-                this.F = this.f25032q;
+                this.E = this.f25036p;
+                this.F = this.f25037q;
                 Paint paint5 = this.C;
-                float f12 = this.f25023g;
+                float f12 = this.f25028g;
                 this.D = f12;
                 int i11 = this.E;
                 paint5.setShader(new LinearGradient(0.0f, 0.0f, f12, 0.0f, new int[]{i11, this.F, i11}, new float[]{0.0f, 0.2f, 0.4f}, Shader.TileMode.CLAMP));
@@ -178,9 +178,9 @@ public final class bp0 {
             canvas.save();
             float pow = ((((float) Math.pow(((float) (SystemClock.elapsedRealtime() - this.A)) / 270.0f, 0.75d)) % 1.6f) - 0.6f) * this.D;
             canvas.translate(pow, 0.0f);
-            canvas.drawRect(-pow, 0.0f, (this.f25023g + 5) - pow, this.h, this.C);
+            canvas.drawRect(-pow, 0.0f, (this.f25028g + 5) - pow, this.h, this.C);
             canvas.restore();
-            org.telegram.ui.Cells.u1 u1Var = this.f25029n;
+            org.telegram.ui.Cells.u1 u1Var = this.f25034n;
             if (u1Var != null) {
                 u1Var.invalidate();
             }
@@ -188,7 +188,7 @@ public final class bp0 {
     }
 
     public final void e(float f7) {
-        this.f25034s = f7;
+        this.f25039s = f7;
     }
 
     public final void f() {
@@ -198,51 +198,51 @@ public final class bp0 {
     public final void g(float f7, boolean z10) {
         float f10;
         int i10;
-        if (!this.f25026k.p3()) {
-            this.f25020c = 1.0f;
+        if (!this.f25031k.p3()) {
+            this.f25025c = 1.0f;
             return;
         }
-        boolean z11 = this.f25036u;
+        boolean z11 = this.f25041u;
         if (z11) {
             f10 = 1.0f;
         } else {
             f10 = f7;
         }
-        this.f25020c = f10;
+        this.f25025c = f10;
         if (z11) {
-            i10 = this.f25023g;
+            i10 = this.f25028g;
         } else {
-            i10 = this.f25018a;
+            i10 = this.f25023a;
         }
         if (z10 && i10 != 0 && f7 == 0.0f) {
-            this.f25035t = 0.0f;
+            this.f25040t = 0.0f;
         } else if (!z10) {
-            this.f25035t = 1.0f;
+            this.f25040t = 1.0f;
         }
-        int ceil = (int) Math.ceil(this.f25023g * f7);
-        this.f25018a = ceil;
+        int ceil = (int) Math.ceil(this.f25028g * f7);
+        this.f25023a = ceil;
         if (ceil < 0) {
-            this.f25018a = 0;
+            this.f25023a = 0;
             return;
         }
-        int i11 = this.f25023g;
+        int i11 = this.f25028g;
         if (ceil > i11) {
-            this.f25018a = i11;
+            this.f25023a = i11;
         }
     }
 
     public final void h(int i10, int i11, int i12, int i13) {
-        this.f25023g = i10;
+        this.f25028g = i10;
         this.h = i11;
         float[] fArr = this.G;
         if (fArr == null || fArr.length != ((int) (i10 / AndroidUtilities.dpf2(3.0f)))) {
-            this.G = b((int) (this.f25023g / AndroidUtilities.dpf2(3.0f)));
+            this.G = b((int) (this.f25028g / AndroidUtilities.dpf2(3.0f)));
         }
-        if (i12 != i13 && (this.f25024i != i12 || this.f25025j != i13)) {
-            this.f25024i = i12;
-            this.f25025j = i13;
+        if (i12 != i13 && (this.f25029i != i12 || this.f25030j != i13)) {
+            this.f25029i = i12;
+            this.f25030j = i13;
             this.H = b((int) (i12 / AndroidUtilities.dpf2(3.0f)));
-            this.I = b((int) (this.f25025j / AndroidUtilities.dpf2(3.0f)));
+            this.I = b((int) (this.f25030j / AndroidUtilities.dpf2(3.0f)));
         } else if (i12 == i13) {
             this.I = null;
             this.H = null;

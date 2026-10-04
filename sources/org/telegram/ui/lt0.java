@@ -14,24 +14,24 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class lt0 implements org.telegram.ui.Components.a81 {
-    public boolean f38334a = true;
-    public final PhotoViewer f38335b;
+    public boolean f38339a = true;
+    public final PhotoViewer f38340b;
 
     public lt0(PhotoViewer photoViewer) {
-        this.f38335b = photoViewer;
+        this.f38340b = photoViewer;
     }
 
     @Override
     public final void onError(org.telegram.ui.Components.d81 d81Var, Exception exc) {
         View findViewWithTag;
-        PhotoViewer photoViewer = this.f38335b;
+        PhotoViewer photoViewer = this.f38340b;
         if (photoViewer.F2 == d81Var) {
             FileLog.e(exc);
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.f33981o0.f21571b;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.f33987o0.f21575b;
             if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(10)) != null && findViewWithTag.getVisibility() == 0) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(photoViewer.f34073y, 0, photoViewer.f34046v2);
-                alertDialog$Builder.f20368a.R = LocaleController.getString("AppName", R.string.AppName);
-                alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.CantPlayVideo);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(photoViewer.f34079y, 0, photoViewer.f34052v2);
+                alertDialog$Builder.f20372a.R = LocaleController.getString("AppName", R.string.AppName);
+                alertDialog$Builder.f20372a.T = LocaleController.getString(R.string.CantPlayVideo);
                 alertDialog$Builder.k(LocaleController.getString("Open", R.string.Open), new jl0(this, 4));
                 alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
                 photoViewer.S2(alertDialog$Builder);
@@ -41,10 +41,10 @@ public final class lt0 implements org.telegram.ui.Components.a81 {
 
     @Override
     public final void onRenderedFirstFrame() {
-        PhotoViewer photoViewer = this.f38335b;
+        PhotoViewer photoViewer = this.f38340b;
         if (!photoViewer.H3) {
             photoViewer.H3 = true;
-            photoViewer.f33895e0.invalidate();
+            photoViewer.f33901e0.invalidate();
         }
         if (photoViewer.E2 != null) {
             org.telegram.ui.Components.d81 d81Var = photoViewer.F2;
@@ -60,20 +60,20 @@ public final class lt0 implements org.telegram.ui.Components.a81 {
         int i11;
         VideoEditedInfo videoEditedInfo;
         boolean z11;
-        PhotoViewer photoViewer = this.f38335b;
-        ArrayList arrayList = photoViewer.f33919g7;
+        PhotoViewer photoViewer = this.f38340b;
+        ArrayList arrayList = photoViewer.f33925g7;
         org.telegram.ui.Components.d81 d81Var2 = photoViewer.F2;
         if (d81Var2 != null) {
-            if (!b5.d.u() && !photoViewer.f34006r) {
+            if (!b5.d.u() && !photoViewer.f34012r) {
                 z11 = false;
             } else {
                 z11 = true;
             }
             d81Var2.O(z11);
         }
-        if (this.f38334a && (d81Var = photoViewer.F2) != null && d81Var.p() != -9223372036854775807L) {
-            this.f38334a = false;
-            if (photoViewer.Y6.isEmpty() && photoViewer.e7.isEmpty() && photoViewer.f33863a7.isEmpty() && !arrayList.isEmpty() && (i11 = photoViewer.Q4) >= 0 && i11 < arrayList.size()) {
+        if (this.f38339a && (d81Var = photoViewer.F2) != null && d81Var.p() != -9223372036854775807L) {
+            this.f38339a = false;
+            if (photoViewer.Y6.isEmpty() && photoViewer.e7.isEmpty() && photoViewer.f33869a7.isEmpty() && !arrayList.isEmpty() && (i11 = photoViewer.Q4) >= 0 && i11 < arrayList.size()) {
                 Object obj = arrayList.get(photoViewer.Q4);
                 if (obj instanceof MediaController.PhotoEntry) {
                     MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
@@ -96,18 +96,18 @@ public final class lt0 implements org.telegram.ui.Components.a81 {
         TextureView textureView;
         TextureView textureView2;
         pf.e p5 = org.telegram.ui.Components.rg0.p();
-        PhotoViewer photoViewer = this.f38335b;
-        if (p5 != null && org.telegram.ui.Components.rg0.p().f44411b.f46019a != 0 && (textureView = photoViewer.f34057w3) != null && textureView.getSurfaceTexture() == surfaceTexture) {
-            org.telegram.ui.Components.rg0 rg0Var = org.telegram.ui.Components.rg0.f30378p0;
+        PhotoViewer photoViewer = this.f38340b;
+        if (p5 != null && org.telegram.ui.Components.rg0.p().f44418b.f46026a != 0 && (textureView = photoViewer.f34063w3) != null && textureView.getSurfaceTexture() == surfaceTexture) {
+            org.telegram.ui.Components.rg0 rg0Var = org.telegram.ui.Components.rg0.f30384p0;
             TextureView textureView3 = null;
             if (rg0Var != null) {
-                textureView2 = rg0Var.f30395l0;
+                textureView2 = rg0Var.f30401l0;
             } else {
                 textureView2 = null;
             }
             textureView2.setSurfaceTexture(surfaceTexture);
             if (rg0Var != null) {
-                textureView3 = rg0Var.f30395l0;
+                textureView3 = rg0Var.f30401l0;
             }
             textureView3.setVisibility(0);
             return true;
@@ -116,9 +116,9 @@ public final class lt0 implements org.telegram.ui.Components.a81 {
             photoViewer.F3 = false;
             if (photoViewer.J3) {
                 photoViewer.G3 = 1;
-                photoViewer.f34057w3.setSurfaceTexture(surfaceTexture);
-                photoViewer.f34057w3.setSurfaceTextureListener(photoViewer.f33942j4);
-                photoViewer.f34057w3.setVisibility(0);
+                photoViewer.f34063w3.setSurfaceTexture(surfaceTexture);
+                photoViewer.f34063w3.setSurfaceTextureListener(photoViewer.f33948j4);
+                photoViewer.f34063w3.setVisibility(0);
                 return true;
             }
         }
@@ -128,15 +128,15 @@ public final class lt0 implements org.telegram.ui.Components.a81 {
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         Drawable[] drawableArr = PhotoViewer.U8;
-        this.f38335b.x0(false);
+        this.f38340b.x0(false);
         AndroidUtilities.runOnUIThread(new kt0(this, 0));
     }
 
     @Override
     public final void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
         float f10;
-        PhotoViewer photoViewer = this.f38335b;
-        if (photoViewer.f34076y2 != null) {
+        PhotoViewer photoViewer = this.f38340b;
+        if (photoViewer.f34082y2 != null) {
             float f11 = i10 * f7;
             int i13 = (int) f11;
             photoViewer.U = i13;
@@ -147,7 +147,7 @@ public final class lt0 implements org.telegram.ui.Components.a81 {
             if (eVar != null) {
                 eVar.d(i13, i14);
             }
-            nt0 nt0Var = photoViewer.f34076y2;
+            nt0 nt0Var = photoViewer.f34082y2;
             if (i11 == 0) {
                 f10 = 1.0f;
             } else {
@@ -158,12 +158,12 @@ public final class lt0 implements org.telegram.ui.Components.a81 {
                 ((org.telegram.ui.Components.t71) photoViewer.B2).setHDRInfo(photoViewer.F2.q(null));
                 org.telegram.ui.Components.t71 t71Var = (org.telegram.ui.Components.t71) photoViewer.B2;
                 t71Var.d = i13;
-                t71Var.f30986e = i11;
-                org.telegram.ui.Components.yz yzVar = t71Var.f30984b;
+                t71Var.f30992e = i11;
+                org.telegram.ui.Components.yz yzVar = t71Var.f30990b;
                 if (yzVar != null) {
                     yzVar.postRunnable(new org.telegram.ui.Components.uz(yzVar, i13, i11, 0));
                 }
-                if (photoViewer.f33878c2 == 1) {
+                if (photoViewer.f33884c2 == 1) {
                     photoViewer.z2();
                 }
             }
@@ -173,13 +173,13 @@ public final class lt0 implements org.telegram.ui.Components.a81 {
 
     @Override
     public final void onRenderedFirstFrame(j2.a aVar) {
-        PhotoViewer photoViewer = this.f38335b;
+        PhotoViewer photoViewer = this.f38340b;
         com.google.android.gms.internal.cast.p pVar = photoViewer.Q8;
         if (pVar != null) {
             pVar.run();
             photoViewer.Q8 = null;
         }
-        long j3 = aVar.f13642e;
+        long j3 = aVar.f13643e;
         if (j3 == photoViewer.X7) {
             photoViewer.W7 = j3;
             photoViewer.X7 = -1L;

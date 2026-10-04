@@ -27,7 +27,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
@@ -80,7 +80,7 @@ public final class ba implements Runnable {
                 r90 r90Var = (r90) this.f667c;
                 r90 r90Var2 = vaVar.f1764a;
                 if (r90Var == r90Var2 && r90Var2 != null) {
-                    CharacterStyle characterStyle = r90Var2.f30306i;
+                    CharacterStyle characterStyle = r90Var2.f30312i;
                     if (characterStyle instanceof URLSpan) {
                         wa waVar = vaVar.v;
                         n90 n90Var = vaVar.f1766c;
@@ -126,7 +126,7 @@ public final class ba implements Runnable {
             case 7:
                 bi.z zVar = (bi.z) this.f666b;
                 String str = (String) this.f667c;
-                ArrayList arrayList = zVar.f3894f;
+                ArrayList arrayList = zVar.f3895f;
                 while (true) {
                     if (i10 < arrayList.size()) {
                         if (!TextUtils.equals(((u8) arrayList.get(i10)).E, str)) {
@@ -137,12 +137,12 @@ public final class ba implements Runnable {
                     }
                 }
                 if (i10 >= 0) {
-                    zVar.f3896r.d(str.hashCode(), i10 + 1);
+                    zVar.f3897r.d(str.hashCode(), i10 + 1);
                     return;
                 }
                 return;
             case 8:
-                ((c1.e) this.f666b).e().onError(((kotlin.jvm.internal.p) this.f667c).f15115a);
+                ((c1.e) this.f666b).e().onError(((kotlin.jvm.internal.p) this.f667c).f15116a);
                 return;
             case 9:
                 ((c1.e) this.f666b).e().onError((w0.h) this.f667c);
@@ -151,14 +151,14 @@ public final class ba implements Runnable {
                 ((c1.e) this.f666b).e().onResult((v0.p) this.f667c);
                 return;
             case 11:
-                c2.d.f3953a = (AudioManager) ((Context) this.f666b).getSystemService("audio");
+                c2.d.f3954a = (AudioManager) ((Context) this.f666b).getSystemService("audio");
                 ((e2.g) this.f667c).e();
                 return;
             case 12:
                 ca.c cVar = (ca.c) this.f666b;
                 CountDownLatch countDownLatch = (CountDownLatch) this.f667c;
                 try {
-                    l5.t.a().d.e(cVar.h.f15366a.b(i5.d.f11965c), 1);
+                    l5.t.a().d.e(cVar.h.f15367a.b(i5.d.f11966c), 1);
                 } catch (SQLException unused2) {
                 }
                 countDownLatch.countDown();
@@ -182,15 +182,15 @@ public final class ba implements Runnable {
             case 15:
                 ci.w1 w1Var = (ci.w1) this.f666b;
                 TLObject tLObject = (TLObject) this.f667c;
-                ci.z1 z1Var = w1Var.f6205s;
+                ci.z1 z1Var = w1Var.f6206s;
                 if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
-                    ci.s2 s2Var = z1Var.f6365r;
+                    ci.s2 s2Var = z1Var.f6366r;
                     MessagesController.getInstance(ci.s2.C(s2Var)).putUsers(tL_contacts_resolvedPeer.users, false);
                     MessagesController.getInstance(ci.s2.D(s2Var)).putChats(tL_contacts_resolvedPeer.chats, false);
                     MessagesStorage.getInstance(ci.s2.F(s2Var)).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                 }
-                w1Var.f6203n = true;
+                w1Var.f6204n = true;
                 w1Var.G();
                 return;
             case 16:
@@ -230,48 +230,48 @@ public final class ba implements Runnable {
             case 21:
                 ci.k8 k8Var = (ci.k8) this.f667c;
                 ci.b7 b7Var = (ci.b7) ((aa.a) this.f666b).d;
-                Bitmap bitmap = b7Var.f4737a;
+                Bitmap bitmap = b7Var.f4738a;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    if (k8Var.M0 == b7Var.f4737a) {
+                    if (k8Var.M0 == b7Var.f4738a) {
                         k8Var.M0 = null;
                     }
-                    b7Var.f4737a = null;
+                    b7Var.f4738a = null;
                     b7Var.invalidate();
                     return;
                 }
                 return;
             case 22:
                 ci.f7 f7Var = (ci.f7) this.f666b;
-                AtomicReference atomicReference = f7Var.f5075a;
+                AtomicReference atomicReference = f7Var.f5076a;
                 ?? obj = new Object();
-                obj.f7615a = 256;
+                obj.f7616a = 256;
                 atomicReference.set(new r8.n(new com.google.android.gms.internal.vision.u2((Context) this.f667c, (com.google.android.gms.internal.vision.x1) obj)));
-                f7Var.a(f7Var.f5079f);
+                f7Var.a(f7Var.f5080f);
                 return;
             case 23:
-                ((ci.f7) this.f666b).f5077c.run((ci.d7) this.f667c);
+                ((ci.f7) this.f666b).f5078c.run((ci.d7) this.f667c);
                 return;
             case 24:
                 ci.p pVar = (ci.p) this.f666b;
                 qg.b2 b2Var = (qg.b2) this.f667c;
-                ci.n7 n7Var = pVar.f5655a;
+                ci.n7 n7Var = pVar.f5656a;
                 if (b2Var.getWidth() <= 0) {
                     n7Var.animate().scaleX(0.0f).scaleY(1.0f).withEndAction(new androidx.fragment.app.a0(pVar, 20)).start();
                     return;
                 }
                 float width = b2Var.getWidth() / n7Var.getWidth();
-                ValueAnimator valueAnimator = pVar.f5663w;
+                ValueAnimator valueAnimator = pVar.f5664w;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                pVar.f5663w = ValueAnimator.ofFloat(0.0f, 1.0f);
-                pVar.f5663w.addUpdateListener(new ci.m7(pVar, n7Var.getScaleX(), width, ((b2Var.getWidth() / 2.0f) + b2Var.getX()) - ((n7Var.getWidth() / 2.0f) + n7Var.getX()), ((b2Var.getHeight() / 2.0f) + b2Var.getY()) - ((n7Var.getHeight() / 2.0f) + n7Var.getY()), 0));
-                pVar.f5663w.addListener(new z(4, pVar, b2Var));
-                pVar.f5663w.setDuration(320L);
-                pVar.f5663w.setInterpolator(tr.h);
+                pVar.f5664w = ValueAnimator.ofFloat(0.0f, 1.0f);
+                pVar.f5664w.addUpdateListener(new ci.m7(pVar, n7Var.getScaleX(), width, ((b2Var.getWidth() / 2.0f) + b2Var.getX()) - ((n7Var.getWidth() / 2.0f) + n7Var.getX()), ((b2Var.getHeight() / 2.0f) + b2Var.getY()) - ((n7Var.getHeight() / 2.0f) + n7Var.getY()), 0));
+                pVar.f5664w.addListener(new z(4, pVar, b2Var));
+                pVar.f5664w.setDuration(320L);
+                pVar.f5664w.setInterpolator(tr.h);
                 pVar.v = b2Var;
-                pVar.f5663w.start();
+                pVar.f5664w.start();
                 return;
             case 25:
                 ci.c8.R((ci.c8) this.f666b, (TLObject) this.f667c);
@@ -279,13 +279,13 @@ public final class ba implements Runnable {
             case 26:
                 ci.c8 c8Var = (ci.c8) this.f666b;
                 c8Var.J0 = false;
-                c8Var.f4811b0.addAll((ArrayList) this.f667c);
-                c8Var.f4823o0.N(true);
+                c8Var.f4812b0.addAll((ArrayList) this.f667c);
+                c8Var.f4824o0.N(true);
                 return;
             case 27:
                 ci.k8 k8Var2 = (ci.k8) this.f666b;
                 TLObject tLObject2 = (TLObject) this.f667c;
-                k8Var2.f5322e1 = 0;
+                k8Var2.f5323e1 = 0;
                 if (tLObject2 instanceof Vector) {
                     k8Var2.V0 = new ArrayList();
                     Vector vector = (Vector) tLObject2;
@@ -303,7 +303,7 @@ public final class ba implements Runnable {
                         }
                         if (document != null) {
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_inputDocument.f20050id = document.f20044id;
+                            tL_inputDocument.f20054id = document.f20048id;
                             tL_inputDocument.access_hash = document.access_hash;
                             tL_inputDocument.file_reference = document.file_reference;
                             k8Var2.V0.add(tL_inputDocument);
@@ -319,7 +319,7 @@ public final class ba implements Runnable {
                 ci.t8 t8Var = (ci.t8) this.f666b;
                 TextView textView = (TextView) this.f667c;
                 ClipboardManager clipboardManager = (ClipboardManager) t8Var.getContext().getSystemService("clipboard");
-                org.telegram.ui.Cells.h3 h3Var = t8Var.Y.f22307b;
+                org.telegram.ui.Cells.h3 h3Var = t8Var.Y.f22311b;
                 if ((TextUtils.isEmpty(h3Var.getText()) || TextUtils.equals(h3Var.getText(), "https://") || TextUtils.isEmpty(h3Var.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     i10 = 1;
                 }
@@ -337,7 +337,7 @@ public final class ba implements Runnable {
                 if (i10 == 0) {
                     f10 = 0.7f;
                 }
-                ok.s(scaleX.scaleY(f10), tr.h, 300L);
+                bi.r(scaleX.scaleY(f10), tr.h, 300L);
                 return;
         }
     }

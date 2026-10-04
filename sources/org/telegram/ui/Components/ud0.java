@@ -4,19 +4,19 @@ import android.animation.ValueAnimator;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ud0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31359a;
-    public final ee0 f31360b;
+    public final int f31365a;
+    public final ee0 f31366b;
 
     public ud0(ee0 ee0Var, int i10) {
-        this.f31359a = i10;
-        this.f31360b = ee0Var;
+        this.f31365a = i10;
+        this.f31366b = ee0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f31359a) {
+        switch (this.f31365a) {
             case 0:
-                ee0 ee0Var = this.f31360b;
+                ee0 ee0Var = this.f31366b;
                 ee0Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ee0Var.P = floatValue;
@@ -25,16 +25,16 @@ public final class ud0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ee0 ee0Var2 = this.f31360b;
-                ai.w5 w5Var = ee0Var2.f26055e;
+                ee0 ee0Var2 = this.f31366b;
+                ai.w5 w5Var = ee0Var2.f26060e;
                 w5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
                 w5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
                 w5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
-                TextView textView = ee0Var2.f26060w;
+                TextView textView = ee0Var2.f26065w;
                 textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
                 textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
                 textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue2));
-                ee0Var2.f26059s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
+                ee0Var2.f26064s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
                 return;
         }
     }

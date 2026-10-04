@@ -13,16 +13,16 @@ import android.os.Looper;
 import android.view.Display;
 import android.view.ViewConfiguration;
 public abstract class d {
-    public static AudioManager f3953a;
+    public static AudioManager f3954a;
 
     public static void a(AudioManager audioManager, c cVar) {
         if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = cVar.f3952f;
+            Object obj = cVar.f3953f;
             obj.getClass();
             audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
             return;
         }
-        audioManager.abandonAudioFocus(cVar.f3949b);
+        audioManager.abandonAudioFocus(cVar.f3950b);
     }
 
     public static Notification.Builder b(Context context, String str) {
@@ -56,9 +56,9 @@ public abstract class d {
             synchronized (d.class) {
                 Context applicationContext = context.getApplicationContext();
                 if (applicationContext != null) {
-                    f3953a = null;
+                    f3954a = null;
                 }
-                AudioManager audioManager = f3953a;
+                AudioManager audioManager = f3954a;
                 if (audioManager != null) {
                     return audioManager;
                 }
@@ -67,12 +67,12 @@ public abstract class d {
                     e2.g gVar = new e2.g();
                     e2.a.g().execute(new ba(11, applicationContext, gVar));
                     gVar.b();
-                    AudioManager audioManager2 = f3953a;
+                    AudioManager audioManager2 = f3954a;
                     audioManager2.getClass();
                     return audioManager2;
                 }
                 AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
-                f3953a = audioManager3;
+                f3954a = audioManager3;
                 audioManager3.getClass();
                 return audioManager3;
             }
@@ -89,11 +89,11 @@ public abstract class d {
 
     public static int h(AudioManager audioManager, c cVar) {
         if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = cVar.f3952f;
+            Object obj = cVar.f3953f;
             obj.getClass();
             return audioManager.requestAudioFocus((AudioFocusRequest) obj);
         }
-        AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = cVar.f3949b;
+        AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = cVar.f3950b;
         b2.e eVar = cVar.d;
         int i10 = 1;
         if ((eVar.f3199b & 1) != 1) {
@@ -128,7 +128,7 @@ public abstract class d {
                     break;
             }
         }
-        return audioManager.requestAudioFocus(onAudioFocusChangeListener, i10, cVar.f3948a);
+        return audioManager.requestAudioFocus(onAudioFocusChangeListener, i10, cVar.f3949a);
     }
 
     public static void i(Notification.Builder builder) {

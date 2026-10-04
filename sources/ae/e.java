@@ -46,7 +46,7 @@ public final class e extends a0 implements j0 {
             };
         }
         f(hVar, e2Var);
-        return w1.f53286a;
+        return w1.f53291a;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class e extends a0 implements j0 {
         if (this.f433c.postDelayed(sVar, j3)) {
             mVar.u(new d(0, this, sVar));
         } else {
-            f(mVar.f53242e, sVar);
+            f(mVar.f53247e, sVar);
         }
     }
 
@@ -90,7 +90,7 @@ public final class e extends a0 implements j0 {
 
     public final void f(h hVar, Runnable runnable) {
         e0.e(hVar, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        m0.f53244b.c(hVar, runnable);
+        m0.f53249b.c(hVar, runnable);
     }
 
     public final int hashCode() {
@@ -108,8 +108,8 @@ public final class e extends a0 implements j0 {
     public final String toString() {
         e eVar;
         String str;
-        ge.e eVar2 = m0.f53243a;
-        e eVar3 = o.f8890a;
+        ge.e eVar2 = m0.f53248a;
+        e eVar3 = o.f8891a;
         if (this == eVar3) {
             str = "Dispatchers.Main";
         } else {
@@ -127,7 +127,7 @@ public final class e extends a0 implements j0 {
         if (str == null) {
             String handler = this.f433c.toString();
             if (this.d) {
-                return t8.b.v(handler, ".immediate");
+                return sa.e.v(handler, ".immediate");
             }
             return handler;
         }

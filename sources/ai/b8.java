@@ -22,7 +22,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -123,7 +123,7 @@ public final class b8 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f20275id, peerDialogId);
+                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f20279id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f7);
                                 }
@@ -296,7 +296,7 @@ public final class b8 implements Runnable {
                                     return;
                             }
                         }
-                    }, new e4(c71Var, strArr, str, linkedHashSet, 12), new lk(c71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new e4((Object) c71Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.z(c71Var, str, arrayList7, 12), dl0Var);
+                    }, new e4(c71Var, strArr, str, linkedHashSet, 12), new mk(c71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new e4((Object) c71Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.z(c71Var, str, arrayList7, 12), dl0Var);
                     return;
                 }
             case 4:
@@ -310,11 +310,11 @@ public final class b8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.s0 s0Var = ((pg.d1) obj3).f44451y.f44479c;
-                fw0 fw0Var = s0Var.f44588g;
-                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, fw0Var.f26585a, fw0Var.f26586b), false, z12, z11);
+                pg.s0 s0Var = ((pg.d1) obj3).f44458y.f44486c;
+                fw0 fw0Var = s0Var.f44595g;
+                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, fw0Var.f26590a, fw0Var.f26591b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f16847b;
+                    bitmapArr[0] = (Bitmap) h.f16851b;
                 }
                 countDownLatch.countDown();
                 return;

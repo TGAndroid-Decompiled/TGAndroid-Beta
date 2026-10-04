@@ -16,17 +16,17 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
 public final class am extends fm {
-    public final ChatAttachAlertPhotoLayout f24571b;
+    public final ChatAttachAlertPhotoLayout f24575b;
 
     public am(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
         super(chatAttachAlertPhotoLayout);
-        this.f24571b = chatAttachAlertPhotoLayout;
+        this.f24575b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final boolean A() {
-        xi xiVar = this.f24571b.f29643b;
-        if (xiVar != null && xiVar.f32802c0) {
+        xi xiVar = this.f24575b.f29648b;
+        if (xiVar != null && xiVar.f32808c0) {
             return true;
         }
         return false;
@@ -34,20 +34,20 @@ public final class am extends fm {
 
     @Override
     public final void D() {
-        boolean z10 = ChatAttachAlertPhotoLayout.f24018q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24571b;
+        boolean z10 = ChatAttachAlertPhotoLayout.f24022q1;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24575b;
         chatAttachAlertPhotoLayout.m0();
         AndroidUtilities.runOnUIThread(new qg(this, 23), 150L);
-        chatAttachAlertPhotoLayout.A(ChatAttachAlertPhotoLayout.f24020s1.size());
+        chatAttachAlertPhotoLayout.A(ChatAttachAlertPhotoLayout.f24024s1.size());
     }
 
     @Override
     public final org.telegram.ui.yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         tt ttVar;
         org.telegram.ui.yu0 closeIntoObject;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24571b;
-        xi xiVar = chatAttachAlertPhotoLayout.f29643b;
-        if (z11 && (ttVar = xiVar.R0) != null && (closeIntoObject = ((x40) ttVar.f31162b).getCloseIntoObject()) != null) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24575b;
+        xi xiVar = chatAttachAlertPhotoLayout.f29648b;
+        if (z11 && (ttVar = xiVar.R0) != null && (closeIntoObject = ((x40) ttVar.f31168b).getCloseIntoObject()) != null) {
             return closeIntoObject;
         }
         org.telegram.ui.Cells.t5 J = ChatAttachAlertPhotoLayout.J(chatAttachAlertPhotoLayout, i10);
@@ -58,14 +58,14 @@ public final class am extends fm {
                 iArr[0] = iArr[0] - xiVar.getLeftInset();
             }
             org.telegram.ui.yu0 yu0Var = new org.telegram.ui.yu0();
-            yu0Var.f43621b = iArr[0];
-            yu0Var.f43622c = iArr[1];
+            yu0Var.f43628b = iArr[0];
+            yu0Var.f43629c = iArr[1];
             yu0Var.d = chatAttachAlertPhotoLayout.E;
             ImageReceiver imageReceiver = J.getImageView().getImageReceiver();
-            yu0Var.f43620a = imageReceiver;
-            yu0Var.f43623e = imageReceiver.getBitmapSafe();
-            yu0Var.f43628k = J.getScale();
-            yu0Var.f43626i = (int) xiVar.j1();
+            yu0Var.f43627a = imageReceiver;
+            yu0Var.f43630e = imageReceiver.getBitmapSafe();
+            yu0Var.f43635k = J.getScale();
+            yu0Var.f43633i = (int) xiVar.l1();
             J.g(false);
             return yu0Var;
         }
@@ -74,17 +74,17 @@ public final class am extends fm {
 
     @Override
     public final void F(boolean z10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24571b;
-        xi xiVar = chatAttachAlertPhotoLayout.f29643b;
-        if (xiVar != null && xiVar.f32802c0 != z10) {
-            xiVar.E1(z10, true);
-            chatAttachAlertPhotoLayout.f24030d1.a(!chatAttachAlertPhotoLayout.f29643b.f32802c0, true);
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24575b;
+        xi xiVar = chatAttachAlertPhotoLayout.f29648b;
+        if (xiVar != null && xiVar.f32808c0 != z10) {
+            xiVar.G1(z10, true);
+            chatAttachAlertPhotoLayout.f24034d1.a(!chatAttachAlertPhotoLayout.f29648b.f32808c0, true);
         }
     }
 
     @Override
     public final void G() {
-        wl wlVar = this.f24571b.E;
+        wl wlVar = this.f24575b.E;
         int childCount = wlVar.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = wlVar.getChildAt(i10);
@@ -96,7 +96,7 @@ public final class am extends fm {
 
     @Override
     public final void W(int i10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24571b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24575b;
         org.telegram.ui.Cells.t5 J = ChatAttachAlertPhotoLayout.J(chatAttachAlertPhotoLayout, i10);
         if (J != null) {
             J.getImageView().q(0, true);
@@ -124,7 +124,7 @@ public final class am extends fm {
 
     @Override
     public final void Z(int i10) {
-        org.telegram.ui.Cells.t5 J = ChatAttachAlertPhotoLayout.J(this.f24571b, i10);
+        org.telegram.ui.Cells.t5 J = ChatAttachAlertPhotoLayout.J(this.f24575b, i10);
         if (J != null) {
             J.g(true);
         }
@@ -132,7 +132,7 @@ public final class am extends fm {
 
     @Override
     public final long a() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f24571b.f29643b.f32813f0;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f24575b.f29648b.f32819f0;
         if (n2Var instanceof org.telegram.ui.yn) {
             return ((org.telegram.ui.yn) n2Var).a();
         }
@@ -141,8 +141,8 @@ public final class am extends fm {
 
     @Override
     public final void d() {
-        boolean z10 = ChatAttachAlertPhotoLayout.f24018q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24571b;
+        boolean z10 = ChatAttachAlertPhotoLayout.f24022q1;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24575b;
         chatAttachAlertPhotoLayout.k0();
         chatAttachAlertPhotoLayout.p0(-1, true);
     }
@@ -152,9 +152,9 @@ public final class am extends fm {
         CharSequence charSequence2;
         ArrayList<TLRPC.MessageEntity> arrayList;
         SpannableStringBuilder spannableStringBuilder;
-        HashMap hashMap = ChatAttachAlertPhotoLayout.f24020s1;
+        HashMap hashMap = ChatAttachAlertPhotoLayout.f24024s1;
         if (hashMap.size() > 0) {
-            ArrayList arrayList2 = ChatAttachAlertPhotoLayout.f24021t1;
+            ArrayList arrayList2 = ChatAttachAlertPhotoLayout.f24025t1;
             if (arrayList2.size() > 0) {
                 Object obj = hashMap.get(arrayList2.get(0));
                 if (obj instanceof MediaController.PhotoEntry) {
@@ -180,19 +180,19 @@ public final class am extends fm {
                     MessageObject.addEntitiesToText(spannableStringBuilder, arrayList3, false, false, false, false);
                     charSequence2 = spannableStringBuilder;
                 }
-                this.f24571b.f29643b.k1().setText(z5.cloneSpans(charSequence2, 3));
+                this.f24575b.f29648b.m1().setText(z5.cloneSpans(charSequence2, 3));
             }
         }
     }
 
     @Override
     public final void i() {
-        boolean z10 = ChatAttachAlertPhotoLayout.f24018q1;
+        boolean z10 = ChatAttachAlertPhotoLayout.f24022q1;
     }
 
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
-        org.telegram.ui.Cells.t5 J = ChatAttachAlertPhotoLayout.J(this.f24571b, i10);
+        org.telegram.ui.Cells.t5 J = ChatAttachAlertPhotoLayout.J(this.f24575b, i10);
         if (J != null) {
             return J.getImageView().getImageReceiver().getBitmapSafe();
         }
@@ -201,8 +201,8 @@ public final class am extends fm {
 
     @Override
     public final boolean l() {
-        xi xiVar = this.f24571b.f29643b;
-        if (xiVar != null && (xiVar.f32813f0 instanceof org.telegram.ui.yn)) {
+        xi xiVar = this.f24575b.f29648b;
+        if (xiVar != null && (xiVar.f32819f0 instanceof org.telegram.ui.yn)) {
             return true;
         }
         return false;
@@ -210,33 +210,33 @@ public final class am extends fm {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24571b;
-        xi xiVar = chatAttachAlertPhotoLayout.f29643b;
-        xiVar.f32855s2 = true;
-        boolean z12 = ChatAttachAlertPhotoLayout.f24018q1;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24575b;
+        xi xiVar = chatAttachAlertPhotoLayout.f29648b;
+        xiVar.f32861s2 = true;
+        boolean z12 = ChatAttachAlertPhotoLayout.f24022q1;
         MediaController.PhotoEntry b02 = chatAttachAlertPhotoLayout.b0(i10);
         if (b02 != null) {
             b02.editedInfo = videoEditedInfo;
         }
-        HashMap hashMap = ChatAttachAlertPhotoLayout.f24020s1;
+        HashMap hashMap = ChatAttachAlertPhotoLayout.f24024s1;
         if (hashMap.isEmpty() && b02 != null) {
             chatAttachAlertPhotoLayout.O(b02, -1);
         }
-        if (!xiVar.Z0(xiVar.k1().getText())) {
-            xiVar.X0();
-            if (PhotoViewer.t1().f33996p7) {
-                ArrayList arrayList = ChatAttachAlertPhotoLayout.f24021t1;
+        if (!xiVar.b1(xiVar.m1().getText())) {
+            xiVar.Z0();
+            if (PhotoViewer.t1().f34002p7) {
+                ArrayList arrayList = ChatAttachAlertPhotoLayout.f24025t1;
                 if (!hashMap.isEmpty()) {
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
                         Object obj = hashMap.get(arrayList.get(i13));
                         if (obj instanceof MediaController.PhotoEntry) {
                             MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
                             if (i13 == 0) {
-                                CharSequence[] charSequenceArr = {PhotoViewer.t1().f34004q7};
+                                CharSequence[] charSequenceArr = {PhotoViewer.t1().f34010q7};
                                 photoEntry.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr, false);
                                 CharSequence charSequence = charSequenceArr[0];
                                 photoEntry.caption = charSequence;
-                                if (xiVar.Z0(charSequence)) {
+                                if (xiVar.b1(charSequence)) {
                                     return;
                                 }
                             } else {
@@ -251,14 +251,14 @@ public final class am extends fm {
             }
             PhotoViewer.t1();
             PhotoViewer.t1().O = false;
-            PhotoViewer.t1().f34037u2 = false;
-            e5.a0(xiVar.J1, xiVar.h1() + ChatAttachAlertPhotoLayout.f24020s1.size(), xiVar.l1(), new sl(this, z10, i11, z11));
+            PhotoViewer.t1().f34043u2 = false;
+            e5.a0(xiVar.J1, xiVar.j1() + ChatAttachAlertPhotoLayout.f24024s1.size(), xiVar.n1(), new sl(this, z10, i11, z11));
         }
     }
 
     @Override
     public final boolean q() {
-        xi xiVar = this.f24571b.f29643b;
+        xi xiVar = this.f24575b.f29648b;
         if (xiVar != null && xiVar.H1 != null) {
             return true;
         }
@@ -267,14 +267,14 @@ public final class am extends fm {
 
     @Override
     public final void s() {
-        boolean z10 = ChatAttachAlertPhotoLayout.f24018q1;
-        this.f24571b.p0(-1, false);
+        boolean z10 = ChatAttachAlertPhotoLayout.f24022q1;
+        this.f24575b.p0(-1, false);
     }
 
     @Override
     public final boolean w() {
         MessageObject messageObject;
-        xi xiVar = this.f24571b.f29643b;
+        xi xiVar = this.f24575b.f29648b;
         if (xiVar != null && (messageObject = xiVar.H1) != null && messageObject.needResendWhenEdit()) {
             return true;
         }
@@ -283,7 +283,7 @@ public final class am extends fm {
 
     @Override
     public final boolean z() {
-        xi xiVar = this.f24571b.f29643b;
+        xi xiVar = this.f24575b.f29648b;
         if (!xiVar.F && !xiVar.H) {
             return true;
         }

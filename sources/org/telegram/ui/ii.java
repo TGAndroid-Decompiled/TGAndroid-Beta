@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class ii implements org.telegram.ui.Components.pl0 {
-    public final yn f37442a;
+    public final yn f37447a;
 
     public ii(yn ynVar) {
-        this.f37442a = ynVar;
+        this.f37447a = ynVar;
     }
 
     @Override

@@ -79,7 +79,7 @@ public final class n implements Parcelable {
         this.f3368b = new UUID(parcel.readLong(), parcel.readLong());
         this.f3369c = parcel.readString();
         String readString = parcel.readString();
-        String str = e2.d0.f8537a;
+        String str = e2.d0.f8538a;
         this.d = readString;
         this.f3370e = parcel.createByteArray();
     }

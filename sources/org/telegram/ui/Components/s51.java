@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 public final class s51 extends zl0 {
-    public final z51 f30628e3;
-    public final c61 f30629f3;
+    public final z51 f30634e3;
+    public final c61 f30635f3;
 
     public s51(c61 c61Var, Context context, z51 z51Var) {
         super(context, null);
-        this.f30629f3 = c61Var;
-        this.f30628e3 = z51Var;
+        this.f30635f3 = c61Var;
+        this.f30634e3 = z51Var;
     }
 
     @Override
     public final boolean F0(float f7) {
-        if (f7 >= AndroidUtilities.dp(58.0f) + this.f30629f3.E) {
+        if (f7 >= AndroidUtilities.dp(58.0f) + this.f30635f3.E) {
             return true;
         }
         return false;
@@ -23,13 +23,13 @@ public final class s51 extends zl0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        this.f30629f3.F = true;
+        this.f30635f3.F = true;
         return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean d = this.f30628e3.d(this, motionEvent);
+        boolean d = this.f30634e3.d(this, motionEvent);
         if (!super.onInterceptTouchEvent(motionEvent) && !d) {
             return false;
         }
@@ -38,7 +38,7 @@ public final class s51 extends zl0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f30629f3.L != null) {
+        if (this.f30635f3.L != null) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
@@ -46,7 +46,7 @@ public final class s51 extends zl0 {
 
     @Override
     public final void requestLayout() {
-        if (!this.f30629f3.H) {
+        if (!this.f30635f3.H) {
             super.requestLayout();
         }
     }

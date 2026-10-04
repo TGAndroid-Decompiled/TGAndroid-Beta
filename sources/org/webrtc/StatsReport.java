@@ -1,6 +1,6 @@
 package org.webrtc;
 public class StatsReport {
-    public final String f43926id;
+    public final String f43933id;
     public final double timestamp;
     public final String type;
     public final Value[] values;
@@ -18,12 +18,12 @@ public class StatsReport {
             StringBuilder sb2 = new StringBuilder("[");
             sb2.append(this.name);
             sb2.append(": ");
-            return a4.a.s(sb2, this.value, "]");
+            return a4.a.t(sb2, this.value, "]");
         }
     }
 
     public StatsReport(String str, String str2, double d, Value[] valueArr) {
-        this.f43926id = str;
+        this.f43933id = str;
         this.type = str2;
         this.timestamp = d;
         this.values = valueArr;
@@ -31,7 +31,7 @@ public class StatsReport {
 
     public String toString() {
         StringBuilder sb2 = new StringBuilder("id: ");
-        sb2.append(this.f43926id);
+        sb2.append(this.f43933id);
         sb2.append(", type: ");
         sb2.append(this.type);
         sb2.append(", timestamp: ");

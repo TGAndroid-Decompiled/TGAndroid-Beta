@@ -43,9 +43,9 @@ public final class b0 extends o {
     public final m t() {
         Object[] objArr = {this.d};
         for (int i10 = 0; i10 < 1; i10++) {
-            i iVar = m.f16803b;
+            i iVar = m.f16807b;
             if (objArr[i10] == null) {
-                throw new NullPointerException(hg.k0.h(i10, "at index "));
+                throw new NullPointerException(hg.c.h(i10, "at index "));
             }
         }
         return m.t(1, objArr);
@@ -53,6 +53,6 @@ public final class b0 extends o {
 
     @Override
     public final String toString() {
-        return a4.a.p("[", this.d.toString(), "]");
+        return a4.a.q("[", this.d.toString(), "]");
     }
 }

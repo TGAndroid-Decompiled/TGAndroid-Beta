@@ -10,22 +10,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c81 implements RequestDelegate {
-    public final int f35371a;
-    public final SessionsActivity f35372b;
+    public final int f35376a;
+    public final SessionsActivity f35377b;
 
     public c81(SessionsActivity sessionsActivity, int i10) {
-        this.f35371a = i10;
-        this.f35372b = sessionsActivity;
+        this.f35376a = i10;
+        this.f35377b = sessionsActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f35371a) {
+        switch (this.f35376a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new hz0(this.f35372b, 18));
+                AndroidUtilities.runOnUIThread(new hz0(this.f35377b, 18));
                 return;
             case 1:
-                final SessionsActivity sessionsActivity = this.f35372b;
+                final SessionsActivity sessionsActivity = this.f35377b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -45,7 +45,7 @@ public final class c81 implements RequestDelegate {
                                         i10 = R.raw.error;
                                         i11 = R.string.UnknownError;
                                     }
-                                    org.telegram.messenger.f0.p(i11, a02, i10, 36);
+                                    org.telegram.messenger.q.p(i11, a02, i10, 36);
                                     sessionsActivity2.k0(false);
                                     return;
                                 }
@@ -53,7 +53,7 @@ public final class c81 implements RequestDelegate {
                             case 1:
                                 SessionsActivity sessionsActivity3 = sessionsActivity;
                                 if (sessionsActivity3.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.f0.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity3), R.raw.contact_check, 36);
+                                    org.telegram.messenger.q.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity3), R.raw.contact_check, 36);
                                     sessionsActivity3.k0(false);
                                     return;
                                 }
@@ -61,7 +61,7 @@ public final class c81 implements RequestDelegate {
                             default:
                                 SessionsActivity sessionsActivity4 = sessionsActivity;
                                 if (sessionsActivity4.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.f0.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity4), R.raw.contact_check, 36);
+                                    org.telegram.messenger.q.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity4), R.raw.contact_check, 36);
                                     sessionsActivity4.k0(false);
                                     return;
                                 }
@@ -80,7 +80,7 @@ public final class c81 implements RequestDelegate {
                 }
                 return;
             case 2:
-                final SessionsActivity sessionsActivity2 = this.f35372b;
+                final SessionsActivity sessionsActivity2 = this.f35377b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -100,7 +100,7 @@ public final class c81 implements RequestDelegate {
                                         i102 = R.raw.error;
                                         i11 = R.string.UnknownError;
                                     }
-                                    org.telegram.messenger.f0.p(i11, a02, i102, 36);
+                                    org.telegram.messenger.q.p(i11, a02, i102, 36);
                                     sessionsActivity22.k0(false);
                                     return;
                                 }
@@ -108,7 +108,7 @@ public final class c81 implements RequestDelegate {
                             case 1:
                                 SessionsActivity sessionsActivity3 = sessionsActivity2;
                                 if (sessionsActivity3.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.f0.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity3), R.raw.contact_check, 36);
+                                    org.telegram.messenger.q.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity3), R.raw.contact_check, 36);
                                     sessionsActivity3.k0(false);
                                     return;
                                 }
@@ -116,7 +116,7 @@ public final class c81 implements RequestDelegate {
                             default:
                                 SessionsActivity sessionsActivity4 = sessionsActivity2;
                                 if (sessionsActivity4.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.f0.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity4), R.raw.contact_check, 36);
+                                    org.telegram.messenger.q.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity4), R.raw.contact_check, 36);
                                     sessionsActivity4.k0(false);
                                     return;
                                 }
@@ -135,7 +135,7 @@ public final class c81 implements RequestDelegate {
                 }
                 return;
             default:
-                final SessionsActivity sessionsActivity3 = this.f35372b;
+                final SessionsActivity sessionsActivity3 = this.f35377b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -155,7 +155,7 @@ public final class c81 implements RequestDelegate {
                                         i102 = R.raw.error;
                                         i112 = R.string.UnknownError;
                                     }
-                                    org.telegram.messenger.f0.p(i112, a02, i102, 36);
+                                    org.telegram.messenger.q.p(i112, a02, i102, 36);
                                     sessionsActivity22.k0(false);
                                     return;
                                 }
@@ -163,7 +163,7 @@ public final class c81 implements RequestDelegate {
                             case 1:
                                 SessionsActivity sessionsActivity32 = sessionsActivity3;
                                 if (sessionsActivity32.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.f0.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity32), R.raw.contact_check, 36);
+                                    org.telegram.messenger.q.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity32), R.raw.contact_check, 36);
                                     sessionsActivity32.k0(false);
                                     return;
                                 }
@@ -171,7 +171,7 @@ public final class c81 implements RequestDelegate {
                             default:
                                 SessionsActivity sessionsActivity4 = sessionsActivity3;
                                 if (sessionsActivity4.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.f0.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity4), R.raw.contact_check, 36);
+                                    org.telegram.messenger.q.p(R.string.AllSessionsTerminated, org.telegram.ui.Components.yc.a0(sessionsActivity4), R.raw.contact_check, 36);
                                     sessionsActivity4.k0(false);
                                     return;
                                 }

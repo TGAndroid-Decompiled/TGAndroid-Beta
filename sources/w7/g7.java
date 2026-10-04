@@ -24,10 +24,10 @@ public abstract class g7 {
                 } catch (Exception e7) {
                     String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
                     Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e7);
-                    StringBuilder v = a4.a.v("<", str2, " threw ");
-                    v.append(e7.getClass().getName());
-                    v.append(">");
-                    sb2 = v.toString();
+                    StringBuilder w10 = a4.a.w("<", str2, " threw ");
+                    w10.append(e7.getClass().getName());
+                    w10.append(">");
+                    sb2 = w10.toString();
                 }
             }
             objArr[i11] = sb2;

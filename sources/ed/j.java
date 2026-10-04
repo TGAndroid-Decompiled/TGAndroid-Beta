@@ -6,18 +6,18 @@ import com.google.android.gms.internal.vision.e2;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class j extends h {
-    public static final Pattern f8856e = Pattern.compile(" *$");
+    public static final Pattern f8857e = Pattern.compile(" *$");
 
     @Override
     public final p b() {
         int i10;
         this.d++;
-        p pVar = (p) this.f8842b.d;
+        p pVar = (p) this.f8843b.d;
         if (pVar instanceof s) {
             s sVar = (s) pVar;
             if (sVar.f3836g.endsWith(" ")) {
                 String str = sVar.f3836g;
-                Matcher matcher = f8856e.matcher(str);
+                Matcher matcher = f8857e.matcher(str);
                 if (matcher.find()) {
                     i10 = matcher.end() - matcher.start();
                 } else {

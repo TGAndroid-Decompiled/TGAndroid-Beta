@@ -7,16 +7,16 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class oe extends FrameLayout {
-    public final ChatActivityEnterView f29340a;
+    public final ChatActivityEnterView f29345a;
 
     public oe(ChatActivityEnterView chatActivityEnterView, Activity activity) {
         super(activity);
-        this.f29340a = chatActivityEnterView;
+        this.f29345a = chatActivityEnterView;
     }
 
     @Override
     public final boolean drawChild(final Canvas canvas, final View view, final long j3) {
-        ChatActivityEnterView chatActivityEnterView = this.f29340a;
+        ChatActivityEnterView chatActivityEnterView = this.f29345a;
         if (view != null && view == chatActivityEnterView.E0) {
             return chatActivityEnterView.f0(canvas, new Utilities.Callback0Return() {
                 @Override
@@ -27,7 +27,7 @@ public final class oe extends FrameLayout {
                 }
             });
         }
-        if (chatActivityEnterView.f23995z4 && view == chatActivityEnterView.f23876e1) {
+        if (chatActivityEnterView.f23999z4 && view == chatActivityEnterView.f23880e1) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -36,14 +36,14 @@ public final class oe extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        ChatActivityEnterView chatActivityEnterView = this.f29340a;
+        ChatActivityEnterView chatActivityEnterView = this.f29345a;
         if (!chatActivityEnterView.B0.isEmpty()) {
             for (int i14 = 0; i14 < getChildCount(); i14++) {
                 View childAt = getChildAt(i14);
                 Float f7 = (Float) chatActivityEnterView.B0.get(childAt);
                 if (f7 != null) {
                     childAt.setTranslationX(f7.floatValue() - childAt.getLeft());
-                    childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(tr.f31141f).start();
+                    childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(tr.f31147f).start();
                 }
             }
             chatActivityEnterView.B0.clear();
@@ -54,9 +54,9 @@ public final class oe extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int max = Math.max(AndroidUtilities.dp(44.0f), getMeasuredHeight());
-        ChatActivityEnterView chatActivityEnterView = this.f29340a;
-        le.e eVar = chatActivityEnterView.f23887f5;
-        if (eVar.f15443e > 0.0f) {
+        ChatActivityEnterView chatActivityEnterView = this.f29345a;
+        le.e eVar = chatActivityEnterView.f23891f5;
+        if (eVar.f15444e > 0.0f) {
             eVar.a(max);
         } else {
             eVar.c(max);

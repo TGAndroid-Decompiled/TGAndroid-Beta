@@ -27,9 +27,9 @@ public final class d3 extends yn {
         if (!this.Kc) {
             this.Kc = true;
             rc O = yc.a0(this).O(this.Lc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Mc)));
-            O.f30347r = false;
+            O.f30353r = false;
             O.j();
-            u00 u00Var = this.f43398k9;
+            u00 u00Var = this.f43405k9;
             if (u00Var != null) {
                 u00Var.c(true);
             }

@@ -128,12 +128,12 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                     } else if (mediaArea instanceof TL_stories.TL_mediaAreaWeather) {
                         TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = (TL_stories.TL_mediaAreaWeather) mediaArea;
                         ?? tLObject = new TLObject();
-                        tLObject.f5280c = tL_mediaAreaWeather.emoji;
+                        tLObject.f5281c = tL_mediaAreaWeather.emoji;
                         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
                         qg.s0 s0Var = new qg.s0(getContext(), AndroidUtilities.density);
                         s0Var.setMaxWidth(AndroidUtilities.displaySize.x);
                         s0Var.setIsVideo(true);
-                        s0Var.d(UserConfig.selectedAccount, tLObject.f5280c);
+                        s0Var.d(UserConfig.selectedAccount, tLObject.f5281c);
                         s0Var.setText(tLObject.a());
                         s0Var.e(3, tL_mediaAreaWeather.color);
                         pbVar = new lb(getContext(), s0Var, mediaArea);
@@ -142,7 +142,7 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                     }
                     pbVar.setOnClickListener(this);
                     addView(pbVar);
-                    double d = mediaArea.coordinates.f20271w;
+                    double d = mediaArea.coordinates.f20275w;
                 }
             }
             frameLayout.bringToFront();
@@ -334,8 +334,8 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                 int measuredWidth = kbVar.getMeasuredWidth();
                 int measuredHeight = kbVar.getMeasuredHeight();
                 kbVar.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
-                kbVar.setTranslationX((float) ((mediaArea.coordinates.f20272x / 100.0d) * getMeasuredWidth()));
-                kbVar.setTranslationY((float) ((mediaArea.coordinates.f20273y / 100.0d) * getMeasuredHeight()));
+                kbVar.setTranslationX((float) ((mediaArea.coordinates.f20276x / 100.0d) * getMeasuredWidth()));
+                kbVar.setTranslationY((float) ((mediaArea.coordinates.f20277y / 100.0d) * getMeasuredHeight()));
                 kbVar.setRotation((float) mediaArea.coordinates.rotation);
             } else if (childAt instanceof lb) {
                 lb lbVar = (lb) childAt;
@@ -343,8 +343,8 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                 int measuredWidth2 = lbVar.getMeasuredWidth();
                 int measuredHeight2 = lbVar.getMeasuredHeight();
                 lbVar.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
-                lbVar.setTranslationX((float) ((mediaArea2.coordinates.f20272x / 100.0d) * getMeasuredWidth()));
-                lbVar.setTranslationY((float) ((mediaArea2.coordinates.f20273y / 100.0d) * getMeasuredHeight()));
+                lbVar.setTranslationX((float) ((mediaArea2.coordinates.f20276x / 100.0d) * getMeasuredWidth()));
+                lbVar.setTranslationY((float) ((mediaArea2.coordinates.f20277y / 100.0d) * getMeasuredHeight()));
                 lbVar.setRotation((float) mediaArea2.coordinates.rotation);
             }
         }
@@ -361,10 +361,10 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof kb) {
                 kb kbVar = (kb) getChildAt(i12);
-                kbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((kbVar.f1246b.coordinates.f20271w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((kbVar.f1246b.coordinates.h / 100.0d) * size2), 1073741824));
+                kbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((kbVar.f1246b.coordinates.f20275w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((kbVar.f1246b.coordinates.h / 100.0d) * size2), 1073741824));
             } else if (childAt instanceof lb) {
                 lb lbVar = (lb) getChildAt(i12);
-                lbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1315a.coordinates.f20271w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1315a.coordinates.h / 100.0d) * size2), 1073741824));
+                lbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1315a.coordinates.f20275w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1315a.coordinates.h / 100.0d) * size2), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);

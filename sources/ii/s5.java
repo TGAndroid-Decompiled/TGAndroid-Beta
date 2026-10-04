@@ -28,39 +28,39 @@ public final class s5 extends ViewGroup {
     public int N;
     public int O;
     public int P;
-    public j6 f12637a;
-    public final org.telegram.ui.ActionBar.d6 f12638b;
-    public int[] f12639c;
+    public j6 f12638a;
+    public final org.telegram.ui.ActionBar.d6 f12639b;
+    public int[] f12640c;
     public int[] d;
-    public int[] f12640e;
-    public int[] f12641f;
+    public int[] f12641e;
+    public int[] f12642f;
     public r5 h;
-    public final Paint f12642n;
-    public final Paint f12643r;
-    public final Paint f12644s;
+    public final Paint f12643n;
+    public final Paint f12644r;
+    public final Paint f12645s;
     public final Paint v;
-    public final Paint f12645w;
-    public final Paint f12646x;
-    public final RectF f12647y;
+    public final Paint f12646w;
+    public final Paint f12647x;
+    public final RectF f12648y;
 
     public s5(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f12639c = new int[0];
+        this.f12640c = new int[0];
         this.d = new int[0];
-        this.f12640e = new int[0];
-        this.f12641f = new int[0];
+        this.f12641e = new int[0];
+        this.f12642f = new int[0];
         Paint paint = new Paint(1);
-        this.f12642n = paint;
-        this.f12643r = new Paint(1);
-        this.f12644s = new Paint(1);
+        this.f12643n = paint;
+        this.f12644r = new Paint(1);
+        this.f12645s = new Paint(1);
         Paint paint2 = new Paint(1);
         this.v = paint2;
-        this.f12645w = new Paint(1);
-        this.f12646x = new Paint(1);
-        this.f12647y = new RectF();
+        this.f12646w = new Paint(1);
+        this.f12647x = new Paint(1);
+        this.f12648y = new RectF();
         this.E = new RectF();
         this.F = new Path();
-        this.f12638b = d6Var;
+        this.f12639b = d6Var;
         setClipChildren(false);
         setClipToPadding(false);
         setWillNotDraw(false);
@@ -78,9 +78,9 @@ public final class s5 extends ViewGroup {
     public final TL_iv.pageTableCell a() {
         ViewParent parent;
         TL_iv.pageTableCell pagetablecell;
-        j6 j6Var = this.f12637a;
+        j6 j6Var = this.f12638a;
         TL_iv.pageTableCell pagetablecell2 = null;
-        if (j6Var != null && j6Var.f12472b != 0 && j6Var.f12473c != 0) {
+        if (j6Var != null && j6Var.f12473b != 0 && j6Var.f12474c != 0) {
             View findFocus = findFocus();
             if (findFocus == null) {
                 parent = null;
@@ -89,7 +89,7 @@ public final class s5 extends ViewGroup {
             }
             while (parent != null && parent != this) {
                 if (parent instanceof t5) {
-                    pagetablecell = ((t5) parent).f12661b;
+                    pagetablecell = ((t5) parent).f12662b;
                     break;
                 }
                 parent = parent.getParent();
@@ -101,7 +101,7 @@ public final class s5 extends ViewGroup {
             if (this.h == null) {
                 return null;
             }
-            ArrayList arrayList = this.f12637a.f12476g;
+            ArrayList arrayList = this.f12638a.f12477g;
             int size = arrayList.size();
             int i10 = Integer.MAX_VALUE;
             int i11 = Integer.MAX_VALUE;
@@ -110,9 +110,9 @@ public final class s5 extends ViewGroup {
                 Object obj = arrayList.get(i12);
                 i12++;
                 TL_iv.pageTableCell pagetablecell3 = (TL_iv.pageTableCell) obj;
-                if (((LinkedHashSet) ((ei.f) this.h).f9021b).contains(pagetablecell3)) {
-                    int b10 = this.f12637a.b(pagetablecell3);
-                    int a2 = this.f12637a.a(pagetablecell3);
+                if (((LinkedHashSet) ((ei.f) this.h).f9022b).contains(pagetablecell3)) {
+                    int b10 = this.f12638a.b(pagetablecell3);
+                    int a2 = this.f12638a.a(pagetablecell3);
                     if (b10 < i10 || (b10 == i10 && a2 < i11)) {
                         pagetablecell2 = pagetablecell3;
                         i10 = b10;
@@ -125,25 +125,25 @@ public final class s5 extends ViewGroup {
     }
 
     public final void b() {
-        int i10 = org.telegram.ui.ActionBar.i6.f21069qh;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f12638b;
-        this.f12642n.setColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
+        int i10 = org.telegram.ui.ActionBar.i6.f21073qh;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f12639b;
+        this.f12643n.setColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
         int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.M6, d6Var);
         int red = Color.red(v02);
         int green = Color.green(v02);
         int blue = Color.blue(v02);
-        this.f12643r.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21050ph, d6Var));
-        this.f12644s.setColor(Color.argb(20, red, green, blue));
+        this.f12644r.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21054ph, d6Var));
+        this.f12645s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
         int i11 = org.telegram.ui.ActionBar.i6.Oh;
         this.v.setColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
         Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.f12645w;
+        Paint paint = this.f12646w;
         paint.setStyle(style);
         this.O = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.E6, d6Var);
         this.P = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Sh, d6Var);
         paint.setColor(this.O);
-        Paint paint2 = this.f12646x;
+        Paint paint2 = this.f12647x;
         paint2.setStyle(style);
         paint2.setColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
         invalidate();
@@ -181,8 +181,8 @@ public final class s5 extends ViewGroup {
     }
 
     public final boolean e(int i10) {
-        if (i10 >= 0 && i10 < this.f12637a.f12473c) {
-            for (int i11 = 0; i11 < this.f12637a.f12472b; i11++) {
+        if (i10 >= 0 && i10 < this.f12638a.f12474c) {
+            for (int i11 = 0; i11 < this.f12638a.f12473b; i11++) {
                 if (p(i11, i10)) {
                     return true;
                 }
@@ -193,10 +193,10 @@ public final class s5 extends ViewGroup {
 
     public final float f(int i10, int i11) {
         int i12;
-        j6 j6Var = this.f12637a;
-        int i13 = j6Var.f12473c;
-        int i14 = j6Var.f12472b;
-        int[] iArr = this.f12640e;
+        j6 j6Var = this.f12638a;
+        int i13 = j6Var.f12474c;
+        int i14 = j6Var.f12473b;
+        int[] iArr = this.f12641e;
         int i15 = 0;
         if (i10 == iArr[0]) {
             i12 = 0;
@@ -206,7 +206,7 @@ public final class s5 extends ViewGroup {
             }
             return 0.0f;
         }
-        int[] iArr2 = this.f12641f;
+        int[] iArr2 = this.f12642f;
         if (i11 != iArr2[0]) {
             if (i11 == iArr2[i14]) {
                 i15 = i14 - 1;
@@ -214,7 +214,7 @@ public final class s5 extends ViewGroup {
             return 0.0f;
         }
         if (i12 >= 0 && i15 >= 0 && p(i15, i12)) {
-            return Math.min(AndroidUtilities.dpf2(10.0f), Math.min(this.f12639c[i12], this.d[i15]) / 2.0f);
+            return Math.min(AndroidUtilities.dpf2(10.0f), Math.min(this.f12640c[i12], this.d[i15]) / 2.0f);
         }
         return 0.0f;
     }
@@ -222,11 +222,11 @@ public final class s5 extends ViewGroup {
     public final void g(Canvas canvas, int i10, int i11) {
         float dpf2 = i10 - AndroidUtilities.dpf2(1.0f);
         float dpf22 = AndroidUtilities.dpf2(1.0f) + i11;
-        float f7 = this.f12641f[this.f12637a.f12472b];
+        float f7 = this.f12642f[this.f12638a.f12473b];
         float dp = AndroidUtilities.dp(16.0f) + f7;
         float min = Math.min(AndroidUtilities.dpf2(10.0f), (dpf22 - dpf2) / 2.0f);
-        float f10 = f(i10, this.f12641f[this.f12637a.f12472b]);
-        float f11 = f(i11, this.f12641f[this.f12637a.f12472b]);
+        float f10 = f(i10, this.f12642f[this.f12638a.f12473b]);
+        float f11 = f(i11, this.f12642f[this.f12638a.f12473b]);
         Path path = this.F;
         path.rewind();
         path.moveTo(dpf2, f7 - f10);
@@ -256,23 +256,23 @@ public final class s5 extends ViewGroup {
             path.lineTo(dpf2, f7);
         }
         path.close();
-        canvas.drawPath(path, this.f12646x);
+        canvas.drawPath(path, this.f12647x);
     }
 
     public j6 getModel() {
-        return this.f12637a;
+        return this.f12638a;
     }
 
     public final void h(Canvas canvas, int i10, int i11) {
         float dpf2 = i10 - AndroidUtilities.dpf2(1.0f);
         float dpf22 = AndroidUtilities.dpf2(1.0f) + i11;
-        float dp = this.f12640e[0] - AndroidUtilities.dp(16.0f);
+        float dp = this.f12641e[0] - AndroidUtilities.dp(16.0f);
         float min = Math.min(AndroidUtilities.dpf2(10.0f), (dpf22 - dpf2) / 2.0f);
-        float f7 = f(this.f12640e[0], i10);
-        float f10 = f(this.f12640e[0], i11);
+        float f7 = f(this.f12641e[0], i10);
+        float f10 = f(this.f12641e[0], i11);
         Path path = this.F;
         path.rewind();
-        path.moveTo(this.f12640e[0] + f7, dpf2);
+        path.moveTo(this.f12641e[0] + f7, dpf2);
         path.lineTo(dp + min, dpf2);
         float f11 = min * 2.0f;
         float f12 = dp + f11;
@@ -282,26 +282,26 @@ public final class s5 extends ViewGroup {
         path.lineTo(dp, dpf22 - min);
         rectF.set(dp, dpf22 - f11, f12, dpf22);
         path.arcTo(rectF, 180.0f, -90.0f);
-        path.lineTo(this.f12640e[0] + f10, dpf22);
+        path.lineTo(this.f12641e[0] + f10, dpf22);
         if (f10 > 0.0f) {
-            int i12 = this.f12640e[0];
+            int i12 = this.f12641e[0];
             float f13 = f10 * 2.0f;
             rectF.set(i12, dpf22 - f13, i12 + f13, dpf22);
             path.arcTo(rectF, 90.0f, 90.0f);
         } else {
-            path.lineTo(this.f12640e[0], dpf22);
+            path.lineTo(this.f12641e[0], dpf22);
         }
-        path.lineTo(this.f12640e[0], dpf2 + f7);
+        path.lineTo(this.f12641e[0], dpf2 + f7);
         if (f7 > 0.0f) {
-            int i13 = this.f12640e[0];
+            int i13 = this.f12641e[0];
             float f14 = f7 * 2.0f;
             rectF.set(i13, dpf2, i13 + f14, f14 + dpf2);
             path.arcTo(rectF, 180.0f, 90.0f);
         } else {
-            path.lineTo(this.f12640e[0], dpf2);
+            path.lineTo(this.f12641e[0], dpf2);
         }
         path.close();
-        canvas.drawPath(path, this.f12646x);
+        canvas.drawPath(path, this.f12647x);
     }
 
     public final void i(float f7, int i10, int i11, Canvas canvas) {
@@ -311,12 +311,12 @@ public final class s5 extends ViewGroup {
         if (f12 <= 0.0f) {
             return;
         }
-        if (i10 == this.f12640e[0]) {
+        if (i10 == this.f12641e[0]) {
             f10 = i10 + f12;
         } else {
             f10 = i10 - f12;
         }
-        if (i11 == this.f12641f[0]) {
+        if (i11 == this.f12642f[0]) {
             f11 = i11 + f12;
         } else {
             f11 = i11 - f12;
@@ -327,7 +327,7 @@ public final class s5 extends ViewGroup {
     }
 
     public final int j() {
-        for (int i10 = 0; i10 < this.f12637a.f12473c; i10++) {
+        for (int i10 = 0; i10 < this.f12638a.f12474c; i10++) {
             if (e(i10)) {
                 return i10;
             }
@@ -336,7 +336,7 @@ public final class s5 extends ViewGroup {
     }
 
     public final int k() {
-        for (int i10 = 0; i10 < this.f12637a.f12472b; i10++) {
+        for (int i10 = 0; i10 < this.f12638a.f12473b; i10++) {
             if (t(i10)) {
                 return i10;
             }
@@ -345,15 +345,15 @@ public final class s5 extends ViewGroup {
     }
 
     public final boolean l() {
-        j6 j6Var = this.f12637a;
+        j6 j6Var = this.f12638a;
         if (j6Var != null && this.h != null) {
-            ArrayList arrayList = j6Var.f12476g;
+            ArrayList arrayList = j6Var.f12477g;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                if (((LinkedHashSet) ((ei.f) this.h).f9021b).contains((TL_iv.pageTableCell) obj)) {
+                if (((LinkedHashSet) ((ei.f) this.h).f9022b).contains((TL_iv.pageTableCell) obj)) {
                     return true;
                 }
             }
@@ -366,7 +366,7 @@ public final class s5 extends ViewGroup {
             View childAt = getChildAt(i10);
             if (childAt instanceof t5) {
                 t5 t5Var = (t5) childAt;
-                if (t5Var.f12661b == pagetablecell) {
+                if (t5Var.f12662b == pagetablecell) {
                     return t5Var;
                 }
             }
@@ -375,10 +375,10 @@ public final class s5 extends ViewGroup {
     }
 
     public final boolean n(int i10) {
-        if (i10 < 0 || i10 >= this.f12637a.f12473c) {
+        if (i10 < 0 || i10 >= this.f12638a.f12474c) {
             return false;
         }
-        for (int i11 = 0; i11 < this.f12637a.f12472b; i11++) {
+        for (int i11 = 0; i11 < this.f12638a.f12473b; i11++) {
             if (!p(i11, i10)) {
                 return false;
             }
@@ -387,10 +387,10 @@ public final class s5 extends ViewGroup {
     }
 
     public final boolean o(int i10) {
-        if (i10 < 0 || i10 >= this.f12637a.f12472b) {
+        if (i10 < 0 || i10 >= this.f12638a.f12473b) {
             return false;
         }
-        for (int i11 = 0; i11 < this.f12637a.f12473c; i11++) {
+        for (int i11 = 0; i11 < this.f12638a.f12474c; i11++) {
             if (!p(i10, i11)) {
                 return false;
             }
@@ -400,16 +400,16 @@ public final class s5 extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        if (this.f12637a != null) {
+        if (this.f12638a != null) {
             for (int i14 = 0; i14 < getChildCount(); i14++) {
                 View childAt = getChildAt(i14);
                 if (childAt instanceof t5) {
                     t5 t5Var = (t5) childAt;
-                    int b10 = this.f12637a.b(t5Var.f12661b);
-                    int a2 = this.f12637a.a(t5Var.f12661b);
+                    int b10 = this.f12638a.b(t5Var.f12662b);
+                    int a2 = this.f12638a.a(t5Var.f12662b);
                     if (b10 >= 0 && a2 >= 0) {
-                        int i15 = this.f12640e[a2];
-                        int i16 = this.f12641f[b10];
+                        int i15 = this.f12641e[a2];
+                        int i16 = this.f12642f[b10];
                         t5Var.layout(i15, i16, t5Var.getMeasuredWidth() + i15, t5Var.getMeasuredHeight() + i16);
                     }
                 }
@@ -434,32 +434,32 @@ public final class s5 extends ViewGroup {
         int dp2 = AndroidUtilities.dp(4.0f);
         int dp3 = AndroidUtilities.dp(4.0f);
         int dp4 = AndroidUtilities.dp(10.0f);
-        j6 j6Var = this.f12637a;
-        if (j6Var != null && j6Var.f12472b != 0 && j6Var.f12473c != 0) {
+        j6 j6Var = this.f12638a;
+        if (j6Var != null && j6Var.f12473b != 0 && j6Var.f12474c != 0) {
             int size = (View.MeasureSpec.getSize(i10) - dp) - dp3;
-            j6 j6Var2 = this.f12637a;
-            int i19 = j6Var2.f12472b;
-            int i20 = j6Var2.f12473c;
-            this.f12639c = new int[i20];
+            j6 j6Var2 = this.f12638a;
+            int i19 = j6Var2.f12473b;
+            int i20 = j6Var2.f12474c;
+            this.f12640c = new int[i20];
             this.d = new int[i19];
-            if (!j6Var2.f12471a.compact) {
+            if (!j6Var2.f12472a.compact) {
                 f7 = 50.0f;
             }
             int dp5 = AndroidUtilities.dp(f7);
-            if (this.f12637a.f12471a.compact) {
+            if (this.f12638a.f12472a.compact) {
                 i12 = 5;
             } else {
                 i12 = 12;
             }
             if (i20 == 2) {
-                max = org.telegram.messenger.f0.b(i12 * 4, size / 2, 0);
+                max = org.telegram.messenger.q.b(i12 * 4, size / 2, 0);
             } else {
                 max = Math.max(0, Math.round(size / 1.5f));
             }
             float f10 = i12 * 2;
-            int y3 = org.telegram.messenger.f0.y(f10, max, dp5);
+            int y3 = org.telegram.messenger.q.y(f10, max, dp5);
             for (int i21 = 0; i21 < i20; i21++) {
-                this.f12639c[i21] = dp5;
+                this.f12640c[i21] = dp5;
             }
             int i22 = 0;
             while (true) {
@@ -470,10 +470,10 @@ public final class s5 extends ViewGroup {
                 View childAt = getChildAt(i22);
                 if (childAt instanceof t5) {
                     t5 t5Var = (t5) childAt;
-                    i1 i1Var = t5Var.f12660a;
-                    if (j6.n(t5Var.f12661b) == 1 && (a2 = this.f12637a.a(t5Var.f12661b)) >= 0 && a2 < i20) {
+                    i1 i1Var = t5Var.f12661a;
+                    if (j6.n(t5Var.f12662b) == 1 && (a2 = this.f12638a.a(t5Var.f12662b)) >= 0 && a2 < i20) {
                         int dp6 = AndroidUtilities.dp(f10) + Math.round(Layout.getDesiredWidth(i1Var.getText(), i1Var.getPaint()));
-                        int[] iArr = this.f12639c;
+                        int[] iArr = this.f12640c;
                         iArr[a2] = Math.max(iArr[a2], Math.min(y3, dp6));
                     }
                 }
@@ -484,20 +484,20 @@ public final class s5 extends ViewGroup {
                 View childAt2 = getChildAt(i23);
                 if (childAt2 instanceof t5) {
                     t5 t5Var2 = (t5) childAt2;
-                    i1 i1Var2 = t5Var2.f12660a;
-                    int n10 = j6.n(t5Var2.f12661b);
+                    i1 i1Var2 = t5Var2.f12661a;
+                    int n10 = j6.n(t5Var2.f12662b);
                     if (n10 > i13) {
-                        int a10 = this.f12637a.a(t5Var2.f12661b);
+                        int a10 = this.f12638a.a(t5Var2.f12662b);
                         int min = Math.min(i20, n10 + a10);
                         if (a10 >= 0 && a10 < min) {
                             int i24 = 0;
                             for (int i25 = a10; i25 < min; i25++) {
-                                i24 += this.f12639c[i25];
+                                i24 += this.f12640c[i25];
                             }
                             int min2 = Math.min((min - a10) * y3, AndroidUtilities.dp(f10) + Math.round(Layout.getDesiredWidth(i1Var2.getText(), i1Var2.getPaint()))) - i24;
                             while (a10 < min && min2 > 0) {
                                 int i26 = ((min2 + i18) - 1) / (min - a10);
-                                int[] iArr2 = this.f12639c;
+                                int[] iArr2 = this.f12640c;
                                 iArr2[a10] = iArr2[a10] + i26;
                                 min2 -= i26;
                                 a10++;
@@ -511,7 +511,7 @@ public final class s5 extends ViewGroup {
                 i13 = 1;
             }
             int i27 = 0;
-            for (int i28 : this.f12639c) {
+            for (int i28 : this.f12640c) {
                 i27 += i28;
             }
             if (i27 < size && i20 > 0) {
@@ -520,9 +520,9 @@ public final class s5 extends ViewGroup {
                     if (i30 == i20 - 1) {
                         round = i29;
                     } else {
-                        round = Math.round((this.f12639c[i30] * i29) / i27);
+                        round = Math.round((this.f12640c[i30] * i29) / i27);
                     }
-                    int[] iArr3 = this.f12639c;
+                    int[] iArr3 = this.f12640c;
                     int i31 = iArr3[i30] + round;
                     iArr3[i30] = i31;
                     i29 -= round;
@@ -537,16 +537,16 @@ public final class s5 extends ViewGroup {
                     i17 = i32;
                 } else {
                     t5 t5Var3 = (t5) childAt3;
-                    int b10 = this.f12637a.b(t5Var3.f12661b);
-                    int a11 = this.f12637a.a(t5Var3.f12661b);
-                    int n11 = j6.n(t5Var3.f12661b);
+                    int b10 = this.f12638a.b(t5Var3.f12662b);
+                    int a11 = this.f12638a.a(t5Var3.f12662b);
+                    int n11 = j6.n(t5Var3.f12662b);
                     i17 = i32;
                     int i33 = 0;
                     for (int i34 = a11; i34 < a11 + n11 && i34 < i20; i34++) {
-                        i33 += this.f12639c[i34];
+                        i33 += this.f12640c[i34];
                     }
                     t5Var3.measure(View.MeasureSpec.makeMeasureSpec(i33, 1073741824), makeMeasureSpec);
-                    if (j6.o(t5Var3.f12661b) == 1) {
+                    if (j6.o(t5Var3.f12662b) == 1) {
                         int measuredHeight = t5Var3.getMeasuredHeight();
                         int[] iArr4 = this.d;
                         if (measuredHeight > iArr4[b10]) {
@@ -560,8 +560,8 @@ public final class s5 extends ViewGroup {
                 View childAt4 = getChildAt(i35);
                 if (childAt4 instanceof t5) {
                     t5 t5Var4 = (t5) childAt4;
-                    int b11 = this.f12637a.b(t5Var4.f12661b);
-                    int o9 = j6.o(t5Var4.f12661b);
+                    int b11 = this.f12638a.b(t5Var4.f12662b);
+                    int o9 = j6.o(t5Var4.f12662b);
                     if (o9 > 1) {
                         int i36 = b11;
                         int i37 = 0;
@@ -603,14 +603,14 @@ public final class s5 extends ViewGroup {
                     i14 = i40;
                 } else {
                     t5 t5Var5 = (t5) childAt5;
-                    int b12 = this.f12637a.b(t5Var5.f12661b);
-                    int a12 = this.f12637a.a(t5Var5.f12661b);
-                    int n12 = j6.n(t5Var5.f12661b);
-                    int o10 = j6.o(t5Var5.f12661b);
+                    int b12 = this.f12638a.b(t5Var5.f12662b);
+                    int a12 = this.f12638a.a(t5Var5.f12662b);
+                    int n12 = j6.n(t5Var5.f12662b);
+                    int o10 = j6.o(t5Var5.f12662b);
                     i14 = i40;
                     int i41 = 0;
                     for (int i42 = a12; i42 < a12 + n12 && i42 < i20; i42++) {
-                        i41 += this.f12639c[i42];
+                        i41 += this.f12640c[i42];
                     }
                     int i43 = 0;
                     for (int i44 = b12; i44 < b12 + o10 && i44 < i19; i44++) {
@@ -621,46 +621,46 @@ public final class s5 extends ViewGroup {
                 i40 = i14 + 1;
             }
             int[] iArr6 = new int[i20 + 1];
-            this.f12640e = iArr6;
+            this.f12641e = iArr6;
             iArr6[0] = dp;
             int i45 = 0;
             while (i45 < i20) {
-                int[] iArr7 = this.f12640e;
+                int[] iArr7 = this.f12641e;
                 int i46 = i45 + 1;
-                iArr7[i46] = iArr7[i45] + this.f12639c[i45];
+                iArr7[i46] = iArr7[i45] + this.f12640c[i45];
                 i45 = i46;
             }
             int[] iArr8 = new int[i19 + 1];
-            this.f12641f = iArr8;
+            this.f12642f = iArr8;
             iArr8[0] = dp2;
             int i47 = 0;
             while (i47 < i19) {
-                int[] iArr9 = this.f12641f;
+                int[] iArr9 = this.f12642f;
                 int i48 = i47 + 1;
                 iArr9[i48] = iArr9[i47] + this.d[i47];
                 i47 = i48;
             }
-            setMeasuredDimension(Math.max(this.f12640e[i20] + dp3, size + dp + dp3), this.f12641f[i19] + dp4);
+            setMeasuredDimension(Math.max(this.f12641e[i20] + dp3, size + dp + dp3), this.f12642f[i19] + dp4);
             return;
         }
         setMeasuredDimension(View.MeasureSpec.getSize(i10), dp2 + dp4);
-        this.f12639c = new int[0];
+        this.f12640c = new int[0];
         this.d = new int[0];
-        this.f12640e = new int[0];
-        this.f12641f = new int[0];
+        this.f12641e = new int[0];
+        this.f12642f = new int[0];
     }
 
     public final boolean p(int i10, int i11) {
         r5 r5Var;
-        j6 j6Var = this.f12637a;
-        if (j6Var == null || (r5Var = this.h) == null || i10 < 0 || i10 >= j6Var.f12472b || i11 < 0 || i11 >= j6Var.f12473c) {
+        j6 j6Var = this.f12638a;
+        if (j6Var == null || (r5Var = this.h) == null || i10 < 0 || i10 >= j6Var.f12473b || i11 < 0 || i11 >= j6Var.f12474c) {
             return false;
         }
-        return ((LinkedHashSet) ((ei.f) r5Var).f9021b).contains(j6Var.d[i10][i11]);
+        return ((LinkedHashSet) ((ei.f) r5Var).f9022b).contains(j6Var.d[i10][i11]);
     }
 
     public final int q() {
-        for (int i10 = this.f12637a.f12473c - 1; i10 >= 0; i10--) {
+        for (int i10 = this.f12638a.f12474c - 1; i10 >= 0; i10--) {
             if (e(i10)) {
                 return i10;
             }
@@ -669,7 +669,7 @@ public final class s5 extends ViewGroup {
     }
 
     public final int r() {
-        for (int i10 = this.f12637a.f12472b - 1; i10 >= 0; i10--) {
+        for (int i10 = this.f12638a.f12473b - 1; i10 >= 0; i10--) {
             if (t(i10)) {
                 return i10;
             }
@@ -683,20 +683,20 @@ public final class s5 extends ViewGroup {
                 removeViewAt(childCount);
             }
         }
-        j6 j6Var = this.f12637a;
+        j6 j6Var = this.f12638a;
         if (j6Var != null) {
-            int size = j6Var.f12476g.size();
+            int size = j6Var.f12477g.size();
             for (int i10 = 0; i10 < size; i10++) {
-                t5 t5Var = new t5(getContext(), this.f12638b);
-                t5Var.setCompact(this.f12637a.f12471a.compact);
-                t5Var.b((TL_iv.pageTableCell) this.f12637a.f12476g.get(i10));
+                t5 t5Var = new t5(getContext(), this.f12639b);
+                t5Var.setCompact(this.f12638a.f12472a.compact);
+                t5Var.b((TL_iv.pageTableCell) this.f12638a.f12477g.get(i10));
                 addView(t5Var);
             }
         }
     }
 
     public void setModel(j6 j6Var) {
-        this.f12637a = j6Var;
+        this.f12638a = j6Var;
         s();
     }
 
@@ -706,8 +706,8 @@ public final class s5 extends ViewGroup {
     }
 
     public final boolean t(int i10) {
-        if (i10 >= 0 && i10 < this.f12637a.f12472b) {
-            for (int i11 = 0; i11 < this.f12637a.f12473c; i11++) {
+        if (i10 >= 0 && i10 < this.f12638a.f12473b) {
+            for (int i11 = 0; i11 < this.f12638a.f12474c; i11++) {
                 if (p(i10, i11)) {
                     return true;
                 }

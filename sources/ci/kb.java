@@ -1,14 +1,14 @@
 package ci;
 public final class kb implements oc {
-    public final bi.v f5372a;
+    public final bi.v f5373a;
 
     public kb(bi.v vVar) {
-        this.f5372a = vVar;
+        this.f5373a = vVar;
     }
 
     @Override
     public final void O(float f7, boolean z10) {
-        this.f5372a.run(Boolean.FALSE, Float.valueOf(f7));
+        this.f5373a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override

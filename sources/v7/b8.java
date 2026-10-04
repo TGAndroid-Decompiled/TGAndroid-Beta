@@ -5,9 +5,9 @@ public abstract class b8 {
             if (i10 <= i11) {
                 return;
             }
-            throw new IllegalArgumentException(a4.a.l(i10, i11, "fromIndex: ", " > toIndex: "));
+            throw new IllegalArgumentException(a4.a.m(i10, i11, "fromIndex: ", " > toIndex: "));
         }
-        StringBuilder k10 = hg.k0.k("fromIndex: ", i10, ", toIndex: ", i11, ", size: ");
+        StringBuilder k10 = hg.c.k("fromIndex: ", i10, ", toIndex: ", i11, ", size: ");
         k10.append(i12);
         throw new IndexOutOfBoundsException(k10.toString());
     }

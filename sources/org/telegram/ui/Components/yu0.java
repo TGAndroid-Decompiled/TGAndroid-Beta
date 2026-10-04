@@ -20,10 +20,10 @@ public final class yu0 extends org.telegram.ui.Cells.s2 {
     @Override
     public final boolean getIsPinned() {
         zu0 zu0Var = this.W4;
-        ArrayList arrayList = zu0Var.f33657f;
-        hu0 hu0Var = zu0Var.f33660s;
+        ArrayList arrayList = zu0Var.f33663f;
+        hu0 hu0Var = zu0Var.f33666s;
         if (hu0Var != null && hu0Var.getAdapter() == zu0Var) {
-            zu0Var.f33660s.getClass();
+            zu0Var.f33666s.getClass();
             int R = RecyclerView.R(this);
             if (R >= 0 && R < arrayList.size()) {
                 return ((SavedMessagesController.SavedDialog) arrayList.get(R)).pinned;

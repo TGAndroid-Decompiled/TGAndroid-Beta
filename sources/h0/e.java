@@ -1,8 +1,8 @@
 package h0;
 public final class e implements d {
-    public final f[] f10932a;
+    public final f[] f10933a;
 
     public e(f[] fVarArr) {
-        this.f10932a = fVarArr;
+        this.f10933a = fVarArr;
     }
 }

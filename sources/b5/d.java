@@ -90,13 +90,13 @@ public abstract class d {
     }
 
     public static Person E(p0 p0Var) {
-        Person.Builder name = new Person.Builder().setName(p0Var.f8467a);
-        IconCompat iconCompat = p0Var.f8468b;
+        Person.Builder name = new Person.Builder().setName(p0Var.f8468a);
+        IconCompat iconCompat = p0Var.f8469b;
         Icon icon = null;
         if (iconCompat != null) {
             icon = iconCompat.m(null);
         }
-        return name.setIcon(icon).setUri(p0Var.f8469c).setKey(p0Var.d).setBot(p0Var.f8470e).setImportant(p0Var.f8471f).build();
+        return name.setIcon(icon).setUri(p0Var.f8470c).setKey(p0Var.d).setBot(p0Var.f8471e).setImportant(p0Var.f8472f).build();
     }
 
     public static void a(Notification.Builder builder, Person person) {
@@ -165,7 +165,7 @@ public abstract class d {
                 d6.a c11 = d6.a.c(f());
                 if (c11 != null && (c10 = c11.b().c()) != null && c10.b()) {
                     n6.l.e("Must be called from the main thread.");
-                    return c10.f8134j;
+                    return c10.f8135j;
                 }
             } catch (Exception e7) {
                 FileLog.e(e7);

@@ -3,39 +3,39 @@ package d9;
 import a3.s;
 public final class k implements i {
     public static final s d = new s(1);
-    public final Object f8171a = new Object();
-    public volatile i f8172b;
-    public Object f8173c;
+    public final Object f8172a = new Object();
+    public volatile i f8173b;
+    public Object f8174c;
 
     public k(i iVar) {
-        this.f8172b = iVar;
+        this.f8173b = iVar;
     }
 
     @Override
     public final Object get() {
-        i iVar = this.f8172b;
+        i iVar = this.f8173b;
         s sVar = d;
         if (iVar != sVar) {
-            synchronized (this.f8171a) {
+            synchronized (this.f8172a) {
                 try {
-                    if (this.f8172b != sVar) {
-                        Object obj = this.f8172b.get();
-                        this.f8173c = obj;
-                        this.f8172b = sVar;
+                    if (this.f8173b != sVar) {
+                        Object obj = this.f8173b.get();
+                        this.f8174c = obj;
+                        this.f8173b = sVar;
                         return obj;
                     }
                 } finally {
                 }
             }
         }
-        return this.f8173c;
+        return this.f8174c;
     }
 
     public final String toString() {
-        Object obj = this.f8172b;
+        Object obj = this.f8173b;
         StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
         if (obj == d) {
-            obj = "<supplier that returned " + this.f8173c + ">";
+            obj = "<supplier that returned " + this.f8174c + ">";
         }
         sb2.append(obj);
         sb2.append(")");

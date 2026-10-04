@@ -2,11 +2,11 @@ package e2;
 
 import java.util.NoSuchElementException;
 public final class q implements w3.b {
-    public int f8574a;
-    public int f8575b;
-    public int f8576c;
+    public int f8575a;
+    public int f8576b;
+    public int f8577c;
     public int d;
-    public Object f8577e;
+    public Object f8578e;
 
     @Override
     public int a() {
@@ -15,21 +15,21 @@ public final class q implements w3.b {
 
     @Override
     public int b() {
-        return this.f8574a;
+        return this.f8575a;
     }
 
     @Override
     public int c() {
-        v vVar = (v) this.f8577e;
-        int i10 = this.f8575b;
+        v vVar = (v) this.f8578e;
+        int i10 = this.f8576b;
         if (i10 == 8) {
             return vVar.x();
         }
         if (i10 == 16) {
             return vVar.D();
         }
-        int i11 = this.f8576c;
-        this.f8576c = i11 + 1;
+        int i11 = this.f8577c;
+        this.f8577c = i11 + 1;
         if (i11 % 2 == 0) {
             int x10 = vVar.x();
             this.d = x10;
@@ -39,12 +39,12 @@ public final class q implements w3.b {
     }
 
     public long d() {
-        int i10 = this.f8576c;
+        int i10 = this.f8577c;
         if (i10 != 0) {
-            int i11 = this.f8574a;
-            long j3 = ((long[]) this.f8577e)[i11];
-            this.f8574a = this.d & (i11 + 1);
-            this.f8576c = i10 - 1;
+            int i11 = this.f8575a;
+            long j3 = ((long[]) this.f8578e)[i11];
+            this.f8575a = this.d & (i11 + 1);
+            this.f8577c = i10 - 1;
             return j3;
         }
         throw new NoSuchElementException();

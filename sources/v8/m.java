@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import w7.g0;
 public final class m extends o6.a {
     public static final Parcelable.Creator<m> CREATOR = new r(3);
-    public ArrayList f48214a;
+    public ArrayList f48222a;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = g0.q(parcel, 20293);
-        g0.n(parcel, 1, this.f48214a);
+        g0.n(parcel, 1, this.f48222a);
         g0.r(parcel, q6);
     }
 }

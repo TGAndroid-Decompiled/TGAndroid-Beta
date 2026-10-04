@@ -3,14 +3,14 @@ package org.telegram.messenger.camera;
 import android.graphics.SurfaceTexture;
 import org.telegram.messenger.camera.CameraView;
 public final class q implements SurfaceTexture.OnFrameAvailableListener {
-    public final CameraView.CameraGLThread f17558a;
+    public final CameraView.CameraGLThread f17555a;
 
     public q(CameraView.CameraGLThread cameraGLThread) {
-        this.f17558a = cameraGLThread;
+        this.f17555a = cameraGLThread;
     }
 
     @Override
     public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        this.f17558a.updTex(surfaceTexture);
+        this.f17555a.updTex(surfaceTexture);
     }
 }

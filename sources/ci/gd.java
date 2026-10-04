@@ -40,30 +40,30 @@ import org.telegram.ui.ym0;
 import org.telegram.ui.yn;
 import org.telegram.ui.zf0;
 public final class gd implements RequestDelegate {
-    public final int f5118a;
-    public final Object f5119b;
-    public final Object f5120c;
+    public final int f5119a;
+    public final Object f5120b;
+    public final Object f5121c;
     public final Object d;
-    public final Object f5121e;
-    public final Object f5122f;
+    public final Object f5122e;
+    public final Object f5123f;
 
     public gd(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f5118a = i10;
-        this.f5119b = obj;
-        this.f5120c = obj2;
+        this.f5119a = i10;
+        this.f5120b = obj;
+        this.f5121c = obj2;
         this.d = obj3;
-        this.f5121e = obj4;
-        this.f5122f = obj5;
+        this.f5122e = obj4;
+        this.f5123f = obj5;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f5118a;
-        Object obj = this.f5122f;
-        Object obj2 = this.f5121e;
+        int i10 = this.f5119a;
+        Object obj = this.f5123f;
+        Object obj2 = this.f5122e;
         Object obj3 = this.d;
-        Object obj4 = this.f5120c;
-        Object obj5 = this.f5119b;
+        Object obj4 = this.f5121c;
+        Object obj5 = this.f5120b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ai.z8((int[]) obj5, tLObject, (MessagesController) obj4, (TLRPC.User[]) obj3, (fd) obj2, (dd) obj, 1));
@@ -138,11 +138,11 @@ public final class gd implements RequestDelegate {
     }
 
     public gd(qy0 qy0Var, EditTextBoldCursor editTextBoldCursor, TextView textView, TextView textView2, int[] iArr) {
-        this.f5118a = 6;
-        this.f5120c = qy0Var;
+        this.f5119a = 6;
+        this.f5121c = qy0Var;
         this.d = editTextBoldCursor;
-        this.f5121e = textView;
-        this.f5122f = textView2;
-        this.f5119b = iArr;
+        this.f5122e = textView;
+        this.f5123f = textView2;
+        this.f5120b = iArr;
     }
 }

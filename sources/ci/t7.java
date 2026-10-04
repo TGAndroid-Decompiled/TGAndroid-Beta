@@ -32,34 +32,34 @@ public final class t7 extends View {
     public final int[] J;
     public final int[] K;
     public boolean L;
-    public final int f5986a;
-    public final ga f5987b;
-    public ha f5988c;
+    public final int f5987a;
+    public final ga f5988b;
+    public ha f5989c;
     public final org.telegram.ui.Components.e6 d;
-    public final RectF f5989e;
-    public final RectF f5990f;
+    public final RectF f5990e;
+    public final RectF f5991f;
     public final ImageReceiver h;
-    public boolean f5991n;
-    public e11 f5992r;
-    public e11 f5993s;
+    public boolean f5992n;
+    public e11 f5993r;
+    public e11 f5994s;
     public final Path v;
-    public final Paint f5994w;
-    public final org.telegram.ui.Components.zc f5995x;
-    public boolean f5996y;
+    public final Paint f5995w;
+    public final org.telegram.ui.Components.zc f5996x;
+    public boolean f5997y;
 
     public t7(Activity activity, int i10, ga gaVar) {
         super(activity);
         this.d = new org.telegram.ui.Components.e6(this, 0L, 320L, tr.h);
-        this.f5989e = new RectF();
-        this.f5990f = new RectF();
+        this.f5990e = new RectF();
+        this.f5991f = new RectF();
         this.h = new ImageReceiver(this);
         this.v = new Path();
-        this.f5994w = new Paint(1);
-        this.f5995x = new org.telegram.ui.Components.zc(this);
+        this.f5995w = new Paint(1);
+        this.f5996x = new org.telegram.ui.Components.zc(this);
         this.J = new int[2];
         this.K = new int[2];
-        this.f5986a = i10;
-        this.f5987b = gaVar;
+        this.f5987a = i10;
+        this.f5988b = gaVar;
     }
 
     public final void a() {
@@ -67,7 +67,7 @@ public final class t7 extends View {
         if (s7Var == null) {
             return;
         }
-        this.f5992r = new e11(s7Var.b(), 16.0f, AndroidUtilities.bold());
+        this.f5993r = new e11(s7Var.b(), 16.0f, AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.E.a());
         if (spannableStringBuilder.toString().contains(">")) {
             spannableStringBuilder.clear();
@@ -79,9 +79,9 @@ public final class t7 extends View {
             rqVar.setScale(1.25f, 1.25f);
             spannableStringBuilder.setSpan(rqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         }
-        this.f5993s = new e11(spannableStringBuilder, 14.0f, null);
+        this.f5994s = new e11(spannableStringBuilder, 14.0f, null);
         this.E.d(this.h);
-        this.f5991n = true;
+        this.f5992n = true;
     }
 
     @Override
@@ -94,39 +94,39 @@ public final class t7 extends View {
         Object obj;
         int[] iArr;
         int[] iArr2;
-        float e7 = this.d.e(this.f5996y);
-        e11 e11Var = this.f5992r;
-        if (e11Var != null && this.f5993s != null && e7 > 0.0f) {
-            e11Var.f25890p = getWidth() * 0.7f;
-            this.f5993s.f25890p = getWidth() * 0.7f;
+        float e7 = this.d.e(this.f5997y);
+        e11 e11Var = this.f5993r;
+        if (e11Var != null && this.f5994s != null && e7 > 0.0f) {
+            e11Var.f25895p = getWidth() * 0.7f;
+            this.f5994s.f25895p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
             float dp4 = AndroidUtilities.dp(2.0f);
             float dp5 = AndroidUtilities.dp(11.0f);
             float min = Math.min(AndroidUtilities.dp(200.0f), getWidth() * 0.8f);
-            if (this.f5991n) {
+            if (this.f5992n) {
                 f7 = dp5 + dp3 + dp5;
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f5992r.f25879c, this.f5993s.f25879c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
-            if (this.f5991n) {
+            float max = Math.max(min, Math.max(this.f5993r.f25884c, this.f5994s.f25884c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            if (this.f5992n) {
                 f10 = dp3;
             } else {
                 f10 = 0.0f;
             }
-            float max2 = Math.max(f10, this.f5993s.j() + this.f5992r.j() + dp4) + dp2 + dp2;
-            float lerp = AndroidUtilities.lerp(0.6f, 1.0f, e7) * this.f5995x.a(0.05f);
+            float max2 = Math.max(f10, this.f5994s.j() + this.f5993r.j() + dp4) + dp2 + dp2;
+            float lerp = AndroidUtilities.lerp(0.6f, 1.0f, e7) * this.f5996x.a(0.05f);
             float dp6 = (1.0f - e7) * AndroidUtilities.dp(15.0f);
-            RectF rectF = this.f5989e;
+            RectF rectF = this.f5990e;
             rectF.set((getWidth() - max) / 2.0f, (getHeight() - max2) / 2.0f, (getWidth() + max) / 2.0f, (getHeight() + max2) / 2.0f);
-            RectF rectF2 = this.f5990f;
+            RectF rectF2 = this.f5991f;
             rectF2.set(rectF);
             AndroidUtilities.scaleRect(rectF2, lerp);
             rectF2.offset(0.0f, dp6);
             int i10 = Build.VERSION.SDK_INT;
-            Paint paint = this.f5994w;
+            Paint paint = this.f5995w;
             if (i10 >= 29 && (obj = this.G) != null && this.F != null) {
                 RenderNode c10 = org.telegram.messenger.b.c(obj);
                 Path path = this.v;
@@ -155,7 +155,7 @@ public final class t7 extends View {
             float f14 = 0.0f;
             canvas.translate(0.0f, dp6);
             canvas.scale(lerp, lerp, rectF.centerX(), rectF.centerY());
-            if (this.f5991n) {
+            if (this.f5992n) {
                 float f15 = dp3 / f12;
                 ImageReceiver imageReceiver = this.h;
                 imageReceiver.setRoundRadius((int) f15);
@@ -163,21 +163,21 @@ public final class t7 extends View {
                 imageReceiver.setAlpha(e7);
                 imageReceiver.draw(canvas);
             }
-            float centerY = rectF.centerY() - ((this.f5993s.j() + (this.f5992r.j() + dp4)) / f12);
-            e11 e11Var2 = this.f5992r;
+            float centerY = rectF.centerY() - ((this.f5994s.j() + (this.f5993r.j() + dp4)) / f12);
+            e11 e11Var2 = this.f5993r;
             float f16 = rectF.left;
-            if (this.f5991n) {
+            if (this.f5992n) {
                 f13 = dp5 + dp3 + dp5;
             } else {
                 f13 = 0.0f;
             }
             e11Var2.c(f16 + f13 + f11, (e11Var2.j() / f12) + centerY, e7, -1, canvas);
-            e11 e11Var3 = this.f5993s;
+            e11 e11Var3 = this.f5994s;
             float f17 = rectF.left;
-            if (this.f5991n) {
+            if (this.f5992n) {
                 f14 = dp3 + dp5 + dp5;
             }
-            e11Var3.c(f17 + f14 + f11, this.f5992r.j() + centerY + dp4 + (this.f5993s.j() / f12), e7, org.telegram.ui.ActionBar.i6.v(-16777216, -1610612737), canvas);
+            e11Var3.c(f17 + f14 + f11, this.f5993r.j() + centerY + dp4 + (this.f5994s.j() / f12), e7, org.telegram.ui.ActionBar.i6.v(-16777216, -1610612737), canvas);
             canvas.restore();
         }
     }
@@ -185,11 +185,11 @@ public final class t7 extends View {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         ha haVar;
-        boolean z10 = this.f5996y;
-        org.telegram.ui.Components.zc zcVar = this.f5995x;
+        boolean z10 = this.f5997y;
+        org.telegram.ui.Components.zc zcVar = this.f5996x;
         if (z10 && this.E != null) {
             int action = motionEvent.getAction();
-            RectF rectF = this.f5989e;
+            RectF rectF = this.f5990e;
             if (action == 0) {
                 if (rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     this.L = true;
@@ -200,7 +200,7 @@ public final class t7 extends View {
                     zcVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (zcVar.h && (haVar = this.f5988c) != null && this.E != null) {
+                if (zcVar.h && (haVar = this.f5989c) != null && this.E != null) {
                     haVar.run(new p7(this, 1));
                 }
                 zcVar.c(false);
@@ -233,7 +233,7 @@ public final class t7 extends View {
 
     public void setLink(String str) {
         boolean isEmpty = TextUtils.isEmpty(str);
-        ga gaVar = this.f5987b;
+        ga gaVar = this.f5988b;
         Runnable runnable = null;
         if (isEmpty) {
             Runnable runnable2 = this.H;
@@ -241,10 +241,10 @@ public final class t7 extends View {
                 runnable2.run();
                 this.H = null;
             }
-            if (this.f5996y) {
+            if (this.f5997y) {
                 invalidate();
             }
-            this.f5996y = false;
+            this.f5997y = false;
             this.I = null;
             if (gaVar != null) {
                 gaVar.run();
@@ -253,7 +253,7 @@ public final class t7 extends View {
             return;
         }
         s7 s7Var = this.E;
-        if ((s7Var == null && this.H == null) || (s7Var != null && !TextUtils.equals(s7Var.f5916a, str) && !TextUtils.equals(this.I, str))) {
+        if ((s7Var == null && this.H == null) || (s7Var != null && !TextUtils.equals(s7Var.f5917a, str) && !TextUtils.equals(this.I, str))) {
             Runnable runnable3 = this.H;
             if (runnable3 != null) {
                 runnable3.run();
@@ -261,7 +261,7 @@ public final class t7 extends View {
             }
             this.E = null;
             this.I = str;
-            int i10 = this.f5986a;
+            int i10 = this.f5987a;
             p7 p7Var = new p7(this, 0);
             try {
                 MessagesController messagesController = MessagesController.getInstance(i10);
@@ -291,8 +291,8 @@ public final class t7 extends View {
             return;
         }
         s7 s7Var2 = this.E;
-        if (s7Var2 != null && !this.f5996y && TextUtils.equals(s7Var2.f5916a, str)) {
-            this.f5996y = true;
+        if (s7Var2 != null && !this.f5997y && TextUtils.equals(s7Var2.f5917a, str)) {
+            this.f5997y = true;
             a();
             invalidate();
             if (gaVar != null) {

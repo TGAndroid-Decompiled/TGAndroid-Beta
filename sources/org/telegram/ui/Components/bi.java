@@ -18,8 +18,8 @@ public final class bi extends mu {
         super.f();
         nz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f29155w0 = false;
-            emojiView.f29157w2 = false;
+            emojiView.f29160w0 = false;
+            emojiView.f29162w2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -27,7 +27,7 @@ public final class bi extends mu {
 
     @Override
     public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.V.f32813f0;
+        org.telegram.ui.ActionBar.n2 n2Var = this.V.f32819f0;
         if (n2Var instanceof org.telegram.ui.yn) {
             org.telegram.ui.yn.k8(menu, ((org.telegram.ui.yn) n2Var).h, true, true, true, true);
         }
@@ -37,11 +37,11 @@ public final class bi extends mu {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         xi xiVar = this.V;
         bi biVar = xiVar.P0;
-        if (!xiVar.f32860u1) {
+        if (!xiVar.f32866u1) {
             if (motionEvent.getX() > biVar.getEditText().getLeft() && motionEvent.getX() < biVar.getEditText().getRight() && motionEvent.getY() > biVar.getEditText().getTop() && motionEvent.getY() < biVar.getEditText().getBottom()) {
-                xiVar.q1(biVar.getEditText(), true);
+                xiVar.s1(biVar.getEditText(), true);
             } else {
-                xiVar.q1(biVar.getEditText(), false);
+                xiVar.s1(biVar.getEditText(), false);
             }
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -50,21 +50,21 @@ public final class bi extends mu {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.V.Y1();
+        this.V.a2();
     }
 
     @Override
     public final void q(int i10, int i11) {
         boolean z10;
         xi xiVar = this.V;
-        xiVar.Y1();
-        if (xiVar.f32802c0) {
+        xiVar.a2();
+        if (xiVar.f32808c0) {
             if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            xiVar.J1(z10);
+            xiVar.L1(z10);
         }
     }
 }

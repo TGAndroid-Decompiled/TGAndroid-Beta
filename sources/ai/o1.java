@@ -152,13 +152,13 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
         }, new d());
         this.f1442e = x0Var;
         w0Var.setAdapter(x0Var);
-        x0Var.f31307r = false;
+        x0Var.f31313r = false;
         w0Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f));
         w0Var.setClipToPadding(false);
         addView(w0Var, w7.z5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
         w0Var.setOnItemClickListener(new u0(r3Var, viewGroup, jcVar, 0));
         y0 y0Var = new y0(r3Var);
-        y0Var.f46563m = false;
+        y0Var.f46570m = false;
         y0Var.C = false;
         tr trVar = tr.h;
         y0Var.o(trVar);
@@ -222,13 +222,13 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
         }, null);
         this.f1447n = u61Var;
         zb1Var.setAdapter(u61Var);
-        u61Var.f31307r = false;
+        u61Var.f31313r = false;
         zb1Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         zb1Var.setClipToPadding(false);
         addView(zb1Var, w7.z5.d(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
         zb1Var.setOnItemClickListener(new a1.c(r3Var, 4));
         s4.j jVar = new s4.j();
-        jVar.f46563m = false;
+        jVar.f46570m = false;
         jVar.C = false;
         jVar.o(trVar);
         jVar.n(350L);
@@ -241,7 +241,7 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
         o1Var.R = l4.longValue();
         org.telegram.ui.Components.rc M = new yc(o1Var.f1437b, new d()).M(o1Var.getStarsToastTitle(), o1Var.getStarsToastSubtitle(), R.raw.stars_topup);
         boolean z10 = false;
-        M.f30347r = false;
+        M.f30353r = false;
         M.k(true);
         long j3 = 0;
         o1Var.R = 0L;
@@ -404,10 +404,10 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
             if (tLObject instanceof TL_update.TL_updateGroupCallMessage) {
                 TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) tLObject;
                 TLRPC.InputGroupCall inputGroupCall = this.O;
-                if (inputGroupCall != null && inputGroupCall.f20055id == longValue) {
+                if (inputGroupCall != null && inputGroupCall.f20059id == longValue) {
                     TLRPC.GroupCallMessage groupCallMessage = tL_updateGroupCallMessage.message;
                     int i13 = groupCallMessage.date;
-                    int i14 = groupCallMessage.f20049id;
+                    int i14 = groupCallMessage.f20053id;
                     boolean z10 = groupCallMessage.from_admin;
                     long peerDialogId = DialogObject.getPeerDialogId(groupCallMessage.from_id);
                     TLRPC.GroupCallMessage groupCallMessage2 = tL_updateGroupCallMessage.message;
@@ -416,7 +416,7 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
             } else if (tLObject instanceof TL_update.TL_updateDeleteGroupCallMessages) {
                 TL_update.TL_updateDeleteGroupCallMessages tL_updateDeleteGroupCallMessages = (TL_update.TL_updateDeleteGroupCallMessages) tLObject;
                 TLRPC.InputGroupCall inputGroupCall2 = this.O;
-                if (inputGroupCall2 != null && inputGroupCall2.f20055id == longValue) {
+                if (inputGroupCall2 != null && inputGroupCall2.f20059id == longValue) {
                     ArrayList<Integer> arrayList = tL_updateDeleteGroupCallMessages.messages;
                     int size = arrayList.size();
                     while (i12 < size) {
@@ -483,7 +483,7 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
                 return false;
             }
             d2 d2Var = this.P;
-            if (d2Var != null && (inputGroupCall = this.O) != null && inputGroupCall.f20055id == d2Var.g() && (groupCall = this.P.v) != null && groupCall.creator) {
+            if (d2Var != null && (inputGroupCall = this.O) != null && inputGroupCall.f20059id == d2Var.g() && (groupCall = this.P.v) != null && groupCall.creator) {
                 return true;
             }
             return ChatObject.canManageCalls(MessagesController.getInstance(i10).getChat(Long.valueOf(-this.M)));
@@ -821,7 +821,7 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
                         i14++;
                         TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
                         if (sendgroupcallmessage.random_id == tL_updateMessageID.random_id) {
-                            int i15 = tL_updateMessageID.f20293id;
+                            int i15 = tL_updateMessageID.f20297id;
                             ArrayList arrayList = o1Var.f1448r;
                             int size2 = arrayList.size();
                             int i16 = 0;
@@ -926,35 +926,35 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
         int[] iArr;
         org.telegram.ui.Components.rc rcVar = this.W;
         o0 o0Var = this.f1441d0;
-        if (rcVar == null || !rcVar.f30341l) {
+        if (rcVar == null || !rcVar.f30347l) {
             d dVar = new d();
             org.telegram.ui.Components.lc lcVar = new org.telegram.ui.Components.lc(getContext(), dVar);
             this.f1436a0 = lcVar;
             lcVar.c(R.raw.stars_topup, new String[0]);
-            this.f1436a0.f28330b.setText(getStarsToastTitle());
+            this.f1436a0.f28335b.setText(getStarsToastTitle());
             org.telegram.ui.Components.pc pcVar = new org.telegram.ui.Components.pc(getContext(), dVar, true, false);
             this.f1438b0 = pcVar;
             pcVar.e(LocaleController.getString(R.string.StarsSentUndo));
-            this.f1438b0.f29595a = new n0((r3) this, 0);
+            this.f1438b0.f29600a = new n0((r3) this, 0);
             org.telegram.ui.Components.kc kcVar = new org.telegram.ui.Components.kc(getContext(), dVar);
             this.f1440c0 = kcVar;
-            kcVar.f28064b = 5000L;
+            kcVar.f28069b = 5000L;
             kcVar.setColor(dVar.H0(org.telegram.ui.ActionBar.i6.Gi));
             this.f1438b0.addView(this.f1440c0, w7.z5.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
             this.f1438b0.d.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
             this.f1436a0.setButton(this.f1438b0);
             org.telegram.ui.Components.rc f7 = org.telegram.ui.Components.rc.f(this.f1437b, this.f1436a0, -1);
             this.W = f7;
-            f7.f30347r = false;
+            f7.f30353r = false;
             f7.k(true);
             this.W.v = o0Var;
         }
         this.R++;
         h(getDefaultPeerId());
         i(getTotalMyStars(), (int) this.R, getDefaultPeerId());
-        this.f1436a0.f28330b.setText(getStarsToastTitle());
-        this.f1436a0.f28331c.setText(getStarsToastSubtitle());
-        this.f1440c0.f28064b = 5000L;
+        this.f1436a0.f28335b.setText(getStarsToastTitle());
+        this.f1436a0.f28336c.setText(getStarsToastSubtitle());
+        this.f1440c0.f28069b = 5000L;
         AndroidUtilities.cancelRunOnUIThread(o0Var);
         AndroidUtilities.runOnUIThread(o0Var, 5000L);
         long j3 = this.R;
@@ -979,7 +979,7 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
         w2Var.invalidate();
         org.telegram.ui.Components.o6 o6Var = w2Var.f1791c;
         o6Var.b();
-        o6Var.q(org.telegram.messenger.f0.h(j3, ',', new StringBuilder("+")), true, true);
+        o6Var.q(org.telegram.messenger.q.h(j3, ',', new StringBuilder("+")), true, true);
         s2 s2Var = w2Var.d;
         AndroidUtilities.cancelRunOnUIThread(s2Var);
         AndroidUtilities.runOnUIThread(s2Var, 1500L);
@@ -1007,10 +1007,10 @@ public abstract class o1 extends FrameLayout implements NotificationCenter.Notif
         if (inputGroupCall2 == null) {
             j10 = 0;
         } else {
-            j10 = inputGroupCall2.f20055id;
+            j10 = inputGroupCall2.f20059id;
         }
         if (inputGroupCall != null) {
-            j11 = inputGroupCall.f20055id;
+            j11 = inputGroupCall.f20059id;
         }
         if (j10 != j11) {
             this.f1448r.clear();

@@ -1,15 +1,15 @@
 package ki;
 public final class l0 {
-    public static final l0 f14982a;
-    public static final l0 f14983b;
-    public static final l0[] f14984c;
+    public static final l0 f14983a;
+    public static final l0 f14984b;
+    public static final l0[] f14985c;
 
     static {
         ?? r02 = new Enum("FRONT", 0);
-        f14982a = r02;
+        f14983a = r02;
         ?? r12 = new Enum("BACK", 1);
-        f14983b = r12;
-        f14984c = new l0[]{r02, r12};
+        f14984b = r12;
+        f14985c = new l0[]{r02, r12};
     }
 
     public static l0 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class l0 {
     }
 
     public static l0[] values() {
-        return (l0[]) f14984c.clone();
+        return (l0[]) f14985c.clone();
     }
 }

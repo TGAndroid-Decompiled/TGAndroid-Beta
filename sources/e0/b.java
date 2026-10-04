@@ -65,7 +65,7 @@ public abstract class b {
         if (eVar == null) {
             audioDeviceInfo = null;
         } else {
-            audioDeviceInfo = (AudioDeviceInfo) eVar.f14388b;
+            audioDeviceInfo = (AudioDeviceInfo) eVar.f14389b;
         }
         audioTrack.setPreferredDevice(audioDeviceInfo);
     }
@@ -197,11 +197,11 @@ public abstract class b {
 
     public static long c(AudioTrack audioTrack, k2.x xVar) {
         boolean z10;
-        if (xVar.f14541c == 0) {
-            return e2.d0.W(xVar.f14542e, audioTrack.getBufferSizeInFrames());
+        if (xVar.f14542c == 0) {
+            return e2.d0.W(xVar.f14543e, audioTrack.getBufferSizeInFrames());
         }
         long bufferSizeInFrames = audioTrack.getBufferSizeInFrames();
-        int i10 = c3.b.i(xVar.f14544g);
+        int i10 = c3.b.i(xVar.f14545g);
         if (i10 != -2147483647) {
             z10 = true;
         } else {
@@ -277,21 +277,21 @@ public abstract class b {
             audioManager.getClass();
             audioDeviceInfoArr = audioManager.getDevices(2);
         } else {
-            audioDeviceInfoArr = new AudioDeviceInfo[]{(AudioDeviceInfo) eVar.f14388b};
+            audioDeviceInfoArr = new AudioDeviceInfo[]{(AudioDeviceInfo) eVar.f14389b};
         }
         ?? wVar = new com.google.android.gms.common.api.internal.w(4);
         Integer[] numArr = {8, 7};
         e9.q.d(2, numArr);
         wVar.g(2);
-        System.arraycopy(numArr, 0, wVar.f6646c, wVar.f6644a, 2);
-        wVar.f6644a += 2;
+        System.arraycopy(numArr, 0, wVar.f6647c, wVar.f6645a, 2);
+        wVar.f6645a += 2;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 31) {
             Integer[] numArr2 = {26, 27};
             e9.q.d(2, numArr2);
             wVar.g(2);
-            System.arraycopy(numArr2, 0, wVar.f6646c, wVar.f6644a, 2);
-            wVar.f6644a += 2;
+            System.arraycopy(numArr2, 0, wVar.f6647c, wVar.f6645a, 2);
+            wVar.f6645a += 2;
         }
         if (i10 >= 33) {
             wVar.b(30);
@@ -352,14 +352,14 @@ public abstract class b {
             f0Var.getClass();
             eVar = new k2.e(d, 0);
         }
-        f0Var.f14403c0 = eVar;
-        e7 e7Var = f0Var.f14433z;
+        f0Var.f14404c0 = eVar;
+        e7 e7Var = f0Var.f14434z;
         if (e7Var != null) {
             e7Var.c(d);
         }
-        AudioTrack audioTrack = f0Var.f14431x;
+        AudioTrack audioTrack = f0Var.f14432x;
         if (audioTrack != null) {
-            G(audioTrack, f0Var.f14403c0);
+            G(audioTrack, f0Var.f14404c0);
         }
     }
 
@@ -373,14 +373,14 @@ public abstract class b {
             f0Var.getClass();
             eVar = new k2.e(d, 0);
         }
-        f0Var.f14403c0 = eVar;
-        e7 e7Var = f0Var.f14433z;
+        f0Var.f14404c0 = eVar;
+        e7 e7Var = f0Var.f14434z;
         if (e7Var != null) {
             e7Var.c(d);
         }
-        AudioTrack audioTrack = f0Var.f14431x;
+        AudioTrack audioTrack = f0Var.f14432x;
         if (audioTrack != null) {
-            G(audioTrack, f0Var.f14403c0);
+            G(audioTrack, f0Var.f14404c0);
         }
     }
 

@@ -13,18 +13,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.yl0;
 public abstract class v3 extends yl0 {
     public boolean d;
-    public String f6107f;
+    public String f6108f;
     public String h;
-    public TLRPC.User f6108n;
-    public boolean f6109r;
-    public final w3 f6111w;
-    public final ArrayList f6105c = new ArrayList();
-    public int f6106e = -1;
-    public final ColorDrawable f6110s = new ColorDrawable(285212671);
+    public TLRPC.User f6109n;
+    public boolean f6110r;
+    public final w3 f6112w;
+    public final ArrayList f6106c = new ArrayList();
+    public int f6107e = -1;
+    public final ColorDrawable f6111s = new ColorDrawable(285212671);
     public final androidx.fragment.app.a0 v = new androidx.fragment.app.a0(this, 17);
 
     public v3(w3 w3Var) {
-        this.f6111w = w3Var;
+        this.f6112w = w3Var;
     }
 
     @Override
@@ -33,28 +33,28 @@ public abstract class v3 extends yl0 {
     }
 
     public final void E() {
-        int i10 = this.f6111w.f6207a;
+        int i10 = this.f6112w.f6208a;
         if (!this.d) {
             this.d = true;
             F(true);
             MessagesController messagesController = MessagesController.getInstance(i10);
             String str = messagesController.imageSearchBot;
-            if (this.f6108n == null) {
+            if (this.f6109n == null) {
                 TLObject userOrChat = messagesController.getUserOrChat(str);
                 if (userOrChat instanceof TLRPC.User) {
-                    this.f6108n = (TLRPC.User) userOrChat;
+                    this.f6109n = (TLRPC.User) userOrChat;
                 }
             }
-            TLRPC.User user = this.f6108n;
-            if (user == null && !this.f6109r) {
+            TLRPC.User user = this.f6109n;
+            if (user == null && !this.f6110r) {
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 tL_contacts_resolveUsername.username = str;
-                this.f6106e = ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ai.v1(6, this, messagesController));
+                this.f6107e = ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ai.v1(6, this, messagesController));
             } else if (user == null) {
             } else {
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f6108n);
-                String str2 = this.f6107f;
+                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f6109n);
+                String str2 = this.f6108f;
                 String str3 = "";
                 if (str2 == null) {
                     str2 = "";
@@ -66,7 +66,7 @@ public abstract class v3 extends yl0 {
                     str3 = str4;
                 }
                 tL_messages_getInlineBotResults.offset = str3;
-                this.f6106e = ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, new t3(0, this, TextUtils.isEmpty(str3)));
+                this.f6107e = ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, new t3(0, this, TextUtils.isEmpty(str3)));
             }
         }
     }
@@ -75,15 +75,15 @@ public abstract class v3 extends yl0 {
 
     @Override
     public final int h() {
-        return this.f6105c.size();
+        return this.f6106c.size();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) c1Var.f46524a;
-        TLObject tLObject = (TLObject) this.f6105c.get(i10);
+        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) c1Var.f46531a;
+        TLObject tLObject = (TLObject) this.f6106c.get(i10);
         boolean z10 = tLObject instanceof TLRPC.Document;
-        ColorDrawable colorDrawable = this.f6110s;
+        ColorDrawable colorDrawable = this.f6111s;
         if (z10) {
             w9Var.h(ImageLocation.getForDocument((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
         } else if (tLObject instanceof TLRPC.Photo) {
@@ -104,6 +104,6 @@ public abstract class v3 extends yl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new u3(this.f6111w.getContext(), 0));
+        return new s4.c1(new u3(this.f6112w.getContext(), 0));
     }
 }

@@ -6,14 +6,14 @@ import j$.util.DesugarCollections;
 import java.util.HashMap;
 import java.util.Map;
 public final class m {
-    public static final int f10192i = 0;
-    public final Uri f10193a;
-    public final int f10194b;
-    public final byte[] f10195c;
+    public static final int f10193i = 0;
+    public final Uri f10194a;
+    public final int f10195b;
+    public final byte[] f10196c;
     public final Map d;
-    public final long f10196e;
-    public final long f10197f;
-    public final String f10198g;
+    public final long f10197e;
+    public final long f10198f;
+    public final String f10199g;
     public final int h;
 
     static {
@@ -38,31 +38,31 @@ public final class m {
         e2.d.b(z11);
         e2.d.b((j10 > 0 || j10 == -1) ? true : true);
         uri.getClass();
-        this.f10193a = uri;
-        this.f10194b = i10;
-        this.f10195c = (bArr == null || bArr.length == 0) ? null : null;
+        this.f10194a = uri;
+        this.f10195b = i10;
+        this.f10196c = (bArr == null || bArr.length == 0) ? null : null;
         this.d = DesugarCollections.unmodifiableMap(new HashMap(map));
-        this.f10196e = j3;
-        this.f10197f = j10;
-        this.f10198g = str;
+        this.f10197e = j3;
+        this.f10198f = j10;
+        this.f10199g = str;
         this.h = i11;
     }
 
     public final l a() {
         ?? obj = new Object();
-        obj.f10189e = this.f10193a;
-        obj.f10186a = this.f10194b;
-        obj.f10190f = this.f10195c;
-        obj.f10191g = this.d;
-        obj.f10187b = this.f10196e;
-        obj.d = this.f10197f;
-        obj.h = this.f10198g;
-        obj.f10188c = this.h;
+        obj.f10190e = this.f10194a;
+        obj.f10187a = this.f10195b;
+        obj.f10191f = this.f10196c;
+        obj.f10192g = this.d;
+        obj.f10188b = this.f10197e;
+        obj.d = this.f10198f;
+        obj.h = this.f10199g;
+        obj.f10189c = this.h;
         return obj;
     }
 
     public final m b(long j3) {
-        long j10 = this.f10197f;
+        long j10 = this.f10198f;
         long j11 = -1;
         if (j10 != -1) {
             j11 = j10 - j3;
@@ -71,15 +71,15 @@ public final class m {
         if (j3 == 0 && j10 == j12) {
             return this;
         }
-        String str = this.f10198g;
+        String str = this.f10199g;
         int i10 = this.h;
-        return new m(this.f10193a, this.f10194b, this.f10195c, this.d, this.f10196e + j3, j12, str, i10);
+        return new m(this.f10194a, this.f10195b, this.f10196c, this.d, this.f10197e + j3, j12, str, i10);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("DataSpec[");
-        int i10 = this.f10194b;
+        int i10 = this.f10195b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
@@ -95,14 +95,14 @@ public final class m {
         }
         sb2.append(str);
         sb2.append(" ");
-        sb2.append(this.f10193a);
+        sb2.append(this.f10194a);
         sb2.append(", ");
-        sb2.append(this.f10196e);
+        sb2.append(this.f10197e);
         sb2.append(", ");
-        sb2.append(this.f10197f);
+        sb2.append(this.f10198f);
         sb2.append(", ");
-        sb2.append(this.f10198g);
+        sb2.append(this.f10199g);
         sb2.append(", ");
-        return a4.a.n(this.h, "]", sb2);
+        return a4.a.o(this.h, "]", sb2);
     }
 }

@@ -5,37 +5,37 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 public final class lb extends FrameLayout {
-    public final mb f28326a;
+    public final mb f28331a;
 
     public lb(mb mbVar, Context context) {
         super(context);
-        this.f28326a = mbVar;
+        this.f28331a = mbVar;
     }
 
     @Override
     public final void addView(View view) {
         super.addView(view);
-        this.f28326a.show();
+        this.f28331a.show();
     }
 
     public WindowManager.LayoutParams getLayout() {
-        return this.f28326a.f28567b;
+        return this.f28331a.f28572b;
     }
 
     @Override
     public final void removeView(View view) {
-        mb mbVar = this.f28326a;
+        mb mbVar = this.f28331a;
         super.removeView(view);
         try {
             mbVar.dismiss();
         } catch (Exception unused) {
         }
-        rc.h(mbVar.f28566a);
+        rc.h(mbVar.f28571a);
     }
 
     public void setTouchable(boolean z10) {
-        mb mbVar = this.f28326a;
-        WindowManager.LayoutParams layoutParams = mbVar.f28567b;
+        mb mbVar = this.f28331a;
+        WindowManager.LayoutParams layoutParams = mbVar.f28572b;
         if (layoutParams == null) {
             return;
         }
@@ -44,6 +44,6 @@ public final class lb extends FrameLayout {
         } else {
             layoutParams.flags &= -17;
         }
-        mbVar.getWindow().setAttributes(mbVar.f28567b);
+        mbVar.getWindow().setAttributes(mbVar.f28572b);
     }
 }

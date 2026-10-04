@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
 public final class y extends ViewOutlineProvider {
-    public final Rect f53546a = new Rect();
-    public final RectF f53547b = new RectF();
-    public final RectF f53548c = new RectF();
+    public final Rect f53551a = new Rect();
+    public final RectF f53552b = new RectF();
+    public final RectF f53553c = new RectF();
     public final b0 d;
 
     public y(b0 b0Var) {
@@ -19,14 +19,14 @@ public final class y extends ViewOutlineProvider {
     @Override
     public final void getOutline(View view, Outline outline) {
         b0 b0Var = this.d;
-        float lerp = AndroidUtilities.lerp(b0Var.f53320e, AndroidUtilities.dp(8.0f), b0Var.f53324j);
-        RectF rectF = this.f53547b;
+        float lerp = AndroidUtilities.lerp(b0Var.f53325e, AndroidUtilities.dp(8.0f), b0Var.f53329j);
+        RectF rectF = this.f53552b;
         rectF.set(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight());
-        RectF rectF2 = b0Var.f53321f;
-        float f7 = b0Var.f53324j;
-        RectF rectF3 = this.f53548c;
+        RectF rectF2 = b0Var.f53326f;
+        float f7 = b0Var.f53329j;
+        RectF rectF3 = this.f53553c;
         AndroidUtilities.lerp(rectF2, rectF, f7, rectF3);
-        Rect rect = this.f53546a;
+        Rect rect = this.f53551a;
         rectF3.round(rect);
         outline.setRoundRect(rect, lerp);
     }

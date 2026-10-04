@@ -10,40 +10,40 @@ import org.telegram.ui.Components.js0;
 import org.telegram.ui.Components.ks0;
 import org.telegram.ui.Components.pv0;
 public final class a extends g91 {
-    public final int U = 0;
-    public Object V;
-    public final FrameLayout W;
+    public final int V = 0;
+    public Object W;
+    public final FrameLayout f3841a0;
 
     public a(ks0 ks0Var, Context context, js0 js0Var) {
         super(context, null);
-        this.W = ks0Var;
-        this.V = js0Var;
+        this.f3841a0 = ks0Var;
+        this.W = js0Var;
     }
 
     @Override
     public final void A(int i10) {
-        switch (this.U) {
+        switch (this.V) {
             case 0:
-                ds0 ds0Var = (ds0) this.W;
+                ds0 ds0Var = (ds0) this.f3841a0;
                 String currentLang = ds0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.V, currentLang)) {
-                    this.V = currentLang;
+                if (!TextUtils.equals((String) this.W, currentLang)) {
+                    this.W = currentLang;
                     ds0Var.G.L0();
                     return;
                 }
                 return;
             default:
-                ((ks0) this.W).f40668n.f26396b0.get(i10, -1);
-                ((js0) this.V).d.J0(1.0f);
+                ((ks0) this.f3841a0).f40674n.f26401b0.get(i10, -1);
+                ((js0) this.W).d.J0(1.0f);
                 return;
         }
     }
 
     @Override
     public boolean i(MotionEvent motionEvent) {
-        switch (this.U) {
+        switch (this.V) {
             case 0:
-                return !((ds0) this.W).G.C1;
+                return !((ds0) this.f3841a0).G.C1;
             default:
                 return super.i(motionEvent);
         }
@@ -51,30 +51,30 @@ public final class a extends g91 {
 
     @Override
     public final void w(boolean z10) {
-        switch (this.U) {
+        switch (this.V) {
             case 0:
-                ds0 ds0Var = (ds0) this.W;
+                ds0 ds0Var = (ds0) this.f3841a0;
                 String currentLang = ds0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.V, currentLang)) {
-                    this.V = currentLang;
+                if (!TextUtils.equals((String) this.W, currentLang)) {
+                    this.W = currentLang;
                     ds0Var.G.L0();
                     return;
                 }
                 return;
             default:
-                ((js0) this.V).d.J0(((ks0) this.W).f40668n.getAnimatingIndicatorProgress());
+                ((js0) this.W).d.J0(((ks0) this.f3841a0).f40674n.getAnimatingIndicatorProgress());
                 return;
         }
     }
 
     @Override
     public void y(int i10) {
-        switch (this.U) {
+        switch (this.V) {
             case 0:
-                ds0 ds0Var = (ds0) this.W;
+                ds0 ds0Var = (ds0) this.f3841a0;
                 String currentLang = ds0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.V, currentLang)) {
-                    this.V = currentLang;
+                if (!TextUtils.equals((String) this.W, currentLang)) {
+                    this.W = currentLang;
                     ds0Var.G.L0();
                     return;
                 }
@@ -86,15 +86,15 @@ public final class a extends g91 {
 
     @Override
     public void z(int i10, boolean z10) {
-        switch (this.U) {
+        switch (this.V) {
             case 1:
-                int i11 = ((ks0) this.W).f40668n.f26396b0.get(i10, -1);
-                pv0 pv0Var = ((js0) this.V).d;
+                int i11 = ((ks0) this.f3841a0).f40674n.f26401b0.get(i10, -1);
+                pv0 pv0Var = ((js0) this.W).d;
                 if (i11 <= 0) {
                     pv0.t(pv0Var, 8, z10);
                     return;
                 } else {
-                    pv0.t(pv0Var, pv0Var.i1(i11).f29455a, z10);
+                    pv0.t(pv0Var, pv0Var.i1(i11).f29460a, z10);
                     return;
                 }
             default:
@@ -105,6 +105,6 @@ public final class a extends g91 {
 
     public a(ds0 ds0Var, Context context) {
         super(context, null);
-        this.W = ds0Var;
+        this.f3841a0 = ds0Var;
     }
 }

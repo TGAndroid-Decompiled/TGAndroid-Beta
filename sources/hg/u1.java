@@ -43,10 +43,10 @@ public final class u1 implements TextView.OnEditorActionListener {
             if (a2Var == null) {
                 i11 = -1;
             } else {
-                i11 = a2Var.f11115a;
+                i11 = a2Var.f11104a;
             }
             a2 d = f7.d(obj);
-            if (d != null && d.f11115a != i11) {
+            if (d != null && d.f11104a != i11) {
                 AndroidUtilities.shakeView(r1Var);
                 this.d.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
                 this.f11362e.run(Boolean.TRUE);

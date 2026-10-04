@@ -6,18 +6,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import n7.z0;
 public final class a {
-    public String f4147a;
-    public String f4148b;
+    public String f4148a;
+    public String f4149b;
 
     public a(String str, String str2) {
-        this.f4147a = str;
-        this.f4148b = str2;
+        this.f4148a = str;
+        this.f4149b = str2;
     }
 
     public r a() {
-        if (!"first_party".equals(this.f4148b)) {
-            if (this.f4147a != null) {
-                if (this.f4148b != null) {
+        if (!"first_party".equals(this.f4149b)) {
+            if (this.f4148a != null) {
+                if (this.f4149b != null) {
                     return new r(this);
                 }
                 throw new IllegalArgumentException("Product type must be provided.");
@@ -28,13 +28,13 @@ public final class a {
     }
 
     public a(z0 z0Var) {
-        Context context = (Context) z0Var.f16847b;
+        Context context = (Context) z0Var.f16851b;
         int e7 = w9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
         if (e7 != 0) {
-            this.f4147a = "Unity";
+            this.f4148a = "Unity";
             String string = context.getResources().getString(e7);
-            this.f4148b = string;
-            String i10 = t8.b.i("Unity Editor version is: ", string);
+            this.f4149b = string;
+            String i10 = sa.e.i("Unity Editor version is: ", string);
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", i10, null);
                 return;
@@ -47,19 +47,19 @@ public final class a {
                 if (open != null) {
                     open.close();
                 }
-                this.f4147a = "Flutter";
-                this.f4148b = null;
+                this.f4148a = "Flutter";
+                this.f4149b = null;
                 if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                     Log.v("FirebaseCrashlytics", "Development platform is: Flutter", null);
                     return;
                 }
                 return;
             } catch (IOException unused) {
-                this.f4147a = null;
-                this.f4148b = null;
+                this.f4148a = null;
+                this.f4149b = null;
             }
         }
-        this.f4147a = null;
-        this.f4148b = null;
+        this.f4148a = null;
+        this.f4149b = null;
     }
 }

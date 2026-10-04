@@ -6,19 +6,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ba1;
 import org.telegram.ui.Components.p20;
 public final class hc extends p20 {
-    public final jc f5144a;
+    public final jc f5145a;
 
     public hc(jc jcVar) {
-        this.f5144a = jcVar;
+        this.f5145a = jcVar;
     }
 
     @Override
     public final boolean a() {
         nb nbVar;
-        kc kcVar = this.f5144a.E0;
-        if (kcVar.f5392f0 == 0 && (nbVar = kcVar.B0) != null && !kcVar.S1 && nbVar.isInited() && !kcVar.P1 && !kcVar.O0.f5247x0) {
+        kc kcVar = this.f5145a.E0;
+        if (kcVar.f5393f0 == 0 && (nbVar = kcVar.B0) != null && !kcVar.S1 && nbVar.isInited() && !kcVar.P1 && !kcVar.O0.f5248x0) {
             t7 t7Var = kcVar.D0;
-            if ((t7Var == null || (!t7Var.f5995x.h && !t7Var.L)) && !kcVar.J() && kcVar.f5423p2 == null) {
+            if ((t7Var == null || (!t7Var.f5996x.h && !t7Var.L)) && !kcVar.J() && kcVar.f5424p2 == null) {
                 return true;
             }
             return false;
@@ -28,17 +28,17 @@ public final class hc extends p20 {
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        kc kcVar = this.f5144a.E0;
+        kc kcVar = this.f5145a.E0;
         nb nbVar = kcVar.B0;
-        if (nbVar != null && !kcVar.S1 && !kcVar.P1 && nbVar.isInited() && kcVar.f5392f0 == 0 && kcVar.O1 != -1) {
+        if (nbVar != null && !kcVar.S1 && !kcVar.P1 && nbVar.isInited() && kcVar.f5393f0 == 0 && kcVar.O1 != -1) {
             kcVar.B0.switchCamera();
             kcVar.O0.d(180.0f);
             kc.a0(kcVar.B0.isFrontface());
             if (kcVar.q0()) {
-                kcVar.f5431s.c(null);
+                kcVar.f5432s.c(null);
                 return true;
             }
-            kcVar.f5431s.d();
+            kcVar.f5432s.d();
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public final class hc extends p20 {
 
     @Override
     public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        nb nbVar = this.f5144a.E0.B0;
+        nb nbVar = this.f5145a.E0.B0;
         if (nbVar != null) {
             nbVar.N = null;
             nbVar.K = -1L;
@@ -57,7 +57,7 @@ public final class hc extends p20 {
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        jc jcVar = this.f5144a;
+        jc jcVar = this.f5145a;
         jcVar.C0 = 0.0f;
         jcVar.D0 = 0.0f;
         return false;
@@ -71,16 +71,16 @@ public final class hc extends p20 {
         xb xbVar;
         boolean z10;
         boolean z11;
-        jc jcVar = this.f5144a;
+        jc jcVar = this.f5145a;
         kc kcVar = jcVar.E0;
         ValueAnimator valueAnimator = kcVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((t7Var = kcVar.D0) != null && (t7Var.f5995x.h || t7Var.L)) || kcVar.O0.f5247x0 || (((nbVar = kcVar.B0) != null && nbVar.f4890s) || jcVar.A0 || (((ba1Var = kcVar.V0) != null && (ba1Var.F || ba1Var.G)) || kcVar.I())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((t7Var = kcVar.D0) != null && (t7Var.f5996x.h || t7Var.L)) || kcVar.O0.f5248x0 || (((nbVar = kcVar.B0) != null && nbVar.f4891s) || jcVar.A0 || (((ba1Var = kcVar.V0) != null && (ba1Var.F || ba1Var.G)) || kcVar.I())))) {
             return false;
         }
         boolean z12 = true;
-        jcVar.f5276y0 = true;
+        jcVar.f5277y0 = true;
         if (kcVar.W) {
-            if (Math.abs(kcVar.f5427r.f4842a) >= AndroidUtilities.dp(1.0f)) {
+            if (Math.abs(kcVar.f5428r.f4843a) >= AndroidUtilities.dp(1.0f)) {
                 if ((f10 > 0.0f && Math.abs(f10) > 2000.0f && Math.abs(f10) > Math.abs(f7)) || kcVar.K > 0.4f) {
                     kcVar.q(true);
                 } else {
@@ -128,7 +128,7 @@ public final class hc extends p20 {
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        nb nbVar = this.f5144a.E0.B0;
+        nb nbVar = this.f5145a.E0.B0;
         if (nbVar != null) {
             c1 c1Var = nbVar.N;
             if (c1Var != null) {
@@ -143,7 +143,7 @@ public final class hc extends p20 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        kc kcVar = this.f5144a.E0;
+        kc kcVar = this.f5145a.E0;
         kcVar.W = false;
         kcVar.X = false;
         if (!a() && onSingleTapConfirmed(motionEvent)) {

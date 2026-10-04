@@ -4,38 +4,38 @@ import bf.p;
 import q3.h;
 import t7.s;
 public final class b extends df.a {
-    public final a f53186a = new p();
-    public final StringBuilder f53187b = new StringBuilder();
-    public final int f53188c;
+    public final a f53191a = new p();
+    public final StringBuilder f53192b = new StringBuilder();
+    public final int f53193c;
 
     public b(int i10) {
-        this.f53188c = i10;
+        this.f53193c = i10;
     }
 
     @Override
     public final void a(CharSequence charSequence) {
-        StringBuilder sb2 = this.f53187b;
+        StringBuilder sb2 = this.f53192b;
         sb2.append(charSequence);
         sb2.append('\n');
     }
 
     @Override
     public final void d() {
-        this.f53186a.f53185g = this.f53187b.toString();
+        this.f53191a.f53190g = this.f53192b.toString();
     }
 
     @Override
     public final bf.a e() {
-        return this.f53186a;
+        return this.f53191a;
     }
 
     @Override
     public final h h(ye.d dVar) {
         int i10;
-        int i11 = dVar.f50870e;
-        CharSequence charSequence = dVar.f50867a;
+        int i11 = dVar.f50878e;
+        CharSequence charSequence = dVar.f50875a;
         int length = charSequence.length();
-        if (dVar.f50872g < 4) {
+        if (dVar.f50880g < 4) {
             int i12 = i11;
             while (true) {
                 if (i12 < length) {
@@ -49,11 +49,11 @@ public final class b extends df.a {
                     break;
                 }
             }
-            int i13 = this.f53188c;
+            int i13 = this.f53193c;
             if (i10 == i13 && s.b(' ', charSequence, i11 + i13, length) == length) {
                 return new h(-1, -1, true);
             }
         }
-        return h.a(dVar.f50868b);
+        return h.a(dVar.f50876b);
     }
 }

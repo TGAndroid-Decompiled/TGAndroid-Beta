@@ -9,29 +9,29 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.ui.Components.CheckBox;
 public abstract class eb extends FrameLayout {
-    public int f22059a;
-    public boolean f22060b;
-    public final db[] f22061c;
+    public int f22063a;
+    public boolean f22064b;
+    public final db[] f22065c;
     public int d;
-    public boolean f22062e;
-    public boolean f22063f;
+    public boolean f22066e;
+    public boolean f22067f;
     public int h;
-    public final Paint f22064n;
-    public final Paint f22065r;
-    public final Paint f22066s;
+    public final Paint f22068n;
+    public final Paint f22069r;
+    public final Paint f22070s;
     public final Drawable v;
 
     public eb(Context context, int i10) {
         super(context);
-        this.f22060b = true;
+        this.f22064b = true;
         this.d = 3;
-        this.f22061c = new db[i10];
+        this.f22065c = new db[i10];
         int i11 = 0;
         while (true) {
-            db[] dbVarArr = this.f22061c;
+            db[] dbVarArr = this.f22065c;
             if (i11 < dbVarArr.length) {
                 db dbVar = new db(this, context);
                 dbVarArr[i11] = dbVar;
@@ -42,12 +42,12 @@ public abstract class eb extends FrameLayout {
                 i11++;
             } else {
                 Paint paint = new Paint();
-                this.f22064n = paint;
+                this.f22068n = paint;
                 paint.setColor(855638016);
-                this.f22065r = new Paint(1);
+                this.f22069r = new Paint(1);
                 this.v = context.getResources().getDrawable(R.drawable.background_selected).mutate();
                 Paint paint2 = new Paint();
-                this.f22066s = paint2;
+                this.f22070s = paint2;
                 paint2.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Lh, false));
                 return;
             }
@@ -63,22 +63,22 @@ public abstract class eb extends FrameLayout {
     public final void c(int i10, boolean z10, boolean z11) {
         float f7;
         float f10;
-        db dbVar = this.f22061c[i10];
-        ai.y5 y5Var = dbVar.f21985a;
-        CheckBox checkBox = dbVar.f21987c;
+        db dbVar = this.f22065c[i10];
+        ai.y5 y5Var = dbVar.f21989a;
+        CheckBox checkBox = dbVar.f21991c;
         if (checkBox.getVisibility() != 0) {
             checkBox.setVisibility(0);
         }
         checkBox.b(z10, z11);
-        AnimatorSet animatorSet = dbVar.f21989f;
+        AnimatorSet animatorSet = dbVar.f21993f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            dbVar.f21989f = null;
+            dbVar.f21993f = null;
         }
         float f11 = 1.0f;
         if (z11) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            dbVar.f21989f = animatorSet2;
+            dbVar.f21993f = animatorSet2;
             if (z10) {
                 f10 = 0.8875f;
             } else {
@@ -89,9 +89,9 @@ public abstract class eb extends FrameLayout {
                 f11 = 0.8875f;
             }
             animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(y5Var, "scaleY", f11));
-            dbVar.f21989f.setDuration(200L);
-            dbVar.f21989f.addListener(new ai.n(25, dbVar, z10));
-            dbVar.f21989f.start();
+            dbVar.f21993f.setDuration(200L);
+            dbVar.f21993f.addListener(new ai.n(25, dbVar, z10));
+            dbVar.f21993f.start();
         } else {
             if (z10) {
                 f7 = 0.8875f;
@@ -114,11 +114,11 @@ public abstract class eb extends FrameLayout {
         boolean z15;
         int i11;
         this.d = i10;
-        this.f22062e = z10;
-        this.f22063f = z11;
+        this.f22066e = z10;
+        this.f22067f = z11;
         int i12 = 0;
         while (true) {
-            db[] dbVarArr = this.f22061c;
+            db[] dbVarArr = this.f22065c;
             if (i12 < dbVarArr.length) {
                 yf.e0 e0Var = null;
                 if ((!z10 && !z11) || (i12 != 0 && i12 != i10 - 1)) {
@@ -138,7 +138,7 @@ public abstract class eb extends FrameLayout {
                     } else {
                         z13 = false;
                     }
-                    ai.k2 k2Var = yf.f0.f50980a;
+                    ai.k2 k2Var = yf.f0.f50986a;
                     if ((!z12 && !z13) || (!z10 && !z11)) {
                         z14 = z10;
                         z15 = z11;
@@ -168,7 +168,7 @@ public abstract class eb extends FrameLayout {
 
     public final void e(int i10, Object obj, Object obj2, int i11) {
         this.h = i10;
-        db[] dbVarArr = this.f22061c;
+        db[] dbVarArr = this.f22065c;
         if (obj == null) {
             dbVarArr[i11].setVisibility(8);
             dbVarArr[i11].clearAnimation();
@@ -182,7 +182,7 @@ public abstract class eb extends FrameLayout {
     public final void invalidate() {
         super.invalidate();
         for (int i10 = 0; i10 < this.d; i10++) {
-            this.f22061c[i10].invalidate();
+            this.f22065c[i10].invalidate();
         }
     }
 
@@ -194,17 +194,17 @@ public abstract class eb extends FrameLayout {
             return;
         }
         int dp = AndroidUtilities.dp(12.0f);
-        if (this.f22062e) {
+        if (this.f22066e) {
             i14 = AndroidUtilities.dp(12.0f);
         } else {
             i14 = 0;
         }
         for (int i15 = 0; i15 < this.d; i15++) {
-            db[] dbVarArr = this.f22061c;
+            db[] dbVarArr = this.f22065c;
             int measuredWidth = dbVarArr[i15].getMeasuredWidth();
             db dbVar = dbVarArr[i15];
             dbVar.layout(dp, i14, dp + measuredWidth, dbVar.getMeasuredHeight() + i14);
-            dp = org.telegram.messenger.f0.C(3.0f, measuredWidth, dp);
+            dp = org.telegram.messenger.q.C(3.0f, measuredWidth, dp);
         }
     }
 
@@ -216,12 +216,12 @@ public abstract class eb extends FrameLayout {
         float f7 = 3.0f;
         int i14 = 0;
         if (this.d == 1) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22059a, 1073741824), ok.B(3.0f, this.f22059a, 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22063a, 1073741824), bi.B(3.0f, this.f22063a, 1073741824));
             setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
             return;
         }
         int size = View.MeasureSpec.getSize(i10);
-        int dp2 = size - AndroidUtilities.dp(hg.k0.f(this.d, 1, 3, 24));
+        int dp2 = size - AndroidUtilities.dp(hg.c.f(this.d, 1, 3, 24));
         int i15 = dp2 / this.d;
         int i16 = this.h;
         if (i16 != 0 && i16 != 2 && i16 != 3) {
@@ -229,20 +229,20 @@ public abstract class eb extends FrameLayout {
         } else {
             dp = AndroidUtilities.dp(180.0f);
         }
-        if (this.f22062e) {
+        if (this.f22066e) {
             i12 = AndroidUtilities.dp(12.0f);
         } else {
             i12 = 0;
         }
         int i17 = i12 + dp;
-        if (this.f22063f) {
+        if (this.f22067f) {
             f7 = 12.0f;
         }
         setMeasuredDimension(size, AndroidUtilities.dp(f7) + i17);
         while (true) {
             int i18 = this.d;
             if (i14 < i18) {
-                db dbVar = this.f22061c[i14];
+                db dbVar = this.f22065c[i14];
                 if (i14 == i18 - 1) {
                     i13 = dp2;
                 } else {
@@ -258,8 +258,8 @@ public abstract class eb extends FrameLayout {
     }
 
     public void setSize(int i10) {
-        if (this.f22059a != i10) {
-            this.f22059a = i10;
+        if (this.f22063a != i10) {
+            this.f22063a = i10;
             requestLayout();
         }
     }

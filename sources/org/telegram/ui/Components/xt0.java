@@ -15,13 +15,13 @@ public final class xt0 extends mv0 {
         super.l();
         pv0 pv0Var = this.G;
         iu0 W = pv0Var.W(8);
-        if (W != null && W.f27502r.getVisibility() == 0) {
-            pv0Var.f29761d0.l();
+        if (W != null && W.f27507r.getVisibility() == 0) {
+            pv0Var.f29766d0.l();
         }
         if (W != null) {
-            zs0 zs0Var = W.f27504w;
-            ai.d9 d9Var = this.f28730s;
-            if (d9Var != null && (d9Var.k() || (pv0Var.i0() && this.f28730s.g() > 0))) {
+            zs0 zs0Var = W.f27509w;
+            ai.d9 d9Var = this.f28735s;
+            if (d9Var != null && (d9Var.k() || (pv0Var.i0() && this.f28735s.g() > 0))) {
                 z10 = true;
             } else {
                 z10 = false;

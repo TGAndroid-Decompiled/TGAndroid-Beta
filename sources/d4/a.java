@@ -9,29 +9,30 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import sa.e;
 import z3.n;
 public final class a implements n {
     public static final Pattern h = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
-    public final boolean f8076a;
-    public final b4.b f8077b;
+    public final boolean f8077a;
+    public final b4.b f8078b;
     public LinkedHashMap d;
-    public float f8079e = -3.4028235E38f;
-    public float f8080f = -3.4028235E38f;
-    public final v f8078c = new v();
+    public float f8080e = -3.4028235E38f;
+    public float f8081f = -3.4028235E38f;
+    public final v f8079c = new v();
 
     public a(List list) {
         if (list != null && !list.isEmpty()) {
-            this.f8076a = true;
+            this.f8077a = true;
             String p5 = d0.p((byte[]) list.get(0));
             e2.d.b(p5.startsWith("Format:"));
             b4.b a2 = b4.b.a(p5);
             a2.getClass();
-            this.f8077b = a2;
+            this.f8078b = a2;
             b(new v((byte[]) list.get(1)), StandardCharsets.UTF_8);
             return;
         }
-        this.f8076a = false;
-        this.f8077b = null;
+        this.f8077a = false;
+        this.f8078b = null;
     }
 
     public static int a(long j3, ArrayList arrayList, ArrayList arrayList2) {
@@ -69,7 +70,7 @@ public final class a implements n {
             return -9223372036854775807L;
         }
         String group = matcher.group(1);
-        String str2 = d0.f8537a;
+        String str2 = d0.f8538a;
         return (Long.parseLong(matcher.group(4)) * 10000) + (Long.parseLong(matcher.group(3)) * 1000000) + (Long.parseLong(matcher.group(2)) * 60000000) + (Long.parseLong(group) * 3600000000L);
     }
 
@@ -89,7 +90,7 @@ public final class a implements n {
 
     @Override
     public final z3.d h(int i10, int i11, byte[] bArr) {
-        return t8.b.a(this, bArr, i11);
+        return e.a(this, bArr, i11);
     }
 
     @Override

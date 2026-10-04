@@ -1,41 +1,34 @@
 package hg;
 
 import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.c6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class r implements DialogInterface.OnShowListener {
-    public final int f11307a;
-    public final EditTextBoldCursor f11308b;
+import android.view.View;
+public final class r implements DialogInterface.OnDismissListener {
+    public final int f11306a;
+    public final View f11307b;
 
-    public r(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f11307a = i10;
-        this.f11308b = editTextBoldCursor;
+    public r(int i10, View view) {
+        this.f11306a = i10;
+        this.f11307b = view;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f11307a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f11306a) {
             case 0:
-                s sVar = (s) this.f11308b;
-                sVar.requestFocus();
-                AndroidUtilities.showKeyboard(sVar);
-                return;
-            case 1:
-                EditTextBoldCursor editTextBoldCursor = this.f11308b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
-                return;
-            case 2:
-                c6 c6Var = (c6) this.f11308b;
-                c6Var.requestFocus();
-                AndroidUtilities.showKeyboard(c6Var);
+                w.f11376e = null;
+                View view = this.f11307b;
+                if (view != null) {
+                    view.requestFocus();
+                    return;
+                }
                 return;
             default:
-                xh.a2 a2Var = (xh.a2) this.f11308b;
-                a2Var.requestFocus();
-                AndroidUtilities.showKeyboard(a2Var);
+                y1.h = null;
+                View view2 = this.f11307b;
+                if (view2 != null) {
+                    view2.requestFocus();
+                    return;
+                }
                 return;
         }
     }

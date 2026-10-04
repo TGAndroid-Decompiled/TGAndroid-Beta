@@ -63,7 +63,7 @@ public final class p3 implements RequestDelegate {
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj;
                 n8 n8Var = (n8) obj2;
                 if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyItem != null) {
-                    FileRefController.getInstance(k8Var.f5309a).requestReference(storyItem, tL_messages_getAttachedStickers, n8Var);
+                    FileRefController.getInstance(k8Var.f5310a).requestReference(storyItem, tL_messages_getAttachedStickers, n8Var);
                     return;
                 } else {
                     n8Var.run(tLObject, tL_error);
@@ -80,15 +80,15 @@ public final class p3 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                org.telegram.ui.wb wbVar = qbVar.f39686a.f40442n;
+                org.telegram.ui.wb wbVar = qbVar.f39691a.f40447n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (wbVar.f42049z0 == null) {
-                            wbVar.f42049z0 = new HashMap();
+                        if (wbVar.f42056z0 == null) {
+                            wbVar.f42056z0 = new HashMap();
                         }
-                        wbVar.f42049z0.put(Long.valueOf(user.f20185id), user);
+                        wbVar.f42056z0.put(Long.valueOf(user.f20189id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;

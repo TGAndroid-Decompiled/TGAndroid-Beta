@@ -13,7 +13,7 @@ public final class sw extends az {
     public final void setTranslationY(float f7) {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
-            this.H.f29105g0.invalidate();
+            this.H.f29110g0.invalidate();
         }
     }
 }

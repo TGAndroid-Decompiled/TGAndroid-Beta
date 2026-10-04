@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 public final class ke implements Runnable {
-    public final int f28078a;
-    public final ChatActivityEnterView f28079b;
+    public final int f28083a;
+    public final ChatActivityEnterView f28084b;
 
     public ke(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f28078a = i10;
-        this.f28079b = chatActivityEnterView;
+        this.f28083a = i10;
+        this.f28084b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f28078a;
-        ChatActivityEnterView chatActivityEnterView = this.f28079b;
+        int i10 = this.f28083a;
+        ChatActivityEnterView chatActivityEnterView = this.f28084b;
         switch (i10) {
             case 0:
                 pg pgVar = chatActivityEnterView.Z2;
@@ -35,13 +35,13 @@ public final class ke implements Runnable {
                 chatActivityEnterView.I(true);
                 return;
             case 3:
-                chatActivityEnterView.f23937p0.callOnClick();
+                chatActivityEnterView.f23941p0.callOnClick();
                 return;
             case 4:
-                chatActivityEnterView.f23937p0.callOnClick();
+                chatActivityEnterView.f23941p0.callOnClick();
                 return;
             default:
-                int i11 = ChatActivityEnterView.f23847n5;
+                int i11 = ChatActivityEnterView.f23851n5;
                 chatActivityEnterView.B();
                 return;
         }

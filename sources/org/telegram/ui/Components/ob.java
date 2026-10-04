@@ -23,7 +23,7 @@ public abstract class ob extends vb {
     public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
         nb nbVar = this.button;
         if (nbVar != null && view != nbVar) {
-            i11 = org.telegram.messenger.ok.D(12.0f, nbVar.getMeasuredWidth(), i11);
+            i11 = org.telegram.messenger.bi.D(12.0f, nbVar.getMeasuredWidth(), i11);
         }
         super.measureChildWithMargins(view, i10, i11, i12, i13);
         if (view != this.button) {
@@ -60,7 +60,7 @@ public abstract class ob extends vb {
     public void setTimer() {
         kc kcVar = new kc(getContext(), this.resourcesProvider);
         this.timerView = kcVar;
-        kcVar.f28064b = 5000L;
+        kcVar.f28069b = 5000L;
         addView(kcVar, w7.z5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

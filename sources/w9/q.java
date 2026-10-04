@@ -12,46 +12,46 @@ import n4.y;
 import y9.o0;
 import y9.p0;
 public final class q {
-    public static final HashMap f48979f;
-    public static final String f48980g;
-    public final Context f48981a;
-    public final v f48982b;
-    public final a f48983c;
+    public static final HashMap f48987f;
+    public static final String f48988g;
+    public final Context f48989a;
+    public final v f48990b;
+    public final a f48991c;
     public final y d;
-    public final da.b f48984e;
+    public final da.b f48992e;
 
     static {
         HashMap hashMap = new HashMap();
-        f48979f = hashMap;
+        f48987f = hashMap;
         e2.o(5, hashMap, "armeabi", 6, "armeabi-v7a");
         e2.o(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f48980g = "Crashlytics Android SDK/18.6.0";
+        f48988g = "Crashlytics Android SDK/18.6.0";
     }
 
     public q(Context context, v vVar, a aVar, y yVar, da.b bVar) {
-        this.f48981a = context;
-        this.f48982b = vVar;
-        this.f48983c = aVar;
+        this.f48989a = context;
+        this.f48990b = vVar;
+        this.f48991c = aVar;
         this.d = yVar;
-        this.f48984e = bVar;
+        this.f48992e = bVar;
     }
 
     public static p0 c(com.google.firebase.messaging.s sVar, int i10) {
         int i11;
-        String str = (String) sVar.f7922c;
-        String str2 = (String) sVar.f7921b;
+        String str = (String) sVar.f7923c;
+        String str2 = (String) sVar.f7922b;
         StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) sVar.d;
         int i12 = 0;
         if (stackTraceElementArr == null) {
             stackTraceElementArr = new StackTraceElement[0];
         }
-        com.google.firebase.messaging.s sVar2 = (com.google.firebase.messaging.s) sVar.f7923e;
+        com.google.firebase.messaging.s sVar2 = (com.google.firebase.messaging.s) sVar.f7924e;
         if (i10 >= 8) {
             com.google.firebase.messaging.s sVar3 = sVar2;
             while (sVar3 != null) {
-                sVar3 = (com.google.firebase.messaging.s) sVar3.f7923e;
+                sVar3 = (com.google.firebase.messaging.s) sVar3.f7924e;
                 i12++;
             }
             i11 = i12;
@@ -74,7 +74,7 @@ public final class q {
         ArrayList arrayList = new ArrayList();
         for (StackTraceElement stackTraceElement : stackTraceElementArr) {
             ?? obj = new Object();
-            obj.f4605e = Integer.valueOf(i10);
+            obj.f4606e = Integer.valueOf(i10);
             long j10 = 0;
             if (stackTraceElement.isNativeMethod()) {
                 j3 = Math.max(stackTraceElement.getLineNumber(), 0L);
@@ -86,10 +86,10 @@ public final class q {
             if (!stackTraceElement.isNativeMethod() && stackTraceElement.getLineNumber() > 0) {
                 j10 = stackTraceElement.getLineNumber();
             }
-            obj.f4602a = Long.valueOf(j3);
+            obj.f4603a = Long.valueOf(j3);
             if (str != null) {
-                obj.f4603b = str;
-                obj.f4604c = fileName;
+                obj.f4604b = str;
+                obj.f4605c = fileName;
                 obj.d = Long.valueOf(j10);
                 arrayList.add(obj.l());
             } else {
@@ -100,10 +100,10 @@ public final class q {
     }
 
     public final List a() {
-        a aVar = this.f48983c;
-        String str = aVar.f48918e;
+        a aVar = this.f48991c;
+        String str = aVar.f48926e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f48916b));
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f48924b));
         }
         throw new NullPointerException("Null name");
     }

@@ -72,7 +72,7 @@ public final class b2 {
                 Object obj = arrayList.get(i10);
                 i10++;
                 a2Var = (a2) obj;
-                if (TextUtils.equals(str, a2Var.f11116b)) {
+                if (TextUtils.equals(str, a2Var.f11105b)) {
                     break;
                 }
             } else {
@@ -102,7 +102,7 @@ public final class b2 {
             Object obj = arrayList.get(i10);
             i10++;
             a2 a2Var = (a2) obj;
-            if (a2Var.f11115a == j3) {
+            if (a2Var.f11104a == j3) {
                 return a2Var;
             }
         }
@@ -117,7 +117,7 @@ public final class b2 {
             Object obj = arrayList.get(i10);
             i10++;
             a2 a2Var = (a2) obj;
-            if (TextUtils.equals(str, a2Var.f11116b)) {
+            if (TextUtils.equals(str, a2Var.f11105b)) {
                 return a2Var;
             }
         }
@@ -131,7 +131,7 @@ public final class b2 {
         while (true) {
             ArrayList arrayList2 = this.f11130b;
             if (i10 < arrayList2.size()) {
-                if (!g(((a2) arrayList2.get(i10)).f11116b)) {
+                if (!g(((a2) arrayList2.get(i10)).f11105b)) {
                     arrayList.add((a2) arrayList2.get(i10));
                 }
                 i10++;
@@ -155,10 +155,10 @@ public final class b2 {
             return true;
         } else if (update instanceof TL_update.TL_updateQuickReplies) {
             b(new Runnable(this) {
-                public final b2 f11419b;
+                public final b2 f11420b;
 
                 {
-                    this.f11419b = this;
+                    this.f11420b = this;
                 }
 
                 @Override
@@ -168,7 +168,7 @@ public final class b2 {
                     switch (r3) {
                         case 0:
                             ArrayList<TLRPC.TL_quickReply> arrayList = ((TL_update.TL_updateQuickReplies) update).quick_replies;
-                            b2 b2Var = this.f11419b;
+                            b2 b2Var = this.f11420b;
                             ArrayList arrayList2 = b2Var.f11130b;
                             ArrayList arrayList3 = new ArrayList(arrayList2);
                             arrayList2.clear();
@@ -177,7 +177,7 @@ public final class b2 {
                                 int i13 = 0;
                                 while (true) {
                                     if (i13 < arrayList3.size()) {
-                                        if (((a2) arrayList3.get(i13)).f11115a == tL_quickReply.shortcut_id) {
+                                        if (((a2) arrayList3.get(i13)).f11104a == tL_quickReply.shortcut_id) {
                                             a2Var = (a2) arrayList3.get(i13);
                                         } else {
                                             i13++;
@@ -189,34 +189,34 @@ public final class b2 {
                                 if (a2Var == null) {
                                     a2Var = new a2();
                                 }
-                                a2Var.f11115a = tL_quickReply.shortcut_id;
-                                a2Var.f11116b = tL_quickReply.shortcut;
-                                a2Var.f11119f = tL_quickReply.count;
-                                a2Var.f11117c = i12;
+                                a2Var.f11104a = tL_quickReply.shortcut_id;
+                                a2Var.f11105b = tL_quickReply.shortcut;
+                                a2Var.f11108f = tL_quickReply.count;
+                                a2Var.f11106c = i12;
                                 a2Var.d = tL_quickReply.top_message;
-                                MessageObject messageObject = a2Var.f11118e;
+                                MessageObject messageObject = a2Var.f11107e;
                                 if (messageObject != null && messageObject.getId() != tL_quickReply.top_message) {
-                                    a2Var.f11118e = null;
+                                    a2Var.f11107e = null;
                                 }
                                 arrayList2.add(a2Var);
-                                b2Var.a(a2Var.f11116b);
+                                b2Var.a(a2Var.f11105b);
                             }
                             b2Var.l();
                             NotificationCenter.getInstance(b2Var.f11129a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             return;
                         case 1:
-                            b2 b2Var2 = this.f11419b;
+                            b2 b2Var2 = this.f11420b;
                             ArrayList arrayList4 = b2Var2.f11130b;
                             int i14 = b2Var2.f11129a;
                             TLRPC.TL_quickReply tL_quickReply2 = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
                             a2 c10 = b2Var2.c(tL_quickReply2.shortcut_id);
                             if (c10 != null) {
-                                c10.f11116b = tL_quickReply2.shortcut;
-                                c10.f11119f = tL_quickReply2.count;
+                                c10.f11105b = tL_quickReply2.shortcut;
+                                c10.f11108f = tL_quickReply2.count;
                                 c10.d = tL_quickReply2.top_message;
-                                MessageObject messageObject2 = c10.f11118e;
+                                MessageObject messageObject2 = c10.f11107e;
                                 if (messageObject2 != null && messageObject2.getId() != tL_quickReply2.top_message) {
-                                    c10.f11118e = null;
+                                    c10.f11107e = null;
                                     long clientUserId = UserConfig.getInstance(i14).getClientUserId();
                                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i14);
                                     messagesStorage.getStorageQueue().postRunnable(new q8(b2Var2, messagesStorage, c10, clientUserId, 6));
@@ -224,27 +224,27 @@ public final class b2 {
                                 }
                             } else {
                                 a2 a2Var2 = new a2();
-                                a2Var2.f11115a = tL_quickReply2.shortcut_id;
-                                a2Var2.f11116b = tL_quickReply2.shortcut;
-                                a2Var2.f11119f = tL_quickReply2.count;
+                                a2Var2.f11104a = tL_quickReply2.shortcut_id;
+                                a2Var2.f11105b = tL_quickReply2.shortcut;
+                                a2Var2.f11108f = tL_quickReply2.count;
                                 a2Var2.d = tL_quickReply2.top_message;
                                 for (int i15 = 0; i15 < arrayList4.size(); i15++) {
-                                    ((a2) arrayList4.get(i15)).f11117c = i15;
+                                    ((a2) arrayList4.get(i15)).f11106c = i15;
                                 }
                                 arrayList4.add(a2Var2);
-                                b2Var2.a(a2Var2.f11116b);
+                                b2Var2.a(a2Var2.f11105b);
                             }
                             b2Var2.l();
                             NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             return;
                         case 2:
-                            b2 b2Var3 = this.f11419b;
+                            b2 b2Var3 = this.f11420b;
                             int i16 = b2Var3.f11129a;
                             a2 c11 = b2Var3.c(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
                             if (c11 != null) {
                                 b2Var3.f11130b.remove(c11);
-                                b2Var3.a(c11.f11116b);
-                                int i17 = c11.f11115a;
+                                b2Var3.a(c11.f11105b);
+                                int i17 = c11.f11104a;
                                 MessagesStorage messagesStorage2 = MessagesStorage.getInstance(i16);
                                 messagesStorage2.getStorageQueue().postRunnable(new o8(messagesStorage2, i17, 8));
                                 b2Var3.l();
@@ -253,29 +253,29 @@ public final class b2 {
                             }
                             return;
                         default:
-                            b2 b2Var4 = this.f11419b;
+                            b2 b2Var4 = this.f11420b;
                             int i18 = b2Var4.f11129a;
                             TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
                             a2 c12 = b2Var4.c(tL_updateDeleteQuickReplyMessages.shortcut_id);
                             if (c12 != null) {
-                                int size = c12.f11119f - tL_updateDeleteQuickReplyMessages.messages.size();
-                                c12.f11119f = size;
+                                int size = c12.f11108f - tL_updateDeleteQuickReplyMessages.messages.size();
+                                c12.f11108f = size;
                                 if (size <= 0) {
                                     b2Var4.f11130b.remove(c12);
                                 }
                                 ArrayList<Integer> arrayList5 = tL_updateDeleteQuickReplyMessages.messages;
-                                MessageObject messageObject3 = c12.f11118e;
+                                MessageObject messageObject3 = c12.f11107e;
                                 if (messageObject3 != null) {
                                     i11 = messageObject3.getId();
                                 } else {
                                     i11 = c12.d;
                                 }
-                                if (!arrayList5.contains(Integer.valueOf(i11)) && c12.f11118e != null) {
+                                if (!arrayList5.contains(Integer.valueOf(i11)) && c12.f11107e != null) {
                                     b2Var4.l();
                                     NotificationCenter.getInstance(i18).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                                     return;
                                 }
-                                c12.f11118e = null;
+                                c12.f11107e = null;
                                 long clientUserId2 = UserConfig.getInstance(i18).getClientUserId();
                                 MessagesStorage messagesStorage3 = MessagesStorage.getInstance(i18);
                                 messagesStorage3.getStorageQueue().postRunnable(new q8(b2Var4, messagesStorage3, c12, clientUserId2, 6));
@@ -288,10 +288,10 @@ public final class b2 {
             return true;
         } else if (update instanceof TL_update.TL_updateNewQuickReply) {
             b(new Runnable(this) {
-                public final b2 f11419b;
+                public final b2 f11420b;
 
                 {
-                    this.f11419b = this;
+                    this.f11420b = this;
                 }
 
                 @Override
@@ -301,7 +301,7 @@ public final class b2 {
                     switch (r3) {
                         case 0:
                             ArrayList<TLRPC.TL_quickReply> arrayList = ((TL_update.TL_updateQuickReplies) update).quick_replies;
-                            b2 b2Var = this.f11419b;
+                            b2 b2Var = this.f11420b;
                             ArrayList arrayList2 = b2Var.f11130b;
                             ArrayList arrayList3 = new ArrayList(arrayList2);
                             arrayList2.clear();
@@ -310,7 +310,7 @@ public final class b2 {
                                 int i13 = 0;
                                 while (true) {
                                     if (i13 < arrayList3.size()) {
-                                        if (((a2) arrayList3.get(i13)).f11115a == tL_quickReply.shortcut_id) {
+                                        if (((a2) arrayList3.get(i13)).f11104a == tL_quickReply.shortcut_id) {
                                             a2Var = (a2) arrayList3.get(i13);
                                         } else {
                                             i13++;
@@ -322,34 +322,34 @@ public final class b2 {
                                 if (a2Var == null) {
                                     a2Var = new a2();
                                 }
-                                a2Var.f11115a = tL_quickReply.shortcut_id;
-                                a2Var.f11116b = tL_quickReply.shortcut;
-                                a2Var.f11119f = tL_quickReply.count;
-                                a2Var.f11117c = i12;
+                                a2Var.f11104a = tL_quickReply.shortcut_id;
+                                a2Var.f11105b = tL_quickReply.shortcut;
+                                a2Var.f11108f = tL_quickReply.count;
+                                a2Var.f11106c = i12;
                                 a2Var.d = tL_quickReply.top_message;
-                                MessageObject messageObject = a2Var.f11118e;
+                                MessageObject messageObject = a2Var.f11107e;
                                 if (messageObject != null && messageObject.getId() != tL_quickReply.top_message) {
-                                    a2Var.f11118e = null;
+                                    a2Var.f11107e = null;
                                 }
                                 arrayList2.add(a2Var);
-                                b2Var.a(a2Var.f11116b);
+                                b2Var.a(a2Var.f11105b);
                             }
                             b2Var.l();
                             NotificationCenter.getInstance(b2Var.f11129a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             return;
                         case 1:
-                            b2 b2Var2 = this.f11419b;
+                            b2 b2Var2 = this.f11420b;
                             ArrayList arrayList4 = b2Var2.f11130b;
                             int i14 = b2Var2.f11129a;
                             TLRPC.TL_quickReply tL_quickReply2 = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
                             a2 c10 = b2Var2.c(tL_quickReply2.shortcut_id);
                             if (c10 != null) {
-                                c10.f11116b = tL_quickReply2.shortcut;
-                                c10.f11119f = tL_quickReply2.count;
+                                c10.f11105b = tL_quickReply2.shortcut;
+                                c10.f11108f = tL_quickReply2.count;
                                 c10.d = tL_quickReply2.top_message;
-                                MessageObject messageObject2 = c10.f11118e;
+                                MessageObject messageObject2 = c10.f11107e;
                                 if (messageObject2 != null && messageObject2.getId() != tL_quickReply2.top_message) {
-                                    c10.f11118e = null;
+                                    c10.f11107e = null;
                                     long clientUserId = UserConfig.getInstance(i14).getClientUserId();
                                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i14);
                                     messagesStorage.getStorageQueue().postRunnable(new q8(b2Var2, messagesStorage, c10, clientUserId, 6));
@@ -357,27 +357,27 @@ public final class b2 {
                                 }
                             } else {
                                 a2 a2Var2 = new a2();
-                                a2Var2.f11115a = tL_quickReply2.shortcut_id;
-                                a2Var2.f11116b = tL_quickReply2.shortcut;
-                                a2Var2.f11119f = tL_quickReply2.count;
+                                a2Var2.f11104a = tL_quickReply2.shortcut_id;
+                                a2Var2.f11105b = tL_quickReply2.shortcut;
+                                a2Var2.f11108f = tL_quickReply2.count;
                                 a2Var2.d = tL_quickReply2.top_message;
                                 for (int i15 = 0; i15 < arrayList4.size(); i15++) {
-                                    ((a2) arrayList4.get(i15)).f11117c = i15;
+                                    ((a2) arrayList4.get(i15)).f11106c = i15;
                                 }
                                 arrayList4.add(a2Var2);
-                                b2Var2.a(a2Var2.f11116b);
+                                b2Var2.a(a2Var2.f11105b);
                             }
                             b2Var2.l();
                             NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             return;
                         case 2:
-                            b2 b2Var3 = this.f11419b;
+                            b2 b2Var3 = this.f11420b;
                             int i16 = b2Var3.f11129a;
                             a2 c11 = b2Var3.c(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
                             if (c11 != null) {
                                 b2Var3.f11130b.remove(c11);
-                                b2Var3.a(c11.f11116b);
-                                int i17 = c11.f11115a;
+                                b2Var3.a(c11.f11105b);
+                                int i17 = c11.f11104a;
                                 MessagesStorage messagesStorage2 = MessagesStorage.getInstance(i16);
                                 messagesStorage2.getStorageQueue().postRunnable(new o8(messagesStorage2, i17, 8));
                                 b2Var3.l();
@@ -386,29 +386,29 @@ public final class b2 {
                             }
                             return;
                         default:
-                            b2 b2Var4 = this.f11419b;
+                            b2 b2Var4 = this.f11420b;
                             int i18 = b2Var4.f11129a;
                             TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
                             a2 c12 = b2Var4.c(tL_updateDeleteQuickReplyMessages.shortcut_id);
                             if (c12 != null) {
-                                int size = c12.f11119f - tL_updateDeleteQuickReplyMessages.messages.size();
-                                c12.f11119f = size;
+                                int size = c12.f11108f - tL_updateDeleteQuickReplyMessages.messages.size();
+                                c12.f11108f = size;
                                 if (size <= 0) {
                                     b2Var4.f11130b.remove(c12);
                                 }
                                 ArrayList<Integer> arrayList5 = tL_updateDeleteQuickReplyMessages.messages;
-                                MessageObject messageObject3 = c12.f11118e;
+                                MessageObject messageObject3 = c12.f11107e;
                                 if (messageObject3 != null) {
                                     i11 = messageObject3.getId();
                                 } else {
                                     i11 = c12.d;
                                 }
-                                if (!arrayList5.contains(Integer.valueOf(i11)) && c12.f11118e != null) {
+                                if (!arrayList5.contains(Integer.valueOf(i11)) && c12.f11107e != null) {
                                     b2Var4.l();
                                     NotificationCenter.getInstance(i18).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                                     return;
                                 }
-                                c12.f11118e = null;
+                                c12.f11107e = null;
                                 long clientUserId2 = UserConfig.getInstance(i18).getClientUserId();
                                 MessagesStorage messagesStorage3 = MessagesStorage.getInstance(i18);
                                 messagesStorage3.getStorageQueue().postRunnable(new q8(b2Var4, messagesStorage3, c12, clientUserId2, 6));
@@ -421,10 +421,10 @@ public final class b2 {
             return true;
         } else if (update instanceof TL_update.TL_updateDeleteQuickReply) {
             b(new Runnable(this) {
-                public final b2 f11419b;
+                public final b2 f11420b;
 
                 {
-                    this.f11419b = this;
+                    this.f11420b = this;
                 }
 
                 @Override
@@ -434,7 +434,7 @@ public final class b2 {
                     switch (r3) {
                         case 0:
                             ArrayList<TLRPC.TL_quickReply> arrayList = ((TL_update.TL_updateQuickReplies) update).quick_replies;
-                            b2 b2Var = this.f11419b;
+                            b2 b2Var = this.f11420b;
                             ArrayList arrayList2 = b2Var.f11130b;
                             ArrayList arrayList3 = new ArrayList(arrayList2);
                             arrayList2.clear();
@@ -443,7 +443,7 @@ public final class b2 {
                                 int i13 = 0;
                                 while (true) {
                                     if (i13 < arrayList3.size()) {
-                                        if (((a2) arrayList3.get(i13)).f11115a == tL_quickReply.shortcut_id) {
+                                        if (((a2) arrayList3.get(i13)).f11104a == tL_quickReply.shortcut_id) {
                                             a2Var = (a2) arrayList3.get(i13);
                                         } else {
                                             i13++;
@@ -455,34 +455,34 @@ public final class b2 {
                                 if (a2Var == null) {
                                     a2Var = new a2();
                                 }
-                                a2Var.f11115a = tL_quickReply.shortcut_id;
-                                a2Var.f11116b = tL_quickReply.shortcut;
-                                a2Var.f11119f = tL_quickReply.count;
-                                a2Var.f11117c = i12;
+                                a2Var.f11104a = tL_quickReply.shortcut_id;
+                                a2Var.f11105b = tL_quickReply.shortcut;
+                                a2Var.f11108f = tL_quickReply.count;
+                                a2Var.f11106c = i12;
                                 a2Var.d = tL_quickReply.top_message;
-                                MessageObject messageObject = a2Var.f11118e;
+                                MessageObject messageObject = a2Var.f11107e;
                                 if (messageObject != null && messageObject.getId() != tL_quickReply.top_message) {
-                                    a2Var.f11118e = null;
+                                    a2Var.f11107e = null;
                                 }
                                 arrayList2.add(a2Var);
-                                b2Var.a(a2Var.f11116b);
+                                b2Var.a(a2Var.f11105b);
                             }
                             b2Var.l();
                             NotificationCenter.getInstance(b2Var.f11129a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             return;
                         case 1:
-                            b2 b2Var2 = this.f11419b;
+                            b2 b2Var2 = this.f11420b;
                             ArrayList arrayList4 = b2Var2.f11130b;
                             int i14 = b2Var2.f11129a;
                             TLRPC.TL_quickReply tL_quickReply2 = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
                             a2 c10 = b2Var2.c(tL_quickReply2.shortcut_id);
                             if (c10 != null) {
-                                c10.f11116b = tL_quickReply2.shortcut;
-                                c10.f11119f = tL_quickReply2.count;
+                                c10.f11105b = tL_quickReply2.shortcut;
+                                c10.f11108f = tL_quickReply2.count;
                                 c10.d = tL_quickReply2.top_message;
-                                MessageObject messageObject2 = c10.f11118e;
+                                MessageObject messageObject2 = c10.f11107e;
                                 if (messageObject2 != null && messageObject2.getId() != tL_quickReply2.top_message) {
-                                    c10.f11118e = null;
+                                    c10.f11107e = null;
                                     long clientUserId = UserConfig.getInstance(i14).getClientUserId();
                                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i14);
                                     messagesStorage.getStorageQueue().postRunnable(new q8(b2Var2, messagesStorage, c10, clientUserId, 6));
@@ -490,27 +490,27 @@ public final class b2 {
                                 }
                             } else {
                                 a2 a2Var2 = new a2();
-                                a2Var2.f11115a = tL_quickReply2.shortcut_id;
-                                a2Var2.f11116b = tL_quickReply2.shortcut;
-                                a2Var2.f11119f = tL_quickReply2.count;
+                                a2Var2.f11104a = tL_quickReply2.shortcut_id;
+                                a2Var2.f11105b = tL_quickReply2.shortcut;
+                                a2Var2.f11108f = tL_quickReply2.count;
                                 a2Var2.d = tL_quickReply2.top_message;
                                 for (int i15 = 0; i15 < arrayList4.size(); i15++) {
-                                    ((a2) arrayList4.get(i15)).f11117c = i15;
+                                    ((a2) arrayList4.get(i15)).f11106c = i15;
                                 }
                                 arrayList4.add(a2Var2);
-                                b2Var2.a(a2Var2.f11116b);
+                                b2Var2.a(a2Var2.f11105b);
                             }
                             b2Var2.l();
                             NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             return;
                         case 2:
-                            b2 b2Var3 = this.f11419b;
+                            b2 b2Var3 = this.f11420b;
                             int i16 = b2Var3.f11129a;
                             a2 c11 = b2Var3.c(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
                             if (c11 != null) {
                                 b2Var3.f11130b.remove(c11);
-                                b2Var3.a(c11.f11116b);
-                                int i17 = c11.f11115a;
+                                b2Var3.a(c11.f11105b);
+                                int i17 = c11.f11104a;
                                 MessagesStorage messagesStorage2 = MessagesStorage.getInstance(i16);
                                 messagesStorage2.getStorageQueue().postRunnable(new o8(messagesStorage2, i17, 8));
                                 b2Var3.l();
@@ -519,29 +519,29 @@ public final class b2 {
                             }
                             return;
                         default:
-                            b2 b2Var4 = this.f11419b;
+                            b2 b2Var4 = this.f11420b;
                             int i18 = b2Var4.f11129a;
                             TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
                             a2 c12 = b2Var4.c(tL_updateDeleteQuickReplyMessages.shortcut_id);
                             if (c12 != null) {
-                                int size = c12.f11119f - tL_updateDeleteQuickReplyMessages.messages.size();
-                                c12.f11119f = size;
+                                int size = c12.f11108f - tL_updateDeleteQuickReplyMessages.messages.size();
+                                c12.f11108f = size;
                                 if (size <= 0) {
                                     b2Var4.f11130b.remove(c12);
                                 }
                                 ArrayList<Integer> arrayList5 = tL_updateDeleteQuickReplyMessages.messages;
-                                MessageObject messageObject3 = c12.f11118e;
+                                MessageObject messageObject3 = c12.f11107e;
                                 if (messageObject3 != null) {
                                     i11 = messageObject3.getId();
                                 } else {
                                     i11 = c12.d;
                                 }
-                                if (!arrayList5.contains(Integer.valueOf(i11)) && c12.f11118e != null) {
+                                if (!arrayList5.contains(Integer.valueOf(i11)) && c12.f11107e != null) {
                                     b2Var4.l();
                                     NotificationCenter.getInstance(i18).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                                     return;
                                 }
-                                c12.f11118e = null;
+                                c12.f11107e = null;
                                 long clientUserId2 = UserConfig.getInstance(i18).getClientUserId();
                                 MessagesStorage messagesStorage3 = MessagesStorage.getInstance(i18);
                                 messagesStorage3.getStorageQueue().postRunnable(new q8(b2Var4, messagesStorage3, c12, clientUserId2, 6));
@@ -554,10 +554,10 @@ public final class b2 {
             return true;
         } else if (update instanceof TL_update.TL_updateDeleteQuickReplyMessages) {
             b(new Runnable(this) {
-                public final b2 f11419b;
+                public final b2 f11420b;
 
                 {
-                    this.f11419b = this;
+                    this.f11420b = this;
                 }
 
                 @Override
@@ -567,7 +567,7 @@ public final class b2 {
                     switch (r3) {
                         case 0:
                             ArrayList<TLRPC.TL_quickReply> arrayList = ((TL_update.TL_updateQuickReplies) update).quick_replies;
-                            b2 b2Var = this.f11419b;
+                            b2 b2Var = this.f11420b;
                             ArrayList arrayList2 = b2Var.f11130b;
                             ArrayList arrayList3 = new ArrayList(arrayList2);
                             arrayList2.clear();
@@ -576,7 +576,7 @@ public final class b2 {
                                 int i13 = 0;
                                 while (true) {
                                     if (i13 < arrayList3.size()) {
-                                        if (((a2) arrayList3.get(i13)).f11115a == tL_quickReply.shortcut_id) {
+                                        if (((a2) arrayList3.get(i13)).f11104a == tL_quickReply.shortcut_id) {
                                             a2Var = (a2) arrayList3.get(i13);
                                         } else {
                                             i13++;
@@ -588,34 +588,34 @@ public final class b2 {
                                 if (a2Var == null) {
                                     a2Var = new a2();
                                 }
-                                a2Var.f11115a = tL_quickReply.shortcut_id;
-                                a2Var.f11116b = tL_quickReply.shortcut;
-                                a2Var.f11119f = tL_quickReply.count;
-                                a2Var.f11117c = i12;
+                                a2Var.f11104a = tL_quickReply.shortcut_id;
+                                a2Var.f11105b = tL_quickReply.shortcut;
+                                a2Var.f11108f = tL_quickReply.count;
+                                a2Var.f11106c = i12;
                                 a2Var.d = tL_quickReply.top_message;
-                                MessageObject messageObject = a2Var.f11118e;
+                                MessageObject messageObject = a2Var.f11107e;
                                 if (messageObject != null && messageObject.getId() != tL_quickReply.top_message) {
-                                    a2Var.f11118e = null;
+                                    a2Var.f11107e = null;
                                 }
                                 arrayList2.add(a2Var);
-                                b2Var.a(a2Var.f11116b);
+                                b2Var.a(a2Var.f11105b);
                             }
                             b2Var.l();
                             NotificationCenter.getInstance(b2Var.f11129a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             return;
                         case 1:
-                            b2 b2Var2 = this.f11419b;
+                            b2 b2Var2 = this.f11420b;
                             ArrayList arrayList4 = b2Var2.f11130b;
                             int i14 = b2Var2.f11129a;
                             TLRPC.TL_quickReply tL_quickReply2 = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
                             a2 c10 = b2Var2.c(tL_quickReply2.shortcut_id);
                             if (c10 != null) {
-                                c10.f11116b = tL_quickReply2.shortcut;
-                                c10.f11119f = tL_quickReply2.count;
+                                c10.f11105b = tL_quickReply2.shortcut;
+                                c10.f11108f = tL_quickReply2.count;
                                 c10.d = tL_quickReply2.top_message;
-                                MessageObject messageObject2 = c10.f11118e;
+                                MessageObject messageObject2 = c10.f11107e;
                                 if (messageObject2 != null && messageObject2.getId() != tL_quickReply2.top_message) {
-                                    c10.f11118e = null;
+                                    c10.f11107e = null;
                                     long clientUserId = UserConfig.getInstance(i14).getClientUserId();
                                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i14);
                                     messagesStorage.getStorageQueue().postRunnable(new q8(b2Var2, messagesStorage, c10, clientUserId, 6));
@@ -623,27 +623,27 @@ public final class b2 {
                                 }
                             } else {
                                 a2 a2Var2 = new a2();
-                                a2Var2.f11115a = tL_quickReply2.shortcut_id;
-                                a2Var2.f11116b = tL_quickReply2.shortcut;
-                                a2Var2.f11119f = tL_quickReply2.count;
+                                a2Var2.f11104a = tL_quickReply2.shortcut_id;
+                                a2Var2.f11105b = tL_quickReply2.shortcut;
+                                a2Var2.f11108f = tL_quickReply2.count;
                                 a2Var2.d = tL_quickReply2.top_message;
                                 for (int i15 = 0; i15 < arrayList4.size(); i15++) {
-                                    ((a2) arrayList4.get(i15)).f11117c = i15;
+                                    ((a2) arrayList4.get(i15)).f11106c = i15;
                                 }
                                 arrayList4.add(a2Var2);
-                                b2Var2.a(a2Var2.f11116b);
+                                b2Var2.a(a2Var2.f11105b);
                             }
                             b2Var2.l();
                             NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             return;
                         case 2:
-                            b2 b2Var3 = this.f11419b;
+                            b2 b2Var3 = this.f11420b;
                             int i16 = b2Var3.f11129a;
                             a2 c11 = b2Var3.c(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
                             if (c11 != null) {
                                 b2Var3.f11130b.remove(c11);
-                                b2Var3.a(c11.f11116b);
-                                int i17 = c11.f11115a;
+                                b2Var3.a(c11.f11105b);
+                                int i17 = c11.f11104a;
                                 MessagesStorage messagesStorage2 = MessagesStorage.getInstance(i16);
                                 messagesStorage2.getStorageQueue().postRunnable(new o8(messagesStorage2, i17, 8));
                                 b2Var3.l();
@@ -652,29 +652,29 @@ public final class b2 {
                             }
                             return;
                         default:
-                            b2 b2Var4 = this.f11419b;
+                            b2 b2Var4 = this.f11420b;
                             int i18 = b2Var4.f11129a;
                             TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
                             a2 c12 = b2Var4.c(tL_updateDeleteQuickReplyMessages.shortcut_id);
                             if (c12 != null) {
-                                int size = c12.f11119f - tL_updateDeleteQuickReplyMessages.messages.size();
-                                c12.f11119f = size;
+                                int size = c12.f11108f - tL_updateDeleteQuickReplyMessages.messages.size();
+                                c12.f11108f = size;
                                 if (size <= 0) {
                                     b2Var4.f11130b.remove(c12);
                                 }
                                 ArrayList<Integer> arrayList5 = tL_updateDeleteQuickReplyMessages.messages;
-                                MessageObject messageObject3 = c12.f11118e;
+                                MessageObject messageObject3 = c12.f11107e;
                                 if (messageObject3 != null) {
                                     i11 = messageObject3.getId();
                                 } else {
                                     i11 = c12.d;
                                 }
-                                if (!arrayList5.contains(Integer.valueOf(i11)) && c12.f11118e != null) {
+                                if (!arrayList5.contains(Integer.valueOf(i11)) && c12.f11107e != null) {
                                     b2Var4.l();
                                     NotificationCenter.getInstance(i18).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                                     return;
                                 }
-                                c12.f11118e = null;
+                                c12.f11107e = null;
                                 long clientUserId2 = UserConfig.getInstance(i18).getClientUserId();
                                 MessagesStorage messagesStorage3 = MessagesStorage.getInstance(i18);
                                 messagesStorage3.getStorageQueue().postRunnable(new q8(b2Var4, messagesStorage3, c12, clientUserId2, 6));
@@ -695,7 +695,7 @@ public final class b2 {
         if (c10 == null) {
             return;
         }
-        c10.f11116b = str;
+        c10.f11105b = str;
         TLRPC.TL_messages_editQuickReplyShortcut tL_messages_editQuickReplyShortcut = new TLRPC.TL_messages_editQuickReplyShortcut();
         tL_messages_editQuickReplyShortcut.shortcut_id = i10;
         tL_messages_editQuickReplyShortcut.shortcut = str;

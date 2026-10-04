@@ -10,43 +10,43 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class td1 implements Runnable {
-    public final int f40795a;
-    public final Object f40796b;
-    public final Object f40797c;
+    public final int f40801a;
+    public final Object f40802b;
+    public final Object f40803c;
     public final Object d;
 
     public td1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f40795a = i10;
-        this.f40796b = obj;
+        this.f40801a = i10;
+        this.f40802b = obj;
         this.d = obj2;
-        this.f40797c = obj3;
+        this.f40803c = obj3;
     }
 
     @Override
     public final void run() {
         TLRPC.Message message;
         int i10;
-        int i11 = this.f40795a;
+        int i11 = this.f40801a;
         on onVar = null;
         onVar = null;
         onVar = null;
         boolean z10 = false;
-        Object obj = this.f40797c;
+        Object obj = this.f40803c;
         Object obj2 = this.d;
-        Object obj3 = this.f40796b;
+        Object obj3 = this.f40802b;
         switch (i11) {
             case 0:
                 wd1 wd1Var = (wd1) obj3;
                 String str = (String) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                wd1Var.f42073y = 0;
+                wd1Var.f42080y = 0;
                 String str2 = wd1Var.E;
                 if (str2 != null && str2.equals(str)) {
                     if (tL_error != null && ("THEME_SLUG_INVALID".equals(tL_error.text) || "THEME_SLUG_OCCUPIED".equals(tL_error.text))) {
-                        wd1Var.Z(org.telegram.ui.ActionBar.i6.f21040p7, LocaleController.getString(R.string.SetUrlInUse));
+                        wd1Var.Z(org.telegram.ui.ActionBar.i6.f21044p7, LocaleController.getString(R.string.SetUrlInUse));
                         return;
                     } else {
-                        wd1Var.Z(org.telegram.ui.ActionBar.i6.f21171w6, LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str));
+                        wd1Var.Z(org.telegram.ui.ActionBar.i6.f21175w6, LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str));
                         return;
                     }
                 }
@@ -58,14 +58,14 @@ public final class td1 implements Runnable {
                 ge1 ge1Var = (ge1) obj3;
                 yn ynVar = (yn) obj2;
                 MessageObject messageObject = ge1Var.G;
-                int i12 = ((TLRPC.TodoItem) obj).f20183id;
+                int i12 = ((TLRPC.TodoItem) obj).f20187id;
                 if (messageObject != null && (message = messageObject.messageOwner) != null && (message.media instanceof TLRPC.TL_messageMediaToDo)) {
                     messageObject.getDialogId();
                     ?? obj4 = new Object();
-                    obj4.f39236a = messageObject;
-                    obj4.f39237b = -1;
-                    obj4.f39238c = -1;
-                    obj4.f39241g = true;
+                    obj4.f39241a = messageObject;
+                    obj4.f39242b = -1;
+                    obj4.f39243c = -1;
+                    obj4.f39246g = true;
                     obj4.d = i12;
                     obj4.e();
                     onVar = obj4;
@@ -77,17 +77,17 @@ public final class td1 implements Runnable {
                 ne1 ne1Var = (ne1) obj3;
                 ArrayList arrayList = ne1Var.h;
                 arrayList.clear();
-                ArrayList arrayList2 = ne1Var.f38960f;
+                ArrayList arrayList2 = ne1Var.f38965f;
                 arrayList2.clear();
                 arrayList.addAll((ArrayList) obj2);
                 arrayList2.addAll(((TLRPC.TL_messages_inactiveChats) obj).chats);
                 ne1Var.d.l();
-                if (ne1Var.f38956a.getMeasuredHeight() > 0) {
+                if (ne1Var.f38961a.getMeasuredHeight() > 0) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ne1Var.f38966y = ofFloat;
+                    ne1Var.f38971y = ofFloat;
                     ofFloat.addUpdateListener(new b21(ne1Var, 14));
-                    ne1Var.f38966y.setDuration(100L);
-                    ne1Var.f38966y.start();
+                    ne1Var.f38971y.setDuration(100L);
+                    ne1Var.f38971y.start();
                 } else {
                     ne1Var.E = 1.0f;
                 }
@@ -99,22 +99,22 @@ public final class td1 implements Runnable {
                 return;
             case 4:
                 yf1 yf1Var = (yf1) obj3;
-                yf1Var.f43199s.deleteTopics(yf1Var.f43163a, (ArrayList) obj2);
+                yf1Var.f43206s.deleteTopics(yf1Var.f43170a, (ArrayList) obj2);
                 ((Runnable) obj).run();
                 return;
             case 5:
                 uf1 uf1Var = (uf1) obj3;
                 String str3 = (String) obj2;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList3 = uf1Var.f41174e0;
-                if (str3.equals(uf1Var.f41172c0)) {
-                    int i13 = uf1Var.f41181l0;
-                    uf1Var.f41185q0 = false;
-                    uf1Var.m0 = false;
+                ArrayList arrayList3 = uf1Var.f41181f0;
+                if (str3.equals(uf1Var.f41179d0)) {
+                    int i13 = uf1Var.m0;
+                    uf1Var.f41192r0 = false;
+                    uf1Var.f41188n0 = false;
                     if (tLObject instanceof TLRPC.messages_Messages) {
                         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                         for (int i14 = 0; i14 < messages_messages.messages.size(); i14++) {
-                            i10 = ((org.telegram.ui.ActionBar.n2) uf1Var.f41189u0).currentAccount;
+                            i10 = ((org.telegram.ui.ActionBar.n2) uf1Var.f41196v0).currentAccount;
                             MessageObject messageObject2 = new MessageObject(i10, messages_messages.messages.get(i14), false, false);
                             messageObject2.setQuery(str3);
                             arrayList3.add(messageObject2);
@@ -123,14 +123,14 @@ public final class td1 implements Runnable {
                         if (arrayList3.size() < messages_messages.count && !messages_messages.messages.isEmpty()) {
                             z10 = true;
                         }
-                        uf1Var.f41182n0 = z10;
+                        uf1Var.f41189o0 = z10;
                     } else {
-                        uf1Var.f41182n0 = false;
+                        uf1Var.f41189o0 = false;
                     }
-                    if (uf1Var.f41181l0 == 0) {
-                        uf1Var.f41183o0.e(uf1Var.m0, true);
+                    if (uf1Var.m0 == 0) {
+                        uf1Var.f41190p0.e(uf1Var.f41188n0, true);
                     }
-                    uf1Var.f41184p0.b(i13);
+                    uf1Var.f41191q0.b(i13);
                     return;
                 }
                 return;
@@ -138,14 +138,14 @@ public final class td1 implements Runnable {
                 ph1 ph1Var = (ph1) obj3;
                 ArrayList arrayList4 = (ArrayList) obj2;
                 ArrayList arrayList5 = (ArrayList) obj;
-                gg.c2 c2Var = ph1Var.f39491f;
-                if (ph1Var.f39492n) {
+                gg.c2 c2Var = ph1Var.f39496f;
+                if (ph1Var.f39497n) {
                     ph1Var.h = null;
                     ph1Var.d = arrayList4;
-                    ph1Var.f39490e = arrayList5;
+                    ph1Var.f39495e = arrayList5;
                     c2Var.f(arrayList4, null);
-                    if (ph1Var.f39492n && !c2Var.e()) {
-                        ph1Var.v.f34587f.e(false, true);
+                    if (ph1Var.f39497n && !c2Var.e()) {
+                        ph1Var.v.f34593f.e(false, true);
                     }
                     ph1Var.l();
                     return;
@@ -155,9 +155,9 @@ public final class td1 implements Runnable {
     }
 
     public td1(wd1 wd1Var, TLRPC.TL_error tL_error, TL_account.updateTheme updatetheme) {
-        this.f40795a = 1;
-        this.f40796b = wd1Var;
-        this.f40797c = tL_error;
+        this.f40801a = 1;
+        this.f40802b = wd1Var;
+        this.f40803c = tL_error;
         this.d = updatetheme;
     }
 }

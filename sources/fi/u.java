@@ -13,24 +13,24 @@ import org.telegram.ui.Components.g61;
 import r0.i1;
 import r0.l1;
 public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Return {
-    public final int f9990a;
-    public final k0 f9991b;
+    public final int f9991a;
+    public final k0 f9992b;
 
     public u(k0 k0Var, int i10) {
-        this.f9990a = i10;
-        this.f9991b = k0Var;
+        this.f9991a = i10;
+        this.f9992b = k0Var;
     }
 
     @Override
     public l1 Q0(View view, l1 l1Var) {
-        i1 i1Var = l1Var.f45610a;
+        i1 i1Var = l1Var.f45617a;
         i0.b f7 = i1Var.f(527);
-        k0 k0Var = this.f9991b;
+        k0 k0Var = this.f9992b;
         k0Var.T = f7;
         k0Var.U = i1Var.f(519);
-        k0Var.F.j(AndroidUtilities.dp(56.0f) + k0Var.T.f11526b, k0Var.T.d, false);
+        k0Var.F.j(AndroidUtilities.dp(56.0f) + k0Var.T.f11527b, k0Var.T.d, false);
         k0Var.H.invalidate();
-        return l1.f45609b;
+        return l1.f45616b;
     }
 
     @Override
@@ -46,21 +46,21 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
         int i10 = k0.V;
         Object obj6 = ((g61) obj).G;
         boolean z12 = obj6 instanceof TLRPC.Chat;
-        k0 k0Var = this.f9991b;
+        k0 k0Var = this.f9992b;
         boolean z13 = false;
         if (z12) {
             TLRPC.Chat chat = (TLRPC.Chat) obj6;
             boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-            canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, k0Var.f9917f);
-            j3 = -chat.f20038id;
+            canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, k0Var.f9918f);
+            j3 = -chat.f20042id;
             z11 = false;
             z10 = isChannelAndNotMegaGroup;
         } else {
             if (obj6 instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj6;
-                long j10 = user.f20185id;
+                long j10 = user.f20189id;
                 boolean isBot = UserObject.isBot(user);
-                canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, k0Var.f9917f);
+                canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, k0Var.f9918f);
                 j3 = j10;
                 z10 = false;
                 z11 = isBot;
@@ -79,8 +79,8 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        int i10 = this.f9990a;
-        k0 k0Var = this.f9991b;
+        int i10 = this.f9991a;
+        k0 k0Var = this.f9992b;
         g61 g61Var = (g61) obj;
         View view = (View) obj2;
         Integer num = (Integer) obj3;

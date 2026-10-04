@@ -14,24 +14,24 @@ import java.util.regex.Pattern;
 import n7.z0;
 import v7.a7;
 public final class i implements cf.a {
-    public static final Pattern f8844j = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
-    public static final Pattern f8845k = Pattern.compile("^ *(?:\n *)?");
-    public static final Pattern f8846l = Pattern.compile("^[\\p{Zs}\t\r\n\f]");
-    public static final Pattern f8847m = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
-    public static final Pattern f8848n = Pattern.compile("\\s+");
-    public final z0 f8849a;
-    public final BitSet f8850b;
-    public final HashMap f8851c;
+    public static final Pattern f8845j = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
+    public static final Pattern f8846k = Pattern.compile("^ *(?:\n *)?");
+    public static final Pattern f8847l = Pattern.compile("^[\\p{Zs}\t\r\n\f]");
+    public static final Pattern f8848m = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
+    public static final Pattern f8849n = Pattern.compile("\\s+");
+    public final z0 f8850a;
+    public final BitSet f8851b;
+    public final HashMap f8852c;
     public final HashMap d;
-    public p f8852e;
-    public String f8853f;
-    public int f8854g;
+    public p f8853e;
+    public String f8854f;
+    public int f8855g;
     public ye.b h;
-    public f6.f f8855i;
+    public f6.f f8856i;
 
     public i(z0 z0Var, List list, List list2) {
         k kVar;
-        this.f8849a = z0Var;
+        this.f8850a = z0Var;
         HashMap hashMap = new HashMap(list.size());
         Iterator it = list.iterator();
         while (it.hasNext()) {
@@ -44,7 +44,7 @@ public final class i implements cf.a {
             }
             list3.add(hVar);
         }
-        this.f8851c = hashMap;
+        this.f8852c = hashMap;
         HashMap hashMap2 = new HashMap();
         Iterator it2 = list2.iterator();
         while (it2.hasNext()) {
@@ -72,7 +72,7 @@ public final class i implements cf.a {
             }
         }
         this.d = hashMap2;
-        Set<Character> keySet = this.f8851c.keySet();
+        Set<Character> keySet = this.f8852c.keySet();
         Set<Character> keySet2 = hashMap2.keySet();
         BitSet bitSet = new BitSet();
         for (Character ch2 : keySet) {
@@ -81,7 +81,7 @@ public final class i implements cf.a {
         for (Character ch3 : keySet2) {
             bitSet.set(ch3.charValue());
         }
-        this.f8850b = bitSet;
+        this.f8851b = bitSet;
     }
 
     public static void b(char c10, ef.a aVar, HashMap hashMap) {
@@ -97,21 +97,21 @@ public final class i implements cf.a {
     }
 
     public final String c(Pattern pattern) {
-        if (this.f8854g >= this.f8853f.length()) {
+        if (this.f8855g >= this.f8854f.length()) {
             return null;
         }
-        Matcher matcher = pattern.matcher(this.f8853f);
-        matcher.region(this.f8854g, this.f8853f.length());
+        Matcher matcher = pattern.matcher(this.f8854f);
+        matcher.region(this.f8855g, this.f8854f.length());
         if (!matcher.find()) {
             return null;
         }
-        this.f8854g = matcher.end();
+        this.f8855g = matcher.end();
         return matcher.group();
     }
 
     public final char d() {
-        if (this.f8854g < this.f8853f.length()) {
-            return this.f8853f.charAt(this.f8854g);
+        if (this.f8855g < this.f8854f.length()) {
+            return this.f8854f.charAt(this.f8855g);
         }
         return (char) 0;
     }
@@ -122,23 +122,23 @@ public final class i implements cf.a {
         HashMap hashMap = new HashMap();
         ye.b bVar2 = this.h;
         while (bVar2 != null) {
-            ye.b bVar3 = bVar2.f50860e;
+            ye.b bVar3 = bVar2.f50868e;
             if (bVar3 == bVar) {
                 break;
             }
             bVar2 = bVar3;
         }
         while (bVar2 != null) {
-            s sVar = bVar2.f50857a;
-            char c10 = bVar2.f50858b;
+            s sVar = bVar2.f50865a;
+            char c10 = bVar2.f50866b;
             ef.a aVar = (ef.a) this.d.get(Character.valueOf(c10));
             if (bVar2.d && aVar != null) {
                 char e7 = aVar.e();
-                ye.b bVar4 = bVar2.f50860e;
+                ye.b bVar4 = bVar2.f50868e;
                 int i10 = 0;
                 boolean z11 = false;
                 while (bVar4 != null && bVar4 != bVar && bVar4 != hashMap.get(Character.valueOf(c10))) {
-                    if (bVar4.f50859c && bVar4.f50858b == e7) {
+                    if (bVar4.f50867c && bVar4.f50866b == e7) {
                         i10 = aVar.b(bVar4, bVar2);
                         z11 = true;
                         if (i10 > 0) {
@@ -146,27 +146,27 @@ public final class i implements cf.a {
                             break;
                         }
                     }
-                    bVar4 = bVar4.f50860e;
+                    bVar4 = bVar4.f50868e;
                 }
                 z10 = z11;
                 z11 = false;
                 if (!z11) {
                     if (!z10) {
-                        hashMap.put(Character.valueOf(c10), bVar2.f50860e);
-                        if (!bVar2.f50859c) {
+                        hashMap.put(Character.valueOf(c10), bVar2.f50868e);
+                        if (!bVar2.f50867c) {
                             f(bVar2);
                         }
                     }
-                    bVar2 = bVar2.f50861f;
+                    bVar2 = bVar2.f50869f;
                 } else {
-                    s sVar2 = bVar4.f50857a;
-                    bVar4.f50862g -= i10;
-                    bVar2.f50862g -= i10;
+                    s sVar2 = bVar4.f50865a;
+                    bVar4.f50870g -= i10;
+                    bVar2.f50870g -= i10;
                     sVar2.f3836g = e2.i(i10, 0, sVar2.f3836g);
                     sVar.f3836g = e2.i(i10, 0, sVar.f3836g);
-                    ye.b bVar5 = bVar2.f50860e;
+                    ye.b bVar5 = bVar2.f50868e;
                     while (bVar5 != null && bVar5 != bVar4) {
-                        ye.b bVar6 = bVar5.f50860e;
+                        ye.b bVar6 = bVar5.f50868e;
                         f(bVar5);
                         bVar5 = bVar6;
                     }
@@ -174,19 +174,19 @@ public final class i implements cf.a {
                         a7.b(pVar, (p) sVar.f3833e);
                     }
                     aVar.d(sVar2, sVar, i10);
-                    if (bVar4.f50862g == 0) {
-                        bVar4.f50857a.g();
+                    if (bVar4.f50870g == 0) {
+                        bVar4.f50865a.g();
                         f(bVar4);
                     }
-                    if (bVar2.f50862g == 0) {
-                        ye.b bVar7 = bVar2.f50861f;
+                    if (bVar2.f50870g == 0) {
+                        ye.b bVar7 = bVar2.f50869f;
                         sVar.g();
                         f(bVar2);
                         bVar2 = bVar7;
                     }
                 }
             } else {
-                bVar2 = bVar2.f50861f;
+                bVar2 = bVar2.f50869f;
             }
         }
         while (true) {
@@ -200,15 +200,15 @@ public final class i implements cf.a {
     }
 
     public final void f(ye.b bVar) {
-        ye.b bVar2 = bVar.f50860e;
+        ye.b bVar2 = bVar.f50868e;
         if (bVar2 != null) {
-            bVar2.f50861f = bVar.f50861f;
+            bVar2.f50869f = bVar.f50869f;
         }
-        ye.b bVar3 = bVar.f50861f;
+        ye.b bVar3 = bVar.f50869f;
         if (bVar3 == null) {
             this.h = bVar2;
         } else {
-            bVar3.f50860e = bVar2;
+            bVar3.f50868e = bVar2;
         }
     }
 }

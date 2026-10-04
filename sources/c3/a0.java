@@ -1,11 +1,11 @@
 package c3;
 public final class a0 {
-    public final c0 f4003a;
-    public final c0 f4004b;
+    public final c0 f4004a;
+    public final c0 f4005b;
 
     public a0(c0 c0Var, c0 c0Var2) {
-        this.f4003a = c0Var;
-        this.f4004b = c0Var2;
+        this.f4004a = c0Var;
+        this.f4005b = c0Var2;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class a0 {
         }
         if (obj != null && a0.class == obj.getClass()) {
             a0 a0Var = (a0) obj;
-            if (this.f4003a.equals(a0Var.f4003a) && this.f4004b.equals(a0Var.f4004b)) {
+            if (this.f4004a.equals(a0Var.f4004a) && this.f4005b.equals(a0Var.f4005b)) {
                 return true;
             }
         }
@@ -22,20 +22,20 @@ public final class a0 {
     }
 
     public final int hashCode() {
-        return this.f4004b.hashCode() + (this.f4003a.hashCode() * 31);
+        return this.f4005b.hashCode() + (this.f4004a.hashCode() * 31);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("[");
-        c0 c0Var = this.f4003a;
+        c0 c0Var = this.f4004a;
         sb2.append(c0Var);
-        c0 c0Var2 = this.f4004b;
+        c0 c0Var2 = this.f4005b;
         if (c0Var.equals(c0Var2)) {
             str = "";
         } else {
             str = ", " + c0Var2;
         }
-        return a4.a.s(sb2, str, "]");
+        return a4.a.t(sb2, str, "]");
     }
 }

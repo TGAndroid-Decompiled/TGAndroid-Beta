@@ -4,19 +4,19 @@ import android.util.Log;
 import com.google.firebase.components.ComponentRegistrar;
 import java.lang.reflect.InvocationTargetException;
 public final class c implements pa.b {
-    public final int f44843a;
-    public final Object f44844b;
+    public final int f44850a;
+    public final Object f44851b;
 
     public c(Object obj, int i10) {
-        this.f44843a = i10;
-        this.f44844b = obj;
+        this.f44850a = i10;
+        this.f44851b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f44843a) {
+        switch (this.f44850a) {
             case 0:
-                String str = (String) this.f44844b;
+                String str = (String) this.f44851b;
                 try {
                     Class<?> cls = Class.forName(str);
                     if (ComponentRegistrar.class.isAssignableFrom(cls)) {
@@ -27,18 +27,18 @@ public final class c implements pa.b {
                     Log.w("ComponentDiscovery", "Class " + str + " is not an found.");
                     return null;
                 } catch (IllegalAccessException e7) {
-                    throw new RuntimeException(a4.a.p("Could not instantiate ", str, "."), e7);
+                    throw new RuntimeException(a4.a.q("Could not instantiate ", str, "."), e7);
                 } catch (InstantiationException e10) {
-                    throw new RuntimeException(a4.a.p("Could not instantiate ", str, "."), e10);
+                    throw new RuntimeException(a4.a.q("Could not instantiate ", str, "."), e10);
                 } catch (NoSuchMethodException e11) {
-                    throw new RuntimeException(t8.b.i("Could not instantiate ", str), e11);
+                    throw new RuntimeException(sa.e.i("Could not instantiate ", str), e11);
                 } catch (InvocationTargetException e12) {
-                    throw new RuntimeException(t8.b.i("Could not instantiate ", str), e12);
+                    throw new RuntimeException(sa.e.i("Could not instantiate ", str), e12);
                 }
             case 1:
-                return (ComponentRegistrar) this.f44844b;
+                return (ComponentRegistrar) this.f44851b;
             default:
-                return new ra.c((k9.h) this.f44844b);
+                return new ra.c((k9.h) this.f44851b);
         }
     }
 }

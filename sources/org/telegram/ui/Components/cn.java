@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
 public final class cn extends org.telegram.ui.ou0 {
-    public boolean f25417a;
-    public final int f25418b;
-    public final xn f25419c;
+    public boolean f25422a;
+    public final int f25423b;
+    public final xn f25424c;
 
     public cn(xn xnVar, int i10) {
-        this.f25419c = xnVar;
-        this.f25418b = i10;
+        this.f25424c = xnVar;
+        this.f25423b = i10;
     }
 
     @Override
     public final void D() {
-        if (this.f25417a) {
-            this.f25419c.b0(this.f25418b);
+        if (this.f25422a) {
+            this.f25424c.b0(this.f25423b);
         }
     }
 
     @Override
     public final void I() {
-        this.f25419c.e0(this.f25418b, null);
+        this.f25424c.e0(this.f25423b, null);
     }
 
     @Override
     public final void V() {
-        this.f25417a = true;
+        this.f25422a = true;
     }
 
     @Override

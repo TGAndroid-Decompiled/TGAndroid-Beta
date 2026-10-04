@@ -23,43 +23,43 @@ import java.util.RandomAccess;
 import org.telegram.ui.gb1;
 import u2.p1;
 public final class p extends u {
-    public static final y0 f49234l = new w(new gb1(11));
+    public static final y0 f49242l = new w(new gb1(11));
     public final Object d;
-    public final Context f49235e;
-    public final qb.b f49236f;
-    public i f49237g;
+    public final Context f49243e;
+    public final qb.b f49244f;
+    public i f49245g;
     public Thread h;
-    public k f49238i;
-    public b2.e f49239j;
-    public Boolean f49240k;
+    public k f49246i;
+    public b2.e f49247j;
+    public Boolean f49248k;
 
     public p(Context context, qb.b bVar) {
         Context context2;
-        i iVar = i.f49200x0;
+        i iVar = i.f49208x0;
         this.d = new Object();
         if (context != null) {
             context2 = context.getApplicationContext();
         } else {
             context2 = null;
         }
-        this.f49235e = context2;
-        this.f49236f = bVar;
+        this.f49243e = context2;
+        this.f49244f = bVar;
         if (iVar != null) {
-            this.f49237g = iVar;
+            this.f49245g = iVar;
         } else {
             iVar.getClass();
             h hVar = new h(iVar);
             hVar.d(iVar);
-            this.f49237g = new i(hVar);
+            this.f49245g = new i(hVar);
         }
-        this.f49239j = b2.e.h;
-        if (this.f49237g.f49207s0 && context == null) {
+        this.f49247j = b2.e.h;
+        if (this.f49245g.f49215s0 && context == null) {
             e2.a.n("DefaultTrackSelector", "Audio channel count constraints cannot be applied without reference to Context. Build the track selector instance with one of the non-deprecated constructors that take a Context argument.");
         }
     }
 
     public static void c(p1 p1Var, i iVar, HashMap hashMap) {
-        for (int i10 = 0; i10 < p1Var.f47371a; i10++) {
+        for (int i10 = 0; i10 < p1Var.f47379a; i10++) {
             m1 m1Var = (m1) iVar.D.get(p1Var.a(i10));
             if (m1Var != null) {
                 l1 l1Var = m1Var.f3365a;
@@ -79,7 +79,7 @@ public final class p extends u {
         String g11 = g(sVar.d);
         if (g11 != null && g10 != null) {
             if (!g11.startsWith(g10) && !g10.startsWith(g11)) {
-                String str2 = d0.f8537a;
+                String str2 = d0.f8538a;
                 if (!g11.split("-", 2)[0].equals(g10.split("-", 2)[0])) {
                     return 0;
                 }
@@ -133,12 +133,12 @@ public final class p extends u {
         RandomAccess randomAccess;
         t tVar2 = tVar;
         ArrayList arrayList = new ArrayList();
-        int i12 = tVar2.f49243a;
+        int i12 = tVar2.f49251a;
         int i13 = 0;
         while (i13 < i12) {
-            if (i10 == tVar2.f49244b[i13]) {
-                p1 p1Var = tVar2.f49245c[i13];
-                for (int i14 = 0; i14 < p1Var.f47371a; i14++) {
+            if (i10 == tVar2.f49252b[i13]) {
+                p1 p1Var = tVar2.f49253c[i13];
+                for (int i14 = 0; i14 < p1Var.f47379a; i14++) {
                     l1 a2 = p1Var.a(i14);
                     a1 b10 = mVar.b(i13, a2, iArr[i13][i14]);
                     int i15 = a2.f3336a;
@@ -186,10 +186,10 @@ public final class p extends u {
         List list = (List) Collections.max(arrayList, comparator);
         int[] iArr2 = new int[list.size()];
         for (int i19 = 0; i19 < list.size(); i19++) {
-            iArr2[i19] = ((n) list.get(i19)).f49225c;
+            iArr2[i19] = ((n) list.get(i19)).f49233c;
         }
         n nVar3 = (n) list.get(0);
-        return Pair.create(new q(nVar3.f49224b, iArr2), Integer.valueOf(nVar3.f49223a));
+        return Pair.create(new q(nVar3.f49232b, iArr2), Integer.valueOf(nVar3.f49231a));
     }
 
     @Override
@@ -211,12 +211,12 @@ public final class p extends u {
                 throw th2;
             }
         }
-        if (Build.VERSION.SDK_INT >= 32 && (kVar = this.f49238i) != null) {
+        if (Build.VERSION.SDK_INT >= 32 && (kVar = this.f49246i) != null) {
             kVar.d();
-            this.f49238i = null;
+            this.f49246i = null;
         }
-        this.f49248a = null;
-        this.f49249b = null;
+        this.f49256a = null;
+        this.f49257b = null;
     }
 
     @Override
@@ -232,7 +232,7 @@ public final class p extends u {
     public final i e() {
         i iVar;
         synchronized (this.d) {
-            iVar = this.f49237g;
+            iVar = this.f49245g;
         }
         return iVar;
     }
@@ -243,7 +243,7 @@ public final class p extends u {
         k kVar;
         synchronized (this.d) {
             try {
-                if (this.f49237g.f49207s0 && Build.VERSION.SDK_INT >= 32 && (kVar = this.f49238i) != null && kVar.f49214b) {
+                if (this.f49245g.f49215s0 && Build.VERSION.SDK_INT >= 32 && (kVar = this.f49246i) != null && kVar.f49222b) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -252,14 +252,14 @@ public final class p extends u {
                 throw th2;
             }
         }
-        if (z10 && (p0Var = this.f49248a) != null) {
-            p0Var.f11802n.e(10);
+        if (z10 && (p0Var = this.f49256a) != null) {
+            p0Var.f11803n.e(10);
         }
     }
 
     public final void h() {
         synchronized (this.d) {
-            this.f49237g.getClass();
+            this.f49245g.getClass();
         }
     }
 
@@ -267,16 +267,16 @@ public final class p extends u {
         boolean equals;
         iVar.getClass();
         synchronized (this.d) {
-            equals = this.f49237g.equals(iVar);
-            this.f49237g = iVar;
+            equals = this.f49245g.equals(iVar);
+            this.f49245g = iVar;
         }
         if (!equals) {
-            if (iVar.f49207s0 && this.f49235e == null) {
+            if (iVar.f49215s0 && this.f49243e == null) {
                 e2.a.n("DefaultTrackSelector", "Audio channel count constraints cannot be applied without reference to Context. Build the track selector instance with one of the non-deprecated constructors that take a Context argument.");
             }
-            p0 p0Var = this.f49248a;
+            p0 p0Var = this.f49256a;
             if (p0Var != null) {
-                p0Var.f11802n.e(10);
+                p0Var.f11803n.e(10);
             }
         }
     }

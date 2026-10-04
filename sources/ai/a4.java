@@ -33,7 +33,7 @@ public final class a4 extends ChatActivityEnterView {
     public final void C0(int i10, int i11) {
         e6 e6Var = this.f560s5;
         if (e6Var.f841b2 != null) {
-            this.f23930n3 = true;
+            this.f23934n3 = true;
             this.f558q5 = this.E0.getMeasuredHeight();
             this.f559r5 = this.E0.getScrollY();
             invalidate();
@@ -84,11 +84,11 @@ public final class a4 extends ChatActivityEnterView {
                 i10 = 400;
             }
             if (length > i10) {
-                NumberTextView numberTextView = this.f23855b0;
+                NumberTextView numberTextView = this.f23859b0;
                 if (numberTextView != null) {
                     AndroidUtilities.shakeViewSpring(numberTextView, 3.5f);
                     try {
-                        this.f23855b0.performHapticFeedback(3, 2);
+                        this.f23859b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }
@@ -142,7 +142,7 @@ public final class a4 extends ChatActivityEnterView {
             float width = getWidth();
             e6 e6Var = this.f560s5;
             if (e6Var.f865i2 != null) {
-                f7 = this.f23986y * 1.5f;
+                f7 = this.f23990y * 1.5f;
             } else {
                 f7 = 0.0f;
             }

@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class le1 implements Runnable {
-    public final int f38250a;
-    public final me1 f38251b;
-    public final String f38252c;
+    public final int f38255a;
+    public final me1 f38256b;
+    public final String f38257c;
     public final int d;
 
     public le1(me1 me1Var, String str, int i10, int i11) {
-        this.f38250a = i11;
-        this.f38251b = me1Var;
-        this.f38252c = str;
+        this.f38255a = i11;
+        this.f38256b = me1Var;
+        this.f38257c = str;
         this.d = i10;
     }
 

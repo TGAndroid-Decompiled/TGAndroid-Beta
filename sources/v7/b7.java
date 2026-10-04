@@ -112,9 +112,9 @@ public abstract class b7 {
                 createBitmap.copyPixelsFromBuffer(wrap);
                 return createBitmap;
             }
-            throw new IOException(hg.k0.h(c12, "Only 8-bit PGM supported (maxval=255), got: "));
+            throw new IOException(hg.c.h(c12, "Only 8-bit PGM supported (maxval=255), got: "));
         }
-        throw new IOException(t8.b.i("Not a binary PGM (P5), got: ", b10));
+        throw new IOException(sa.e.i("Not a binary PGM (P5), got: ", b10));
     }
 
     public static void e(Bitmap bitmap, GZIPOutputStream gZIPOutputStream, List list) {
@@ -132,7 +132,7 @@ public abstract class b7 {
                     } else {
                         replace = str.replace('\r', ' ').replace('\n', ' ');
                     }
-                    gZIPOutputStream.write(a4.a.p("#", replace, "\n").getBytes(StandardCharsets.US_ASCII));
+                    gZIPOutputStream.write(a4.a.q("#", replace, "\n").getBytes(StandardCharsets.US_ASCII));
                 }
             }
             Charset charset = StandardCharsets.US_ASCII;

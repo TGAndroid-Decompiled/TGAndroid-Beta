@@ -159,14 +159,14 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         qVar.setClipChildren(false);
         gdVar.h = new a3.d(jxVar, 2);
         f fVar = new f(jxVar, 0);
-        gdVar.f26809l = true;
-        gdVar.f26807j = fVar;
+        gdVar.f26814l = true;
+        gdVar.f26812j = fVar;
         qVar.j(new r(jxVar, 0));
         s4.j jVar = new s4.j();
         this.R = jVar;
         jVar.C = false;
         jVar.n(150L);
-        jVar.f46563m = false;
+        jVar.f46570m = false;
         qVar.setItemAnimator(jVar);
         s4.c0 c0Var = new s4.c0(0, false);
         this.S = c0Var;
@@ -201,7 +201,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         addView(imageView, w7.z5.c(22.0f, 90));
         org.telegram.ui.Components.o5 o5Var = new org.telegram.ui.Components.o5(AndroidUtilities.dp(26.0f), null);
         this.f594a0 = o5Var;
-        o5Var.f29222a = true;
+        o5Var.f29227a = true;
         o5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.W = imageView2;
@@ -223,7 +223,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         ?? jVar2 = new s4.j();
         this.d = jVar2;
         jVar2.C = false;
-        jVar2.f46563m = false;
+        jVar2.f46570m = false;
         qVar2.setItemAnimator(jVar2);
         qVar2.setAdapter(vVar2);
         qVar2.setClipChildren(false);
@@ -351,7 +351,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         int i11;
         int i12;
         float a2 = w7.q.a(Math.min(this.N, this.f599d0), 0.0f, 1.0f);
-        float f7 = this.f593a.f15435e;
+        float f7 = this.f593a.f15436e;
         float f10 = 1.0f - f7;
         float f11 = f7 * a2;
         float f12 = f10 * a2;
@@ -869,7 +869,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         }
         if (ia.d != null) {
             int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.xj, false);
-            int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21059q7, false);
+            int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21063q7, false);
             ia.d.d(i0.a.d(0.25f, w02, w03), w03, 0, 0);
         }
         int textColor = getTextColor();
@@ -889,8 +889,8 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         p(false, false);
         NotificationCenter.getInstance(this.f602f).addObserver(this, NotificationCenter.storiesUpdated);
         com.google.firebase.messaging.m mVar = this.L0;
-        mVar.f7901a = true;
-        AnimatorSet animatorSet = (AnimatorSet) mVar.f7903c;
+        mVar.f7902a = true;
+        AnimatorSet animatorSet = (AnimatorSet) mVar.f7904c;
         if (!animatorSet.isRunning()) {
             animatorSet.start();
         }
@@ -902,8 +902,8 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.f602f).removeObserver(this, NotificationCenter.storiesUpdated);
         com.google.firebase.messaging.m mVar = this.L0;
-        mVar.f7901a = false;
-        ((AnimatorSet) mVar.f7903c).cancel();
+        mVar.f7902a = false;
+        ((AnimatorSet) mVar.f7904c).cancel();
         da daVar = this.f616r0;
         if (daVar != null) {
             daVar.a();
@@ -938,8 +938,8 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
             gdVar.getClass();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((int) qVar.getX(), (int) qVar.getY(), x10, y3);
-            gdVar.f26806i = false;
-            gdVar.f26802c = 0;
+            gdVar.f26811i = false;
+            gdVar.f26807c = 0;
             gdVar.a(rectF);
             if (gdVar.b(motionEvent)) {
                 return true;

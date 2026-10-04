@@ -121,8 +121,8 @@ public final class d extends l {
                 m f7 = f();
                 long j11 = this.f293e;
                 kVar.timeUs = j11;
-                kVar.f52374a = f7;
-                kVar.f52375b = j11;
+                kVar.f52379a = f7;
+                kVar.f52380b = j11;
                 return kVar;
             }
             return null;
@@ -147,14 +147,14 @@ public final class d extends l {
             d2.b c10 = ((c) arrayList.get(i11)).c(Integer.MIN_VALUE);
             arrayList2.add(c10);
             if (c10 != null) {
-                i10 = Math.min(i10, c10.f8027i);
+                i10 = Math.min(i10, c10.f8028i);
             }
         }
         ArrayList arrayList3 = new ArrayList(size);
         for (int i12 = 0; i12 < size; i12++) {
             d2.b bVar = (d2.b) arrayList2.get(i12);
             if (bVar != null) {
-                if (bVar.f8027i != i10) {
+                if (bVar.f8028i != i10) {
                     bVar = ((c) arrayList.get(i12)).c(i10);
                     bVar.getClass();
                 }

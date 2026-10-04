@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 public final class a0 extends y0 implements Serializable {
-    public final Comparator[] f8719a;
+    public final Comparator[] f8720a;
 
     public a0(p pVar, p pVar2) {
-        this.f8719a = new Comparator[]{pVar, pVar2};
+        this.f8720a = new Comparator[]{pVar, pVar2};
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int i10 = 0;
         while (true) {
-            Comparator[] comparatorArr = this.f8719a;
+            Comparator[] comparatorArr = this.f8720a;
             if (i10 >= comparatorArr.length) {
                 return 0;
             }
@@ -32,16 +32,16 @@ public final class a0 extends y0 implements Serializable {
             return true;
         }
         if (obj instanceof a0) {
-            return Arrays.equals(this.f8719a, ((a0) obj).f8719a);
+            return Arrays.equals(this.f8720a, ((a0) obj).f8720a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f8719a);
+        return Arrays.hashCode(this.f8720a);
     }
 
     public final String toString() {
-        return a4.a.s(new StringBuilder("Ordering.compound("), Arrays.toString(this.f8719a), ")");
+        return a4.a.t(new StringBuilder("Ordering.compound("), Arrays.toString(this.f8720a), ")");
     }
 }

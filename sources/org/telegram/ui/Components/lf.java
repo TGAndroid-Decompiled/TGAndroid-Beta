@@ -1,20 +1,20 @@
 package org.telegram.ui.Components;
 public final class lf implements o1.g {
-    public boolean f28356a = false;
-    public final float f28357b;
-    public final bw0 f28358c;
+    public boolean f28361a = false;
+    public final float f28362b;
+    public final bw0 f28363c;
 
     public lf(float f7, bw0 bw0Var) {
-        this.f28357b = f7;
-        this.f28358c = bw0Var;
+        this.f28362b = f7;
+        this.f28363c = bw0Var;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
-        if (!this.f28356a && f7 >= this.f28357b) {
-            this.f28356a = true;
+        if (!this.f28361a && f7 >= this.f28362b) {
+            this.f28361a = true;
             try {
-                this.f28358c.performHapticFeedback(3, 2);
+                this.f28363c.performHapticFeedback(3, 2);
             } catch (Exception unused) {
             }
         }

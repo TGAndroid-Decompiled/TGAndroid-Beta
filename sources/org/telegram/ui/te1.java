@@ -8,21 +8,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class te1 extends c71 {
-    public boolean f40806d2;
-    public final ue1 f40807e2;
+    public boolean f40812d2;
+    public final ue1 f40813e2;
 
     public te1(ue1 ue1Var, ue1 ue1Var2, Activity activity) {
         super(ue1Var2, activity, false, null, 3, null);
-        this.f40807e2 = ue1Var;
-        this.f40806d2 = true;
+        this.f40813e2 = ue1Var;
+        this.f40812d2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f40806d2) {
-            this.f40806d2 = false;
-            this.f40807e2.f41159f.s(null);
+        if (this.f40812d2) {
+            this.f40812d2 = false;
+            this.f40813e2.f41165f.s(null);
         }
     }
 
@@ -31,7 +31,7 @@ public final class te1 extends c71 {
         int i10;
         int i11;
         long j3;
-        ue1 ue1Var = this.f40807e2;
+        ue1 ue1Var = this.f40813e2;
         i10 = ((org.telegram.ui.ActionBar.n2) ue1Var).currentAccount;
         boolean z10 = false;
         if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
@@ -41,7 +41,7 @@ public final class te1 extends c71 {
             if (stickerSetByEmojiOrName == null) {
                 j3 = 0;
             } else {
-                j3 = stickerSetByEmojiOrName.set.f20065id;
+                j3 = stickerSetByEmojiOrName.set.f20069id;
             }
             if (j3 == MediaDataController.getStickerSetId(document)) {
                 z10 = true;

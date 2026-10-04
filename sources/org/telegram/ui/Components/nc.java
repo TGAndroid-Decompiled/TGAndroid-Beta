@@ -7,28 +7,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public class nc extends ob {
-    public final w9 f28926a;
-    public final TextView f28927b;
-    public final TextView f28928c;
+    public final w9 f28931a;
+    public final TextView f28932b;
+    public final TextView f28933c;
 
     public nc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
         int themedColor = getThemedColor(org.telegram.ui.ActionBar.i6.Hi);
         w9 w9Var = new w9(context);
-        this.f28926a = w9Var;
+        this.f28931a = w9Var;
         addView(w9Var, w7.z5.i(29.0f, 29.0f, 8388627, 12.0f, 12.0f, 12.0f, 12.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.z5.i(-2.0f, -2.0f, 8388627, 54.0f, 8.0f, 12.0f, 8.0f));
         TextView textView = new TextView(context);
-        this.f28927b = textView;
+        this.f28932b = textView;
         textView.setSingleLine();
         textView.setTextColor(themedColor);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(textView);
         TextView textView2 = new TextView(context);
-        this.f28928c = textView2;
+        this.f28933c = textView2;
         textView2.setMaxLines(2);
         textView2.setTextColor(themedColor);
         textView2.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.Gi));
@@ -40,6 +40,6 @@ public class nc extends ob {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f28927b.getText()) + ".\n" + ((Object) this.f28928c.getText());
+        return ((Object) this.f28932b.getText()) + ".\n" + ((Object) this.f28933c.getText());
     }
 }

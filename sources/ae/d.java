@@ -39,7 +39,7 @@ public final class d extends j implements l {
             case 0:
                 Throwable th3 = (Throwable) obj;
                 ((e) this.f432c).f433c.removeCallbacks((s) this.d);
-                return i.f10452a;
+                return i.f10453a;
             default:
                 Throwable th4 = (Throwable) obj;
                 ((g) this.f432c).invoke(th4);
@@ -117,7 +117,7 @@ public final class d extends j implements l {
                                     long j13 = be.d.f3796b;
                                     long j14 = andIncrement / j13;
                                     int i12 = (int) (andIncrement % j13);
-                                    if (hVar.f8892c != j14) {
+                                    if (hVar.f8893c != j14) {
                                         h e7 = bVar.e(j14, hVar);
                                         if (e7 == null) {
                                             continue;
@@ -157,13 +157,13 @@ public final class d extends j implements l {
                     if (eVar instanceof be.f) {
                         eVar = null;
                     }
-                    i iVar2 = i.f10452a;
+                    i iVar2 = i.f10453a;
                     if (eVar == null) {
                         iVar = null;
                     } else {
                         k kVar = (k) eVar;
                         if (kVar instanceof k1.j) {
-                            t tVar = ((k1.j) kVar).f14308b;
+                            t tVar = ((k1.j) kVar).f14309b;
                             if (th4 == null) {
                                 th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
                             } else {

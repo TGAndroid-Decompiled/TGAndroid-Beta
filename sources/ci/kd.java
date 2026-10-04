@@ -5,8 +5,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.pe0;
 public abstract class kd {
-    public static String f5459a;
-    public static jd f5460b;
+    public static String f5460a;
+    public static jd f5461b;
 
     public static void a(boolean z10, Utilities.Callback callback) {
         pe0.e(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new ai.i3(2, new ai.i3(1, callback, z10), z10));

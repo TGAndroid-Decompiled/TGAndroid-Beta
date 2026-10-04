@@ -22,9 +22,9 @@ public abstract class u7 {
                 try {
                     k10 = obj.toString();
                 } catch (Exception e7) {
-                    String C = a4.a.C(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(C), (Throwable) e7);
-                    k10 = org.telegram.ui.Cells.c1.k("<", C, " threw ", e7.getClass().getName(), ">");
+                    String D = a4.a.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e7);
+                    k10 = org.telegram.ui.Cells.c1.k("<", D, " threw ", e7.getClass().getName(), ">");
                 }
             }
             objArr[i11] = k10;

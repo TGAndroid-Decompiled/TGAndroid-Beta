@@ -12,15 +12,15 @@ import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class j41 extends Thread {
-    public final String f27594a;
-    public final String f27595b;
-    public final String f27596c;
+    public final String f27599a;
+    public final String f27600b;
+    public final String f27601c;
     public final Utilities.Callback2 d;
 
     public j41(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        this.f27594a = str;
-        this.f27595b = str2;
-        this.f27596c = str3;
+        this.f27599a = str;
+        this.f27600b = str2;
+        this.f27601c = str3;
         this.d = callback2;
     }
 
@@ -30,11 +30,11 @@ public final class j41 extends Thread {
         Integer num;
         String str;
         Utilities.Callback2 callback2 = this.d;
-        String str2 = this.f27596c;
+        String str2 = this.f27601c;
         boolean z10 = false;
         String str3 = null;
         try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f27594a) + "&tl=" + Uri.encode(this.f27595b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f27599a) + "&tl=" + Uri.encode(this.f27600b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
         } catch (Exception e7) {
             e = e7;
             httpURLConnection = null;
@@ -44,7 +44,7 @@ public final class j41 extends Thread {
             httpURLConnection.setRequestProperty("User-Agent", t41.R[(int) Math.round(Math.random() * 5)]);
             httpURLConnection.setRequestProperty("Content-Type", "application/json");
             StringBuilder sb2 = new StringBuilder();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.d.f8161a));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.d.f8162a));
             while (true) {
                 int read = bufferedReader.read();
                 if (read == -1) {

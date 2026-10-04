@@ -15,7 +15,7 @@ public final class l1 {
     public int f3339e;
 
     static {
-        String str = e2.d0.f8537a;
+        String str = e2.d0.f8538a;
         f3334f = Integer.toString(0, 36);
         f3335g = Integer.toString(1, 36);
     }
@@ -49,12 +49,12 @@ public final class l1 {
     }
 
     public static void b(String str, int i10, String str2, String str3) {
-        StringBuilder w10 = a4.a.w("Different ", str, " combined in one TrackGroup: '", str2, "' (track 0) and '");
-        w10.append(str3);
-        w10.append("' (track ");
-        w10.append(i10);
-        w10.append(")");
-        e2.a.f("TrackGroup", "", new IllegalStateException(w10.toString()));
+        StringBuilder x10 = a4.a.x("Different ", str, " combined in one TrackGroup: '", str2, "' (track 0) and '");
+        x10.append(str3);
+        x10.append("' (track ");
+        x10.append(i10);
+        x10.append(")");
+        e2.a.f("TrackGroup", "", new IllegalStateException(x10.toString()));
     }
 
     public final int a(s sVar) {

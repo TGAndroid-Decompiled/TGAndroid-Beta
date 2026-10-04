@@ -99,7 +99,7 @@ public class ChannelBoostsController {
                     i12++;
                     TL_stories.TL_myBoost tL_myBoost5 = tL_myBoost4;
                     TLRPC.Peer peer = tL_myBoost5.peer;
-                    if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.f20038id)) {
+                    if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.f20042id)) {
                         arrayList3.add(tL_myBoost5);
                     }
                 }
@@ -148,16 +148,16 @@ public class ChannelBoostsController {
             LaunchActivity launchActivity = LaunchActivity.G1;
             if (launchActivity == null || !launchActivity.isFinishing()) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
-                alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.AppName);
                 HashMap hashMap = new HashMap();
                 int i10 = org.telegram.ui.ActionBar.i6.L5;
                 hashMap.put("info1", Integer.valueOf(org.telegram.ui.ActionBar.i6.w0(null, i10, false)));
                 hashMap.put("info2", Integer.valueOf(org.telegram.ui.ActionBar.i6.w0(null, i10, false)));
                 alertDialog$Builder.m(R.raw.not_available, 52, org.telegram.ui.ActionBar.i6.w0(null, i10, false), hashMap);
-                alertDialog$Builder.f20368a.W = true;
-                alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.ChannelPrivate);
-                alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
-                f0.o(R.string.Close, alertDialog$Builder, null);
+                alertDialog$Builder.f20372a.W = true;
+                alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.ChannelPrivate);
+                alertDialog$Builder.f20372a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
+                q.o(R.string.Close, alertDialog$Builder, null);
             }
         } else {
             org.telegram.ui.Components.yc.X().d0(tL_error, false);
@@ -207,7 +207,7 @@ public class ChannelBoostsController {
         canApplyBoost.currentDialogId = j3;
         canApplyBoost.currentChat = this.messagesController.getChat(Long.valueOf(-j3));
         g2 g2Var = new g2(canApplyBoost, tL_premium_boostsStatus, callback, 1);
-        v vVar = new v(1, canApplyBoost, callback);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new ai.s5(vVar, MessagesController.getInstance(UserConfig.selectedAccount), g2Var, 17));
+        w wVar = new w(1, canApplyBoost, callback);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new ai.s5(wVar, MessagesController.getInstance(UserConfig.selectedAccount), g2Var, 17));
     }
 }

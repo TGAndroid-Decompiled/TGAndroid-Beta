@@ -2,39 +2,39 @@ package ci;
 
 import android.animation.ValueAnimator;
 public final class sa implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5923a;
-    public final kc f5924b;
+    public final int f5924a;
+    public final kc f5925b;
 
     public sa(kc kcVar, int i10) {
-        this.f5923a = i10;
-        this.f5924b = kcVar;
+        this.f5924a = i10;
+        this.f5925b = kcVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f5923a) {
+        switch (this.f5924a) {
             case 0:
-                this.f5924b.M0.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f5925b.M0.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                this.f5924b.f5429r1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f5925b.f5430r1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 2:
-                this.f5924b.f5429r1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f5925b.f5430r1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 3:
-                this.f5924b.f5433s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f5925b.f5434s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 4:
-                this.f5924b.f5433s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f5925b.f5434s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                kc kcVar = this.f5924b;
+                kc kcVar = this.f5925b;
                 kcVar.getClass();
                 kcVar.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 kcVar.o();
-                kcVar.f5427r.invalidate();
-                kcVar.f5414n.invalidate();
+                kcVar.f5428r.invalidate();
+                kcVar.f5415n.invalidate();
                 return;
         }
     }

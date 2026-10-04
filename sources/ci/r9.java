@@ -7,20 +7,20 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.il0;
 import org.telegram.ui.Components.wl;
 import org.telegram.ui.Components.xi;
 import org.telegram.ui.Components.zl0;
 public final class r9 extends s4.s0 {
-    public final int f5871a;
-    public boolean f5872b;
-    public final FrameLayout f5873c;
+    public final int f5872a;
+    public boolean f5873b;
+    public final FrameLayout f5874c;
 
     public r9(int i10, FrameLayout frameLayout) {
-        this.f5871a = i10;
-        this.f5873c = frameLayout;
+        this.f5872a = i10;
+        this.f5874c = frameLayout;
     }
 
     @Override
@@ -30,15 +30,15 @@ public final class r9 extends s4.s0 {
         il0 il0Var;
         int topScrollOffset;
         int topScrollOffset2;
-        switch (this.f5871a) {
+        switch (this.f5872a) {
             case 0:
-                x9 x9Var = (x9) this.f5873c;
-                zl0 zl0Var = x9Var.f6306f;
+                x9 x9Var = (x9) this.f5874c;
+                zl0 zl0Var = x9Var.f6307f;
                 ea eaVar = x9Var.W;
                 boolean z11 = true;
                 if (i10 == 1) {
                     z10 = ((org.telegram.ui.ActionBar.f3) eaVar).keyboardVisible;
-                    if (z10 && x9Var.f6311x != null) {
+                    if (z10 && x9Var.f6312x != null) {
                         eaVar.f1();
                     }
                 }
@@ -52,12 +52,12 @@ public final class r9 extends s4.s0 {
                 x9Var.M = z11;
                 return;
             default:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5873c;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5874c;
                 wl wlVar = chatAttachAlertPhotoLayout.E;
-                xi xiVar = chatAttachAlertPhotoLayout.f29643b;
+                xi xiVar = chatAttachAlertPhotoLayout.f29648b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.v0 v0Var = xiVar.f32796a1;
+                    org.telegram.ui.ActionBar.v0 v0Var = xiVar.f32802a1;
                     if (v0Var != null) {
                         i11 = AndroidUtilities.dp(v0Var.getAlpha() * 26.0f);
                     } else {
@@ -65,8 +65,8 @@ public final class r9 extends s4.s0 {
                     }
                     int i12 = dp + i11;
                     int backgroundPaddingTop = xiVar.getBackgroundPaddingTop();
-                    if (((xiVar.f32800b2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (xiVar.O0.getAlpha() * xiVar.O0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (il0Var = (il0) wlVar.K(0)) != null) {
-                        View view = il0Var.f46524a;
+                    if (((xiVar.f32806b2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (xiVar.O0.getAlpha() * xiVar.O0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (il0Var = (il0) wlVar.K(0)) != null) {
+                        View view = il0Var.f46531a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -88,20 +88,20 @@ public final class r9 extends s4.s0 {
         ViewGroup viewGroup;
         int i12;
         int i13;
-        switch (this.f5871a) {
+        switch (this.f5872a) {
             case 0:
-                x9 x9Var = (x9) this.f5873c;
+                x9 x9Var = (x9) this.f5874c;
                 ea eaVar = x9Var.W;
-                zl0 zl0Var = x9Var.f6306f;
+                zl0 zl0Var = x9Var.f6307f;
                 boolean canScrollVertically = zl0Var.canScrollVertically(1);
-                if (canScrollVertically != this.f5872b) {
-                    x9Var.f6308r.invalidate();
-                    this.f5872b = canScrollVertically;
+                if (canScrollVertically != this.f5873b) {
+                    x9Var.f6309r.invalidate();
+                    this.f5873b = canScrollVertically;
                 }
-                x9Var.f6305e.invalidate();
+                x9Var.f6306e.invalidate();
                 viewGroup = ((org.telegram.ui.ActionBar.f3) eaVar).containerView;
                 viewGroup.invalidate();
-                if (x9Var.f6302a == 6 && zl0Var.getChildCount() > 0) {
+                if (x9Var.f6303a == 6 && zl0Var.getChildCount() > 0) {
                     int R = RecyclerView.R(zl0Var.getChildAt(0));
                     i12 = ((org.telegram.ui.ActionBar.f3) eaVar).currentAccount;
                     if (R >= MessagesController.getInstance(i12).getStoriesController().L.size()) {
@@ -113,22 +113,22 @@ public final class r9 extends s4.s0 {
                 }
                 return;
             default:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5873c;
-                xi xiVar = chatAttachAlertPhotoLayout.f29643b;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5874c;
+                xi xiVar = chatAttachAlertPhotoLayout.f29648b;
                 wl wlVar = chatAttachAlertPhotoLayout.E;
                 if (wlVar.getChildCount() > 0) {
-                    xiVar.U1(chatAttachAlertPhotoLayout, i11);
+                    xiVar.W1(chatAttachAlertPhotoLayout, i11);
                     float f7 = 0.0f;
                     if (chatAttachAlertPhotoLayout.G.h() > 30) {
-                        boolean z10 = this.f5872b;
+                        boolean z10 = this.f5873b;
                         boolean z11 = xiVar.R;
                         if (z10 != z11) {
-                            this.f5872b = z11;
+                            this.f5873b = z11;
                             ViewPropertyAnimator animate = wlVar.getFastScroll().animate();
-                            if (this.f5872b) {
+                            if (this.f5873b) {
                                 f7 = 1.0f;
                             }
-                            ok.r(animate, f7, 100L);
+                            bi.q(animate, f7, 100L);
                         }
                     } else {
                         wlVar.getFastScroll().setAlpha(0.0f);

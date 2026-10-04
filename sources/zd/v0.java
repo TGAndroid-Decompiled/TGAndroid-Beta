@@ -5,14 +5,14 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 public abstract class v0 extends w0 implements j0 {
     public static final AtomicReferenceFieldUpdater h = AtomicReferenceFieldUpdater.newUpdater(v0.class, Object.class, "_queue$volatile");
-    public static final AtomicReferenceFieldUpdater f53281n = AtomicReferenceFieldUpdater.newUpdater(v0.class, Object.class, "_delayed$volatile");
-    public static final AtomicIntegerFieldUpdater f53282r = AtomicIntegerFieldUpdater.newUpdater(v0.class, "_isCompleted$volatile");
+    public static final AtomicReferenceFieldUpdater f53286n = AtomicReferenceFieldUpdater.newUpdater(v0.class, Object.class, "_delayed$volatile");
+    public static final AtomicIntegerFieldUpdater f53287r = AtomicIntegerFieldUpdater.newUpdater(v0.class, "_isCompleted$volatile");
     private volatile Object _delayed$volatile;
     private volatile int _isCompleted$volatile = 0;
     private volatile Object _queue$volatile;
 
     public o0 a(long j3, e2 e2Var, id.h hVar) {
-        return g0.f53228a.a(j3, e2Var, hVar);
+        return g0.f53233a.a(j3, e2Var, hVar);
     }
 
     @Override
@@ -52,7 +52,7 @@ public abstract class v0 extends w0 implements j0 {
             }
             return;
         }
-        f0.f53223s.l(runnable);
+        f0.f53228s.l(runnable);
     }
 
     public final boolean m(java.lang.Runnable r7) {
@@ -66,16 +66,16 @@ public abstract class v0 extends w0 implements j0 {
     public final void o(long j3, t0 t0Var) {
         int c10;
         Thread g10;
-        int i10 = f53282r.get(this);
+        int i10 = f53287r.get(this);
         t0 t0Var2 = null;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f53281n;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f53286n;
         if (i10 != 0) {
             c10 = 1;
         } else {
             u0 u0Var = (u0) atomicReferenceFieldUpdater.get(this);
             if (u0Var == null) {
                 ?? obj = new Object();
-                obj.f53276c = j3;
+                obj.f53281c = j3;
                 while (!atomicReferenceFieldUpdater.compareAndSet(this, null, obj) && atomicReferenceFieldUpdater.get(this) == null) {
                 }
                 Object obj2 = atomicReferenceFieldUpdater.get(this);
@@ -106,9 +106,9 @@ public abstract class v0 extends w0 implements j0 {
     @Override
     public void shutdown() {
         t0 t0Var;
-        c2.f53201a.set(null);
-        f53282r.set(this, 1);
-        com.google.android.gms.internal.clearcut.e eVar = e0.f53210c;
+        c2.f53206a.set(null);
+        f53287r.set(this, 1);
+        com.google.android.gms.internal.clearcut.e eVar = e0.f53215c;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = h;
         loop0: while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
@@ -139,10 +139,10 @@ public abstract class v0 extends w0 implements j0 {
         } while (i() <= 0);
         long nanoTime = System.nanoTime();
         while (true) {
-            u0 u0Var = (u0) f53281n.get(this);
+            u0 u0Var = (u0) f53286n.get(this);
             if (u0Var != null) {
                 synchronized (u0Var) {
-                    if (ee.x.f8898b.get(u0Var) > 0) {
+                    if (ee.x.f8899b.get(u0Var) > 0) {
                         t0Var = u0Var.d(0);
                     } else {
                         t0Var = null;

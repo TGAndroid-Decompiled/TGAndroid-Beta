@@ -1,4 +1,4 @@
 package li;
 public interface j {
-    int f();
+    void k(int i10);
 }

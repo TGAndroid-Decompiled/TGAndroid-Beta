@@ -9,12 +9,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
 public final class a implements d, d6 {
-    public final int f8902a;
-    public final d6 f8903b;
+    public final int f8903a;
+    public final d6 f8904b;
 
     public a(int i10, d6 d6Var) {
-        this.f8902a = i10;
-        this.f8903b = d6Var;
+        this.f8903a = i10;
+        this.f8904b = d6Var;
     }
 
     @Override
@@ -28,13 +28,13 @@ public final class a implements d, d6 {
             return -14145495;
         }
         if (i10 != i6.E8) {
-            if (i10 == i6.f20890h5) {
+            if (i10 == i6.f20894h5) {
                 return -14737633;
             }
-            if (i10 == i6.f20926j5) {
+            if (i10 == i6.f20930j5) {
                 return -592138;
             }
-            if (i10 == i6.f21077r5) {
+            if (i10 == i6.f21081r5) {
                 return -8553091;
             }
             if (i10 != i6.He) {
@@ -49,7 +49,7 @@ public final class a implements d, d6 {
                     if (i10 == i11) {
                         return -11754001;
                     }
-                    if (i10 == i6.f20909i6) {
+                    if (i10 == i6.f20913i6) {
                         return 536870911;
                     }
                     if (i10 != i6.Fh && i10 != i6.Eh && i10 != i6.Gh) {
@@ -60,25 +60,25 @@ public final class a implements d, d6 {
                             if (i10 == i6.Ie) {
                                 return 780633991;
                             }
-                            if (i10 == i6.f20762a7) {
+                            if (i10 == i6.f20766a7) {
                                 return -15921907;
                             }
-                            if (i10 == i6.f20985m7) {
+                            if (i10 == i6.f20989m7) {
                                 return -12500671;
                             }
-                            if (i10 == i6.f20966l7) {
+                            if (i10 == i6.f20970l7) {
                                 return -13133079;
                             }
-                            if (i10 == i6.f21005n7) {
+                            if (i10 == i6.f21009n7) {
                                 return -1;
                             }
-                            if (i10 == i6.f20818d6) {
+                            if (i10 == i6.f20822d6) {
                                 return -15198183;
                             }
-                            if (i10 == i6.f20819d7) {
+                            if (i10 == i6.f20823d7) {
                                 return -16777216;
                             }
-                            d6 d6Var = this.f8903b;
+                            d6 d6Var = this.f8904b;
                             if (d6Var != null) {
                                 return d6Var.H0(i10);
                             }
@@ -112,9 +112,9 @@ public final class a implements d, d6 {
         int i10;
         float f11;
         int i11;
-        switch (this.f8902a) {
+        switch (this.f8903a) {
             case 0:
-                if (!b.c(UserConfig.selectedAccount, this.f8903b)) {
+                if (!b.c(UserConfig.selectedAccount, this.f8904b)) {
                     return i0.a.k(i6.v0(i6.Sd, d6Var), 255);
                 }
                 if (LiteMode.isEnabled(262144)) {
@@ -124,11 +124,11 @@ public final class a implements d, d6 {
                 }
                 return i6.l1(f7, i6.v0(i6.Sd, d6Var));
             case 1:
-                if (!b.c(UserConfig.selectedAccount, this.f8903b)) {
+                if (!b.c(UserConfig.selectedAccount, this.f8904b)) {
                     if (z10) {
-                        i10 = i6.f21100s8;
+                        i10 = i6.f21104s8;
                     } else {
-                        i10 = i6.f20807ce;
+                        i10 = i6.f20811ce;
                     }
                     return i0.a.k(i6.v0(i10, d6Var), 255);
                 }
@@ -137,13 +137,13 @@ public final class a implements d, d6 {
                 } else {
                     f10 = 0.76f;
                 }
-                return i6.l1(f10, i6.v0(i6.f20807ce, d6Var));
+                return i6.l1(f10, i6.v0(i6.f20811ce, d6Var));
             default:
-                if (!b.c(UserConfig.selectedAccount, this.f8903b)) {
+                if (!b.c(UserConfig.selectedAccount, this.f8904b)) {
                     if (z10) {
-                        i11 = i6.f21100s8;
+                        i11 = i6.f21104s8;
                     } else {
-                        i11 = i6.f20807ce;
+                        i11 = i6.f20811ce;
                     }
                     return i0.a.k(i6.v0(i11, d6Var), 255);
                 }
@@ -152,7 +152,7 @@ public final class a implements d, d6 {
                 } else {
                     f11 = 0.76f;
                 }
-                return i6.l1(f11, i6.v0(i6.f20807ce, d6Var));
+                return i6.l1(f11, i6.v0(i6.f20811ce, d6Var));
         }
     }
 
@@ -178,7 +178,7 @@ public final class a implements d, d6 {
 
     @Override
     public ColorFilter x() {
-        return i6.f21150v3;
+        return i6.f21154v3;
     }
 
     @Override

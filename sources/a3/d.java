@@ -119,7 +119,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f82b;
-                int i10 = ProfileStoriesView.f34488s0;
+                int i10 = ProfileStoriesView.f34494s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -138,8 +138,8 @@ public final class d implements Runnable {
                 return;
             case 13:
                 b1 b1Var = (b1) this.f82b;
-                b1Var.c(b1Var.f4727b);
-                b1Var.f4728c = false;
+                b1Var.c(b1Var.f4728b);
+                b1Var.f4729c = false;
                 return;
             case 14:
                 p9 p9Var = (p9) this.f82b;
@@ -252,24 +252,24 @@ public final class d implements Runnable {
                         if (pVar.h != null) {
                             try {
                                 o0.i d = pVar.d();
-                                int i11 = d.f16951e;
+                                int i11 = d.f16955e;
                                 if (i11 == 2) {
                                     synchronized (pVar.d) {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f16488a;
+                                    int i12 = n0.g.f16492a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                                     t7.u uVar = pVar.f2544c;
                                     Context context = pVar.f2542a;
                                     uVar.getClass();
                                     o0.i[] iVarArr = {d};
-                                    h8 h8Var = i0.e.f11531a;
+                                    h8 h8Var = i0.e.f11532a;
                                     b8.a("TypefaceCompat.createFromFontInfo");
                                     try {
-                                        Typeface b10 = i0.e.f11531a.b(context, iVarArr, 0);
+                                        Typeface b10 = i0.e.f11532a.b(context, iVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e7 = i8.e(pVar.f2542a, d.f16948a);
+                                        MappedByteBuffer e7 = i8.e(pVar.f2542a, d.f16952a);
                                         if (e7 != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
@@ -284,7 +284,7 @@ public final class d implements Runnable {
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f16488a;
+                                                int i13 = n0.g.f16492a;
                                                 throw th2;
                                             }
                                         }

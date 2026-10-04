@@ -18,19 +18,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class ng0 implements RequestDelegate {
-    public final int f38975a;
-    public final tg0 f38976b;
+    public final int f38980a;
+    public final tg0 f38981b;
 
     public ng0(tg0 tg0Var, int i10) {
-        this.f38975a = i10;
-        this.f38976b = tg0Var;
+        this.f38980a = i10;
+        this.f38981b = tg0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f38975a) {
+        switch (this.f38980a) {
             case 0:
-                final tg0 tg0Var = this.f38976b;
+                final tg0 tg0Var = this.f38981b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,7 +39,7 @@ public final class ng0 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 tg0 tg0Var2 = tg0Var;
-                                yj0 yj0Var = tg0Var2.f40817a;
+                                yj0 yj0Var = tg0Var2.f40823a;
                                 HashMap hashMap = tg0Var2.G;
                                 ArrayList arrayList = tg0Var2.E;
                                 HashMap hashMap2 = tg0Var2.F;
@@ -55,13 +55,13 @@ public final class ng0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f41298a = str;
+                                                obj.f41305a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f41299b = str2;
+                                                obj.f41306b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f41298a = str2;
+                                                    obj.f41305a = str2;
                                                 }
-                                                obj.f41300c = tL_help_countryCode.country_code;
+                                                obj.f41307c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -92,7 +92,7 @@ public final class ng0 implements RequestDelegate {
                                                         if (list2.size() > 1) {
                                                             String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
                                                             if (string != null) {
-                                                                utVar = (ut) t8.b.h(1, list2);
+                                                                utVar = (ut) sa.e.h(1, list2);
                                                                 int size = arrayList.size();
                                                                 int i14 = 0;
                                                                 while (true) {
@@ -106,7 +106,7 @@ public final class ng0 implements RequestDelegate {
                                                                     }
                                                                 }
                                                             } else {
-                                                                utVar = (ut) t8.b.h(1, list2);
+                                                                utVar = (ut) sa.e.h(1, list2);
                                                             }
                                                             utVar2 = utVar;
                                                         } else {
@@ -154,7 +154,7 @@ public final class ng0 implements RequestDelegate {
                 });
                 return;
             default:
-                final tg0 tg0Var2 = this.f38976b;
+                final tg0 tg0Var2 = this.f38981b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -163,7 +163,7 @@ public final class ng0 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 tg0 tg0Var22 = tg0Var2;
-                                yj0 yj0Var = tg0Var22.f40817a;
+                                yj0 yj0Var = tg0Var22.f40823a;
                                 HashMap hashMap = tg0Var22.G;
                                 ArrayList arrayList = tg0Var22.E;
                                 HashMap hashMap2 = tg0Var22.F;
@@ -179,13 +179,13 @@ public final class ng0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f41298a = str;
+                                                obj.f41305a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f41299b = str2;
+                                                obj.f41306b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f41298a = str2;
+                                                    obj.f41305a = str2;
                                                 }
-                                                obj.f41300c = tL_help_countryCode.country_code;
+                                                obj.f41307c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -216,7 +216,7 @@ public final class ng0 implements RequestDelegate {
                                                         if (list2.size() > 1) {
                                                             String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
                                                             if (string != null) {
-                                                                utVar = (ut) t8.b.h(1, list2);
+                                                                utVar = (ut) sa.e.h(1, list2);
                                                                 int size = arrayList.size();
                                                                 int i14 = 0;
                                                                 while (true) {
@@ -230,7 +230,7 @@ public final class ng0 implements RequestDelegate {
                                                                     }
                                                                 }
                                                             } else {
-                                                                utVar = (ut) t8.b.h(1, list2);
+                                                                utVar = (ut) sa.e.h(1, list2);
                                                             }
                                                             utVar2 = utVar;
                                                         } else {

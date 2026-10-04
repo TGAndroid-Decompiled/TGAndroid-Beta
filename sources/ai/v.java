@@ -32,7 +32,7 @@ public final class v extends og.b {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        a0 a0Var = (a0) c1Var.f46524a;
+        a0 a0Var = (a0) c1Var.f46531a;
         a0Var.f539b = i10;
         boolean z10 = this.d;
         jx jxVar = this.f1733e;

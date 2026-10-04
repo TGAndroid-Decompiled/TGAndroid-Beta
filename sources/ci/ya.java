@@ -14,14 +14,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.fw0;
 import org.telegram.ui.ProfileActivity;
 public final class ya implements Utilities.Callback2 {
-    public final int f6349a;
-    public final boolean f6350b;
-    public final NotificationCenter.NotificationCenterDelegate f6351c;
+    public final int f6350a;
+    public final boolean f6351b;
+    public final NotificationCenter.NotificationCenterDelegate f6352c;
 
     public ya(boolean z10, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f6349a = i10;
-        this.f6351c = notificationCenterDelegate;
-        this.f6350b = z10;
+        this.f6350a = i10;
+        this.f6352c = notificationCenterDelegate;
+        this.f6351b = z10;
     }
 
     @Override
@@ -30,27 +30,27 @@ public final class ya implements Utilities.Callback2 {
         float f7;
         fw0 fw0Var;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
-        switch (this.f6349a) {
+        switch (this.f6350a) {
             case 0:
-                kc kcVar = (kc) this.f6351c;
+                kc kcVar = (kc) this.f6352c;
                 Bitmap bitmap = (Bitmap) obj2;
-                int i10 = kcVar.f5380c;
-                if (obj != null && kcVar.f5423p2 == null && !kcVar.W && kcVar.J()) {
+                int i10 = kcVar.f5381c;
+                if (obj != null && kcVar.f5424p2 == null && !kcVar.W && kcVar.J()) {
                     int i11 = 0;
-                    if (this.f6350b) {
+                    if (this.f6351b) {
                         if (kcVar.K1 != null) {
                             kcVar.u();
-                            kcVar.K1.f5330j = true;
+                            kcVar.K1.f5331j = true;
                             if (obj instanceof MediaController.PhotoEntry) {
-                                mb mbVar = kcVar.f5442v1;
+                                mb mbVar = kcVar.f5443v1;
                                 mbVar.d0(mbVar.k0(((MediaController.PhotoEntry) obj).path, false));
                             } else if (obj instanceof TLObject) {
-                                mb mbVar2 = kcVar.f5442v1;
+                                mb mbVar2 = kcVar.f5443v1;
                                 TLObject tLObject = (TLObject) obj;
-                                mbVar2.f5766l2 = true;
+                                mbVar2.f5767l2 = true;
                                 j6 j6Var = mbVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f20063w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f20067w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
@@ -80,8 +80,8 @@ public final class ya implements Utilities.Callback2 {
                         } else {
                             z10 = false;
                         }
-                        j7Var.f5233n0 = -1.0f;
-                        j7Var.f5234o0 = z10;
+                        j7Var.f5234n0 = -1.0f;
+                        j7Var.f5235o0 = z10;
                         j7Var.invalidate();
                         kcVar.f(false);
                         boolean z11 = obj instanceof MediaController.PhotoEntry;
@@ -93,8 +93,8 @@ public final class ya implements Utilities.Callback2 {
                             kcVar.O1 = i11;
                             k8 l4 = k8.l(photoEntry);
                             l4.M0 = bitmap;
-                            l4.J0 = kcVar.f5441v0;
-                            l4.K0 = kcVar.f5445w0;
+                            l4.J0 = kcVar.f5442v0;
+                            l4.K0 = kcVar.f5446w0;
                             l4.A();
                             kcVar.L1 = true;
                             if (kcVar.A0.j()) {
@@ -115,12 +115,12 @@ public final class ya implements Utilities.Callback2 {
                         } else if (obj instanceof k8) {
                             k8 k8Var = (k8) obj;
                             if (k8Var.L == null && !k8Var.v()) {
-                                kcVar.f5389e1.c(R.raw.error, "Failed to load draft");
+                                kcVar.f5390e1.c(R.raw.error, "Failed to load draft");
                                 MessagesController.getInstance(i10).getStoriesController().f1309w.b(k8Var);
                                 return;
                             }
-                            k8Var.J0 = kcVar.f5441v0;
-                            k8Var.K0 = kcVar.f5445w0;
+                            k8Var.J0 = kcVar.f5442v0;
+                            k8Var.K0 = kcVar.f5446w0;
                             kcVar.O1 = k8Var.K ? 1 : 0;
                             k8Var.M0 = bitmap;
                             kcVar.L1 = false;
@@ -136,8 +136,8 @@ public final class ya implements Utilities.Callback2 {
                     }
                     jb jbVar = kcVar.M0;
                     if (jbVar != null) {
-                        kcVar.f5411l2 = jbVar.f6214e.e0();
-                        kcVar.f5413m2 = kcVar.M0.getSelectedAlbum();
+                        kcVar.f5412l2 = jbVar.f6215e.e0();
+                        kcVar.f5414m2 = kcVar.M0.getSelectedAlbum();
                         return;
                     }
                     return;
@@ -145,20 +145,20 @@ public final class ya implements Utilities.Callback2 {
                 return;
             case 1:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
-                fi.k0.m((fi.k0) this.f6351c, this.f6350b, (TLRPC.TL_error) obj2);
+                fi.k0.m((fi.k0) this.f6352c, this.f6351b, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ProfileActivity profileActivity = (ProfileActivity) this.f6351c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f6352c;
                 Integer num = (Integer) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (!profileActivity.M3()) {
                     if (org.telegram.ui.Components.yc.a(profileActivity)) {
                         int intValue = num.intValue();
-                        boolean z12 = this.f6350b;
+                        boolean z12 = this.f6351b;
                         if (intValue == 1) {
                             org.telegram.ui.Components.yc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            org.telegram.ui.Components.yc.l(DialogObject.getShortName(profileActivity.f34234e1), profileActivity, z12).j();
+                            org.telegram.ui.Components.yc.l(DialogObject.getShortName(profileActivity.f34240e1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             org.telegram.ui.Components.yc.b0(tL_error);
                         }

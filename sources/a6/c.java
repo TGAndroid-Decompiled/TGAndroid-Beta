@@ -27,7 +27,7 @@ public final class c implements Runnable {
             httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == 200) {
-                status = Status.f6468e;
+                status = Status.f6469e;
             } else {
                 Log.e((String) aVar.f300c, ((String) aVar.d).concat("Unable to revoke access!"));
             }

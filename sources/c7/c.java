@@ -7,20 +7,20 @@ public enum c implements Parcelable {
     CROSS_PLATFORM("cross-platform");
     
     public static final Parcelable.Creator<c> CREATOR = new w.a(16);
-    public final String f4403a;
+    public final String f4404a;
 
     c(String str) {
-        this.f4403a = str;
+        this.f4404a = str;
     }
 
     public static c a(String str) {
         c[] values;
         for (c cVar : values()) {
-            if (str.equals(cVar.f4403a)) {
+            if (str.equals(cVar.f4404a)) {
                 return cVar;
             }
         }
-        throw new Exception(a4.a.p("Attachment ", str, " not supported"));
+        throw new Exception(a4.a.q("Attachment ", str, " not supported"));
     }
 
     @Override
@@ -30,11 +30,11 @@ public enum c implements Parcelable {
 
     @Override
     public final String toString() {
-        return this.f4403a;
+        return this.f4404a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f4403a);
+        parcel.writeString(this.f4404a);
     }
 }

@@ -41,41 +41,41 @@ public final class l implements p {
     public int W;
     public boolean X;
     public long Y;
-    public final t f14959a;
-    public final long f14960b;
-    public final int f14961c;
+    public final t f14960a;
+    public final long f14961b;
+    public final int f14962c;
     public final int d;
-    public final int f14962e;
-    public final m f14963f;
-    public final b f14964g;
-    public MediaCodec f14969m;
-    public MediaCodec f14970n;
-    public AudioRecord f14971o;
-    public Surface f14972p;
-    public Thread f14973q;
-    public Thread f14974r;
-    public c f14975s;
-    public c f14976t;
-    public volatile boolean f14977u;
+    public final int f14963e;
+    public final m f14964f;
+    public final b f14965g;
+    public MediaCodec f14970m;
+    public MediaCodec f14971n;
+    public AudioRecord f14972o;
+    public Surface f14973p;
+    public Thread f14974q;
+    public Thread f14975r;
+    public c f14976s;
+    public c f14977t;
+    public volatile boolean f14978u;
     public boolean v;
-    public volatile long f14979x;
-    public boolean f14980y;
-    public boolean f14981z;
+    public volatile long f14980x;
+    public boolean f14981y;
+    public boolean f14982z;
     public final AtomicBoolean h = new AtomicBoolean();
-    public final ArrayList f14965i = new ArrayList();
-    public final AudioTimestamp f14966j = new AudioTimestamp();
-    public final long[] f14967k = new long[256];
-    public final long[] f14968l = new long[256];
-    public volatile long f14978w = Long.MAX_VALUE;
+    public final ArrayList f14966i = new ArrayList();
+    public final AudioTimestamp f14967j = new AudioTimestamp();
+    public final long[] f14968k = new long[256];
+    public final long[] f14969l = new long[256];
+    public volatile long f14979w = Long.MAX_VALUE;
 
     public l(t tVar, long j3, int i10, int i11, int i12, m mVar, b bVar) {
-        this.f14959a = tVar;
-        this.f14960b = j3;
-        this.f14961c = i10;
+        this.f14960a = tVar;
+        this.f14961b = j3;
+        this.f14962c = i10;
         this.d = i11;
-        this.f14962e = i12;
-        this.f14963f = mVar;
-        this.f14964g = bVar;
+        this.f14963e = i12;
+        this.f14964f = mVar;
+        this.f14965g = bVar;
     }
 
     public static String g(long j3, long j10) {
@@ -93,11 +93,11 @@ public final class l implements p {
             createAudioFormat.setInteger("aac-profile", 2);
             createAudioFormat.setInteger("bitrate", 64000);
             createAudioFormat.setInteger("max-input-size", max);
-            this.f14970n = MediaCodec.createEncoderByType("audio/mp4a-latm");
-            this.f14963f.b("audio encoder configure: codec=" + this.f14970n.getName() + ", format=" + createAudioFormat + ", minBufferSize=" + minBufferSize + ", audioBufferSize=" + max);
-            this.f14970n.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
+            this.f14971n = MediaCodec.createEncoderByType("audio/mp4a-latm");
+            this.f14964f.b("audio encoder configure: codec=" + this.f14971n.getName() + ", format=" + createAudioFormat + ", minBufferSize=" + minBufferSize + ", audioBufferSize=" + max);
+            this.f14971n.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
             AudioRecord audioRecord = new AudioRecord(5, 48000, 16, 2, max);
-            this.f14971o = audioRecord;
+            this.f14972o = audioRecord;
             if (audioRecord.getState() == 1) {
                 return;
             }
@@ -107,36 +107,36 @@ public final class l implements p {
     }
 
     public final void b() {
-        int i10 = this.f14961c;
+        int i10 = this.f14962c;
         MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", i10, i10);
         createVideoFormat.setInteger("color-format", 2130708361);
         createVideoFormat.setInteger("bitrate", this.d);
-        int i11 = this.f14962e;
+        int i11 = this.f14963e;
         createVideoFormat.setInteger("frame-rate", i11);
         createVideoFormat.setInteger("i-frame-interval", 1);
         MediaCodec createEncoderByType = MediaCodec.createEncoderByType("video/avc");
-        this.f14969m = createEncoderByType;
+        this.f14970m = createEncoderByType;
         MediaCodecInfo.VideoCapabilities videoCapabilities = createEncoderByType.getCodecInfo().getCapabilitiesForType("video/avc").getVideoCapabilities();
         if (videoCapabilities.isSizeSupported(i10, i10) && videoCapabilities.areSizeAndRateSupported(i10, i10, i11)) {
-            this.f14963f.b("video encoder configure: codec=" + this.f14969m.getName() + ", format=" + createVideoFormat);
-            this.f14969m.configure(createVideoFormat, (Surface) null, (MediaCrypto) null, 1);
-            this.f14972p = this.f14969m.createInputSurface();
+            this.f14964f.b("video encoder configure: codec=" + this.f14970m.getName() + ", format=" + createVideoFormat);
+            this.f14970m.configure(createVideoFormat, (Surface) null, (MediaCrypto) null, 1);
+            this.f14973p = this.f14970m.createInputSurface();
             return;
         }
-        throw new IOException(a4.a.n(i11, " fps", hg.k0.k("Video encoder does not support ", i10, "x", i10, " at ")));
+        throw new IOException(a4.a.o(i11, " fps", hg.c.k("Video encoder does not support ", i10, "x", i10, " at ")));
     }
 
     public final boolean c(MediaCodec.BufferInfo bufferInfo, long j3) {
         ByteBuffer outputBuffer;
-        int dequeueOutputBuffer = this.f14970n.dequeueOutputBuffer(bufferInfo, j3);
+        int dequeueOutputBuffer = this.f14971n.dequeueOutputBuffer(bufferInfo, j3);
         boolean z10 = false;
         while (true) {
             boolean z11 = true;
             if (dequeueOutputBuffer < 0) {
                 break;
             }
-            if (bufferInfo.size > 0 && (bufferInfo.flags & 2) == 0 && (outputBuffer = this.f14970n.getOutputBuffer(dequeueOutputBuffer)) != null) {
-                if (bufferInfo.presentationTimeUs >= this.f14978w) {
+            if (bufferInfo.size > 0 && (bufferInfo.flags & 2) == 0 && (outputBuffer = this.f14971n.getOutputBuffer(dequeueOutputBuffer)) != null) {
+                if (bufferInfo.presentationTimeUs >= this.f14979w) {
                     this.U++;
                     this.V++;
                 } else if (this.X) {
@@ -156,7 +156,7 @@ public final class l implements p {
                         outputBuffer.position(position);
                         MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
                         bufferInfo2.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
-                        this.f14965i.add(new k(allocateDirect, bufferInfo2));
+                        this.f14966i.add(new k(allocateDirect, bufferInfo2));
                         long j10 = this.J;
                         if (j10 != Long.MIN_VALUE && bufferInfo.presentationTimeUs >= j10) {
                             d(j10, false);
@@ -172,11 +172,11 @@ public final class l implements p {
                 z11 = false;
             }
             z10 |= z11;
-            this.f14970n.releaseOutputBuffer(dequeueOutputBuffer, false);
-            dequeueOutputBuffer = this.f14970n.dequeueOutputBuffer(bufferInfo, 0L);
+            this.f14971n.releaseOutputBuffer(dequeueOutputBuffer, false);
+            dequeueOutputBuffer = this.f14971n.dequeueOutputBuffer(bufferInfo, 0L);
         }
         if (dequeueOutputBuffer == -2) {
-            o(this.f14970n.getOutputFormat(), false);
+            o(this.f14971n.getOutputFormat(), false);
         }
         if (z10 && !this.X && this.J != Long.MIN_VALUE) {
             d(this.J, true);
@@ -185,12 +185,12 @@ public final class l implements p {
     }
 
     public final void d(long j3, boolean z10) {
-        ArrayList arrayList = this.f14965i;
+        ArrayList arrayList = this.f14966i;
         if (!arrayList.isEmpty()) {
             int i10 = 0;
             while (true) {
                 if (i10 < arrayList.size()) {
-                    if (((k) arrayList.get(i10)).f14955b.presentationTimeUs >= j3) {
+                    if (((k) arrayList.get(i10)).f14956b.presentationTimeUs >= j3) {
                         break;
                     }
                     i10++;
@@ -204,18 +204,18 @@ public final class l implements p {
                     return;
                 }
                 i10 = arrayList.size() - 1;
-            } else if (i10 > 0 && j3 - ((k) arrayList.get(i10 - 1)).f14955b.presentationTimeUs <= ((k) arrayList.get(i10)).f14955b.presentationTimeUs - j3) {
+            } else if (i10 > 0 && j3 - ((k) arrayList.get(i10 - 1)).f14956b.presentationTimeUs <= ((k) arrayList.get(i10)).f14956b.presentationTimeUs - j3) {
                 i10--;
             }
             for (int i11 = 0; i11 < i10; i11++) {
                 this.U++;
             }
             k kVar = (k) arrayList.get(i10);
-            this.Y = kVar.f14955b.presentationTimeUs - j3;
+            this.Y = kVar.f14956b.presentationTimeUs - j3;
             while (i10 < arrayList.size()) {
                 k kVar2 = (k) arrayList.get(i10);
-                ByteBuffer byteBuffer = kVar2.f14954a;
-                MediaCodec.BufferInfo bufferInfo = kVar2.f14955b;
+                ByteBuffer byteBuffer = kVar2.f14955a;
+                MediaCodec.BufferInfo bufferInfo = kVar2.f14956b;
                 this.E++;
                 this.C += bufferInfo.size;
                 i(false, bufferInfo);
@@ -224,11 +224,11 @@ public final class l implements p {
             }
             arrayList.clear();
             this.X = true;
-            StringBuilder t10 = a4.a.t(j3, "A/V start aligned: videoPtsUs=", ", audioPtsUs=");
-            t10.append(kVar.f14955b.presentationTimeUs);
-            t10.append(", deltaUs=");
-            t10.append(this.Y);
-            this.f14963f.b(t10.toString());
+            StringBuilder u10 = a4.a.u(j3, "A/V start aligned: videoPtsUs=", ", audioPtsUs=");
+            u10.append(kVar.f14956b.presentationTimeUs);
+            u10.append(", deltaUs=");
+            u10.append(this.Y);
+            this.f14964f.b(u10.toString());
         }
     }
 
@@ -244,7 +244,7 @@ public final class l implements p {
             try {
                 thread.join(5000L);
                 if (thread.isAlive()) {
-                    m mVar = this.f14963f;
+                    m mVar = this.f14964f;
                     mVar.b("encoder thread did not stop: " + thread.getName());
                 }
             } catch (InterruptedException unused) {
@@ -255,7 +255,7 @@ public final class l implements p {
 
     public final void h(long j3) {
         int i10;
-        long j10 = this.f14979x;
+        long j10 = this.f14980x;
         long max = Math.max(0L, j10 - 256);
         do {
             j10--;
@@ -264,13 +264,13 @@ public final class l implements p {
             } else {
                 return;
             }
-        } while (this.f14967k[i10] != j3);
-        long nanoTime = System.nanoTime() - this.f14968l[i10];
+        } while (this.f14968k[i10] != j3);
+        long nanoTime = System.nanoTime() - this.f14969l[i10];
         this.F++;
         this.G += nanoTime;
         this.H = Math.max(this.H, nanoTime);
         if (this.F % 30 == 0) {
-            this.f14963f.b("codec latency: average=" + ((((float) this.G) / this.F) / 1000000.0f) + " ms, max=" + (((float) this.H) / 1000000.0f) + " ms");
+            this.f14964f.b("codec latency: average=" + ((((float) this.G) / this.F) / 1000000.0f) + " ms, max=" + (((float) this.H) / 1000000.0f) + " ms");
         }
     }
 
@@ -307,21 +307,21 @@ public final class l implements p {
     }
 
     public final void j() {
-        this.f14980y = false;
-        this.f14981z = false;
-        this.f14975s = null;
-        this.f14976t = null;
-        AudioRecord audioRecord = this.f14971o;
+        this.f14981y = false;
+        this.f14982z = false;
+        this.f14976s = null;
+        this.f14977t = null;
+        AudioRecord audioRecord = this.f14972o;
         if (audioRecord != null) {
             audioRecord.release();
-            this.f14971o = null;
+            this.f14972o = null;
         }
-        Surface surface = this.f14972p;
+        Surface surface = this.f14973p;
         if (surface != null) {
             surface.release();
-            this.f14972p = null;
+            this.f14973p = null;
         }
-        MediaCodec mediaCodec = this.f14969m;
+        MediaCodec mediaCodec = this.f14970m;
         if (mediaCodec != null) {
             try {
                 mediaCodec.stop();
@@ -329,7 +329,7 @@ public final class l implements p {
             }
             mediaCodec.release();
         }
-        MediaCodec mediaCodec2 = this.f14970n;
+        MediaCodec mediaCodec2 = this.f14971n;
         if (mediaCodec2 != null) {
             try {
                 mediaCodec2.stop();
@@ -337,10 +337,10 @@ public final class l implements p {
             }
             mediaCodec2.release();
         }
-        this.f14970n = null;
-        this.f14969m = null;
-        this.f14974r = null;
-        this.f14973q = null;
+        this.f14971n = null;
+        this.f14970m = null;
+        this.f14975r = null;
+        this.f14974q = null;
     }
 
     public final void k(RuntimeException runtimeException) {
@@ -353,34 +353,34 @@ public final class l implements p {
             str = "";
         }
         sb2.append(str);
-        this.f14963f.a(sb2.toString(), runtimeException);
+        this.f14964f.a(sb2.toString(), runtimeException);
         if (this.h.compareAndSet(false, true)) {
-            n4 n4Var = this.f14964g.f14852a;
-            ((s0) n4Var.f12543b).f15049i.post(new h0(1, n4Var, runtimeException));
+            n4 n4Var = this.f14965g.f14853a;
+            ((s0) n4Var.f12544b).f15050i.post(new h0(1, n4Var, runtimeException));
         }
     }
 
     public final long l() {
         synchronized (this) {
             try {
-                if (this.f14980y && this.f14981z) {
-                    if (this.f14977u) {
-                        return this.f14978w;
+                if (this.f14981y && this.f14982z) {
+                    if (this.f14978u) {
+                        return this.f14979w;
                     }
-                    this.f14977u = true;
+                    this.f14978u = true;
                     long max = Math.max(0L, (SystemClock.elapsedRealtimeNanos() - this.A) / 1000);
-                    this.f14978w = max;
-                    AudioRecord audioRecord = this.f14971o;
+                    this.f14979w = max;
+                    AudioRecord audioRecord = this.f14972o;
                     if (audioRecord != null) {
                         try {
                             if (audioRecord.getRecordingState() == 3) {
                                 audioRecord.stop();
                             }
                         } catch (IllegalStateException e7) {
-                            this.f14963f.a("AudioRecord stop failed", e7);
+                            this.f14964f.a("AudioRecord stop failed", e7);
                         }
                     }
-                    m mVar = this.f14963f;
+                    m mVar = this.f14964f;
                     mVar.b("recording stop boundary: presentationTimeUs=" + max);
                     return max;
                 }
@@ -391,15 +391,15 @@ public final class l implements p {
     }
 
     public final void m() {
-        this.f14977u = false;
+        this.f14978u = false;
         this.v = false;
-        this.f14978w = Long.MAX_VALUE;
+        this.f14979w = Long.MAX_VALUE;
         this.A = 0L;
         this.C = 0L;
         this.B = 0L;
         this.E = 0;
         this.D = 0;
-        this.f14979x = 0L;
+        this.f14980x = 0L;
         this.F = 0;
         this.H = 0L;
         this.G = 0L;
@@ -419,18 +419,18 @@ public final class l implements p {
         this.W = 0;
         this.X = false;
         this.Y = Long.MIN_VALUE;
-        this.f14975s = null;
-        this.f14976t = null;
-        this.f14965i.clear();
+        this.f14976s = null;
+        this.f14977t = null;
+        this.f14966i.clear();
     }
 
     public final long n(int i10) {
         long max = Math.max(0L, ((SystemClock.elapsedRealtimeNanos() - this.A) / 1000) - ((i10 * 1000000) / 48000));
         int i11 = Build.VERSION.SDK_INT;
-        m mVar = this.f14963f;
+        m mVar = this.f14964f;
         if (i11 >= 24) {
-            AudioRecord audioRecord = this.f14971o;
-            AudioTimestamp audioTimestamp = this.f14966j;
+            AudioRecord audioRecord = this.f14972o;
+            AudioTimestamp audioTimestamp = this.f14967j;
             if (audioRecord.getTimestamp(audioTimestamp, 1) == 0) {
                 long max2 = Math.max(0L, ((audioTimestamp.nanoTime - this.A) / 1000) - ((audioTimestamp.framePosition * 1000000) / 48000));
                 mVar.b("audio timestamp alignment: framePosition=" + audioTimestamp.framePosition + ", timestampDeltaUs=" + ((audioTimestamp.nanoTime - this.A) / 1000) + ", timestampBaseUs=" + max2 + ", readCompletionBaseUs=" + max);
@@ -464,8 +464,8 @@ public final class l implements p {
                 throw new IllegalStateException(e7);
             }
         }
-        this.f14959a.l(mediaFormat, z10);
-        m mVar = this.f14963f;
+        this.f14960a.l(mediaFormat, z10);
+        m mVar = this.f14964f;
         StringBuilder sb2 = new StringBuilder();
         if (z10) {
             str = "video";
@@ -479,25 +479,25 @@ public final class l implements p {
     }
 
     public final synchronized void p(c cVar, c cVar2) {
-        if (this.f14981z) {
+        if (this.f14982z) {
             return;
         }
-        if (this.f14980y) {
+        if (this.f14981y) {
             try {
-                this.f14970n.start();
-                this.f14971o.startRecording();
-                if (this.f14971o.getRecordingState() == 3) {
+                this.f14971n.start();
+                this.f14972o.startRecording();
+                if (this.f14972o.getRecordingState() == 3) {
                     this.A = SystemClock.elapsedRealtimeNanos();
-                    this.f14975s = cVar;
-                    this.f14976t = cVar2;
-                    this.f14981z = true;
-                    m mVar = this.f14963f;
-                    mVar.b("audio and video recording started: timeOriginNs=" + this.A + ", timelineOffsetUs=" + this.f14960b + ", audioSessionId=" + this.f14971o.getAudioSessionId());
-                    this.f14973q = new Thread(new Runnable(this) {
-                        public final l f14943b;
+                    this.f14976s = cVar;
+                    this.f14977t = cVar2;
+                    this.f14982z = true;
+                    m mVar = this.f14964f;
+                    mVar.b("audio and video recording started: timeOriginNs=" + this.A + ", timelineOffsetUs=" + this.f14961b + ", audioSessionId=" + this.f14972o.getAudioSessionId());
+                    this.f14974q = new Thread(new Runnable(this) {
+                        public final l f14944b;
 
                         {
-                            this.f14943b = this;
+                            this.f14944b = this;
                         }
 
                         @Override
@@ -510,7 +510,7 @@ public final class l implements p {
                             long j12;
                             long j13;
                             int i10 = r2;
-                            l lVar = this.f14943b;
+                            l lVar = this.f14944b;
                             lVar.getClass();
                             switch (i10) {
                                 case 0:
@@ -518,9 +518,9 @@ public final class l implements p {
                                     boolean z11 = false;
                                     while (!z11) {
                                         try {
-                                            int dequeueOutputBuffer = lVar.f14969m.dequeueOutputBuffer(bufferInfo, 10000L);
+                                            int dequeueOutputBuffer = lVar.f14970m.dequeueOutputBuffer(bufferInfo, 10000L);
                                             if (dequeueOutputBuffer == -2) {
-                                                lVar.o(lVar.f14969m.getOutputFormat(), true);
+                                                lVar.o(lVar.f14970m.getOutputFormat(), true);
                                             } else if (dequeueOutputBuffer >= 0) {
                                                 if (bufferInfo.size > 0 && (bufferInfo.flags & 2) == 0) {
                                                     z10 = true;
@@ -528,12 +528,12 @@ public final class l implements p {
                                                     z10 = false;
                                                 }
                                                 if (z10) {
-                                                    if (bufferInfo.presentationTimeUs < lVar.f14978w) {
+                                                    if (bufferInfo.presentationTimeUs < lVar.f14979w) {
                                                         lVar.D++;
                                                         lVar.B += bufferInfo.size;
                                                         lVar.i(true, bufferInfo);
                                                         lVar.h(bufferInfo.presentationTimeUs);
-                                                        lVar.r(true, lVar.f14969m.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
+                                                        lVar.r(true, lVar.f14970m.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
                                                     } else {
                                                         lVar.W++;
                                                     }
@@ -543,14 +543,14 @@ public final class l implements p {
                                                 } else {
                                                     z11 = false;
                                                 }
-                                                lVar.f14969m.releaseOutputBuffer(dequeueOutputBuffer, false);
+                                                lVar.f14970m.releaseOutputBuffer(dequeueOutputBuffer, false);
                                             }
                                         } catch (RuntimeException e7) {
-                                            if (!lVar.f14977u) {
+                                            if (!lVar.f14978u) {
                                                 lVar.k(e7);
                                                 return;
                                             } else {
-                                                lVar.f14963f.a("video drain failed while stopping", e7);
+                                                lVar.f14964f.a("video drain failed while stopping", e7);
                                                 return;
                                             }
                                         }
@@ -573,24 +573,24 @@ public final class l implements p {
                                         try {
                                             z12 = lVar.c(bufferInfo2, j3);
                                             if (!z12) {
-                                                int dequeueInputBuffer = lVar.f14970n.dequeueInputBuffer(10000L);
+                                                int dequeueInputBuffer = lVar.f14971n.dequeueInputBuffer(10000L);
                                                 if (dequeueInputBuffer >= 0) {
-                                                    if (lVar.f14977u) {
+                                                    if (lVar.f14978u) {
                                                         if (j15 == j14) {
                                                             j13 = 0;
                                                         } else {
                                                             j13 = j15 + ((1000000 * j16) / 48000);
                                                         }
-                                                        lVar.f14970n.queueInputBuffer(dequeueInputBuffer, 0, 0, j13, 4);
+                                                        lVar.f14971n.queueInputBuffer(dequeueInputBuffer, 0, 0, j13, 4);
                                                         z13 = true;
                                                     } else {
-                                                        ByteBuffer inputBuffer = lVar.f14970n.getInputBuffer(dequeueInputBuffer);
+                                                        ByteBuffer inputBuffer = lVar.f14971n.getInputBuffer(dequeueInputBuffer);
                                                         if (inputBuffer == null) {
-                                                            lVar.f14970n.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
+                                                            lVar.f14971n.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
                                                         } else {
                                                             inputBuffer.clear();
                                                             j10 = j14;
-                                                            int read = lVar.f14971o.read(inputBuffer, Math.min(inputBuffer.remaining(), 2048));
+                                                            int read = lVar.f14972o.read(inputBuffer, Math.min(inputBuffer.remaining(), 2048));
                                                             if (read <= 0) {
                                                                 if (read < 0) {
                                                                     int i11 = lVar.S + 1;
@@ -606,12 +606,12 @@ public final class l implements p {
                                                                 } else {
                                                                     j12 = j15 + ((1000000 * j16) / 48000);
                                                                 }
-                                                                lVar.f14970n.queueInputBuffer(dequeueInputBuffer, 0, 0, j12, 0);
+                                                                lVar.f14971n.queueInputBuffer(dequeueInputBuffer, 0, 0, j12, 0);
                                                             } else {
                                                                 int i12 = read / 2;
                                                                 if (j15 == j10) {
                                                                     long n10 = lVar.n(i12);
-                                                                    m mVar2 = lVar.f14963f;
+                                                                    m mVar2 = lVar.f14964f;
                                                                     StringBuilder sb2 = new StringBuilder();
                                                                     sb2.append("first audio input: basePtsUs=");
                                                                     sb2.append(n10);
@@ -630,13 +630,13 @@ public final class l implements p {
                                                                 } else {
                                                                     j11 = 48000;
                                                                 }
-                                                                lVar.f14970n.queueInputBuffer(dequeueInputBuffer, 0, i12 * 2, j15 + ((1000000 * j16) / j11), 0);
+                                                                lVar.f14971n.queueInputBuffer(dequeueInputBuffer, 0, i12 * 2, j15 + ((1000000 * j16) / j11), 0);
                                                                 j16 += i12;
                                                                 synchronized (lVar) {
-                                                                    if (lVar.f14975s != null && !lVar.f14977u) {
-                                                                        c cVar3 = lVar.f14975s;
-                                                                        lVar.f14975s = null;
-                                                                        lVar.f14963f.b("audio capture ready; waiting for common A/V start frame");
+                                                                    if (lVar.f14976s != null && !lVar.f14978u) {
+                                                                        c cVar3 = lVar.f14976s;
+                                                                        lVar.f14976s = null;
+                                                                        lVar.f14964f.b("audio capture ready; waiting for common A/V start frame");
                                                                         cVar3.run();
                                                                     }
                                                                 }
@@ -651,11 +651,11 @@ public final class l implements p {
                                                 return;
                                             }
                                         } catch (RuntimeException e10) {
-                                            if (!lVar.f14977u) {
+                                            if (!lVar.f14978u) {
                                                 lVar.k(e10);
                                                 return;
                                             } else {
-                                                lVar.f14963f.a("audio capture failed while stopping", e10);
+                                                lVar.f14964f.a("audio capture failed while stopping", e10);
                                                 return;
                                             }
                                         }
@@ -664,11 +664,11 @@ public final class l implements p {
                             }
                         }
                     }, "RoundVideoVideoEncoder");
-                    this.f14974r = new Thread(new Runnable(this) {
-                        public final l f14943b;
+                    this.f14975r = new Thread(new Runnable(this) {
+                        public final l f14944b;
 
                         {
-                            this.f14943b = this;
+                            this.f14944b = this;
                         }
 
                         @Override
@@ -681,7 +681,7 @@ public final class l implements p {
                             long j12;
                             long j13;
                             int i10 = r2;
-                            l lVar = this.f14943b;
+                            l lVar = this.f14944b;
                             lVar.getClass();
                             switch (i10) {
                                 case 0:
@@ -689,9 +689,9 @@ public final class l implements p {
                                     boolean z11 = false;
                                     while (!z11) {
                                         try {
-                                            int dequeueOutputBuffer = lVar.f14969m.dequeueOutputBuffer(bufferInfo, 10000L);
+                                            int dequeueOutputBuffer = lVar.f14970m.dequeueOutputBuffer(bufferInfo, 10000L);
                                             if (dequeueOutputBuffer == -2) {
-                                                lVar.o(lVar.f14969m.getOutputFormat(), true);
+                                                lVar.o(lVar.f14970m.getOutputFormat(), true);
                                             } else if (dequeueOutputBuffer >= 0) {
                                                 if (bufferInfo.size > 0 && (bufferInfo.flags & 2) == 0) {
                                                     z10 = true;
@@ -699,12 +699,12 @@ public final class l implements p {
                                                     z10 = false;
                                                 }
                                                 if (z10) {
-                                                    if (bufferInfo.presentationTimeUs < lVar.f14978w) {
+                                                    if (bufferInfo.presentationTimeUs < lVar.f14979w) {
                                                         lVar.D++;
                                                         lVar.B += bufferInfo.size;
                                                         lVar.i(true, bufferInfo);
                                                         lVar.h(bufferInfo.presentationTimeUs);
-                                                        lVar.r(true, lVar.f14969m.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
+                                                        lVar.r(true, lVar.f14970m.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
                                                     } else {
                                                         lVar.W++;
                                                     }
@@ -714,14 +714,14 @@ public final class l implements p {
                                                 } else {
                                                     z11 = false;
                                                 }
-                                                lVar.f14969m.releaseOutputBuffer(dequeueOutputBuffer, false);
+                                                lVar.f14970m.releaseOutputBuffer(dequeueOutputBuffer, false);
                                             }
                                         } catch (RuntimeException e7) {
-                                            if (!lVar.f14977u) {
+                                            if (!lVar.f14978u) {
                                                 lVar.k(e7);
                                                 return;
                                             } else {
-                                                lVar.f14963f.a("video drain failed while stopping", e7);
+                                                lVar.f14964f.a("video drain failed while stopping", e7);
                                                 return;
                                             }
                                         }
@@ -744,24 +744,24 @@ public final class l implements p {
                                         try {
                                             z12 = lVar.c(bufferInfo2, j3);
                                             if (!z12) {
-                                                int dequeueInputBuffer = lVar.f14970n.dequeueInputBuffer(10000L);
+                                                int dequeueInputBuffer = lVar.f14971n.dequeueInputBuffer(10000L);
                                                 if (dequeueInputBuffer >= 0) {
-                                                    if (lVar.f14977u) {
+                                                    if (lVar.f14978u) {
                                                         if (j15 == j14) {
                                                             j13 = 0;
                                                         } else {
                                                             j13 = j15 + ((1000000 * j16) / 48000);
                                                         }
-                                                        lVar.f14970n.queueInputBuffer(dequeueInputBuffer, 0, 0, j13, 4);
+                                                        lVar.f14971n.queueInputBuffer(dequeueInputBuffer, 0, 0, j13, 4);
                                                         z13 = true;
                                                     } else {
-                                                        ByteBuffer inputBuffer = lVar.f14970n.getInputBuffer(dequeueInputBuffer);
+                                                        ByteBuffer inputBuffer = lVar.f14971n.getInputBuffer(dequeueInputBuffer);
                                                         if (inputBuffer == null) {
-                                                            lVar.f14970n.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
+                                                            lVar.f14971n.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
                                                         } else {
                                                             inputBuffer.clear();
                                                             j10 = j14;
-                                                            int read = lVar.f14971o.read(inputBuffer, Math.min(inputBuffer.remaining(), 2048));
+                                                            int read = lVar.f14972o.read(inputBuffer, Math.min(inputBuffer.remaining(), 2048));
                                                             if (read <= 0) {
                                                                 if (read < 0) {
                                                                     int i11 = lVar.S + 1;
@@ -777,12 +777,12 @@ public final class l implements p {
                                                                 } else {
                                                                     j12 = j15 + ((1000000 * j16) / 48000);
                                                                 }
-                                                                lVar.f14970n.queueInputBuffer(dequeueInputBuffer, 0, 0, j12, 0);
+                                                                lVar.f14971n.queueInputBuffer(dequeueInputBuffer, 0, 0, j12, 0);
                                                             } else {
                                                                 int i12 = read / 2;
                                                                 if (j15 == j10) {
                                                                     long n10 = lVar.n(i12);
-                                                                    m mVar2 = lVar.f14963f;
+                                                                    m mVar2 = lVar.f14964f;
                                                                     StringBuilder sb2 = new StringBuilder();
                                                                     sb2.append("first audio input: basePtsUs=");
                                                                     sb2.append(n10);
@@ -801,13 +801,13 @@ public final class l implements p {
                                                                 } else {
                                                                     j11 = 48000;
                                                                 }
-                                                                lVar.f14970n.queueInputBuffer(dequeueInputBuffer, 0, i12 * 2, j15 + ((1000000 * j16) / j11), 0);
+                                                                lVar.f14971n.queueInputBuffer(dequeueInputBuffer, 0, i12 * 2, j15 + ((1000000 * j16) / j11), 0);
                                                                 j16 += i12;
                                                                 synchronized (lVar) {
-                                                                    if (lVar.f14975s != null && !lVar.f14977u) {
-                                                                        c cVar3 = lVar.f14975s;
-                                                                        lVar.f14975s = null;
-                                                                        lVar.f14963f.b("audio capture ready; waiting for common A/V start frame");
+                                                                    if (lVar.f14976s != null && !lVar.f14978u) {
+                                                                        c cVar3 = lVar.f14976s;
+                                                                        lVar.f14976s = null;
+                                                                        lVar.f14964f.b("audio capture ready; waiting for common A/V start frame");
                                                                         cVar3.run();
                                                                     }
                                                                 }
@@ -822,11 +822,11 @@ public final class l implements p {
                                                 return;
                                             }
                                         } catch (RuntimeException e10) {
-                                            if (!lVar.f14977u) {
+                                            if (!lVar.f14978u) {
                                                 lVar.k(e10);
                                                 return;
                                             } else {
-                                                lVar.f14963f.a("audio capture failed while stopping", e10);
+                                                lVar.f14964f.a("audio capture failed while stopping", e10);
                                                 return;
                                             }
                                         }
@@ -835,8 +835,8 @@ public final class l implements p {
                             }
                         }
                     }, "RoundVideoAudioEncoder");
-                    this.f14973q.start();
-                    this.f14974r.start();
+                    this.f14974q.start();
+                    this.f14975r.start();
                     return;
                 }
                 throw new IllegalStateException("Unable to start AudioRecord");
@@ -862,19 +862,19 @@ public final class l implements p {
         l();
         synchronized (this) {
             try {
-                if (this.f14980y && !this.v) {
-                    if (!this.f14981z) {
+                if (this.f14981y && !this.v) {
+                    if (!this.f14982z) {
                         j();
                         return;
                     }
                     this.v = true;
                     try {
-                        this.f14969m.signalEndOfInputStream();
+                        this.f14970m.signalEndOfInputStream();
                     } catch (IllegalStateException e7) {
-                        this.f14963f.a("video encoder EOS failed", e7);
+                        this.f14964f.a("video encoder EOS failed", e7);
                     }
-                    f(this.f14973q);
-                    f(this.f14974r);
+                    f(this.f14974q);
+                    f(this.f14975r);
                     Object obj = "n/a";
                     if (e()) {
                         j3 = this.L - this.J;
@@ -900,7 +900,7 @@ public final class l implements p {
                     } else {
                         j12 = 0;
                     }
-                    m mVar = this.f14963f;
+                    m mVar = this.f14964f;
                     StringBuilder sb2 = new StringBuilder("codec summary: videoBuffers=");
                     sb2.append(this.D);
                     sb2.append(", videoBytes=");
@@ -963,10 +963,10 @@ public final class l implements p {
                     sb2.append(", droppedVideoAfterStop=");
                     sb2.append(this.W);
                     sb2.append(", stopPresentationTimeUs=");
-                    if (this.f14978w == Long.MAX_VALUE) {
+                    if (this.f14979w == Long.MAX_VALUE) {
                         valueOf5 = "n/a";
                     } else {
-                        valueOf5 = Long.valueOf(this.f14978w);
+                        valueOf5 = Long.valueOf(this.f14979w);
                     }
                     sb2.append(valueOf5);
                     sb2.append(", alignedAudioStartDeltaUs=");
@@ -1009,6 +1009,6 @@ public final class l implements p {
                 throw new IllegalStateException(e7);
             }
         }
-        this.f14959a.o(z10, byteBuffer, bufferInfo, this.f14960b);
+        this.f14960a.o(z10, byteBuffer, bufferInfo, this.f14961b);
     }
 }

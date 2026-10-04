@@ -16,16 +16,16 @@ public final class q9 extends ba {
         int paddingTop;
         super.setContainerHeight(f7);
         x9 x9Var = this.L;
-        org.telegram.ui.Cells.v3 v3Var = x9Var.f6312y;
+        org.telegram.ui.Cells.v3 v3Var = x9Var.f6313y;
         float y3 = getY();
-        FrameLayout frameLayout = x9Var.f6305e;
+        FrameLayout frameLayout = x9Var.f6306e;
         if (frameLayout == null) {
             paddingTop = 0;
         } else {
             paddingTop = frameLayout.getPaddingTop();
         }
         v3Var.setTranslationY((Math.min(AndroidUtilities.dp(150.0f), this.I) + (y3 - paddingTop)) - 1.0f);
-        FrameLayout frameLayout2 = x9Var.f6305e;
+        FrameLayout frameLayout2 = x9Var.f6306e;
         if (frameLayout2 != null) {
             frameLayout2.invalidate();
         }
@@ -36,16 +36,16 @@ public final class q9 extends ba {
         int paddingTop;
         super.setTranslationY(f7);
         x9 x9Var = this.L;
-        org.telegram.ui.Cells.v3 v3Var = x9Var.f6312y;
+        org.telegram.ui.Cells.v3 v3Var = x9Var.f6313y;
         float y3 = getY();
-        FrameLayout frameLayout = x9Var.f6305e;
+        FrameLayout frameLayout = x9Var.f6306e;
         if (frameLayout == null) {
             paddingTop = 0;
         } else {
             paddingTop = frameLayout.getPaddingTop();
         }
         v3Var.setTranslationY((Math.min(AndroidUtilities.dp(150.0f), this.I) + (y3 - paddingTop)) - 1.0f);
-        FrameLayout frameLayout2 = x9Var.f6305e;
+        FrameLayout frameLayout2 = x9Var.f6306e;
         if (frameLayout2 != null) {
             frameLayout2.invalidate();
         }

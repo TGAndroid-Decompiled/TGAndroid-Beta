@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public final class vl0 {
-    public float f31729a;
-    public float f31730b;
-    public float f31731c;
+    public float f31735a;
+    public float f31736b;
+    public float f31737c;
 }

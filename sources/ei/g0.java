@@ -7,13 +7,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import org.telegram.messenger.FileLog;
 public final class g0 extends AsyncTask {
-    public String f9053a;
-    public long f9054b;
-    public final String f9055c;
+    public String f9054a;
+    public long f9055b;
+    public final String f9056c;
     public final bi.v d;
 
     public g0(String str, bi.v vVar) {
-        this.f9055c = str;
+        this.f9056c = str;
         this.d = vVar;
     }
 
@@ -21,7 +21,7 @@ public final class g0 extends AsyncTask {
     public final Object doInBackground(Object[] objArr) {
         String[] strArr = (String[]) objArr;
         try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(this.f9055c).openConnection();
+            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(this.f9056c).openConnection();
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setRequestProperty("Accept-Encoding", "identity");
             httpURLConnection.setConnectTimeout(1000);
@@ -32,15 +32,15 @@ public final class g0 extends AsyncTask {
             httpURLConnection.setDoInput(false);
             httpURLConnection.getResponseCode();
             if (Build.VERSION.SDK_INT >= 24) {
-                this.f9054b = httpURLConnection.getContentLengthLong();
+                this.f9055b = httpURLConnection.getContentLengthLong();
             } else {
-                this.f9054b = httpURLConnection.getContentLength();
+                this.f9055b = httpURLConnection.getContentLength();
             }
             String contentType = httpURLConnection.getContentType();
-            this.f9053a = contentType;
+            this.f9054a = contentType;
             if (contentType.contains("; ")) {
-                String str = this.f9053a;
-                this.f9053a = str.substring(0, str.indexOf("; "));
+                String str = this.f9054a;
+                this.f9054a = str.substring(0, str.indexOf("; "));
             }
             httpURLConnection.getInputStream().close();
             return null;
@@ -53,7 +53,7 @@ public final class g0 extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         String str = (String) obj;
-        m0.h.put(this.f9055c, new Pair(this.f9053a, Long.valueOf(this.f9054b)));
-        this.d.run(this.f9053a, Long.valueOf(this.f9054b));
+        m0.h.put(this.f9056c, new Pair(this.f9054a, Long.valueOf(this.f9055b)));
+        this.d.run(this.f9054a, Long.valueOf(this.f9055b));
     }
 }

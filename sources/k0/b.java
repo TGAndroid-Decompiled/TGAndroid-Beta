@@ -14,10 +14,10 @@ import v0.j;
 import v0.k;
 import w7.g;
 public final class b implements h {
-    public final Context f14283a;
+    public final Context f14284a;
 
     public b(Context context, boolean z10) {
-        this.f14283a = context;
+        this.f14284a = context;
     }
 
     public static int c(b2.s r5) {
@@ -44,7 +44,7 @@ public final class b implements h {
         } else {
             cancellationSignal = null;
         }
-        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f14283a)) != null) {
+        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f14284a)) != null) {
             e0.b.a(g10, e0.b.M(aVar), cancellationSignal, new a(mVar));
         }
     }
@@ -57,7 +57,7 @@ public final class b implements h {
         je.b bVar = new je.b(mVar);
         a3.b bVar2 = new a3.b(2);
         i.e(context, "context");
-        j a2 = k.a(new k(this.f14283a, 0), eVar);
+        j a2 = k.a(new k(this.f14284a, 0), eVar);
         if (a2 == null) {
             bVar.onError(new w0.c("createCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
         } else if (context.getPackageManager().hasSystemFeature("android.hardware.type.watch")) {
@@ -66,12 +66,12 @@ public final class b implements h {
             a2.onCreateCredential(context, eVar, cancellationSignal, bVar2, bVar);
         }
         Object r10 = mVar.r();
-        jd.a aVar = jd.a.f14087a;
+        jd.a aVar = jd.a.f14088a;
         return r10;
     }
 
     public b(Context context) {
         i.e(context, "context");
-        this.f14283a = context;
+        this.f14284a = context;
     }
 }

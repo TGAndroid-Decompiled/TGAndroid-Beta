@@ -263,21 +263,21 @@ public final class s {
         String str6 = sVar.f3563q;
         int i20 = sVar.f3553f;
         xa.c cVar = new xa.c(String.valueOf(','));
-        StringBuilder u10 = a4.a.u("id=");
-        u10.append(sVar.f3549a);
-        u10.append(", mimeType=");
-        u10.append(sVar.f3564r);
+        StringBuilder v = a4.a.v("id=");
+        v.append(sVar.f3549a);
+        v.append(", mimeType=");
+        v.append(sVar.f3564r);
         if (str6 != null) {
-            u10.append(", container=");
-            u10.append(str6);
+            v.append(", container=");
+            v.append(str6);
         }
         if (i19 != -1) {
-            u10.append(", bitrate=");
-            u10.append(i19);
+            v.append(", bitrate=");
+            v.append(i19);
         }
         if (str5 != null) {
-            u10.append(", codecs=");
-            u10.append(str5);
+            v.append(", codecs=");
+            v.append(str5);
         }
         if (oVar2 != null) {
             LinkedHashSet linkedHashSet = new LinkedHashSet();
@@ -305,84 +305,84 @@ public final class s {
                 i21++;
                 oVar2 = oVar;
             }
-            u10.append(", drm=[");
-            cVar.k(u10, linkedHashSet.iterator());
-            u10.append(']');
+            v.append(", drm=[");
+            cVar.k(v, linkedHashSet.iterator());
+            v.append(']');
         } else {
             c10 = 0;
         }
         if (i18 != -1 && i17 != -1) {
-            u10.append(", res=");
-            u10.append(i18);
-            u10.append("x");
-            u10.append(i17);
+            v.append(", res=");
+            v.append(i18);
+            v.append("x");
+            v.append(i17);
         }
         if (i16 != -1 && i15 != -1) {
-            u10.append(", decRes=");
-            u10.append(i16);
-            u10.append("x");
-            u10.append(i15);
+            v.append(", decRes=");
+            v.append(i16);
+            v.append("x");
+            v.append(i15);
         }
         double d = f10;
-        int i22 = g9.c.f10357a;
+        int i22 = g9.c.f10358a;
         if (Math.copySign(d - 1.0d, 1.0d) > 0.001d && d != 1.0d && (!Double.isNaN(d) || !Double.isNaN(1.0d))) {
-            u10.append(", par=");
+            v.append(", par=");
             Object[] objArr = new Object[1];
             objArr[c10] = Float.valueOf(f10);
-            String str7 = e2.d0.f8537a;
-            u10.append(String.format(Locale.US, "%.3f", objArr));
+            String str7 = e2.d0.f8538a;
+            v.append(String.format(Locale.US, "%.3f", objArr));
         }
         if (jVar != null) {
             int i23 = jVar.f3277f;
             int i24 = jVar.f3276e;
             if ((i24 != -1 && i23 != -1) || jVar.d()) {
-                u10.append(", color=");
+                v.append(", color=");
                 if (jVar.d()) {
                     String b10 = j.b(jVar.f3273a);
                     String a2 = j.a(jVar.f3274b);
                     String c11 = j.c(jVar.f3275c);
-                    String str8 = e2.d0.f8537a;
+                    String str8 = e2.d0.f8538a;
                     Locale locale = Locale.US;
                     str2 = b10 + "/" + a2 + "/" + c11;
                 } else {
                     str2 = "NA/NA/NA";
                 }
                 if (i24 != -1 && i23 != -1) {
-                    str3 = a4.a.k(i24, i23, "/");
+                    str3 = a4.a.l(i24, i23, "/");
                 } else {
                     str3 = "NA/NA";
                 }
-                u10.append(str2 + "/" + str3);
+                v.append(str2 + "/" + str3);
             }
         }
         if (f7 != -1.0f) {
-            u10.append(", fps=");
-            u10.append(f7);
+            v.append(", fps=");
+            v.append(f7);
         }
         if (i14 != -1) {
-            u10.append(", maxSubLayers=");
-            u10.append(i14);
+            v.append(", maxSubLayers=");
+            v.append(i14);
         }
         if (i13 != -1) {
-            u10.append(", channels=");
-            u10.append(i13);
+            v.append(", channels=");
+            v.append(i13);
         }
         if (i12 != -1) {
-            u10.append(", sample_rate=");
-            u10.append(i12);
+            v.append(", sample_rate=");
+            v.append(i12);
         }
         if (str4 != null) {
-            u10.append(", language=");
-            u10.append(str4);
+            v.append(", language=");
+            v.append(str4);
         }
         if (!i0Var.isEmpty()) {
-            u10.append(", labels=[");
-            cVar.k(u10, e9.q.w(i0Var, new ai.w1(10)).iterator());
-            u10.append("]");
+            v.append(", labels=[");
+            cVar.k(v, e9.q.w(i0Var, new ai.w1(10)).iterator());
+            v.append("]");
         }
         if (i11 != 0) {
-            u10.append(", selectionFlags=[");
-            String str9 = e2.d0.f8537a;
+            v.append(", selectionFlags=[");
+            String str9 = e2.d0.f8538a;
             ArrayList arrayList = new ArrayList();
             if ((i11 & 4) != 0) {
                 arrayList.add("auto");
@@ -393,12 +393,12 @@ public final class s {
             if ((i11 & 2) != 0) {
                 arrayList.add("forced");
             }
-            cVar.k(u10, arrayList.iterator());
-            u10.append("]");
+            cVar.k(v, arrayList.iterator());
+            v.append("]");
         }
         if (i20 != 0) {
-            u10.append(", roleFlags=[");
-            String str10 = e2.d0.f8537a;
+            v.append(", roleFlags=[");
+            String str10 = e2.d0.f8538a;
             ArrayList arrayList2 = new ArrayList();
             if ((i20 & 1) != 0) {
                 arrayList2.add("main");
@@ -449,15 +449,15 @@ public final class s {
             if ((i10 & 32768) != 0) {
                 arrayList2.add("auxiliary");
             }
-            cVar.k(u10, arrayList2.iterator());
-            u10.append("]");
+            cVar.k(v, arrayList2.iterator());
+            v.append("]");
         } else {
             i10 = i20;
         }
         if ((i10 & 32768) != 0) {
-            u10.append(", auxiliaryTrackType=");
+            v.append(", auxiliaryTrackType=");
             int i25 = sVar.f3554g;
-            String str11 = e2.d0.f8537a;
+            String str11 = e2.d0.f8538a;
             if (i25 != 0) {
                 if (i25 != 1) {
                     if (i25 != 2) {
@@ -479,9 +479,9 @@ public final class s {
             } else {
                 str = "undefined";
             }
-            u10.append(str);
+            v.append(str);
         }
-        return u10.toString();
+        return v.toString();
     }
 
     public final r a() {
@@ -787,6 +787,6 @@ public final class s {
         sb2.append("], [");
         sb2.append(this.J);
         sb2.append(", ");
-        return a4.a.n(this.K, "])", sb2);
+        return a4.a.o(this.K, "])", sb2);
     }
 }

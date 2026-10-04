@@ -13,7 +13,6 @@ import e2.v;
 import e9.a1;
 import e9.g0;
 import e9.i0;
-import hg.k0;
 import j$.util.DesugarCollections;
 import java.math.RoundingMode;
 import java.util.ArrayDeque;
@@ -40,31 +39,31 @@ public final class h implements c3.o {
     public boolean L;
     public boolean M;
     public long N;
-    public final z3.l f48489a;
-    public final int f48490b;
-    public final List f48491c;
+    public final z3.l f48497a;
+    public final int f48498b;
+    public final List f48499c;
     public final byte[] h;
-    public final v f48495i;
-    public final b0 f48496j;
-    public final e2.c f48501o;
-    public final h0 f48502p;
-    public final xa.c f48503q;
-    public a1 f48504r;
-    public int f48505s;
-    public int f48506t;
-    public long f48507u;
+    public final v f48503i;
+    public final b0 f48504j;
+    public final e2.c f48509o;
+    public final h0 f48510p;
+    public final xa.c f48511q;
+    public a1 f48512r;
+    public int f48513s;
+    public int f48514t;
+    public long f48515u;
     public int v;
-    public v f48508w;
-    public long f48509x;
-    public int f48510y;
-    public long f48511z;
-    public final y f48497k = new y(27);
-    public final v f48498l = new v(16);
-    public final v f48492e = new v(f2.o.f9605a);
-    public final v f48493f = new v(6);
-    public final v f48494g = new v();
-    public final ArrayDeque f48499m = new ArrayDeque();
-    public final ArrayDeque f48500n = new ArrayDeque();
+    public v f48516w;
+    public long f48517x;
+    public int f48518y;
+    public long f48519z;
+    public final y f48505k = new y(27);
+    public final v f48506l = new v(16);
+    public final v f48500e = new v(f2.o.f9606a);
+    public final v f48501f = new v(6);
+    public final v f48502g = new v();
+    public final ArrayDeque f48507m = new ArrayDeque();
+    public final ArrayDeque f48508n = new ArrayDeque();
     public final SparseArray d = new SparseArray();
 
     static {
@@ -74,24 +73,24 @@ public final class h implements c3.o {
     }
 
     public h(z3.l lVar, int i10, b0 b0Var, List list, l2.o oVar) {
-        this.f48489a = lVar;
-        this.f48490b = i10;
-        this.f48496j = b0Var;
-        this.f48491c = DesugarCollections.unmodifiableList(list);
-        this.f48502p = oVar;
+        this.f48497a = lVar;
+        this.f48498b = i10;
+        this.f48504j = b0Var;
+        this.f48499c = DesugarCollections.unmodifiableList(list);
+        this.f48510p = oVar;
         byte[] bArr = new byte[16];
         this.h = bArr;
-        this.f48495i = new v(bArr);
-        g0 g0Var = i0.f8757b;
-        this.f48504r = a1.f8720e;
+        this.f48503i = new v(bArr);
+        g0 g0Var = i0.f8758b;
+        this.f48512r = a1.f8721e;
         this.A = -9223372036854775807L;
-        this.f48511z = -9223372036854775807L;
+        this.f48519z = -9223372036854775807L;
         this.B = -9223372036854775807L;
-        this.I = c3.q.f4099m;
+        this.I = c3.q.f4100m;
         this.J = new h0[0];
         this.K = new h0[0];
-        this.f48501o = new e2.c(new e(this));
-        this.f48503q = new xa.c(7);
+        this.f48509o = new e2.c(new e(this));
+        this.f48511q = new xa.c(7);
         this.N = -1L;
     }
 
@@ -101,16 +100,16 @@ public final class h implements c3.o {
         ArrayList arrayList = null;
         for (int i10 = 0; i10 < size; i10++) {
             f2.d dVar = (f2.d) list.get(i10);
-            if (dVar.f8302b == 1886614376) {
+            if (dVar.f8303b == 1886614376) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                byte[] bArr = dVar.f9553c.f8589a;
+                byte[] bArr = dVar.f9554c.f8590a;
                 j6.l j3 = n.j(bArr);
                 if (j3 == null) {
                     uuid = null;
                 } else {
-                    uuid = (UUID) j3.f14024b;
+                    uuid = (UUID) j3.f14025b;
                 }
                 if (uuid == null) {
                     e2.a.n("FragmentedMp4Extractor", "Skipped pssh atom (failed to extract uuid)");
@@ -129,7 +128,7 @@ public final class h implements c3.o {
         boolean z10;
         vVar.J(i10 + 8);
         int j3 = vVar.j();
-        byte[] bArr = c.f48470a;
+        byte[] bArr = c.f48478a;
         if ((j3 & 1) == 0) {
             if ((j3 & 2) != 0) {
                 z10 = true;
@@ -138,23 +137,23 @@ public final class h implements c3.o {
             }
             int B = vVar.B();
             if (B == 0) {
-                Arrays.fill(qVar.f48572l, 0, qVar.f48566e, false);
+                Arrays.fill(qVar.f48580l, 0, qVar.f48574e, false);
                 return;
             }
-            int i11 = qVar.f48566e;
-            v vVar2 = qVar.f48574n;
+            int i11 = qVar.f48574e;
+            v vVar2 = qVar.f48582n;
             if (B == i11) {
-                Arrays.fill(qVar.f48572l, 0, B, z10);
+                Arrays.fill(qVar.f48580l, 0, B, z10);
                 vVar2.G(vVar.a());
-                qVar.f48571k = true;
-                qVar.f48575o = true;
-                vVar.h(0, vVar2.f8591c, vVar2.f8589a);
+                qVar.f48579k = true;
+                qVar.f48583o = true;
+                vVar.h(0, vVar2.f8592c, vVar2.f8590a);
                 vVar2.J(0);
-                qVar.f48575o = false;
+                qVar.f48583o = false;
                 return;
             }
-            StringBuilder j10 = k0.j(B, "Senc sample count ", " is different from fragment sample count");
-            j10.append(qVar.f48566e);
+            StringBuilder j10 = hg.c.j(B, "Senc sample count ", " is different from fragment sample count");
+            j10.append(qVar.f48574e);
             throw s0.a(null, j10.toString());
         }
         throw s0.c("Overriding TrackEncryptionBox parameters is unsupported.");
@@ -176,7 +175,7 @@ public final class h implements c3.o {
             C2 = vVar2.C();
         }
         long j10 = C2 + j3;
-        String str = d0.f8537a;
+        String str = d0.f8538a;
         long Y = d0.Y(C, 1000000L, z10, RoundingMode.DOWN);
         vVar2.K(2);
         int D = vVar2.D();
@@ -215,7 +214,7 @@ public final class h implements c3.o {
     }
 
     public final void a() {
-        this.f48505s = 0;
+        this.f48513s = 0;
         this.v = 0;
     }
 
@@ -226,10 +225,10 @@ public final class h implements c3.o {
         if (n10 != null) {
             a1Var = i0.z(n10);
         } else {
-            g0 g0Var = i0.f8757b;
-            a1Var = a1.f8720e;
+            g0 g0Var = i0.f8758b;
+            a1Var = a1.f8721e;
         }
-        this.f48504r = a1Var;
+        this.f48512r = a1Var;
         if (n10 == null) {
             return true;
         }
@@ -239,16 +238,16 @@ public final class h implements c3.o {
     @Override
     public final void g(c3.q qVar) {
         int i10;
-        int i11 = this.f48490b;
+        int i11 = this.f48498b;
         if ((i11 & 32) == 0) {
-            qVar = new com.google.firebase.messaging.m(qVar, this.f48489a);
+            qVar = new com.google.firebase.messaging.m(qVar, this.f48497a);
         }
         this.I = qVar;
         a();
         h0[] h0VarArr = new h0[2];
         this.J = h0VarArr;
         int i12 = 0;
-        h0 h0Var = this.f48502p;
+        h0 h0Var = this.f48510p;
         if (h0Var != null) {
             h0VarArr[0] = h0Var;
             i10 = 1;
@@ -266,7 +265,7 @@ public final class h implements c3.o {
         for (h0 h0Var2 : h0VarArr2) {
             h0Var2.b(P);
         }
-        List list = this.f48491c;
+        List list = this.f48499c;
         this.K = new h0[list.size()];
         while (i12 < this.K.length) {
             h0 Z1 = this.I.Z1(i13, 3);
@@ -284,17 +283,17 @@ public final class h implements c3.o {
         for (int i10 = 0; i10 < size; i10++) {
             ((g) sparseArray.valueAt(i10)).e();
         }
-        this.f48500n.clear();
-        this.f48510y = 0;
-        ((PriorityQueue) this.f48501o.f8534e).clear();
-        this.f48511z = j10;
-        this.f48499m.clear();
+        this.f48508n.clear();
+        this.f48518y = 0;
+        ((PriorityQueue) this.f48509o.f8535e).clear();
+        this.f48519z = j10;
+        this.f48507m.clear();
         a();
     }
 
     @Override
     public final List i() {
-        return this.f48504r;
+        return this.f48512r;
     }
 
     public final void j(long r54) {

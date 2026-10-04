@@ -10,7 +10,6 @@ import e2.v;
 import e9.a1;
 import e9.g0;
 import e9.i0;
-import hg.k0;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -18,56 +17,56 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class u implements c3.o {
-    public static final Pattern f17101i = Pattern.compile("LOCAL:([^,]+)");
-    public static final Pattern f17102j = Pattern.compile("MPEGTS:(-?\\d+)");
-    public final String f17103a;
-    public final b0 f17104b;
+    public static final Pattern f17105i = Pattern.compile("LOCAL:([^,]+)");
+    public static final Pattern f17106j = Pattern.compile("MPEGTS:(-?\\d+)");
+    public final String f17107a;
+    public final b0 f17108b;
     public final z3.l d;
-    public final boolean f17106e;
-    public c3.q f17107f;
+    public final boolean f17110e;
+    public c3.q f17111f;
     public int h;
-    public final v f17105c = new v();
-    public byte[] f17108g = new byte[1024];
+    public final v f17109c = new v();
+    public byte[] f17112g = new byte[1024];
 
     public u(String str, b0 b0Var, z3.l lVar, boolean z10) {
-        this.f17103a = str;
-        this.f17104b = b0Var;
+        this.f17107a = str;
+        this.f17108b = b0Var;
         this.d = lVar;
-        this.f17106e = z10;
+        this.f17110e = z10;
     }
 
     public final h0 a(long j3) {
-        h0 Z1 = this.f17107f.Z1(0, 3);
+        h0 Z1 = this.f17111f.Z1(0, 3);
         b2.r rVar = new b2.r();
         rVar.f3506q = r0.n("text/vtt");
-        rVar.d = this.f17103a;
+        rVar.d = this.f17107a;
         rVar.v = j3;
-        k0.r(rVar, Z1);
-        this.f17107f.e1();
+        hg.c.s(rVar, Z1);
+        this.f17111f.e1();
         return Z1;
     }
 
     @Override
     public final boolean b(c3.p pVar) {
         c3.l lVar = (c3.l) pVar;
-        lVar.f(this.f17108g, 0, 6, false);
-        byte[] bArr = this.f17108g;
-        v vVar = this.f17105c;
+        lVar.f(this.f17112g, 0, 6, false);
+        byte[] bArr = this.f17112g;
+        v vVar = this.f17109c;
         vVar.H(6, bArr);
         if (i4.i.a(vVar)) {
             return true;
         }
-        lVar.f(this.f17108g, 6, 3, false);
-        vVar.H(9, this.f17108g);
+        lVar.f(this.f17112g, 6, 3, false);
+        vVar.H(9, this.f17112g);
         return i4.i.a(vVar);
     }
 
     @Override
     public final void g(c3.q qVar) {
-        if (this.f17106e) {
+        if (this.f17110e) {
             qVar = new com.google.firebase.messaging.m(qVar, this.d);
         }
-        this.f17107f = qVar;
+        this.f17111f = qVar;
         qVar.X1(new c3.t(-9223372036854775807L));
     }
 
@@ -78,27 +77,27 @@ public final class u implements c3.o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8757b;
-        return a1.f8720e;
+        g0 g0Var = i0.f8758b;
+        return a1.f8721e;
     }
 
     @Override
     public final int m(c3.p pVar, c3.s sVar) {
         String k10;
         int length;
-        this.f17107f.getClass();
+        this.f17111f.getClass();
         int length2 = (int) pVar.getLength();
         int i10 = this.h;
-        byte[] bArr = this.f17108g;
+        byte[] bArr = this.f17112g;
         if (i10 == bArr.length) {
             if (length2 != -1) {
                 length = length2;
             } else {
                 length = bArr.length;
             }
-            this.f17108g = Arrays.copyOf(bArr, (length * 3) / 2);
+            this.f17112g = Arrays.copyOf(bArr, (length * 3) / 2);
         }
-        byte[] bArr2 = this.f17108g;
+        byte[] bArr2 = this.f17112g;
         int i11 = this.h;
         int read = pVar.read(bArr2, i11, bArr2.length - i11);
         if (read != -1) {
@@ -108,7 +107,7 @@ public final class u implements c3.o {
                 return 0;
             }
         }
-        v vVar = new v(this.f17108g);
+        v vVar = new v(this.f17112g);
         i4.i.d(vVar);
         String k11 = vVar.k(StandardCharsets.UTF_8);
         long j3 = 0;
@@ -117,9 +116,9 @@ public final class u implements c3.o {
             Matcher matcher = null;
             if (!TextUtils.isEmpty(k11)) {
                 if (k11.startsWith("X-TIMESTAMP-MAP")) {
-                    Matcher matcher2 = f17101i.matcher(k11);
+                    Matcher matcher2 = f17105i.matcher(k11);
                     if (matcher2.find()) {
-                        Matcher matcher3 = f17102j.matcher(k11);
+                        Matcher matcher3 = f17106j.matcher(k11);
                         if (matcher3.find()) {
                             String group = matcher2.group(1);
                             group.getClass();
@@ -127,7 +126,7 @@ public final class u implements c3.o {
                             String group2 = matcher3.group(1);
                             group2.getClass();
                             long parseLong = Long.parseLong(group2);
-                            String str = d0.f8537a;
+                            String str = d0.f8538a;
                             j3 = d0.Y(parseLong, 1000000L, 90000L, RoundingMode.DOWN);
                         } else {
                             throw s0.a(null, "X-TIMESTAMP-MAP doesn't contain media timestamp: ".concat(k11));
@@ -142,14 +141,14 @@ public final class u implements c3.o {
                     String k12 = vVar.k(StandardCharsets.UTF_8);
                     if (k12 == null) {
                         break;
-                    } else if (i4.i.f11957a.matcher(k12).matches()) {
+                    } else if (i4.i.f11958a.matcher(k12).matches()) {
                         do {
                             k10 = vVar.k(StandardCharsets.UTF_8);
                             if (k10 != null) {
                             }
                         } while (!k10.isEmpty());
                     } else {
-                        Matcher matcher4 = i4.h.f11954a.matcher(k12);
+                        Matcher matcher4 = i4.h.f11955a.matcher(k12);
                         if (matcher4.matches()) {
                             matcher = matcher4;
                             break;
@@ -163,12 +162,12 @@ public final class u implements c3.o {
                 String group3 = matcher.group(1);
                 group3.getClass();
                 long c10 = i4.i.c(group3);
-                String str2 = d0.f8537a;
-                long b10 = this.f17104b.b(d0.Y((j3 + c10) - j10, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
+                String str2 = d0.f8538a;
+                long b10 = this.f17108b.b(d0.Y((j3 + c10) - j10, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
                 h0 a2 = a(b10 - c10);
-                byte[] bArr3 = this.f17108g;
+                byte[] bArr3 = this.f17112g;
                 int i13 = this.h;
-                v vVar2 = this.f17105c;
+                v vVar2 = this.f17109c;
                 vVar2.H(i13, bArr3);
                 a2.d(this.h, vVar2);
                 a2.c(b10, 1, this.h, 0, null);

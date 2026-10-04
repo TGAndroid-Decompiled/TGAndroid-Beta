@@ -14,14 +14,14 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class e2 extends WebViewClient {
-    public boolean f42177a = true;
-    public boolean f42178b;
-    public final InputStream f42179c;
+    public boolean f42184a = true;
+    public boolean f42185b;
+    public final InputStream f42186c;
     public final j2 d;
 
     public e2(j2 j2Var, InputStream inputStream) {
         this.d = j2Var;
-        this.f42179c = inputStream;
+        this.f42186c = inputStream;
     }
 
     @Override
@@ -31,17 +31,17 @@ public final class e2 extends WebViewClient {
         InputStream a2;
         String str3;
         l1 l1Var2;
-        if (this.f42177a) {
-            this.f42177a = false;
-            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a4.a.p("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
+        if (this.f42184a) {
+            this.f42184a = false;
+            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a4.a.q("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
         }
         j2 j2Var = this.d;
         if (str != null && str.endsWith("/index.html")) {
             str3 = "application/octet-stream";
-            if (this.f42178b) {
-                qi.f fVar = j2Var.f42242b;
+            if (this.f42185b) {
+                qi.f fVar = j2Var.f42249b;
                 if (fVar != null) {
-                    l1Var2 = (l1) ((ArrayList) fVar.f45528b).get(0);
+                    l1Var2 = (l1) ((ArrayList) fVar.f45535b).get(0);
                 } else {
                     l1Var2 = null;
                 }
@@ -55,24 +55,24 @@ public final class e2 extends WebViewClient {
                     return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
                 }
             } else {
-                this.f42178b = true;
-                a2 = this.f42179c;
+                this.f42185b = true;
+                a2 = this.f42186c;
             }
         } else {
-            qi.f fVar2 = j2Var.f42242b;
+            qi.f fVar2 = j2Var.f42249b;
             if (fVar2 != null) {
-                l1Var = (l1) ((HashMap) fVar2.f45529c).get(str);
+                l1Var = (l1) ((HashMap) fVar2.f45536c).get(str);
             } else {
                 l1Var = null;
             }
             if (l1Var == null) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
             }
-            m1 m1Var = (m1) l1Var.f42264a.get("content-type");
+            m1 m1Var = (m1) l1Var.f42271a.get("content-type");
             if (m1Var == null) {
                 str2 = null;
             } else {
-                str2 = m1Var.f42273a;
+                str2 = m1Var.f42280a;
             }
             if (!"text/html".equalsIgnoreCase(str2) && !"text/css".equalsIgnoreCase(str2)) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);

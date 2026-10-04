@@ -16,18 +16,18 @@ import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.yc;
 import yh.k5;
 public final class l0 implements Runnable {
-    public final int f44520a;
-    public final boolean f44521b;
-    public final Object f44522c;
+    public final int f44527a;
+    public final boolean f44528b;
+    public final Object f44529c;
     public final Object d;
-    public final Object f44523e;
+    public final Object f44530e;
 
     public l0(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f44520a = i10;
-        this.f44522c = obj;
+        this.f44527a = i10;
+        this.f44529c = obj;
         this.d = obj2;
-        this.f44523e = obj3;
-        this.f44521b = z10;
+        this.f44530e = obj3;
+        this.f44528b = z10;
     }
 
     @Override
@@ -38,16 +38,16 @@ public final class l0 implements Runnable {
         int i11;
         Boolean bool;
         boolean z10;
-        int i12 = this.f44520a;
-        boolean z11 = this.f44521b;
-        Object obj = this.f44523e;
+        int i12 = this.f44527a;
+        boolean z11 = this.f44528b;
+        Object obj = this.f44530e;
         Object obj2 = this.d;
-        Object obj3 = this.f44522c;
+        Object obj3 = this.f44529c;
         switch (i12) {
             case 0:
                 s0 s0Var = (s0) obj3;
-                s0Var.f44587f.f(new q0(s0Var, (a5.a) obj2, 0));
-                s0Var.f44587f.f(new q0(s0Var, (a5.a) obj, 0));
+                s0Var.f44594f.f(new q0(s0Var, (a5.a) obj2, 0));
+                s0Var.f44594f.f(new q0(s0Var, (a5.a) obj, 0));
                 s0Var.E = z11;
                 return;
             case 1:
@@ -76,17 +76,17 @@ public final class l0 implements Runnable {
                     string2 = LocaleController.getString(i10);
                 }
                 rc M = ycVar.M(string, AndroidUtilities.replaceSingleTag(string2, i6.Gi, 0, new tg.c(chat), d6Var), i13);
-                M.f30339j = 5000;
+                M.f30345j = 5000;
                 M.j();
                 return;
             default:
                 k5 k5Var = (k5) obj3;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList = k5Var.f51528l;
-                int i14 = k5Var.f51519a;
-                if (((int[]) obj2)[0] == k5Var.f51529m) {
-                    k5Var.f51525i = false;
-                    k5Var.f51529m = -1;
+                ArrayList arrayList = k5Var.f51533l;
+                int i14 = k5Var.f51524a;
+                if (((int[]) obj2)[0] == k5Var.f51534m) {
+                    k5Var.f51530i = false;
+                    k5Var.f51534m = -1;
                     if (tLObject instanceof TL_stars.TL_payments_savedStarGifts) {
                         TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject;
                         MessagesController.getInstance(i14).putUsers(tL_payments_savedStarGifts.users, false);
@@ -95,24 +95,24 @@ public final class l0 implements Runnable {
                             arrayList.clear();
                         }
                         arrayList.addAll(tL_payments_savedStarGifts.gifts);
-                        k5Var.f51527k = tL_payments_savedStarGifts.next_offset;
-                        k5Var.f51530n = tL_payments_savedStarGifts.count;
+                        k5Var.f51532k = tL_payments_savedStarGifts.next_offset;
+                        k5Var.f51535n = tL_payments_savedStarGifts.count;
                         if ((tL_payments_savedStarGifts.flags & 2) != 0) {
                             bool = Boolean.valueOf(tL_payments_savedStarGifts.chat_notifications_enabled);
                         } else {
                             bool = null;
                         }
                         k5Var.h = bool;
-                        if (arrayList.size() <= k5Var.f51530n && k5Var.f51527k != null) {
+                        if (arrayList.size() <= k5Var.f51535n && k5Var.f51532k != null) {
                             z10 = false;
                         } else {
                             z10 = true;
                         }
-                        k5Var.f51526j = z10;
+                        k5Var.f51531j = z10;
                     } else {
-                        k5Var.f51526j = true;
+                        k5Var.f51531j = true;
                     }
-                    NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(k5Var.f51520b), k5Var);
+                    NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(k5Var.f51525b), k5Var);
                     return;
                 }
                 return;
@@ -120,10 +120,10 @@ public final class l0 implements Runnable {
     }
 
     public l0(yc ycVar, boolean z10, TLRPC.Chat chat, d6 d6Var) {
-        this.f44520a = 1;
-        this.f44522c = ycVar;
-        this.f44521b = z10;
+        this.f44527a = 1;
+        this.f44529c = ycVar;
+        this.f44528b = z10;
         this.d = chat;
-        this.f44523e = d6Var;
+        this.f44530e = d6Var;
     }
 }

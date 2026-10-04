@@ -8,40 +8,40 @@ import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.us;
 import org.telegram.ui.Components.ws;
 public final class l0 implements RequestDelegate {
-    public final int f19577a;
-    public final int f19578b;
-    public final boolean f19579c;
+    public final int f19569a;
+    public final int f19570b;
+    public final boolean f19571c;
     public final Object d;
-    public final Object f19580e;
+    public final Object f19572e;
 
     public l0(int i10, String str, VoIPService voIPService, boolean z10) {
-        this.f19577a = 0;
+        this.f19569a = 0;
         this.d = voIPService;
-        this.f19578b = i10;
-        this.f19579c = z10;
-        this.f19580e = str;
+        this.f19570b = i10;
+        this.f19571c = z10;
+        this.f19572e = str;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19577a) {
+        switch (this.f19569a) {
             case 0:
-                ((VoIPService) this.d).lambda$startConferenceGroupCall$54(this.f19578b, this.f19579c, (String) this.f19580e, tLObject, tL_error);
+                ((VoIPService) this.d).lambda$startConferenceGroupCall$54(this.f19570b, this.f19571c, (String) this.f19572e, tLObject, tL_error);
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new m4.e0((us) this.d, this.f19578b, (TLRPC.TL_messages_searchGlobal) this.f19580e, this.f19579c, tLObject, 2));
+                AndroidUtilities.runOnUIThread(new m4.e0((us) this.d, this.f19570b, (TLRPC.TL_messages_searchGlobal) this.f19572e, this.f19571c, tLObject, 2));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new m4.e0((ws) this.d, this.f19578b, (TLRPC.TL_messages_searchGlobal) this.f19580e, this.f19579c, tLObject, 3));
+                AndroidUtilities.runOnUIThread(new m4.e0((ws) this.d, this.f19570b, (TLRPC.TL_messages_searchGlobal) this.f19572e, this.f19571c, tLObject, 3));
                 return;
         }
     }
 
     public l0(u61 u61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
-        this.f19577a = i11;
+        this.f19569a = i11;
         this.d = u61Var;
-        this.f19578b = i10;
-        this.f19580e = tL_messages_searchGlobal;
-        this.f19579c = z10;
+        this.f19570b = i10;
+        this.f19572e = tL_messages_searchGlobal;
+        this.f19571c = z10;
     }
 }

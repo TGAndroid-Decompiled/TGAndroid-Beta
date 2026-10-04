@@ -8,10 +8,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class zi implements org.telegram.ui.Components.nl0 {
-    public final yn f43791a;
+    public final yn f43798a;
 
     public zi(yn ynVar) {
-        this.f43791a = ynVar;
+        this.f43798a = ynVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class zi implements org.telegram.ui.Components.nl0 {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
-        yn ynVar = this.f43791a;
+        yn ynVar = this.f43798a;
         z10 = ((org.telegram.ui.ActionBar.n2) ynVar).inPreviewMode;
         if (!z10) {
             ynVar.B4 = true;
@@ -65,7 +65,7 @@ public final class zi implements org.telegram.ui.Components.nl0 {
                     u1Var.t2();
                     view.requestLayout();
                     if (i10 >= 0) {
-                        ynVar.f43565y0.m(i10);
+                        ynVar.f43572y0.m(i10);
                         return;
                     }
                     return;
@@ -75,7 +75,7 @@ public final class zi implements org.telegram.ui.Components.nl0 {
             }
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
-                if (ynVar.f43271a9.A(u1Var2.getMessageObject())) {
+                if (ynVar.f43278a9.A(u1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !u1Var2.i3(f7);
@@ -92,7 +92,7 @@ public final class zi implements org.telegram.ui.Components.nl0 {
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        yn ynVar = this.f43791a;
+        yn ynVar = this.f43798a;
         if (!ynVar.y9() && ((tL_availableReaction = ynVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = ynVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
             if (ynVar.R5 >= 0) {
                 z10 = true;
@@ -127,7 +127,7 @@ public final class zi implements org.telegram.ui.Components.nl0 {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        yn ynVar = this.f43791a;
+        yn ynVar = this.f43798a;
         if (ynVar.getParentActivity() != null && !ynVar.v() && !ynVar.c() && !ynVar.isInPreviewMode() && !ynVar.y9()) {
             if (view instanceof org.telegram.ui.Cells.u1) {
                 messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();
@@ -141,8 +141,8 @@ public final class zi implements org.telegram.ui.Components.nl0 {
             }
             MessageObject messageObject2 = messageObject;
             if (!messageObject2.isSecret() && messageObject2.canSetReaction() && !messageObject2.isExpiredStory() && messageObject2.type != 27) {
-                TLRPC.Chat chat = ynVar.f43315e;
-                if (chat == null || ChatObject.isChannelAndNotMegaGroup(chat) || ChatObject.canUserDoAction(ynVar.f43315e, 26)) {
+                TLRPC.Chat chat = ynVar.f43322e;
+                if (chat == null || ChatObject.isChannelAndNotMegaGroup(chat) || ChatObject.canUserDoAction(ynVar.f43322e, 26)) {
                     boolean z10 = false;
                     zg.k0.b(false);
                     String doubleTapReaction = ynVar.getMediaDataController().getDoubleTapReaction();

@@ -5,19 +5,19 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 public final class u extends d {
-    public final String f48996a;
-    public final ExecutorService f48997b;
+    public final String f49004a;
+    public final ExecutorService f49005b;
 
     public u(String str, ExecutorService executorService) {
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        this.f48996a = str;
-        this.f48997b = executorService;
+        this.f49004a = str;
+        this.f49005b = executorService;
     }
 
     @Override
     public final void a() {
-        String str = this.f48996a;
-        ExecutorService executorService = this.f48997b;
+        String str = this.f49004a;
+        ExecutorService executorService = this.f49005b;
         try {
             String concat = "Executing shutdown hook for ".concat(str);
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -33,9 +33,9 @@ public final class u extends d {
             }
         } catch (InterruptedException unused) {
             Locale locale = Locale.US;
-            String p5 = a4.a.p("Interrupted while waiting for ", str, " to shut down. Requesting immediate shutdown.");
+            String q6 = a4.a.q("Interrupted while waiting for ", str, " to shut down. Requesting immediate shutdown.");
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                Log.d("FirebaseCrashlytics", p5, null);
+                Log.d("FirebaseCrashlytics", q6, null);
             }
             executorService.shutdownNow();
         }

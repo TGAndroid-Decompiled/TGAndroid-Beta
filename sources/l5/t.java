@@ -9,37 +9,37 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import org.telegram.ui.web.u0;
 public final class t {
-    public static volatile k f15370e;
-    public final u5.a f15371a;
-    public final u5.a f15372b;
-    public final q5.b f15373c;
+    public static volatile k f15371e;
+    public final u5.a f15372a;
+    public final u5.a f15373b;
+    public final q5.b f15374c;
     public final da.b d;
 
     public t(u5.a aVar, u5.a aVar2, q5.b bVar, da.b bVar2, com.google.firebase.messaging.s sVar) {
-        this.f15371a = aVar;
-        this.f15372b = aVar2;
-        this.f15373c = bVar;
+        this.f15372a = aVar;
+        this.f15373b = aVar2;
+        this.f15374c = bVar;
         this.d = bVar2;
-        ((Executor) sVar.f7921b).execute(new u0(sVar, 24));
+        ((Executor) sVar.f7922b).execute(new u0(sVar, 24));
     }
 
     public static t a() {
-        k kVar = f15370e;
+        k kVar = f15371e;
         if (kVar != null) {
-            return (t) kVar.f15354f.mo28get();
+            return (t) kVar.f15355f.mo28get();
         }
         throw new IllegalStateException("Not initialized!");
     }
 
     public static void b(Context context) {
-        if (f15370e == null) {
+        if (f15371e == null) {
             synchronized (t.class) {
                 try {
-                    if (f15370e == null) {
+                    if (f15371e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f15349a = context;
-                        f15370e = obj.a();
+                        obj.f15350a = context;
+                        f15371e = obj.a();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -60,8 +60,8 @@ public final class t {
         lVar.getClass();
         a2.f386b = "cct";
         j5.a aVar = (j5.a) lVar;
-        String str = aVar.f13986a;
-        String str2 = aVar.f13987b;
+        String str = aVar.f13987a;
+        String str2 = aVar.f13988b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {

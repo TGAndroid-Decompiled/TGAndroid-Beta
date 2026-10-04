@@ -3,17 +3,17 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class re1 extends org.telegram.ui.Components.lw0 {
-    public boolean f40108w0;
+    public boolean f40113w0;
 
     @Override
     public final void onMeasure(int i10, int i11) {
         R();
-        if (getKeyboardHeight() == 0 && !this.f40108w0) {
+        if (getKeyboardHeight() == 0 && !this.f40113w0) {
             int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
-            this.f28451f = i12;
+            this.f28456f = i12;
             setPadding(0, 0, 0, i12);
         } else {
-            this.f40108w0 = true;
+            this.f40113w0 = true;
             setPadding(0, 0, 0, 0);
         }
         super.onMeasure(i10, i11);

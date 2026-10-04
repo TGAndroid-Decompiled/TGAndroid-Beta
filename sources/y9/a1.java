@@ -1,9 +1,9 @@
 package y9;
 public final class a1 extends c2 {
-    public final String f50574a;
+    public final String f50582a;
 
     public a1(String str) {
-        this.f50574a = str;
+        this.f50582a = str;
     }
 
     public final boolean equals(Object obj) {
@@ -11,16 +11,16 @@ public final class a1 extends c2 {
             return true;
         }
         if (obj instanceof c2) {
-            return this.f50574a.equals(((a1) ((c2) obj)).f50574a);
+            return this.f50582a.equals(((a1) ((c2) obj)).f50582a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f50574a.hashCode() ^ 1000003;
+        return this.f50582a.hashCode() ^ 1000003;
     }
 
     public final String toString() {
-        return a4.a.s(new StringBuilder("User{identifier="), this.f50574a, "}");
+        return a4.a.t(new StringBuilder("User{identifier="), this.f50582a, "}");
     }
 }

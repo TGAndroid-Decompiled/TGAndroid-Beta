@@ -26,7 +26,7 @@ public final class q0 extends f61 {
         TLRPC.User user = communityPeerDialog.user;
         if (user != null) {
             g61 J = g61.J(q0.class);
-            long j10 = user.f20185id;
+            long j10 = user.f20189id;
             J.B = j10;
             J.d = (int) (j10 ^ (j10 >>> 32));
             J.G = user;
@@ -36,7 +36,7 @@ public final class q0 extends f61 {
         TLRPC.Chat chat = communityPeerDialog.chat;
         g61 J2 = g61.J(q0.class);
         if (chat != null) {
-            j3 = -chat.f20038id;
+            j3 = -chat.f20042id;
         } else {
             j3 = 0;
         }
@@ -56,7 +56,7 @@ public final class q0 extends f61 {
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             s2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, chat);
-            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f20038id);
+            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f20042id);
             if (dialog != null) {
                 z11 = false;
             }
@@ -67,11 +67,11 @@ public final class q0 extends f61 {
                 return;
             }
             s2Var.setCustomMessageWithoutRebuild(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
-            s2Var.U(-chat.f20038id, null, 0, false, false);
+            s2Var.U(-chat.f20042id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
             s2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, user);
-            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f20185id);
+            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f20189id);
             if (dialog2 != null) {
                 z11 = false;
             }
@@ -82,7 +82,7 @@ public final class q0 extends f61 {
                 return;
             }
             s2Var.setCustomMessageWithoutRebuild(LocaleController.getString(R.string.Bot));
-            s2Var.U(user.f20185id, null, 0, false, false);
+            s2Var.U(user.f20189id, null, 0, false, false);
         }
     }
 

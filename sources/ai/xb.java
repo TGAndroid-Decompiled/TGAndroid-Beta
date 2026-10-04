@@ -98,9 +98,9 @@ public final class xb extends lw0 {
                 f7 += view.getX();
                 f10 += view.getY();
             }
-            if (currentPeerView.f891r3.getReactionsWindow() != null && currentPeerView.f891r3.getReactionsWindow().f53319c != null) {
-                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f891r3.getReactionsWindow().f53319c.getTranslationY());
-                currentPeerView.f891r3.getReactionsWindow().f53319c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f891r3.getReactionsWindow() != null && currentPeerView.f891r3.getReactionsWindow().f53324c != null) {
+                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f891r3.getReactionsWindow().f53324c.getTranslationY());
+                currentPeerView.f891r3.getReactionsWindow().f53324c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
@@ -126,7 +126,7 @@ public final class xb extends lw0 {
                 ofFloat.addUpdateListener(new ub(this, 0));
                 jcVar.G.addListener(new vb(this, 0));
                 jcVar.G.setDuration(250L);
-                jcVar.G.setInterpolator(tr.f31141f);
+                jcVar.G.setInterpolator(tr.f31147f);
                 jcVar.G.start();
             }
             if (jcVar.V >= 0.3f) {
@@ -144,12 +144,12 @@ public final class xb extends lw0 {
                 a5 a5Var = currentPeerView.f844c1;
                 ci.e4 e4Var = currentPeerView.F0;
                 if (e4Var != null && e4Var.V && nbVar != null) {
-                    if (!e4Var.f5004r0.contains(motionEvent.getX() - (currentPeerView.F0.getX() + (a5Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.F0.getY() + (a5Var.getY() + currentPeerView.getY()))) && !currentPeerView.H0(motionEvent, nbVar)) {
+                    if (!e4Var.f5005r0.contains(motionEvent.getX() - (currentPeerView.F0.getX() + (a5Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.F0.getY() + (a5Var.getY() + currentPeerView.getY()))) && !currentPeerView.H0(motionEvent, nbVar)) {
                         currentPeerView.F0.e(true);
                     }
                 }
                 ci.e4 e4Var2 = currentPeerView.G0;
-                if (e4Var2 != null && e4Var2.V && w5Var != null && !e4Var2.f5004r0.contains(motionEvent.getX() - (currentPeerView.G0.getX() + (a5Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.G0.getY() + (a5Var.getY() + currentPeerView.getY()))) && !currentPeerView.H0(motionEvent, w5Var)) {
+                if (e4Var2 != null && e4Var2.V && w5Var != null && !e4Var2.f5005r0.contains(motionEvent.getX() - (currentPeerView.G0.getX() + (a5Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.G0.getY() + (a5Var.getY() + currentPeerView.getY()))) && !currentPeerView.H0(motionEvent, w5Var)) {
                     currentPeerView.G0.e(true);
                 }
             }
@@ -285,7 +285,7 @@ public final class xb extends lw0 {
                 ofFloat.addUpdateListener(new ub(this, 1));
                 jcVar.G.addListener(new vb(this, 1));
                 jcVar.G.setDuration(150L);
-                jcVar.G.setInterpolator(tr.f31141f);
+                jcVar.G.setInterpolator(tr.f31147f);
                 jcVar.G.start();
             }
             e6 t10 = jcVar.t();

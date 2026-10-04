@@ -6,44 +6,44 @@ import java.util.Iterator;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.NotificationCenter;
 public final class z01 implements ki.p0, NotificationCenter.NotificationCenterDelegate {
-    public final int f33326a;
-    public final boolean f33327b;
-    public final HashMap f33328c = new HashMap();
+    public final int f33332a;
+    public final boolean f33333b;
+    public final HashMap f33334c = new HashMap();
     public boolean d;
 
     public z01(int i10, boolean z10) {
-        this.f33326a = i10;
-        this.f33327b = z10;
+        this.f33332a = i10;
+        this.f33333b = z10;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
     }
 
     public final synchronized void a(long j3, File file, long j10, long j11) {
-        x01 x01Var = (x01) this.f33328c.get(Long.valueOf(j3));
-        if (!this.d && x01Var != null && !x01Var.f32684e) {
+        x01 x01Var = (x01) this.f33334c.get(Long.valueOf(j3));
+        if (!this.d && x01Var != null && !x01Var.f32690e) {
             e(x01Var);
-            x01Var.f32682b = Math.max(x01Var.f32682b, j10 + j11);
-            FileLoader.getInstance(this.f33326a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f33327b, x01Var.f32682b, 0L);
+            x01Var.f32688b = Math.max(x01Var.f32688b, j10 + j11);
+            FileLoader.getInstance(this.f33332a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f33333b, x01Var.f32688b, 0L);
         }
     }
 
     public final synchronized void b(long j3, long j10, File file) {
-        x01 x01Var = (x01) this.f33328c.get(Long.valueOf(j3));
-        if (!this.d && x01Var != null && !x01Var.f32684e) {
+        x01 x01Var = (x01) this.f33334c.get(Long.valueOf(j3));
+        if (!this.d && x01Var != null && !x01Var.f32690e) {
             e(x01Var);
-            x01Var.f32682b = Math.max(x01Var.f32682b, j10);
-            x01Var.f32683c = j10;
-            FileLoader.getInstance(this.f33326a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f33327b, x01Var.f32682b, j10);
+            x01Var.f32688b = Math.max(x01Var.f32688b, j10);
+            x01Var.f32689c = j10;
+            FileLoader.getInstance(this.f33332a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f33333b, x01Var.f32688b, j10);
         }
     }
 
     public final synchronized void c(long j3) {
-        x01 x01Var = (x01) this.f33328c.remove(Long.valueOf(j3));
+        x01 x01Var = (x01) this.f33334c.remove(Long.valueOf(j3));
         if (x01Var == null) {
             return;
         }
-        x01Var.f32684e = true;
+        x01Var.f32690e = true;
         if (x01Var.d) {
-            FileLoader.getInstance(this.f33326a).cancelFileUpload(x01Var.f32681a.getAbsolutePath(), this.f33327b);
+            FileLoader.getInstance(this.f33332a).cancelFileUpload(x01Var.f32687a.getAbsolutePath(), this.f33333b);
         }
     }
 
@@ -53,13 +53,13 @@ public final class z01 implements ki.p0, NotificationCenter.NotificationCenterDe
                 return;
             }
             this.d = true;
-            NotificationCenter.getInstance(this.f33326a).removeObserver(this, NotificationCenter.fileUploaded);
+            NotificationCenter.getInstance(this.f33332a).removeObserver(this, NotificationCenter.fileUploaded);
             if (z10) {
-                Iterator it = this.f33328c.values().iterator();
+                Iterator it = this.f33334c.values().iterator();
                 while (it.hasNext()) {
                     x01 x01Var = (x01) it.next();
-                    if (x01Var.d && !x01Var.f32684e) {
-                        FileLoader.getInstance(this.f33326a).cancelFileUpload(x01Var.f32681a.getAbsolutePath(), this.f33327b);
+                    if (x01Var.d && !x01Var.f32690e) {
+                        FileLoader.getInstance(this.f33332a).cancelFileUpload(x01Var.f32687a.getAbsolutePath(), this.f33333b);
                     }
                     it.remove();
                 }
@@ -79,6 +79,6 @@ public final class z01 implements ki.p0, NotificationCenter.NotificationCenterDe
             return;
         }
         x01Var.d = true;
-        FileLoader.getInstance(this.f33326a).uploadFile(x01Var.f32681a.getAbsolutePath(), this.f33327b, false, 1L, 33554432, false);
+        FileLoader.getInstance(this.f33332a).uploadFile(x01Var.f32687a.getAbsolutePath(), this.f33333b, false, 1L, 33554432, false);
     }
 }

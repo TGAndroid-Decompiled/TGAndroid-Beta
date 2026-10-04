@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class kl0 extends s4.n0 implements bh.a {
-    public final Utilities.CallbackReturn f28161a;
-    public final zl0 f28162b;
-    public final int f28163c;
+    public final Utilities.CallbackReturn f28166a;
+    public final zl0 f28167b;
+    public final int f28168c;
     public final boolean d;
 
     public kl0(zl0 zl0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
-        this.f28162b = zl0Var;
-        this.f28161a = callbackReturn;
-        this.f28163c = i10;
+        this.f28167b = zl0Var;
+        this.f28166a = callbackReturn;
+        this.f28168c = i10;
         this.d = z10;
     }
 
@@ -25,8 +25,8 @@ public final class kl0 extends s4.n0 implements bh.a {
         int b10;
         boolean z10;
         int dp;
-        if (((Boolean) this.f28161a.run(view)).booleanValue()) {
-            int i10 = this.f28163c;
+        if (((Boolean) this.f28166a.run(view)).booleanValue()) {
+            int i10 = this.f28168c;
             rect.right = i10;
             rect.left = i10;
             s4.c1 T = recyclerView.T(view);
@@ -72,7 +72,7 @@ public final class kl0 extends s4.n0 implements bh.a {
     public final void f(Canvas canvas, RectF rectF) {
         canvas.save();
         canvas.clipRect(rectF);
-        this.f28162b.R0(canvas);
+        this.f28167b.R0(canvas);
         canvas.restore();
     }
 }

@@ -2,22 +2,22 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.ImageLoader;
 public final class a5 implements Runnable {
-    public final int f17302a;
-    public final ImageLoader.ArtworkLoadTask f17303b;
+    public final int f17306a;
+    public final ImageLoader.ArtworkLoadTask f17307b;
 
     public a5(ImageLoader.ArtworkLoadTask artworkLoadTask, int i10) {
-        this.f17302a = i10;
-        this.f17303b = artworkLoadTask;
+        this.f17306a = i10;
+        this.f17307b = artworkLoadTask;
     }
 
     @Override
     public final void run() {
-        switch (this.f17302a) {
+        switch (this.f17306a) {
             case 0:
-                ImageLoader.ArtworkLoadTask.a(this.f17303b);
+                ImageLoader.ArtworkLoadTask.a(this.f17307b);
                 return;
             default:
-                ImageLoader.ArtworkLoadTask.c(this.f17303b);
+                ImageLoader.ArtworkLoadTask.c(this.f17307b);
                 return;
         }
     }

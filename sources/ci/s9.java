@@ -14,7 +14,7 @@ public final class s9 extends s4.j {
         x9 x9Var = this.F;
         viewGroup = ((org.telegram.ui.ActionBar.f3) x9Var.W).containerView;
         viewGroup.invalidate();
-        x9Var.f6305e.invalidate();
+        x9Var.f6306e.invalidate();
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class s9 extends s4.j {
         x9 x9Var = this.F;
         viewGroup = ((org.telegram.ui.ActionBar.f3) x9Var.W).containerView;
         viewGroup.invalidate();
-        x9Var.f6305e.invalidate();
+        x9Var.f6306e.invalidate();
     }
 
     @Override
@@ -32,8 +32,8 @@ public final class s9 extends s4.j {
         x9 x9Var = this.F;
         viewGroup = ((org.telegram.ui.ActionBar.f3) x9Var.W).containerView;
         viewGroup.invalidate();
-        x9Var.f6305e.invalidate();
-        x9Var.f6306f.invalidate();
+        x9Var.f6306e.invalidate();
+        x9Var.f6307f.invalidate();
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class s9 extends s4.j {
         x9 x9Var = this.F;
         viewGroup = ((org.telegram.ui.ActionBar.f3) x9Var.W).containerView;
         viewGroup.invalidate();
-        x9Var.f6305e.invalidate();
+        x9Var.f6306e.invalidate();
     }
 
     @Override

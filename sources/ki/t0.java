@@ -4,14 +4,14 @@ import android.content.SharedPreferences;
 import java.lang.reflect.Array;
 import org.telegram.messenger.ApplicationLoader;
 public abstract class t0 {
-    public static final String[] f15086a = {"round_video_switch_back_to_front_ms", "round_video_switch_front_to_back_ms"};
-    public static final int[][] f15087b = (int[][]) Array.newInstance(Integer.TYPE, 2, 8);
-    public static final int[] f15088c = new int[2];
+    public static final String[] f15087a = {"round_video_switch_back_to_front_ms", "round_video_switch_front_to_back_ms"};
+    public static final int[][] f15088b = (int[][]) Array.newInstance(Integer.TYPE, 2, 8);
+    public static final int[] f15089c = new int[2];
     public static final int[] d = new int[2];
-    public static boolean f15089e;
+    public static boolean f15090e;
 
     public static int a(int i10) {
-        int i11 = f15088c[i10];
+        int i11 = f15089c[i10];
         if (i11 == 0) {
             if (i10 == 0) {
                 return 680;
@@ -20,19 +20,19 @@ public abstract class t0 {
         }
         int i12 = 0;
         for (int i13 = 0; i13 < i11; i13++) {
-            i12 += f15087b[i10][i13];
+            i12 += f15088b[i10][i13];
         }
         return Math.round(i12 / i11);
     }
 
     public static void b() {
-        int[] iArr = f15088c;
-        if (!f15089e) {
-            f15089e = true;
+        int[] iArr = f15089c;
+        if (!f15090e) {
+            f15090e = true;
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
             int i10 = 0;
             while (true) {
-                String[] strArr = f15086a;
+                String[] strArr = f15087a;
                 if (i10 < 2) {
                     String string = sharedPreferences.getString(strArr[i10], null);
                     if (string != null && !string.isEmpty()) {
@@ -40,7 +40,7 @@ public abstract class t0 {
                         for (int max = Math.max(0, split.length - 8); max < split.length; max++) {
                             try {
                                 int max2 = Math.max(200, Math.min(2000, Integer.parseInt(split[max])));
-                                int[] iArr2 = f15087b[i10];
+                                int[] iArr2 = f15088b[i10];
                                 int i11 = iArr[i10];
                                 iArr[i10] = i11 + 1;
                                 iArr2[i11] = max2;
@@ -59,7 +59,7 @@ public abstract class t0 {
 
     public static void c(int i10) {
         int i11;
-        int i12 = f15088c[i10];
+        int i12 = f15089c[i10];
         if (i12 == 8) {
             i11 = d[i10];
         } else {
@@ -70,9 +70,9 @@ public abstract class t0 {
             if (i13 > 0) {
                 sb2.append(',');
             }
-            sb2.append(f15087b[i10][(i11 + i13) % 8]);
+            sb2.append(f15088b[i10][(i11 + i13) % 8]);
         }
-        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putString(f15086a[i10], sb2.toString()).apply();
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putString(f15087a[i10], sb2.toString()).apply();
     }
 
     public static synchronized int d(l0 l0Var, l0 l0Var2, int i10) {
@@ -82,17 +82,17 @@ public abstract class t0 {
             try {
                 b();
                 if (l0Var != l0Var2) {
-                    if (l0Var == l0.f14983b) {
+                    if (l0Var == l0.f14984b) {
                         i11 = 0;
                     } else {
                         i11 = 1;
                     }
                     int max = Math.max(200, Math.min(2000, i10));
-                    int[] iArr = f15087b[i11];
+                    int[] iArr = f15088b[i11];
                     int[] iArr2 = d;
                     iArr[iArr2[i11]] = max;
                     iArr2[i11] = (iArr2[i11] + 1) % 8;
-                    int[] iArr3 = f15088c;
+                    int[] iArr3 = f15089c;
                     int i12 = iArr3[i11];
                     if (i12 < 8) {
                         iArr3[i11] = i12 + 1;

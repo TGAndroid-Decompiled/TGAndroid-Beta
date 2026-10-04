@@ -6,24 +6,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class fm0 implements TextWatcher {
-    public boolean f36346a;
-    public final EditTextBoldCursor f36347b;
-    public final String f36348c;
+    public boolean f36351a;
+    public final EditTextBoldCursor f36352b;
+    public final String f36353c;
     public final kn0 d;
 
     public fm0(kn0 kn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
         this.d = kn0Var;
-        this.f36347b = editTextBoldCursor;
-        this.f36348c = str;
+        this.f36352b = editTextBoldCursor;
+        this.f36353c = str;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        if (this.f36346a) {
+        if (this.f36351a) {
             return;
         }
         boolean z10 = true;
-        this.f36346a = true;
+        this.f36351a = true;
         int i10 = 0;
         while (true) {
             if (i10 < editable.length()) {
@@ -37,12 +37,12 @@ public final class fm0 implements TextWatcher {
                 break;
             }
         }
-        this.f36346a = false;
-        EditTextBoldCursor editTextBoldCursor = this.f36347b;
+        this.f36351a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f36352b;
         if (z10) {
             editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
         } else {
-            kn0.J0(this.d, editTextBoldCursor, this.f36348c, editable, false);
+            kn0.J0(this.d, editTextBoldCursor, this.f36353c, editable, false);
         }
     }
 

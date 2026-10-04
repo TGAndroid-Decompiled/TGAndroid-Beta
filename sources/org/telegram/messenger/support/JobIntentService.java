@@ -13,7 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
-import hg.k0;
+import hg.c;
 import java.util.ArrayList;
 import java.util.HashMap;
 public abstract class JobIntentService extends Service {
@@ -451,7 +451,7 @@ public abstract class JobIntentService extends Service {
                 this.mJobId = i10;
             } else if (this.mJobId == i10) {
             } else {
-                StringBuilder j3 = k0.j(i10, "Given job ID ", " is different than previous ");
+                StringBuilder j3 = c.j(i10, "Given job ID ", " is different than previous ");
                 j3.append(this.mJobId);
                 throw new IllegalArgumentException(j3.toString());
             }

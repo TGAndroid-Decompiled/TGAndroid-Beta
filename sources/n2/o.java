@@ -2,10 +2,10 @@ package n2;
 
 import java.util.UUID;
 public final class o implements h {
-    public final g f16549a;
+    public final g f16553a;
 
     public o(g gVar) {
-        this.f16549a = gVar;
+        this.f16553a = gVar;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class o implements h {
 
     @Override
     public final g g() {
-        return this.f16549a;
+        return this.f16553a;
     }
 
     @Override

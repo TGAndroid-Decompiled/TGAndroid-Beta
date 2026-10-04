@@ -11,7 +11,7 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.zl0;
 public final class r8 extends f61 {
-    public static final int f5870a = 0;
+    public static final int f5871a = 0;
 
     static {
         f61.setup(new f61());
@@ -34,10 +34,10 @@ public final class r8 extends f61 {
             webPage = null;
         }
         View.OnClickListener onClickListener = g61Var.D;
-        org.telegram.ui.Components.p6 p6Var = s8Var.f5920e;
+        org.telegram.ui.Components.p6 p6Var = s8Var.f5921e;
         org.telegram.ui.Components.p6 p6Var2 = s8Var.d;
-        ImageView imageView = s8Var.f5919c;
-        ImageView imageView2 = s8Var.f5918b;
+        ImageView imageView = s8Var.f5920c;
+        ImageView imageView2 = s8Var.f5919b;
         if (webPage != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
             z11 = true;
         } else {
@@ -87,9 +87,9 @@ public final class r8 extends f61 {
             p6Var.c(webPage.description, false, true);
         } else {
             p6Var2.c(s8Var.h, false, true);
-            p6Var.c(s8Var.f5922n, false, true);
+            p6Var.c(s8Var.f5923n, false, true);
         }
-        s8Var.f5921f.setOnClickListener(onClickListener);
+        s8Var.f5922f.setOnClickListener(onClickListener);
     }
 
     @Override

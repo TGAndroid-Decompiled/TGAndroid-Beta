@@ -13,21 +13,21 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.tr;
 public final class yc extends View {
-    public final kj0 f6352a;
-    public final org.telegram.ui.Components.o6 f6353b;
-    public final Paint f6354c;
+    public final kj0 f6353a;
+    public final org.telegram.ui.Components.o6 f6354b;
+    public final Paint f6355c;
     public final Paint d;
-    public final org.telegram.ui.Components.zc f6355e;
-    public boolean f6356f;
+    public final org.telegram.ui.Components.zc f6356e;
+    public boolean f6357f;
     public final org.telegram.ui.Components.e6 h;
 
     public yc(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f6354c = paint;
+        this.f6355c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.f6355e = new org.telegram.ui.Components.zc(this);
+        this.f6356e = new org.telegram.ui.Components.zc(this);
         tr trVar = tr.h;
         this.h = new org.telegram.ui.Components.e6(this, 0L, 240L, trVar);
         paint.setColor(-1);
@@ -36,7 +36,7 @@ public final class yc extends View {
         paint.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dp(1.66f), 805306368);
         paint2.setColor(855638016);
         kj0 kj0Var = new kj0(R.raw.group_pip_delete_icon, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
-        this.f6352a = kj0Var;
+        this.f6353a = kj0Var;
         kj0Var.R(this);
         kj0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
         kj0Var.h = true;
@@ -44,32 +44,32 @@ public final class yc extends View {
         kj0Var.J(true);
         kj0Var.start();
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(true, true, false, false);
-        this.f6353b = o6Var;
+        this.f6354b = o6Var;
         o6Var.k(0.3f, 250L, trVar);
         o6Var.G = AndroidUtilities.displaySize.x;
         o6Var.t(AndroidUtilities.dp(14.0f));
         o6Var.r(-1);
         o6Var.p(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dp(1.0f), 1073741824);
         o6Var.q(LocaleController.getString(R.string.TrashHintDrag), true, true);
-        o6Var.f29240b = 17;
+        o6Var.f29245b = 17;
     }
 
     public final void a(boolean z10, boolean z11) {
         int i10;
-        this.f6355e.c(z10);
+        this.f6356e.c(z10);
         if (!z10 && !z11) {
             i10 = R.string.TrashHintDrag;
         } else {
             i10 = R.string.TrashHintRelease;
         }
         boolean z12 = true;
-        this.f6353b.q(LocaleController.getString(i10), true, true);
+        this.f6354b.q(LocaleController.getString(i10), true, true);
         int i11 = 0;
         z12 = (!z10 || z11) ? false : false;
-        this.f6356f = z12;
-        kj0 kj0Var = this.f6352a;
+        this.f6357f = z12;
+        kj0 kj0Var = this.f6353a;
         if (z12) {
-            if (kj0Var.f28119a0 > 34) {
+            if (kj0Var.f28124a0 > 34) {
                 kj0Var.N(0, false, false);
             }
             kj0Var.P(33);
@@ -89,17 +89,17 @@ public final class yc extends View {
         float dp = AndroidUtilities.dp(30.0f);
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
-        float e7 = (this.h.e(this.f6356f) * AndroidUtilities.dp(3.0f)) + dp;
+        float e7 = (this.h.e(this.f6357f) * AndroidUtilities.dp(3.0f)) + dp;
         canvas.drawCircle(width, height, e7, this.d);
-        canvas.drawCircle(width, height, e7, this.f6354c);
+        canvas.drawCircle(width, height, e7, this.f6355c);
         float dp2 = AndroidUtilities.dp(48.0f) / 2.0f;
-        kj0 kj0Var = this.f6352a;
+        kj0 kj0Var = this.f6353a;
         kj0Var.setBounds((int) (width - dp2), (int) (height - dp2), (int) (width + dp2), (int) (dp2 + height));
         kj0Var.draw(canvas);
         int dp3 = (int) (height + dp + AndroidUtilities.dp(7.0f));
         int width2 = getWidth();
         int height2 = getHeight();
-        org.telegram.ui.Components.o6 o6Var = this.f6353b;
+        org.telegram.ui.Components.o6 o6Var = this.f6354b;
         o6Var.setBounds(0, dp3, width2, height2);
         o6Var.draw(canvas);
     }
@@ -111,7 +111,7 @@ public final class yc extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f6353b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f6354b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

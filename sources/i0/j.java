@@ -46,7 +46,7 @@ public final class j extends h8 {
         FontFamily.Builder builder = null;
         for (o0.i iVar : iVarArr) {
             try {
-                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f16948a, "r", null);
+                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f16952a, "r", null);
             } catch (IOException e7) {
                 Log.w("TypefaceCompatApi29Impl", "Font load failed", e7);
             }
@@ -54,7 +54,7 @@ public final class j extends h8 {
                 if (openFileDescriptor == null) {
                 }
             } else {
-                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f16950c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f16949b).build();
+                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f16954c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f16953b).build();
                 if (builder == null) {
                     builder = new FontFamily.Builder(build);
                 } else {
@@ -85,9 +85,9 @@ public final class j extends h8 {
         h0.f[] fVarArr;
         try {
             FontFamily.Builder builder = null;
-            for (h0.f fVar : eVar.f10932a) {
+            for (h0.f fVar : eVar.f10933a) {
                 try {
-                    Font build = new Font.Builder(resources, fVar.f10937f).setWeight(fVar.f10934b).setSlant(fVar.f10935c ? 1 : 0).setTtcIndex(fVar.f10936e).setFontVariationSettings(fVar.d).build();
+                    Font build = new Font.Builder(resources, fVar.f10938f).setWeight(fVar.f10935b).setSlant(fVar.f10936c ? 1 : 0).setTtcIndex(fVar.f10937e).setFontVariationSettings(fVar.d).build();
                     if (builder == null) {
                         builder = new FontFamily.Builder(build);
                     } else {

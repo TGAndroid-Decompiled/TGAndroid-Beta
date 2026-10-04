@@ -8,31 +8,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
 public final class uk0 {
-    public boolean f41245a;
-    public boolean f41246b;
-    public int f41247c;
+    public boolean f41252a;
+    public boolean f41253b;
+    public int f41254c;
     public int d;
-    public TLRPC.Document f41248e;
-    public String f41249f;
-    public String f41250g;
+    public TLRPC.Document f41255e;
+    public String f41256f;
+    public String f41257g;
 
     public final Uri a(int i10) {
-        if (!TextUtils.isEmpty(this.f41250g)) {
-            return Uri.fromFile(new File(this.f41250g));
+        if (!TextUtils.isEmpty(this.f41257g)) {
+            return Uri.fromFile(new File(this.f41257g));
         }
-        TLRPC.Document document = this.f41248e;
+        TLRPC.Document document = this.f41255e;
         if (document != null) {
             String str = document.file_name_fixed;
             String documentExtension = FileLoader.getDocumentExtension(document);
             if (documentExtension != null) {
                 String lowerCase = documentExtension.toLowerCase();
                 if (!str.endsWith(lowerCase)) {
-                    str = a4.a.C(str, ".", lowerCase);
+                    str = a4.a.D(str, ".", lowerCase);
                 }
                 File file = new File(AndroidUtilities.getCacheDir(), str);
                 if (!file.exists()) {
                     try {
-                        AndroidUtilities.copyFile(FileLoader.getInstance(i10).getPathToAttach(this.f41248e), file);
+                        AndroidUtilities.copyFile(FileLoader.getInstance(i10).getPathToAttach(this.f41255e), file);
                     } catch (IOException e7) {
                         e7.printStackTrace();
                     }

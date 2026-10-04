@@ -10,25 +10,25 @@ import org.telegram.ui.Components.ih;
 import org.telegram.ui.Components.vi;
 import org.telegram.ui.Components.xi;
 public final class t1 implements vi {
-    public final xi f12654a;
-    public final e2 f12655b;
+    public final xi f12655a;
+    public final e2 f12656b;
 
     public t1(e2 e2Var, xi xiVar) {
-        this.f12655b = e2Var;
-        this.f12654a = xiVar;
+        this.f12656b = e2Var;
+        this.f12655a = xiVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        xi xiVar = this.f12654a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32825j0;
-        e2 e2Var = this.f12655b;
+        xi xiVar = this.f12655a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32831j0;
+        e2 e2Var = this.f12656b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             x3 x3Var = e2Var.P;
-            a aVar = x3Var.f12762i4;
-            x3Var.f12762i4 = null;
+            a aVar = x3Var.f12763i4;
+            x3Var.f12763i4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -46,7 +46,7 @@ public final class t1 implements vi {
                 }
             }
         }
-        e2Var.P.f12762i4 = null;
+        e2Var.P.f12763i4 = null;
         xiVar.dismiss(true);
     }
 
@@ -62,7 +62,7 @@ public final class t1 implements vi {
 
     @Override
     public final void x0(ih ihVar) {
-        NotificationCenter.getInstance(this.f12655b.getCurrentAccount()).doOnIdle(ihVar);
+        NotificationCenter.getInstance(this.f12656b.getCurrentAccount()).doOnIdle(ihVar);
     }
 
     @Override

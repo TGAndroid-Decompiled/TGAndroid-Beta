@@ -22,39 +22,39 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.tr;
 public final class s4 extends View {
     public final org.telegram.ui.Components.e6 E;
-    public final ImageReceiver f5902a;
-    public final Paint f5903b;
-    public final Paint f5904c;
+    public final ImageReceiver f5903a;
+    public final Paint f5904b;
+    public final Paint f5905c;
     public final org.telegram.ui.Components.o6 d;
-    public boolean f5905e;
-    public boolean f5906f;
+    public boolean f5906e;
+    public boolean f5907f;
     public View.OnClickListener h;
-    public final org.telegram.ui.Components.zc f5907n;
-    public int f5908r;
-    public String f5909s;
+    public final org.telegram.ui.Components.zc f5908n;
+    public int f5909r;
+    public String f5910s;
     public float v;
-    public float f5910w;
-    public float f5911x;
-    public final org.telegram.ui.Components.e6 f5912y;
+    public float f5911w;
+    public float f5912x;
+    public final org.telegram.ui.Components.e6 f5913y;
 
     public s4(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f5902a = imageReceiver;
+        this.f5903a = imageReceiver;
         Paint paint = new Paint(1);
-        this.f5903b = paint;
+        this.f5904b = paint;
         Paint paint2 = new Paint(1);
-        this.f5904c = paint2;
+        this.f5905c = paint2;
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, false, false, false);
         this.d = o6Var;
-        this.f5907n = new org.telegram.ui.Components.zc(this);
-        this.f5908r = -1;
+        this.f5908n = new org.telegram.ui.Components.zc(this);
+        this.f5909r = -1;
         tr trVar = tr.h;
-        this.f5912y = new org.telegram.ui.Components.e6(this, 0L, 320L, trVar);
+        this.f5913y = new org.telegram.ui.Components.e6(this, 0L, 320L, trVar);
         this.E = new org.telegram.ui.Components.e6(this, 0L, 320L, trVar);
         o6Var.setCallback(this);
         o6Var.r(-1);
-        o6Var.f29240b = 17;
+        o6Var.f29245b = 17;
         o6Var.t(AndroidUtilities.dp(16.0f));
         o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         o6Var.G = AndroidUtilities.displaySize.x;
@@ -70,21 +70,21 @@ public final class s4 extends View {
     public final void a(int i10, int i11, final k8 k8Var) {
         String str;
         Uri withAppendedId;
-        if (this.f5908r != i10) {
-            this.f5909s = null;
-            this.f5902a.clearImage();
-            this.f5908r = i10;
+        if (this.f5909r != i10) {
+            this.f5910s = null;
+            this.f5903a.clearImage();
+            this.f5909r = i10;
         }
         this.d.q(Integer.toString(i11 + 1), false, true);
         File file = k8Var.O0;
         if (file != null) {
-            if (!TextUtils.equals(this.f5909s, file.getPath())) {
-                this.f5909s = k8Var.O0.getPath();
+            if (!TextUtils.equals(this.f5910s, file.getPath())) {
+                this.f5910s = k8Var.O0.getPath();
                 Utilities.searchQueue.postRunnable(new Runnable(this) {
-                    public final s4 f5699b;
+                    public final s4 f5700b;
 
                     {
-                        this.f5699b = this;
+                        this.f5700b = this;
                     }
 
                     @Override
@@ -102,16 +102,16 @@ public final class s4 extends View {
                                 options.inDither = true;
                                 options.inJustDecodeBounds = false;
                                 final Bitmap decodeFile = BitmapFactory.decodeFile(k8Var2.O0.getPath(), options);
-                                final s4 s4Var = this.f5699b;
+                                final s4 s4Var = this.f5700b;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                s4Var.f5902a.setImageBitmap(decodeFile);
+                                                s4Var.f5903a.setImageBitmap(decodeFile);
                                                 return;
                                             default:
-                                                s4Var.f5902a.setImageBitmap(decodeFile);
+                                                s4Var.f5903a.setImageBitmap(decodeFile);
                                                 return;
                                         }
                                     }
@@ -129,16 +129,16 @@ public final class s4 extends View {
                                 options2.inDither = true;
                                 options2.inJustDecodeBounds = false;
                                 final Bitmap decodeFile2 = BitmapFactory.decodeFile(k8Var3.L.getPath(), options2);
-                                final s4 s4Var2 = this.f5699b;
+                                final s4 s4Var2 = this.f5700b;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                s4Var2.f5902a.setImageBitmap(decodeFile2);
+                                                s4Var2.f5903a.setImageBitmap(decodeFile2);
                                                 return;
                                             default:
-                                                s4Var2.f5902a.setImageBitmap(decodeFile2);
+                                                s4Var2.f5903a.setImageBitmap(decodeFile2);
                                                 return;
                                         }
                                     }
@@ -154,9 +154,9 @@ public final class s4 extends View {
                 bitmap = null;
             }
             if (bitmap == null && (str = k8Var.N) != null && str.startsWith("vthumb://")) {
-                if (!TextUtils.equals(this.f5909s, k8Var.N)) {
+                if (!TextUtils.equals(this.f5910s, k8Var.N)) {
                     String str2 = k8Var.N;
-                    this.f5909s = str2;
+                    this.f5910s = str2;
                     long parseLong = Long.parseLong(str2.substring(9));
                     if (bitmap == null && Build.VERSION.SDK_INT >= 29) {
                         try {
@@ -173,16 +173,16 @@ public final class s4 extends View {
                     return;
                 }
             }
-            this.f5902a.setImageBitmap(bitmap);
+            this.f5903a.setImageBitmap(bitmap);
         } else {
             File file2 = k8Var.L;
-            if (file2 != null && !TextUtils.equals(this.f5909s, file2.getPath())) {
-                this.f5909s = k8Var.L.getPath();
+            if (file2 != null && !TextUtils.equals(this.f5910s, file2.getPath())) {
+                this.f5910s = k8Var.L.getPath();
                 Utilities.searchQueue.postRunnable(new Runnable(this) {
-                    public final s4 f5699b;
+                    public final s4 f5700b;
 
                     {
-                        this.f5699b = this;
+                        this.f5700b = this;
                     }
 
                     @Override
@@ -200,16 +200,16 @@ public final class s4 extends View {
                                 options.inDither = true;
                                 options.inJustDecodeBounds = false;
                                 final Bitmap decodeFile = BitmapFactory.decodeFile(k8Var2.O0.getPath(), options);
-                                final s4 s4Var = this.f5699b;
+                                final s4 s4Var = this.f5700b;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                s4Var.f5902a.setImageBitmap(decodeFile);
+                                                s4Var.f5903a.setImageBitmap(decodeFile);
                                                 return;
                                             default:
-                                                s4Var.f5902a.setImageBitmap(decodeFile);
+                                                s4Var.f5903a.setImageBitmap(decodeFile);
                                                 return;
                                         }
                                     }
@@ -227,16 +227,16 @@ public final class s4 extends View {
                                 options2.inDither = true;
                                 options2.inJustDecodeBounds = false;
                                 final Bitmap decodeFile2 = BitmapFactory.decodeFile(k8Var3.L.getPath(), options2);
-                                final s4 s4Var2 = this.f5699b;
+                                final s4 s4Var2 = this.f5700b;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                s4Var2.f5902a.setImageBitmap(decodeFile2);
+                                                s4Var2.f5903a.setImageBitmap(decodeFile2);
                                                 return;
                                             default:
-                                                s4Var2.f5902a.setImageBitmap(decodeFile2);
+                                                s4Var2.f5903a.setImageBitmap(decodeFile2);
                                                 return;
                                         }
                                     }
@@ -250,12 +250,12 @@ public final class s4 extends View {
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (this.f5905e == z10) {
+        if (this.f5906e == z10) {
             return;
         }
-        this.f5905e = z10;
+        this.f5906e = z10;
         if (!z11) {
-            this.f5912y.a(z10);
+            this.f5913y.a(z10);
         }
         invalidate();
     }
@@ -263,12 +263,12 @@ public final class s4 extends View {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        ImageReceiver imageReceiver = this.f5902a;
+        ImageReceiver imageReceiver = this.f5903a;
         imageReceiver.setImageCoords(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(94.0f), AndroidUtilities.dp(112.0f));
         imageReceiver.draw(canvas);
-        Paint paint = this.f5903b;
+        Paint paint = this.f5904b;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        float e7 = this.f5912y.e(this.f5905e);
+        float e7 = this.f5913y.e(this.f5906e);
         if (e7 > 0.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(96.0f), AndroidUtilities.dp(116.0f));
@@ -276,29 +276,29 @@ public final class s4 extends View {
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
         }
         this.v = (getWidth() - AndroidUtilities.dp(17.163f)) - AndroidUtilities.dp(3.0f);
-        this.f5910w = AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(17.833f);
-        this.f5911x = AndroidUtilities.dp(12.833f);
-        float e10 = this.E.e(this.f5906f);
-        float a2 = this.f5907n.a(0.075f);
+        this.f5911w = AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(17.833f);
+        this.f5912x = AndroidUtilities.dp(12.833f);
+        float e10 = this.E.e(this.f5907f);
+        float a2 = this.f5908n.a(0.075f);
         canvas.save();
-        canvas.scale(a2, a2, this.v, this.f5910w);
+        canvas.scale(a2, a2, this.v, this.f5911w);
         int i10 = (e10 > 0.0f ? 1 : (e10 == 0.0f ? 0 : -1));
         if (i10 > 0) {
-            Paint paint2 = this.f5904c;
+            Paint paint2 = this.f5905c;
             paint2.setAlpha((int) (e10 * 255.0f));
-            canvas.drawCircle(this.v, this.f5910w, this.f5911x, paint2);
+            canvas.drawCircle(this.v, this.f5911w, this.f5912x, paint2);
         }
         paint.setAlpha(255);
-        canvas.drawCircle(this.v, this.f5910w, this.f5911x - AndroidUtilities.dp(1.0f), paint);
+        canvas.drawCircle(this.v, this.f5911w, this.f5912x - AndroidUtilities.dp(1.0f), paint);
         if (i10 > 0) {
             float f7 = this.v;
-            float f10 = this.f5911x;
+            float f10 = this.f5912x;
             float f11 = f7 - f10;
-            float f12 = this.f5910w;
+            float f12 = this.f5911w;
             float f13 = f7 + f10;
             org.telegram.ui.Components.o6 o6Var = this.d;
             o6Var.l(f11, f12, f13, f12);
-            o6Var.f29258w = (int) (e10 * 255.0f);
+            o6Var.f29263w = (int) (e10 * 255.0f);
             o6Var.draw(canvas);
         }
         canvas.restore();
@@ -307,13 +307,13 @@ public final class s4 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f5902a.onAttachedToWindow();
+        this.f5903a.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f5902a.onDetachedFromWindow();
+        this.f5903a.onDetachedFromWindow();
     }
 
     @Override
@@ -325,13 +325,13 @@ public final class s4 extends View {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         View.OnClickListener onClickListener;
-        if (motionEvent.getX() >= this.v - AndroidUtilities.dp(14.0f) && motionEvent.getX() <= this.v + AndroidUtilities.dp(14.0f) && motionEvent.getY() >= this.f5910w - AndroidUtilities.dp(14.0f) && motionEvent.getY() <= this.f5910w + AndroidUtilities.dp(14.0f)) {
+        if (motionEvent.getX() >= this.v - AndroidUtilities.dp(14.0f) && motionEvent.getX() <= this.v + AndroidUtilities.dp(14.0f) && motionEvent.getY() >= this.f5911w - AndroidUtilities.dp(14.0f) && motionEvent.getY() <= this.f5911w + AndroidUtilities.dp(14.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
         int action = motionEvent.getAction();
-        org.telegram.ui.Components.zc zcVar = this.f5907n;
+        org.telegram.ui.Components.zc zcVar = this.f5908n;
         if (action == 0) {
             zcVar.c(z10);
         } else if (motionEvent.getAction() == 1) {

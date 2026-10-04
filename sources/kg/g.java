@@ -13,7 +13,7 @@ public final class g extends e {
             return;
         }
         super.b();
-        textView.setTextColor(i6.w0(null, i6.f20926j5, false));
+        textView.setTextColor(i6.w0(null, i6.f20930j5, false));
     }
 
     @Override

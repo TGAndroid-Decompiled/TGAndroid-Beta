@@ -5,40 +5,40 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class g3 implements b5 {
-    public final u f12390a;
-    public final a f12391b;
-    public final String f12392c;
+    public final u f12391a;
+    public final a f12392b;
+    public final String f12393c;
     public final x3 d;
 
     public g3(x3 x3Var, u uVar, a aVar, String str) {
         this.d = x3Var;
-        this.f12390a = uVar;
-        this.f12391b = aVar;
-        this.f12392c = str;
+        this.f12391a = uVar;
+        this.f12392b = aVar;
+        this.f12393c = str;
     }
 
     @Override
     public final void d(TLRPC.Document document) {
-        String str = this.f12392c;
+        String str = this.f12393c;
         document.localPath = str;
         x3 x3Var = this.d;
-        FileLoader.getInstance(x3Var.f12765m3).setLocalPathTo(document, str);
-        u uVar = this.f12390a;
+        FileLoader.getInstance(x3Var.f12766m3).setLocalPathTo(document, str);
+        u uVar = this.f12391a;
         uVar.h = document;
-        uVar.f12662a = 2;
-        TL_iv.PageBlock pageBlock = this.f12391b.f12186b;
+        uVar.f12663a = 2;
+        TL_iv.PageBlock pageBlock = this.f12392b.f12187b;
         if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20044id;
+            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20048id;
         }
-        x3Var.f12760g4.remove(uVar);
-        x3Var.f25245f3.N(false);
-        x3Var.f12769o3.onContentChanged();
+        x3Var.f12761g4.remove(uVar);
+        x3Var.f25250f3.N(false);
+        x3Var.f12770o3.onContentChanged();
     }
 
     @Override
     public final void f(float f7) {
-        this.f12390a.f12666f = f7;
-        a aVar = this.f12391b;
+        this.f12391a.f12667f = f7;
+        a aVar = this.f12392b;
         x3 x3Var = this.d;
         View B1 = x3Var.B1(aVar);
         if (B1 instanceof a1) {
@@ -49,18 +49,18 @@ public final class g3 implements b5 {
             a1Var.requestLayout();
             a1Var.invalidate();
         }
-        x3Var.f12769o3.onContentChanged();
+        x3Var.f12770o3.onContentChanged();
     }
 
     @Override
     public final void onError() {
-        u uVar = this.f12390a;
-        uVar.f12662a = 3;
+        u uVar = this.f12391a;
+        uVar.f12663a = 3;
         x3 x3Var = this.d;
-        x3Var.f12760g4.remove(uVar);
-        x3Var.f12777s3.remove(this.f12391b);
-        x3Var.f25245f3.N(true);
-        x3Var.f12769o3.onContentChanged();
+        x3Var.f12761g4.remove(uVar);
+        x3Var.f12778s3.remove(this.f12392b);
+        x3Var.f25250f3.N(true);
+        x3Var.f12770o3.onContentChanged();
     }
 
     @Override

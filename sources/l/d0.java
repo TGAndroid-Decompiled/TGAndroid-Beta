@@ -5,25 +5,24 @@ import android.graphics.drawable.Drawable;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import hg.k0;
 public final class d0 extends k implements SubMenu {
     public final m A;
-    public final k f15146z;
+    public final k f15147z;
 
     public d0(Context context, k kVar, m mVar) {
         super(context);
-        this.f15146z = kVar;
+        this.f15147z = kVar;
         this.A = mVar;
     }
 
     @Override
     public final boolean d(m mVar) {
-        return this.f15146z.d(mVar);
+        return this.f15147z.d(mVar);
     }
 
     @Override
     public final boolean e(k kVar, MenuItem menuItem) {
-        if (!super.e(kVar, menuItem) && !this.f15146z.e(kVar, menuItem)) {
+        if (!super.e(kVar, menuItem) && !this.f15147z.e(kVar, menuItem)) {
             return false;
         }
         return true;
@@ -31,7 +30,7 @@ public final class d0 extends k implements SubMenu {
 
     @Override
     public final boolean f(m mVar) {
-        return this.f15146z.f(mVar);
+        return this.f15147z.f(mVar);
     }
 
     @Override
@@ -44,39 +43,39 @@ public final class d0 extends k implements SubMenu {
         int i10;
         m mVar = this.A;
         if (mVar != null) {
-            i10 = mVar.f15194a;
+            i10 = mVar.f15195a;
         } else {
             i10 = 0;
         }
         if (i10 == 0) {
             return null;
         }
-        return k0.h(i10, "android:menu:actionviewstates:");
+        return hg.c.h(i10, "android:menu:actionviewstates:");
     }
 
     @Override
     public final k k() {
-        return this.f15146z.k();
+        return this.f15147z.k();
     }
 
     @Override
     public final boolean m() {
-        return this.f15146z.m();
+        return this.f15147z.m();
     }
 
     @Override
     public final boolean n() {
-        return this.f15146z.n();
+        return this.f15147z.n();
     }
 
     @Override
     public final boolean o() {
-        return this.f15146z.o();
+        return this.f15147z.o();
     }
 
     @Override
     public final void setGroupDividerEnabled(boolean z10) {
-        this.f15146z.setGroupDividerEnabled(z10);
+        this.f15147z.setGroupDividerEnabled(z10);
     }
 
     @Override
@@ -105,7 +104,7 @@ public final class d0 extends k implements SubMenu {
 
     @Override
     public final void setQwertyMode(boolean z10) {
-        this.f15146z.setQwertyMode(z10);
+        this.f15147z.setQwertyMode(z10);
     }
 
     @Override

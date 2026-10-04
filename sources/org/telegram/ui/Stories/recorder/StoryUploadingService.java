@@ -14,9 +14,9 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public class StoryUploadingService extends Service implements NotificationCenter.NotificationCenterDelegate {
-    public t f34517a;
-    public String f34518b;
-    public float f34519c;
+    public t f34523a;
+    public String f34524b;
+    public float f34525c;
     public int d = -1;
 
     public StoryUploadingService() {
@@ -28,25 +28,25 @@ public class StoryUploadingService extends Service implements NotificationCenter
         String str;
         boolean z10 = false;
         if (i10 == NotificationCenter.uploadStoryProgress) {
-            String str2 = this.f34518b;
+            String str2 = this.f34524b;
             if (str2 != null && str2.equals((String) objArr[0])) {
                 float floatValue = ((Float) objArr[1]).floatValue();
-                this.f34519c = floatValue;
-                t tVar = this.f34517a;
+                this.f34525c = floatValue;
+                t tVar = this.f34523a;
                 int round = Math.round(floatValue * 100.0f);
-                if (this.f34519c <= 0.0f) {
+                if (this.f34525c <= 0.0f) {
                     z10 = true;
                 }
-                tVar.f8490n = 100;
-                tVar.f8491o = round;
-                tVar.f8492p = z10;
+                tVar.f8491n = 100;
+                tVar.f8492o = round;
+                tVar.f8493p = z10;
                 try {
-                    new n0(ApplicationLoader.applicationContext).d(33, this.f34517a.b());
+                    new n0(ApplicationLoader.applicationContext).d(33, this.f34523a.b());
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                 }
             }
-        } else if (i10 == NotificationCenter.uploadStoryEnd && (str = this.f34518b) != null && str.equals((String) objArr[0])) {
+        } else if (i10 == NotificationCenter.uploadStoryEnd && (str = this.f34524b) != null && str.equals((String) objArr[0])) {
             stopSelf();
         }
     }
@@ -73,7 +73,7 @@ public class StoryUploadingService extends Service implements NotificationCenter
 
     @Override
     public final int onStartCommand(Intent intent, int i10, int i11) {
-        this.f34518b = intent.getStringExtra("path");
+        this.f34524b = intent.getStringExtra("path");
         int i12 = this.d;
         int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
         this.d = intExtra;
@@ -90,34 +90,34 @@ public class StoryUploadingService extends Service implements NotificationCenter
                 NotificationCenter.getInstance(i13).addObserver(this, NotificationCenter.uploadStoryProgress);
             }
         }
-        if (this.f34518b == null) {
+        if (this.f34524b == null) {
             stopSelf();
             return 2;
         }
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("start upload story");
         }
-        if (this.f34517a == null) {
+        if (this.f34523a == null) {
             NotificationsController.checkOtherNotificationsChannel();
             t tVar = new t(ApplicationLoader.applicationContext, null);
-            this.f34517a = tVar;
+            this.f34523a = tVar;
             tVar.E.icon = 17301640;
             tVar.E.when = System.currentTimeMillis();
-            t tVar2 = this.f34517a;
-            tVar2.f8500y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            t tVar2 = this.f34523a;
+            tVar2.f8501y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             tVar2.g(LocaleController.getString(R.string.AppName));
-            this.f34517a.p(LocaleController.getString(R.string.StoryUploading));
-            this.f34517a.f(LocaleController.getString(R.string.StoryUploading));
+            this.f34523a.p(LocaleController.getString(R.string.StoryUploading));
+            this.f34523a.f(LocaleController.getString(R.string.StoryUploading));
         }
-        this.f34519c = 0.0f;
-        t tVar3 = this.f34517a;
+        this.f34525c = 0.0f;
+        t tVar3 = this.f34523a;
         int round = Math.round(0.0f);
-        tVar3.f8490n = 100;
-        tVar3.f8491o = round;
-        tVar3.f8492p = false;
-        startForeground(33, this.f34517a.b());
+        tVar3.f8491n = 100;
+        tVar3.f8492o = round;
+        tVar3.f8493p = false;
+        startForeground(33, this.f34523a.b());
         try {
-            new n0(ApplicationLoader.applicationContext).d(33, this.f34517a.b());
+            new n0(ApplicationLoader.applicationContext).d(33, this.f34523a.b());
             return 2;
         } catch (Throwable th2) {
             FileLog.e(th2);

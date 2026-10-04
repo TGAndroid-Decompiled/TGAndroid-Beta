@@ -2,26 +2,26 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
 public final class ng implements Utilities.Callback2 {
-    public final int f38972a;
-    public final yn f38973b;
-    public final String f38974c;
+    public final int f38977a;
+    public final yn f38978b;
+    public final String f38979c;
 
     public ng(yn ynVar, String str, int i10) {
-        this.f38972a = i10;
-        this.f38973b = ynVar;
-        this.f38974c = str;
+        this.f38977a = i10;
+        this.f38978b = ynVar;
+        this.f38979c = str;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         Boolean bool = (Boolean) obj;
         Boolean bool2 = (Boolean) obj2;
-        switch (this.f38972a) {
+        switch (this.f38977a) {
             case 0:
                 if (bool.booleanValue()) {
                     boolean booleanValue = bool2.booleanValue();
-                    yn ynVar = this.f38973b;
-                    String str = this.f38974c;
+                    yn ynVar = this.f38978b;
+                    String str = this.f38979c;
                     if (booleanValue) {
                         ynVar.getMessagesController().addWebBrowserException(str, false);
                     }
@@ -31,11 +31,11 @@ public final class ng implements Utilities.Callback2 {
                 }
                 return;
             default:
-                yn ynVar2 = this.f38973b;
+                yn ynVar2 = this.f38978b;
                 ynVar2.getClass();
                 if (bool.booleanValue()) {
                     boolean booleanValue2 = bool2.booleanValue();
-                    String str2 = this.f38974c;
+                    String str2 = this.f38979c;
                     if (booleanValue2) {
                         ynVar2.getMessagesController().addWebBrowserException(str2, true);
                     }

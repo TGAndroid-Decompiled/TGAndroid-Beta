@@ -8,67 +8,67 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class x4 implements Runnable {
-    public final int f19767a;
-    public final int f19768b;
-    public final int f19769c;
+    public final int f19759a;
+    public final int f19760b;
+    public final int f19761c;
     public final Object d;
-    public final Object f19770e;
+    public final Object f19762e;
 
     public x4(Object obj, int i10, int i11, Serializable serializable, int i12) {
-        this.f19767a = i12;
-        this.f19770e = obj;
-        this.f19768b = i10;
-        this.f19769c = i11;
+        this.f19759a = i12;
+        this.f19762e = obj;
+        this.f19760b = i10;
+        this.f19761c = i11;
         this.d = serializable;
     }
 
     @Override
     public final void run() {
-        switch (this.f19767a) {
+        switch (this.f19759a) {
             case 0:
-                ((ImageLoader.AnonymousClass5) this.f19770e).lambda$fileDidFailedLoad$6((String) this.d, this.f19768b, this.f19769c);
+                ((ImageLoader.AnonymousClass5) this.f19762e).lambda$fileDidFailedLoad$6((String) this.d, this.f19760b, this.f19761c);
                 return;
             case 1:
-                CodeHighlighting.lambda$highlight$5((Spannable) this.f19770e, this.f19768b, this.f19769c, (String) this.d);
+                CodeHighlighting.lambda$highlight$5((Spannable) this.f19762e, this.f19760b, this.f19761c, (String) this.d);
                 return;
             case 2:
-                ((MediaDataController) this.f19770e).lambda$loadReactions$11((List) this.d, this.f19768b, this.f19769c);
+                ((MediaDataController) this.f19762e).lambda$loadReactions$11((List) this.d, this.f19760b, this.f19761c);
                 return;
             case 3:
-                ((MediaDataController) this.f19770e).lambda$putReactionsToCache$16((ArrayList) this.d, this.f19768b, this.f19769c);
+                ((MediaDataController) this.f19762e).lambda$putReactionsToCache$16((ArrayList) this.d, this.f19760b, this.f19761c);
                 return;
             case 4:
-                ((MessagesController) this.f19770e).lambda$getDifference$350((TLRPC.updates_Difference) this.d, this.f19768b, this.f19769c);
+                ((MessagesController) this.f19762e).lambda$getDifference$350((TLRPC.updates_Difference) this.d, this.f19760b, this.f19761c);
                 return;
             case 5:
-                ((MessagesController.DialogPhotos) this.f19770e).lambda$load$0((TLRPC.photos_Photos) this.d, this.f19768b, this.f19769c);
+                ((MessagesController.DialogPhotos) this.f19762e).lambda$load$0((TLRPC.photos_Photos) this.d, this.f19760b, this.f19761c);
                 return;
             case 6:
-                ((MessagesController.DialogPhotos) this.f19770e).lambda$load$2((TLRPC.messages_Messages) this.d, this.f19768b, this.f19769c);
+                ((MessagesController.DialogPhotos) this.f19762e).lambda$load$2((TLRPC.messages_Messages) this.d, this.f19760b, this.f19761c);
                 return;
             case 7:
-                ((MessagesStorage) this.f19770e).lambda$saveSecretParams$7(this.f19768b, this.f19769c, (byte[]) this.d);
+                ((MessagesStorage) this.f19762e).lambda$saveSecretParams$7(this.f19760b, this.f19761c, (byte[]) this.d);
                 return;
             default:
-                int i10 = this.f19769c;
-                ((NotificationCenter) this.f19770e).lambda$postNotificationDebounced$2(this.f19768b, (Object[]) this.d, i10);
+                int i10 = this.f19761c;
+                ((NotificationCenter) this.f19762e).lambda$postNotificationDebounced$2(this.f19760b, (Object[]) this.d, i10);
                 return;
         }
     }
 
     public x4(Object obj, Object obj2, int i10, int i11, int i12) {
-        this.f19767a = i12;
-        this.f19770e = obj;
+        this.f19759a = i12;
+        this.f19762e = obj;
         this.d = obj2;
-        this.f19768b = i10;
-        this.f19769c = i11;
+        this.f19760b = i10;
+        this.f19761c = i11;
     }
 
     public x4(NotificationCenter notificationCenter, int i10, Object[] objArr, int i11) {
-        this.f19767a = 8;
-        this.f19770e = notificationCenter;
-        this.f19768b = i10;
+        this.f19759a = 8;
+        this.f19762e = notificationCenter;
+        this.f19760b = i10;
         this.d = objArr;
-        this.f19769c = i11;
+        this.f19761c = i11;
     }
 }

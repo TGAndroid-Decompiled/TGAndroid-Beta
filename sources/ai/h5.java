@@ -40,13 +40,13 @@ public final class h5 implements Runnable {
             if (oVar != null && handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.x1(26, oVar, lVar));
             }
-            synchronized (k2.f0.f14395o0) {
+            synchronized (k2.f0.f14396o0) {
                 try {
-                    int i10 = k2.f0.f14397q0 - 1;
-                    k2.f0.f14397q0 = i10;
+                    int i10 = k2.f0.f14398q0 - 1;
+                    k2.f0.f14398q0 = i10;
                     if (i10 == 0) {
-                        k2.f0.f14396p0.shutdown();
-                        k2.f0.f14396p0 = null;
+                        k2.f0.f14397p0.shutdown();
+                        k2.f0.f14397p0 = null;
                     }
                 } finally {
                 }
@@ -55,13 +55,13 @@ public final class h5 implements Runnable {
             if (oVar != null && handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.x1(26, oVar, lVar));
             }
-            synchronized (k2.f0.f14395o0) {
+            synchronized (k2.f0.f14396o0) {
                 try {
-                    int i11 = k2.f0.f14397q0 - 1;
-                    k2.f0.f14397q0 = i11;
+                    int i11 = k2.f0.f14398q0 - 1;
+                    k2.f0.f14398q0 = i11;
                     if (i11 == 0) {
-                        k2.f0.f14396p0.shutdown();
-                        k2.f0.f14396p0 = null;
+                        k2.f0.f14397p0.shutdown();
+                        k2.f0.f14397p0 = null;
                     }
                     throw th2;
                 } finally {
@@ -77,7 +77,7 @@ public final class h5 implements Runnable {
         ki.l0 l0Var2 = (ki.l0) this.d;
         Handler handler = (Handler) this.f1025e;
         if (qVar.Z && qVar.G == 0 && qVar.D) {
-            qVar.f15026x.g(qVar.f15025w, qVar.f15022s, false);
+            qVar.f15027x.g(qVar.f15026w, qVar.f15023s, false);
             qVar.E = false;
             qVar.F = false;
             qVar.M = 0.0f;
@@ -88,11 +88,11 @@ public final class h5 implements Runnable {
             qVar.I = elapsedRealtimeNanos;
             qVar.N = l0Var;
             qVar.O = l0Var2;
-            String[] strArr = ki.t0.f15086a;
+            String[] strArr = ki.t0.f15087a;
             synchronized (ki.t0.class) {
                 ki.t0.b();
                 if (l0Var != l0Var2) {
-                    if (l0Var == ki.l0.f14983b) {
+                    if (l0Var == ki.l0.f14984b) {
                         i10 = 0;
                     }
                     a2 = ki.t0.a(i10);
@@ -105,11 +105,11 @@ public final class h5 implements Runnable {
             int i11 = (max * 45) / 100;
             qVar.J = i11 * 1000000;
             qVar.K = (max - i11) * 1000000;
-            ki.m mVar = qVar.f15008e;
-            mVar.b("synthetic camera switch started: from=" + l0Var + ", to=" + l0Var2 + ", expectedWaitMs=" + qVar.L + ", targetBlurRadiusPx=" + (((qVar.f15026x.f14829a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((qVar.J + qVar.K) / 1000000));
+            ki.m mVar = qVar.f15009e;
+            mVar.b("synthetic camera switch started: from=" + l0Var + ", to=" + l0Var2 + ", expectedWaitMs=" + qVar.L + ", targetBlurRadiusPx=" + (((qVar.f15027x.f14830a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((qVar.J + qVar.K) / 1000000));
             qVar.A = -1L;
-            handler.removeCallbacks(qVar.f15009e0);
-            handler.post(qVar.f15009e0);
+            handler.removeCallbacks(qVar.f15010e0);
+            handler.post(qVar.f15010e0);
         }
     }
 

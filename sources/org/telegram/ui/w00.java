@@ -4,32 +4,32 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_chatlists;
 public final class w00 extends og.a {
-    public View.OnClickListener f41873c;
+    public View.OnClickListener f41880c;
     public CharSequence d;
-    public String f41874e;
-    public boolean f41875f;
-    public boolean f41876g;
+    public String f41881e;
+    public boolean f41882f;
+    public boolean f41883g;
     public long h;
-    public String f41877i;
-    public int f41878j;
-    public int f41879k;
-    public boolean f41880l;
-    public TL_chatlists.TL_exportedChatlistInvite f41881m;
+    public String f41884i;
+    public int f41885j;
+    public int f41886k;
+    public boolean f41887l;
+    public TL_chatlists.TL_exportedChatlistInvite f41888m;
 
     public static w00 b(int i10, String str, boolean z10) {
         ?? aVar = new og.a(4, false);
-        aVar.f41879k = i10;
+        aVar.f41886k = i10;
         aVar.d = str;
-        aVar.f41880l = z10;
+        aVar.f41887l = z10;
         return aVar;
     }
 
     public static w00 c(int i10, String str, String str2, boolean z10) {
         ?? aVar = new og.a(1, false);
-        aVar.f41876g = z10;
+        aVar.f41883g = z10;
         aVar.d = str;
-        aVar.f41877i = str2;
-        aVar.f41878j = i10;
+        aVar.f41884i = str2;
+        aVar.f41885j = i10;
         return aVar;
     }
 
@@ -51,28 +51,28 @@ public final class w00 extends og.a {
         if (this != obj) {
             if (obj != null && w00.class == obj.getClass()) {
                 w00 w00Var = (w00) obj;
-                int i10 = this.f17183a;
-                if (i10 == w00Var.f17183a) {
+                int i10 = this.f17187a;
+                if (i10 == w00Var.f17187a) {
                     if (i10 == 11) {
-                        if (!TextUtils.equals(this.d, w00Var.d) || !TextUtils.equals(this.f41874e, w00Var.f41874e)) {
+                        if (!TextUtils.equals(this.d, w00Var.d) || !TextUtils.equals(this.f41881e, w00Var.f41881e)) {
                             return false;
                         }
                     } else if ((i10 != 0 && i10 != 1 && i10 != 3 && i10 != 4) || TextUtils.equals(this.d, w00Var.d)) {
-                        int i11 = this.f17183a;
+                        int i11 = this.f17187a;
                         if (i11 == 0) {
-                            if (this.f41875f != w00Var.f41875f) {
+                            if (this.f41882f != w00Var.f41882f) {
                                 return false;
                             }
                         } else if (i11 == 1) {
-                            if (this.h != w00Var.h || !TextUtils.equals(this.f41877i, w00Var.f41877i) || this.f41878j != w00Var.f41878j) {
+                            if (this.h != w00Var.h || !TextUtils.equals(this.f41884i, w00Var.f41884i) || this.f41885j != w00Var.f41885j) {
                                 return false;
                             }
-                        } else if (i11 == 7 && (tL_exportedChatlistInvite = this.f41881m) != (tL_exportedChatlistInvite2 = w00Var.f41881m)) {
+                        } else if (i11 == 7 && (tL_exportedChatlistInvite = this.f41888m) != (tL_exportedChatlistInvite2 = w00Var.f41888m)) {
                             if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f41881m;
+                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f41888m;
                                 boolean z10 = tL_exportedChatlistInvite3.revoked;
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = w00Var.f41881m;
-                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f41881m.peers.size() != w00Var.f41881m.peers.size()) {
+                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = w00Var.f41888m;
+                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f41888m.peers.size() != w00Var.f41888m.peers.size()) {
                                     return false;
                                 }
                             } else {

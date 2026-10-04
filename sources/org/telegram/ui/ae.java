@@ -23,7 +23,7 @@ public final class ae extends org.telegram.ui.Components.ld0 {
                     oVar.setFocusable(true);
                     oVar.setFocusableInTouchMode(true);
                     int z12 = c71Var.z1(3);
-                    if (z12 >= 0 && z12 < c71Var.f25245f3.f31310x.size()) {
+                    if (z12 >= 0 && z12 < c71Var.f25250f3.f31316x.size()) {
                         c71Var.C0();
                         c71Var.y0(z12);
                     }
@@ -36,10 +36,10 @@ public final class ae extends org.telegram.ui.Components.ld0 {
                 if (oVar2 != null && !oVar2.isFocusable()) {
                     gVar.Q.setFocusable(true);
                     gVar.Q.setFocusableInTouchMode(true);
-                    int z13 = gVar.f51305e.z1(1);
-                    if (z13 >= 0 && z13 < gVar.f51305e.f25245f3.f31310x.size()) {
-                        gVar.f51305e.C0();
-                        gVar.f51305e.y0(z13);
+                    int z13 = gVar.f51311e.z1(1);
+                    if (z13 >= 0 && z13 < gVar.f51311e.f25250f3.f31316x.size()) {
+                        gVar.f51311e.C0();
+                        gVar.f51311e.y0(z13);
                     }
                     gVar.Q.requestFocus();
                 }

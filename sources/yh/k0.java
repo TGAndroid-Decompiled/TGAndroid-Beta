@@ -1,31 +1,16 @@
 package yh;
+public final class k0 implements li.j, li.k {
+    public final s0 f51508a;
 
-import android.os.Build;
-public final class k0 implements Runnable {
-    public final int f51502a;
-    public final s0 f51503b;
-
-    public k0(s0 s0Var, int i10) {
-        this.f51502a = i10;
-        this.f51503b = s0Var;
+    @Override
+    public int f() {
+        int i10 = org.telegram.ui.ActionBar.i6.f20912i5;
+        s0 s0Var = this.f51508a;
+        return i0.a.d(0.1f, s0Var.getThemedColor(i10), s0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20894h5));
     }
 
     @Override
-    public final void run() {
-        switch (this.f51502a) {
-            case 0:
-                if (Build.VERSION.SDK_INT >= 31) {
-                    s0 s0Var = this.f51503b;
-                    if (s0Var.f51945s0 != null) {
-                        s0Var.O(2);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                this.f51503b.onBackPressed();
-                return;
-        }
+    public void k(int i10) {
+        s0.N(this.f51508a, i10);
     }
 }

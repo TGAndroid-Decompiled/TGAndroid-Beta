@@ -13,7 +13,7 @@ public final class l2 extends AnimatorListenerAdapter {
         switch (this.f1270a) {
             case 0:
                 pf.e eVar = m2.Z.L;
-                if (eVar == null || (view = eVar.f44417j) == null) {
+                if (eVar == null || (view = eVar.f44424j) == null) {
                     return;
                 }
                 eVar.e(view);

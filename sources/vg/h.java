@@ -12,8 +12,8 @@ import org.telegram.ui.ActionBar.i5;
 import org.telegram.ui.ActionBar.i6;
 import w7.z5;
 public final class h extends FrameLayout {
-    public final i5 f48298a;
-    public long f48299b;
+    public final i5 f48306a;
+    public long f48307b;
 
     public h(Context context, d6 d6Var) {
         super(context);
@@ -26,7 +26,7 @@ public final class h extends FrameLayout {
         float f12;
         i5 i5Var = new i5(context);
         i5Var.setTextSize(16);
-        i5Var.setTextColor(i6.v0(i6.f20926j5, d6Var));
+        i5Var.setTextColor(i6.v0(i6.f20930j5, d6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
@@ -35,7 +35,7 @@ public final class h extends FrameLayout {
         i5Var.setGravity(i10);
         addView(i5Var);
         i5 i5Var2 = new i5(context);
-        this.f48298a = i5Var2;
+        this.f48306a = i5Var2;
         i5Var2.setTextSize(16);
         i5Var2.setTextColor(i6.v0(i6.L6, d6Var));
         if (LocaleController.isRTL) {
@@ -77,11 +77,11 @@ public final class h extends FrameLayout {
             f12 = 21.0f;
         }
         i5Var2.setLayoutParams(z5.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
-        setBackgroundColor(i6.v0(i6.f20890h5, d6Var));
+        setBackgroundColor(i6.v0(i6.f20894h5, d6Var));
     }
 
     public long getSelectedTime() {
-        return this.f48299b;
+        return this.f48307b;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j3) {
-        this.f48299b = j3;
+        this.f48307b = j3;
         Date date = new Date(j3);
-        this.f48298a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
+        this.f48306a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
     }
 }

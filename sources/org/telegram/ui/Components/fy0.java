@@ -8,10 +8,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fy0 implements org.telegram.ui.pt {
-    public final qy0 f26602a;
+    public final qy0 f26607a;
 
     public fy0(qy0 qy0Var) {
-        this.f26602a = qy0Var;
+        this.f26607a = qy0Var;
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class fy0 implements org.telegram.ui.pt {
     public final void F(TLRPC.Document document) {
         org.telegram.ui.ActionBar.d6 d6Var;
         int i10;
-        qy0 qy0Var = this.f26602a;
+        qy0 qy0Var = this.f26607a;
         qy0Var.S.documents.remove(document);
         boolean isEmpty = qy0Var.S.documents.isEmpty();
         if (isEmpty) {
@@ -87,7 +87,7 @@ public final class fy0 implements org.telegram.ui.pt {
 
     @Override
     public final long a() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f26602a.L;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f26607a.L;
         if (n2Var instanceof org.telegram.ui.yn) {
             return ((org.telegram.ui.yn) n2Var).a();
         }
@@ -96,7 +96,7 @@ public final class fy0 implements org.telegram.ui.pt {
 
     @Override
     public final boolean b() {
-        ny0 ny0Var = this.f26602a.f30188b0;
+        ny0 ny0Var = this.f26607a.f30194b0;
         if (ny0Var != null && ny0Var.b()) {
             return true;
         }
@@ -105,7 +105,7 @@ public final class fy0 implements org.telegram.ui.pt {
 
     @Override
     public final boolean c() {
-        ny0 ny0Var = this.f26602a.f30188b0;
+        ny0 ny0Var = this.f26607a.f30194b0;
         if (ny0Var != null && ny0Var.c()) {
             return true;
         }
@@ -124,7 +124,7 @@ public final class fy0 implements org.telegram.ui.pt {
 
     @Override
     public final boolean g() {
-        if (this.f26602a.X != null) {
+        if (this.f26607a.X != null) {
             return true;
         }
         return false;
@@ -138,7 +138,7 @@ public final class fy0 implements org.telegram.ui.pt {
     @Override
     public final boolean i() {
         TLRPC.StickerSet stickerSet;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f26602a.S;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f26607a.S;
         if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && stickerSet.emojis) {
             return false;
         }
@@ -152,7 +152,7 @@ public final class fy0 implements org.telegram.ui.pt {
 
     @Override
     public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
-        this.f26602a.u0(importingSticker);
+        this.f26607a.u0(importingSticker);
     }
 
     @Override
@@ -162,7 +162,7 @@ public final class fy0 implements org.telegram.ui.pt {
 
     @Override
     public final boolean m(int i10) {
-        if (this.f26602a.f30188b0 != null) {
+        if (this.f26607a.f30194b0 != null) {
             return true;
         }
         return false;
@@ -170,18 +170,18 @@ public final class fy0 implements org.telegram.ui.pt {
 
     @Override
     public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        qy0 qy0Var = this.f26602a;
-        ny0 ny0Var = qy0Var.f30188b0;
+        qy0 qy0Var = this.f26607a;
+        ny0 ny0Var = qy0Var.f30194b0;
         if (ny0Var == null) {
             return;
         }
-        ny0Var.d(document, str, obj, null, qy0Var.f30198i0, z10, i10, 0);
+        ny0Var.d(document, str, obj, null, qy0Var.f30204i0, z10, i10, 0);
         qy0Var.dismiss();
     }
 
     @Override
     public final void p(TLRPC.Document document) {
-        qy0 qy0Var = this.f26602a;
+        qy0 qy0Var = this.f26607a;
         qy0.o0(qy0Var.L, qy0Var.S, document);
     }
 

@@ -5,61 +5,61 @@ import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class jt implements Runnable {
-    public final int f27892a;
-    public final lt f27893b;
+    public final int f27897a;
+    public final lt f27898b;
 
     public jt(lt ltVar, int i10) {
-        this.f27892a = i10;
-        this.f27893b = ltVar;
+        this.f27897a = i10;
+        this.f27898b = ltVar;
     }
 
     @Override
     public final void run() {
         int i10;
         Bitmap bitmap;
-        switch (this.f27892a) {
+        switch (this.f27897a) {
             case 0:
-                lt ltVar = this.f27893b;
+                lt ltVar = this.f27898b;
                 try {
-                    i10 = ltVar.f28426w + 0;
-                    bitmap = ltVar.f28419b;
+                    i10 = ltVar.f28431w + 0;
+                    bitmap = ltVar.f28424b;
                 } catch (Exception e7) {
                     FileLog.e(e7);
                     ltVar.E = true;
                 }
                 if (bitmap != null) {
-                    if (bitmap.getWidth() == ltVar.f28427x) {
-                        if (ltVar.f28419b.getHeight() != i10) {
+                    if (bitmap.getWidth() == ltVar.f28432x) {
+                        if (ltVar.f28424b.getHeight() != i10) {
                         }
-                        ltVar.f28419b.eraseColor(0);
-                        ltVar.f28420c.save();
-                        ltVar.f28420c.translate(0.0f, 0);
-                        ltVar.c(ltVar.f28420c);
-                        ltVar.f28420c.restore();
-                        ltVar.f28419b.prepareToDraw();
+                        ltVar.f28424b.eraseColor(0);
+                        ltVar.f28425c.save();
+                        ltVar.f28425c.translate(0.0f, 0);
+                        ltVar.c(ltVar.f28425c);
+                        ltVar.f28425c.restore();
+                        ltVar.f28424b.prepareToDraw();
                         AndroidUtilities.runOnUIThread(ltVar.H);
                         return;
                     }
                 }
-                Bitmap bitmap2 = ltVar.f28419b;
+                Bitmap bitmap2 = ltVar.f28424b;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
                 }
-                ltVar.f28419b = Bitmap.createBitmap(ltVar.f28427x, i10, Bitmap.Config.ARGB_8888);
-                ltVar.f28420c = new Canvas(ltVar.f28419b);
-                ltVar.f28419b.eraseColor(0);
-                ltVar.f28420c.save();
-                ltVar.f28420c.translate(0.0f, 0);
-                ltVar.c(ltVar.f28420c);
-                ltVar.f28420c.restore();
-                ltVar.f28419b.prepareToDraw();
+                ltVar.f28424b = Bitmap.createBitmap(ltVar.f28432x, i10, Bitmap.Config.ARGB_8888);
+                ltVar.f28425c = new Canvas(ltVar.f28424b);
+                ltVar.f28424b.eraseColor(0);
+                ltVar.f28425c.save();
+                ltVar.f28425c.translate(0.0f, 0);
+                ltVar.c(ltVar.f28425c);
+                ltVar.f28425c.restore();
+                ltVar.f28424b.prepareToDraw();
                 AndroidUtilities.runOnUIThread(ltVar.H);
                 return;
             default:
-                lt ltVar2 = this.f27893b;
-                ltVar2.f28422f = false;
+                lt ltVar2 = this.f27898b;
+                ltVar2.f28427f = false;
                 ltVar2.g();
-                if (!ltVar2.f28418a) {
+                if (!ltVar2.f28423a) {
                     ltVar2.j();
                     return;
                 } else if (ltVar2.v == ltVar2.J) {

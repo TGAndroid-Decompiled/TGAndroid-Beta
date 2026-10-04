@@ -2,22 +2,22 @@ package ci;
 
 import android.view.View;
 public final class l8 implements View.OnClickListener {
-    public final int f5497a;
-    public final t8 f5498b;
+    public final int f5498a;
+    public final t8 f5499b;
 
     public l8(t8 t8Var, int i10) {
-        this.f5497a = i10;
-        this.f5498b = t8Var;
+        this.f5498a = i10;
+        this.f5499b = t8Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f5497a) {
+        switch (this.f5498a) {
             case 0:
-                this.f5498b.S();
+                this.f5499b.S();
                 return;
             default:
-                this.f5498b.W();
+                this.f5499b.W();
                 return;
         }
     }

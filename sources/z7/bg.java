@@ -3,19 +3,19 @@ package z7;
 import java.util.List;
 import java.util.ListIterator;
 public final class bg extends e9.c implements ListIterator {
-    public final e9.l f52470e;
+    public final e9.l f52475e;
 
     public bg(e9.l lVar) {
         super(lVar, (char) 0);
-        this.f52470e = lVar;
+        this.f52475e = lVar;
     }
 
     @Override
     public final void add(Object obj) {
-        e9.l lVar = this.f52470e;
+        e9.l lVar = this.f52475e;
         boolean isEmpty = lVar.isEmpty();
         b();
-        ((ListIterator) this.f8725b).add(obj);
+        ((ListIterator) this.f8726b).add(obj);
         if (isEmpty) {
             lVar.p();
         }
@@ -24,35 +24,35 @@ public final class bg extends e9.c implements ListIterator {
     @Override
     public final boolean hasPrevious() {
         b();
-        return ((ListIterator) this.f8725b).hasPrevious();
+        return ((ListIterator) this.f8726b).hasPrevious();
     }
 
     @Override
     public final int nextIndex() {
         b();
-        return ((ListIterator) this.f8725b).nextIndex();
+        return ((ListIterator) this.f8726b).nextIndex();
     }
 
     @Override
     public final Object previous() {
         b();
-        return ((ListIterator) this.f8725b).previous();
+        return ((ListIterator) this.f8726b).previous();
     }
 
     @Override
     public final int previousIndex() {
         b();
-        return ((ListIterator) this.f8725b).previousIndex();
+        return ((ListIterator) this.f8726b).previousIndex();
     }
 
     @Override
     public final void set(Object obj) {
         b();
-        ((ListIterator) this.f8725b).set(obj);
+        ((ListIterator) this.f8726b).set(obj);
     }
 
     public bg(e9.l lVar, int i10) {
-        super(lVar, ((List) lVar.f8771c).listIterator(i10), (char) 0);
-        this.f52470e = lVar;
+        super(lVar, ((List) lVar.f8772c).listIterator(i10), (char) 0);
+        this.f52475e = lVar;
     }
 }

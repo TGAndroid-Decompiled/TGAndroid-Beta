@@ -12,7 +12,7 @@ public abstract class v {
         String str = p0Var.d;
         String str2 = p0Var2.d;
         if (str == null && str2 == null) {
-            if (Objects.equals(Objects.toString(p0Var.f8467a), Objects.toString(p0Var2.f8467a)) && Objects.equals(p0Var.f8469c, p0Var2.f8469c) && Boolean.valueOf(p0Var.f8470e).equals(Boolean.valueOf(p0Var2.f8470e)) && Boolean.valueOf(p0Var.f8471f).equals(Boolean.valueOf(p0Var2.f8471f))) {
+            if (Objects.equals(Objects.toString(p0Var.f8468a), Objects.toString(p0Var2.f8468a)) && Objects.equals(p0Var.f8470c, p0Var2.f8470c) && Boolean.valueOf(p0Var.f8471e).equals(Boolean.valueOf(p0Var2.f8471e)) && Boolean.valueOf(p0Var.f8472f).equals(Boolean.valueOf(p0Var2.f8472f))) {
                 return true;
             }
             return false;
@@ -28,6 +28,6 @@ public abstract class v {
         if (str != null) {
             return str.hashCode();
         }
-        return Objects.hash(p0Var.f8467a, p0Var.f8469c, Boolean.valueOf(p0Var.f8470e), Boolean.valueOf(p0Var.f8471f));
+        return Objects.hash(p0Var.f8468a, p0Var.f8470c, Boolean.valueOf(p0Var.f8471e), Boolean.valueOf(p0Var.f8472f));
     }
 }

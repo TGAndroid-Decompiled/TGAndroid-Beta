@@ -22,17 +22,17 @@ public final class qa implements o1.g {
             case 1:
                 ci.q6 q6Var = (ci.q6) this.f1567b;
                 float f11 = f7 / 1000.0f;
-                q6Var.f5781t1 = f11;
-                qg.t1 t1Var = q6Var.f5767m1;
+                q6Var.f5782t1 = f11;
+                qg.t1 t1Var = q6Var.f5768m1;
                 t1Var.setAlpha(f11);
                 t1Var.invalidate();
                 q6Var.U0.invalidate();
-                q6Var.l1.getTypefaceCell().setAlpha(1.0f - q6Var.f5781t1);
+                q6Var.l1.getTypefaceCell().setAlpha(1.0f - q6Var.f5782t1);
                 return;
             case 2:
                 mg.i iVar = (mg.i) this.f1567b;
                 float f12 = f7 / 1000.0f;
-                ci.m6 m6Var = iVar.f16420a;
+                ci.m6 m6Var = iVar.f16424a;
                 m6Var.setPivotX(AndroidUtilities.dp(28.0f));
                 m6Var.setPivotY(AndroidUtilities.dp(28.0f));
                 m6Var.setScaleX(f12);
@@ -44,11 +44,11 @@ public final class qa implements o1.g {
                 qg.m0 m0Var = (qg.m0) this.f1567b;
                 float f13 = f7 / 1000.0f;
                 m0Var.D1 = f13;
-                qg.t1 t1Var2 = m0Var.f45189v1;
+                qg.t1 t1Var2 = m0Var.f45196v1;
                 t1Var2.setAlpha(f13);
                 t1Var2.invalidate();
-                m0Var.f45161d1.invalidate();
-                m0Var.f45188u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
+                m0Var.f45168d1.invalidate();
+                m0Var.f45195u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
                 return;
         }
     }

@@ -1,9 +1,9 @@
 package w7;
 public final class a5 implements ia.d {
-    public static final a5 f48597a = new Object();
+    public static final a5 f48605a = new Object();
 
     static {
-        t8.b.t(t8.b.m(d.class, new a(1)));
+        sa.e.t(sa.e.m(d.class, new a(1)));
     }
 
     @Override

@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 public final class c implements WildcardType, Serializable {
-    public final Type f9795a;
-    public final Type f9796b;
+    public final Type f9796a;
+    public final Type f9797b;
 
     public c(Type[] typeArr, Type[] typeArr2) {
         boolean z10;
@@ -27,14 +27,14 @@ public final class c implements WildcardType, Serializable {
             Objects.requireNonNull(typeArr2[0]);
             d.c(typeArr2[0]);
             d.b(typeArr[0] == Object.class);
-            this.f9796b = d.a(typeArr2[0]);
-            this.f9795a = Object.class;
+            this.f9797b = d.a(typeArr2[0]);
+            this.f9796a = Object.class;
             return;
         }
         Objects.requireNonNull(typeArr[0]);
         d.c(typeArr[0]);
-        this.f9796b = null;
-        this.f9795a = d.a(typeArr[0]);
+        this.f9797b = null;
+        this.f9796a = d.a(typeArr[0]);
     }
 
     public final boolean equals(Object obj) {
@@ -46,32 +46,32 @@ public final class c implements WildcardType, Serializable {
 
     @Override
     public final Type[] getLowerBounds() {
-        Type type = this.f9796b;
-        return type != null ? new Type[]{type} : d.f9797a;
+        Type type = this.f9797b;
+        return type != null ? new Type[]{type} : d.f9798a;
     }
 
     @Override
     public final Type[] getUpperBounds() {
-        return new Type[]{this.f9795a};
+        return new Type[]{this.f9796a};
     }
 
     public final int hashCode() {
         int i10;
-        Type type = this.f9796b;
+        Type type = this.f9797b;
         if (type != null) {
             i10 = type.hashCode() + 31;
         } else {
             i10 = 1;
         }
-        return i10 ^ (this.f9795a.hashCode() + 31);
+        return i10 ^ (this.f9796a.hashCode() + 31);
     }
 
     public final String toString() {
-        Type type = this.f9796b;
+        Type type = this.f9797b;
         if (type != null) {
             return "? super " + d.k(type);
         }
-        Type type2 = this.f9795a;
+        Type type2 = this.f9796a;
         if (type2 == Object.class) {
             return "?";
         }

@@ -128,7 +128,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, cw0, dw0, o
                 b2.r rVar = new b2.r();
                 if (bundle4 != null) {
                     ClassLoader classLoader = e2.d.class.getClassLoader();
-                    String str5 = e2.d0.f8537a;
+                    String str5 = e2.d0.f8538a;
                     bundle4.setClassLoader(classLoader);
                 }
                 String string5 = bundle4.getString(b2.s.V);
@@ -145,7 +145,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, cw0, dw0, o
                 rVar.f3493b = string6;
                 ArrayList parcelableArrayList = bundle4.getParcelableArrayList(b2.s.A0);
                 if (parcelableArrayList == null) {
-                    i10 = e9.a1.f8720e;
+                    i10 = e9.a1.f8721e;
                 } else {
                     e9.f0 u10 = e9.i0.u();
                     for (int i19 = 0; i19 < parcelableArrayList.size(); i19++) {
@@ -230,8 +230,8 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, cw0, dw0, o
                 bundle8.getClass();
                 ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(b2.l1.f3334f);
                 if (parcelableArrayList2 == null) {
-                    e9.g0 g0Var = e9.i0.f8757b;
-                    j3 = e9.a1.f8720e;
+                    e9.g0 g0Var = e9.i0.f8758b;
+                    j3 = e9.a1.f8721e;
                 } else {
                     j3 = e2.d.j(new w1(14), parcelableArrayList2);
                 }
@@ -254,7 +254,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, cw0, dw0, o
             default:
                 wa.e eVar = (wa.e) obj;
                 eVar.getClass();
-                la.h hVar = com.google.firebase.messaging.q.f7916a;
+                la.h hVar = com.google.firebase.messaging.q.f7917a;
                 hVar.getClass();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
@@ -263,8 +263,8 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, cw0, dw0, o
                 }
                 return byteArrayOutputStream.toByteArray();
             case 20:
-                ca.a.f4513b.getClass();
-                return z9.c.f53050a.c((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
+                ca.a.f4514b.getClass();
+                return z9.c.f53055a.c((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
@@ -313,7 +313,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, cw0, dw0, o
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = ci.w3.f6206j0;
+        MediaController.AlbumEntry albumEntry = ci.w3.f6207j0;
         return 0;
     }
 

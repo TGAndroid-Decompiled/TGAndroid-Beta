@@ -22,7 +22,7 @@ import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.zl0;
 import s4.p0;
 public final class g extends f61 {
-    public static final int f10904a = 0;
+    public static final int f10905a = 0;
 
     static {
         f61.setup(new f61());
@@ -33,20 +33,20 @@ public final class g extends f61 {
         int i10;
         h hVar = (h) view;
         f fVar = (f) g61Var.G;
-        TLRPC.User user = fVar.f10902b;
-        long j3 = fVar.f10901a;
-        boolean z11 = fVar.f10903c;
-        boolean z12 = !g61Var.f26667j;
-        w9 w9Var = hVar.f10907c;
-        TextView textView = hVar.f10910n;
+        TLRPC.User user = fVar.f10903b;
+        long j3 = fVar.f10902a;
+        boolean z11 = fVar.f10904c;
+        boolean z12 = !g61Var.f26672j;
+        w9 w9Var = hVar.f10908c;
+        TextView textView = hVar.f10911n;
         TextView textView2 = hVar.d;
-        hVar.f10914x = (e) g61Var.H;
-        hVar.f10915y = j3;
-        hVar.E = user.f20185id;
-        int i11 = hVar.f10906b;
+        hVar.f10915x = (e) g61Var.H;
+        hVar.f10916y = j3;
+        hVar.E = user.f20189id;
+        int i11 = hVar.f10907b;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j3));
         TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
-        hVar.f10909f.setText(DialogObject.getName(j3));
+        hVar.f10910f.setText(DialogObject.getName(j3));
         TextView textView3 = hVar.h;
         if (user2 != null) {
             i10 = R.string.CommunityPendingRequestSuggestedBot;
@@ -60,7 +60,7 @@ public final class g extends f61 {
             textView2.setVisibility(8);
         } else if (chat != null && chat.participants_count > 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(hVar.f10911r, 0, 1, 33);
+            spannableStringBuilder.setSpan(hVar.f10912r, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chat.participants_count, ','));
             textView2.setText(spannableStringBuilder);
             textView2.setVisibility(0);
@@ -72,13 +72,13 @@ public final class g extends f61 {
         } else {
             textView.setVisibility(8);
         }
-        hVar.f10913w = z12;
+        hVar.f10914w = z12;
         if (user2 != null) {
             w9Var.e(user2, new h9(0, user2));
         } else {
             w9Var.e(chat, new h9(chat));
         }
-        hVar.f10908e.e(user, new h9(0, user));
+        hVar.f10909e.e(user, new h9(0, user));
     }
 
     @Override
@@ -93,7 +93,7 @@ public final class g extends f61 {
     public final boolean equals(g61 g61Var, g61 g61Var2) {
         f fVar = (f) g61Var.G;
         f fVar2 = (f) g61Var2.G;
-        if (fVar.f10901a == fVar2.f10901a && DialogObject.getDialogId(fVar.f10902b) == DialogObject.getDialogId(fVar2.f10902b)) {
+        if (fVar.f10902a == fVar2.f10902a && DialogObject.getDialogId(fVar.f10903b) == DialogObject.getDialogId(fVar2.f10903b)) {
             return true;
         }
         return false;

@@ -7,30 +7,30 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.yn;
 public final class l implements Runnable {
-    public final int f9924a;
-    public final boolean f9925b;
-    public final boolean f9926c;
+    public final int f9925a;
+    public final boolean f9926b;
+    public final boolean f9927c;
     public final long d;
-    public final NotificationCenter.NotificationCenterDelegate f9927e;
+    public final NotificationCenter.NotificationCenterDelegate f9928e;
 
     public l(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, boolean z10, boolean z11, long j3, int i10) {
-        this.f9924a = i10;
-        this.f9927e = notificationCenterDelegate;
-        this.f9925b = z10;
-        this.f9926c = z11;
+        this.f9925a = i10;
+        this.f9928e = notificationCenterDelegate;
+        this.f9926b = z10;
+        this.f9927c = z11;
         this.d = j3;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f9924a) {
+        switch (this.f9925a) {
             case 0:
-                p pVar = (p) this.f9927e;
+                p pVar = (p) this.f9928e;
                 String string = LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity);
-                if (this.f9925b) {
+                if (this.f9926b) {
                     i10 = R.string.CommunityMenuRemoveBotFromCommunityConfirm;
-                } else if (this.f9926c) {
+                } else if (this.f9927c) {
                     i10 = R.string.CommunityMenuRemoveChannelFromCommunityConfirm;
                 } else {
                     i10 = R.string.CommunityMenuRemoveGroupFromCommunityConfirm;
@@ -38,22 +38,22 @@ public final class l implements Runnable {
                 e5.v0(pVar, string, LocaleController.getString(i10), LocaleController.getString(R.string.Remove), true, new g(pVar, this.d, 0));
                 return;
             case 1:
-                k0.q((k0) this.f9927e, this.f9925b, this.f9926c, this.d);
+                k0.q((k0) this.f9928e, this.f9926b, this.f9927c, this.d);
                 return;
             case 2:
-                ((MessagesController) this.f9927e).lambda$setLastCreatedDialogId$55(this.f9925b, this.f9926c, this.d);
+                ((MessagesController) this.f9928e).lambda$setLastCreatedDialogId$55(this.f9926b, this.f9927c, this.d);
                 return;
             default:
-                yn.b1((yn) this.f9927e, this.d, this.f9925b, this.f9926c);
+                yn.b1((yn) this.f9928e, this.d, this.f9926b, this.f9927c);
                 return;
         }
     }
 
     public l(yn ynVar, long j3, boolean z10, boolean z11) {
-        this.f9924a = 3;
-        this.f9927e = ynVar;
+        this.f9925a = 3;
+        this.f9928e = ynVar;
         this.d = j3;
-        this.f9925b = z10;
-        this.f9926c = z11;
+        this.f9926b = z10;
+        this.f9927c = z11;
     }
 }

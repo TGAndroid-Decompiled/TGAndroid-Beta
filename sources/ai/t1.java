@@ -30,7 +30,7 @@ public final class t1 implements Runnable {
                 return;
             case 3:
                 d2 d2Var = this.f1679b;
-                NotificationCenter.getInstance(d2Var.f756e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.v.f20048id));
+                NotificationCenter.getInstance(d2Var.f756e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.v.f20052id));
                 d2Var.u(true);
                 return;
             case 4:

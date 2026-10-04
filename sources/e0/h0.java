@@ -15,7 +15,7 @@ import android.media.metrics.LogSessionId;
 import android.media.session.MediaSession;
 import android.os.Build;
 public abstract class h0 {
-    public static RenderEffect f8423a;
+    public static RenderEffect f8424a;
 
     public static RenderEffect a() {
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -42,12 +42,12 @@ public abstract class h0 {
     }
 
     public static RenderEffect c() {
-        if (f8423a == null) {
+        if (f8424a == null) {
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(3.0f);
-            f8423a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+            f8424a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
         }
-        return f8423a;
+        return f8424a;
     }
 
     public static boolean d(MediaDrm mediaDrm, String str, int i10) {
@@ -83,13 +83,13 @@ public abstract class h0 {
         LogSessionId a2 = kVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!a2.equals(logSessionId)) {
-            ((MediaFormat) nVar.f7905b).setString("log-session-id", a2.getStringId());
+            ((MediaFormat) nVar.f7906b).setString("log-session-id", a2.getStringId());
         }
     }
 
     public static void i(n4.y yVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((n4.r) yVar.f16640b).f16620a;
+            MediaSession mediaSession = ((n4.r) yVar.f16644b).f16624a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e7) {

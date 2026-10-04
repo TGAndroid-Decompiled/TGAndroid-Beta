@@ -7,40 +7,40 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.y5;
 public final class f extends View implements y5 {
-    public ah.e f14151a;
-    public ah.e f14152b;
-    public int f14153c;
+    public ah.e f14152a;
+    public ah.e f14153b;
+    public int f14154c;
     public int d;
-    public fh.c f14154e;
-    public int f14155f;
+    public fh.c f14155e;
+    public int f14156f;
 
     public f(Context context) {
         super(context);
     }
 
     public final void a() {
-        this.f14151a.setBounds(0, 0, getMeasuredWidth(), this.f14153c);
-        this.f14152b.setBounds(0, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight());
+        this.f14152a.setBounds(0, 0, getMeasuredWidth(), this.f14154c);
+        this.f14153b.setBounds(0, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight());
     }
 
     public final void b(ah.c cVar, dh.e eVar) {
         ch.d c10 = cVar.c(this, null, false);
-        c10.x(eVar);
+        c10.w(eVar);
         ah.e eVar2 = new ah.e(c10);
-        this.f14151a = eVar2;
+        this.f14152a = eVar2;
         eVar2.b(-AndroidUtilities.dp(30.0f), true);
         ch.d c11 = cVar.c(this, null, false);
-        c11.x(eVar);
+        c11.w(eVar);
         ah.e eVar3 = new ah.e(c11);
-        this.f14152b = eVar3;
+        this.f14153b = eVar3;
         eVar3.b(AndroidUtilities.dp(30.0f), true);
     }
 
     @Override
     public final void e() {
         int i10;
-        fh.c cVar = this.f14154e;
-        if (cVar != null && (i10 = this.f14155f) != -1) {
+        fh.c cVar = this.f14155e;
+        if (cVar != null && (i10 = this.f14156f) != -1) {
             cVar.a(i6.w0(null, i10, false));
             invalidate();
         }
@@ -53,8 +53,8 @@ public final class f extends View implements y5 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.f14151a.draw(canvas);
-        this.f14152b.draw(canvas);
+        this.f14152a.draw(canvas);
+        this.f14153b.draw(canvas);
     }
 
     @Override
@@ -64,15 +64,15 @@ public final class f extends View implements y5 {
     }
 
     public void setFadeHeightBottom(int i10) {
-        this.f14152b.b(i10, true);
+        this.f14153b.b(i10, true);
     }
 
     public void setFadeHeightTop(int i10) {
-        this.f14151a.b(-i10, true);
+        this.f14152a.b(-i10, true);
     }
 
     public void setFadeTopAlpha(int i10) {
-        ah.e eVar = this.f14151a;
+        ah.e eVar = this.f14152a;
         if (eVar.f478q != i10) {
             eVar.f478q = i10;
             invalidate();
@@ -88,16 +88,16 @@ public final class f extends View implements y5 {
     }
 
     public void setFadeZoneTop(int i10) {
-        if (this.f14153c != i10) {
-            this.f14153c = i10;
+        if (this.f14154c != i10) {
+            this.f14154c = i10;
             a();
             invalidate();
         }
     }
 
     public void setIgnoreFastWay(boolean z10) {
-        this.f14151a.f477p = z10;
-        this.f14152b.f477p = z10;
+        this.f14152a.f477p = z10;
+        this.f14153b.f477p = z10;
     }
 
     public void setup(ah.c cVar) {
@@ -105,12 +105,12 @@ public final class f extends View implements y5 {
     }
 
     public void setupColorKey(int i10) {
-        this.f14155f = i10;
-        if (this.f14154e == null) {
+        this.f14156f = i10;
+        if (this.f14155e == null) {
             fh.c cVar = new fh.c();
-            this.f14154e = cVar;
+            this.f14155e = cVar;
             cVar.a(i6.w0(null, i10, false));
-            setup(new ah.c(this.f14154e));
+            setup(new ah.c(this.f14155e));
         }
     }
 }

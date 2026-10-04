@@ -11,11 +11,11 @@ public final class y81 extends org.telegram.ui.Components.f61 {
 
     public static org.telegram.ui.Components.g61 a(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
         org.telegram.ui.Components.g61 J = org.telegram.ui.Components.g61.J(y81.class);
-        J.f26669l = str;
-        J.f26670m = charSequence;
-        J.f26671n = str2;
+        J.f26674l = str;
+        J.f26675m = charSequence;
+        J.f26676n = str2;
         J.D = onClickListener;
-        J.f26672o = charSequence2;
+        J.f26677o = charSequence2;
         J.E = onClickListener2;
         return J;
     }
@@ -23,17 +23,17 @@ public final class y81 extends org.telegram.ui.Components.f61 {
     @Override
     public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
         z81 z81Var = (z81) view;
-        CharSequence charSequence = g61Var.f26669l;
-        CharSequence charSequence2 = g61Var.f26670m;
-        CharSequence charSequence3 = g61Var.f26671n;
+        CharSequence charSequence = g61Var.f26674l;
+        CharSequence charSequence2 = g61Var.f26675m;
+        CharSequence charSequence3 = g61Var.f26676n;
         View.OnClickListener onClickListener = g61Var.D;
-        CharSequence charSequence4 = g61Var.f26672o;
+        CharSequence charSequence4 = g61Var.f26677o;
         View.OnClickListener onClickListener2 = g61Var.E;
-        ci.d dVar = z81Var.f43726e;
-        org.telegram.ui.Components.q90 q90Var = z81Var.f43724b;
+        ci.d dVar = z81Var.f43733e;
+        org.telegram.ui.Components.q90 q90Var = z81Var.f43731b;
         int i10 = 0;
         q90Var.setText(Emoji.replaceEmoji(charSequence, q90Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.q90 q90Var2 = z81Var.f43725c;
+        org.telegram.ui.Components.q90 q90Var2 = z81Var.f43732c;
         q90Var2.setText(Emoji.replaceEmoji(charSequence2, q90Var2.getPaint().getFontMetricsInt(), false));
         ci.d dVar2 = z81Var.d;
         if (TextUtils.isEmpty(charSequence3)) {

@@ -24,30 +24,30 @@ public final class e extends Thread {
     public int[] O;
     public float P;
     public final f Q;
-    public final d f48362c;
+    public final d f48370c;
     public final SurfaceTexture d;
-    public boolean f48364f;
+    public boolean f48372f;
     public int h;
-    public int f48365n;
-    public int f48366r;
+    public int f48373n;
+    public int f48374r;
     public EGL10 v;
-    public EGLDisplay f48368w;
-    public EGLConfig f48369x;
-    public EGLSurface f48370y;
-    public volatile boolean f48360a = true;
-    public volatile boolean f48361b = false;
-    public final Object f48363e = new Object();
-    public final float f48367s = AndroidUtilities.dpf2(1.2f);
+    public EGLDisplay f48376w;
+    public EGLConfig f48377x;
+    public EGLSurface f48378y;
+    public volatile boolean f48368a = true;
+    public volatile boolean f48369b = false;
+    public final Object f48371e = new Object();
+    public final float f48375s = AndroidUtilities.dpf2(1.2f);
     public boolean M = true;
     public int N = 0;
 
     public e(f fVar, SurfaceTexture surfaceTexture, int i10, int i11, d dVar) {
         this.Q = fVar;
-        this.f48362c = dVar;
+        this.f48370c = dVar;
         this.d = surfaceTexture;
         this.h = i10;
-        this.f48365n = i11;
-        this.f48366r = (int) Utilities.clamp(((i10 * i11) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
+        this.f48373n = i11;
+        this.f48374r = (int) Utilities.clamp(((i10 * i11) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
     }
 
     public static void a() {
@@ -71,7 +71,7 @@ public final class e extends Thread {
         GLES20.glGenBuffers(2, iArr2, 0);
         for (int i10 = 0; i10 < 2; i10++) {
             GLES20.glBindBuffer(34962, this.O[i10]);
-            GLES20.glBufferData(34962, this.f48366r * 24, null, 35048);
+            GLES20.glBufferData(34962, this.f48374r * 24, null, 35048);
         }
         a();
     }
@@ -83,30 +83,30 @@ public final class e extends Thread {
         EGL10 egl10 = (EGL10) EGLContext.getEGL();
         this.v = egl10;
         EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
-        this.f48368w = eglGetDisplay;
+        this.f48376w = eglGetDisplay;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            this.f48360a = false;
+            this.f48368a = false;
         } else {
             if (!this.v.eglInitialize(eglGetDisplay, new int[2])) {
-                this.f48360a = false;
+                this.f48368a = false;
             } else {
                 EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                if (!this.v.eglChooseConfig(this.f48368w, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
-                    this.f48360a = false;
+                if (!this.v.eglChooseConfig(this.f48376w, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
+                    this.f48368a = false;
                 } else {
                     EGLConfig eGLConfig = eGLConfigArr[0];
-                    this.f48369x = eGLConfig;
-                    EGLContext eglCreateContext = this.v.eglCreateContext(this.f48368w, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
+                    this.f48377x = eGLConfig;
+                    EGLContext eglCreateContext = this.v.eglCreateContext(this.f48376w, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
                     this.E = eglCreateContext;
                     if (eglCreateContext == null) {
-                        this.f48360a = false;
+                        this.f48368a = false;
                     } else {
-                        EGLSurface eglCreateWindowSurface = this.v.eglCreateWindowSurface(this.f48368w, this.f48369x, this.d, null);
-                        this.f48370y = eglCreateWindowSurface;
+                        EGLSurface eglCreateWindowSurface = this.v.eglCreateWindowSurface(this.f48376w, this.f48377x, this.d, null);
+                        this.f48378y = eglCreateWindowSurface;
                         if (eglCreateWindowSurface == null) {
-                            this.f48360a = false;
-                        } else if (!this.v.eglMakeCurrent(this.f48368w, eglCreateWindowSurface, eglCreateWindowSurface, this.E)) {
-                            this.f48360a = false;
+                            this.f48368a = false;
+                        } else if (!this.v.eglMakeCurrent(this.f48376w, eglCreateWindowSurface, eglCreateWindowSurface, this.E)) {
+                            this.f48368a = false;
                         } else {
                             b();
                             int glCreateShader = GLES20.glCreateShader(35633);
@@ -119,7 +119,7 @@ public final class e extends Thread {
                                 if (iArr[0] == 0) {
                                     FileLog.e("SpoilerEffect2, compile vertex shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
                                     GLES20.glDeleteShader(glCreateShader);
-                                    this.f48360a = false;
+                                    this.f48368a = false;
                                 } else {
                                     GLES20.glShaderSource(glCreateShader2, AndroidUtilities.readRes(R.raw.spoiler_fragment));
                                     GLES20.glCompileShader(glCreateShader2);
@@ -127,12 +127,12 @@ public final class e extends Thread {
                                     if (iArr[0] == 0) {
                                         FileLog.e("SpoilerEffect2, compile fragment shader error: " + GLES20.glGetShaderInfoLog(glCreateShader2));
                                         GLES20.glDeleteShader(glCreateShader2);
-                                        this.f48360a = false;
+                                        this.f48368a = false;
                                     } else {
                                         int glCreateProgram = GLES20.glCreateProgram();
                                         this.F = glCreateProgram;
                                         if (glCreateProgram == 0) {
-                                            this.f48360a = false;
+                                            this.f48368a = false;
                                         } else {
                                             GLES20.glAttachShader(glCreateProgram, glCreateShader);
                                             GLES20.glAttachShader(this.F, glCreateShader2);
@@ -141,7 +141,7 @@ public final class e extends Thread {
                                             GLES20.glGetProgramiv(this.F, 35714, iArr, 0);
                                             if (iArr[0] == 0) {
                                                 FileLog.e("SpoilerEffect2, link draw program error: " + GLES20.glGetProgramInfoLog(this.F));
-                                                this.f48360a = false;
+                                                this.f48368a = false;
                                             } else {
                                                 this.G = GLES20.glGetUniformLocation(this.F, "reset");
                                                 this.H = GLES20.glGetUniformLocation(this.F, "time");
@@ -149,12 +149,12 @@ public final class e extends Thread {
                                                 this.J = GLES20.glGetUniformLocation(this.F, "size");
                                                 this.K = GLES20.glGetUniformLocation(this.F, "r");
                                                 this.L = GLES20.glGetUniformLocation(this.F, "seed");
-                                                GLES20.glViewport(0, 0, this.h, this.f48365n);
+                                                GLES20.glViewport(0, 0, this.h, this.f48373n);
                                                 GLES20.glEnable(3042);
                                                 GLES20.glBlendFunc(770, 771);
                                                 GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
                                                 GLES20.glUseProgram(this.F);
-                                                GLES20.glUniform2f(this.J, this.h, this.f48365n);
+                                                GLES20.glUniform2f(this.J, this.h, this.f48373n);
                                                 int i11 = this.G;
                                                 if (this.M) {
                                                     f7 = 1.0f;
@@ -162,14 +162,14 @@ public final class e extends Thread {
                                                     f7 = 0.0f;
                                                 }
                                                 GLES20.glUniform1f(i11, f7);
-                                                GLES20.glUniform1f(this.K, this.f48367s);
+                                                GLES20.glUniform1f(this.K, this.f48375s);
                                                 GLES20.glUniform1f(this.L, Utilities.fastRandom.nextInt(256) / 256.0f);
                                             }
                                         }
                                     }
                                 }
                             } else {
-                                this.f48360a = false;
+                                this.f48368a = false;
                             }
                         }
                     }
@@ -177,11 +177,11 @@ public final class e extends Thread {
             }
         }
         long nanoTime = System.nanoTime();
-        while (this.f48360a) {
+        while (this.f48368a) {
             long nanoTime2 = System.nanoTime();
             double d = (nanoTime2 - nanoTime) / 1.0E9d;
             f fVar = this.Q;
-            double d10 = fVar.f48372a;
+            double d10 = fVar.f48380a;
             if (d < d10) {
                 double d11 = d10 - d;
                 long j3 = (long) (d11 * 1000.0d);
@@ -190,32 +190,32 @@ public final class e extends Thread {
                     Thread.sleep(j3, (int) ((d11 - (j3 / 1000.0d)) * 1.0E9d));
                 } catch (Exception unused) {
                 }
-                d = this.Q.f48372a;
+                d = this.Q.f48380a;
             } else {
                 i10 = 3;
-                double d12 = fVar.f48373b;
+                double d12 = fVar.f48381b;
                 if (d > d12) {
                     d = d12;
                 }
             }
-            while (this.f48361b) {
+            while (this.f48369b) {
                 try {
                     Thread.sleep(1000L);
                 } catch (Exception unused2) {
                 }
             }
-            synchronized (this.f48363e) {
+            synchronized (this.f48371e) {
                 try {
-                    if (this.f48364f) {
-                        GLES20.glUniform2f(this.J, this.h, this.f48365n);
-                        GLES20.glViewport(0, 0, this.h, this.f48365n);
-                        int clamp = (int) Utilities.clamp(((this.h * this.f48365n) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
-                        if (clamp > this.f48366r) {
+                    if (this.f48372f) {
+                        GLES20.glUniform2f(this.J, this.h, this.f48373n);
+                        GLES20.glViewport(0, 0, this.h, this.f48373n);
+                        int clamp = (int) Utilities.clamp(((this.h * this.f48373n) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
+                        if (clamp > this.f48374r) {
                             this.M = true;
                             b();
                         }
-                        this.f48366r = clamp;
-                        this.f48364f = false;
+                        this.f48374r = clamp;
+                        this.f48372f = false;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -223,10 +223,10 @@ public final class e extends Thread {
             }
             float f10 = (float) d;
             EGL10 egl102 = this.v;
-            EGLDisplay eGLDisplay = this.f48368w;
-            EGLSurface eGLSurface = this.f48370y;
+            EGLDisplay eGLDisplay = this.f48376w;
+            EGLSurface eGLSurface = this.f48378y;
             if (!egl102.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.E)) {
-                this.f48360a = false;
+                this.f48368a = false;
             } else {
                 float f11 = f10 * 0.65f;
                 float f12 = this.P + f11;
@@ -256,18 +256,18 @@ public final class e extends Thread {
                 GLES20.glUniform1f(this.H, this.P);
                 GLES20.glUniform1f(this.I, f11);
                 GLES30.glBeginTransformFeedback(0);
-                GLES20.glDrawArrays(0, 0, this.f48366r);
+                GLES20.glDrawArrays(0, 0, this.f48374r);
                 GLES30.glEndTransformFeedback();
                 if (this.M) {
                     this.M = false;
                     GLES20.glUniform1f(this.G, 0.0f);
                 }
                 this.N = 1 - this.N;
-                this.v.eglSwapBuffers(this.f48368w, this.f48370y);
+                this.v.eglSwapBuffers(this.f48376w, this.f48378y);
                 a();
             }
-            AndroidUtilities.cancelRunOnUIThread(this.f48362c);
-            AndroidUtilities.runOnUIThread(this.f48362c);
+            AndroidUtilities.cancelRunOnUIThread(this.f48370c);
+            AndroidUtilities.runOnUIThread(this.f48370c);
             nanoTime = nanoTime2;
         }
         int[] iArr2 = this.O;
@@ -291,19 +291,19 @@ public final class e extends Thread {
         EGL10 egl103 = this.v;
         if (egl103 != null) {
             try {
-                EGLDisplay eGLDisplay2 = this.f48368w;
+                EGLDisplay eGLDisplay2 = this.f48376w;
                 EGLSurface eGLSurface2 = EGL10.EGL_NO_SURFACE;
                 egl103.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL10.EGL_NO_CONTEXT);
             } catch (Exception e11) {
                 FileLog.e(e11);
             }
             try {
-                this.v.eglDestroySurface(this.f48368w, this.f48370y);
+                this.v.eglDestroySurface(this.f48376w, this.f48378y);
             } catch (Exception e12) {
                 FileLog.e(e12);
             }
             try {
-                this.v.eglDestroyContext(this.f48368w, this.E);
+                this.v.eglDestroyContext(this.f48376w, this.E);
             } catch (Exception e13) {
                 FileLog.e(e13);
             }

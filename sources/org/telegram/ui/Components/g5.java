@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class g5 extends FrameLayout {
-    public boolean f26646a;
-    public int f26647b;
-    public p6 f26648c;
+    public boolean f26651a;
+    public int f26652b;
+    public p6 f26653c;
     public p6 d;
 
     public p6 getSubtitleTextView() {
@@ -14,22 +14,22 @@ public final class g5 extends FrameLayout {
     }
 
     public p6 getTitle() {
-        return this.f26648c;
+        return this.f26653c;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         p6 p6Var = this.d;
-        p6 p6Var2 = this.f26648c;
-        int z11 = org.telegram.messenger.ok.z(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-        if (this.f26646a) {
+        p6 p6Var2 = this.f26653c;
+        int z11 = org.telegram.messenger.bi.z(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
+        if (this.f26651a) {
             i14 = AndroidUtilities.statusBarHeight;
         } else {
             i14 = 0;
         }
         int i15 = z11 + i14;
-        int i16 = this.f26647b;
+        int i16 = this.f26652b;
         if (p6Var.getVisibility() != 8) {
             p6Var2.layout(i16, (AndroidUtilities.dp(1.0f) + i15) - p6Var2.getPaddingTop(), p6Var2.getMeasuredWidth() + i16, p6Var2.getPaddingBottom() + ((AndroidUtilities.dp(1.3f) + (p6Var2.getTextHeight() + i15)) - p6Var2.getPaddingTop()));
         } else {
@@ -41,7 +41,7 @@ public final class g5 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        p6 p6Var = this.f26648c;
+        p6 p6Var = this.f26653c;
         int paddingRight = p6Var.getPaddingRight() + size;
         int dp = paddingRight - AndroidUtilities.dp(16.0f);
         p6Var.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(p6Var.getPaddingRight() + AndroidUtilities.dp(32.0f), Integer.MIN_VALUE));

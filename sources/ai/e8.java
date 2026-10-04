@@ -66,10 +66,10 @@ public final class e8 implements Comparator {
                                 if (peerStories.stories.isEmpty()) {
                                     i10 = 0;
                                 } else {
-                                    i10 = ((TL_stories.StoryItem) hg.k0.g(1, peerStories.stories)).date;
+                                    i10 = ((TL_stories.StoryItem) hg.c.g(1, peerStories.stories)).date;
                                 }
                                 if (!peerStories2.stories.isEmpty()) {
-                                    i12 = ((TL_stories.StoryItem) hg.k0.g(1, peerStories2.stories)).date;
+                                    i12 = ((TL_stories.StoryItem) hg.c.g(1, peerStories2.stories)).date;
                                 }
                                 return i12 - i10;
                             }
@@ -109,11 +109,11 @@ public final class e8 implements Comparator {
                 return wVar.d(obj2) - wVar.d(obj);
             case 4:
                 SparseIntArray sparseIntArray = (SparseIntArray) this.f921b;
-                return sparseIntArray.get(((rg.h) obj).f46122e, Integer.MAX_VALUE) - sparseIntArray.get(((rg.h) obj2).f46122e, Integer.MAX_VALUE);
+                return sparseIntArray.get(((rg.h) obj).f46129e, Integer.MAX_VALUE) - sparseIntArray.get(((rg.h) obj2).f46129e, Integer.MAX_VALUE);
             case 5:
                 return ((Collator) this.f921b).compare((String) obj, (String) obj2);
             default:
-                float[] fArr = ((yh.p2) this.f921b).f51798r;
+                float[] fArr = ((yh.q2) this.f921b).f51855r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
         }
     }

@@ -19,23 +19,23 @@ public final class m4 extends cb implements NotificationCenter.NotificationCente
     public final int X;
     public final k5 Y;
     public final HashSet Z;
-    public final qz f50114a0;
-    public final FrameLayout f50115b0;
-    public final ci.d f50116c0;
-    public b80 f50117d0;
-    public u61 f50118e0;
-    public i0.b f50119f0;
+    public final qz f50122a0;
+    public final FrameLayout f50123b0;
+    public final ci.d f50124c0;
+    public b80 f50125d0;
+    public u61 f50126e0;
+    public i0.b f50127f0;
 
     public m4(org.telegram.ui.ActionBar.n2 r20, long r21, int r23, ei.s4 r24) {
         throw new UnsupportedOperationException("Method not decompiled: xh.m4.<init>(org.telegram.ui.ActionBar.n2, long, int, ei.s4):void");
     }
 
     public final void Q() {
-        this.d.setPadding(AndroidUtilities.dp(9.0f) + this.f50119f0.f11525a + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(9.0f) + this.f50119f0.f11527c + this.backgroundPaddingLeft, this.f50119f0.d);
-        i0.b bVar = this.f50119f0;
-        int i10 = bVar.f11525a;
+        this.d.setPadding(AndroidUtilities.dp(9.0f) + this.f50127f0.f11526a + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(9.0f) + this.f50127f0.f11528c + this.backgroundPaddingLeft, this.f50127f0.d);
+        i0.b bVar = this.f50127f0;
+        int i10 = bVar.f11526a;
         int i11 = this.backgroundPaddingLeft;
-        this.f50115b0.setPadding(i10 + i11, 0, bVar.f11527c + i11, bVar.d);
+        this.f50123b0.setPadding(i10 + i11, 0, bVar.f11528c + i11, bVar.d);
     }
 
     public final boolean R() {
@@ -53,7 +53,7 @@ public final class m4 extends cb implements NotificationCenter.NotificationCente
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         u61 u61Var;
-        if (i10 == NotificationCenter.starUserGiftsLoaded && (u61Var = this.f50118e0) != null) {
+        if (i10 == NotificationCenter.starUserGiftsLoaded && (u61Var = this.f50126e0) != null) {
             u61Var.N(true);
             if (R()) {
                 this.Y.a();
@@ -69,16 +69,16 @@ public final class m4 extends cb implements NotificationCenter.NotificationCente
 
     @Override
     public final r0.l1 onApplyWindowInsetsToRoot(View view, r0.l1 l1Var) {
-        this.f50119f0 = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        this.f50127f0 = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
         Q();
-        return r0.l1.f45609b;
+        return r0.l1.f45616b;
     }
 
     @Override
     public final yl0 v(zl0 zl0Var) {
         u61 u61Var = new u61(zl0Var, getContext(), this.currentAccount, 0, false, new hi.a(this, 20), this.resourcesProvider);
-        this.f50118e0 = u61Var;
-        u61Var.f31307r = false;
+        this.f50126e0 = u61Var;
+        u61Var.f31313r = false;
         return u61Var;
     }
 

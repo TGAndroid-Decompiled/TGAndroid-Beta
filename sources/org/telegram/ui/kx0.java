@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class kx0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f38123a;
-    public final PrivacyControlActivity f38124b;
+    public final int f38128a;
+    public final PrivacyControlActivity f38129b;
 
     public kx0(PrivacyControlActivity privacyControlActivity, int i10) {
-        this.f38123a = i10;
-        this.f38124b = privacyControlActivity;
+        this.f38128a = i10;
+        this.f38129b = privacyControlActivity;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f38123a) {
+        switch (this.f38128a) {
             case 0:
-                this.f38124b.z0();
+                this.f38129b.z0();
                 return;
             case 1:
-                this.f38124b.finishFragment();
+                this.f38129b.finishFragment();
                 return;
             default:
-                this.f38124b.finishFragment();
+                this.f38129b.finishFragment();
                 return;
         }
     }

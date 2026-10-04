@@ -34,17 +34,17 @@ public final class k {
         a aVar = this.f518c;
         aVar.f451b = 0L;
         aVar.f450a = false;
-        ch0 ch0Var = this.f517b.f43774a;
-        int themedColor = ch0Var.getThemedColor(i6.f20818d6);
+        ch0 ch0Var = this.f517b.f43781a;
+        int themedColor = ch0Var.getThemedColor(i6.f20822d6);
         RectF rectF = ch0Var.T;
         aVar.a(themedColor);
         aVar.b(SharedConfig.chatBlurEnabled());
-        SparseArray sparseArray = ch0Var.f40847a;
+        SparseArray sparseArray = ch0Var.f40853a;
         int size = sparseArray.size();
         for (int i10 = 0; i10 < size; i10++) {
-            n2 n2Var = ((rh1) sparseArray.valueAt(i10)).f40129a;
+            n2 n2Var = ((rh1) sparseArray.valueAt(i10)).f40134a;
             View view = n2Var.fragmentView;
-            if (view != null && hh.k.c(view, ch0Var.f40848b, rectF) && rectF.right > 0.0f && rectF.left < ch0Var.fragmentView.getMeasuredWidth() && (n2Var instanceof bh0) && ((bh0) n2Var).x() != null) {
+            if (view != null && hh.k.c(view, ch0Var.f40854b, rectF) && rectF.right > 0.0f && rectF.left < ch0Var.fragmentView.getMeasuredWidth() && (n2Var instanceof bh0) && ((bh0) n2Var).x() != null) {
                 aVar.c(rectF.left);
                 aVar.c(rectF.top);
                 aVar.a(n2Var.getClassGuid());
@@ -66,19 +66,19 @@ public final class k {
         if (z10) {
             RecordingCanvas beginRecording = this.f516a.beginRecording();
             View view2 = ch0Var.fragmentView;
-            SparseArray sparseArray2 = ch0Var.f40847a;
+            SparseArray sparseArray2 = ch0Var.f40853a;
             RectF rectF2 = ch0Var.T;
             int measuredWidth = view2.getMeasuredWidth();
             int measuredHeight = ch0Var.fragmentView.getMeasuredHeight();
-            beginRecording.drawColor(ch0Var.getThemedColor(i6.f20818d6));
+            beginRecording.drawColor(ch0Var.getThemedColor(i6.f20822d6));
             int size2 = sparseArray2.size();
             for (int i11 = 0; i11 < size2; i11++) {
-                n2 n2Var2 = ((rh1) sparseArray2.valueAt(i11)).f40129a;
+                n2 n2Var2 = ((rh1) sparseArray2.valueAt(i11)).f40134a;
                 View view3 = n2Var2.fragmentView;
-                if (view3 != null && hh.k.c(view3, ch0Var.f40848b, rectF2) && rectF2.right > 0.0f && rectF2.left < ch0Var.fragmentView.getMeasuredWidth() && (n2Var2 instanceof bh0) && (x10 = ((bh0) n2Var2).x()) != null) {
+                if (view3 != null && hh.k.c(view3, ch0Var.f40854b, rectF2) && rectF2.right > 0.0f && rectF2.left < ch0Var.fragmentView.getMeasuredWidth() && (n2Var2 instanceof bh0) && (x10 = ((bh0) n2Var2).x()) != null) {
                     beginRecording.save();
                     beginRecording.translate(rectF2.left, rectF2.top);
-                    x10.y(beginRecording, 0.0f, 0.0f, measuredWidth, measuredHeight);
+                    x10.v(beginRecording, 0.0f, 0.0f, measuredWidth, measuredHeight);
                     beginRecording.restore();
                 }
             }

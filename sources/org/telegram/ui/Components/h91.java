@@ -17,31 +17,31 @@ public final class h91 extends View {
     public final org.telegram.ui.Cells.d2 G;
     public final Paint H;
     public float I;
-    public final org.telegram.ui.ActionBar.d6 f27068a;
-    public final Paint f27069b;
-    public final Paint f27070c;
+    public final org.telegram.ui.ActionBar.d6 f27073a;
+    public final Paint f27074b;
+    public final Paint f27075c;
     public final TextPaint d;
-    public final Paint f27071e;
-    public String f27072f;
+    public final Paint f27076e;
+    public String f27077f;
     public int h;
-    public int f27073n;
-    public final RectF f27074r;
-    public boolean f27075s;
+    public int f27078n;
+    public final RectF f27079r;
+    public boolean f27080s;
     public final Canvas v;
-    public final Bitmap f27076w;
-    public float f27077x;
-    public ObjectAnimator f27078y;
+    public final Bitmap f27081w;
+    public float f27082x;
+    public ObjectAnimator f27083y;
 
     public h91(Context context, boolean z10, View view, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.F = new int[4];
         this.G = new org.telegram.ui.Cells.d2(this);
         this.H = new Paint(1);
-        this.f27068a = d6Var;
-        this.f27074r = new RectF();
+        this.f27073a = d6Var;
+        this.f27079r = new RectF();
         if (z10) {
             Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Bitmap.Config.ARGB_4444);
-            this.f27076w = createBitmap;
+            this.f27081w = createBitmap;
             this.v = new Canvas(createBitmap);
         }
         this.E = view;
@@ -50,7 +50,7 @@ public final class h91 extends View {
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         Paint paint = new Paint(1);
-        this.f27070c = paint;
+        this.f27075c = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setColor(0);
@@ -58,44 +58,44 @@ public final class h91 extends View {
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
         paint.setXfermode(new PorterDuffXfermode(mode));
         Paint paint2 = new Paint(1);
-        this.f27069b = paint2;
+        this.f27074b = paint2;
         paint2.setColor(0);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f27071e = new Paint(1);
+        this.f27076e = new Paint(1);
     }
 
     private void setProgress(float f7) {
-        if (this.f27077x == f7) {
+        if (this.f27082x == f7) {
             return;
         }
-        this.f27077x = f7;
+        this.f27082x = f7;
         invalidate();
     }
 
     public final void a(boolean z10, boolean z11) {
-        if (z10 == this.f27075s) {
+        if (z10 == this.f27080s) {
             return;
         }
-        this.f27075s = z10;
+        this.f27080s = z10;
         float f7 = 0.0f;
         if (z11) {
             if (z10) {
                 f7 = 1.0f;
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, this.G, f7);
-            this.f27078y = ofFloat;
+            this.f27083y = ofFloat;
             ofFloat.setDuration(300L);
-            this.f27078y.start();
+            this.f27083y.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f27078y;
+        ObjectAnimator objectAnimator = this.f27083y;
         if (objectAnimator != null) {
             objectAnimator.cancel();
         }
         if (z10) {
             f7 = 1.0f;
         }
-        this.f27077x = f7;
+        this.f27082x = f7;
         invalidate();
     }
 
@@ -120,10 +120,10 @@ public final class h91 extends View {
         float f11;
         Paint paint2;
         Canvas canvas2 = canvas;
-        RectF rectF = this.f27074r;
+        RectF rectF = this.f27079r;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         View view = this.E;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27068a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27073a;
         org.telegram.ui.ActionBar.i6.s(this, view, d6Var);
         float measuredHeight = getMeasuredHeight() / 2;
         float measuredHeight2 = getMeasuredHeight() / 2;
@@ -157,19 +157,19 @@ public final class h91 extends View {
         if (this.I > 0.0f) {
             canvas2.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, this.H);
         }
-        int i10 = org.telegram.ui.ActionBar.i6.f20915ic;
+        int i10 = org.telegram.ui.ActionBar.i6.f20919ic;
         int v02 = org.telegram.ui.ActionBar.i6.v0(i10, d6Var);
         TextPaint textPaint = this.d;
         textPaint.setColor(v02);
-        int z10 = org.telegram.messenger.ok.z(28.0f, getMeasuredWidth() - this.h, 2);
-        canvas2.drawText(this.f27072f, AndroidUtilities.dp(28.0f) + z10, AndroidUtilities.dp(21.0f), textPaint);
+        int z10 = org.telegram.messenger.bi.z(28.0f, getMeasuredWidth() - this.h, 2);
+        canvas2.drawText(this.f27077f, AndroidUtilities.dp(28.0f) + z10, AndroidUtilities.dp(21.0f), textPaint);
         canvas2.save();
         canvas2.translate(z10, AndroidUtilities.dp(7.0f));
-        Bitmap bitmap = this.f27076w;
+        Bitmap bitmap = this.f27081w;
         int i11 = 0;
-        Paint paint3 = this.f27071e;
+        Paint paint3 = this.f27076e;
         if (bitmap != null) {
-            float f12 = this.f27077x;
+            float f12 = this.f27082x;
             if (f12 <= 0.5f) {
                 f7 = f12 / 0.5f;
                 f10 = f7;
@@ -186,10 +186,10 @@ public final class h91 extends View {
             if (f10 != 1.0f) {
                 float min = Math.min(AndroidUtilities.dp(7.0f), (AndroidUtilities.dp(7.0f) * f10) + dp);
                 rectF.set(AndroidUtilities.dp(2.0f) + min, AndroidUtilities.dp(2.0f) + min, AndroidUtilities.dp(16.0f) - min, AndroidUtilities.dp(16.0f) - min);
-                canvas3.drawRoundRect(rectF, rectF.width() / 2.0f, rectF.height() / 2.0f, this.f27069b);
+                canvas3.drawRoundRect(rectF, rectF.width() / 2.0f, rectF.height() / 2.0f, this.f27074b);
             }
-            if (this.f27077x > 0.5f) {
-                Paint paint4 = this.f27070c;
+            if (this.f27082x > 0.5f) {
+                Paint paint4 = this.f27075c;
                 canvas3.drawLine(AndroidUtilities.dp(7.3f), AndroidUtilities.dp(13.0f), (int) (AndroidUtilities.dp(7.3f) - (AndroidUtilities.dp(2.5f) * f11)), (int) (AndroidUtilities.dp(13.0f) - (AndroidUtilities.dp(2.5f) * (1.0f - f7))), paint4);
                 canvas3.drawLine(AndroidUtilities.dp(7.3f), AndroidUtilities.dp(13.0f), (int) ((AndroidUtilities.dp(6.0f) * f11) + AndroidUtilities.dp(7.3f)), (int) (AndroidUtilities.dp(13.0f) - (AndroidUtilities.dp(6.0f) * f11)), paint4);
             }
@@ -242,7 +242,7 @@ public final class h91 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(org.telegram.messenger.ok.B(56.0f, this.f27073n, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+        super.onMeasure(org.telegram.messenger.bi.B(56.0f, this.f27078n, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
 
     public void setDimAmount(float f7) {

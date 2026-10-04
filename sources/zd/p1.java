@@ -2,15 +2,15 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class p1 extends ee.b {
-    public final k1 f53256b;
-    public v1 f53257c;
+    public final k1 f53261b;
+    public v1 f53262c;
     public final u1 d;
-    public final a1 f53258e;
+    public final a1 f53263e;
 
     public p1(k1 k1Var, u1 u1Var, a1 a1Var) {
         this.d = u1Var;
-        this.f53258e = a1Var;
-        this.f53256b = k1Var;
+        this.f53263e = a1Var;
+        this.f53261b = k1Var;
     }
 
     @Override
@@ -23,21 +23,21 @@ public final class p1 extends ee.b {
         } else {
             z10 = false;
         }
-        k1 k1Var = this.f53256b;
+        k1 k1Var = this.f53261b;
         if (z10) {
             a1Var = k1Var;
         } else {
-            a1Var = this.f53257c;
+            a1Var = this.f53262c;
         }
         if (a1Var != null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.k.f8879a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.k.f8880a;
             while (!atomicReferenceFieldUpdater.compareAndSet(kVar, this, a1Var)) {
                 if (atomicReferenceFieldUpdater.get(kVar) != this) {
                     return;
                 }
             }
             if (z10) {
-                v1 v1Var = this.f53257c;
+                v1 v1Var = this.f53262c;
                 kotlin.jvm.internal.i.b(v1Var);
                 k1Var.e(v1Var);
             }
@@ -47,9 +47,9 @@ public final class p1 extends ee.b {
     @Override
     public final com.google.android.gms.internal.clearcut.e c(Object obj) {
         ee.k kVar = (ee.k) obj;
-        if (this.d.u() == this.f53258e) {
+        if (this.d.u() == this.f53263e) {
             return null;
         }
-        return ee.a.f8863e;
+        return ee.a.f8864e;
     }
 }

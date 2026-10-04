@@ -10,38 +10,38 @@ import org.telegram.ui.nw0;
 import org.telegram.ui.rr;
 import org.telegram.ui.yn;
 public final class c2 implements Runnable {
-    public final int f8955a;
-    public final long f8956b;
-    public final int f8957c;
+    public final int f8956a;
+    public final long f8957b;
+    public final int f8958c;
 
     public c2(int i10, long j3) {
-        this.f8955a = 0;
-        this.f8957c = i10;
-        this.f8956b = j3;
+        this.f8956a = 0;
+        this.f8958c = i10;
+        this.f8957b = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f8955a) {
+        switch (this.f8956a) {
             case 0:
-                SendMessagesHelper.getInstance(this.f8957c).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f8956b, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                SendMessagesHelper.getInstance(this.f8958c).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f8957b, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 1:
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    U.presentFragment(yn.P9(this.f8957c, this.f8956b));
+                    U.presentFragment(yn.P9(this.f8958c, this.f8957b));
                     return;
                 }
                 return;
             default:
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    long j3 = this.f8956b;
+                    long j3 = this.f8957b;
                     if (j3 >= 0) {
                         U2.presentFragment(new PrivacyControlActivity(10, false));
                         return;
                     }
-                    int i10 = this.f8957c;
+                    int i10 = this.f8958c;
                     long j10 = -j3;
                     if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i10).getChat(Long.valueOf(j10)))) {
                         U2.presentFragment(new nw0(j10));
@@ -60,8 +60,8 @@ public final class c2 implements Runnable {
     }
 
     public c2(long j3, int i10, int i11) {
-        this.f8955a = i11;
-        this.f8956b = j3;
-        this.f8957c = i10;
+        this.f8956a = i11;
+        this.f8957b = j3;
+        this.f8958c = i10;
     }
 }

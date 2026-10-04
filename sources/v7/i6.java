@@ -49,14 +49,14 @@ public enum i6 implements f {
     CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(407),
     UNKNOWN_ERROR(9999);
     
-    public final int f47956a;
+    public final int f47964a;
 
     i6(int i10) {
-        this.f47956a = i10;
+        this.f47964a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f47956a;
+        return this.f47964a;
     }
 }

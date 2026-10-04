@@ -22,12 +22,12 @@ public final class y0 extends n6.g {
     public final w9.k X;
     public final w9.k Y;
     public final w9.k Z;
-    public final w9.k f50551a0;
-    public final w9.k f50552b0;
-    public final w9.k f50553c0;
-    public final w9.k f50554d0;
-    public final w9.k f50555e0;
-    public final z0 f50556f0;
+    public final w9.k f50559a0;
+    public final w9.k f50560b0;
+    public final w9.k f50561c0;
+    public final w9.k f50562d0;
+    public final w9.k f50563e0;
+    public final z0 f50564f0;
 
     public y0(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, p3 p3Var) {
         super(context, looper, 14, p3Var, kVar, lVar, 0);
@@ -38,14 +38,14 @@ public final class y0 extends n6.g {
         this.X = new w9.k();
         this.Y = new w9.k();
         this.Z = new w9.k();
-        this.f50551a0 = new w9.k();
-        this.f50552b0 = new w9.k();
-        this.f50553c0 = new w9.k();
-        this.f50554d0 = new w9.k();
-        this.f50555e0 = new w9.k();
+        this.f50559a0 = new w9.k();
+        this.f50560b0 = new w9.k();
+        this.f50561c0 = new w9.k();
+        this.f50562d0 = new w9.k();
+        this.f50563e0 = new w9.k();
         n6.l.h(unconfigurableExecutorService);
         this.U = unconfigurableExecutorService;
-        this.f50556f0 = a2;
+        this.f50564f0 = a2;
         File file = new File(new File(context.getFilesDir(), "wearos_assets"), "streamtmp");
         file.mkdirs();
         File[] listFiles = file.listFiles();
@@ -66,11 +66,11 @@ public final class y0 extends n6.g {
             this.W.a(iBinder);
             this.X.a(iBinder);
             this.Z.a(iBinder);
-            this.f50551a0.a(iBinder);
-            this.f50552b0.a(iBinder);
-            this.f50553c0.a(iBinder);
-            this.f50554d0.a(iBinder);
-            this.f50555e0.a(iBinder);
+            this.f50559a0.a(iBinder);
+            this.f50560b0.a(iBinder);
+            this.f50561c0.a(iBinder);
+            this.f50562d0.a(iBinder);
+            this.f50563e0.a(iBinder);
             this.Y.a(iBinder);
             i10 = 0;
         }
@@ -87,7 +87,7 @@ public final class y0 extends n6.g {
         int i10;
         n6.a0 a0Var = this.v;
         AtomicInteger atomicInteger = this.R;
-        Context context = this.f16683n;
+        Context context = this.f16687n;
         if (!k()) {
             try {
                 Bundle bundle = context.getPackageManager().getApplicationInfo("com.google.android.wearable.app.cn", 128).metaData;
@@ -102,7 +102,7 @@ public final class y0 extends n6.g {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f9790a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f9791a);
                     n6.l.i(bVar, "Connection progress callbacks cannot be null.");
                     this.E = bVar;
                     a0Var.sendMessage(a0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
@@ -120,7 +120,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final boolean k() {
-        if (!this.f50556f0.b()) {
+        if (!this.f50564f0.b()) {
             return true;
         }
         return false;
@@ -145,7 +145,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final k6.c[] r() {
-        return x8.j.f49766b;
+        return x8.j.f49774b;
     }
 
     @Override
@@ -160,7 +160,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final String x() {
-        if (this.f50556f0.b()) {
+        if (this.f50564f0.b()) {
             return "com.google.android.wearable.app.cn";
         }
         return "com.google.android.gms";

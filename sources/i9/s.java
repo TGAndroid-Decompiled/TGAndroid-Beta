@@ -31,24 +31,24 @@ import s4.c1;
 import s4.m0;
 import v7.l8;
 public final class s implements Runnable {
-    public final int f12026a;
-    public Object f12027b;
-    public final Object f12028c;
+    public final int f12027a;
+    public Object f12028b;
+    public final Object f12029c;
 
     public s(int i10, Object obj, Object obj2) {
-        this.f12026a = i10;
-        this.f12027b = obj;
-        this.f12028c = obj2;
+        this.f12027a = i10;
+        this.f12028b = obj;
+        this.f12029c = obj2;
     }
 
     private final void a() {
-        j6.j jVar = (j6.j) this.f12027b;
-        int i10 = ((j6.k) this.f12028c).f14018a;
+        j6.j jVar = (j6.j) this.f12028b;
+        int i10 = ((j6.k) this.f12029c).f14019a;
         synchronized (jVar) {
-            j6.k kVar = (j6.k) jVar.f14016e.get(i10);
+            j6.k kVar = (j6.k) jVar.f14017e.get(i10);
             if (kVar != 0) {
                 Log.w("MessengerIpcClient", "Timing out request: " + i10);
-                jVar.f14016e.remove(i10);
+                jVar.f14017e.remove(i10);
                 kVar.b(new Exception("Timed out waiting for response", null));
                 jVar.c();
             }
@@ -59,8 +59,8 @@ public final class s implements Runnable {
         try {
             c();
         } catch (Error e7) {
-            synchronized (((r9.i) this.f12028c).f45955b) {
-                ((r9.i) this.f12028c).f45956c = 1;
+            synchronized (((r9.i) this.f12029c).f45962b) {
+                ((r9.i) this.f12029c).f45963c = 1;
                 throw e7;
             }
         }
@@ -85,16 +85,16 @@ public final class s implements Runnable {
         boolean z18 = false;
         int i11 = 0;
         boolean z19 = true;
-        switch (this.f12026a) {
+        switch (this.f12027a) {
             case 0:
-                r rVar = (r) this.f12028c;
-                w wVar = (w) this.f12027b;
+                r rVar = (r) this.f12029c;
+                w wVar = (w) this.f12028b;
                 if (wVar instanceof j9.a) {
                     o oVar = (o) ((j9.a) wVar);
                     if (oVar instanceof g) {
-                        Object obj = oVar.f12021a;
+                        Object obj = oVar.f12022a;
                         if (obj instanceof b) {
-                            th2 = ((b) obj).f11996a;
+                            th2 = ((b) obj).f11997a;
                         }
                     }
                     if (th2 != null) {
@@ -113,29 +113,29 @@ public final class s implements Runnable {
                     return;
                 }
             case 1:
-                ((zd.m) this.f12027b).D((ae.e) this.f12028c);
+                ((zd.m) this.f12028b).D((ae.e) this.f12029c);
                 return;
             case 2:
-                androidx.biometric.x xVar = ((androidx.biometric.p) this.f12028c).f2238l0;
+                androidx.biometric.x xVar = ((androidx.biometric.p) this.f12029c).f2238l0;
                 if (xVar.f2247e == null) {
                     xVar.f2247e = new Object();
                 }
-                xVar.f2247e.c((androidx.biometric.s) this.f12027b);
+                xVar.f2247e.c((androidx.biometric.s) this.f12028b);
                 return;
             case 3:
-                c5.c cVar = (c5.c) this.f12027b;
-                c5.h hVar = (c5.h) this.f12028c;
-                if (((c5.q) cVar.f4158f.f4186c) != null) {
-                    ((c5.q) cVar.f4158f.f4186c).onPurchasesUpdated(hVar, null);
+                c5.c cVar = (c5.c) this.f12028b;
+                c5.h hVar = (c5.h) this.f12029c;
+                if (((c5.q) cVar.f4159f.f4187c) != null) {
+                    ((c5.q) cVar.f4159f.f4187c).onPurchasesUpdated(hVar, null);
                     return;
                 } else {
                     com.google.android.gms.internal.play_billing.u.h("BillingClient", "No valid listener is set in BroadcastManager");
                     return;
                 }
             case 4:
-                Future future = (Future) this.f12027b;
+                Future future = (Future) this.f12028b;
                 if (!future.isDone() && !future.isCancelled()) {
-                    Runnable runnable = (Runnable) this.f12028c;
+                    Runnable runnable = (Runnable) this.f12029c;
                     future.cancel(true);
                     com.google.android.gms.internal.play_billing.u.h("BillingClient", "Async task is taking too long, cancel it!");
                     if (runnable != null) {
@@ -146,110 +146,110 @@ public final class s implements Runnable {
                 }
                 return;
             case 5:
-                c5.h hVar2 = g0.f4195i;
-                ((c5.c) this.f12027b).y(24, 7, hVar2);
-                com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7401b;
-                com.google.android.gms.internal.play_billing.v vVar = com.google.android.gms.internal.play_billing.v.f7428e;
-                ((org.telegram.messenger.c0) this.f12028c).a(hVar2, new c5.s(vVar, vVar));
+                c5.h hVar2 = g0.f4196i;
+                ((c5.c) this.f12028b).y(24, 7, hVar2);
+                com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7402b;
+                com.google.android.gms.internal.play_billing.v vVar = com.google.android.gms.internal.play_billing.v.f7429e;
+                ((org.telegram.messenger.d0) this.f12029c).a(hVar2, new c5.s(vVar, vVar));
                 return;
             case 6:
-                c5.h hVar3 = g0.f4195i;
-                ((c5.c) this.f12027b).y(24, 9, hVar3);
-                com.google.android.gms.internal.play_billing.p pVar2 = com.google.android.gms.internal.play_billing.r.f7401b;
-                ((c5.p) this.f12028c).b(hVar3, com.google.android.gms.internal.play_billing.v.f7428e);
+                c5.h hVar3 = g0.f4196i;
+                ((c5.c) this.f12028b).y(24, 9, hVar3);
+                com.google.android.gms.internal.play_billing.p pVar2 = com.google.android.gms.internal.play_billing.r.f7402b;
+                ((c5.p) this.f12029c).b(hVar3, com.google.android.gms.internal.play_billing.v.f7429e);
                 return;
             case 7:
-                c6.e0 e0Var = ((c6.d0) this.f12027b).f4292b;
-                g6.d dVar = (g6.d) this.f12028c;
+                c6.e0 e0Var = ((c6.d0) this.f12028b).f4293b;
+                g6.d dVar = (g6.d) this.f12029c;
                 g6.b bVar = c6.e0.G;
                 c6.d dVar2 = dVar.d;
-                c6.x xVar2 = dVar.f10257f;
-                c6.d dVar3 = e0Var.f4305t;
+                c6.x xVar2 = dVar.f10258f;
+                c6.d dVar3 = e0Var.f4306t;
                 d6.d0 d0Var = e0Var.D;
                 if (!g6.a.d(dVar2, dVar3)) {
-                    e0Var.f4305t = dVar2;
+                    e0Var.f4306t = dVar2;
                     d0Var.c();
                 }
-                double d = dVar.f10253a;
+                double d = dVar.f10254a;
                 if (!Double.isNaN(d) && Math.abs(d - e0Var.v) > 1.0E-7d) {
                     e0Var.v = d;
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                boolean z20 = dVar.f10254b;
-                if (z20 != e0Var.f4307w) {
-                    e0Var.f4307w = z20;
+                boolean z20 = dVar.f10255b;
+                if (z20 != e0Var.f4308w) {
+                    e0Var.f4308w = z20;
                     z10 = true;
                 }
                 g6.b bVar2 = c6.e0.G;
-                bVar2.b("hasVolumeChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z10), Boolean.valueOf(e0Var.f4298m));
-                if (d0Var != null && (z10 || e0Var.f4298m)) {
+                bVar2.b("hasVolumeChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z10), Boolean.valueOf(e0Var.f4299m));
+                if (d0Var != null && (z10 || e0Var.f4299m)) {
                     d0Var.f();
                 }
                 Double.isNaN(dVar.h);
-                int i12 = dVar.f10255c;
-                if (i12 != e0Var.f4308x) {
-                    e0Var.f4308x = i12;
+                int i12 = dVar.f10256c;
+                if (i12 != e0Var.f4309x) {
+                    e0Var.f4309x = i12;
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                bVar2.b("hasActiveInputChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z11), Boolean.valueOf(e0Var.f4298m));
-                if (d0Var != null && (z11 || e0Var.f4298m)) {
+                bVar2.b("hasActiveInputChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z11), Boolean.valueOf(e0Var.f4299m));
+                if (d0Var != null && (z11 || e0Var.f4299m)) {
                     d0Var.a();
                 }
-                int i13 = dVar.f10256e;
-                if (i13 != e0Var.f4309y) {
-                    e0Var.f4309y = i13;
+                int i13 = dVar.f10257e;
+                if (i13 != e0Var.f4310y) {
+                    e0Var.f4310y = i13;
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                bVar2.b("hasStandbyStateChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z12), Boolean.valueOf(e0Var.f4298m));
-                if (d0Var != null && (z12 || e0Var.f4298m)) {
+                bVar2.b("hasStandbyStateChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z12), Boolean.valueOf(e0Var.f4299m));
+                if (d0Var != null && (z12 || e0Var.f4299m)) {
                     d0Var.e();
                 }
-                if (!g6.a.d(e0Var.f4310z, xVar2)) {
-                    e0Var.f4310z = xVar2;
+                if (!g6.a.d(e0Var.f4311z, xVar2)) {
+                    e0Var.f4311z = xVar2;
                 }
-                e0Var.f4298m = false;
+                e0Var.f4299m = false;
                 return;
             case 8:
-                c6.e0 e0Var2 = ((c6.d0) this.f12027b).f4292b;
+                c6.e0 e0Var2 = ((c6.d0) this.f12028b).f4293b;
                 g6.b bVar3 = c6.e0.G;
-                String str = ((g6.c) this.f12028c).f10252a;
-                if (!g6.a.d(str, e0Var2.f4306u)) {
-                    e0Var2.f4306u = str;
+                String str = ((g6.c) this.f12029c).f10253a;
+                if (!g6.a.d(str, e0Var2.f4307u)) {
+                    e0Var2.f4307u = str;
                     z13 = true;
                 } else {
                     z13 = false;
                 }
-                c6.e0.G.b("hasChanged=%b, mFirstApplicationStatusUpdate=%b", Boolean.valueOf(z13), Boolean.valueOf(e0Var2.f4299n));
+                c6.e0.G.b("hasChanged=%b, mFirstApplicationStatusUpdate=%b", Boolean.valueOf(z13), Boolean.valueOf(e0Var2.f4300n));
                 d6.d0 d0Var2 = e0Var2.D;
-                if (d0Var2 != null && (z13 || e0Var2.f4299n)) {
+                if (d0Var2 != null && (z13 || e0Var2.f4300n)) {
                     d0Var2.d();
                 }
-                e0Var2.f4299n = false;
+                e0Var2.f4300n = false;
                 return;
             case 9:
-                ((com.google.android.gms.internal.cast.r) this.f12027b).N0((p4.r) this.f12028c);
+                ((com.google.android.gms.internal.cast.r) this.f12028b).N0((p4.r) this.f12029c);
                 return;
             case 10:
-                ((e0.f) this.f12027b).f8405a = this.f12028c;
+                ((e0.f) this.f12028b).f8406a = this.f12029c;
                 return;
             case 11:
-                ((Application) this.f12027b).unregisterActivityLifecycleCallbacks((e0.f) this.f12028c);
+                ((Application) this.f12028b).unregisterActivityLifecycleCallbacks((e0.f) this.f12029c);
                 return;
             case 12:
-                Object obj2 = this.f12028c;
-                Object obj3 = this.f12027b;
+                Object obj2 = this.f12029c;
+                Object obj3 = this.f12028b;
                 try {
                     Method method = e0.g.d;
                     if (method != null) {
                         method.invoke(obj3, obj2, Boolean.FALSE, "AppCompat recreation");
                     } else {
-                        e0.g.f8413e.invoke(obj3, obj2, Boolean.FALSE);
+                        e0.g.f8414e.invoke(obj3, obj2, Boolean.FALSE);
                     }
                     return;
                 } catch (RuntimeException e10) {
@@ -262,17 +262,17 @@ public final class s implements Runnable {
                     return;
                 }
             case 13:
-                ee.i iVar = (ee.i) this.f12028c;
-                zd.a0 a0Var = iVar.f8876c;
+                ee.i iVar = (ee.i) this.f12029c;
+                zd.a0 a0Var = iVar.f8877c;
                 while (true) {
                     try {
-                        ((Runnable) this.f12027b).run();
+                        ((Runnable) this.f12028b).run();
                     } catch (Throwable th5) {
-                        zd.e0.m(id.i.f12058a, th5);
+                        zd.e0.m(id.i.f12059a, th5);
                     }
                     Runnable f7 = iVar.f();
                     if (f7 != null) {
-                        this.f12027b = f7;
+                        this.f12028b = f7;
                         i10++;
                         if (i10 >= 16 && a0Var.e()) {
                             a0Var.c(iVar, this);
@@ -284,91 +284,91 @@ public final class s implements Runnable {
                 }
                 break;
             case 14:
-                g6.v vVar2 = (g6.v) this.f12027b;
-                g6.d dVar4 = (g6.d) this.f12028c;
-                g6.b bVar4 = g6.v.f10294n0;
+                g6.v vVar2 = (g6.v) this.f12028b;
+                g6.d dVar4 = (g6.d) this.f12029c;
+                g6.b bVar4 = g6.v.f10295n0;
                 c6.d dVar5 = dVar4.d;
-                c6.x xVar3 = dVar4.f10257f;
+                c6.x xVar3 = dVar4.f10258f;
                 c6.d dVar6 = vVar2.U;
                 d6.d0 d0Var3 = vVar2.W;
                 if (!g6.a.d(dVar5, dVar6)) {
                     vVar2.U = dVar5;
                     d0Var3.c();
                 }
-                double d10 = dVar4.f10253a;
-                if (!Double.isNaN(d10) && Math.abs(d10 - vVar2.f10302f0) > 1.0E-7d) {
-                    vVar2.f10302f0 = d10;
+                double d10 = dVar4.f10254a;
+                if (!Double.isNaN(d10) && Math.abs(d10 - vVar2.f10303f0) > 1.0E-7d) {
+                    vVar2.f10303f0 = d10;
                     z14 = true;
                 } else {
                     z14 = false;
                 }
-                boolean z21 = dVar4.f10254b;
-                if (z21 != vVar2.f10299c0) {
-                    vVar2.f10299c0 = z21;
+                boolean z21 = dVar4.f10255b;
+                if (z21 != vVar2.f10300c0) {
+                    vVar2.f10300c0 = z21;
                     z14 = true;
                 }
                 Double.isNaN(dVar4.h);
-                g6.b bVar5 = g6.v.f10294n0;
-                bVar5.b("hasVolumeChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z14), Boolean.valueOf(vVar2.f10301e0));
-                if (d0Var3 != null && (z14 || vVar2.f10301e0)) {
+                g6.b bVar5 = g6.v.f10295n0;
+                bVar5.b("hasVolumeChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z14), Boolean.valueOf(vVar2.f10302e0));
+                if (d0Var3 != null && (z14 || vVar2.f10302e0)) {
                     d0Var3.f();
                 }
-                int i14 = dVar4.f10255c;
-                if (i14 != vVar2.f10304h0) {
-                    vVar2.f10304h0 = i14;
+                int i14 = dVar4.f10256c;
+                if (i14 != vVar2.f10305h0) {
+                    vVar2.f10305h0 = i14;
                     z15 = true;
                 } else {
                     z15 = false;
                 }
-                bVar5.b("hasActiveInputChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z15), Boolean.valueOf(vVar2.f10301e0));
-                if (d0Var3 != null && (z15 || vVar2.f10301e0)) {
+                bVar5.b("hasActiveInputChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z15), Boolean.valueOf(vVar2.f10302e0));
+                if (d0Var3 != null && (z15 || vVar2.f10302e0)) {
                     d0Var3.a();
                 }
-                int i15 = dVar4.f10256e;
-                if (i15 != vVar2.f10305i0) {
-                    vVar2.f10305i0 = i15;
+                int i15 = dVar4.f10257e;
+                if (i15 != vVar2.f10306i0) {
+                    vVar2.f10306i0 = i15;
                     z16 = true;
                 } else {
                     z16 = false;
                 }
-                bVar5.b("hasStandbyStateChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z16), Boolean.valueOf(vVar2.f10301e0));
-                if (d0Var3 != null && (z16 || vVar2.f10301e0)) {
+                bVar5.b("hasStandbyStateChanged=%b, mFirstDeviceStatusUpdate=%b", Boolean.valueOf(z16), Boolean.valueOf(vVar2.f10302e0));
+                if (d0Var3 != null && (z16 || vVar2.f10302e0)) {
                     d0Var3.e();
                 }
-                if (!g6.a.d(vVar2.f10303g0, xVar3)) {
-                    vVar2.f10303g0 = xVar3;
+                if (!g6.a.d(vVar2.f10304g0, xVar3)) {
+                    vVar2.f10304g0 = xVar3;
                 }
-                vVar2.f10301e0 = false;
+                vVar2.f10302e0 = false;
                 return;
             case 15:
-                g6.v vVar3 = (g6.v) this.f12027b;
-                g6.b bVar6 = g6.v.f10294n0;
-                String str2 = ((g6.c) this.f12028c).f10252a;
-                if (!g6.a.d(str2, vVar3.f10298b0)) {
-                    vVar3.f10298b0 = str2;
+                g6.v vVar3 = (g6.v) this.f12028b;
+                g6.b bVar6 = g6.v.f10295n0;
+                String str2 = ((g6.c) this.f12029c).f10253a;
+                if (!g6.a.d(str2, vVar3.f10299b0)) {
+                    vVar3.f10299b0 = str2;
                     z17 = true;
                 } else {
                     z17 = false;
                 }
-                g6.v.f10294n0.b("hasChanged=%b, mFirstApplicationStatusUpdate=%b", Boolean.valueOf(z17), Boolean.valueOf(vVar3.f10300d0));
+                g6.v.f10295n0.b("hasChanged=%b, mFirstApplicationStatusUpdate=%b", Boolean.valueOf(z17), Boolean.valueOf(vVar3.f10301d0));
                 d6.d0 d0Var4 = vVar3.W;
-                if (d0Var4 != null && (z17 || vVar3.f10300d0)) {
+                if (d0Var4 != null && (z17 || vVar3.f10301d0)) {
                     d0Var4.d();
                 }
-                vVar3.f10300d0 = false;
+                vVar3.f10301d0 = false;
                 return;
             case 16:
-                j6.j jVar = (j6.j) this.f12027b;
-                IBinder iBinder = (IBinder) this.f12028c;
+                j6.j jVar = (j6.j) this.f12028b;
+                IBinder iBinder = (IBinder) this.f12029c;
                 synchronized (jVar) {
                     if (iBinder == null) {
                         jVar.a("Null service connection");
                         return;
                     }
                     try {
-                        jVar.f14015c = new n4.y(iBinder);
-                        jVar.f14013a = 2;
-                        ((ScheduledExecutorService) jVar.f14017f.f14025c).execute(new j6.h(jVar, 0));
+                        jVar.f14016c = new n4.y(iBinder);
+                        jVar.f14014a = 2;
+                        ((ScheduledExecutorService) jVar.f14018f.f14026c).execute(new j6.h(jVar, 0));
                         return;
                     } catch (RemoteException e11) {
                         jVar.a(e11.getMessage());
@@ -379,8 +379,8 @@ public final class s implements Runnable {
                 a();
                 return;
             case 18:
-                ji.n nVar = (ji.n) this.f12028c;
-                ArrayList arrayList = (ArrayList) this.f12027b;
+                ji.n nVar = (ji.n) this.f12029c;
+                ArrayList arrayList = (ArrayList) this.f12028b;
                 int size = arrayList.size();
                 while (i11 < size) {
                     Object obj4 = arrayList.get(i11);
@@ -391,29 +391,29 @@ public final class s implements Runnable {
                 nVar.v.remove(arrayList);
                 return;
             case 19:
-                Typeface typeface = (Typeface) this.f12028c;
-                e2.a0 a0Var2 = (e2.a0) ((a4.m) this.f12027b).f297b;
+                Typeface typeface = (Typeface) this.f12029c;
+                e2.a0 a0Var2 = (e2.a0) ((a4.m) this.f12028b).f297b;
                 if (a0Var2 != null) {
                     a0Var2.e(typeface);
                     return;
                 }
                 return;
             case 20:
-                ((c5.z) this.f12027b).accept(this.f12028c);
+                ((c5.z) this.f12028b).accept(this.f12029c);
                 return;
             case 21:
-                yn ynVar = ((nm) this.f12028c).f39010c;
+                yn ynVar = ((nm) this.f12029c).f39015c;
                 if (this == ynVar.H5) {
-                    ynVar.Xa((CharSequence) this.f12027b, false);
+                    ynVar.Xa((CharSequence) this.f12028b, false);
                     ynVar.H5 = null;
                     return;
                 }
                 return;
             case 22:
-                v8 v8Var = (v8) this.f12027b;
+                v8 v8Var = (v8) this.f12028b;
                 boolean z22 = v8Var.d.h;
                 v8Var.setChecked(!z22);
-                rr rrVar = ((nr) this.f12028c).d;
+                rr rrVar = ((nr) this.f12029c).d;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights = rrVar.E;
                 tL_chatBannedRights.send_media = z22;
                 tL_chatBannedRights.send_gifs = z22;
@@ -429,31 +429,31 @@ public final class s implements Runnable {
                 tL_chatBannedRights.embed_links = z22;
                 tL_chatBannedRights.send_polls = z22;
                 tL_chatBannedRights.send_reactions = z22;
-                AndroidUtilities.updateVisibleRows(rrVar.f40190c);
+                AndroidUtilities.updateVisibleRows(rrVar.f40195c);
                 lr w02 = rrVar.w0();
                 rrVar.B0();
                 rrVar.A0(w02);
                 return;
             case 23:
-                ((rc) this.f12027b).j();
-                ((gz) this.f12028c).E = null;
+                ((rc) this.f12028b).j();
+                ((gz) this.f12029c).E = null;
                 return;
             case 24:
-                ReferenceQueue referenceQueue = (ReferenceQueue) this.f12027b;
-                while (!((Set) this.f12028c).isEmpty()) {
+                ReferenceQueue referenceQueue = (ReferenceQueue) this.f12028b;
+                while (!((Set) this.f12029c).isEmpty()) {
                     try {
                         qb.l lVar = (qb.l) referenceQueue.remove();
-                        if (lVar.f44918a.remove(lVar)) {
+                        if (lVar.f44925a.remove(lVar)) {
                             lVar.clear();
-                            lVar.f44919b.getClass();
+                            lVar.f44926b.getClass();
                         }
                     } catch (InterruptedException unused) {
                     }
                 }
                 return;
             case 25:
-                Callable callable = (Callable) this.f12027b;
-                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f12028c;
+                Callable callable = (Callable) this.f12028b;
+                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f12029c;
                 try {
                     taskCompletionSource.setResult(callable.call());
                     return;
@@ -465,29 +465,29 @@ public final class s implements Runnable {
                     return;
                 }
             case 26:
-                qb.i iVar2 = (qb.i) this.f12027b;
-                TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f12028c;
-                int decrementAndGet = iVar2.f44911b.decrementAndGet();
+                qb.i iVar2 = (qb.i) this.f12028b;
+                TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f12029c;
+                int decrementAndGet = iVar2.f44918b.decrementAndGet();
                 if (decrementAndGet < 0) {
                     z19 = false;
                 }
                 n6.l.k(z19);
                 if (decrementAndGet == 0) {
                     iVar2.c();
-                    iVar2.f44912c.set(false);
+                    iVar2.f44919c.set(false);
                 }
-                t7.n.f46913a.clear();
-                t7.t.f46920a.clear();
+                t7.n.f46920a.clear();
+                t7.t.f46927a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             case 27:
-                com.google.firebase.messaging.m mVar = (com.google.firebase.messaging.m) this.f12027b;
+                com.google.firebase.messaging.m mVar = (com.google.firebase.messaging.m) this.f12028b;
                 if (((Thread) ((AtomicReference) mVar.d).getAndSet(Thread.currentThread())) == null) {
                     z18 = true;
                 }
                 n6.l.k(z18);
                 try {
-                    ((Runnable) this.f12028c).run();
+                    ((Runnable) this.f12029c).run();
                     ((AtomicReference) mVar.d).set(null);
                     mVar.y();
                     return;
@@ -504,9 +504,9 @@ public final class s implements Runnable {
                 b();
                 return;
             default:
-                s4.u uVar = (s4.u) this.f12027b;
-                c1 c1Var = uVar.f46659e;
-                s4.y yVar = (s4.y) this.f12028c;
+                s4.u uVar = (s4.u) this.f12028b;
+                c1 c1Var = uVar.f46666e;
+                s4.y yVar = (s4.y) this.f12029c;
                 RecyclerView recyclerView = yVar.H;
                 if (recyclerView != null && recyclerView.G && !uVar.v && c1Var.b() != -1) {
                     m0 itemAnimator = yVar.H.getItemAnimator();
@@ -514,10 +514,10 @@ public final class s implements Runnable {
                         ArrayList arrayList2 = yVar.F;
                         int size2 = arrayList2.size();
                         for (int i16 = 0; i16 < size2; i16++) {
-                            if (((s4.u) arrayList2.get(i16)).f46664w) {
+                            if (((s4.u) arrayList2.get(i16)).f46671w) {
                             }
                         }
-                        yVar.f46690x.q(c1Var);
+                        yVar.f46697x.q(c1Var);
                         return;
                     }
                     yVar.H.post(this);
@@ -529,21 +529,21 @@ public final class s implements Runnable {
 
     public String toString() {
         String str;
-        switch (this.f12026a) {
+        switch (this.f12027a) {
             case 0:
                 aa.a aVar = new aa.a(s.class.getSimpleName(), 13);
                 of.b bVar = new of.b(13, false);
-                ((of.b) aVar.d).f17159c = bVar;
+                ((of.b) aVar.d).f17163c = bVar;
                 aVar.d = bVar;
-                bVar.f17158b = (r) this.f12028c;
+                bVar.f17162b = (r) this.f12029c;
                 return aVar.toString();
             case 28:
-                Runnable runnable = (Runnable) this.f12027b;
+                Runnable runnable = (Runnable) this.f12028b;
                 if (runnable != null) {
                     return "SequentialExecutorWorker{running=" + runnable + "}";
                 }
                 StringBuilder sb2 = new StringBuilder("SequentialExecutorWorker{state=");
-                int i10 = ((r9.i) this.f12028c).f45956c;
+                int i10 = ((r9.i) this.f12029c).f45963c;
                 if (i10 != 1) {
                     if (i10 != 2) {
                         if (i10 != 3) {
@@ -570,19 +570,19 @@ public final class s implements Runnable {
     }
 
     public s(Object obj, Object obj2, boolean z10, int i10) {
-        this.f12026a = i10;
-        this.f12028c = obj;
-        this.f12027b = obj2;
+        this.f12027a = i10;
+        this.f12029c = obj;
+        this.f12028b = obj2;
     }
 
     public s(r9.i iVar) {
-        this.f12026a = 28;
-        this.f12028c = iVar;
+        this.f12027a = 28;
+        this.f12029c = iVar;
     }
 
     public s(s4.y yVar, s4.u uVar, int i10) {
-        this.f12026a = 29;
-        this.f12028c = yVar;
-        this.f12027b = uVar;
+        this.f12027a = 29;
+        this.f12029c = yVar;
+        this.f12028b = uVar;
     }
 }

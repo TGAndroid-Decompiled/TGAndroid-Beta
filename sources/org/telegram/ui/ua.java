@@ -15,41 +15,41 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ua implements Utilities.Callback {
-    public final int f41130a;
-    public final Object f41131b;
-    public final Object f41132c;
+    public final int f41136a;
+    public final Object f41137b;
+    public final Object f41138c;
     public final Object d;
-    public final Object f41133e;
-    public final Object f41134f;
+    public final Object f41139e;
+    public final Object f41140f;
 
     public ua(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f41130a = i10;
-        this.f41131b = notificationCenterDelegate;
-        this.f41132c = obj;
+        this.f41136a = i10;
+        this.f41137b = notificationCenterDelegate;
+        this.f41138c = obj;
         this.d = obj2;
-        this.f41133e = obj3;
-        this.f41134f = obj4;
+        this.f41139e = obj3;
+        this.f41140f = obj4;
     }
 
     @Override
     public final void run(Object obj) {
         final TLRPC.UserFull userFull;
-        switch (this.f41130a) {
+        switch (this.f41136a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ai.z8((wb) this.f41131b, (TLRPC.ChannelParticipant) obj, (ArrayList) this.f41132c, (ArrayList) this.d, (ArrayList) this.f41133e, (ta) this.f41134f));
+                AndroidUtilities.runOnUIThread(new ai.z8((wb) this.f41137b, (TLRPC.ChannelParticipant) obj, (ArrayList) this.f41138c, (ArrayList) this.d, (ArrayList) this.f41139e, (ta) this.f41140f));
                 return;
             case 1:
-                yn ynVar = (yn) this.f41131b;
-                TLRPC.TL_document tL_document = (TLRPC.TL_document) this.f41132c;
+                yn ynVar = (yn) this.f41137b;
+                TLRPC.TL_document tL_document = (TLRPC.TL_document) this.f41138c;
                 String str = (String) this.d;
-                MessageObject.SendAnimationData sendAnimationData = (MessageObject.SendAnimationData) this.f41134f;
+                MessageObject.SendAnimationData sendAnimationData = (MessageObject.SendAnimationData) this.f41140f;
                 Long l4 = (Long) obj;
                 int i10 = ynVar.P3;
-                Object obj2 = this.f41133e;
+                Object obj2 = this.f41139e;
                 if (i10 == 1) {
-                    org.telegram.ui.Components.e5.M(ynVar.getParentActivity(), ynVar.R5, new a1.d(ynVar, tL_document, str, obj2, 4), ynVar.f43300ca);
+                    org.telegram.ui.Components.e5.M(ynVar.getParentActivity(), ynVar.R5, new a1.d(ynVar, tL_document, str, obj2, 4), ynVar.f43307ca);
                 } else {
-                    ynVar.getSendMessagesHelper().sendSticker(tL_document, str, ynVar.R5, ynVar.f43405l5, ynVar.V3, null, ynVar.f43381j5, sendAnimationData, true, 0, 0, false, obj2, ynVar.D8(), l4.longValue(), ynVar.O8(), ynVar.f43321e5);
+                    ynVar.getSendMessagesHelper().sendSticker(tL_document, str, ynVar.R5, ynVar.f43412l5, ynVar.V3, null, ynVar.f43388j5, sendAnimationData, true, 0, 0, false, obj2, ynVar.D8(), l4.longValue(), ynVar.O8(), ynVar.f43328e5);
                     tL_document = tL_document;
                 }
                 ynVar.f9(false);
@@ -57,27 +57,27 @@ public final class ua implements Utilities.Callback {
                 ynVar.W.setFieldText("");
                 return;
             case 2:
-                final yn ynVar2 = (yn) this.f41131b;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f41132c;
+                final yn ynVar2 = (yn) this.f41137b;
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f41138c;
                 String str2 = (String) this.d;
-                TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) this.f41133e;
-                CharacterStyle characterStyle = (CharacterStyle) this.f41134f;
+                TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) this.f41139e;
+                CharacterStyle characterStyle = (CharacterStyle) this.f41140f;
                 final TLRPC.User user = (TLRPC.User) obj;
                 if (user != null) {
-                    userFull = ynVar2.getMessagesController().getUserFull(user.f20185id);
+                    userFull = ynVar2.getMessagesController().getUserFull(user.f20189id);
                 } else {
                     userFull = null;
                 }
                 org.telegram.ui.Components.b80 I = org.telegram.ui.Components.b80.I(ynVar2, u1Var);
-                org.telegram.ui.Components.sm0 sm0Var = new org.telegram.ui.Components.sm0(ynVar2.getParentActivity(), ynVar2.f43300ca);
-                I.f24840p = new se(sm0Var, 1);
+                org.telegram.ui.Components.sm0 sm0Var = new org.telegram.ui.Components.sm0(ynVar2.getParentActivity(), ynVar2.f43307ca);
+                I.f24844p = new se(sm0Var, 1);
                 z zVar = new z(ynVar2, user, str2, 2);
                 org.telegram.ui.Components.b80 J = I.J();
                 J.c(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new hu0(I, 25), false);
                 J.k();
                 J.c(R.drawable.msg_addbot, LocaleController.getString(R.string.CreateNewContact), new r1(ynVar2, I, str2), false);
                 J.c(R.drawable.menu_contact_existing, LocaleController.getString(R.string.AddToExistingContact), new hu0(zVar, 26), false);
-                if (tL_contact == null && (user == null || !ynVar2.getContactsController().contactsDict.containsKey(Long.valueOf(user.f20185id)))) {
+                if (tL_contact == null && (user == null || !ynVar2.getContactsController().contactsDict.containsKey(Long.valueOf(user.f20189id)))) {
                     I.c(R.drawable.msg_contact_add, LocaleController.getString(R.string.AddToContacts), new ei.n2(I, J, 4), false);
                     I.k();
                 }
@@ -192,29 +192,29 @@ public final class ua implements Utilities.Callback {
                 ynVar2.showDialog(sm0Var);
                 return;
             case 3:
-                ArrayList arrayList = (ArrayList) this.f41132c;
+                ArrayList arrayList = (ArrayList) this.f41138c;
                 ArrayList arrayList2 = (ArrayList) this.d;
-                ArrayList arrayList3 = (ArrayList) this.f41133e;
+                ArrayList arrayList3 = (ArrayList) this.f41139e;
                 Runnable runnable = (Runnable) obj;
-                org.telegram.ui.Components.ny nyVar = ((org.telegram.ui.Components.my) this.f41131b).f28749a;
+                org.telegram.ui.Components.ny nyVar = ((org.telegram.ui.Components.my) this.f41137b).f28754a;
                 String str3 = nyVar.v;
-                ArrayList arrayList4 = nyVar.f29078r;
+                ArrayList arrayList4 = nyVar.f29083r;
                 ArrayList arrayList5 = nyVar.h;
-                ArrayList arrayList6 = nyVar.f29079s;
+                ArrayList arrayList6 = nyVar.f29084s;
                 org.telegram.ui.Components.nz nzVar = nyVar.F;
-                if (((String) this.f41134f).equals(str3)) {
+                if (((String) this.f41140f).equals(str3)) {
                     org.telegram.ui.Components.nw nwVar = nzVar.V;
                     org.telegram.ui.Components.zx zxVar = nzVar.P;
                     int i11 = 0;
                     nwVar.e(false);
-                    nyVar.f29082y = true;
+                    nyVar.f29087y = true;
                     s4.h0 adapter = zxVar.getAdapter();
                     org.telegram.ui.Components.ny nyVar2 = nzVar.S;
                     if (adapter != nyVar2) {
                         zxVar.setAdapter(nyVar2);
                     }
                     arrayList5.clear();
-                    arrayList5.addAll(nyVar.f29077n);
+                    arrayList5.addAll(nyVar.f29082n);
                     arrayList4.clear();
                     arrayList4.addAll(arrayList);
                     arrayList6.clear();
@@ -225,8 +225,8 @@ public final class ua implements Utilities.Callback {
                         Object obj3 = arrayList2.get(i12);
                         i12++;
                         org.telegram.ui.Components.gy gyVar = (org.telegram.ui.Components.gy) obj3;
-                        if (longSparseIntArray.indexOfKey(gyVar.f26947c.f20065id) < 0) {
-                            longSparseIntArray.append(gyVar.f26947c.f20065id, 1);
+                        if (longSparseIntArray.indexOfKey(gyVar.f26952c.f20069id) < 0) {
+                            longSparseIntArray.append(gyVar.f26952c.f20069id, 1);
                             arrayList6.add(gyVar);
                         }
                     }
@@ -235,8 +235,8 @@ public final class ua implements Utilities.Callback {
                         Object obj4 = arrayList3.get(i11);
                         i11++;
                         org.telegram.ui.Components.gy gyVar2 = (org.telegram.ui.Components.gy) obj4;
-                        if (longSparseIntArray.indexOfKey(gyVar2.f26947c.f20065id) < 0) {
-                            longSparseIntArray.append(gyVar2.f26947c.f20065id, 1);
+                        if (longSparseIntArray.indexOfKey(gyVar2.f26952c.f20069id) < 0) {
+                            longSparseIntArray.append(gyVar2.f26952c.f20069id, 1);
                             arrayList6.add(gyVar2);
                         }
                     }
@@ -245,16 +245,16 @@ public final class ua implements Utilities.Callback {
                 }
                 return;
             case 4:
-                uy uyVar = (uy) this.f41131b;
+                uy uyVar = (uy) this.f41137b;
                 Long l10 = (Long) this.d;
                 Runnable runnable2 = (Runnable) obj;
                 uyVar.getClass();
-                ((org.telegram.ui.ActionBar.b2) this.f41132c).dismiss();
+                ((org.telegram.ui.ActionBar.b2) this.f41138c).dismiss();
                 uyVar.getMessagesController().loadChannelParticipants(l10);
                 oy oyVar = uyVar.C2;
                 uyVar.removeSelfFromStack();
-                ((nd) this.f41133e).removeSelfFromStack();
-                ((org.telegram.ui.ActionBar.n2) this.f41134f).finishFragment();
+                ((nd) this.f41139e).removeSelfFromStack();
+                ((org.telegram.ui.ActionBar.n2) this.f41140f).finishFragment();
                 if (oyVar != null) {
                     ArrayList arrayList7 = new ArrayList();
                     arrayList7.add(MessagesStorage.TopicKey.of(-l10.longValue(), 0L));
@@ -263,17 +263,17 @@ public final class ua implements Utilities.Callback {
                 }
                 return;
             default:
-                yh.x3.r0((yh.x3) this.f41131b, (TL_stars.StarGift) this.f41132c, (TL_stars.StarGiftAttribute) this.d, (org.telegram.ui.Components.ad[]) this.f41133e, (boolean[]) this.f41134f, (ArrayList) obj);
+                yh.x3.r0((yh.x3) this.f41137b, (TL_stars.StarGift) this.f41138c, (TL_stars.StarGiftAttribute) this.d, (org.telegram.ui.Components.ad[]) this.f41139e, (boolean[]) this.f41140f, (ArrayList) obj);
                 return;
         }
     }
 
     public ua(org.telegram.ui.Components.my myVar, String str, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
-        this.f41130a = 3;
-        this.f41131b = myVar;
-        this.f41134f = str;
-        this.f41132c = arrayList;
+        this.f41136a = 3;
+        this.f41137b = myVar;
+        this.f41140f = str;
+        this.f41138c = arrayList;
         this.d = arrayList2;
-        this.f41133e = arrayList3;
+        this.f41139e = arrayList3;
     }
 }

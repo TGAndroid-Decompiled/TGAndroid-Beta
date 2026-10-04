@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.text.Editable;
 public final class bq0 implements vq0 {
-    public final fq0 f35171a;
+    public final fq0 f35176a;
 
     public bq0(fq0 fq0Var) {
-        this.f35171a = fq0Var;
+        this.f35176a = fq0Var;
     }
 
     @Override
     public final void a() {
-        fq0 fq0Var = this.f35171a;
-        if (fq0Var.f36362b.size() == 0) {
+        fq0 fq0Var = this.f35176a;
+        if (fq0Var.f36367b.size() == 0) {
             fq0Var.Q.setPivotX(0.0f);
             fq0Var.Q.setPivotY(0.0f);
             fq0Var.U(false);
@@ -23,9 +23,9 @@ public final class bq0 implements vq0 {
 
     @Override
     public final void b(Editable editable) {
-        fq0 fq0Var = this.f35171a;
+        fq0 fq0Var = this.f35176a;
         org.telegram.ui.Components.mu muVar = fq0Var.M;
-        fq0Var.f36361a = editable;
+        fq0Var.f36366a = editable;
         muVar.setText(editable);
     }
 
@@ -36,10 +36,10 @@ public final class bq0 implements vq0 {
 
     @Override
     public final void i(int i10, boolean z10, boolean z11) {
-        fq0 fq0Var = this.f35171a;
+        fq0 fq0Var = this.f35176a;
         fq0Var.removeSelfFromStack();
         if (!z10) {
-            fq0Var.T(fq0Var.f36362b, fq0Var.f36363c, z11, i10);
+            fq0Var.T(fq0Var.f36367b, fq0Var.f36368c, z11, i10);
         }
     }
 

@@ -15,14 +15,14 @@ public final class na extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        View view = c1Var.f46524a;
+        View view = c1Var.f46531a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (c1Var.f46528f == 4 && ((pa) c1Var.f46524a).G) {
+        if (c1Var.f46535f == 4 && ((pa) c1Var.f46531a).G) {
             return s4.v.l(3, 0);
         }
         return s4.v.l(0, 0);
@@ -30,15 +30,15 @@ public final class na extends s4.v {
 
     @Override
     public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        if (c1Var.f46528f == c1Var2.f46528f) {
-            View view = c1Var2.f46524a;
+        if (c1Var.f46535f == c1Var2.f46535f) {
+            View view = c1Var2.f46531a;
             if (!(view instanceof pa) || ((pa) view).G) {
-                ja jaVar = this.d.f40425c;
+                ja jaVar = this.d.f40430c;
                 int b10 = c1Var.b();
                 int b11 = c1Var2.b();
                 int i10 = b10 - 4;
                 int i11 = b11 - 4;
-                sa saVar = jaVar.f37614c;
+                sa saVar = jaVar.f37619c;
                 ArrayList arrayList = saVar.v;
                 if (i10 < arrayList.size() && i11 < arrayList.size()) {
                     if (b10 != b11) {
@@ -67,11 +67,11 @@ public final class na extends s4.v {
         if (i10 == 0) {
             sa.X(saVar);
         } else {
-            saVar.f40424b.J0(false);
-            c1Var.f46524a.setPressed(true);
+            saVar.f40429b.J0(false);
+            c1Var.f46531a.setPressed(true);
         }
         if (c1Var != null) {
-            View view = c1Var.f46524a;
+            View view = c1Var.f46531a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

@@ -25,15 +25,15 @@ import org.telegram.ui.Components.yl0;
 import qg.f2;
 import rg.s1;
 public final class m0 extends yl0 {
-    public final s0 f47040c;
+    public final s0 f47048c;
 
     public m0(s0 s0Var) {
-        this.f47040c = s0Var;
+        this.f47048c = s0Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46528f == 3) {
+        if (c1Var.f46535f == 3) {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public final class m0 extends yl0 {
 
     @Override
     public final int h() {
-        return this.f47040c.Y.size() + 3;
+        return this.f47048c.Y.size() + 3;
     }
 
     @Override
@@ -62,9 +62,9 @@ public final class m0 extends yl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         String str;
-        int i11 = c1Var.f46528f;
-        View view = c1Var.f46524a;
-        s0 s0Var = this.f47040c;
+        int i11 = c1Var.f46535f;
+        View view = c1Var.f46531a;
+        s0 s0Var = this.f47048c;
         if (i11 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) s0Var.Y.get(i10 - 3);
             xg.l lVar = (xg.l) view;
@@ -77,9 +77,9 @@ public final class m0 extends yl0 {
             m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
         } else if (i11 == 0) {
             r0 r0Var = (r0) view;
-            s0Var.f47094b0 = r0Var;
+            s0Var.f47102b0 = r0Var;
             TLRPC.Chat chat = s0Var.Z;
-            q90 q90Var = r0Var.f47091e;
+            q90 q90Var = r0Var.f47099e;
             try {
                 int i12 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
                 if (chat == null) {
@@ -104,7 +104,7 @@ public final class m0 extends yl0 {
         View view;
         d6 d6Var;
         Context context = viewGroup.getContext();
-        s0 s0Var = this.f47040c;
+        s0 s0Var = this.f47048c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -118,7 +118,7 @@ public final class m0 extends yl0 {
                     view = new m4(context, 22);
                 }
             } else {
-                view = new b7(context, i6.w0(null, i6.f20762a7, false), 0);
+                view = new b7(context, i6.w0(null, i6.f20766a7, false), 0);
             }
         } else {
             r0 r0Var = new r0(context);

@@ -33,31 +33,31 @@ import org.telegram.ui.so0;
 import org.telegram.ui.wb;
 import org.telegram.ui.yn;
 public final class d implements View.OnTouchListener {
-    public final int f3846a;
+    public final int f3847a;
 
     public d(int i10) {
-        this.f3846a = i10;
+        this.f3847a = i10;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f3846a) {
+        switch (this.f3847a) {
             case 0:
-                int i10 = u.f3872a0;
+                int i10 = u.f3873a0;
                 return true;
             case 1:
-                int i11 = f3.f20604a;
+                int i11 = f3.f20608a;
                 return true;
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = i4.f37231b1;
+                HashSet hashSet = i4.f37236b1;
                 return true;
             case 4:
-                int i12 = j9.f37602e;
+                int i12 = j9.f37607e;
                 return true;
             case 5:
-                int i13 = y2.f23748w;
+                int i13 = y2.f23752w;
                 return true;
             case 6:
                 Paint paint = sa.H;
@@ -71,25 +71,25 @@ public final class d implements View.OnTouchListener {
             case 9:
                 return true;
             case 10:
-                Pattern pattern = e5.f25914a;
+                Pattern pattern = e5.f25919a;
                 return true;
             case 11:
                 j8 j8Var = j8.T0;
                 return true;
             case 12:
-                int i16 = ChatActivityEnterView.f23847n5;
+                int i16 = ChatActivityEnterView.f23851n5;
                 return true;
             case 13:
                 int i17 = xi.H2;
                 return true;
             case 14:
-                int i18 = rk.f30425g0;
+                int i18 = rk.f30431g0;
                 return true;
             case 15:
                 int i19 = jl.E0;
                 return true;
             case 16:
-                int i20 = pp.f29681i0;
+                int i20 = pp.f29686i0;
                 return true;
             case 17:
                 zu zuVar = zu.S;
@@ -98,37 +98,37 @@ public final class d implements View.OnTouchListener {
                 int i21 = pz.h;
                 return true;
             case 19:
-                int[] iArr = ee0.f26051a0;
+                int[] iArr = ee0.f26056a0;
                 return true;
             case 20:
                 int i22 = ri0.R;
                 return true;
             case 21:
-                int i23 = qo0.Z0;
+                int i23 = qo0.f30121a1;
                 return true;
             case 22:
                 int i24 = zq0.W0;
                 return true;
             case 23:
-                int[] iArr2 = pv0.f29748d2;
+                int[] iArr2 = pv0.f29753d2;
                 return true;
             case 24:
-                int i25 = qy0.f30185u0;
+                int i25 = qy0.f30191u0;
                 return true;
             case 25:
-                int i26 = UndoView.f24368e0;
+                int i26 = UndoView.f24372e0;
                 return true;
             case 26:
-                int i27 = UndoView.f24368e0;
+                int i27 = UndoView.f24372e0;
                 return true;
             case 27:
-                int i28 = ak0.f34839d0;
+                int i28 = ak0.f34844d0;
                 return true;
             case 28:
-                List list = so0.f40538g1;
+                List list = so0.f40544g1;
                 return true;
             default:
-                int i29 = PopupNotificationActivity.f34103b0;
+                int i29 = PopupNotificationActivity.f34109b0;
                 return true;
         }
     }

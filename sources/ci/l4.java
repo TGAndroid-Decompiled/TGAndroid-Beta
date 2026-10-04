@@ -18,7 +18,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.jl;
@@ -28,32 +28,32 @@ import org.telegram.ui.Components.yz;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.r60;
 public final class l4 implements Utilities.Callback {
-    public final int f5488a;
-    public final int f5489b;
-    public final Object f5490c;
+    public final int f5489a;
+    public final int f5490b;
+    public final Object f5491c;
 
     public l4(Object obj, int i10, int i11) {
-        this.f5488a = i11;
-        this.f5490c = obj;
-        this.f5489b = i10;
+        this.f5489a = i11;
+        this.f5491c = obj;
+        this.f5490b = i10;
     }
 
     @Override
     public final void run(Object obj) {
         boolean z10;
         float f7;
-        int i10 = this.f5488a;
-        int i11 = this.f5489b;
-        Object obj2 = this.f5490c;
+        int i10 = this.f5489a;
+        int i11 = this.f5490b;
+        Object obj2 = this.f5491c;
         switch (i10) {
             case 0:
                 t4 t4Var = (t4) obj2;
                 View view = (View) obj;
-                o4 o4Var = t4Var.f5963b;
+                o4 o4Var = t4Var.f5964b;
                 if (view instanceof s4) {
                     o4Var.getClass();
                     int R = RecyclerView.R(view);
-                    g61 G = o4Var.f25245f3.G(R);
+                    g61 G = o4Var.f25250f3.G(R);
                     if (G != null) {
                         s4 s4Var = (s4) view;
                         s4Var.setPosition(t4Var.b(R));
@@ -81,23 +81,23 @@ public final class l4 implements Utilities.Callback {
                 k8Var.B0 = i13;
                 b7Var.T.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i11, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 b7Var.invalidate();
-                t71 t71Var = b7Var.f4754n;
+                t71 t71Var = b7Var.f4755n;
                 if (t71Var != null) {
                     int i14 = b7Var.U;
                     int i15 = b7Var.V;
-                    yz yzVar = t71Var.f30984b;
+                    yz yzVar = t71Var.f30990b;
                     if (yzVar == null) {
-                        t71Var.f30988n = i14;
-                        t71Var.f30989r = i15;
+                        t71Var.f30994n = i14;
+                        t71Var.f30995r = i15;
                     } else {
                         yzVar.i(i14, i15);
                     }
                 }
-                vf0 vf0Var = b7Var.f4761s;
+                vf0 vf0Var = b7Var.f4762s;
                 if (vf0Var != null) {
                     int i16 = b7Var.U;
                     int i17 = b7Var.V;
-                    yz yzVar2 = vf0Var.f31659l0;
+                    yz yzVar2 = vf0Var.f31665l0;
                     if (yzVar2 != null) {
                         yzVar2.i(i16, i17);
                         return;
@@ -108,7 +108,7 @@ public final class l4 implements Utilities.Callback {
                 }
                 return;
             case 2:
-                hg.y1 y1Var = ((hg.p1) obj2).f11301a;
+                hg.y1 y1Var = ((hg.p1) obj2).f11297a;
                 hg.y1.W(y1Var);
                 hg.b2.f(hg.y1.c0(y1Var)).k(i11, (String) obj);
                 return;
@@ -132,7 +132,7 @@ public final class l4 implements Utilities.Callback {
                         textView.setTextSize(1, 20.0f);
                         textView.setGravity(17);
                         textView.setText(LocaleController.formatPluralString("UnconfirmedAuthDeniedTitle", arrayList.size(), new Object[0]));
-                        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20926j5, false));
+                        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20930j5, false));
                         linearLayout.addView(textView, w7.z5.k(28.0f, 14.0f, 28.0f, 0.0f, -1, -2));
                         TextView textView2 = new TextView(waVar.getContext());
                         textView2.setTextSize(1, 14.0f);
@@ -142,19 +142,19 @@ public final class l4 implements Utilities.Callback {
                         } else {
                             String str = "\n";
                             for (int i18 = 0; i18 < Math.min(arrayList.size(), 10); i18++) {
-                                StringBuilder j3 = t8.b.j(str, "• ");
+                                StringBuilder j3 = sa.e.j(str, "• ");
                                 j3.append(org.telegram.ui.Cells.wa.a((UnconfirmedAuthController.UnconfirmedAuth) arrayList.get(i18)));
                                 j3.append("\n");
                                 str = j3.toString();
                             }
                             textView2.setText(LocaleController.formatString(R.string.UnconfirmedAuthDeniedMessageMultiple, str));
                         }
-                        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20926j5, false));
+                        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20930j5, false));
                         linearLayout.addView(textView2, w7.z5.k(40.0f, 9.0f, 40.0f, 0.0f, -1, -2));
                         FrameLayout frameLayout = new FrameLayout(waVar.getContext());
                         frameLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f));
                         int dp = AndroidUtilities.dp(12.0f);
-                        int i19 = org.telegram.ui.ActionBar.i6.f21059q7;
+                        int i19 = org.telegram.ui.ActionBar.i6.f21063q7;
                         int w02 = org.telegram.ui.ActionBar.i6.w0(null, i19, false);
                         if (org.telegram.ui.ActionBar.i6.I.q()) {
                             f7 = 0.2f;
@@ -192,10 +192,10 @@ public final class l4 implements Utilities.Callback {
                         AndroidUtilities.runOnUIThread(baVar, 1000L);
                         dVar.setOnClickListener(new org.telegram.ui.Cells.z2(dVar, f3Var, 1));
                     } else {
-                        ok.p(R.string.UnknownError, new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(waVar.getContext()), null), null);
+                        bi.o(R.string.UnknownError, new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(waVar.getContext()), null), null);
                     }
                 }
-                waVar.f23705e.a(false, true);
+                waVar.f23709e.a(false, true);
                 MessagesController.getInstance(i11).getUnconfirmedAuthController().cleanup();
                 return;
             case 4:
@@ -203,11 +203,11 @@ public final class l4 implements Utilities.Callback {
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(jlVar.f27820q0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(jlVar.f27820q0.getLongitude());
+                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(jlVar.f27825q0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(jlVar.f27825q0.getLongitude());
                 tL_messageMediaGeoLive.period = i11;
-                jlVar.f27831x0.b(tL_messageMediaGeoLive, jlVar.f27833y0, true, 0, ((Long) obj).longValue());
-                jlVar.f29643b.dismiss(true);
+                jlVar.f27836x0.b(tL_messageMediaGeoLive, jlVar.f27838y0, true, 0, ((Long) obj).longValue());
+                jlVar.f29648b.dismiss(true);
                 return;
             default:
                 r60.e1((r60) obj2, i11, (ChannelBoostsController.CanApplyBoost) obj);

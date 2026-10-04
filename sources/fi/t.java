@@ -10,18 +10,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.u61;
 public final class t implements Utilities.Callback2 {
-    public final int f9972a;
-    public final k0 f9973b;
+    public final int f9973a;
+    public final k0 f9974b;
 
     public t(k0 k0Var, int i10) {
-        this.f9972a = i10;
-        this.f9973b = k0Var;
+        this.f9973a = i10;
+        this.f9974b = k0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f9972a;
-        k0 k0Var = this.f9973b;
+        int i10 = this.f9973a;
+        k0 k0Var = this.f9974b;
         switch (i10) {
             case 0:
                 u61 u61Var = (u61) obj2;
@@ -49,13 +49,13 @@ public final class t implements Utilities.Callback2 {
                 t0 t0Var = k0Var.M;
                 arrayList.add(g61.D(99, (int) (AndroidUtilities.displaySize.y * 0.35f)));
                 arrayList.add(g61.D(0, AndroidUtilities.dp(48.0f)));
-                if (ChatObject.canBlockUsers(k0Var.f9917f)) {
+                if (ChatObject.canBlockUsers(k0Var.f9918f)) {
                     arrayList.add(g61.A(1, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CommunityPendingRequestsInfo), new v(k0Var, 2)), true)));
                 } else {
                     arrayList.add(g61.A(1, LocaleController.getString(R.string.CommunityPendingRequestsInfoNoChange)));
                 }
                 arrayList.add(g61.j(2, k0Var.L));
-                arrayList.add(g61.s(3, LocaleController.formatPluralString("CommunityPendingRequestsSuggestedHeader", t0Var.f9983l, new Object[0])));
+                arrayList.add(g61.s(3, LocaleController.formatPluralString("CommunityPendingRequestsSuggestedHeader", t0Var.f9984l, new Object[0])));
                 t0Var.c(arrayList);
                 return;
         }

@@ -76,13 +76,13 @@ public final class n8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ci.x8(26, i0Var, tLObject));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new gg.t((hg.c) obj, tL_error, tLObject, 5));
+                AndroidUtilities.runOnUIThread(new gg.t((hg.d) obj, tL_error, tLObject, 5));
                 return;
             case 11:
-                AndroidUtilities.runOnUIThread(new gg.x1(2, (hg.f) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new gg.x1(2, (hg.g) obj, tLObject));
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new gg.t((hg.m) obj, tL_error, tLObject, 6));
+                AndroidUtilities.runOnUIThread(new gg.t((hg.n) obj, tL_error, tLObject, 6));
                 return;
             case 13:
                 AndroidUtilities.runOnUIThread(new gg.t((hg.w0) obj, tL_error, tLObject, 10));
@@ -245,7 +245,7 @@ public final class n8 implements RequestDelegate {
             default:
                 yh.p8 p8Var = (yh.p8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(p8Var.f51831c).putMessages(new ArrayList<>(Arrays.asList(p8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(p8Var.f51827c).putMessages(new ArrayList<>(Arrays.asList(p8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     p8Var.getClass();

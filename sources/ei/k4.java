@@ -22,7 +22,7 @@ public final class k4 extends org.telegram.ui.web.c1 {
             r4 r4Var = this.S0;
             if (!r4Var.P) {
                 r4Var.P = true;
-                r4Var.f9306n.R();
+                r4Var.f9307n.R();
             }
         }
         return super.dispatchTouchEvent(motionEvent);

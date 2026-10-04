@@ -1,7 +1,6 @@
 package ge;
 
 import ee.r;
-import hg.k0;
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -13,32 +12,32 @@ import java.util.concurrent.locks.LockSupport;
 import org.telegram.ui.Cells.c1;
 import zd.e0;
 public final class c implements Executor, Closeable {
-    public static final AtomicLongFieldUpdater f10465n = AtomicLongFieldUpdater.newUpdater(c.class, "parkedWorkersStack$volatile");
-    public static final AtomicLongFieldUpdater f10466r = AtomicLongFieldUpdater.newUpdater(c.class, "controlState$volatile");
-    public static final AtomicIntegerFieldUpdater f10467s = AtomicIntegerFieldUpdater.newUpdater(c.class, "_isTerminated$volatile");
+    public static final AtomicLongFieldUpdater f10466n = AtomicLongFieldUpdater.newUpdater(c.class, "parkedWorkersStack$volatile");
+    public static final AtomicLongFieldUpdater f10467r = AtomicLongFieldUpdater.newUpdater(c.class, "controlState$volatile");
+    public static final AtomicIntegerFieldUpdater f10468s = AtomicIntegerFieldUpdater.newUpdater(c.class, "_isTerminated$volatile");
     public static final com.google.android.gms.internal.clearcut.e v = new com.google.android.gms.internal.clearcut.e("NOT_IN_STACK", 1);
     private volatile int _isTerminated$volatile;
-    public final int f10468a;
-    public final int f10469b;
-    public final long f10470c;
+    public final int f10469a;
+    public final int f10470b;
+    public final long f10471c;
     private volatile long controlState$volatile;
     public final String d;
-    public final f f10471e;
-    public final f f10472f;
+    public final f f10472e;
+    public final f f10473f;
     public final r h;
     private volatile long parkedWorkersStack$volatile;
 
     public c(int i10, long j3, String str, int i11) {
-        this.f10468a = i10;
-        this.f10469b = i11;
-        this.f10470c = j3;
+        this.f10469a = i10;
+        this.f10470b = i11;
+        this.f10471c = j3;
         this.d = str;
         if (i10 >= 1) {
             if (i11 >= i10) {
                 if (i11 <= 2097150) {
                     if (j3 > 0) {
-                        this.f10471e = new ee.l();
-                        this.f10472f = new ee.l();
+                        this.f10472e = new ee.l();
+                        this.f10473f = new ee.l();
                         this.h = new r((i10 + 1) * 2);
                         this.controlState$volatile = i10 << 42;
                         this._isTerminated$volatile = 0;
@@ -46,18 +45,18 @@ public final class c implements Executor, Closeable {
                     }
                     throw new IllegalArgumentException(c1.j(j3, "Idle worker keep alive time ", " must be positive").toString());
                 }
-                throw new IllegalArgumentException(k0.i(i11, "Max pool size ", " should not exceed maximal supported number of threads 2097150").toString());
+                throw new IllegalArgumentException(hg.c.i(i11, "Max pool size ", " should not exceed maximal supported number of threads 2097150").toString());
             }
-            throw new IllegalArgumentException(a4.a.l(i11, i10, "Max pool size ", " should be greater than or equals to core pool size ").toString());
+            throw new IllegalArgumentException(a4.a.m(i11, i10, "Max pool size ", " should be greater than or equals to core pool size ").toString());
         }
-        throw new IllegalArgumentException(k0.i(i10, "Core pool size ", " should be at least 1").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Core pool size ", " should be at least 1").toString());
     }
 
     public final int a() {
         boolean z10;
         synchronized (this.h) {
             try {
-                if (f10467s.get(this) != 0) {
+                if (f10468s.get(this) != 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -65,17 +64,17 @@ public final class c implements Executor, Closeable {
                 if (z10) {
                     return -1;
                 }
-                AtomicLongFieldUpdater atomicLongFieldUpdater = f10466r;
+                AtomicLongFieldUpdater atomicLongFieldUpdater = f10467r;
                 long j3 = atomicLongFieldUpdater.get(this);
                 int i10 = (int) (j3 & 2097151);
                 int i11 = i10 - ((int) ((j3 & 4398044413952L) >> 21));
                 if (i11 < 0) {
                     i11 = 0;
                 }
-                if (i11 >= this.f10468a) {
+                if (i11 >= this.f10469a) {
                     return 0;
                 }
-                if (i10 >= this.f10469b) {
+                if (i10 >= this.f10470b) {
                     return 0;
                 }
                 int i12 = ((int) (atomicLongFieldUpdater.get(this) & 2097151)) + 1;
@@ -103,21 +102,21 @@ public final class c implements Executor, Closeable {
         a aVar2;
         boolean a2;
         b bVar;
-        k.f10483f.getClass();
+        k.f10484f.getClass();
         long nanoTime = System.nanoTime();
         if (runnable instanceof i) {
             jVar = (i) runnable;
-            jVar.f10476a = nanoTime;
-            jVar.f10477b = aVar;
+            jVar.f10477a = nanoTime;
+            jVar.f10478b = aVar;
         } else {
             jVar = new j(runnable, nanoTime, aVar);
         }
-        if (jVar.f10477b.f6710a == 1) {
+        if (jVar.f10478b.f6711a == 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        AtomicLongFieldUpdater atomicLongFieldUpdater = f10466r;
+        AtomicLongFieldUpdater atomicLongFieldUpdater = f10467r;
         if (z10) {
             j3 = atomicLongFieldUpdater.addAndGet(this, 2097152L);
         } else {
@@ -129,22 +128,22 @@ public final class c implements Executor, Closeable {
         } else {
             aVar2 = null;
         }
-        if (aVar2 == null || !kotlin.jvm.internal.i.a(aVar2.f10459n, this)) {
+        if (aVar2 == null || !kotlin.jvm.internal.i.a(aVar2.f10460n, this)) {
             aVar2 = null;
         }
-        if (aVar2 != null && (bVar = aVar2.f10456c) != b.f10463e && (jVar.f10477b.f6710a != 0 || bVar != b.f10461b)) {
+        if (aVar2 != null && (bVar = aVar2.f10457c) != b.f10464e && (jVar.f10478b.f6711a != 0 || bVar != b.f10462b)) {
             aVar2.h = true;
-            m mVar = aVar2.f10454a;
+            m mVar = aVar2.f10455a;
             mVar.getClass();
-            jVar = (i) m.f10486b.getAndSet(mVar, jVar);
+            jVar = (i) m.f10487b.getAndSet(mVar, jVar);
             if (jVar == null) {
                 jVar = null;
             } else {
-                AtomicReferenceArray atomicReferenceArray = mVar.f10489a;
-                AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = m.f10487c;
+                AtomicReferenceArray atomicReferenceArray = mVar.f10490a;
+                AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = m.f10488c;
                 if (atomicIntegerFieldUpdater.get(mVar) - m.d.get(mVar) != 127) {
-                    if (jVar.f10477b.f6710a == 1) {
-                        m.f10488e.incrementAndGet(mVar);
+                    if (jVar.f10478b.f6711a == 1) {
+                        m.f10489e.incrementAndGet(mVar);
                     }
                     int i10 = atomicIntegerFieldUpdater.get(mVar) & 127;
                     while (atomicReferenceArray.get(i10) != null) {
@@ -157,13 +156,13 @@ public final class c implements Executor, Closeable {
             }
         }
         if (jVar != null) {
-            if (jVar.f10477b.f6710a == 1) {
-                a2 = this.f10472f.a(jVar);
+            if (jVar.f10478b.f6711a == 1) {
+                a2 = this.f10473f.a(jVar);
             } else {
-                a2 = this.f10471e.a(jVar);
+                a2 = this.f10472e.a(jVar);
             }
             if (!a2) {
-                throw new RejectedExecutionException(a4.a.s(new StringBuilder(), this.d, " was terminated"));
+                throw new RejectedExecutionException(a4.a.t(new StringBuilder(), this.d, " was terminated"));
             }
         }
         if (z10) {
@@ -178,7 +177,7 @@ public final class c implements Executor, Closeable {
 
     public final void c(a aVar, int i10, int i11) {
         while (true) {
-            long j3 = f10465n.get(this);
+            long j3 = f10466n.get(this);
             int i12 = (int) (2097151 & j3);
             long j10 = (2097152 + j3) & (-2097152);
             if (i12 == i10) {
@@ -205,7 +204,7 @@ public final class c implements Executor, Closeable {
                 }
             }
             if (i12 >= 0) {
-                if (f10465n.compareAndSet(this, j3, j10 | i12)) {
+                if (f10466n.compareAndSet(this, j3, j10 | i12)) {
                     return;
                 }
             }
@@ -222,7 +221,7 @@ public final class c implements Executor, Closeable {
         if (i10 < 0) {
             i10 = 0;
         }
-        int i11 = this.f10468a;
+        int i11 = this.f10469a;
         if (i10 < i11) {
             int a2 = a();
             if (a2 == 1 && i11 > 1) {
@@ -239,7 +238,7 @@ public final class c implements Executor, Closeable {
         com.google.android.gms.internal.clearcut.e eVar;
         int i10;
         while (true) {
-            long j3 = f10465n.get(this);
+            long j3 = f10466n.get(this);
             a aVar = (a) this.h.b((int) (2097151 & j3));
             if (aVar == null) {
                 aVar = null;
@@ -264,7 +263,7 @@ public final class c implements Executor, Closeable {
                     }
                 }
                 if (i10 >= 0) {
-                    if (f10465n.compareAndSet(this, j3, i10 | j10)) {
+                    if (f10466n.compareAndSet(this, j3, i10 | j10)) {
                         aVar.h(eVar);
                     } else {
                         continue;
@@ -276,7 +275,7 @@ public final class c implements Executor, Closeable {
             if (aVar == null) {
                 return false;
             }
-            if (a.f10453r.compareAndSet(aVar, -1, 0)) {
+            if (a.f10454r.compareAndSet(aVar, -1, 0)) {
                 LockSupport.unpark(aVar);
                 return true;
             }
@@ -285,7 +284,7 @@ public final class c implements Executor, Closeable {
 
     @Override
     public final void execute(Runnable runnable) {
-        b(runnable, k.f10484g);
+        b(runnable, k.f10485g);
     }
 
     public final String toString() {
@@ -301,14 +300,14 @@ public final class c implements Executor, Closeable {
         for (int i16 = 1; i16 < a2; i16++) {
             a aVar = (a) rVar.b(i16);
             if (aVar != null) {
-                m mVar = aVar.f10454a;
+                m mVar = aVar.f10455a;
                 mVar.getClass();
-                if (m.f10486b.get(mVar) != null) {
-                    i10 = (m.f10487c.get(mVar) - m.d.get(mVar)) + 1;
+                if (m.f10487b.get(mVar) != null) {
+                    i10 = (m.f10488c.get(mVar) - m.d.get(mVar)) + 1;
                 } else {
-                    i10 = m.f10487c.get(mVar) - m.d.get(mVar);
+                    i10 = m.f10488c.get(mVar) - m.d.get(mVar);
                 }
-                int ordinal = aVar.f10456c.ordinal();
+                int ordinal = aVar.f10457c.ordinal();
                 if (ordinal != 0) {
                     if (ordinal != 1) {
                         if (ordinal != 2) {
@@ -344,23 +343,23 @@ public final class c implements Executor, Closeable {
                 }
             }
         }
-        long j3 = f10466r.get(this);
+        long j3 = f10467r.get(this);
         StringBuilder sb5 = new StringBuilder();
         sb5.append(this.d);
         sb5.append('@');
         sb5.append(e0.k(this));
         sb5.append("[Pool Size {core = ");
-        int i17 = this.f10468a;
+        int i17 = this.f10469a;
         sb5.append(i17);
         sb5.append(", max = ");
-        k0.s(sb5, this.f10469b, "}, Worker States {CPU = ", i11, ", blocking = ");
-        k0.s(sb5, i12, ", parked = ", i13, ", dormant = ");
-        k0.s(sb5, i14, ", terminated = ", i15, "}, running workers queues = ");
+        hg.c.t(sb5, this.f10470b, "}, Worker States {CPU = ", i11, ", blocking = ");
+        hg.c.t(sb5, i12, ", parked = ", i13, ", dormant = ");
+        hg.c.t(sb5, i14, ", terminated = ", i15, "}, running workers queues = ");
         sb5.append(arrayList);
         sb5.append(", global CPU queue size = ");
-        sb5.append(this.f10471e.c());
+        sb5.append(this.f10472e.c());
         sb5.append(", global blocking queue size = ");
-        sb5.append(this.f10472f.c());
+        sb5.append(this.f10473f.c());
         sb5.append(", Control State {created workers= ");
         sb5.append((int) (2097151 & j3));
         sb5.append(", blocking tasks = ");

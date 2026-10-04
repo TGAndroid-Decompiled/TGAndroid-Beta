@@ -18,7 +18,7 @@ public final class j {
     public int f3278g;
 
     static {
-        String str = e2.d0.f8537a;
+        String str = e2.d0.f8538a;
         f3267i = Integer.toString(0, 36);
         f3268j = Integer.toString(1, 36);
         f3269k = Integer.toString(2, 36);
@@ -40,7 +40,7 @@ public final class j {
         if (i10 != -1) {
             if (i10 != 1) {
                 if (i10 != 2) {
-                    return hg.k0.h(i10, "Undefined color range ");
+                    return hg.c.h(i10, "Undefined color range ");
                 }
                 return "Limited range";
             }
@@ -54,7 +54,7 @@ public final class j {
             if (i10 != 6) {
                 if (i10 != 1) {
                     if (i10 != 2) {
-                        return hg.k0.h(i10, "Undefined color space ");
+                        return hg.c.h(i10, "Undefined color space ");
                     }
                     return "BT601";
                 }
@@ -73,7 +73,7 @@ public final class j {
                         if (i10 != 3) {
                             if (i10 != 6) {
                                 if (i10 != 7) {
-                                    return hg.k0.h(i10, "Undefined color transfer ");
+                                    return hg.c.h(i10, "Undefined color transfer ");
                                 }
                                 return "HLG";
                             }
@@ -201,14 +201,14 @@ public final class j {
         if (i10 == -1) {
             str = "NA";
         } else {
-            str = a4.a.m(i10, "bit Luma");
+            str = a4.a.n(i10, "bit Luma");
         }
         sb2.append(str);
         sb2.append(", ");
         int i11 = this.f3277f;
         if (i11 != -1) {
-            str2 = a4.a.m(i11, "bit Chroma");
+            str2 = a4.a.n(i11, "bit Chroma");
         }
-        return a4.a.s(sb2, str2, ")");
+        return a4.a.t(sb2, str2, ")");
     }
 }

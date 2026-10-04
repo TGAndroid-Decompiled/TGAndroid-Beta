@@ -8,16 +8,16 @@ import v7.t7;
 import w0.d;
 import zd.m;
 public final class b implements OnCompleteListener, i {
-    public final m f14096a;
+    public final m f14097a;
 
     public b(m mVar) {
-        this.f14096a = mVar;
+        this.f14097a = mVar;
     }
 
     @Override
     public void onComplete(Task task) {
         Exception exception = task.getException();
-        m mVar = this.f14096a;
+        m mVar = this.f14097a;
         if (exception == null) {
             if (task.isCanceled()) {
                 mVar.n(null);
@@ -34,7 +34,7 @@ public final class b implements OnCompleteListener, i {
     public void onError(Object obj) {
         d e7 = (d) obj;
         kotlin.jvm.internal.i.e(e7, "e");
-        m mVar = this.f14096a;
+        m mVar = this.f14097a;
         if (mVar.w()) {
             mVar.resumeWith(t7.a(e7));
         }
@@ -44,7 +44,7 @@ public final class b implements OnCompleteListener, i {
     public void onResult(Object obj) {
         c result = (c) obj;
         kotlin.jvm.internal.i.e(result, "result");
-        m mVar = this.f14096a;
+        m mVar = this.f14097a;
         if (mVar.w()) {
             mVar.resumeWith(result);
         }

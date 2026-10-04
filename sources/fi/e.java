@@ -13,20 +13,20 @@ import org.telegram.ui.ActionBar.y5;
 import org.telegram.ui.Components.w9;
 import w7.z5;
 public final class e extends FrameLayout implements y5 {
-    public final w9 f9881a;
-    public final d6 f9882b;
-    public final TextView f9883c;
+    public final w9 f9882a;
+    public final d6 f9883b;
+    public final TextView f9884c;
     public final TextView d;
 
     public e(Context context, d6 d6Var) {
         super(context);
-        this.f9882b = d6Var;
+        this.f9883b = d6Var;
         w9 w9Var = new w9(context);
-        this.f9881a = w9Var;
+        this.f9882a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
         addView(w9Var, z5.d(72, 72.0f, 49, 0.0f, 36.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f9883c = textView;
+        this.f9884c = textView;
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(17);
@@ -44,16 +44,16 @@ public final class e extends FrameLayout implements y5 {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         Drawable drawable = i6.S0;
-        w9 w9Var = this.f9881a;
+        w9 w9Var = this.f9882a;
         yf.p.a(canvas, drawable, (w9Var.getWidth() / 2.0f) + w9Var.getLeft(), (w9Var.getHeight() / 2.0f) + w9Var.getTop(), w9Var.getHeight());
     }
 
     @Override
     public final void e() {
         int i10 = i6.G6;
-        d6 d6Var = this.f9882b;
-        this.f9883c.setTextColor(i6.v0(i10, d6Var));
-        this.d.setTextColor(i6.v0(i6.f21224z6, d6Var));
+        d6 d6Var = this.f9883b;
+        this.f9884c.setTextColor(i6.v0(i10, d6Var));
+        this.d.setTextColor(i6.v0(i6.f21228z6, d6Var));
     }
 
     public int[] getColorKeys() {
@@ -70,6 +70,6 @@ public final class e extends FrameLayout implements y5 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f9883c.setText(charSequence);
+        this.f9884c.setText(charSequence);
     }
 }

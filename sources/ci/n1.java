@@ -24,11 +24,11 @@ public final class n1 extends lt {
         if (q5Var != null) {
             q5Var.setAlpha((int) (f7 * 255.0f));
             q5Var.draw(canvas);
-        } else if (o1Var.f5643e != null) {
+        } else if (o1Var.f5644e != null) {
             canvas.save();
-            canvas.clipRect(o1Var.f5643e.getImageX(), o1Var.f5643e.getImageY(), o1Var.f5643e.getImageX2(), o1Var.f5643e.getImageY2());
-            o1Var.f5643e.setAlpha(f7);
-            o1Var.f5643e.draw(canvas);
+            canvas.clipRect(o1Var.f5644e.getImageX(), o1Var.f5644e.getImageY(), o1Var.f5644e.getImageX2(), o1Var.f5644e.getImageY2());
+            o1Var.f5644e.setAlpha(f7);
+            o1Var.f5644e.draw(canvas);
             canvas.restore();
         }
     }
@@ -70,11 +70,11 @@ public final class n1 extends lt {
             if (i10 < arrayList.size()) {
                 o1 o1Var = (o1) arrayList.get(i10);
                 o1Var.getClass();
-                org.telegram.ui.Components.q5 q5Var = o1Var.f5642c;
+                org.telegram.ui.Components.q5 q5Var = o1Var.f5643c;
                 if (q5Var != null) {
-                    q5Var.setColorFilter(this.R.f5688o3);
+                    q5Var.setColorFilter(this.R.f5689o3);
                 }
-                o1Var.f5645n.draw(canvas, o1Var.h[this.K]);
+                o1Var.f5646n.draw(canvas, o1Var.h[this.K]);
                 i10++;
             } else {
                 return;
@@ -95,16 +95,16 @@ public final class n1 extends lt {
                 float alpha = o1Var.getAlpha() * f7;
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(o1Var.getPaddingLeft() + ((int) o1Var.getX()), o1Var.getPaddingTop(), (o1Var.getWidth() + ((int) o1Var.getX())) - o1Var.getPaddingRight(), o1Var.getHeight() - o1Var.getPaddingBottom());
-                org.telegram.ui.Components.q5 q5Var2 = o1Var.f5642c;
+                org.telegram.ui.Components.q5 q5Var2 = o1Var.f5643c;
                 if (q5Var2 != null) {
                     q5Var2.setBounds(rect);
                 }
-                ImageReceiver imageReceiver = o1Var.f5643e;
+                ImageReceiver imageReceiver = o1Var.f5644e;
                 if (imageReceiver != null) {
                     imageReceiver.setImageCoords(rect);
                 }
-                PorterDuffColorFilter porterDuffColorFilter = this.R.f5688o3;
-                if (porterDuffColorFilter != null && (q5Var = o1Var.f5642c) != null) {
+                PorterDuffColorFilter porterDuffColorFilter = this.R.f5689o3;
+                if (porterDuffColorFilter != null && (q5Var = o1Var.f5643c) != null) {
                     q5Var.setColorFilter(porterDuffColorFilter);
                 }
                 if (scale != 1.0f) {

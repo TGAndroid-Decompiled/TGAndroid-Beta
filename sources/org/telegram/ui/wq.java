@@ -13,33 +13,33 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class wq implements Utilities.Callback {
-    public final int f42587a = 1;
-    public final int f42588b;
-    public final long f42589c;
+    public final int f42594a = 1;
+    public final int f42595b;
+    public final long f42596c;
     public final Object d;
-    public final Object f42590e;
-    public final Object f42591f;
-    public final Object f42592g;
+    public final Object f42597e;
+    public final Object f42598f;
+    public final Object f42599g;
     public final Serializable h;
 
     public wq(int i10, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f42588b = i10;
+        this.f42595b = i10;
         this.d = arrayList;
-        this.f42589c = j3;
-        this.f42590e = activity;
-        this.f42591f = d6Var;
-        this.f42592g = callback;
+        this.f42596c = j3;
+        this.f42597e = activity;
+        this.f42598f = d6Var;
+        this.f42599g = callback;
         this.h = hashMap;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f42587a;
+        int i10 = this.f42594a;
         boolean z10 = false;
         Serializable serializable = this.h;
-        Object obj2 = this.f42592g;
-        Object obj3 = this.f42591f;
-        Object obj4 = this.f42590e;
+        Object obj2 = this.f42599g;
+        Object obj3 = this.f42598f;
+        Object obj4 = this.f42597e;
         Object obj5 = this.d;
         switch (i10) {
             case 0:
@@ -53,9 +53,9 @@ public final class wq implements Utilities.Callback {
                 z10 = ((tLObject instanceof TLRPC.TL_channelParticipantAdmin) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin)) ? true : true;
                 long j3 = rrVar.N;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights2 = rrVar.E;
-                long j10 = this.f42589c;
+                long j10 = this.f42596c;
                 zq zqVar = new zq(rrVar, j10, j3, tL_chatAdminRights, tL_chatBannedRights2, tL_chatBannedRights, str, intValue, zArr, j10);
-                zqVar.X0 = new ar(rrVar, intValue, j10, this.f42588b, z10, zArr);
+                zqVar.X0 = new ar(rrVar, intValue, j10, this.f42595b, z10, zArr);
                 rrVar.presentFragment(zqVar);
                 return;
             case 1:
@@ -65,7 +65,7 @@ public final class wq implements Utilities.Callback {
                 final Utilities.Callback callback = (Utilities.Callback) obj2;
                 final HashMap hashMap = (HashMap) serializable;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                final int i11 = this.f42588b;
+                final int i11 = this.f42595b;
                 if (booleanValue) {
                     SharedPreferences.Editor edit = MessagesController.getInstance(i11).getMainSettings().edit();
                     int size = arrayList.size();
@@ -84,7 +84,7 @@ public final class wq implements Utilities.Callback {
                     }
                     edit.apply();
                 }
-                final long j11 = this.f42589c;
+                final long j11 = this.f42596c;
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
@@ -105,11 +105,11 @@ public final class wq implements Utilities.Callback {
                         callback2.run(hashMap2);
                     }
                 };
-                if (!yh.t5.y(i11, false).f52014e) {
+                if (!yh.t5.y(i11, false).f52019e) {
                     yh.t5 y3 = yh.t5.y(i11, false);
-                    y3.f52014e = false;
+                    y3.f52019e = false;
                     y3.q(false, true, runnable);
-                    y3.f52014e = true;
+                    y3.f52019e = true;
                     return;
                 }
                 runnable.run();
@@ -118,32 +118,32 @@ public final class wq implements Utilities.Callback {
                 Boolean bool = (Boolean) obj;
                 Pattern pattern = LaunchActivity.B1;
                 TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-                int i13 = this.f42588b;
-                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i13).getInputUser(this.f42589c);
+                int i13 = this.f42595b;
+                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i13).getInputUser(this.f42596c);
                 tL_messages_toggleBotInAttachMenu.enabled = true;
                 tL_messages_toggleBotInAttachMenu.write_allowed = true;
-                ConnectionsManager.getInstance(i13).sendRequest(tL_messages_toggleBotInAttachMenu, new org.telegram.messenger.hi((LaunchActivity) obj5, i13, (uy) obj4, (org.telegram.ui.ActionBar.n2) obj3, (TLRPC.User) obj2, (String) serializable), 66);
+                ConnectionsManager.getInstance(i13).sendRequest(tL_messages_toggleBotInAttachMenu, new org.telegram.messenger.ii((LaunchActivity) obj5, i13, (uy) obj4, (org.telegram.ui.ActionBar.n2) obj3, (TLRPC.User) obj2, (String) serializable), 66);
                 return;
         }
     }
 
     public wq(rr rrVar, long j3, int i10, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
         this.d = rrVar;
-        this.f42589c = j3;
-        this.f42588b = i10;
-        this.f42590e = tLObject;
-        this.f42591f = tL_chatAdminRights;
-        this.f42592g = tL_chatBannedRights;
+        this.f42596c = j3;
+        this.f42595b = i10;
+        this.f42597e = tLObject;
+        this.f42598f = tL_chatAdminRights;
+        this.f42599g = tL_chatBannedRights;
         this.h = str;
     }
 
     public wq(LaunchActivity launchActivity, int i10, long j3, uy uyVar, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.User user, String str) {
         this.d = launchActivity;
-        this.f42588b = i10;
-        this.f42589c = j3;
-        this.f42590e = uyVar;
-        this.f42591f = n2Var;
-        this.f42592g = user;
+        this.f42595b = i10;
+        this.f42596c = j3;
+        this.f42597e = uyVar;
+        this.f42598f = n2Var;
+        this.f42599g = user;
         this.h = str;
     }
 }

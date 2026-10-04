@@ -24,7 +24,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hi;
+import org.telegram.messenger.ii;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -87,8 +87,8 @@ public final class cb implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
                 TLObject tLObject = (TLObject) this.f737c;
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.h;
-                t70Var.f40708r = false;
-                if (!((org.telegram.ui.g4) this.f739f).f36487e.isEmpty()) {
+                t70Var.f40714r = false;
+                if (!((org.telegram.ui.g4) this.f739f).f36492e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
@@ -97,7 +97,7 @@ public final class cb implements Runnable {
                             MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            t70Var.f40707n = chat;
+                            t70Var.f40713n = chat;
                             if (chat.left && !chat.kicked) {
                                 d1Var.a(0, false);
                                 return;
@@ -137,7 +137,7 @@ public final class cb implements Runnable {
                     b2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f20055id = groupCall.f20048id;
+                        tL_inputGroupCall.f20059id = groupCall.f20052id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.m9.i0(context, i12, tL_inputGroupCall, groupCall.invite_link, d6Var, true, true);
                         AndroidUtilities.runOnUIThread(t60Var);
@@ -152,9 +152,9 @@ public final class cb implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f20055id = groupCall2.f20048id;
+                    tL_inputGroupCall2.f20059id = groupCall2.f20052id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                    ConnectionsManager.getInstance(i12).sendRequest(exportgroupcallinvite, new hi(b2Var, context, i12, exportgroupcallinvite, d6Var, t60Var));
+                    ConnectionsManager.getInstance(i12).sendRequest(exportgroupcallinvite, new ii(b2Var, context, i12, exportgroupcallinvite, d6Var, t60Var));
                     return;
                 } else {
                     b2Var.dismiss();
@@ -190,7 +190,7 @@ public final class cb implements Runnable {
                 List<Purchase> list = (List) this.f739f;
                 c5.f fVar = (c5.f) this.d;
                 fx0 fx0Var = (fx0) this.h;
-                if (((c5.h) this.f738e).f4203a == 0) {
+                if (((c5.h) this.f738e).f4204a == 0) {
                     oi0 oi0Var = new oi0(1, n2Var2);
                     int i14 = this.f736b;
                     if (list != null && !list.isEmpty() && !UserConfig.getInstance(i14).isPremium()) {
@@ -199,7 +199,7 @@ public final class cb implements Runnable {
                                 TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = new TLRPC.TL_payments_assignPlayMarketTransaction();
                                 TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
                                 tL_payments_assignPlayMarketTransaction.receipt = tL_dataJSON;
-                                tL_dataJSON.data = purchase.f6390a;
+                                tL_dataJSON.data = purchase.f6391a;
                                 TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription = new TLRPC.TL_inputStorePaymentPremiumSubscription();
                                 tL_inputStorePaymentPremiumSubscription.restore = true;
                                 if (fVar != null) {
@@ -218,7 +218,7 @@ public final class cb implements Runnable {
                         tL_inputStorePaymentPremiumSubscription2.upgrade = true;
                     }
                     tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumSubscription2;
-                    ConnectionsManager.getInstance(i14).sendRequest(tL_payments_canPurchaseStore, new hi(i14, 5, n2Var2, fx0Var, fVar, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
+                    ConnectionsManager.getInstance(i14).sendRequest(tL_payments_canPurchaseStore, new ii(i14, 5, n2Var2, fx0Var, fVar, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
                     return;
                 }
                 return;
@@ -245,11 +245,11 @@ public final class cb implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c1Var.getContext());
-                    alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f20372a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f20372a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new fs0(24, c1Var, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new org.telegram.ui.web.w(1));
-                    c1Var.Y(3, alertDialog$Builder.f20368a, new org.telegram.ui.web.x(strArr2, i15, z0Var, daVar, 1));
+                    c1Var.Y(3, alertDialog$Builder.f20372a, new org.telegram.ui.web.x(strArr2, i15, z0Var, daVar, 1));
                     return;
                 }
             case 13:
@@ -272,12 +272,12 @@ public final class cb implements Runnable {
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append(photoSize2.location.volume_id);
                             sb2.append("_");
-                            String n10 = a4.a.n(photoSize2.location.local_id, "@50_50", sb2);
+                            String o9 = a4.a.o(photoSize2.location.local_id, "@50_50", sb2);
                             StringBuilder sb3 = new StringBuilder();
                             photoSize = closestPhotoSizeWithSize2;
                             sb3.append(closestPhotoSizeWithSize.location.volume_id);
                             sb3.append("_");
-                            ImageLoader.getInstance().replaceImageInCache(n10, a4.a.n(closestPhotoSizeWithSize.location.local_id, "@50_50", sb3), ImageLocation.getForUser(i16, user, 1), false);
+                            ImageLoader.getInstance().replaceImageInCache(o9, a4.a.o(closestPhotoSizeWithSize.location.local_id, "@50_50", sb3), ImageLocation.getForUser(i16, user, 1), false);
                         } else {
                             photoSize = closestPhotoSizeWithSize2;
                         }

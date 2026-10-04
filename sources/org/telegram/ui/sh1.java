@@ -9,20 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 public final class sh1 extends org.telegram.ui.Components.g91 {
-    public boolean U;
-    public final Path V;
-    public final th1 W;
+    public boolean V;
+    public final Path W;
+    public final th1 f40495a0;
 
     public sh1(th1 th1Var, Context context) {
         super(context, null);
-        this.W = th1Var;
-        this.V = new Path();
+        this.f40495a0 = th1Var;
+        this.W = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.U) {
-            Path path = this.V;
+        if (this.V) {
+            Path path = this.W;
             path.rewind();
             float dpf2 = AndroidUtilities.dpf2(24.0f);
             RectF rectF = AndroidUtilities.rectTmp;
@@ -32,7 +32,7 @@ public final class sh1 extends org.telegram.ui.Components.g91 {
             canvas.clipPath(path);
         }
         super.dispatchDraw(canvas);
-        if (this.U) {
+        if (this.V) {
             canvas.restore();
         }
     }
@@ -49,7 +49,7 @@ public final class sh1 extends org.telegram.ui.Components.g91 {
 
     @Override
     public final boolean j(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.n2 W = ((ch0) this.W).W();
+        org.telegram.ui.ActionBar.n2 W = ((ch0) this.f40495a0).W();
         if (!(W instanceof bh0)) {
             return false;
         }
@@ -58,7 +58,7 @@ public final class sh1 extends org.telegram.ui.Components.g91 {
 
     @Override
     public final boolean k(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.n2 W = ((ch0) this.W).W();
+        org.telegram.ui.ActionBar.n2 W = ((ch0) this.f40495a0).W();
         if (W instanceof bh0) {
             return ((bh0) W).Q(motionEvent, true);
         }
@@ -76,34 +76,34 @@ public final class sh1 extends org.telegram.ui.Components.g91 {
     }
 
     public void setTabletLayout(boolean z10) {
-        if (this.U == z10) {
+        if (this.V == z10) {
             return;
         }
-        this.U = z10;
+        this.V = z10;
         invalidate();
     }
 
     @Override
     public final void t(View view, View view2, int i10, int i11) {
-        this.W.S();
+        this.f40495a0.S();
     }
 
     @Override
     public final void u() {
         uy uyVar;
-        th1 th1Var = this.W;
+        th1 th1Var = this.f40495a0;
         ch0 ch0Var = (ch0) th1Var;
         if (ch0Var.F != null) {
-            ch0Var.m0(ch0Var.f40849c.getCurrentPosition(), true);
+            ch0Var.m0(ch0Var.f40855c.getCurrentPosition(), true);
             ch0Var.n0(0.0f, false);
         }
         ch0Var.d0();
-        sh1 sh1Var = ch0Var.f40849c;
+        sh1 sh1Var = ch0Var.f40855c;
         if (sh1Var != null) {
             int currentPosition = sh1Var.getCurrentPosition();
-            if (currentPosition != 2 && ch0Var.f35470x) {
+            if (currentPosition != 2 && ch0Var.f35475x) {
                 ch0Var.U(2);
-                ch0Var.f35470x = false;
+                ch0Var.f35475x = false;
             }
             if (currentPosition != 3) {
                 ch0Var.U(3);
@@ -119,11 +119,11 @@ public final class sh1 extends org.telegram.ui.Components.g91 {
 
     @Override
     public final void w(boolean z10) {
-        th1 th1Var = this.W;
+        th1 th1Var = this.f40495a0;
         ch0 ch0Var = (ch0) th1Var;
         boolean z11 = !z10;
         if (ch0Var.F != null) {
-            float positionAnimated = ch0Var.f40849c.getPositionAnimated();
+            float positionAnimated = ch0Var.f40855c.getPositionAnimated();
             ch0Var.n0(positionAnimated, z11);
             if (!z10) {
                 ch0Var.m0(Math.round(positionAnimated), true);
@@ -131,7 +131,7 @@ public final class sh1 extends org.telegram.ui.Components.g91 {
         }
         ch0Var.h0();
         ch0Var.d0();
-        ch0Var.f40848b.invalidate();
+        ch0Var.f40854b.invalidate();
         th1Var.S();
         th1Var.checkSystemBarColors();
     }

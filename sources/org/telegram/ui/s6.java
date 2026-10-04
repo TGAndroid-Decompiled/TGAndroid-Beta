@@ -11,39 +11,39 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class s6 extends View {
-    public final int f40366a = 0;
-    public Paint f40367b;
-    public Paint f40368c;
+    public final int f40371a = 0;
+    public Paint f40372b;
+    public Paint f40373c;
     public float d;
-    public Object f40369e;
+    public Object f40374e;
 
     public s6(Context context) {
         super(context);
     }
 
     public void a() {
-        this.f40367b.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, ((pg.x) this.f40369e).f44678f}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f40372b.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, ((pg.x) this.f40374e).f44685f}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
     public void b(float f7) {
         float dp = AndroidUtilities.dp(6.0f);
-        float a2 = w7.q.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f40368c.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
+        float a2 = w7.q.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f40373c.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
         this.d = a2;
-        pg.x xVar = (pg.x) this.f40369e;
-        xVar.m(i0.a.k(xVar.f44678f, (int) (a2 * 255.0f)), 1);
+        pg.x xVar = (pg.x) this.f40374e;
+        xVar.m(i0.a.k(xVar.f44685f, (int) (a2 * 255.0f)), 1);
         invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f40366a) {
+        switch (this.f40371a) {
             case 0:
                 super.onDraw(canvas);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.f40368c);
-                rectF.set(0.0f, 0.0f, ((org.telegram.ui.Components.e6) this.f40369e).d(this.d, false) * getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.f40367b);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.f40373c);
+                rectF.set(0.0f, 0.0f, ((org.telegram.ui.Components.e6) this.f40374e).d(this.d, false) * getMeasuredWidth(), getMeasuredHeight());
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.f40372b);
                 return;
             default:
                 super.onDraw(canvas);
@@ -54,27 +54,27 @@ public final class s6 extends View {
                 float f10 = height + dp;
                 rectF2.set(dp, f7, getWidth() - dp, f10);
                 canvas.save();
-                pg.x xVar = (pg.x) this.f40369e;
-                xVar.f44677e.rewind();
-                xVar.f44677e.addRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-                canvas.clipPath(xVar.f44677e);
+                pg.x xVar = (pg.x) this.f40374e;
+                xVar.f44684e.rewind();
+                xVar.f44684e.addRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+                canvas.clipPath(xVar.f44684e);
                 qg.i1.y1(canvas, rectF2, AndroidUtilities.dp(6.0f));
                 canvas.restore();
                 rectF2.set(dp, f7, getWidth() - dp, f10);
-                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f40367b);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f40372b);
                 float dp2 = AndroidUtilities.dp(13.0f);
-                Paint paint = this.f40368c;
+                Paint paint = this.f40373c;
                 float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
                 float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * this.d) + dp) - strokeWidth);
                 canvas.drawCircle(max, height, dp2, paint);
-                qg.i1.z1(max, height, strokeWidth, i0.a.k(xVar.f44678f, (int) (this.d * 255.0f)), canvas);
+                qg.i1.z1(max, height, strokeWidth, i0.a.k(xVar.f44685f, (int) (this.d * 255.0f)), canvas);
                 return;
         }
     }
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f40366a) {
+        switch (this.f40371a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
                 a();
@@ -87,7 +87,7 @@ public final class s6 extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f40366a) {
+        switch (this.f40371a) {
             case 1:
                 int actionMasked = motionEvent.getActionMasked();
                 if (actionMasked != 0) {
@@ -113,10 +113,10 @@ public final class s6 extends View {
 
     public s6(pg.x xVar, Context context) {
         super(context);
-        this.f40369e = xVar;
-        this.f40367b = new Paint(1);
+        this.f40374e = xVar;
+        this.f40372b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f40368c = paint;
+        this.f40373c = paint;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));

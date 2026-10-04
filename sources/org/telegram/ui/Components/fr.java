@@ -40,12 +40,12 @@ public abstract class fr {
             return;
         }
         Set<String> set = AppGlobalConfig.getInstance(i10).botAllowedSuffixes.get();
-        org.telegram.ui.ActionBar.f3 j3 = org.telegram.messenger.ok.j(1, context, d6Var, true);
+        org.telegram.ui.ActionBar.f3 i11 = org.telegram.messenger.bi.i(1, context, d6Var, true);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setOrientation(1);
-        j3.customView = linearLayout;
+        i11.customView = linearLayout;
         w9 w9Var = new w9(context);
         h9 h9Var = new h9((org.telegram.ui.ActionBar.d6) null);
         h9Var.r(user);
@@ -54,20 +54,20 @@ public abstract class fr {
         linearLayout.addView(w9Var, w7.z5.t(80, 80, 49, 0, 22, 0, 16));
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
-        int i11 = org.telegram.ui.ActionBar.i6.G6;
-        org.telegram.messenger.ok.n(i11, d6Var, textView, 1, 20.0f);
-        org.telegram.messenger.ok.l(R.string.CreateManagedBotTitle, textView, 17);
+        int i12 = org.telegram.ui.ActionBar.i6.G6;
+        org.telegram.messenger.bi.m(i12, d6Var, textView, 1, 20.0f);
+        org.telegram.messenger.bi.k(R.string.CreateManagedBotTitle, textView, 17);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.z5.t(-1, -2, 55, 16, 0, 16, 8), context);
-        org.telegram.messenger.ok.n(i11, d6Var, h, 1, 14.0f);
+        org.telegram.messenger.bi.m(i12, d6Var, h, 1, 14.0f);
         h.setText(AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotText, UserObject.getUserName(user)), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.gc, d6Var)));
         h.setGravity(17);
         linearLayout.addView(h, w7.z5.t(-1, -2, 55, 16, 0, 16, 22));
         org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, d6Var);
-        org.telegram.ui.Cells.h3 h3Var = j3Var.f22307b;
+        org.telegram.ui.Cells.h3 h3Var = j3Var.f22311b;
         h3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i12 = org.telegram.ui.ActionBar.i6.f20818d6;
-        j3Var.setBackground(org.telegram.ui.ActionBar.i6.b0(dp, org.telegram.ui.ActionBar.i6.v0(i12, d6Var)));
+        int i13 = org.telegram.ui.ActionBar.i6.f20822d6;
+        j3Var.setBackground(org.telegram.ui.ActionBar.i6.b0(dp, org.telegram.ui.ActionBar.i6.v0(i13, d6Var)));
         j3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
         linearLayout.addView(j3Var, w7.z5.t(-1, -2, 55, 12, 0, 12, 0));
         org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context, d6Var);
@@ -76,20 +76,20 @@ public abstract class fr {
         org.telegram.ui.Cells.j3 j3Var2 = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 29, d6Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        org.telegram.ui.Cells.h3 h3Var2 = j3Var2.f22307b;
+        org.telegram.ui.Cells.h3 h3Var2 = j3Var2.f22311b;
         j3Var2.removeView(h3Var2);
         h3Var2.setHintColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.H6, d6Var));
         h3Var2.setPadding(0, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(15.0f));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 17.0f);
         textView2.setText("@");
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
+        textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(i12, d6Var));
         textView2.setGravity(17);
         textView2.setPadding(0, AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f));
         linearLayout2.addView(textView2, w7.z5.k(21.0f, -1.0f, 0.0f, 0.0f, -2, -1));
         linearLayout2.addView(h3Var2, w7.z5.p(0, -1, 119.0f, 1, 0, 0, 0, 0));
         j3Var2.addView(linearLayout2, w7.z5.c(-1.0f, -1));
-        j3Var2.setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.i6.v0(i12, d6Var)));
+        j3Var2.setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.i6.v0(i13, d6Var)));
         h3Var2.setImeOptions(6);
         String str = tL_requestPeerTypeCreateBot.suggested_username;
         if (str != null) {
@@ -116,30 +116,30 @@ public abstract class fr {
         dVar.d();
         dVar.setText(LocaleController.getString(R.string.Cancel));
         linearLayout3.addView(dVar, w7.z5.p(0, 48, 119.0f, 1, 0, 0, 5, 0));
-        ci.d g10 = org.telegram.messenger.ok.g(24, context, d6Var, true);
-        g10.setText(LocaleController.getString(R.string.CreateManagedBotButton));
-        linearLayout3.addView(g10, w7.z5.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
-        j3.useBackgroundTopPadding = false;
-        j3.smoothKeyboardAnimationEnabled = true;
-        j3.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20762a7, d6Var));
-        j3.fixNavigationBar();
+        ci.d f7 = org.telegram.messenger.bi.f(24, context, d6Var, true);
+        f7.setText(LocaleController.getString(R.string.CreateManagedBotButton));
+        linearLayout3.addView(f7, w7.z5.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
+        i11.useBackgroundTopPadding = false;
+        i11.smoothKeyboardAnimationEnabled = true;
+        i11.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20766a7, d6Var));
+        i11.fixNavigationBar();
         final boolean[] zArr = new boolean[1];
         String[] strArr = new String[1];
         final int[] iArr = {-1};
         int[] iArr2 = {4};
         be beVar = new be(21, j3Var2, set);
-        org.telegram.messenger.fe feVar = new org.telegram.messenger.fe(j3Var2, set, new int[]{-1}, i10, strArr, new String[1], g10, e9Var2, d6Var, iArr2);
-        ar arVar = new ar(strArr, feVar, j3Var, iArr2, g10, z10, i10, user, iArr, zArr, callback, j3, d6Var, context);
+        org.telegram.messenger.fe feVar = new org.telegram.messenger.fe(j3Var2, set, new int[]{-1}, i10, strArr, new String[1], f7, e9Var2, d6Var, iArr2);
+        ar arVar = new ar(strArr, feVar, j3Var, iArr2, f7, z10, i10, user, iArr, zArr, callback, i11, d6Var, context);
         h3Var2.addTextChangedListener(new er(beVar, feVar));
         beVar.run();
         if (!TextUtils.isEmpty(str)) {
             feVar.run();
         }
         h3Var2.setOnEditorActionListener(new e1(arVar, 2));
-        dVar.setOnClickListener(new e3(j3, 2));
-        g10.setEnabled(false);
-        g10.setOnClickListener(new f0(arVar, 10));
-        j3.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        dVar.setOnClickListener(new e3(i11, 2));
+        f7.setEnabled(false);
+        f7.setOnClickListener(new f0(arVar, 10));
+        i11.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 boolean[] zArr2 = zArr;
@@ -157,6 +157,6 @@ public abstract class fr {
                 }
             }
         });
-        j3.show();
+        i11.show();
     }
 }

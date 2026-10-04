@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class i21 extends yl0 {
-    public Context f27291c;
+    public Context f27296c;
     public ArrayList d;
 
     @Override
@@ -34,17 +34,17 @@ public final class i21 extends yl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         int c10;
-        if (c1Var.f46528f == 0) {
+        if (c1Var.f46535f == 0) {
             boolean z10 = true;
             org.telegram.ui.ActionBar.k6 k6Var = (org.telegram.ui.ActionBar.k6) ((ArrayList) this.d.get(i10 - 1)).get(0);
-            if (k6Var.f21338f == org.telegram.ui.ActionBar.i6.Nd) {
+            if (k6Var.f21342f == org.telegram.ui.ActionBar.i6.Nd) {
                 c10 = 0;
             } else {
                 c10 = k6Var.c();
             }
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) c1Var.f46524a;
-            z8Var.f23815a.setText(org.telegram.ui.ActionBar.f5.i(k6Var.f21338f));
-            z8Var.f23816b = c10;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) c1Var.f46531a;
+            z8Var.f23819a.setText(org.telegram.ui.ActionBar.f5.i(k6Var.f21342f));
+            z8Var.f23820b = c10;
             if (c10 != 0) {
                 z10 = false;
             }
@@ -56,7 +56,7 @@ public final class i21 extends yl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View z8Var;
-        Context context = this.f27291c;
+        Context context = this.f27296c;
         if (i10 != 0) {
             z8Var = new View(context);
             z8Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));

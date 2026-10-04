@@ -6,5 +6,5 @@ public interface a {
 
     int c();
 
-    int i();
+    int x();
 }

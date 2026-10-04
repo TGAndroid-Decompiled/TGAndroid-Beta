@@ -13,30 +13,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.v90;
 public final class s8 extends FrameLayout {
-    public final Paint f5917a;
-    public final ImageView f5918b;
-    public final ImageView f5919c;
+    public final Paint f5918a;
+    public final ImageView f5919b;
+    public final ImageView f5920c;
     public final org.telegram.ui.Components.p6 d;
-    public final org.telegram.ui.Components.p6 f5920e;
-    public final ImageView f5921f;
+    public final org.telegram.ui.Components.p6 f5921e;
+    public final ImageView f5922f;
     public final SpannableString h;
-    public final SpannableString f5922n;
+    public final SpannableString f5923n;
 
     public s8(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f5917a = paint;
+        this.f5918a = paint;
         setWillNotDraw(false);
         paint.setColor(-16777216);
         ImageView imageView = new ImageView(context);
-        this.f5918b = imageView;
+        this.f5919b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.filled_link);
         imageView.setColorFilter(new PorterDuffColorFilter(-15033089, PorterDuff.Mode.SRC_IN));
         addView(imageView, w7.z5.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f5919c = imageView2;
+        this.f5920c = imageView2;
         imageView2.setBackground(new q8(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089));
         addView(imageView2, w7.z5.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, false, false, false);
@@ -48,7 +48,7 @@ public final class s8 extends FrameLayout {
         p6Var.getDrawable().G = AndroidUtilities.displaySize.x;
         addView(p6Var, w7.z5.d(-1, 24.0f, 55, 57.0f, 2.33f, 48.0f, 0.0f));
         org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(context, false, false, false);
-        this.f5920e = p6Var2;
+        this.f5921e = p6Var2;
         p6Var2.setTextColor(-8355712);
         p6Var2.setTextSize(AndroidUtilities.dp(14.21f));
         p6Var2.setEllipsizeByGradient(true);
@@ -58,18 +58,18 @@ public final class s8 extends FrameLayout {
         SpannableString spannableString = new SpannableString("x");
         this.h = spannableString;
         v90 v90Var = new v90(AndroidUtilities.dp(200.0f), p6Var);
-        v90Var.f31612e = 0.8f;
+        v90Var.f31618e = 0.8f;
         v90Var.a(org.telegram.ui.ActionBar.i6.l1(0.4f, textColor), org.telegram.ui.ActionBar.i6.l1(0.08f, textColor));
         spannableString.setSpan(v90Var, 0, spannableString.length(), 33);
         int textColor2 = p6Var2.getTextColor();
         SpannableString spannableString2 = new SpannableString("x");
-        this.f5922n = spannableString2;
+        this.f5923n = spannableString2;
         v90 v90Var2 = new v90(AndroidUtilities.dp(140.0f), p6Var2);
-        v90Var2.f31612e = 0.8f;
+        v90Var2.f31618e = 0.8f;
         v90Var2.a(org.telegram.ui.ActionBar.i6.l1(0.4f, textColor2), org.telegram.ui.ActionBar.i6.l1(0.08f, textColor2));
         spannableString2.setSpan(v90Var2, 0, spannableString2.length(), 33);
         ImageView imageView3 = new ImageView(context);
-        this.f5921f = imageView3;
+        this.f5922f = imageView3;
         imageView3.setColorFilter(new PorterDuffColorFilter(1694498815, PorterDuff.Mode.MULTIPLY));
         imageView3.setImageResource(R.drawable.input_clear);
         imageView3.setScaleType(scaleType);
@@ -80,7 +80,7 @@ public final class s8 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint paint = this.f5917a;
+        Paint paint = this.f5918a;
         canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.getShadowHeight(), paint);
         canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
     }

@@ -7,14 +7,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.r80;
 import org.telegram.ui.ha0;
 public final class k5 implements q0.a {
-    public final int f5303a;
-    public final Object f5304b;
-    public final Object f5305c;
+    public final int f5304a;
+    public final Object f5305b;
+    public final Object f5306c;
 
     public k5(int i10, Object obj, Object obj2) {
-        this.f5303a = i10;
-        this.f5304b = obj;
-        this.f5305c = obj2;
+        this.f5304a = i10;
+        this.f5305b = obj;
+        this.f5306c = obj2;
     }
 
     @Override
@@ -23,21 +23,21 @@ public final class k5 implements q0.a {
         String responseCodeString;
         boolean z11;
         String responseCodeString2;
-        switch (this.f5303a) {
+        switch (this.f5304a) {
             case 0:
-                q6.Z((mb) this.f5304b, (pg.u0) this.f5305c, (Integer) obj);
+                q6.Z((mb) this.f5305b, (pg.u0) this.f5306c, (Integer) obj);
                 return;
             case 1:
-                org.telegram.ui.d5 d5Var = (org.telegram.ui.d5) this.f5304b;
-                org.telegram.ui.y4 y4Var = (org.telegram.ui.y4) this.f5305c;
-                org.telegram.ui.e5[] e5VarArr = y4Var.f43050i;
-                org.telegram.ui.a5 a5Var = y4Var.f43051j;
+                org.telegram.ui.d5 d5Var = (org.telegram.ui.d5) this.f5305b;
+                org.telegram.ui.y4 y4Var = (org.telegram.ui.y4) this.f5306c;
+                org.telegram.ui.e5[] e5VarArr = y4Var.f43057i;
+                org.telegram.ui.a5 a5Var = y4Var.f43058j;
                 if (!d5Var.E) {
                     if (obj instanceof TLRPC.UserFull) {
-                        d5Var.a(org.telegram.ui.y4.c((TLRPC.User) a5Var.f34666c, (TLRPC.UserFull) obj, e5VarArr));
+                        d5Var.a(org.telegram.ui.y4.c((TLRPC.User) a5Var.f34672c, (TLRPC.UserFull) obj, e5VarArr));
                         return;
                     } else if (obj instanceof TLRPC.ChatFull) {
-                        d5Var.a(org.telegram.ui.y4.a((TLRPC.Chat) a5Var.f34666c, (TLRPC.ChatFull) obj, e5VarArr));
+                        d5Var.a(org.telegram.ui.y4.a((TLRPC.Chat) a5Var.f34672c, (TLRPC.ChatFull) obj, e5VarArr));
                         return;
                     } else {
                         return;
@@ -45,25 +45,25 @@ public final class k5 implements q0.a {
                 }
                 return;
             case 2:
-                Utilities.Callback callback = (Utilities.Callback) this.f5305c;
+                Utilities.Callback callback = (Utilities.Callback) this.f5306c;
                 c5.h hVar = (c5.h) obj;
-                if (((c5.h) this.f5304b).f4203a == 0) {
+                if (((c5.h) this.f5305b).f4204a == 0) {
                     AndroidUtilities.runOnUIThread(new wa(2, callback));
                     return;
                 }
                 return;
             case 3:
-                tg.v vVar = (tg.v) this.f5305c;
+                tg.v vVar = (tg.v) this.f5306c;
                 c5.h hVar2 = (c5.h) obj;
-                if (((c5.h) this.f5304b).f4203a == 0) {
+                if (((c5.h) this.f5305b).f4204a == 0) {
                     AndroidUtilities.runOnUIThread(new rg.s1(vVar, 7));
                     return;
                 }
                 return;
             case 4:
-                r80 r80Var = (r80) this.f5305c;
+                r80 r80Var = (r80) this.f5306c;
                 c5.h hVar3 = (c5.h) obj;
-                int i10 = ((c5.h) this.f5304b).f4203a;
+                int i10 = ((c5.h) this.f5305b).f4204a;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
@@ -77,9 +77,9 @@ public final class k5 implements q0.a {
                 AndroidUtilities.runOnUIThread(new ha0(r80Var, z10, responseCodeString, 14));
                 return;
             default:
-                ai.m0 m0Var = (ai.m0) this.f5305c;
+                ai.m0 m0Var = (ai.m0) this.f5306c;
                 c5.h hVar4 = (c5.h) obj;
-                int i11 = ((c5.h) this.f5304b).f4203a;
+                int i11 = ((c5.h) this.f5305b).f4204a;
                 if (i11 == 0) {
                     z11 = true;
                 } else {

@@ -20,7 +20,7 @@ public final class m implements Handler.Callback {
         boolean z10;
         Surface surface;
         n nVar = this.f159b;
-        if (this == nVar.H1 && nVar.f45748b0 != null) {
+        if (this == nVar.H1 && nVar.f45755b0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 nVar.M0 = true;
                 return;
@@ -33,7 +33,7 @@ public final class m implements Handler.Callback {
                     nVar.D1 = x1Var;
                     bVar.S(x1Var);
                 }
-                nVar.O0.f11646e++;
+                nVar.O0.f11647e++;
                 a0 a0Var = nVar.f163c1;
                 if (a0Var.f66e != 3) {
                     z10 = true;
@@ -61,7 +61,7 @@ public final class m implements Handler.Callback {
         }
         int i10 = message.arg1;
         int i11 = message.arg2;
-        String str = e2.d0.f8537a;
+        String str = e2.d0.f8538a;
         a(((i10 & 4294967295L) << 32) | (4294967295L & i11));
         return true;
     }

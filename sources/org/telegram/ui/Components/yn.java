@@ -8,35 +8,35 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class yn extends pi {
-    public final pz f33178n;
-    public final zl0 f33179r;
-    public final int f33180s;
+    public final pz f33184n;
+    public final zl0 f33185r;
+    public final int f33186s;
     public final org.telegram.ui.z7 v;
-    public int f33181w;
+    public int f33187w;
 
     public yn(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, xi xiVar) {
         super(context, d6Var, xiVar);
-        this.f33180s = i10;
+        this.f33186s = i10;
         pz pzVar = new pz(context, d6Var);
-        this.f33178n = pzVar;
+        this.f33184n = pzVar;
         pzVar.setText(LocaleController.getString(R.string.NoPhotos));
         pzVar.setOnTouchListener(null);
         pzVar.setTextSize(16);
         addView(pzVar, w7.z5.c(-2.0f, -1));
         pzVar.a(R.raw.media_forbidden, 150, 150);
-        TLRPC.Chat i12 = this.f29643b.i1();
+        TLRPC.Chat k12 = this.f29648b.k1();
         if (i10 == 1) {
-            pzVar.setText(ChatObject.getRestrictedErrorText(i12, 7));
+            pzVar.setText(ChatObject.getRestrictedErrorText(k12, 7));
         } else if (i10 == 3) {
-            pzVar.setText(ChatObject.getRestrictedErrorText(i12, 18));
+            pzVar.setText(ChatObject.getRestrictedErrorText(k12, 18));
         } else if (i10 == 4) {
-            pzVar.setText(ChatObject.getRestrictedErrorText(i12, 19));
+            pzVar.setText(ChatObject.getRestrictedErrorText(k12, 19));
         } else {
-            pzVar.setText(ChatObject.getRestrictedErrorText(i12, 22));
+            pzVar.setText(ChatObject.getRestrictedErrorText(k12, 22));
         }
         pzVar.c();
         zl0 zl0Var = new zl0(context, d6Var);
-        this.f33179r = zl0Var;
+        this.f33185r = zl0Var;
         zl0Var.setSectionsType(2);
         zl0Var.setVerticalScrollBarEnabled(false);
         zl0Var.setLayoutManager(new s4.c0());
@@ -51,7 +51,7 @@ public final class yn extends pi {
 
     @Override
     public int getCurrentItemTop() {
-        zl0 zl0Var = this.f33179r;
+        zl0 zl0Var = this.f33185r;
         if (zl0Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
@@ -66,7 +66,7 @@ public final class yn extends pi {
             top = i10;
         }
         int measuredHeight = (getMeasuredHeight() - top) - AndroidUtilities.dp(50.0f);
-        pz pzVar = this.f33178n;
+        pz pzVar = this.f33184n;
         pzVar.setTranslationY(((measuredHeight - pzVar.getMeasuredHeight()) / 2) + top);
         return AndroidUtilities.dp(12.0f) + top;
     }
@@ -78,13 +78,13 @@ public final class yn extends pi {
 
     @Override
     public int getListTopPadding() {
-        return this.f33179r.getPaddingTop();
+        return this.f33185r.getPaddingTop();
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f29643b.getSheetContainer().invalidate();
+        this.f29648b.getSheetContainer().invalidate();
     }
 
     @Override

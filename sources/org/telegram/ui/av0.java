@@ -10,27 +10,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class av0 extends View {
-    public final Paint f34920a;
-    public final TextPaint f34921b;
-    public int f34922c;
+    public final Paint f34925a;
+    public final TextPaint f34926b;
+    public int f34927c;
     public int d;
-    public int f34923e;
-    public int f34924f;
+    public int f34928e;
+    public int f34929f;
     public final String h;
-    public final String f34925n;
-    public int f34926r;
-    public final PhotoViewer f34927s;
+    public final String f34930n;
+    public int f34931r;
+    public final PhotoViewer f34932s;
 
     public av0(Context context, PhotoViewer photoViewer) {
         super(context);
-        this.f34927s = photoViewer;
-        this.f34920a = new Paint(1);
+        this.f34932s = photoViewer;
+        this.f34925a = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
-        this.f34921b = textPaint;
+        this.f34926b = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         textPaint.setColor(-3289651);
         this.h = LocaleController.getString("AccDescrVideoCompressLow", R.string.AccDescrVideoCompressLow);
-        this.f34925n = LocaleController.getString("AccDescrVideoCompressHigh", R.string.AccDescrVideoCompressHigh);
+        this.f34930n = LocaleController.getString("AccDescrVideoCompressHigh", R.string.AccDescrVideoCompressHigh);
         setImportantForAccessibility(1);
         setFocusable(true);
         setAccessibilityDelegate(new zu0(this));
@@ -40,80 +40,80 @@ public final class av0 extends View {
     public final void onDraw(Canvas canvas) {
         int i10;
         float f7;
-        if (this.f34927s.Z7 != 1) {
-            this.f34924f = (((getMeasuredWidth() - (this.f34922c * this.f34927s.Z7)) - (((this.f34927s.Z7 * 2) - 2) * this.d)) - (this.f34923e * 2)) / (this.f34927s.Z7 - 1);
+        if (this.f34932s.Z7 != 1) {
+            this.f34929f = (((getMeasuredWidth() - (this.f34927c * this.f34932s.Z7)) - (((this.f34932s.Z7 * 2) - 2) * this.d)) - (this.f34928e * 2)) / (this.f34932s.Z7 - 1);
         } else {
-            this.f34924f = ((getMeasuredWidth() - (this.f34922c * this.f34927s.Z7)) - (this.d * 2)) - (this.f34923e * 2);
+            this.f34929f = ((getMeasuredWidth() - (this.f34927c * this.f34932s.Z7)) - (this.d * 2)) - (this.f34928e * 2);
         }
         int dp = AndroidUtilities.dp(6.0f) + (getMeasuredHeight() / 2);
-        for (int i11 = 0; i11 < this.f34927s.Z7; i11++) {
-            int i12 = this.f34923e;
-            int i13 = (this.d * 2) + this.f34924f;
-            int i14 = this.f34922c;
+        for (int i11 = 0; i11 < this.f34932s.Z7; i11++) {
+            int i12 = this.f34928e;
+            int i13 = (this.d * 2) + this.f34929f;
+            int i14 = this.f34927c;
             int i15 = (i14 / 2) + ((i13 + i14) * i11) + i12;
-            if (i11 <= this.f34927s.Y7) {
-                this.f34920a.setColor(-11292945);
+            if (i11 <= this.f34932s.Y7) {
+                this.f34925a.setColor(-11292945);
             } else {
-                this.f34920a.setColor(1728053247);
+                this.f34925a.setColor(1728053247);
             }
             float f10 = i15;
             float f11 = dp;
-            if (i11 == this.f34927s.Y7) {
+            if (i11 == this.f34932s.Y7) {
                 i10 = AndroidUtilities.dp(6.0f);
             } else {
-                i10 = this.f34922c / 2;
+                i10 = this.f34927c / 2;
             }
-            canvas.drawCircle(f10, f11, i10, this.f34920a);
+            canvas.drawCircle(f10, f11, i10, this.f34925a);
             if (i11 != 0) {
-                int i16 = ((i15 - (this.f34922c / 2)) - this.d) - this.f34924f;
+                int i16 = ((i15 - (this.f34927c / 2)) - this.d) - this.f34929f;
                 float f12 = 0.0f;
-                if (i11 == this.f34927s.Y7 + 1) {
+                if (i11 == this.f34932s.Y7 + 1) {
                     f7 = AndroidUtilities.dpf2(2.0f);
                 } else {
                     f7 = 0.0f;
                 }
-                if (i11 == this.f34927s.Y7) {
+                if (i11 == this.f34932s.Y7) {
                     f12 = AndroidUtilities.dpf2(2.0f);
                 }
-                canvas.drawRect(f7 + i16, dp - AndroidUtilities.dp(1.0f), (i16 + this.f34924f) - f12, AndroidUtilities.dp(2.0f) + dp, this.f34920a);
+                canvas.drawRect(f7 + i16, dp - AndroidUtilities.dp(1.0f), (i16 + this.f34929f) - f12, AndroidUtilities.dp(2.0f) + dp, this.f34925a);
             }
         }
-        canvas.drawText(this.h, this.f34923e, dp - AndroidUtilities.dp(16.0f), this.f34921b);
-        canvas.drawText(this.f34925n, (getMeasuredWidth() - this.f34923e) - this.f34921b.measureText(this.f34925n), dp - AndroidUtilities.dp(16.0f), this.f34921b);
+        canvas.drawText(this.h, this.f34928e, dp - AndroidUtilities.dp(16.0f), this.f34926b);
+        canvas.drawText(this.f34930n, (getMeasuredWidth() - this.f34928e) - this.f34926b.measureText(this.f34930n), dp - AndroidUtilities.dp(16.0f), this.f34926b);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f34922c = AndroidUtilities.dp(8.0f);
+        this.f34927c = AndroidUtilities.dp(8.0f);
         this.d = AndroidUtilities.dp(2.0f);
-        this.f34923e = AndroidUtilities.dp(18.0f);
+        this.f34928e = AndroidUtilities.dp(18.0f);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         float x10 = motionEvent.getX();
         if (motionEvent.getAction() == 0) {
-            this.f34926r = this.f34927s.Y7;
+            this.f34931r = this.f34932s.Y7;
             getParent().requestDisallowInterceptTouchEvent(true);
         }
         int i10 = 0;
         if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
             while (true) {
-                if (i10 >= this.f34927s.Z7) {
+                if (i10 >= this.f34932s.Z7) {
                     break;
                 }
-                int i11 = this.f34923e;
-                int i12 = this.f34924f;
+                int i11 = this.f34928e;
+                int i12 = this.f34929f;
                 int i13 = this.d;
-                int i14 = this.f34922c;
+                int i14 = this.f34927c;
                 int i15 = i14 / 2;
                 int i16 = (((i13 * 2) + i12 + i14) * i10) + i11 + i15;
                 int i17 = (i12 / 2) + i15 + i13;
                 if (x10 > i16 - i17 && x10 < i16 + i17) {
-                    if (this.f34927s.Y7 != i10) {
-                        this.f34927s.Y7 = i10;
-                        this.f34927s.R0();
+                    if (this.f34932s.Y7 != i10) {
+                        this.f34932s.Y7 = i10;
+                        this.f34932s.R0();
                         invalidate();
                         return true;
                     }
@@ -122,10 +122,10 @@ public final class av0 extends View {
                 }
             }
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (this.f34927s.Y7 != this.f34926r) {
-                this.f34927s.p2(1);
+            if (this.f34932s.Y7 != this.f34931r) {
+                this.f34932s.p2(1);
             }
-            this.f34927s.L6 = false;
+            this.f34932s.L6 = false;
             return true;
         }
         return true;

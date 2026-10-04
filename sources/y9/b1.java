@@ -1,13 +1,13 @@
 package y9;
 public final class b1 {
-    public final c1 f50590a;
-    public final e1 f50591b;
-    public final d1 f50592c;
+    public final c1 f50598a;
+    public final e1 f50599b;
+    public final d1 f50600c;
 
     public b1(c1 c1Var, e1 e1Var, d1 d1Var) {
-        this.f50590a = c1Var;
-        this.f50591b = e1Var;
-        this.f50592c = d1Var;
+        this.f50598a = c1Var;
+        this.f50599b = e1Var;
+        this.f50600c = d1Var;
     }
 
     public final boolean equals(Object obj) {
@@ -16,7 +16,7 @@ public final class b1 {
         }
         if (obj instanceof b1) {
             b1 b1Var = (b1) obj;
-            if (this.f50590a.equals(b1Var.f50590a) && this.f50591b.equals(b1Var.f50591b) && this.f50592c.equals(b1Var.f50592c)) {
+            if (this.f50598a.equals(b1Var.f50598a) && this.f50599b.equals(b1Var.f50599b) && this.f50600c.equals(b1Var.f50600c)) {
                 return true;
             }
         }
@@ -24,10 +24,10 @@ public final class b1 {
     }
 
     public final int hashCode() {
-        return ((((this.f50590a.hashCode() ^ 1000003) * 1000003) ^ this.f50591b.hashCode()) * 1000003) ^ this.f50592c.hashCode();
+        return ((((this.f50598a.hashCode() ^ 1000003) * 1000003) ^ this.f50599b.hashCode()) * 1000003) ^ this.f50600c.hashCode();
     }
 
     public final String toString() {
-        return "StaticSessionData{appData=" + this.f50590a + ", osData=" + this.f50591b + ", deviceData=" + this.f50592c + "}";
+        return "StaticSessionData{appData=" + this.f50598a + ", osData=" + this.f50599b + ", deviceData=" + this.f50600c + "}";
     }
 }

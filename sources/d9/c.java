@@ -1,6 +1,6 @@
 package d9;
 public final class c extends a {
-    public static final c f8160a = new Object();
+    public static final c f8161a = new Object();
 
     @Override
     public final boolean a(char c10) {

@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import h8.j;
 import i8.g;
 public final class c implements e {
-    public final Bundle f49397a;
-    public final j f49398b;
+    public final Bundle f49405a;
+    public final j f49406b;
 
     public c(j jVar, Bundle bundle) {
-        this.f49398b = jVar;
-        this.f49397a = bundle;
+        this.f49406b = jVar;
+        this.f49405a = bundle;
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class c implements e {
 
     @Override
     public final void b() {
-        aa.a aVar = this.f49398b.f11037a;
-        Bundle bundle = this.f49397a;
+        aa.a aVar = this.f49406b.f11038a;
+        Bundle bundle = this.f49405a;
         ViewGroup viewGroup = (ViewGroup) aVar.f386b;
         g gVar = (g) aVar.f387c;
         try {

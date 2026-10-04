@@ -4,9 +4,9 @@ import e2.d0;
 import j$.util.Objects;
 import java.util.Locale;
 public final class b {
-    public final long f45784a;
-    public final long f45785b;
-    public final int f45786c;
+    public final long f45791a;
+    public final long f45792b;
+    public final int f45793c;
 
     public b(long j3, long j10, int i10) {
         boolean z10;
@@ -16,9 +16,9 @@ public final class b {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f45784a = j3;
-        this.f45785b = j10;
-        this.f45786c = i10;
+        this.f45791a = j3;
+        this.f45792b = j10;
+        this.f45793c = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -27,7 +27,7 @@ public final class b {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f45784a == bVar.f45784a && this.f45785b == bVar.f45785b && this.f45786c == bVar.f45786c) {
+            if (this.f45791a == bVar.f45791a && this.f45792b == bVar.f45792b && this.f45793c == bVar.f45793c) {
                 return true;
             }
         }
@@ -35,16 +35,16 @@ public final class b {
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f45784a), Long.valueOf(this.f45785b), Integer.valueOf(this.f45786c));
+        return Objects.hash(Long.valueOf(this.f45791a), Long.valueOf(this.f45792b), Integer.valueOf(this.f45793c));
     }
 
     public final String toString() {
-        String str = d0.f8537a;
+        String str = d0.f8538a;
         Locale locale = Locale.US;
-        StringBuilder t10 = a4.a.t(this.f45784a, "Segment: startTimeMs=", ", endTimeMs=");
-        t10.append(this.f45785b);
-        t10.append(", speedDivisor=");
-        t10.append(this.f45786c);
-        return t10.toString();
+        StringBuilder u10 = a4.a.u(this.f45791a, "Segment: startTimeMs=", ", endTimeMs=");
+        u10.append(this.f45792b);
+        u10.append(", speedDivisor=");
+        u10.append(this.f45793c);
+        return u10.toString();
     }
 }

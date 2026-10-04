@@ -1,32 +1,32 @@
 package org.telegram.messenger;
 public final class g8 implements Runnable {
-    public final int f17930a;
-    public final BaseController f17931b;
-    public final long f17932c;
+    public final int f17925a;
+    public final BaseController f17926b;
+    public final long f17927c;
     public final long d;
-    public final int f17933e;
-    public final int f17934f;
+    public final int f17928e;
+    public final int f17929f;
 
     public g8(BaseController baseController, long j3, long j10, int i10, int i11, int i12) {
-        this.f17930a = i12;
-        this.f17931b = baseController;
-        this.f17932c = j3;
+        this.f17925a = i12;
+        this.f17926b = baseController;
+        this.f17927c = j3;
         this.d = j10;
-        this.f17933e = i10;
-        this.f17934f = i11;
+        this.f17928e = i10;
+        this.f17929f = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f17930a) {
+        switch (this.f17925a) {
             case 0:
-                ((MediaDataController) this.f17931b).lambda$getMediaCountDatabase$139(this.f17932c, this.d, this.f17933e, this.f17934f);
+                ((MediaDataController) this.f17926b).lambda$getMediaCountDatabase$139(this.f17927c, this.d, this.f17928e, this.f17929f);
                 return;
             case 1:
-                ((MediaDataController) this.f17931b).lambda$putMediaCountDatabase$138(this.f17932c, this.d, this.f17933e, this.f17934f);
+                ((MediaDataController) this.f17926b).lambda$putMediaCountDatabase$138(this.f17927c, this.d, this.f17928e, this.f17929f);
                 return;
             default:
-                ((MessagesStorage) this.f17931b).lambda$updateRepliesMaxReadId$193(this.f17932c, this.d, this.f17933e, this.f17934f);
+                ((MessagesStorage) this.f17926b).lambda$updateRepliesMaxReadId$193(this.f17927c, this.d, this.f17928e, this.f17929f);
                 return;
         }
     }

@@ -1,14 +1,14 @@
 package k2;
 public final class m extends Exception {
-    public final b2.s f14483a;
+    public final b2.s f14484a;
 
     public m(c2.g gVar, b2.s sVar) {
         super(gVar);
-        this.f14483a = sVar;
+        this.f14484a = sVar;
     }
 
     public m(String str, b2.s sVar) {
         super(str);
-        this.f14483a = sVar;
+        this.f14484a = sVar;
     }
 }

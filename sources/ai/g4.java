@@ -22,10 +22,10 @@ public final class g4 extends xi {
         int i10;
         switch (this.I2) {
             case 1:
-                hg.m mVar = (hg.m) this.J2;
-                g4 g4Var = mVar.M;
+                hg.n nVar = (hg.n) this.J2;
+                g4 g4Var = nVar.M;
                 if (g4Var != null && g4Var.isShowing()) {
-                    AndroidUtilities.requestAdjustResize(mVar.getParentActivity(), hg.m.c0(mVar));
+                    AndroidUtilities.requestAdjustResize(nVar.getParentActivity(), hg.n.c0(nVar));
                 }
                 super.dismissInternal();
                 return;
@@ -63,14 +63,14 @@ public final class g4 extends xi {
                 }
                 return;
             case 1:
-                hg.m mVar = (hg.m) this.J2;
-                g4 g4Var2 = mVar.M;
+                hg.n nVar = (hg.n) this.J2;
+                g4 g4Var2 = nVar.M;
                 if (g4Var2 != null) {
                     g4Var2.setFocusable(false);
                 }
-                g4 g4Var3 = mVar.M;
+                g4 g4Var3 = nVar.M;
                 if (g4Var3 != null && g4Var3.isShowing()) {
-                    AndroidUtilities.requestAdjustResize(mVar.getParentActivity(), hg.m.d0(mVar));
+                    AndroidUtilities.requestAdjustResize(nVar.getParentActivity(), hg.n.d0(nVar));
                     return;
                 }
                 return;

@@ -98,7 +98,7 @@ public abstract class m6 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new k6(this, 0));
             this.M.addListener(new b(this, 7));
-            this.M.setInterpolator(tr.f31141f);
+            this.M.setInterpolator(tr.f31147f);
             this.M.setDuration(200L);
             this.M.start();
         }
@@ -228,8 +228,8 @@ public abstract class m6 extends View {
                 float f19 = this.f1357r;
                 float f20 = f10 * f19;
                 f11 = measuredWidth;
-                float x10 = org.telegram.messenger.f0.x(f18, f17, 2.0f, z10);
-                float x11 = org.telegram.messenger.f0.x(f20, f19, 2.0f, this.f1360x);
+                float x10 = org.telegram.messenger.q.x(f18, f17, 2.0f, z10);
+                float x11 = org.telegram.messenger.q.x(f20, f19, 2.0f, this.f1360x);
                 if (this.f1361y == 0.0f || i14 == (i12 = this.K)) {
                     arrayList2 = arrayList3;
                     arrayList = arrayList4;

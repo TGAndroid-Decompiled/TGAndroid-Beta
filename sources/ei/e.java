@@ -7,12 +7,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 public final class e implements Runnable {
-    public final int f9002a;
-    public final m f9003b;
+    public final int f9003a;
+    public final m f9004b;
 
     public e(m mVar, int i10) {
-        this.f9002a = i10;
-        this.f9003b = mVar;
+        this.f9003a = i10;
+        this.f9004b = mVar;
     }
 
     @Override
@@ -20,9 +20,9 @@ public final class e implements Runnable {
         int i10;
         String f7;
         int i11;
-        switch (this.f9002a) {
+        switch (this.f9003a) {
             case 0:
-                m mVar = this.f9003b;
+                m mVar = this.f9004b;
                 bi.q qVar = mVar.T;
                 if (mVar.Y.end_date == 0) {
                     f7 = null;
@@ -30,14 +30,14 @@ public final class e implements Runnable {
                     f7 = xg.l.f((i10 - mVar.getConnectionsManager().getCurrentTime()) * 1000);
                 }
                 qVar.f(f7, true);
-                if (mVar.Y.end_date != 0 && mVar.f9189b0) {
+                if (mVar.Y.end_date != 0 && mVar.f9190b0) {
                     AndroidUtilities.runOnUIThread(mVar.V, 1000L);
                     return;
                 }
                 return;
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-                m mVar2 = this.f9003b;
+                m mVar2 = this.f9004b;
                 updatestarrefprogram.bot = mVar2.getMessagesController().getInputUser(mVar2.P);
                 TL_payments.starRefProgram starrefprogram = mVar2.Y;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
@@ -55,7 +55,7 @@ public final class e implements Runnable {
                 mVar2.getConnectionsManager().sendRequest(updatestarrefprogram, new b(mVar2, b2Var, 1));
                 return;
             default:
-                m mVar3 = this.f9003b;
+                m mVar3 = this.f9004b;
                 Activity parentActivity = mVar3.getParentActivity();
                 if (!mVar3.W && mVar3.Y.end_date == 0) {
                     i11 = R.string.AffiliateProgramStartInfoLink;

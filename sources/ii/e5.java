@@ -128,7 +128,7 @@ public abstract class e5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = h6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (fj0Var != null && fj0Var.f26468e) {
+                    if (fj0Var != null && fj0Var.f26473e) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -259,7 +259,7 @@ public abstract class e5 {
                                             } else {
                                                 valueOf = String.valueOf(i11);
                                             }
-                                            SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(t8.b.v(valueOf, ".  "));
+                                            SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(sa.e.v(valueOf, ".  "));
                                             spannableStringBuilder6.append((CharSequence) spannableStringBuilder);
                                             arrayList7.add(spannableStringBuilder6);
                                         }
@@ -391,9 +391,9 @@ public abstract class e5 {
                     e7 = false;
                     continue;
                 } else {
-                    ArrayList arrayList2 = aVar.f12193k;
-                    if (!aVar.f12191i && aVar.f12187c <= 0) {
-                        TL_iv.PageBlock pageBlock = aVar.f12186b;
+                    ArrayList arrayList2 = aVar.f12194k;
+                    if (!aVar.f12192i && aVar.f12188c <= 0) {
+                        TL_iv.PageBlock pageBlock = aVar.f12187b;
                         if (!(pageBlock instanceof TL_iv.pageBlockPullquote)) {
                             boolean z10 = pageBlock instanceof TL_iv.pageBlockBlockquote;
                             if (arrayList2.size() + (z10 ? 1 : 0) <= 1 && (!z10 || (richText = ((TL_iv.pageBlockBlockquote) pageBlock).caption) == null || (richText instanceof TL_iv.textEmpty) || h6.l(richText).isEmpty())) {
@@ -458,21 +458,21 @@ public abstract class e5 {
         SpannableStringBuilder r10;
         TL_iv.RichText richText = null;
         if (z10) {
-            TL_iv.PageBlock pageBlock = aVar.f12186b;
+            TL_iv.PageBlock pageBlock = aVar.f12187b;
             if (pageBlock != null) {
                 richText = pageBlock.text;
             }
             r10 = h6.r(richText, pageBlock, false);
         } else {
-            TL_iv.PageBlock pageBlock2 = aVar.f12186b;
+            TL_iv.PageBlock pageBlock2 = aVar.f12187b;
             if (pageBlock2 != null) {
                 richText = pageBlock2.text;
             }
             r10 = h6.r(richText, pageBlock2, true);
         }
-        if (aVar.f12186b instanceof TL_iv.pageBlockPreformatted) {
+        if (aVar.f12187b instanceof TL_iv.pageBlockPreformatted) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(r10);
-            spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, ((TL_iv.pageBlockPreformatted) aVar.f12186b).language, spannableStringBuilder.toString()), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, ((TL_iv.pageBlockPreformatted) aVar.f12187b).language, spannableStringBuilder.toString()), 0, spannableStringBuilder.length(), 33);
             return spannableStringBuilder;
         }
         return r10;
@@ -484,11 +484,11 @@ public abstract class e5 {
         int i10 = 0;
         while (list != null && i10 < list.size()) {
             a aVar = (a) list.get(i10);
-            if (!aVar.f12193k.isEmpty()) {
-                long longValue = ((Long) aVar.f12193k.get(0)).longValue();
+            if (!aVar.f12194k.isEmpty()) {
+                long longValue = ((Long) aVar.f12194k.get(0)).longValue();
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 int i11 = i10;
-                while (i11 < list.size() && !((a) list.get(i11)).f12193k.isEmpty() && ((Long) ((a) list.get(i11)).f12193k.get(0)).longValue() == longValue) {
+                while (i11 < list.size() && !((a) list.get(i11)).f12194k.isEmpty() && ((Long) ((a) list.get(i11)).f12194k.get(0)).longValue() == longValue) {
                     if (i11 > i10) {
                         spannableStringBuilder.append('\n');
                     }
@@ -501,7 +501,7 @@ public abstract class e5 {
                 arrayList.add(spannableStringBuilder);
                 i10 = i11;
             } else {
-                TL_iv.PageBlock pageBlock = aVar.f12186b;
+                TL_iv.PageBlock pageBlock = aVar.f12187b;
                 if (!(pageBlock instanceof TL_iv.pageBlockBlockquote) && !(pageBlock instanceof TL_iv.pageBlockPullquote)) {
                     arrayList.add(i(aVar, z10));
                 } else {
@@ -512,7 +512,7 @@ public abstract class e5 {
                         r10 = h6.r(pageBlock.text, pageBlock, true);
                     }
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(r10);
-                    TL_iv.PageBlock pageBlock2 = aVar.f12186b;
+                    TL_iv.PageBlock pageBlock2 = aVar.f12187b;
                     z11 = ((pageBlock2 instanceof TL_iv.pageBlockBlockquote) && ((TL_iv.pageBlockBlockquote) pageBlock2).collapsed) ? false : false;
                     if (spannableStringBuilder2.length() > 0) {
                         fj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z11);
@@ -543,7 +543,7 @@ public abstract class e5 {
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
         ?? obj = new Object();
-        obj.f28497a = i10;
+        obj.f28502a = i10;
         spannableStringBuilder2.setSpan(new n11(obj, 0), 0, spannableStringBuilder2.length(), 33);
         return spannableStringBuilder2;
     }

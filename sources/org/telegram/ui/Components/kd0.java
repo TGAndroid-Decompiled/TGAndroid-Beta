@@ -17,7 +17,7 @@ public final class kd0 extends ld0 {
         h2Var.setSingleLine(true);
         h2Var.setInputType(1);
         h2Var.setTypeface(Typeface.DEFAULT);
-        h2Var.setCursorColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20965l6, false));
+        h2Var.setCursorColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20969l6, false));
         h2Var.setCursorWidth(1.5f);
         h2Var.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         e(h2Var);

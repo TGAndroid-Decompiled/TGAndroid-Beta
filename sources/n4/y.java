@@ -58,14 +58,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.Cells.q9;
 import p4.t0;
 public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, le.f, n5.b {
-    public final int f16639a;
-    public Object f16640b;
-    public Object f16641c;
+    public final int f16643a;
+    public Object f16644b;
+    public Object f16645c;
 
     public y(int i10, Object obj, Object obj2) {
-        this.f16639a = i10;
-        this.f16640b = obj;
-        this.f16641c = obj2;
+        this.f16643a = i10;
+        this.f16644b = obj;
+        this.f16645c = obj2;
     }
 
     public static void Q(Bundle bundle) {
@@ -77,9 +77,9 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public static String c0(y yVar) {
-        Collection<String> collection = (Collection) yVar.f16641c;
+        Collection<String> collection = (Collection) yVar.f16645c;
         StringBuilder sb2 = new StringBuilder("com.google.android.gms.cast.CATEGORY_CAST");
-        String str = (String) yVar.f16640b;
+        String str = (String) yVar.f16644b;
         if (str != null) {
             String upperCase = str.toUpperCase(Locale.ROOT);
             if (upperCase.matches("[A-F0-9]+")) {
@@ -101,7 +101,7 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
                     if (!z10) {
                         sb2.append(",");
                     }
-                    if (!g6.a.f10247a.matcher(str2).matches()) {
+                    if (!g6.a.f10248a.matcher(str2).matches()) {
                         StringBuilder sb3 = new StringBuilder(str2.length());
                         for (int i10 = 0; i10 < str2.length(); i10++) {
                             char charAt = str2.charAt(i10);
@@ -151,13 +151,13 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void A(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        k0 k0Var = (k0) this.f16640b;
+        k0 k0Var = (k0) this.f16644b;
         androidx.fragment.app.v vVar = k0Var.f2637w.f2733b;
         androidx.fragment.app.s sVar = k0Var.f2639y;
         if (sVar != null) {
             sVar.p().f2630o.A(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -171,17 +171,17 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     @Override
     public void B(Editable editable) {
-        ((l0) this.f16641c).i();
-        ((ii.k0) this.f16640b).g0();
+        ((l0) this.f16645c).i();
+        ((ii.k0) this.f16644b).g0();
     }
 
     public void C(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.C(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -198,7 +198,7 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
         if (stackTraceElementArr.length <= 1024) {
             return stackTraceElementArr;
         }
-        ea.a[] aVarArr = (ea.a[]) this.f16640b;
+        ea.a[] aVarArr = (ea.a[]) this.f16644b;
         StackTraceElement[] stackTraceElementArr2 = stackTraceElementArr;
         for (int i10 = 0; i10 < 1; i10++) {
             ea.a aVar = aVarArr[i10];
@@ -208,18 +208,18 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
             stackTraceElementArr2 = aVar.D(stackTraceElementArr);
         }
         if (stackTraceElementArr2.length > 1024) {
-            return ((rb.a) this.f16641c).D(stackTraceElementArr2);
+            return ((rb.a) this.f16645c).D(stackTraceElementArr2);
         }
         return stackTraceElementArr2;
     }
 
     public void E(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.E(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -233,11 +233,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void F(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.F(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -256,11 +256,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void H(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.H(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -274,13 +274,13 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void I(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        k0 k0Var = (k0) this.f16640b;
+        k0 k0Var = (k0) this.f16644b;
         androidx.fragment.app.v vVar = k0Var.f2637w.f2733b;
         androidx.fragment.app.s sVar = k0Var.f2639y;
         if (sVar != null) {
             sVar.p().f2630o.I(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -294,11 +294,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void J(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.J(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -312,11 +312,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void K(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.K(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -330,11 +330,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void L(androidx.fragment.app.s f7, Bundle bundle, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.L(f7, bundle, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -348,11 +348,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void M(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.M(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -366,11 +366,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void N(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.N(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -384,11 +384,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void O(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.O(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -401,17 +401,17 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public byte[] P(n3.a aVar) {
-        DataOutputStream dataOutputStream = (DataOutputStream) this.f16641c;
-        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f16640b;
+        DataOutputStream dataOutputStream = (DataOutputStream) this.f16645c;
+        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f16644b;
         byteArrayOutputStream.reset();
         try {
-            dataOutputStream.writeBytes(aVar.f16563a);
+            dataOutputStream.writeBytes(aVar.f16567a);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeBytes(aVar.f16564b);
+            dataOutputStream.writeBytes(aVar.f16568b);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeLong(aVar.f16565c);
+            dataOutputStream.writeLong(aVar.f16569c);
             dataOutputStream.writeLong(aVar.d);
-            dataOutputStream.write(aVar.f16566e);
+            dataOutputStream.write(aVar.f16570e);
             dataOutputStream.flush();
             return byteArrayOutputStream.toByteArray();
         } catch (IOException e7) {
@@ -421,12 +421,12 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public c3.o R(Object... objArr) {
         Constructor a2;
-        synchronized (((AtomicBoolean) this.f16641c)) {
-            if (!((AtomicBoolean) this.f16641c).get()) {
+        synchronized (((AtomicBoolean) this.f16645c)) {
+            if (!((AtomicBoolean) this.f16645c).get()) {
                 try {
-                    a2 = ((w1) this.f16640b).a();
+                    a2 = ((w1) this.f16644b).a();
                 } catch (ClassNotFoundException unused) {
-                    ((AtomicBoolean) this.f16641c).set(true);
+                    ((AtomicBoolean) this.f16645c).set(true);
                 } catch (Exception e7) {
                     throw new RuntimeException("Error instantiating extension", e7);
                 }
@@ -445,17 +445,17 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public synchronized Map S() {
         try {
-            if (((Map) this.f16641c) == null) {
-                this.f16641c = DesugarCollections.unmodifiableMap(new HashMap((HashMap) this.f16640b));
+            if (((Map) this.f16645c) == null) {
+                this.f16645c = DesugarCollections.unmodifiableMap(new HashMap((HashMap) this.f16644b));
             }
         } catch (Throwable th2) {
             throw th2;
         }
-        return (Map) this.f16641c;
+        return (Map) this.f16645c;
     }
 
     public android.support.v4.media.session.l T() {
-        MediaController.TransportControls transportControls = ((android.support.v4.media.session.h) this.f16640b).f2009a.getTransportControls();
+        MediaController.TransportControls transportControls = ((android.support.v4.media.session.h) this.f16644b).f2009a.getTransportControls();
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 29) {
             return new android.support.v4.media.session.l(transportControls);
@@ -474,40 +474,40 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public void V(k.a aVar) {
-        qi.f fVar = (qi.f) this.f16640b;
-        ((ActionMode.Callback) fVar.f45527a).onDestroyActionMode(fVar.o(aVar));
-        g.s sVar = (g.s) this.f16641c;
+        qi.f fVar = (qi.f) this.f16644b;
+        ((ActionMode.Callback) fVar.f45534a).onDestroyActionMode(fVar.o(aVar));
+        g.s sVar = (g.s) this.f16645c;
         if (sVar.E != null) {
-            sVar.f10102f.getDecorView().removeCallbacks(sVar.F);
+            sVar.f10103f.getDecorView().removeCallbacks(sVar.F);
         }
-        if (sVar.f10118y != null) {
+        if (sVar.f10119y != null) {
             r0.l0 l0Var = sVar.G;
             if (l0Var != null) {
                 l0Var.b();
             }
-            r0.l0 a2 = r0.i0.a(sVar.f10118y);
+            r0.l0 a2 = r0.i0.a(sVar.f10119y);
             a2.a(0.0f);
             sVar.G = a2;
             a2.d(new g.j(this, 2));
         }
-        sVar.f10117x = null;
+        sVar.f10118x = null;
         ViewGroup viewGroup = sVar.J;
-        WeakHashMap weakHashMap = r0.i0.f45596a;
+        WeakHashMap weakHashMap = r0.i0.f45603a;
         r0.y.c(viewGroup);
         sVar.w();
     }
 
     public boolean W(k.a aVar, Menu menu) {
-        ViewGroup viewGroup = ((g.s) this.f16641c).J;
-        WeakHashMap weakHashMap = r0.i0.f45596a;
+        ViewGroup viewGroup = ((g.s) this.f16645c).J;
+        WeakHashMap weakHashMap = r0.i0.f45603a;
         r0.y.c(viewGroup);
-        qi.f fVar = (qi.f) this.f16640b;
-        ActionMode.Callback callback = (ActionMode.Callback) fVar.f45527a;
+        qi.f fVar = (qi.f) this.f16644b;
+        ActionMode.Callback callback = (ActionMode.Callback) fVar.f45534a;
         k.e o9 = fVar.o(aVar);
         a0.m mVar = (a0.m) fVar.d;
         Menu menu2 = (Menu) mVar.get(menu);
         if (menu2 == null) {
-            menu2 = new l.a0((Context) fVar.f45528b, (l.k) menu);
+            menu2 = new l.a0((Context) fVar.f45535b, (l.k) menu);
             mVar.put(menu, menu2);
         }
         return callback.onPrepareActionMode(o9, menu2);
@@ -515,13 +515,13 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public void X(androidx.mediarouter.app.r rVar) {
         if (rVar != null) {
-            if (!((Set) this.f16641c).add(rVar)) {
+            if (!((Set) this.f16645c).add(rVar)) {
                 Log.w("MediaControllerCompat", "the callback has already been registered");
                 return;
             }
             Handler handler = new Handler();
             rVar.f(handler);
-            android.support.v4.media.session.h hVar = (android.support.v4.media.session.h) this.f16640b;
+            android.support.v4.media.session.h hVar = (android.support.v4.media.session.h) this.f16644b;
             hVar.f2009a.registerCallback(rVar.f3015a, handler);
             synchronized (hVar.f2010b) {
                 if (hVar.f2012e.a() != null) {
@@ -545,65 +545,65 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public void Y(p pVar, Handler handler) {
-        r rVar = (r) this.f16640b;
+        r rVar = (r) this.f16644b;
         synchronized (rVar.d) {
-            rVar.f16630m = pVar;
-            rVar.f16620a.setCallback(pVar.f16615b, handler);
+            rVar.f16634m = pVar;
+            rVar.f16624a.setCallback(pVar.f16619b, handler);
             pVar.C(rVar, handler);
         }
     }
 
     public void Z(h0 h0Var) {
-        r rVar = (r) this.f16640b;
-        rVar.f16625g = h0Var;
+        r rVar = (r) this.f16644b;
+        rVar.f16629g = h0Var;
         synchronized (rVar.d) {
-            for (int beginBroadcast = rVar.f16624f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+            for (int beginBroadcast = rVar.f16628f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                 try {
-                    ((f) rVar.f16624f.getBroadcastItem(beginBroadcast)).t(h0Var);
+                    ((f) rVar.f16628f.getBroadcastItem(beginBroadcast)).t(h0Var);
                 } catch (RemoteException | SecurityException e7) {
                     Log.e("MediaSessionCompat", "Dead object in setPlaybackState.", e7);
                 }
             }
-            rVar.f16624f.finishBroadcast();
+            rVar.f16628f.finishBroadcast();
         }
-        MediaSession mediaSession = rVar.f16620a;
-        if (h0Var.f16593w == null) {
+        MediaSession mediaSession = rVar.f16624a;
+        if (h0Var.f16597w == null) {
             PlaybackState.Builder builder = new PlaybackState.Builder();
-            builder.setState(h0Var.f16585a, h0Var.f16586b, h0Var.d, h0Var.f16590n);
-            builder.setBufferedPosition(h0Var.f16587c);
-            builder.setActions(h0Var.f16588e);
+            builder.setState(h0Var.f16589a, h0Var.f16590b, h0Var.d, h0Var.f16594n);
+            builder.setBufferedPosition(h0Var.f16591c);
+            builder.setActions(h0Var.f16592e);
             builder.setErrorMessage(h0Var.h);
-            for (g0 g0Var : h0Var.f16591r) {
+            for (g0 g0Var : h0Var.f16595r) {
                 g0Var.getClass();
-                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(g0Var.f16582a, g0Var.f16583b, g0Var.f16584c);
+                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(g0Var.f16586a, g0Var.f16587b, g0Var.f16588c);
                 builder2.setExtras(g0Var.d);
                 PlaybackState.CustomAction build = builder2.build();
                 if (build != null) {
                     builder.addCustomAction(build);
                 }
             }
-            builder.setActiveQueueItemId(h0Var.f16592s);
+            builder.setActiveQueueItemId(h0Var.f16596s);
             if (Build.VERSION.SDK_INT >= 22) {
                 f0.a(builder, h0Var.v);
             }
-            h0Var.f16593w = builder.build();
+            h0Var.f16597w = builder.build();
         }
-        mediaSession.setPlaybackState(h0Var.f16593w);
+        mediaSession.setPlaybackState(h0Var.f16597w);
     }
 
     @Override
     public void a() {
-        ((le.k) this.f16640b).a();
+        ((le.k) this.f16644b).a();
     }
 
     public void a0(androidx.mediarouter.app.r rVar) {
         if (rVar != null) {
-            if (!((Set) this.f16641c).remove(rVar)) {
+            if (!((Set) this.f16645c).remove(rVar)) {
                 Log.w("MediaControllerCompat", "the callback has never been registered");
                 return;
             }
             try {
-                ((android.support.v4.media.session.h) this.f16640b).b(rVar);
+                ((android.support.v4.media.session.h) this.f16644b).b(rVar);
                 return;
             } finally {
                 rVar.f(null);
@@ -614,11 +614,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     @Override
     public void b(i1 i1Var) {
-        ((ii.k0) this.f16640b).b(i1Var);
+        ((ii.k0) this.f16644b).b(i1Var);
     }
 
     public int b0(Context context, com.google.android.gms.common.api.c cVar) {
-        SparseIntArray sparseIntArray = (SparseIntArray) this.f16640b;
+        SparseIntArray sparseIntArray = (SparseIntArray) this.f16644b;
         n6.l.h(context);
         n6.l.h(cVar);
         int i10 = 0;
@@ -644,7 +644,7 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
             }
         }
         if (i10 == -1) {
-            i10 = ((k6.e) this.f16641c).d(context, l4);
+            i10 = ((k6.e) this.f16645c).d(context, l4);
         }
         sparseIntArray.put(l4, i10);
         return i10;
@@ -654,33 +654,33 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     public c3.h c(c3.p pVar, long j3) {
         long position = pVar.getPosition();
         int min = (int) Math.min(20000L, pVar.getLength() - position);
-        e2.v vVar = (e2.v) this.f16641c;
+        e2.v vVar = (e2.v) this.f16645c;
         vVar.G(min);
-        pVar.b(0, min, vVar.f8589a);
+        pVar.b(0, min, vVar.f8590a);
         int i10 = -1;
         long j10 = -9223372036854775807L;
         int i11 = -1;
         while (vVar.a() >= 4) {
-            if (h3.a.a(vVar.f8590b, vVar.f8589a) != 442) {
+            if (h3.a.a(vVar.f8591b, vVar.f8590a) != 442) {
                 vVar.K(1);
             } else {
                 vVar.K(4);
                 long c10 = j4.x.c(vVar);
                 if (c10 != -9223372036854775807L) {
-                    long b10 = ((e2.b0) this.f16640b).b(c10);
+                    long b10 = ((e2.b0) this.f16644b).b(c10);
                     if (b10 > j3) {
                         if (j10 == -9223372036854775807L) {
                             return new c3.h(-1, b10, position);
                         }
                         return new c3.h(0, -9223372036854775807L, position + i11);
                     } else if (b10 + 100000 > j3) {
-                        return new c3.h(0, -9223372036854775807L, position + vVar.f8590b);
+                        return new c3.h(0, -9223372036854775807L, position + vVar.f8591b);
                     } else {
                         j10 = b10;
-                        i11 = vVar.f8590b;
+                        i11 = vVar.f8591b;
                     }
                 }
-                int i12 = vVar.f8591c;
+                int i12 = vVar.f8592c;
                 if (vVar.a() < 10) {
                     vVar.J(i12);
                 } else {
@@ -693,7 +693,7 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
                         if (vVar.a() < 4) {
                             vVar.J(i12);
                         } else {
-                            if (h3.a.a(vVar.f8590b, vVar.f8589a) == 443) {
+                            if (h3.a.a(vVar.f8591b, vVar.f8590a) == 443) {
                                 vVar.K(4);
                                 int D = vVar.D();
                                 if (vVar.a() < D) {
@@ -706,7 +706,7 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
                                 if (vVar.a() < 4) {
                                     break;
                                 }
-                                int a2 = h3.a.a(vVar.f8590b, vVar.f8589a);
+                                int a2 = h3.a.a(vVar.f8591b, vVar.f8590a);
                                 if (a2 == 442 || a2 == 441 || (a2 >>> 8) != 1) {
                                     break;
                                 }
@@ -715,12 +715,12 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
                                     vVar.J(i12);
                                     break;
                                 }
-                                vVar.J(Math.min(vVar.f8591c, vVar.f8590b + vVar.D()));
+                                vVar.J(Math.min(vVar.f8592c, vVar.f8591b + vVar.D()));
                             }
                         }
                     }
                 }
-                i10 = vVar.f8590b;
+                i10 = vVar.f8591b;
             }
         }
         if (j10 != -9223372036854775807L) {
@@ -736,25 +736,25 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     @Override
     public boolean e() {
-        return ((ii.k0) this.f16640b).W();
+        return ((ii.k0) this.f16644b).W();
     }
 
     @Override
     public void f(int i10, int i11) {
-        ((ii.k0) this.f16640b).Z(i10, i11);
+        ((ii.k0) this.f16644b).Z(i10, i11);
     }
 
     @Override
     public void g() {
-        e2.v vVar = (e2.v) this.f16641c;
-        byte[] bArr = e2.d0.f8538b;
+        e2.v vVar = (e2.v) this.f16645c;
+        byte[] bArr = e2.d0.f8539b;
         vVar.getClass();
         vVar.H(bArr.length, bArr);
     }
 
     @Override
     public Object mo28get() {
-        return new m5.d((Context) ((e.a) this.f16640b).f8395a, (la.h) ((l2.g) this.f16641c).mo28get());
+        return new m5.d((Context) ((e.a) this.f16644b).f8396a, (la.h) ((l2.g) this.f16645c).mo28get());
     }
 
     @Override
@@ -769,11 +769,11 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     @Override
     public void l(i1 i1Var) {
-        ((ii.k0) this.f16640b).g();
+        ((ii.k0) this.f16644b).g();
     }
 
     public void m(Object obj, String str) {
-        ((ArrayList) this.f16640b).add(a4.a.C(str, "=", String.valueOf(obj)));
+        ((ArrayList) this.f16644b).add(a4.a.D(str, "=", String.valueOf(obj)));
     }
 
     @Override
@@ -782,14 +782,14 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public void o() {
-        this.f16640b = null;
-        this.f16641c = null;
+        this.f16644b = null;
+        this.f16645c = null;
     }
 
     @Override
     public void onComplete(Task task) {
-        a9.e eVar = (a9.e) this.f16640b;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f16641c;
+        a9.e eVar = (a9.e) this.f16644b;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f16645c;
         synchronized (eVar.f350f) {
             eVar.f349e.remove(taskCompletionSource);
         }
@@ -802,7 +802,7 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     @Override
     public void q(String str, long j3, long j10, long j11) {
-        g6.n nVar = (g6.n) this.f16640b;
+        g6.n nVar = (g6.n) this.f16644b;
         if (nVar != null) {
             nVar.q(str, j3, j10, j11);
         }
@@ -810,23 +810,23 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     public i9.w s(byte[] bArr) {
         byte[] bArr2;
-        la.h hVar = (la.h) this.f16641c;
-        if (hVar != null && (bArr2 = (byte[]) hVar.f15398b) != null && Arrays.equals(bArr2, bArr)) {
-            i9.w wVar = (i9.w) ((la.h) this.f16641c).d;
+        la.h hVar = (la.h) this.f16645c;
+        if (hVar != null && (bArr2 = (byte[]) hVar.f15399b) != null && Arrays.equals(bArr2, bArr)) {
+            i9.w wVar = (i9.w) ((la.h) this.f16645c).d;
             e2.d.h(wVar);
             return wVar;
         }
-        g2.i iVar = (g2.i) this.f16640b;
-        i9.w a2 = ((i9.y) iVar.f10177a).a(new com.google.firebase.messaging.h(1, iVar, bArr));
-        this.f16641c = new la.h(bArr, a2);
+        g2.i iVar = (g2.i) this.f16644b;
+        i9.w a2 = ((i9.y) iVar.f10178a).a(new com.google.firebase.messaging.h(1, iVar, bArr));
+        this.f16645c = new la.h(bArr, a2);
         return a2;
     }
 
     @Override
     public void t(i1 i1Var, int i10, int i11) {
         q9 J;
-        ii.k0 k0Var = (ii.k0) this.f16640b;
-        if (!((l0) this.f16641c).d && i10 != i11 && (J = k0Var.J()) != null) {
+        ii.k0 k0Var = (ii.k0) this.f16644b;
+        if (!((l0) this.f16645c).d && i10 != i11 && (J = k0Var.J()) != null) {
             if (!J.y() || J.W != k0Var.R()) {
                 i1Var.post(new ii.i0(this, i1Var, i11, J, k0Var, i10));
             }
@@ -834,12 +834,12 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public String toString() {
-        switch (this.f16639a) {
+        switch (this.f16643a) {
             case 28:
                 StringBuilder sb2 = new StringBuilder(100);
-                sb2.append(this.f16641c.getClass().getSimpleName());
+                sb2.append(this.f16645c.getClass().getSimpleName());
                 sb2.append('{');
-                ArrayList arrayList = (ArrayList) this.f16640b;
+                ArrayList arrayList = (ArrayList) this.f16644b;
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
                     sb2.append((String) arrayList.get(i10));
@@ -857,13 +857,13 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     @Override
     public void u(String str, long j3, int i10, Object obj, long j10, long j11) {
         int i11;
-        g6.m mVar = (g6.m) this.f16641c;
-        if (((g6.n) this.f16640b) != null) {
+        g6.m mVar = (g6.m) this.f16645c;
+        if (((g6.n) this.f16644b) != null) {
             if (i10 == 2001) {
-                Object[] objArr = {Integer.valueOf(mVar.f10262i)};
-                g6.b bVar = mVar.f10282a;
-                Log.w(bVar.f10249a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
-                Iterator it = ((e6.h) mVar.h.f326b).f8682i.iterator();
+                Object[] objArr = {Integer.valueOf(mVar.f10263i)};
+                g6.b bVar = mVar.f10283a;
+                Log.w(bVar.f10250a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
+                Iterator it = ((e6.h) mVar.h.f326b).f8683i.iterator();
                 while (it.hasNext()) {
                     ((e6.g) it.next()).o();
                 }
@@ -871,14 +871,14 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
             } else {
                 i11 = i10;
             }
-            ((g6.n) this.f16640b).u(str, j3, i11, obj, j10, j11);
+            ((g6.n) this.f16644b).u(str, j3, i11, obj, j10, j11);
         }
     }
 
     public void w(i2.g gVar) {
         synchronized (gVar) {
         }
-        Handler handler = (Handler) this.f16640b;
+        Handler handler = (Handler) this.f16644b;
         if (handler != null) {
             handler.post(new k2.h(this, gVar, 0));
         }
@@ -886,16 +886,16 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     @Override
     public void x(CharSequence charSequence) {
-        ((ii.k0) this.f16640b).N(charSequence);
+        ((ii.k0) this.f16644b).N(charSequence);
     }
 
     public void y(androidx.fragment.app.s f7, boolean z10) {
         kotlin.jvm.internal.i.e(f7, "f");
-        androidx.fragment.app.s sVar = ((k0) this.f16640b).f2639y;
+        androidx.fragment.app.s sVar = ((k0) this.f16644b).f2639y;
         if (sVar != null) {
             sVar.p().f2630o.y(f7, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f16641c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f16645c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -909,65 +909,65 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
 
     @Override
     public void z() {
-        ((le.k) this.f16640b).c((le.l) this.f16641c);
+        ((le.k) this.f16644b).c((le.l) this.f16645c);
     }
 
     public y(Object obj, int i10) {
-        this.f16639a = i10;
-        this.f16640b = obj;
+        this.f16643a = i10;
+        this.f16644b = obj;
     }
 
     public y(Object obj, Object obj2, boolean z10, int i10) {
-        this.f16639a = i10;
-        this.f16640b = obj2;
-        this.f16641c = obj;
+        this.f16643a = i10;
+        this.f16644b = obj2;
+        this.f16645c = obj;
     }
 
     public y(int i10) {
-        this.f16639a = i10;
+        this.f16643a = i10;
         switch (i10) {
             case 15:
-                this.f16640b = new HashMap();
+                this.f16644b = new HashMap();
                 return;
             case 17:
                 return;
             case 27:
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(512);
-                this.f16640b = byteArrayOutputStream;
-                this.f16641c = new DataOutputStream(byteArrayOutputStream);
+                this.f16644b = byteArrayOutputStream;
+                this.f16645c = new DataOutputStream(byteArrayOutputStream);
                 return;
             default:
-                this.f16640b = new ConcurrentHashMap(16, 0.75f, 10);
-                this.f16641c = new ReferenceQueue();
+                this.f16644b = new ConcurrentHashMap(16, 0.75f, 10);
+                this.f16645c = new ReferenceQueue();
                 return;
         }
     }
 
     public y(IBinder iBinder) {
-        this.f16639a = 21;
+        this.f16643a = 21;
         String interfaceDescriptor = iBinder.getInterfaceDescriptor();
         if (interfaceDescriptor != "android.os.IMessenger" && (interfaceDescriptor == null || !interfaceDescriptor.equals("android.os.IMessenger"))) {
             if (interfaceDescriptor != "com.google.android.gms.iid.IMessengerCompat" && (interfaceDescriptor == null || !interfaceDescriptor.equals("com.google.android.gms.iid.IMessengerCompat"))) {
                 Log.w("MessengerIpcClient", "Invalid interface descriptor: ".concat(String.valueOf(interfaceDescriptor)));
                 throw new RemoteException();
             }
-            this.f16641c = new j6.f(iBinder);
-            this.f16640b = null;
+            this.f16645c = new j6.f(iBinder);
+            this.f16644b = null;
             return;
         }
-        this.f16640b = new Messenger(iBinder);
-        this.f16641c = null;
+        this.f16644b = new Messenger(iBinder);
+        this.f16645c = null;
     }
 
     public y(Object obj) {
-        this.f16639a = 28;
-        this.f16641c = obj;
-        this.f16640b = new ArrayList();
+        this.f16643a = 28;
+        this.f16645c = obj;
+        this.f16644b = new ArrayList();
     }
 
     public y(m6.a aVar) {
-        this.f16639a = 13;
-        this.f16640b = aVar == null ? null : aVar.f16323b;
+        this.f16643a = 13;
+        this.f16644b = aVar == null ? null : aVar.f16327b;
     }
 
     @Override
@@ -979,16 +979,16 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public y(k6.e eVar) {
-        this.f16639a = 29;
-        this.f16640b = new SparseIntArray();
+        this.f16643a = 29;
+        this.f16644b = new SparseIntArray();
         n6.l.h(eVar);
-        this.f16641c = eVar;
+        this.f16645c = eVar;
     }
 
     public y(k0 k0Var) {
-        this.f16639a = 5;
-        this.f16640b = k0Var;
-        this.f16641c = new CopyOnWriteArrayList();
+        this.f16643a = 5;
+        this.f16644b = k0Var;
+        this.f16645c = new CopyOnWriteArrayList();
     }
 
     @Override
@@ -996,49 +996,49 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public y(ea.a[] aVarArr) {
-        this.f16639a = 12;
-        this.f16640b = aVarArr;
-        this.f16641c = new rb.a(7);
+        this.f16643a = 12;
+        this.f16644b = aVarArr;
+        this.f16645c = new rb.a(7);
     }
 
     public y(e2.b0 b0Var) {
-        this.f16639a = 20;
-        this.f16640b = b0Var;
-        this.f16641c = new e2.v();
+        this.f16643a = 20;
+        this.f16644b = b0Var;
+        this.f16645c = new e2.v();
     }
 
     public y(com.google.firebase.messaging.s sVar, rb.a aVar, androidx.emoji2.text.d dVar) {
-        this.f16639a = 4;
-        this.f16640b = sVar;
-        this.f16641c = dVar;
+        this.f16643a = 4;
+        this.f16644b = sVar;
+        this.f16645c = dVar;
     }
 
     public y(String str) {
-        this.f16639a = 18;
-        this.f16641c = null;
-        this.f16640b = str;
+        this.f16643a = 18;
+        this.f16645c = null;
+        this.f16644b = str;
     }
 
     public y(Handler handler, k2.k kVar) {
-        this.f16639a = 22;
+        this.f16643a = 22;
         if (kVar != null) {
             handler.getClass();
         } else {
             handler = null;
         }
-        this.f16640b = handler;
-        this.f16641c = kVar;
+        this.f16644b = handler;
+        this.f16645c = kVar;
     }
 
     public y(Context context, MediaSessionCompat$Token mediaSessionCompat$Token) {
-        this.f16639a = 3;
+        this.f16643a = 3;
         if (mediaSessionCompat$Token != null) {
-            this.f16641c = DesugarCollections.synchronizedSet(new HashSet());
+            this.f16645c = DesugarCollections.synchronizedSet(new HashSet());
             if (Build.VERSION.SDK_INT >= 29) {
-                this.f16640b = new android.support.v4.media.session.h(context, mediaSessionCompat$Token);
+                this.f16644b = new android.support.v4.media.session.h(context, mediaSessionCompat$Token);
                 return;
             } else {
-                this.f16640b = new android.support.v4.media.session.h(context, mediaSessionCompat$Token);
+                this.f16644b = new android.support.v4.media.session.h(context, mediaSessionCompat$Token);
                 return;
             }
         }
@@ -1046,15 +1046,15 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
     }
 
     public y(a3.f fVar) {
-        this.f16639a = 1;
-        this.f16641c = fVar;
+        this.f16643a = 1;
+        this.f16645c = fVar;
     }
 
     public y(Context context, String str, ComponentName componentName, PendingIntent pendingIntent, Bundle bundle) {
-        this.f16639a = 0;
+        this.f16643a = 0;
         if (!TextUtils.isEmpty(str)) {
             if (componentName == null) {
-                int i10 = t0.f44261b;
+                int i10 = t0.f44268b;
                 Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
                 intent.setPackage(context.getPackageName());
                 List<ResolveInfo> queryBroadcastReceivers = context.getPackageManager().queryBroadcastReceivers(intent, 0);
@@ -1078,26 +1078,26 @@ public final class y implements OnCompleteListener, ce.b, ea.a, g6.n, h1, c3.i, 
             }
             int i11 = Build.VERSION.SDK_INT;
             if (i11 >= 29) {
-                this.f16640b = new r(context, str, bundle);
+                this.f16644b = new r(context, str, bundle);
             } else if (i11 >= 28) {
-                this.f16640b = new r(context, str, bundle);
+                this.f16644b = new r(context, str, bundle);
             } else if (i11 >= 22) {
-                this.f16640b = new r(context, str, bundle);
+                this.f16644b = new r(context, str, bundle);
             } else {
-                this.f16640b = new r(context, str, bundle);
+                this.f16644b = new r(context, str, bundle);
             }
             Looper myLooper = Looper.myLooper();
             Y(new p(), new Handler(myLooper == null ? Looper.getMainLooper() : myLooper));
-            ((r) this.f16640b).f16620a.setMediaButtonReceiver(pendingIntent);
-            this.f16641c = new n4(context, this);
+            ((r) this.f16644b).f16624a.setMediaButtonReceiver(pendingIntent);
+            this.f16645c = new n4(context, this);
             return;
         }
         throw new IllegalArgumentException("tag must not be null or empty");
     }
 
     public y(w1 w1Var) {
-        this.f16639a = 6;
-        this.f16640b = w1Var;
-        this.f16641c = new AtomicBoolean(false);
+        this.f16643a = 6;
+        this.f16644b = w1Var;
+        this.f16645c = new AtomicBoolean(false);
     }
 }

@@ -2,18 +2,18 @@ package ee;
 
 import zd.c0;
 public final class e implements c0 {
-    public final id.h f8869a;
+    public final id.h f8870a;
 
     public e(id.h hVar) {
-        this.f8869a = hVar;
+        this.f8870a = hVar;
     }
 
     @Override
     public final id.h c() {
-        return this.f8869a;
+        return this.f8870a;
     }
 
     public final String toString() {
-        return "CoroutineScope(coroutineContext=" + this.f8869a + ')';
+        return "CoroutineScope(coroutineContext=" + this.f8870a + ')';
     }
 }

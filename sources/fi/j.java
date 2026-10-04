@@ -7,17 +7,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.g61;
 import r0.l1;
 public final class j implements Utilities.Callback5, Utilities.Callback5Return, r0.n, MessagesStorage.BooleanCallback {
-    public final p f9906a;
+    public final p f9907a;
 
     public j(p pVar) {
-        this.f9906a = pVar;
+        this.f9907a = pVar;
     }
 
     @Override
     public l1 Q0(View view, l1 l1Var) {
-        i0.b f7 = l1Var.f45610a.f(519);
-        this.f9906a.d.setPadding(0, f7.f11526b, 0, f7.d);
-        return l1.f45609b;
+        i0.b f7 = l1Var.f45617a.f(519);
+        this.f9907a.d.setPadding(0, f7.f11527b, 0, f7.d);
+        return l1.f45616b;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class j implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        return Boolean.valueOf(p.S(this.f9906a, (g61) obj, (View) obj2));
+        return Boolean.valueOf(p.S(this.f9907a, (g61) obj, (View) obj2));
     }
 
     @Override
@@ -34,13 +34,13 @@ public final class j implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        p.T(this.f9906a, (g61) obj);
+        p.T(this.f9907a, (g61) obj);
     }
 
     @Override
     public void run(boolean z10) {
-        p pVar = this.f9906a;
+        p pVar = this.f9907a;
         pVar.finishFragment();
-        pVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-pVar.f9946b), null, pVar.H, Boolean.valueOf(z10));
+        pVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-pVar.f9947b), null, pVar.H, Boolean.valueOf(z10));
     }
 }

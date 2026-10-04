@@ -5,22 +5,22 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class m9 implements Utilities.Callback {
-    public final int f5578a;
-    public final x9 f5579b;
+    public final int f5579a;
+    public final x9 f5580b;
 
     public m9(x9 x9Var, int i10) {
-        this.f5578a = i10;
-        this.f5579b = x9Var;
+        this.f5579a = i10;
+        this.f5580b = x9Var;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
-        switch (this.f5578a) {
+        switch (this.f5579a) {
             case 0:
-                x9 x9Var = this.f5579b;
+                x9 x9Var = this.f5580b;
                 ea eaVar = x9Var.W;
-                eaVar.f5049c = (TLRPC.InputPeer) obj;
+                eaVar.f5050c = (TLRPC.InputPeer) obj;
                 HashSet hashSet = eaVar.v;
                 hashSet.clear();
                 if (eaVar.K && eaVar.G) {
@@ -28,7 +28,7 @@ public final class m9 implements Utilities.Callback {
                 }
                 Utilities.Callback callback = eaVar.W;
                 if (callback != null) {
-                    callback.run(eaVar.f5049c);
+                    callback.run(eaVar.f5050c);
                 }
                 ha haVar = eaVar.X;
                 if (haVar != null) {
@@ -37,12 +37,12 @@ public final class m9 implements Utilities.Callback {
                 x9Var.g(true);
                 return;
             case 1:
-                ea eaVar2 = this.f5579b.W;
+                ea eaVar2 = this.f5580b.W;
                 i10 = ((org.telegram.ui.ActionBar.f3) eaVar2).currentAccount;
                 eaVar2.g1(new ca(5, i10, (ArrayList) obj), new ai.r5(eaVar2, 1), false);
                 return;
             case 2:
-                x9 x9Var2 = this.f5579b;
+                x9 x9Var2 = this.f5580b;
                 ea eaVar3 = x9Var2.W;
                 HashSet hashSet2 = eaVar3.v;
                 hashSet2.add(Integer.valueOf(((ai.e9) obj).f922a));
@@ -55,7 +55,7 @@ public final class m9 implements Utilities.Callback {
                 return;
             default:
                 String str = (String) obj;
-                x9 x9Var3 = this.f5579b;
+                x9 x9Var3 = this.f5580b;
                 if (str != null) {
                     x9Var3.getClass();
                     if (str.isEmpty()) {

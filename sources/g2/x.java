@@ -1,14 +1,13 @@
 package g2;
 
-import hg.k0;
 import java.util.Map;
 public final class x extends v {
     public final int d;
-    public final Map f10228e;
+    public final Map f10229e;
 
     public x(int i10, j jVar, Map map) {
-        super(k0.h(i10, "Response code: "), jVar, 2004);
+        super(hg.c.h(i10, "Response code: "), jVar, 2004);
         this.d = i10;
-        this.f10228e = map;
+        this.f10229e = map;
     }
 }

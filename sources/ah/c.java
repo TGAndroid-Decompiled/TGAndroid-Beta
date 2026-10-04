@@ -12,7 +12,7 @@ public final class c {
     public pe.b f458e;
     public hh.k f459f;
     public ViewGroup f460g;
-    public li.m h;
+    public li.n h;
     public boolean f461i;
 
     public c(fh.a aVar) {
@@ -29,33 +29,33 @@ public final class c {
 
     public final ch.d c(View view, dh.a aVar, boolean z10) {
         ViewGroup viewGroup;
-        ch.d f7 = this.f455a.f();
-        if (this.f461i && Build.VERSION.SDK_INT >= 33 && (f7 instanceof ch.e)) {
-            ch.e eVar = (ch.e) f7;
+        ch.d b10 = this.f455a.b();
+        if (this.f461i && Build.VERSION.SDK_INT >= 33 && (b10 instanceof ch.e)) {
+            ch.e eVar = (ch.e) b10;
             eVar.Q = new j(eVar.L);
         }
-        f7.x(aVar);
+        b10.w(aVar);
         int i10 = this.f456b;
         int i11 = this.f457c;
-        f7.f4630j = i10;
-        f7.f4631k = i11;
+        b10.f4631j = i10;
+        b10.f4632k = i11;
         pe.b bVar = this.f458e;
         if (bVar != null && view != null) {
             bVar.add(view);
         }
-        li.m mVar = this.h;
-        if (mVar != null && view != null) {
-            mVar.f15664c.add(new li.l(view, f7));
+        li.n nVar = this.h;
+        if (nVar != null && view != null) {
+            nVar.f15668c.add(new li.m(view, b10));
         }
         hh.k kVar = this.f459f;
         if (kVar != null && (viewGroup = this.f460g) != null && view != null) {
-            kVar.d(view, viewGroup, new b(0, f7, view), z10);
+            kVar.d(view, viewGroup, new b(0, b10, view), z10);
         }
         pe.b bVar2 = this.d;
         if (bVar2 != null) {
-            bVar2.add(f7);
+            bVar2.add(b10);
         }
-        return f7;
+        return b10;
     }
 
     public final void d() {
@@ -68,8 +68,8 @@ public final class c {
         }
     }
 
-    public final void e(li.m mVar) {
-        this.h = mVar;
+    public final void e(li.n nVar) {
+        this.h = nVar;
     }
 
     public final void f(pe.b bVar) {

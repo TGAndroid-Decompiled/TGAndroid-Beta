@@ -36,13 +36,13 @@ public final class ax extends ux {
     @Override
     public final void o(int i10, int i11) {
         nz nzVar = this.G0;
-        org.telegram.ui.Cells.t6 t6Var = nzVar.f29104f2;
+        org.telegram.ui.Cells.t6 t6Var = nzVar.f29109f2;
         int i12 = nzVar.E1;
         int i13 = i10 - i12;
         int i14 = i11 - i12;
-        int i15 = nzVar.f29092c1;
+        int i15 = nzVar.f29097c1;
         MediaDataController mediaDataController = MediaDataController.getInstance(i15);
-        ArrayList arrayList = nzVar.f29095d1;
+        ArrayList arrayList = nzVar.f29100d1;
         arrayList.add(i14, (TLRPC.TL_messages_stickerSet) arrayList.remove(i13));
         Collections.sort(mediaDataController.getStickerSets(0), new rl(this, 1));
         ArrayList arrayList2 = nzVar.E2;
@@ -57,7 +57,7 @@ public final class ax extends ux {
         TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
         tL_messages_reorderStickerSets.masks = false;
         tL_messages_reorderStickerSets.emojis = false;
-        for (int i16 = nzVar.f29098e0; i16 < arrayList.size(); i16 = com.google.android.gms.internal.vision.e2.g(((TLRPC.TL_messages_stickerSet) arrayList.get(i16)).set.f20065id, tL_messages_reorderStickerSets.order, i16, 1)) {
+        for (int i16 = nzVar.f29103e0; i16 < arrayList.size(); i16 = com.google.android.gms.internal.vision.e2.g(((TLRPC.TL_messages_stickerSet) arrayList.get(i16)).set.f20069id, tL_messages_reorderStickerSets.order, i16, 1)) {
         }
         ConnectionsManager.getInstance(i15).sendRequest(tL_messages_reorderStickerSets, new ai.u7(13));
         NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, 0, Boolean.TRUE);
@@ -69,7 +69,7 @@ public final class ax extends ux {
                 yc.a0(n2Var).K(R.raw.filter_reorder, LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), LocaleController.getString("Settings"), new ud(1, n2Var)).j();
                 return;
             }
-            FrameLayout frameLayout = nzVar.f29137r;
+            FrameLayout frameLayout = nzVar.f29142r;
             if (frameLayout != null) {
                 new yc(frameLayout, nzVar.Z1).M(LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), R.raw.filter_reorder).j();
             }
@@ -85,7 +85,7 @@ public final class ax extends ux {
             bxVar.invalidate();
         }
         invalidate();
-        oy oyVar = nzVar.f29146t1;
+        oy oyVar = nzVar.f29151t1;
         if (oyVar != null) {
             oyVar.u();
         }
@@ -96,7 +96,7 @@ public final class ax extends ux {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
             if (!this.F0) {
-                this.G0.f29159x0.invalidate();
+                this.G0.f29164x0.invalidate();
             }
         }
     }

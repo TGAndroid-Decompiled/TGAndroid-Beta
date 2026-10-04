@@ -37,9 +37,9 @@ public final class b extends kd.j implements p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f3729a) {
             case 0:
-                return ((b) create((JSONObject) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((b) create((JSONObject) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
             default:
-                return ((b) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10452a);
+                return ((b) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10453a);
         }
     }
 

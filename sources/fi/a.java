@@ -10,24 +10,24 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.i6;
 public final class a extends Drawable {
-    public int f9868b;
-    public int f9869c = 255;
-    public final Drawable f9867a = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.settings_arrow).mutate();
+    public int f9869b;
+    public int f9870c = 255;
+    public final Drawable f9868a = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.settings_arrow).mutate();
 
     @Override
     public final void draw(Canvas canvas) {
         float exactCenterX = getBounds().exactCenterX();
         float exactCenterY = getBounds().exactCenterY();
         int w02 = i6.w0(null, i6.G6, false);
-        int w03 = i6.w0(null, i6.f20818d6, false);
-        int i10 = this.f9868b;
-        Drawable drawable = this.f9867a;
+        int w03 = i6.w0(null, i6.f20822d6, false);
+        int i10 = this.f9869b;
+        Drawable drawable = this.f9868a;
         if (i10 != w03) {
-            this.f9868b = w03;
+            this.f9869b = w03;
             drawable.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
         }
-        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(7.6666665f), i6.l0(i0.a.k(w03, this.f9869c)));
-        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(6.6666665f), i6.l0(i0.a.k(w02, this.f9869c)));
+        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(7.6666665f), i6.l0(i0.a.k(w03, this.f9870c)));
+        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(6.6666665f), i6.l0(i0.a.k(w02, this.f9870c)));
         yf.p.d(drawable, exactCenterX, exactCenterY, 17);
         canvas.translate(0.0f, AndroidUtilities.dp(0.66f));
         canvas.save();
@@ -38,7 +38,7 @@ public final class a extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f9869c;
+        return this.f9870c;
     }
 
     @Override
@@ -58,8 +58,8 @@ public final class a extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f9869c = i10;
-        this.f9867a.setAlpha(i10);
+        this.f9870c = i10;
+        this.f9868a.setAlpha(i10);
     }
 
     @Override

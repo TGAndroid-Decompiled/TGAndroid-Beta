@@ -133,7 +133,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         } else {
             h9Var = new org.telegram.ui.Components.h9((TLRPC.Chat) tLObject);
         }
-        h9Var.f27059r = 1;
+        h9Var.f27064r = 1;
         float f11 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(f11), AndroidUtilities.dp(f11), Bitmap.Config.ARGB_8888);
         h9Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -356,7 +356,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         }
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.imageReceiver = imageReceiver;
-        imageReceiver.setDelegate(new c0(this, 9));
+        imageReceiver.setDelegate(new d0(this, 9));
         this.mediaSession = new android.support.v4.media.session.b0(this, "telegramAudioPlayer", null, null);
         this.playbackState = new android.support.v4.media.session.e0();
         this.albumArtPlaceholder = Bitmap.createBitmap(AndroidUtilities.dp(102.0f), AndroidUtilities.dp(102.0f), Bitmap.Config.ARGB_8888);

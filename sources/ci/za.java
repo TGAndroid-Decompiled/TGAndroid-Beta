@@ -1,26 +1,26 @@
 package ci;
 public final class za implements Runnable {
-    public final int f6378a;
-    public final kc f6379b;
+    public final int f6379a;
+    public final kc f6380b;
 
     public za(kc kcVar, int i10) {
-        this.f6378a = i10;
-        this.f6379b = kcVar;
+        this.f6379a = i10;
+        this.f6380b = kcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f6378a) {
+        switch (this.f6379a) {
             case 0:
-                kc kcVar = this.f6379b;
+                kc kcVar = this.f6380b;
                 kcVar.getClass();
                 kcVar.g(1.0f, true, new ga(kcVar, 6));
-                kcVar.f5378b1.b(true, true);
+                kcVar.f5379b1.b(true, true);
                 return;
             default:
-                kc kcVar2 = this.f6379b;
+                kc kcVar2 = this.f6380b;
                 kcVar2.f(false);
-                kcVar2.f5413m2 = null;
+                kcVar2.f5414m2 = null;
                 return;
         }
     }

@@ -24,14 +24,14 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class be implements Runnable {
-    public final int f24926a;
-    public final Object f24927b;
-    public final Object f24928c;
+    public final int f24930a;
+    public final Object f24931b;
+    public final Object f24932c;
 
     public be(int i10, Object obj, Object obj2) {
-        this.f24926a = i10;
-        this.f24927b = obj;
-        this.f24928c = obj2;
+        this.f24930a = i10;
+        this.f24931b = obj;
+        this.f24932c = obj2;
     }
 
     @Override
@@ -40,148 +40,148 @@ public final class be implements Runnable {
         String str;
         Bitmap createBitmap;
         String str2 = "";
-        switch (this.f24926a) {
+        switch (this.f24930a) {
             case 0:
-                int i10 = ChatActivityEnterView.f23847n5;
-                ((ChatActivityEnterView) this.f24927b).removeView((ci.e4) this.f24928c);
+                int i10 = ChatActivityEnterView.f23851n5;
+                ((ChatActivityEnterView) this.f24931b).removeView((ci.e4) this.f24932c);
                 return;
             case 1:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f24927b;
-                int i11 = ChatActivityEnterView.f23847n5;
-                chatActivityEnterView.setFieldText((CharSequence) this.f24928c);
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f24931b;
+                int i11 = ChatActivityEnterView.f23851n5;
+                chatActivityEnterView.setFieldText((CharSequence) this.f24932c);
                 chatActivityEnterView.W = null;
                 return;
             case 2:
-                ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) this.f24927b;
-                int i12 = ChatActivityEnterView.f23847n5;
-                ((td) this.f24928c).run();
+                ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) this.f24931b;
+                int i12 = ChatActivityEnterView.f23851n5;
+                ((td) this.f24932c).run();
                 SharedPrefsHelper.setWebViewConfirmShown(chatActivityEnterView2.Q, chatActivityEnterView2.Q2, true);
                 return;
             case 3:
-                qg qgVar = (qg) this.f24928c;
-                ChatActivityEnterView chatActivityEnterView3 = ((tg) this.f24927b).V;
-                chatActivityEnterView3.f23901i1 = chatActivityEnterView3.f23895h1.getAudioRightMs() - chatActivityEnterView3.f23895h1.getAudioLeftMs();
-                MediaController.getInstance().trimCurrentRecording(chatActivityEnterView3.f23895h1.getAudioLeftMs(), chatActivityEnterView3.f23895h1.getAudioRightMs(), qgVar);
+                qg qgVar = (qg) this.f24932c;
+                ChatActivityEnterView chatActivityEnterView3 = ((tg) this.f24931b).V;
+                chatActivityEnterView3.f23905i1 = chatActivityEnterView3.f23899h1.getAudioRightMs() - chatActivityEnterView3.f23899h1.getAudioLeftMs();
+                MediaController.getInstance().trimCurrentRecording(chatActivityEnterView3.f23899h1.getAudioLeftMs(), chatActivityEnterView3.f23899h1.getAudioRightMs(), qgVar);
                 return;
             case 4:
-                xi.m((xi) this.f24927b, (ci.e4) this.f24928c);
+                ((xi) this.f24931b).containerView.removeView((ci.e4) this.f24932c);
                 return;
             case 5:
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f24928c;
-                ((xi) this.f24927b).dismiss(true);
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f24932c;
+                ((xi) this.f24931b).dismiss(true);
                 if (n2Var != null) {
                     n2Var.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
                     return;
                 }
                 return;
             case 6:
-                xi xiVar = (xi) this.f24927b;
+                xi xiVar = (xi) this.f24931b;
                 MediaDataController.getInstance(xiVar.J1).loadAttachMenuBots(false, true);
-                if (xiVar.f32874y0 == xiVar.f32870x0.get(((TLRPC.TL_attachMenuBot) this.f24928c).bot_id)) {
-                    xiVar.N1(xiVar.f32825j0);
+                if (xiVar.f32880y0 == xiVar.f32876x0.get(((TLRPC.TL_attachMenuBot) this.f24932c).bot_id)) {
+                    xiVar.P1(xiVar.f32831j0);
                     return;
                 }
                 return;
             case 7:
-                xi xiVar2 = (xi) this.f24927b;
-                TLRPC.TL_attachMenuBot tL_attachMenuBot = ((qi) this.f24928c).f30044c;
+                xi xiVar2 = (xi) this.f24931b;
+                TLRPC.TL_attachMenuBot tL_attachMenuBot = ((qi) this.f24932c).f30049c;
                 tL_attachMenuBot.side_menu_disclaimer_needed = false;
                 tL_attachMenuBot.inactive = false;
-                xiVar2.K1(tL_attachMenuBot.bot_id, null, false, true);
+                xiVar2.M1(tL_attachMenuBot.bot_id, null, false, true);
                 MediaDataController.getInstance(xiVar2.J1).updateAttachMenuBotsInCache();
                 return;
             case 8:
-                jj jjVar = (jj) this.f24927b;
+                jj jjVar = (jj) this.f24931b;
                 jjVar.G = false;
-                jjVar.H = (ArrayList) this.f24928c;
+                jjVar.H = (ArrayList) this.f24932c;
                 jjVar.N();
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new be(10, (ak) this.f24927b, ((zj) this.f24928c).run()));
+                AndroidUtilities.runOnUIThread(new be(10, (ak) this.f24931b, ((zj) this.f24932c).run()));
                 return;
             case 10:
-                ((ak) this.f24927b).setStatus((CharSequence) this.f24928c);
+                ((ak) this.f24931b).setStatus((CharSequence) this.f24932c);
                 return;
             case 11:
-                qk qkVar = (qk) this.f24927b;
-                String str3 = (String) this.f24928c;
+                qk qkVar = (qk) this.f24931b;
+                String str3 = (String) this.f24932c;
                 qkVar.getClass();
-                ArrayList arrayList = new ArrayList(qkVar.X.v.f28154c);
+                ArrayList arrayList = new ArrayList(qkVar.X.v.f28159c);
                 if (qkVar.X.v.d.isEmpty()) {
-                    arrayList.addAll(0, qkVar.X.v.f28155e);
+                    arrayList.addAll(0, qkVar.X.v.f28160e);
                 }
                 Utilities.searchQueue.postRunnable(new ai.s4(qkVar, str3, !qkVar.R.isEmpty(), arrayList, 18));
                 return;
             case 12:
-                qk qkVar2 = (qk) this.f24927b;
-                ArrayList arrayList2 = (ArrayList) this.f24928c;
+                qk qkVar2 = (qk) this.f24931b;
+                ArrayList arrayList2 = (ArrayList) this.f24932c;
                 rk rkVar = qkVar2.X;
-                boolean z11 = rkVar.f30427b0;
-                gk gkVar = rkVar.f30433r;
+                boolean z11 = rkVar.f30433b0;
+                gk gkVar = rkVar.f30439r;
                 if (z11) {
                     s4.h0 adapter = gkVar.getAdapter();
-                    qk qkVar3 = rkVar.f30437y;
+                    qk qkVar3 = rkVar.f30443y;
                     if (adapter != qkVar3) {
                         gkVar.setAdapter(qkVar3);
                     }
                 }
-                qkVar2.f30054s = arrayList2;
+                qkVar2.f30059s = arrayList2;
                 qkVar2.l();
                 return;
             case 13:
-                jl jlVar = (jl) this.f24927b;
-                float[] fArr = (float[]) this.f24928c;
+                jl jlVar = (jl) this.f24931b;
+                float[] fArr = (float[]) this.f24932c;
                 jlVar.getClass();
                 jlVar.b0(fArr[0], fArr[1]);
                 return;
             case 14:
-                pi piVar = (pi) this.f24928c;
-                boolean z12 = ChatAttachAlertPhotoLayout.f24018q1;
+                pi piVar = (pi) this.f24932c;
+                boolean z12 = ChatAttachAlertPhotoLayout.f24022q1;
                 int currentItemTop = piVar.getCurrentItemTop();
                 int listTopPadding = piVar.getListTopPadding();
-                wl wlVar = ((ChatAttachAlertPhotoLayout) this.f24927b).E;
+                wl wlVar = ((ChatAttachAlertPhotoLayout) this.f24931b).E;
                 if (currentItemTop > AndroidUtilities.dp(8.0f)) {
                     listTopPadding -= currentItemTop;
                 }
                 wlVar.scrollBy(0, listTopPadding);
                 return;
             case 15:
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f24928c;
-                gm gmVar = ((ChatAttachAlertPhotoLayout) this.f24927b).P;
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f24932c;
+                gm gmVar = ((ChatAttachAlertPhotoLayout) this.f24931b).P;
                 if (gmVar != null) {
                     gmVar.setLayoutParams(layoutParams);
                     return;
                 }
                 return;
             case 16:
-                pi piVar2 = (pi) this.f24928c;
+                pi piVar2 = (pi) this.f24932c;
                 int currentItemTop2 = piVar2.getCurrentItemTop();
                 int listTopPadding2 = piVar2.getListTopPadding();
-                ai.w0 w0Var = ((tm) this.f24927b).f31092r;
+                ai.w0 w0Var = ((tm) this.f24931b).f31098r;
                 if (currentItemTop2 > AndroidUtilities.dp(7.0f)) {
                     listTopPadding2 -= currentItemTop2;
                 }
                 w0Var.scrollBy(0, listTopPadding2);
                 return;
             case 17:
-                mo.a(((ko) this.f24927b).f28175c);
-                ((hg.g) this.f24928c).run();
+                mo.a(((ko) this.f24931b).f28180c);
+                ((hg.h) this.f24932c).run();
                 return;
             case 18:
-                ((kp) this.f24927b).f28177b.x((List) this.f24928c);
+                ((kp) this.f24931b).f28182b.x((List) this.f24932c);
                 return;
             case 19:
-                ((lp) this.f24927b).f28402b.x((List) this.f24928c);
+                ((lp) this.f24931b).f28407b.x((List) this.f24932c);
                 return;
             case 20:
-                ((org.telegram.ui.ActionBar.f3) this.f24927b).dismiss();
-                nf.f.s((Context) this.f24928c, "https://t.me/BotFather?start=deletebot");
+                ((org.telegram.ui.ActionBar.f3) this.f24931b).dismiss();
+                nf.f.s((Context) this.f24932c, "https://t.me/BotFather?start=deletebot");
                 return;
             case 21:
-                org.telegram.ui.Cells.j3 j3Var = (org.telegram.ui.Cells.j3) this.f24927b;
+                org.telegram.ui.Cells.j3 j3Var = (org.telegram.ui.Cells.j3) this.f24931b;
                 String charSequence = j3Var.getText().toString();
-                org.telegram.ui.Cells.h3 h3Var = j3Var.f22307b;
-                Iterator it = ((Set) this.f24928c).iterator();
+                org.telegram.ui.Cells.h3 h3Var = j3Var.f22311b;
+                Iterator it = ((Set) this.f24932c).iterator();
                 while (true) {
                     if (it.hasNext()) {
                         if (charSequence.endsWith((String) it.next())) {
@@ -193,94 +193,94 @@ public final class be implements Runnable {
                 h3Var.setRightText(str2);
                 return;
             case 22:
-                pr prVar = (pr) this.f24927b;
+                pr prVar = (pr) this.f24931b;
                 prVar.getClass();
-                ((ci.d) this.f24928c).setLoading(false);
+                ((ci.d) this.f24932c).setLoading(false);
                 prVar.dismiss();
                 return;
             case 23:
-                pr prVar2 = (pr) this.f24927b;
-                TLObject tLObject = (TLObject) this.f24928c;
+                pr prVar2 = (pr) this.f24931b;
+                TLObject tLObject = (TLObject) this.f24932c;
                 if (tLObject != null && (tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject;
-                    prVar2.f29725b0 = groupcallstreamrtmpurl.url;
-                    prVar2.f29726c0 = groupcallstreamrtmpurl.key;
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(prVar2.f29726c0);
-                    prVar2.f29727d0 = spannableStringBuilder;
+                    prVar2.f29730b0 = groupcallstreamrtmpurl.url;
+                    prVar2.f29731c0 = groupcallstreamrtmpurl.key;
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(prVar2.f29731c0);
+                    prVar2.f29732d0 = spannableStringBuilder;
                     ?? obj = new Object();
-                    obj.f28497a |= 256;
-                    obj.f28498b = 0;
-                    obj.f28499c = spannableStringBuilder.length();
-                    prVar2.f29727d0.setSpan(new n11(obj, 0), 0, prVar2.f29727d0.length(), 0);
-                    prVar2.f29728e0.N(false);
+                    obj.f28502a |= 256;
+                    obj.f28503b = 0;
+                    obj.f28504c = spannableStringBuilder.length();
+                    prVar2.f29732d0.setSpan(new n11(obj, 0), 0, prVar2.f29732d0.length(), 0);
+                    prVar2.f29733e0.N(false);
                     return;
                 }
                 return;
             case 24:
-                ts tsVar = (ts) this.f24927b;
-                TLObject tLObject2 = (TLObject) this.f24928c;
-                ps psVar = tsVar.f31155b;
+                ts tsVar = (ts) this.f24931b;
+                TLObject tLObject2 = (TLObject) this.f24932c;
+                ps psVar = tsVar.f31161b;
                 ArrayList arrayList3 = tsVar.h;
-                int i13 = tsVar.f31154a;
+                int i13 = tsVar.f31160a;
                 if (tLObject2 instanceof TL_bots.popularAppBots) {
                     TL_bots.popularAppBots popularappbots = (TL_bots.popularAppBots) tLObject2;
                     MessagesController.getInstance(i13).putUsers(popularappbots.users, false);
                     MessagesStorage.getInstance(i13).putUsersAndChats(popularappbots.users, null, false, true);
                     arrayList3.addAll(popularappbots.users);
                     String str4 = popularappbots.next_offset;
-                    tsVar.f31159g = str4;
+                    tsVar.f31165g = str4;
                     if (str4 == null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    tsVar.f31157e = z10;
+                    tsVar.f31163e = z10;
                     long currentTimeMillis = System.currentTimeMillis();
-                    tsVar.f31158f = currentTimeMillis;
-                    if (!tsVar.f31160i) {
-                        tsVar.f31160i = true;
-                        String str5 = tsVar.f31159g;
+                    tsVar.f31164f = currentTimeMillis;
+                    if (!tsVar.f31166i) {
+                        tsVar.f31166i = true;
+                        String str5 = tsVar.f31165g;
                         if (str5 == null) {
                             str = "";
                         } else {
                             str = str5;
                         }
                         ArrayList arrayList4 = new ArrayList();
-                        for (int i14 = 0; i14 < arrayList3.size(); i14 = com.google.android.gms.internal.vision.e2.g(((TLRPC.User) arrayList3.get(i14)).f20185id, arrayList4, i14, 1)) {
+                        for (int i14 = 0; i14 < arrayList3.size(); i14 = com.google.android.gms.internal.vision.e2.g(((TLRPC.User) arrayList3.get(i14)).f20189id, arrayList4, i14, 1)) {
                         }
                         MessagesStorage messagesStorage = MessagesStorage.getInstance(i13);
                         messagesStorage.getStorageQueue().postRunnable(new org.telegram.messenger.voip.f(tsVar, messagesStorage, arrayList4, currentTimeMillis, str, 3));
                     }
-                    tsVar.f31156c = false;
+                    tsVar.f31162c = false;
                     psVar.run();
                     return;
                 }
-                tsVar.f31159g = null;
-                tsVar.f31157e = true;
-                tsVar.f31156c = false;
+                tsVar.f31165g = null;
+                tsVar.f31163e = true;
+                tsVar.f31162c = false;
                 psVar.run();
                 return;
             case 25:
-                Bitmap decodeFile = BitmapFactory.decodeFile((String) this.f24928c);
+                Bitmap decodeFile = BitmapFactory.decodeFile((String) this.f24932c);
                 Canvas canvas = new Canvas(Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888));
                 Paint paint = new Paint(3);
                 canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
                 float max = Math.max(createBitmap.getWidth() / decodeFile.getWidth(), createBitmap.getHeight() / decodeFile.getHeight());
                 canvas.scale(max, max);
                 canvas.drawBitmap(decodeFile, (-decodeFile.getWidth()) / 2.0f, (-decodeFile.getHeight()) / 2.0f, paint);
-                AndroidUtilities.runOnUIThread(new be(26, (st) this.f24927b, decodeFile));
+                AndroidUtilities.runOnUIThread(new be(26, (st) this.f24931b, decodeFile));
                 return;
             case 26:
-                ((st) this.f24927b).setImage((Bitmap) this.f24928c);
+                ((st) this.f24931b).setImage((Bitmap) this.f24932c);
                 return;
             case 27:
-                ((EditTextBoldCursor) this.f24927b).hintLayout.draw((Canvas) this.f24928c);
+                ((EditTextBoldCursor) this.f24931b).hintLayout.draw((Canvas) this.f24932c);
                 return;
             case 28:
-                MessagesController.getInstance(wv.S(((fv) this.f24927b).f26570a)).updateEmojiStatus((TLRPC.EmojiStatus) this.f24928c);
+                MessagesController.getInstance(wv.S(((fv) this.f24931b).f26575a)).updateEmojiStatus((TLRPC.EmojiStatus) this.f24932c);
                 return;
             default:
-                MessagesController.getInstance(((ix) this.f24927b).f27510a.f29092c1).updateEmojiStatus((TLRPC.EmojiStatus) this.f24928c);
+                MessagesController.getInstance(((ix) this.f24931b).f27515a.f29097c1).updateEmojiStatus((TLRPC.EmojiStatus) this.f24932c);
                 return;
         }
     }

@@ -41,11 +41,11 @@ public final class u4 implements rk0 {
         float f13 = -f11;
         nVar.z(f12, f13, e6Var.getMeasuredWidth() + f12, e6Var.getMeasuredHeight() + f13);
         if (f7 > 0.0f) {
-            canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7904a);
+            canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7905a);
             canvas.drawRoundRect(rectF, f7, f7, paint);
             return;
         }
-        canvas.drawRect(rectF, (Paint) nVar.f7904a);
+        canvas.drawRect(rectF, (Paint) nVar.f7905a);
         canvas.drawRect(rectF, paint);
     }
 

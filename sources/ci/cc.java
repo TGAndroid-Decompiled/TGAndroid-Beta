@@ -14,16 +14,16 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.vf0;
 import org.telegram.ui.Components.z70;
 public final class cc extends FrameLayout {
-    public float f4842a;
-    public float f4843b;
-    public final Paint f4844c;
+    public float f4843a;
+    public float f4844b;
+    public final Paint f4845c;
     public LinearGradient d;
-    public final kc f4845e;
+    public final kc f4846e;
 
     public cc(kc kcVar, Activity activity) {
         super(activity);
-        this.f4845e = kcVar;
-        this.f4844c = new Paint(1);
+        this.f4846e = kcVar;
+        this.f4845c = new Paint(1);
     }
 
     public static void a(View view, int i10, int i11) {
@@ -31,13 +31,13 @@ public final class cc extends FrameLayout {
     }
 
     public final void b(float f7) {
-        float f10 = this.f4842a;
-        this.f4843b = f7;
+        float f10 = this.f4843a;
+        this.f4844b = f7;
         super.setTranslationY(f10 + f7);
     }
 
     public final void c() {
-        if (this.f4845e.J == 0) {
+        if (this.f4846e.J == 0) {
             setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(12.0f), -16777216));
         } else {
             setBackground(null);
@@ -48,15 +48,15 @@ public final class cc extends FrameLayout {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         float f7;
         boolean drawChild = super.drawChild(canvas, view, j3);
-        kc kcVar = this.f4845e;
-        if (view == kcVar.f5398h0) {
+        kc kcVar = this.f4846e;
+        if (view == kcVar.f5399h0) {
             if (kcVar.V) {
                 f7 = AndroidUtilities.statusBarHeight;
             } else {
                 f7 = 0.0f;
             }
             LinearGradient linearGradient = this.d;
-            Paint paint = this.f4844c;
+            Paint paint = this.f4845c;
             if (linearGradient == null) {
                 LinearGradient linearGradient2 = new LinearGradient(0.0f, f7, 0.0f, f7 + AndroidUtilities.dp(72.0f), new int[]{1073741824, 0}, new float[]{f7 / (AndroidUtilities.dp(72.0f) + f7), 1.0f}, Shader.TileMode.CLAMP);
                 this.d = linearGradient2;
@@ -72,7 +72,7 @@ public final class cc extends FrameLayout {
 
     @Override
     public final void invalidate() {
-        ValueAnimator valueAnimator = this.f4845e.E;
+        ValueAnimator valueAnimator = this.f4846e.E;
         if (valueAnimator != null && valueAnimator.isRunning()) {
             return;
         }
@@ -82,7 +82,7 @@ public final class cc extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
-        kc kcVar = this.f4845e;
+        kc kcVar = this.f4846e;
         if (kcVar.V) {
             i14 = kcVar.Z;
         } else {
@@ -90,33 +90,33 @@ public final class cc extends FrameLayout {
         }
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        kcVar.f5398h0.layout(0, 0, kcVar.S, kcVar.T);
-        kcVar.f5398h0.setPivotX(kcVar.S * 0.5f);
-        FrameLayout frameLayout = kcVar.f5401i0;
+        kcVar.f5399h0.layout(0, 0, kcVar.S, kcVar.T);
+        kcVar.f5399h0.setPivotX(kcVar.S * 0.5f);
+        FrameLayout frameLayout = kcVar.f5402i0;
         frameLayout.layout(0, i14, kcVar.S, frameLayout.getMeasuredHeight() + i14);
-        FrameLayout frameLayout2 = kcVar.f5407k0;
+        FrameLayout frameLayout2 = kcVar.f5408k0;
         frameLayout2.layout(0, kcVar.T - frameLayout2.getMeasuredHeight(), kcVar.S, kcVar.T);
         FrameLayout frameLayout3 = kcVar.m0;
         int i15 = kcVar.T;
         frameLayout3.layout(0, i15, kcVar.S, frameLayout3.getMeasuredHeight() + i15);
-        kcVar.f5410l0.layout(0, 0, kcVar.S, kcVar.T);
-        ab abVar = kcVar.f5435t0;
+        kcVar.f5411l0.layout(0, 0, kcVar.S, kcVar.T);
+        ab abVar = kcVar.f5436t0;
         if (abVar != null) {
             abVar.layout(0, 0, measuredWidth, measuredHeight);
         }
-        kcVar.f5431s.f6266c.layout(0, 0, measuredWidth, measuredHeight);
-        i iVar = kcVar.f5382c1.M;
+        kcVar.f5432s.f6267c.layout(0, 0, measuredWidth, measuredHeight);
+        i iVar = kcVar.f5383c1.M;
         if (iVar != null) {
             iVar.layout(0, 0, kcVar.S, kcVar.T);
-            kcVar.f5382c1.y();
+            kcVar.f5383c1.y();
         }
         vf0 vf0Var = kcVar.B1;
         if (vf0Var != null) {
             vf0Var.layout(0, 0, vf0Var.getMeasuredWidth(), kcVar.B1.getMeasuredHeight());
         }
-        mb mbVar = kcVar.f5442v1;
+        mb mbVar = kcVar.f5443v1;
         if (mbVar != null) {
-            mbVar.layout(0, 0, mbVar.getMeasuredWidth(), kcVar.f5442v1.getMeasuredHeight());
+            mbVar.layout(0, 0, mbVar.getMeasuredWidth(), kcVar.f5443v1.getMeasuredHeight());
         }
         for (int i16 = 0; i16 < getChildCount(); i16++) {
             View childAt = getChildAt(i16);
@@ -132,19 +132,19 @@ public final class cc extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        kc kcVar = this.f4845e;
-        a(kcVar.f5398h0, kcVar.S, kcVar.T);
+        kc kcVar = this.f4846e;
+        a(kcVar.f5399h0, kcVar.S, kcVar.T);
         kcVar.j();
-        a(kcVar.f5401i0, kcVar.S, AndroidUtilities.dp(150.0f));
-        a(kcVar.f5407k0, kcVar.S, AndroidUtilities.dp(220.0f));
+        a(kcVar.f5402i0, kcVar.S, AndroidUtilities.dp(150.0f));
+        a(kcVar.f5408k0, kcVar.S, AndroidUtilities.dp(220.0f));
         a(kcVar.m0, kcVar.S, kcVar.U);
-        a(kcVar.f5410l0, kcVar.S, kcVar.T);
-        a(kcVar.f5431s.f6266c, size, size2);
-        ab abVar = kcVar.f5435t0;
+        a(kcVar.f5411l0, kcVar.S, kcVar.T);
+        a(kcVar.f5432s.f6267c, size, size2);
+        ab abVar = kcVar.f5436t0;
         if (abVar != null) {
             a(abVar, size, size2);
         }
-        i iVar = kcVar.f5382c1.M;
+        i iVar = kcVar.f5383c1.M;
         if (iVar != null) {
             a(iVar, kcVar.S, kcVar.T);
         }
@@ -152,7 +152,7 @@ public final class cc extends FrameLayout {
         if (vf0Var != null) {
             a(vf0Var, size, size2);
         }
-        mb mbVar = kcVar.f5442v1;
+        mb mbVar = kcVar.f5443v1;
         if (mbVar != null) {
             a(mbVar, size, size2);
         }
@@ -167,13 +167,13 @@ public final class cc extends FrameLayout {
 
     @Override
     public final void setTranslationY(float f7) {
-        this.f4842a = f7;
-        super.setTranslationY(this.f4843b + f7);
+        this.f4843a = f7;
+        super.setTranslationY(this.f4844b + f7);
         float clamp = Utilities.clamp((f7 / getMeasuredHeight()) * 4.0f, 1.0f, 0.0f);
-        kc kcVar = this.f4845e;
+        kc kcVar = this.f4846e;
         kcVar.K = clamp;
         kcVar.o();
-        kcVar.f5414n.invalidate();
+        kcVar.f5415n.invalidate();
         float clamp2 = 1.0f - (Utilities.clamp(getTranslationY() / AndroidUtilities.dp(320.0f), 1.0f, 0.0f) * 0.1f);
         setScaleX(clamp2);
         setScaleY(clamp2);

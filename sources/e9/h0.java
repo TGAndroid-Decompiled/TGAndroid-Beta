@@ -4,27 +4,27 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import v7.t6;
 public final class h0 extends i0 {
-    public final transient int f8753c;
+    public final transient int f8754c;
     public final transient int d;
-    public final i0 f8754e;
+    public final i0 f8755e;
 
     public h0(i0 i0Var, int i10, int i11) {
-        this.f8754e = i0Var;
-        this.f8753c = i10;
+        this.f8755e = i0Var;
+        this.f8754c = i10;
         this.d = i11;
     }
 
     @Override
     public final i0 subList(int i10, int i11) {
         t6.f(i10, i11, this.d);
-        int i12 = this.f8753c;
-        return this.f8754e.subList(i10 + i12, i11 + i12);
+        int i12 = this.f8754c;
+        return this.f8755e.subList(i10 + i12, i11 + i12);
     }
 
     @Override
     public final Object get(int i10) {
         t6.c(i10, this.d);
-        return this.f8754e.get(i10 + this.f8753c);
+        return this.f8755e.get(i10 + this.f8754c);
     }
 
     @Override
@@ -39,17 +39,17 @@ public final class h0 extends i0 {
 
     @Override
     public final Object[] o() {
-        return this.f8754e.o();
+        return this.f8755e.o();
     }
 
     @Override
     public final int p() {
-        return this.f8754e.q() + this.f8753c + this.d;
+        return this.f8755e.q() + this.f8754c + this.d;
     }
 
     @Override
     public final int q() {
-        return this.f8754e.q() + this.f8753c;
+        return this.f8755e.q() + this.f8754c;
     }
 
     @Override

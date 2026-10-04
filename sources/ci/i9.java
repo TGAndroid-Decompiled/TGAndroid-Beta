@@ -14,24 +14,24 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.ui.Components.ae0;
 import org.telegram.ui.Components.ee0;
 import org.telegram.ui.Components.kf;
 public final class i9 extends FrameLayout {
-    public final int f5173a = 0;
-    public final Object f5174b;
-    public final Object f5175c;
+    public final int f5174a = 0;
+    public final Object f5175b;
+    public final Object f5176c;
     public final Object d;
-    public Object f5176e;
-    public Object f5177f;
+    public Object f5177e;
+    public Object f5178f;
     public Object h;
 
     public i9(ee0 ee0Var, Context context) {
         super(context);
         this.h = ee0Var;
-        this.f5174b = new ArrayList(4);
-        this.f5175c = new ArrayList(4);
+        this.f5175b = new ArrayList(4);
+        this.f5176c = new ArrayList(4);
         this.d = new StringBuilder(4);
         for (int i10 = 0; i10 < 4; i10++) {
             TextView textView = new TextView(context);
@@ -43,7 +43,7 @@ public final class i9 extends FrameLayout {
             textView.setPivotX(AndroidUtilities.dp(25.0f));
             textView.setPivotY(AndroidUtilities.dp(25.0f));
             addView(textView, w7.z5.e(50, 50, 51));
-            ((ArrayList) this.f5174b).add(textView);
+            ((ArrayList) this.f5175b).add(textView);
             TextView textView2 = new TextView(context);
             textView2.setTextColor(-1);
             textView2.setTypeface(AndroidUtilities.bold());
@@ -54,26 +54,26 @@ public final class i9 extends FrameLayout {
             textView2.setPivotX(AndroidUtilities.dp(25.0f));
             textView2.setPivotY(AndroidUtilities.dp(25.0f));
             addView(textView2, w7.z5.e(50, 50, 51));
-            ((ArrayList) this.f5175c).add(textView2);
+            ((ArrayList) this.f5176c).add(textView2);
         }
     }
 
     public static void a(i9 i9Var, boolean z10) {
-        ArrayList arrayList = (ArrayList) i9Var.f5175c;
-        ArrayList arrayList2 = (ArrayList) i9Var.f5174b;
+        ArrayList arrayList = (ArrayList) i9Var.f5176c;
+        ArrayList arrayList2 = (ArrayList) i9Var.f5175b;
         StringBuilder sb2 = (StringBuilder) i9Var.d;
         if (sb2.length() == 0) {
             return;
         }
-        kf kfVar = (kf) i9Var.f5177f;
+        kf kfVar = (kf) i9Var.f5178f;
         if (kfVar != null) {
             AndroidUtilities.cancelRunOnUIThread(kfVar);
-            i9Var.f5177f = null;
+            i9Var.f5178f = null;
         }
-        AnimatorSet animatorSet = (AnimatorSet) i9Var.f5176e;
+        AnimatorSet animatorSet = (AnimatorSet) i9Var.f5177e;
         if (animatorSet != null) {
             animatorSet.cancel();
-            i9Var.f5176e = null;
+            i9Var.f5177e = null;
         }
         sb2.delete(0, sb2.length());
         if (z10) {
@@ -97,11 +97,11 @@ public final class i9 extends FrameLayout {
                 }
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            i9Var.f5176e = animatorSet2;
+            i9Var.f5177e = animatorSet2;
             animatorSet2.setDuration(150L);
-            ((AnimatorSet) i9Var.f5176e).playTogether(arrayList3);
-            ((AnimatorSet) i9Var.f5176e).addListener(new ae0(i9Var, 2));
-            ((AnimatorSet) i9Var.f5176e).start();
+            ((AnimatorSet) i9Var.f5177e).playTogether(arrayList3);
+            ((AnimatorSet) i9Var.f5177e).addListener(new ae0(i9Var, 2));
+            ((AnimatorSet) i9Var.f5177e).start();
         } else {
             for (int i11 = 0; i11 < 4; i11++) {
                 ((TextView) arrayList2.get(i11)).setAlpha(0.0f);
@@ -112,8 +112,8 @@ public final class i9 extends FrameLayout {
     }
 
     public void b(String str) {
-        ArrayList arrayList = (ArrayList) this.f5175c;
-        ArrayList arrayList2 = (ArrayList) this.f5174b;
+        ArrayList arrayList = (ArrayList) this.f5176c;
+        ArrayList arrayList2 = (ArrayList) this.f5175b;
         StringBuilder sb2 = (StringBuilder) this.d;
         if (sb2.length() == 4) {
             return;
@@ -158,12 +158,12 @@ public final class i9 extends FrameLayout {
                 arrayList3.add(ObjectAnimator.ofFloat(textView4, property3, 0.0f));
             }
         }
-        kf kfVar = (kf) this.f5177f;
+        kf kfVar = (kf) this.f5178f;
         if (kfVar != null) {
             AndroidUtilities.cancelRunOnUIThread(kfVar);
         }
         kf kfVar2 = new kf(this, length, 2);
-        this.f5177f = kfVar2;
+        this.f5178f = kfVar2;
         AndroidUtilities.runOnUIThread(kfVar2, 1500L);
         for (int i11 = 0; i11 < length; i11++) {
             TextView textView5 = (TextView) arrayList2.get(i11);
@@ -181,28 +181,28 @@ public final class i9 extends FrameLayout {
             arrayList3.add(ObjectAnimator.ofFloat(textView6, property3, 1.0f));
             arrayList3.add(ObjectAnimator.ofFloat(textView6, property4, 0.0f));
         }
-        AnimatorSet animatorSet = (AnimatorSet) this.f5176e;
+        AnimatorSet animatorSet = (AnimatorSet) this.f5177e;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f5176e = animatorSet2;
+        this.f5177e = animatorSet2;
         animatorSet2.setDuration(150L);
-        ((AnimatorSet) this.f5176e).playTogether(arrayList3);
-        ((AnimatorSet) this.f5176e).addListener(new ae0(this, 0));
-        ((AnimatorSet) this.f5176e).start();
+        ((AnimatorSet) this.f5177e).playTogether(arrayList3);
+        ((AnimatorSet) this.f5177e).addListener(new ae0(this, 0));
+        ((AnimatorSet) this.f5177e).start();
         ee0.a((ee0) this.h);
     }
 
     public int c(int i10) {
-        return org.telegram.messenger.f0.D(30.0f, i10, (getMeasuredWidth() - (AndroidUtilities.dp(30.0f) * ((StringBuilder) this.d).length())) / 2) - AndroidUtilities.dp(10.0f);
+        return org.telegram.messenger.q.D(30.0f, i10, (getMeasuredWidth() - (AndroidUtilities.dp(30.0f) * ((StringBuilder) this.d).length())) / 2) - AndroidUtilities.dp(10.0f);
     }
 
     public void d(boolean z10) {
         int i10;
         float f7;
         float f10;
-        ImageView imageView = (ImageView) this.f5175c;
+        ImageView imageView = (ImageView) this.f5176c;
         if (z10) {
             i10 = 0;
         } else {
@@ -226,11 +226,11 @@ public final class i9 extends FrameLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f5173a) {
+        switch (this.f5174a) {
             case 0:
                 super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.f5177f;
-                paint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20819d7, (org.telegram.ui.ActionBar.d6) this.f5174b));
+                Paint paint = (Paint) this.f5178f;
+                paint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20823d7, (org.telegram.ui.ActionBar.d6) this.f5175b));
                 canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -245,19 +245,19 @@ public final class i9 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f5173a) {
+        switch (this.f5174a) {
             case 1:
-                ArrayList arrayList = (ArrayList) this.f5175c;
-                ArrayList arrayList2 = (ArrayList) this.f5174b;
-                kf kfVar = (kf) this.f5177f;
+                ArrayList arrayList = (ArrayList) this.f5176c;
+                ArrayList arrayList2 = (ArrayList) this.f5175b;
+                kf kfVar = (kf) this.f5178f;
                 if (kfVar != null) {
                     AndroidUtilities.cancelRunOnUIThread(kfVar);
-                    this.f5177f = null;
+                    this.f5178f = null;
                 }
-                AnimatorSet animatorSet = (AnimatorSet) this.f5176e;
+                AnimatorSet animatorSet = (AnimatorSet) this.f5177e;
                 if (animatorSet != null) {
                     animatorSet.cancel();
-                    this.f5176e = null;
+                    this.f5177e = null;
                 }
                 for (int i14 = 0; i14 < 4; i14++) {
                     if (i14 < ((StringBuilder) this.d).length()) {
@@ -288,7 +288,7 @@ public final class i9 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f5173a) {
+        switch (this.f5174a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
                 return;
@@ -300,23 +300,23 @@ public final class i9 extends FrameLayout {
 
     public i9(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f5177f = new Paint(1);
-        this.f5174b = d6Var;
+        this.f5178f = new Paint(1);
+        this.f5175b = d6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        ok.k(20.0f, 1, textView);
+        bi.j(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20926j5, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20930j5, d6Var));
         boolean z10 = LocaleController.isRTL;
         addView(textView, w7.z5.d(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f5175c = imageView;
+        this.f5176c = imageView;
         org.telegram.ui.ActionBar.g2 g2Var = new org.telegram.ui.ActionBar.g2(false);
-        this.f5176e = g2Var;
+        this.f5177e = g2Var;
         imageView.setImageDrawable(g2Var);
         g2Var.a(-1);
         g2Var.b(-1);
-        g2Var.f20649k = 220.0f;
+        g2Var.f20653k = 220.0f;
         addView(imageView, w7.z5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new ai.v0(this, 12));
     }

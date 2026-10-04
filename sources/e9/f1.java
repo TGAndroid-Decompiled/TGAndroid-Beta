@@ -5,13 +5,13 @@ import java.util.Arrays;
 public final class f1 extends k0 {
     public static final f1 h = new f1(null, new Object[0], 0);
     public final transient Object d;
-    public final transient Object[] f8742e;
-    public final transient int f8743f;
+    public final transient Object[] f8743e;
+    public final transient int f8744f;
 
     public f1(Object obj, Object[] objArr, int i10) {
         this.d = obj;
-        this.f8742e = objArr;
-        this.f8743f = i10;
+        this.f8743e = objArr;
+        this.f8744f = i10;
     }
 
     public static Object f(Object[] objArr, int i10, int i11, int i12) {
@@ -213,22 +213,22 @@ public final class f1 extends k0 {
 
     @Override
     public final c1 b() {
-        return new c1(this, this.f8742e, 0, this.f8743f);
+        return new c1(this, this.f8743e, 0, this.f8744f);
     }
 
     @Override
     public final d1 c() {
-        return new d1(this, new e1(0, this.f8743f, this.f8742e));
+        return new d1(this, new e1(0, this.f8744f, this.f8743e));
     }
 
     @Override
     public final d0 d() {
-        return new e1(1, this.f8743f, this.f8742e);
+        return new e1(1, this.f8744f, this.f8743e);
     }
 
     @Override
     public final Object get(Object obj) {
-        Object g10 = g(this.d, this.f8742e, this.f8743f, 0, obj);
+        Object g10 = g(this.d, this.f8743e, this.f8744f, 0, obj);
         if (g10 == null) {
             return null;
         }
@@ -237,6 +237,6 @@ public final class f1 extends k0 {
 
     @Override
     public final int size() {
-        return this.f8743f;
+        return this.f8744f;
     }
 }

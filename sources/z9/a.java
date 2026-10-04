@@ -5,19 +5,20 @@ import android.util.JsonReader;
 import com.google.firebase.sessions.FirebaseSessionsRegistrar;
 import java.util.List;
 import q9.d;
+import sa.e;
 import y9.e2;
 import y9.o0;
 import y9.r0;
 public final class a implements b, d {
-    public final int f53049a;
+    public final int f53054a;
 
     public a(int i10) {
-        this.f53049a = i10;
+        this.f53054a = i10;
     }
 
     @Override
     public Object E(cf.c cVar) {
-        switch (this.f53049a) {
+        switch (this.f53054a) {
             case 4:
                 return FirebaseSessionsRegistrar.e(cVar);
             case 5:
@@ -41,7 +42,7 @@ public final class a implements b, d {
         String str2 = "";
         String str3 = null;
         Long l4 = null;
-        switch (this.f53049a) {
+        switch (this.f53054a) {
             case 0:
                 jsonReader.beginObject();
                 Integer num = null;
@@ -105,7 +106,7 @@ public final class a implements b, d {
                     str = str.concat(" importance");
                 }
                 if (list == null) {
-                    str = t8.b.v(str, " frames");
+                    str = e.v(str, " frames");
                 }
                 if (str.isEmpty()) {
                     return new r0(str3, num.intValue(), list);
@@ -165,7 +166,7 @@ public final class a implements b, d {
                             l10 = Long.valueOf(jsonReader.nextLong());
                             break;
                         case 2:
-                            str5 = new String(Base64.decode(jsonReader.nextString(), 2), e2.f50627a);
+                            str5 = new String(Base64.decode(jsonReader.nextString(), 2), e2.f50635a);
                             break;
                         case 3:
                             l4 = Long.valueOf(jsonReader.nextLong());
@@ -183,7 +184,7 @@ public final class a implements b, d {
                     str2 = str2.concat(" size");
                 }
                 if (str4 == null) {
-                    str2 = t8.b.v(str2, " name");
+                    str2 = e.v(str2, " name");
                 }
                 if (str2.isEmpty()) {
                     return new o0(str4, l4.longValue(), l10.longValue(), str5);

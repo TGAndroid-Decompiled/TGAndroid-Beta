@@ -2,14 +2,14 @@ package r2;
 
 import android.text.TextUtils;
 public final class t {
-    public final String f45774a;
-    public final boolean f45775b;
-    public final boolean f45776c;
+    public final String f45781a;
+    public final boolean f45782b;
+    public final boolean f45783c;
 
     public t(String str, boolean z10, boolean z11) {
-        this.f45774a = str;
-        this.f45775b = z10;
-        this.f45776c = z11;
+        this.f45781a = str;
+        this.f45782b = z10;
+        this.f45783c = z11;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class t {
         }
         if (obj != null && obj.getClass() == t.class) {
             t tVar = (t) obj;
-            if (TextUtils.equals(this.f45774a, tVar.f45774a) && this.f45775b == tVar.f45775b && this.f45776c == tVar.f45776c) {
+            if (TextUtils.equals(this.f45781a, tVar.f45781a) && this.f45782b == tVar.f45782b && this.f45783c == tVar.f45783c) {
                 return true;
             }
         }
@@ -27,15 +27,15 @@ public final class t {
 
     public final int hashCode() {
         int i10;
-        int h = a4.a.h(31, 31, this.f45774a);
+        int h = a4.a.h(31, 31, this.f45781a);
         int i11 = 1237;
-        if (this.f45775b) {
+        if (this.f45782b) {
             i10 = 1231;
         } else {
             i10 = 1237;
         }
         int i12 = (h + i10) * 31;
-        if (this.f45776c) {
+        if (this.f45783c) {
             i11 = 1231;
         }
         return i12 + i11;

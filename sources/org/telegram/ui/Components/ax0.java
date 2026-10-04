@@ -12,7 +12,7 @@ public final class ax0 extends cb {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f25309y = true;
+        this.f25314y = true;
         I();
         zl0 zl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
@@ -38,7 +38,7 @@ public final class ax0 extends cb {
     public final yl0 v(zl0 zl0Var) {
         us usVar = new us(zl0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
         this.X = usVar;
-        usVar.f31307r = false;
+        usVar.f31313r = false;
         return usVar;
     }
 

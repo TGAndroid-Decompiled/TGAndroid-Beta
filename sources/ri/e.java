@@ -5,12 +5,12 @@ import ki.m0;
 import ki.n0;
 import ki.q0;
 public abstract class e {
-    public static final a f46443a = new a("experimental_settings_allowed");
-    public static final a f46444b = new a("round_video_camera2_enabled");
-    public static final b f46445c = new b("round_video_output_resolution", q0.P480);
-    public static final b d = new b("round_video_camera_resolution", m0.f14988a);
-    public static final b f46446e = new b("round_video_frame_rate", n0.FPS_30);
-    public static final c f46447f = new Object();
-    public static final a f46448g = new a("round_video_composition");
-    public static final b h = new b("round_video_last_camera", l0.f14982a);
+    public static final a f46450a = new a("experimental_settings_allowed");
+    public static final a f46451b = new a("round_video_camera2_enabled");
+    public static final b f46452c = new b("round_video_output_resolution", q0.P480);
+    public static final b d = new b("round_video_camera_resolution", m0.f14989a);
+    public static final b f46453e = new b("round_video_frame_rate", n0.FPS_30);
+    public static final c f46454f = new Object();
+    public static final a f46455g = new a("round_video_composition");
+    public static final b h = new b("round_video_last_camera", l0.f14983a);
 }

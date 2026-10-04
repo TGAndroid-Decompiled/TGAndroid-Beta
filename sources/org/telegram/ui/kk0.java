@@ -16,7 +16,7 @@ public final class kk0 extends org.telegram.ui.Cells.r8 {
         } else {
             dp = i14 - AndroidUtilities.dp(41.0f);
         }
-        int z11 = org.telegram.messenger.ok.z(24.0f, i13 - i11, 2);
+        int z11 = org.telegram.messenger.bi.z(24.0f, i13 - i11, 2);
         this.Q.layout(dp, z11, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + z11);
     }
 

@@ -13,16 +13,16 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
 public final class z4 {
-    public static ColorMatrixColorFilter f12830f;
-    public final ImageReceiver f12831a;
-    public final ImageReceiver f12832b;
-    public Bitmap f12833c;
+    public static ColorMatrixColorFilter f12831f;
+    public final ImageReceiver f12832a;
+    public final ImageReceiver f12833b;
+    public Bitmap f12834c;
     public final RadialProgress2 d;
-    public u f12834e;
+    public u f12835e;
 
     public z4(w4 w4Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f12831a = new ImageReceiver(w4Var);
-        this.f12832b = new ImageReceiver(w4Var);
+        this.f12832a = new ImageReceiver(w4Var);
+        this.f12833b = new ImageReceiver(w4Var);
         RadialProgress2 radialProgress2 = new RadialProgress2(w4Var, d6Var);
         this.d = radialProgress2;
         radialProgress2.d = -1;
@@ -37,47 +37,47 @@ public final class z4 {
         TLRPC.Document document;
         TLRPC.PhotoSize photoSize;
         int abs;
-        u uVar = this.f12834e;
+        u uVar = this.f12835e;
         TLRPC.PhotoSize photoSize2 = null;
-        ImageReceiver imageReceiver = this.f12831a;
+        ImageReceiver imageReceiver = this.f12832a;
         if (uVar == null) {
             imageReceiver.setImageBitmap((Drawable) null);
             return;
         }
         int i10 = AndroidUtilities.displaySize.x;
-        String k10 = a4.a.k(i10, i10, "_");
+        String l4 = a4.a.l(i10, i10, "_");
         StringBuilder sb3 = new StringBuilder();
-        u uVar2 = this.f12834e;
+        u uVar2 = this.f12835e;
         if (uVar2 == null) {
             sb2 = "null";
         } else {
-            if (uVar2.f12663b) {
+            if (uVar2.f12664b) {
                 str = "v";
-            } else if (uVar2.f12664c) {
+            } else if (uVar2.f12665c) {
                 str = "a";
             } else {
                 str = "p";
             }
-            if (uVar2.f12665e != null) {
-                StringBuilder j3 = t8.b.j(str, ":local:");
-                j3.append(this.f12834e.f12665e);
+            if (uVar2.f12666e != null) {
+                StringBuilder j3 = sa.e.j(str, ":local:");
+                j3.append(this.f12835e.f12666e);
                 sb2 = j3.toString();
             } else {
                 long j10 = 0;
                 if (uVar2.b()) {
-                    u uVar3 = this.f12834e;
+                    u uVar3 = this.f12835e;
                     TLRPC.Document document2 = uVar3.h;
                     if (document2 != null) {
-                        j10 = document2.f20044id;
+                        j10 = document2.f20048id;
                     } else {
-                        TLRPC.Photo photo2 = uVar3.f12667g;
+                        TLRPC.Photo photo2 = uVar3.f12668g;
                         if (photo2 != null) {
-                            j10 = photo2.f20062id;
+                            j10 = photo2.f20066id;
                         }
                     }
                 }
-                StringBuilder j11 = t8.b.j(str, ":");
-                j11.append(this.f12834e.f12662a);
+                StringBuilder j11 = sa.e.j(str, ":");
+                j11.append(this.f12835e.f12663a);
                 j11.append(":");
                 j11.append(j10);
                 sb2 = j11.toString();
@@ -85,17 +85,17 @@ public final class z4 {
         }
         sb3.append(sb2);
         sb3.append("@");
-        sb3.append(k10);
+        sb3.append(l4);
         if (sb3.toString().equals(null)) {
             return;
         }
-        this.f12834e.getClass();
-        u uVar4 = this.f12834e;
-        if (uVar4.f12663b) {
-            if (uVar4.f12665e != null) {
+        this.f12835e.getClass();
+        u uVar4 = this.f12835e;
+        if (uVar4.f12664b) {
+            if (uVar4.f12666e != null) {
                 imageReceiver.setOrientation(0, 0, false);
-                imageReceiver.setImage(ImageLocation.getForVideoPath(this.f12834e.f12665e), "g", null, k10, null, k10, null, 0L, null, null, 0);
-            } else if (uVar4.b() && (document = this.f12834e.h) != null) {
+                imageReceiver.setImage(ImageLocation.getForVideoPath(this.f12835e.f12666e), "g", null, l4, null, l4, null, 0L, null, null, 0);
+            } else if (uVar4.b() && (document = this.f12835e.h) != null) {
                 ArrayList<TLRPC.PhotoSize> arrayList = document.thumbs;
                 int photoSize3 = AndroidUtilities.getPhotoSize();
                 if (arrayList == null) {
@@ -105,13 +105,13 @@ public final class z4 {
                     photoSize = null;
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
                         TLRPC.PhotoSize photoSize4 = arrayList.get(i12);
-                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f20063w, photoSize4.h) - photoSize3)) < i11) {
+                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f20067w, photoSize4.h) - photoSize3)) < i11) {
                             photoSize = photoSize4;
                             i11 = abs;
                         }
                     }
                 }
-                ArrayList<TLRPC.PhotoSize> arrayList2 = this.f12834e.h.thumbs;
+                ArrayList<TLRPC.PhotoSize> arrayList2 = this.f12835e.h.thumbs;
                 if (arrayList2 != null) {
                     int i13 = 0;
                     while (true) {
@@ -126,18 +126,18 @@ public final class z4 {
                     }
                 }
                 imageReceiver.setOrientation(0, 0, false);
-                imageReceiver.setImage(ImageLocation.getForDocument(this.f12834e.h), "g", ImageLocation.getForDocument(photoSize, this.f12834e.h), k10, ImageLocation.getForDocument(photoSize2, this.f12834e.h), k10, null, 0L, null, this.f12834e.h, 0);
+                imageReceiver.setImage(ImageLocation.getForDocument(this.f12835e.h), "g", ImageLocation.getForDocument(photoSize, this.f12835e.h), l4, ImageLocation.getForDocument(photoSize2, this.f12835e.h), l4, null, 0L, null, this.f12835e.h, 0);
             } else {
                 imageReceiver.setImageBitmap((Drawable) null);
             }
-        } else if (uVar4.f12665e != null) {
-            imageReceiver.setOrientation(uVar4.f12671l, uVar4.f12672m, true);
-            imageReceiver.setImage(ImageLocation.getForPath(this.f12834e.f12665e), k10, null, null, null, 0);
-        } else if (uVar4.b() && (photo = this.f12834e.f12667g) != null) {
+        } else if (uVar4.f12666e != null) {
+            imageReceiver.setOrientation(uVar4.f12672l, uVar4.f12673m, true);
+            imageReceiver.setImage(ImageLocation.getForPath(this.f12835e.f12666e), l4, null, null, null, 0);
+        } else if (uVar4.b() && (photo = this.f12835e.f12668g) != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
-            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.f12834e.f12667g.sizes, 100);
+            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.f12835e.f12668g.sizes, 100);
             imageReceiver.setOrientation(0, 0, false);
-            imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, this.f12834e.f12667g), k10, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, this.f12834e.f12667g), k10, null, 0L, null, this.f12834e.f12667g, 0);
+            imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, this.f12835e.f12668g), l4, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, this.f12835e.f12668g), l4, null, 0L, null, this.f12835e.f12668g, 0);
         } else {
             imageReceiver.setImageBitmap((Drawable) null);
         }
@@ -146,18 +146,18 @@ public final class z4 {
     public final boolean b() {
         ImageReceiver imageReceiver;
         Bitmap bitmap;
-        if (c() && (bitmap = (imageReceiver = this.f12831a).getBitmap()) != null && !bitmap.isRecycled()) {
-            ImageReceiver imageReceiver2 = this.f12832b;
-            if ((imageReceiver2.getBitmap() == null || imageReceiver.getAnimation() == null) && (bitmap != this.f12833c || imageReceiver2.getBitmap() == null)) {
-                this.f12833c = bitmap;
+        if (c() && (bitmap = (imageReceiver = this.f12832a).getBitmap()) != null && !bitmap.isRecycled()) {
+            ImageReceiver imageReceiver2 = this.f12833b;
+            if ((imageReceiver2.getBitmap() == null || imageReceiver.getAnimation() == null) && (bitmap != this.f12834c || imageReceiver2.getBitmap() == null)) {
+                this.f12834c = bitmap;
                 imageReceiver2.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap, false));
-                if (f12830f == null) {
+                if (f12831f == null) {
                     ColorMatrix colorMatrix = new ColorMatrix();
                     AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
                     AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.6f);
-                    f12830f = new ColorMatrixColorFilter(colorMatrix);
+                    f12831f = new ColorMatrixColorFilter(colorMatrix);
                 }
-                imageReceiver2.setColorFilter(f12830f);
+                imageReceiver2.setColorFilter(f12831f);
             }
             if (imageReceiver2.getBitmap() != null) {
                 return true;
@@ -167,9 +167,9 @@ public final class z4 {
     }
 
     public final boolean c() {
-        u uVar = this.f12834e;
+        u uVar = this.f12835e;
         if (uVar != null) {
-            if (uVar.f12665e != null || uVar.b()) {
+            if (uVar.f12666e != null || uVar.b()) {
                 return true;
             }
             return false;
@@ -178,9 +178,9 @@ public final class z4 {
     }
 
     public final boolean d() {
-        u uVar = this.f12834e;
-        if (uVar != null && !uVar.f12663b && !uVar.b()) {
-            int i10 = this.f12834e.f12671l;
+        u uVar = this.f12835e;
+        if (uVar != null && !uVar.f12664b && !uVar.b()) {
+            int i10 = this.f12835e.f12672l;
             if (i10 == 90 || i10 == 270) {
                 return true;
             }

@@ -24,42 +24,42 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.r80;
 import org.telegram.ui.UserInfoActivity;
 public final class k implements Runnable {
-    public final int f12477a;
-    public final Object f12478b;
-    public final Object f12479c;
+    public final int f12478a;
+    public final Object f12479b;
+    public final Object f12480c;
     public final Object d;
-    public final Object f12480e;
-    public final Object f12481f;
+    public final Object f12481e;
+    public final Object f12482f;
     public final Object h;
-    public final Object f12482n;
-    public final Object f12483r;
+    public final Object f12483n;
+    public final Object f12484r;
 
     public k(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, int i10) {
-        this.f12477a = i10;
-        this.f12478b = obj;
-        this.f12479c = obj2;
+        this.f12478a = i10;
+        this.f12479b = obj;
+        this.f12480c = obj2;
         this.d = obj3;
-        this.f12480e = obj4;
-        this.f12481f = obj5;
+        this.f12481e = obj4;
+        this.f12482f = obj5;
         this.h = obj6;
-        this.f12482n = obj7;
-        this.f12483r = obj8;
+        this.f12483n = obj7;
+        this.f12484r = obj8;
     }
 
     @Override
     public final void run() {
         String str;
         String str2;
-        switch (this.f12477a) {
+        switch (this.f12478a) {
             case 0:
-                final String[] strArr = (String[]) this.f12478b;
-                final HorizontalScrollView horizontalScrollView = (HorizontalScrollView) this.f12479c;
+                final String[] strArr = (String[]) this.f12479b;
+                final HorizontalScrollView horizontalScrollView = (HorizontalScrollView) this.f12480c;
                 final ci.d dVar = (ci.d) this.d;
-                final boolean[] zArr = (boolean[]) this.f12480e;
-                hi.a aVar = (hi.a) this.f12481f;
+                final boolean[] zArr = (boolean[]) this.f12481e;
+                hi.a aVar = (hi.a) this.f12482f;
                 final ImageView imageView = (ImageView) this.h;
-                final org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f12482n;
-                final int[] iArr = (int[]) this.f12483r;
+                final org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f12483n;
+                final int[] iArr = (int[]) this.f12484r;
                 if (TextUtils.isEmpty(strArr[0].trim())) {
                     horizontalScrollView.setVisibility(8);
                     dVar.setEnabled(false);
@@ -80,7 +80,7 @@ public final class k implements Runnable {
                         ImageView imageView2 = imageView;
                         org.telegram.ui.ActionBar.d6 d6Var2 = d6Var;
                         if (booleanValue) {
-                            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21059q7, d6Var2), PorterDuff.Mode.SRC_IN));
+                            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21063q7, d6Var2), PorterDuff.Mode.SRC_IN));
                             if (!z10) {
                                 int[] iArr2 = iArr;
                                 int i11 = -iArr2[0];
@@ -105,78 +105,78 @@ public final class k implements Runnable {
                 });
                 return;
             case 1:
-                ((MessagesStorage) this.f12478b).lambda$loadUnreadMessages$76((a0.i) this.f12479c, (ArrayList) this.d, (ArrayList) this.f12480e, (ArrayList) this.f12481f, (ArrayList) this.h, (ArrayList) this.f12482n, (HashMap) this.f12483r);
+                ((MessagesStorage) this.f12479b).lambda$loadUnreadMessages$76((a0.i) this.f12480c, (ArrayList) this.d, (ArrayList) this.f12481e, (ArrayList) this.f12482f, (ArrayList) this.h, (ArrayList) this.f12483n, (HashMap) this.f12484r);
                 return;
             case 2:
-                UserInfoActivity.X((UserInfoActivity) this.f12478b, (TLRPC.TL_error) this.f12479c, (TLObject) this.d, (TL_account.TL_birthday) this.f12480e, (TLRPC.UserFull) this.f12481f, (TLObject) this.h, (int[]) this.f12483r, (ArrayList) this.f12482n);
+                UserInfoActivity.X((UserInfoActivity) this.f12479b, (TLRPC.TL_error) this.f12480c, (TLObject) this.d, (TL_account.TL_birthday) this.f12481e, (TLRPC.UserFull) this.f12482f, (TLObject) this.h, (int[]) this.f12484r, (ArrayList) this.f12483n);
                 return;
             case 3:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f12478b;
-                tg.v vVar = (tg.v) this.f12479c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f12479b;
+                tg.v vVar = (tg.v) this.f12480c;
                 TLObject tLObject = (TLObject) this.d;
-                List list = (List) this.f12480e;
-                c5.h hVar = (c5.h) this.f12481f;
+                List list = (List) this.f12481e;
+                c5.h hVar = (c5.h) this.f12482f;
                 tg.v vVar2 = (tg.v) this.h;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f12482n;
-                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f12483r;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f12483n;
+                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f12484r;
                 if (tL_error != null) {
                     vVar.run(tL_error);
                     return;
                 } else if (tLObject != null) {
-                    BillingController.getInstance().addResultListener(((c5.o) list.get(0)).f4228c, new ci.k5(3, hVar, vVar2));
+                    BillingController.getInstance().addResultListener(((c5.o) list.get(0)).f4229c, new ci.k5(3, hVar, vVar2));
                     BillingController.getInstance().setOnCanceled(new tg.r(vVar, 0));
                     BillingController billingController = BillingController.getInstance();
                     Activity parentActivity = n2Var.getParentActivity();
                     AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar = new of.b(7, false);
                     bVar.O((c5.o) list.get(0));
-                    billingController.launchBillingFlow(parentActivity, accountInstance, tL_inputStorePaymentPremiumGiveaway, Collections.singletonList(bVar.s()));
+                    billingController.launchBillingFlow(parentActivity, accountInstance, tL_inputStorePaymentPremiumGiveaway, Collections.singletonList(bVar.i()));
                     return;
                 } else {
                     return;
                 }
             case 4:
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f12478b;
-                Utilities.Callback callback = (Utilities.Callback) this.f12479c;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f12479b;
+                Utilities.Callback callback = (Utilities.Callback) this.f12480c;
                 TLObject tLObject2 = (TLObject) this.d;
-                List list2 = (List) this.f12480e;
-                c5.h hVar2 = (c5.h) this.f12481f;
+                List list2 = (List) this.f12481e;
+                c5.h hVar2 = (c5.h) this.f12482f;
                 Utilities.Callback callback2 = (Utilities.Callback) this.h;
-                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f12482n;
-                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f12483r;
+                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f12483n;
+                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f12484r;
                 if (tL_error2 != null) {
                     callback.run(tL_error2);
                     return;
                 } else if (tLObject2 != null) {
-                    BillingController.getInstance().addResultListener(((c5.o) list2.get(0)).f4228c, new ci.k5(2, hVar2, callback2));
+                    BillingController.getInstance().addResultListener(((c5.o) list2.get(0)).f4229c, new ci.k5(2, hVar2, callback2));
                     BillingController.getInstance().setOnCanceled(new wa(1, callback));
                     BillingController billingController2 = BillingController.getInstance();
                     Activity parentActivity2 = n2Var2.getParentActivity();
                     AccountInstance accountInstance2 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar2 = new of.b(7, false);
                     bVar2.O((c5.o) list2.get(0));
-                    billingController2.launchBillingFlow(parentActivity2, accountInstance2, tL_inputStorePaymentPremiumGiftCode, Collections.singletonList(bVar2.s()));
+                    billingController2.launchBillingFlow(parentActivity2, accountInstance2, tL_inputStorePaymentPremiumGiftCode, Collections.singletonList(bVar2.i()));
                     return;
                 } else {
                     return;
                 }
             case 5:
-                TLObject tLObject3 = (TLObject) this.f12478b;
-                c5.o oVar = (c5.o) this.f12479c;
+                TLObject tLObject3 = (TLObject) this.f12479b;
+                c5.o oVar = (c5.o) this.f12480c;
                 c5.h hVar3 = (c5.h) this.d;
-                ai.m0 m0Var = (ai.m0) this.f12480e;
-                Activity activity = (Activity) this.f12481f;
+                ai.m0 m0Var = (ai.m0) this.f12481e;
+                Activity activity = (Activity) this.f12482f;
                 TLRPC.TL_inputStorePaymentStarsGiveaway tL_inputStorePaymentStarsGiveaway = (TLRPC.TL_inputStorePaymentStarsGiveaway) this.h;
-                List list3 = (List) this.f12482n;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f12483r;
+                List list3 = (List) this.f12483n;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f12484r;
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(oVar.f4228c, new ci.k5(5, hVar3, m0Var));
+                    BillingController.getInstance().addResultListener(oVar.f4229c, new ci.k5(5, hVar3, m0Var));
                     BillingController.getInstance().setOnCanceled(new yh.j4(m0Var, 2));
                     BillingController billingController3 = BillingController.getInstance();
                     AccountInstance accountInstance3 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar3 = new of.b(7, false);
                     bVar3.O((c5.o) list3.get(0));
-                    billingController3.launchBillingFlow(activity, accountInstance3, tL_inputStorePaymentStarsGiveaway, Collections.singletonList(bVar3.s()));
+                    billingController3.launchBillingFlow(activity, accountInstance3, tL_inputStorePaymentStarsGiveaway, Collections.singletonList(bVar3.i()));
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
                     m0Var.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
@@ -192,22 +192,22 @@ public final class k implements Runnable {
                     return;
                 }
             default:
-                TLObject tLObject4 = (TLObject) this.f12478b;
-                c5.o oVar2 = (c5.o) this.f12479c;
+                TLObject tLObject4 = (TLObject) this.f12479b;
+                c5.o oVar2 = (c5.o) this.f12480c;
                 c5.h hVar4 = (c5.h) this.d;
-                r80 r80Var = (r80) this.f12480e;
-                Activity activity2 = (Activity) this.f12481f;
+                r80 r80Var = (r80) this.f12481e;
+                Activity activity2 = (Activity) this.f12482f;
                 TLRPC.TL_inputStorePaymentStarsGift tL_inputStorePaymentStarsGift = (TLRPC.TL_inputStorePaymentStarsGift) this.h;
-                List list4 = (List) this.f12482n;
-                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f12483r;
+                List list4 = (List) this.f12483n;
+                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f12484r;
                 if (tLObject4 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(oVar2.f4228c, new ci.k5(4, hVar4, r80Var));
+                    BillingController.getInstance().addResultListener(oVar2.f4229c, new ci.k5(4, hVar4, r80Var));
                     BillingController.getInstance().setOnCanceled(new yh.l4(r80Var, 0));
                     BillingController billingController4 = BillingController.getInstance();
                     AccountInstance accountInstance4 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar4 = new of.b(7, false);
                     bVar4.O((c5.o) list4.get(0));
-                    billingController4.launchBillingFlow(activity2, accountInstance4, tL_inputStorePaymentStarsGift, Collections.singletonList(bVar4.s()));
+                    billingController4.launchBillingFlow(activity2, accountInstance4, tL_inputStorePaymentStarsGift, Collections.singletonList(bVar4.i()));
                     return;
                 } else if (tLObject4 instanceof TLRPC.TL_boolFalse) {
                     r80Var.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
@@ -226,14 +226,14 @@ public final class k implements Runnable {
     }
 
     public k(UserInfoActivity userInfoActivity, TLRPC.TL_error tL_error, TLObject tLObject, TL_account.TL_birthday tL_birthday, TLRPC.UserFull userFull, TLObject tLObject2, int[] iArr, ArrayList arrayList) {
-        this.f12477a = 2;
-        this.f12478b = userInfoActivity;
-        this.f12479c = tL_error;
+        this.f12478a = 2;
+        this.f12479b = userInfoActivity;
+        this.f12480c = tL_error;
         this.d = tLObject;
-        this.f12480e = tL_birthday;
-        this.f12481f = userFull;
+        this.f12481e = tL_birthday;
+        this.f12482f = userFull;
         this.h = tLObject2;
-        this.f12483r = iArr;
-        this.f12482n = arrayList;
+        this.f12484r = iArr;
+        this.f12483n = arrayList;
     }
 }

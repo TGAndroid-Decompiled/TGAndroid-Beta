@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class vp {
-    public float f32329g;
-    public float f32332k;
-    public final Path f32324a = new Path();
-    public final float[] f32325b = new float[4];
-    public final float[] f32326c = new float[4];
+    public float f32335g;
+    public float f32338k;
+    public final Path f32330a = new Path();
+    public final float[] f32331b = new float[4];
+    public final float[] f32332c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f32330i = new Random();
-    public final int f32328f = 6;
-    public final float f32327e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f32331j = new float[6];
+    public final Random f32336i = new Random();
+    public final int f32334f = 6;
+    public final float f32333e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
+    public final float[] f32337j = new float[6];
 
     public vp() {
-        for (int i10 = 0; i10 < this.f32328f; i10++) {
-            this.f32331j[i10] = (this.f32330i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f32334f; i10++) {
+            this.f32337j[i10] = (this.f32336i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class vp {
         int i10;
         float f12;
         vp vpVar = this;
-        float f13 = vpVar.f32329g;
+        float f13 = vpVar.f32335g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
-        float f16 = vpVar.f32327e;
+        float f16 = vpVar.f32333e;
         float f17 = max * f16 * vpVar.h;
-        Path path = vpVar.f32324a;
+        Path path = vpVar.f32330a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = vpVar.f32328f;
+            int i12 = vpVar.f32334f;
             if (i11 < i12) {
                 Matrix matrix = vpVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class vp {
                 } else {
                     f11 = f15;
                 }
-                float f19 = vpVar.f32332k;
-                float[] fArr = vpVar.f32331j;
+                float f19 = vpVar.f32338k;
+                float[] fArr = vpVar.f32337j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = vpVar.f32325b;
+                float[] fArr2 = vpVar.f32331b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class vp {
                 } else {
                     f12 = f22;
                 }
-                float f23 = vpVar.f32332k;
-                float[] fArr3 = vpVar.f32326c;
+                float f23 = vpVar.f32338k;
+                float[] fArr3 = vpVar.f32332c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

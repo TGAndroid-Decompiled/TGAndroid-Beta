@@ -4,16 +4,16 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class ok0 extends ImageReceiver {
-    public final int f29396a;
+    public final int f29401a;
 
     public ok0(int i10, View view) {
         super(view);
-        this.f29396a = i10;
+        this.f29401a = i10;
     }
 
     @Override
     public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        switch (this.f29396a) {
+        switch (this.f29401a) {
             case 0:
                 if (drawable instanceof kj0) {
                     ((kj0) drawable).N(0, false, true);

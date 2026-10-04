@@ -1,9 +1,9 @@
 package v7;
 public final class v2 implements ia.d {
-    public static final v2 f48067a = new Object();
+    public static final v2 f48075a = new Object();
 
     static {
-        t8.b.t(t8.b.l(h.class, new e(1)));
+        sa.e.t(sa.e.l(h.class, new e(1)));
     }
 
     @Override

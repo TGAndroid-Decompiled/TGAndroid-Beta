@@ -9,26 +9,26 @@ import k2.e;
 import r0.i0;
 import s0.d;
 public final class a extends e {
-    public final b f13629c;
+    public final b f13630c;
 
     public a(b bVar) {
         super(18);
-        this.f13629c = bVar;
+        this.f13630c = bVar;
     }
 
     @Override
     public final d b(int i10) {
-        return new d(AccessibilityNodeInfo.obtain(this.f13629c.j(i10).f46471a));
+        return new d(AccessibilityNodeInfo.obtain(this.f13630c.j(i10).f46478a));
     }
 
     @Override
     public final d d(int i10) {
         int i11;
-        b bVar = this.f13629c;
+        b bVar = this.f13630c;
         if (i10 == 2) {
-            i11 = bVar.f13636k;
+            i11 = bVar.f13637k;
         } else {
-            i11 = bVar.f13637l;
+            i11 = bVar.f13638l;
         }
         if (i11 == Integer.MIN_VALUE) {
             return null;
@@ -40,8 +40,8 @@ public final class a extends e {
     public final boolean i(int i10, int i11, Bundle bundle) {
         int i12;
         int i13;
-        b bVar = this.f13629c;
-        View view = bVar.f13634i;
+        b bVar = this.f13630c;
+        View view = bVar.f13635i;
         if (i10 != -1) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -49,45 +49,45 @@ public final class a extends e {
                         if (i11 != 128) {
                             return bVar.k(i10, i11);
                         }
-                        if (bVar.f13636k != i10) {
+                        if (bVar.f13637k != i10) {
                             return false;
                         }
-                        bVar.f13636k = Integer.MIN_VALUE;
+                        bVar.f13637k = Integer.MIN_VALUE;
                         view.invalidate();
                         bVar.m(i10, 65536);
                         return true;
                     }
                     AccessibilityManager accessibilityManager = bVar.h;
-                    if (accessibilityManager.isEnabled() && accessibilityManager.isTouchExplorationEnabled() && (i13 = bVar.f13636k) != i10) {
+                    if (accessibilityManager.isEnabled() && accessibilityManager.isTouchExplorationEnabled() && (i13 = bVar.f13637k) != i10) {
                         if (i13 != Integer.MIN_VALUE) {
-                            bVar.f13636k = Integer.MIN_VALUE;
+                            bVar.f13637k = Integer.MIN_VALUE;
                             view.invalidate();
                             bVar.m(i13, 65536);
                         }
-                        bVar.f13636k = i10;
+                        bVar.f13637k = i10;
                         view.invalidate();
                         bVar.m(i10, 32768);
                         return true;
                     }
-                } else if (bVar.f13637l != i10) {
+                } else if (bVar.f13638l != i10) {
                     return false;
                 } else {
-                    bVar.f13637l = Integer.MIN_VALUE;
+                    bVar.f13638l = Integer.MIN_VALUE;
                     bVar.m(i10, 8);
                     return true;
                 }
-            } else if ((view.isFocused() || view.requestFocus()) && (i12 = bVar.f13637l) != i10) {
+            } else if ((view.isFocused() || view.requestFocus()) && (i12 = bVar.f13638l) != i10) {
                 if (i12 != Integer.MIN_VALUE) {
-                    bVar.f13637l = Integer.MIN_VALUE;
+                    bVar.f13638l = Integer.MIN_VALUE;
                     bVar.m(i12, 8);
                 }
-                bVar.f13637l = i10;
+                bVar.f13638l = i10;
                 bVar.m(i10, 8);
                 return true;
             }
             return false;
         }
-        WeakHashMap weakHashMap = i0.f45596a;
+        WeakHashMap weakHashMap = i0.f45603a;
         return view.performAccessibilityAction(i11, bundle);
     }
 }

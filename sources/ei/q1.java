@@ -19,7 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
@@ -34,10 +34,10 @@ public final class q1 extends cb {
     public final int X;
     public final String Y;
     public u61 Z;
-    public final n1 f9269a0;
-    public boolean f9270b0;
-    public boolean f9271c0;
-    public final org.telegram.tgnet.e f9272d0;
+    public final n1 f9270a0;
+    public boolean f9271b0;
+    public boolean f9272c0;
+    public final org.telegram.tgnet.e f9273d0;
 
     public q1(Context context, int i10, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, d6 d6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
         super(context, null, false, false, d6Var);
@@ -50,11 +50,11 @@ public final class q1 extends cb {
         TLRPC.TL_photo tL_photo;
         int lastIndexOf;
         TLRPC.TL_photo tL_photo2;
-        this.f9270b0 = false;
-        this.f9271c0 = false;
+        this.f9271b0 = false;
+        this.f9272c0 = false;
         this.X = i10;
         this.Y = UserObject.getUserName(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
-        this.f9272d0 = eVar;
+        this.f9273d0 = eVar;
         I();
         this.I = AndroidUtilities.dp(4.0f);
         this.J = AndroidUtilities.dp(-10.0f);
@@ -129,7 +129,7 @@ public final class q1 extends cb {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f20044id = 0L;
+                    tL_document2.f20048id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -192,7 +192,7 @@ public final class q1 extends cb {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeImageSize.f20045w = inlineResultWidthAndHeight[0];
+                            tL_documentAttributeImageSize.f20049w = inlineResultWidthAndHeight[0];
                             tL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -250,7 +250,7 @@ public final class q1 extends cb {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeVideo.f20045w = inlineResultWidthAndHeight2[0];
+                            tL_documentAttributeVideo.f20049w = inlineResultWidthAndHeight2[0];
                             tL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
                             tL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -290,7 +290,7 @@ public final class q1 extends cb {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize.f20063w = inlineResultWidthAndHeight3[0];
+                        tL_photoSize.f20067w = inlineResultWidthAndHeight3[0];
                         tL_photoSize.h = inlineResultWidthAndHeight3[1];
                         tL_photoSize.size = 0;
                         tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
@@ -313,7 +313,7 @@ public final class q1 extends cb {
                         tL_photo2.file_reference = new byte[0];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize2.f20063w = inlineResultWidthAndHeight4[0];
+                        tL_photoSize2.f20067w = inlineResultWidthAndHeight4[0];
                         tL_photoSize2.h = inlineResultWidthAndHeight4[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -339,18 +339,18 @@ public final class q1 extends cb {
         org.telegram.ui.Cells.u1 u1Var = new org.telegram.ui.Cells.u1(context, i11);
         u1Var.setDelegate(new Object());
         u1Var.X3(p1Var, null, false, false, false, false);
-        LinearLayout f7 = ok.f(context, r11);
-        f7.addView(w0Var, z5.n(-1, -2));
-        f7.addView(u1Var, z5.n(-1, -2));
+        LinearLayout e7 = bi.e(context, r11);
+        e7.addView(w0Var, z5.n(-1, -2));
+        e7.addView(u1Var, z5.n(-1, -2));
         ?? lw0Var = new lw0(context, null);
-        this.f9269a0 = lw0Var;
+        this.f9270a0 = lw0Var;
         lw0Var.V(b7.e(null, i11, j3, i6.I.q()));
-        lw0Var.addView(f7, z5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
+        lw0Var.addView(e7, z5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        ci.d g10 = ok.g(24, context, d6Var, r11);
-        g10.g(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
-        g10.setOnClickListener(new d1(this, tL_messages_preparedInlineMessage, eVar, i11, j3, sVar));
-        frameLayout.addView(g10, z5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
+        ci.d f7 = bi.f(24, context, d6Var, r11);
+        f7.g(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
+        f7.setOnClickListener(new d1(this, tL_messages_preparedInlineMessage, eVar, i11, j3, sVar));
+        frameLayout.addView(f7, z5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         ViewGroup viewGroup = this.containerView;
         int i13 = this.backgroundPaddingLeft;
         viewGroup.addView(frameLayout, z5.f(-2.0f, 87, i13, 0, i13, 0));
@@ -358,7 +358,7 @@ public final class q1 extends cb {
         int i14 = this.backgroundPaddingLeft;
         zl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
         this.d.s1();
-        int i15 = i6.f20762a7;
+        int i15 = i6.f20766a7;
         setBackgroundColor(getThemedColor(i15));
         fixNavigationBar(getThemedColor(i15));
         this.Z.N(false);
@@ -373,16 +373,16 @@ public final class q1 extends cb {
         b2Var.q(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j3);
-        tL_messages_getPreparedInlineMessage.f20136id = str;
+        tL_messages_getPreparedInlineMessage.f20140id = str;
         ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new c1(i10, b2Var, context, j3, d6Var, sVar, eVar));
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        if (!this.f9270b0 && !this.f9271c0) {
-            this.f9271c0 = true;
-            org.telegram.tgnet.e eVar = this.f9272d0;
+        if (!this.f9271b0 && !this.f9272c0) {
+            this.f9272c0 = true;
+            org.telegram.tgnet.e eVar = this.f9273d0;
             if (eVar != null) {
                 eVar.run("USER_DECLINED", null);
             }

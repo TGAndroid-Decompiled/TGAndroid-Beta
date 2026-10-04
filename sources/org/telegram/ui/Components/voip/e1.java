@@ -26,34 +26,34 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ch0;
 import yh.x7;
 public final class e1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, cd0, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, ow0 {
-    public final int f31840a;
+    public final int f31846a;
 
     public e1(int i10) {
-        this.f31840a = i10;
+        this.f31846a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         k1 k1Var = (k1) obj;
-        switch (this.f31840a) {
+        switch (this.f31846a) {
             case 1:
-                WindowManager.LayoutParams layoutParams = k1Var.f31935c;
+                WindowManager.LayoutParams layoutParams = k1Var.f31941c;
                 k1Var.Q = f7;
                 layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(k1Var.f31934b, k1Var.d, layoutParams);
+                AndroidUtilities.updateViewLayout(k1Var.f31940b, k1Var.d, layoutParams);
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = k1Var.f31935c;
+                WindowManager.LayoutParams layoutParams2 = k1Var.f31941c;
                 k1Var.R = f7;
                 layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(k1Var.f31934b, k1Var.d, layoutParams2);
+                AndroidUtilities.updateViewLayout(k1Var.f31940b, k1Var.d, layoutParams2);
                 return;
         }
     }
 
     @Override
     public String e(int i10) {
-        switch (this.f31840a) {
+        switch (this.f31846a) {
             case 8:
                 return String.format("%02d", Integer.valueOf(i10));
             case 9:
@@ -80,7 +80,7 @@ public final class e1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, cd0, Ge
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f31840a) {
+        switch (this.f31846a) {
             case 4:
                 b2Var.dismiss();
                 return;
@@ -122,7 +122,7 @@ public final class e1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, cd0, Ge
     @Override
     public float get(Object obj) {
         k1 k1Var = (k1) obj;
-        switch (this.f31840a) {
+        switch (this.f31846a) {
             case 0:
                 return k1Var.Q;
             default:
@@ -139,12 +139,12 @@ public final class e1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, cd0, Ge
     @Override
     public Object provide(Object obj) {
         Void r82 = (Void) obj;
-        switch (this.f31840a) {
+        switch (this.f31846a) {
             case 10:
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(i6.w0(null, i6.f20818d6, false));
+                canvas.drawColor(i6.w0(null, i6.f20822d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);

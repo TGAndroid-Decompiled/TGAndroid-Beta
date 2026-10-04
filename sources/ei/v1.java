@@ -49,17 +49,17 @@ import org.telegram.ui.uy;
 import org.telegram.ui.yf1;
 import w7.z5;
 public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallback {
-    public final int f9385a = 1;
-    public final int f9386b;
-    public final long f9387c;
+    public final int f9386a = 1;
+    public final int f9387b;
+    public final long f9388c;
     public final Object d;
-    public final Object f9388e;
+    public final Object f9389e;
 
     public v1(int i10, long j3, TLRPC.TL_attachMenuBot tL_attachMenuBot, Runnable runnable) {
-        this.f9386b = i10;
-        this.f9387c = j3;
+        this.f9387b = i10;
+        this.f9388c = j3;
         this.d = tL_attachMenuBot;
-        this.f9388e = runnable;
+        this.f9389e = runnable;
     }
 
     @Override
@@ -74,10 +74,10 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11 = this.f9385a;
-        Object obj = this.f9388e;
-        int i12 = this.f9386b;
-        long j3 = this.f9387c;
+        int i11 = this.f9386a;
+        Object obj = this.f9389e;
+        int i12 = this.f9387b;
+        long j3 = this.f9388c;
         Object obj2 = this.d;
         switch (i11) {
             case 1:
@@ -155,13 +155,13 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
     public void onComplete(Object obj) {
         int i10;
         s21 s21Var = (s21) this.d;
-        op opVar = (op) this.f9388e;
+        op opVar = (op) this.f9389e;
         Pair pair = (Pair) obj;
-        if (pair != null && ((Long) pair.first).longValue() == this.f9387c) {
-            Drawable drawable = opVar.f29424b;
+        if (pair != null && ((Long) pair.first).longValue() == this.f9388c) {
+            Drawable drawable = opVar.f29429b;
             if (drawable instanceof pc0) {
                 pc0 pc0Var = (pc0) drawable;
-                if (this.f9386b >= 0) {
+                if (this.f9387b >= 0) {
                     i10 = 100;
                 } else {
                     i10 = -100;
@@ -190,19 +190,19 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         int i13;
         int i14;
         uy uyVar2 = (uy) this.d;
-        final TL_bots.botVerifierSettings botverifiersettings = (TL_bots.botVerifierSettings) this.f9388e;
+        final TL_bots.botVerifierSettings botverifiersettings = (TL_bots.botVerifierSettings) this.f9389e;
         if (arrayList.isEmpty()) {
             return false;
         }
         final long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Activity parentActivity = uyVar2.getParentActivity();
-        final int i15 = this.f9386b;
+        final int i15 = this.f9387b;
         w1 w1Var = new w1(yf1Var, uyVar2, j3, i15);
         if (parentActivity == null) {
             return true;
         }
         MessagesController messagesController = MessagesController.getInstance(i15);
-        final long j10 = this.f9387c;
+        final long j10 = this.f9388c;
         messagesController.getUser(Long.valueOf(j10));
         int i16 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i16 >= 0) {
@@ -236,14 +236,14 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         }
         final org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) activity, (d6) null, true);
         f3Var.fixNavigationBar();
-        LinearLayout e7 = org.telegram.messenger.f0.e(activity, 1);
+        LinearLayout e7 = org.telegram.messenger.q.e(activity, 1);
         TLRPC.User user4 = user;
         TLRPC.Chat chat3 = chat;
         e7.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         e7.setClipChildren(false);
         e7.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(activity);
-        frameLayout.setBackground(i6.c0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), i6.w0(null, i6.f20811ci, false)));
+        frameLayout.setBackground(i6.c0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), i6.w0(null, i6.f20815ci, false)));
         w9 w9Var = new w9(activity);
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         h9 h9Var = new h9((d6) null);
@@ -251,12 +251,12 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         w9Var.e(user2, h9Var);
         frameLayout.addView(w9Var, z5.e(28, 28, 51));
         w9 w9Var2 = new w9(activity);
-        w9Var2.setEmojiColorFilter(new PorterDuffColorFilter(i6.w0(null, i6.f21227z9, false), PorterDuff.Mode.SRC_IN));
+        w9Var2.setEmojiColorFilter(new PorterDuffColorFilter(i6.w0(null, i6.f21231z9, false), PorterDuff.Mode.SRC_IN));
         final w1 w1Var2 = w1Var;
         w9Var2.setAnimatedEmojiDrawable(q5.n(i15, botverifiersettings.icon, null, 3));
         frameLayout.addView(w9Var2, z5.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         i5 i5Var = new i5(activity);
-        i5Var.setTextColor(i6.w0(null, i6.f20926j5, false));
+        i5Var.setTextColor(i6.w0(null, i6.f20930j5, false));
         i5Var.setTextSize(13);
         i5Var.setEllipsizeByGradient(true);
         i5Var.l(str2, false);
@@ -301,8 +301,8 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(i6.w0(null, i6.f21144uf, false));
-        editTextBoldCursor.setHandlesColor(i6.w0(null, i6.f21161vf, false));
+        editTextBoldCursor.setHighlightColor(i6.w0(null, i6.f21148uf, false));
+        editTextBoldCursor.setHandlesColor(i6.w0(null, i6.f21165vf, false));
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
@@ -387,9 +387,9 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
 
     public v1(EditText editText, long j3, int i10, EditText editText2) {
         this.d = editText;
-        this.f9387c = j3;
-        this.f9386b = i10;
-        this.f9388e = editText2;
+        this.f9388c = j3;
+        this.f9387b = i10;
+        this.f9389e = editText2;
     }
 
     @Override
@@ -399,15 +399,15 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
 
     public v1(s21 s21Var, long j3, op opVar, int i10) {
         this.d = s21Var;
-        this.f9387c = j3;
-        this.f9388e = opVar;
-        this.f9386b = i10;
+        this.f9388c = j3;
+        this.f9389e = opVar;
+        this.f9387b = i10;
     }
 
     public v1(uy uyVar, int i10, long j3, TL_bots.botVerifierSettings botverifiersettings) {
         this.d = uyVar;
-        this.f9386b = i10;
-        this.f9387c = j3;
-        this.f9388e = botverifiersettings;
+        this.f9387b = i10;
+        this.f9388c = j3;
+        this.f9389e = botverifiersettings;
     }
 }

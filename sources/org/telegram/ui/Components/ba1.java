@@ -19,31 +19,31 @@ public final class ba1 extends View {
     public aa1 L;
     public boolean M;
     public final org.telegram.ui.Cells.d2 N;
-    public final Drawable f24889a;
-    public final Drawable f24890b;
-    public final Drawable f24891c;
+    public final Drawable f24893a;
+    public final Drawable f24894b;
+    public final Drawable f24895c;
     public final Drawable d;
-    public final Drawable f24892e;
-    public final Drawable f24893f;
+    public final Drawable f24896e;
+    public final Drawable f24897f;
     public int h;
-    public int f24894n;
-    public int f24895r;
-    public int f24896s;
+    public int f24898n;
+    public int f24899r;
+    public int f24900s;
     public int v;
-    public int f24897w;
-    public int f24898x;
-    public int f24899y;
+    public int f24901w;
+    public int f24902x;
+    public int f24903y;
 
     public ba1(Context context) {
         super(context);
         this.M = true;
         this.N = new org.telegram.ui.Cells.d2(this);
-        this.f24889a = context.getResources().getDrawable(R.drawable.zoom_minus);
-        this.f24890b = context.getResources().getDrawable(R.drawable.zoom_plus);
-        this.f24891c = context.getResources().getDrawable(R.drawable.zoom_slide);
+        this.f24893a = context.getResources().getDrawable(R.drawable.zoom_minus);
+        this.f24894b = context.getResources().getDrawable(R.drawable.zoom_plus);
+        this.f24895c = context.getResources().getDrawable(R.drawable.zoom_slide);
         this.d = context.getResources().getDrawable(R.drawable.zoom_slide_a);
-        this.f24892e = context.getResources().getDrawable(R.drawable.zoom_round);
-        this.f24893f = context.getResources().getDrawable(R.drawable.zoom_round_b);
+        this.f24896e = context.getResources().getDrawable(R.drawable.zoom_round);
+        this.f24897f = context.getResources().getDrawable(R.drawable.zoom_round_b);
     }
 
     public final boolean a(float f7) {
@@ -101,52 +101,52 @@ public final class ba1 extends View {
         }
         if (z10) {
             this.h = AndroidUtilities.dp(41.0f);
-            this.f24894n = measuredHeight;
-            this.f24895r = getMeasuredWidth() - AndroidUtilities.dp(41.0f);
-            this.f24896s = measuredHeight;
+            this.f24898n = measuredHeight;
+            this.f24899r = getMeasuredWidth() - AndroidUtilities.dp(41.0f);
+            this.f24900s = measuredHeight;
             this.v = AndroidUtilities.dp(18.0f) + this.h;
-            this.f24897w = measuredHeight;
-            this.f24898x = this.f24895r - AndroidUtilities.dp(18.0f);
-            this.f24899y = measuredHeight;
+            this.f24901w = measuredHeight;
+            this.f24902x = this.f24899r - AndroidUtilities.dp(18.0f);
+            this.f24903y = measuredHeight;
         } else {
             this.h = measuredWidth;
-            this.f24894n = AndroidUtilities.dp(41.0f);
-            this.f24895r = measuredWidth;
-            this.f24896s = getMeasuredHeight() - AndroidUtilities.dp(41.0f);
+            this.f24898n = AndroidUtilities.dp(41.0f);
+            this.f24899r = measuredWidth;
+            this.f24900s = getMeasuredHeight() - AndroidUtilities.dp(41.0f);
             this.v = measuredWidth;
-            this.f24897w = AndroidUtilities.dp(18.0f) + this.f24894n;
-            this.f24898x = measuredWidth;
-            this.f24899y = this.f24896s - AndroidUtilities.dp(18.0f);
+            this.f24901w = AndroidUtilities.dp(18.0f) + this.f24898n;
+            this.f24902x = measuredWidth;
+            this.f24903y = this.f24900s - AndroidUtilities.dp(18.0f);
         }
         int dp = this.h - AndroidUtilities.dp(7.0f);
-        int dp2 = this.f24894n - AndroidUtilities.dp(7.0f);
+        int dp2 = this.f24898n - AndroidUtilities.dp(7.0f);
         int dp3 = AndroidUtilities.dp(7.0f) + this.h;
-        int dp4 = AndroidUtilities.dp(7.0f) + this.f24894n;
-        Drawable drawable2 = this.f24889a;
+        int dp4 = AndroidUtilities.dp(7.0f) + this.f24898n;
+        Drawable drawable2 = this.f24893a;
         drawable2.setBounds(dp, dp2, dp3, dp4);
         drawable2.draw(canvas);
-        int dp5 = this.f24895r - AndroidUtilities.dp(7.0f);
-        int dp6 = this.f24896s - AndroidUtilities.dp(7.0f);
-        int dp7 = AndroidUtilities.dp(7.0f) + this.f24895r;
-        int dp8 = AndroidUtilities.dp(7.0f) + this.f24896s;
-        Drawable drawable3 = this.f24890b;
+        int dp5 = this.f24899r - AndroidUtilities.dp(7.0f);
+        int dp6 = this.f24900s - AndroidUtilities.dp(7.0f);
+        int dp7 = AndroidUtilities.dp(7.0f) + this.f24899r;
+        int dp8 = AndroidUtilities.dp(7.0f) + this.f24900s;
+        Drawable drawable3 = this.f24894b;
         drawable3.setBounds(dp5, dp6, dp7, dp8);
         drawable3.draw(canvas);
-        int i10 = this.f24898x;
+        int i10 = this.f24902x;
         int i11 = this.v;
-        int i12 = this.f24899y;
-        int i13 = this.f24897w;
+        int i12 = this.f24903y;
+        int i13 = this.f24901w;
         float f7 = this.E;
         int i14 = (int) (((i10 - i11) * f7) + i11);
         int i15 = (int) (((i12 - i13) * f7) + i13);
         Drawable drawable4 = this.d;
-        Drawable drawable5 = this.f24891c;
+        Drawable drawable5 = this.f24895c;
         if (z10) {
-            drawable5.setBounds(i11, i13 - AndroidUtilities.dp(3.0f), this.f24898x, AndroidUtilities.dp(3.0f) + this.f24897w);
-            drawable4.setBounds(this.v, this.f24897w - AndroidUtilities.dp(3.0f), i14, AndroidUtilities.dp(3.0f) + this.f24897w);
+            drawable5.setBounds(i11, i13 - AndroidUtilities.dp(3.0f), this.f24902x, AndroidUtilities.dp(3.0f) + this.f24901w);
+            drawable4.setBounds(this.v, this.f24901w - AndroidUtilities.dp(3.0f), i14, AndroidUtilities.dp(3.0f) + this.f24901w);
         } else {
             drawable5.setBounds(i13, 0, i12, AndroidUtilities.dp(6.0f));
-            drawable4.setBounds(this.f24897w, 0, i15, AndroidUtilities.dp(6.0f));
+            drawable4.setBounds(this.f24901w, 0, i15, AndroidUtilities.dp(6.0f));
             canvas.save();
             canvas.rotate(90.0f);
             canvas.translate(0.0f, (-this.v) - AndroidUtilities.dp(3.0f));
@@ -157,9 +157,9 @@ public final class ba1 extends View {
             canvas.restore();
         }
         if (this.G) {
-            drawable = this.f24893f;
+            drawable = this.f24897f;
         } else {
-            drawable = this.f24892e;
+            drawable = this.f24896e;
         }
         int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
         drawable.setBounds(i14 - intrinsicWidth, i15 - intrinsicWidth, i14 + intrinsicWidth, i15 + intrinsicWidth);

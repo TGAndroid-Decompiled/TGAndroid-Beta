@@ -15,11 +15,11 @@ public final class i70 extends tx0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f31193b.getImageReceiver().startAnimation();
+                this.f31199b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f31193b.getImageReceiver().startAnimation();
+                this.f31199b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

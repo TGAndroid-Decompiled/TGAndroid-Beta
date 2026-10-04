@@ -17,33 +17,33 @@ import org.telegram.ui.hj;
 import w7.b6;
 import w7.z5;
 public final class c extends LinearLayout {
-    public static final int f14136e = 0;
-    public final d6 f14137a;
-    public final cf.c f14138b;
-    public final cf.c f14139c;
+    public static final int f14137e = 0;
+    public final d6 f14138a;
+    public final cf.c f14139b;
+    public final cf.c f14140c;
     public float d;
 
     public c(Context context, d6 d6Var, hj hjVar, ah.c cVar) {
         super(context);
         cf.c cVar2 = new cf.c(this);
-        this.f14138b = cVar2;
+        this.f14139b = cVar2;
         cf.c cVar3 = new cf.c(this);
-        this.f14139c = cVar3;
-        this.f14137a = d6Var;
+        this.f14140c = cVar3;
+        this.f14138a = d6Var;
         ih.a c10 = ih.a.c(cVar, context, hjVar, d6Var);
-        cVar2.f4602a = c10;
+        cVar2.f4603a = c10;
         c10.setOnClickListener(new e2(5));
-        b6.b((ih.a) cVar2.f4602a, 0.065f, 2.0f);
+        b6.b((ih.a) cVar2.f4603a, 0.065f, 2.0f);
         ih.a c11 = ih.a.c(cVar, context, hjVar, d6Var);
-        cVar3.f4602a = c11;
+        cVar3.f4603a = c11;
         c11.setOnClickListener(new e2(5));
-        b6.b((ih.a) cVar3.f4602a, 0.065f, 2.0f);
+        b6.b((ih.a) cVar3.f4603a, 0.065f, 2.0f);
         a(cVar2, LocaleController.getString(R.string.Reply), R.drawable.input_reply, false);
         a(cVar3, LocaleController.getString(R.string.Forward), R.drawable.input_forward, true);
         setOrientation(0);
         setClipChildren(false);
-        addView((ih.a) cVar2.f4602a, z5.m(1.0f, 0, 56, 1, -1, 0));
-        addView((ih.a) cVar3.f4602a, z5.m(1.0f, 0, 56, -1, 1, 0));
+        addView((ih.a) cVar2.f4603a, z5.m(1.0f, 0, 56, 1, -1, 0));
+        addView((ih.a) cVar3.f4603a, z5.m(1.0f, 0, 56, -1, 1, 0));
     }
 
     public final void a(cf.c cVar, String str, int i10, boolean z10) {
@@ -55,7 +55,7 @@ public final class c extends LinearLayout {
         textView.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
         textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
         int i11 = i6.Xk;
-        d6 d6Var = this.f14137a;
+        d6 d6Var = this.f14138a;
         textView.setTextColor(i6.v0(i11, d6Var));
         textView.setTypeface(AndroidUtilities.bold());
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
@@ -69,22 +69,22 @@ public final class c extends LinearLayout {
             mutate = null;
         }
         textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
-        cVar.f4603b = textView;
-        ((ih.a) cVar.f4602a).addView(textView, z5.e(-2, -2, 17));
+        cVar.f4604b = textView;
+        ((ih.a) cVar.f4603a).addView(textView, z5.e(-2, -2, 17));
     }
 
     public final void b(cf.c cVar) {
         int i10;
-        float f7 = this.d * ((le.b) cVar.f4604c).f15435e;
+        float f7 = this.d * ((le.b) cVar.f4605c).f15436e;
         float f10 = (1.0f - f7) * (-AndroidUtilities.dp(54.0f));
-        float interpolation = (1.0f - ke.a.f14758a.getInterpolation(f7)) * (getMeasuredWidth() / 2.0f);
-        if (cVar == this.f14138b) {
+        float interpolation = (1.0f - ke.a.f14759a.getInterpolation(f7)) * (getMeasuredWidth() / 2.0f);
+        if (cVar == this.f14139b) {
             interpolation *= -1.0f;
         }
-        ((ih.a) cVar.f4602a).setTranslationX(interpolation);
-        ((ih.a) cVar.f4602a).setTranslationY(f10);
-        ((ih.a) cVar.f4602a).setAlpha(f7);
-        ih.a aVar = (ih.a) cVar.f4602a;
+        ((ih.a) cVar.f4603a).setTranslationX(interpolation);
+        ((ih.a) cVar.f4603a).setTranslationY(f10);
+        ((ih.a) cVar.f4603a).setAlpha(f7);
+        ih.a aVar = (ih.a) cVar.f4603a;
         if (f7 > 0.0f) {
             i10 = 0;
         } else {
@@ -94,29 +94,29 @@ public final class c extends LinearLayout {
     }
 
     public View getForwardButton() {
-        return (ih.a) this.f14139c.f4602a;
+        return (ih.a) this.f14140c.f4603a;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        b(this.f14139c);
-        b(this.f14138b);
+        b(this.f14140c);
+        b(this.f14139b);
     }
 
     public void setForwardButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((ih.a) this.f14139c.f4602a).setOnClickListener(onClickListener);
+        ((ih.a) this.f14140c.f4603a).setOnClickListener(onClickListener);
     }
 
     public void setReplyButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((ih.a) this.f14138b.f4602a).setOnClickListener(onClickListener);
+        ((ih.a) this.f14139b.f4603a).setOnClickListener(onClickListener);
     }
 
     public void setTotalVisibilityFactor(float f7) {
         if (this.d != f7) {
             this.d = f7;
-            b(this.f14139c);
-            b(this.f14138b);
+            b(this.f14140c);
+            b(this.f14139b);
         }
     }
 }

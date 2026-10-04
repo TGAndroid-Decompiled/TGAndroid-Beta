@@ -8,26 +8,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 public final class im implements ViewTreeObserver.OnPreDrawListener {
-    public final org.telegram.ui.Cells.u1 f37459a;
-    public final jm f37460b;
+    public final org.telegram.ui.Cells.u1 f37464a;
+    public final jm f37465b;
 
     public im(jm jmVar, org.telegram.ui.Cells.u1 u1Var) {
-        this.f37460b = jmVar;
-        this.f37459a = u1Var;
+        this.f37465b = jmVar;
+        this.f37464a = u1Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         float f7;
         float centerX;
-        yn ynVar = this.f37460b.Q;
-        org.telegram.ui.Cells.u1 u1Var = this.f37459a;
+        yn ynVar = this.f37465b.Q;
+        org.telegram.ui.Cells.u1 u1Var = this.f37464a;
         u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
         MessageObject.SendAnimationData sendAnimationData = u1Var.getMessageObject().sendAnimationData;
         if (sendAnimationData == null) {
             return true;
         }
-        ynVar.f43406l6.add(u1Var);
+        ynVar.f43413l6.add(u1Var);
         ImageReceiver photoImage = u1Var.getPhotoImage();
         float imageWidth = photoImage.getImageWidth();
         if (sendAnimationData.fromPreview) {
@@ -35,7 +35,7 @@ public final class im implements ViewTreeObserver.OnPreDrawListener {
         } else {
             f7 = sendAnimationData.width / imageWidth;
         }
-        u1Var.getTransitionParams().f23030x0 = true;
+        u1Var.getTransitionParams().f23034x0 = true;
         u1Var.getLocationInWindow(r8);
         int[] iArr = {0, (int) (iArr[1] - u1Var.getTranslationY())};
         if (ynVar.W.z0()) {
@@ -46,7 +46,7 @@ public final class im implements ViewTreeObserver.OnPreDrawListener {
         fm fmVar = new fm(this);
         AnimatorSet animatorSet2 = new AnimatorSet();
         animatorSet2.playTogether(ObjectAnimator.ofFloat(sendAnimationData, r6Var, f7, 1.0f), ObjectAnimator.ofFloat(sendAnimationData, new gm(this), 0.0f, 1.0f));
-        float f10 = sendAnimationData.f17255x;
+        float f10 = sendAnimationData.f17259x;
         float f11 = iArr[0];
         if (sendAnimationData.fromPreview) {
             centerX = 0.0f;

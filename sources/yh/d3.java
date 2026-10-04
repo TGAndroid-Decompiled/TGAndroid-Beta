@@ -2,12 +2,12 @@ package yh;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class d3 implements Runnable {
-    public final int f51183a;
-    public final j3 f51184b;
+    public final int f51189a;
+    public final j3 f51190b;
 
     public d3(j3 j3Var, int i10) {
-        this.f51183a = i10;
-        this.f51184b = j3Var;
+        this.f51189a = i10;
+        this.f51190b = j3Var;
     }
 
     @Override
@@ -27,65 +27,65 @@ public final class d3 implements Runnable {
         boolean z22;
         boolean z23;
         boolean z24;
-        switch (this.f51183a) {
+        switch (this.f51189a) {
             case 0:
-                this.f51184b.b();
+                this.f51190b.b();
                 return;
             case 1:
-                j3 j3Var = this.f51184b;
-                u3 u3Var = j3Var.f51453a;
-                if (!j3Var.f51471u) {
+                j3 j3Var = this.f51190b;
+                u3 u3Var = j3Var.f51459a;
+                if (!j3Var.f51477u) {
                     j3Var.v = false;
-                    if (j3Var.f51465o) {
-                        j3Var.f51471u = true;
+                    if (j3Var.f51471o) {
+                        j3Var.f51477u = true;
                         long currentTimeMillis = System.currentTimeMillis();
-                        float min = Math.min(((float) (currentTimeMillis - j3Var.f51463m)) / 1000.0f, 0.25f);
-                        float f7 = j3Var.f51464n + min;
-                        j3Var.f51464n = f7;
-                        f3 f3Var = j3Var.f51460j;
-                        if (f7 > AndroidUtilities.lerp(0.1f, 1.0f, j3Var.f51470t)) {
+                        float min = Math.min(((float) (currentTimeMillis - j3Var.f51469m)) / 1000.0f, 0.25f);
+                        float f7 = j3Var.f51470n + min;
+                        j3Var.f51470n = f7;
+                        f3 f3Var = j3Var.f51466j;
+                        if (f7 > AndroidUtilities.lerp(0.1f, 1.0f, j3Var.f51476t)) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         float f10 = f3Var.f(min, z10);
-                        f3 f3Var2 = j3Var.f51461k;
-                        if (j3Var.f51464n > AndroidUtilities.lerp(0.1f, 1.0f, j3Var.f51470t)) {
+                        f3 f3Var2 = j3Var.f51467k;
+                        if (j3Var.f51470n > AndroidUtilities.lerp(0.1f, 1.0f, j3Var.f51476t)) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
                         float f11 = f3Var2.f(min, z11);
-                        float f12 = j3Var.f51459i.f(min, j3Var.f51460j.b(0.5f));
+                        float f12 = j3Var.f51465i.f(min, j3Var.f51466j.b(0.5f));
                         f3 f3Var3 = j3Var.h;
-                        if (j3Var.f51460j.b(0.5f) && j3Var.f51459i.b(0.5f)) {
+                        if (j3Var.f51466j.b(0.5f) && j3Var.f51465i.b(0.5f)) {
                             z12 = true;
                         } else {
                             z12 = false;
                         }
                         float f13 = f3Var3.f(min, z12);
-                        j3Var.f51463m = currentTimeMillis;
-                        if (j3Var.f51460j.c() && j3Var.f51459i.c() && j3Var.h.c() && !j3Var.f51466p) {
-                            j3Var.f51466p = true;
+                        j3Var.f51469m = currentTimeMillis;
+                        if (j3Var.f51466j.c() && j3Var.f51465i.c() && j3Var.h.c() && !j3Var.f51472p) {
+                            j3Var.f51472p = true;
                             AndroidUtilities.runOnUIThread(new d3(j3Var, 2));
                         }
-                        if (j3Var.f51460j.c() && j3Var.f51459i.c() && j3Var.h.b(0.25f) && !j3Var.f51467q) {
-                            j3Var.f51467q = true;
+                        if (j3Var.f51466j.c() && j3Var.f51465i.c() && j3Var.h.b(0.25f) && !j3Var.f51473q) {
+                            j3Var.f51473q = true;
                             AndroidUtilities.runOnUIThread(new d3(j3Var, 3));
                         }
-                        o3 o3Var = j3Var.f51454b;
+                        o3 o3Var = j3Var.f51460b;
                         if (o3Var != null) {
                             f3 f3Var4 = j3Var.h;
-                            e3 e3Var = f3Var4.f51269b;
-                            float f14 = f3Var4.f51271e - f13;
+                            e3 e3Var = f3Var4.f51275b;
+                            float f14 = f3Var4.f51277e - f13;
                             float f15 = f14 - 1.0f;
-                            e3 e3Var2 = f3Var4.f51274i;
+                            e3 e3Var2 = f3Var4.f51280i;
                             if (e3Var == e3Var2) {
                                 z22 = true;
                             } else {
                                 z22 = false;
                             }
-                            e3 e3Var3 = f3Var4.f51270c;
+                            e3 e3Var3 = f3Var4.f51276c;
                             if (e3Var3 == e3Var2) {
                                 z23 = true;
                             } else {
@@ -100,19 +100,19 @@ public final class d3 implements Runnable {
                             }
                             o3Var.a(e3Var, f15, z22, e3Var3, f14, z23, e3Var4, f16, z24);
                         }
-                        o3 o3Var2 = j3Var.f51455c;
+                        o3 o3Var2 = j3Var.f51461c;
                         if (o3Var2 != null) {
-                            f3 f3Var5 = j3Var.f51459i;
-                            e3 e3Var5 = f3Var5.f51269b;
-                            float f17 = f3Var5.f51271e - f12;
+                            f3 f3Var5 = j3Var.f51465i;
+                            e3 e3Var5 = f3Var5.f51275b;
+                            float f17 = f3Var5.f51277e - f12;
                             float f18 = f17 - 1.0f;
-                            e3 e3Var6 = f3Var5.f51274i;
+                            e3 e3Var6 = f3Var5.f51280i;
                             if (e3Var5 == e3Var6) {
                                 z19 = true;
                             } else {
                                 z19 = false;
                             }
-                            e3 e3Var7 = f3Var5.f51270c;
+                            e3 e3Var7 = f3Var5.f51276c;
                             if (e3Var7 == e3Var6) {
                                 z20 = true;
                             } else {
@@ -129,17 +129,17 @@ public final class d3 implements Runnable {
                         }
                         o3 o3Var3 = j3Var.d;
                         if (o3Var3 != null) {
-                            f3 f3Var6 = j3Var.f51461k;
-                            e3 e3Var9 = f3Var6.f51269b;
-                            float f20 = f3Var6.f51271e - f11;
+                            f3 f3Var6 = j3Var.f51467k;
+                            e3 e3Var9 = f3Var6.f51275b;
+                            float f20 = f3Var6.f51277e - f11;
                             float f21 = f20 - 1.0f;
-                            e3 e3Var10 = f3Var6.f51274i;
+                            e3 e3Var10 = f3Var6.f51280i;
                             if (e3Var9 == e3Var10) {
                                 z16 = true;
                             } else {
                                 z16 = false;
                             }
-                            e3 e3Var11 = f3Var6.f51270c;
+                            e3 e3Var11 = f3Var6.f51276c;
                             if (e3Var11 == e3Var10) {
                                 z17 = true;
                             } else {
@@ -154,20 +154,20 @@ public final class d3 implements Runnable {
                             }
                             o3Var3.a(e3Var9, f21, z16, e3Var11, f20, z17, e3Var12, f22, z18);
                         }
-                        u3Var.g(0, ((i3) j3Var.f51459i.f51270c).f51424c, true);
-                        m3 m3Var = u3Var.f52056c;
+                        u3Var.g(0, ((i3) j3Var.f51465i.f51276c).f51430c, true);
+                        m3 m3Var = u3Var.f52061c;
                         f3 f3Var7 = j3Var.h;
-                        e3 e3Var13 = f3Var7.f51269b;
+                        e3 e3Var13 = f3Var7.f51275b;
                         h3 h3Var = (h3) e3Var13;
-                        float f23 = f3Var7.f51271e - f13;
+                        float f23 = f3Var7.f51277e - f13;
                         float f24 = f23 - 1.0f;
-                        e3 e3Var14 = f3Var7.f51274i;
+                        e3 e3Var14 = f3Var7.f51280i;
                         if (e3Var13 == e3Var14) {
                             z13 = true;
                         } else {
                             z13 = false;
                         }
-                        e3 e3Var15 = f3Var7.f51270c;
+                        e3 e3Var15 = f3Var7.f51276c;
                         h3 h3Var2 = (h3) e3Var15;
                         if (e3Var15 == e3Var14) {
                             z14 = true;
@@ -182,25 +182,25 @@ public final class d3 implements Runnable {
                         } else {
                             z15 = false;
                         }
-                        f3 f3Var8 = j3Var.f51460j;
-                        float f26 = f3Var8.f51271e - f10;
-                        m3Var.f51613a = h3Var;
-                        m3Var.f51614b = h3Var2;
-                        m3Var.f51615c = h3Var3;
+                        f3 f3Var8 = j3Var.f51466j;
+                        float f26 = f3Var8.f51277e - f10;
+                        m3Var.f51618a = h3Var;
+                        m3Var.f51619b = h3Var2;
+                        m3Var.f51620c = h3Var3;
                         m3Var.d = f24;
-                        m3Var.f51616e = f23;
-                        m3Var.f51617f = f25;
+                        m3Var.f51621e = f23;
+                        m3Var.f51622f = f25;
                         m3Var.h = z13;
-                        m3Var.f51618n = z14;
-                        m3Var.f51619r = z15;
-                        m3Var.f51620s = (g3) f3Var8.f51269b;
-                        m3Var.v = (g3) f3Var8.f51270c;
-                        m3Var.f51621w = (g3) f3Var8.d;
-                        m3Var.f51622x = f26 - 1.0f;
-                        m3Var.f51623y = f26;
+                        m3Var.f51623n = z14;
+                        m3Var.f51624r = z15;
+                        m3Var.f51625s = (g3) f3Var8.f51275b;
+                        m3Var.v = (g3) f3Var8.f51276c;
+                        m3Var.f51626w = (g3) f3Var8.d;
+                        m3Var.f51627x = f26 - 1.0f;
+                        m3Var.f51628y = f26;
                         m3Var.E = f26 + 1.0f;
                         m3Var.invalidate();
-                        j3Var.f51471u = false;
+                        j3Var.f51477u = false;
                         j3Var.b();
                         return;
                     }
@@ -208,17 +208,17 @@ public final class d3 implements Runnable {
                 }
                 return;
             case 2:
-                j3 j3Var2 = this.f51184b;
-                j3Var2.f51465o = false;
-                j3Var2.f51453a.f52056c.c();
-                b1 b1Var = j3Var2.f51468r;
+                j3 j3Var2 = this.f51190b;
+                j3Var2.f51471o = false;
+                j3Var2.f51459a.f52061c.c();
+                b1 b1Var = j3Var2.f51474r;
                 if (b1Var != null) {
                     b1Var.run();
                     return;
                 }
                 return;
             default:
-                b1 b1Var2 = this.f51184b.f51469s;
+                b1 b1Var2 = this.f51190b.f51475s;
                 if (b1Var2 != null) {
                     b1Var2.run();
                     return;

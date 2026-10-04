@@ -11,20 +11,20 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class zm implements Runnable {
-    public final int f33567a;
-    public final int f33568b;
-    public final Object f33569c;
+    public final int f33573a;
+    public final int f33574b;
+    public final Object f33575c;
     public final Object d;
 
     public zm(int i10, Object obj, Object obj2, int i11) {
-        this.f33567a = i11;
-        this.f33568b = i10;
-        this.f33569c = obj;
+        this.f33573a = i11;
+        this.f33574b = i10;
+        this.f33575c = obj;
         this.d = obj2;
     }
 
     private final void a() {
-        MessageObject messageObject = (MessageObject) this.f33569c;
+        MessageObject messageObject = (MessageObject) this.f33575c;
         org.telegram.ui.Cells.l1 l1Var = (org.telegram.ui.Cells.l1) this.d;
         HashMap hashMap = c41.P;
         if (hashMap != null) {
@@ -33,7 +33,7 @@ public final class zm implements Runnable {
         if (l1Var != null) {
             l1Var.e0(3);
         }
-        int i10 = this.f33568b;
+        int i10 = this.f33574b;
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
     }
@@ -41,21 +41,21 @@ public final class zm implements Runnable {
     private final void b() {
         int i10;
         TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        org.telegram.ui.uy uyVar = ((org.telegram.ui.wx) this.f33569c).f42644f0;
+        org.telegram.ui.uy uyVar = ((org.telegram.ui.wx) this.f33575c).f42651f0;
         ArrayList arrayList = uyVar.R1;
-        if (arrayList != null && (i10 = this.f33568b) >= 0 && i10 < arrayList.size()) {
+        if (arrayList != null && (i10 = this.f33574b) >= 0 && i10 < arrayList.size()) {
             uyVar.R1.add(i10, dialog);
-            uyVar.f41393e0[0].q(true);
+            uyVar.f41400e0[0].q(true);
         }
     }
 
     private final void c() {
-        org.telegram.ui.sy syVar = (org.telegram.ui.sy) this.f33569c;
+        org.telegram.ui.sy syVar = (org.telegram.ui.sy) this.f33575c;
         TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        org.telegram.ui.ty tyVar = syVar.f40632g;
+        org.telegram.ui.ty tyVar = syVar.f40638g;
         org.telegram.ui.uy uyVar = syVar.h;
         uyVar.S1 = true;
-        uyVar.getMessagesController().addDialogToFolder(dialog.f20042id, 0, this.f33568b, 0L);
+        uyVar.getMessagesController().addDialogToFolder(dialog.f20046id, 0, this.f33574b, 0L);
         uyVar.S1 = false;
         ArrayList<TLRPC.Dialog> dialogs = uyVar.getMessagesController().getDialogs(0);
         int indexOf = dialogs.indexOf(dialog);
@@ -63,7 +63,7 @@ public final class zm implements Runnable {
             ArrayList<TLRPC.Dialog> dialogs2 = uyVar.getMessagesController().getDialogs(1);
             if (!dialogs2.isEmpty() || indexOf != 1) {
                 uyVar.J4(true, true);
-                tyVar.f40993x.D();
+                tyVar.f40999x.D();
                 tyVar.q(true);
                 uyVar.x3();
             }
@@ -78,7 +78,7 @@ public final class zm implements Runnable {
                 if (!uyVar.R1.isEmpty()) {
                     uyVar.R1.remove(0);
                 }
-                tyVar.f40993x.D();
+                tyVar.f40999x.D();
                 tyVar.q(true);
                 return;
             }
@@ -88,24 +88,24 @@ public final class zm implements Runnable {
     }
 
     private final void e() {
-        org.telegram.ui.h60 h60Var = (org.telegram.ui.h60) this.f33569c;
+        org.telegram.ui.h60 h60Var = (org.telegram.ui.h60) this.f33575c;
         org.telegram.ui.ActionBar.b2[] b2VarArr = (org.telegram.ui.ActionBar.b2[]) this.d;
         org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
         if (b2Var == null) {
             return;
         }
-        b2Var.setOnCancelListener(new org.telegram.ui.da(h60Var, this.f33568b, 5));
+        b2Var.setOnCancelListener(new org.telegram.ui.da(h60Var, this.f33574b, 5));
         b2VarArr[0].show();
     }
 
     private final void f() {
-        LaunchActivity launchActivity = (LaunchActivity) this.f33569c;
+        LaunchActivity launchActivity = (LaunchActivity) this.f33575c;
         TLRPC.TL_help_appUpdate tL_help_appUpdate = (TLRPC.TL_help_appUpdate) this.d;
         Pattern pattern = LaunchActivity.B1;
         TLRPC.TL_help_appUpdate tL_help_appUpdate2 = SharedConfig.pendingAppUpdate;
         if ((tL_help_appUpdate2 == null || !tL_help_appUpdate2.version.equals(tL_help_appUpdate.version)) && SharedConfig.setNewAppVersionAvailable(tL_help_appUpdate)) {
             boolean z10 = tL_help_appUpdate.can_not_skip;
-            int i10 = this.f33568b;
+            int i10 = this.f33574b;
             if (z10) {
                 launchActivity.I0(i10, tL_help_appUpdate, false);
             } else if (ApplicationLoader.isStandaloneBuild() || BuildVars.DEBUG_VERSION) {
@@ -121,16 +121,16 @@ public final class zm implements Runnable {
     }
 
     public zm(Object obj, int i10, Object obj2, int i11) {
-        this.f33567a = i11;
-        this.f33569c = obj;
-        this.f33568b = i10;
+        this.f33573a = i11;
+        this.f33575c = obj;
+        this.f33574b = i10;
         this.d = obj2;
     }
 
     public zm(Object obj, Object obj2, int i10, int i11) {
-        this.f33567a = i11;
-        this.f33569c = obj;
+        this.f33573a = i11;
+        this.f33575c = obj;
         this.d = obj2;
-        this.f33568b = i10;
+        this.f33574b = i10;
     }
 }

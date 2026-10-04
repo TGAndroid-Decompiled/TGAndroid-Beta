@@ -1,6 +1,5 @@
 package org.telegram.messenger.video;
 
-import hg.k0;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
@@ -13,10 +12,10 @@ public class AudioBufferConverter {
     private void checkChannels(int i10, int i11) {
         if (i10 != 6 || (i11 != 1 && i11 != 2)) {
             if (i10 != 1 && i10 != 2) {
-                throw new UnsupportedOperationException(k0.i(i10, "Input channel count (", ") not supported."));
+                throw new UnsupportedOperationException(hg.c.i(i10, "Input channel count (", ") not supported."));
             }
             if (i11 != 1 && i11 != 2) {
-                throw new UnsupportedOperationException(k0.i(i11, "Output channel count (", ") not supported."));
+                throw new UnsupportedOperationException(hg.c.i(i11, "Output channel count (", ") not supported."));
             }
         }
     }

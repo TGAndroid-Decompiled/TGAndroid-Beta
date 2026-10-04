@@ -15,26 +15,26 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 public final class r extends n implements NavigableMap, Map {
-    public static final r f16819f;
-    public final transient z f16820c;
+    public static final r f16823f;
+    public final transient z f16824c;
     public final transient m d;
-    public final transient r f16821e;
+    public final transient r f16825e;
 
     static {
-        z x10 = s.x(v.f16832b);
-        i iVar = m.f16803b;
-        f16819f = new r(x10, x.f16837e, null);
+        z x10 = s.x(v.f16836b);
+        i iVar = m.f16807b;
+        f16823f = new r(x10, x.f16841e, null);
     }
 
     public r(z zVar, m mVar, r rVar) {
-        this.f16820c = zVar;
+        this.f16824c = zVar;
         this.d = mVar;
-        this.f16821e = rVar;
+        this.f16825e = rVar;
     }
 
     public static r b(TreeMap treeMap) {
         boolean equals;
-        v vVar = v.f16832b;
+        v vVar = v.f16836b;
         Comparator comparator = treeMap.comparator();
         int i10 = 1;
         if (comparator == null) {
@@ -52,7 +52,7 @@ public final class r extends n implements NavigableMap, Map {
             }
             entrySet = arrayList;
         }
-        Map.Entry[] entryArr = (Map.Entry[]) entrySet.toArray(n.f16807b);
+        Map.Entry[] entryArr = (Map.Entry[]) entrySet.toArray(n.f16811b);
         int length = entryArr.length;
         if (length != 0) {
             int i11 = 0;
@@ -106,7 +106,7 @@ public final class r extends n implements NavigableMap, Map {
             Object[] objArr3 = {key4};
             for (int i12 = 0; i12 < 1; i12++) {
                 if (objArr3[i12] == null) {
-                    throw new NullPointerException(hg.k0.h(i12, "at index "));
+                    throw new NullPointerException(hg.c.h(i12, "at index "));
                 }
             }
             z zVar = new z(m.t(1, objArr3), vVar);
@@ -115,7 +115,7 @@ public final class r extends n implements NavigableMap, Map {
                 if (objArr4[i11] != null) {
                     i11++;
                 } else {
-                    throw new NullPointerException(hg.k0.h(i11, "at index "));
+                    throw new NullPointerException(hg.c.h(i11, "at index "));
                 }
             }
             return new r(zVar, m.t(1, objArr4), null);
@@ -124,12 +124,12 @@ public final class r extends n implements NavigableMap, Map {
     }
 
     public static r c(Comparator comparator) {
-        if (v.f16832b.equals(comparator)) {
-            return f16819f;
+        if (v.f16836b.equals(comparator)) {
+            return f16823f;
         }
         z x10 = s.x(comparator);
-        i iVar = m.f16803b;
-        return new r(x10, x.f16837e, null);
+        i iVar = m.f16807b;
+        return new r(x10, x.f16841e, null);
     }
 
     @Override
@@ -148,27 +148,27 @@ public final class r extends n implements NavigableMap, Map {
 
     @Override
     public final Comparator comparator() {
-        return this.f16820c.d;
+        return this.f16824c.d;
     }
 
     @Override
     public final r headMap(Object obj, boolean z10) {
         obj.getClass();
-        return g(0, this.f16820c.y(obj, z10));
+        return g(0, this.f16824c.y(obj, z10));
     }
 
     @Override
     public final NavigableSet descendingKeySet() {
-        return this.f16820c.descendingSet();
+        return this.f16824c.descendingSet();
     }
 
     @Override
     public final NavigableMap descendingMap() {
         w gVar;
-        r rVar = this.f16821e;
+        r rVar = this.f16825e;
         if (rVar == null) {
             boolean isEmpty = isEmpty();
-            z zVar = this.f16820c;
+            z zVar = this.f16824c;
             if (isEmpty) {
                 Comparator comparator = zVar.d;
                 if (comparator instanceof w) {
@@ -187,7 +187,7 @@ public final class r extends n implements NavigableMap, Map {
     public final r subMap(Object obj, boolean z10, Object obj2, boolean z11) {
         obj.getClass();
         obj2.getClass();
-        if (this.f16820c.d.compare(obj, obj2) <= 0) {
+        if (this.f16824c.d.compare(obj, obj2) <= 0) {
             return headMap(obj2, z11).tailMap(obj, z10);
         }
         throw new IllegalArgumentException(a.c("expected fromKey <= toKey but %s > %s", obj, obj2));
@@ -196,7 +196,7 @@ public final class r extends n implements NavigableMap, Map {
     @Override
     public final r tailMap(Object obj, boolean z10) {
         obj.getClass();
-        return g(this.f16820c.z(obj, z10), this.d.size());
+        return g(this.f16824c.z(obj, z10), this.d.size());
     }
 
     @Override
@@ -209,7 +209,7 @@ public final class r extends n implements NavigableMap, Map {
 
     @Override
     public final Object firstKey() {
-        return this.f16820c.first();
+        return this.f16824c.first();
     }
 
     @Override
@@ -235,7 +235,7 @@ public final class r extends n implements NavigableMap, Map {
                 return this;
             }
         }
-        z zVar = this.f16820c;
+        z zVar = this.f16824c;
         if (i10 == i11) {
             return c(zVar.d);
         }
@@ -268,7 +268,7 @@ public final class r extends n implements NavigableMap, Map {
 
     @Override
     public final Set keySet() {
-        return this.f16820c;
+        return this.f16824c;
     }
 
     @Override
@@ -281,7 +281,7 @@ public final class r extends n implements NavigableMap, Map {
 
     @Override
     public final Object lastKey() {
-        return this.f16820c.last();
+        return this.f16824c.last();
     }
 
     @Override
@@ -300,7 +300,7 @@ public final class r extends n implements NavigableMap, Map {
 
     @Override
     public final NavigableSet navigableKeySet() {
-        return this.f16820c;
+        return this.f16824c;
     }
 
     @Override

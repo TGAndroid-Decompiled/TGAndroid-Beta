@@ -1,18 +1,18 @@
 package i2;
 public final class q1 {
-    public static final q1 f11821c;
+    public static final q1 f11822c;
     public static final q1 d;
-    public static final q1 f11822e;
-    public final long f11823a;
-    public final long f11824b;
+    public static final q1 f11823e;
+    public final long f11824a;
+    public final long f11825b;
 
     static {
         q1 q1Var = new q1(0L, 0L);
-        f11821c = q1Var;
+        f11822c = q1Var;
         d = new q1(Long.MAX_VALUE, Long.MAX_VALUE);
         new q1(Long.MAX_VALUE, 0L);
         new q1(0L, Long.MAX_VALUE);
-        f11822e = q1Var;
+        f11823e = q1Var;
     }
 
     public q1(long j3, long j10) {
@@ -24,8 +24,8 @@ public final class q1 {
         }
         e2.d.b(z10);
         e2.d.b(j10 >= 0);
-        this.f11823a = j3;
-        this.f11824b = j10;
+        this.f11824a = j3;
+        this.f11825b = j10;
     }
 
     public final long a(long r11, long r13, long r15) {
@@ -38,7 +38,7 @@ public final class q1 {
         }
         if (obj != null && q1.class == obj.getClass()) {
             q1 q1Var = (q1) obj;
-            if (this.f11823a == q1Var.f11823a && this.f11824b == q1Var.f11824b) {
+            if (this.f11824a == q1Var.f11824a && this.f11825b == q1Var.f11825b) {
                 return true;
             }
         }
@@ -46,6 +46,6 @@ public final class q1 {
     }
 
     public final int hashCode() {
-        return (((int) this.f11823a) * 31) + ((int) this.f11824b);
+        return (((int) this.f11824a) * 31) + ((int) this.f11825b);
     }
 }

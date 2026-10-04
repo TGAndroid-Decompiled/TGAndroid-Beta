@@ -9,15 +9,15 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.util.Log;
 public final class b implements ServiceConnection {
-    public b9.c f4511a;
-    public final c f4512b;
+    public b9.c f4512a;
+    public final c f4513b;
 
     public b(c cVar) {
-        this.f4512b = cVar;
+        this.f4513b = cVar;
     }
 
     public static boolean a(b bVar) {
-        if (bVar.f4511a != null) {
+        if (bVar.f4512a != null) {
             return true;
         }
         return false;
@@ -25,12 +25,12 @@ public final class b implements ServiceConnection {
 
     public final boolean b(Intent intent, Bundle bundle) {
         boolean z10;
-        b9.c cVar = this.f4511a;
+        b9.c cVar = this.f4512a;
         if (cVar != null) {
             b9.a aVar = (b9.a) cVar;
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
-            int i10 = h5.a.f11019a;
+            int i10 = h5.a.f11020a;
             if (intent == null) {
                 obtain.writeInt(0);
             } else {
@@ -57,7 +57,7 @@ public final class b implements ServiceConnection {
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         boolean z10;
         b9.c aVar;
-        z10 = this.f4512b.dbg;
+        z10 = this.f4513b.dbg;
         if (z10) {
             Log.d("SAVerificationClientS", "onServiceConnected");
         }
@@ -72,14 +72,14 @@ public final class b implements ServiceConnection {
                 aVar = new b9.a(iBinder);
             }
         }
-        this.f4511a = aVar;
+        this.f4512a = aVar;
     }
 
     @Override
     public final void onServiceDisconnected(ComponentName componentName) {
         boolean z10;
-        this.f4511a = null;
-        z10 = this.f4512b.dbg;
+        this.f4512a = null;
+        z10 = this.f4513b.dbg;
         if (z10) {
             Log.d("SAVerificationClientS", "onServiceDisconnected");
         }

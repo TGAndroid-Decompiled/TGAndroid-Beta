@@ -12,19 +12,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class lg implements Utilities.Callback2 {
-    public final int f38259a = 0;
-    public final yn f38260b;
-    public final org.telegram.ui.Cells.u1 f38261c;
+    public final int f38264a = 0;
+    public final yn f38265b;
+    public final org.telegram.ui.Cells.u1 f38266c;
     public final nf.e d;
-    public final Serializable f38262e;
-    public final Object f38263f;
+    public final Serializable f38267e;
+    public final Object f38268f;
 
     public lg(yn ynVar, xi xiVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
-        this.f38260b = ynVar;
+        this.f38265b = ynVar;
         this.d = xiVar;
-        this.f38261c = u1Var;
-        this.f38262e = str;
-        this.f38263f = characterStyle;
+        this.f38266c = u1Var;
+        this.f38267e = str;
+        this.f38268f = characterStyle;
     }
 
     @Override
@@ -40,32 +40,32 @@ public final class lg implements Utilities.Callback2 {
         TL_iv.RichMessage richMessage;
         TLRPC.Message message;
         org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f38259a) {
+        switch (this.f38264a) {
             case 0:
-                String str = (String) this.f38262e;
-                CharacterStyle characterStyle = (CharacterStyle) this.f38263f;
+                String str = (String) this.f38267e;
+                CharacterStyle characterStyle = (CharacterStyle) this.f38268f;
                 TLObject tLObject = (TLObject) obj;
                 Boolean bool2 = (Boolean) obj2;
                 this.d.b();
                 if (tLObject instanceof TLRPC.User) {
-                    j3 = ((TLRPC.User) tLObject).f20185id;
+                    j3 = ((TLRPC.User) tLObject).f20189id;
                     z10 = false;
                     z11 = true;
                 } else if (tLObject instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                     z10 = ChatObject.isChannelAndNotMegaGroup(chat);
-                    j3 = -chat.f20038id;
+                    j3 = -chat.f20042id;
                     z11 = false;
                 } else {
                     z10 = false;
                     z11 = false;
                     j3 = 0;
                 }
-                yn ynVar = this.f38260b;
-                org.telegram.ui.Cells.u1 u1Var2 = this.f38261c;
+                yn ynVar = this.f38265b;
+                org.telegram.ui.Cells.u1 u1Var2 = this.f38266c;
                 org.telegram.ui.Components.b80 I = org.telegram.ui.Components.b80.I(ynVar, u1Var2);
-                org.telegram.ui.Components.sm0 sm0Var = new org.telegram.ui.Components.sm0(ynVar.getParentActivity(), ynVar.f43300ca);
-                I.f24840p = new se(sm0Var, 0);
+                org.telegram.ui.Components.sm0 sm0Var = new org.telegram.ui.Components.sm0(ynVar.getParentActivity(), ynVar.f43307ca);
+                I.f24844p = new se(sm0Var, 0);
                 int i13 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 if (i13 != 0) {
                     if (z10) {
@@ -109,12 +109,12 @@ public final class lg implements Utilities.Callback2 {
                 return;
             default:
                 yi yiVar = (yi) this.d;
-                int[] iArr = (int[]) this.f38262e;
-                MessageObject messageObject = (MessageObject) this.f38263f;
+                int[] iArr = (int[]) this.f38267e;
+                MessageObject messageObject = (MessageObject) this.f38268f;
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                yn ynVar2 = this.f38260b;
-                if (ynVar2.f43563xb == yiVar) {
+                yn ynVar2 = this.f38265b;
+                if (ynVar2.f43570xb == yiVar) {
                     iArr[0] = 0;
                     yiVar.c(false);
                     if (messages_messages != null) {
@@ -134,8 +134,8 @@ public final class lg implements Utilities.Callback2 {
                         if (richMessage != null && (message = messageObject.messageOwner) != null) {
                             message.rich_message = richMessage;
                             messageObject.richLayout = null;
-                            kn knVar = ynVar2.f43424mc;
-                            if (knVar != null && (u1Var = this.f38261c) != null) {
+                            kn knVar = ynVar2.f43431mc;
+                            if (knVar != null && (u1Var = this.f38266c) != null) {
                                 knVar.i(u1Var, true, false, true);
                                 return;
                             }
@@ -150,10 +150,10 @@ public final class lg implements Utilities.Callback2 {
     }
 
     public lg(yn ynVar, yi yiVar, int[] iArr, org.telegram.ui.Cells.u1 u1Var, MessageObject messageObject) {
-        this.f38260b = ynVar;
+        this.f38265b = ynVar;
         this.d = yiVar;
-        this.f38262e = iArr;
-        this.f38261c = u1Var;
-        this.f38263f = messageObject;
+        this.f38267e = iArr;
+        this.f38266c = u1Var;
+        this.f38268f = messageObject;
     }
 }

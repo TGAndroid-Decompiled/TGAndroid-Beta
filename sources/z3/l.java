@@ -8,5 +8,5 @@ public interface l {
 
     boolean V(s sVar);
 
-    n x(s sVar);
+    n v(s sVar);
 }

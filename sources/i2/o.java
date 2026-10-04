@@ -1,25 +1,25 @@
 package i2;
 public final class o implements d9.i {
-    public final int f11754a;
-    public final Object f11755b;
+    public final int f11755a;
+    public final Object f11756b;
 
     public o(Object obj, int i10) {
-        this.f11754a = i10;
-        this.f11755b = obj;
+        this.f11755a = i10;
+        this.f11756b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f11754a) {
+        switch (this.f11755a) {
             case 0:
-                return (k) this.f11755b;
+                return (k) this.f11756b;
             case 1:
-                return (x2.u) this.f11755b;
+                return (x2.u) this.f11756b;
             case 2:
-                return (l) this.f11755b;
+                return (l) this.f11756b;
             default:
                 try {
-                    return (u2.e0) ((Class) this.f11755b).getConstructor(null).newInstance(null);
+                    return (u2.e0) ((Class) this.f11756b).getConstructor(null).newInstance(null);
                 } catch (Exception e7) {
                     throw new IllegalStateException(e7);
                 }

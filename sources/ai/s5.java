@@ -49,7 +49,7 @@ public final class s5 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new h5(tLObject, (boolean[]) this.f1627b, (org.telegram.ui.web.q) this.f1628c, (TLRPC.UserFull) this.d));
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new h5((hg.y) this.f1627b, tLObject, (TL_account.TL_businessChatLink) this.f1628c, (Runnable) this.d, 15));
+                AndroidUtilities.runOnUIThread(new h5((hg.z) this.f1627b, tLObject, (TL_account.TL_businessChatLink) this.f1628c, (Runnable) this.d, 15));
                 return;
             case 5:
                 AndroidUtilities.runOnUIThread(new gg.t((hg.l0) this.f1627b, (TL_account.TL_connectedBot) this.f1628c, (TL_account.TL_businessBotRecipients) this.d, 9));
@@ -88,7 +88,7 @@ public final class s5 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new f90(tL_error, (Utilities.Callback) this.d, tLObject, (MessagesController) this.f1627b, (Utilities.Callback) this.f1628c, 25));
                 return;
             case 17:
-                AndroidUtilities.runOnUIThread(new f90(tL_error, (Utilities.Callback) ((org.telegram.messenger.v) this.f1627b), tLObject, (MessagesController) this.f1628c, (Utilities.Callback) ((org.telegram.messenger.g2) this.d), 26));
+                AndroidUtilities.runOnUIThread(new f90(tL_error, (Utilities.Callback) ((org.telegram.messenger.w) this.f1627b), tLObject, (MessagesController) this.f1628c, (Utilities.Callback) ((org.telegram.messenger.g2) this.d), 26));
                 return;
             case 18:
                 tg.v vVar = (tg.v) this.f1627b;

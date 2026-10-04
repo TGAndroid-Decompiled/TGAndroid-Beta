@@ -8,8 +8,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import java.io.IOException;
 public final class b implements Continuation, SuccessContinuation {
-    public static final b f14002a = new Object();
-    public static final b f14003b = new Object();
+    public static final b f14003a = new Object();
+    public static final b f14004b = new Object();
 
     @Override
     public Task then(Object obj) {

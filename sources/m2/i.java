@@ -2,18 +2,18 @@ package m2;
 
 import j$.util.Objects;
 public final class i {
-    public final String f16003a;
-    public final String f16004b;
-    public final String f16005c;
+    public final String f16007a;
+    public final String f16008b;
+    public final String f16009c;
     public final String d;
-    public final String f16006e;
+    public final String f16010e;
 
     public i(String str, String str2, String str3, String str4, String str5) {
-        this.f16003a = str;
-        this.f16004b = str2;
-        this.f16005c = str3;
+        this.f16007a = str;
+        this.f16008b = str2;
+        this.f16009c = str3;
         this.d = str4;
-        this.f16006e = str5;
+        this.f16010e = str5;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class i {
             return false;
         }
         i iVar = (i) obj;
-        if (Objects.equals(this.f16003a, iVar.f16003a) && Objects.equals(this.f16004b, iVar.f16004b) && Objects.equals(this.f16005c, iVar.f16005c) && Objects.equals(this.d, iVar.d) && Objects.equals(this.f16006e, iVar.f16006e)) {
+        if (Objects.equals(this.f16007a, iVar.f16007a) && Objects.equals(this.f16008b, iVar.f16008b) && Objects.equals(this.f16009c, iVar.f16009c) && Objects.equals(this.d, iVar.d) && Objects.equals(this.f16010e, iVar.f16010e)) {
             return true;
         }
         return false;
@@ -36,21 +36,21 @@ public final class i {
         int i12;
         int i13;
         int i14 = 0;
-        String str = this.f16003a;
+        String str = this.f16007a;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i15 = (527 + i10) * 31;
-        String str2 = this.f16004b;
+        String str2 = this.f16008b;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
             i11 = 0;
         }
         int i16 = (i15 + i11) * 31;
-        String str3 = this.f16005c;
+        String str3 = this.f16009c;
         if (str3 != null) {
             i12 = str3.hashCode();
         } else {
@@ -64,7 +64,7 @@ public final class i {
             i13 = 0;
         }
         int i18 = (i17 + i13) * 31;
-        String str5 = this.f16006e;
+        String str5 = this.f16010e;
         if (str5 != null) {
             i14 = str5.hashCode();
         }

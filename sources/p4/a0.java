@@ -6,15 +6,15 @@ import android.view.Display;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class a0 extends MediaRouter.Callback {
-    public final j0 f44139a;
+    public final j0 f44146a;
 
     public a0(j0 j0Var) {
-        this.f44139a = j0Var;
+        this.f44146a = j0Var;
     }
 
     @Override
     public final void onRouteAdded(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
-        j0 j0Var = this.f44139a;
+        j0 j0Var = this.f44146a;
         if (j0Var.n(routeInfo)) {
             j0Var.y();
         }
@@ -24,12 +24,12 @@ public final class a0 extends MediaRouter.Callback {
     public final void onRouteChanged(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
         int o9;
         String str;
-        j0 j0Var = this.f44139a;
+        j0 j0Var = this.f44146a;
         j0Var.getClass();
         if (j0.s(routeInfo) == null && (o9 = j0Var.o(routeInfo)) >= 0) {
             h0 h0Var = (h0) j0Var.G.get(o9);
-            String str2 = h0Var.f44187b;
-            CharSequence name = h0Var.f44186a.getName(j0Var.f7493a);
+            String str2 = h0Var.f44194b;
+            CharSequence name = h0Var.f44193a.getName(j0Var.f7494a);
             if (name != null) {
                 str = name.toString();
             } else {
@@ -37,20 +37,20 @@ public final class a0 extends MediaRouter.Callback {
             }
             l lVar = new l(str2, str);
             j0Var.u(h0Var, lVar);
-            h0Var.f44188c = lVar.b();
+            h0Var.f44195c = lVar.b();
             j0Var.y();
         }
     }
 
     @Override
     public final void onRouteGrouped(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo, MediaRouter.RouteGroup routeGroup, int i10) {
-        this.f44139a.getClass();
+        this.f44146a.getClass();
     }
 
     @Override
     public final void onRoutePresentationDisplayChanged(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
         int i10;
-        j0 j0Var = this.f44139a;
+        j0 j0Var = this.f44146a;
         int o9 = j0Var.o(routeInfo);
         if (o9 >= 0) {
             h0 h0Var = (h0) j0Var.G.get(o9);
@@ -60,13 +60,13 @@ public final class a0 extends MediaRouter.Callback {
             } else {
                 i10 = -1;
             }
-            if (i10 != h0Var.f44188c.f44209a.getInt("presentationDisplayId", -1)) {
-                m mVar = h0Var.f44188c;
+            if (i10 != h0Var.f44195c.f44216a.getInt("presentationDisplayId", -1)) {
+                m mVar = h0Var.f44195c;
                 new ArrayList();
                 new ArrayList();
                 new HashSet();
                 if (mVar != null) {
-                    Bundle bundle = new Bundle(mVar.f44209a);
+                    Bundle bundle = new Bundle(mVar.f44216a);
                     ArrayList c10 = mVar.c();
                     ArrayList b10 = mVar.b();
                     HashSet a2 = mVar.a();
@@ -74,7 +74,7 @@ public final class a0 extends MediaRouter.Callback {
                     bundle.putParcelableArrayList("controlFilters", new ArrayList<>(b10));
                     bundle.putStringArrayList("groupMemberIds", new ArrayList<>(c10));
                     bundle.putStringArrayList("allowedPackages", new ArrayList<>(a2));
-                    h0Var.f44188c = new m(bundle);
+                    h0Var.f44195c = new m(bundle);
                     j0Var.y();
                     return;
                 }
@@ -86,7 +86,7 @@ public final class a0 extends MediaRouter.Callback {
     @Override
     public final void onRouteRemoved(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
         int o9;
-        j0 j0Var = this.f44139a;
+        j0 j0Var = this.f44146a;
         j0Var.getClass();
         if (j0.s(routeInfo) == null && (o9 = j0Var.o(routeInfo)) >= 0) {
             j0Var.G.remove(o9);
@@ -97,19 +97,19 @@ public final class a0 extends MediaRouter.Callback {
     @Override
     public final void onRouteSelected(MediaRouter mediaRouter, int i10, MediaRouter.RouteInfo routeInfo) {
         v a2;
-        j0 j0Var = this.f44139a;
-        if (routeInfo == j0Var.f44195s.getSelectedRoute(8388611)) {
+        j0 j0Var = this.f44146a;
+        if (routeInfo == j0Var.f44202s.getSelectedRoute(8388611)) {
             i0 s10 = j0.s(routeInfo);
             if (s10 != null) {
-                s10.f44191a.l();
+                s10.f44198a.l();
                 return;
             }
             int o9 = j0Var.o(routeInfo);
             if (o9 >= 0) {
-                e eVar = j0Var.f44194r;
-                String str = ((h0) j0Var.G.get(o9)).f44187b;
-                eVar.f44147a.removeMessages(262);
-                u d = eVar.d(eVar.f44163s);
+                e eVar = j0Var.f44201r;
+                String str = ((h0) j0Var.G.get(o9)).f44194b;
+                eVar.f44154a.removeMessages(262);
+                u d = eVar.d(eVar.f44170s);
                 if (d != null && (a2 = d.a(str)) != null) {
                     a2.l();
                 }
@@ -119,29 +119,29 @@ public final class a0 extends MediaRouter.Callback {
 
     @Override
     public final void onRouteUngrouped(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo, MediaRouter.RouteGroup routeGroup) {
-        this.f44139a.getClass();
+        this.f44146a.getClass();
     }
 
     @Override
     public final void onRouteUnselected(MediaRouter mediaRouter, int i10, MediaRouter.RouteInfo routeInfo) {
-        this.f44139a.getClass();
+        this.f44146a.getClass();
     }
 
     @Override
     public final void onRouteVolumeChanged(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
         int o9;
-        j0 j0Var = this.f44139a;
+        j0 j0Var = this.f44146a;
         j0Var.getClass();
         if (j0.s(routeInfo) == null && (o9 = j0Var.o(routeInfo)) >= 0) {
             h0 h0Var = (h0) j0Var.G.get(o9);
             int volume = routeInfo.getVolume();
-            if (volume != h0Var.f44188c.f44209a.getInt("volume")) {
-                m mVar = h0Var.f44188c;
+            if (volume != h0Var.f44195c.f44216a.getInt("volume")) {
+                m mVar = h0Var.f44195c;
                 new ArrayList();
                 new ArrayList();
                 new HashSet();
                 if (mVar != null) {
-                    Bundle bundle = new Bundle(mVar.f44209a);
+                    Bundle bundle = new Bundle(mVar.f44216a);
                     ArrayList c10 = mVar.c();
                     ArrayList b10 = mVar.b();
                     HashSet a2 = mVar.a();
@@ -149,7 +149,7 @@ public final class a0 extends MediaRouter.Callback {
                     bundle.putParcelableArrayList("controlFilters", new ArrayList<>(b10));
                     bundle.putStringArrayList("groupMemberIds", new ArrayList<>(c10));
                     bundle.putStringArrayList("allowedPackages", new ArrayList<>(a2));
-                    h0Var.f44188c = new m(bundle);
+                    h0Var.f44195c = new m(bundle);
                     j0Var.y();
                     return;
                 }

@@ -2,60 +2,60 @@ package ki;
 
 import android.hardware.camera2.CameraDevice;
 public final class e extends CameraDevice.StateCallback {
-    public final i f14866a;
+    public final i f14867a;
 
     public e(i iVar) {
-        this.f14866a = iVar;
+        this.f14867a = iVar;
     }
 
     @Override
     public final void onClosed(CameraDevice cameraDevice) {
-        i iVar = this.f14866a;
+        i iVar = this.f14867a;
         if (iVar.U) {
             iVar.U = false;
             if (iVar.S) {
-                this.f14866a.r();
+                this.f14867a.r();
             }
         } else if (iVar.V) {
             iVar.V = false;
             if (iVar.S) {
-                this.f14866a.r();
+                this.f14867a.r();
             }
         }
     }
 
     @Override
     public final void onDisconnected(CameraDevice cameraDevice) {
-        i iVar = this.f14866a;
+        i iVar = this.f14867a;
         boolean z10 = false;
         iVar.T = false;
-        m mVar = iVar.f14908j;
+        m mVar = iVar.f14909j;
         mVar.b("camera disconnected: id=" + cameraDevice.getId());
-        if (this.f14866a.S && !this.f14866a.Y) {
-            i iVar2 = this.f14866a;
+        if (this.f14867a.S && !this.f14867a.Y) {
+            i iVar2 = this.f14867a;
             if (!iVar2.U && !iVar2.V) {
                 z10 = true;
             }
         }
-        i iVar3 = this.f14866a;
-        if (iVar3.f14936y == cameraDevice) {
+        i iVar3 = this.f14867a;
+        if (iVar3.f14937y == cameraDevice) {
             iVar3.i();
-            this.f14866a.f14936y = null;
+            this.f14867a.f14937y = null;
         }
         cameraDevice.close();
         if (z10) {
-            this.f14866a.t(new IllegalStateException("Camera device disconnected"));
+            this.f14867a.t(new IllegalStateException("Camera device disconnected"));
         }
     }
 
     @Override
     public final void onError(CameraDevice cameraDevice, int i10) {
         String str;
-        i iVar = this.f14866a;
+        i iVar = this.f14867a;
         iVar.T = false;
-        if (iVar.f14936y == cameraDevice) {
+        if (iVar.f14937y == cameraDevice) {
             iVar.i();
-            iVar.f14936y = null;
+            iVar.f14937y = null;
         }
         cameraDevice.close();
         StringBuilder sb2 = new StringBuilder("Camera device error: ");
@@ -89,14 +89,14 @@ public final class e extends CameraDevice.StateCallback {
 
     @Override
     public final void onOpened(CameraDevice cameraDevice) {
-        i iVar = this.f14866a;
+        i iVar = this.f14867a;
         iVar.T = false;
-        m mVar = iVar.f14908j;
-        mVar.b("camera opened: id=" + cameraDevice.getId() + ", elapsedMs=" + i.m(this.f14866a.f14904g0));
-        if (this.f14866a.S) {
-            i iVar2 = this.f14866a;
+        m mVar = iVar.f14909j;
+        mVar.b("camera opened: id=" + cameraDevice.getId() + ", elapsedMs=" + i.m(this.f14867a.f14905g0));
+        if (this.f14867a.S) {
+            i iVar2 = this.f14867a;
             if (!iVar2.U) {
-                iVar2.f14936y = cameraDevice;
+                iVar2.f14937y = cameraDevice;
                 iVar2.j();
                 return;
             }

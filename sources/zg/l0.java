@@ -2,7 +2,7 @@ package zg;
 
 import java.util.Comparator;
 public final class l0 implements Comparator {
-    public long f53442a;
+    public long f53447a;
 
     @Override
     public final int compare(Object obj, Object obj2) {
@@ -12,9 +12,9 @@ public final class l0 implements Comparator {
         int i13;
         m0 m0Var = (m0) obj;
         m0 m0Var2 = (m0) obj2;
-        if (this.f53442a >= 0) {
-            boolean z10 = m0Var.f53461m;
-            if (z10 != m0Var2.f53461m) {
+        if (this.f53447a >= 0) {
+            boolean z10 = m0Var.f53466m;
+            if (z10 != m0Var2.f53466m) {
                 if (z10) {
                     return -1;
                 }
@@ -26,27 +26,27 @@ public final class l0 implements Comparator {
                     return -1;
                 }
                 return 1;
-            } else if (z11 && (i12 = m0Var.f53459k) != (i13 = m0Var2.f53459k)) {
+            } else if (z11 && (i12 = m0Var.f53464k) != (i13 = m0Var2.f53464k)) {
                 return i12 - i13;
             } else {
-                i10 = m0Var.f53444a.lastDrawnPosition;
-                i11 = m0Var2.f53444a.lastDrawnPosition;
+                i10 = m0Var.f53449a.lastDrawnPosition;
+                i11 = m0Var2.f53449a.lastDrawnPosition;
             }
         } else {
-            boolean z12 = m0Var.f53461m;
-            if (z12 != m0Var2.f53461m) {
+            boolean z12 = m0Var.f53466m;
+            if (z12 != m0Var2.f53466m) {
                 if (z12) {
                     return -1;
                 }
                 return 1;
             }
-            int i14 = m0Var.f53458j;
-            int i15 = m0Var2.f53458j;
+            int i14 = m0Var.f53463j;
+            int i15 = m0Var2.f53463j;
             if (i14 != i15) {
                 return i15 - i14;
             }
-            i10 = m0Var.f53444a.lastDrawnPosition;
-            i11 = m0Var2.f53444a.lastDrawnPosition;
+            i10 = m0Var.f53449a.lastDrawnPosition;
+            i11 = m0Var2.f53449a.lastDrawnPosition;
         }
         return i10 - i11;
     }

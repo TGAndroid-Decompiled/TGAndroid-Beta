@@ -18,19 +18,19 @@ import org.telegram.ui.Components.w9;
 import w7.b6;
 import w7.z5;
 public final class o extends FrameLayout {
-    public static final int f9223n = 0;
-    public final d6 f9224a;
-    public final w9 f9225b;
-    public final ImageView f9226c;
+    public static final int f9224n = 0;
+    public final d6 f9225a;
+    public final w9 f9226b;
+    public final ImageView f9227c;
     public final TextView d;
-    public final TextView f9227e;
-    public final TextView f9228f;
+    public final TextView f9228e;
+    public final TextView f9229f;
     public final q90 h;
 
     public o(Activity activity, d6 d6Var) {
         super(activity);
-        this.f9224a = d6Var;
-        LinearLayout e7 = org.telegram.messenger.f0.e(activity, 0);
+        this.f9225a = d6Var;
+        LinearLayout e7 = org.telegram.messenger.q.e(activity, 0);
         e7.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f));
         b6.b(e7, 0.025f, 1.4f);
         addView(e7, z5.e(-1, -1, 119));
@@ -51,7 +51,7 @@ public final class o extends FrameLayout {
         linearLayout2.addView(textView, z5.o(-2, -2, 0.0f, 16));
         NotificationCenter.listenEmojiLoading(textView);
         TextView textView2 = new TextView(activity);
-        this.f9228f = textView2;
+        this.f9229f = textView2;
         textView2.setTextSize(1, 11.0f);
         textView2.setTextColor(i6.v0(i10, d6Var));
         b6.b(textView2, 0.1f, 1.5f);
@@ -60,7 +60,7 @@ public final class o extends FrameLayout {
         textView2.setText(LocaleController.getString(R.string.BotAdWhat));
         linearLayout2.addView(textView2, z5.p(-2, 17, 0.0f, 19, 5, 1, 0, 0));
         TextView textView3 = new TextView(activity);
-        this.f9227e = textView3;
+        this.f9228e = textView3;
         textView3.setVisibility(8);
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(i6.v0(i11, d6Var));
@@ -75,17 +75,17 @@ public final class o extends FrameLayout {
         linearLayout.addView(q90Var, z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
         NotificationCenter.listenEmojiLoading(q90Var);
         w9 w9Var = new w9(activity);
-        this.f9225b = w9Var;
+        this.f9226b = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(4.0f));
         w9Var.setVisibility(8);
         e7.addView(w9Var, z5.t(48, 48, 53, 10, 0, 2, 2));
         ImageView imageView = new ImageView(activity);
-        this.f9226c = imageView;
+        this.f9227c = imageView;
         imageView.setBackground(i6.f0(5, i6.l1(0.2f, i6.v0(i6.W5, d6Var)), -1));
         b6.a(imageView);
         imageView.setImageResource(R.drawable.msg_close);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.f20826de, d6Var), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.f20830de, d6Var), PorterDuff.Mode.SRC_IN));
         imageView.setOnClickListener(new ai.e2(3));
         imageView.setVisibility(8);
         e7.addView(imageView, z5.t(32, 32, 53, 10, 3, 0, 2));

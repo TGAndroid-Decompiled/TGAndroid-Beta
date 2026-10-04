@@ -48,12 +48,12 @@ public final class s7 extends FrameLayout {
         this.h = l7Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.f1638s = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20890h5, dVar), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20894h5, dVar), PorterDuff.Mode.MULTIPLY));
         q7 q7Var = new q7(this, context);
         this.f1634e = q7Var;
         m7 m7Var = new m7(this, context);
         this.E = m7Var;
-        m7Var.b(new n7(this, 0));
+        m7Var.b(new n7(0, this));
         p7 p7Var = new p7(this, jcVar, context);
         this.f1631a = p7Var;
         m7Var.setAdapter(p7Var);
@@ -196,7 +196,7 @@ public final class s7 extends FrameLayout {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
             ofFloat.addUpdateListener(new a(this, 11));
-            ofFloat.setInterpolator(org.telegram.ui.ActionBar.p1.f21444w);
+            ofFloat.setInterpolator(org.telegram.ui.ActionBar.p1.f21448w);
             ofFloat.setDuration(250L);
             ofFloat.start();
         }
@@ -205,7 +205,7 @@ public final class s7 extends FrameLayout {
             currentPage.f1221r.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
             FrameLayout frameLayout = currentPage.f1217c;
             if (frameLayout.getTranslationY() != 0.0f) {
-                currentPage.d.w((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.p1.f21444w);
+                currentPage.d.w((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.p1.f21448w);
             }
         }
     }
@@ -235,7 +235,7 @@ public final class s7 extends FrameLayout {
                         gcVar.f991c = null;
                     }
                     zb zbVar = jcVar.f1174n0;
-                    int i12 = messageObject.storyItem.f20275id;
+                    int i12 = messageObject.storyItem.f20279id;
                     jc jcVar2 = zbVar.N0;
                     int i13 = 0;
                     while (true) {

@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 public final class e1 extends o6.a {
     public static final Parcelable.Creator<e1> CREATOR = new n0(12);
-    public final boolean f50477a;
-    public final List f50478b;
+    public final boolean f50485a;
+    public final List f50486b;
 
     public e1(ArrayList arrayList, boolean z10) {
-        this.f50477a = z10;
-        this.f50478b = arrayList;
+        this.f50485a = z10;
+        this.f50486b = arrayList;
     }
 
     public final boolean equals(Object obj) {
@@ -23,7 +23,7 @@ public final class e1 extends o6.a {
         }
         if (obj != null && e1.class == obj.getClass()) {
             e1 e1Var = (e1) obj;
-            if (this.f50477a == e1Var.f50477a && ((list2 = this.f50478b) == (list = e1Var.f50478b) || (list2 != null && list2.equals(list)))) {
+            if (this.f50485a == e1Var.f50485a && ((list2 = this.f50486b) == (list = e1Var.f50486b) || (list2 != null && list2.equals(list)))) {
                 return true;
             }
         }
@@ -31,20 +31,20 @@ public final class e1 extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f50477a), this.f50478b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f50485a), this.f50486b});
     }
 
     public final String toString() {
-        String valueOf = String.valueOf(this.f50478b);
-        return "AppWearDetailsParcelable{isWatchface=" + this.f50477a + ", watchfaceCategories=" + valueOf + "}";
+        String valueOf = String.valueOf(this.f50486b);
+        return "AppWearDetailsParcelable{isWatchface=" + this.f50485a + ", watchfaceCategories=" + valueOf + "}";
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.g0.q(parcel, 20293);
         w7.g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f50477a ? 1 : 0);
-        w7.g0.n(parcel, 2, this.f50478b);
+        parcel.writeInt(this.f50485a ? 1 : 0);
+        w7.g0.n(parcel, 2, this.f50486b);
         w7.g0.r(parcel, q6);
     }
 }

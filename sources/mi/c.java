@@ -8,24 +8,24 @@ import android.graphics.RenderNode;
 import org.telegram.ui.Components.ru;
 import w7.z;
 public final class c extends z {
-    public final RenderNode f16441a = new RenderNode("glass-fade-content");
-    public final RenderNode f16442b = new RenderNode("glass-fade-overlay");
-    public final Paint f16443c;
+    public final RenderNode f16445a = new RenderNode("glass-fade-content");
+    public final RenderNode f16446b = new RenderNode("glass-fade-overlay");
+    public final Paint f16447c;
     public final Paint d;
-    public final Matrix f16444e;
-    public LinearGradient f16445f;
-    public int f16446g;
+    public final Matrix f16448e;
+    public LinearGradient f16449f;
+    public int f16450g;
     public int h;
-    public int f16447i;
-    public final f f16448j;
+    public int f16451i;
+    public final f f16452j;
 
     public c(f fVar) {
-        this.f16448j = fVar;
+        this.f16452j = fVar;
         Paint paint = new Paint();
-        this.f16443c = paint;
+        this.f16447c = paint;
         this.d = new Paint(1);
-        this.f16444e = new Matrix();
-        this.f16446g = -1;
+        this.f16448e = new Matrix();
+        this.f16450g = -1;
         this.h = -1;
         paint.setBlendMode(ru.d());
     }
@@ -37,20 +37,20 @@ public final class c extends z {
 
     @Override
     public final void b() {
-        this.f16441a.discardDisplayList();
-        this.f16442b.discardDisplayList();
-        this.f16446g = -1;
+        this.f16445a.discardDisplayList();
+        this.f16446b.discardDisplayList();
+        this.f16450g = -1;
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f16441a);
-        canvas.drawRenderNode(this.f16442b);
+        canvas.drawRenderNode(this.f16445a);
+        canvas.drawRenderNode(this.f16446b);
     }
 
     @Override
     public final boolean d() {
-        if (this.f16441a.hasDisplayList() && this.f16442b.hasDisplayList()) {
+        if (this.f16445a.hasDisplayList() && this.f16446b.hasDisplayList()) {
             return true;
         }
         return false;
@@ -58,7 +58,7 @@ public final class c extends z {
 
     @Override
     public final void e(float f7) {
-        this.f16441a.setAlpha(f7);
-        this.f16442b.setAlpha(f7);
+        this.f16445a.setAlpha(f7);
+        this.f16446b.setAlpha(f7);
     }
 }

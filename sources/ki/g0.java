@@ -8,23 +8,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f3;
 public final class g0 implements Runnable {
-    public final int f14877a = 2;
-    public final boolean f14878b;
-    public final boolean f14879c;
+    public final int f14878a = 2;
+    public final boolean f14879b;
+    public final boolean f14880c;
     public final int d;
-    public final Object f14880e;
-    public final Object f14881f;
+    public final Object f14881e;
+    public final Object f14882f;
     public final Object h;
-    public final Object f14882n;
+    public final Object f14883n;
 
     public g0(int i10, ci.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z10, boolean z11, f3[] f3VarArr) {
-        this.f14880e = dVar;
-        this.f14881f = f3VarArr;
+        this.f14881e = dVar;
+        this.f14882f = f3VarArr;
         this.d = i10;
-        this.f14878b = z10;
+        this.f14879b = z10;
         this.h = starsSubscription;
-        this.f14879c = z11;
-        this.f14882n = tLObject;
+        this.f14880c = z11;
+        this.f14883n = tLObject;
     }
 
     @Override
@@ -33,22 +33,22 @@ public final class g0 implements Runnable {
     }
 
     public g0(s0 s0Var, t tVar, boolean z10, File file, boolean z11, int i10, o0 o0Var) {
-        this.f14880e = s0Var;
-        this.f14881f = tVar;
-        this.f14878b = z10;
+        this.f14881e = s0Var;
+        this.f14882f = tVar;
+        this.f14879b = z10;
         this.h = file;
-        this.f14879c = z11;
+        this.f14880c = z11;
         this.d = i10;
-        this.f14882n = o0Var;
+        this.f14883n = o0Var;
     }
 
     public g0(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
-        this.f14880e = sendMessagesHelper;
-        this.f14878b = z10;
-        this.f14881f = message;
+        this.f14881e = sendMessagesHelper;
+        this.f14879b = z10;
+        this.f14882f = message;
         this.h = arrayList;
-        this.f14879c = z11;
-        this.f14882n = arrayList2;
+        this.f14880c = z11;
+        this.f14883n = arrayList2;
         this.d = i10;
     }
 }

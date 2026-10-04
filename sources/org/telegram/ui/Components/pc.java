@@ -9,11 +9,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class pc extends nb {
-    public Runnable f29595a;
-    public Runnable f29596b;
-    public rc f29597c;
+    public Runnable f29600a;
+    public Runnable f29601b;
+    public rc f29602c;
     public final TextView d;
-    public boolean f29598e;
+    public boolean f29603e;
 
     public pc(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
         super(context);
@@ -31,7 +31,7 @@ public final class pc extends nb {
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(w02);
-            org.telegram.messenger.ok.l(R.string.UndoNoCaps, textView, 16);
+            org.telegram.messenger.bi.k(R.string.UndoNoCaps, textView, 16);
             float f7 = z11 ? 34.0f : 12.0f;
             boolean z12 = LocaleController.isRTL;
             w7.f6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
@@ -52,14 +52,14 @@ public final class pc extends nb {
 
     @Override
     public final void a(rc rcVar) {
-        this.f29597c = rcVar;
+        this.f29602c = rcVar;
     }
 
     @Override
     public final void b() {
-        this.f29597c = null;
-        Runnable runnable = this.f29596b;
-        if (runnable != null && !this.f29598e) {
+        this.f29602c = null;
+        Runnable runnable = this.f29601b;
+        if (runnable != null && !this.f29603e) {
             runnable.run();
         }
     }
@@ -72,13 +72,13 @@ public final class pc extends nb {
     }
 
     public final void f() {
-        if (this.f29597c != null) {
-            this.f29598e = true;
-            Runnable runnable = this.f29595a;
+        if (this.f29602c != null) {
+            this.f29603e = true;
+            Runnable runnable = this.f29600a;
             if (runnable != null) {
                 runnable.run();
             }
-            rc rcVar = this.f29597c;
+            rc rcVar = this.f29602c;
             if (rcVar != null) {
                 rcVar.b();
             }

@@ -6,10 +6,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class f implements Parcelable {
     public static final Parcelable.Creator<f> CREATOR = new Object();
-    public final Messenger f14005a;
+    public final Messenger f14006a;
 
     public f(IBinder iBinder) {
-        this.f14005a = new Messenger(iBinder);
+        this.f14006a = new Messenger(iBinder);
     }
 
     @Override
@@ -20,10 +20,10 @@ public final class f implements Parcelable {
     public final boolean equals(Object obj) {
         if (obj != null) {
             try {
-                Messenger messenger = this.f14005a;
+                Messenger messenger = this.f14006a;
                 messenger.getClass();
                 IBinder binder = messenger.getBinder();
-                Messenger messenger2 = ((f) obj).f14005a;
+                Messenger messenger2 = ((f) obj).f14006a;
                 messenger2.getClass();
                 return binder.equals(messenger2.getBinder());
             } catch (ClassCastException unused) {
@@ -34,14 +34,14 @@ public final class f implements Parcelable {
     }
 
     public final int hashCode() {
-        Messenger messenger = this.f14005a;
+        Messenger messenger = this.f14006a;
         messenger.getClass();
         return messenger.getBinder().hashCode();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        Messenger messenger = this.f14005a;
+        Messenger messenger = this.f14006a;
         messenger.getClass();
         parcel.writeStrongBinder(messenger.getBinder());
     }

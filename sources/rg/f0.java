@@ -1,18 +1,18 @@
 package rg;
 public class f0 {
-    public final int f46103a;
-    public final int f46104b;
-    public final String f46105c;
+    public final int f46110a;
+    public final int f46111b;
+    public final String f46112c;
     public final String d;
-    public final int f46106e;
-    public boolean f46107f;
+    public final int f46113e;
+    public boolean f46114f;
 
     public f0(int i10, int i11, int i12, String str, String str2) {
-        this.f46103a = i10;
-        this.f46104b = i11;
-        this.f46105c = str;
+        this.f46110a = i10;
+        this.f46111b = i11;
+        this.f46112c = str;
         this.d = str2;
-        this.f46106e = i12;
+        this.f46113e = i12;
     }
 
     public static f0 a(int i10, int i11) {

@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 public final class vs0 implements pl0 {
-    public final ls0 f32351a;
-    public final pv0 f32352b;
+    public final ls0 f32357a;
+    public final pv0 f32358b;
 
     public vs0(pv0 pv0Var, ls0 ls0Var) {
-        this.f32352b = pv0Var;
-        this.f32351a = ls0Var;
+        this.f32358b = pv0Var;
+        this.f32357a = ls0Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class vs0 implements pl0 {
 
     @Override
     public final void i() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f32352b.f29801v1;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f32358b.f29806v1;
         if (n2Var != null) {
             Point point = AndroidUtilities.displaySize;
             if (point.x > point.y) {
@@ -29,7 +29,7 @@ public final class vs0 implements pl0 {
 
     @Override
     public final void q(float f7) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f32352b.f29801v1;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f32358b.f29806v1;
         if (n2Var != null) {
             Point point = AndroidUtilities.displaySize;
             if (point.x > point.y) {

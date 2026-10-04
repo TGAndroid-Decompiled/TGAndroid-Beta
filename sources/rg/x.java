@@ -52,19 +52,19 @@ import xh.r2;
 import yh.j2;
 import yh.x3;
 public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.r, e2.h, androidx.car.app.utils.b, q9.d, j2, Utilities.Callback5, nl0, og1, c61 {
-    public final int f46349a;
-    public final Object f46350b;
-    public final Object f46351c;
+    public final int f46356a;
+    public final Object f46357b;
+    public final Object f46358c;
 
     public x(int i10, Object obj, Object obj2) {
-        this.f46349a = i10;
-        this.f46350b = obj;
-        this.f46351c = obj2;
+        this.f46356a = i10;
+        this.f46357b = obj;
+        this.f46358c = obj2;
     }
 
     @Override
     public boolean A() {
-        switch (this.f46349a) {
+        switch (this.f46356a) {
             case 6:
                 return false;
             default:
@@ -75,9 +75,9 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
     @Override
     public Object E(cf.c cVar) {
         String valueOf;
-        String str = (String) this.f46350b;
+        String str = (String) this.f46357b;
         Context context = (Context) cVar.a(Context.class);
-        switch (((j2.e) this.f46351c).f13651a) {
+        switch (((j2.e) this.f46358c).f13652a) {
             case 13:
                 ApplicationInfo applicationInfo = context.getApplicationInfo();
                 if (applicationInfo != null) {
@@ -123,7 +123,7 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public boolean H(uy uyVar) {
-        switch (this.f46349a) {
+        switch (this.f46356a) {
             case 6:
                 return false;
             default:
@@ -133,10 +133,10 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public void a(int i10) {
-        switch (this.f46349a) {
+        switch (this.f46356a) {
             case 4:
-                tg.v vVar = (tg.v) this.f46350b;
-                tg.v vVar2 = (tg.v) this.f46351c;
+                tg.v vVar = (tg.v) this.f46357b;
+                tg.v vVar2 = (tg.v) this.f46358c;
                 if (i10 == 1) {
                     vVar.run(null);
                     return;
@@ -147,8 +147,8 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
                     return;
                 }
             default:
-                Utilities.Callback callback = (Utilities.Callback) this.f46350b;
-                Utilities.Callback callback2 = (Utilities.Callback) this.f46351c;
+                Utilities.Callback callback = (Utilities.Callback) this.f46357b;
+                Utilities.Callback callback2 = (Utilities.Callback) this.f46358c;
                 if (i10 == 1) {
                     callback.run(null);
                     return;
@@ -163,21 +163,21 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public void accept(Object obj) {
-        a5.a aVar = (a5.a) this.f46350b;
-        ((u2.k0) obj).d(aVar.f299b, (u2.f0) aVar.f300c, (u2.b0) this.f46351c);
+        a5.a aVar = (a5.a) this.f46357b;
+        ((u2.k0) obj).d(aVar.f299b, (u2.f0) aVar.f300c, (u2.b0) this.f46358c);
     }
 
     @Override
     public Object apply(Object obj) {
         i5.d[] values;
-        s5.g gVar = (s5.g) this.f46350b;
-        l5.i iVar = (l5.i) this.f46351c;
+        s5.g gVar = (s5.g) this.f46357b;
+        l5.i iVar = (l5.i) this.f46358c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         s5.a aVar = gVar.d;
-        ArrayList d = gVar.d(sQLiteDatabase, iVar, aVar.f46715b);
+        ArrayList d = gVar.d(sQLiteDatabase, iVar, aVar.f46722b);
         for (i5.d dVar : i5.d.values()) {
-            if (dVar != iVar.f15348c) {
-                int size = aVar.f46715b - d.size();
+            if (dVar != iVar.f15349c) {
+                int size = aVar.f46722b - d.size();
                 if (size <= 0) {
                     break;
                 }
@@ -187,7 +187,7 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
         HashMap hashMap = new HashMap();
         StringBuilder sb2 = new StringBuilder("event_id IN (");
         for (int i10 = 0; i10 < d.size(); i10++) {
-            sb2.append(((s5.b) d.get(i10)).f46718a);
+            sb2.append(((s5.b) d.get(i10)).f46725a);
             if (i10 < d.size() - 1) {
                 sb2.append(',');
             }
@@ -212,13 +212,13 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
         ListIterator listIterator = d.listIterator();
         while (listIterator.hasNext()) {
             s5.b bVar = (s5.b) listIterator.next();
-            long j10 = bVar.f46718a;
+            long j10 = bVar.f46725a;
             if (hashMap.containsKey(Long.valueOf(j10))) {
-                com.google.firebase.messaging.n c10 = bVar.f46720c.c();
+                com.google.firebase.messaging.n c10 = bVar.f46727c.c();
                 for (s5.f fVar : (Set) hashMap.get(Long.valueOf(j10))) {
-                    c10.c(fVar.f46721a, fVar.f46722b);
+                    c10.c(fVar.f46728a, fVar.f46729b);
                 }
-                listIterator.set(new s5.b(j10, bVar.f46719b, c10.g()));
+                listIterator.set(new s5.b(j10, bVar.f46726b, c10.g()));
             }
         }
         return d;
@@ -226,51 +226,51 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public void b(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z10) {
-        o2 o2Var = (o2) this.f46350b;
-        fs0 fs0Var = o2Var.f50144a;
-        o2Var.f50147e.f51528l.remove((TL_stars.SavedStarGift) this.f46351c);
+        o2 o2Var = (o2) this.f46357b;
+        fs0 fs0Var = o2Var.f50152a;
+        o2Var.f50155e.f51533l.remove((TL_stars.SavedStarGift) this.f46358c);
         o2Var.f(true);
-        int i10 = o2Var.f50145b;
+        int i10 = o2Var.f50153b;
         if (j3 == UserConfig.getInstance(i10).getClientUserId()) {
-            yc a02 = yc.a0(fs0Var.f50217a);
+            yc a02 = yc.a0(fs0Var.f50225a);
             TLRPC.Document document = tL_starGiftUnique.getDocument();
             String string = LocaleController.getString(R.string.BoughtResoldGiftTitle);
             int i11 = R.string.BoughtResoldGiftText;
             StringBuilder sb2 = new StringBuilder();
             sb2.append(tL_starGiftUnique.title);
             sb2.append(" #");
-            rc O = a02.O(document, string, LocaleController.formatString(i11, org.telegram.messenger.f0.h(tL_starGiftUnique.num, ',', sb2)));
-            O.f30347r = false;
+            rc O = a02.O(document, string, LocaleController.formatString(i11, org.telegram.messenger.q.h(tL_starGiftUnique.num, ',', sb2)));
+            O.f30353r = false;
             O.j();
         } else {
-            rc O2 = yc.a0(fs0Var.f50217a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j3)));
-            O2.f30347r = false;
+            rc O2 = yc.a0(fs0Var.f50225a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j3)));
+            O2.f30353r = false;
             O2.j();
         }
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity != null) {
-            launchActivity.f33812x0.c(true);
+            launchActivity.f33818x0.c(true);
         }
     }
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        h4.O((h4) this.f46350b, (g4) this.f46351c, i10);
+        h4.O((h4) this.f46357b, (g4) this.f46358c, i10);
     }
 
     @Override
     public void call() {
         int i10 = CarAppNotificationBroadcastReceiver.f2319a;
-        ((IStartCarApp) this.f46350b).startCarApp((Intent) this.f46351c);
+        ((IStartCarApp) this.f46357b).startCarApp((Intent) this.f46358c);
     }
 
     @Override
     public c3.o[] d(Uri uri, Map map) {
         c3.o aVar;
-        u2.p pVar = (u2.p) this.f46350b;
-        b2.s sVar = (b2.s) this.f46351c;
-        if (pVar.f47356c.V(sVar)) {
-            aVar = new z3.i(pVar.f47356c.x(sVar), null);
+        u2.p pVar = (u2.p) this.f46357b;
+        b2.s sVar = (b2.s) this.f46358c;
+        if (pVar.f47364c.V(sVar)) {
+            aVar = new z3.i(pVar.f47364c.v(sVar), null);
         } else {
             aVar = new k3.a(sVar);
         }
@@ -284,24 +284,24 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f46349a) {
+        switch (this.f46356a) {
             case 0:
-                k0.O((k0) this.f46350b, (ArrayList) this.f46351c);
+                k0.O((k0) this.f46357b, (ArrayList) this.f46358c);
                 return;
             case 2:
-                ((AtomicBoolean) this.f46350b).set(true);
-                ((tg.t0) this.f46351c).run();
+                ((AtomicBoolean) this.f46357b).set(true);
+                ((tg.t0) this.f46358c).run();
                 return;
             case 3:
-                ((tg.v) this.f46350b).run((TLRPC.TL_premiumGiftCodeOption) this.f46351c);
+                ((tg.v) this.f46357b).run((TLRPC.TL_premiumGiftCodeOption) this.f46358c);
                 return;
             case 12:
-                xh.m mVar = (xh.m) this.f46350b;
-                c6 c6Var = (c6) this.f46351c;
+                xh.m mVar = (xh.m) this.f46357b;
+                c6 c6Var = (c6) this.f46358c;
                 try {
                     int parseInt = Integer.parseInt(c6Var.getText().toString().trim());
                     mVar.W(parseInt);
-                    mVar.f50078c0.setValue(parseInt);
+                    mVar.f50086c0.setValue(parseInt);
                     b2Var.dismiss();
                     return;
                 } catch (Throwable th2) {
@@ -310,8 +310,8 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
                     return;
                 }
             case 13:
-                xh.a2 a2Var = (xh.a2) this.f46350b;
-                Utilities.Callback callback = (Utilities.Callback) this.f46351c;
+                xh.a2 a2Var = (xh.a2) this.f46357b;
+                Utilities.Callback callback = (Utilities.Callback) this.f46358c;
                 String obj = a2Var.getText().toString();
                 if (obj.length() > 0 && obj.length() <= 12) {
                     callback.run(obj);
@@ -321,27 +321,27 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
                 AndroidUtilities.shakeView(a2Var);
                 return;
             default:
-                x3 x3Var = (x3) this.f46350b;
+                x3 x3Var = (x3) this.f46357b;
                 nf.e g10 = b2Var.g(i10, true, true);
                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                 x xVar = new x(19, x3Var, twoStepVerificationActivity);
                 twoStepVerificationActivity.Z = 2;
-                twoStepVerificationActivity.f34564b0 = xVar;
-                twoStepVerificationActivity.f34562a0 = x3Var.C1();
+                twoStepVerificationActivity.f34570b0 = xVar;
+                twoStepVerificationActivity.f34568a0 = x3Var.C1();
                 g10.d();
-                twoStepVerificationActivity.s0(new tg.q(x3Var, (tg.m1[]) this.f46351c, g10, twoStepVerificationActivity));
+                twoStepVerificationActivity.s0(new tg.q(x3Var, (tg.m1[]) this.f46358c, g10, twoStepVerificationActivity));
                 return;
         }
     }
 
     @Override
     public void j(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f46349a) {
+        switch (this.f46356a) {
             case 17:
-                ((yh.g) this.f46350b).h0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46351c);
+                ((yh.g) this.f46357b).h0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46358c);
                 return;
             default:
-                ((x3) this.f46350b).M1(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46351c);
+                ((x3) this.f46357b).M1(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46358c);
                 return;
         }
     }
@@ -350,20 +350,20 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         boolean z10;
         boolean z11;
-        r2 r2Var = (r2) this.f46350b;
-        ci.d dVar = (ci.d) this.f46351c;
+        r2 r2Var = (r2) this.f46357b;
+        ci.d dVar = (ci.d) this.f46358c;
         View view = (View) obj2;
         Integer num = (Integer) obj3;
         Float f7 = (Float) obj4;
         Float f10 = (Float) obj5;
         r2Var.getClass();
-        long j3 = ((TL_stars.SavedStarGift) ((g61) obj).G).gift.f20265id;
-        if (r2Var.f50207b == j3) {
-            r2Var.f50207b = 0L;
+        long j3 = ((TL_stars.SavedStarGift) ((g61) obj).G).gift.f20269id;
+        if (r2Var.f50215b == j3) {
+            r2Var.f50215b = 0L;
         } else {
-            r2Var.f50207b = j3;
+            r2Var.f50215b = j3;
         }
-        if (r2Var.f50207b != 0) {
+        if (r2Var.f50215b != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -375,7 +375,7 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
                 View childAt = viewGroup.getChildAt(i10);
                 if (childAt instanceof ep0) {
                     ep0 ep0Var = (ep0) childAt;
-                    if (r2Var.f50207b == ep0Var.getGiftId()) {
+                    if (r2Var.f50215b == ep0Var.getGiftId()) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -388,26 +388,26 @@ public final class x implements org.telegram.ui.ActionBar.a2, s5.e, ro0, oy, c3.
 
     @Override
     public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, yf1 yf1Var) {
-        switch (this.f46349a) {
+        switch (this.f46356a) {
             case 6:
-                tg.g0 g0Var = (tg.g0) this.f46350b;
-                String str = (String) this.f46351c;
+                tg.g0 g0Var = (tg.g0) this.f46357b;
+                String str = (String) this.f46358c;
                 long j3 = 0;
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     j3 = ((MessagesStorage.TopicKey) arrayList.get(i12)).dialogId;
-                    g0Var.f25304n.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    g0Var.f25309n.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
                 }
                 uyVar.finishFragment();
                 tg.i.h(j3);
                 return true;
             default:
-                ug.e eVar = (ug.e) this.f46350b;
-                String str2 = (String) this.f46351c;
+                ug.e eVar = (ug.e) this.f46357b;
+                String str2 = (String) this.f46358c;
                 long j10 = 0;
                 int i13 = 0;
                 while (i13 < arrayList.size()) {
                     j10 = ((MessagesStorage.TopicKey) arrayList.get(i13)).dialogId;
-                    eVar.f47650e.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    eVar.f47658e.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     i13++;
                     eVar = eVar;
                 }

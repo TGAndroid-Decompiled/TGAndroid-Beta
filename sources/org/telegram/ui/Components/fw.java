@@ -7,46 +7,46 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class fw extends Drawable {
-    public final int f26582a;
-    public RectF f26583b;
-    public Paint f26584c;
+    public final int f26587a;
+    public RectF f26588b;
+    public Paint f26589c;
 
     public fw(int i10, byte b10) {
-        this.f26582a = i10;
+        this.f26587a = i10;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f26582a) {
+        switch (this.f26587a) {
             case 0:
-                RectF rectF = this.f26583b;
+                RectF rectF = this.f26588b;
                 rectF.set(0.0f, 0.0f, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(8.0f), AndroidUtilities.dpf2(8.0f), this.f26584c);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(8.0f), AndroidUtilities.dpf2(8.0f), this.f26589c);
                 return;
             case 1:
-                RectF rectF2 = this.f26583b;
+                RectF rectF2 = this.f26588b;
                 rectF2.set(getBounds());
                 float height = rectF2.height() * 0.2f;
-                canvas.drawRoundRect(rectF2, height, height, this.f26584c);
+                canvas.drawRoundRect(rectF2, height, height, this.f26589c);
                 return;
             case 2:
-                RectF rectF3 = this.f26583b;
+                RectF rectF3 = this.f26588b;
                 rectF3.set(getBounds());
                 rectF3.inset(AndroidUtilities.dp(1.0f), (rectF3.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
-                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f26584c);
+                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f26589c);
                 return;
             default:
-                RectF rectF4 = this.f26583b;
+                RectF rectF4 = this.f26588b;
                 rectF4.set(getBounds());
                 rectF4.inset(0.0f, (rectF4.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
-                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f26584c);
+                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f26589c);
                 return;
         }
     }
 
     @Override
     public final int getOpacity() {
-        switch (this.f26582a) {
+        switch (this.f26587a) {
             case 0:
                 return -3;
             case 1:
@@ -60,29 +60,29 @@ public final class fw extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f26582a) {
+        switch (this.f26587a) {
             case 0:
-                this.f26584c.setAlpha(i10);
+                this.f26589c.setAlpha(i10);
                 return;
             case 1:
-                this.f26584c.setAlpha(i10);
+                this.f26589c.setAlpha(i10);
                 return;
             case 2:
-                this.f26584c.setAlpha(i10);
+                this.f26589c.setAlpha(i10);
                 return;
             default:
-                this.f26584c.setAlpha(i10);
+                this.f26589c.setAlpha(i10);
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f26582a) {
+        switch (this.f26587a) {
             case 0:
                 return;
             case 1:
-                this.f26584c.setColorFilter(colorFilter);
+                this.f26589c.setColorFilter(colorFilter);
                 return;
             case 2:
             default:
@@ -91,16 +91,16 @@ public final class fw extends Drawable {
     }
 
     public fw() {
-        this.f26582a = 1;
-        this.f26583b = new RectF();
-        this.f26584c = new Paint(1);
+        this.f26587a = 1;
+        this.f26588b = new RectF();
+        this.f26589c = new Paint(1);
     }
 
     public fw(int i10) {
-        this.f26582a = 0;
+        this.f26587a = 0;
         Paint paint = new Paint();
-        this.f26584c = paint;
-        this.f26583b = new RectF();
+        this.f26589c = paint;
+        this.f26588b = new RectF();
         paint.setAlpha(45);
         paint.setColor(i10);
     }

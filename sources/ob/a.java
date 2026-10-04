@@ -58,11 +58,11 @@ import r0.r;
 import tc.g;
 import ye.h;
 public final class a implements b, bg.a, q, cf.b, c, n, vi, y2.n, n2.n, d, pg, l1, t0, r, xf.a {
-    public static a f17148b;
-    public final int f17149a;
+    public static a f17152b;
+    public final int f17153a;
 
     public a(int i10) {
-        this.f17149a = i10;
+        this.f17153a = i10;
     }
 
     public static da.a B2(na.d dVar) {
@@ -79,7 +79,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, vi, y2.n, n2.n, d, pg, l
             if (bitmap != null) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 e2.d.g(bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream));
-                a2.putByteArray(d2.b.f8018x, byteArrayOutputStream.toByteArray());
+                a2.putByteArray(d2.b.f8019x, byteArrayOutputStream.toByteArray());
             }
             arrayList.add(a2);
         }
@@ -94,10 +94,10 @@ public final class a implements b, bg.a, q, cf.b, c, n, vi, y2.n, n2.n, d, pg, l
     }
 
     public static Calendar D2() {
-        if (f17148b == null) {
-            f17148b = new a(25);
+        if (f17152b == null) {
+            f17152b = new a(25);
         }
-        f17148b.getClass();
+        f17152b.getClass();
         return Calendar.getInstance();
     }
 
@@ -123,7 +123,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, vi, y2.n, n2.n, d, pg, l
 
     @Override
     public Object E(cf.c cVar) {
-        switch (this.f17149a) {
+        switch (this.f17153a) {
             case 14:
                 qb.g gVar = (qb.g) cVar.a(qb.g.class);
                 return new rb.a(0);
@@ -331,7 +331,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, vi, y2.n, n2.n, d, pg, l
 
     @Override
     public boolean g() {
-        switch (this.f17149a) {
+        switch (this.f17153a) {
             case 17:
                 return true;
             default:
@@ -361,7 +361,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, vi, y2.n, n2.n, d, pg, l
 
     @Override
     public m j0(k kVar, s sVar) {
-        return m.f16547u;
+        return m.f16551u;
     }
 
     @Override
@@ -401,7 +401,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, vi, y2.n, n2.n, d, pg, l
 
     @Override
     public Object p2() {
-        switch (this.f17149a) {
+        switch (this.f17153a) {
             case 8:
                 return new LinkedHashSet();
             default:

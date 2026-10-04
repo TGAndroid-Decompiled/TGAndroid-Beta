@@ -6,27 +6,27 @@ import java.util.Map;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 public final class c {
-    public final HashMap f44363a = new HashMap();
+    public final HashMap f44370a = new HashMap();
 
     public c(Set set) {
         Iterator it = set.iterator();
         while (it.hasNext()) {
             b bVar = (b) it.next();
-            HashMap hashMap = this.f44363a;
+            HashMap hashMap = this.f44370a;
             bVar.getClass();
-            hashMap.put(a.class, bVar.f44362a);
+            hashMap.put(a.class, bVar.f44369a);
         }
     }
 
     public void a(Runnable runnable) {
-        Runnable runnable2 = (Runnable) this.f44363a.remove(runnable);
+        Runnable runnable2 = (Runnable) this.f44370a.remove(runnable);
         if (runnable2 != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable2);
         }
     }
 
     public void b() {
-        HashMap hashMap = this.f44363a;
+        HashMap hashMap = this.f44370a;
         for (Map.Entry entry : hashMap.entrySet()) {
             AndroidUtilities.cancelRunOnUIThread((Runnable) entry.getValue());
         }

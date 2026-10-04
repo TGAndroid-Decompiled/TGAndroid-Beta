@@ -42,10 +42,10 @@ import kotlin.jvm.internal.i;
 import n7.s0;
 import w7.f0;
 public final class a implements Parcelable.Creator {
-    public final int f48443a;
+    public final int f48451a;
 
     public a(int i10) {
-        this.f48443a = i10;
+        this.f48451a = i10;
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class a implements Parcelable.Creator {
         String str4 = null;
         c.b bVar = null;
         String str5 = null;
-        switch (this.f48443a) {
+        switch (this.f48451a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
@@ -160,18 +160,18 @@ public final class a implements Parcelable.Creator {
             case 15:
                 ?? obj3 = new Object();
                 IBinder readStrongBinder = inParcel.readStrongBinder();
-                int i13 = c.c.f3902b;
+                int i13 = c.c.f3903b;
                 if (readStrongBinder != null) {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface(c.b.h);
                     if (queryLocalInterface != null && (queryLocalInterface instanceof c.b)) {
                         bVar = (c.b) queryLocalInterface;
                     } else {
                         ?? obj4 = new Object();
-                        obj4.f3901a = readStrongBinder;
+                        obj4.f3902a = readStrongBinder;
                         bVar = obj4;
                     }
                 }
-                obj3.f3904a = bVar;
+                obj3.f3905a = bVar;
                 return obj3;
             case 16:
                 try {
@@ -486,7 +486,7 @@ public final class a implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f48443a) {
+        switch (this.f48451a) {
             case 0:
                 return new b[i10];
             case 1:

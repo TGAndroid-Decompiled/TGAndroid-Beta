@@ -12,16 +12,16 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.q9;
 public final class l0 {
-    public final i1 f12496a;
-    public final org.telegram.ui.ActionBar.d6 f12497b;
-    public final k0 f12498c;
+    public final i1 f12497a;
+    public final org.telegram.ui.ActionBar.d6 f12498b;
+    public final k0 f12499c;
     public boolean d;
 
     public l0(Context context, org.telegram.ui.ActionBar.d6 d6Var, k0 k0Var) {
-        this.f12497b = d6Var;
-        this.f12498c = k0Var;
+        this.f12498b = d6Var;
+        this.f12499c = k0Var;
         i1 i1Var = new i1(context, d6Var);
-        this.f12496a = i1Var;
+        this.f12497a = i1Var;
         i1Var.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
         i1Var.setAllowNewlines(false);
         i1Var.setInputType(147457);
@@ -50,21 +50,21 @@ public final class l0 {
     }
 
     public final void a() {
-        i1 i1Var = this.f12496a;
+        i1 i1Var = this.f12497a;
         i1Var.t();
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, this.f12497b);
+        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, this.f12498b);
         i1Var.setTextColor(org.telegram.ui.ActionBar.i6.l1(0.5f, v02));
         i1Var.setHintTextColor(org.telegram.ui.ActionBar.i6.l1(0.35f, v02));
     }
 
     public final void b() {
         TL_iv.PageBlock pageBlock;
-        a T = this.f12498c.T();
-        if (T != null && (pageBlock = T.f12186b) != null) {
+        a T = this.f12499c.T();
+        if (T != null && (pageBlock = T.f12187b) != null) {
             d(pageBlock);
-            TL_iv.RichText richText = T.f12186b.caption.text;
+            TL_iv.RichText richText = T.f12187b.caption.text;
             String l4 = h6.l(richText);
-            i1 i1Var = this.f12496a;
+            i1 i1Var = this.f12497a;
             if (!String.valueOf(i1Var.getText()).equals(l4)) {
                 i1Var.setTextSilently(h6.r(richText, null, true));
                 i1Var.invalidateEffects();
@@ -73,10 +73,10 @@ public final class l0 {
     }
 
     public final void c(Canvas canvas) {
-        k0 k0Var = this.f12498c;
+        k0 k0Var = this.f12499c;
         q9 J = k0Var.J();
         if (J != null) {
-            i1 i1Var = this.f12496a;
+            i1 i1Var = this.f12497a;
             if (i1Var.getLayout() != null) {
                 canvas.save();
                 canvas.translate(i1Var.getPaddingLeft() + i1Var.getLeft(), i1Var.getPaddingTop() + i1Var.getTop());
@@ -87,7 +87,7 @@ public final class l0 {
     }
 
     public final void e(ArrayList arrayList) {
-        i1 i1Var = this.f12496a;
+        i1 i1Var = this.f12497a;
         Layout layout = i1Var.getLayout();
         if (layout == null) {
             return;
@@ -97,7 +97,7 @@ public final class l0 {
 
     public final boolean f(int i10, int i11) {
         int lineForVertical;
-        i1 i1Var = this.f12496a;
+        i1 i1Var = this.f12497a;
         Layout layout = i1Var.getLayout();
         if (layout == null) {
             return false;
@@ -116,24 +116,24 @@ public final class l0 {
     public final void g(int i10, int i11, int i12, int i13) {
         int dp = AndroidUtilities.dp(16.0f) + i10;
         int max = Math.max(dp, (i12 - i11) - AndroidUtilities.dp(16.0f));
-        i1 i1Var = this.f12496a;
+        i1 i1Var = this.f12497a;
         i1Var.layout(dp, i13, max, i1Var.getMeasuredHeight() + i13);
     }
 
     public final int h(int i10, int i11, int i12) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, ((i12 - i10) - i11) - (AndroidUtilities.dp(16.0f) * 2)), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
-        i1 i1Var = this.f12496a;
+        i1 i1Var = this.f12497a;
         i1Var.measure(makeMeasureSpec, makeMeasureSpec2);
         return i1Var.getMeasuredHeight();
     }
 
     public final void i() {
         TL_iv.PageBlock pageBlock;
-        a T = this.f12498c.T();
-        if (T != null && (pageBlock = T.f12186b) != null) {
+        a T = this.f12499c.T();
+        if (T != null && (pageBlock = T.f12187b) != null) {
             d(pageBlock);
-            T.f12186b.caption.text = h6.f(this.f12496a.getText());
+            T.f12187b.caption.text = h6.f(this.f12497a.getText());
         }
     }
 }

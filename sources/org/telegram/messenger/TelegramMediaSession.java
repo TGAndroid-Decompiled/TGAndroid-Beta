@@ -270,7 +270,7 @@ public class TelegramMediaSession {
                     TLRPC.User user = arrayList4.get(i12);
                     i12++;
                     TLRPC.User user2 = user;
-                    iVar.k(user2, user2.f20185id);
+                    iVar.k(user2, user2.f20189id);
                 }
             }
             if (!arrayList3.isEmpty()) {
@@ -281,7 +281,7 @@ public class TelegramMediaSession {
                     TLRPC.Chat chat = arrayList5.get(i11);
                     i11++;
                     TLRPC.Chat chat2 = chat;
-                    iVar2.k(chat2, chat2.f20038id);
+                    iVar2.k(chat2, chat2.f20042id);
                 }
             }
         } catch (Exception e7) {
@@ -322,7 +322,7 @@ public class TelegramMediaSession {
                     TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(i10).clientUserId);
                     byteBufferValue.reuse();
                     if (MessageObject.isMusicMessage(TLdeserialize)) {
-                        TLdeserialize.f20059id = queryFinalized.intValue(1);
+                        TLdeserialize.f20063id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j3;
                         i11 = i10;
                         try {
@@ -411,9 +411,9 @@ public class TelegramMediaSession {
     }
 
     public Bundle buildRootHints() {
-        Bundle e7 = ok.e(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
-        e7.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
-        return e7;
+        Bundle d = bi.d(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
+        d.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
+        return d;
     }
 
     public void ensureLoaded(Runnable runnable) {
@@ -465,7 +465,7 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f20042id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f20046id), Integer.valueOf(i10));
             }
         }
         Collections.sort(arrayList, new qk(hashMap, 0));
@@ -536,7 +536,7 @@ public class TelegramMediaSession {
         cVar.b((long) (messageObject.getDuration() * 1000.0d));
         cVar.e("android.media.metadata.TITLE", messageObject.getMusicTitle());
         if (aVar != null && messageObject.isMusic()) {
-            str = aVar.f14101f;
+            str = aVar.f14102f;
         } else {
             str = null;
         }

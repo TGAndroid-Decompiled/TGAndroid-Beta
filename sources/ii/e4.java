@@ -24,7 +24,7 @@ public abstract class e4 {
             pageblockcollage = new TL_iv.pageBlockCollage();
         }
         ArrayList i32 = x3.i3(pageblockcollage);
-        ArrayList arrayList = d4Var.f12302e;
+        ArrayList arrayList = d4Var.f12303e;
         int size = arrayList.size();
         CharSequence charSequence = null;
         int i10 = 0;
@@ -32,12 +32,12 @@ public abstract class e4 {
             Object obj = arrayList.get(i10);
             i10++;
             d4 d4Var2 = (d4) obj;
-            if (!d4Var2.f12300b) {
-                if ("figcaption".equals(d4Var2.f12299a)) {
+            if (!d4Var2.f12301b) {
+                if ("figcaption".equals(d4Var2.f12300a)) {
                     charSequence = w(d4Var2);
                 } else {
-                    boolean equals = "video".equals(d4Var2.f12299a);
-                    if (equals || "img".equals(d4Var2.f12299a)) {
+                    boolean equals = "video".equals(d4Var2.f12300a);
+                    if (equals || "img".equals(d4Var2.f12300a)) {
                         long E = E(d4Var2.a("src"));
                         if (E > 0) {
                             TL_iv.PageBlock y3 = y(E, equals, d4Var2.b("data-spoiler"));
@@ -82,7 +82,7 @@ public abstract class e4 {
         ArrayList arrayList2;
         int i12;
         int i13 = i10 + 1;
-        ArrayList arrayList3 = d4Var.f12302e;
+        ArrayList arrayList3 = d4Var.f12303e;
         int size = arrayList3.size();
         int i14 = 1;
         int i15 = 0;
@@ -90,19 +90,19 @@ public abstract class e4 {
             Object obj = arrayList3.get(i15);
             i15++;
             d4 d4Var2 = (d4) obj;
-            if (!d4Var2.f12300b && "li".equals(d4Var2.f12299a)) {
+            if (!d4Var2.f12301b && "li".equals(d4Var2.f12300a)) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 ArrayList arrayList4 = new ArrayList();
-                ArrayList arrayList5 = d4Var2.f12302e;
+                ArrayList arrayList5 = d4Var2.f12303e;
                 int size2 = arrayList5.size();
                 int i16 = 0;
                 while (i16 < size2) {
                     int i17 = i16 + 1;
                     d4 d4Var3 = (d4) arrayList5.get(i16);
-                    if (!d4Var3.f12300b && ("ul".equals(d4Var3.f12299a) || "ol".equals(d4Var3.f12299a))) {
+                    if (!d4Var3.f12301b && ("ul".equals(d4Var3.f12300a) || "ol".equals(d4Var3.f12300a))) {
                         arrayList4.add(d4Var3);
-                    } else if (d4Var3.f12300b) {
-                        spannableStringBuilder.append((CharSequence) q(d4Var3.f12301c));
+                    } else if (d4Var3.f12301b) {
+                        spannableStringBuilder.append((CharSequence) q(d4Var3.f12302c));
                     } else {
                         arrayList2 = arrayList5;
                         i12 = size2;
@@ -130,8 +130,8 @@ public abstract class e4 {
                 } else {
                     z11 = true;
                 }
-                aVar.f12188e = z11;
-                aVar.f12189f = d4Var2.b("data-checked");
+                aVar.f12189e = z11;
+                aVar.f12190f = d4Var2.b("data-checked");
                 arrayList.add(aVar);
                 int size3 = arrayList4.size();
                 int i18 = 0;
@@ -139,7 +139,7 @@ public abstract class e4 {
                     Object obj2 = arrayList4.get(i18);
                     i18++;
                     d4 d4Var4 = (d4) obj2;
-                    D(d4Var4, arrayList, i13, "ol".equals(d4Var4.f12299a));
+                    D(d4Var4, arrayList, i13, "ol".equals(d4Var4.f12300a));
                 }
                 i14++;
             }
@@ -167,17 +167,17 @@ public abstract class e4 {
         int i17 = i10;
         c5.m mVar2 = mVar;
         int i18 = i15;
-        ArrayList arrayList = mVar2.f4223a;
+        ArrayList arrayList = mVar2.f4224a;
         while (true) {
             int i19 = iArr[0];
             if (i19 > i17) {
                 return;
             }
             a aVar = (a) list3.get(i19);
-            if (!aVar.f12191i) {
-                if (aVar.f12193k.size() > i18) {
+            if (!aVar.f12192i) {
+                if (aVar.f12194k.size() > i18) {
                     mVar2.h(sb3);
-                    Long l4 = (Long) ((a) list3.get(iArr[0])).f12193k.get(i18);
+                    Long l4 = (Long) ((a) list3.get(iArr[0])).f12194k.get(i18);
                     long longValue = l4.longValue();
                     int i20 = iArr[0];
                     while (true) {
@@ -186,7 +186,7 @@ public abstract class e4 {
                             break;
                         }
                         a aVar2 = (a) list3.get(i21);
-                        if (aVar2.f12193k.size() <= i18 || ((Long) aVar2.f12193k.get(i18)).longValue() != longValue) {
+                        if (aVar2.f12194k.size() <= i18 || ((Long) aVar2.f12194k.get(i18)).longValue() != longValue) {
                             break;
                         }
                         i20 = i21;
@@ -203,7 +203,7 @@ public abstract class e4 {
                     if (x3.z3(aVar)) {
                         mVar2.h(sb3);
                         a aVar3 = (a) list3.get(iArr[0]);
-                        sb3.append(((TL_iv.pageBlockDetails) aVar3.f12186b).open ? "<details open>" : "<details>");
+                        sb3.append(((TL_iv.pageBlockDetails) aVar3.f12187b).open ? "<details open>" : "<details>");
                         sb3.append("<summary>");
                         g(sb3, K(aVar3, iArr[0], i11, i12, i13, i14));
                         sb3.append("</summary>");
@@ -214,15 +214,15 @@ public abstract class e4 {
                         i16 = i10;
                         mVar4.h(sb3);
                         int i22 = iArr[0];
-                        if (i22 <= i16 && i22 < list2.size() && ((a) list2.get(iArr[0])).f12191i) {
+                        if (i22 <= i16 && i22 < list2.size() && ((a) list2.get(iArr[0])).f12192i) {
                             iArr[0] = iArr[0] + 1;
                         }
                         sb3.append("</details>");
                     } else {
                         i16 = i10;
                         list2 = list3;
-                        if (aVar.f12187c > 0 && l(aVar.f12186b) != null) {
-                            int i23 = aVar.f12187c;
+                        if (aVar.f12188c > 0 && l(aVar.f12187b) != null) {
+                            int i23 = aVar.f12188c;
                             boolean z11 = aVar.d > 0;
                             while (arrayList.size() > i23) {
                                 mVar2.g(sb3);
@@ -238,7 +238,7 @@ public abstract class e4 {
                                 sb3.append(str2);
                                 arrayList.add(Boolean.valueOf(z11));
                             }
-                            if (!arrayList.isEmpty() && ((Boolean) hg.k0.g(1, arrayList)).booleanValue() != z11) {
+                            if (!arrayList.isEmpty() && ((Boolean) hg.c.g(1, arrayList)).booleanValue() != z11) {
                                 mVar2.g(sb3);
                                 sb3.append(z11 ? "<ol>" : "<ul>");
                                 arrayList.add(Boolean.valueOf(z11));
@@ -250,7 +250,7 @@ public abstract class e4 {
                         } else {
                             mVar2.h(sb3);
                             int i24 = iArr[0];
-                            TL_iv.PageBlock pageBlock = aVar.f12186b;
+                            TL_iv.PageBlock pageBlock = aVar.f12187b;
                             if (pageBlock instanceof TL_iv.pageBlockDivider) {
                                 sb3.append("<hr>");
                             } else if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
@@ -284,17 +284,17 @@ public abstract class e4 {
                                 H(sb3, (TL_iv.pageBlockTable) pageBlock);
                             } else {
                                 if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-                                    G(sb3, "img", ((TL_iv.pageBlockPhoto) pageBlock).photo_id, aVar.f12190g, pageBlock);
+                                    G(sb3, "img", ((TL_iv.pageBlockPhoto) pageBlock).photo_id, aVar.f12191g, pageBlock);
                                     sb3 = sb2;
                                 } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
                                     sb3 = sb2;
-                                    G(sb3, "video", ((TL_iv.pageBlockVideo) pageBlock).video_id, aVar.f12190g, pageBlock);
+                                    G(sb3, "video", ((TL_iv.pageBlockVideo) pageBlock).video_id, aVar.f12191g, pageBlock);
                                 } else if (pageBlock instanceof TL_iv.pageBlockAudio) {
                                     sb3 = sb2;
-                                    G(sb3, "audio", ((TL_iv.pageBlockAudio) pageBlock).audio_id, aVar.f12190g, pageBlock);
+                                    G(sb3, "audio", ((TL_iv.pageBlockAudio) pageBlock).audio_id, aVar.f12191g, pageBlock);
                                 } else if (pageBlock instanceof TL_iv.pageBlockDocument) {
                                     sb3 = sb2;
-                                    G(sb3, "document", ((TL_iv.pageBlockDocument) pageBlock).document_id, aVar.f12190g, pageBlock);
+                                    G(sb3, "document", ((TL_iv.pageBlockDocument) pageBlock).document_id, aVar.f12191g, pageBlock);
                                 } else {
                                     sb3 = sb2;
                                     String str3 = "<figcaption>";
@@ -369,9 +369,9 @@ public abstract class e4 {
                                             sb3.append(pageblockmap.zoom);
                                             sb3.append('\"');
                                         }
-                                        if (pageblockmap.f20261w != 0) {
+                                        if (pageblockmap.f20265w != 0) {
                                             sb3.append(" w=\"");
-                                            sb3.append(pageblockmap.f20261w);
+                                            sb3.append(pageblockmap.f20265w);
                                             sb3.append('\"');
                                         }
                                         if (pageblockmap.h != 0) {
@@ -605,9 +605,9 @@ public abstract class e4 {
         int i15;
         int i16;
         if (x3.z3(aVar)) {
-            A = h6.r(((TL_iv.pageBlockDetails) aVar.f12186b).title, null, true);
+            A = h6.r(((TL_iv.pageBlockDetails) aVar.f12187b).title, null, true);
         } else {
-            A = f6.A(aVar.f12186b);
+            A = f6.A(aVar.f12187b);
         }
         if (A == null) {
             A = "";
@@ -718,19 +718,19 @@ public abstract class e4 {
         int i11;
         String str2;
         long j10;
-        ArrayList arrayList = d4Var.f12302e;
+        ArrayList arrayList = d4Var.f12303e;
         int size = arrayList.size();
         int i12 = 0;
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
             d4 d4Var2 = (d4) obj;
-            if (d4Var2.f12300b) {
+            if (d4Var2.f12301b) {
                 spannableStringBuilder2 = spannableStringBuilder;
                 i11 = i10;
                 str2 = str;
                 j10 = j3;
-                j(spannableStringBuilder2, q(d4Var2.f12301c), i11, str2, j10);
+                j(spannableStringBuilder2, q(d4Var2.f12302c), i11, str2, j10);
             } else {
                 spannableStringBuilder2 = spannableStringBuilder;
                 i11 = i10;
@@ -747,19 +747,19 @@ public abstract class e4 {
 
     public static void f(SpannableStringBuilder spannableStringBuilder, d4 d4Var) {
         SpannableStringBuilder spannableStringBuilder2;
-        ArrayList arrayList = d4Var.f12302e;
+        ArrayList arrayList = d4Var.f12303e;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             d4 d4Var2 = (d4) obj;
-            if (d4Var2.f12300b) {
+            if (d4Var2.f12301b) {
                 spannableStringBuilder2 = spannableStringBuilder;
-                j(spannableStringBuilder2, q(d4Var2.f12301c), 0, null, 0L);
+                j(spannableStringBuilder2, q(d4Var2.f12302c), 0, null, 0L);
             } else {
                 spannableStringBuilder2 = spannableStringBuilder;
-                if (!"cite".equals(d4Var2.f12299a)) {
+                if (!"cite".equals(d4Var2.f12300a)) {
                     h(spannableStringBuilder2, d4Var2, 0, null, 0L);
                 }
             }
@@ -777,7 +777,7 @@ public abstract class e4 {
         int i12;
         long j10;
         TL_keyboard.InlineButtonType v;
-        if ("button".equals(d4Var.f12299a) && (v = v(d4Var)) != null) {
+        if ("button".equals(d4Var.f12300a) && (v = v(d4Var)) != null) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             e(spannableStringBuilder2, d4Var, i10, str, j3);
             if (spannableStringBuilder2.length() > 0) {
@@ -792,7 +792,7 @@ public abstract class e4 {
             }
             return;
         }
-        String str3 = d4Var.f12299a;
+        String str3 = d4Var.f12300a;
         str3.getClass();
         char c10 = 65535;
         switch (str3.hashCode()) {
@@ -987,7 +987,7 @@ public abstract class e4 {
                 j10 = j3;
                 break;
         }
-        if (d4Var.f12302e.isEmpty() && !d4Var.f12300b) {
+        if (d4Var.f12303e.isEmpty() && !d4Var.f12301b) {
             return;
         }
         e(spannableStringBuilder, d4Var, i11, str2, j10);
@@ -1000,14 +1000,14 @@ public abstract class e4 {
         sb2.append(j3);
         sb2.append('\"');
         if (uVar != null) {
-            if (uVar.f12669j > 0) {
+            if (uVar.f12670j > 0) {
                 sb2.append(" width=\"");
-                sb2.append(uVar.f12669j);
+                sb2.append(uVar.f12670j);
                 sb2.append('\"');
             }
-            if (uVar.f12670k > 0) {
+            if (uVar.f12671k > 0) {
                 sb2.append(" height=\"");
-                sb2.append(uVar.f12670k);
+                sb2.append(uVar.f12671k);
                 sb2.append('\"');
             }
         }
@@ -1030,7 +1030,7 @@ public abstract class e4 {
             }
             if (i10 != 0) {
                 ?? obj = new Object();
-                obj.f28497a = i10 & 114975;
+                obj.f28502a = i10 & 114975;
                 spannableStringBuilder.setSpan(new n11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
             }
             if (str2 != null) {
@@ -1114,7 +1114,7 @@ public abstract class e4 {
         boolean z10;
         String lowerCase;
         int indexOf;
-        ArrayList arrayList = d4Var.f12302e;
+        ArrayList arrayList = d4Var.f12303e;
         int size = arrayList.size();
         int i10 = 0;
         int i11 = 0;
@@ -1122,8 +1122,8 @@ public abstract class e4 {
             Object obj = arrayList.get(i11);
             i11++;
             d4 d4Var2 = (d4) obj;
-            if (!d4Var2.f12300b) {
-                String str = d4Var2.f12299a;
+            if (!d4Var2.f12301b) {
+                String str = d4Var2.f12300a;
                 str.getClass();
                 char c10 = 65535;
                 switch (str.hashCode()) {
@@ -1163,20 +1163,20 @@ public abstract class e4 {
                         ArrayList<TL_iv.pageTableRow> arrayList2 = pageblocktable.rows;
                         TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
                         pagetablerow.cells = new ArrayList<>();
-                        ArrayList arrayList3 = d4Var2.f12302e;
+                        ArrayList arrayList3 = d4Var2.f12303e;
                         int size2 = arrayList3.size();
                         int i12 = 0;
                         while (i12 < size2) {
                             Object obj2 = arrayList3.get(i12);
                             i12++;
                             d4 d4Var3 = (d4) obj2;
-                            if (!d4Var3.f12300b) {
-                                if ("td".equals(d4Var3.f12299a) || "th".equals(d4Var3.f12299a)) {
+                            if (!d4Var3.f12301b) {
+                                if ("td".equals(d4Var3.f12300a) || "th".equals(d4Var3.f12300a)) {
                                     TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
                                     pagetablecell.colspan = C(i10, d4Var3.a("colspan"));
                                     pagetablecell.rowspan = C(i10, d4Var3.a("rowspan"));
                                     j6.d(pagetablecell, w(d4Var3));
-                                    if (!"th".equals(d4Var3.f12299a) && !d4Var3.b("header")) {
+                                    if (!"th".equals(d4Var3.f12300a) && !d4Var3.b("header")) {
                                         z10 = false;
                                     } else {
                                         z10 = true;

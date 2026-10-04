@@ -11,7 +11,7 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.zl0;
 public final class h5 extends f61 {
-    public static final int f12416a = 0;
+    public static final int f12417a = 0;
 
     static {
         f61.setup(new f61());
@@ -23,13 +23,13 @@ public final class h5 extends f61 {
         i5 i5Var = (i5) view;
         a aVar = (a) g61Var.G;
         g5 g5Var = (g5) g61Var.H;
-        i1 i1Var = i5Var.f12448r;
-        i5Var.f12203a = aVar;
-        i5Var.f12449s = g5Var;
+        i1 i1Var = i5Var.f12449r;
+        i5Var.f12204a = aVar;
+        i5Var.f12450s = g5Var;
         i5Var.g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         i5Var.c(aVar);
         if (g5Var != null) {
-            richText = (TL_iv.RichText) ((c3) g5Var).f12262a.f12779t3.get(Long.valueOf(aVar.f12202t));
+            richText = (TL_iv.RichText) ((c3) g5Var).f12263a.f12780t3.get(Long.valueOf(aVar.f12203t));
         } else {
             richText = null;
         }

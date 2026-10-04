@@ -6,27 +6,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class op0 extends LinearLayout {
-    public final org.telegram.ui.Components.q90 f39256a;
-    public final org.telegram.ui.Components.q90 f39257b;
-    public final qp0 f39258c;
+    public final org.telegram.ui.Components.q90 f39261a;
+    public final org.telegram.ui.Components.q90 f39262b;
+    public final qp0 f39263c;
 
     public op0(qp0 qp0Var, Context context) {
         super(context);
         org.telegram.ui.ActionBar.d6 d6Var;
         int i10;
         org.telegram.ui.ActionBar.d6 d6Var2;
-        this.f39258c = qp0Var;
+        this.f39263c = qp0Var;
         setOrientation(1);
-        wp0 wp0Var = qp0Var.f39783p0;
-        setBackgroundColor(wp0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20818d6));
+        wp0 wp0Var = qp0Var.f39788p0;
+        setBackgroundColor(wp0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20822d6));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(getContext());
         w9Var.setImageDrawable(new org.telegram.ui.Components.kj0(R.raw.utyan_draw, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
         addView(w9Var, w7.z5.t(120, 120, 1, 0, 6, 0, 0));
         Context context2 = getContext();
-        int i11 = org.telegram.ui.ActionBar.i6.f21205y6;
+        int i11 = org.telegram.ui.ActionBar.i6.f21209y6;
         d6Var = ((org.telegram.ui.ActionBar.n2) wp0Var).resourceProvider;
         org.telegram.ui.Components.q90 a2 = w7.d6.a(context2, 14.0f, i11, false, d6Var);
-        this.f39256a = a2;
+        this.f39261a = a2;
         a2.setGravity(17);
         if (qp0Var.m0 == 0) {
             i10 = R.string.Gift2PeerColorProfileEmptyTitle;
@@ -39,19 +39,19 @@ public final class op0 extends LinearLayout {
         int i12 = org.telegram.ui.ActionBar.i6.gc;
         d6Var2 = ((org.telegram.ui.ActionBar.n2) wp0Var).resourceProvider;
         org.telegram.ui.Components.q90 a10 = w7.d6.a(context3, 14.0f, i12, false, d6Var2);
-        this.f39257b = a10;
+        this.f39262b = a10;
         a10.setGravity(17);
         a10.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2PeerColorEmptyButton), new nl0(this, 11)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.33f), 1.0f));
         addView(a10, w7.z5.t(-1, -2, 1, 32, 4, 32, 24));
     }
 
     public final void a() {
-        wp0 wp0Var = this.f39258c.f39783p0;
-        setBackgroundColor(wp0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20818d6));
-        this.f39256a.setTextColor(wp0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f21205y6));
+        wp0 wp0Var = this.f39263c.f39788p0;
+        setBackgroundColor(wp0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20822d6));
+        this.f39261a.setTextColor(wp0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f21209y6));
         int i10 = org.telegram.ui.ActionBar.i6.gc;
         int themedColor = wp0Var.getThemedColor(i10);
-        org.telegram.ui.Components.q90 q90Var = this.f39257b;
+        org.telegram.ui.Components.q90 q90Var = this.f39262b;
         q90Var.setTextColor(themedColor);
         q90Var.setLinkTextColor(wp0Var.getThemedColor(i10));
     }

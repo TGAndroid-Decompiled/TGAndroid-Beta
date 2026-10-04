@@ -4,7 +4,6 @@ import android.content.Context;
 import android.media.MediaRecorder;
 import android.os.Handler;
 import android.os.Looper;
-import hg.k0;
 import java.util.Arrays;
 import java.util.List;
 import org.webrtc.CameraSession;
@@ -239,7 +238,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             if (asList.contains(this.cameraName)) {
                 return;
             }
-            throw new IllegalArgumentException(a4.a.s(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
+            throw new IllegalArgumentException(a4.a.t(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
         }
         throw new RuntimeException("No cameras attached.");
     }
@@ -279,7 +278,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(t8.b.i("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(sa.e.i("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -329,7 +328,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder k10 = k0.k("changeCaptureFormat: ", i10, "x", i11, "@");
+        StringBuilder k10 = hg.c.k("changeCaptureFormat: ", i10, "x", i11, "@");
         k10.append(i12);
         Logging.d("CameraCapturer", k10.toString());
         synchronized (this.stateLock) {
@@ -393,7 +392,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder k10 = k0.k("startCapture: ", i10, "x", i11, "@");
+        StringBuilder k10 = hg.c.k("startCapture: ", i10, "x", i11, "@");
         k10.append(i12);
         Logging.d("CameraCapturer", k10.toString());
         if (this.applicationContext != null) {

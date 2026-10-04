@@ -45,11 +45,11 @@ import s4.o0;
 import s4.p0;
 import yh.x3;
 public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common.api.internal.s, h1, oq0 {
-    public final int f14387a;
-    public Object f14388b;
+    public final int f14388a;
+    public Object f14389b;
 
     public e(int i10, boolean z10) {
-        this.f14387a = i10;
+        this.f14388a = i10;
     }
 
     public static float[] f(ArrayList arrayList) {
@@ -183,7 +183,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
                 i19 = i20;
             }
             f10 = 0.0f;
-            arrayList2.add((PointF) hg.k0.g(1, arrayList));
+            arrayList2.add((PointF) hg.c.g(1, arrayList));
         }
         float f20 = ((PointF) arrayList2.get(0)).x;
         if (f20 > f10) {
@@ -191,7 +191,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
                 arrayList2.add(0, new PointF(i23, 0.0f));
             }
         }
-        float f21 = ((PointF) hg.k0.g(1, arrayList2)).x;
+        float f21 = ((PointF) hg.c.g(1, arrayList2)).x;
         if (f21 < f7) {
             for (int i24 = ((int) f21) + 1; i24 <= 255; i24++) {
                 arrayList2.add(new PointF(i24, 255.0f));
@@ -212,32 +212,32 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public void F() {
-        ff0 ff0Var = ((gf0) this.f14388b).f26850a;
+        ff0 ff0Var = ((gf0) this.f14389b).f26855a;
         if (ff0Var != null) {
-            ((os0) ff0Var).f39272a.f33895e0.invalidate();
+            ((os0) ff0Var).f39277a.f33901e0.invalidate();
         }
     }
 
     @Override
     public void K(int i10, int i11, boolean z10) {
-        org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f14388b;
+        org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f14389b;
         e0Var.l0(i10, i11, z10);
         e0Var.dismiss();
     }
 
     @Override
     public void S(boolean z10) {
-        ((gf0) this.f14388b).f26852c.setAspectLock(z10);
+        ((gf0) this.f14389b).f26857c.setAspectLock(z10);
     }
 
     @Override
     public void Y(float f7, boolean z10) {
-        mg.h hVar = (mg.h) this.f14388b;
-        float f10 = hVar.f16415b;
-        float z11 = e2.z(hVar.f16416c, f10, f7, f10);
+        mg.h hVar = (mg.h) this.f14389b;
+        float f10 = hVar.f16419b;
+        float z11 = e2.z(hVar.f16420c, f10, f7, f10);
         hVar.d = z11;
         if (z10) {
-            r6 r6Var = hVar.f16417e;
+            r6 r6Var = hVar.f16421e;
             r6Var.getClass();
             r6Var.c(null, z11);
         }
@@ -245,17 +245,17 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     }
 
     public n4.a a() {
-        return new n4.a(((AudioAttributes.Builder) this.f14388b).build());
+        return new n4.a(((AudioAttributes.Builder) this.f14389b).build());
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f14387a) {
+        switch (this.f14388a) {
             case 16:
                 r7.z zVar = (r7.z) ((r7.k) obj).u();
                 r7.f fVar = new r7.f(1, (TaskCompletionSource) obj2);
                 Parcel O0 = zVar.O0();
-                r7.d.c(O0, (g8.e) this.f14388b);
+                r7.d.c(O0, (g8.e) this.f14389b);
                 r7.d.d(O0, fVar);
                 O0.writeString(null);
                 zVar.S0(O0, 63);
@@ -265,7 +265,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
                 s6.e eVar = (s6.e) ((s6.h) obj).u();
                 Parcel I0 = eVar.I0();
                 k7.a.d(I0, fVar2);
-                k7.a.c(I0, (s6.a) this.f14388b);
+                k7.a.c(I0, (s6.a) this.f14389b);
                 eVar.J0(I0, 1);
                 return;
         }
@@ -278,11 +278,11 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     public String c(Object obj) {
         StringWriter stringWriter = new StringWriter();
         try {
-            ka.d dVar = (ka.d) this.f14388b;
-            ka.e eVar = new ka.e(stringWriter, dVar.f14738a, dVar.f14739b, dVar.f14740c, dVar.d);
+            ka.d dVar = (ka.d) this.f14389b;
+            ka.e eVar = new ka.e(stringWriter, dVar.f14739a, dVar.f14740b, dVar.f14741c, dVar.d);
             eVar.h(obj);
             eVar.j();
-            eVar.f14742b.flush();
+            eVar.f14743b.flush();
         } catch (IOException unused) {
         }
         return stringWriter.toString();
@@ -298,36 +298,36 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     }
 
     public void g(aa.a aVar) {
-        h8.j jVar = (h8.j) this.f14388b;
-        jVar.f11037a = aVar;
-        Iterator it = jVar.f11039c.iterator();
+        h8.j jVar = (h8.j) this.f14389b;
+        jVar.f11038a = aVar;
+        Iterator it = jVar.f11040c.iterator();
         while (it.hasNext()) {
             ((x6.e) it.next()).b();
         }
-        jVar.f11039c.clear();
-        jVar.f11038b = null;
+        jVar.f11040c.clear();
+        jVar.f11039b = null;
     }
 
     @Override
     public CharSequence getContentDescription() {
-        mg.h hVar = (mg.h) this.f14388b;
-        float f7 = hVar.f16415b;
-        return String.valueOf(Math.round((hVar.f16414a.getProgress() * (hVar.f16416c - f7)) + f7));
+        mg.h hVar = (mg.h) this.f14389b;
+        float f7 = hVar.f16419b;
+        return String.valueOf(Math.round((hVar.f16418a.getProgress() * (hVar.f16420c - f7)) + f7));
     }
 
     public void h(p4.p pVar, p4.m mVar, Collection collection) {
-        p4.e eVar = (p4.e) this.f14388b;
-        if (pVar == eVar.f44168y && mVar != null) {
-            p4.u uVar = eVar.f44167x.f44266a;
+        p4.e eVar = (p4.e) this.f14389b;
+        if (pVar == eVar.f44175y && mVar != null) {
+            p4.u uVar = eVar.f44174x.f44273a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f44168y, 3, eVar.f44167x, collection);
-                eVar.f44167x = null;
-                eVar.f44168y = null;
+                eVar.h(eVar, vVar, eVar.f44175y, 3, eVar.f44174x, collection);
+                eVar.f44174x = null;
+                eVar.f44175y = null;
             }
-        } else if (pVar == eVar.f44150e) {
+        } else if (pVar == eVar.f44157e) {
             if (mVar != null) {
                 eVar.n(eVar.d, mVar);
             }
@@ -345,7 +345,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         boolean z10;
         c1 T;
         int i12;
-        RecyclerView recyclerView = (RecyclerView) this.f14388b;
+        RecyclerView recyclerView = (RecyclerView) this.f14389b;
         recyclerView.f3061b.k(c1Var);
         recyclerView.h(c1Var);
         c1Var.q(false);
@@ -353,7 +353,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         f1Var.getClass();
         int i13 = q0Var.f3454a;
         int i14 = q0Var.f3455b;
-        View view = c1Var.f46524a;
+        View view = c1Var.f46531a;
         if (q0Var2 == null) {
             i10 = view.getLeft();
         } else {
@@ -380,7 +380,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
                     }
                 }
             }
-            c1Var.f46530i = (c1Var.h - i18) + (i18 * 1000);
+            c1Var.f46537i = (c1Var.h - i18) + (i18 * 1000);
             f1Var.s(c1Var, q0Var);
             z10 = true;
         }
@@ -393,13 +393,13 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
         if (i10 == 16) {
             i10 = 12;
         }
-        ((AudioAttributes.Builder) this.f14388b).setUsage(i10);
+        ((AudioAttributes.Builder) this.f14389b).setUsage(i10);
         return this;
     }
 
     @Override
     public int l() {
-        return ((o0) this.f14388b).D();
+        return ((o0) this.f14389b).D();
     }
 
     public void m(int i10) {
@@ -408,30 +408,30 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public int n() {
-        o0 o0Var = (o0) this.f14388b;
-        return o0Var.f46637m - o0Var.E();
+        o0 o0Var = (o0) this.f14389b;
+        return o0Var.f46644m - o0Var.E();
     }
 
     @Override
     public void n0(boolean z10) {
-        gf0 gf0Var = (gf0) this.f14388b;
+        gf0 gf0Var = (gf0) this.f14389b;
         gf0Var.getClass();
-        ff0 ff0Var = gf0Var.f26850a;
+        ff0 ff0Var = gf0Var.f26855a;
         if (ff0Var != null) {
             ((os0) ff0Var).a(z10);
         }
     }
 
     public void o(c1 c1Var) {
-        RecyclerView recyclerView = (RecyclerView) this.f14388b;
+        RecyclerView recyclerView = (RecyclerView) this.f14389b;
         o0 o0Var = recyclerView.f3090x;
-        View view = c1Var.f46524a;
+        View view = c1Var.f46531a;
         of.e eVar = recyclerView.f3061b;
-        la.h hVar = o0Var.f46627a;
-        hh.h hVar2 = (hh.h) hVar.f15398b;
-        int indexOfChild = hVar2.f11462a.indexOfChild(view);
+        la.h hVar = o0Var.f46634a;
+        hh.h hVar2 = (hh.h) hVar.f15399b;
+        int indexOfChild = hVar2.f11463a.indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((e6.n) hVar.f15399c).A(indexOfChild)) {
+            if (((e6.n) hVar.f15400c).A(indexOfChild)) {
                 hVar.Y(view);
             }
             hVar2.a(indexOfChild);
@@ -445,12 +445,12 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        tk0 tk0Var = (tk0) this.f14388b;
-        if (z10 && tk0Var.f31081n.n() >= 0) {
-            tk0Var.f31084w = true;
+        tk0 tk0Var = (tk0) this.f14389b;
+        if (z10 && tk0Var.f31087n.n() >= 0) {
+            tk0Var.f31090w = true;
         }
-        sg0 sg0Var = tk0Var.f31080f;
-        lc0 lc0Var = tk0Var.f31085x;
+        sg0 sg0Var = tk0Var.f31086f;
+        lc0 lc0Var = tk0Var.f31091x;
         sg0Var.a(z10, true);
         AndroidUtilities.cancelRunOnUIThread(lc0Var);
         if (z10) {
@@ -465,7 +465,7 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public View p(int i10) {
-        return ((o0) this.f14388b).q(i10);
+        return ((o0) this.f14389b).q(i10);
     }
 
     @Override
@@ -474,10 +474,10 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     }
 
     public Object q() {
-        if (n7.a.f16760b == null) {
-            n7.a.f16760b = new Exception();
+        if (n7.a.f16764b == null) {
+            n7.a.f16764b = new Exception();
         }
-        synchronized (n7.a.f16759a) {
+        synchronized (n7.a.f16763a) {
         }
         throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
     }
@@ -489,10 +489,10 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public void r0() {
-        ff0 ff0Var = ((gf0) this.f14388b).f26850a;
+        ff0 ff0Var = ((gf0) this.f14389b).f26855a;
         if (ff0Var != null) {
-            PhotoViewer photoViewer = ((os0) ff0Var).f39272a;
-            if (photoViewer.f33878c2 == 1) {
+            PhotoViewer photoViewer = ((os0) ff0Var).f39277a;
+            if (photoViewer.f33884c2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.q3();
             }
@@ -501,14 +501,14 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
 
     @Override
     public void x0() {
-        rc k10 = ((x3) this.f14388b).getBulletinFactory().k(false);
-        k10.f30349t = true;
+        rc k10 = ((x3) this.f14389b).getBulletinFactory().k(false);
+        k10.f30355t = true;
         k10.j();
     }
 
     public e(Object obj, int i10) {
-        this.f14387a = i10;
-        this.f14388b = obj;
+        this.f14388a = i10;
+        this.f14389b = obj;
     }
 
     @Override
@@ -516,34 +516,34 @@ public class e implements m.k, xo0, d5, lg.o, a81, com.google.android.gms.common
     }
 
     public e(s6.g gVar, s6.a aVar) {
-        this.f14387a = 21;
-        this.f14388b = aVar;
+        this.f14388a = 21;
+        this.f14389b = aVar;
     }
 
     public e(Context context, GestureDetector.OnGestureListener onGestureListener) {
-        this.f14387a = 15;
-        this.f14388b = new GestureDetector(context, onGestureListener, null);
+        this.f14388a = 15;
+        this.f14389b = new GestureDetector(context, onGestureListener, null);
     }
 
     public e(int i10) {
-        this.f14387a = i10;
+        this.f14388a = i10;
         switch (i10) {
             case 18:
                 if (Build.VERSION.SDK_INT >= 26) {
-                    this.f14388b = new mh0(this);
+                    this.f14389b = new mh0(this);
                     return;
                 } else {
-                    this.f14388b = new mh0(this);
+                    this.f14389b = new mh0(this);
                     return;
                 }
             case 25:
-                this.f14388b = new CopyOnWriteArrayList();
+                this.f14389b = new CopyOnWriteArrayList();
                 return;
             case 27:
-                this.f14388b = new z0[zf.b.values().length];
+                this.f14389b = new z0[zf.b.values().length];
                 return;
             default:
-                this.f14388b = new AudioAttributes.Builder();
+                this.f14389b = new AudioAttributes.Builder();
                 return;
         }
     }

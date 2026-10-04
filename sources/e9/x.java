@@ -4,12 +4,12 @@ import java.util.Comparator;
 public final class x extends z {
     public static z f(int i10) {
         if (i10 < 0) {
-            return z.f8826b;
+            return z.f8827b;
         }
         if (i10 > 0) {
-            return z.f8827c;
+            return z.f8828c;
         }
-        return z.f8825a;
+        return z.f8826a;
     }
 
     @Override

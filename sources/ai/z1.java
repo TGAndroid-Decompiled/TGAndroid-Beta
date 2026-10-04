@@ -51,24 +51,24 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
 
     @Override
     public void K(int i10, int i11, boolean z10) {
-        boolean D1;
+        boolean F1;
         xi xiVar = (xi) this.f1927c;
-        pi piVar = xiVar.f32874y0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32825j0;
+        pi piVar = xiVar.f32880y0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32831j0;
         long j3 = this.f1926b;
-        if (piVar != chatAttachAlertPhotoLayout && piVar != xiVar.f32845q0) {
-            if (!piVar.G(i10, z10, i11, xiVar.p1(), j3)) {
+        if (piVar != chatAttachAlertPhotoLayout && piVar != xiVar.f32851q0) {
+            if (!piVar.G(i10, z10, i11, xiVar.r1(), j3)) {
                 xiVar.A2 = true;
                 xiVar.dismiss();
             }
-            D1 = false;
+            F1 = false;
         } else {
-            D1 = xiVar.D1(i10, z10, i11, xiVar.p1(), j3);
+            F1 = xiVar.F1(i10, z10, i11, xiVar.r1(), j3);
         }
-        of ofVar = xiVar.f32819h0;
+        of ofVar = xiVar.f32825h0;
         if (ofVar != null) {
-            ofVar.h(!D1);
-            xiVar.f32819h0 = null;
+            ofVar.h(!F1);
+            xiVar.f32825h0 = null;
         }
     }
 
@@ -78,10 +78,10 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         ContentValues contentValues = new ContentValues();
         contentValues.put("next_request_ms", Long.valueOf(this.f1926b));
-        String str = iVar.f15346a;
-        i5.d dVar = iVar.f15348c;
+        String str = iVar.f15347a;
+        i5.d dVar = iVar.f15349c;
         if (sQLiteDatabase.update("transport_contexts", contentValues, "backend_name = ? and priority = ?", new String[]{str, String.valueOf(v5.a.a(dVar))}) < 1) {
-            contentValues.put("backend_name", iVar.f15346a);
+            contentValues.put("backend_name", iVar.f15347a);
             contentValues.put("priority", Integer.valueOf(v5.a.a(dVar)));
             sQLiteDatabase.insert("transport_contexts", null, contentValues);
         }
@@ -134,22 +134,22 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f1925a) {
             case 8:
-                jo0 jo0Var = ((uy) this.f1927c).C0.f30118c0;
-                a0.i iVar = jo0Var.f10639x0;
+                jo0 jo0Var = ((uy) this.f1927c).C0.f30125d0;
+                a0.i iVar = jo0Var.f10640x0;
                 long j3 = this.f1926b;
                 gg.h0 h0Var = (gg.h0) iVar.f(j3);
                 if (h0Var != null) {
-                    jo0Var.f10639x0.l(j3);
-                    jo0Var.f10633t0.remove(h0Var);
-                    jo0Var.f10635v0.remove(h0Var);
-                    jo0Var.f10634u0.remove(h0Var);
+                    jo0Var.f10640x0.l(j3);
+                    jo0Var.f10634t0.remove(h0Var);
+                    jo0Var.f10636v0.remove(h0Var);
+                    jo0Var.f10635u0.remove(h0Var);
                     jo0Var.l();
-                    MessagesStorage.getInstance(jo0Var.f10632s0).getStorageQueue().postRunnable(new gg.q(jo0Var, j3, 0));
+                    MessagesStorage.getInstance(jo0Var.f10633s0).getStorageQueue().postRunnable(new gg.q(jo0Var, j3, 0));
                     return;
                 }
                 return;
             default:
-                ((fy) this.f1927c).f36428a.getMediaDataController().removePeer(this.f1926b);
+                ((fy) this.f1927c).f36433a.getMediaDataController().removePeer(this.f1926b);
                 return;
         }
     }
@@ -162,7 +162,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     @Override
     public void i(int i10, ArrayList arrayList) {
         if1 if1Var = (if1) this.f1927c;
-        org.telegram.ui.ActionBar.n2 n2Var = if1Var.f37415b;
+        org.telegram.ui.ActionBar.n2 n2Var = if1Var.f37420b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();

@@ -11,30 +11,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class wd0 implements Runnable {
-    public final int f42059a = 0;
-    public final ee0 f42060b;
-    public final TLRPC.TL_error f42061c;
+    public final int f42066a = 0;
+    public final ee0 f42067b;
+    public final TLRPC.TL_error f42068c;
     public final TLObject d;
-    public final String f42062e;
+    public final String f42069e;
 
     public wd0(ee0 ee0Var, TLRPC.TL_error tL_error, String str, TLObject tLObject) {
-        this.f42060b = ee0Var;
-        this.f42061c = tL_error;
-        this.f42062e = str;
+        this.f42067b = ee0Var;
+        this.f42068c = tL_error;
+        this.f42069e = str;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f42059a) {
+        switch (this.f42066a) {
             case 0:
-                final ee0 ee0Var = this.f42060b;
-                be0 be0Var = ee0Var.f35996a;
+                final ee0 ee0Var = this.f42067b;
+                be0 be0Var = ee0Var.f36001a;
                 ug0 ug0Var = ee0Var.W;
                 ug0Var.k1(false, true);
-                TLRPC.TL_error tL_error = this.f42061c;
-                String str = this.f42062e;
+                TLRPC.TL_error tL_error = this.f42068c;
+                String str = this.f42069e;
                 if (tL_error == null) {
                     ee0Var.E = false;
                     ug0Var.v1(false, true);
@@ -48,7 +48,7 @@ public final class wd0 implements Runnable {
                     if (tLObject instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject).terms_of_service;
                         if (tL_help_termsOfService != null) {
-                            ug0Var.f41213p0 = tL_help_termsOfService;
+                            ug0Var.f41220p0 = tL_help_termsOfService;
                         }
                         ee0Var.o(new Runnable() {
                             @Override
@@ -98,17 +98,17 @@ public final class wd0 implements Runnable {
                         }
                         int i11 = 0;
                         while (true) {
-                            es[] esVarArr = be0Var.f35544f;
+                            es[] esVarArr = be0Var.f35549f;
                             if (i11 < esVarArr.length) {
                                 esVarArr[i11].setText("");
-                                be0Var.f35544f[i11].i(1.0f);
+                                be0Var.f35549f[i11].i(1.0f);
                                 i11++;
                             } else {
-                                if (de0Var.getCurrentView() == ee0Var.f35999e) {
+                                if (de0Var.getCurrentView() == ee0Var.f36004e) {
                                     de0Var.showNext();
                                     AndroidUtilities.updateViewVisibilityAnimated(ee0Var.h, false, 1.0f, true);
                                 }
-                                be0Var.f35544f[0].requestFocus();
+                                be0Var.f35549f[0].requestFocus();
                                 AndroidUtilities.shakeViewSpring(be0Var, 10.0f, new xd0(ee0Var, 3));
                                 ee0Var.removeCallbacks(xd0Var);
                                 ee0Var.postDelayed(xd0Var, 5000L);
@@ -116,10 +116,10 @@ public final class wd0 implements Runnable {
                             }
                         }
                     }
-                    if (be0Var.f35544f != null) {
+                    if (be0Var.f35549f != null) {
                         int i12 = 0;
                         while (true) {
-                            es[] esVarArr2 = be0Var.f35544f;
+                            es[] esVarArr2 = be0Var.f35549f;
                             if (i12 < esVarArr2.length) {
                                 esVarArr2[i12].setText("");
                                 i12++;
@@ -128,16 +128,16 @@ public final class wd0 implements Runnable {
                             }
                         }
                     }
-                    be0Var.f35543e = false;
+                    be0Var.f35548e = false;
                 }
                 ee0Var.F = null;
                 return;
             default:
-                final ee0 ee0Var2 = this.f42060b;
+                final ee0 ee0Var2 = this.f42067b;
                 ee0Var2.E = false;
                 ug0 ug0Var2 = ee0Var2.W;
                 ug0Var2.v1(false, true);
-                TLRPC.TL_error tL_error2 = this.f42061c;
+                TLRPC.TL_error tL_error2 = this.f42068c;
                 if (tL_error2 == null) {
                     TL_account.Password password = (TL_account.Password) this.d;
                     if (!TwoStepVerificationActivity.i0(password, true)) {
@@ -150,7 +150,7 @@ public final class wd0 implements Runnable {
                     bundle2.putString("password", Utilities.bytesToHex(serializedData.toByteArray()));
                     bundle2.putString("phoneFormated", ee0Var2.L);
                     bundle2.putString("phoneHash", ee0Var2.M);
-                    bundle2.putString("code", this.f42062e);
+                    bundle2.putString("code", this.f42069e);
                     ee0Var2.o(new Runnable() {
                         @Override
                         public final void run() {
@@ -172,9 +172,9 @@ public final class wd0 implements Runnable {
     }
 
     public wd0(ee0 ee0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
-        this.f42060b = ee0Var;
-        this.f42061c = tL_error;
+        this.f42067b = ee0Var;
+        this.f42068c = tL_error;
         this.d = tLObject;
-        this.f42062e = str;
+        this.f42069e = str;
     }
 }

@@ -4,8 +4,8 @@ import j$.util.Objects;
 import java.util.Arrays;
 import java.util.Set;
 public abstract class o extends h implements Set, j$.util.Set {
-    public static final int f16812c = 0;
-    public transient m f16813b;
+    public static final int f16816c = 0;
+    public transient m f16817b;
 
     public static o r(int i10, Object... objArr) {
         if (i10 != 0) {
@@ -34,7 +34,7 @@ public abstract class o extends h implements Set, j$.util.Set {
                             }
                         }
                     } else {
-                        throw new NullPointerException(hg.k0.h(i14, "at index "));
+                        throw new NullPointerException(hg.c.h(i14, "at index "));
                     }
                 }
                 Arrays.fill(objArr, i13, i10, (Object) null);
@@ -55,7 +55,7 @@ public abstract class o extends h implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new b0(obj4);
         }
-        return y.f16840s;
+        return y.f16844s;
     }
 
     public static int s(int i10) {
@@ -76,7 +76,7 @@ public abstract class o extends h implements Set, j$.util.Set {
     @Override
     public boolean equals(Object obj) {
         if (obj != this) {
-            if (!(obj instanceof o) || !(this instanceof y) || !(((o) obj) instanceof y) || ((y) this).f16841e == obj.hashCode()) {
+            if (!(obj instanceof o) || !(this instanceof y) || !(((o) obj) instanceof y) || ((y) this).f16845e == obj.hashCode()) {
                 if (obj != this) {
                     if (obj instanceof Set) {
                         Set set = (Set) obj;
@@ -107,18 +107,18 @@ public abstract class o extends h implements Set, j$.util.Set {
     }
 
     public m t() {
-        m mVar = this.f16813b;
+        m mVar = this.f16817b;
         if (mVar == null) {
             m u10 = u();
-            this.f16813b = u10;
+            this.f16817b = u10;
             return u10;
         }
         return mVar;
     }
 
     public m u() {
-        Object[] array = toArray(h.f16780a);
-        i iVar = m.f16803b;
+        Object[] array = toArray(h.f16784a);
+        i iVar = m.f16807b;
         return m.t(array.length, array);
     }
 }

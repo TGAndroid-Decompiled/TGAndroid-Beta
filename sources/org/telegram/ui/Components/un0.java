@@ -6,33 +6,33 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class un0 extends EditTextBoldCursor {
-    public final h5 f31405b;
-    public int f31406c;
+    public final h5 f31411b;
+    public int f31412c;
     public final o6 d;
-    public final org.telegram.ui.ActionBar.d6 f31407e;
+    public final org.telegram.ui.ActionBar.d6 f31413e;
 
     public un0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f31407e = d6Var;
-        this.f31405b = new h5(this);
+        this.f31413e = d6Var;
+        this.f31411b = new h5(this);
         o6 o6Var = new o6(false, true, true, false);
         this.d = o6Var;
         o6Var.k(0.2f, 160L, tr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
         o6Var.setCallback(this);
-        o6Var.f29240b = 5;
+        o6Var.f29245b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f31406c < 0) {
-            i10 = org.telegram.ui.ActionBar.i6.f21040p7;
+        if (this.f31412c < 0) {
+            i10 = org.telegram.ui.ActionBar.i6.f21044p7;
         } else {
             i10 = org.telegram.ui.ActionBar.i6.P5;
         }
-        int a2 = this.f31405b.a(org.telegram.ui.ActionBar.i6.v0(i10, this.f31407e), false);
+        int a2 = this.f31411b.a(org.telegram.ui.ActionBar.i6.v0(i10, this.f31413e), false);
         o6 o6Var = this.d;
         o6Var.r(a2);
         o6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -49,11 +49,11 @@ public final class un0 extends EditTextBoldCursor {
         super.onTextChanged(charSequence, i10, i11, i12);
         o6 o6Var = this.d;
         if (o6Var != null) {
-            this.f31406c = 12 - charSequence.length();
+            this.f31412c = 12 - charSequence.length();
             o6Var.b();
             String str = "";
-            if (this.f31406c <= 4) {
-                str = "" + this.f31406c;
+            if (this.f31412c <= 4) {
+                str = "" + this.f31412c;
             }
             o6Var.q(str, true, true);
         }

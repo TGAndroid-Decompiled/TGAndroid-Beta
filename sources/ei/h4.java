@@ -6,35 +6,35 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class h4 implements Runnable {
-    public final int f9084a;
-    public final r4 f9085b;
+    public final int f9085a;
+    public final r4 f9086b;
 
     public h4(r4 r4Var, int i10) {
-        this.f9084a = i10;
-        this.f9085b = r4Var;
+        this.f9085a = i10;
+        this.f9086b = r4Var;
     }
 
     @Override
     public final void run() {
         TLRPC.ChatFull chatFull;
         TLRPC.Peer peer;
-        switch (this.f9084a) {
+        switch (this.f9085a) {
             case 0:
-                this.f9085b.f9306n.R();
+                this.f9086b.f9307n.R();
                 return;
             case 1:
-                this.f9085b.J();
+                this.f9086b.J();
                 return;
             case 2:
-                r4 r4Var = this.f9085b;
+                r4 r4Var = this.f9086b;
                 if (!r4Var.T) {
                     TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
                     tL_messages_prolongWebView.bot = MessagesController.getInstance(r4Var.F).getInputUser(r4Var.v);
-                    tL_messages_prolongWebView.peer = MessagesController.getInstance(r4Var.F).getInputPeer(r4Var.f9309w);
-                    tL_messages_prolongWebView.query_id = r4Var.f9310x;
+                    tL_messages_prolongWebView.peer = MessagesController.getInstance(r4Var.F).getInputPeer(r4Var.f9310w);
+                    tL_messages_prolongWebView.query_id = r4Var.f9311x;
                     tL_messages_prolongWebView.silent = false;
-                    if (r4Var.f9311y != 0) {
-                        TLRPC.InputReplyTo createReplyInput = SendMessagesHelper.getInstance(r4Var.F).createReplyInput(r4Var.f9311y);
+                    if (r4Var.f9312y != 0) {
+                        TLRPC.InputReplyTo createReplyInput = SendMessagesHelper.getInstance(r4Var.F).createReplyInput(r4Var.f9312y);
                         tL_messages_prolongWebView.reply_to = createReplyInput;
                         if (r4Var.E != 0) {
                             createReplyInput.monoforum_peer_id = MessagesController.getInstance(r4Var.F).getInputPeer(r4Var.E);
@@ -47,7 +47,7 @@ public final class h4 implements Runnable {
                         tL_inputReplyToMonoForum.monoforum_peer_id = MessagesController.getInstance(r4Var.F).getInputPeer(r4Var.E);
                         tL_messages_prolongWebView.flags |= 1;
                     }
-                    if (r4Var.f9309w < 0 && (chatFull = MessagesController.getInstance(r4Var.F).getChatFull(-r4Var.f9309w)) != null && (peer = chatFull.default_send_as) != null) {
+                    if (r4Var.f9310w < 0 && (chatFull = MessagesController.getInstance(r4Var.F).getChatFull(-r4Var.f9310w)) != null && (peer = chatFull.default_send_as) != null) {
                         tL_messages_prolongWebView.send_as = MessagesController.getInstance(r4Var.F).getInputPeer(peer);
                         tL_messages_prolongWebView.flags |= 8192;
                     }
@@ -56,13 +56,13 @@ public final class h4 implements Runnable {
                 }
                 return;
             case 3:
-                r4 r4Var2 = this.f9085b;
-                r4Var2.f29643b.U1(r4Var2, 0);
-                r4Var2.f9306n.o(false, false);
+                r4 r4Var2 = this.f9086b;
+                r4Var2.f29648b.W1(r4Var2, 0);
+                r4Var2.f9307n.o(false, false);
                 System.currentTimeMillis();
                 return;
             default:
-                this.f9085b.f9306n.o(true, false);
+                this.f9086b.f9307n.o(true, false);
                 return;
         }
     }

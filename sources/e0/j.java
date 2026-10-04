@@ -5,13 +5,13 @@ import android.os.Bundle;
 import androidx.core.graphics.drawable.IconCompat;
 import java.util.ArrayList;
 public final class j {
-    public final IconCompat f8429a;
-    public final CharSequence f8430b;
-    public final PendingIntent f8431c;
+    public final IconCompat f8430a;
+    public final CharSequence f8431b;
+    public final PendingIntent f8432c;
     public boolean d;
-    public final Bundle f8432e;
-    public ArrayList f8433f;
-    public int f8434g;
+    public final Bundle f8433e;
+    public ArrayList f8434f;
+    public int f8435g;
     public boolean h;
 
     public j(int i10, String str, PendingIntent pendingIntent) {
@@ -24,28 +24,28 @@ public final class j {
         Bundle bundle = new Bundle();
         this.d = true;
         this.h = true;
-        this.f8429a = e7;
-        this.f8430b = t.d(str);
-        this.f8431c = pendingIntent;
-        this.f8432e = bundle;
-        this.f8433f = null;
+        this.f8430a = e7;
+        this.f8431b = t.d(str);
+        this.f8432c = pendingIntent;
+        this.f8433e = bundle;
+        this.f8434f = null;
         this.d = true;
-        this.f8434g = 0;
+        this.f8435g = 0;
         this.h = true;
     }
 
     public final void a(r0 r0Var) {
-        if (this.f8433f == null) {
-            this.f8433f = new ArrayList();
+        if (this.f8434f == null) {
+            this.f8434f = new ArrayList();
         }
-        this.f8433f.add(r0Var);
+        this.f8434f.add(r0Var);
     }
 
     public final k b() {
         r0[] r0VarArr;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = this.f8433f;
+        ArrayList arrayList3 = this.f8434f;
         if (arrayList3 != null) {
             int size = arrayList3.size();
             int i10 = 0;
@@ -66,7 +66,7 @@ public final class j {
         if (!arrayList2.isEmpty()) {
             r0VarArr2 = (r0[]) arrayList2.toArray(new r0[arrayList2.size()]);
         }
-        return new k(this.f8429a, this.f8430b, this.f8431c, this.f8432e, r0VarArr2, r0VarArr, this.d, this.f8434g, this.h);
+        return new k(this.f8430a, this.f8431b, this.f8432c, this.f8433e, r0VarArr2, r0VarArr, this.d, this.f8435g, this.h);
     }
 
     public final void c() {

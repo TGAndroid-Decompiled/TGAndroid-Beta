@@ -9,19 +9,19 @@ import android.os.Process;
 import android.util.Log;
 import java.util.Calendar;
 public final class o extends p {
-    public final int f10074c = 1;
+    public final int f10075c = 1;
     public final s d;
-    public final Object f10075e;
+    public final Object f10076e;
 
     public o(s sVar, aa.a aVar) {
         super(sVar);
         this.d = sVar;
-        this.f10075e = aVar;
+        this.f10076e = aVar;
     }
 
     @Override
     public final IntentFilter d() {
-        switch (this.f10074c) {
+        switch (this.f10075c) {
             case 0:
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
@@ -41,14 +41,14 @@ public final class o extends p {
         boolean z10;
         long j3;
         Location location2;
-        switch (this.f10074c) {
+        switch (this.f10075c) {
             case 0:
-                if (((PowerManager) this.f10075e).isPowerSaveMode()) {
+                if (((PowerManager) this.f10076e).isPowerSaveMode()) {
                     return 2;
                 }
                 return 1;
             default:
-                aa.a aVar = (aa.a) this.f10075e;
+                aa.a aVar = (aa.a) this.f10076e;
                 ah.a aVar2 = (ah.a) aVar.d;
                 LocationManager locationManager = (LocationManager) aVar.f387c;
                 if (aVar2.f451b > System.currentTimeMillis()) {
@@ -91,13 +91,13 @@ public final class o extends p {
                         y yVar = y.d;
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
-                        if (yVar.f10132c == 1) {
+                        if (yVar.f10133c == 1) {
                             z10 = true;
                         }
-                        long j10 = yVar.f10131b;
-                        long j11 = yVar.f10130a;
+                        long j10 = yVar.f10132b;
+                        long j11 = yVar.f10131a;
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
-                        long j12 = yVar.f10131b;
+                        long j12 = yVar.f10132b;
                         if (j10 != -1 && j11 != -1) {
                             if (currentTimeMillis > j11) {
                                 j10 = j12;
@@ -127,7 +127,7 @@ public final class o extends p {
 
     @Override
     public final void k() {
-        switch (this.f10074c) {
+        switch (this.f10075c) {
             case 0:
                 this.d.d(true);
                 return;
@@ -140,6 +140,6 @@ public final class o extends p {
     public o(s sVar, Context context) {
         super(sVar);
         this.d = sVar;
-        this.f10075e = (PowerManager) context.getApplicationContext().getSystemService("power");
+        this.f10076e = (PowerManager) context.getApplicationContext().getSystemService("power");
     }
 }

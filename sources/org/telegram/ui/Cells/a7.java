@@ -9,17 +9,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.q90;
 public abstract class a7 extends LinearLayout {
-    public TextView f21798a;
-    public q90 f21799b;
-    public TextView f21800c;
+    public TextView f21802a;
+    public q90 f21803b;
+    public TextView f21804c;
     public TextView d;
-    public int f21801e;
-    public int f21802f;
+    public int f21805e;
+    public int f21806f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -27,14 +27,14 @@ public abstract class a7 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f21802f;
-        TextView textView = this.f21800c;
-        q90 q90Var = this.f21799b;
-        TextView textView2 = this.f21798a;
+        int i11 = this.f21806f;
+        TextView textView = this.f21804c;
+        q90 q90Var = this.f21803b;
+        TextView textView2 = this.f21802a;
         TextView textView3 = this.d;
-        this.f21801e = i10;
+        this.f21805e = i10;
         if (i10 == 0) {
-            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, ok.h(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, gf.b.c())));
+            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, bi.g(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, gf.b.c())));
             String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf("**");

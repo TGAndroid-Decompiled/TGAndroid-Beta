@@ -15,7 +15,7 @@ import com.google.mlkit.vision.segmentation.subject.internal.zzd;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.e6;
@@ -32,22 +32,22 @@ public final class x1 extends j {
     public final Rect E0;
     public final Paint F0;
     public MediaController.CropState G0;
-    public final TLObject f45408q0;
-    public final String f45409r0;
-    public final int f45410s0;
-    public boolean f45411t0;
-    public final e6 f45412u0;
-    public final fw0 f45413v0;
-    public final int f45414w0;
-    public boolean f45415x0;
-    public final e6 f45416y0;
-    public final ai.f0 f45417z0;
+    public final TLObject f45415q0;
+    public final String f45416r0;
+    public final int f45417s0;
+    public boolean f45418t0;
+    public final e6 f45419u0;
+    public final fw0 f45420v0;
+    public final int f45421w0;
+    public boolean f45422x0;
+    public final e6 f45423y0;
+    public final ai.f0 f45424z0;
 
     public x1(Context context, PointF pointF, fw0 fw0Var, String str, int i10) {
         super(context, pointF);
-        this.f45410s0 = -1;
-        this.f45411t0 = false;
-        this.f45415x0 = false;
+        this.f45417s0 = -1;
+        this.f45418t0 = false;
+        this.f45422x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -56,15 +56,15 @@ public final class x1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f45409r0 = str;
-        this.f45413v0 = fw0Var;
+        this.f45416r0 = str;
+        this.f45420v0 = fw0Var;
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f45417z0 = f0Var;
+        this.f45424z0 = f0Var;
         addView(f0Var, z5.c(-1.0f, -1));
         tr trVar = tr.h;
-        this.f45412u0 = new e6(f0Var, 0L, 500L, trVar);
-        this.f45416y0 = new e6(f0Var, 0L, 350L, trVar);
-        this.f45414w0 = i10;
+        this.f45419u0 = new e6(f0Var, 0L, 500L, trVar);
+        this.f45423y0 = new e6(f0Var, 0L, 350L, trVar);
+        this.f45421w0 = i10;
         Bitmap q6 = k8.q(new k2.v(str, 23), 1920, 1920, 0, false);
         this.A0 = q6;
         if (q6 != null) {
@@ -76,7 +76,7 @@ public final class x1 extends j {
     private String getImageFilter() {
         Point point = AndroidUtilities.displaySize;
         int round = Math.round((Math.min(point.x, point.y) * 0.8f) / AndroidUtilities.density);
-        return a4.a.k(round, round, "_");
+        return a4.a.l(round, round, "_");
     }
 
     @Override
@@ -85,11 +85,11 @@ public final class x1 extends j {
     }
 
     public int getAnchor() {
-        return this.f45410s0;
+        return this.f45417s0;
     }
 
     public fw0 getBaseSize() {
-        return this.f45413v0;
+        return this.f45420v0;
     }
 
     public int getContentHeight() {
@@ -109,7 +109,7 @@ public final class x1 extends j {
     }
 
     public int getOrientation() {
-        return this.f45414w0;
+        return this.f45421w0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -130,15 +130,15 @@ public final class x1 extends j {
         getMeasuredHeight();
         getScale();
         AndroidUtilities.dp(64.0f);
-        float x10 = ok.x(dp, 2.0f, getPositionX(), scaleX);
-        return new uk0(x10, ok.x(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + x10) - x10, dp2 * scaleX);
+        float x10 = bi.x(dp, 2.0f, getPositionX(), scaleX);
+        return new uk0(x10, bi.x(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + x10) - x10, dp2 * scaleX);
     }
 
     @Override
     public final void k() {
-        fw0 fw0Var = this.f45413v0;
-        float f7 = fw0Var.f26585a / 2.0f;
-        float f10 = fw0Var.f26586b / 2.0f;
+        fw0 fw0Var = this.f45420v0;
+        float f7 = fw0Var.f26590a / 2.0f;
+        float f10 = fw0Var.f26591b / 2.0f;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -161,9 +161,9 @@ public final class x1 extends j {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        fw0 fw0Var = this.f45413v0;
-        float f7 = fw0Var.f26585a;
-        float f10 = fw0Var.f26586b;
+        fw0 fw0Var = this.f45420v0;
+        float f7 = fw0Var.f26590a;
+        float f10 = fw0Var.f26591b;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -173,23 +173,23 @@ public final class x1 extends j {
     }
 
     public final String q(int i10) {
-        TLObject tLObject = this.f45408q0;
+        TLObject tLObject = this.f45415q0;
         if (tLObject instanceof TLRPC.Photo) {
             try {
                 return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
             } catch (Exception unused) {
             }
         }
-        return this.f45409r0;
+        return this.f45416r0;
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f45411t0;
-        this.f45411t0 = z11;
+        boolean z11 = !this.f45418t0;
+        this.f45418t0 = z11;
         if (!z10) {
-            this.f45412u0.f(z11, true);
+            this.f45419u0.f(z11, true);
         }
-        ai.f0 f0Var = this.f45417z0;
+        ai.f0 f0Var = this.f45424z0;
         if (f0Var != null) {
             f0Var.invalidate();
         }
@@ -201,17 +201,17 @@ public final class x1 extends j {
             dVar.f411a = true;
             zzd a2 = i8.d.a(new ac.e(dVar));
             this.B0 = true;
-            a2.g(vb.a.a(bitmap, this.f45414w0)).addOnSuccessListener(new k2.v(this, 24)).addOnFailureListener(new fs0(27, this, bitmap));
+            a2.g(vb.a.a(bitmap, this.f45421w0)).addOnSuccessListener(new k2.v(this, 24)).addOnFailureListener(new fs0(27, this, bitmap));
         }
     }
 
     public final void t(boolean z10) {
-        boolean z11 = !this.f45415x0;
-        this.f45415x0 = z11;
+        boolean z11 = !this.f45422x0;
+        this.f45422x0 = z11;
         if (!z10) {
-            this.f45416y0.f(z11, true);
+            this.f45423y0.f(z11, true);
         }
-        ai.f0 f0Var = this.f45417z0;
+        ai.f0 f0Var = this.f45424z0;
         if (f0Var != null) {
             f0Var.invalidate();
         }
@@ -219,9 +219,9 @@ public final class x1 extends j {
 
     public x1(Context context, PointF pointF, fw0 fw0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f45410s0 = -1;
-        this.f45411t0 = false;
-        this.f45415x0 = false;
+        this.f45417s0 = -1;
+        this.f45418t0 = false;
+        this.f45422x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -230,14 +230,14 @@ public final class x1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f45408q0 = tLObject;
-        this.f45413v0 = fw0Var;
+        this.f45415q0 = tLObject;
+        this.f45420v0 = fw0Var;
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f45417z0 = f0Var;
+        this.f45424z0 = f0Var;
         addView(f0Var, z5.c(-1.0f, -1));
         tr trVar = tr.h;
-        this.f45412u0 = new e6(f0Var, 0L, 500L, trVar);
-        this.f45416y0 = new e6(f0Var, 0L, 350L, trVar);
+        this.f45419u0 = new e6(f0Var, 0L, 500L, trVar);
+        this.f45423y0 = new e6(f0Var, 0L, 350L, trVar);
         k();
     }
 }

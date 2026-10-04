@@ -58,7 +58,7 @@ public final class l implements Utilities.Callback {
                 if (((Boolean) obj).booleanValue()) {
                     ci.kc E = ci.kc.E(b0Var.f601e0.getParentActivity(), b0Var.f602f);
                     E.N = j3;
-                    ci.ac acVar = E.f5382c1;
+                    ci.ac acVar = E.f5383c1;
                     if (acVar != null) {
                         acVar.setDialogId(j3);
                     }
@@ -125,7 +125,7 @@ public final class l implements Utilities.Callback {
                 Runnable runnable = (Runnable) obj;
                 rxVar.getClass();
                 ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                uy uyVar = rxVar.f40298b;
+                uy uyVar = rxVar.f40303b;
                 uyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
                 oy oyVar = uyVar.C2;
                 uyVar.removeSelfFromStack();

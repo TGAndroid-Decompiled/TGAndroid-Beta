@@ -26,7 +26,7 @@ public final class q4 implements Runnable {
 
     private final void a() {
         g6.o oVar = (g6.o) this.f1543b;
-        synchronized (g6.o.f10275i) {
+        synchronized (g6.o.f10276i) {
             try {
                 if (!oVar.d()) {
                     return;
@@ -128,7 +128,7 @@ public final class q4 implements Runnable {
                 c5.y yVar = (c5.y) this.f1543b;
                 c5.c cVar = yVar.d;
                 cVar.k(0);
-                c5.h hVar2 = c5.g0.f4195i;
+                c5.h hVar2 = c5.g0.f4196i;
                 cVar.j(24, hVar2);
                 yVar.c(hVar2);
                 return;
@@ -142,9 +142,9 @@ public final class q4 implements Runnable {
             case 13:
                 com.google.android.gms.common.api.internal.g0 g0Var = (com.google.android.gms.common.api.internal.g0) this.f1543b;
                 k6.e eVar = g0Var.d;
-                Context context = g0Var.f6535c;
+                Context context = g0Var.f6536c;
                 eVar.getClass();
-                if (!k6.g.f14676a.getAndSet(true)) {
+                if (!k6.g.f14677a.getAndSet(true)) {
                     try {
                         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
                         if (notificationManager != null) {
@@ -162,22 +162,22 @@ public final class q4 implements Runnable {
                 ((com.google.android.gms.common.api.internal.p0) this.f1543b).f();
                 return;
             case 15:
-                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((a6.m) this.f1543b).f330b).f6604b;
+                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((a6.m) this.f1543b).f330b).f6605b;
                 cVar2.d(cVar2.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 16:
-                ((com.google.android.gms.common.api.internal.d1) this.f1543b).f6527j.b(new k6.a(4));
+                ((com.google.android.gms.common.api.internal.d1) this.f1543b).f6528j.b(new k6.a(4));
                 return;
             case 17:
                 return;
             case 18:
                 com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f1543b;
-                xVar.f6658o.lock();
+                xVar.f6659o.lock();
                 try {
                     com.google.android.gms.common.api.internal.x.l(xVar);
                     return;
                 } finally {
-                    xVar.f6658o.unlock();
+                    xVar.f6659o.unlock();
                 }
             case 19:
                 ((f6.i) this.f1543b).g(false);
@@ -198,7 +198,7 @@ public final class q4 implements Runnable {
                 return;
             case 23:
                 kg.e eVar3 = (kg.e) this.f1543b;
-                eVar3.f14786f.animate().setDuration(120L).alpha(0.0f);
+                eVar3.f14787f.animate().setDuration(120L).alpha(0.0f);
                 eVar3.h.animate().setListener(null).start();
                 if (eVar3.h.getVisibility() != 0) {
                     eVar3.h.setVisibility(0);
@@ -208,20 +208,20 @@ public final class q4 implements Runnable {
                 return;
             case 24:
                 ki.s0 s0Var = (ki.s0) this.f1543b;
-                if (s0Var.W == 5 && (f0Var = s0Var.S) != null && s0Var.f15063x) {
+                if (s0Var.W == 5 && (f0Var = s0Var.S) != null && s0Var.f15064x) {
                     long J0 = f0Var.J0();
                     long j3 = s0Var.G;
                     if (J0 < j3 || J0 >= s0Var.H) {
                         s0Var.S.W0(5, j3);
                     }
                     s0Var.d.getClass();
-                    s0Var.f15049i.postDelayed(this, 33L);
+                    s0Var.f15050i.postDelayed(this, 33L);
                     return;
                 }
                 return;
             case 25:
                 m.r1 r1Var = (m.r1) this.f1543b;
-                r1Var.f15871w = null;
+                r1Var.f15875w = null;
                 r1Var.drawableStateChanged();
                 return;
             case 26:
@@ -236,23 +236,23 @@ public final class q4 implements Runnable {
                 return;
             case 28:
                 org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1543b;
-                if (a0Var.f21771b == null) {
-                    a0Var.f21771b = new androidx.emoji2.text.j(a0Var, 3);
+                if (a0Var.f21775b == null) {
+                    a0Var.f21775b = new androidx.emoji2.text.j(a0Var, 3);
                 }
-                androidx.emoji2.text.j jVar2 = a0Var.f21771b;
-                int i10 = a0Var.f21772c + 1;
-                a0Var.f21772c = i10;
+                androidx.emoji2.text.j jVar2 = a0Var.f21775b;
+                int i10 = a0Var.f21776c + 1;
+                a0Var.f21776c = i10;
                 jVar2.f2522b = i10;
                 a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             default:
                 org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1543b;
-                TextView textView = v5Var.f23554b;
+                TextView textView = v5Var.f23558b;
                 textView.setTag(null);
                 AnimatorSet animatorSet = new AnimatorSet();
                 v5Var.d = animatorSet;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23553a, property, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23557a, property, 1.0f));
                 v5Var.d.setDuration(250L);
                 v5Var.d.setInterpolator(new DecelerateInterpolator());
                 v5Var.d.addListener(new org.telegram.ui.u4(this, 9));

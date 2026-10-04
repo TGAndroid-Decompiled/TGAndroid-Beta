@@ -37,7 +37,7 @@ public abstract class c1 {
     }
 
     public static float c(RecyclerView recyclerView) {
-        int i10 = aw0.f24685o1;
+        int i10 = aw0.f24689o1;
         s4.o0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;
@@ -55,7 +55,7 @@ public abstract class c1 {
     }
 
     public static int e(int i10, int i11, Drawable drawable) {
-        return i11 - (drawable.getIntrinsicWidth() / i10);
+        return i11 - (drawable.getIntrinsicHeight() / i10);
     }
 
     public static int f(Random random, int i10) {
@@ -126,7 +126,7 @@ public abstract class c1 {
     }
 
     public static int t(int i10, int i11, Drawable drawable) {
-        return (drawable.getIntrinsicHeight() / i10) + i11;
+        return i11 - (drawable.getIntrinsicWidth() / i10);
     }
 
     public static void u(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
@@ -140,10 +140,14 @@ public abstract class c1 {
     }
 
     public static int w(int i10, int i11, Drawable drawable) {
+        return (drawable.getIntrinsicHeight() / i10) + i11;
+    }
+
+    public static int x(int i10, int i11, Drawable drawable) {
         return (drawable.getIntrinsicWidth() / i10) + i11;
     }
 
-    public static String x(int i10) {
+    public static String y(int i10) {
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {

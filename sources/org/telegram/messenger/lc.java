@@ -4,46 +4,46 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class lc implements RequestDelegate {
-    public final int f18468a;
-    public final MessagesController f18469b;
-    public final int f18470c;
+    public final int f18460a;
+    public final MessagesController f18461b;
+    public final int f18462c;
     public final long d;
-    public final long f18471e;
+    public final long f18463e;
 
     public lc(int i10, long j3, long j10, MessagesController messagesController) {
-        this.f18468a = 0;
-        this.f18469b = messagesController;
+        this.f18460a = 0;
+        this.f18461b = messagesController;
         this.d = j3;
-        this.f18470c = i10;
-        this.f18471e = j10;
+        this.f18462c = i10;
+        this.f18463e = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18468a) {
+        switch (this.f18460a) {
             case 0:
-                int i10 = this.f18470c;
-                long j3 = this.f18471e;
-                this.f18469b.lambda$getChannelDifference$349(this.d, i10, j3, tLObject, tL_error);
+                int i10 = this.f18462c;
+                long j3 = this.f18463e;
+                this.f18461b.lambda$getChannelDifference$349(this.d, i10, j3, tLObject, tL_error);
                 return;
             case 1:
                 long j10 = this.d;
-                long j11 = this.f18471e;
-                this.f18469b.lambda$sendTyping$172(this.f18470c, j10, j11, tLObject, tL_error);
+                long j11 = this.f18463e;
+                this.f18461b.lambda$sendTyping$172(this.f18462c, j10, j11, tLObject, tL_error);
                 return;
             default:
                 long j12 = this.d;
-                long j13 = this.f18471e;
-                this.f18469b.lambda$sendTyping$174(this.f18470c, j12, j13, tLObject, tL_error);
+                long j13 = this.f18463e;
+                this.f18461b.lambda$sendTyping$174(this.f18462c, j12, j13, tLObject, tL_error);
                 return;
         }
     }
 
     public lc(MessagesController messagesController, int i10, long j3, long j10, int i11) {
-        this.f18468a = i11;
-        this.f18469b = messagesController;
-        this.f18470c = i10;
+        this.f18460a = i11;
+        this.f18461b = messagesController;
+        this.f18462c = i10;
         this.d = j3;
-        this.f18471e = j10;
+        this.f18463e = j10;
     }
 }

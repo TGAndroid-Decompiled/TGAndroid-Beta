@@ -22,7 +22,7 @@ public final class y extends cb {
         this.Y = str;
         L();
         this.v = 0.6f;
-        this.f25309y = true;
+        this.f25314y = true;
         this.E = true;
         fixNavigationBar();
         I();
@@ -36,7 +36,7 @@ public final class y extends cb {
     public final yl0 v(zl0 zl0Var) {
         u61 u61Var = new u61(zl0Var, getContext(), this.X, 0, false, new v(this, 0), this.resourcesProvider);
         this.Z = u61Var;
-        u61Var.f31307r = false;
+        u61Var.f31313r = false;
         return u61Var;
     }
 

@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessagesController;
 public final class fn implements MessagesController.MessagesLoadedCallback {
-    public final yi f36349a;
-    public final yn f36350b;
-    public final kn f36351c;
+    public final yi f36354a;
+    public final yn f36355b;
+    public final kn f36356c;
 
     public fn(kn knVar, yi yiVar, yn ynVar) {
-        this.f36351c = knVar;
-        this.f36349a = yiVar;
-        this.f36350b = ynVar;
+        this.f36356c = knVar;
+        this.f36354a = yiVar;
+        this.f36355b = ynVar;
     }
 
     @Override
     public final void onError() {
-        this.f36349a.c(false);
-        this.f36351c.f38003a.presentFragment(this.f36350b);
+        this.f36354a.c(false);
+        this.f36356c.f38008a.presentFragment(this.f36355b);
     }
 
     @Override
     public final void onMessagesLoaded(boolean z10) {
-        this.f36349a.c(false);
-        this.f36351c.f38003a.presentFragment(this.f36350b);
+        this.f36354a.c(false);
+        this.f36356c.f38008a.presentFragment(this.f36355b);
     }
 }

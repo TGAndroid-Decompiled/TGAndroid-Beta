@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class bc implements Runnable {
-    public final int f17430a;
-    public final MessagesController f17431b;
-    public final TLRPC.User f17432c;
+    public final int f17435a;
+    public final MessagesController f17436b;
+    public final TLRPC.User f17437c;
 
     public bc(MessagesController messagesController, TLRPC.User user, int i10) {
-        this.f17430a = i10;
-        this.f17431b = messagesController;
-        this.f17432c = user;
+        this.f17435a = i10;
+        this.f17436b = messagesController;
+        this.f17437c = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f17430a) {
+        switch (this.f17435a) {
             case 0:
-                this.f17431b.lambda$loadFullUser$71(this.f17432c);
+                this.f17436b.lambda$loadFullUser$71(this.f17437c);
                 return;
             default:
-                this.f17431b.lambda$processUpdateArray$408(this.f17432c);
+                this.f17436b.lambda$processUpdateArray$408(this.f17437c);
                 return;
         }
     }

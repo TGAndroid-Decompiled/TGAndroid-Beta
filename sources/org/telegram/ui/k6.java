@@ -41,8 +41,8 @@ public final class k6 extends v7 {
         }
     }
 
-    public k6(a7 a7Var, Context context, a7 a7Var2, li.m mVar, org.telegram.ui.Components.aw0 aw0Var) {
-        super(context, a7Var2, mVar, aw0Var);
+    public k6(a7 a7Var, Context context, a7 a7Var2, li.n nVar, org.telegram.ui.Components.aw0 aw0Var) {
+        super(context, a7Var2, nVar, aw0Var);
         this.G = a7Var;
     }
 }

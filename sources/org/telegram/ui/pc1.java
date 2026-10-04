@@ -5,36 +5,36 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.widget.FrameLayout;
 public final class pc1 extends FrameLayout {
-    public final int f39449a;
-    public final RectF f39450b;
-    public final rd1 f39451c;
+    public final int f39454a;
+    public final RectF f39455b;
+    public final rd1 f39456c;
 
     public pc1(rd1 rd1Var, Context context, int i10) {
         super(context);
-        this.f39449a = i10;
+        this.f39454a = i10;
         switch (i10) {
             case 1:
-                this.f39451c = rd1Var;
+                this.f39456c = rd1Var;
                 super(context);
-                this.f39450b = new RectF();
+                this.f39455b = new RectF();
                 return;
             default:
-                this.f39451c = rd1Var;
-                this.f39450b = new RectF();
+                this.f39456c = rd1Var;
+                this.f39455b = new RectF();
                 return;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f39449a) {
+        switch (this.f39454a) {
             case 0:
-                RectF rectF = this.f39450b;
+                RectF rectF = this.f39455b;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                rd1 rd1Var = this.f39451c;
+                rd1 rd1Var = this.f39456c;
                 pc1 pc1Var = rd1Var.D0;
-                gd1 gd1Var = rd1Var.f40095x0;
-                rc1 rc1Var = rd1Var.f40032a;
+                gd1 gd1Var = rd1Var.f40100x0;
+                rc1 rc1Var = rd1Var.f40037a;
                 org.telegram.ui.ActionBar.i6.s(pc1Var, gd1Var, rc1Var);
                 canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, rc1Var.H("paintChatActionBackground"));
                 if (org.telegram.ui.ActionBar.i6.a1()) {
@@ -43,12 +43,12 @@ public final class pc1 extends FrameLayout {
                 }
                 return;
             default:
-                RectF rectF2 = this.f39450b;
+                RectF rectF2 = this.f39455b;
                 rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                rd1 rd1Var2 = this.f39451c;
+                rd1 rd1Var2 = this.f39456c;
                 pc1 pc1Var2 = rd1Var2.E0;
-                gd1 gd1Var2 = rd1Var2.f40095x0;
-                rc1 rc1Var2 = rd1Var2.f40032a;
+                gd1 gd1Var2 = rd1Var2.f40100x0;
+                rc1 rc1Var2 = rd1Var2.f40037a;
                 org.telegram.ui.ActionBar.i6.s(pc1Var2, gd1Var2, rc1Var2);
                 canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, rc1Var2.H("paintChatActionBackground"));
                 if (org.telegram.ui.ActionBar.i6.a1()) {

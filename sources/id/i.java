@@ -3,7 +3,7 @@ package id;
 import java.io.Serializable;
 import rd.p;
 public final class i implements h, Serializable {
-    public static final i f12058a = new Object();
+    public static final i f12059a = new Object();
 
     @Override
     public final f get(g key) {

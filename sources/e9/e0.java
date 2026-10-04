@@ -2,22 +2,22 @@ package e9;
 
 import java.io.Serializable;
 public final class e0 extends m implements Serializable {
-    public final Object f8737a;
-    public final Object f8738b;
+    public final Object f8738a;
+    public final Object f8739b;
 
     public e0(Object obj, Object obj2) {
-        this.f8737a = obj;
-        this.f8738b = obj2;
+        this.f8738a = obj;
+        this.f8739b = obj2;
     }
 
     @Override
     public final Object getKey() {
-        return this.f8737a;
+        return this.f8738a;
     }
 
     @Override
     public final Object getValue() {
-        return this.f8738b;
+        return this.f8739b;
     }
 
     @Override

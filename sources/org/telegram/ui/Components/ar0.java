@@ -7,31 +7,31 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class ar0 extends Drawable {
-    public long f24645a = 0;
-    public final float[] f24646b = {0.0f, -0.5f};
-    public final Drawable f24647c;
+    public long f24649a = 0;
+    public final float[] f24650b = {0.0f, -0.5f};
+    public final Drawable f24651c;
     public final Drawable d;
-    public final Drawable f24648e;
-    public final int f24649f;
+    public final Drawable f24652e;
+    public final int f24653f;
 
     public ar0(Context context, int i10) {
-        this.f24649f = i10;
+        this.f24653f = i10;
         if (i10 == 4) {
-            this.f24647c = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
+            this.f24651c = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.f24648e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
+            this.f24652e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else if (i10 == 5) {
-            this.f24647c = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
+            this.f24651c = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.f24648e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
+            this.f24652e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else if (i10 == 1) {
-            this.f24647c = context.getResources().getDrawable(R.drawable.smallanimationpin).mutate();
+            this.f24651c = context.getResources().getDrawable(R.drawable.smallanimationpin).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.f24648e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
+            this.f24652e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else {
-            this.f24647c = context.getResources().getDrawable(R.drawable.animationpin).mutate();
+            this.f24651c = context.getResources().getDrawable(R.drawable.animationpin).mutate();
             this.d = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
-            this.f24648e = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
+            this.f24652e = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
         }
     }
 
@@ -45,13 +45,13 @@ public final class ar0 extends Drawable {
         int D;
         int i10;
         float x10;
-        Drawable drawable = this.f24647c;
+        Drawable drawable = this.f24651c;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         int i11 = 3;
         int i12 = 5;
         int i13 = 1;
-        int i14 = this.f24649f;
+        int i14 = this.f24653f;
         int i15 = 4;
         if (i14 != 4 && i14 != 5) {
             if (i14 == 3) {
@@ -73,7 +73,7 @@ public final class ar0 extends Drawable {
         drawable.draw(canvas);
         int i17 = 0;
         while (true) {
-            fArr = this.f24646b;
+            fArr = this.f24650b;
             if (i17 >= 2) {
                 break;
             }
@@ -87,14 +87,14 @@ public final class ar0 extends Drawable {
                         int dp5 = AndroidUtilities.dp(fArr[i17] * 15.0f);
                         dp3 = (AndroidUtilities.dp(2.0f) + intrinsicWidth2) - dp5;
                         dp4 = ((intrinsicHeight / 2) + intrinsicHeight2) - AndroidUtilities.dp(7.0f);
-                        D = org.telegram.messenger.ok.D(2.0f, i16, dp5);
+                        D = org.telegram.messenger.bi.D(2.0f, i16, dp5);
                     } else if (i14 == 2) {
                         i10 = AndroidUtilities.dp(5.0f * f10);
                         dp2 = AndroidUtilities.dp(f10 * 18.0f);
                         int dp6 = AndroidUtilities.dp(fArr[i17] * 15.0f);
                         dp3 = (AndroidUtilities.dp(2.0f) + intrinsicWidth2) - dp6;
                         dp4 = (intrinsicHeight / 2) + intrinsicHeight2;
-                        D = org.telegram.messenger.ok.D(2.0f, i16, dp6);
+                        D = org.telegram.messenger.bi.D(2.0f, i16, dp6);
                     } else if (i14 == i13) {
                         int dp7 = AndroidUtilities.dp(2.5f * f10);
                         dp2 = AndroidUtilities.dp(f10 * 6.5f);
@@ -102,14 +102,14 @@ public final class ar0 extends Drawable {
                         dp3 = (AndroidUtilities.dp(7.0f) + intrinsicWidth2) - dp8;
                         dp4 = (intrinsicHeight / 2) + intrinsicHeight2;
                         i10 = dp7;
-                        D = org.telegram.messenger.ok.D(7.0f, i16, dp8);
+                        D = org.telegram.messenger.bi.D(7.0f, i16, dp8);
                     } else {
                         i10 = AndroidUtilities.dp(5.0f * f10);
                         dp2 = AndroidUtilities.dp(f10 * 18.0f);
                         int dp9 = AndroidUtilities.dp(fArr[i17] * 15.0f);
                         dp3 = (AndroidUtilities.dp(42.0f) + intrinsicWidth2) - dp9;
                         dp4 = ((intrinsicHeight / 2) + intrinsicHeight2) - AndroidUtilities.dp(7.0f);
-                        D = org.telegram.messenger.ok.D(42.0f, i16, dp9);
+                        D = org.telegram.messenger.bi.D(42.0f, i16, dp9);
                     }
                 } else {
                     int dp10 = AndroidUtilities.dp(2.5f * f10);
@@ -117,14 +117,14 @@ public final class ar0 extends Drawable {
                     int dp11 = AndroidUtilities.dp(fArr[i17] * 6.0f);
                     dp3 = (AndroidUtilities.dp(3.0f) + intrinsicWidth2) - dp11;
                     dp4 = ((intrinsicHeight / 2) + intrinsicHeight2) - AndroidUtilities.dp(2.0f);
-                    D = org.telegram.messenger.ok.D(3.0f, i16, dp11);
+                    D = org.telegram.messenger.bi.D(3.0f, i16, dp11);
                     i10 = dp10;
                 }
                 float f11 = fArr[i17];
                 if (f11 < 0.5f) {
                     x10 = f11 / 0.5f;
                 } else {
-                    x10 = org.telegram.messenger.f0.x(f11, 0.5f, 0.5f, 1.0f);
+                    x10 = org.telegram.messenger.q.x(f11, 0.5f, 0.5f, 1.0f);
                 }
                 int i18 = (int) (x10 * 255.0f);
                 Drawable drawable2 = this.d;
@@ -133,7 +133,7 @@ public final class ar0 extends Drawable {
                 int i20 = dp4 + dp2;
                 drawable2.setBounds(dp3 - i10, i19, dp3 + i10, i20);
                 drawable2.draw(canvas);
-                Drawable drawable3 = this.f24648e;
+                Drawable drawable3 = this.f24652e;
                 drawable3.setAlpha(i18);
                 drawable3.setBounds(D - i10, i19, D + i10, i20);
                 drawable3.draw(canvas);
@@ -145,8 +145,8 @@ public final class ar0 extends Drawable {
             i15 = 4;
         }
         long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f24645a;
-        this.f24645a = currentTimeMillis;
+        long j3 = currentTimeMillis - this.f24649a;
+        this.f24649a = currentTimeMillis;
         if (j3 > 16) {
             j3 = 16;
         }
@@ -165,7 +165,7 @@ public final class ar0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        int i10 = this.f24649f;
+        int i10 = this.f24653f;
         if (i10 != 4 && i10 != 5) {
             if (i10 == 3) {
                 return AndroidUtilities.dp(100.0f);
@@ -183,7 +183,7 @@ public final class ar0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        int i10 = this.f24649f;
+        int i10 = this.f24653f;
         if (i10 != 4 && i10 != 5) {
             if (i10 == 3) {
                 return AndroidUtilities.dp(100.0f);
@@ -206,9 +206,9 @@ public final class ar0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f24647c.setColorFilter(colorFilter);
+        this.f24651c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
-        this.f24648e.setColorFilter(colorFilter);
+        this.f24652e.setColorFilter(colorFilter);
     }
 
     @Override

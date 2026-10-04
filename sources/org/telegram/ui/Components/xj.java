@@ -8,21 +8,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.tgnet.TLRPC;
 public final class xj extends yl0 {
-    public final Context f32886c;
+    public final Context f32892c;
     public ArrayList d = new ArrayList();
-    public ArrayList f32887e = new ArrayList();
-    public wj f32888f;
+    public ArrayList f32893e = new ArrayList();
+    public wj f32894f;
     public int h;
-    public final bk f32889n;
+    public final bk f32895n;
 
     public xj(bk bkVar, Context context) {
-        this.f32889n = bkVar;
-        this.f32886c = context;
+        this.f32895n = bkVar;
+        this.f32892c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46528f == 0) {
+        if (c1Var.f46535f == 0) {
             return true;
         }
         return false;
@@ -55,15 +55,15 @@ public final class xj extends yl0 {
     @Override
     public final void l() {
         super.l();
-        this.f32889n.L();
+        this.f32895n.L();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
         TLRPC.User user;
-        if (c1Var.f46528f == 0) {
-            ak akVar = (ak) c1Var.f46524a;
+        if (c1Var.f46535f == 0) {
+            ak akVar = (ak) c1Var.f46531a;
             if (i10 != h() - 2) {
                 z10 = true;
             } else {
@@ -75,16 +75,16 @@ public final class xj extends yl0 {
                 user = contact.user;
                 if (user == null) {
                     akVar.setCurrentId(contact.contact_id);
-                    akVar.a(null, (CharSequence) this.f32887e.get(i10 - 1), new tj(contact, 1), z10);
+                    akVar.a(null, (CharSequence) this.f32893e.get(i10 - 1), new tj(contact, 1), z10);
                     user = null;
                 }
             } else {
                 user = (TLRPC.User) E;
             }
             if (user != null) {
-                akVar.a(user, (CharSequence) this.f32887e.get(i10 - 1), new uj(1, user), z10);
+                akVar.a(user, (CharSequence) this.f32893e.get(i10 - 1), new uj(1, user), z10);
             }
-            boolean containsKey = this.f32889n.f24990w.containsKey(rj.a(E));
+            boolean containsKey = this.f32895n.f24994w.containsKey(rj.a(E));
             qp qpVar = akVar.d;
             if (qpVar.getVisibility() != 0) {
                 qpVar.setVisibility(0);
@@ -96,7 +96,7 @@ public final class xj extends yl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View akVar;
-        Context context = this.f32886c;
+        Context context = this.f32892c;
         if (i10 != 0) {
             if (i10 != 1) {
                 akVar = new View(context);
@@ -107,7 +107,7 @@ public final class xj extends yl0 {
                 akVar.setTag(-33024);
             }
         } else {
-            akVar = new ak(context, this.f32889n.f29642a);
+            akVar = new ak(context, this.f32895n.f29647a);
         }
         return new s4.c1(akVar);
     }

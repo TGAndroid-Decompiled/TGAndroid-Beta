@@ -6,29 +6,29 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class re0 implements Runnable {
-    public final int f40104a = 0;
-    public final ve0 f40105b;
-    public final TLRPC.TL_error f40106c;
+    public final int f40109a = 0;
+    public final ve0 f40110b;
+    public final TLRPC.TL_error f40111c;
     public final Bundle d;
-    public final TLObject f40107e;
+    public final TLObject f40112e;
 
     public re0(ve0 ve0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
-        this.f40105b = ve0Var;
-        this.f40107e = tLObject;
+        this.f40110b = ve0Var;
+        this.f40112e = tLObject;
         this.d = bundle;
-        this.f40106c = tL_error;
+        this.f40111c = tL_error;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f40104a) {
+        switch (this.f40109a) {
             case 0:
-                ve0 ve0Var = this.f40105b;
-                ug0 ug0Var = ve0Var.f41712a0;
+                ve0 ve0Var = this.f40110b;
+                ug0 ug0Var = ve0Var.f41719a0;
                 ve0Var.M = false;
                 ve0Var.v.invalidate();
-                TLObject tLObject = this.f40107e;
+                TLObject tLObject = this.f40112e;
                 if (tLObject != null) {
                     Bundle bundle = this.d;
                     ve0Var.S = bundle;
@@ -37,7 +37,7 @@ public final class re0 implements Runnable {
                     ug0Var.g1(bundle, tL_auth_sentCode, true);
                     return;
                 }
-                TLRPC.TL_error tL_error = this.f40106c;
+                TLRPC.TL_error tL_error = this.f40111c;
                 if (tL_error != null && (str = tL_error.text) != null) {
                     if (str.contains("PHONE_NUMBER_INVALID")) {
                         ug0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.InvalidPhoneNumber));
@@ -68,12 +68,12 @@ public final class re0 implements Runnable {
                 }
                 return;
             default:
-                ve0 ve0Var2 = this.f40105b;
-                ug0 ug0Var2 = ve0Var2.f41712a0;
+                ve0 ve0Var2 = this.f40110b;
+                ug0 ug0Var2 = ve0Var2.f41719a0;
                 ve0Var2.R = false;
-                TLRPC.TL_error tL_error2 = this.f40106c;
+                TLRPC.TL_error tL_error2 = this.f40111c;
                 if (tL_error2 == null) {
-                    ug0Var2.g1(this.d, (TLRPC.TL_auth_sentCode) this.f40107e, true);
+                    ug0Var2.g1(this.d, (TLRPC.TL_auth_sentCode) this.f40112e, true);
                 } else {
                     String str2 = tL_error2.text;
                     if (str2 != null) {
@@ -104,9 +104,9 @@ public final class re0 implements Runnable {
     }
 
     public re0(ve0 ve0Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
-        this.f40105b = ve0Var;
-        this.f40106c = tL_error;
+        this.f40110b = ve0Var;
+        this.f40111c = tL_error;
         this.d = bundle;
-        this.f40107e = tLObject;
+        this.f40112e = tLObject;
     }
 }

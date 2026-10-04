@@ -15,7 +15,7 @@ public final class do0 extends tx0 {
     public final void setVisibility(int i10) {
         switch (this.K) {
             case 0:
-                if (this.L.N0.getTag() != null) {
+                if (this.L.O0.getTag() != null) {
                     super.setVisibility(8);
                     return;
                 } else {
@@ -23,7 +23,7 @@ public final class do0 extends tx0 {
                     return;
                 }
             case 1:
-                if (this.L.N0.getTag() != null) {
+                if (this.L.O0.getTag() != null) {
                     super.setVisibility(8);
                     return;
                 } else {
@@ -31,7 +31,7 @@ public final class do0 extends tx0 {
                     return;
                 }
             case 2:
-                if (this.L.N0.getTag() != null) {
+                if (this.L.O0.getTag() != null) {
                     super.setVisibility(8);
                     return;
                 } else {
@@ -39,7 +39,7 @@ public final class do0 extends tx0 {
                     return;
                 }
             default:
-                if (this.L.N0.getTag() != null) {
+                if (this.L.O0.getTag() != null) {
                     super.setVisibility(8);
                     return;
                 } else {

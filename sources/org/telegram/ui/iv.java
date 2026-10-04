@@ -16,17 +16,17 @@ public final class iv extends org.telegram.ui.Components.yy0 {
     public iv(Context context, long j3, o0.a aVar) {
         super(context);
         this.I = aVar;
-        this.f33280a = new RectF();
-        this.f33284f = 0.0f;
+        this.f33286a = new RectF();
+        this.f33290f = 0.0f;
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
-        this.f33286r = o6Var;
+        this.f33292r = o6Var;
         org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(false, true, false, false);
-        this.f33287s = o6Var2;
+        this.f33293s = o6Var2;
         o6Var.setCallback(this);
         o6Var2.setCallback(this);
-        this.f33285n = Long.valueOf(j3);
+        this.f33291n = Long.valueOf(j3);
         org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        h9Var.f27057p = 1.5f;
+        h9Var.f27062p = 1.5f;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.h = imageReceiver;
         imageReceiver.setParentView(this);
@@ -44,10 +44,10 @@ public final class iv extends org.telegram.ui.Components.yy0 {
     @Override
     public final void b() {
         o0.a aVar = this.I;
-        a7 a7Var = (a7) aVar.f16929c;
+        a7 a7Var = (a7) aVar.f16933c;
         a7Var.Z.dismiss();
         Bundle bundle = new Bundle();
-        long j3 = ((u6) aVar.f16928b).f41066a;
+        long j3 = ((u6) aVar.f16932b).f41072a;
         if (j3 > 0) {
             bundle.putLong("user_id", j3);
         } else {

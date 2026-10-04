@@ -19,12 +19,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.sg0;
 import org.telegram.ui.Components.tr;
 public final class ia implements View.OnClickListener {
-    public final int f5178a;
-    public final kc f5179b;
+    public final int f5179a;
+    public final kc f5180b;
 
     public ia(kc kcVar, int i10) {
-        this.f5178a = i10;
-        this.f5179b = kcVar;
+        this.f5179a = i10;
+        this.f5180b = kcVar;
     }
 
     @Override
@@ -37,49 +37,49 @@ public final class ia implements View.OnClickListener {
         int i11;
         int i12;
         y yVar;
-        int i13 = this.f5178a;
+        int i13 = this.f5179a;
         boolean z11 = false;
-        kc kcVar = this.f5179b;
+        kc kcVar = this.f5180b;
         switch (i13) {
             case 0:
-                kc kcVar2 = this.f5179b;
-                if (kcVar2.K1 != null && kcVar2.C2 == null && kcVar2.f5402i1 != null) {
+                kc kcVar2 = this.f5180b;
+                if (kcVar2.K1 != null && kcVar2.C2 == null && kcVar2.f5403i1 != null) {
                     ValueAnimator valueAnimator = kcVar2.E2;
                     if (valueAnimator == null || !valueAnimator.isRunning()) {
-                        boolean z12 = kcVar2.K1.f5359y0;
-                        Bitmap createBitmap = Bitmap.createBitmap(kcVar2.f5414n.getWidth(), kcVar2.f5414n.getHeight(), Bitmap.Config.ARGB_8888);
+                        boolean z12 = kcVar2.K1.f5360y0;
+                        Bitmap createBitmap = Bitmap.createBitmap(kcVar2.f5415n.getWidth(), kcVar2.f5415n.getHeight(), Bitmap.Config.ARGB_8888);
                         Canvas canvas = new Canvas(createBitmap);
-                        kcVar2.f5402i1.setAlpha(0.0f);
+                        kcVar2.f5403i1.setAlpha(0.0f);
                         yb ybVar = kcVar2.X0;
                         if (ybVar != null) {
-                            ybVar.f4748g0 = true;
+                            ybVar.f4749g0 = true;
                         }
-                        mb mbVar = kcVar2.f5442v1;
+                        mb mbVar = kcVar2.f5443v1;
                         if (mbVar != null) {
                             mbVar.I0 = true;
                         }
-                        kcVar2.f5414n.draw(canvas);
+                        kcVar2.f5415n.draw(canvas);
                         yb ybVar2 = kcVar2.X0;
                         if (ybVar2 != null) {
-                            ybVar2.f4748g0 = false;
+                            ybVar2.f4749g0 = false;
                         }
-                        mb mbVar2 = kcVar2.f5442v1;
+                        mb mbVar2 = kcVar2.f5443v1;
                         if (mbVar2 != null) {
                             mbVar2.I0 = false;
                         }
-                        kcVar2.f5402i1.setAlpha(1.0f);
+                        kcVar2.f5403i1.setAlpha(1.0f);
                         Paint paint = new Paint(1);
                         paint.setColor(-16777216);
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                         Paint paint2 = new Paint(1);
                         paint2.setFilterBitmap(true);
                         int[] iArr = new int[2];
-                        kcVar2.f5402i1.getLocationInWindow(iArr);
+                        kcVar2.f5403i1.getLocationInWindow(iArr);
                         float f7 = iArr[0];
                         float f10 = iArr[1];
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        sb sbVar = new sb(kcVar2, kcVar2.f5376b, z12, canvas, (kcVar2.f5402i1.getMeasuredWidth() / 2.0f) + f7, (kcVar2.f5402i1.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
+                        sb sbVar = new sb(kcVar2, kcVar2.f5377b, z12, canvas, (kcVar2.f5403i1.getMeasuredWidth() / 2.0f) + f7, (kcVar2.f5403i1.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
                         kcVar2.C2 = sbVar;
                         sbVar.setOnTouchListener(new bi.d(2));
                         kcVar2.D2 = 0.0f;
@@ -97,13 +97,13 @@ public final class ia implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = kcVar2.E2;
                         if (z12) {
-                            trVar = tr.f31143i;
+                            trVar = tr.f31149i;
                         } else {
                             trVar = tr.h;
                         }
                         valueAnimator3.setInterpolator(trVar);
                         kcVar2.E2.start();
-                        kcVar2.f5414n.addView(kcVar2.C2, new ViewGroup.LayoutParams(-1, -1));
+                        kcVar2.f5415n.addView(kcVar2.C2, new ViewGroup.LayoutParams(-1, -1));
                         AndroidUtilities.runOnUIThread(new ga(kcVar2, 4));
                         return;
                     }
@@ -130,15 +130,15 @@ public final class ia implements View.OnClickListener {
                             ((k8) obj).Y = kcVar.K1.Y;
                         }
                     }
-                    boolean isEmpty = TextUtils.isEmpty(kcVar.K1.f5358y);
+                    boolean isEmpty = TextUtils.isEmpty(kcVar.K1.f5359y);
                     k8 k8Var2 = kcVar.K1;
-                    if (k8Var2.f5340o0 != null) {
+                    if (k8Var2.f5341o0 != null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (kcVar.f5395g0 == -1) {
-                        e4 e4Var = kcVar.f5408k1;
+                    if (kcVar.f5396g0 == -1) {
+                        e4 e4Var = kcVar.f5409k1;
                         if (k8Var2.Y) {
                             if (isEmpty && !z10) {
                                 i11 = R.string.StorySoundMuted;
@@ -154,7 +154,7 @@ public final class ia implements View.OnClickListener {
                             }
                             string = LocaleController.getString(i10);
                         }
-                        boolean z13 = kcVar.f5408k1.V;
+                        boolean z13 = kcVar.f5409k1.V;
                         if (e4Var.getMeasuredWidth() < 0) {
                             e4Var.G = string;
                         } else {
@@ -164,7 +164,7 @@ public final class ia implements View.OnClickListener {
                             }
                             o6Var.q(string, z11, true);
                         }
-                        kcVar.f5408k1.u();
+                        kcVar.f5409k1.u();
                     }
                     kcVar.f0(kcVar.K1.Y, true);
                     kcVar.X0.c();
@@ -174,7 +174,7 @@ public final class ia implements View.OnClickListener {
             case 3:
                 boolean k10 = kcVar.X0.k();
                 kcVar.X0.x(-9982, k10);
-                ((sg0) kcVar.f5405j1.f5868c).a(!k10, true);
+                ((sg0) kcVar.f5406j1.f5869c).a(!k10, true);
                 return;
             case 4:
                 if (kcVar.B0 != null && !kcVar.S1) {
@@ -184,10 +184,10 @@ public final class ia implements View.OnClickListener {
                         nb nbVar = kcVar.B0;
                         if (nbVar != null && nbVar.getCameraSession() != null) {
                             if (kcVar.B0.isFrontface() && !kcVar.B0.getCameraSession().hasFlashModes()) {
-                                int indexOf = kcVar.f5440u2.indexOf(F);
+                                int indexOf = kcVar.f5441u2.indexOf(F);
                                 if (indexOf >= 0) {
-                                    kcVar.f5437t2 = indexOf;
-                                    MessagesController.getGlobalMainSettings().edit().putInt("frontflash", kcVar.f5437t2).apply();
+                                    kcVar.f5438t2 = indexOf;
+                                    MessagesController.getGlobalMainSettings().edit().putInt("frontflash", kcVar.f5438t2).apply();
                                 }
                             } else {
                                 kcVar.B0.getCameraSession().setCurrentFlashMode(F);
@@ -201,7 +201,7 @@ public final class ia implements View.OnClickListener {
                 return;
             case 5:
                 nb nbVar2 = kcVar.B0;
-                if (nbVar2 != null && kcVar.f5392f0 == 0) {
+                if (nbVar2 != null && kcVar.f5393f0 == 0) {
                     nbVar2.toggleDual();
                     kcVar.F0.setValue(kcVar.B0.isDual());
                     xc xcVar = kcVar.F0;
@@ -213,23 +213,23 @@ public final class ia implements View.OnClickListener {
                     xcVar.setContentDescription(LocaleController.getString(i12));
                     kcVar.l1.e(true);
                     MessagesController.getGlobalMainSettings().edit().putInt("storydualhint", 2).apply();
-                    if (kcVar.f5412m1.V) {
+                    if (kcVar.f5413m1.V) {
                         MessagesController.getGlobalMainSettings().edit().putInt("storysvddualhint", 2).apply();
                     }
-                    kcVar.f5412m1.e(true);
+                    kcVar.f5413m1.e(true);
                     return;
                 }
                 return;
             case 6:
-                if (kcVar.f5392f0 == 0 && !kcVar.a2) {
+                if (kcVar.f5393f0 == 0 && !kcVar.a2) {
                     nb nbVar3 = kcVar.B0;
                     if (nbVar3 != null && nbVar3.isDual()) {
                         kcVar.B0.toggleDual();
                     }
-                    if (!kcVar.I0.f6326e && !kcVar.A0.j()) {
-                        kcVar.A0.o(kcVar.f5456z0);
-                        kcVar.I0.setSelected(kcVar.f5456z0);
-                        kcVar.G0.a(new u(kcVar.f5456z0, false), true);
+                    if (!kcVar.I0.f6327e && !kcVar.A0.j()) {
+                        kcVar.A0.o(kcVar.f5457z0);
+                        kcVar.I0.setSelected(kcVar.f5457z0);
+                        kcVar.G0.a(new u(kcVar.f5457z0, false), true);
                         kcVar.G0.setSelected(true);
                         nb nbVar4 = kcVar.B0;
                         if (nbVar4 != null) {
@@ -241,7 +241,7 @@ public final class ia implements View.OnClickListener {
                             kcVar.M0.setMaxCount(Math.min(10, t.b() - kcVar.A0.getFilledCount()));
                         }
                     }
-                    kcVar.I0.a(!yVar.f6326e, true);
+                    kcVar.I0.a(!yVar.f6327e, true);
                     kcVar.m0(true);
                     return;
                 }
@@ -268,15 +268,15 @@ public final class ia implements View.OnClickListener {
                 return;
             case 9:
                 nb nbVar6 = kcVar.B0;
-                if (nbVar6 != null && !kcVar.S1 && !kcVar.P1 && nbVar6.isInited() && kcVar.f5392f0 == 0) {
+                if (nbVar6 != null && !kcVar.S1 && !kcVar.P1 && nbVar6.isInited() && kcVar.f5393f0 == 0) {
                     kcVar.B0.switchCamera();
                     kcVar.O0.d(180.0f);
                     kc.a0(kcVar.B0.isFrontface());
                     if (kcVar.q0()) {
-                        kcVar.f5431s.c(null);
+                        kcVar.f5432s.c(null);
                         return;
                     } else {
-                        kcVar.f5431s.d();
+                        kcVar.f5432s.d();
                         return;
                     }
                 }
@@ -287,11 +287,11 @@ public final class ia implements View.OnClickListener {
             case 11:
                 k8 k8Var3 = kcVar.K1;
                 if (k8Var3 != null) {
-                    k8Var3.f5324f0 = true;
-                    k8Var3.f5321e0 = kcVar.M1;
+                    k8Var3.f5325f0 = true;
+                    k8Var3.f5322e0 = kcVar.M1;
                     kcVar.X();
                     k8 k8Var4 = kcVar.K1;
-                    if (k8Var4 != null && !k8Var4.f5313b0) {
+                    if (k8Var4 != null && !k8Var4.f5314b0) {
                         AndroidUtilities.runOnUIThread(new ga(kcVar, 24), 400L);
                         return;
                     }
@@ -299,7 +299,7 @@ public final class ia implements View.OnClickListener {
                 }
                 return;
             case 12:
-                if (kcVar.f5434s2) {
+                if (kcVar.f5435s2) {
                     kcVar.Z(true);
                     return;
                 }

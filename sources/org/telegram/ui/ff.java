@@ -13,10 +13,10 @@ import org.telegram.messenger.camera.Size;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ff implements Comparator {
-    public final int f36284a;
+    public final int f36289a;
 
     public ff(int i10) {
-        this.f36284a = i10;
+        this.f36289a = i10;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class ff implements Comparator {
         long j11;
         int i10;
         int i11;
-        switch (this.f36284a) {
+        switch (this.f36289a) {
             case 0:
                 return ((MessageObject) obj).getId() - ((MessageObject) obj2).getId();
             case 1:
@@ -67,15 +67,15 @@ public final class ff implements Comparator {
                 }
                 return -1;
             case 6:
-                id2 = ((org.telegram.ui.Components.n9) obj2).f28900b;
-                id3 = ((org.telegram.ui.Components.n9) obj).f28900b;
+                id2 = ((org.telegram.ui.Components.n9) obj2).f28905b;
+                id3 = ((org.telegram.ui.Components.n9) obj).f28905b;
                 break;
             case 7:
-                id2 = ((org.telegram.ui.Components.n9) obj2).f28900b;
-                id3 = ((org.telegram.ui.Components.n9) obj).f28900b;
+                id2 = ((org.telegram.ui.Components.n9) obj2).f28905b;
+                id3 = ((org.telegram.ui.Components.n9) obj).f28905b;
                 break;
             case 8:
-                return Long.compare(((org.telegram.ui.Components.dd) obj).f25699c, ((org.telegram.ui.Components.dd) obj2).f25699c);
+                return Long.compare(((org.telegram.ui.Components.dd) obj).f25704c, ((org.telegram.ui.Components.dd) obj2).f25704c);
             case 9:
                 Size size = (Size) obj;
                 Size size2 = (Size) obj2;
@@ -101,8 +101,8 @@ public final class ff implements Comparator {
                 id3 = ((Integer) obj).intValue();
                 break;
             case 12:
-                float f7 = ((org.telegram.ui.Components.zg0) obj).f33493a;
-                float f10 = ((org.telegram.ui.Components.zg0) obj2).f33493a;
+                float f7 = ((org.telegram.ui.Components.zg0) obj).f33499a;
+                float f10 = ((org.telegram.ui.Components.zg0) obj2).f33499a;
                 if (f7 > f10) {
                     return -1;
                 }
@@ -111,7 +111,7 @@ public final class ff implements Comparator {
                 }
                 return 1;
             case 13:
-                return Float.compare(((org.telegram.ui.Components.vl0) obj).f31729a, ((org.telegram.ui.Components.vl0) obj2).f31729a);
+                return Float.compare(((org.telegram.ui.Components.vl0) obj).f31735a, ((org.telegram.ui.Components.vl0) obj2).f31735a);
             case 14:
                 Pair pair = (Pair) obj;
                 Pair pair2 = (Pair) obj2;
@@ -133,8 +133,8 @@ public final class ff implements Comparator {
                 }
                 return -1;
             case 16:
-                int i12 = ((org.telegram.ui.Components.nq0) obj).f29046c;
-                int i13 = ((org.telegram.ui.Components.nq0) obj2).f29046c;
+                int i12 = ((org.telegram.ui.Components.nq0) obj).f29051c;
+                int i13 = ((org.telegram.ui.Components.nq0) obj2).f29051c;
                 if (i12 < i13) {
                     return 1;
                 }
@@ -143,8 +143,8 @@ public final class ff implements Comparator {
                 }
                 return -1;
             case 17:
-                id2 = ((org.telegram.ui.Components.nu0) obj2).f29066c;
-                id3 = ((org.telegram.ui.Components.nu0) obj).f29066c;
+                id2 = ((org.telegram.ui.Components.nu0) obj2).f29071c;
+                id3 = ((org.telegram.ui.Components.nu0) obj).f29071c;
                 break;
             case 18:
                 Pair pair5 = (Pair) obj;
@@ -226,7 +226,7 @@ public final class ff implements Comparator {
                 }
                 return -1;
             case 20:
-                return Long.compare(((uu) obj2).f25699c, ((uu) obj).f25699c);
+                return Long.compare(((uu) obj2).f25704c, ((uu) obj).f25704c);
             case 21:
                 int i19 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
                 if (i19 > 0) {
@@ -273,14 +273,14 @@ public final class ff implements Comparator {
                 return (int) (((View) obj).getY() - ((View) obj2).getY());
             case 28:
                 if (obj instanceof b11) {
-                    i10 = ((b11) obj).f34957g;
+                    i10 = ((b11) obj).f34962g;
                 } else if (obj instanceof MessagesController.FaqSearchResult) {
                     i10 = ((MessagesController.FaqSearchResult) obj).num;
                 } else {
                     i10 = 0;
                 }
                 if (obj2 instanceof b11) {
-                    i11 = ((b11) obj2).f34957g;
+                    i11 = ((b11) obj2).f34962g;
                 } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                     i11 = ((MessagesController.FaqSearchResult) obj2).num;
                 } else {

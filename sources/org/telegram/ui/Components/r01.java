@@ -5,31 +5,31 @@ import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class r01 extends ReplacementSpan {
-    public float f30231a;
-    public final String f30232b;
-    public final int f30233c;
+    public float f30237a;
+    public final String f30238b;
+    public final int f30239c;
     public final Paint d;
 
     public r01(int i10, Paint paint, String str) {
-        this.f30232b = str;
-        this.f30233c = i10;
+        this.f30238b = str;
+        this.f30239c = i10;
         this.d = paint;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         float f10 = (i12 + i14) / 2.0f;
-        paint.setColor(this.f30233c);
+        paint.setColor(this.f30239c);
         float dp = AndroidUtilities.dp(19.0f) / 2.0f;
-        canvas.drawRoundRect(f7, f10 - dp, f7 + this.f30231a + AndroidUtilities.dp(11.33f), f10 + dp, dp, dp, this.d);
-        canvas.drawText(this.f30232b, AndroidUtilities.dpf2(5.66f) + f7, i14 - AndroidUtilities.dp(6.0f), paint);
+        canvas.drawRoundRect(f7, f10 - dp, f7 + this.f30237a + AndroidUtilities.dp(11.33f), f10 + dp, dp, dp, this.d);
+        canvas.drawText(this.f30238b, AndroidUtilities.dpf2(5.66f) + f7, i14 - AndroidUtilities.dp(6.0f), paint);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
         float dpf2 = AndroidUtilities.dpf2(11.33f);
-        float measureText = paint.measureText(this.f30232b);
-        this.f30231a = measureText;
+        float measureText = paint.measureText(this.f30238b);
+        this.f30237a = measureText;
         return (int) (dpf2 + measureText);
     }
 }

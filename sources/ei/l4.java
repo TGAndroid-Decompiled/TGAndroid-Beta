@@ -9,18 +9,18 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.ew0;
 public class l4 extends View {
-    public final ew0 f9185a;
-    public final Paint f9186b;
-    public float f9187c;
+    public final ew0 f9186a;
+    public final Paint f9187b;
+    public float f9188c;
     public o1.k d;
 
     public l4(Context context, d6 d6Var) {
         super(context);
         ew0 ew0Var = new ew0(new d2.c(19), new d2.c(20));
-        ew0Var.f26165c = 100.0f;
-        this.f9185a = ew0Var;
+        ew0Var.f26170c = 100.0f;
+        this.f9186a = ew0Var;
         Paint paint = new Paint(1);
-        this.f9186b = paint;
+        this.f9187b = paint;
         paint.setColor(i6.v0(i6.Oh, d6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
@@ -30,21 +30,21 @@ public class l4 extends View {
     @Override
     public final void draw(Canvas canvas) {
         super.draw(canvas);
-        if (this.f9187c > 0.0f) {
-            Paint paint = this.f9186b;
+        if (this.f9188c > 0.0f) {
+            Paint paint = this.f9187b;
             float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f9187c, height, paint);
+            canvas.drawLine(0.0f, height, getWidth() * this.f9188c, height, paint);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        o1.k kVar = new o1.k(this, this.f9185a);
+        o1.k kVar = new o1.k(this, this.f9186a);
         o1.l lVar = new o1.l();
         lVar.b(400.0f);
         lVar.a(1.0f);
-        kVar.f16984u = lVar;
+        kVar.f16988u = lVar;
         this.d = kVar;
     }
 
@@ -56,7 +56,7 @@ public class l4 extends View {
     }
 
     public void setLoadProgress(float f7) {
-        this.f9187c = f7;
+        this.f9188c = f7;
         invalidate();
     }
 
@@ -66,7 +66,7 @@ public class l4 extends View {
             setLoadProgress(f7);
             return;
         }
-        kVar.f16984u.f16991i = f7 * 100.0f;
+        kVar.f16988u.f16995i = f7 * 100.0f;
         kVar.f();
     }
 }

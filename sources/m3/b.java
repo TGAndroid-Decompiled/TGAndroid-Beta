@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import w7.m;
 public final class b extends m {
-    public final int f16034a;
+    public final int f16038a;
 
     public static n3.a c(v vVar) {
         String s10 = vVar.s();
         s10.getClass();
         String s11 = vVar.s();
         s11.getClass();
-        return new n3.a(s10, s11, vVar.r(), vVar.r(), Arrays.copyOfRange(vVar.f8589a, vVar.f8590b, vVar.f8591c));
+        return new n3.a(s10, s11, vVar.r(), vVar.r(), Arrays.copyOfRange(vVar.f8590a, vVar.f8591b, vVar.f8592c));
     }
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
-        switch (this.f16034a) {
+        switch (this.f16038a) {
             case 0:
                 if (byteBuffer.get() != 116) {
                     return null;

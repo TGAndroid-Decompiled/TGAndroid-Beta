@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public abstract class fc {
-    public float f5091b;
+    public float f5092b;
     public org.telegram.ui.Cells.f7 d;
-    public ImageReceiver f5093e;
-    public ai.a5 f5094f;
-    public int f5090a = 0;
-    public final RectF f5092c = new RectF();
+    public ImageReceiver f5094e;
+    public ai.a5 f5095f;
+    public int f5091a = 0;
+    public final RectF f5093c = new RectF();
 
     public static dc b(org.telegram.ui.Cells.g7 g7Var) {
         int i10;
@@ -22,9 +22,9 @@ public abstract class fc {
         dc dcVar = new dc(imageView, 2);
         int[] iArr = new int[2];
         imageView.getLocationOnScreen(iArr);
-        dcVar.f5092c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
-        dcVar.d = new org.telegram.ui.Cells.f7(imageView.getContext(), null, false, g7Var.f22168y);
-        dcVar.f5091b = Math.max(dcVar.f5092c.width(), dcVar.f5092c.height()) / 2.0f;
+        dcVar.f5093c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
+        dcVar.d = new org.telegram.ui.Cells.f7(imageView.getContext(), null, false, g7Var.f22172y);
+        dcVar.f5092b = Math.max(dcVar.f5093c.width(), dcVar.f5093c.height()) / 2.0f;
         return dcVar;
     }
 
@@ -40,9 +40,9 @@ public abstract class fc {
                 AndroidUtilities.getViewPositionInParent(a0Var, (ViewGroup) a0Var.getRootView(), fArr);
                 float imageX = imageReceiver.getImageX() + iArr[0] + fArr[0];
                 float imageY = imageReceiver.getImageY() + iArr[1] + fArr[1];
-                ecVar.f5092c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
-                ecVar.f5093e = imageReceiver;
-                ecVar.f5091b = Math.max(ecVar.f5092c.width(), ecVar.f5092c.height()) / 2.0f;
+                ecVar.f5093c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
+                ecVar.f5094e = imageReceiver;
+                ecVar.f5092b = Math.max(ecVar.f5093c.width(), ecVar.f5093c.height()) / 2.0f;
                 return ecVar;
             }
             return null;
@@ -69,12 +69,12 @@ public abstract class fc {
                 if (xbVar2 != null) {
                     f7 = xbVar2.getY();
                 }
-                dcVar.f5092c.set(a5Var.getX() + currentPeerView.getX() + jcVar.X + x10 + jcVar.v.getLeft(), a5Var.getY() + currentPeerView.getY() + jcVar.W + f7 + jcVar.v.getTop(), (((x10 + jcVar.X) + jcVar.v.getRight()) - (jcVar.v.getWidth() - currentPeerView.getRight())) - (currentPeerView.getWidth() - a5Var.getRight()), (((f7 + jcVar.W) + jcVar.v.getBottom()) - (jcVar.v.getHeight() - currentPeerView.getBottom())) - (currentPeerView.getHeight() - a5Var.getBottom()));
-                dcVar.f5090a = 1;
-                dcVar.f5091b = AndroidUtilities.dp(8.0f);
+                dcVar.f5093c.set(a5Var.getX() + currentPeerView.getX() + jcVar.X + x10 + jcVar.v.getLeft(), a5Var.getY() + currentPeerView.getY() + jcVar.W + f7 + jcVar.v.getTop(), (((x10 + jcVar.X) + jcVar.v.getRight()) - (jcVar.v.getWidth() - currentPeerView.getRight())) - (currentPeerView.getWidth() - a5Var.getRight()), (((f7 + jcVar.W) + jcVar.v.getBottom()) - (jcVar.v.getHeight() - currentPeerView.getBottom())) - (currentPeerView.getHeight() - a5Var.getBottom()));
+                dcVar.f5091a = 1;
+                dcVar.f5092b = AndroidUtilities.dp(8.0f);
                 ai.e6 t10 = jcVar.t();
                 if (t10 != null) {
-                    dcVar.f5094f = t10.f844c1;
+                    dcVar.f5095f = t10.f844c1;
                 }
                 return dcVar;
             }

@@ -6,19 +6,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rz implements RequestDelegate {
-    public final int f40306a;
-    public final c00 f40307b;
+    public final int f40311a;
+    public final c00 f40312b;
 
     public rz(c00 c00Var, int i10) {
-        this.f40306a = i10;
-        this.f40307b = c00Var;
+        this.f40311a = i10;
+        this.f40312b = c00Var;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f40306a) {
+        switch (this.f40311a) {
             case 0:
-                final c00 c00Var = this.f40307b;
+                final c00 c00Var = this.f40312b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -27,7 +27,7 @@ public final class rz implements RequestDelegate {
                                 c00 c00Var2 = c00Var;
                                 c00Var2.F = 0;
                                 if (tL_error == null) {
-                                    org.telegram.messenger.f0.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.yc.a0(c00Var2), R.raw.contact_check, 36);
+                                    org.telegram.messenger.q.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.yc.a0(c00Var2), R.raw.contact_check, 36);
                                     return;
                                 }
                                 return;
@@ -39,7 +39,7 @@ public final class rz implements RequestDelegate {
                 });
                 return;
             default:
-                final c00 c00Var2 = this.f40307b;
+                final c00 c00Var2 = this.f40312b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -48,7 +48,7 @@ public final class rz implements RequestDelegate {
                                 c00 c00Var22 = c00Var2;
                                 c00Var22.F = 0;
                                 if (tL_error == null) {
-                                    org.telegram.messenger.f0.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.yc.a0(c00Var22), R.raw.contact_check, 36);
+                                    org.telegram.messenger.q.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.yc.a0(c00Var22), R.raw.contact_check, 36);
                                     return;
                                 }
                                 return;

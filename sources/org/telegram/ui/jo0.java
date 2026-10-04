@@ -4,21 +4,21 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class jo0 extends AnimatorListenerAdapter {
-    public final int f37731a;
-    public final boolean f37732b;
-    public final so0 f37733c;
+    public final int f37736a;
+    public final boolean f37737b;
+    public final so0 f37738c;
 
     public jo0(so0 so0Var, boolean z10, int i10) {
-        this.f37731a = i10;
-        this.f37733c = so0Var;
-        this.f37732b = z10;
+        this.f37736a = i10;
+        this.f37738c = so0Var;
+        this.f37737b = z10;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f37731a) {
+        switch (this.f37736a) {
             case 0:
-                so0 so0Var = this.f37733c;
+                so0 so0Var = this.f37738c;
                 AnimatorSet animatorSet = so0Var.v;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     so0Var.v = null;
@@ -26,7 +26,7 @@ public final class jo0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                so0 so0Var2 = this.f37733c;
+                so0 so0Var2 = this.f37738c;
                 AnimatorSet animatorSet2 = so0Var2.v;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     so0Var2.v = null;
@@ -38,26 +38,26 @@ public final class jo0 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f37731a) {
+        switch (this.f37736a) {
             case 0:
-                so0 so0Var = this.f37733c;
+                so0 so0Var = this.f37738c;
                 AnimatorSet animatorSet = so0Var.v;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f37732b) {
-                        so0Var.f40568r.setVisibility(4);
+                    if (!this.f37737b) {
+                        so0Var.f40574r.setVisibility(4);
                         return;
                     } else {
-                        so0Var.f40563n.getContentView().setVisibility(4);
+                        so0Var.f40569n.getContentView().setVisibility(4);
                         return;
                     }
                 }
                 return;
             default:
-                so0 so0Var2 = this.f37733c;
+                so0 so0Var2 = this.f37738c;
                 AnimatorSet animatorSet2 = so0Var2.v;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f37732b) {
-                        so0Var2.f40570s.setVisibility(4);
+                    if (!this.f37737b) {
+                        so0Var2.f40576s.setVisibility(4);
                         return;
                     } else {
                         so0Var2.U.setVisibility(4);

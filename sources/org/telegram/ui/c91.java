@@ -8,11 +8,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class c91 extends LinearLayout {
-    public final org.telegram.ui.ActionBar.f1[] f35377a;
+    public final org.telegram.ui.ActionBar.f1[] f35382a;
 
     public c91(ContextThemeWrapper contextThemeWrapper, final lr0 lr0Var) {
         super(contextThemeWrapper);
-        this.f35377a = r1;
+        this.f35382a = r1;
         setOrientation(1);
         org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, this, R.drawable.msg_speed_0_2, LocaleController.getString(R.string.SpeedVerySlow), false, null);
         c10.c(-328966, -328966);
@@ -23,27 +23,27 @@ public final class c91 extends LinearLayout {
                 lr0 lr0Var2 = lr0Var;
                 switch (i10) {
                     case 0:
-                        PhotoViewer photoViewer = lr0Var2.f38329a;
+                        PhotoViewer photoViewer = lr0Var2.f38334a;
                         Drawable[] drawableArr = PhotoViewer.U8;
                         photoViewer.D0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer2 = lr0Var2.f38334a;
                         Drawable[] drawableArr2 = PhotoViewer.U8;
                         photoViewer2.D0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer3 = lr0Var2.f38334a;
                         Drawable[] drawableArr3 = PhotoViewer.U8;
                         photoViewer3.D0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer4 = lr0Var2.f38334a;
                         Drawable[] drawableArr4 = PhotoViewer.U8;
                         photoViewer4.D0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer5 = lr0Var2.f38334a;
                         Drawable[] drawableArr5 = PhotoViewer.U8;
                         photoViewer5.D0(true, true, 2.0f);
                         return;
@@ -60,27 +60,27 @@ public final class c91 extends LinearLayout {
                 lr0 lr0Var2 = lr0Var;
                 switch (i10) {
                     case 0:
-                        PhotoViewer photoViewer = lr0Var2.f38329a;
+                        PhotoViewer photoViewer = lr0Var2.f38334a;
                         Drawable[] drawableArr = PhotoViewer.U8;
                         photoViewer.D0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer2 = lr0Var2.f38334a;
                         Drawable[] drawableArr2 = PhotoViewer.U8;
                         photoViewer2.D0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer3 = lr0Var2.f38334a;
                         Drawable[] drawableArr3 = PhotoViewer.U8;
                         photoViewer3.D0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer4 = lr0Var2.f38334a;
                         Drawable[] drawableArr4 = PhotoViewer.U8;
                         photoViewer4.D0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer5 = lr0Var2.f38334a;
                         Drawable[] drawableArr5 = PhotoViewer.U8;
                         photoViewer5.D0(true, true, 2.0f);
                         return;
@@ -97,27 +97,27 @@ public final class c91 extends LinearLayout {
                 lr0 lr0Var2 = lr0Var;
                 switch (i10) {
                     case 0:
-                        PhotoViewer photoViewer = lr0Var2.f38329a;
+                        PhotoViewer photoViewer = lr0Var2.f38334a;
                         Drawable[] drawableArr = PhotoViewer.U8;
                         photoViewer.D0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer2 = lr0Var2.f38334a;
                         Drawable[] drawableArr2 = PhotoViewer.U8;
                         photoViewer2.D0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer3 = lr0Var2.f38334a;
                         Drawable[] drawableArr3 = PhotoViewer.U8;
                         photoViewer3.D0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer4 = lr0Var2.f38334a;
                         Drawable[] drawableArr4 = PhotoViewer.U8;
                         photoViewer4.D0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer5 = lr0Var2.f38334a;
                         Drawable[] drawableArr5 = PhotoViewer.U8;
                         photoViewer5.D0(true, true, 2.0f);
                         return;
@@ -134,27 +134,27 @@ public final class c91 extends LinearLayout {
                 lr0 lr0Var2 = lr0Var;
                 switch (i10) {
                     case 0:
-                        PhotoViewer photoViewer = lr0Var2.f38329a;
+                        PhotoViewer photoViewer = lr0Var2.f38334a;
                         Drawable[] drawableArr = PhotoViewer.U8;
                         photoViewer.D0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer2 = lr0Var2.f38334a;
                         Drawable[] drawableArr2 = PhotoViewer.U8;
                         photoViewer2.D0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer3 = lr0Var2.f38334a;
                         Drawable[] drawableArr3 = PhotoViewer.U8;
                         photoViewer3.D0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer4 = lr0Var2.f38334a;
                         Drawable[] drawableArr4 = PhotoViewer.U8;
                         photoViewer4.D0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer5 = lr0Var2.f38334a;
                         Drawable[] drawableArr5 = PhotoViewer.U8;
                         photoViewer5.D0(true, true, 2.0f);
                         return;
@@ -171,27 +171,27 @@ public final class c91 extends LinearLayout {
                 lr0 lr0Var2 = lr0Var;
                 switch (i10) {
                     case 0:
-                        PhotoViewer photoViewer = lr0Var2.f38329a;
+                        PhotoViewer photoViewer = lr0Var2.f38334a;
                         Drawable[] drawableArr = PhotoViewer.U8;
                         photoViewer.D0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer2 = lr0Var2.f38334a;
                         Drawable[] drawableArr2 = PhotoViewer.U8;
                         photoViewer2.D0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer3 = lr0Var2.f38334a;
                         Drawable[] drawableArr3 = PhotoViewer.U8;
                         photoViewer3.D0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer4 = lr0Var2.f38334a;
                         Drawable[] drawableArr4 = PhotoViewer.U8;
                         photoViewer4.D0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = lr0Var2.f38329a;
+                        PhotoViewer photoViewer5 = lr0Var2.f38334a;
                         Drawable[] drawableArr5 = PhotoViewer.U8;
                         photoViewer5.D0(true, true, 2.0f);
                         return;

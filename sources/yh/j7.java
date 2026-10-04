@@ -17,7 +17,7 @@ import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.v90;
 import org.telegram.ui.Components.zl0;
 public final class j7 extends f61 {
-    public static final int f51485a = 0;
+    public static final int f51491a = 0;
 
     static {
         f61.setup(new f61());
@@ -27,16 +27,16 @@ public final class j7 extends f61 {
         String formatCurrency;
         g61 J = g61.J(j7.class);
         J.d = i10;
-        J.f26682z = i11;
+        J.f26687z = i11;
         long j3 = tL_starsTopupOption.stars;
         J.B = j3;
-        J.f26669l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j3);
+        J.f26674l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j3);
         if (tL_starsTopupOption.loadingStorePrice) {
             formatCurrency = null;
         } else {
             formatCurrency = BillingController.getInstance().formatCurrency(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
         }
-        J.f26670m = formatCurrency;
+        J.f26675m = formatCurrency;
         J.G = tL_starsTopupOption;
         return J;
     }
@@ -45,24 +45,24 @@ public final class j7 extends f61 {
     public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
         float f7;
         k7 k7Var = (k7) view;
-        int i10 = g61Var.f26682z;
-        CharSequence charSequence = g61Var.f26669l;
-        CharSequence charSequence2 = g61Var.f26670m;
-        org.telegram.ui.Components.p6 p6Var = k7Var.f51539e;
+        int i10 = g61Var.f26687z;
+        CharSequence charSequence = g61Var.f26674l;
+        CharSequence charSequence2 = g61Var.f26675m;
+        org.telegram.ui.Components.p6 p6Var = k7Var.f51544e;
         TextView textView = k7Var.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        k7Var.f51541n = i10;
+        k7Var.f51546n = i10;
         if (!equals) {
-            k7Var.f51542r.d(i10, true);
+            k7Var.f51547r.d(i10, true);
         }
         textView.setText(charSequence);
         if (charSequence2 == null) {
-            if (k7Var.f51540f == null) {
+            if (k7Var.f51545f == null) {
                 SpannableString spannableString = new SpannableString("x");
-                k7Var.f51540f = spannableString;
-                spannableString.setSpan(new v90(AndroidUtilities.dp(55.0f), p6Var), 0, k7Var.f51540f.length(), 33);
+                k7Var.f51545f = spannableString;
+                spannableString.setSpan(new v90(AndroidUtilities.dp(55.0f), p6Var), 0, k7Var.f51545f.length(), 33);
             }
-            charSequence2 = k7Var.f51540f;
+            charSequence2 = k7Var.f51545f;
         }
         p6Var.setText(charSequence2);
         if (LocaleController.isRTL) {
@@ -81,7 +81,7 @@ public final class j7 extends f61 {
 
     @Override
     public final boolean contentsEquals(g61 g61Var, g61 g61Var2) {
-        if (g61Var.f26682z == g61Var2.f26682z && g61Var.d == g61Var2.d && TextUtils.equals(g61Var.f26670m, g61Var2.f26670m)) {
+        if (g61Var.f26687z == g61Var2.f26687z && g61Var.d == g61Var2.d && TextUtils.equals(g61Var.f26675m, g61Var2.f26675m)) {
             return true;
         }
         return false;

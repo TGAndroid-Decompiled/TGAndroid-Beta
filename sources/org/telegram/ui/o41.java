@@ -45,7 +45,7 @@ public final class o41 extends org.telegram.ui.Components.cb {
         textView.setText(LocaleController.getString(R.string.SearchAdsAboutTitle));
         textView.setTypeface(AndroidUtilities.bold());
         int i12 = org.telegram.ui.ActionBar.i6.G6;
-        org.telegram.messenger.ok.n(i12, d6Var, textView, 1, 20.0f);
+        org.telegram.messenger.bi.m(i12, d6Var, textView, 1, 20.0f);
         textView.setGravity(1);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.z5.t(-2, -2, 1, 22, 14, 22, 0), context);
         h.setText(LocaleController.getString(R.string.SearchAdsAboutSubtitle));
@@ -64,7 +64,7 @@ public final class o41 extends org.telegram.ui.Components.cb {
         }
         linearLayout.addView(new n41(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new ha0(this, isPremium, ywVar, 8)), true)), w7.z5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20819d7, d6Var));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20823d7, d6Var));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);

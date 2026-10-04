@@ -10,19 +10,19 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import v7.x;
 public final class h implements androidx.emoji2.text.k {
-    public static h f14680b;
-    public final Context f14681a;
+    public static h f14681b;
+    public final Context f14682a;
 
     public h(Context context, int i10) {
         switch (i10) {
             case 1:
-                this.f14681a = context.getApplicationContext();
+                this.f14682a = context.getApplicationContext();
                 return;
             case 2:
-                this.f14681a = context.getApplicationContext();
+                this.f14682a = context.getApplicationContext();
                 return;
             default:
-                this.f14681a = context.getApplicationContext();
+                this.f14682a = context.getApplicationContext();
                 return;
         }
     }
@@ -31,15 +31,15 @@ public final class h implements androidx.emoji2.text.k {
         n6.l.h(context);
         synchronized (h.class) {
             try {
-                if (f14680b == null) {
+                if (f14681b == null) {
                     o.a(context);
-                    f14680b = new h(context, 0);
+                    f14681b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f14680b;
+        return f14681b;
     }
 
     public static final l c(PackageInfo packageInfo, l... lVarArr) {

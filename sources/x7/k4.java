@@ -1,9 +1,9 @@
 package x7;
 public final class k4 implements ia.d {
-    public static final k4 f49544a = new Object();
+    public static final k4 f49552a = new Object();
 
     static {
-        t8.b.t(t8.b.n(c0.class, new z(1)));
+        sa.e.t(sa.e.n(c0.class, new z(1)));
     }
 
     @Override

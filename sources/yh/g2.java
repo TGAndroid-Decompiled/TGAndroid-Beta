@@ -9,11 +9,11 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.es0;
 import org.telegram.ui.Components.g91;
 public final class g2 extends g91 {
-    public final x3 U;
+    public final x3 V;
 
     public g2(x3 x3Var, Context context) {
         super(context, null);
-        this.U = x3Var;
+        this.V = x3Var;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class g2 extends g91 {
             return;
         }
         float clamp = Utilities.clamp(f7 / getMeasuredWidth(), 1.0f, -1.0f);
-        x3 x3Var = this.U;
+        x3 x3Var = this.V;
         i10 = ((org.telegram.ui.ActionBar.f3) x3Var).backgroundPaddingLeft;
         view.setTranslationX(((-clamp) * 2.0f * i10) + f7);
         float f10 = 0.0f;
@@ -45,15 +45,15 @@ public final class g2 extends g91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                n2Var = x3Var.f52209b0;
-                if (n2Var != null && view2 == n2Var.Y && (i2Var3 = n2Var.f52213d0) != null) {
+                n2Var = x3Var.f52214b0;
+                if (n2Var != null && view2 == n2Var.Y && (i2Var3 = n2Var.f52218d0) != null) {
                     i2Var3.invalidate();
                 }
-                if (view2 == x3Var.Y && (i2Var2 = x3Var.f52213d0) != null) {
+                if (view2 == x3Var.Y && (i2Var2 = x3Var.f52218d0) != null) {
                     i2Var2.invalidate();
                 }
-                n2Var2 = x3Var.f52211c0;
-                if (n2Var2 == null && view2 == n2Var2.Y && (i2Var = n2Var2.f52213d0) != null) {
+                n2Var2 = x3Var.f52216c0;
+                if (n2Var2 == null && view2 == n2Var2.Y && (i2Var = n2Var2.f52218d0) != null) {
                     i2Var.invalidate();
                     return;
                 }
@@ -61,14 +61,14 @@ public final class g2 extends g91 {
             }
         }
         view2 = null;
-        n2Var = x3Var.f52209b0;
+        n2Var = x3Var.f52214b0;
         if (n2Var != null) {
             i2Var3.invalidate();
         }
         if (view2 == x3Var.Y) {
             i2Var2.invalidate();
         }
-        n2Var2 = x3Var.f52211c0;
+        n2Var2 = x3Var.f52216c0;
         if (n2Var2 == null) {
         }
     }
@@ -76,11 +76,11 @@ public final class g2 extends g91 {
     @Override
     public final void G() {
         super.G();
-        int i10 = this.f26731b;
-        x3 x3Var = this.U;
+        int i10 = this.f26736b;
+        x3 x3Var = this.V;
         boolean z10 = false;
         if (i10 != x3Var.L1(false)) {
-            if (this.f26731b > x3Var.L1(false)) {
+            if (this.f26736b > x3Var.L1(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new es0(16, this, z10));
@@ -89,7 +89,7 @@ public final class g2 extends g91 {
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        f4.d dVar = this.U.Y0;
+        f4.d dVar = this.V.Y0;
         if (dVar != null && !dVar.c(0)) {
             return false;
         }

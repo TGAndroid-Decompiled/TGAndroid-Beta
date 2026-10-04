@@ -4,7 +4,7 @@ import org.telegram.messenger.AndroidUtilities;
 public final class s01 extends org.telegram.ui.Cells.u1 {
     @Override
     public final int getParentWidth() {
-        return org.telegram.messenger.ok.z(128.0f, AndroidUtilities.displaySize.x, 2);
+        return org.telegram.messenger.bi.z(128.0f, AndroidUtilities.displaySize.x, 2);
     }
 
     @Override

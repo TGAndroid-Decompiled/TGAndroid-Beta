@@ -18,20 +18,20 @@ import org.telegram.ui.Components.w9;
 import org.telegram.ui.d10;
 import w7.z5;
 public final class i1 extends LinearLayout {
-    public final d6 f10643a;
-    public final w9 f10644b;
-    public final h9 f10645c;
+    public final d6 f10644a;
+    public final w9 f10645b;
+    public final h9 f10646c;
     public final TextView d;
-    public final TextView f10646e;
+    public final TextView f10647e;
 
     public i1(Context context, d6 d6Var, boolean z10) {
         super(context);
         int v02;
-        this.f10645c = new h9((d6) null);
-        this.f10643a = d6Var;
+        this.f10646c = new h9((d6) null);
+        this.f10644a = d6Var;
         setOrientation(0);
         w9 w9Var = new w9(context);
-        this.f10644b = w9Var;
+        this.f10645b = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         addView(w9Var, z5.t(28, 28, 19, 12, 0, 12, 0));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -43,12 +43,12 @@ public final class i1 extends LinearLayout {
         int i10 = i6.G6;
         textView.setTextColor(i6.v0(i10, d6Var));
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, z5.n(-1, -2), context);
-        this.f10646e = h;
+        this.f10647e = h;
         h.setTextSize(1, 13.0f);
         if (z10) {
             v02 = i6.l1(0.5f, i6.v0(i10, d6Var));
         } else {
-            v02 = i6.v0(i6.f21224z6, d6Var);
+            v02 = i6.v0(i6.f21228z6, d6Var);
         }
         h.setTextColor(v02);
         linearLayout.addView(h, z5.n(-1, -2));
@@ -58,32 +58,32 @@ public final class i1 extends LinearLayout {
         if (str == null) {
             return;
         }
-        TextView textView = this.f10646e;
+        TextView textView = this.f10647e;
         TextView textView2 = this.d;
-        w9 w9Var = this.f10644b;
+        w9 w9Var = this.f10645b;
         if (i10 == 0) {
-            sq sqVar = new sq(i6.b0(AndroidUtilities.dp(28.0f), i6.v0(i6.Oh, this.f10643a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
-            sqVar.f30856s = AndroidUtilities.dp(-0.66f);
+            sq sqVar = new sq(i6.b0(AndroidUtilities.dp(28.0f), i6.v0(i6.Oh, this.f10644a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
+            sqVar.f30862s = AndroidUtilities.dp(-0.66f);
             sqVar.v = 0;
             int dp = AndroidUtilities.dp(20.0f);
             int dp2 = AndroidUtilities.dp(20.0f);
-            sqVar.f30852e = dp;
-            sqVar.f30853f = dp2;
+            sqVar.f30858e = dp;
+            sqVar.f30859f = dp2;
             w9Var.setImageDrawable(sqVar);
             textView2.setText(LocaleController.formatString(R.string.HashtagSuggestion1Title, str));
             textView.setText(LocaleController.getString(R.string.HashtagSuggestion1Text));
             return;
         }
-        h9 h9Var = this.f10645c;
+        h9 h9Var = this.f10646c;
         h9Var.q(chat);
         w9Var.e(chat, h9Var);
         int i11 = R.string.HashtagSuggestion2Title;
-        StringBuilder j3 = t8.b.j(str, "@");
+        StringBuilder j3 = sa.e.j(str, "@");
         j3.append(ChatObject.getPublicUsername(chat));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, j3.toString()));
         spannableStringBuilder.append((CharSequence) "  d");
         d10 d10Var = new d10(8);
-        d10Var.f35604f = i6.w0(null, i6.Lj, false);
+        d10Var.f35609f = i6.w0(null, i6.Lj, false);
         spannableStringBuilder.setSpan(d10Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));

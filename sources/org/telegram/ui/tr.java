@@ -8,22 +8,22 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class tr extends org.telegram.ui.Components.x61 {
-    public final ih1 f40944e;
-    public final long f40945f;
+    public final ih1 f40950e;
+    public final long f40951f;
     public final gh1 h;
-    public String f40946n;
-    public org.telegram.ui.ActionBar.v0 f40947r;
-    public boolean f40948s = false;
+    public String f40952n;
+    public org.telegram.ui.ActionBar.v0 f40953r;
+    public boolean f40954s = false;
 
     public tr(ih1 ih1Var, long j3, gh1 gh1Var) {
-        this.f40944e = ih1Var;
-        this.f40945f = j3;
+        this.f40950e = ih1Var;
+        this.f40951f = j3;
         this.h = gh1Var;
         sr srVar = new sr(this, 0);
-        if (ih1Var.f37439c) {
+        if (ih1Var.f37444c) {
             srVar.run();
         } else {
-            ih1Var.f37441f.add(srVar);
+            ih1Var.f37446f.add(srVar);
         }
     }
 
@@ -45,7 +45,7 @@ public final class tr extends org.telegram.ui.Components.x61 {
             gh1Var.run(null);
             finishFragment();
         } else if (i10 == 2) {
-            this.f40948s = true;
+            this.f40954s = true;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
                 presentFragment(new nd(org.telegram.ui.Cells.c1.h(0, "step")));
@@ -53,9 +53,9 @@ public final class tr extends org.telegram.ui.Components.x61 {
             }
             presentFragment(new h(0));
             globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-        } else if (g61Var.f17183a == 12) {
+        } else if (g61Var.f17187a == 12) {
             finishFragment();
-            gh1Var.run(getMessagesController().getChat(Long.valueOf(-g61Var.f26680x)));
+            gh1Var.run(getMessagesController().getChat(Long.valueOf(-g61Var.f26685x)));
         }
     }
 
@@ -69,18 +69,18 @@ public final class tr extends org.telegram.ui.Components.x61 {
         org.telegram.ui.ActionBar.v0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
         c10.F();
         c10.H = new hg.d2(this, 4);
-        this.f40947r = c10;
+        this.f40953r = c10;
         c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f40947r.setContentDescription(LocaleController.getString(R.string.Search));
-        this.f40947r.setVisibility(8);
+        this.f40953r.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f40953r.setVisibility(8);
         super.createView(context);
-        this.f32725a.s1();
+        this.f32731a.s1();
         return this.fragmentView;
     }
 
     @Override
     public final org.telegram.ui.Components.zl0 getListViewForSimpleGlass() {
-        return this.f32725a;
+        return this.f32731a;
     }
 
     @Override
@@ -91,11 +91,11 @@ public final class tr extends org.telegram.ui.Components.x61 {
     @Override
     public final void onResume() {
         super.onResume();
-        if (this.f40948s) {
-            ih1 ih1Var = this.f40944e;
-            ih1Var.f37439c = false;
-            ih1Var.f37441f.add(new sr(this, 1));
-            this.f40948s = false;
+        if (this.f40954s) {
+            ih1 ih1Var = this.f40950e;
+            ih1Var.f37444c = false;
+            ih1Var.f37446f.add(new sr(this, 1));
+            this.f40954s = false;
         }
     }
 }

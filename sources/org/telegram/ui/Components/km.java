@@ -19,19 +19,19 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class km extends gl0 {
-    public final Context f28164c;
+    public final Context f28169c;
     public final boolean d;
-    public boolean f28165e;
-    public boolean f28166f;
+    public boolean f28170e;
+    public boolean f28171f;
     public final ArrayList h = new ArrayList(8);
-    public int f28167n;
-    public int f28168r;
-    public boolean f28169s;
+    public int f28172n;
+    public int f28173r;
+    public boolean f28174s;
     public final ChatAttachAlertPhotoLayout v;
 
     public km(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, boolean z10) {
         this.v = chatAttachAlertPhotoLayout;
-        this.f28164c = context;
+        this.f28169c = context;
         this.d = z10;
     }
 
@@ -43,9 +43,9 @@ public final class km extends gl0 {
     @Override
     public final boolean E(zl0 zl0Var) {
         MediaController.AlbumEntry albumEntry;
-        boolean isEmpty = ChatAttachAlertPhotoLayout.f24019r1.isEmpty();
+        boolean isEmpty = ChatAttachAlertPhotoLayout.f24023r1.isEmpty();
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
-        if ((!isEmpty || ((albumEntry = chatAttachAlertPhotoLayout.T0) != null && !albumEntry.photos.isEmpty())) && chatAttachAlertPhotoLayout.f29643b.R && h() > 30) {
+        if ((!isEmpty || ((albumEntry = chatAttachAlertPhotoLayout.T0) != null && !albumEntry.photos.isEmpty())) && chatAttachAlertPhotoLayout.f29648b.R && h() > 30) {
             return true;
         }
         return false;
@@ -56,10 +56,10 @@ public final class km extends gl0 {
         ArrayList<MediaController.PhotoEntry> arrayList;
         MediaController.PhotoEntry M = M(i10);
         if (M == null) {
-            int i11 = this.f28168r;
+            int i11 = this.f28173r;
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
             if (i10 <= i11) {
-                ArrayList arrayList2 = ChatAttachAlertPhotoLayout.f24019r1;
+                ArrayList arrayList2 = ChatAttachAlertPhotoLayout.f24023r1;
                 if (!arrayList2.isEmpty()) {
                     M = (MediaController.PhotoEntry) arrayList2.get(0);
                 } else {
@@ -69,7 +69,7 @@ public final class km extends gl0 {
                     }
                 }
             } else if (!chatAttachAlertPhotoLayout.T0.photos.isEmpty()) {
-                M = (MediaController.PhotoEntry) hg.k0.g(1, chatAttachAlertPhotoLayout.T0.photos);
+                M = (MediaController.PhotoEntry) hg.c.g(1, chatAttachAlertPhotoLayout.T0.photos);
             }
         }
         if (M != null) {
@@ -100,7 +100,7 @@ public final class km extends gl0 {
     @Override
     public final float H(zl0 zl0Var) {
         int i10 = this.v.M0;
-        int ceil = (int) Math.ceil(this.f28167n / i10);
+        int ceil = (int) Math.ceil(this.f28172n / i10);
         if (zl0Var.getChildCount() != 0) {
             int measuredHeight = zl0Var.getChildAt(0).getMeasuredHeight();
             View childAt = zl0Var.getChildAt(0);
@@ -114,7 +114,7 @@ public final class km extends gl0 {
 
     @Override
     public final void J(zl0 zl0Var) {
-        this.f28169s = false;
+        this.f28174s = false;
         int childCount = zl0Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             zl0Var.getChildAt(i10).invalidate();
@@ -123,12 +123,12 @@ public final class km extends gl0 {
 
     @Override
     public final void K() {
-        this.f28169s = true;
+        this.f28174s = true;
     }
 
     public final il0 L() {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
-        org.telegram.ui.Cells.t5 t5Var = new org.telegram.ui.Cells.t5(this.f28164c, chatAttachAlertPhotoLayout.f29642a);
+        org.telegram.ui.Cells.t5 t5Var = new org.telegram.ui.Cells.t5(this.f28169c, chatAttachAlertPhotoLayout.f29647a);
         if (this == chatAttachAlertPhotoLayout.G) {
             t5Var.setOutlineProvider(new im(this));
             t5Var.setClipToOutline(true);
@@ -139,7 +139,7 @@ public final class km extends gl0 {
     }
 
     public final MediaController.PhotoEntry M(int i10) {
-        boolean z10 = this.f28166f;
+        boolean z10 = this.f28171f;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
         if (z10 && i10 > chatAttachAlertPhotoLayout.M0) {
             i10--;
@@ -147,7 +147,7 @@ public final class km extends gl0 {
         if (this.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
             i10--;
         }
-        boolean z11 = ChatAttachAlertPhotoLayout.f24018q1;
+        boolean z11 = ChatAttachAlertPhotoLayout.f24022q1;
         return chatAttachAlertPhotoLayout.b0(i10);
     }
 
@@ -155,42 +155,42 @@ public final class km extends gl0 {
     public final int h() {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
         km kmVar = chatAttachAlertPhotoLayout.G;
-        if (!chatAttachAlertPhotoLayout.f24061v0) {
+        if (!chatAttachAlertPhotoLayout.f24065v0) {
             return 1;
         }
         int i10 = 0;
-        this.f28165e = false;
-        this.f28166f = false;
+        this.f28170e = false;
+        this.f28171f = false;
         boolean z10 = chatAttachAlertPhotoLayout.P0;
         if (z10 && this == kmVar) {
             return 2;
         }
         if (this.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
-            this.f28165e = true;
+            this.f28170e = true;
             i10 = 1;
         }
-        if (chatAttachAlertPhotoLayout.f24036g1) {
+        if (chatAttachAlertPhotoLayout.f24040g1) {
             i10++;
         }
         if (z10 && this == kmVar) {
             i10++;
         }
-        this.f28168r = i10;
+        this.f28173r = i10;
         if (!z10) {
-            i10 += ChatAttachAlertPhotoLayout.f24019r1.size();
+            i10 += ChatAttachAlertPhotoLayout.f24023r1.size();
             MediaController.AlbumEntry albumEntry = chatAttachAlertPhotoLayout.T0;
             if (albumEntry != null) {
                 i10 += albumEntry.photos.size();
             }
         }
-        if (this.f28165e && i10 > chatAttachAlertPhotoLayout.M0 && !chatAttachAlertPhotoLayout.O0) {
-            this.f28166f = true;
+        if (this.f28170e && i10 > chatAttachAlertPhotoLayout.M0 && !chatAttachAlertPhotoLayout.O0) {
+            this.f28171f = true;
             i10++;
         }
         if (this == kmVar) {
             i10++;
         }
-        this.f28167n = i10;
+        this.f28172n = i10;
         return i10;
     }
 
@@ -199,7 +199,7 @@ public final class km extends gl0 {
         int i11;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
         km kmVar = chatAttachAlertPhotoLayout.G;
-        if (chatAttachAlertPhotoLayout.f24061v0) {
+        if (chatAttachAlertPhotoLayout.f24065v0) {
             boolean z10 = chatAttachAlertPhotoLayout.P0;
             if (z10 && this == kmVar) {
                 if (i10 == 0) {
@@ -214,7 +214,7 @@ public final class km extends gl0 {
                 }
                 return 8;
             }
-            boolean z12 = this.f28166f;
+            boolean z12 = this.f28171f;
             if (z12 && i10 == chatAttachAlertPhotoLayout.M0) {
                 return 5;
             }
@@ -226,10 +226,10 @@ public final class km extends gl0 {
             if (z11) {
                 i11--;
             }
-            if (chatAttachAlertPhotoLayout.f24036g1 && i11 == 0) {
+            if (chatAttachAlertPhotoLayout.f24040g1 && i11 == 0) {
                 return 4;
             }
-            if (this == kmVar && i10 == this.f28167n - 1) {
+            if (this == kmVar && i10 == this.f28172n - 1) {
                 return 2;
             }
             if (z10) {
@@ -247,7 +247,7 @@ public final class km extends gl0 {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
         if (this == chatAttachAlertPhotoLayout.G) {
             pz pzVar = chatAttachAlertPhotoLayout.H;
-            if ((h() == 1 && !chatAttachAlertPhotoLayout.P0 && chatAttachAlertPhotoLayout.T0 == null) || !chatAttachAlertPhotoLayout.f24061v0) {
+            if ((h() == 1 && !chatAttachAlertPhotoLayout.P0 && chatAttachAlertPhotoLayout.T0 == null) || !chatAttachAlertPhotoLayout.f24065v0) {
                 i10 = 0;
             } else {
                 i10 = 4;
@@ -264,16 +264,16 @@ public final class km extends gl0 {
         boolean z13;
         boolean z14;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
-        xi xiVar = chatAttachAlertPhotoLayout.f29643b;
-        int i11 = c1Var.f46528f;
-        View view = c1Var.f46524a;
+        xi xiVar = chatAttachAlertPhotoLayout.f29648b;
+        int i11 = c1Var.f46535f;
+        View view = c1Var.f46531a;
         boolean z15 = this.d;
         int i12 = 0;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 3) {
                     if (i11 == 7) {
-                        ((k20) view).setUseAnEmojiVisible(chatAttachAlertPhotoLayout.f24036g1);
+                        ((k20) view).setUseAnEmojiVisible(chatAttachAlertPhotoLayout.f24040g1);
                         return;
                     }
                     return;
@@ -286,20 +286,20 @@ public final class km extends gl0 {
             ((org.telegram.ui.Cells.m5) view).setItemSize(chatAttachAlertPhotoLayout.K0);
             return;
         }
-        if (this.f28166f && i10 > chatAttachAlertPhotoLayout.M0) {
+        if (this.f28171f && i10 > chatAttachAlertPhotoLayout.M0) {
             i10--;
         }
         if (z15 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
             i10--;
         }
-        if (chatAttachAlertPhotoLayout.f24036g1) {
+        if (chatAttachAlertPhotoLayout.f24040g1) {
             i10--;
         }
         org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
         if (this == chatAttachAlertPhotoLayout.G) {
             t5Var.setItemSize(chatAttachAlertPhotoLayout.K0);
         } else {
-            if (chatAttachAlertPhotoLayout.f24057s.f46512o == 1) {
+            if (chatAttachAlertPhotoLayout.f24061s.f46519o == 1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -315,7 +315,7 @@ public final class km extends gl0 {
         if (b02 == null) {
             return;
         }
-        HashMap hashMap = ChatAttachAlertPhotoLayout.f24020s1;
+        HashMap hashMap = ChatAttachAlertPhotoLayout.f24024s1;
         if (hashMap.size() > 1) {
             z11 = true;
         } else {
@@ -331,20 +331,20 @@ public final class km extends gl0 {
         } else {
             z13 = false;
         }
-        if (xiVar != null && xiVar.f32822i0) {
+        if (xiVar != null && xiVar.f32828i0) {
             z14 = true;
         } else {
             z14 = false;
         }
         t5Var.d(b02, z11, z12, z13, z14);
-        if ((xiVar.f32813f0 instanceof org.telegram.ui.yn) && xiVar.T1) {
-            t5Var.b(ChatAttachAlertPhotoLayout.f24021t1.indexOf(Integer.valueOf(b02.imageId)), hashMap.containsKey(Integer.valueOf(b02.imageId)), false);
+        if ((xiVar.f32819f0 instanceof org.telegram.ui.yn) && xiVar.T1) {
+            t5Var.b(ChatAttachAlertPhotoLayout.f24025t1.indexOf(Integer.valueOf(b02.imageId)), hashMap.containsKey(Integer.valueOf(b02.imageId)), false);
         } else {
             t5Var.b(-1, hashMap.containsKey(Integer.valueOf(b02.imageId)), false);
         }
-        if (!chatAttachAlertPhotoLayout.f24063w0 && b02.isVideo) {
+        if (!chatAttachAlertPhotoLayout.f24067w0 && b02.isVideo) {
             t5Var.setAlpha(0.3f);
-        } else if (!chatAttachAlertPhotoLayout.f24065x0 && !b02.isVideo) {
+        } else if (!chatAttachAlertPhotoLayout.f24069x0 && !b02.isVideo) {
             t5Var.setAlpha(0.3f);
         } else {
             t5Var.setAlpha(1.0f);
@@ -356,10 +356,10 @@ public final class km extends gl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.v;
-        xi xiVar = chatAttachAlertPhotoLayout.f29643b;
-        org.telegram.ui.ActionBar.d6 d6Var = chatAttachAlertPhotoLayout.f29642a;
+        xi xiVar = chatAttachAlertPhotoLayout.f29648b;
+        org.telegram.ui.ActionBar.d6 d6Var = chatAttachAlertPhotoLayout.f29647a;
         if (i10 != 0) {
-            Context context = this.f28164c;
+            Context context = this.f28169c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 4) {
@@ -368,21 +368,21 @@ public final class km extends gl0 {
                                 if (i10 != 8) {
                                     ?? frameLayout = new FrameLayout(context);
                                     ImageView imageView = new ImageView(context);
-                                    frameLayout.f22529a = imageView;
+                                    frameLayout.f22533a = imageView;
                                     ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
                                     imageView.setScaleType(scaleType);
-                                    int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20765aa, d6Var);
+                                    int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20769aa, d6Var);
                                     PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
                                     imageView.setColorFilter(new PorterDuffColorFilter(v02, mode));
                                     frameLayout.addView(imageView, w7.z5.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
                                     ImageView imageView2 = new ImageView(context);
-                                    frameLayout.f22530b = imageView2;
+                                    frameLayout.f22534b = imageView2;
                                     imageView2.setScaleType(scaleType);
-                                    imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20785ba, d6Var), mode));
+                                    imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20789ba, d6Var), mode));
                                     frameLayout.addView(imageView2, w7.z5.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
                                     TextView textView = new TextView(context);
-                                    frameLayout.f22531c = textView;
-                                    org.telegram.messenger.ok.n(org.telegram.ui.ActionBar.i6.f20804ca, d6Var, textView, 1, 12.0f);
+                                    frameLayout.f22535c = textView;
+                                    org.telegram.messenger.bi.m(org.telegram.ui.ActionBar.i6.f20808ca, d6Var, textView, 1, 12.0f);
                                     textView.setGravity(17);
                                     frameLayout.addView(textView, w7.z5.d(-2, -2.0f, 17, 5.0f, 13.0f, 5.0f, 0.0f));
                                     frameLayout.d = AndroidUtilities.dp(80.0f);
@@ -405,9 +405,9 @@ public final class km extends gl0 {
                             k20Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(400.0f)));
                             k20Var.setGravity(17);
                             k20Var.isClickable();
-                            k20Var.f27944b.setOnClickListener(new f0(new ol(chatAttachAlertPhotoLayout, 5), 18));
-                            k20Var.f27943a.setOnClickListener(new f0(new ol(chatAttachAlertPhotoLayout, 6), 19));
-                            k20Var.f27945c.setOnClickListener(new gt(5, k20Var, new y2(this, 2)));
+                            k20Var.f27949b.setOnClickListener(new f0(new ol(chatAttachAlertPhotoLayout, 5), 18));
+                            k20Var.f27948a.setOnClickListener(new f0(new ol(chatAttachAlertPhotoLayout, 6), 19));
+                            k20Var.f27950c.setOnClickListener(new gt(5, k20Var, new y2(this, 2)));
                             return new s4.c1(k20Var);
                         }
                         return new s4.c1(new View(context));
@@ -419,7 +419,7 @@ public final class km extends gl0 {
             }
             ?? view = new View(context);
             view.setFocusable(true);
-            view.f22471a = AndroidUtilities.dp(0.0f);
+            view.f22475a = AndroidUtilities.dp(0.0f);
             return new s4.c1(view);
         }
         ArrayList arrayList = this.h;
@@ -433,7 +433,7 @@ public final class km extends gl0 {
 
     @Override
     public final void y(s4.c1 c1Var) {
-        if (c1Var.f46524a instanceof org.telegram.ui.Cells.m5) {
+        if (c1Var.f46531a instanceof org.telegram.ui.Cells.m5) {
             this.v.Q.g();
         }
     }

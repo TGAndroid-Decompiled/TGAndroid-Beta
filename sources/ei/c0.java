@@ -17,9 +17,9 @@ import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.yl0;
 import w7.z5;
 public final class c0 extends yl0 {
-    public ArrayList f8947c;
+    public ArrayList f8948c;
     public ArrayList d;
-    public ArrayList f8948e;
+    public ArrayList f8949e;
 
     @Override
     public final boolean D(s4.c1 c1Var) {
@@ -27,11 +27,11 @@ public final class c0 extends yl0 {
     }
 
     public final void E(a0.i iVar) {
-        ArrayList arrayList = this.f8947c;
+        ArrayList arrayList = this.f8948c;
         arrayList.clear();
         ArrayList arrayList2 = this.d;
         arrayList2.clear();
-        ArrayList arrayList3 = this.f8948e;
+        ArrayList arrayList3 = this.f8949e;
         arrayList3.clear();
         for (int i10 = 0; i10 < iVar.m(); i10++) {
             TL_bots.BotInfo botInfo = (TL_bots.BotInfo) iVar.n(i10);
@@ -49,26 +49,26 @@ public final class c0 extends yl0 {
 
     @Override
     public final int h() {
-        return this.f8947c.size();
+        return this.f8948c.size();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        b0 b0Var = (b0) c1Var.f46524a;
-        String str = (String) this.f8947c.get(i10);
-        if (((Boolean) this.f8948e.get(i10)).booleanValue()) {
+        b0 b0Var = (b0) c1Var.f46531a;
+        String str = (String) this.f8948c.get(i10);
+        if (((Boolean) this.f8949e.get(i10)).booleanValue()) {
             rq rqVar = new rq(R.drawable.mini_ephemeral_hidden_14, 0);
             rqVar.setColorKey(i6.A6);
             rqVar.setTopOffset(1);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(rqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-            b0Var.f8920a.setText(spannableStringBuilder);
+            b0Var.f8921a.setText(spannableStringBuilder);
         } else {
-            b0Var.f8920a.setText(str);
+            b0Var.f8921a.setText(str);
         }
-        b0Var.f8921b.setText((CharSequence) this.d.get(i10));
-        b0Var.f8922c = str;
+        b0Var.f8922b.setText((CharSequence) this.d.get(i10));
+        b0Var.f8923c = str;
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class c0 extends yl0 {
         linearLayout.setOrientation(0);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         ai.p4 p4Var = new ai.p4(context, 2);
-        linearLayout.f8921b = p4Var;
+        linearLayout.f8922b = p4Var;
         NotificationCenter.listenEmojiLoading(p4Var);
         p4Var.setTextSize(1, 16.0f);
         int i11 = i6.G6;
@@ -88,9 +88,9 @@ public final class c0 extends yl0 {
         p4Var.setEllipsize(TextUtils.TruncateAt.END);
         linearLayout.addView(p4Var, z5.p(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
         TextView textView = new TextView(context);
-        linearLayout.f8920a = textView;
+        linearLayout.f8921a = textView;
         textView.setTextSize(1, 14.0f);
-        int i12 = i6.f21205y6;
+        int i12 = i6.f21209y6;
         textView.setTextColor(i6.w0(null, i12, false));
         textView.setTag(Integer.valueOf(i12));
         linearLayout.addView(textView, z5.o(-2, -2, 0.0f, 16));

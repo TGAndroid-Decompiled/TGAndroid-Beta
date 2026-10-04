@@ -19,9 +19,9 @@ public abstract class o8 {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f12187c);
+        int max = Math.max(0, aVar.f12188c);
         if (max > 0) {
-            i10 = AndroidUtilities.dp(hg.k0.f(max, 1, 24, 28));
+            i10 = AndroidUtilities.dp(hg.c.f(max, 1, 24, 28));
         }
         return c10 + i10;
     }
@@ -31,12 +31,12 @@ public abstract class o8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f12193k.size();
+            size = aVar.f12194k.size();
         }
         if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(hg.k0.f(size, 1, 16, 12));
+        return AndroidUtilities.dp(hg.c.f(size, 1, 16, 12));
     }
 
     public static int d(ii.a aVar) {
@@ -44,11 +44,11 @@ public abstract class o8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f12193k.size();
+            size = aVar.f12194k.size();
         }
         if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(hg.k0.f(size, 1, 16, 8));
+        return AndroidUtilities.dp(hg.c.f(size, 1, 16, 8));
     }
 }

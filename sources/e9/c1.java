@@ -3,14 +3,14 @@ package e9;
 import java.util.Map;
 public final class c1 extends m0 {
     public final transient k0 d;
-    public final transient Object[] f8727e;
-    public final transient int f8728f;
+    public final transient Object[] f8728e;
+    public final transient int f8729f;
     public final transient int h;
 
     public c1(k0 k0Var, Object[] objArr, int i10, int i11) {
         this.d = k0Var;
-        this.f8727e = objArr;
-        this.f8728f = i10;
+        this.f8728e = objArr;
+        this.f8729f = i10;
         this.h = i11;
     }
 

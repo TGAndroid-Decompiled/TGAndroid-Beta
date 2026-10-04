@@ -41,33 +41,33 @@ import v7.n;
 import v7.v7;
 import w7.e0;
 public final class l implements OnSuccessListener, le.k {
-    public static l f14022e;
-    public int f14023a;
-    public Object f14024b;
-    public Object f14025c;
+    public static l f14023e;
+    public int f14024a;
+    public Object f14025b;
+    public Object f14026c;
     public Object d;
 
     public l(int i10, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f14023a = i10;
+        this.f14024a = i10;
         this.d = str;
-        this.f14024b = arrayList;
-        this.f14025c = arrayList2;
+        this.f14025b = arrayList;
+        this.f14026c = arrayList2;
     }
 
     public static synchronized l l(Context context) {
         l lVar;
         synchronized (l.class) {
             try {
-                if (f14022e == null) {
+                if (f14023e == null) {
                     ScheduledExecutorService unconfigurableScheduledExecutorService = Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new w("MessengerIpcClient")));
                     ?? obj = new Object();
                     obj.d = new j(obj);
-                    obj.f14023a = 1;
-                    obj.f14025c = unconfigurableScheduledExecutorService;
-                    obj.f14024b = context.getApplicationContext();
-                    f14022e = obj;
+                    obj.f14024a = 1;
+                    obj.f14026c = unconfigurableScheduledExecutorService;
+                    obj.f14025b = context.getApplicationContext();
+                    f14023e = obj;
                 }
-                lVar = f14022e;
+                lVar = f14023e;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -81,7 +81,7 @@ public final class l implements OnSuccessListener, le.k {
     }
 
     public void b() {
-        ImageView imageView = (ImageView) this.f14024b;
+        ImageView imageView = (ImageView) this.f14025b;
         Drawable drawable = imageView.getDrawable();
         if (drawable != null) {
             l1.a(drawable);
@@ -93,26 +93,26 @@ public final class l implements OnSuccessListener, le.k {
                     this.d = new Object();
                 }
                 c3 c3Var = (c3) this.d;
-                c3Var.f15705c = null;
-                c3Var.f15704b = false;
+                c3Var.f15709c = null;
+                c3Var.f15708b = false;
                 c3Var.d = null;
-                c3Var.f15703a = false;
+                c3Var.f15707a = false;
                 ColorStateList imageTintList = imageView.getImageTintList();
                 if (imageTintList != null) {
-                    c3Var.f15704b = true;
-                    c3Var.f15705c = imageTintList;
+                    c3Var.f15708b = true;
+                    c3Var.f15709c = imageTintList;
                 }
                 PorterDuff.Mode imageTintMode = imageView.getImageTintMode();
                 if (imageTintMode != null) {
-                    c3Var.f15703a = true;
+                    c3Var.f15707a = true;
                     c3Var.d = imageTintMode;
                 }
-                if (c3Var.f15704b || c3Var.f15703a) {
+                if (c3Var.f15708b || c3Var.f15707a) {
                     q.d(drawable, c3Var, imageView.getDrawableState());
                     return;
                 }
             }
-            c3 c3Var2 = (c3) this.f14025c;
+            c3 c3Var2 = (c3) this.f14026c;
             if (c3Var2 != null) {
                 q.d(drawable, c3Var2, imageView.getDrawableState());
             }
@@ -127,12 +127,12 @@ public final class l implements OnSuccessListener, le.k {
     public l d() {
         boolean z10;
         String str;
-        if (!TextUtils.isEmpty((String) this.f14024b)) {
-            if (!n.b(this.f14023a)) {
+        if (!TextUtils.isEmpty((String) this.f14025b)) {
+            if (!n.b(this.f14024a)) {
                 StringBuilder sb2 = new StringBuilder("Authenticator combination is unsupported on API ");
                 sb2.append(Build.VERSION.SDK_INT);
                 sb2.append(": ");
-                int i10 = this.f14023a;
+                int i10 = this.f14024a;
                 if (i10 != 15) {
                     if (i10 != 255) {
                         if (i10 != 32768) {
@@ -157,7 +157,7 @@ public final class l implements OnSuccessListener, le.k {
                 sb2.append(str);
                 throw new IllegalArgumentException(sb2.toString());
             }
-            int i11 = this.f14023a;
+            int i11 = this.f14024a;
             if (i11 != 0) {
                 z10 = n.a(i11);
             } else {
@@ -169,13 +169,13 @@ public final class l implements OnSuccessListener, le.k {
             if (!TextUtils.isEmpty((String) this.d) && z10) {
                 throw new IllegalArgumentException("Negative text must not be set if device credential authentication is allowed.");
             }
-            return new l((String) this.f14024b, (String) this.f14025c, (String) this.d, this.f14023a);
+            return new l((String) this.f14025b, (String) this.f14026c, (String) this.d, this.f14024a);
         }
         throw new IllegalArgumentException("Title must be set and non-empty.");
     }
 
     public int e() {
-        int i10 = this.f14023a;
+        int i10 = this.f14024a;
         if (i10 != 2) {
             if (i10 != 3) {
                 return 0;
@@ -189,12 +189,12 @@ public final class l implements OnSuccessListener, le.k {
         Drawable drawable;
         Drawable drawable2;
         int resourceId;
-        ImageView imageView = (ImageView) this.f14024b;
+        ImageView imageView = (ImageView) this.f14025b;
         Context context = imageView.getContext();
-        int[] iArr = f.a.f9518f;
+        int[] iArr = f.a.f9519f;
         la.h Q = la.h.Q(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) Q.f15399c;
-        i0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) Q.f15399c, i10);
+        TypedArray typedArray = (TypedArray) Q.f15400c;
+        i0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) Q.f15400c, i10);
         try {
             Drawable drawable3 = imageView.getDrawable();
             if (drawable3 == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable3 = v7.b(imageView.getContext(), resourceId)) != null) {
@@ -235,10 +235,10 @@ public final class l implements OnSuccessListener, le.k {
     public Looper g() {
         Looper looper;
         boolean z10;
-        synchronized (this.f14024b) {
+        synchronized (this.f14025b) {
             try {
-                if (((Looper) this.f14025c) == null) {
-                    if (this.f14023a == 0 && ((HandlerThread) this.d) == null) {
+                if (((Looper) this.f14026c) == null) {
+                    if (this.f14024a == 0 && ((HandlerThread) this.d) == null) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -247,10 +247,10 @@ public final class l implements OnSuccessListener, le.k {
                     HandlerThread handlerThread = new HandlerThread("ExoPlayer:Playback", -16);
                     this.d = handlerThread;
                     handlerThread.start();
-                    this.f14025c = ((HandlerThread) this.d).getLooper();
+                    this.f14026c = ((HandlerThread) this.d).getLooper();
                 }
-                this.f14023a++;
-                looper = (Looper) this.f14025c;
+                this.f14024a++;
+                looper = (Looper) this.f14026c;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -259,33 +259,33 @@ public final class l implements OnSuccessListener, le.k {
     }
 
     public void h() {
-        float[] fArr = (float[]) this.f14024b;
+        float[] fArr = (float[]) this.f14025b;
         Arrays.fill(fArr, 0.0f);
         Iterator it = ((le.l) this.d).iterator();
         while (it.hasNext()) {
             le.g gVar = (le.g) it.next();
-            fArr[((Integer) gVar.f15446a).intValue()] = gVar.c();
+            fArr[((Integer) gVar.f15447a).intValue()] = gVar.c();
         }
-        ((ug) this.f14025c).run();
+        ((ug) this.f14026c).run();
     }
 
     public void i() {
         boolean z10;
         HandlerThread handlerThread;
-        synchronized (this.f14024b) {
+        synchronized (this.f14025b) {
             try {
-                if (this.f14023a > 0) {
+                if (this.f14024a > 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 e2.d.g(z10);
-                int i10 = this.f14023a - 1;
-                this.f14023a = i10;
+                int i10 = this.f14024a - 1;
+                this.f14024a = i10;
                 if (i10 == 0 && (handlerThread = (HandlerThread) this.d) != null) {
                     handlerThread.quit();
                     this.d = null;
-                    this.f14025c = null;
+                    this.f14026c = null;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -294,9 +294,9 @@ public final class l implements OnSuccessListener, le.k {
     }
 
     public void j(int i10, boolean z10, boolean z11) {
-        int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f14023a);
-        int b10 = e0.b(this.f14023a, 1 << i10, z10);
-        this.f14023a = b10;
+        int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f14024a);
+        int b10 = e0.b(this.f14024a, 1 << i10, z10);
+        this.f14024a = b10;
         int numberOfLeadingZeros2 = 31 - Integer.numberOfLeadingZeros(b10);
         if (numberOfLeadingZeros != numberOfLeadingZeros2) {
             ((le.l) this.d).i(Integer.valueOf(numberOfLeadingZeros2), z11);
@@ -306,13 +306,13 @@ public final class l implements OnSuccessListener, le.k {
     public void k(Throwable th2) {
         d0 d0Var = (d0) this.d;
         if (th2 instanceof TimeoutException) {
-            d0Var.F(102, 28, g0.f4202p);
+            d0Var.F(102, 28, g0.f4203p);
             u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", th2);
         } else {
-            d0Var.F(95, 28, g0.f4202p);
+            d0Var.F(95, 28, g0.f4203p);
             u.i("BillingClientTesting", "An error occurred while retrieving billing override.", th2);
         }
-        ((Runnable) this.f14025c).run();
+        ((Runnable) this.f14026c).run();
     }
 
     public synchronized Task m(k kVar) {
@@ -328,7 +328,7 @@ public final class l implements OnSuccessListener, le.k {
         } catch (Throwable th2) {
             throw th2;
         }
-        return kVar.f14019b.getTask();
+        return kVar.f14020b.getTask();
     }
 
     @Override
@@ -337,25 +337,25 @@ public final class l implements OnSuccessListener, le.k {
     }
 
     public l(Object obj, Object obj2, Object obj3, int i10) {
-        this.f14024b = obj;
-        this.f14025c = obj2;
+        this.f14025b = obj;
+        this.f14026c = obj2;
         this.d = obj3;
-        this.f14023a = i10;
+        this.f14024a = i10;
     }
 
     public l(int i10) {
         switch (i10) {
             case 2:
-                this.f14024b = null;
-                this.f14025c = null;
+                this.f14025b = null;
+                this.f14026c = null;
                 this.d = null;
-                this.f14023a = 0;
+                this.f14024a = 0;
                 return;
             case 8:
-                this.f14024b = new Object();
-                this.f14025c = null;
+                this.f14025b = new Object();
+                this.f14026c = null;
                 this.d = null;
-                this.f14023a = 0;
+                this.f14024a = 0;
                 return;
             default:
                 o6 o6Var = new o6(true, true, true, false);
@@ -366,30 +366,30 @@ public final class l implements OnSuccessListener, le.k {
                 o6Var.u(AndroidUtilities.bold());
                 paint.setColor(i0.a.k(-16777216, 58));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                this.f14024b = spannableStringBuilder;
+                this.f14025b = spannableStringBuilder;
                 spannableStringBuilder.append((CharSequence) " ").setSpan(new q2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                this.f14025c = spannableStringBuilder2;
+                this.f14026c = spannableStringBuilder2;
                 spannableStringBuilder2.append((CharSequence) " ").setSpan(new q2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
                 return;
         }
     }
 
     public l(ImageView imageView) {
-        this.f14023a = 0;
-        this.f14024b = imageView;
+        this.f14024a = 0;
+        this.f14025b = imageView;
     }
 
     public l(int i10, String str, int i11, ArrayList arrayList, byte[] bArr) {
         List unmodifiableList;
-        this.f14024b = str;
-        this.f14023a = i11;
+        this.f14025b = str;
+        this.f14024a = i11;
         if (arrayList == null) {
             unmodifiableList = Collections.EMPTY_LIST;
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(arrayList);
         }
-        this.f14025c = unmodifiableList;
+        this.f14026c = unmodifiableList;
         this.d = bArr;
     }
 }

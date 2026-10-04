@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class ln extends w7.a6 {
-    public MessageObject f38301a;
-    public int f38302b = 0;
-    public boolean f38303c = true;
+    public MessageObject f38306a;
+    public int f38307b = 0;
+    public boolean f38308c = true;
     public int d = 0;
-    public int f38304e;
-    public boolean f38305f;
-    public int f38306g;
+    public int f38309e;
+    public boolean f38310f;
+    public int f38311g;
     public final yn h;
 
     public ln(yn ynVar) {
@@ -19,20 +19,20 @@ public final class ln extends w7.a6 {
 
     @Override
     public final void a() {
-        MessageObject messageObject = this.f38301a;
+        MessageObject messageObject = this.f38306a;
         yn ynVar = this.h;
         if (messageObject != null) {
-            ynVar.f43565y0.T();
-            int indexOf = ynVar.f43494s6.indexOf(this.f38301a) + ynVar.f43565y0.J;
+            ynVar.f43572y0.T();
+            int indexOf = ynVar.f43501s6.indexOf(this.f38306a) + ynVar.f43572y0.J;
             if (indexOf >= 0) {
-                ynVar.f43552x0.i1(indexOf, (int) ((this.f38304e + this.f38306g) - ynVar.f43469q9), this.f38305f);
+                ynVar.f43559x0.i1(indexOf, (int) ((this.f38309e + this.f38311g) - ynVar.f43476q9), this.f38310f);
             }
         } else {
-            ynVar.f43565y0.T();
-            ynVar.f43552x0.i1(this.f38302b, this.d, this.f38303c);
+            ynVar.f43572y0.T();
+            ynVar.f43559x0.i1(this.f38307b, this.d, this.f38308c);
         }
-        this.f38301a = null;
-        ynVar.f43392k3 = true;
+        this.f38306a = null;
+        ynVar.f43399k3 = true;
         ynVar.Vc(false);
         AndroidUtilities.runOnUIThread(new bj(this, 8));
     }
@@ -41,8 +41,8 @@ public final class ln extends w7.a6 {
     public final void c() {
         yn ynVar = this.h;
         ynVar.G9 = ynVar.getNotificationCenter().setAnimationInProgress(ynVar.G9, yn.Hc);
-        sk skVar = ynVar.f43523ua;
-        if (skVar.f38106n) {
+        sk skVar = ynVar.f43530ua;
+        if (skVar.f38111n) {
             skVar.d();
         }
     }

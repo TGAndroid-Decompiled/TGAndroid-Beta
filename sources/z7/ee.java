@@ -1,16 +1,16 @@
 package z7;
 public final class ee {
-    public final va f52517a;
-    public final ra f52518b;
-    public final ve f52519c;
+    public final va f52522a;
+    public final ra f52523b;
+    public final ve f52524c;
     public final m d;
-    public final m f52520e;
+    public final m f52525e;
 
     public ee(cf.c cVar) {
-        this.f52517a = (va) cVar.f4602a;
-        this.f52518b = (ra) cVar.f4603b;
-        this.f52519c = (ve) cVar.f4604c;
+        this.f52522a = (va) cVar.f4603a;
+        this.f52523b = (ra) cVar.f4604b;
+        this.f52524c = (ve) cVar.f4605c;
         this.d = (m) cVar.d;
-        this.f52520e = (m) cVar.f4605e;
+        this.f52525e = (m) cVar.f4606e;
     }
 }

@@ -2,26 +2,26 @@ package n7;
 
 import j$.util.Objects;
 public final class x extends m {
-    public static final x f16837e = new x(0, new Object[0]);
-    public final transient Object[] f16838c;
+    public static final x f16841e = new x(0, new Object[0]);
+    public final transient Object[] f16842c;
     public final transient int d;
 
     public x(int i10, Object[] objArr) {
-        this.f16838c = objArr;
+        this.f16842c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         a.e(i10, this.d);
-        Object obj = this.f16838c[i10];
+        Object obj = this.f16842c[i10];
         Objects.requireNonNull(obj);
         return obj;
     }
 
     @Override
     public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f16838c;
+        Object[] objArr2 = this.f16842c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -39,7 +39,7 @@ public final class x extends m {
 
     @Override
     public final Object[] q() {
-        return this.f16838c;
+        return this.f16842c;
     }
 
     @Override

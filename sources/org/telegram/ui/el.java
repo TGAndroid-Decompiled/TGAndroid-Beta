@@ -19,11 +19,11 @@ public final class el extends org.telegram.ui.Components.ic0 {
         MessageObject messageObject;
         on onVar;
         yn ynVar = this.H;
-        on onVar2 = ynVar.f43381j5;
-        if (onVar2 != null && (messageObject = onVar2.f39236a) != null && ((onVar = ynVar.f43307d5.quote) == null || onVar.f39236a == null || messageObject.getId() == ynVar.f43307d5.quote.f39236a.getId())) {
+        on onVar2 = ynVar.f43388j5;
+        if (onVar2 != null && (messageObject = onVar2.f39241a) != null && ((onVar = ynVar.f43314d5.quote) == null || onVar.f39241a == null || messageObject.getId() == ynVar.f43314d5.quote.f39241a.getId())) {
             return;
         }
-        ynVar.f43381j5 = ynVar.f43307d5.quote;
+        ynVar.f43388j5 = ynVar.f43314d5.quote;
     }
 
     @Override
@@ -37,10 +37,10 @@ public final class el extends org.telegram.ui.Components.ic0 {
         int i12 = 0;
         a(false);
         yn ynVar = this.H;
-        MessagePreviewParams messagePreviewParams = ynVar.f43307d5;
+        MessagePreviewParams messagePreviewParams = ynVar.f43314d5;
         if (messagePreviewParams != null) {
             if (!z10) {
-                ynVar.f43394k5 = true;
+                ynVar.f43401k5 = true;
             }
             MessagePreviewParams.Messages messages2 = messagePreviewParams.forwardMessages;
             if (messages2 != null) {
@@ -48,7 +48,7 @@ public final class el extends org.telegram.ui.Components.ic0 {
                 i10 = 0;
                 z11 = false;
                 for (int i13 = 0; i13 < size; i13++) {
-                    MessageObject messageObject = ynVar.f43307d5.forwardMessages.messages.get(i13);
+                    MessageObject messageObject = ynVar.f43314d5.forwardMessages.messages.get(i13);
                     if (messageObject.isTodo()) {
                         i10 = 3;
                     } else if (messageObject.isPoll()) {
@@ -68,26 +68,26 @@ public final class el extends org.telegram.ui.Components.ic0 {
                 i10 = 0;
                 z11 = false;
             }
-            Bundle e7 = org.telegram.messenger.ok.e(3, "onlySelect", "dialogsType", true);
-            e7.putBoolean("quote", !z10);
-            if (!z10 && (messages = ynVar.f43307d5.replyMessage) != null && !messages.messages.isEmpty() && ynVar.f43307d5.quote == null) {
+            Bundle d = org.telegram.messenger.bi.d(3, "onlySelect", "dialogsType", true);
+            d.putBoolean("quote", !z10);
+            if (!z10 && (messages = ynVar.f43314d5.replyMessage) != null && !messages.messages.isEmpty() && ynVar.f43314d5.quote == null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            e7.putBoolean("reply_to", z12);
-            if (z12 && (DialogObject.getPeerDialogId(ynVar.f43307d5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != ynVar.a() && peerDialogId != ynVar.getUserConfig().getClientUserId() && i11 > 0) {
-                e7.putLong("reply_to_author", peerDialogId);
+            d.putBoolean("reply_to", z12);
+            if (z12 && (DialogObject.getPeerDialogId(ynVar.f43314d5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != ynVar.a() && peerDialogId != ynVar.getUserConfig().getClientUserId() && i11 > 0) {
+                d.putLong("reply_to_author", peerDialogId);
             }
-            e7.putInt("hasPoll", i10);
-            e7.putBoolean("hasInvoice", z11);
-            MessagePreviewParams.Messages messages3 = ynVar.f43307d5.forwardMessages;
+            d.putInt("hasPoll", i10);
+            d.putBoolean("hasInvoice", z11);
+            MessagePreviewParams.Messages messages3 = ynVar.f43314d5.forwardMessages;
             if (messages3 != null) {
                 i12 = messages3.messages.size();
             }
-            e7.putInt("messagesCount", i12);
-            e7.putBoolean("canSelectTopics", true);
-            uy uyVar = new uy(e7);
+            d.putInt("messagesCount", i12);
+            d.putBoolean("canSelectTopics", true);
+            uy uyVar = new uy(d);
             uyVar.C2 = ynVar;
             ynVar.presentFragment(uyVar);
         }

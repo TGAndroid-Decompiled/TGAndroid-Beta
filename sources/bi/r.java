@@ -6,14 +6,14 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
 import w7.z5;
 public final class r extends LinearLayout {
-    public final TextView f3863a;
-    public final q f3864b;
-    public final o f3865c;
+    public final TextView f3864a;
+    public final q f3865b;
+    public final o f3866c;
     public final ci.d d;
 
     public r(Context context, d6 d6Var) {
@@ -21,19 +21,19 @@ public final class r extends LinearLayout {
         setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f));
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f3863a = textView;
-        int i10 = i6.f21205y6;
-        ok.n(i10, d6Var, textView, 1, 14.0f);
+        this.f3864a = textView;
+        int i10 = i6.f21209y6;
+        bi.m(i10, d6Var, textView, 1, 14.0f);
         textView.setGravity(17);
         textView.setTextAlignment(4);
         addView(textView, z5.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
         q qVar = new q(0, context, d6Var, true);
-        this.f3864b = qVar;
+        this.f3865b = qVar;
         qVar.setMinWidth(AndroidUtilities.dp(200.0f));
         qVar.g(LocaleController.getString(R.string.ProfileBotAddPreview), false, true);
         addView(qVar, z5.q(-2, 44, 17));
         o oVar = new o(context, d6Var);
-        this.f3865c = oVar;
+        this.f3866c = oVar;
         oVar.setTextColor(i6.v0(i10, d6Var));
         oVar.setText(LocaleController.getString(R.string.ProfileBotOr));
         oVar.setTextSize(1, 14.0f);

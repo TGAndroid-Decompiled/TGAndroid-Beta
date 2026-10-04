@@ -29,23 +29,23 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class s {
-    public static final WeakHashMap f9312k = new WeakHashMap();
-    public static KeyStore f9313l;
-    public final Context f9314a;
-    public final int f9315b;
-    public final long f9316c;
+    public static final WeakHashMap f9313k = new WeakHashMap();
+    public static KeyStore f9314l;
+    public final Context f9315a;
+    public final int f9316b;
+    public final long f9317c;
     public boolean d;
-    public boolean f9317e;
-    public boolean f9318f;
-    public String f9319g;
+    public boolean f9318e;
+    public boolean f9319f;
+    public String f9320g;
     public String h;
-    public a6.m f9320i;
-    public ai.m0 f9321j;
+    public a6.m f9321i;
+    public ai.m0 f9322j;
 
     public s(Context context, int i10, long j3) {
-        this.f9314a = context;
-        this.f9315b = i10;
-        this.f9316c = j3;
+        this.f9315a = context;
+        this.f9316b = i10;
+        this.f9317c = j3;
         h();
     }
 
@@ -57,12 +57,12 @@ public final class s {
         for (int i10 = 0; i10 < 4; i10++) {
             context.getSharedPreferences("2botbiometry_" + i10, 0).edit().clear().apply();
         }
-        f9312k.clear();
+        f9313k.clear();
     }
 
     public static s c(Context context, int i10, long j3) {
         Pair pair = new Pair(Integer.valueOf(i10), Long.valueOf(j3));
-        WeakHashMap weakHashMap = f9312k;
+        WeakHashMap weakHashMap = f9313k;
         s sVar = (s) weakHashMap.get(pair);
         if (sVar == null) {
             s sVar2 = new s(context, i10, j3);
@@ -93,7 +93,7 @@ public final class s {
             i11++;
             Long l4 = (Long) obj;
             s c10 = c(activity, i10, l4.longValue());
-            if (c10.f9317e && c10.f9318f) {
+            if (c10.f9318e && c10.f9319f) {
                 hashMap.put(l4, Boolean.valueOf(!c10.d));
             }
         }
@@ -105,21 +105,21 @@ public final class s {
     }
 
     public final boolean a() {
-        return this.f9318f;
+        return this.f9319f;
     }
 
     public final SecretKey e() {
-        if (f9313l == null) {
+        if (f9314l == null) {
             KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-            f9313l = keyStore;
+            f9314l = keyStore;
             keyStore.load(null);
         }
-        KeyStore keyStore2 = f9313l;
+        KeyStore keyStore2 = f9314l;
         StringBuilder sb2 = new StringBuilder("9bot_");
-        long j3 = this.f9316c;
+        long j3 = this.f9317c;
         sb2.append(j3);
         if (keyStore2.containsAlias(sb2.toString())) {
-            KeyStore keyStore3 = f9313l;
+            KeyStore keyStore3 = f9314l;
             return (SecretKey) keyStore3.getKey("9bot_" + j3, null);
         }
         KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder("9bot_" + j3, 3);
@@ -143,28 +143,28 @@ public final class s {
     }
 
     public final boolean g() {
-        return this.f9317e;
+        return this.f9318e;
     }
 
     public final void h() {
         boolean z10;
-        SharedPreferences sharedPreferences = this.f9314a.getSharedPreferences("2botbiometry_" + this.f9315b, 0);
-        long j3 = this.f9316c;
-        this.f9319g = sharedPreferences.getString(String.valueOf(j3), null);
+        SharedPreferences sharedPreferences = this.f9315a.getSharedPreferences("2botbiometry_" + this.f9316b, 0);
+        long j3 = this.f9317c;
+        this.f9320g = sharedPreferences.getString(String.valueOf(j3), null);
         this.h = sharedPreferences.getString(String.valueOf(j3) + "_iv", null);
         boolean z11 = true;
-        if (this.f9319g != null) {
+        if (this.f9320g != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f9317e = z10;
+        this.f9318e = z10;
         if (!z10) {
             if (!sharedPreferences.getBoolean(j3 + "_requested", false)) {
                 z11 = false;
             }
         }
-        this.f9318f = z11;
+        this.f9319f = z11;
         this.d = sharedPreferences.getBoolean(j3 + "_disabled", false);
     }
 
@@ -191,20 +191,20 @@ public final class s {
         androidx.biometric.t tVar;
         int i10;
         int i11;
-        this.f9321j = null;
+        this.f9322j = null;
         try {
-            if (this.f9320i == null) {
-                this.f9320i = new a6.m(LaunchActivity.G1, f0.e.e(this.f9314a), new q(this));
+            if (this.f9321i == null) {
+                this.f9321i = new a6.m(LaunchActivity.G1, f0.e.e(this.f9315a), new q(this));
             }
             androidx.biometric.t i12 = i(z10);
-            TLRPC.User user = MessagesController.getInstance(this.f9315b).getUser(Long.valueOf(this.f9316c));
+            TLRPC.User user = MessagesController.getInstance(this.f9316b).getUser(Long.valueOf(this.f9317c));
             j6.l lVar = new j6.l(2);
-            lVar.f14024b = UserObject.getUserName(user);
+            lVar.f14025b = UserObject.getUserName(user);
             lVar.d = LocaleController.getString(R.string.Back);
             int i13 = 15;
-            lVar.f14023a = 15;
+            lVar.f14024a = 15;
             if (!TextUtils.isEmpty(str)) {
-                lVar.f14025c = str;
+                lVar.f14026c = str;
             }
             j6.l d = lVar.d();
             if (i12 != null) {
@@ -212,11 +212,11 @@ public final class s {
                 if (!z10 && (i11 = Build.VERSION.SDK_INT) >= 30) {
                     try {
                         if (TextUtils.isEmpty(str2)) {
-                            this.f9319g = null;
+                            this.f9320g = null;
                         } else if (i11 < 23) {
-                            this.f9319g = str2;
+                            this.f9320g = str2;
                         } else {
-                            this.f9319g = Utilities.bytesToHex(cipher.doFinal(str2.getBytes(StandardCharsets.UTF_8)));
+                            this.f9320g = Utilities.bytesToHex(cipher.doFinal(str2.getBytes(StandardCharsets.UTF_8)));
                             this.h = Utilities.bytesToHex(cipher.getIV());
                         }
                         k();
@@ -233,11 +233,11 @@ public final class s {
             } else {
                 tVar = null;
             }
-            this.f9321j = new ai.m0(3, callback3, tVar);
+            this.f9322j = new ai.m0(3, callback3, tVar);
             if (i12 != null && (i10 = Build.VERSION.SDK_INT) < 30) {
-                a6.m mVar = this.f9320i;
+                a6.m mVar = this.f9321i;
                 mVar.getClass();
-                int i14 = d.f14023a;
+                int i14 = d.f14024a;
                 if (i14 != 0) {
                     i13 = i14;
                 }
@@ -250,7 +250,7 @@ public final class s {
                 }
                 throw new IllegalArgumentException("Crypto-based authentication is not supported for Class 2 (Weak) biometrics.");
             }
-            this.f9320i.a(d, null);
+            this.f9321i.a(d, null);
         } catch (Exception e10) {
             FileLog.e(e10);
             callback3.run(Boolean.FALSE, null, null);
@@ -258,17 +258,17 @@ public final class s {
     }
 
     public final void k() {
-        SharedPreferences.Editor edit = this.f9314a.getSharedPreferences("2botbiometry_" + this.f9315b, 0).edit();
-        boolean z10 = this.f9318f;
-        long j3 = this.f9316c;
+        SharedPreferences.Editor edit = this.f9315a.getSharedPreferences("2botbiometry_" + this.f9316b, 0).edit();
+        boolean z10 = this.f9319f;
+        long j3 = this.f9317c;
         if (z10) {
             edit.putBoolean(j3 + "_requested", true);
         } else {
             edit.remove(j3 + "_requested");
         }
-        if (this.f9317e) {
+        if (this.f9318e) {
             String valueOf = String.valueOf(j3);
-            String str = this.f9319g;
+            String str = this.f9320g;
             String str2 = "";
             if (str == null) {
                 str = "";
@@ -305,12 +305,12 @@ public final class s {
                 if (sVar != null) {
                     try {
                         if (TextUtils.isEmpty(str3)) {
-                            sVar2.f9319g = null;
+                            sVar2.f9320g = null;
                             sVar2.h = null;
                         } else {
                             int i10 = Build.VERSION.SDK_INT;
                             if (i10 < 23) {
-                                sVar2.f9319g = str3;
+                                sVar2.f9320g = str3;
                                 sVar2.h = null;
                             } else {
                                 if (i10 >= 30) {
@@ -318,7 +318,7 @@ public final class s {
                                 }
                                 if (tVar != null) {
                                     Cipher cipher = tVar.f2242b;
-                                    sVar2.f9319g = Utilities.bytesToHex(cipher.doFinal(str3.getBytes(StandardCharsets.UTF_8)));
+                                    sVar2.f9320g = Utilities.bytesToHex(cipher.doFinal(str3.getBytes(StandardCharsets.UTF_8)));
                                     sVar2.h = Utilities.bytesToHex(cipher.getIV());
                                 } else {
                                     throw new RuntimeException("No cryptoObject found");

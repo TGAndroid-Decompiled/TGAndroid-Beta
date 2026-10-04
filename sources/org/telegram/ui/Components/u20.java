@@ -7,30 +7,30 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Shader;
 import android.view.View;
 public final class u20 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31256a;
-    public final int f31257b;
-    public final int f31258c;
+    public final int f31262a;
+    public final int f31263b;
+    public final int f31264c;
     public final int d;
-    public final int f31259e;
-    public final View f31260f;
+    public final int f31265e;
+    public final View f31266f;
 
     public u20(View view, int i10, int i11, int i12, int i13, int i14) {
-        this.f31256a = i14;
-        this.f31260f = view;
-        this.f31257b = i10;
-        this.f31258c = i11;
+        this.f31262a = i14;
+        this.f31266f = view;
+        this.f31263b = i10;
+        this.f31264c = i11;
         this.d = i12;
-        this.f31259e = i13;
+        this.f31265e = i13;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f31256a;
-        int i11 = this.f31259e;
+        int i10 = this.f31262a;
+        int i11 = this.f31265e;
         int i12 = this.d;
-        int i13 = this.f31258c;
-        int i14 = this.f31257b;
-        View view = this.f31260f;
+        int i13 = this.f31264c;
+        int i14 = this.f31263b;
+        View view = this.f31266f;
         switch (i10) {
             case 0:
                 v20 v20Var = (v20) view;
@@ -38,7 +38,7 @@ public final class u20 implements ValueAnimator.AnimatorUpdateListener {
                 v20Var.M = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
                 v20Var.F.setColorFilter(new PorterDuffColorFilter(v20Var.L, PorterDuff.Mode.MULTIPLY));
                 v20Var.E.setColor(v20Var.L);
-                v20Var.f31515r.setColor(v20Var.M);
+                v20Var.f31521r.setColor(v20Var.M);
                 v20Var.J.d(i0.a.k(v20Var.M, 38));
                 v20Var.invalidate();
                 return;
@@ -59,9 +59,9 @@ public final class u20 implements ValueAnimator.AnimatorUpdateListener {
                 yh.m8 m8Var = (yh.m8) view;
                 m8Var.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m8Var.f51662r = i0.a.d(floatValue2, i14, i13);
-                m8Var.f51663s = i0.a.d(floatValue2, i12, i11);
-                m8Var.f51666y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{m8Var.f51662r, m8Var.f51663s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                m8Var.f51667r = i0.a.d(floatValue2, i14, i13);
+                m8Var.f51668s = i0.a.d(floatValue2, i12, i11);
+                m8Var.f51671y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{m8Var.f51667r, m8Var.f51668s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 m8Var.invalidate();
                 return;
         }

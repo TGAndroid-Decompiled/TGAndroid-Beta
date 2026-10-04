@@ -47,7 +47,7 @@ public final class x7 extends org.telegram.ui.ActionBar.f3 {
         i5Var.setTextSize(14);
         i5Var.setAlignment(Layout.Alignment.ALIGN_CENTER);
         i5Var.setMaxLines(100);
-        i5Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21205y6, d6Var));
+        i5Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21209y6, d6Var));
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
             i5Var.l(LocaleController.getString(R.string.StealthModeHint), false);
         } else {
@@ -67,7 +67,7 @@ public final class x7 extends org.telegram.ui.ActionBar.f3 {
         rg.q0 q0Var = new rg.q0(AndroidUtilities.dp(8.0f), context, d6Var, true);
         this.f1845b = q0Var;
         q0Var.H = false;
-        q0Var.f46249e.getDrawable().f29260y = false;
+        q0Var.f46256e.getDrawable().f29265y = false;
         q0Var.setIcon(R.raw.unlock_icon);
         w7.b6.a(q0Var);
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -147,10 +147,10 @@ public final class x7 extends org.telegram.ui.ActionBar.f3 {
             int i10 = R.drawable.msg_stories_stealth2;
             String string = LocaleController.getString(R.string.StealthModeOn);
             String string2 = LocaleController.getString(R.string.StealthModeOnHint);
-            org.telegram.ui.Components.nc ncVar = new org.telegram.ui.Components.nc(X.W(), X.f33131c);
-            ncVar.f28926a.setImageResource(i10);
-            ncVar.f28927b.setText(string);
-            TextView textView = ncVar.f28928c;
+            org.telegram.ui.Components.nc ncVar = new org.telegram.ui.Components.nc(X.W(), X.f33137c);
+            ncVar.f28931a.setImageResource(i10);
+            ncVar.f28932b.setText(string);
+            TextView textView = ncVar.f28933c;
             textView.setText(string2);
             textView.setSingleLine(false);
             textView.setMaxLines(5);
@@ -164,7 +164,7 @@ public final class x7 extends org.telegram.ui.ActionBar.f3 {
         if (tL_storiesStealthMode != null && ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() < tL_storiesStealthMode.active_until_date) {
             this.f1846c = true;
             q0Var.b(LocaleController.getString(R.string.StealthModeIsActive), true, z10);
-            q0Var.f46249e.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
+            q0Var.f46256e.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
             return;
         }
         if (tL_storiesStealthMode != null) {
@@ -181,7 +181,7 @@ public final class x7 extends org.telegram.ui.ActionBar.f3 {
                 sb2.append(String.format(locale, ":%02d", Integer.valueOf((int) (j3 % 60))));
                 sb2.append(String.format(locale, ":%02d", Integer.valueOf(i11)));
                 q0Var.b(LocaleController.formatString("AvailableIn", R.string.AvailableIn, sb2.toString()), true, z10);
-                q0Var.f46249e.setTextColor(i0.a.k(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false), 125));
+                q0Var.f46256e.setTextColor(i0.a.k(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false), 125));
                 a3.d dVar = this.f1848f;
                 AndroidUtilities.cancelRunOnUIThread(dVar);
                 AndroidUtilities.runOnUIThread(dVar, 1000L);
@@ -194,6 +194,6 @@ public final class x7 extends org.telegram.ui.ActionBar.f3 {
         } else if (i13 == 1) {
             q0Var.b(LocaleController.getString(R.string.EnableStealthModeAndOpenStory), true, z10);
         }
-        q0Var.f46249e.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
+        q0Var.f46256e.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
     }
 }

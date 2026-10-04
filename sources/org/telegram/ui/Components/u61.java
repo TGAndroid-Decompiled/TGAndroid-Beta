@@ -19,27 +19,27 @@ public class u61 extends og.b {
     public Utilities.Callback2 L;
     public boolean M;
     public final zl0 d;
-    public final Context f31304e;
-    public final int f31305f;
+    public final Context f31310e;
+    public final int f31311f;
     public final int h;
-    public final boolean f31306n;
-    public Utilities.Callback2 f31308s;
+    public final boolean f31312n;
+    public Utilities.Callback2 f31314s;
     public final org.telegram.ui.ActionBar.d6 v;
-    public ig.f f31311y;
-    public boolean f31307r = true;
-    public final ArrayList f31309w = new ArrayList();
-    public final ArrayList f31310x = new ArrayList();
+    public ig.f f31317y;
+    public boolean f31313r = true;
+    public final ArrayList f31315w = new ArrayList();
+    public final ArrayList f31316x = new ArrayList();
     public int E = 0;
     public final ArrayList F = new ArrayList();
     public final ArrayList G = new ArrayList();
 
     public u61(zl0 zl0Var, Context context, int i10, int i11, boolean z10, Utilities.Callback2 callback2, org.telegram.ui.ActionBar.d6 d6Var) {
         this.d = zl0Var;
-        this.f31304e = context;
-        this.f31305f = i10;
+        this.f31310e = context;
+        this.f31311f = i10;
         this.h = i11;
-        this.f31306n = z10;
-        this.f31308s = callback2;
+        this.f31312n = z10;
+        this.f31314s = callback2;
         this.v = d6Var;
         N(false);
     }
@@ -60,7 +60,7 @@ public class u61 extends og.b {
 
     @Override
     public boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f46528f;
+        int i10 = c1Var.f46535f;
         g61 G = G(c1Var.b());
         if (i10 >= 10000) {
             f61 F = g61.F(i10);
@@ -70,7 +70,7 @@ public class u61 extends og.b {
         } else if (i10 != 3 && i10 != 5 && i10 != 6 && i10 != 30 && i10 != 4 && i10 != 10 && i10 != 44 && i10 != 11 && i10 != 12 && i10 != 17 && i10 != 16 && i10 != 29 && i10 != 25 && i10 != 27 && i10 != 32 && i10 != 33 && i10 != 35 && i10 != 36 && i10 != 37 && i10 != 41 && i10 != 39 && i10 != 40 && i10 != 38) {
             return false;
         }
-        if (G != null && !G.f26665g) {
+        if (G != null && !G.f26670g) {
             return false;
         }
         return true;
@@ -81,7 +81,7 @@ public class u61 extends og.b {
             ArrayList arrayList = this.G;
             if (i10 < arrayList.size()) {
                 s61 s61Var = (s61) arrayList.get(i10);
-                this.L.run(Integer.valueOf(i10), new ArrayList(this.f31310x.subList(s61Var.f30638a, s61Var.f30639b + 1)));
+                this.L.run(Integer.valueOf(i10), new ArrayList(this.f31316x.subList(s61Var.f30644a, s61Var.f30645b + 1)));
                 this.K = false;
             }
         }
@@ -89,7 +89,7 @@ public class u61 extends og.b {
 
     public final g61 G(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f31310x;
+            ArrayList arrayList = this.f31316x;
             if (i10 < arrayList.size()) {
                 return (g61) arrayList.get(i10);
             }
@@ -104,7 +104,7 @@ public class u61 extends og.b {
             ArrayList arrayList = this.G;
             if (i11 < arrayList.size()) {
                 s61 s61Var = (s61) arrayList.get(i11);
-                if (i10 >= s61Var.f30638a && i10 <= s61Var.f30639b) {
+                if (i10 >= s61Var.f30644a && i10 <= s61Var.f30645b) {
                     return i11;
                 }
                 i11++;
@@ -121,7 +121,7 @@ public class u61 extends og.b {
     public final boolean J(int i10) {
         g61 G = G(i10);
         g61 G2 = G(i10 + 1);
-        if (G != null && !G.f26667j && G2 != null && K(G2.f17183a) == K(G.f17183a)) {
+        if (G != null && !G.f26672j && G2 != null && K(G2.f17187a) == K(G.f17187a)) {
             return true;
         }
         return false;
@@ -130,16 +130,16 @@ public class u61 extends og.b {
     public final void L() {
         s61 s61Var = this.I;
         if (s61Var != null) {
-            s61Var.f30639b = Math.max(0, this.f31310x.size() - 1);
+            s61Var.f30645b = Math.max(0, this.f31316x.size() - 1);
         }
     }
 
     public final int M() {
         ?? obj = new Object();
         this.I = obj;
-        obj.f30638a = this.f31310x.size();
+        obj.f30644a = this.f31316x.size();
         s61 s61Var = this.I;
-        s61Var.f30639b = -1;
+        s61Var.f30645b = -1;
         ArrayList arrayList = this.G;
         arrayList.add(s61Var);
         return arrayList.size() - 1;
@@ -156,11 +156,11 @@ public class u61 extends og.b {
 
     public final void O(s4.c1 c1Var) {
         int i10;
-        View view = c1Var.f46524a;
+        View view = c1Var.f46531a;
         if (view instanceof org.telegram.ui.ActionBar.y5) {
             ((org.telegram.ui.ActionBar.y5) view).e();
-            int i11 = c1Var.f46528f;
-            if (this.f31307r) {
+            int i11 = c1Var.f46535f;
+            if (this.f31313r) {
                 if (i11 < 10000) {
                     switch (i11) {
                         case -5:
@@ -218,10 +218,10 @@ public class u61 extends og.b {
                             return;
                     }
                 }
-                if (this.f31306n) {
-                    i10 = org.telegram.ui.ActionBar.i6.f20890h5;
+                if (this.f31312n) {
+                    i10 = org.telegram.ui.ActionBar.i6.f20894h5;
                 } else {
-                    i10 = org.telegram.ui.ActionBar.i6.f20818d6;
+                    i10 = org.telegram.ui.ActionBar.i6.f20822d6;
                 }
                 view.setBackgroundColor(I(i10));
             }
@@ -231,15 +231,15 @@ public class u61 extends og.b {
     public final void P(boolean z10) {
         zl0 zl0Var = this.d;
         if (zl0Var == null || !zl0Var.c0()) {
-            ArrayList arrayList = this.f31309w;
+            ArrayList arrayList = this.f31315w;
             arrayList.clear();
-            ArrayList arrayList2 = this.f31310x;
+            ArrayList arrayList2 = this.f31316x;
             arrayList.addAll(arrayList2);
             arrayList2.clear();
             this.H = null;
             this.F.clear();
             this.G.clear();
-            Utilities.Callback2 callback2 = this.f31308s;
+            Utilities.Callback2 callback2 = this.f31314s;
             if (callback2 != null) {
                 callback2.run(arrayList2, this);
                 R();
@@ -254,8 +254,8 @@ public class u61 extends og.b {
 
     public final void Q(s4.c1 c1Var, boolean z10) {
         if (c1Var != null) {
-            View view = c1Var.f46524a;
-            int i10 = c1Var.f46528f;
+            View view = c1Var.f46531a;
+            int i10 = c1Var.f46535f;
             if (i10 >= 10000) {
                 f61 F = g61.F(i10);
                 if (F != null) {
@@ -284,20 +284,20 @@ public class u61 extends og.b {
                 Object obj = arrayList2.get(i10);
                 i10++;
                 s61 s61Var = (s61) obj;
-                zl0Var.L2.add(Long.valueOf(AndroidUtilities.pack(s61Var.f30638a, s61Var.f30639b)));
+                zl0Var.L2.add(Long.valueOf(AndroidUtilities.pack(s61Var.f30644a, s61Var.f30645b)));
             }
         }
     }
 
     public final void S() {
-        ArrayList arrayList = this.f31309w;
+        ArrayList arrayList = this.f31315w;
         arrayList.clear();
-        ArrayList arrayList2 = this.f31310x;
+        ArrayList arrayList2 = this.f31316x;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         this.F.clear();
         this.G.clear();
-        Utilities.Callback2 callback2 = this.f31308s;
+        Utilities.Callback2 callback2 = this.f31314s;
         if (callback2 != null) {
             callback2.run(arrayList2, this);
         }
@@ -307,9 +307,9 @@ public class u61 extends og.b {
     public final void T() {
         s61 s61Var = this.H;
         if (s61Var != null) {
-            s61Var.f30639b = Math.max(0, (this.f31310x.size() + this.E) - 1);
+            s61Var.f30645b = Math.max(0, (this.f31316x.size() + this.E) - 1);
             s61 s61Var2 = this.H;
-            if (s61Var2.f30638a == s61Var2.f30639b) {
+            if (s61Var2.f30644a == s61Var2.f30645b) {
                 this.F.remove(s61Var2);
             }
             this.H = null;
@@ -319,15 +319,15 @@ public class u61 extends og.b {
     public final void U() {
         ?? obj = new Object();
         this.H = obj;
-        obj.f30638a = this.f31310x.size() + this.E;
+        obj.f30644a = this.f31316x.size() + this.E;
         s61 s61Var = this.H;
-        s61Var.f30639b = -1;
+        s61Var.f30645b = -1;
         this.F.add(s61Var);
     }
 
     @Override
     public final int h() {
-        return this.f31310x.size();
+        return this.f31316x.size();
     }
 
     @Override
@@ -336,7 +336,7 @@ public class u61 extends og.b {
         if (G == null) {
             return 0;
         }
-        return G.f17183a;
+        return G.f17187a;
     }
 
     @Override
@@ -359,17 +359,17 @@ public class u61 extends og.b {
         int i15;
         org.telegram.ui.Cells.m4 m4Var2;
         int i16;
-        boolean z10 = this.f31306n;
+        boolean z10 = this.f31312n;
         if (z10) {
-            i11 = org.telegram.ui.ActionBar.i6.f20890h5;
+            i11 = org.telegram.ui.ActionBar.i6.f20894h5;
         } else {
-            i11 = org.telegram.ui.ActionBar.i6.f20818d6;
+            i11 = org.telegram.ui.ActionBar.i6.f20822d6;
         }
-        Context context = this.f31304e;
+        Context context = this.f31310e;
         if (i10 >= 10000) {
             f61 F = g61.F(i10);
             if (F != null) {
-                a2Var = F.createView(this.f31304e, this.d, this.f31305f, this.h, this.v);
+                a2Var = F.createView(this.f31310e, this.d, this.f31311f, this.h, this.v);
             } else {
                 a2Var = new View(context);
             }
@@ -393,7 +393,7 @@ public class u61 extends og.b {
                     break;
                 case -3:
                     ?? frameLayout2 = new FrameLayout(context);
-                    frameLayout2.f30277a = 0;
+                    frameLayout2.f30283a = 0;
                     a2Var = frameLayout2;
                     break;
                 case -2:
@@ -401,7 +401,7 @@ public class u61 extends og.b {
                     break;
                 case 0:
                     if (z10) {
-                        w8Var = new org.telegram.ui.Cells.m4(this.f31304e, org.telegram.ui.ActionBar.i6.L6, 21, 15, 0, false, false, this.v);
+                        w8Var = new org.telegram.ui.Cells.m4(this.f31310e, org.telegram.ui.ActionBar.i6.L6, 21, 15, 0, false, false, this.v);
                         a2Var = w8Var;
                         break;
                     } else {
@@ -409,7 +409,7 @@ public class u61 extends og.b {
                         break;
                     }
                 case 1:
-                    m4Var = new org.telegram.ui.Cells.m4(this.f31304e, org.telegram.ui.ActionBar.i6.G6, 17, 15, false, this.v);
+                    m4Var = new org.telegram.ui.Cells.m4(this.f31310e, org.telegram.ui.ActionBar.i6.G6, 17, 15, false, this.v);
                     a2Var = m4Var;
                     break;
                 case 2:
@@ -424,7 +424,7 @@ public class u61 extends og.b {
                     w8Var = w8Var2;
                     if (i10 == 9) {
                         w8Var2.setDrawCheckRipple(true);
-                        w8Var2.d(org.telegram.ui.ActionBar.i6.f20873g6, org.telegram.ui.ActionBar.i6.O6, org.telegram.ui.ActionBar.i6.P6, org.telegram.ui.ActionBar.i6.Q6, org.telegram.ui.ActionBar.i6.R6);
+                        w8Var2.d(org.telegram.ui.ActionBar.i6.f20877g6, org.telegram.ui.ActionBar.i6.O6, org.telegram.ui.ActionBar.i6.P6, org.telegram.ui.ActionBar.i6.Q6, org.telegram.ui.ActionBar.i6.R6);
                         w8Var2.setTypeface(AndroidUtilities.bold());
                         w8Var2.setHeight(56);
                         w8Var = w8Var2;
@@ -436,7 +436,7 @@ public class u61 extends og.b {
                     if (i10 != 6) {
                         z11 = false;
                     }
-                    m4Var = new org.telegram.ui.Cells.j5(21, 60, this.f31304e, this.v, z11);
+                    m4Var = new org.telegram.ui.Cells.j5(21, 60, this.f31310e, this.v, z11);
                     a2Var = m4Var;
                     break;
                 case 7:
@@ -447,8 +447,8 @@ public class u61 extends og.b {
                 case 10:
                     ?? frameLayout3 = new FrameLayout(context);
                     TextView textView = new TextView(context);
-                    frameLayout3.f23494b = textView;
-                    org.telegram.messenger.ok.t(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false), 1, 16.0f, 1);
+                    frameLayout3.f23498b = textView;
+                    org.telegram.messenger.bi.s(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false), 1, 16.0f, 1);
                     textView.setMaxLines(1);
                     textView.setSingleLine(true);
                     TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -478,8 +478,8 @@ public class u61 extends og.b {
                     }
                     frameLayout3.addView(textView, w7.z5.d(-1, -1.0f, i18, f7, 0.0f, f10, 0.0f));
                     TextView textView2 = new TextView(context);
-                    frameLayout3.f23495c = textView2;
-                    org.telegram.messenger.ok.t(textView2, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.I6, false), 1, 16.0f, 1);
+                    frameLayout3.f23499c = textView2;
+                    org.telegram.messenger.bi.s(textView2, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.I6, false), 1, 16.0f, 1);
                     textView2.setMaxLines(1);
                     textView2.setSingleLine(true);
                     textView2.setEllipsize(truncateAt);
@@ -499,7 +499,7 @@ public class u61 extends og.b {
                     RadioButton radioButton = new RadioButton(context);
                     frameLayout3.d = radioButton;
                     radioButton.setSize(AndroidUtilities.dp(20.0f));
-                    radioButton.b(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20874g7, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20892h7, false));
+                    radioButton.b(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20878g7, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20896h7, false));
                     if (!LocaleController.isRTL) {
                         i17 = 5;
                     }
@@ -517,7 +517,7 @@ public class u61 extends og.b {
                     a2Var = zaVar;
                     break;
                 case 13:
-                    m4Var = new org.telegram.ui.Cells.za(6, 0, this.f31304e, null, false, true);
+                    m4Var = new org.telegram.ui.Cells.za(6, 0, this.f31310e, null, false, true);
                     a2Var = m4Var;
                     break;
                 case 14:
@@ -541,12 +541,12 @@ public class u61 extends og.b {
                 case 21:
                 case 22:
                 case 23:
-                    if (this.f31311y == null) {
-                        this.f31311y = new ig.f(null);
+                    if (this.f31317y == null) {
+                        this.f31317y = new ig.f(null);
                     }
-                    ig.f fVar = this.f31311y;
+                    ig.f fVar = this.f31317y;
                     int i19 = this.h;
-                    a2Var = new ta1(this.f31304e, this.f31305f, i10 - 18, fVar, i19);
+                    a2Var = new ta1(this.f31310e, this.f31311f, i10 - 18, fVar, i19);
                     break;
                 case 24:
                     a2Var = new org.telegram.ui.ke(context, d6Var);
@@ -555,7 +555,7 @@ public class u61 extends og.b {
                     a2Var = new org.telegram.ui.le(context, d6Var);
                     break;
                 case 26:
-                    m4Var2 = new org.telegram.ui.Cells.m4(this.f31304e, org.telegram.ui.ActionBar.i6.G6, 23, 20, 0, false, false, this.v);
+                    m4Var2 = new org.telegram.ui.Cells.m4(this.f31310e, org.telegram.ui.ActionBar.i6.G6, 23, 20, 0, false, false, this.v);
                     m4Var2.setTextSize(20.0f);
                     a2Var = m4Var2;
                     break;
@@ -570,7 +570,7 @@ public class u61 extends og.b {
                     a2Var = frameLayout;
                     break;
                 case 29:
-                    a2Var = new hg.t(context, d6Var);
+                    a2Var = new hg.u(context, d6Var);
                     break;
                 case 30:
                     a2Var = new org.telegram.ui.Cells.h9(context, d6Var);
@@ -613,8 +613,8 @@ public class u61 extends og.b {
                     } else {
                         i16 = 0;
                     }
-                    org.telegram.ui.Cells.a2 a2Var2 = new org.telegram.ui.Cells.a2(i16, 21, this.f31304e, this.v, true);
-                    a2Var2.getCheckBoxRound().b(org.telegram.ui.ActionBar.i6.V6, org.telegram.ui.ActionBar.i6.f20874g7, org.telegram.ui.ActionBar.i6.f20948k7);
+                    org.telegram.ui.Cells.a2 a2Var2 = new org.telegram.ui.Cells.a2(i16, 21, this.f31310e, this.v, true);
+                    a2Var2.getCheckBoxRound().b(org.telegram.ui.ActionBar.i6.V6, org.telegram.ui.ActionBar.i6.f20878g7, org.telegram.ui.ActionBar.i6.f20952k7);
                     a2Var = a2Var2;
                     break;
                 case 38:
@@ -625,7 +625,7 @@ public class u61 extends og.b {
                     a2Var = new org.telegram.ui.Cells.v8(context);
                     break;
                 case 42:
-                    m4Var2 = new org.telegram.ui.Cells.m4(this.f31304e, org.telegram.ui.ActionBar.i6.L6, 21, 15, 0, false, true, this.v);
+                    m4Var2 = new org.telegram.ui.Cells.m4(this.f31310e, org.telegram.ui.ActionBar.i6.L6, 21, 15, 0, false, true, this.v);
                     a2Var = m4Var2;
                     break;
                 case 43:
@@ -636,7 +636,7 @@ public class u61 extends og.b {
                     break;
             }
         }
-        if (this.f31307r) {
+        if (this.f31313r) {
             if (i10 < 10000) {
                 switch (i10) {
                 }

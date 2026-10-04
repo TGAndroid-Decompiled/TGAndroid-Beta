@@ -1,24 +1,24 @@
 package org.telegram.ui.Cells;
 
 import android.view.animation.Interpolator;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 public final class m2 implements Interpolator {
-    public final int f22457a;
+    public final int f22461a;
 
     public m2(int i10) {
-        this.f22457a = i10;
+        this.f22461a = i10;
     }
 
     @Override
     public final float getInterpolation(float f7) {
-        switch (this.f22457a) {
+        switch (this.f22461a) {
             case 0:
                 if (f7 < 0.33f) {
                     return (f7 / 0.33f) * 0.1f;
                 }
                 float f10 = f7 - 0.33f;
                 if (f10 < 0.33f) {
-                    return ok.b(f10, 0.34f, 0.15f, 0.1f);
+                    return bi.b(f10, 0.34f, 0.15f, 0.1f);
                 }
                 return (((f10 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
             case 1:

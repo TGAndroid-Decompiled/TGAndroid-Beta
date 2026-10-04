@@ -1,29 +1,108 @@
 package yf;
 
+import android.graphics.drawable.Drawable;
 import android.os.Looper;
 import android.util.SparseArray;
 import android.view.Choreographer;
+import android.view.View;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 public final class h implements Choreographer.FrameCallback {
-    public static h f50984s;
-    public final Choreographer f50985a;
-    public final LinkedHashSet f50986b;
-    public final SparseArray f50987c;
+    public static final long[] f50990s;
+    public static h v;
+    public final Choreographer f50991a;
+    public final LinkedHashSet f50992b;
+    public final SparseArray f50993c;
     public final pe.b d;
-    public final pe.b f50988e;
-    public final pe.b f50989f;
+    public final pe.b f50994e;
+    public final pe.b f50995f;
     public long h;
-    public long f50990n;
-    public int f50991r;
+    public long f50996n;
+    public int f50997r;
+
+    static {
+        boolean z10;
+        int i10;
+        long j3;
+        int i11 = 60;
+        long[] jArr = new long[60];
+        int i12 = 0;
+        while (i12 < i11) {
+            int i13 = i12 + 1;
+            int i14 = 2;
+            int i15 = 1;
+            for (int i16 = 2; i16 <= i11; i16++) {
+                if (i11 % i16 == 0 && Math.abs(i16 - i13) < Math.abs(i15 - i13)) {
+                    i15 = i16;
+                }
+            }
+            int i17 = i11 / i15;
+            long j10 = 0;
+            for (int i18 = 0; i18 < i11; i18 += i17) {
+                j10 |= 1 << i18;
+            }
+            int i19 = i13 - i15;
+            int abs = Math.abs(i19);
+            int i20 = 0;
+            while (i20 < abs) {
+                int i21 = (((i20 * 2) + 1) * 60) / (abs * 2);
+                int i22 = 0;
+                while (i22 < i11) {
+                    int i23 = 0;
+                    while (i23 < i14) {
+                        if (i23 == 0) {
+                            i10 = i22;
+                        } else {
+                            i10 = -i22;
+                        }
+                        int i24 = ((i21 + i10) + 60) % 60;
+                        long j11 = 1 << i24;
+                        if (i19 > 0) {
+                            if ((j10 & j11) == 0 && (i17 % 2 != 0 || i24 % 2 != 0)) {
+                                j3 = j11 | j10;
+                                j10 = j3;
+                                z10 = true;
+                                break;
+                            }
+                            i23++;
+                            i14 = 2;
+                        } else if ((j10 & j11) == 0) {
+                            i23++;
+                            i14 = 2;
+                        } else {
+                            j3 = (~j11) & j10;
+                            j10 = j3;
+                            z10 = true;
+                            break;
+                        }
+                    }
+                    z10 = false;
+                    if (z10) {
+                        break;
+                    }
+                    i22++;
+                    i11 = 60;
+                    i14 = 2;
+                }
+                i20++;
+                i11 = 60;
+                i14 = 2;
+            }
+            jArr[i12] = j10;
+            i12 = i13;
+            i11 = 60;
+        }
+        f50990s = jArr;
+    }
 
     public h() {
         Choreographer choreographer = Choreographer.getInstance();
-        this.f50985a = choreographer;
-        this.f50986b = new LinkedHashSet();
-        this.f50987c = new SparseArray();
+        this.f50991a = choreographer;
+        this.f50992b = new LinkedHashSet();
+        this.f50993c = new SparseArray();
         this.d = new pe.b();
-        this.f50988e = new pe.b();
-        this.f50989f = new pe.b();
+        this.f50994e = new pe.b();
+        this.f50995f = new pe.b();
         choreographer.postFrameCallback(this);
     }
 
@@ -36,10 +115,10 @@ public final class h implements Choreographer.FrameCallback {
 
     public static h d() {
         c();
-        if (f50984s == null) {
-            f50984s = new h();
+        if (v == null) {
+            v = new h();
         }
-        return f50984s;
+        return v;
     }
 
     public final void a(int i10, Runnable runnable) {
@@ -49,34 +128,97 @@ public final class h implements Choreographer.FrameCallback {
         }
         int max = Math.max(1, Math.min(i10, 60));
         f(runnable);
-        e(max).f50978e.add(runnable);
+        e(max).f50985c.add(runnable);
     }
 
     public final void b(g gVar, int i10) {
         c();
         int max = Math.max(1, Math.min(i10, 60));
         g(gVar);
-        e(max).d.add(gVar);
+        e(max).f50984b.add(gVar);
     }
 
     @Override
-    public final void doFrame(long r10) {
-        throw new UnsupportedOperationException("Method not decompiled: yf.h.doFrame(long):void");
+    public final void doFrame(long j3) {
+        long j10 = this.f50996n;
+        if (j10 == 0) {
+            this.f50996n = j3;
+        } else {
+            long j11 = (j3 - j10) + this.h;
+            this.h = j11;
+            this.f50996n = j3;
+            if (j11 >= 16666666) {
+                this.h = j11 % 16666666;
+                long j12 = 1 << this.f50997r;
+                int i10 = 0;
+                while (true) {
+                    SparseArray sparseArray = this.f50993c;
+                    if (i10 >= sparseArray.size()) {
+                        break;
+                    }
+                    f fVar = (f) sparseArray.valueAt(i10);
+                    if ((fVar.f50983a & j12) != 0) {
+                        pe.b bVar = fVar.d;
+                        if (bVar != null) {
+                            fVar.d = null;
+                            Iterator it = bVar.iterator();
+                            while (it.hasNext()) {
+                                ((Runnable) it.next()).run();
+                            }
+                        }
+                        Iterator it2 = fVar.f50984b.iterator();
+                        while (it2.hasNext()) {
+                            ((g) it2.next()).doFrame(j3);
+                        }
+                        Iterator it3 = fVar.f50985c.iterator();
+                        while (it3.hasNext()) {
+                            ((Runnable) it3.next()).run();
+                        }
+                    }
+                    i10++;
+                }
+                LinkedHashSet<g> linkedHashSet = this.f50992b;
+                for (g gVar : linkedHashSet) {
+                    gVar.doFrame(j3);
+                }
+                pe.b bVar2 = this.f50995f;
+                Iterator it4 = bVar2.iterator();
+                while (it4.hasNext()) {
+                    ((View) it4.next()).invalidate();
+                }
+                pe.b bVar3 = this.d;
+                Iterator it5 = bVar3.iterator();
+                while (it5.hasNext()) {
+                    ((Drawable) it5.next()).invalidateSelf();
+                }
+                bVar2.clear();
+                bVar3.clear();
+                linkedHashSet.clear();
+                if (this.f50997r % 2 == 0) {
+                    pe.b bVar4 = this.f50994e;
+                    Iterator it6 = bVar4.iterator();
+                    while (it6.hasNext()) {
+                        ((Drawable) it6.next()).invalidateSelf();
+                    }
+                    bVar4.clear();
+                }
+                int i11 = this.f50997r + 1;
+                this.f50997r = i11;
+                if (i11 == 60) {
+                    this.f50997r = 0;
+                }
+            }
+        }
+        this.f50991a.postFrameCallback(this);
     }
 
     public final f e(int i10) {
-        int i11;
-        SparseArray sparseArray = this.f50987c;
-        f fVar = (f) sparseArray.get(i10);
+        int max = Math.max(1, Math.min(i10, 60));
+        SparseArray sparseArray = this.f50993c;
+        f fVar = (f) sparseArray.get(max);
         if (fVar == null) {
-            long j3 = 1000000000 / i10;
-            if (60 % i10 == 0) {
-                i11 = 60 / i10;
-            } else {
-                i11 = 0;
-            }
-            f fVar2 = new f(j3, i11);
-            sparseArray.put(i10, fVar2);
+            f fVar2 = new f(f50990s[max - 1]);
+            sparseArray.put(max, fVar2);
             return fVar2;
         }
         return fVar;
@@ -87,8 +229,8 @@ public final class h implements Choreographer.FrameCallback {
         if (runnable != null) {
             int i10 = 0;
             while (true) {
-                SparseArray sparseArray = this.f50987c;
-                if (i10 < sparseArray.size() && !((f) sparseArray.valueAt(i10)).f50978e.remove(runnable)) {
+                SparseArray sparseArray = this.f50993c;
+                if (i10 < sparseArray.size() && !((f) sparseArray.valueAt(i10)).f50985c.remove(runnable)) {
                     i10++;
                 } else {
                     return;
@@ -102,8 +244,8 @@ public final class h implements Choreographer.FrameCallback {
         if (gVar != null) {
             int i10 = 0;
             while (true) {
-                SparseArray sparseArray = this.f50987c;
-                if (i10 < sparseArray.size() && !((f) sparseArray.valueAt(i10)).d.remove(gVar)) {
+                SparseArray sparseArray = this.f50993c;
+                if (i10 < sparseArray.size() && !((f) sparseArray.valueAt(i10)).f50984b.remove(gVar)) {
                     i10++;
                 } else {
                     return;
@@ -117,9 +259,9 @@ public final class h implements Choreographer.FrameCallback {
         if (runnable != null) {
             int i10 = 0;
             while (true) {
-                SparseArray sparseArray = this.f50987c;
+                SparseArray sparseArray = this.f50993c;
                 if (i10 < sparseArray.size()) {
-                    pe.b bVar = ((f) sparseArray.valueAt(i10)).f50979f;
+                    pe.b bVar = ((f) sparseArray.valueAt(i10)).d;
                     if (bVar == null || !bVar.remove(runnable)) {
                         i10++;
                     } else {

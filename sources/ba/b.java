@@ -103,9 +103,9 @@ public final class b {
     public final void d(a2 a2Var, String str, boolean z10) {
         String str2;
         c cVar = this.f3718b;
-        int i10 = this.f3719c.d().f8174a.f6710a;
+        int i10 = this.f3719c.d().f8175a.f6711a;
         f3715g.getClass();
-        String c10 = z9.c.f53050a.c(a2Var);
+        String c10 = z9.c.f53055a.c(a2Var);
         String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f3717a.getAndIncrement()));
         if (z10) {
             str2 = "_";
@@ -113,7 +113,7 @@ public final class b {
             str2 = "";
         }
         try {
-            f(cVar.b(str, a4.a.p("event", format, str2)), c10);
+            f(cVar.b(str, a4.a.q("event", format, str2)), c10);
         } catch (IOException e7) {
             Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e7);
         }

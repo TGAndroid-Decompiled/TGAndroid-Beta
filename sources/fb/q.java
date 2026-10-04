@@ -2,17 +2,17 @@ package fb;
 
 import java.lang.reflect.Method;
 public final class q extends s {
-    public final Method f9833b;
+    public final Method f9834b;
 
     public q(Method method) {
-        this.f9833b = method;
+        this.f9834b = method;
     }
 
     @Override
     public final Object a(Class cls) {
         String t10 = of.b.t(cls);
         if (t10 == null) {
-            return this.f9833b.invoke(null, cls, Object.class);
+            return this.f9834b.invoke(null, cls, Object.class);
         }
         throw new AssertionError("UnsafeAllocator is used for non-instantiable type: ".concat(t10));
     }

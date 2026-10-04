@@ -4,16 +4,16 @@ import android.graphics.Point;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class q71 implements View.OnLayoutChangeListener {
-    public Boolean f29942a;
-    public boolean f29943b;
-    public final n7.z0 f29944c;
+    public Boolean f29947a;
+    public boolean f29948b;
+    public final n7.z0 f29949c;
 
     public q71(n7.z0 z0Var, View view) {
-        this.f29944c = z0Var;
-        o1.k kVar = new o1.k(view, o1.h.f16966n, 0.0f);
-        z0Var.f16848c = kVar;
-        kVar.f16984u.a(1.0f);
-        ((o1.k) z0Var.f16848c).f16984u.b(350.0f);
+        this.f29949c = z0Var;
+        o1.k kVar = new o1.k(view, o1.h.f16970n, 0.0f);
+        z0Var.f16852c = kVar;
+        kVar.f16988u.a(1.0f);
+        ((o1.k) z0Var.f16852c).f16988u.b(350.0f);
     }
 
     @Override
@@ -25,23 +25,23 @@ public final class q71 implements View.OnLayoutChangeListener {
         } else {
             z10 = false;
         }
-        Boolean bool = this.f29942a;
+        Boolean bool = this.f29947a;
         if (bool == null || bool.booleanValue() != z10) {
-            this.f29942a = Boolean.valueOf(z10);
-            this.f29943b = true;
+            this.f29947a = Boolean.valueOf(z10);
+            this.f29948b = true;
         }
-        if (i15 != 0 && i15 != i11 && !this.f29943b) {
-            n7.z0 z0Var = this.f29944c;
-            ((o1.k) z0Var.f16848c).c();
+        if (i15 != 0 && i15 != i11 && !this.f29948b) {
+            n7.z0 z0Var = this.f29949c;
+            ((o1.k) z0Var.f16852c).c();
             if (view.getVisibility() != 0) {
                 view.setTranslationY(0.0f);
                 return;
             }
-            ((o1.k) z0Var.f16848c).f16984u.f16991i = 0.0f;
+            ((o1.k) z0Var.f16852c).f16988u.f16995i = 0.0f;
             view.setTranslationY((i15 - i11) + 0.0f);
-            ((o1.k) z0Var.f16848c).f();
+            ((o1.k) z0Var.f16852c).f();
             return;
         }
-        this.f29943b = false;
+        this.f29948b = false;
     }
 }

@@ -1,9 +1,9 @@
 package z7;
 public final class c3 implements ia.d {
-    public static final c3 f52474a = new Object();
+    public static final c3 f52479a = new Object();
 
     static {
-        t8.b.t(t8.b.o(w.class, new s(1)));
+        sa.e.t(sa.e.o(w.class, new s(1)));
     }
 
     @Override

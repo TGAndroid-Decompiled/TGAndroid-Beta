@@ -4,20 +4,20 @@ import android.text.Spanned;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class p3 implements View.OnClickListener {
-    public final int f51803a;
-    public final u3 f51804b;
+    public final int f51799a;
+    public final u3 f51800b;
 
     public p3(u3 u3Var, int i10) {
-        this.f51803a = i10;
-        this.f51804b = u3Var;
+        this.f51799a = i10;
+        this.f51800b = u3Var;
     }
 
     @Override
     public final void onClick(View view) {
         View.OnClickListener onClickListener;
-        switch (this.f51803a) {
+        switch (this.f51799a) {
             case 0:
-                CharSequence text = this.f51804b.v.getText();
+                CharSequence text = this.f51800b.v.getText();
                 if (text instanceof Spanned) {
                     ClickableSpan[] clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
                     if (clickableSpanArr.length > 0) {
@@ -28,7 +28,7 @@ public final class p3 implements View.OnClickListener {
                 }
                 return;
             default:
-                u3 u3Var = this.f51804b;
+                u3 u3Var = this.f51800b;
                 if (u3Var.N.getVisibility() == 0 && (onClickListener = u3Var.T) != null) {
                     onClickListener.onClick(view);
                     return;

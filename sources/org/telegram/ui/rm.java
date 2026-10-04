@@ -24,7 +24,7 @@ public final class rm extends org.telegram.ui.Cells.r9 {
             }
             if (messageObject != null) {
                 on b10 = on.b(i10, min, messageObject);
-                if (b10.f39242i != null) {
+                if (b10.f39247i != null) {
                     jk jkVar = this.B0.W;
                     boolean z10 = false;
                     if (jkVar != null && jkVar.getVisibility() == 0) {
@@ -44,19 +44,19 @@ public final class rm extends org.telegram.ui.Cells.r9 {
                         return;
                     }
                     yn ynVar2 = this.B0;
-                    ynVar2.f43381j5 = b10;
-                    ynVar2.f43405l5 = messageObject;
+                    ynVar2.f43388j5 = b10;
+                    ynVar2.f43412l5 = messageObject;
                     if (ynVar2.h != null) {
                         z10 = true;
                     }
-                    ynVar2.f43307d5 = new MessagePreviewParams(z10, ynVar2.x9(), ChatObject.isMonoForum(this.B0.f43315e));
+                    ynVar2.f43314d5 = new MessagePreviewParams(z10, ynVar2.x9(), ChatObject.isMonoForum(this.B0.f43322e));
                     yn ynVar3 = this.B0;
-                    ynVar3.f43307d5.updateReply(ynVar3.f43405l5, ynVar3.z8(messageObject.getGroupId()), this.B0.a(), this.B0.f43381j5);
-                    Bundle e7 = org.telegram.messenger.ok.e(3, "onlySelect", "dialogsType", true);
-                    e7.putBoolean("quote", true);
-                    e7.putInt("messagesCount", 1);
-                    e7.putBoolean("canSelectTopics", true);
-                    uy uyVar = new uy(e7);
+                    ynVar3.f43314d5.updateReply(ynVar3.f43412l5, ynVar3.z8(messageObject.getGroupId()), this.B0.a(), this.B0.f43388j5);
+                    Bundle d = org.telegram.messenger.bi.d(3, "onlySelect", "dialogsType", true);
+                    d.putBoolean("quote", true);
+                    d.putInt("messagesCount", 1);
+                    d.putBoolean("canSelectTopics", true);
+                    uy uyVar = new uy(d);
                     yn ynVar4 = this.B0;
                     uyVar.C2 = ynVar4;
                     ynVar4.presentFragment(uyVar);
@@ -85,7 +85,7 @@ public final class rm extends org.telegram.ui.Cells.r9 {
     public final void d0(yn ynVar) {
         int i10 = 0;
         while (true) {
-            SparseArray sparseArray = this.f22731u0;
+            SparseArray sparseArray = this.f22735u0;
             if (i10 < sparseArray.size()) {
                 ((Animator) sparseArray.get(sparseArray.keyAt(i10))).cancel();
                 i10++;
@@ -114,7 +114,7 @@ public final class rm extends org.telegram.ui.Cells.r9 {
             } else {
                 z10 = false;
             }
-            if (!this.f22734x0 && (ynVar = this.B0) != null && ynVar.h == null && (((y9Var2 = this.W) == null || (((org.telegram.ui.Cells.u1) y9Var2).getMessageObject() != null && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().type != 23 && !((org.telegram.ui.Cells.u1) this.W).getMessageObject().isVoiceTranscriptionOpen() && !((org.telegram.ui.Cells.u1) this.W).getMessageObject().isInvoice() && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().richLayout == null && !this.B0.f43271a9.f22732v0)) && !this.B0.getMessagesController().getTranslateController().isTranslatingDialog(this.B0.R5) && !UserObject.isService(this.B0.R5) && (!z10 || (chat = this.B0.f43315e) == null || ChatObject.canWriteToChat(chat)))) {
+            if (!this.f22738x0 && (ynVar = this.B0) != null && ynVar.h == null && (((y9Var2 = this.W) == null || (((org.telegram.ui.Cells.u1) y9Var2).getMessageObject() != null && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().type != 23 && !((org.telegram.ui.Cells.u1) this.W).getMessageObject().isVoiceTranscriptionOpen() && !((org.telegram.ui.Cells.u1) this.W).getMessageObject().isInvoice() && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().richLayout == null && !this.B0.f43278a9.f22736v0)) && !this.B0.getMessagesController().getTranslateController().isTranslatingDialog(this.B0.R5) && !UserObject.isService(this.B0.R5) && (!z10 || (chat = this.B0.f43322e) == null || ChatObject.canWriteToChat(chat)))) {
                 return true;
             }
         }
@@ -127,7 +127,7 @@ public final class rm extends org.telegram.ui.Cells.r9 {
         if (ynVar == null) {
             return 0;
         }
-        return ynVar.f43574ya;
+        return ynVar.f43581ya;
     }
 
     @Override
@@ -136,20 +136,20 @@ public final class rm extends org.telegram.ui.Cells.r9 {
         if (ynVar == null) {
             return 0;
         }
-        return (int) ynVar.f43469q9;
+        return (int) ynVar.f43476q9;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.d6 r() {
         yn ynVar = this.B0;
         if (ynVar != null) {
-            return ynVar.f43300ca;
+            return ynVar.f43307ca;
         }
         return null;
     }
 
     @Override
     public final int u(int i10) {
-        return org.telegram.ui.ActionBar.i6.v0(i10, this.B0.f43300ca);
+        return org.telegram.ui.ActionBar.i6.v0(i10, this.B0.f43307ca);
     }
 }

@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class j implements ml0 {
-    public final int f27540a;
-    public final Object f27541b;
+    public final int f27545a;
+    public final Object f27546b;
 
     public j(Object obj, int i10) {
-        this.f27540a = i10;
-        this.f27541b = obj;
+        this.f27545a = i10;
+        this.f27546b = obj;
     }
 
     @Override

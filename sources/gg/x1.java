@@ -1,13 +1,13 @@
 package gg;
 public final class x1 implements Runnable {
-    public final int f10852a;
-    public final Object f10853b;
-    public final Object f10854c;
+    public final int f10853a;
+    public final Object f10854b;
+    public final Object f10855c;
 
     public x1(int i10, Object obj, Object obj2) {
-        this.f10852a = i10;
-        this.f10853b = obj;
-        this.f10854c = obj2;
+        this.f10853a = i10;
+        this.f10854b = obj;
+        this.f10855c = obj2;
     }
 
     @Override

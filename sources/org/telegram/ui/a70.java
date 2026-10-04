@@ -11,14 +11,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a70 implements Runnable {
-    public final int f34701a;
-    public final b70 f34702b;
-    public final String f34703c;
+    public final int f34707a;
+    public final b70 f34708b;
+    public final String f34709c;
 
     public a70(b70 b70Var, String str, int i10) {
-        this.f34701a = i10;
-        this.f34702b = b70Var;
-        this.f34703c = str;
+        this.f34707a = i10;
+        this.f34708b = b70Var;
+        this.f34709c = str;
     }
 
     @Override
@@ -30,17 +30,17 @@ public final class a70 implements Runnable {
         ArrayList arrayList;
         char c10;
         Object obj;
-        switch (this.f34701a) {
+        switch (this.f34707a) {
             case 0:
-                b70 b70Var = this.f34702b;
-                String str2 = this.f34703c;
+                b70 b70Var = this.f34708b;
+                String str2 = this.f34709c;
                 b70Var.getClass();
                 AndroidUtilities.runOnUIThread(new a70(b70Var, str2, 1));
                 return;
             case 1:
-                b70 b70Var2 = this.f34702b;
-                String str3 = this.f34703c;
-                gg.c2 c2Var = b70Var2.f35015f;
+                b70 b70Var2 = this.f34708b;
+                String str3 = this.f34709c;
+                gg.c2 c2Var = b70Var2.f35020f;
                 d70 d70Var = b70Var2.I;
                 if (!d70Var.O && !d70Var.P) {
                     z10 = false;
@@ -54,9 +54,9 @@ public final class a70 implements Runnable {
                 dispatchQueue.postRunnable(a70Var);
                 return;
             default:
-                b70 b70Var3 = this.f34702b;
-                String str4 = this.f34703c;
-                ArrayList arrayList2 = b70Var3.f35017r;
+                b70 b70Var3 = this.f34708b;
+                String str4 = this.f34709c;
+                ArrayList arrayList2 = b70Var3.f35022r;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     AndroidUtilities.runOnUIThread(new uq(b70Var3, new ArrayList(), new ArrayList(), 10));
@@ -104,7 +104,7 @@ public final class a70 implements Runnable {
                     char c11 = 0;
                     while (i11 < i12) {
                         String str5 = strArr[i11];
-                        if (!str.startsWith(str5) && !org.telegram.messenger.f0.w(" ", str5, str) && (translitString2 == null || (!translitString2.startsWith(str5) && !org.telegram.messenger.f0.w(" ", str5, translitString2)))) {
+                        if (!str.startsWith(str5) && !org.telegram.messenger.bi.u(" ", str5, str) && (translitString2 == null || (!translitString2.startsWith(str5) && !org.telegram.messenger.bi.u(" ", str5, translitString2)))) {
                             if (publicUsername != null && publicUsername.startsWith(str5)) {
                                 c10 = 2;
                             } else {
@@ -126,7 +126,7 @@ public final class a70 implements Runnable {
                                 obj = null;
                             } else {
                                 obj = null;
-                                String i14 = t8.b.i("@", publicUsername);
+                                String i14 = sa.e.i("@", publicUsername);
                                 arrayList4.add(AndroidUtilities.generateSearchName(i14, null, "@" + str5));
                             }
                             arrayList3.add(tLObject);

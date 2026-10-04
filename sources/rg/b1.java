@@ -14,26 +14,26 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.i6;
 public final class b1 {
-    public static b1 f46055j;
-    public final a1 f46056a;
-    public final Paint f46057b;
-    public Paint f46058c;
+    public static b1 f46062j;
+    public final a1 f46063a;
+    public final Paint f46064b;
+    public Paint f46065c;
     public final Drawable d;
-    public final Drawable f46059e;
-    public z0 f46060f;
-    public z0 f46061g;
+    public final Drawable f46066e;
+    public z0 f46067f;
+    public z0 f46068g;
     public final z0 h;
-    public int f46062i;
+    public int f46069i;
 
     public b1() {
         a1 a1Var = new a1(i6.Lj, i6.Mj, i6.Nj, i6.Oj, null);
-        this.f46056a = a1Var;
+        this.f46063a = a1Var;
         a1 a1Var2 = new a1(i6.fk, i6.gk, -1, -1, null);
-        this.f46057b = a1Var.f46038f;
-        this.f46059e = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
-        this.f46060f = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), a1Var);
+        this.f46064b = a1Var.f46045f;
+        this.f46066e = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
+        this.f46067f = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), a1Var);
         this.h = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), a1Var2);
-        this.f46061g = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_normal), a1Var);
+        this.f46068g = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_normal), a1Var);
         this.d = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
         a1Var.a();
         b();
@@ -49,59 +49,59 @@ public final class b1 {
         Canvas canvas = new Canvas(createBitmap);
         drawable.setBounds(0, 0, intrinsicWidth, minimumHeight);
         drawable.draw(canvas);
-        a1Var.f46038f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        a1Var.f46045f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         a1Var.d(0, -intrinsicWidth, 0, intrinsicWidth, 0.0f, minimumHeight);
-        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, a1Var.f46038f);
-        a1Var.f46038f.setXfermode(null);
-        int[] iArr = a1Var.f46043l;
+        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, a1Var.f46045f);
+        a1Var.f46045f.setXfermode(null);
+        int[] iArr = a1Var.f46050l;
         ?? bitmapDrawable = new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), createBitmap);
-        bitmapDrawable.f46402b = drawable;
+        bitmapDrawable.f46409b = drawable;
         int[] iArr2 = new int[iArr.length];
-        bitmapDrawable.f46401a = iArr2;
+        bitmapDrawable.f46408a = iArr2;
         System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
         return bitmapDrawable;
     }
 
     public static b1 d() {
-        if (f46055j == null) {
-            f46055j = new b1();
+        if (f46062j == null) {
+            f46062j = new b1();
         }
-        return f46055j;
+        return f46062j;
     }
 
     public final z0 a(z0 z0Var) {
-        a1 a1Var = this.f46056a;
-        int[] iArr = a1Var.f46043l;
+        a1 a1Var = this.f46063a;
+        int[] iArr = a1Var.f46050l;
         int i10 = iArr[0];
-        int[] iArr2 = z0Var.f46401a;
+        int[] iArr2 = z0Var.f46408a;
         if (i10 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
             return z0Var;
         }
-        return c(z0Var.f46402b, a1Var);
+        return c(z0Var.f46409b, a1Var);
     }
 
     public final void b() {
-        int i10 = i6.f21227z9;
-        if (i6.w0(null, i10, false) != this.f46062i) {
-            this.f46062i = i6.w0(null, i10, false);
-            this.f46059e.setColorFilter(new PorterDuffColorFilter(this.f46062i, PorterDuff.Mode.MULTIPLY));
+        int i10 = i6.f21231z9;
+        if (i6.w0(null, i10, false) != this.f46069i) {
+            this.f46069i = i6.w0(null, i10, false);
+            this.f46066e.setColorFilter(new PorterDuffColorFilter(this.f46069i, PorterDuff.Mode.MULTIPLY));
         }
-        this.f46060f = a(this.f46060f);
-        this.f46061g = a(this.f46061g);
+        this.f46067f = a(this.f46067f);
+        this.f46068g = a(this.f46068g);
     }
 
     public final Paint e() {
         if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            if (this.f46058c == null) {
-                this.f46058c = new Paint(1);
+            if (this.f46065c == null) {
+                this.f46065c = new Paint(1);
             }
-            this.f46058c.setColor(i6.w0(null, i6.Oh, false));
-            return this.f46058c;
+            this.f46065c.setColor(i6.w0(null, i6.Oh, false));
+            return this.f46065c;
         }
-        return this.f46057b;
+        return this.f46064b;
     }
 
     public final void f(float f7, float f10, int i10, int i11) {
-        this.f46056a.d(0, f7, 0, i10, f10, i11);
+        this.f46063a.d(0, f7, 0, i10, f10, i11);
     }
 }

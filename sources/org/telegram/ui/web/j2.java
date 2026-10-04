@@ -25,11 +25,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ft;
 public final class j2 {
-    public static final HashMap f42239e = new HashMap();
-    public static HashMap f42240f;
-    public String f42241a;
-    public qi.f f42242b;
-    public TLRPC.TL_webPage f42243c;
+    public static final HashMap f42246e = new HashMap();
+    public static HashMap f42247f;
+    public String f42248a;
+    public qi.f f42249b;
+    public TLRPC.TL_webPage f42250c;
     public final HashMap d = new HashMap();
 
     public static void a(TL_iv.RichText richText) {
@@ -40,7 +40,7 @@ public final class j2 {
             if (richText2 != null) {
                 a(richText2);
             } else if (!richText.texts.isEmpty()) {
-                a((TL_iv.RichText) hg.k0.g(1, richText.texts));
+                a((TL_iv.RichText) hg.c.g(1, richText.texts));
             } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null && !str.endsWith(" ")) {
                 textplain.text += ' ';
             }
@@ -53,7 +53,7 @@ public final class j2 {
             if (richText2 != null) {
                 b(richText2);
             } else if (!richText.texts.isEmpty()) {
-                b((TL_iv.RichText) hg.k0.g(1, richText.texts));
+                b((TL_iv.RichText) hg.c.g(1, richText.texts));
             } else if (richText instanceof TL_iv.textPlain) {
                 StringBuilder sb2 = new StringBuilder();
                 TL_iv.textPlain textplain = (TL_iv.textPlain) richText;
@@ -112,7 +112,7 @@ public final class j2 {
         }
         boolean[] zArr = {false};
         j2 j2Var = new j2();
-        j2Var.f42241a = z0Var.getUrl();
+        j2Var.f42248a = z0Var.getUrl();
         Timer create = Timer.create("WebInstantView");
         b2 b2Var = new b2(Timer.start(create, "getHTML"), zArr, create, j2Var, callback, 0);
         System.currentTimeMillis();
@@ -145,14 +145,14 @@ public final class j2 {
         l1 l1Var;
         String str;
         Bitmap decodeStream;
-        if (i2Var != null && (j2Var = i2Var.f42226a) != null) {
+        if (i2Var != null && (j2Var = i2Var.f42233a) != null) {
             HashMap hashMap = j2Var.d;
             try {
-                if (j2Var.f42242b != null) {
-                    Iterator it = i2Var.f42228c.iterator();
+                if (j2Var.f42249b != null) {
+                    Iterator it = i2Var.f42235c.iterator();
                     l1Var = null;
                     while (it.hasNext()) {
-                        l1Var = (l1) ((HashMap) j2Var.f42242b.f45529c).get((String) it.next());
+                        l1Var = (l1) ((HashMap) j2Var.f42249b.f45536c).get((String) it.next());
                         if (l1Var != null) {
                             break;
                         }
@@ -161,42 +161,42 @@ public final class j2 {
                     l1Var = null;
                 }
                 if (l1Var != null) {
-                    m1 m1Var = (m1) l1Var.f42264a.get("content-type");
+                    m1 m1Var = (m1) l1Var.f42271a.get("content-type");
                     if (m1Var == null) {
                         str = null;
                     } else {
-                        str = m1Var.f42273a;
+                        str = m1Var.f42280a;
                     }
                     if (str.contains("svg")) {
-                        if (i2Var.d > 0 && i2Var.f42229e > 0) {
-                            decodeStream = SvgHelper.getBitmap((InputStream) l1Var.a(), AndroidUtilities.dp(i2Var.d), AndroidUtilities.dp(i2Var.f42229e), false);
+                        if (i2Var.d > 0 && i2Var.f42236e > 0) {
+                            decodeStream = SvgHelper.getBitmap((InputStream) l1Var.a(), AndroidUtilities.dp(i2Var.d), AndroidUtilities.dp(i2Var.f42236e), false);
                         }
                         return;
                     }
-                    if (i2Var.d <= 0 || i2Var.f42229e <= 0) {
+                    if (i2Var.d <= 0 || i2Var.f42236e <= 0) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inJustDecodeBounds = true;
                         BitmapFactory.decodeStream(l1Var.a(), null, options);
                         int i10 = i2Var.d;
-                        if (i10 == 0 && i2Var.f42229e == 0) {
+                        if (i10 == 0 && i2Var.f42236e == 0) {
                             i2Var.d = options.outWidth;
-                            i2Var.f42229e = options.outHeight;
+                            i2Var.f42236e = options.outHeight;
                         } else if (i10 == 0) {
-                            i2Var.d = (int) ((options.outWidth / options.outHeight) * i2Var.f42229e);
-                        } else if (i2Var.f42229e == 0) {
-                            i2Var.f42229e = (int) ((options.outHeight / options.outWidth) * i10);
+                            i2Var.d = (int) ((options.outWidth / options.outHeight) * i2Var.f42236e);
+                        } else if (i2Var.f42236e == 0) {
+                            i2Var.f42236e = (int) ((options.outHeight / options.outWidth) * i10);
                         }
                         runnable.run();
                     }
                     decodeStream = BitmapFactory.decodeStream(l1Var.a());
                     imageReceiver.setImageBitmap(decodeStream);
-                } else if (hashMap.containsKey(i2Var.f42227b)) {
-                    imageReceiver.setImageBitmap((Bitmap) hashMap.get(i2Var.f42227b));
+                } else if (hashMap.containsKey(i2Var.f42234b)) {
+                    imageReceiver.setImageBitmap((Bitmap) hashMap.get(i2Var.f42234b));
                 } else {
-                    if (f42240f == null) {
-                        f42240f = new HashMap();
+                    if (f42247f == null) {
+                        f42247f = new HashMap();
                     }
-                    ArrayList arrayList = (ArrayList) f42240f.get(i2Var.f42227b);
+                    ArrayList arrayList = (ArrayList) f42247f.get(i2Var.f42234b);
                     if (arrayList != null) {
                         for (int i11 = 0; i11 < arrayList.size(); i11++) {
                             if (((Pair) arrayList.get(i11)).first == imageReceiver) {
@@ -206,8 +206,8 @@ public final class j2 {
                         arrayList.add(new Pair(imageReceiver, runnable));
                         return;
                     }
-                    f42240f.put(i2Var.f42227b, new ArrayList());
-                    new i1(new ft(21, j2Var, i2Var)).execute(i2Var.f42227b);
+                    f42247f.put(i2Var.f42234b, new ArrayList());
+                    new i1(new ft(21, j2Var, i2Var)).execute(i2Var.f42234b);
                 }
             } catch (Exception e7) {
                 FileLog.e(e7);
@@ -224,16 +224,16 @@ public final class j2 {
     public static void o(TLRPC.WebPage webPage) {
         TL_iv.Page page;
         ArrayList<TLRPC.Photo> arrayList;
-        HashMap hashMap = f42239e;
+        HashMap hashMap = f42246e;
         j2 j2Var = (j2) hashMap.remove(webPage);
         if (j2Var != null) {
-            hashMap.remove(j2Var.f42243c);
+            hashMap.remove(j2Var.f42250c);
             HashMap hashMap2 = j2Var.d;
             for (Map.Entry entry : hashMap2.entrySet()) {
                 AndroidUtilities.recycleBitmap((Bitmap) entry.getValue());
             }
             hashMap2.clear();
-            TLRPC.TL_webPage tL_webPage = j2Var.f42243c;
+            TLRPC.TL_webPage tL_webPage = j2Var.f42250c;
             if (tL_webPage != null && (page = tL_webPage.cached_page) != null && (arrayList = page.photos) != null) {
                 int size = arrayList.size();
                 int i10 = 0;
@@ -243,9 +243,9 @@ public final class j2 {
                     TLRPC.Photo photo2 = photo;
                     if (photo2 instanceof i2) {
                         i2 i2Var = (i2) photo2;
-                        HashMap hashMap3 = f42240f;
+                        HashMap hashMap3 = f42247f;
                         if (hashMap3 != null) {
-                            hashMap3.remove(i2Var.f42227b);
+                            hashMap3.remove(i2Var.f42234b);
                         }
                     }
                 }
@@ -268,7 +268,7 @@ public final class j2 {
             return richText;
         } else if (!richText.texts.isEmpty()) {
             r(richText.texts.get(0));
-            q((TL_iv.RichText) hg.k0.g(1, richText.texts));
+            q((TL_iv.RichText) hg.c.g(1, richText.texts));
             return richText;
         } else {
             if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
@@ -286,7 +286,7 @@ public final class j2 {
             if (richText2 != null) {
                 q(richText2);
             } else if (!richText.texts.isEmpty()) {
-                q((TL_iv.RichText) hg.k0.g(1, richText.texts));
+                q((TL_iv.RichText) hg.c.g(1, richText.texts));
             } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
                 textplain.text = str.replaceAll("\\s+$", "");
             }
@@ -321,25 +321,25 @@ public final class j2 {
             return null;
         }
         i2 i2Var = new i2();
-        i2Var.f42226a = this;
-        i2Var.f20062id = (-1) - tL_page.photos.size();
-        i2Var.f42227b = optString2;
-        i2Var.f42228c.add(optString2);
+        i2Var.f42233a = this;
+        i2Var.f20066id = (-1) - tL_page.photos.size();
+        i2Var.f42234b = optString2;
+        i2Var.f42235c.add(optString2);
         try {
             i2Var.d = Integer.parseInt(jSONObject.optString("width"));
         } catch (Exception unused) {
         }
         try {
-            i2Var.f42229e = Integer.parseInt(jSONObject.optString("height"));
+            i2Var.f42236e = Integer.parseInt(jSONObject.optString("height"));
         } catch (Exception unused2) {
         }
         if (i2Var.d == 0) {
-            i2Var.d = i2Var.f42229e;
+            i2Var.d = i2Var.f42236e;
         }
-        if (i2Var.f42229e == 0) {
-            i2Var.f42229e = i2Var.d;
+        if (i2Var.f42236e == 0) {
+            i2Var.f42236e = i2Var.d;
         }
-        pageblockphoto.photo_id = i2Var.f20062id;
+        pageblockphoto.photo_id = i2Var.f20066id;
         pageblockphoto.url = optString2;
         tL_page.photos.add(i2Var);
         return pageblockphoto;
@@ -347,7 +347,7 @@ public final class j2 {
 
     public final TLRPC.TL_webPage i(String str, JSONObject jSONObject) {
         TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
-        tL_webPage.f20191id = 0L;
+        tL_webPage.f20195id = 0L;
         tL_webPage.url = str;
         tL_webPage.display_url = str;
         String string = jSONObject.getString("siteName");
@@ -621,7 +621,7 @@ public final class j2 {
                             int i12 = 0;
                             while (true) {
                                 if (i12 < tL_page.photos.size()) {
-                                    if ((tL_page.photos.get(i12) instanceof i2) && tL_page.photos.get(i12).f20062id == pageblockphoto2.photo_id) {
+                                    if ((tL_page.photos.get(i12) instanceof i2) && tL_page.photos.get(i12).f20066id == pageblockphoto2.photo_id) {
                                         i2Var = (i2) tL_page.photos.get(i12);
                                     } else {
                                         i12++;
@@ -631,7 +631,7 @@ public final class j2 {
                                 }
                             }
                             if (i2Var != null) {
-                                i2Var.f42228c.addAll(arrayList2);
+                                i2Var.f42235c.addAll(arrayList2);
                             }
                             pageblockphoto = pageblockphoto2;
                         }
@@ -965,7 +965,7 @@ public final class j2 {
                         break;
                     case 4:
                         if (!arrayList.isEmpty()) {
-                            b((TL_iv.RichText) hg.k0.g(1, arrayList));
+                            b((TL_iv.RichText) hg.c.g(1, arrayList));
                         }
                         textmarked = l(jSONObject, tL_page);
                         break;
@@ -976,53 +976,53 @@ public final class j2 {
                         break;
                     case 6:
                         if (!arrayList.isEmpty()) {
-                            b((TL_iv.RichText) hg.k0.g(1, arrayList));
+                            b((TL_iv.RichText) hg.c.g(1, arrayList));
                             break;
                         }
                         break;
                     case 7:
                         if (!arrayList.isEmpty()) {
-                            a((TL_iv.RichText) hg.k0.g(1, arrayList));
+                            a((TL_iv.RichText) hg.c.g(1, arrayList));
                         }
                         TL_iv.textImage textimage = new TL_iv.textImage();
                         String optString3 = jSONObject.optString("src");
                         if (optString3 != null) {
                             i2 i2Var = new i2();
-                            i2Var.f42226a = this;
-                            i2Var.f20062id = (-1) - tL_page.photos.size();
-                            i2Var.f42227b = optString3;
-                            i2Var.f42228c.add(optString3);
+                            i2Var.f42233a = this;
+                            i2Var.f20066id = (-1) - tL_page.photos.size();
+                            i2Var.f42234b = optString3;
+                            i2Var.f42235c.add(optString3);
                             try {
                                 i2Var.d = Integer.parseInt(jSONObject.optString("width"));
                             } catch (Exception unused) {
                             }
                             try {
-                                i2Var.f42229e = Integer.parseInt(jSONObject.optString("height"));
+                                i2Var.f42236e = Integer.parseInt(jSONObject.optString("height"));
                             } catch (Exception unused2) {
                             }
                             textimage.url = optString3;
                             tL_page.photos.add(i2Var);
                             if (i2Var.d == 0) {
-                                i2Var.d = i2Var.f42229e;
+                                i2Var.d = i2Var.f42236e;
                             }
-                            if (i2Var.f42229e == 0) {
-                                i2Var.f42229e = i2Var.d;
+                            if (i2Var.f42236e == 0) {
+                                i2Var.f42236e = i2Var.d;
                             }
                             try {
-                                textimage.f20262w = Integer.parseInt(jSONObject.optString("width"));
+                                textimage.f20266w = Integer.parseInt(jSONObject.optString("width"));
                             } catch (Exception unused3) {
                             }
                             try {
                                 textimage.h = Integer.parseInt(jSONObject.optString("height"));
                             } catch (Exception unused4) {
                             }
-                            if (textimage.f20262w == 0) {
-                                textimage.f20262w = textimage.h;
+                            if (textimage.f20266w == 0) {
+                                textimage.f20266w = textimage.h;
                             }
                             if (textimage.h == 0) {
-                                textimage.h = textimage.f20262w;
+                                textimage.h = textimage.f20266w;
                             }
-                            textimage.photo_id = i2Var.f20062id;
+                            textimage.photo_id = i2Var.f20066id;
                             textmarked = textimage;
                             break;
                         }

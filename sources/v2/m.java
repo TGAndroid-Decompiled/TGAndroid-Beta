@@ -20,27 +20,27 @@ public final class m extends a {
     @Override
     public final void a() {
         b1[] b1VarArr;
-        b0 b0Var = this.f47784r;
-        o0.a aVar = this.f47760x;
+        b0 b0Var = this.f47792r;
+        o0.a aVar = this.f47768x;
         e2.d.h(aVar);
-        for (b1 b1Var : (b1[]) aVar.f16929c) {
+        for (b1 b1Var : (b1[]) aVar.f16933c) {
             if (b1Var.F != 0) {
                 b1Var.F = 0L;
-                b1Var.f47237z = true;
+                b1Var.f47245z = true;
             }
         }
-        h0 L = aVar.L(this.E);
-        L.b(this.F);
+        h0 K = aVar.K(this.E);
+        K.b(this.F);
         try {
-            long open = b0Var.open(this.f47779b.b(this.G));
+            long open = b0Var.open(this.f47787b.b(this.G));
             if (open != -1) {
                 open += this.G;
             }
-            c3.l lVar = new c3.l(this.f47784r, this.G, open);
-            for (int i10 = 0; i10 != -1; i10 = L.a(lVar, Integer.MAX_VALUE, true)) {
+            c3.l lVar = new c3.l(this.f47792r, this.G, open);
+            for (int i10 = 0; i10 != -1; i10 = K.a(lVar, Integer.MAX_VALUE, true)) {
                 this.G += i10;
             }
-            L.c(this.h, 1, (int) this.G, 0, null);
+            K.c(this.h, 1, (int) this.G, 0, null);
             m7.a(b0Var);
             this.H = true;
         } catch (Throwable th2) {

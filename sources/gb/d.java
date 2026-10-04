@@ -8,25 +8,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 public final class d implements db.v {
-    public final int f10373a;
-    public final of.b f10374b;
+    public final int f10374a;
+    public final of.b f10375b;
 
     public d(of.b bVar, int i10) {
-        this.f10373a = i10;
-        this.f10374b = bVar;
+        this.f10374a = i10;
+        this.f10375b = bVar;
     }
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
         Type[] actualTypeArguments;
         db.u uVar;
-        int i10 = this.f10373a;
-        of.b bVar = this.f10374b;
+        int i10 = this.f10374a;
+        of.b bVar = this.f10375b;
         Type type = Object.class;
         switch (i10) {
             case 0:
-                Type type2 = aVar.f14747b;
-                Class cls = aVar.f14746a;
+                Type type2 = aVar.f14748b;
+                Class cls = aVar.f14747a;
                 if (!Collection.class.isAssignableFrom(cls)) {
                     return null;
                 }
@@ -40,8 +40,8 @@ public final class d implements db.v {
                 }
                 return new c(gVar, type, gVar.b(new kb.a(type)), bVar.z(aVar));
             default:
-                Type type3 = aVar.f14747b;
-                Class cls2 = aVar.f14746a;
+                Type type3 = aVar.f14748b;
+                Class cls2 = aVar.f14747a;
                 if (!Map.class.isAssignableFrom(cls2)) {
                     return null;
                 }
@@ -59,7 +59,7 @@ public final class d implements db.v {
                 if (type4 != Boolean.TYPE && type4 != Boolean.class) {
                     uVar = gVar.b(new kb.a(type4));
                 } else {
-                    uVar = h1.f10382c;
+                    uVar = h1.f10383c;
                 }
                 db.u b10 = gVar.b(new kb.a(actualTypeArguments[1]));
                 fb.n z10 = bVar.z(aVar);

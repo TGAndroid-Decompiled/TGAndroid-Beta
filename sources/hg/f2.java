@@ -14,32 +14,32 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public final class f2 {
-    public static volatile f2[] f11192e = new f2[4];
-    public static final Object[] f11193f = new Object[4];
-    public final int f11194a;
-    public boolean f11195b;
-    public boolean f11196c;
+    public static volatile f2[] f11184e = new f2[4];
+    public static final Object[] f11185f = new Object[4];
+    public final int f11186a;
+    public boolean f11187b;
+    public boolean f11188c;
     public final ArrayList d = new ArrayList();
 
     static {
         for (int i10 = 0; i10 < 4; i10++) {
-            f11193f[i10] = new Object();
+            f11185f[i10] = new Object();
         }
     }
 
     public f2(int i10) {
-        this.f11194a = i10;
+        this.f11186a = i10;
     }
 
     public static f2 b(int i10) {
         f2 f2Var;
-        f2 f2Var2 = f11192e[i10];
+        f2 f2Var2 = f11184e[i10];
         if (f2Var2 == null) {
-            synchronized (f11193f[i10]) {
+            synchronized (f11185f[i10]) {
                 try {
-                    f2Var = f11192e[i10];
+                    f2Var = f11184e[i10];
                     if (f2Var == null) {
-                        f2[] f2VarArr = f11192e;
+                        f2[] f2VarArr = f11184e;
                         f2 f2Var3 = new f2(i10);
                         f2VarArr[i10] = f2Var3;
                         f2Var = f2Var3;
@@ -79,22 +79,22 @@ public final class f2 {
         int abs = Math.abs(tL_timezone.utc_offset) / 60;
         int i11 = abs / 60;
         int i12 = abs % 60;
-        StringBuilder u10 = a4.a.u(concat);
+        StringBuilder v = a4.a.v(concat);
         String str3 = "";
         if (i11 >= 10) {
             str2 = "";
         } else {
             str2 = "0";
         }
-        u10.append(str2);
-        u10.append(i11);
-        StringBuilder u11 = a4.a.u(t8.b.v(u10.toString(), ":"));
+        v.append(str2);
+        v.append(i11);
+        StringBuilder v9 = a4.a.v(sa.e.v(v.toString(), ":"));
         if (i12 < 10) {
             str3 = "0";
         }
-        u11.append(str3);
-        u11.append(i12);
-        return u11.toString();
+        v9.append(str3);
+        v9.append(i12);
+        return v9.toString();
     }
 
     public final TLRPC.TL_timezone a(String str) {
@@ -109,7 +109,7 @@ public final class f2 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
-            if (TextUtils.equals(tL_timezone.f20176id, str)) {
+            if (TextUtils.equals(tL_timezone.f20180id, str)) {
                 return tL_timezone;
             }
             i10++;
@@ -150,9 +150,9 @@ public final class f2 {
     }
 
     public final void g() {
-        if (!this.f11195b && !this.f11196c) {
-            this.f11195b = true;
-            int i10 = this.f11194a;
+        if (!this.f11187b && !this.f11188c) {
+            this.f11187b = true;
+            int i10 = this.f11186a;
             SharedPreferences mainSettings = MessagesController.getInstance(i10).getMainSettings();
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = mainSettings.getString("timezones", null);

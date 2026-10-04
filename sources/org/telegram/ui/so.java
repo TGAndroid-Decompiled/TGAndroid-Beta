@@ -4,15 +4,15 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class so extends ClickableSpan {
-    public final int f40537a;
+    public final int f40543a;
 
     public so(int i10) {
-        this.f40537a = i10;
+        this.f40543a = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f40537a) {
+        switch (this.f40543a) {
             case 0:
                 nf.f.s(view.getContext(), "https://t.me/BotFather");
                 return;
@@ -23,7 +23,7 @@ public final class so extends ClickableSpan {
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f40537a) {
+        switch (this.f40543a) {
             case 0:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);

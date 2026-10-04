@@ -5,19 +5,19 @@ import android.graphics.Canvas;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 public final class wg0 extends zl0 {
-    public final yf.y f32554e3;
-    public long f32555f3;
-    public final ch0 f32556g3;
+    public final yf.y f32560e3;
+    public long f32561f3;
+    public final ch0 f32562g3;
 
     public wg0(ch0 ch0Var, Context context) {
         super(context, null);
-        this.f32556g3 = ch0Var;
-        this.f32554e3 = new yf.y(8);
+        this.f32562g3 = ch0Var;
+        this.f32560e3 = new yf.y(8);
     }
 
     @Override
     public final boolean F0(float f7) {
-        if (f7 >= this.f32556g3.E + AndroidUtilities.statusBarHeight) {
+        if (f7 >= this.f32562g3.E + AndroidUtilities.statusBarHeight) {
             return true;
         }
         return false;
@@ -26,14 +26,14 @@ public final class wg0 extends zl0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        ch0 ch0Var = this.f32556g3;
+        ch0 ch0Var = this.f32562g3;
         if (ch0Var.L) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long abs = Math.abs(this.f32555f3 - elapsedRealtime);
+            long abs = Math.abs(this.f32561f3 - elapsedRealtime);
             if (abs > 17) {
                 abs = 16;
             }
-            this.f32555f3 = elapsedRealtime;
+            this.f32561f3 = elapsedRealtime;
             ch0Var.J += (((float) abs) * ch0Var.K) / 1800.0f;
             while (true) {
                 f7 = ch0Var.J;
@@ -52,9 +52,9 @@ public final class wg0 extends zl0 {
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.navigationBarHeight;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight2 = getMeasuredHeight();
-        yf.y yVar = this.f32554e3;
+        yf.y yVar = this.f32560e3;
         yVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        yVar.b(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20908i5, this.f33546p2));
+        yVar.b(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20912i5, this.f33552p2));
         yVar.draw(canvas);
     }
 }

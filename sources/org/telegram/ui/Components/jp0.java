@@ -13,17 +13,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class jp0 extends yl0 {
-    public final org.telegram.ui.ActionBar.d6 f27872c;
+    public final org.telegram.ui.ActionBar.d6 f27877c;
     public final List d;
-    public final MessagesController f27873e;
-    public final int f27874f;
+    public final MessagesController f27878e;
+    public final int f27879f;
     public final TLRPC.Peer h;
 
     public jp0(org.telegram.ui.ActionBar.d6 d6Var, List list, MessagesController messagesController, int i10, TLRPC.Peer peer) {
-        this.f27872c = d6Var;
+        this.f27877c = d6Var;
         this.d = list;
-        this.f27873e = messagesController;
-        this.f27874f = i10;
+        this.f27878e = messagesController;
+        this.f27879f = i10;
         this.h = peer;
     }
 
@@ -41,7 +41,7 @@ public final class jp0 extends yl0 {
     public final void v(s4.c1 c1Var, int i10) {
         long j3;
         String str;
-        np0 np0Var = (np0) c1Var.f46524a;
+        np0 np0Var = (np0) c1Var.f46531a;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i10);
         TLRPC.Peer peer = tL_sendAsPeer.peer;
         long j10 = peer.channel_id;
@@ -57,7 +57,7 @@ public final class jp0 extends yl0 {
             }
         }
         TLRPC.Peer peer2 = this.h;
-        MessagesController messagesController = this.f27873e;
+        MessagesController messagesController = this.f27878e;
         boolean z10 = true;
         if (j3 < 0) {
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j3));
@@ -65,8 +65,8 @@ public final class jp0 extends yl0 {
                 if (tL_sendAsPeer.premium_required) {
                     StringBuilder sb2 = new StringBuilder();
                     String str2 = chat.title;
-                    TextView textView = np0Var.f29041b;
-                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f27874f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
+                    TextView textView = np0Var.f29046b;
+                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f27879f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
                     sb2.append(" d");
                     SpannableString spannableString = new SpannableString(sb2.toString());
                     rq rqVar = new rq(R.drawable.msg_mini_premiumlock, 0);
@@ -77,19 +77,19 @@ public final class jp0 extends yl0 {
                     textView.setEllipsize(null);
                     textView.setText(spannableString);
                 } else {
-                    np0Var.f29041b.setEllipsize(TextUtils.TruncateAt.END);
-                    np0Var.f29041b.setText(chat.title);
+                    np0Var.f29046b.setEllipsize(TextUtils.TruncateAt.END);
+                    np0Var.f29046b.setText(chat.title);
                 }
-                TextView textView2 = np0Var.f29042c;
+                TextView textView2 = np0Var.f29047c;
                 if (ChatObject.isChannel(chat) && !chat.megagroup) {
                     str = "Subscribers";
                 } else {
                     str = "Members";
                 }
                 textView2.setText(LocaleController.formatPluralString(str, chat.participants_count, new Object[0]));
-                np0Var.f29040a.setAvatar(chat);
+                np0Var.f29045a.setAvatar(chat);
             }
-            bw0 bw0Var = np0Var.f29040a;
+            bw0 bw0Var = np0Var.f29045a;
             if (peer2 == null ? i10 != 0 : peer2.channel_id != peer.channel_id) {
                 z10 = false;
             }
@@ -98,11 +98,11 @@ public final class jp0 extends yl0 {
         }
         TLRPC.User user = messagesController.getUser(Long.valueOf(j3));
         if (user != null) {
-            np0Var.f29041b.setText(UserObject.getUserName(user));
-            np0Var.f29042c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
-            np0Var.f29040a.setAvatar(user);
+            np0Var.f29046b.setText(UserObject.getUserName(user));
+            np0Var.f29047c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
+            np0Var.f29045a.setAvatar(user);
         }
-        bw0 bw0Var2 = np0Var.f29040a;
+        bw0 bw0Var2 = np0Var.f29045a;
         if (peer2 == null ? i10 != 0 : peer2.user_id != peer.user_id) {
             z10 = false;
         }
@@ -111,6 +111,6 @@ public final class jp0 extends yl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new np0(viewGroup.getContext(), this.f27872c));
+        return new s4.c1(new np0(viewGroup.getContext(), this.f27877c));
     }
 }

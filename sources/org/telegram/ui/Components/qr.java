@@ -9,25 +9,25 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class qr extends Drawable {
-    public final Drawable f30148a;
-    public final RectF f30149b = new RectF();
-    public final Paint f30150c;
+    public final Drawable f30154a;
+    public final RectF f30155b = new RectF();
+    public final Paint f30156c;
     public final Paint d;
-    public int f30151e;
-    public final int f30152f;
-    public float f30153g;
+    public int f30157e;
+    public final int f30158f;
+    public float f30159g;
     public boolean h;
-    public float f30154i;
-    public float f30155j;
-    public float f30156k;
+    public float f30160i;
+    public float f30161j;
+    public float f30162k;
 
     public qr(Context context, int i10, int i11) {
         Paint paint = new Paint(1);
-        this.f30150c = paint;
+        this.f30156c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.f30148a = context.getDrawable(i10);
-        this.f30152f = i11;
+        this.f30154a = context.getDrawable(i10);
+        this.f30158f = i11;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
@@ -46,12 +46,12 @@ public final class qr extends Drawable {
                 if (z10) {
                     f7 = 1.0f;
                 }
-                this.f30153g = f7;
+                this.f30159g = f7;
             } else {
                 if (!z10) {
                     f7 = 1.0f;
                 }
-                this.f30153g = f7;
+                this.f30159g = f7;
             }
             invalidateSelf();
         }
@@ -64,12 +64,12 @@ public final class qr extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f30148a.getIntrinsicHeight();
+        return this.f30154a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f30148a.getIntrinsicWidth();
+        return this.f30154a.getIntrinsicWidth();
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class qr extends Drawable {
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
         super.setBounds(i10, i11, i12, i13);
-        this.f30148a.setBounds(i10, i11, i12, i13);
+        this.f30154a.setBounds(i10, i11, i12, i13);
     }
 
     @Override

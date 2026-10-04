@@ -9,17 +9,17 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.tr;
 public final class b9 extends FrameLayout {
-    public final Paint f4774a;
-    public final org.telegram.ui.Components.e6 f4775b;
-    public final org.telegram.ui.ActionBar.d6 f4776c;
+    public final Paint f4775a;
+    public final org.telegram.ui.Components.e6 f4776b;
+    public final org.telegram.ui.ActionBar.d6 f4777c;
     public final e9 d;
 
     public b9(e9 e9Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.d = e9Var;
-        this.f4776c = d6Var;
-        this.f4774a = new Paint(1);
-        this.f4775b = new org.telegram.ui.Components.e6(this, 0L, 350L, tr.h);
+        this.f4777c = d6Var;
+        this.f4775a = new Paint(1);
+        this.f4776b = new org.telegram.ui.Components.e6(this, 0L, 350L, tr.h);
     }
 
     @Override
@@ -29,8 +29,8 @@ public final class b9 extends FrameLayout {
         int i11;
         int i12;
         int i13;
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20890h5, this.f4776c);
-        Paint paint = this.f4774a;
+        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20894h5, this.f4777c);
+        Paint paint = this.f4775a;
         paint.setColor(v02);
         e9 e9Var = this.d;
         float max = Math.max(0.0f, e9Var.s());
@@ -39,16 +39,16 @@ public final class b9 extends FrameLayout {
         } else {
             z10 = false;
         }
-        org.telegram.ui.Components.e6 e6Var = this.f4775b;
+        org.telegram.ui.Components.e6 e6Var = this.f4776b;
         float lerp = AndroidUtilities.lerp(max, 0.0f, e6Var.e(z10));
         RectF rectF = AndroidUtilities.rectTmp;
         i10 = ((org.telegram.ui.ActionBar.f3) e9Var).backgroundPaddingLeft;
         int width = getWidth();
         i11 = ((org.telegram.ui.ActionBar.f3) e9Var).backgroundPaddingLeft;
         rectF.set(i10, lerp, width - i11, AndroidUtilities.dp(14.0f) + getHeight());
-        float dp = (1.0f - e6Var.f25934c) * AndroidUtilities.dp(14.0f);
+        float dp = (1.0f - e6Var.f25939c) * AndroidUtilities.dp(14.0f);
         canvas.drawRoundRect(rectF, dp, dp, paint);
-        e9Var.f5044n.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, AndroidUtilities.dp(14.0f) + lerp));
+        e9Var.f5045n.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, AndroidUtilities.dp(14.0f) + lerp));
         canvas.save();
         i12 = ((org.telegram.ui.ActionBar.f3) e9Var).backgroundPaddingLeft;
         int dp2 = AndroidUtilities.dp(14.0f) + AndroidUtilities.statusBarHeight;

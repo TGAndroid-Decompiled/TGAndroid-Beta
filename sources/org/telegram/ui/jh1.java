@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class jh1 extends org.telegram.ui.Components.f61 {
-    public static final int f37699a = 0;
+    public static final int f37704a = 0;
 
     static {
         org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
@@ -23,18 +23,18 @@ public final class jh1 extends org.telegram.ui.Components.f61 {
         int i12;
         int i13;
         kh1 kh1Var = (kh1) view;
-        int i14 = g61Var.f26668k;
-        CharSequence charSequence = g61Var.f26669l;
-        CharSequence charSequence2 = g61Var.f26670m;
-        boolean z11 = g61Var.f26674q;
-        boolean z12 = g61Var.f26675r;
-        int i15 = g61Var.f26682z;
+        int i14 = g61Var.f26673k;
+        CharSequence charSequence = g61Var.f26674l;
+        CharSequence charSequence2 = g61Var.f26675m;
+        boolean z11 = g61Var.f26679q;
+        boolean z12 = g61Var.f26680r;
+        int i15 = g61Var.f26687z;
         TextView textView = kh1Var.d;
-        TextView textView2 = kh1Var.f37986e;
-        ImageView imageView = kh1Var.f37987f;
+        TextView textView2 = kh1Var.f37991e;
+        ImageView imageView = kh1Var.f37992f;
         kh1Var.h = z11;
-        kh1Var.f37988n = z12;
-        ImageView imageView2 = kh1Var.f37984b;
+        kh1Var.f37993n = z12;
+        ImageView imageView2 = kh1Var.f37989b;
         imageView2.setImageResource(i14);
         int i16 = 8;
         if (i15 != 0) {
@@ -55,40 +55,40 @@ public final class jh1 extends org.telegram.ui.Components.f61 {
             f7 = 10.0f;
         }
         int dp = AndroidUtilities.dp(f7);
-        kh1Var.f37985c.setPadding(0, dp, 0, dp);
-        org.telegram.ui.ActionBar.d6 d6Var = kh1Var.f37983a;
-        if (kh1Var.f37988n) {
-            i10 = org.telegram.ui.ActionBar.i6.f21059q7;
+        kh1Var.f37990c.setPadding(0, dp, 0, dp);
+        org.telegram.ui.ActionBar.d6 d6Var = kh1Var.f37988a;
+        if (kh1Var.f37993n) {
+            i10 = org.telegram.ui.ActionBar.i6.f21063q7;
         } else if (kh1Var.h) {
-            i10 = org.telegram.ui.ActionBar.i6.f21004n6;
+            i10 = org.telegram.ui.ActionBar.i6.f21008n6;
         } else {
             i10 = org.telegram.ui.ActionBar.i6.G6;
         }
         int v02 = org.telegram.ui.ActionBar.i6.v0(i10, d6Var);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView2.setColorFilter(new PorterDuffColorFilter(v02, mode));
-        if (kh1Var.f37988n) {
-            i11 = org.telegram.ui.ActionBar.i6.f21059q7;
+        if (kh1Var.f37993n) {
+            i11 = org.telegram.ui.ActionBar.i6.f21063q7;
         } else if (kh1Var.h) {
-            i11 = org.telegram.ui.ActionBar.i6.f21004n6;
+            i11 = org.telegram.ui.ActionBar.i6.f21008n6;
         } else {
             i11 = org.telegram.ui.ActionBar.i6.G6;
         }
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(i11, d6Var), mode));
-        if (kh1Var.f37988n) {
-            i12 = org.telegram.ui.ActionBar.i6.f21040p7;
+        if (kh1Var.f37993n) {
+            i12 = org.telegram.ui.ActionBar.i6.f21044p7;
         } else if (kh1Var.h) {
-            i12 = org.telegram.ui.ActionBar.i6.f21004n6;
+            i12 = org.telegram.ui.ActionBar.i6.f21008n6;
         } else {
             i12 = org.telegram.ui.ActionBar.i6.G6;
         }
         textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i12, d6Var));
-        if (kh1Var.f37988n) {
-            i13 = org.telegram.ui.ActionBar.i6.f21040p7;
+        if (kh1Var.f37993n) {
+            i13 = org.telegram.ui.ActionBar.i6.f21044p7;
         } else if (kh1Var.h) {
-            i13 = org.telegram.ui.ActionBar.i6.f21004n6;
+            i13 = org.telegram.ui.ActionBar.i6.f21008n6;
         } else {
-            i13 = org.telegram.ui.ActionBar.i6.f21205y6;
+            i13 = org.telegram.ui.ActionBar.i6.f21209y6;
         }
         textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(i13, d6Var));
     }

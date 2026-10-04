@@ -23,7 +23,7 @@ public final class c4 extends bb0 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7904a);
+        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7905a);
         canvas.drawRoundRect(rectF, f7, f7, e6Var.f878n2);
         if (rectF.top < getMeasuredHeight() - 1) {
             canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, e6Var.B0.H("paintDivider"));

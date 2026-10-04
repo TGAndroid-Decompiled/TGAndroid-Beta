@@ -11,7 +11,7 @@ public final class lx extends s4.c0 {
     @Override
     public final int R0() {
         ty tyVar = this.I;
-        if (tyVar.f40991s == 0 && this.J.W.i4() && tyVar.v == 2) {
+        if (tyVar.f40997s == 0 && this.J.W.i4() && tyVar.v == 2) {
             return 1;
         }
         return 0;

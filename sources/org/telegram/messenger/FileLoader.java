@@ -238,8 +238,8 @@ public class FileLoader extends BaseController {
         public void saveFilePath(FilePathDatabase.PathData pathData, File file) {
             String str;
             FilePathDatabase fileDatabase = FileLoader.this.getFileDatabase();
-            long j3 = pathData.f17248id;
-            int i10 = pathData.f17247dc;
+            long j3 = pathData.f17252id;
+            int i10 = pathData.f17251dc;
             int i11 = pathData.type;
             if (file != null) {
                 str = file.toString();
@@ -305,7 +305,7 @@ public class FileLoader extends BaseController {
                 int i12 = i11 + 1;
                 sb2.append(i12);
                 fileLoaderPriorityQueueArr[i11] = new FileLoaderPriorityQueue(i10, sb2.toString(), 0, fileLoaderQueue);
-                this.largeFilesQueue[i11] = new FileLoaderPriorityQueue(i10, hg.k0.h(i12, "largeFilesQueue dc"), 1, fileLoaderQueue);
+                this.largeFilesQueue[i11] = new FileLoaderPriorityQueue(i10, hg.c.h(i12, "largeFilesQueue dc"), 1, fileLoaderQueue);
                 i11 = i12;
             } else {
                 dumpFilesQueue();
@@ -705,7 +705,7 @@ public class FileLoader extends BaseController {
 
     public static long getPhotoId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.Photo) {
-            return ((TLRPC.Photo) tLObject).f20062id;
+            return ((TLRPC.Photo) tLObject).f20066id;
         }
         if (tLObject instanceof TLRPC.ChatPhoto) {
             return ((TLRPC.ChatPhoto) tLObject).photo_id;
@@ -845,7 +845,7 @@ public class FileLoader extends BaseController {
             sb2.append(" position in queue ");
             sb2.append(fileLoadOperation.getPositionInQueue());
             sb2.append(" account=");
-            f0.n(this.currentAccount, sb2);
+            q.n(this.currentAccount, sb2);
         }
     }
 
@@ -1068,14 +1068,14 @@ public class FileLoader extends BaseController {
     public void lambda$removeLoadingVideo$1(TLRPC.Document document, boolean z10) {
         String str;
         String attachFileName = getAttachFileName(document);
-        StringBuilder u10 = a4.a.u(attachFileName);
+        StringBuilder v = a4.a.v(attachFileName);
         if (z10) {
             str = "p";
         } else {
             str = "";
         }
-        u10.append(str);
-        if (this.loadingVideos.remove(u10.toString()) != null) {
+        v.append(str);
+        if (this.loadingVideos.remove(v.toString()) != null) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
         }
     }
@@ -1421,22 +1421,22 @@ public class FileLoader extends BaseController {
         if (document != null) {
             String attachFileName = getAttachFileName(document);
             HashMap<String, Boolean> hashMap = this.loadingVideos;
-            StringBuilder u10 = a4.a.u(attachFileName);
+            StringBuilder v = a4.a.v(attachFileName);
             String str2 = "p";
             if (!z10) {
                 str = "p";
             } else {
                 str = "";
             }
-            u10.append(str);
-            if (hashMap.containsKey(u10.toString())) {
+            v.append(str);
+            if (hashMap.containsKey(v.toString())) {
                 HashMap<String, Boolean> hashMap2 = this.loadingVideos;
-                StringBuilder u11 = a4.a.u(attachFileName);
+                StringBuilder v9 = a4.a.v(attachFileName);
                 if (!z10) {
                     str2 = "";
                 }
-                u11.append(str2);
-                hashMap2.put(u11.toString(), Boolean.TRUE);
+                v9.append(str2);
+                hashMap2.put(v9.toString(), Boolean.TRUE);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
             }
         }
@@ -1445,14 +1445,14 @@ public class FileLoader extends BaseController {
     public void lambda$setLoadingVideo$0(TLRPC.Document document, boolean z10) {
         String str;
         String attachFileName = getAttachFileName(document);
-        StringBuilder u10 = a4.a.u(attachFileName);
+        StringBuilder v = a4.a.v(attachFileName);
         if (z10) {
             str = "p";
         } else {
             str = "";
         }
-        u10.append(str);
-        this.loadingVideos.put(u10.toString(), Boolean.TRUE);
+        v.append(str);
+        this.loadingVideos.put(v.toString(), Boolean.TRUE);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
     }
 
@@ -1470,7 +1470,7 @@ public class FileLoader extends BaseController {
             } else {
                 i11 = 3;
             }
-            this.filePathDatabase.putPath(document.f20044id, document.dc_id, i11, 1, str);
+            this.filePathDatabase.putPath(document.f20048id, document.dc_id, i11, 1, str);
         } else if (tLObject instanceof TLRPC.PhotoSize) {
             TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
             if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -1580,21 +1580,21 @@ public class FileLoader extends BaseController {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(document.dc_id);
                 sb2.append("_");
-                return a4.a.r(sb2, document.f20044id, substring);
+                return a4.a.s(sb2, document.f20048id, substring);
             }
-            return document.dc_id + "_" + document.f20044id;
+            return document.dc_id + "_" + document.f20048id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(secureDocument.secureFile.dc_id);
             sb3.append("_");
-            return a4.a.r(sb3, secureDocument.secureFile.f20173id, ".jpg");
+            return a4.a.s(sb3, secureDocument.secureFile.f20177id, ".jpg");
         } else if (tLObject instanceof TLRPC.TL_secureFile) {
             TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) tLObject;
             StringBuilder sb4 = new StringBuilder();
             sb4.append(tL_secureFile.dc_id);
             sb4.append("_");
-            return a4.a.r(sb4, tL_secureFile.f20173id, ".jpg");
+            return a4.a.s(sb4, tL_secureFile.f20177id, ".jpg");
         } else if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;
             return Utilities.MD5(webFile.url) + "." + ImageLoader.getHttpUrlExtension(webFile.url, getMimeTypePart(webFile.mime_type));
@@ -1879,7 +1879,7 @@ public class FileLoader extends BaseController {
                     return true;
                 }
             }
-            if ((-fileLocation.volume_id) == photo.f20062id) {
+            if ((-fileLocation.volume_id) == photo.f20066id) {
                 return true;
             }
         }

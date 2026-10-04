@@ -8,6 +8,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.bi;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.q9;
@@ -18,20 +19,20 @@ import org.telegram.ui.Components.xj;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.yn;
 public final class i0 implements Runnable {
-    public final int f12420a = 1;
-    public final int f12421b;
-    public final int f12422c;
+    public final int f12421a = 1;
+    public final int f12422b;
+    public final int f12423c;
     public final Object d;
-    public final Object f12423e;
-    public final Object f12424f;
+    public final Object f12424e;
+    public final Object f12425f;
     public final Object h;
 
     public i0(m4.a1 a1Var, m4.r rVar, int i10, m4.a0 a0Var, int i11, m4.z0 z0Var) {
         this.d = a1Var;
-        this.f12423e = rVar;
-        this.f12421b = i10;
-        this.f12424f = a0Var;
-        this.f12422c = i11;
+        this.f12424e = rVar;
+        this.f12422b = i10;
+        this.f12425f = a0Var;
+        this.f12423c = i11;
         this.h = z0Var;
     }
 
@@ -49,19 +50,19 @@ public final class i0 implements Runnable {
         int i13;
         yn ynVar;
         boolean z10;
-        int i14 = this.f12420a;
-        final int i15 = this.f12422c;
+        int i14 = this.f12421a;
+        final int i15 = this.f12423c;
         Object obj = this.h;
-        Object obj2 = this.f12424f;
-        Object obj3 = this.f12423e;
-        int i16 = this.f12421b;
+        Object obj2 = this.f12425f;
+        Object obj3 = this.f12424e;
+        int i16 = this.f12422b;
         Object obj4 = this.d;
         switch (i14) {
             case 0:
                 i1 i1Var = (i1) obj3;
                 q9 q9Var = (q9) obj2;
                 k0 k0Var = (k0) obj;
-                l0 l0Var = (l0) ((n4.y) obj4).f16641c;
+                l0 l0Var = (l0) ((n4.y) obj4).f16645c;
                 if (i1Var.length() >= i16 && i1Var.getSelectionStart() != i1Var.getSelectionEnd() && q9Var.k0(k0Var.R(), 0, i15, i16)) {
                     l0Var.d = true;
                     i1Var.setSelection(i16);
@@ -73,12 +74,12 @@ public final class i0 implements Runnable {
                 final m4.r rVar = (m4.r) obj3;
                 final m4.a0 a0Var = (m4.a0) obj2;
                 final m4.z0 z0Var = (m4.z0) obj;
-                qi.f fVar = ((m4.a1) obj4).f16060b;
+                qi.f fVar = ((m4.a1) obj4).f16064b;
                 if (!fVar.B(rVar, i16)) {
                     m4.a1.O0(a0Var, rVar, i15, new m4.k1(-4));
                     return;
                 }
-                na.d dVar = a0Var.f16039e;
+                na.d dVar = a0Var.f16043e;
                 a0Var.s(rVar);
                 dVar.getClass();
                 if (i16 == 27) {
@@ -148,12 +149,12 @@ public final class i0 implements Runnable {
                     while (i19 < i17) {
                         int i20 = i19;
                         String str4 = strArr2[i20];
-                        if ((str == null || (!str.startsWith(str4) && !org.telegram.messenger.f0.w(" ", str4, str))) && (str2 == null || (!str2.startsWith(str4) && !org.telegram.messenger.f0.w(" ", str4, str2)))) {
+                        if ((str == null || (!str.startsWith(str4) && !bi.u(" ", str4, str))) && (str2 == null || (!str2.startsWith(str4) && !bi.u(" ", str4, str2)))) {
                             str3 = str;
                             TLRPC.User user2 = contact.user;
                             if (user2 != null && (publicUsername = UserObject.getPublicUsername(user2)) != null && publicUsername.startsWith(str4)) {
                                 c10 = 2;
-                            } else if (!lowerCase2.startsWith(str4) && !org.telegram.messenger.f0.w(" ", str4, lowerCase2) && (translitString2 == null || (!translitString2.startsWith(str4) && !org.telegram.messenger.f0.w(" ", str4, translitString2)))) {
+                            } else if (!lowerCase2.startsWith(str4) && !bi.u(" ", str4, lowerCase2) && (translitString2 == null || (!translitString2.startsWith(str4) && !bi.u(" ", str4, translitString2)))) {
                                 c10 = c11;
                             } else {
                                 c10 = 3;
@@ -174,7 +175,7 @@ public final class i0 implements Runnable {
                             }
                             TLRPC.User user4 = contact.user;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f20185id, 1);
+                                longSparseIntArray.put(user4.f20189id, 1);
                             }
                             arrayList4.add(contact);
                             i18++;
@@ -209,7 +210,7 @@ public final class i0 implements Runnable {
                         int i22 = 0;
                         while (i22 < i17) {
                             String str6 = strArr3[i22];
-                            if (lowerCase3.startsWith(str6) || org.telegram.messenger.f0.w(" ", str6, lowerCase3) || (translitString3 != null && (translitString3.startsWith(str6) || org.telegram.messenger.f0.w(" ", str6, translitString3)))) {
+                            if (lowerCase3.startsWith(str6) || bi.u(" ", str6, lowerCase3) || (translitString3 != null && (translitString3.startsWith(str6) || bi.u(" ", str6, translitString3)))) {
                                 i11 = i21;
                                 c12 = 1;
                             } else {
@@ -236,20 +237,20 @@ public final class i0 implements Runnable {
                     i11 = i21;
                     i21 = i11 + 1;
                 }
-                AndroidUtilities.runOnUIThread(new c9(xjVar4, this.f12422c, arrayList4, arrayList5, 15));
+                AndroidUtilities.runOnUIThread(new c9(xjVar4, this.f12423c, arrayList4, arrayList5, 15));
                 return;
             default:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj4;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
                 yn ynVar2 = (yn) obj;
-                boolean z11 = ChatAttachAlertPhotoLayout.f24018q1;
-                xi xiVar = chatAttachAlertPhotoLayout.f29643b;
+                boolean z11 = ChatAttachAlertPhotoLayout.f24022q1;
+                xi xiVar = chatAttachAlertPhotoLayout.f29648b;
                 if (xiVar.F && !xiVar.G) {
                     PhotoViewer.t1().K2(null, n2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.h = 0;
-                    t12.f33971n = false;
+                    t12.f33977n = false;
                     i12 = 3;
                 } else {
                     i12 = i16;
@@ -260,13 +261,13 @@ public final class i0 implements Runnable {
                     i13 = i12;
                 }
                 PhotoViewer t13 = PhotoViewer.t1();
-                am amVar = chatAttachAlertPhotoLayout.f24038h1;
+                am amVar = chatAttachAlertPhotoLayout.f24042h1;
                 if (xiVar.H) {
                     ynVar = null;
                 } else {
                     ynVar = ynVar2;
                 }
-                t13.g2(arrayList6, this.f12422c, i13, false, amVar, ynVar);
+                t13.g2(arrayList6, this.f12423c, i13, false, amVar, ynVar);
                 PhotoViewer.t1().x2(xiVar.Q);
                 if (xiVar.F && !xiVar.G) {
                     PhotoViewer.t1().O = false;
@@ -285,9 +286,9 @@ public final class i0 implements Runnable {
                 }
                 if (ChatAttachAlertPhotoLayout.R()) {
                     PhotoViewer t15 = PhotoViewer.t1();
-                    Editable text = xiVar.k1().getText();
-                    t15.f33996p7 = true;
-                    t15.f34004q7 = text;
+                    Editable text = xiVar.m1().getText();
+                    t15.f34002p7 = true;
+                    t15.f34010q7 = text;
                     t15.A2(null, text, false, false);
                     t15.t3(null);
                     return;
@@ -298,28 +299,28 @@ public final class i0 implements Runnable {
 
     public i0(n4.y yVar, i1 i1Var, int i10, q9 q9Var, k0 k0Var, int i11) {
         this.d = yVar;
-        this.f12423e = i1Var;
-        this.f12421b = i10;
-        this.f12424f = q9Var;
+        this.f12424e = i1Var;
+        this.f12422b = i10;
+        this.f12425f = q9Var;
         this.h = k0Var;
-        this.f12422c = i11;
+        this.f12423c = i11;
     }
 
     public i0(xj xjVar, String str, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
         this.d = xjVar;
-        this.f12423e = str;
-        this.f12424f = arrayList;
+        this.f12424e = str;
+        this.f12425f = arrayList;
         this.h = arrayList2;
-        this.f12421b = i10;
-        this.f12422c = i11;
+        this.f12422b = i10;
+        this.f12423c = i11;
     }
 
     public i0(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, int i11, yn ynVar) {
         this.d = chatAttachAlertPhotoLayout;
-        this.f12421b = i10;
-        this.f12423e = n2Var;
-        this.f12424f = arrayList;
-        this.f12422c = i11;
+        this.f12422b = i10;
+        this.f12424e = n2Var;
+        this.f12425f = arrayList;
+        this.f12423c = i11;
         this.h = ynVar;
     }
 }

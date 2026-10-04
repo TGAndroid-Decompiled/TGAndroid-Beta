@@ -16,25 +16,25 @@ import org.telegram.ui.Components.e11;
 import org.telegram.ui.Components.uq;
 import yh.j8;
 public final class l1 extends uq {
-    public e11 f50068b;
-    public final Path f50069c;
+    public e11 f50076b;
+    public final Path f50077c;
     public final Paint d;
-    public final float f50070e;
-    public j8 f50071f;
-    public boolean f50072g;
+    public final float f50078e;
+    public j8 f50079f;
+    public boolean f50080g;
     public int h;
 
     public l1(View view) {
         super(view);
         Path path = new Path();
-        this.f50069c = path;
+        this.f50077c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = -1;
-        this.f50070e = 1.0f;
+        this.f50078e = 1.0f;
         c(path, 1.0f, false);
-        this.f31420a.setColor(-698031);
-        this.f31420a.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
+        this.f31426a.setColor(-698031);
+        this.f31426a.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
         paint.setColor(0);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -57,17 +57,17 @@ public final class l1 extends uq {
         };
         path.rewind();
         float f10 = f7 * 24.5f;
-        path.moveTo(t8.b.e((Float) callbackReturn.run(Float.valueOf(46.83f)), f7), AndroidUtilities.dp(f10));
-        path.lineTo(t8.b.e((Float) callbackReturn.run(Float.valueOf(23.5f)), f7), AndroidUtilities.dp(1.17f * f7));
-        path.cubicTo(t8.b.e((Float) callbackReturn.run(Float.valueOf(22.75f)), f7), AndroidUtilities.dp(0.42f * f7), t8.b.e((Float) callbackReturn.run(Float.valueOf(21.73f)), f7), 0.0f, t8.b.e((Float) callbackReturn.run(Float.valueOf(20.68f)), f7), 0.0f);
+        path.moveTo(sa.e.e((Float) callbackReturn.run(Float.valueOf(46.83f)), f7), AndroidUtilities.dp(f10));
+        path.lineTo(sa.e.e((Float) callbackReturn.run(Float.valueOf(23.5f)), f7), AndroidUtilities.dp(1.17f * f7));
+        path.cubicTo(sa.e.e((Float) callbackReturn.run(Float.valueOf(22.75f)), f7), AndroidUtilities.dp(0.42f * f7), sa.e.e((Float) callbackReturn.run(Float.valueOf(21.73f)), f7), 0.0f, sa.e.e((Float) callbackReturn.run(Float.valueOf(20.68f)), f7), 0.0f);
         float f11 = f7 * 0.05f;
-        path.cubicTo(t8.b.e((Float) callbackReturn.run(Float.valueOf(19.62f)), f7), 0.0f, t8.b.e((Float) callbackReturn.run(Float.valueOf(2.73f)), f7), AndroidUtilities.dp(f11), t8.b.e((Float) callbackReturn.run(Float.valueOf(1.55f)), f7), AndroidUtilities.dp(f11));
-        path.cubicTo(t8.b.e((Float) callbackReturn.run(Float.valueOf(0.36f)), f7), AndroidUtilities.dp(f11), t8.b.e((Float) callbackReturn.run(Float.valueOf(-0.23f)), f7), AndroidUtilities.dp(1.4885f * f7), t8.b.e((Float) callbackReturn.run(Float.valueOf(0.6f)), f7), AndroidUtilities.dp(2.32f * f7));
-        path.lineTo(t8.b.e((Float) callbackReturn.run(Float.valueOf(45.72f)), f7), AndroidUtilities.dp(47.44f * f7));
+        path.cubicTo(sa.e.e((Float) callbackReturn.run(Float.valueOf(19.62f)), f7), 0.0f, sa.e.e((Float) callbackReturn.run(Float.valueOf(2.73f)), f7), AndroidUtilities.dp(f11), sa.e.e((Float) callbackReturn.run(Float.valueOf(1.55f)), f7), AndroidUtilities.dp(f11));
+        path.cubicTo(sa.e.e((Float) callbackReturn.run(Float.valueOf(0.36f)), f7), AndroidUtilities.dp(f11), sa.e.e((Float) callbackReturn.run(Float.valueOf(-0.23f)), f7), AndroidUtilities.dp(1.4885f * f7), sa.e.e((Float) callbackReturn.run(Float.valueOf(0.6f)), f7), AndroidUtilities.dp(2.32f * f7));
+        path.lineTo(sa.e.e((Float) callbackReturn.run(Float.valueOf(45.72f)), f7), AndroidUtilities.dp(47.44f * f7));
         Float valueOf = Float.valueOf(48.0f);
-        path.cubicTo(t8.b.e((Float) callbackReturn.run(Float.valueOf(46.56f)), f7), AndroidUtilities.dp(48.28f * f7), t8.b.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(47.68f * f7), t8.b.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(46.5f * f7));
-        path.cubicTo(t8.b.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(45.31f * f7), t8.b.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(28.38f * f7), t8.b.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(27.32f * f7));
-        path.cubicTo(t8.b.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(26.26f * f7), t8.b.e((Float) callbackReturn.run(Float.valueOf(47.5f)), f7), AndroidUtilities.dp(25.24f * f7), t8.b.e((Float) callbackReturn.run(Float.valueOf(46.82f)), f7), AndroidUtilities.dp(f10));
+        path.cubicTo(sa.e.e((Float) callbackReturn.run(Float.valueOf(46.56f)), f7), AndroidUtilities.dp(48.28f * f7), sa.e.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(47.68f * f7), sa.e.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(46.5f * f7));
+        path.cubicTo(sa.e.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(45.31f * f7), sa.e.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(28.38f * f7), sa.e.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(27.32f * f7));
+        path.cubicTo(sa.e.e((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(26.26f * f7), sa.e.e((Float) callbackReturn.run(Float.valueOf(47.5f)), f7), AndroidUtilities.dp(25.24f * f7), sa.e.e((Float) callbackReturn.run(Float.valueOf(46.82f)), f7), AndroidUtilities.dp(f10));
         path.close();
     }
 
@@ -77,12 +77,12 @@ public final class l1 extends uq {
         float f10;
         float f11;
         float f12;
-        Paint paint = this.f31420a;
+        Paint paint = this.f31426a;
         if (stargiftattributebackdrop == null) {
             paint.setShader(null);
             return;
         }
-        if (this.f50072g) {
+        if (this.f50080g) {
             z12 = !z10;
         } else {
             z12 = z10;
@@ -144,29 +144,29 @@ public final class l1 extends uq {
         canvas.translate(getBounds().right - AndroidUtilities.dp(48.0f), getBounds().top);
         Paint paint = this.d;
         int alpha = paint.getAlpha();
-        Path path = this.f50069c;
+        Path path = this.f50077c;
         if (alpha > 0) {
             paint.setStrokeWidth(AndroidUtilities.dp(1.33f) * 2);
             canvas.drawPath(path, paint);
         }
-        canvas.drawPath(path, this.f31420a);
-        if (this.f50071f != null) {
+        canvas.drawPath(path, this.f31426a);
+        if (this.f50079f != null) {
             canvas.clipPath(path);
-            this.f50071f.f(0, 0, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f));
-            this.f50071f.d();
-            this.f50071f.a(canvas, -1);
+            this.f50079f.f(0, 0, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f));
+            this.f50079f.d();
+            this.f50079f.a(canvas, -1);
             invalidateSelf();
         }
-        if (this.f50068b != null) {
+        if (this.f50076b != null) {
             canvas.save();
-            if (this.f50072g) {
+            if (this.f50080g) {
                 f7 = -45.0f;
             } else {
                 f7 = 45.0f;
             }
             float width = getBounds().width() / 2.0f;
             float f14 = -7.0f;
-            if (this.f50072g) {
+            if (this.f50080g) {
                 f10 = -7.0f;
             } else {
                 f10 = 6.0f;
@@ -174,35 +174,35 @@ public final class l1 extends uq {
             float dp = width + AndroidUtilities.dp(f10);
             float height = getBounds().height() / 2.0f;
             float f15 = 5.0f;
-            if (this.f50072g) {
+            if (this.f50080g) {
                 f11 = 5.0f;
             } else {
                 f11 = 6.0f;
             }
             canvas.rotate(f7, dp, height - AndroidUtilities.dp(f11));
-            float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / this.f50068b.f25879c);
+            float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / this.f50076b.f25884c);
             float width2 = getBounds().width() / 2.0f;
-            if (this.f50072g) {
+            if (this.f50080g) {
                 f12 = -7.0f;
             } else {
                 f12 = 6.0f;
             }
             float dp2 = width2 + AndroidUtilities.dp(f12);
             float height2 = getBounds().height() / 2.0f;
-            if (this.f50072g) {
+            if (this.f50080g) {
                 f13 = 5.0f;
             } else {
                 f13 = 6.0f;
             }
             canvas.scale(min, min, dp2, height2 - AndroidUtilities.dp(f13));
-            e11 e11Var = this.f50068b;
+            e11 e11Var = this.f50076b;
             float width3 = getBounds().width() / 2.0f;
-            if (!this.f50072g) {
+            if (!this.f50080g) {
                 f14 = 6.0f;
             }
-            float dp3 = (width3 + AndroidUtilities.dp(f14)) - (this.f50068b.l() / 2.0f);
+            float dp3 = (width3 + AndroidUtilities.dp(f14)) - (this.f50076b.l() / 2.0f);
             float height3 = getBounds().height() / 2.0f;
-            if (this.f50072g) {
+            if (this.f50080g) {
                 f15 = 4.0f;
             }
             canvas2 = canvas;
@@ -222,6 +222,6 @@ public final class l1 extends uq {
         } else {
             typeface = null;
         }
-        this.f50068b = new e11(charSequence, f7, typeface);
+        this.f50076b = new e11(charSequence, f7, typeface);
     }
 }

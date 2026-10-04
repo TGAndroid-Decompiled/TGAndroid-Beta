@@ -14,7 +14,7 @@ public final class ut0 extends jv0 {
         super.l();
         pv0 pv0Var = this.h;
         iu0 W = pv0Var.W(0);
-        if (W != null && W.f27502r.getVisibility() == 0) {
+        if (W != null && W.f27507r.getVisibility() == 0) {
             pv0Var.I.l();
         }
     }

@@ -29,31 +29,31 @@ public final class ac extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.rc rcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((rcVar = org.telegram.ui.Components.rc.f30331w) != null && rcVar.f30332a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((rcVar = org.telegram.ui.Components.rc.f30337w) != null && rcVar.f30338a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", Math.round(i10 / MessagesController.getInstance(this.U).storyCaptionLengthLimitDefault), hg.k0.h(i10, "")));
+        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", Math.round(i10 / MessagesController.getInstance(this.U).storyCaptionLengthLimitDefault), hg.c.h(i10, "")));
         int indexOf = replaceTags.toString().indexOf("__");
         if (indexOf >= 0) {
             replaceTags.replace(indexOf, indexOf + 2, (CharSequence) "");
             int indexOf2 = replaceTags.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.gc, this.f5508a)), indexOf, indexOf2, 33);
+                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.gc, this.f5509a)), indexOf, indexOf2, 33);
                 replaceTags.setSpan(new zb(this, 0), indexOf, indexOf2, 33);
             }
         }
-        org.telegram.ui.Components.rc M = new org.telegram.ui.Components.yc(this.S1.f5410l0, this.f5508a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f30332a = 2;
-        M.f30339j = 5000;
+        org.telegram.ui.Components.rc M = new org.telegram.ui.Components.yc(this.S1.f5411l0, this.f5509a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
+        M.f30338a = 2;
+        M.f30345j = 5000;
         M.k(false);
         return true;
     }
 
     @Override
     public final boolean g() {
-        return this.S1.f5428r0.c();
+        return this.S1.f5429r0.c();
     }
 
     @Override
@@ -83,31 +83,31 @@ public final class ac extends r {
 
     @Override
     public final void i(Bitmap bitmap) {
-        this.S1.f5414n.Z(bitmap, 12.0f);
+        this.S1.f5415n.Z(bitmap, 12.0f);
         Utilities.stackBlurBitmap(bitmap, (int) 12.0f);
     }
 
     @Override
     public final boolean l(float f7, float f10) {
         kc kcVar = this.S1;
-        mb mbVar = kcVar.f5442v1;
+        mb mbVar = kcVar.f5443v1;
         if (mbVar != null && mbVar.R0 != null) {
-            ac acVar = kcVar.f5382c1;
-            if (!acVar.f5528p0) {
+            ac acVar = kcVar.f5383c1;
+            if (!acVar.f5529p0) {
                 float x10 = acVar.getX() + f7;
-                float y3 = kcVar.f5382c1.getY() + f10;
-                float x11 = kcVar.f5410l0.getX() + x10;
-                float y10 = kcVar.f5410l0.getY() + y3;
-                float x12 = x11 - kcVar.f5398h0.getX();
-                float y11 = y10 - kcVar.f5398h0.getY();
-                for (int i10 = 0; i10 < kcVar.f5442v1.R0.getChildCount(); i10++) {
-                    View childAt = kcVar.f5442v1.R0.getChildAt(i10);
+                float y3 = kcVar.f5383c1.getY() + f10;
+                float x11 = kcVar.f5411l0.getX() + x10;
+                float y10 = kcVar.f5411l0.getY() + y3;
+                float x12 = x11 - kcVar.f5399h0.getX();
+                float y11 = y10 - kcVar.f5399h0.getY();
+                for (int i10 = 0; i10 < kcVar.f5443v1.R0.getChildCount(); i10++) {
+                    View childAt = kcVar.f5443v1.R0.getChildAt(i10);
                     if (childAt instanceof qg.j) {
                         uk0 selectionBounds = ((qg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f31388a;
-                        float f12 = selectionBounds.f31389b;
-                        rectF.set(f11, f12, selectionBounds.f31390c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f31394a;
+                        float f12 = selectionBounds.f31395b;
+                        rectF.set(f11, f12, selectionBounds.f31396c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }
@@ -120,7 +120,7 @@ public final class ac extends r {
 
     @Override
     public final void n() {
-        ab abVar = this.S1.f5435t0;
+        ab abVar = this.S1.f5436t0;
         if (abVar != null) {
             abVar.invalidate();
         }
@@ -131,12 +131,12 @@ public final class ac extends r {
         boolean z11;
         k8 k8Var;
         kc kcVar = this.S1;
-        u6 u6Var = kcVar.f5378b1;
+        u6 u6Var = kcVar.f5379b1;
         if (!kcVar.N1 && !z10) {
             ai.l9 storiesController = MessagesController.getInstance(this.U).getStoriesController();
             int B = kcVar.B();
             ai.f9 o9 = storiesController.o();
-            if (o9 == null || !o9.a(storiesController.f1290a, B) || ((k8Var = kcVar.K1) != null && k8Var.f5325g)) {
+            if (o9 == null || !o9.a(storiesController.f1290a, B) || ((k8Var = kcVar.K1) != null && k8Var.f5326g)) {
                 z11 = true;
                 u6Var.setShareEnabled(z11);
             }

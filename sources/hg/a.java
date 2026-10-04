@@ -12,22 +12,22 @@ import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.g61;
 import org.telegram.ui.yn;
 public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a2 {
-    public final int f11099a;
-    public final c f11100b;
+    public final int f11100a;
+    public final d f11101b;
 
-    public a(c cVar, int i10) {
-        this.f11099a = i10;
-        this.f11100b = cVar;
+    public a(d dVar, int i10) {
+        this.f11100a = i10;
+        this.f11101b = dVar;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f11099a) {
+        switch (this.f11100a) {
             case 1:
-                this.f11100b.W();
+                this.f11101b.W();
                 return;
             default:
-                this.f11100b.finishFragment();
+                this.f11101b.finishFragment();
                 return;
         }
     }
@@ -39,105 +39,105 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        final c cVar = this.f11100b;
-        if (!cVar.d.h(g61Var)) {
+        final d dVar = this.f11101b;
+        if (!dVar.d.h(g61Var)) {
             int i10 = g61Var.d;
-            if (i10 != 2 && g61Var.f17183a != 17) {
+            if (i10 != 2 && g61Var.f17187a != 17) {
                 if (i10 == 1) {
-                    cVar.f11141s = !cVar.f11141s;
-                    cVar.f11136c.f25245f3.N(true);
-                    cVar.T(true);
+                    dVar.f11143s = !dVar.f11143s;
+                    dVar.f11138c.f25250f3.N(true);
+                    dVar.T(true);
                     return;
                 } else if (i10 == 6) {
-                    a0 a0Var = cVar.d;
-                    cVar.v = true;
-                    a0Var.h = true;
-                    cVar.f11136c.f25245f3.N(true);
-                    cVar.T(true);
+                    b0 b0Var = dVar.d;
+                    dVar.v = true;
+                    b0Var.h = true;
+                    dVar.f11138c.f25250f3.N(true);
+                    dVar.T(true);
                     return;
                 } else if (i10 == 7) {
-                    a0 a0Var2 = cVar.d;
-                    cVar.v = false;
-                    a0Var2.h = false;
-                    cVar.f11136c.f25245f3.N(true);
-                    cVar.T(true);
+                    b0 b0Var2 = dVar.d;
+                    dVar.v = false;
+                    b0Var2.h = false;
+                    dVar.f11138c.f25250f3.N(true);
+                    dVar.T(true);
                     return;
                 } else if (i10 == 3) {
-                    cVar.f11143x = 0;
-                    cVar.f11136c.f25245f3.N(true);
-                    cVar.T(true);
+                    dVar.f11145x = 0;
+                    dVar.f11138c.f25250f3.N(true);
+                    dVar.T(true);
                     return;
                 } else if (i10 == 4) {
-                    cVar.f11143x = 1;
-                    cVar.f11136c.f25245f3.N(true);
-                    cVar.T(true);
+                    dVar.f11145x = 1;
+                    dVar.f11138c.f25250f3.N(true);
+                    dVar.T(true);
                     return;
                 } else if (i10 == 5) {
-                    cVar.f11143x = 2;
-                    cVar.f11136c.f25245f3.N(true);
-                    cVar.T(true);
+                    dVar.f11145x = 2;
+                    dVar.f11138c.f25250f3.N(true);
+                    dVar.T(true);
                     return;
                 } else if (i10 == 8) {
-                    e5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.F, new d5() {
+                    e5.y(dVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), dVar.F, new d5() {
                         @Override
                         public final void K(int i11, int i12, boolean z10) {
                             switch (r3) {
                                 case 0:
-                                    c cVar2 = cVar;
-                                    cVar2.getClass();
-                                    cVar2.F = i11;
+                                    d dVar2 = dVar;
+                                    dVar2.getClass();
+                                    dVar2.F = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    cVar2.T(true);
+                                    dVar2.T(true);
                                     return;
                                 default:
-                                    c cVar3 = cVar;
-                                    cVar3.getClass();
-                                    cVar3.G = i11;
+                                    d dVar3 = dVar;
+                                    dVar3.getClass();
+                                    dVar3.G = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    cVar3.T(true);
+                                    dVar3.T(true);
                                     return;
                             }
                         }
                     });
                     return;
                 } else if (i10 == 9) {
-                    e5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.G, new d5() {
+                    e5.y(dVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), dVar.G, new d5() {
                         @Override
                         public final void K(int i11, int i12, boolean z10) {
                             switch (r3) {
                                 case 0:
-                                    c cVar2 = cVar;
-                                    cVar2.getClass();
-                                    cVar2.F = i11;
+                                    d dVar2 = dVar;
+                                    dVar2.getClass();
+                                    dVar2.F = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    cVar2.T(true);
+                                    dVar2.T(true);
                                     return;
                                 default:
-                                    c cVar3 = cVar;
-                                    cVar3.getClass();
-                                    cVar3.G = i11;
+                                    d dVar3 = dVar;
+                                    dVar3.getClass();
+                                    dVar3.G = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    cVar3.T(true);
+                                    dVar3.T(true);
                                     return;
                             }
                         }
                     });
                     return;
                 } else if (i10 == 10) {
-                    boolean z10 = !cVar.f11142w;
-                    cVar.f11142w = z10;
+                    boolean z10 = !dVar.f11144w;
+                    dVar.f11144w = z10;
                     ((w8) view).setChecked(z10);
-                    cVar.T(true);
+                    dVar.T(true);
                     return;
                 } else {
                     return;
                 }
             }
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", cVar.getUserConfig().getClientUserId());
+            bundle.putLong("user_id", dVar.getUserConfig().getClientUserId());
             bundle.putInt("chatMode", 5);
             bundle.putString("quick_reply", "away");
-            cVar.presentFragment(new yn(bundle));
+            dVar.presentFragment(new yn(bundle));
         }
     }
 }

@@ -13,33 +13,33 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.RadioButton;
 public final class g9 extends FrameLayout {
-    public TextView f22171a;
-    public TextView f22172b;
-    public RadioButton f22173c;
+    public TextView f22175a;
+    public TextView f22176b;
+    public RadioButton f22177c;
     public boolean d;
-    public int f22174e;
-    public float f22175f;
+    public int f22178e;
+    public float f22179f;
     public float h;
-    public boolean f22176n;
-    public int f22177r;
+    public boolean f22180n;
+    public int f22181r;
 
     static {
         new t8("animationProgress", 2);
     }
 
     public void setAnimationProgress(float f7) {
-        this.f22175f = f7;
+        this.f22179f = f7;
         Math.max(this.h, getMeasuredWidth() - this.h);
         AndroidUtilities.dp(40.0f);
         getMeasuredHeight();
     }
 
     public final void b(String str, String str2, boolean z10) {
-        TextView textView = this.f22171a;
+        TextView textView = this.f22175a;
         textView.setText(str);
-        TextView textView2 = this.f22172b;
+        TextView textView2 = this.f22176b;
         textView2.setText(str2);
-        this.f22173c.a(false, false);
+        this.f22177c.a(false, false);
         this.d = z10;
         textView2.setVisibility(0);
         textView2.setLines(1);
@@ -62,16 +62,16 @@ public final class g9 extends FrameLayout {
         int i12;
         int i13;
         float f11;
-        RadioButton radioButton = this.f22173c;
-        TextView textView = this.f22172b;
-        TextView textView2 = this.f22171a;
-        int i14 = this.f22177r;
-        boolean z10 = this.f22176n;
+        RadioButton radioButton = this.f22177c;
+        TextView textView = this.f22176b;
+        TextView textView2 = this.f22175a;
+        int i14 = this.f22181r;
+        boolean z10 = this.f22180n;
         boolean z11 = LocaleController.isRTL;
         if (z10 == z11) {
             return;
         }
-        this.f22176n = z11;
+        this.f22180n = z11;
         int i15 = 3;
         if (z11) {
             i10 = 5;
@@ -151,26 +151,26 @@ public final class g9 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20941k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20945k0);
         }
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         int i10;
-        TextView textView = this.f22172b;
+        TextView textView = this.f22176b;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setCheckable(true);
-        RadioButton radioButton = this.f22173c;
-        accessibilityNodeInfo.setChecked(radioButton.f24297f);
-        if (radioButton.f24297f) {
+        RadioButton radioButton = this.f22177c;
+        accessibilityNodeInfo.setChecked(radioButton.f24301f);
+        if (radioButton.f24301f) {
             i10 = R.string.NotificationsOn;
         } else {
             i10 = R.string.NotificationsOff;
         }
         accessibilityNodeInfo.setContentDescription(LocaleController.getString(i10));
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f22171a.getText());
+        sb2.append(this.f22175a.getText());
         if (!TextUtils.isEmpty(textView.getText())) {
             sb2.append("\n");
             sb2.append(textView.getText());
@@ -183,10 +183,10 @@ public final class g9 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         float f7;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f22172b.getVisibility() == 0) {
+        if (this.f22176b.getVisibility() == 0) {
             f7 = 64.0f;
         } else {
-            f7 = this.f22174e;
+            f7 = this.f22178e;
         }
         super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7) + (this.d ? 1 : 0), 1073741824));
     }
@@ -204,11 +204,11 @@ public final class g9 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        this.f22173c.a(z10, true);
+        this.f22177c.a(z10, true);
     }
 
     public void setHeight(int i10) {
-        this.f22174e = i10;
+        this.f22178e = i10;
     }
 
     @Override
@@ -217,6 +217,6 @@ public final class g9 extends FrameLayout {
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f22171a.setTypeface(typeface);
+        this.f22175a.setTypeface(typeface);
     }
 }

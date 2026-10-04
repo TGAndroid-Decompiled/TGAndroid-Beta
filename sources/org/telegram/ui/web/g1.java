@@ -5,10 +5,11 @@ import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.bi;
 import org.telegram.ui.ActionBar.f5;
 import org.telegram.ui.Components.w61;
 public final class g1 extends f5 {
-    public final u0 f42186f = new u0(this, 1);
+    public final u0 f42193f = new u0(this, 1);
     public final h1 h;
 
     public g1(h1 h1Var) {
@@ -19,10 +20,10 @@ public final class g1 extends f5 {
         if (str != null && str2 != null) {
             String lowerCase = str.toLowerCase();
             String lowerCase2 = str2.toLowerCase();
-            if (!lowerCase.startsWith(lowerCase2) && !org.telegram.messenger.f0.w(" ", lowerCase2, lowerCase) && !org.telegram.messenger.f0.w(".", lowerCase2, lowerCase)) {
+            if (!lowerCase.startsWith(lowerCase2) && !bi.u(" ", lowerCase2, lowerCase) && !bi.u(".", lowerCase2, lowerCase)) {
                 String translitSafe = AndroidUtilities.translitSafe(lowerCase);
                 String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                if (translitSafe.startsWith(translitSafe2) || org.telegram.messenger.f0.w(" ", translitSafe2, translitSafe) || org.telegram.messenger.f0.w(".", translitSafe2, translitSafe)) {
+                if (translitSafe.startsWith(translitSafe2) || bi.u(" ", translitSafe2, translitSafe) || bi.u(".", translitSafe2, translitSafe)) {
                     return true;
                 }
                 return false;
@@ -36,16 +37,16 @@ public final class g1 extends f5 {
     public final void m() {
         int i10;
         h1 h1Var = this.h;
-        h1Var.f42201r = null;
-        h1Var.f42200n = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f42186f);
-        w61 w61Var = h1Var.f32725a;
+        h1Var.f42208r = null;
+        h1Var.f42207n = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f42193f);
+        w61 w61Var = h1Var.f32731a;
         if (w61Var != null) {
-            w61Var.f25245f3.N(true);
-            h1Var.f32725a.f25244e3.h1(0, 0);
+            w61Var.f25250f3.N(true);
+            h1Var.f32731a.f25249e3.h1(0, 0);
         }
-        vh.n nVar = h1Var.f42204x.d;
-        if (TextUtils.isEmpty(h1Var.f42201r)) {
+        vh.n nVar = h1Var.f42211x.d;
+        if (TextUtils.isEmpty(h1Var.f42208r)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
@@ -57,15 +58,15 @@ public final class g1 extends f5 {
     public final void q(EditText editText) {
         int i10;
         h1 h1Var = this.h;
-        boolean z10 = !TextUtils.isEmpty(h1Var.f42201r);
+        boolean z10 = !TextUtils.isEmpty(h1Var.f42208r);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(h1Var.f42201r, obj)) {
-            h1Var.f42201r = obj;
-            h1Var.f42200n = true;
-            u0 u0Var = this.f42186f;
+        if (!TextUtils.equals(h1Var.f42208r, obj)) {
+            h1Var.f42208r = obj;
+            h1Var.f42207n = true;
+            u0 u0Var = this.f42193f;
             AndroidUtilities.cancelRunOnUIThread(u0Var);
             AndroidUtilities.runOnUIThread(u0Var, 500L);
-            vh.n nVar = h1Var.f42204x.d;
+            vh.n nVar = h1Var.f42211x.d;
             if (TextUtils.isEmpty(obj)) {
                 i10 = R.string.WebNoHistory;
             } else {
@@ -73,11 +74,11 @@ public final class g1 extends f5 {
             }
             nVar.setText(LocaleController.getString(i10));
         }
-        w61 w61Var = h1Var.f32725a;
+        w61 w61Var = h1Var.f32731a;
         if (w61Var != null) {
-            w61Var.f25245f3.N(true);
+            w61Var.f25250f3.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                h1Var.f32725a.f25244e3.h1(0, 0);
+                h1Var.f32731a.f25249e3.h1(0, 0);
             }
         }
     }

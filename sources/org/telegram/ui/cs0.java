@@ -8,7 +8,7 @@ public final class cs0 extends FloatProperty {
 
     @Override
     public final Float get(Object obj) {
-        return Float.valueOf(((fv0) obj).f36406a);
+        return Float.valueOf(((fv0) obj).f36411a);
     }
 
     @Override

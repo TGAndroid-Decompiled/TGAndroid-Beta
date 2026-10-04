@@ -15,21 +15,21 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.rc;
 import org.telegram.ui.cw0;
 public final class m extends f3 {
-    public static m f47037e;
-    public final k f47038b;
-    public final z0 f47039c;
+    public static m f47045e;
+    public final k f47046b;
+    public final z0 f47047c;
     public boolean d;
 
     public m(Activity activity, a0 a0Var, z0 z0Var, d6 d6Var, boolean z10) {
         super(1, (Context) activity, d6Var, true);
         boolean z11;
-        this.f47039c = z0Var;
+        this.f47047c = z0Var;
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
         this.useBackgroundTopPadding = false;
         setBackgroundColor(0);
         fixNavigationBar();
-        if (i0.a.f(i6.v0(i6.f20890h5, this.resourcesProvider)) > 0.699999988079071d) {
+        if (i0.a.f(i6.v0(i6.f20894h5, this.resourcesProvider)) > 0.699999988079071d) {
             z11 = true;
         } else {
             z11 = false;
@@ -37,16 +37,16 @@ public final class m extends f3 {
         AndroidUtilities.setLightStatusBar(this, z11);
         this.d = getContext().getResources().getConfiguration().orientation == 2;
         k kVar = new k(this, getContext(), z0Var, d6Var, a0Var);
-        this.f47038b = kVar;
+        this.f47046b = kVar;
         kVar.setOverScrollMode(2);
         kVar.setClipToPadding(false);
         kVar.setAdapter(new cw0(a0Var, z0Var));
         kVar.setPosition(0);
         setCustomView(kVar);
-        a0Var.f46969t0 = new j(this, 0);
-        a0Var.f46967r0 = new o0.a(this, z0Var, false, 17);
-        z0Var.f47139u0 = new l(this, a0Var, d6Var);
-        z0Var.f47137s0 = new j(this, 1);
+        a0Var.f46976t0 = new j(this, 0);
+        a0Var.f46974r0 = new o0.a(this, z0Var, false, 17);
+        z0Var.f47147u0 = new l(this, a0Var, d6Var);
+        z0Var.f47145s0 = new j(this, 1);
         if (!z10) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().R();
         }
@@ -55,7 +55,7 @@ public final class m extends f3 {
 
     public static void m(n2 n2Var, d6 d6Var, long j3, TL_stories.PrepaidGiveaway prepaidGiveaway) {
         n2 n2Var2;
-        if (f47037e != null) {
+        if (f47045e != null) {
             return;
         }
         boolean z10 = d6Var instanceof ai.d;
@@ -66,7 +66,7 @@ public final class m extends f3 {
         }
         m mVar = new m(n2Var.getParentActivity(), new a0(n2Var2, j3, prepaidGiveaway), new z0(n2Var2, j3), n2Var2.getResourceProvider(), z10);
         mVar.show();
-        f47037e = mVar;
+        f47045e = mVar;
     }
 
     @Override
@@ -77,14 +77,14 @@ public final class m extends f3 {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        f47037e = null;
+        f47045e = null;
     }
 
     @Override
     public final void onBackPressed() {
-        k kVar = this.f47038b;
+        k kVar = this.f47046b;
         if (kVar.getCurrentPosition() > 0) {
-            z0 z0Var = this.f47039c;
+            z0 z0Var = this.f47047c;
             if (z0Var.Q()) {
                 return;
             }
@@ -100,7 +100,7 @@ public final class m extends f3 {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         boolean z10;
-        this.f47039c.onConfigurationChanged(configuration);
+        this.f47047c.onConfigurationChanged(configuration);
         if (getContext().getResources().getConfiguration().orientation == 2) {
             z10 = true;
         } else {

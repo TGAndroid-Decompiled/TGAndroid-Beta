@@ -18,12 +18,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class br0 implements Runnable {
-    public final int f25046a;
-    public final Object f25047b;
+    public final int f25051a;
+    public final Object f25052b;
 
     public br0(ci.k2 k2Var, int i10) {
-        this.f25046a = 10;
-        this.f25047b = k2Var;
+        this.f25051a = 10;
+        this.f25052b = k2Var;
     }
 
     @Override
@@ -33,20 +33,20 @@ public final class br0 implements Runnable {
         String[] currentKeyboardLanguage;
         ArrayList arrayList;
         ArrayList arrayList2;
-        int i10 = this.f25046a;
+        int i10 = this.f25051a;
         int i11 = 0;
-        Object obj = this.f25047b;
+        Object obj = this.f25052b;
         switch (i10) {
             case 0:
                 er0 er0Var = (er0) obj;
-                cr0[] cr0VarArr = er0Var.f26109a;
-                if (er0Var.f26110b != 1) {
+                cr0[] cr0VarArr = er0Var.f26114a;
+                if (er0Var.f26115b != 1) {
                     for (cr0 cr0Var : cr0VarArr) {
                         org.telegram.ui.ActionBar.i5 i5Var = cr0Var.d;
                         i5Var.setAlpha(1.0f);
                         i5Var.setScaleX(1.0f);
                         i5Var.setScaleY(1.0f);
-                        cr0Var.f25437e.setAlpha(0.0f);
+                        cr0Var.f25442e.setAlpha(0.0f);
                     }
                     er0Var.E = false;
                     AndroidUtilities.runOnUIThread(er0Var.G, 4000L);
@@ -57,7 +57,7 @@ public final class br0 implements Runnable {
                 while (i11 < length) {
                     cr0 cr0Var2 = cr0VarArr[i11];
                     org.telegram.ui.ActionBar.i5 i5Var2 = cr0Var2.d;
-                    org.telegram.ui.ActionBar.i5 i5Var3 = cr0Var2.f25437e;
+                    org.telegram.ui.ActionBar.i5 i5Var3 = cr0Var2.f25442e;
                     i5Var2.setPivotX(0.0f);
                     i5Var3.setPivotX(0.0f);
                     if (er0Var.E) {
@@ -82,10 +82,10 @@ public final class br0 implements Runnable {
                 }
                 return;
             case 3:
-                ((nt0) obj).f29063f.m1(false);
+                ((nt0) obj).f29068f.m1(false);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.n2 n2Var = ((yt0) obj).f33251f.f29801v1;
+                org.telegram.ui.ActionBar.n2 n2Var = ((yt0) obj).f33257f.f29806v1;
                 if (n2Var != null) {
                     n2Var.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
                     return;
@@ -96,7 +96,7 @@ public final class br0 implements Runnable {
                 return;
             case 6:
                 zu0 zu0Var = (zu0) obj;
-                ArrayList arrayList3 = zu0Var.f33657f;
+                ArrayList arrayList3 = zu0Var.f33663f;
                 if (zu0Var.h) {
                     zu0Var.h = false;
                     ArrayList<Long> arrayList4 = new ArrayList<>();
@@ -106,7 +106,7 @@ public final class br0 implements Runnable {
                         }
                         i11++;
                     }
-                    zu0Var.f33662x.f29801v1.getMessagesController().getSavedMessagesController().updatePinnedOrder(arrayList4);
+                    zu0Var.f33668x.f29806v1.getMessagesController().getSavedMessagesController().updatePinnedOrder(arrayList4);
                     return;
                 }
                 return;
@@ -124,8 +124,8 @@ public final class br0 implements Runnable {
                 return;
             case 11:
                 mx0 mx0Var = (mx0) obj;
-                if (!mx0Var.f28746w) {
-                    mx0Var.f28748y = 0.0f;
+                if (!mx0Var.f28751w) {
+                    mx0Var.f28753y = 0.0f;
                     return;
                 }
                 return;
@@ -134,14 +134,14 @@ public final class br0 implements Runnable {
                 return;
             case 13:
                 iz0 iz0Var = (iz0) obj;
-                int i12 = iz0Var.f27525a;
+                int i12 = iz0Var.f27530a;
                 iz0Var.F = null;
-                gz0 gz0Var = iz0Var.f27529c;
-                if (gz0Var != null && gz0Var.getEditField() != null && iz0Var.f27529c.getFieldText() != null) {
-                    int selectionStart = iz0Var.f27529c.getEditField().getSelectionStart();
-                    int selectionEnd = iz0Var.f27529c.getEditField().getSelectionEnd();
+                gz0 gz0Var = iz0Var.f27534c;
+                if (gz0Var != null && gz0Var.getEditField() != null && iz0Var.f27534c.getFieldText() != null) {
+                    int selectionStart = iz0Var.f27534c.getEditField().getSelectionStart();
+                    int selectionEnd = iz0Var.f27534c.getEditField().getSelectionEnd();
                     if (selectionStart != selectionEnd) {
-                        iz0Var.f27536s = false;
+                        iz0Var.f27541s = false;
                         ai.f0 f0Var = iz0Var.d;
                         if (f0Var != null) {
                             f0Var.invalidate();
@@ -149,7 +149,7 @@ public final class br0 implements Runnable {
                         }
                         return;
                     }
-                    CharSequence fieldText = iz0Var.f27529c.getFieldText();
+                    CharSequence fieldText = iz0Var.f27534c.getFieldText();
                     boolean z10 = fieldText instanceof Spanned;
                     if (z10) {
                         emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) fieldText).getSpans(Math.max(0, selectionEnd - 24), selectionEnd, Emoji.EmojiSpan.class);
@@ -164,14 +164,14 @@ public final class br0 implements Runnable {
                             int spanEnd = spanned.getSpanEnd(emojiSpan);
                             if (selectionStart == spanEnd) {
                                 String substring = fieldText.toString().substring(spanStart, spanEnd);
-                                iz0Var.f27536s = true;
+                                iz0Var.f27541s = true;
                                 iz0Var.c();
                                 iz0Var.T = emojiSpan;
                                 iz0Var.W = null;
                                 iz0Var.V = null;
                                 if (substring != null) {
                                     String str = iz0Var.H;
-                                    if (str != null && iz0Var.G == 2 && str.equals(substring) && !iz0Var.f27538x && (arrayList2 = iz0Var.f27537w) != null && !arrayList2.isEmpty()) {
+                                    if (str != null && iz0Var.G == 2 && str.equals(substring) && !iz0Var.f27543x && (arrayList2 = iz0Var.f27542w) != null && !arrayList2.isEmpty()) {
                                         iz0Var.v = false;
                                         iz0Var.c();
                                         ai.f0 f0Var2 = iz0Var.d;
@@ -187,7 +187,7 @@ public final class br0 implements Runnable {
                                             AndroidUtilities.cancelRunOnUIThread(runnable);
                                         }
                                         iz0Var.K = new zm(iz0Var, substring, i13, 21);
-                                        ArrayList arrayList5 = iz0Var.f27537w;
+                                        ArrayList arrayList5 = iz0Var.f27542w;
                                         if (arrayList5 != null && !arrayList5.isEmpty()) {
                                             iz0Var.K.run();
                                         } else {
@@ -210,13 +210,13 @@ public final class br0 implements Runnable {
                             z5VarArr = null;
                         }
                         if ((z5VarArr == null || z5VarArr.length == 0) && selectionEnd < 52) {
-                            iz0Var.f27536s = true;
+                            iz0Var.f27541s = true;
                             iz0Var.c();
                             iz0Var.T = null;
                             String substring2 = fieldText.toString().substring(0, selectionEnd);
                             if (substring2 != null) {
                                 String str2 = iz0Var.H;
-                                if (str2 != null && iz0Var.G == 1 && str2.equals(substring2) && !iz0Var.f27538x && (arrayList = iz0Var.f27537w) != null && !arrayList.isEmpty()) {
+                                if (str2 != null && iz0Var.G == 1 && str2.equals(substring2) && !iz0Var.f27543x && (arrayList = iz0Var.f27542w) != null && !arrayList.isEmpty()) {
                                     iz0Var.v = false;
                                     iz0Var.c();
                                     iz0Var.d.setVisibility(0);
@@ -244,7 +244,7 @@ public final class br0 implements Runnable {
                                         iz0Var.K = null;
                                     }
                                     iz0Var.K = new ai.c9(iz0Var, currentKeyboardLanguage, substring2, i14, 27);
-                                    ArrayList arrayList6 = iz0Var.f27537w;
+                                    ArrayList arrayList6 = iz0Var.f27542w;
                                     if (arrayList6 != null && !arrayList6.isEmpty()) {
                                         iz0Var.K.run();
                                     } else {
@@ -265,7 +265,7 @@ public final class br0 implements Runnable {
                         AndroidUtilities.cancelRunOnUIThread(runnable3);
                         iz0Var.K = null;
                     }
-                    iz0Var.f27536s = false;
+                    iz0Var.f27541s = false;
                     ai.f0 f0Var5 = iz0Var.d;
                     if (f0Var5 != null) {
                         f0Var5.invalidate();
@@ -273,7 +273,7 @@ public final class br0 implements Runnable {
                     }
                     return;
                 }
-                iz0Var.f27536s = false;
+                iz0Var.f27541s = false;
                 iz0Var.v = true;
                 ai.f0 f0Var6 = iz0Var.d;
                 if (f0Var6 != null) {
@@ -299,7 +299,7 @@ public final class br0 implements Runnable {
                 ((l11) obj).a();
                 return;
             case 17:
-                ArrayList arrayList7 = ((s11) obj).f30560a;
+                ArrayList arrayList7 = ((s11) obj).f30566a;
                 for (int i15 = 0; i15 < arrayList7.size(); i15++) {
                     ((View) arrayList7.get(i15)).setVisibility(8);
                     if (arrayList7.get(i15) instanceof org.telegram.ui.Cells.u1) {
@@ -311,24 +311,24 @@ public final class br0 implements Runnable {
             case 18:
                 s21 s21Var = (s21) obj;
                 s21Var.J = null;
-                s21Var.H.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(tr.f31141f).start();
+                s21Var.H.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(tr.f31147f).start();
                 return;
             case 19:
                 w21 w21Var = (w21) obj;
                 ViewPropertyAnimator duration = w21Var.animate().alpha(0.0f).setListener(new hd0(w21Var, 23)).setDuration(300L);
-                w21Var.f32450b = duration;
+                w21Var.f32456b = duration;
                 duration.start();
                 return;
             case 20:
                 y21 y21Var = (y21) obj;
-                Utilities.Callback callback = y21Var.f33033b;
+                Utilities.Callback callback = y21Var.f33039b;
                 if (callback != null) {
-                    callback.run(Long.valueOf(y21Var.f33032a.f33357s));
+                    callback.run(Long.valueOf(y21Var.f33038a.f33363s));
                     return;
                 }
                 return;
             case 21:
-                v31 v31Var = ((m31) obj).f28514b;
+                v31 v31Var = ((m31) obj).f28519b;
                 if (v31Var.k()) {
                     v31Var.l();
                     return;
@@ -345,10 +345,10 @@ public final class br0 implements Runnable {
                 ((org.telegram.ui.ActionBar.n1) obj).dismiss();
                 return;
             case 25:
-                ((d51) obj).f25561c.setVisibility(8);
+                ((d51) obj).f25566c.setVisibility(8);
                 return;
             case 26:
-                ((org.telegram.ui.wk) obj).f27959c.presentFragment(new org.telegram.ui.y31());
+                ((org.telegram.ui.wk) obj).f27964c.presentFragment(new org.telegram.ui.y31());
                 return;
             case 27:
                 ((n51) obj).requestLayout();
@@ -358,10 +358,10 @@ public final class br0 implements Runnable {
                 return;
             default:
                 UndoView undoView = (UndoView) obj;
-                int i16 = UndoView.f24368e0;
+                int i16 = UndoView.f24372e0;
                 undoView.getClass();
                 try {
-                    undoView.f24377f.performHapticFeedback(3, 2);
+                    undoView.f24381f.performHapticFeedback(3, 2);
                     return;
                 } catch (Exception unused) {
                     return;
@@ -370,7 +370,7 @@ public final class br0 implements Runnable {
     }
 
     public br0(Object obj, int i10) {
-        this.f25046a = i10;
-        this.f25047b = obj;
+        this.f25051a = i10;
+        this.f25052b = obj;
     }
 }

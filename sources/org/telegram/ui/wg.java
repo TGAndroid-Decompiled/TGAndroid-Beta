@@ -2,26 +2,26 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class wg implements Runnable {
-    public final int f42452a;
-    public final yn f42453b;
-    public final org.telegram.ui.ActionBar.b2[] f42454c;
+    public final int f42459a;
+    public final yn f42460b;
+    public final org.telegram.ui.ActionBar.b2[] f42461c;
     public final int d;
 
     public wg(yn ynVar, org.telegram.ui.ActionBar.b2[] b2VarArr, int i10, int i11) {
-        this.f42452a = i11;
-        this.f42453b = ynVar;
-        this.f42454c = b2VarArr;
+        this.f42459a = i11;
+        this.f42460b = ynVar;
+        this.f42461c = b2VarArr;
         this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f42452a) {
+        switch (this.f42459a) {
             case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f42454c;
+                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f42461c;
                 org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
                 if (b2Var != null) {
-                    final yn ynVar = this.f42453b;
+                    final yn ynVar = this.f42460b;
                     final int i10 = this.d;
                     b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
@@ -44,10 +44,10 @@ public final class wg implements Runnable {
                 }
                 return;
             case 1:
-                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f42454c;
+                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f42461c;
                 org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr2[0];
                 if (b2Var2 != null) {
-                    final yn ynVar2 = this.f42453b;
+                    final yn ynVar2 = this.f42460b;
                     final int i11 = this.d;
                     b2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
@@ -70,10 +70,10 @@ public final class wg implements Runnable {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.b2[] b2VarArr3 = this.f42454c;
+                org.telegram.ui.ActionBar.b2[] b2VarArr3 = this.f42461c;
                 org.telegram.ui.ActionBar.b2 b2Var3 = b2VarArr3[0];
                 if (b2Var3 != null) {
-                    final yn ynVar3 = this.f42453b;
+                    final yn ynVar3 = this.f42460b;
                     final int i12 = this.d;
                     b2Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override

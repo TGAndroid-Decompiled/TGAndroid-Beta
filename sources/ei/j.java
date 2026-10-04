@@ -11,42 +11,42 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.bi;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.i6;
 import w7.z5;
 public final class j extends FrameLayout {
-    public final ImageView f9100a;
-    public final FrameLayout.LayoutParams f9101b;
-    public final FrameLayout.LayoutParams f9102c;
+    public final ImageView f9101a;
+    public final FrameLayout.LayoutParams f9102b;
+    public final FrameLayout.LayoutParams f9103c;
     public final TextView d;
-    public final TextView f9103e;
-    public final TextView f9104f;
+    public final TextView f9104e;
+    public final TextView f9105f;
 
     public j(Context context, d6 d6Var) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f9100a = imageView;
+        this.f9101a = imageView;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         FrameLayout.LayoutParams d = z5.d(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
-        this.f9101b = d;
+        this.f9102b = d;
         addView(imageView, d);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         FrameLayout.LayoutParams d10 = z5.d(-1, -2.0f, 55, 62.0f, 10.0f, 40.0f, 8.66f);
-        this.f9102c = d10;
+        this.f9103c = d10;
         addView(linearLayout, d10);
         TextView textView = new TextView(context);
         this.d = textView;
-        ok.k(15.0f, 1, textView);
+        bi.j(15.0f, 1, textView);
         textView.setTextColor(i6.v0(i6.G6, d6Var));
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, z5.t(-1, -2, 55, 0, 0, 0, 0), context);
-        this.f9103e = h;
+        this.f9104e = h;
         h.setTextSize(1, 14.0f);
-        h.setTextColor(i6.v0(i6.f21224z6, d6Var));
+        h.setTextColor(i6.v0(i6.f21228z6, d6Var));
         linearLayout.addView(h, z5.t(-1, -2, 55, 0, 3, 0, 0));
         ImageView imageView2 = new ImageView(context);
         imageView2.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.M6, d6Var), mode));
@@ -54,7 +54,7 @@ public final class j extends FrameLayout {
         imageView2.setScaleType(scaleType);
         addView(imageView2, z5.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f9104f = textView2;
+        this.f9105f = textView2;
         textView2.setTextColor(-1);
         textView2.setBackground(i6.b0(AndroidUtilities.dp(4.0f), i6.v0(i6.uj, d6Var)));
         textView2.setTextSize(1, 13.0f);
@@ -66,15 +66,15 @@ public final class j extends FrameLayout {
     }
 
     public final void a(int i10, int i11, CharSequence charSequence, CharSequence charSequence2) {
-        ImageView imageView = this.f9100a;
+        ImageView imageView = this.f9101a;
         imageView.setImageResource(i11);
         imageView.setBackground(i6.b0(AndroidUtilities.dp(9.0f), i10));
         TextView textView = this.d;
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        TextView textView2 = this.f9103e;
-        FrameLayout.LayoutParams layoutParams = this.f9102c;
-        FrameLayout.LayoutParams layoutParams2 = this.f9101b;
+        TextView textView2 = this.f9104e;
+        FrameLayout.LayoutParams layoutParams = this.f9103c;
+        FrameLayout.LayoutParams layoutParams2 = this.f9102b;
         if (isEmpty) {
             layoutParams2.topMargin = AndroidUtilities.dp(10.0f);
             layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
@@ -104,7 +104,7 @@ public final class j extends FrameLayout {
 
     public void setPercent(CharSequence charSequence) {
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        TextView textView = this.f9104f;
+        TextView textView = this.f9105f;
         if (isEmpty) {
             textView.setVisibility(8);
             return;

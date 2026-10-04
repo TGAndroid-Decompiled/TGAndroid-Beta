@@ -211,7 +211,7 @@ public class LiteMode {
         if (!w7.e0.a(i12, 256) && !w7.e0.a(i12, 262144)) {
             return;
         }
-        li.m.f();
+        li.n.f();
     }
 
     private static void onPowerSaverApplied(boolean z10) {

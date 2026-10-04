@@ -4,34 +4,34 @@ import android.content.DialogInterface;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.web.HttpGetFileTask;
 public final class ed implements DialogInterface.OnCancelListener {
-    public final int f5063a;
-    public final Object f5064b;
+    public final int f5064a;
+    public final Object f5065b;
 
     public ed(Object obj, int i10) {
-        this.f5063a = i10;
-        this.f5064b = obj;
+        this.f5064a = i10;
+        this.f5065b = obj;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f5063a) {
+        switch (this.f5064a) {
             case 0:
-                ((x8) this.f5064b).run();
+                ((x8) this.f5065b).run();
                 return;
             case 1:
-                ((ai.s1) this.f5064b).run();
+                ((ai.s1) this.f5065b).run();
                 return;
             case 2:
-                ((HttpGetFileTask) this.f5064b).cancel(true);
+                ((HttpGetFileTask) this.f5065b).cancel(true);
                 return;
             case 3:
-                fi.t0 t0Var = (fi.t0) this.f5064b;
-                ConnectionsManager.getInstance(t0Var.d).cancelRequest(t0Var.f9989r, true);
-                t0Var.f9988q = null;
-                t0Var.f9989r = 0;
+                fi.t0 t0Var = (fi.t0) this.f5065b;
+                ConnectionsManager.getInstance(t0Var.d).cancelRequest(t0Var.f9990r, true);
+                t0Var.f9989q = null;
+                t0Var.f9990r = 0;
                 return;
             default:
-                ((lg.p) this.f5064b).I = false;
+                ((lg.p) this.f5065b).I = false;
                 return;
         }
     }

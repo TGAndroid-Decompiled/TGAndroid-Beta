@@ -1,77 +1,23 @@
 package hg;
 
-import android.graphics.Rect;
+import android.content.Context;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.bl;
-import org.telegram.ui.Components.hk;
-import org.telegram.ui.Components.jl;
-import org.telegram.ui.Components.ln;
-import org.telegram.ui.Components.pi;
-import org.telegram.ui.Components.qj;
-import org.telegram.ui.Components.sz;
-import org.telegram.ui.Components.zl0;
-public final class e0 extends sz {
-    public final int U;
-    public final pi V;
+import org.telegram.messenger.AndroidUtilities;
+public final class e0 extends s4.d0 {
+    public final f0 f11153r;
 
-    public e0(pi piVar, int i10, zl0 zl0Var, int i11) {
-        super(i10, 0, zl0Var);
-        this.U = i11;
-        this.V = piVar;
+    public e0(f0 f0Var, Context context) {
+        super(context);
+        this.f11153r = f0Var;
     }
 
     @Override
-    public int[] t(View view, Rect rect) {
-        switch (this.U) {
-            case 4:
-                int C = this.f46638n - C();
-                int top = (view.getTop() + rect.top) - view.getScrollY();
-                int min = Math.min(0, top);
-                int max = Math.max(0, (rect.height() + top) - C);
-                if (min == 0) {
-                    min = Math.min(top, max);
-                }
-                return new int[]{0, min};
-            default:
-                return super.t(view, rect);
-        }
+    public final int k(int i10, View view) {
+        return org.telegram.messenger.q.A(8.0f, ((j0) this.f11153r.V).f11224s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        switch (this.U) {
-            case 0:
-                d0 d0Var = new d0(this, recyclerView.getContext());
-                d0Var.f46692a = i10;
-                w0(d0Var);
-                return;
-            case 1:
-                qj qjVar = new qj(this, recyclerView.getContext());
-                qjVar.f46692a = i10;
-                w0(qjVar);
-                return;
-            case 2:
-                hk hkVar = new hk(this, recyclerView.getContext());
-                hkVar.f46692a = i10;
-                w0(hkVar);
-                return;
-            case 3:
-                bl blVar = new bl(this, recyclerView.getContext());
-                blVar.f46692a = i10;
-                w0(blVar);
-                return;
-            default:
-                ln lnVar = new ln(this, recyclerView.getContext());
-                lnVar.f46692a = i10;
-                w0(lnVar);
-                return;
-        }
-    }
-
-    public e0(jl jlVar, ai.w0 w0Var) {
-        super(0, 0, w0Var);
-        this.U = 3;
-        this.V = jlVar;
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

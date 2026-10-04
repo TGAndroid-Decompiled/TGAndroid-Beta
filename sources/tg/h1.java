@@ -18,16 +18,16 @@ public final class h1 extends xg.i {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         m1 m1Var = this.K;
-        m1Var.f47056q0 = dp;
-        m1Var.f47055p0.G();
+        m1Var.f47064q0 = dp;
+        m1Var.f47063p0.G();
         if (this.J != m1Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = m1Var.isKeyboardVisible();
             this.J = isKeyboardVisible;
             if (isKeyboardVisible) {
                 zl0 zl0Var = m1Var.d;
                 ji.o oVar = new ji.o(m1Var.getContext(), 2, 0.6f);
-                oVar.f46692a = 1;
-                oVar.f14236p = AndroidUtilities.dp(36.0f);
+                oVar.f46699a = 1;
+                oVar.f14237p = AndroidUtilities.dp(36.0f);
                 zl0Var.getLayoutManager().w0(oVar);
             }
         }

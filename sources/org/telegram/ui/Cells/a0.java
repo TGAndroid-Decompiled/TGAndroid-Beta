@@ -6,17 +6,17 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.iw0;
 public abstract class a0 extends ViewGroup implements iw0 {
-    public boolean f21770a;
-    public androidx.emoji2.text.j f21771b;
-    public int f21772c;
+    public boolean f21774a;
+    public androidx.emoji2.text.j f21775b;
+    public int f21776c;
     public ai.q4 d;
-    public Runnable f21773e;
+    public Runnable f21777e;
 
     public a0(Context context) {
         super(context);
-        this.f21770a = false;
-        this.f21771b = null;
-        this.f21772c = 0;
+        this.f21774a = false;
+        this.f21775b = null;
+        this.f21776c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements iw0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.f21773e = runnable;
+        this.f21777e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements iw0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f21773e;
+        Runnable runnable = this.f21777e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements iw0 {
     }
 
     public final void k() {
-        this.f21770a = false;
-        androidx.emoji2.text.j jVar = this.f21771b;
+        this.f21774a = false;
+        androidx.emoji2.text.j jVar = this.f21775b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class a0 extends ViewGroup implements iw0 {
     }
 
     public final void q() {
-        if (this.f21770a) {
+        if (this.f21774a) {
             return;
         }
-        this.f21770a = true;
+        this.f21774a = true;
         if (this.d == null) {
             this.d = new ai.q4(this, 28);
         }

@@ -8,17 +8,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 public final class t extends c {
-    public RandomAccessFile f10224a;
-    public Uri f10225b;
-    public long f10226c;
+    public RandomAccessFile f10225a;
+    public Uri f10226b;
+    public long f10227c;
     public boolean d;
 
     @Override
     public final void close() {
-        this.f10225b = null;
+        this.f10226b = null;
         try {
             try {
-                RandomAccessFile randomAccessFile = this.f10224a;
+                RandomAccessFile randomAccessFile = this.f10225a;
                 if (randomAccessFile != null) {
                     randomAccessFile.close();
                 }
@@ -26,7 +26,7 @@ public final class t extends c {
                 throw new j(e7, 2000);
             }
         } finally {
-            this.f10224a = null;
+            this.f10225a = null;
             if (this.d) {
                 this.d = false;
                 transferEnded();
@@ -36,32 +36,32 @@ public final class t extends c {
 
     @Override
     public final Uri getUri() {
-        return this.f10225b;
+        return this.f10226b;
     }
 
     @Override
     public final long open(m mVar) {
-        Uri uri = mVar.f10193a;
-        long j3 = mVar.f10196e;
-        this.f10225b = uri;
+        Uri uri = mVar.f10194a;
+        long j3 = mVar.f10197e;
+        this.f10226b = uri;
         transferInitializing(mVar);
         int i10 = 2006;
         try {
             String path = uri.getPath();
             path.getClass();
             RandomAccessFile randomAccessFile = new RandomAccessFile(path, "r");
-            this.f10224a = randomAccessFile;
+            this.f10225a = randomAccessFile;
             try {
                 randomAccessFile.seek(j3);
-                long j10 = mVar.f10197f;
+                long j10 = mVar.f10198f;
                 if (j10 == -1) {
-                    j10 = this.f10224a.length() - j3;
+                    j10 = this.f10225a.length() - j3;
                 }
-                this.f10226c = j10;
+                this.f10227c = j10;
                 if (j10 >= 0) {
                     this.d = true;
                     transferStarted(mVar);
-                    return this.f10226c;
+                    return this.f10227c;
                 }
                 throw new j(null, null, 2008);
             } catch (IOException e7) {
@@ -74,9 +74,9 @@ public final class t extends c {
             String path2 = uri.getPath();
             String query = uri.getQuery();
             String fragment = uri.getFragment();
-            StringBuilder w10 = a4.a.w("uri has query and/or fragment, which are not supported. Did you call Uri.parse() on a string containing '?' or '#'? Use Uri.fromFile(new File(path)) to avoid this. path=", path2, ",query=", query, ",fragment=");
-            w10.append(fragment);
-            throw new j(w10.toString(), e10, 1004);
+            StringBuilder x10 = a4.a.x("uri has query and/or fragment, which are not supported. Did you call Uri.parse() on a string containing '?' or '#'? Use Uri.fromFile(new File(path)) to avoid this. path=", path2, ",query=", query, ",fragment=");
+            x10.append(fragment);
+            throw new j(x10.toString(), e10, 1004);
         } catch (SecurityException e11) {
             throw new j(e11, 2006);
         } catch (RuntimeException e12) {
@@ -89,16 +89,16 @@ public final class t extends c {
         if (i11 == 0) {
             return 0;
         }
-        long j3 = this.f10226c;
+        long j3 = this.f10227c;
         if (j3 == 0) {
             return -1;
         }
         try {
-            RandomAccessFile randomAccessFile = this.f10224a;
-            String str = e2.d0.f8537a;
+            RandomAccessFile randomAccessFile = this.f10225a;
+            String str = e2.d0.f8538a;
             int read = randomAccessFile.read(bArr, i10, (int) Math.min(j3, i11));
             if (read > 0) {
-                this.f10226c -= read;
+                this.f10227c -= read;
                 bytesTransferred(read);
             }
             return read;

@@ -21,7 +21,7 @@ public class BetaUpdaterController {
     private String version;
     private int versionCode;
     private boolean firstCheck = true;
-    private final Runnable scheduledUpdateCheck = new t(this, 1);
+    private final Runnable scheduledUpdateCheck = new u(this, 1);
 
     public BetaUpdaterController() {
         load();
@@ -188,7 +188,7 @@ public class BetaUpdaterController {
             }
             this.checkingForUpdate = true;
             this.firstCheck = false;
-            new org.telegram.ui.web.j1(new v(0, this, runnable)).execute("null");
+            new org.telegram.ui.web.j1(new w(0, this, runnable)).execute("null");
         }
     }
 
@@ -235,38 +235,38 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback(this) {
-                public final BetaUpdaterController f19281b;
+                public final BetaUpdaterController f19370b;
 
                 {
-                    this.f19281b = this;
+                    this.f19370b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19281b.lambda$downloadUpdate$5((File) obj);
+                            this.f19370b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19281b.lambda$downloadUpdate$6((Float) obj);
+                            this.f19370b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }, new Utilities.Callback(this) {
-                public final BetaUpdaterController f19281b;
+                public final BetaUpdaterController f19370b;
 
                 {
-                    this.f19281b = this;
+                    this.f19370b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19281b.lambda$downloadUpdate$5((File) obj);
+                            this.f19370b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19281b.lambda$downloadUpdate$6((Float) obj);
+                            this.f19370b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
@@ -274,7 +274,7 @@ public class BetaUpdaterController {
             this.downloadingTask = overrideExtension;
             overrideExtension.execute(this.fileUrl);
         } else if (!z10) {
-            checkForUpdate(true, new t(this, 0));
+            checkForUpdate(true, new u(this, 0));
         } else {
             this.downloading = false;
         }

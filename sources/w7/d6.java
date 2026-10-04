@@ -18,7 +18,7 @@ public abstract class d6 {
     }
 
     public static TextView b(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        TextView f10 = org.telegram.messenger.f0.f(context, 1, f7);
+        TextView f10 = org.telegram.messenger.q.f(context, 1, f7);
         f10.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
         if (z10) {
             f10.setTypeface(AndroidUtilities.bold());

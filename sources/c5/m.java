@@ -2,35 +2,34 @@ package c5;
 
 import android.os.Bundle;
 import e9.a1;
-import hg.k0;
 import java.util.ArrayList;
 public final class m implements w2.a {
-    public ArrayList f4223a;
+    public ArrayList f4224a;
 
     public m(int i10) {
         switch (i10) {
             case 3:
-                this.f4223a = new ArrayList();
+                this.f4224a = new ArrayList();
                 return;
             default:
-                this.f4223a = new ArrayList();
+                this.f4224a = new ArrayList();
                 return;
         }
     }
 
     @Override
     public long a(long j3) {
-        ArrayList arrayList = this.f4223a;
+        ArrayList arrayList = this.f4224a;
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j3 < ((z3.a) arrayList.get(0)).f52355b) {
-            return ((z3.a) arrayList.get(0)).f52355b;
+        if (j3 < ((z3.a) arrayList.get(0)).f52360b) {
+            return ((z3.a) arrayList.get(0)).f52360b;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
             z3.a aVar = (z3.a) arrayList.get(i10);
-            long j10 = aVar.f52355b;
-            long j11 = aVar.f52355b;
+            long j10 = aVar.f52360b;
+            long j11 = aVar.f52360b;
             if (j3 < j10) {
                 long j12 = ((z3.a) arrayList.get(i10 - 1)).d;
                 if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
@@ -50,16 +49,16 @@ public final class m implements w2.a {
     public e9.i0 b(long j3) {
         int i10 = i(j3);
         if (i10 == 0) {
-            e9.g0 g0Var = e9.i0.f8757b;
-            return a1.f8720e;
+            e9.g0 g0Var = e9.i0.f8758b;
+            return a1.f8721e;
         }
-        z3.a aVar = (z3.a) this.f4223a.get(i10 - 1);
+        z3.a aVar = (z3.a) this.f4224a.get(i10 - 1);
         long j10 = aVar.d;
         if (j10 != -9223372036854775807L && j3 >= j10) {
-            e9.g0 g0Var2 = e9.i0.f8757b;
-            return a1.f8720e;
+            e9.g0 g0Var2 = e9.i0.f8758b;
+            return a1.f8721e;
         }
-        return aVar.f52354a;
+        return aVar.f52359a;
     }
 
     @Override
@@ -69,17 +68,17 @@ public final class m implements w2.a {
 
     @Override
     public void clear() {
-        this.f4223a.clear();
+        this.f4224a.clear();
     }
 
     @Override
     public long d(long j3) {
-        ArrayList arrayList = this.f4223a;
-        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f52355b) {
+        ArrayList arrayList = this.f4224a;
+        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f52360b) {
             return -9223372036854775807L;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            long j10 = ((z3.a) arrayList.get(i10)).f52355b;
+            long j10 = ((z3.a) arrayList.get(i10)).f52360b;
             int i11 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
             if (i11 == 0) {
                 return j10;
@@ -90,7 +89,7 @@ public final class m implements w2.a {
                 if (j11 != -9223372036854775807L && j11 <= j3) {
                     return j11;
                 }
-                return aVar.f52355b;
+                return aVar.f52360b;
             }
         }
         z3.a aVar2 = (z3.a) e9.q.l(arrayList);
@@ -98,12 +97,12 @@ public final class m implements w2.a {
         if (j12 != -9223372036854775807L && j3 >= j12) {
             return j12;
         }
-        return aVar2.f52355b;
+        return aVar2.f52360b;
     }
 
     @Override
     public void e(long j3) {
-        ArrayList arrayList = this.f4223a;
+        ArrayList arrayList = this.f4224a;
         int i10 = i(j3);
         if (i10 == 0) {
             return;
@@ -116,17 +115,17 @@ public final class m implements w2.a {
     }
 
     public p4.r f() {
-        if (this.f4223a == null) {
-            return p4.r.f44242c;
+        if (this.f4224a == null) {
+            return p4.r.f44249c;
         }
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", this.f4223a);
-        return new p4.r(bundle, this.f4223a);
+        bundle.putStringArrayList("controlCategories", this.f4224a);
+        return new p4.r(bundle, this.f4224a);
     }
 
     public void g(StringBuilder sb2) {
         String str;
-        if (((Boolean) k0.w(1, this.f4223a)).booleanValue()) {
+        if (((Boolean) hg.c.w(1, this.f4224a)).booleanValue()) {
             str = "</ol>";
         } else {
             str = "</ul>";
@@ -135,15 +134,15 @@ public final class m implements w2.a {
     }
 
     public void h(StringBuilder sb2) {
-        while (!this.f4223a.isEmpty()) {
+        while (!this.f4224a.isEmpty()) {
             g(sb2);
         }
     }
 
     public int i(long j3) {
-        ArrayList arrayList = this.f4223a;
+        ArrayList arrayList = this.f4224a;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (j3 < ((z3.a) arrayList.get(i10)).f52355b) {
+            if (j3 < ((z3.a) arrayList.get(i10)).f52360b) {
                 return i10;
             }
         }

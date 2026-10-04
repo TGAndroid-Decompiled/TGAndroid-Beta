@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class x31 extends org.telegram.ui.Components.yl0 {
-    public final Context f42735c;
+    public final Context f42742c;
     public final boolean d;
-    public final y31 f42736e;
+    public final y31 f42743e;
 
     public x31(y31 y31Var, Context context, boolean z10) {
-        this.f42736e = y31Var;
-        this.f42735c = context;
+        this.f42743e = y31Var;
+        this.f42742c = context;
         this.d = z10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46528f == 0) {
+        if (c1Var.f46535f == 0) {
             return true;
         }
         return false;
@@ -28,15 +28,15 @@ public final class x31 extends org.telegram.ui.Components.yl0 {
     public final int h() {
         boolean z10 = this.d;
         int i10 = 0;
-        y31 y31Var = this.f42736e;
+        y31 y31Var = this.f42743e;
         if (z10) {
-            ArrayList arrayList = y31Var.f43041f;
+            ArrayList arrayList = y31Var.f43048f;
             if (arrayList == null) {
                 return 0;
             }
             return arrayList.size();
         }
-        if (y31Var.f43040e >= 0) {
+        if (y31Var.f43047e >= 0) {
             i10 = 1;
         }
         return y31Var.h.size() + i10;
@@ -44,7 +44,7 @@ public final class x31 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int j(int i10) {
-        if (!this.d && i10 == this.f42736e.f43040e) {
+        if (!this.d && i10 == this.f42743e.f43047e) {
             return 1;
         }
         return 0;
@@ -58,7 +58,7 @@ public final class x31 extends org.telegram.ui.Components.yl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.m4 m4Var;
-        Context context = this.f42735c;
+        Context context = this.f42742c;
         if (i10 != 0) {
             if (i10 != 2) {
                 m4Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);

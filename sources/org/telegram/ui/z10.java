@@ -18,20 +18,20 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class z10 extends FrameLayout {
     public final FiltersSetupActivity E;
-    public final org.telegram.ui.ActionBar.i5 f43675a;
-    public final TextView f43676b;
-    public final ImageView f43677c;
+    public final org.telegram.ui.ActionBar.i5 f43682a;
+    public final TextView f43683b;
+    public final ImageView f43684c;
     public int d;
-    public int f43678e;
-    public final View f43679f;
+    public int f43685e;
+    public final View f43686f;
     public final ImageView h;
-    public final org.telegram.ui.Components.n30 f43680n;
-    public boolean f43681r;
-    public final org.telegram.ui.Components.u90 f43682s;
+    public final org.telegram.ui.Components.n30 f43687n;
+    public boolean f43688r;
+    public final org.telegram.ui.Components.u90 f43689s;
     public boolean v;
-    public float f43683w;
-    public MessagesController.DialogFilter f43684x;
-    public ValueAnimator f43685y;
+    public float f43690w;
+    public MessagesController.DialogFilter f43691x;
+    public ValueAnimator f43692y;
 
     public z10(FiltersSetupActivity filtersSetupActivity, Context context) {
         super(context);
@@ -52,11 +52,11 @@ public final class z10 extends FrameLayout {
         int i17;
         this.E = filtersSetupActivity;
         this.d = -2;
-        this.f43678e = -1;
-        this.f43681r = false;
+        this.f43685e = -1;
+        this.f43688r = false;
         setWillNotDraw(false);
         ImageView imageView = new ImageView(context);
-        this.f43677c = imageView;
+        this.f43684c = imageView;
         imageView.setFocusable(false);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
@@ -74,7 +74,7 @@ public final class z10 extends FrameLayout {
         }
         addView(imageView, w7.z5.d(48, 48.0f, i10 | 16, 7.0f, 0.0f, 6.0f, 0.0f));
         View view = new View(context);
-        this.f43679f = view;
+        this.f43686f = view;
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
@@ -82,7 +82,7 @@ public final class z10 extends FrameLayout {
         }
         addView(view, w7.z5.d(20, 20.0f, i11 | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
-        this.f43675a = i5Var;
+        this.f43682a = i5Var;
         i5Var.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
         i5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
         i5Var.setTextSize(16);
@@ -118,8 +118,8 @@ public final class z10 extends FrameLayout {
         }
         addView(i5Var, w7.z5.d(-1, -2.0f, i20, f7, 10.0f, f10, 0.0f));
         TextView textView = new TextView(context);
-        this.f43676b = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21224z6, false));
+        this.f43683b = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21228z6, false));
         textView.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
             i14 = 5;
@@ -152,17 +152,17 @@ public final class z10 extends FrameLayout {
         addView(textView, w7.z5.d(-2, -2.0f, i21, f11, 35.0f, f12, 0.0f));
         textView.setVisibility(8);
         org.telegram.ui.Components.u90 u90Var = new org.telegram.ui.Components.u90();
-        this.f43682s = u90Var;
+        this.f43689s = u90Var;
         u90Var.C = true;
-        u90Var.f31344t = 2.0f;
-        int i22 = org.telegram.ui.ActionBar.i6.f20909i6;
+        u90Var.f31350t = 2.0f;
+        int i22 = org.telegram.ui.ActionBar.i6.f20913i6;
         int w03 = org.telegram.ui.ActionBar.i6.w0(null, i22, false);
         u90Var.f(org.telegram.ui.ActionBar.i6.l1(0.4f, w03), org.telegram.ui.ActionBar.i6.l1(1.0f, w03), org.telegram.ui.ActionBar.i6.l1(0.9f, w03), org.telegram.ui.ActionBar.i6.l1(1.7f, w03));
         int dp = AndroidUtilities.dp(1.0f);
-        u90Var.f31346w.setStrokeWidth(dp);
+        u90Var.f31352w.setStrokeWidth(dp);
         u90Var.j(40.0f);
         org.telegram.ui.Components.n30 n30Var = new org.telegram.ui.Components.n30(this, context, dp, 1);
-        this.f43680n = n30Var;
+        this.f43687n = n30Var;
         u90Var.setCallback(n30Var);
         n30Var.setFocusable(false);
         n30Var.setScaleType(scaleType);
@@ -208,7 +208,7 @@ public final class z10 extends FrameLayout {
     }
 
     public MessagesController.DialogFilter getCurrentFilter() {
-        return this.f43684x;
+        return this.f43691x;
     }
 
     @Override
@@ -228,29 +228,29 @@ public final class z10 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20941k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20945k0);
         }
-        MessagesController.DialogFilter dialogFilter = this.f43684x;
+        MessagesController.DialogFilter dialogFilter = this.f43691x;
         if (dialogFilter != null) {
             boolean z10 = dialogFilter.locked;
             if (z10) {
-                float f7 = this.f43683w;
+                float f7 = this.f43690w;
                 if (f7 != 1.0f) {
-                    this.f43683w = f7 + 0.10666667f;
+                    this.f43690w = f7 + 0.10666667f;
                     invalidate();
                 }
             }
             if (!z10) {
-                float f10 = this.f43683w;
+                float f10 = this.f43690w;
                 if (f10 != 0.0f) {
-                    this.f43683w = f10 - 0.10666667f;
+                    this.f43690w = f10 - 0.10666667f;
                     invalidate();
                 }
             }
         }
-        float clamp = Utilities.clamp(this.f43683w, 1.0f, 0.0f);
-        this.f43683w = clamp;
-        org.telegram.ui.ActionBar.i5 i5Var = this.f43675a;
+        float clamp = Utilities.clamp(this.f43690w, 1.0f, 0.0f);
+        this.f43690w = clamp;
+        org.telegram.ui.ActionBar.i5 i5Var = this.f43682a;
         i5Var.setRightDrawableScale(clamp);
         i5Var.invalidate();
     }
@@ -265,6 +265,6 @@ public final class z10 extends FrameLayout {
     }
 
     public void setOnReorderButtonTouchListener(View.OnTouchListener onTouchListener) {
-        this.f43677c.setOnTouchListener(onTouchListener);
+        this.f43684c.setOnTouchListener(onTouchListener);
     }
 }

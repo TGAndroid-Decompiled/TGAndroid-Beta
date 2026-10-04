@@ -69,17 +69,17 @@ public final class pc extends ReplacementSpan {
             float f18 = measureText / 2.0f;
             float f19 = (i16 * measureText) + f7 + f18;
             if (i16 == this.f1524b) {
-                f19 = AndroidUtilities.lerp(f19, t8.b.d(measureText, i16 + 1, f7, f18), this.d);
+                f19 = AndroidUtilities.lerp(f19, sa.e.d(measureText, i16 + 1, f7, f18), this.d);
                 float f20 = this.d;
                 if (f20 < 0.5f) {
                     x10 = f20 / 0.5f;
                 } else {
-                    x10 = org.telegram.messenger.f0.x(f20, 0.5f, 0.5f, 1.0f);
+                    x10 = org.telegram.messenger.q.x(f20, 0.5f, 0.5f, 1.0f);
                 }
                 f12 = AndroidUtilities.lerp(f16, f16 - f18, this.h.getInterpolation(x10));
             } else {
                 if (i16 == this.f1525c) {
-                    f19 = AndroidUtilities.lerp(f19, t8.b.d(measureText, i16 - 1, f7, f18), this.d);
+                    f19 = AndroidUtilities.lerp(f19, sa.e.d(measureText, i16 - 1, f7, f18), this.d);
                 }
                 f12 = f16;
             }

@@ -1,10 +1,8 @@
 package cc;
-
-import hg.k0;
 public final class g extends d {
-    public final byte[] f4544c;
+    public final byte[] f4545c;
     public final int d;
-    public final int f4545e;
+    public final int f4546e;
 
     public g(int i10, int i11, int[] iArr) {
         super(i10, i11);
@@ -15,9 +13,9 @@ public final class g extends d {
                 int i14 = iArr[i13];
                 bArr[i13] = (byte) (((((i14 >> 16) & 255) + ((i14 >> 7) & 510)) + (i14 & 255)) / 4);
             }
-            this.f4544c = bArr;
+            this.f4545c = bArr;
             this.d = i10;
-            this.f4545e = i11;
+            this.f4546e = i11;
             return;
         }
         throw new IllegalArgumentException("Pixel array length is less than width * height");
@@ -25,11 +23,11 @@ public final class g extends d {
 
     @Override
     public final byte[] a() {
-        byte[] bArr = this.f4544c;
-        int i10 = this.f4538a;
-        int i11 = this.f4539b;
+        byte[] bArr = this.f4545c;
+        int i10 = this.f4539a;
+        int i11 = this.f4540b;
         int i12 = this.d;
-        if (i10 == i12 && i11 == this.f4545e) {
+        if (i10 == i12 && i11 == this.f4546e) {
             return bArr;
         }
         int i13 = i10 * i11;
@@ -48,14 +46,14 @@ public final class g extends d {
 
     @Override
     public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f4539b) {
-            int i11 = this.f4538a;
+        if (i10 >= 0 && i10 < this.f4540b) {
+            int i11 = this.f4539a;
             if (bArr == null || bArr.length < i11) {
                 bArr = new byte[i11];
             }
-            System.arraycopy(this.f4544c, i10 * this.d, bArr, 0, i11);
+            System.arraycopy(this.f4545c, i10 * this.d, bArr, 0, i11);
             return bArr;
         }
-        throw new IllegalArgumentException(k0.h(i10, "Requested row is outside the image: "));
+        throw new IllegalArgumentException(hg.c.h(i10, "Requested row is outside the image: "));
     }
 }

@@ -8,8 +8,8 @@ import java.util.NavigableMap;
 import java.util.SortedMap;
 public final class v0 extends o implements Serializable {
     public final transient Map d;
-    public transient int f8819e;
-    public transient u0 f8820f;
+    public transient int f8820e;
+    public transient u0 f8821f;
 
     public v0(Map map) {
         if (map.isEmpty()) {
@@ -22,7 +22,7 @@ public final class v0 extends o implements Serializable {
     @Override
     public final Map a() {
         Map dVar;
-        Map map = this.f8786c;
+        Map map = this.f8787c;
         if (map == null) {
             Map map2 = this.d;
             if (map2 instanceof NavigableMap) {
@@ -32,7 +32,7 @@ public final class v0 extends o implements Serializable {
             } else {
                 dVar = new d(this, map2, 0);
             }
-            this.f8786c = dVar;
+            this.f8787c = dVar;
             return dVar;
         }
         return map;
@@ -44,10 +44,10 @@ public final class v0 extends o implements Serializable {
             collection.clear();
         }
         map.clear();
-        this.f8819e = 0;
+        this.f8820e = 0;
     }
 
     public final Collection c() {
-        return (List) this.f8820f.get();
+        return (List) this.f8821f.get();
     }
 }

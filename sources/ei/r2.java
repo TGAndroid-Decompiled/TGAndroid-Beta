@@ -11,18 +11,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.l5;
 import org.telegram.ui.LaunchActivity;
 public final class r2 implements RequestDelegate {
-    public final int f9299a;
-    public final int f9300b;
+    public final int f9300a;
+    public final int f9301b;
 
     public r2(int i10, int i11) {
-        this.f9299a = i11;
-        this.f9300b = i10;
+        this.f9300a = i11;
+        this.f9301b = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f9299a;
-        int i11 = this.f9300b;
+        int i10 = this.f9300a;
+        int i11 = this.f9301b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new s2(i11, 0));

@@ -7,7 +7,6 @@ import android.os.Parcelable;
 import com.google.android.gms.internal.cast.h0;
 import com.google.android.gms.internal.cast.j0;
 import com.google.android.gms.internal.cast.o0;
-import hg.k0;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,27 +35,27 @@ public final class f extends o6.a {
     public final q V;
     public final boolean W;
     public final boolean X;
-    public final ArrayList f8664a;
-    public final int[] f8665b;
-    public final long f8666c;
+    public final ArrayList f8665a;
+    public final int[] f8666b;
+    public final long f8667c;
     public final String d;
-    public final int f8667e;
-    public final int f8668f;
+    public final int f8668e;
+    public final int f8669f;
     public final int h;
-    public final int f8669n;
-    public final int f8670r;
-    public final int f8671s;
+    public final int f8670n;
+    public final int f8671r;
+    public final int f8672s;
     public final int v;
-    public final int f8672w;
-    public final int f8673x;
-    public final int f8674y;
+    public final int f8673w;
+    public final int f8674x;
+    public final int f8675y;
 
     static {
-        h0 h0Var = j0.f6898b;
+        h0 h0Var = j0.f6899b;
         Object[] objArr = {"com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK", "com.google.android.gms.cast.framework.action.STOP_CASTING"};
         for (int i10 = 0; i10 < 2; i10++) {
             if (objArr[i10] == null) {
-                throw new NullPointerException(k0.h(i10, "at index "));
+                throw new NullPointerException(hg.c.h(i10, "at index "));
             }
         }
         Y = j0.r(2, objArr);
@@ -66,20 +65,20 @@ public final class f extends o6.a {
 
     public f(List list, int[] iArr, long j3, String str, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, int i20, int i21, int i22, int i23, int i24, int i25, int i26, int i27, int i28, int i29, int i30, int i31, int i32, int i33, int i34, int i35, int i36, IBinder iBinder, boolean z10, boolean z11) {
         q aVar;
-        this.f8664a = new ArrayList(list);
-        this.f8665b = Arrays.copyOf(iArr, iArr.length);
-        this.f8666c = j3;
+        this.f8665a = new ArrayList(list);
+        this.f8666b = Arrays.copyOf(iArr, iArr.length);
+        this.f8667c = j3;
         this.d = str;
-        this.f8667e = i10;
-        this.f8668f = i11;
+        this.f8668e = i10;
+        this.f8669f = i11;
         this.h = i12;
-        this.f8669n = i13;
-        this.f8670r = i14;
-        this.f8671s = i15;
+        this.f8670n = i13;
+        this.f8671r = i14;
+        this.f8672s = i15;
         this.v = i16;
-        this.f8672w = i17;
-        this.f8673x = i18;
-        this.f8674y = i19;
+        this.f8673w = i17;
+        this.f8674x = i18;
+        this.f8675y = i19;
         this.E = i20;
         this.F = i21;
         this.G = i22;
@@ -116,32 +115,32 @@ public final class f extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         IBinder iBinder;
         int q6 = g0.q(parcel, 20293);
-        g0.n(parcel, 2, this.f8664a);
-        int[] iArr = this.f8665b;
+        g0.n(parcel, 2, this.f8665a);
+        int[] iArr = this.f8666b;
         g0.g(parcel, 3, Arrays.copyOf(iArr, iArr.length));
         g0.s(parcel, 4, 8);
-        parcel.writeLong(this.f8666c);
+        parcel.writeLong(this.f8667c);
         g0.l(parcel, 5, this.d);
         g0.s(parcel, 6, 4);
-        parcel.writeInt(this.f8667e);
+        parcel.writeInt(this.f8668e);
         g0.s(parcel, 7, 4);
-        parcel.writeInt(this.f8668f);
+        parcel.writeInt(this.f8669f);
         g0.s(parcel, 8, 4);
         parcel.writeInt(this.h);
         g0.s(parcel, 9, 4);
-        parcel.writeInt(this.f8669n);
+        parcel.writeInt(this.f8670n);
         g0.s(parcel, 10, 4);
-        parcel.writeInt(this.f8670r);
+        parcel.writeInt(this.f8671r);
         g0.s(parcel, 11, 4);
-        parcel.writeInt(this.f8671s);
+        parcel.writeInt(this.f8672s);
         g0.s(parcel, 12, 4);
         parcel.writeInt(this.v);
         g0.s(parcel, 13, 4);
-        parcel.writeInt(this.f8672w);
+        parcel.writeInt(this.f8673w);
         g0.s(parcel, 14, 4);
-        parcel.writeInt(this.f8673x);
+        parcel.writeInt(this.f8674x);
         g0.s(parcel, 15, 4);
-        parcel.writeInt(this.f8674y);
+        parcel.writeInt(this.f8675y);
         g0.s(parcel, 16, 4);
         parcel.writeInt(this.E);
         g0.s(parcel, 17, 4);

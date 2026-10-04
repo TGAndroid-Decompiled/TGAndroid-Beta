@@ -7,18 +7,18 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class xe implements Utilities.Callback {
-    public final int f42837a;
-    public final yn f42838b;
+    public final int f42844a;
+    public final yn f42845b;
 
     public xe(yn ynVar, int i10) {
-        this.f42837a = i10;
-        this.f42838b = ynVar;
+        this.f42844a = i10;
+        this.f42845b = ynVar;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f42837a;
-        yn ynVar = this.f42838b;
+        int i10 = this.f42844a;
+        yn ynVar = this.f42845b;
         switch (i10) {
             case 0:
                 ynVar.ub(true, false);
@@ -29,10 +29,10 @@ public final class xe implements Utilities.Callback {
                 return;
             case 1:
                 MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                yn ynVar2 = this.f42838b;
-                ynVar2.f43321e5 = messageSuggestionParams;
-                ynVar2.f43431n5.messageOwner.suggested_post = messageSuggestionParams.toTl();
-                ynVar2.xb(true, null, ynVar2.f43431n5, null, null, true, 0, null, false, 0L, null, true);
+                yn ynVar2 = this.f42845b;
+                ynVar2.f43328e5 = messageSuggestionParams;
+                ynVar2.f43438n5.messageOwner.suggested_post = messageSuggestionParams.toTl();
+                ynVar2.xb(true, null, ynVar2.f43438n5, null, null, true, 0, null, false, 0L, null, true);
                 return;
             case 2:
                 ynVar.ca((String) obj, false);
@@ -60,12 +60,12 @@ public final class xe implements Utilities.Callback {
                     boolean A9 = ynVar.A9();
                     if (u1Var.G8 != A9) {
                         u1Var.G8 = A9;
-                        ynVar.f43526v0.getClass();
+                        ynVar.f43533v0.getClass();
                         int R = RecyclerView.R(view);
-                        u1Var.f23312n8 = true;
+                        u1Var.f23316n8 = true;
                         u1Var.forceLayout();
                         if (R >= 0) {
-                            ynVar.f43565y0.m(R);
+                            ynVar.f43572y0.m(R);
                         }
                     }
                     u1Var.H8 = ynVar.R8();
@@ -79,13 +79,13 @@ public final class xe implements Utilities.Callback {
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.w0) {
                     org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
-                    w0Var.f23603e0 = ynVar.s9();
-                    w0Var.f23616i0 = ynVar.B9();
+                    w0Var.f23607e0 = ynVar.s9();
+                    w0Var.f23620i0 = ynVar.B9();
                     ynVar.A9();
                     ynVar.R8();
                     int S82 = ynVar.S8();
-                    if (w0Var.f23619j0 != S82) {
-                        w0Var.f23619j0 = S82;
+                    if (w0Var.f23623j0 != S82) {
+                        w0Var.f23623j0 = S82;
                         w0Var.invalidate();
                         return;
                     }
@@ -111,8 +111,8 @@ public final class xe implements Utilities.Callback {
                 }
                 return;
             case 8:
-                fs fsVar = ynVar.f43276b0;
-                fsVar.f36378c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
+                fs fsVar = ynVar.f43283b0;
+                fsVar.f36383c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();

@@ -2,15 +2,15 @@ package ii;
 
 import android.view.View;
 public final class r2 implements Runnable {
-    public final int f12611a;
-    public final x3 f12612b;
-    public final a f12613c;
+    public final int f12612a;
+    public final x3 f12613b;
+    public final a f12614c;
     public final int d;
 
     public r2(x3 x3Var, a aVar, int i10, int i11) {
-        this.f12611a = i11;
-        this.f12612b = x3Var;
-        this.f12613c = aVar;
+        this.f12612a = i11;
+        this.f12613b = x3Var;
+        this.f12614c = aVar;
         this.d = i10;
     }
 
@@ -18,10 +18,10 @@ public final class r2 implements Runnable {
     public final void run() {
         View B1;
         View B12;
-        switch (this.f12611a) {
+        switch (this.f12612a) {
             case 0:
-                x3 x3Var = this.f12612b;
-                a aVar = this.f12613c;
+                x3 x3Var = this.f12613b;
+                a aVar = this.f12614c;
                 if (aVar == null) {
                     x3Var.getClass();
                     B1 = null;
@@ -36,8 +36,8 @@ public final class r2 implements Runnable {
                 }
                 return;
             case 1:
-                x3 x3Var2 = this.f12612b;
-                a aVar2 = this.f12613c;
+                x3 x3Var2 = this.f12613b;
+                a aVar2 = this.f12614c;
                 if (aVar2 == null) {
                     x3Var2.getClass();
                     B12 = null;
@@ -52,7 +52,7 @@ public final class r2 implements Runnable {
                 }
                 return;
             case 2:
-                View B13 = this.f12612b.B1(this.f12613c);
+                View B13 = this.f12613b.B1(this.f12614c);
                 if (B13 instanceof f6) {
                     f6 f6Var3 = (f6) B13;
                     f6Var3.B();
@@ -61,7 +61,7 @@ public final class r2 implements Runnable {
                 }
                 return;
             case 3:
-                View B14 = this.f12612b.B1(this.f12613c);
+                View B14 = this.f12613b.B1(this.f12614c);
                 if (B14 instanceof f6) {
                     f6 f6Var4 = (f6) B14;
                     f6Var4.B();
@@ -70,7 +70,7 @@ public final class r2 implements Runnable {
                 }
                 return;
             case 4:
-                View B15 = this.f12612b.B1(this.f12613c);
+                View B15 = this.f12613b.B1(this.f12614c);
                 if (B15 instanceof f6) {
                     f6 f6Var5 = (f6) B15;
                     f6Var5.B();
@@ -79,7 +79,7 @@ public final class r2 implements Runnable {
                 }
                 return;
             default:
-                View B16 = this.f12612b.B1(this.f12613c);
+                View B16 = this.f12613b.B1(this.f12614c);
                 if (B16 instanceof f6) {
                     f6 f6Var6 = (f6) B16;
                     f6Var6.B();

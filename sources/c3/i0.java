@@ -1,39 +1,39 @@
 package c3;
 public final class i0 {
-    public final byte[] f4069a = new byte[10];
-    public boolean f4070b;
-    public int f4071c;
+    public final byte[] f4070a = new byte[10];
+    public boolean f4071b;
+    public int f4072c;
     public long d;
-    public int f4072e;
-    public int f4073f;
-    public int f4074g;
+    public int f4073e;
+    public int f4074f;
+    public int f4075g;
 
     public final void a(h0 h0Var, g0 g0Var) {
-        if (this.f4071c > 0) {
-            h0Var.c(this.d, this.f4072e, this.f4073f, this.f4074g, g0Var);
-            this.f4071c = 0;
+        if (this.f4072c > 0) {
+            h0Var.c(this.d, this.f4073e, this.f4074f, this.f4075g, g0Var);
+            this.f4072c = 0;
         }
     }
 
     public final void b(h0 h0Var, long j3, int i10, int i11, int i12, g0 g0Var) {
         boolean z10;
-        if (this.f4074g <= i11 + i12) {
+        if (this.f4075g <= i11 + i12) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.f("TrueHD chunk samples must be contiguous in the sample queue.", z10);
-        if (this.f4070b) {
-            int i13 = this.f4071c;
+        if (this.f4071b) {
+            int i13 = this.f4072c;
             int i14 = i13 + 1;
-            this.f4071c = i14;
+            this.f4072c = i14;
             if (i13 == 0) {
                 this.d = j3;
-                this.f4072e = i10;
-                this.f4073f = 0;
+                this.f4073e = i10;
+                this.f4074f = 0;
             }
-            this.f4073f += i11;
-            this.f4074g = i12;
+            this.f4074f += i11;
+            this.f4075g = i12;
             if (i14 >= 16) {
                 a(h0Var, g0Var);
             }
@@ -42,9 +42,9 @@ public final class i0 {
 
     public final void c(p pVar) {
         char c10;
-        if (!this.f4070b) {
+        if (!this.f4071b) {
             int i10 = 0;
-            byte[] bArr = this.f4069a;
+            byte[] bArr = this.f4070a;
             pVar.b(0, 10, bArr);
             pVar.m();
             if (bArr[4] == -8 && bArr[5] == 114 && bArr[6] == 111) {
@@ -64,7 +64,7 @@ public final class i0 {
             if (i10 == 0) {
                 return;
             }
-            this.f4070b = true;
+            this.f4071b = true;
         }
     }
 }

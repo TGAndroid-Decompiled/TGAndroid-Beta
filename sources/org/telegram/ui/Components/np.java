@@ -18,23 +18,23 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class np extends yl0 {
-    public final org.telegram.ui.ActionBar.d6 f29034c;
+    public final org.telegram.ui.ActionBar.d6 f29039c;
     public ArrayList d;
-    public WeakReference f29035e;
-    public int f29036f;
+    public WeakReference f29040e;
+    public int f29041f;
     public final int h;
-    public final int f29037n;
-    public final long f29038r;
-    public final HashMap f29039s;
+    public final int f29042n;
+    public final long f29043r;
+    public final HashMap f29044s;
     public final HashMap v;
 
     public np(int i10, long j3, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
-        this.f29036f = -1;
-        this.f29039s = new HashMap();
+        this.f29041f = -1;
+        this.f29044s = new HashMap();
         this.v = new HashMap();
-        this.f29037n = i11;
-        this.f29038r = j3;
-        this.f29034c = d6Var;
+        this.f29042n = i11;
+        this.f29043r = j3;
+        this.f29039c = d6Var;
         this.h = i10;
     }
 
@@ -45,13 +45,13 @@ public final class np extends yl0 {
 
     public final void E(int i10) {
         s21 s21Var;
-        int i11 = this.f29036f;
+        int i11 = this.f29041f;
         if (i11 == i10) {
             return;
         }
         if (i11 >= 0) {
             m(i11);
-            WeakReference weakReference = this.f29035e;
+            WeakReference weakReference = this.f29040e;
             if (weakReference == null) {
                 s21Var = null;
             } else {
@@ -61,7 +61,7 @@ public final class np extends yl0 {
                 s21Var.setSelected(false);
             }
         }
-        this.f29036f = i10;
+        this.f29041f = i10;
         m(i10);
     }
 
@@ -82,23 +82,23 @@ public final class np extends yl0 {
         int s10;
         int intValue;
         String[] split;
-        s21 s21Var = (s21) c1Var.f46524a;
-        org.telegram.ui.ActionBar.h6 j3 = ((op) this.d.get(i10)).f29423a.j(((op) this.d.get(i10)).f29425c);
-        if (j3 != null && j3.f20690b != null && !j3.T && new File(j3.f20690b).exists() && j3.f20690b != null) {
+        s21 s21Var = (s21) c1Var.f46531a;
+        org.telegram.ui.ActionBar.h6 j3 = ((op) this.d.get(i10)).f29428a.j(((op) this.d.get(i10)).f29430c);
+        if (j3 != null && j3.f20694b != null && !j3.T && new File(j3.f20694b).exists() && j3.f20694b != null) {
             try {
-                FileInputStream fileInputStream2 = new FileInputStream(new File(j3.f20690b));
+                FileInputStream fileInputStream2 = new FileInputStream(new File(j3.f20694b));
                 int i11 = 0;
                 boolean z12 = false;
                 while (true) {
                     try {
-                        int read = fileInputStream2.read(org.telegram.ui.Cells.pa.f22660p3);
+                        int read = fileInputStream2.read(org.telegram.ui.Cells.pa.f22664p3);
                         if (read != -1) {
                             int i12 = i11;
                             int i13 = 0;
                             int i14 = 0;
                             while (true) {
                                 if (i13 < read) {
-                                    byte[] bArr = org.telegram.ui.Cells.pa.f22660p3;
+                                    byte[] bArr = org.telegram.ui.Cells.pa.f22664p3;
                                     if (bArr[i13] == 10) {
                                         int i15 = i13 - i14;
                                         int i16 = i15 + 1;
@@ -106,14 +106,14 @@ public final class np extends yl0 {
                                         if (str.startsWith("WLS=")) {
                                             String substring = str.substring(4);
                                             Uri parse = Uri.parse(substring);
-                                            j3.f20695e = parse.getQueryParameter("slug");
+                                            j3.f20699e = parse.getQueryParameter("slug");
                                             File filesDirFixed = ApplicationLoader.getFilesDirFixed();
                                             StringBuilder sb2 = new StringBuilder();
                                             fileInputStream = fileInputStream2;
                                             try {
                                                 sb2.append(Utilities.MD5(substring));
                                                 sb2.append(".wp");
-                                                j3.f20692c = new File(filesDirFixed, sb2.toString()).getAbsolutePath();
+                                                j3.f20696c = new File(filesDirFixed, sb2.toString()).getAbsolutePath();
                                                 String queryParameter = parse.getQueryParameter("mode");
                                                 if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
                                                     int i17 = 0;
@@ -132,15 +132,15 @@ public final class np extends yl0 {
                                                     try {
                                                         String queryParameter2 = parse.getQueryParameter("bg_color");
                                                         if (!TextUtils.isEmpty(queryParameter2)) {
-                                                            j3.f20704r = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
+                                                            j3.f20708r = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
                                                             if (queryParameter2.length() >= 13 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(6))) {
-                                                                j3.f20705s = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
+                                                                j3.f20709s = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
                                                             }
                                                             if (queryParameter2.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(13))) {
                                                                 j3.v = Integer.parseInt(queryParameter2.substring(14, 20), 16) | (-16777216);
                                                             }
                                                             if (queryParameter2.length() == 27 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(20))) {
-                                                                j3.f20706w = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
+                                                                j3.f20710w = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
                                                             }
                                                         }
                                                     } catch (Exception unused) {
@@ -148,16 +148,16 @@ public final class np extends yl0 {
                                                     try {
                                                         String queryParameter3 = parse.getQueryParameter("rotation");
                                                         if (!TextUtils.isEmpty(queryParameter3)) {
-                                                            j3.f20707x = Utilities.parseInt((CharSequence) queryParameter3).intValue();
+                                                            j3.f20711x = Utilities.parseInt((CharSequence) queryParameter3).intValue();
                                                         }
                                                     } catch (Exception unused2) {
                                                     }
                                                     String queryParameter4 = parse.getQueryParameter("intensity");
                                                     if (!TextUtils.isEmpty(queryParameter4)) {
-                                                        j3.f20708y = Utilities.parseInt((CharSequence) queryParameter4).intValue();
+                                                        j3.f20712y = Utilities.parseInt((CharSequence) queryParameter4).intValue();
                                                     }
-                                                    if (j3.f20708y == 0) {
-                                                        j3.f20708y = 50;
+                                                    if (j3.f20712y == 0) {
+                                                        j3.f20712y = 50;
                                                     }
                                                 }
                                                 i14 += i16;
@@ -176,7 +176,7 @@ public final class np extends yl0 {
                                                 break;
                                             }
                                             int indexOf = str.indexOf(61);
-                                            if (indexOf != -1 && ((s10 = org.telegram.ui.ActionBar.f5.s(str.substring(0, indexOf))) == org.telegram.ui.ActionBar.i6.f21082ra || s10 == org.telegram.ui.ActionBar.i6.Aa || s10 == org.telegram.ui.ActionBar.i6.Nd || s10 == org.telegram.ui.ActionBar.i6.Od || s10 == org.telegram.ui.ActionBar.i6.Pd || s10 == org.telegram.ui.ActionBar.i6.Qd)) {
+                                            if (indexOf != -1 && ((s10 = org.telegram.ui.ActionBar.f5.s(str.substring(0, indexOf))) == org.telegram.ui.ActionBar.i6.f21086ra || s10 == org.telegram.ui.ActionBar.i6.Aa || s10 == org.telegram.ui.ActionBar.i6.Nd || s10 == org.telegram.ui.ActionBar.i6.Od || s10 == org.telegram.ui.ActionBar.i6.Pd || s10 == org.telegram.ui.ActionBar.i6.Qd)) {
                                                 String substring2 = str.substring(indexOf + 1);
                                                 if (substring2.length() > 0 && substring2.charAt(0) == '#') {
                                                     try {
@@ -187,7 +187,7 @@ public final class np extends yl0 {
                                                 } else {
                                                     intValue = Utilities.parseInt((CharSequence) substring2).intValue();
                                                 }
-                                                if (s10 == org.telegram.ui.ActionBar.i6.f21082ra) {
+                                                if (s10 == org.telegram.ui.ActionBar.i6.f21086ra) {
                                                     j3.Q = intValue;
                                                 } else if (s10 == org.telegram.ui.ActionBar.i6.Aa) {
                                                     j3.R = intValue;
@@ -233,13 +233,13 @@ public final class np extends yl0 {
             } catch (Throwable th5) {
                 FileLog.e(th5);
             }
-            if (j3.f20692c != null && !j3.f20697f && !new File(j3.f20692c).exists()) {
+            if (j3.f20696c != null && !j3.f20701f && !new File(j3.f20696c).exists()) {
                 HashMap hashMap = this.v;
                 if (!hashMap.containsKey(j3)) {
-                    hashMap.put(j3, j3.f20695e);
+                    hashMap.put(j3, j3.f20699e);
                     TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
                     TLRPC.TL_inputWallPaperSlug tL_inputWallPaperSlug = new TLRPC.TL_inputWallPaperSlug();
-                    tL_inputWallPaperSlug.slug = j3.f20695e;
+                    tL_inputWallPaperSlug.slug = j3.f20699e;
                     getwallpaper.wallpaper = tL_inputWallPaperSlug;
                     ConnectionsManager.getInstance(j3.E).sendRequest(getwallpaper, new org.telegram.ui.no(7, this, j3));
                 }
@@ -249,31 +249,31 @@ public final class np extends yl0 {
         }
         op opVar = (op) this.d.get(i10);
         op opVar2 = s21Var.G;
-        if (opVar2 != null && fg.b.a(opVar2.f29423a.f20502c, opVar.f29423a.f20502c) && !org.telegram.ui.uy.f41366v4 && s21Var.V == opVar.f29425c) {
+        if (opVar2 != null && fg.b.a(opVar2.f29428a.f20506c, opVar.f29428a.f20506c) && !org.telegram.ui.uy.f41373v4 && s21Var.V == opVar.f29430c) {
             z10 = true;
         } else {
             z10 = false;
         }
         s21Var.setFocusable(true);
         s21Var.setEnabled(true);
-        s21Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20908i5, false));
-        s21Var.f(opVar, this.f29038r, z10);
-        if (i10 == this.f29036f) {
+        s21Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20912i5, false));
+        s21Var.f(opVar, this.f29043r, z10);
+        if (i10 == this.f29041f) {
             z11 = true;
         } else {
             z11 = false;
         }
         s21Var.g(z11, z10);
-        if (i10 == this.f29036f) {
-            this.f29035e = new WeakReference(s21Var);
+        if (i10 == this.f29041f) {
+            this.f29040e = new WeakReference(s21Var);
         }
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         Context context = viewGroup.getContext();
-        org.telegram.ui.ActionBar.d6 d6Var = this.f29034c;
-        return new s4.c1(new s21(this.h, this.f29037n, context, d6Var));
+        org.telegram.ui.ActionBar.d6 d6Var = this.f29039c;
+        return new s4.c1(new s21(this.h, this.f29042n, context, d6Var));
     }
 
     public np(int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {

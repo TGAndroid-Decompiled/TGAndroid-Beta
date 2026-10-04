@@ -2,8 +2,8 @@ package za;
 
 import android.os.Build;
 public final class b {
-    public final String f53057a;
-    public final a f53058b;
+    public final String f53062a;
+    public final a f53063b;
 
     public b(String appId, a aVar) {
         String deviceModel = Build.MODEL;
@@ -11,19 +11,19 @@ public final class b {
         kotlin.jvm.internal.i.e(appId, "appId");
         kotlin.jvm.internal.i.e(deviceModel, "deviceModel");
         kotlin.jvm.internal.i.e(osVersion, "osVersion");
-        this.f53057a = appId;
-        this.f53058b = aVar;
+        this.f53062a = appId;
+        this.f53063b = aVar;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (kotlin.jvm.internal.i.a(this.f53057a, bVar.f53057a)) {
+                if (kotlin.jvm.internal.i.a(this.f53062a, bVar.f53062a)) {
                     String str = Build.MODEL;
                     if (kotlin.jvm.internal.i.a(str, str)) {
                         String str2 = Build.VERSION.RELEASE;
-                        if (!kotlin.jvm.internal.i.a(str2, str2) || !this.f53058b.equals(bVar.f53058b)) {
+                        if (!kotlin.jvm.internal.i.a(str2, str2) || !this.f53063b.equals(bVar.f53063b)) {
                             return false;
                         }
                         return true;
@@ -38,11 +38,11 @@ public final class b {
     }
 
     public final int hashCode() {
-        int h = a4.a.h((((Build.MODEL.hashCode() + (this.f53057a.hashCode() * 31)) * 31) + 46672439) * 31, 31, Build.VERSION.RELEASE);
-        return this.f53058b.hashCode() + ((o.LOG_ENVIRONMENT_PROD.hashCode() + h) * 31);
+        int h = a4.a.h((((Build.MODEL.hashCode() + (this.f53062a.hashCode() * 31)) * 31) + 46672439) * 31, 31, Build.VERSION.RELEASE);
+        return this.f53063b.hashCode() + ((o.LOG_ENVIRONMENT_PROD.hashCode() + h) * 31);
     }
 
     public final String toString() {
-        return "ApplicationInfo(appId=" + this.f53057a + ", deviceModel=" + Build.MODEL + ", sessionSdkVersion=1.2.0, osVersion=" + Build.VERSION.RELEASE + ", logEnvironment=" + o.LOG_ENVIRONMENT_PROD + ", androidAppInfo=" + this.f53058b + ')';
+        return "ApplicationInfo(appId=" + this.f53062a + ", deviceModel=" + Build.MODEL + ", sessionSdkVersion=1.2.0, osVersion=" + Build.VERSION.RELEASE + ", logEnvironment=" + o.LOG_ENVIRONMENT_PROD + ", androidAppInfo=" + this.f53063b + ')';
     }
 }

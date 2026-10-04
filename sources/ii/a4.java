@@ -11,14 +11,14 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.b80;
 public final class a4 implements View.OnClickListener {
-    public final int f12225a;
-    public final c4 f12226b;
-    public final int f12227c;
+    public final int f12226a;
+    public final c4 f12227b;
+    public final int f12228c;
 
     public a4(c4 c4Var, int i10, int i11) {
-        this.f12225a = i11;
-        this.f12226b = c4Var;
-        this.f12227c = i10;
+        this.f12226a = i11;
+        this.f12227b = c4Var;
+        this.f12228c = i10;
     }
 
     @Override
@@ -38,16 +38,16 @@ public final class a4 implements View.OnClickListener {
         q5 T2;
         t5 o9;
         String str;
-        switch (this.f12225a) {
+        switch (this.f12226a) {
             case 0:
-                this.f12226b.f12263a.f12515a.f12602r.a4(this.f12227c);
+                this.f12227b.f12264a.f12516a.f12603r.a4(this.f12228c);
                 return;
             default:
-                final r rVar = this.f12226b.f12263a.f12515a;
-                org.telegram.ui.ActionBar.d6 d6Var = rVar.f29642a;
-                x3 x3Var = rVar.f12602r;
+                final r rVar = this.f12227b.f12264a.f12516a;
+                org.telegram.ui.ActionBar.d6 d6Var = rVar.f29647a;
+                x3 x3Var = rVar.f12603r;
                 a S2 = x3Var.S2();
-                int i10 = this.f12227c;
+                int i10 = this.f12228c;
                 if (i10 != 1) {
                     if (i10 != 2) {
                         TL_iv.pageTableCell pagetablecell = null;
@@ -63,7 +63,7 @@ public final class a4 implements View.OnClickListener {
                                 return;
                             }
                             if (S2 != null) {
-                                TL_iv.PageBlock pageBlock = S2.f12186b;
+                                TL_iv.PageBlock pageBlock = S2.f12187b;
                                 if (pageBlock instanceof TL_iv.pageBlockMath) {
                                     pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                                 }
@@ -77,11 +77,11 @@ public final class a4 implements View.OnClickListener {
                             r.S(context, str, new ai.g3(19, rVar, pageblockmath), d6Var);
                             return;
                         }
-                        q5 q5Var = x3Var.f12772p4;
+                        q5 q5Var = x3Var.f12773p4;
                         if (q5Var == null && (T2 = x3Var.T2()) != null && T2.getModel() != null) {
                             View findFocus = x3Var.findFocus();
                             if ((findFocus instanceof i1) && (o9 = T2.o((i1) findFocus)) != null) {
-                                pagetablecell = o9.f12661b;
+                                pagetablecell = o9.f12662b;
                             }
                             if (pagetablecell != null) {
                                 x3Var.i2(T2);
@@ -130,7 +130,7 @@ public final class a4 implements View.OnClickListener {
                         z20 = false;
                     }
                     F.j(z20, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListTodo), new f(rVar, S2, 4));
-                    if (S2 != null && (S2.f12186b instanceof TL_iv.pageBlockDetails)) {
+                    if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockDetails)) {
                         z21 = true;
                     } else {
                         z21 = false;
@@ -146,11 +146,11 @@ public final class a4 implements View.OnClickListener {
                                 public final void run() {
                                     switch (r3) {
                                         case 0:
-                                            rVar.f12602r.t3(false);
+                                            rVar.f12603r.t3(false);
                                             F.u();
                                             return;
                                         default:
-                                            rVar.f12602r.t3(true);
+                                            rVar.f12603r.t3(true);
                                             F.u();
                                             return;
                                     }
@@ -163,11 +163,11 @@ public final class a4 implements View.OnClickListener {
                                 public final void run() {
                                     switch (r3) {
                                         case 0:
-                                            rVar.f12602r.t3(false);
+                                            rVar.f12603r.t3(false);
                                             F.u();
                                             return;
                                         default:
-                                            rVar.f12602r.t3(true);
+                                            rVar.f12603r.t3(true);
                                             F.u();
                                             return;
                                     }
@@ -180,7 +180,7 @@ public final class a4 implements View.OnClickListener {
                     rVar.H = F;
                     return;
                 }
-                int i11 = rVar.f12601n;
+                int i11 = rVar.f12602n;
                 b80 b80Var2 = rVar.H;
                 if (b80Var2 != null) {
                     b80Var2.u();
@@ -201,7 +201,7 @@ public final class a4 implements View.OnClickListener {
                 rVar.N(J, S2, new TL_iv.pageBlockHeading4(), R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), SharedConfig.fontSize - 1, G);
                 rVar.N(J, S2, new TL_iv.pageBlockHeading5(), R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), SharedConfig.fontSize - 2, G);
                 rVar.N(J, S2, new TL_iv.pageBlockHeading6(), R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), SharedConfig.fontSize - 3, G);
-                if (S2 != null && x3.E3(S2.f12186b)) {
+                if (S2 != null && x3.E3(S2.f12187b)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -209,19 +209,19 @@ public final class a4 implements View.OnClickListener {
                 c2 c2Var = new c2(rVar.getContext(), R.drawable.iv_h1);
                 c2Var.a(z10);
                 G.j(z11, 0, c2Var, LocaleController.getString(R.string.ArticleHeading), new ei.n2(G, J, 1));
-                if (S2 != null && (S2.f12186b instanceof TL_iv.pageBlockParagraph)) {
+                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockParagraph)) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 G.j(z12, R.drawable.iv_text, null, LocaleController.getString(R.string.ArticleText), new f(rVar, S2, 5));
-                if (S2 != null && (S2.f12186b instanceof TL_iv.pageBlockBlockquote)) {
+                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockBlockquote)) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
                 G.j(z13, R.drawable.iv_quote, null, LocaleController.getString(R.string.ArticleQuote), new f(rVar, S2, 6));
-                if (S2 != null && (S2.f12186b instanceof TL_iv.pageBlockPullquote)) {
+                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockPullquote)) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -229,13 +229,13 @@ public final class a4 implements View.OnClickListener {
                 c2 c2Var2 = new c2(rVar.getContext(), R.drawable.iv_pullquote);
                 c2Var2.a(z10);
                 G.j(z14, 0, c2Var2, LocaleController.getString(R.string.ArticlePullquote), new f(rVar, S2, 7));
-                if (S2 != null && (S2.f12186b instanceof TL_iv.pageBlockPreformatted)) {
+                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockPreformatted)) {
                     z15 = true;
                 } else {
                     z15 = false;
                 }
                 G.j(z15, R.drawable.iv_code, null, LocaleController.getString(R.string.ArticleCode), new f(rVar, S2, 8));
-                if (S2 != null && (S2.f12186b instanceof TL_iv.pageBlockFooter)) {
+                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockFooter)) {
                     z16 = true;
                 } else {
                     z16 = false;

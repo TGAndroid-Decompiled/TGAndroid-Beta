@@ -24,20 +24,20 @@ public abstract class dg0 extends FrameLayout {
     public float J;
     public boolean K;
     public lc0 L;
-    public int f25715a;
-    public PhotoViewer f25716b;
-    public LinearLayout f25717c;
+    public int f25720a;
+    public PhotoViewer f25721b;
+    public LinearLayout f25722c;
     public TextView d;
-    public TextView f25718e;
-    public tu f25719f;
+    public TextView f25723e;
+    public tu f25724f;
     public ci.ab h;
-    public RadialProgressView f25720n;
-    public View f25721r;
-    public String f25722s;
+    public RadialProgressView f25725n;
+    public View f25726r;
+    public String f25727s;
     public ArrayList v;
-    public String f25723w;
-    public boolean f25724x;
-    public TLRPC.WebPage f25725y;
+    public String f25728w;
+    public boolean f25729x;
+    public TLRPC.WebPage f25730y;
 
     public static void a(org.telegram.ui.du0 du0Var, String str) {
         String str2;
@@ -47,7 +47,7 @@ public abstract class dg0 extends FrameLayout {
         arrayList.clear();
         if (videoDuration > 15) {
             String[] split = str.split("\\|");
-            String s10 = a4.a.s(new StringBuilder(), split[0].split("\\$")[0], "2/");
+            String t10 = a4.a.t(new StringBuilder(), split[0].split("\\$")[0], "2/");
             String str3 = split[0].split("\\$N")[1];
             if (split.length == 3) {
                 str2 = split[2].split("M#")[1];
@@ -70,7 +70,7 @@ public abstract class dg0 extends FrameLayout {
             int i10 = (int) ceil;
             for (int i11 = 0; i11 < i10; i11++) {
                 Locale locale = Locale.ROOT;
-                arrayList.add(s10 + "M" + i11 + str3 + "&sigh=" + str2);
+                arrayList.add(t10 + "M" + i11 + str3 + "&sigh=" + str2);
             }
         }
     }
@@ -89,7 +89,7 @@ public abstract class dg0 extends FrameLayout {
     }
 
     public final boolean d() {
-        return this.f25724x;
+        return this.f25729x;
     }
 
     @Override
@@ -102,7 +102,7 @@ public abstract class dg0 extends FrameLayout {
 
     public final boolean e() {
         boolean z10;
-        if (this.f25724x && "inapp".equals(MessagesController.getInstance(this.f25715a).youtubePipType)) {
+        if (this.f25729x && "inapp".equals(MessagesController.getInstance(this.f25720a).youtubePipType)) {
             z10 = true;
         } else {
             z10 = false;
@@ -110,18 +110,18 @@ public abstract class dg0 extends FrameLayout {
         if (!z10 && Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(getContext())) {
             e5.B((Activity) getContext(), null, false);
             return false;
-        } else if (this.f25720n.getVisibility() == 0) {
+        } else if (this.f25725n.getVisibility() == 0) {
             return false;
         } else {
-            if (rg0.f30378p0.P) {
+            if (rg0.f30384p0.P) {
                 rg0.j(false);
                 AndroidUtilities.runOnUIThread(new yf0(this, 0), 300L);
                 return true;
             }
             this.h.setVisibility(0);
             Activity activity = (Activity) getContext();
-            tu tuVar = this.f25719f;
-            TLRPC.WebPage webPage = this.f25725y;
+            tu tuVar = this.f25724f;
+            TLRPC.WebPage webPage = this.f25730y;
             if (rg0.x(z10, activity, this, tuVar, webPage.embed_width, webPage.embed_height, false)) {
                 rg0.w(PhotoViewer.t1());
             }
@@ -130,7 +130,7 @@ public abstract class dg0 extends FrameLayout {
     }
 
     public final void f() {
-        if (this.G && this.f25724x) {
+        if (this.G && this.f25729x) {
             h("pauseVideo();");
             this.G = false;
             b(true);
@@ -138,7 +138,7 @@ public abstract class dg0 extends FrameLayout {
     }
 
     public final void g() {
-        if (!this.G && this.f25724x) {
+        if (!this.G && this.f25729x) {
             h("playVideo();");
             this.G = true;
             b(false);
@@ -158,11 +158,11 @@ public abstract class dg0 extends FrameLayout {
     }
 
     public WebView getWebView() {
-        return this.f25719f;
+        return this.f25724f;
     }
 
     public final void h(String str) {
-        this.f25719f.evaluateJavascript(str, null);
+        this.f25724f.evaluateJavascript(str, null);
     }
 
     public final void i(long j3) {
@@ -180,9 +180,9 @@ public abstract class dg0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        tu tuVar = this.f25719f;
+        tu tuVar = this.f25724f;
         if (tuVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.f25725y;
+            TLRPC.WebPage webPage = this.f25730y;
             int i12 = webPage.embed_width;
             int i13 = 100;
             if (i12 == 0) {
@@ -210,8 +210,8 @@ public abstract class dg0 extends FrameLayout {
 
     public void setPlaybackSpeed(float f7) {
         this.E = f7;
-        if (this.f25720n.getVisibility() != 0) {
-            if (this.f25724x) {
+        if (this.f25725n.getVisibility() != 0) {
+            if (this.f25729x) {
                 h("setPlaybackSpeed(" + f7 + ");");
                 return;
             }

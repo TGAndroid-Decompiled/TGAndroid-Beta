@@ -2,11 +2,11 @@ package ki;
 
 import android.opengl.GLES20;
 public class u extends w {
-    public final int f15090e;
+    public final int f15091e;
 
     public u() {
         super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", a0.F);
-        this.f15090e = GLES20.glGetUniformLocation(this.f15091a, "texOffset");
+        this.f15091e = GLES20.glGetUniformLocation(this.f15092a, "texOffset");
     }
 
     public u(String str, int i10) {
@@ -14,10 +14,10 @@ public class u extends w {
         switch (i10) {
             case 1:
                 super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", str);
-                this.f15090e = GLES20.glGetUniformLocation(this.f15091a, "texOffset");
+                this.f15091e = GLES20.glGetUniformLocation(this.f15092a, "texOffset");
                 return;
             default:
-                this.f15090e = GLES20.glGetUniformLocation(this.f15091a, "uTextureMatrix");
+                this.f15091e = GLES20.glGetUniformLocation(this.f15092a, "uTextureMatrix");
                 return;
         }
     }

@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import v7.l7;
 public final class b extends l {
-    public final Context f44752o;
-    public final int f44753p;
+    public final Context f44759o;
+    public final int f44760p;
 
     public b(Context context) {
         super(new h[1], new a[1]);
-        this.f44752o = context;
-        this.f44753p = -1;
+        this.f44759o = context;
+        this.f44760p = -1;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class b extends l {
     public final h2.f i(h hVar, j jVar, boolean z10) {
         boolean z11;
         a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f10979c;
+        ByteBuffer byteBuffer = hVar.f10980c;
         byteBuffer.getClass();
         e2.d.g(byteBuffer.hasArray());
         if (byteBuffer.arrayOffset() == 0) {
@@ -55,14 +55,14 @@ public final class b extends l {
         }
         e2.d.b(z11);
         try {
-            int i10 = this.f44753p;
+            int i10 = this.f44760p;
             if (i10 == -1) {
-                Context context = this.f44752o;
+                Context context = this.f44759o;
                 if (context != null) {
                     Point w10 = d0.w(context);
                     int i11 = w10.x;
                     int i12 = w10.y;
-                    s sVar = hVar.f10977a;
+                    s sVar = hVar.f10978a;
                     if (sVar != null) {
                         int i13 = sVar.Q;
                         if (i13 != -1) {
@@ -78,8 +78,8 @@ public final class b extends l {
                     i10 = 4096;
                 }
             }
-            aVar.f44750a = l7.a(byteBuffer.remaining(), i10, byteBuffer.array());
-            aVar.timeUs = hVar.f10980e;
+            aVar.f44757a = l7.a(byteBuffer.remaining(), i10, byteBuffer.array());
+            aVar.timeUs = hVar.f10981e;
             return null;
         } catch (s0 e7) {
             return new Exception("Could not decode image data with BitmapFactory.", e7);

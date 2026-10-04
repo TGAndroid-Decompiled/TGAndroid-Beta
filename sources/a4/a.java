@@ -11,25 +11,29 @@ import com.google.android.gms.internal.cast.a5;
 import com.google.android.gms.internal.vision.r0;
 import e2.v;
 import java.util.ArrayList;
+import java.util.Iterator;
 public abstract class a {
-    public static float A(float f7, float f10, float f11, float f12) {
+    public static void A(StringBuilder sb2, String str, String str2, String str3, String str4) {
+        sb2.append(str);
+        sb2.append(str2);
+        sb2.append(str3);
+        sb2.append(str4);
+    }
+
+    public static float B(float f7, float f10, float f11, float f12) {
         return ((f7 * f10) / f11) + f12;
     }
 
-    public static int B(int i10, int i11, int i12) {
+    public static int C(int i10, int i11, int i12) {
         return a5.o(i10) + i11 + i12;
     }
 
-    public static String C(String str, String str2, String str3) {
+    public static String D(String str, String str2, String str3) {
         return str + str2 + str3;
     }
 
-    public static int D(int i10, int i11, int i12) {
-        return r0.T(i10) + i11 + i12;
-    }
-
     public static int E(int i10, int i11, int i12) {
-        return (r0.y(i10) * i11) + i12;
+        return r0.T(i10) + i11 + i12;
     }
 
     public static void a(h0 h0Var, v vVar, int i10) {
@@ -690,72 +694,77 @@ public abstract class a {
         return new ClassCastException();
     }
 
-    public static String k(int i10, int i11, String str) {
+    public static ClassCastException k(Iterator it) {
+        it.next().getClass();
+        return new ClassCastException();
+    }
+
+    public static String l(int i10, int i11, String str) {
         return i10 + str + i11;
     }
 
-    public static String l(int i10, int i11, String str, String str2) {
+    public static String m(int i10, int i11, String str, String str2) {
         return str + i10 + str2 + i11;
     }
 
-    public static String m(int i10, String str) {
+    public static String n(int i10, String str) {
         return i10 + str;
     }
 
-    public static String n(int i10, String str, StringBuilder sb2) {
+    public static String o(int i10, String str, StringBuilder sb2) {
         sb2.append(i10);
         sb2.append(str);
         return sb2.toString();
     }
 
-    public static String o(long j3, String str) {
+    public static String p(long j3, String str) {
         return str + j3;
     }
 
-    public static String p(String str, String str2, String str3) {
+    public static String q(String str, String str2, String str3) {
         return str + str2 + str3;
     }
 
-    public static String q(String str, String str2, String str3, StringBuilder sb2) {
+    public static String r(String str, String str2, String str3, StringBuilder sb2) {
         sb2.append(str);
         sb2.append(str2);
         sb2.append(str3);
         return sb2.toString();
     }
 
-    public static String r(StringBuilder sb2, long j3, String str) {
+    public static String s(StringBuilder sb2, long j3, String str) {
         sb2.append(j3);
         sb2.append(str);
         return sb2.toString();
     }
 
-    public static String s(StringBuilder sb2, String str, String str2) {
+    public static String t(StringBuilder sb2, String str, String str2) {
         sb2.append(str);
         sb2.append(str2);
         return sb2.toString();
     }
 
-    public static StringBuilder t(long j3, String str, String str2) {
+    public static StringBuilder u(long j3, String str, String str2) {
         StringBuilder sb2 = new StringBuilder(str);
         sb2.append(j3);
         sb2.append(str2);
         return sb2;
     }
 
-    public static StringBuilder u(String str) {
+    public static StringBuilder v(String str) {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(str);
         return sb2;
     }
 
-    public static StringBuilder v(String str, String str2, String str3) {
+    public static StringBuilder w(String str, String str2, String str3) {
         StringBuilder sb2 = new StringBuilder(str);
         sb2.append(str2);
         sb2.append(str3);
         return sb2;
     }
 
-    public static StringBuilder w(String str, String str2, String str3, String str4, String str5) {
+    public static StringBuilder x(String str, String str2, String str3, String str4, String str5) {
         StringBuilder sb2 = new StringBuilder(str);
         sb2.append(str2);
         sb2.append(str3);
@@ -764,21 +773,14 @@ public abstract class a {
         return sb2;
     }
 
-    public static void x(int i10, ArrayList arrayList) {
+    public static void y(int i10, ArrayList arrayList) {
         arrayList.remove(arrayList.size() - i10);
     }
 
-    public static void y(Object obj) {
+    public static void z(Object obj) {
         if (obj == null) {
             return;
         }
         throw new ClassCastException();
-    }
-
-    public static void z(StringBuilder sb2, String str, String str2, String str3, String str4) {
-        sb2.append(str);
-        sb2.append(str2);
-        sb2.append(str3);
-        sb2.append(str4);
     }
 }

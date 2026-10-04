@@ -7,20 +7,20 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class n implements Map, Serializable, j$.util.Map {
-    public static final Map.Entry[] f16807b = new Map.Entry[0];
-    public transient o f16808a;
+    public static final Map.Entry[] f16811b = new Map.Entry[0];
+    public transient o f16812a;
 
     @Override
     public final o entrySet() {
-        o oVar = this.f16808a;
+        o oVar = this.f16812a;
         if (oVar == null) {
             r rVar = (r) this;
             if (rVar.isEmpty()) {
-                oVar = y.f16840s;
+                oVar = y.f16844s;
             } else {
                 oVar = new q(rVar);
             }
-            this.f16808a = oVar;
+            this.f16812a = oVar;
         }
         return oVar;
     }
@@ -153,7 +153,7 @@ public abstract class n implements Map, Serializable, j$.util.Map {
             sb2.append('}');
             return sb2.toString();
         }
-        throw new IllegalArgumentException(hg.k0.h(size, "size cannot be negative but was: "));
+        throw new IllegalArgumentException(hg.c.h(size, "size cannot be negative but was: "));
     }
 
     @Override

@@ -2,27 +2,26 @@ package j4;
 
 import b2.r0;
 import c3.h0;
-import hg.k0;
 import java.util.List;
 public final class c0 {
-    public final int f13712a;
-    public final List f13713b;
-    public final h0[] f13714c;
+    public final int f13713a;
+    public final List f13714b;
+    public final h0[] f13715c;
     public final e2.c d;
 
     public c0(int i10, List list) {
-        this.f13712a = i10;
+        this.f13713a = i10;
         switch (i10) {
             case 1:
-                this.f13713b = list;
-                this.f13714c = new h0[list.size()];
+                this.f13714b = list;
+                this.f13715c = new h0[list.size()];
                 e2.c cVar = new e2.c(new ei.f(this, 28));
                 this.d = cVar;
                 cVar.k(3);
                 return;
             default:
-                this.f13713b = list;
-                this.f13714c = new h0[list.size()];
+                this.f13714b = list;
+                this.f13715c = new h0[list.size()];
                 this.d = new e2.c(new ei.f(this, 27));
                 return;
         }
@@ -42,16 +41,16 @@ public final class c0 {
     public final void b(c3.q qVar, f0 f0Var) {
         boolean z10;
         boolean z11;
-        switch (this.f13712a) {
+        switch (this.f13713a) {
             case 0:
                 int i10 = 0;
                 while (true) {
-                    h0[] h0VarArr = this.f13714c;
+                    h0[] h0VarArr = this.f13715c;
                     if (i10 < h0VarArr.length) {
                         f0Var.a();
                         f0Var.b();
                         h0 Z1 = qVar.Z1(f0Var.d, 3);
-                        b2.s sVar = (b2.s) this.f13713b.get(i10);
+                        b2.s sVar = (b2.s) this.f13714b.get(i10);
                         String str = sVar.f3564r;
                         if (!"application/cea-608".equals(str) && !"application/cea-708".equals(str)) {
                             z10 = false;
@@ -62,7 +61,7 @@ public final class c0 {
                         String str2 = sVar.f3549a;
                         if (str2 == null) {
                             f0Var.b();
-                            str2 = f0Var.f13771e;
+                            str2 = f0Var.f13772e;
                         }
                         b2.r rVar = new b2.r();
                         rVar.f3492a = str2;
@@ -72,7 +71,7 @@ public final class c0 {
                         rVar.d = sVar.d;
                         rVar.N = sVar.O;
                         rVar.f3509t = sVar.f3567u;
-                        k0.r(rVar, Z1);
+                        hg.c.s(rVar, Z1);
                         h0VarArr[i10] = Z1;
                         i10++;
                     } else {
@@ -83,12 +82,12 @@ public final class c0 {
             default:
                 int i11 = 0;
                 while (true) {
-                    h0[] h0VarArr2 = this.f13714c;
+                    h0[] h0VarArr2 = this.f13715c;
                     if (i11 < h0VarArr2.length) {
                         f0Var.a();
                         f0Var.b();
                         h0 Z12 = qVar.Z1(f0Var.d, 3);
-                        b2.s sVar2 = (b2.s) this.f13713b.get(i11);
+                        b2.s sVar2 = (b2.s) this.f13714b.get(i11);
                         String str3 = sVar2.f3564r;
                         if (!"application/cea-608".equals(str3) && !"application/cea-708".equals(str3)) {
                             z11 = false;
@@ -98,14 +97,14 @@ public final class c0 {
                         e2.d.a("Invalid closed caption MIME type provided: " + str3, z11);
                         b2.r rVar2 = new b2.r();
                         f0Var.b();
-                        rVar2.f3492a = f0Var.f13771e;
+                        rVar2.f3492a = f0Var.f13772e;
                         rVar2.f3505p = r0.n("video/mp2t");
                         rVar2.f3506q = r0.n(str3);
                         rVar2.f3495e = sVar2.f3552e;
                         rVar2.d = sVar2.d;
                         rVar2.N = sVar2.O;
                         rVar2.f3509t = sVar2.f3567u;
-                        k0.r(rVar2, Z12);
+                        hg.c.s(rVar2, Z12);
                         h0VarArr2[i11] = Z12;
                         i11++;
                     } else {

@@ -1,12 +1,12 @@
 package lf;
 public final class i {
-    public int f15491a;
-    public int f15492b;
-    public int f15493c;
+    public int f15492a;
+    public int f15493b;
+    public int f15494c;
     public boolean d;
-    public boolean f15494e;
+    public boolean f15495e;
 
     public final String toString() {
-        return String.format("%s[version=%s, totalTagSize=%d]", i.class.getSimpleName(), Integer.valueOf(this.f15491a), Integer.valueOf(this.f15492b));
+        return String.format("%s[version=%s, totalTagSize=%d]", i.class.getSimpleName(), Integer.valueOf(this.f15492a), Integer.valueOf(this.f15493b));
     }
 }

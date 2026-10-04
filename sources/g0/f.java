@@ -27,8 +27,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f10148a;
-    public static volatile ArrayList f10149b;
+    public static volatile e f10149a;
+    public static volatile ArrayList f10150b;
 
     public static void a(Context context, ArrayList arrayList) {
         List p5 = p(arrayList);
@@ -55,8 +55,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        throw a4.a.k(it);
     }
 
     public static boolean b(Context context, c cVar) {
@@ -148,7 +147,7 @@ public abstract class f {
     public static List i(Context context) {
         Bundle bundle;
         String string;
-        if (f10149b == null) {
+        if (f10150b == null) {
             ArrayList arrayList = new ArrayList();
             PackageManager packageManager = context.getPackageManager();
             Intent intent = new Intent("androidx.core.content.pm.SHORTCUT_LISTENER");
@@ -167,26 +166,26 @@ public abstract class f {
                     }
                 }
             }
-            if (f10149b == null) {
-                f10149b = arrayList;
+            if (f10150b == null) {
+                f10150b = arrayList;
             }
         }
-        return f10149b;
+        return f10150b;
     }
 
     public static e j(Context context) {
-        if (f10148a == null) {
+        if (f10149a == null) {
             if (Build.VERSION.SDK_INT >= 23) {
                 try {
-                    f10148a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                    f10149a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
                 } catch (Exception unused) {
                 }
             }
-            if (f10148a == null) {
-                f10148a = new Object();
+            if (f10149a == null) {
+                f10149a = new Object();
             }
         }
-        return f10148a;
+        return f10149a;
     }
 
     public static List k(Context context) {
@@ -243,9 +242,9 @@ public abstract class f {
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f10146m;
+                        int i13 = cVar2.f10147m;
                         if (i13 > i11) {
-                            str2 = cVar2.f10137b;
+                            str2 = cVar2.f10138b;
                             i11 = i13;
                         }
                     }
@@ -278,10 +277,10 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f10137b);
+                q(context, cVar.f10138b);
                 throw th2;
             }
-            q(context, cVar.f10137b);
+            q(context, cVar.f10138b);
         }
     }
 
@@ -294,8 +293,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        throw a4.a.k(it);
     }
 
     public static void o(Context context, ArrayList arrayList) {
@@ -307,8 +305,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        throw a4.a.k(it);
     }
 
     public static List p(ArrayList arrayList) {
@@ -404,7 +401,6 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        throw a4.a.k(it);
     }
 }

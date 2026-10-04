@@ -12,7 +12,7 @@ public enum m0 extends b2 {
             if (d != ' ') {
                 if (d != '\"' && d != '\'') {
                     if (d != '/') {
-                        w wVar = b2.f8254a;
+                        w wVar = b2.f8255a;
                         if (d != 65535) {
                             if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
                                 switch (d) {
@@ -21,12 +21,12 @@ public enum m0 extends b2 {
                                         break;
                                     case '>':
                                         lVar.k();
-                                        lVar.f8307c = wVar;
+                                        lVar.f8308c = wVar;
                                         return;
                                     default:
-                                        lVar.f8311i.j();
+                                        lVar.f8312i.j();
                                         aVar.q();
-                                        lVar.f8307c = n0Var;
+                                        lVar.f8308c = n0Var;
                                         return;
                                 }
                             } else {
@@ -34,25 +34,25 @@ public enum m0 extends b2 {
                             }
                         } else {
                             lVar.l(this);
-                            lVar.f8307c = wVar;
+                            lVar.f8308c = wVar;
                             return;
                         }
                     } else {
-                        lVar.f8307c = b2.f8262e0;
+                        lVar.f8308c = b2.f8263e0;
                         return;
                     }
                 }
                 lVar.m(this);
-                lVar.f8311i.j();
-                lVar.f8311i.d(d);
-                lVar.f8307c = n0Var;
+                lVar.f8312i.j();
+                lVar.f8312i.d(d);
+                lVar.f8308c = n0Var;
                 return;
             }
             return;
         }
         lVar.m(this);
-        lVar.f8311i.j();
+        lVar.f8312i.j();
         aVar.q();
-        lVar.f8307c = n0Var;
+        lVar.f8308c = n0Var;
     }
 }

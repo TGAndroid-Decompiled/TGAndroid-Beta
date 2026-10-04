@@ -15,37 +15,37 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.tr;
 public abstract class o7 extends FrameLayout {
     public float E;
-    public final n7 f5655a;
-    public final File f5656b;
-    public long f5657c;
+    public final n7 f5656a;
+    public final File f5657b;
+    public long f5658c;
     public long d;
-    public final Paint f5658e;
-    public final Paint f5659f;
+    public final Paint f5659e;
+    public final Paint f5660f;
     public final k7 h;
-    public ai.q0 f5660n;
-    public n f5661r;
-    public float f5662s;
+    public ai.q0 f5661n;
+    public n f5662r;
+    public float f5663s;
     public qg.b2 v;
-    public ValueAnimator f5663w;
-    public boolean f5664x;
-    public ValueAnimator f5665y;
+    public ValueAnimator f5664w;
+    public boolean f5665x;
+    public ValueAnimator f5666y;
 
     public o7(Context context) {
         super(context);
-        this.f5657c = -1L;
+        this.f5658c = -1L;
         this.d = -1L;
-        this.f5658e = new Paint(1);
+        this.f5659e = new Paint(1);
         Paint paint = new Paint(1);
-        this.f5659f = paint;
+        this.f5660f = paint;
         this.h = new k7(this, 0);
-        this.f5662s = 1.0f;
-        this.f5664x = false;
+        this.f5663s = 1.0f;
+        this.f5665x = false;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f5656b = k8.x(UserConfig.selectedAccount, true);
+        this.f5657b = k8.x(UserConfig.selectedAccount, true);
         n7 n7Var = new n7(this, context);
-        this.f5655a = n7Var;
+        this.f5656a = n7Var;
         n7Var.setScaleX(0.0f);
         n7Var.setScaleY(0.0f);
         addView(n7Var);
@@ -55,15 +55,15 @@ public abstract class o7 extends FrameLayout {
     }
 
     public final void a(boolean z10) {
-        n nVar = this.f5661r;
+        n nVar = this.f5662r;
         if (nVar != null) {
             nVar.run();
-            this.f5661r = null;
+            this.f5662r = null;
         }
         AndroidUtilities.cancelRunOnUIThread(this.h);
-        this.f5655a.destroy(true, null);
+        this.f5656a.destroy(true, null);
         try {
-            this.f5656b.delete();
+            this.f5657b.delete();
         } catch (Exception unused) {
         }
         if (z10) {
@@ -73,28 +73,28 @@ public abstract class o7 extends FrameLayout {
             }
             return;
         }
-        ValueAnimator valueAnimator = this.f5665y;
+        ValueAnimator valueAnimator = this.f5666y;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.E, 1.0f);
-        this.f5665y = ofFloat;
+        this.f5666y = ofFloat;
         ofFloat.addUpdateListener(new ai.a(this, 23));
-        this.f5665y.addListener(new ai.b(this, 17));
-        this.f5665y.setInterpolator(tr.h);
-        this.f5665y.setDuration(280L);
-        this.f5665y.start();
+        this.f5666y.addListener(new ai.b(this, 17));
+        this.f5666y.setInterpolator(tr.h);
+        this.f5666y.setDuration(280L);
+        this.f5666y.start();
     }
 
     public final long b() {
-        if (this.f5657c < 0) {
+        if (this.f5658c < 0) {
             return 0L;
         }
         long j3 = this.d;
         if (j3 < 0) {
             j3 = System.currentTimeMillis();
         }
-        return Math.min(59500L, j3 - this.f5657c);
+        return Math.min(59500L, j3 - this.f5658c);
     }
 
     public abstract void c();
@@ -102,12 +102,12 @@ public abstract class o7 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         RectF rectF = AndroidUtilities.rectTmp;
-        n7 n7Var = this.f5655a;
+        n7 n7Var = this.f5656a;
         rectF.set(((1.0f - n7Var.getScaleX()) * (n7Var.getWidth() / 2.0f)) + n7Var.getX(), ((1.0f - n7Var.getScaleY()) * (n7Var.getHeight() / 2.0f)) + n7Var.getY(), (n7Var.getX() + n7Var.getWidth()) - ((1.0f - n7Var.getScaleX()) * (n7Var.getWidth() / 2.0f)), (n7Var.getY() + n7Var.getHeight()) - ((1.0f - n7Var.getScaleY()) * (n7Var.getHeight() / 2.0f)));
-        int l1 = org.telegram.ui.ActionBar.i6.l1(this.f5662s, 536870912);
-        Paint paint = this.f5658e;
+        int l1 = org.telegram.ui.ActionBar.i6.l1(this.f5663s, 536870912);
+        Paint paint = this.f5659e;
         paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), l1);
-        paint.setAlpha((int) (this.f5662s * 255.0f));
+        paint.setAlpha((int) (this.f5663s * 255.0f));
         canvas.drawCircle(rectF.centerX(), rectF.centerY(), Math.min(rectF.width() / 2.0f, rectF.height() / 2.0f) - 1.0f, paint);
         super.dispatchDraw(canvas);
         qg.b2 b2Var = this.v;
@@ -117,18 +117,18 @@ public abstract class o7 extends FrameLayout {
             canvas.scale(rectF.width() / this.v.getWidth(), rectF.height() / this.v.getHeight());
             float alpha = this.v.getAlpha();
             this.v.setDraw(true);
-            this.v.setAlpha(1.0f - this.f5662s);
+            this.v.setAlpha(1.0f - this.f5663s);
             this.v.draw(canvas);
             this.v.setAlpha(alpha);
             this.v.setDraw(false);
             canvas.restore();
         }
-        if (this.f5657c > 0) {
+        if (this.f5658c > 0) {
             float clamp = Utilities.clamp(((float) b()) / 59500.0f, 1.0f, 0.0f);
-            Paint paint2 = this.f5659f;
+            Paint paint2 = this.f5660f;
             paint2.setStrokeWidth(AndroidUtilities.dp(3.33f));
-            paint2.setColor(org.telegram.ui.ActionBar.i6.l1(this.f5662s, -1090519041));
-            paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.33f), org.telegram.ui.ActionBar.i6.l1(this.f5662s, 536870912));
+            paint2.setColor(org.telegram.ui.ActionBar.i6.l1(this.f5663s, -1090519041));
+            paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.33f), org.telegram.ui.ActionBar.i6.l1(this.f5663s, 536870912));
             rectF.inset(-AndroidUtilities.dp(7.665f), -AndroidUtilities.dp(7.665f));
             canvas.drawArc(rectF, -90.0f, clamp * 360.0f, false, paint2);
             if (this.d <= 0) {
@@ -139,7 +139,7 @@ public abstract class o7 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        n7 n7Var = this.f5655a;
+        n7 n7Var = this.f5656a;
         int measuredWidth = ((i12 - i10) - n7Var.getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
         int dp = AndroidUtilities.dp(72.0f);
         n7Var.layout(measuredWidth, dp, n7Var.getMeasuredWidth() + measuredWidth, n7Var.getMeasuredHeight() + dp);
@@ -150,7 +150,7 @@ public abstract class o7 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         int min = (int) (Math.min(size, size2) * 0.43f);
-        this.f5655a.measure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(min, 1073741824));
+        this.f5656a.measure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(min, 1073741824));
         setMeasuredDimension(size, size2);
     }
 }

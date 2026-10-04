@@ -7,15 +7,15 @@ import android.os.Looper;
 import java.util.concurrent.Executor;
 import v0.i;
 public final class d extends b1.d {
-    public final Context f8516e;
-    public i f8517f;
-    public Executor f8518g;
+    public final Context f8517e;
+    public i f8518f;
+    public Executor f8519g;
     public CancellationSignal h;
-    public final c1.d f8519i;
+    public final c1.d f8520i;
 
     public d(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
-        this.f8516e = context;
-        this.f8519i = new c1.d(this, new Handler(Looper.getMainLooper()), 2);
+        this.f8517e = context;
+        this.f8520i = new c1.d(this, new Handler(Looper.getMainLooper()), 2);
     }
 }

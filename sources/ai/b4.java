@@ -128,7 +128,7 @@ public final class b4 implements pg {
     @Override
     public final boolean i1() {
         f60 f60Var = this.f632a.J2;
-        if (f60Var != null && !f60Var.f26312j0) {
+        if (f60Var != null && !f60Var.f26317j0) {
             return true;
         }
         return false;
@@ -160,7 +160,7 @@ public final class b4 implements pg {
             }
         }
         m40 m40Var2 = e6Var.W2;
-        if (e6Var.f841b2.f23863c1) {
+        if (e6Var.f841b2.f23867c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
@@ -207,8 +207,8 @@ public final class b4 implements pg {
             e6Var.f850d3.setDialogId(e6Var.B1);
             if (e6Var.O1.f700f) {
                 gg.k1 adapter = e6Var.f850d3.getAdapter();
-                if (adapter.f10679j0 == 0 && adapter.f10692u0 == 0 && adapter.f10691t0 == 0 && adapter.E0 == 0) {
-                    adapter.f10695w0 = null;
+                if (adapter.f10680j0 == 0 && adapter.f10693u0 == 0 && adapter.f10692t0 == 0 && adapter.E0 == 0) {
+                    adapter.f10696w0 = null;
                     adapter.F = null;
                     ArrayList arrayList = adapter.A0;
                     if (arrayList != null) {
@@ -220,7 +220,7 @@ public final class b4 implements pg {
                     }
                     adapter.T = null;
                     adapter.U = null;
-                    ArrayList arrayList3 = adapter.f10696x;
+                    ArrayList arrayList3 = adapter.f10697x;
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
@@ -247,7 +247,7 @@ public final class b4 implements pg {
                 MessagesController.getInstance(e6Var.C2).getUser(Long.valueOf(e6Var.B1));
                 TLRPC.Chat chat = MessagesController.getInstance(e6Var.C2).getChat(Long.valueOf(-e6Var.B1));
                 adapter2.getClass();
-                adapter2.f10681l0 = chat;
+                adapter2.f10682l0 = chat;
                 e6Var.f850d3.getAdapter().U(charSequence, e6Var.f841b2.getCursorPosition(), null, false, false);
             }
         }

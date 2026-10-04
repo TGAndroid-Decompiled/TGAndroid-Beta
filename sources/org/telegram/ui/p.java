@@ -9,17 +9,17 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class p extends org.telegram.ui.Components.yl0 {
-    public final Context f39304c;
+    public final Context f39309c;
     public final q d;
 
     public p(q qVar, Context context) {
         this.d = qVar;
-        this.f39304c = context;
+        this.f39309c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46528f == 0) {
+        if (c1Var.f46535f == 0) {
             return true;
         }
         return false;
@@ -33,13 +33,13 @@ public final class p extends org.telegram.ui.Components.yl0 {
     @Override
     public final int j(int i10) {
         q qVar = this.d;
-        if (i10 >= qVar.f39570x && i10 < qVar.f39571y) {
+        if (i10 >= qVar.f39575x && i10 < qVar.f39576y) {
             return 0;
         }
         if (i10 == qVar.E) {
             return 1;
         }
-        if (i10 != qVar.F && i10 != qVar.f39569w) {
+        if (i10 != qVar.F && i10 != qVar.f39574w) {
             return 0;
         }
         return 2;
@@ -49,12 +49,12 @@ public final class p extends org.telegram.ui.Components.yl0 {
     public final void v(s4.c1 c1Var, int i10) {
         int i11;
         boolean z10;
-        View view = c1Var.f46524a;
+        View view = c1Var.f46531a;
         q qVar = this.d;
-        a0.i iVar = qVar.f39561a;
+        a0.i iVar = qVar.f39566a;
         ArrayList arrayList = qVar.h;
         if (j(i10) == 0) {
-            int i12 = i10 - qVar.f39570x;
+            int i12 = i10 - qVar.f39575x;
             org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) view;
             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i12);
             boolean z11 = true;
@@ -64,16 +64,16 @@ public final class p extends org.telegram.ui.Components.yl0 {
                 z10 = false;
             }
             wVar.b(stickerSetCovered, z10);
-            org.telegram.ui.Components.ki0 ki0Var = wVar.f23586f;
-            boolean isStickerPackInstalled = MediaDataController.getInstance(q.T(qVar)).isStickerPackInstalled(stickerSetCovered.set.f20065id);
+            org.telegram.ui.Components.ki0 ki0Var = wVar.f23590f;
+            boolean isStickerPackInstalled = MediaDataController.getInstance(q.T(qVar)).isStickerPackInstalled(stickerSetCovered.set.f20069id);
             wVar.a(isStickerPackInstalled, false, false);
             if (isStickerPackInstalled) {
-                iVar.l(stickerSetCovered.set.f20065id);
+                iVar.l(stickerSetCovered.set.f20069id);
                 if (ki0Var != null) {
                     ki0Var.a(false, false);
                 }
             } else {
-                if (iVar.h(stickerSetCovered.set.f20065id) < 0) {
+                if (iVar.h(stickerSetCovered.set.f20069id) < 0) {
                     z11 = false;
                 }
                 if (ki0Var != null) {
@@ -83,7 +83,7 @@ public final class p extends org.telegram.ui.Components.yl0 {
             wVar.setOnCheckedChangeListener(new o(0, this, stickerSetCovered));
         } else if (j(i10) == 2) {
             org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-            if (i10 == qVar.f39569w) {
+            if (i10 == qVar.f39574w) {
                 e9Var.setTopPadding(17);
                 e9Var.setBottomPadding(10);
                 if (qVar.H == 5) {
@@ -102,7 +102,7 @@ public final class p extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f39304c;
+        Context context = this.f39309c;
         View view = null;
         if (i10 != 0) {
             if (i10 != 1) {
@@ -114,7 +114,7 @@ public final class p extends org.telegram.ui.Components.yl0 {
             }
         } else {
             org.telegram.ui.Cells.w wVar = new org.telegram.ui.Cells.w(context, true);
-            wVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20818d6, false));
+            wVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20822d6, false));
             view = wVar;
         }
         view.setLayoutParams(new s4.p0(-1, -2));

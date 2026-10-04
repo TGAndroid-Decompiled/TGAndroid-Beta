@@ -6,17 +6,17 @@ import android.os.IInterface;
 import android.os.Parcel;
 import org.telegram.messenger.GoogleMapsProvider;
 import org.telegram.messenger.IMapsProvider;
-import org.telegram.messenger.c0;
+import org.telegram.messenger.d0;
 import org.telegram.messenger.g4;
 import org.telegram.messenger.h4;
 import org.telegram.messenger.i4;
 public final class i extends b8.b {
-    public final int f11035b = 1;
-    public final Object f11036c;
+    public final int f11036b = 1;
+    public final Object f11037c;
 
     public i(b bVar) {
         super("com.google.android.gms.maps.internal.ICancelableCallback", 10);
-        this.f11036c = bVar;
+        this.f11037c = bVar;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class i extends b8.b {
         s7.a aVar;
         boolean lambda$setOnMarkerClickListener$1;
         i8.f aVar2;
-        switch (this.f11035b) {
+        switch (this.f11036b) {
             case 0:
                 if (i10 == 1) {
                     IBinder readStrongBinder = parcel.readStrongBinder();
@@ -39,15 +39,15 @@ public final class i extends b8.b {
                         }
                     }
                     s7.b.a(parcel);
-                    org.telegram.messenger.d dVar = (org.telegram.messenger.d) this.f11036c;
-                    lambda$setOnMarkerClickListener$1 = ((GoogleMapsProvider.GoogleMapImpl) dVar.f17615b).lambda$setOnMarkerClickListener$1((IMapsProvider.OnMarkerClickListener) dVar.f17616c, new j8.f(aVar));
+                    org.telegram.messenger.d dVar = (org.telegram.messenger.d) this.f11037c;
+                    lambda$setOnMarkerClickListener$1 = ((GoogleMapsProvider.GoogleMapImpl) dVar.f17613b).lambda$setOnMarkerClickListener$1((IMapsProvider.OnMarkerClickListener) dVar.f17614c, new j8.f(aVar));
                     parcel2.writeNoException();
                     parcel2.writeInt(lambda$setOnMarkerClickListener$1 ? 1 : 0);
                     return true;
                 }
                 return false;
             case 1:
-                b bVar = (b) this.f11036c;
+                b bVar = (b) this.f11037c;
                 if (i10 != 1) {
                     if (i10 != 2) {
                         return false;
@@ -73,8 +73,8 @@ public final class i extends b8.b {
                     }
                     s7.b.a(parcel);
                     c cVar = new c(aVar2);
-                    i4 i4Var = (i4) ((f) this.f11036c);
-                    i4Var.f18126a.lambda$getMapAsync$0(i4Var.f18127b, cVar);
+                    i4 i4Var = (i4) ((f) this.f11037c);
+                    i4Var.f18117a.lambda$getMapAsync$0(i4Var.f18118b, cVar);
                     parcel2.writeNoException();
                     return true;
                 }
@@ -83,14 +83,14 @@ public final class i extends b8.b {
                 if (i10 == 1) {
                     x6.a L0 = x6.b.L0(parcel.readStrongBinder());
                     s7.b.a(parcel);
-                    ((g4) this.f11036c).f17915b.accept((Location) x6.b.M0(L0));
+                    ((g4) this.f11037c).f17910b.accept((Location) x6.b.M0(L0));
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             case 4:
                 if (i10 == 1) {
-                    ((h4) this.f11036c).f18026a.run();
+                    ((h4) this.f11037c).f18019a.run();
                     parcel2.writeNoException();
                     return true;
                 }
@@ -99,21 +99,21 @@ public final class i extends b8.b {
                 if (i10 == 1) {
                     int readInt = parcel.readInt();
                     s7.b.a(parcel);
-                    GoogleMapsProvider.GoogleMapImpl.lambda$setOnCameraMoveStartedListener$0((IMapsProvider.OnCameraMoveStartedListener) ((c0) this.f11036c).f17488b, readInt);
+                    GoogleMapsProvider.GoogleMapImpl.lambda$setOnCameraMoveStartedListener$0((IMapsProvider.OnCameraMoveStartedListener) ((d0) this.f11037c).f17616b, readInt);
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             case 6:
                 if (i10 == 1) {
-                    ((h4) this.f11036c).f18026a.run();
+                    ((h4) this.f11037c).f18019a.run();
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             default:
                 if (i10 == 1) {
-                    ((h4) this.f11036c).f18026a.run();
+                    ((h4) this.f11037c).f18019a.run();
                     parcel2.writeNoException();
                     return true;
                 }
@@ -123,36 +123,36 @@ public final class i extends b8.b {
 
     public i(f fVar) {
         super("com.google.android.gms.maps.internal.IOnMapReadyCallback", 10);
-        this.f11036c = fVar;
+        this.f11037c = fVar;
     }
 
     public i(org.telegram.messenger.d dVar) {
         super("com.google.android.gms.maps.internal.IOnMarkerClickListener", 10);
-        this.f11036c = dVar;
+        this.f11037c = dVar;
     }
 
-    public i(c0 c0Var) {
+    public i(d0 d0Var) {
         super("com.google.android.gms.maps.internal.IOnCameraMoveStartedListener", 10);
-        this.f11036c = c0Var;
+        this.f11037c = d0Var;
     }
 
     public i(g4 g4Var) {
         super("com.google.android.gms.maps.internal.IOnMyLocationChangeListener", 10);
-        this.f11036c = g4Var;
+        this.f11037c = g4Var;
     }
 
     public i(h4 h4Var) {
         super("com.google.android.gms.maps.internal.IOnCameraMoveListener", 10);
-        this.f11036c = h4Var;
+        this.f11037c = h4Var;
     }
 
     public i(h4 h4Var, byte b10) {
         super("com.google.android.gms.maps.internal.IOnMapLoadedCallback", 10);
-        this.f11036c = h4Var;
+        this.f11037c = h4Var;
     }
 
     public i(h4 h4Var, char c10) {
         super("com.google.android.gms.maps.internal.IOnCameraIdleListener", 10);
-        this.f11036c = h4Var;
+        this.f11037c = h4Var;
     }
 }

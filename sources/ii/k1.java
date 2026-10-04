@@ -14,12 +14,12 @@ import org.telegram.ui.Components.b80;
 import org.telegram.ui.Components.nz;
 import org.telegram.ui.zi0;
 public final class k1 implements View.OnClickListener {
-    public final int f12484a;
-    public final e2 f12485b;
+    public final int f12485a;
+    public final e2 f12486b;
 
     public k1(e2 e2Var, int i10) {
-        this.f12484a = i10;
-        this.f12485b = e2Var;
+        this.f12485a = i10;
+        this.f12486b = e2Var;
     }
 
     @Override
@@ -32,36 +32,36 @@ public final class k1 implements View.OnClickListener {
         q5 T2;
         t5 o9;
         String str;
-        switch (this.f12484a) {
+        switch (this.f12485a) {
             case 0:
-                this.f12485b.r0();
+                this.f12486b.r0();
                 return;
             case 1:
-                e2 e2Var = this.f12485b;
+                e2 e2Var = this.f12486b;
                 if (!e2Var.P.H2()) {
                     e2Var.finishFragment();
                     return;
                 }
                 return;
             case 2:
-                i2 i2Var = this.f12485b.P.Q3;
+                i2 i2Var = this.f12486b.P.Q3;
                 if (i2Var != null) {
                     i2Var.k();
                     return;
                 }
                 return;
             case 3:
-                i2 i2Var2 = this.f12485b.P.Q3;
+                i2 i2Var2 = this.f12486b.P.Q3;
                 if (i2Var2 != null) {
                     i2Var2.i();
                     return;
                 }
                 return;
             case 4:
-                e2.S(this.f12485b);
+                e2.S(this.f12486b);
                 return;
             case 5:
-                e2 e2Var2 = this.f12485b;
+                e2 e2Var2 = this.f12486b;
                 if (e2Var2.B0) {
                     e2Var2.k0(true);
                     i1 R2 = e2Var2.P.R2();
@@ -77,9 +77,9 @@ public final class k1 implements View.OnClickListener {
                     e2Var2.A0 = nzVar;
                     nzVar.setVisibility(8);
                     nz nzVar2 = e2Var2.A0;
-                    nzVar2.f29157w2 = false;
+                    nzVar2.f29162w2 = false;
                     nzVar2.setDelegate(new v1(e2Var2));
-                    int indexOfChild = e2Var2.O.indexOfChild(e2Var2.f12313a0);
+                    int indexOfChild = e2Var2.O.indexOfChild(e2Var2.f12314a0);
                     if (indexOfChild < 0) {
                         indexOfChild = e2Var2.O.getChildCount();
                     }
@@ -104,14 +104,14 @@ public final class k1 implements View.OnClickListener {
                     AndroidUtilities.hideKeyboard(R22);
                 }
                 e2Var2.h0();
-                e2Var2.f12315b0.j(ah.d, true);
+                e2Var2.f12316b0.j(ah.d, true);
                 return;
             case 6:
-                final e2 e2Var3 = this.f12485b;
-                b80 b80Var = e2Var3.f12344x0;
+                final e2 e2Var3 = this.f12486b;
+                b80 b80Var = e2Var3.f12345x0;
                 if (b80Var != null) {
                     b80Var.u();
-                    e2Var3.f12344x0 = null;
+                    e2Var3.f12345x0 = null;
                 }
                 final b80 H = b80.H(e2Var3, view);
                 H.Q = true;
@@ -140,7 +140,7 @@ public final class k1 implements View.OnClickListener {
                     z13 = false;
                 }
                 H.j(z13, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListChecklist), new n1(e2Var3, S2, 8));
-                if (S2 != null && (S2.f12186b instanceof TL_iv.pageBlockDetails)) {
+                if (S2 != null && (S2.f12187b instanceof TL_iv.pageBlockDetails)) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -191,22 +191,22 @@ public final class k1 implements View.OnClickListener {
                 }
                 H.U = true;
                 H.Z();
-                e2Var3.f12344x0 = H;
+                e2Var3.f12345x0 = H;
                 return;
             case 7:
-                e2 e2Var4 = this.f12485b;
-                b80 b80Var2 = e2Var4.f12344x0;
+                e2 e2Var4 = this.f12486b;
+                b80 b80Var2 = e2Var4.f12345x0;
                 TL_iv.pageTableCell pagetablecell = null;
                 if (b80Var2 != null) {
                     b80Var2.u();
-                    e2Var4.f12344x0 = null;
+                    e2Var4.f12345x0 = null;
                 }
                 x3 x3Var2 = e2Var4.P;
-                q5 q5Var = x3Var2.f12772p4;
+                q5 q5Var = x3Var2.f12773p4;
                 if (q5Var == null && (T2 = x3Var2.T2()) != null && T2.getModel() != null) {
                     View findFocus = e2Var4.P.findFocus();
                     if ((findFocus instanceof i1) && (o9 = T2.o((i1) findFocus)) != null) {
-                        pagetablecell = o9.f12661b;
+                        pagetablecell = o9.f12662b;
                     }
                     if (pagetablecell != null) {
                         e2Var4.P.i2(T2);
@@ -225,16 +225,16 @@ public final class k1 implements View.OnClickListener {
                     return;
                 }
             case 8:
-                e2 e2Var5 = this.f12485b;
-                b80 b80Var3 = e2Var5.f12344x0;
+                e2 e2Var5 = this.f12486b;
+                b80 b80Var3 = e2Var5.f12345x0;
                 TL_iv.pageBlockMath pageblockmath = null;
                 if (b80Var3 != null) {
                     b80Var3.u();
-                    e2Var5.f12344x0 = null;
+                    e2Var5.f12345x0 = null;
                 }
                 a S22 = e2Var5.P.S2();
                 if (S22 != null) {
-                    TL_iv.PageBlock pageBlock = S22.f12186b;
+                    TL_iv.PageBlock pageBlock = S22.f12187b;
                     if (pageBlock instanceof TL_iv.pageBlockMath) {
                         pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                     }
@@ -248,12 +248,12 @@ public final class k1 implements View.OnClickListener {
                 r.S(parentActivity, str, new ai.g3(21, e2Var5, pageblockmath), e2Var5.getResourceProvider());
                 return;
             case 9:
-                e2 e2Var6 = this.f12485b;
-                e2Var6.P.f12762i4 = null;
+                e2 e2Var6 = this.f12486b;
+                e2Var6.P.f12763i4 = null;
                 e2Var6.o0(90, 0);
                 return;
             case 10:
-                e2 e2Var7 = this.f12485b;
+                e2 e2Var7 = this.f12486b;
                 e2Var7.r0();
                 zi0 zi0Var = e2Var7.O0;
                 if (zi0Var != null) {
@@ -263,24 +263,24 @@ public final class k1 implements View.OnClickListener {
                 }
                 return;
             case 11:
-                e2 e2Var8 = this.f12485b;
+                e2 e2Var8 = this.f12486b;
                 e2Var8.P.S4();
                 e2Var8.y0();
                 return;
             case 12:
-                this.f12485b.P.b4(view);
+                this.f12486b.P.b4(view);
                 return;
             case 13:
-                this.f12485b.P.c4();
+                this.f12486b.P.c4();
                 return;
             case 14:
-                this.f12485b.P.Z3();
+                this.f12486b.P.Z3();
                 return;
             case 15:
-                this.f12485b.P.d4();
+                this.f12486b.P.d4();
                 return;
             default:
-                this.f12485b.n0();
+                this.f12486b.n0();
                 return;
         }
     }

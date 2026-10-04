@@ -172,7 +172,7 @@ public class VideoAds {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
             o6Var.setCallback(view);
-            o6Var.f29240b = 17;
+            o6Var.f29245b = 17;
             o6Var.t(AndroidUtilities.dp(12.0f));
             o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
             o6Var.G = AndroidUtilities.displaySize.x;
@@ -221,7 +221,7 @@ public class VideoAds {
             this.timer.q(str, true, true);
             this.timer.l(centerX - 1.0f, centerY - 1.0f, centerX + 1.0f, centerY + 1.0f);
             o6 o6Var = this.timer;
-            o6Var.f29258w = (int) (this.alpha * e7);
+            o6Var.f29263w = (int) (this.alpha * e7);
             o6Var.draw(canvas);
             canvas.restore();
             this.paint.setAlpha((int) (this.alpha * e7));
@@ -504,7 +504,7 @@ public class VideoAds {
     public void lambda$show$3(rc rcVar, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
         rc rcVar2 = this.bulletin;
         if (rcVar2 != null && rcVar2 == rcVar) {
-            rcVar2.f30339j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+            rcVar2.f30345j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
             rcVar2.i(true);
         }
     }
@@ -534,7 +534,7 @@ public class VideoAds {
                 }
             } else if (j10 <= 0) {
                 rc rcVar4 = this.bulletin;
-                rcVar4.f30339j = (int) j11;
+                rcVar4.f30345j = (int) j11;
                 rcVar4.i(true);
             } else {
                 AndroidUtilities.runOnUIThread(runnable, j10);
@@ -642,7 +642,7 @@ public class VideoAds {
             this.bulletin = null;
         }
         Context W = this.bulletinFactory.W();
-        d6 d6Var = this.bulletinFactory.f33131c;
+        d6 d6Var = this.bulletinFactory.f33137c;
         AdLayout adLayout = new AdLayout(W, d6Var) {
             {
                 VideoAds.this = this;
@@ -660,7 +660,7 @@ public class VideoAds {
         i5 i5Var = adLayout.titleTextView;
         Context W2 = this.bulletinFactory.W();
         int i10 = i6.Oh;
-        i5Var.i(new AdOptionsDrawable(W2, i6.v0(i10, this.bulletinFactory.f33131c)));
+        i5Var.i(new AdOptionsDrawable(W2, i6.v0(i10, this.bulletinFactory.f33137c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
@@ -684,12 +684,12 @@ public class VideoAds {
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(i6.v0(i10, this.bulletinFactory.f33131c));
+        closeDrawable.setColor(i6.v0(i10, this.bulletinFactory.f33137c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
         adLayout.buttonView.setOnClickListener(new f2(14, this, closeDrawable));
         final rc b10 = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = b10;
-        b10.f30350u = false;
+        b10.f30356u = false;
         b10.i(false);
         final t tVar = new t(this, b10, tL_sponsoredMessage, 28);
         final long[] jArr = new long[1];
@@ -703,12 +703,12 @@ public class VideoAds {
         };
         AndroidUtilities.runOnUIThread(tVar, tL_sponsoredMessage.min_display_duration * 1000);
         rc rcVar2 = this.bulletin;
-        rcVar2.f30347r = false;
+        rcVar2.f30353r = false;
         rcVar2.v = new t(this, b10, new boolean[1], 29);
         adLayout.titleTextView.setRightDrawableOnClick(new f(this, b10, tL_sponsoredMessage, W, d6Var, adLayout, callback, 0));
         rc rcVar3 = this.bulletin;
         f2 f2Var = new f2(15, this, tL_sponsoredMessage);
-        vb vbVar = rcVar3.f30335e;
+        vb vbVar = rcVar3.f30341e;
         if (vbVar != null) {
             vbVar.setOnClickListener(f2Var);
         }

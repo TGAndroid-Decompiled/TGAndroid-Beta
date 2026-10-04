@@ -277,7 +277,7 @@ public class AudioDecoder {
         StringBuilder sb2 = new StringBuilder("StartTimeUs(");
         sb2.append(this.startTimeUs);
         sb2.append(") must be less than or equal to EndTimeUs(");
-        throw new RuntimeException(a4.a.r(sb2, this.endTimeUs, ")"));
+        throw new RuntimeException(a4.a.s(sb2, this.endTimeUs, ")"));
     }
 
     public void stop() {

@@ -36,7 +36,7 @@ public abstract class a {
     }
 
     public static void b(Canvas canvas, i0 i0Var, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f8426b, 0, (float[]) i0Var.f8427c, 0, (int[]) i0Var.f8428e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f8427b, 0, (float[]) i0Var.f8428c, 0, (int[]) i0Var.f8429e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
     }
 
     public static k2.b c(AudioManager audioManager, b2.e eVar) {
@@ -47,7 +47,7 @@ public abstract class a {
             AudioProfile audioProfile = (AudioProfile) directProfilesForAttributes.get(i10);
             if (audioProfile.getEncapsulationType() != 1) {
                 int format = audioProfile.getFormat();
-                if (d0.K(format) || k2.b.f14374e.containsKey(Integer.valueOf(format))) {
+                if (d0.K(format) || k2.b.f14375e.containsKey(Integer.valueOf(format))) {
                     if (hashMap.containsKey(Integer.valueOf(format))) {
                         Set set = (Set) hashMap.get(Integer.valueOf(format));
                         set.getClass();

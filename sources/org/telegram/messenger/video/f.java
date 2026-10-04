@@ -25,36 +25,36 @@ import org.telegram.ui.o40;
 import org.telegram.ui.q40;
 import org.telegram.ui.s30;
 public final class f implements View.OnClickListener {
-    public final int f19463a;
-    public final Object f19464b;
-    public final Object f19465c;
+    public final int f19455a;
+    public final Object f19456b;
+    public final Object f19457c;
     public final Object d;
-    public final Object f19466e;
-    public final Object f19467f;
+    public final Object f19458e;
+    public final Object f19459f;
     public final Object h;
-    public final Object f19468n;
+    public final Object f19460n;
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f19463a = i10;
-        this.f19464b = obj;
-        this.f19465c = obj2;
+        this.f19455a = i10;
+        this.f19456b = obj;
+        this.f19457c = obj2;
         this.d = obj3;
-        this.f19466e = obj4;
-        this.f19467f = obj5;
+        this.f19458e = obj4;
+        this.f19459f = obj5;
         this.h = obj6;
-        this.f19468n = obj7;
+        this.f19460n = obj7;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f19463a;
-        Object obj = this.f19468n;
+        int i10 = this.f19455a;
+        Object obj = this.f19460n;
         Object obj2 = this.h;
-        Object obj3 = this.f19467f;
-        Object obj4 = this.f19466e;
+        Object obj3 = this.f19459f;
+        Object obj4 = this.f19458e;
         Object obj5 = this.d;
-        Object obj6 = this.f19465c;
-        Object obj7 = this.f19464b;
+        Object obj6 = this.f19457c;
+        Object obj7 = this.f19456b;
         switch (i10) {
             case 0:
                 ((VideoAds) obj7).lambda$show$17((rc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (d6) obj3, (VideoAds.AdLayout) obj2, (e) obj, view);
@@ -67,7 +67,7 @@ public final class f implements View.OnClickListener {
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
                 AccountInstance accountInstance = (AccountInstance) obj2;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
-                s30 s30Var = h60Var.f36892e1;
+                s30 s30Var = h60Var.f36897e1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 h60Var.X0 = ofFloat;
                 ofFloat.setDuration(600L);
@@ -87,12 +87,12 @@ public final class f implements View.OnClickListener {
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                h60Var.f36917k2 = (int) (calendar.getTimeInMillis() / 1000);
+                h60Var.f36922k2 = (int) (calendar.getTimeInMillis() / 1000);
                 h60Var.L1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = h60Var.f36917k2;
+                creategroupcall.schedule_date = h60Var.f36922k2;
                 creategroupcall.flags |= 2;
                 accountInstance.getConnectionsManager().sendRequest(creategroupcall, new ca(h60Var, chat, inputPeer, 11), 2);
                 return;
