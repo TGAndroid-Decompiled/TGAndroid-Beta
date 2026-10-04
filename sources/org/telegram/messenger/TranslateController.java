@@ -78,16 +78,16 @@ public class TranslateController extends BaseController {
         public String code;
         public String displayName;
         public String ownDisplayName;
-        public String f17277q;
+        public String f17278q;
     }
 
     public static class MessageKey {
         public long dialogId;
-        public int f17278id;
+        public int f17279id;
 
         public MessageKey(MessageObject messageObject) {
             this.dialogId = messageObject.getDialogId();
-            this.f17278id = messageObject.getId();
+            this.f17279id = messageObject.getId();
         }
     }
 
@@ -299,7 +299,7 @@ public class TranslateController extends BaseController {
 
         public StoryKey(TL_stories.StoryItem storyItem) {
             this.dialogId = storyItem.dialogId;
-            this.storyId = storyItem.f20274id;
+            this.storyId = storyItem.f20275id;
         }
     }
 
@@ -512,7 +512,7 @@ public class TranslateController extends BaseController {
                     str2 = "";
                 }
                 sb2.append(str2);
-                language.f17277q = sb2.toString().toLowerCase();
+                language.f17278q = sb2.toString().toLowerCase();
                 arrayList.add(language);
             }
             i10++;
@@ -1048,7 +1048,7 @@ public class TranslateController extends BaseController {
                 TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
                 tL_messages_translateRichMessage.flags |= 1;
                 tL_messages_translateRichMessage.peer = getMessagesController().getInputPeer(j3);
-                tL_messages_translateRichMessage.f20158id = pendingRichTranslation.messageIds;
+                tL_messages_translateRichMessage.f20159id = pendingRichTranslation.messageIds;
                 tL_messages_translateRichMessage.to_lang = normalizeLanguage(pendingRichTranslation.language);
                 int sendRequest = getConnectionsManager().sendRequest(tL_messages_translateRichMessage, new yk(this, pendingRichTranslation, j3, 1));
                 synchronized (this) {
@@ -1074,7 +1074,7 @@ public class TranslateController extends BaseController {
         } else if (tL_error != null) {
             if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (U = LaunchActivity.U()) != null) {
                 org.telegram.ui.Components.rc J = org.telegram.ui.Components.yc.a0(U).J(R.raw.star_premium_2, LocaleController.getString(R.string.SummaryLimit), LocaleController.getString(R.string.SummaryLimitUpgrade), new td(3, U));
-                J.f30338j = 5000;
+                J.f30339j = 5000;
                 J.k(true);
             }
             this.loadingSummarizations.remove(Integer.valueOf(i10));
@@ -1154,7 +1154,7 @@ public class TranslateController extends BaseController {
                 tL_messages_translateText.flags |= 1;
                 j10 = j3;
                 tL_messages_translateText.peer = getMessagesController().getInputPeer(j10);
-                tL_messages_translateText.f20159id = pendingTranslation.messageIds;
+                tL_messages_translateText.f20160id = pendingTranslation.messageIds;
             }
             tL_messages_translateText.to_lang = normalizeLanguage(pendingTranslation.language);
             int sendRequest = getConnectionsManager().sendRequest(tL_messages_translateText, new oa(this, pendingTranslation, z10, j10, set, 1));
@@ -1268,20 +1268,20 @@ public class TranslateController extends BaseController {
             ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
             if (arrayList.size() <= 0) {
                 AndroidUtilities.runOnUIThread(new Runnable(this) {
-                    public final TranslateController f18205b;
+                    public final TranslateController f18206b;
 
                     {
-                        this.f18205b = this;
+                        this.f18206b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r6) {
                             case 0:
-                                this.f18205b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
+                                this.f18206b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
                                 return;
                             default:
-                                this.f18205b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
+                                this.f18206b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
                                 return;
                         }
                     }
@@ -1293,20 +1293,20 @@ public class TranslateController extends BaseController {
             }
         }
         AndroidUtilities.runOnUIThread(new Runnable(this) {
-            public final TranslateController f18205b;
+            public final TranslateController f18206b;
 
             {
-                this.f18205b = this;
+                this.f18206b = this;
             }
 
             @Override
             public final void run() {
                 switch (r6) {
                     case 0:
-                        this.f18205b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
+                        this.f18206b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
                         return;
                     default:
-                        this.f18205b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
+                        this.f18206b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
                         return;
                 }
             }
@@ -1531,7 +1531,7 @@ public class TranslateController extends BaseController {
         this.loadingSummarizations.add(Integer.valueOf(hash));
         TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
         tL_messages_summarizeText.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
-        tL_messages_summarizeText.f20157id = messageObject.getId();
+        tL_messages_summarizeText.f20158id = messageObject.getId();
         if (str != null) {
             tL_messages_summarizeText.flags |= 1;
             tL_messages_summarizeText.to_lang = normalizeLanguage(str);

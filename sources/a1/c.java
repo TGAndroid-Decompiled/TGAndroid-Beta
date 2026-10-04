@@ -105,7 +105,7 @@ public final class c implements OnSuccessListener, i, ol0, Utilities.Callback2Re
         }
         marginLayoutParams.topMargin = i10;
         if (jcVar.f1150c) {
-            a2 = l1Var.f45609a.f(2).d;
+            a2 = l1Var.f45610a.f(2).d;
         } else {
             a2 = l1Var.a();
         }
@@ -120,7 +120,7 @@ public final class c implements OnSuccessListener, i, ol0, Utilities.Callback2Re
         if (ybVar != null) {
             ybVar.requestLayout();
         }
-        return l1.f45608b;
+        return l1.f45609b;
     }
 
     @Override
@@ -140,7 +140,7 @@ public final class c implements OnSuccessListener, i, ol0, Utilities.Callback2Re
         va vaVar = (va) this.f40b;
         wa waVar = vaVar.v;
         if (!waVar.f1820x) {
-            gVar.f48396q = new ua(vaVar, 2);
+            gVar.f48397q = new ua(vaVar, 2);
             float sqrt = (float) Math.sqrt(Math.pow(waVar.getHeight(), 2.0d) + Math.pow(waVar.getWidth(), 2.0d));
             ArrayList arrayList = vaVar.f1770i;
             int size = arrayList.size();
@@ -325,7 +325,7 @@ public final class c implements OnSuccessListener, i, ol0, Utilities.Callback2Re
     @Override
     public RecyclerView i(View view) {
         ((w7) this.f40b).getClass();
-        return ((u7) view).f52102a;
+        return ((u7) view).f52103a;
     }
 
     @Override

@@ -13,10 +13,10 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dz0 implements org.telegram.ui.pt {
-    public final iz0 f25840a;
+    public final iz0 f25841a;
 
     public dz0(iz0 iz0Var) {
-        this.f25840a = iz0Var;
+        this.f25841a = iz0Var;
     }
 
     @Override
@@ -31,13 +31,13 @@ public final class dz0 implements org.telegram.ui.pt {
 
     @Override
     public final void C(TLRPC.Document document) {
-        iz0 iz0Var = this.f25840a;
-        gz0 gz0Var = iz0Var.f27528c;
+        iz0 iz0Var = this.f25841a;
+        gz0 gz0Var = iz0Var.f27529c;
         if (gz0Var != null) {
             org.telegram.ui.ActionBar.n2 parentFragment = gz0Var.getParentFragment();
             if (parentFragment instanceof org.telegram.ui.yn) {
                 ((org.telegram.ui.yn) parentFragment).ab(document);
-                iz0Var.f27528c.setFieldText("");
+                iz0Var.f27529c.setFieldText("");
             }
         }
     }
@@ -49,7 +49,7 @@ public final class dz0 implements org.telegram.ui.pt {
 
     @Override
     public final boolean E(TLRPC.Document document) {
-        if (this.f25840a.f27538y) {
+        if (this.f25841a.f27539y) {
             return false;
         }
         return UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
@@ -65,7 +65,7 @@ public final class dz0 implements org.telegram.ui.pt {
         gz0 gz0Var;
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
         valueOf.setSpan(new z5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-        if (AndroidUtilities.addToClipboard(valueOf) && (gz0Var = this.f25840a.f27528c) != null) {
+        if (AndroidUtilities.addToClipboard(valueOf) && (gz0Var = this.f25841a.f27529c) != null) {
             org.telegram.messenger.ok.o(R.string.EmojiCopied, yc.a0(gz0Var.getParentFragment()));
         }
     }
@@ -89,11 +89,11 @@ public final class dz0 implements org.telegram.ui.pt {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User currentUser;
         boolean z10;
-        if (this.f25840a.E || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
+        if (this.f25841a.E || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
             return null;
         }
         Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f20043id)) {
+        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f20044id)) {
             z10 = true;
         } else {
             z10 = false;
@@ -118,7 +118,7 @@ public final class dz0 implements org.telegram.ui.pt {
 
     @Override
     public final boolean c() {
-        gz0 gz0Var = this.f25840a.f27528c;
+        gz0 gz0Var = this.f25841a.f27529c;
         if (gz0Var == null) {
             return false;
         }
@@ -166,7 +166,7 @@ public final class dz0 implements org.telegram.ui.pt {
 
     @Override
     public final boolean m(int i10) {
-        gz0 gz0Var = this.f25840a.f27528c;
+        gz0 gz0Var = this.f25841a.f27529c;
         if (gz0Var == null) {
             return false;
         }
@@ -196,13 +196,13 @@ public final class dz0 implements org.telegram.ui.pt {
         TLRPC.EmojiStatus emojiStatus;
         Object obj;
         org.telegram.ui.ActionBar.n2 parentFragment;
-        iz0 iz0Var = this.f25840a;
-        org.telegram.ui.ActionBar.d6 d6Var = iz0Var.f27526b;
+        iz0 iz0Var = this.f25841a;
+        org.telegram.ui.ActionBar.d6 d6Var = iz0Var.f27527b;
         if (document == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f20043id;
+            tL_emojiStatus.document_id = document.f20044id;
             emojiStatus = tL_emojiStatus;
         }
         TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
@@ -211,9 +211,9 @@ public final class dz0 implements org.telegram.ui.pt {
         } else {
             obj = currentUser.emoji_status;
         }
-        MessagesController.getInstance(iz0Var.f27524a).updateEmojiStatus(emojiStatus);
+        MessagesController.getInstance(iz0Var.f27525a).updateEmojiStatus(emojiStatus);
         uo0 uo0Var = new uo0(10, this, obj);
-        gz0 gz0Var = iz0Var.f27528c;
+        gz0 gz0Var = iz0Var.f27529c;
         if (gz0Var == null) {
             parentFragment = null;
         } else {
@@ -222,10 +222,10 @@ public final class dz0 implements org.telegram.ui.pt {
         if (parentFragment != null) {
             if (document == null) {
                 jc jcVar = new jc(iz0Var.getContext(), d6Var);
-                jcVar.f27720b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
-                jcVar.f27719a.setImageResource(R.drawable.msg_settings_premium);
+                jcVar.f27721b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
+                jcVar.f27720a.setImageResource(R.drawable.msg_settings_premium);
                 pc pcVar = new pc(iz0Var.getContext(), d6Var, true);
-                pcVar.f29594a = uo0Var;
+                pcVar.f29595a = uo0Var;
                 jcVar.setButton(pcVar);
                 rc.g(parentFragment, jcVar, 1500).j();
                 return;

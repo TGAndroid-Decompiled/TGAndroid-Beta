@@ -51,7 +51,7 @@ public final class yc extends View {
         o6Var.r(-1);
         o6Var.p(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dp(1.0f), 1073741824);
         o6Var.q(LocaleController.getString(R.string.TrashHintDrag), true, true);
-        o6Var.f29239b = 17;
+        o6Var.f29240b = 17;
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -69,7 +69,7 @@ public final class yc extends View {
         this.f6356f = z12;
         kj0 kj0Var = this.f6352a;
         if (z12) {
-            if (kj0Var.f28118a0 > 34) {
+            if (kj0Var.f28119a0 > 34) {
                 kj0Var.N(0, false, false);
             }
             kj0Var.P(33);

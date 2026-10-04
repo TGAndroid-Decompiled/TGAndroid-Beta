@@ -77,19 +77,19 @@ public final class j9 extends og.a {
         if (this != obj) {
             if (obj != null && j9.class == obj.getClass()) {
                 j9 j9Var = (j9) obj;
-                int i10 = this.f17182a;
-                if (i10 == j9Var.f17182a) {
+                int i10 = this.f17183a;
+                if (i10 == j9Var.f17183a) {
                     if (i10 != -1 || (this.f5263o == j9Var.f5263o && this.f5264p == j9Var.f5264p)) {
                         if (i10 != 3 || (this.f5256g == j9Var.f5256g && this.h == j9Var.h && this.f5257i == j9Var.f5257i && this.f5258j == j9Var.f5258j && this.f5259k == j9Var.f5259k && this.f5261m == j9Var.f5261m && this.f5262n == j9Var.f5262n)) {
                             if (i10 != 0 || this.f5253c == j9Var.f5253c) {
                                 if (i10 != 2 || TextUtils.equals(this.f5254e, j9Var.f5254e)) {
-                                    if (this.f17182a != 8 || TextUtils.equals(this.f5254e, j9Var.f5254e)) {
-                                        int i11 = this.f17182a;
+                                    if (this.f17183a != 8 || TextUtils.equals(this.f5254e, j9Var.f5254e)) {
+                                        int i11 = this.f17183a;
                                         if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.f5254e, j9Var.f5254e) && TextUtils.equals(this.f5255f, j9Var.f5255f))) {
-                                            if (this.f17182a != 6 || (TextUtils.equals(this.f5254e, j9Var.f5254e) && this.f5253c == j9Var.f5253c)) {
-                                                if (this.f17182a != 7 || (this.f5253c == j9Var.f5253c && TextUtils.equals(this.f5254e, j9Var.f5254e) && this.f5259k == j9Var.f5259k)) {
-                                                    if (this.f17182a != 9 || (this.f5265q == j9Var.f5265q && this.d == j9Var.d && TextUtils.equals(this.f5254e, j9Var.f5254e) && TextUtils.equals(this.f5255f, j9Var.f5255f))) {
-                                                        if (this.f17182a != 10 || this.f5265q == j9Var.f5265q) {
+                                            if (this.f17183a != 6 || (TextUtils.equals(this.f5254e, j9Var.f5254e) && this.f5253c == j9Var.f5253c)) {
+                                                if (this.f17183a != 7 || (this.f5253c == j9Var.f5253c && TextUtils.equals(this.f5254e, j9Var.f5254e) && this.f5259k == j9Var.f5259k)) {
+                                                    if (this.f17183a != 9 || (this.f5265q == j9Var.f5265q && this.d == j9Var.d && TextUtils.equals(this.f5254e, j9Var.f5254e) && TextUtils.equals(this.f5255f, j9Var.f5255f))) {
+                                                        if (this.f17183a != 10 || this.f5265q == j9Var.f5265q) {
                                                             return true;
                                                         }
                                                         return false;

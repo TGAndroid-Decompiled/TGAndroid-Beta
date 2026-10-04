@@ -10,41 +10,41 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.i4;
 public final class a implements RequestDelegate {
-    public final int f16862a = 0;
-    public final int f16863b;
-    public final boolean f16864c;
+    public final int f16863a = 0;
+    public final int f16864b;
+    public final boolean f16865c;
     public final Object d;
-    public final Object f16865e;
-    public final Object f16866f;
-    public final Object f16867g;
+    public final Object f16866e;
+    public final Object f16867f;
+    public final Object f16868g;
 
     public a(e eVar, b2[] b2VarArr, int i10, Uri uri, Context context, boolean z10) {
         this.d = eVar;
-        this.f16865e = b2VarArr;
-        this.f16863b = i10;
-        this.f16866f = uri;
-        this.f16867g = context;
-        this.f16864c = z10;
+        this.f16866e = b2VarArr;
+        this.f16864b = i10;
+        this.f16867f = uri;
+        this.f16868g = context;
+        this.f16865c = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16862a) {
+        switch (this.f16863a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new c((e) this.d, (b2[]) this.f16865e, tLObject, this.f16863b, (Uri) this.f16866f, (Context) this.f16867g, this.f16864c));
+                AndroidUtilities.runOnUIThread(new c((e) this.d, (b2[]) this.f16866e, tLObject, this.f16864b, (Uri) this.f16867f, (Context) this.f16868g, this.f16865c));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new c((i4) this.d, tLObject, this.f16863b, (TLRPC.WebPage) this.f16865e, (MessageObject) this.f16866f, this.f16864c, (String) this.f16867g));
+                AndroidUtilities.runOnUIThread(new c((i4) this.d, tLObject, this.f16864b, (TLRPC.WebPage) this.f16866e, (MessageObject) this.f16867f, this.f16865c, (String) this.f16868g));
                 return;
         }
     }
 
     public a(i4 i4Var, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z10, String str) {
         this.d = i4Var;
-        this.f16863b = i10;
-        this.f16865e = webPage;
-        this.f16866f = messageObject;
-        this.f16864c = z10;
-        this.f16867g = str;
+        this.f16864b = i10;
+        this.f16866e = webPage;
+        this.f16867f = messageObject;
+        this.f16865c = z10;
+        this.f16868g = str;
     }
 }

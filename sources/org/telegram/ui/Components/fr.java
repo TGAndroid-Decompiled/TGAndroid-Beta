@@ -63,10 +63,10 @@ public abstract class fr {
         h.setGravity(17);
         linearLayout.addView(h, w7.z5.t(-1, -2, 55, 16, 0, 16, 22));
         org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, d6Var);
-        org.telegram.ui.Cells.h3 h3Var = j3Var.f22306b;
+        org.telegram.ui.Cells.h3 h3Var = j3Var.f22307b;
         h3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i12 = org.telegram.ui.ActionBar.i6.f20817d6;
+        int i12 = org.telegram.ui.ActionBar.i6.f20818d6;
         j3Var.setBackground(org.telegram.ui.ActionBar.i6.b0(dp, org.telegram.ui.ActionBar.i6.v0(i12, d6Var)));
         j3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
         linearLayout.addView(j3Var, w7.z5.t(-1, -2, 55, 12, 0, 12, 0));
@@ -76,7 +76,7 @@ public abstract class fr {
         org.telegram.ui.Cells.j3 j3Var2 = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 29, d6Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        org.telegram.ui.Cells.h3 h3Var2 = j3Var2.f22306b;
+        org.telegram.ui.Cells.h3 h3Var2 = j3Var2.f22307b;
         j3Var2.removeView(h3Var2);
         h3Var2.setHintColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.H6, d6Var));
         h3Var2.setPadding(0, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(15.0f));
@@ -121,7 +121,7 @@ public abstract class fr {
         linearLayout3.addView(g10, w7.z5.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
         j3.useBackgroundTopPadding = false;
         j3.smoothKeyboardAnimationEnabled = true;
-        j3.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20761a7, d6Var));
+        j3.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20762a7, d6Var));
         j3.fixNavigationBar();
         final boolean[] zArr = new boolean[1];
         String[] strArr = new String[1];

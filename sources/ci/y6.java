@@ -75,14 +75,14 @@ public final class y6 implements i8, org.telegram.ui.Components.d5, org.telegram
         switch (this.f6339a) {
             case 5:
                 r9.f fVar = (r9.f) this.f6341c;
-                return fVar.f45950b.schedule(new r9.d(fVar, (Runnable) this.d, eVar, 1), this.f6340b, (TimeUnit) this.f6342e);
+                return fVar.f45951b.schedule(new r9.d(fVar, (Runnable) this.d, eVar, 1), this.f6340b, (TimeUnit) this.f6342e);
             default:
                 final r9.f fVar2 = (r9.f) this.f6341c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f45950b.schedule(new Callable() {
+                return fVar2.f45951b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f45949a.submit(new x1(17, callable, eVar));
+                        return f.this.f45950a.submit(new x1(17, callable, eVar));
                     }
                 }, this.f6340b, (TimeUnit) this.f6342e);
         }
@@ -129,7 +129,7 @@ public final class y6 implements i8, org.telegram.ui.Components.d5, org.telegram
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.f6342e;
-                ProfileActivity profileActivity = ((a01) this.f6341c).f34622b;
+                ProfileActivity profileActivity = ((a01) this.f6341c).f34623b;
                 profileActivity.N1 = true;
                 Bundle i11 = a4.a.i("scrollToTopOnResume", true);
                 long j3 = -this.f6340b;

@@ -1,12 +1,12 @@
 package z7;
 public final class fe {
-    public final gb f52533a;
-    public final Long f52534b;
-    public final ve f52535c;
+    public final gb f52534a;
+    public final Long f52535b;
+    public final ve f52536c;
 
     public fe(v7.k kVar) {
-        this.f52533a = (gb) kVar.f47977b;
-        this.f52534b = (Long) kVar.f47978c;
-        this.f52535c = (ve) kVar.d;
+        this.f52534a = (gb) kVar.f47978b;
+        this.f52535b = (Long) kVar.f47979c;
+        this.f52536c = (ve) kVar.d;
     }
 }

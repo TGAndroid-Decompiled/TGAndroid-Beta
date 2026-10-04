@@ -2,9 +2,9 @@ package w9;
 
 import java.util.HashMap;
 public final class g {
-    public static final g f48930a;
-    public static final HashMap f48931b;
-    public static final g[] f48932c;
+    public static final g f48931a;
+    public static final HashMap f48932b;
+    public static final g[] f48933c;
     g EF0;
 
     static {
@@ -16,12 +16,12 @@ public final class g {
         Enum r92 = new Enum("ARMV6", 5);
         Enum r11 = new Enum("ARMV7", 6);
         ?? r13 = new Enum("UNKNOWN", 7);
-        f48930a = r13;
+        f48931a = r13;
         Enum r15 = new Enum("ARMV7S", 8);
         Enum r22 = new Enum("ARM64", 9);
-        f48932c = new g[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
+        f48933c = new g[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
         HashMap hashMap = new HashMap(4);
-        f48931b = hashMap;
+        f48932b = hashMap;
         hashMap.put("armeabi-v7a", r11);
         hashMap.put("armeabi", r92);
         hashMap.put("arm64-v8a", r22);
@@ -33,6 +33,6 @@ public final class g {
     }
 
     public static g[] values() {
-        return (g[]) f48932c.clone();
+        return (g[]) f48933c.clone();
     }
 }

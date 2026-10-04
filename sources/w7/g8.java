@@ -13,13 +13,13 @@ import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.LaunchActivity;
 public abstract class g8 {
-    public static String f48703a;
+    public static String f48704a;
 
     public static String a(LaunchActivity launchActivity) {
         String str;
         PackageManager packageManager;
         ApplicationInfo applicationInfo;
-        String str2 = f48703a;
+        String str2 = f48704a;
         if (str2 != null) {
             return str2;
         }
@@ -42,9 +42,9 @@ public abstract class g8 {
             }
         }
         if (arrayList.isEmpty()) {
-            f48703a = null;
+            f48704a = null;
         } else if (arrayList.size() == 1) {
-            f48703a = (String) arrayList.get(0);
+            f48704a = (String) arrayList.get(0);
         } else {
             if (!TextUtils.isEmpty(str)) {
                 try {
@@ -61,26 +61,26 @@ public abstract class g8 {
                     Log.e("CustomTabsHelper", "Runtime exception while getting specialized handlers");
                 }
                 if (arrayList.contains(str)) {
-                    f48703a = str;
+                    f48704a = str;
                 }
             }
             if (arrayList.contains("com.android.chrome")) {
-                f48703a = "com.android.chrome";
+                f48704a = "com.android.chrome";
             } else if (arrayList.contains("com.chrome.beta")) {
-                f48703a = "com.chrome.beta";
+                f48704a = "com.chrome.beta";
             } else if (arrayList.contains("com.chrome.dev")) {
-                f48703a = "com.chrome.dev";
+                f48704a = "com.chrome.dev";
             } else if (arrayList.contains("com.google.android.apps.chrome")) {
-                f48703a = "com.google.android.apps.chrome";
+                f48704a = "com.google.android.apps.chrome";
             }
         }
         try {
-            if ("com.sec.android.app.sbrowser".equalsIgnoreCase(f48703a) && (applicationInfo = (packageManager = ApplicationLoader.applicationContext.getPackageManager()).getApplicationInfo("com.android.chrome", 0)) != null && applicationInfo.enabled) {
+            if ("com.sec.android.app.sbrowser".equalsIgnoreCase(f48704a) && (applicationInfo = (packageManager = ApplicationLoader.applicationContext.getPackageManager()).getApplicationInfo("com.android.chrome", 0)) != null && applicationInfo.enabled) {
                 packageManager.getPackageInfo("com.android.chrome", 1);
-                f48703a = "com.android.chrome";
+                f48704a = "com.android.chrome";
             }
         } catch (Throwable unused2) {
         }
-        return f48703a;
+        return f48704a;
     }
 }

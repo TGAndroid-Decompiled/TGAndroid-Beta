@@ -11,32 +11,32 @@ import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.zl0;
 public abstract class i1 extends zl0 {
     public static final Paint j3;
-    public static final Paint f45049k3;
-    public static final Path f45050l3;
-    public static final Paint f45051m3;
-    public final Paint f45052e3;
-    public final Paint f45053f3;
-    public int f45054g3;
-    public pg.u0 f45055h3;
-    public q0.a f45056i3;
+    public static final Paint f45050k3;
+    public static final Path f45051l3;
+    public static final Paint f45052m3;
+    public final Paint f45053e3;
+    public final Paint f45054f3;
+    public int f45055g3;
+    public pg.u0 f45056h3;
+    public q0.a f45057i3;
 
     static {
         Paint paint = new Paint(1);
         j3 = paint;
         Paint paint2 = new Paint(1);
-        f45049k3 = paint2;
+        f45050k3 = paint2;
         paint.setColor(-2013265920);
         paint2.setColor(-1996488705);
-        f45050l3 = new Path();
-        f45051m3 = new Paint(1);
+        f45051l3 = new Path();
+        f45052m3 = new Paint(1);
     }
 
     public i1(Context context) {
         super(context, null);
-        this.f45052e3 = new Paint(1);
+        this.f45053e3 = new Paint(1);
         Paint paint = new Paint(1);
-        this.f45053f3 = paint;
-        this.f45054g3 = -1;
+        this.f45054f3 = paint;
+        this.f45055g3 = -1;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -59,7 +59,7 @@ public abstract class i1 extends zl0 {
                 canvas2.drawRect(f7, f10, f12, f13, paint);
                 float f14 = i10 * 2;
                 float f15 = f7 + f14;
-                Paint paint2 = f45049k3;
+                Paint paint2 = f45050k3;
                 float f16 = f10;
                 canvas2.drawRect(f12, f16, f15, f13, paint2);
                 float f17 = f16 + f14;
@@ -74,14 +74,14 @@ public abstract class i1 extends zl0 {
     }
 
     public static void z1(float f7, float f10, float f11, int i10, Canvas canvas) {
-        Paint paint = f45051m3;
+        Paint paint = f45052m3;
         paint.setColor(i10);
         if (paint.getAlpha() != 255) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
             paint.setAlpha(255);
             canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
-            Path path = f45050l3;
+            Path path = f45051l3;
             path.rewind();
             path.moveTo(rectF.centerX(), rectF.centerY());
             path.lineTo((float) hg.k0.e(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
@@ -103,9 +103,9 @@ public abstract class i1 extends zl0 {
         float interpolation;
         float f10;
         if (z10) {
-            interpolation = tr.f31141g.getInterpolation(f7);
+            interpolation = tr.f31142g.getInterpolation(f7);
         } else {
-            interpolation = tr.f31142i.getInterpolation(f7);
+            interpolation = tr.f31143i.getInterpolation(f7);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
@@ -128,20 +128,20 @@ public abstract class i1 extends zl0 {
     }
 
     public int getSelectedColorIndex() {
-        return this.f45054g3;
+        return this.f45055g3;
     }
 
     public void setColorListener(q0.a aVar) {
-        this.f45056i3 = aVar;
+        this.f45057i3 = aVar;
     }
 
     public void setColorPalette(pg.u0 u0Var) {
-        this.f45055h3 = u0Var;
+        this.f45056h3 = u0Var;
         getAdapter().l();
     }
 
     public void setSelectedColorIndex(int i10) {
-        this.f45054g3 = i10;
+        this.f45055g3 = i10;
         getAdapter().l();
     }
 }

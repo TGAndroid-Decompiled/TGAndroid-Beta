@@ -36,14 +36,14 @@ import rg.s1;
 import tg.b0;
 import tg.i;
 public final class py0 implements View.OnClickListener {
-    public final int f39555a;
-    public final Object f39556b;
-    public final Object f39557c;
+    public final int f39556a;
+    public final Object f39557b;
+    public final Object f39558c;
 
     public py0(int i10, Object obj, Object obj2) {
-        this.f39555a = i10;
-        this.f39556b = obj;
-        this.f39557c = obj2;
+        this.f39556a = i10;
+        this.f39557b = obj;
+        this.f39558c = obj2;
     }
 
     @Override
@@ -58,11 +58,11 @@ public final class py0 implements View.OnClickListener {
         TLRPC.TL_chatBannedRights tL_chatBannedRights = null;
         org.telegram.ui.ActionBar.a3 a3Var = null;
         int i11 = 0;
-        switch (this.f39555a) {
+        switch (this.f39556a) {
             case 0:
-                ProfileActivity profileActivity = (ProfileActivity) this.f39556b;
-                TLRPC.Chat chat = (TLRPC.Chat) this.f39557c;
-                long j12 = profileActivity.f34233e1;
+                ProfileActivity profileActivity = (ProfileActivity) this.f39557b;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f39558c;
+                long j12 = profileActivity.f34234e1;
                 long j13 = profileActivity.E1;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights2 = chat.default_banned_rights;
                 TLRPC.ChannelParticipant channelParticipant = profileActivity.G2;
@@ -74,14 +74,14 @@ public final class py0 implements View.OnClickListener {
                 profileActivity.presentFragment(mqVar);
                 return;
             case 1:
-                h21 h21Var = (h21) this.f39556b;
-                Context context = (Context) this.f39557c;
+                h21 h21Var = (h21) this.f39557b;
+                Context context = (Context) this.f39558c;
                 StringBuilder sb2 = new StringBuilder();
-                String obj = h21Var.f36835a[0].getText().toString();
-                String obj2 = h21Var.f36835a[3].getText().toString();
-                String obj3 = h21Var.f36835a[2].getText().toString();
-                String obj4 = h21Var.f36835a[1].getText().toString();
-                String obj5 = h21Var.f36835a[4].getText().toString();
+                String obj = h21Var.f36836a[0].getText().toString();
+                String obj2 = h21Var.f36836a[3].getText().toString();
+                String obj3 = h21Var.f36836a[2].getText().toString();
+                String obj4 = h21Var.f36836a[1].getText().toString();
+                String obj5 = h21Var.f36836a[4].getText().toString();
                 try {
                     if (!TextUtils.isEmpty(obj)) {
                         sb2.append("server=");
@@ -131,21 +131,21 @@ public final class py0 implements View.OnClickListener {
                     return;
                 }
             case 2:
-                r51 r51Var = (r51) this.f39556b;
-                Context context2 = (Context) this.f39557c;
-                if (r51Var.f43076w == null) {
+                r51 r51Var = (r51) this.f39557b;
+                Context context2 = (Context) this.f39558c;
+                if (r51Var.f43077w == null) {
                     boolean[] zArr = new boolean[1];
                     long currentTimeMillis = System.currentTimeMillis() / 1000;
                     fs0 fs0Var = new fs0(10, r51Var, zArr);
-                    Pattern pattern = org.telegram.ui.Components.e5.f25913a;
+                    Pattern pattern = org.telegram.ui.Components.e5.f25914a;
                     if (context2 != null) {
-                        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20925j5, false);
-                        int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20889h5, false);
+                        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20926j5, false);
+                        int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20890h5, false);
                         org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Ji, false);
                         org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Ni, false);
                         org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.E8, false);
                         org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G8, false);
-                        org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20908i6, false);
+                        org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20909i6, false);
                         int w04 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false);
                         int w05 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false);
                         int w06 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Qh, false);
@@ -231,31 +231,31 @@ public final class py0 implements View.OnClickListener {
                         a3Var = a3Var2;
                         p4Var.setOnClickListener(new org.telegram.ui.Components.m0(gd0Var, gd0Var2, gd0Var5, calendar, fs0Var, a3Var2, 1));
                         a3Var.b(w3Var);
-                        org.telegram.ui.ActionBar.f3 f3Var = a3Var.f20373a;
+                        org.telegram.ui.ActionBar.f3 f3Var = a3Var.f20374a;
                         f3Var.show();
                         f3Var.setBackgroundColor(w03);
                         f3Var.fixNavigationBar(w03);
                     }
-                    a3Var.f20373a.setOnHideListener(new ei.f0(r51Var, zArr, 11));
-                    org.telegram.ui.ActionBar.f3 f3Var2 = a3Var.f20373a;
+                    a3Var.f20374a.setOnHideListener(new ei.f0(r51Var, zArr, 11));
+                    org.telegram.ui.ActionBar.f3 f3Var2 = a3Var.f20374a;
                     f3Var2.show();
-                    r51Var.f43076w = f3Var2;
+                    r51Var.f43077w = f3Var2;
                     r51Var.c(false);
                     return;
                 }
                 return;
             case 3:
-                p71 p71Var = (p71) this.f39556b;
-                org.telegram.ui.Components.uc ucVar = (org.telegram.ui.Components.uc) this.f39557c;
+                p71 p71Var = (p71) this.f39557b;
+                org.telegram.ui.Components.uc ucVar = (org.telegram.ui.Components.uc) this.f39558c;
                 if (p71Var.Z.g() != 0) {
-                    ucVar.run(new ArrayList(p71Var.f39360a0.values()));
+                    ucVar.run(new ArrayList(p71Var.f39361a0.values()));
                     p71Var.dismiss();
                     return;
                 }
                 return;
             case 4:
-                SessionsActivity sessionsActivity = (SessionsActivity) this.f39556b;
-                ((AlertDialog$Builder) this.f39557c).f20367a.L0.run();
+                SessionsActivity sessionsActivity = (SessionsActivity) this.f39557b;
+                ((AlertDialog$Builder) this.f39558c).f20368a.L0.run();
                 Integer num = (Integer) view.getTag();
                 if (num.intValue() == 0) {
                     i10 = 7;
@@ -271,35 +271,35 @@ public final class py0 implements View.OnClickListener {
                 TL_account.setAuthorizationTTL setauthorizationttl = new TL_account.setAuthorizationTTL();
                 setauthorizationttl.authorization_ttl_days = i10;
                 sessionsActivity.v = i10;
-                m81 m81Var = sessionsActivity.f34463a;
+                m81 m81Var = sessionsActivity.f34464a;
                 if (m81Var != null) {
                     m81Var.l();
                 }
                 sessionsActivity.getConnectionsManager().sendRequest(setauthorizationttl, new ai.u7(8));
                 return;
             case 5:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f39556b;
-                editTextBoldCursor.setText(yh.x7.S0(((Long) this.f39557c).longValue()));
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f39557b;
+                editTextBoldCursor.setText(yh.x7.S0(((Long) this.f39558c).longValue()));
                 editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
                 return;
             case 6:
-                va1 va1Var = ((aa1) this.f39556b).f34761d0;
-                va1Var.getOrCreateStoryViewer().C(va1Var.getParentActivity(), ((sa1) this.f39557c).b(), va1Var.C0, ai.u9.a(va1Var.S));
+                va1 va1Var = ((aa1) this.f39557b).f34762d0;
+                va1Var.getOrCreateStoryViewer().C(va1Var.getParentActivity(), ((sa1) this.f39558c).b(), va1Var.C0, ai.u9.a(va1Var.S));
                 return;
             case 7:
-                ea1 ea1Var = (ea1) this.f39556b;
-                kg.f fVar = (kg.f) this.f39557c;
-                int i12 = ea1Var.f35971c;
+                ea1 ea1Var = (ea1) this.f39557b;
+                kg.f fVar = (kg.f) this.f39558c;
+                int i12 = ea1Var.f35972c;
                 fa1 fa1Var = ea1Var.d;
-                org.telegram.ui.Components.v00 v00Var = ea1Var.f35969a;
-                if (v00Var.f31479c) {
-                    ArrayList arrayList = fa1Var.f36234n;
-                    ig.g gVar = fa1Var.f36231c;
+                org.telegram.ui.Components.v00 v00Var = ea1Var.f35970a;
+                if (v00Var.f31480c) {
+                    ArrayList arrayList = fa1Var.f36235n;
+                    ig.g gVar = fa1Var.f36232c;
                     int size = arrayList.size();
                     int i13 = 0;
                     while (true) {
                         if (i13 < size) {
-                            if (i13 == i12 || !((ea1) arrayList.get(i13)).f35969a.f31479c || !((ea1) arrayList.get(i13)).f35969a.f31478b) {
+                            if (i13 == i12 || !((ea1) arrayList.get(i13)).f35970a.f31480c || !((ea1) arrayList.get(i13)).f35970a.f31479b) {
                                 i13++;
                             }
                         } else {
@@ -311,11 +311,11 @@ public final class py0 implements View.OnClickListener {
                         AndroidUtilities.shakeView(v00Var);
                         return;
                     }
-                    v00Var.setChecked(true ^ v00Var.f31478b);
-                    fVar.f14804n = v00Var.f31478b;
-                    fa1Var.f36230b.z();
-                    if (fa1Var.f36235r.f37017c > 0 && i12 < gVar.d.size()) {
-                        ((kg.f) gVar.d.get(i12)).f14804n = v00Var.f31478b;
+                    v00Var.setChecked(true ^ v00Var.f31479b);
+                    fVar.f14804n = v00Var.f31479b;
+                    fa1Var.f36231b.z();
+                    if (fa1Var.f36236r.f37018c > 0 && i12 < gVar.d.size()) {
+                        ((kg.f) gVar.d.get(i12)).f14804n = v00Var.f31479b;
                         gVar.z();
                         return;
                     }
@@ -323,23 +323,23 @@ public final class py0 implements View.OnClickListener {
                 }
                 return;
             case 8:
-                uy uyVar = (uy) this.f39557c;
+                uy uyVar = (uy) this.f39558c;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(uyVar.getParentActivity());
-                alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.LocalDatabaseClearTextTitle);
-                alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.LocalDatabaseClearText);
+                alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.LocalDatabaseClearTextTitle);
+                alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.LocalDatabaseClearText);
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                alertDialog$Builder.k(LocaleController.getString(R.string.CacheClear), new fs0(12, (db1) this.f39556b, uyVar));
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
+                alertDialog$Builder.k(LocaleController.getString(R.string.CacheClear), new fs0(12, (db1) this.f39557b, uyVar));
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20368a;
                 uyVar.showDialog(b2Var);
                 TextView textView2 = (TextView) b2Var.d(-1);
                 if (textView2 != null) {
-                    textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21058q7, false));
+                    textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21059q7, false));
                     return;
                 }
                 return;
             case 9:
-                wd1 wd1Var = (wd1) this.f39556b;
-                Context context3 = (Context) this.f39557c;
+                wd1 wd1Var = (wd1) this.f39557b;
+                Context context3 = (Context) this.f39558c;
                 if (wd1Var.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.a3 a3Var3 = new org.telegram.ui.ActionBar.a3(wd1Var.getParentActivity(), null);
                     a3Var3.a();
@@ -347,7 +347,7 @@ public final class py0 implements View.OnClickListener {
                     linearLayout2.setOrientation(1);
                     TextView textView3 = new TextView(context3);
                     textView3.setText(LocaleController.getString(R.string.ChooseTheme));
-                    org.telegram.messenger.f0.q(textView3, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20925j5, false), 1, 20.0f);
+                    org.telegram.messenger.f0.q(textView3, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20926j5, false), 1, 20.0f);
                     linearLayout2.addView(textView3, w7.z5.t(-1, -2, 51, 22, 12, 22, 4));
                     textView3.setOnTouchListener(new bi.d(2));
                     a3Var3.b(linearLayout2);
@@ -364,28 +364,28 @@ public final class py0 implements View.OnClickListener {
                     yb1 yb1Var = new yb1(context3, wd1Var, arrayList2, new ArrayList(), a3Var3);
                     linearLayout2.addView(yb1Var, w7.z5.k(0.0f, 7.0f, 0.0f, 1.0f, -1, 148));
                     yb1Var.z1(wd1Var.fragmentView.getMeasuredWidth());
-                    wd1Var.showDialog(a3Var3.f20373a);
+                    wd1Var.showDialog(a3Var3.f20374a);
                     return;
                 }
                 return;
             case 10:
-                mi1 mi1Var = (mi1) this.f39556b;
-                Context context4 = (Context) this.f39557c;
+                mi1 mi1Var = (mi1) this.f39557b;
+                Context context4 = (Context) this.f39558c;
                 tg.m1 m1Var = mi1Var.M;
                 if (m1Var != null) {
                     m1Var.dismiss();
                     mi1Var.M = null;
                 }
-                tg.m1 m1Var2 = new tg.m1(context4, mi1Var.f38603a, null, 4, new ai.a1());
-                TLRPC.User user = mi1Var.f38609c;
+                tg.m1 m1Var2 = new tg.m1(context4, mi1Var.f38604a, null, 4, new ai.a1());
+                TLRPC.User user = mi1Var.f38610c;
                 if (user != null) {
-                    j3 = user.f20184id;
+                    j3 = user.f20185id;
                 } else {
                     j3 = 0;
                 }
                 TLRPC.User user2 = mi1Var.d;
                 if (user2 != null) {
-                    j11 = user2.f20184id;
+                    j11 = user2.f20185id;
                 }
                 long[] jArr = {j3, j11};
                 for (int i14 = 0; i14 < 2; i14++) {
@@ -397,8 +397,8 @@ public final class py0 implements View.OnClickListener {
                 m1Var2.show();
                 return;
             case 11:
-                ci.d dVar = (ci.d) this.f39556b;
-                int[] iArr = (int[]) this.f39557c;
+                ci.d dVar = (ci.d) this.f39557b;
+                int[] iArr = (int[]) this.f39558c;
                 if (!dVar.N && (cVar = dj1.d) != null) {
                     dVar.setLoading(true);
                     Context applicationContext = view.getContext().getApplicationContext();
@@ -407,7 +407,7 @@ public final class py0 implements View.OnClickListener {
                         com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6484c).h;
                         b8.e eVar = new b8.e(t0Var, (String) cVar.d, "/tg-wear-auth/answer", i15);
                         t0Var.f6637b.d(0, eVar);
-                        n6.l.n(eVar, y8.j0.f50491a).addOnSuccessListener(new c7(cVar, dVar, iArr, 24)).addOnFailureListener(new cj1(dVar, 0));
+                        n6.l.n(eVar, y8.j0.f50492a).addOnSuccessListener(new c7(cVar, dVar, iArr, 24)).addOnFailureListener(new cj1(dVar, 0));
                         return;
                     } catch (Exception e7) {
                         FileLog.e(e7);
@@ -417,57 +417,57 @@ public final class py0 implements View.OnClickListener {
                 }
                 return;
             case 12:
-                org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f39556b;
-                kVar.f42244b = true;
-                ((y) this.f39557c).run();
-                kVar.f42251w.f25244f3.N(true);
+                org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f39557b;
+                kVar.f42245b = true;
+                ((y) this.f39558c).run();
+                kVar.f42252w.f25245f3.N(true);
                 return;
             case 13:
-                pg.x xVar = (pg.x) this.f39556b;
-                Context context5 = (Context) this.f39557c;
-                if (!xVar.f44678n.c()) {
-                    Bitmap snapshotView = AndroidUtilities.snapshotView(xVar.f44678n.e());
+                pg.x xVar = (pg.x) this.f39557b;
+                Context context5 = (Context) this.f39558c;
+                if (!xVar.f44679n.c()) {
+                    Bitmap snapshotView = AndroidUtilities.snapshotView(xVar.f44679n.e());
                     Bitmap createBitmap = Bitmap.createBitmap(snapshotView.getWidth(), snapshotView.getHeight(), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
                     canvas.drawColor(-16777216);
-                    xVar.f44678n.b(canvas);
+                    xVar.f44679n.b(canvas);
                     canvas.drawBitmap(snapshotView, 0.0f, 0.0f, (Paint) null);
                     snapshotView.recycle();
                     pg.n nVar = new pg.n(xVar, context5, createBitmap);
-                    xVar.f44678n.f().addView(nVar, w7.z5.c(-1.0f, -1));
-                    pg.u uVar = xVar.f44678n;
+                    xVar.f44679n.f().addView(nVar, w7.z5.c(-1.0f, -1));
+                    pg.u uVar = xVar.f44679n;
                     Objects.requireNonNull(uVar);
                     nVar.setColorListener(new ci.d5(uVar, 4));
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                    duration.setInterpolator(org.telegram.ui.Components.tr.f31140f);
+                    duration.setInterpolator(org.telegram.ui.Components.tr.f31141f);
                     duration.addUpdateListener(new org.telegram.ui.Components.voip.r0(nVar, 11));
                     duration.start();
-                    xVar.f44678n.a();
+                    xVar.f44679n.a();
                     xVar.dismiss();
                     return;
                 }
                 return;
             case 14:
-                qg.n2 n2Var = (qg.n2) this.f39556b;
-                ci.dd ddVar = (ci.dd) this.f39557c;
+                qg.n2 n2Var = (qg.n2) this.f39557b;
+                ci.dd ddVar = (ci.dd) this.f39558c;
                 qg.k2[] k2VarArr = n2Var.H;
-                if (k2VarArr != null && k2VarArr.length != 0 && n2Var.I != null && (j10 = n2Var.j(n2Var.f45227n0, n2Var.f45228o0)) != null) {
+                if (k2VarArr != null && k2VarArr.length != 0 && n2Var.I != null && (j10 = n2Var.j(n2Var.f45228n0, n2Var.f45229o0)) != null) {
                     ddVar.run(j10);
                     return;
                 }
                 return;
             case 15:
-                org.telegram.ui.Components.xn.d0((yn) this.f39557c, 41026, new ii.q1((qh.c) this.f39556b, 10), null);
+                org.telegram.ui.Components.xn.d0((yn) this.f39558c, 41026, new ii.q1((qh.c) this.f39557b, 10), null);
                 return;
             case 16:
-                rg.k0.T((rg.k0) this.f39556b, (Context) this.f39557c);
+                rg.k0.T((rg.k0) this.f39557b, (Context) this.f39558c);
                 return;
             case 17:
-                tg.s0 s0Var = (tg.s0) this.f39556b;
-                TLRPC.Chat chat2 = (TLRPC.Chat) this.f39557c;
+                tg.s0 s0Var = (tg.s0) this.f39557b;
+                TLRPC.Chat chat2 = (TLRPC.Chat) this.f39558c;
                 ArrayList arrayList3 = s0Var.X;
                 if (!arrayList3.isEmpty()) {
-                    tg.d0 d0Var = s0Var.f47092a0;
+                    tg.d0 d0Var = s0Var.f47093a0;
                     if (!d0Var.N) {
                         d0Var.setLoading(true);
                         ArrayList arrayList4 = new ArrayList();
@@ -480,16 +480,16 @@ public final class py0 implements View.OnClickListener {
                             arrayList4.add(Integer.valueOf(tL_myBoost.slot));
                             hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(tL_myBoost.peer)));
                         }
-                        tg.s.a(chat2.f20037id, arrayList4, new ai.e4(s0Var, chat2, arrayList4, hashSet, 17), new ii.q1(s0Var, 14));
+                        tg.s.a(chat2.f20038id, arrayList4, new ai.e4(s0Var, chat2, arrayList4, hashSet, 17), new ii.q1(s0Var, 14));
                         return;
                     }
                     return;
                 }
                 return;
             case 18:
-                tg.m1 m1Var3 = (tg.m1) this.f39556b;
-                ArrayList arrayList5 = (ArrayList) this.f39557c;
-                HashSet hashSet2 = m1Var3.f47047h0;
+                tg.m1 m1Var3 = (tg.m1) this.f39557b;
+                ArrayList arrayList5 = (ArrayList) this.f39558c;
+                HashSet hashSet2 = m1Var3.f47048h0;
                 int size4 = arrayList5.size();
                 while (i11 < size4) {
                     Object obj7 = arrayList5.get(i11);
@@ -497,7 +497,7 @@ public final class py0 implements View.OnClickListener {
                     Long l4 = (Long) obj7;
                     l4.getClass();
                     hashSet2.remove(l4);
-                    m1Var3.f47052n0.remove(l4);
+                    m1Var3.f47053n0.remove(l4);
                 }
                 m1Var3.U();
                 m1Var3.Z.b(true, hashSet2, new tg.a1(m1Var3, 5), null);
@@ -505,13 +505,13 @@ public final class py0 implements View.OnClickListener {
                 m1Var3.W();
                 return;
             case 19:
-                tg.m1.Q((tg.m1) this.f39556b, (TLRPC.User) this.f39557c, view);
+                tg.m1.Q((tg.m1) this.f39557b, (TLRPC.User) this.f39558c, view);
                 return;
             case 20:
-                final ug.e eVar2 = (ug.e) this.f39556b;
-                final vg.a aVar = (vg.a) this.f39557c;
+                final ug.e eVar2 = (ug.e) this.f39557b;
+                final vg.a aVar = (vg.a) this.f39558c;
                 if (eVar2.d) {
-                    if (!aVar.f48264a.N) {
+                    if (!aVar.f48265a.N) {
                         aVar.b(true);
                         String str2 = eVar2.h;
                         Utilities.Callback callback = new Utilities.Callback() {
@@ -523,12 +523,12 @@ public final class py0 implements View.OnClickListener {
                                         aVar.b(false);
                                         b0 b0Var = (b0) eVar2;
                                         AndroidUtilities.runOnUIThread(new s1(b0Var, 8), 200L);
-                                        b0Var.f46980r.dismiss();
+                                        b0Var.f46981r.dismiss();
                                         return;
                                     default:
                                         aVar.b(false);
                                         e eVar3 = eVar2;
-                                        i.c((TLRPC.TL_error) obj8, eVar3.f47651n, eVar3.f47648c, new c(eVar3, 1));
+                                        i.c((TLRPC.TL_error) obj8, eVar3.f47652n, eVar3.f47649c, new c(eVar3, 1));
                                         return;
                                 }
                             }
@@ -542,12 +542,12 @@ public final class py0 implements View.OnClickListener {
                                         aVar.b(false);
                                         b0 b0Var = (b0) eVar2;
                                         AndroidUtilities.runOnUIThread(new s1(b0Var, 8), 200L);
-                                        b0Var.f46980r.dismiss();
+                                        b0Var.f46981r.dismiss();
                                         return;
                                     default:
                                         aVar.b(false);
                                         e eVar3 = eVar2;
-                                        i.c((TLRPC.TL_error) obj8, eVar3.f47651n, eVar3.f47648c, new c(eVar3, 1));
+                                        i.c((TLRPC.TL_error) obj8, eVar3.f47652n, eVar3.f47649c, new c(eVar3, 1));
                                         return;
                                 }
                             }
@@ -560,48 +560,48 @@ public final class py0 implements View.OnClickListener {
                     }
                     return;
                 }
-                ((tg.b0) eVar2).f46980r.dismiss();
+                ((tg.b0) eVar2).f46981r.dismiss();
                 return;
             case 21:
-                TLRPC.Chat chat3 = (TLRPC.Chat) this.f39557c;
-                vg.f fVar2 = ((vg.g) this.f39556b).f48295s;
+                TLRPC.Chat chat3 = (TLRPC.Chat) this.f39558c;
+                vg.f fVar2 = ((vg.g) this.f39557b).f48296s;
                 if (fVar2 != null) {
-                    tg.a0 a0Var = ((tg.u) fVar2).f47099a;
-                    a0Var.f46952c0.remove(chat3);
+                    tg.a0 a0Var = ((tg.u) fVar2).f47100a;
+                    a0Var.f46953c0.remove(chat3);
                     a0Var.Z(true, true);
                     return;
                 }
                 return;
             case 22:
-                ((ii.q1) this.f39556b).run((TLRPC.TL_payments_checkedGiftCode) this.f39557c);
+                ((ii.q1) this.f39557b).run((TLRPC.TL_payments_checkedGiftCode) this.f39558c);
                 return;
             case 23:
-                ((ii.q1) this.f39556b).run((TLRPC.Chat) this.f39557c);
+                ((ii.q1) this.f39557b).run((TLRPC.Chat) this.f39558c);
                 return;
             case 24:
-                xh.c.N((xh.c) this.f39556b, (TL_stars.TL_StarGiftAuctionAcquiredGift) this.f39557c);
+                xh.c.N((xh.c) this.f39557b, (TL_stars.TL_StarGiftAuctionAcquiredGift) this.f39558c);
                 return;
             case 25:
-                xh.i4 i4Var = (xh.i4) this.f39556b;
+                xh.i4 i4Var = (xh.i4) this.f39557b;
                 i4Var.getClass();
-                if (((yh.l7) this.f39557c).f51587f > 0) {
+                if (((yh.l7) this.f39558c).f51588f > 0) {
                     i4Var.presentFragment(new yh.x7());
                     return;
                 }
                 return;
             case 26:
-                xh.h4.N((xh.h4) this.f39556b, (xh.g4) this.f39557c);
+                xh.h4.N((xh.h4) this.f39557b, (xh.g4) this.f39558c);
                 return;
             case 27:
-                xh.m4 m4Var = (xh.m4) this.f39556b;
-                ei.s4 s4Var = (ei.s4) this.f39557c;
+                xh.m4 m4Var = (xh.m4) this.f39557b;
+                ei.s4 s4Var = (ei.s4) this.f39558c;
                 HashSet hashSet3 = m4Var.Z;
                 if (!hashSet3.isEmpty()) {
                     ArrayList arrayList6 = new ArrayList();
                     Iterator it = hashSet3.iterator();
                     while (it.hasNext()) {
                         long longValue = ((Long) it.next()).longValue();
-                        ArrayList arrayList7 = m4Var.Y.f51527l;
+                        ArrayList arrayList7 = m4Var.Y.f51528l;
                         int size5 = arrayList7.size();
                         int i16 = 0;
                         while (true) {
@@ -630,13 +630,13 @@ public final class py0 implements View.OnClickListener {
                 }
                 return;
             case 28:
-                yh.k5 k5Var = ((xh.j4) this.f39556b).f50036c.Y;
-                k5Var.f51521e = !k5Var.f51521e;
-                ((org.telegram.messenger.ik) this.f39557c).run();
+                yh.k5 k5Var = ((xh.j4) this.f39557b).f50037c.Y;
+                k5Var.f51522e = !k5Var.f51522e;
+                ((org.telegram.messenger.ik) this.f39558c).run();
                 k5Var.i(true);
                 return;
             default:
-                yh.g.W((yh.g) this.f39556b, (Context) this.f39557c, view);
+                yh.g.W((yh.g) this.f39557b, (Context) this.f39558c, view);
                 return;
         }
     }

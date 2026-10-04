@@ -132,14 +132,14 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
 
     public final void H0() {
         K0();
-        zl0 zl0Var = this.f39883c;
+        zl0 zl0Var = this.f39884c;
         if (zl0Var != null && this.S != null && zl0Var.getLayoutParams() != null) {
             int C = ok.C(48.0f, this.Z, -AndroidUtilities.dp(8.0f));
             int C2 = ok.C(48.0f, this.f8378a0, -AndroidUtilities.dp(8.0f));
-            AndroidUtilities.setViewLayoutMargins(this.f39883c, 0, C, 0, C2);
-            zl0 zl0Var2 = this.f39883c;
+            AndroidUtilities.setViewLayoutMargins(this.f39884c, 0, C, 0, C2);
+            zl0 zl0Var2 = this.f39884c;
             int i10 = -C;
-            zl0Var2.setPadding(zl0Var2.getPaddingLeft(), i10, this.f39883c.getPaddingRight(), this.f8378a0 - C2);
+            zl0Var2.setPadding(zl0Var2.getPaddingLeft(), i10, this.f39884c.getPaddingRight(), this.f8378a0 - C2);
             this.S.s0(i10, -C2);
         }
     }
@@ -148,7 +148,7 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
         boolean z10;
         zl0 zl0Var;
         aw0 aw0Var = this.S;
-        if (aw0Var != null && aw0Var.f24692h1) {
+        if (aw0Var != null && aw0Var.f24693h1) {
             z10 = true;
         } else {
             z10 = false;
@@ -157,7 +157,7 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
         if (getParentActivity() != null) {
             t5 y3 = t5.y(this.currentAccount, true);
             g61 g61Var = new g61(-2);
-            g61Var.f26661c = (n20) super.s0(getParentActivity());
+            g61Var.f26662c = (n20) super.s0(getParentActivity());
             arrayList.add(g61Var);
             arrayList.add(g61.k(this.f8384g0));
             boolean z11 = this.f8383f0;
@@ -172,10 +172,10 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
                 }
                 this.Y = arrayList.size();
                 arrayList.add(g61.l(-2, this.T));
-                if (z10 && (zl0Var = this.f39883c) != null) {
+                if (z10 && (zl0Var = this.f39884c) != null) {
                     qc qcVar = this.f8381d0;
                     zl0Var.removeCallbacks(qcVar);
-                    this.f39883c.post(qcVar);
+                    this.f39884c.post(qcVar);
                     return;
                 }
                 return;
@@ -297,11 +297,11 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
         if (bVar == null) {
             f7 = 0.0f;
         } else {
-            f7 = bVar.f15434e;
+            f7 = bVar.f15435e;
         }
         le.b bVar2 = this.W;
         if (bVar2 != null) {
-            f10 = bVar2.f15434e;
+            f10 = bVar2.f15435e;
         }
         view.setTranslationY(((-(1.0f - f7)) * org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - ((1.0f - f10) * AndroidUtilities.dp(44.0f)));
     }
@@ -335,16 +335,16 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
         this.R = new w7(context, this.currentAccount, true, 0L, getClassGuid(), getResourceProvider(), this.S);
         this.f8382e0 = new ab(this, context, 1);
         super.createView(context);
-        q20 q20Var = this.f39888s;
-        getBaseSimpleGlass().d(q20Var, this.f39883c, this.actionBar, this.resourceProvider);
+        q20 q20Var = this.f39889s;
+        getBaseSimpleGlass().d(q20Var, this.f39884c, this.actionBar, this.resourceProvider);
         this.actionBar.setBackground(null);
-        this.f39891y.bringToFront();
+        this.f39892y.bringToFront();
         this.actionBar.bringToFront();
         getBaseSimpleGlass().h = this.S;
-        this.f39883c.setCaptureSectionsDecoratorAllowed(true);
+        this.f39884c.setCaptureSectionsDecoratorAllowed(true);
         this.R.setGlassEngine(this.glassEngine);
         e eVar = new e(q20Var, 0);
-        getBaseSimpleGlass().f15609i = new f(0, this, eVar);
+        getBaseSimpleGlass().f15610i = new f(0, this, eVar);
         FrameLayout tabsContainer = this.R.getTabsContainer();
         View view = new View(getParentActivity());
         this.U = view;
@@ -359,16 +359,16 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
         this.V = bVar;
         this.W = new le.b(1, new a(this, 1), trVar, 380L, false);
         this.X = new le.b(2, new a(this, 2), trVar, 380L, false);
-        if (!this.f39883c.canScrollVertically(-1) && !this.actionBar.s()) {
+        if (!this.f39884c.canScrollVertically(-1) && !this.actionBar.s()) {
             z10 = false;
         } else {
             z10 = true;
         }
         bVar.a(z10, false);
-        this.W.a(this.S.f24692h1, false);
-        this.f39883c.j(new r(this, 3));
+        this.W.a(this.S.f24693h1, false);
+        this.f39884c.j(new r(this, 3));
         K0();
-        ch.d c10 = getBaseSimpleGlass().f15605c.c(tabsContainer, null, false);
+        ch.d c10 = getBaseSimpleGlass().f15606c.c(tabsContainer, null, false);
         c10.x(eh.b.m(this.resourceProvider));
         c10.y(AndroidUtilities.dp(9.66f));
         c10.z(AndroidUtilities.dp(18.0f));
@@ -382,22 +382,22 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
         frameLayout.setClickable(true);
         sg.e eVar2 = new sg.e(context, 1, 4);
         this.Q = eVar2;
-        sg.a aVar2 = eVar2.f46812b;
-        aVar2.f46800w = i6.fk;
-        aVar2.f46801x = i6.gk;
+        sg.a aVar2 = eVar2.f46813b;
+        aVar2.f46801w = i6.fk;
+        aVar2.f46802x = i6.gk;
         aVar2.b();
-        this.Q.setStarParticlesView(this.f39884e);
+        this.Q.setStarParticlesView(this.f39885e);
         this.P.addView(this.Q, z5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         n0(LocaleController.getString(R.string.TONBalanceTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.TONBalanceText), new b(context, 0)), true), this.P, null);
-        this.f39883c.setOverScrollMode(2);
+        this.f39884c.setOverScrollMode(2);
         s4.j jVar = new s4.j();
-        jVar.f46562m = false;
+        jVar.f46563m = false;
         jVar.C = false;
         jVar.o(trVar);
         jVar.n(350L);
-        this.f39883c.setItemAnimator(jVar);
-        this.f39883c.setOnItemClickListener(new ai.g(this, 6));
-        this.f39888s.addView(new u00(getParentActivity()), z5.c(-1.0f, -1));
+        this.f39884c.setItemAnimator(jVar);
+        this.f39884c.setOnItemClickListener(new ai.g(this, 6));
+        this.f39889s.addView(new u00(getParentActivity()), z5.c(-1.0f, -1));
         t5.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.f8384g0 = linearLayout;
@@ -421,7 +421,7 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
         p6Var2.setTextSize(AndroidUtilities.dp(14.0f));
         this.f8387j0.setGravity(17);
         this.f8387j0.setText(LocaleController.getString(R.string.YourTonBalance));
-        this.f8387j0.setTextColor(i6.v0(i6.f21223z6, this.resourceProvider));
+        this.f8387j0.setTextColor(i6.v0(i6.f21224z6, this.resourceProvider));
         this.f8384g0.addView(this.f8387j0, z5.d(-1, 20.0f, 17, 24.0f, 0.0f, 24.0f, 8.0f));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
         f0 f0Var = new f0(this, getParentActivity(), 3);
@@ -596,13 +596,13 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
 
     @Override
     public final int getNavigationBarColor() {
-        return i6.w0(null, i6.f20907i5, false);
+        return i6.w0(null, i6.f20908i5, false);
     }
 
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         aw0 aw0Var = this.S;
-        if (aw0Var == null || motionEvent == null || aw0Var.i0(motionEvent.getX(), motionEvent.getY()) || !this.S.b0() || this.R.getViewPager().f26730b == 0) {
+        if (aw0Var == null || motionEvent == null || aw0Var.i0(motionEvent.getX(), motionEvent.getY()) || !this.S.b0() || this.R.getViewPager().f26731b == 0) {
             return true;
         }
         return false;
@@ -620,8 +620,8 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
 
     @Override
     public final void m0() {
-        this.f39888s.addView(this.S, z5.c(-1.0f, -1));
-        this.S.n0(this.f39883c, new a(this, 3));
+        this.f39889s.addView(this.S, z5.c(-1.0f, -1));
+        this.S.n0(this.f39884c, new a(this, 3));
         aw0 aw0Var = this.S;
         w7 w7Var = this.R;
         g91 viewPager = w7Var.getViewPager();
@@ -635,9 +635,9 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
 
     @Override
     public final h0 o0() {
-        h hVar = new h(this, this.f39883c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
+        h hVar = new h(this, this.f39884c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
         this.f8394r0 = hVar;
-        hVar.f31306r = false;
+        hVar.f31307r = false;
         return hVar;
     }
 
@@ -657,7 +657,7 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        zl0 zl0Var = this.f39883c;
+        zl0 zl0Var = this.f39884c;
         if (zl0Var != null) {
             zl0Var.removeCallbacks(this.f8381d0);
         }
@@ -720,7 +720,7 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
 
     @Override
     public final float t0() {
-        zl0 zl0Var = this.f39883c;
+        zl0 zl0Var = this.f39884c;
         if (zl0Var == null) {
             return 0.0f;
         }
@@ -735,7 +735,7 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
     @Override
     public final void v0(boolean z10) {
         le.b bVar = this.X;
-        if (bVar != null && bVar.f15435f != z10) {
+        if (bVar != null && bVar.f15436f != z10) {
             bVar.a(z10, true);
         }
     }
@@ -745,13 +745,13 @@ public final class k extends r20 implements NotificationCenter.NotificationCente
         boolean z10;
         super.w0();
         aw0 aw0Var = this.S;
-        if (aw0Var != null && aw0Var.f24692h1) {
+        if (aw0Var != null && aw0Var.f24693h1) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.f8380c0 = z10;
-        zl0 zl0Var = this.f39883c;
+        zl0 zl0Var = this.f39884c;
         if (zl0Var != null && this.N >= 0) {
             this.O -= zl0Var.getPaddingTop();
         }

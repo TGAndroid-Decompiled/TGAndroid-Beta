@@ -123,7 +123,7 @@ public final class b8 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f20274id, peerDialogId);
+                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f20275id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f7);
                                 }
@@ -310,11 +310,11 @@ public final class b8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.s0 s0Var = ((pg.d1) obj3).f44450y.f44478c;
-                fw0 fw0Var = s0Var.f44587g;
-                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, fw0Var.f26584a, fw0Var.f26585b), false, z12, z11);
+                pg.s0 s0Var = ((pg.d1) obj3).f44451y.f44479c;
+                fw0 fw0Var = s0Var.f44588g;
+                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, fw0Var.f26585a, fw0Var.f26586b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f16846b;
+                    bitmapArr[0] = (Bitmap) h.f16847b;
                 }
                 countDownLatch.countDown();
                 return;

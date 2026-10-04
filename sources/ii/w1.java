@@ -29,7 +29,7 @@ public final class w1 extends lw0 {
     public final void dispatchDraw(Canvas canvas) {
         e2 e2Var = this.f12714z0;
         Rect rect = e2Var.f12341w;
-        int l1 = org.telegram.ui.ActionBar.i6.l1(e2Var.I, e2Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20817d6));
+        int l1 = org.telegram.ui.ActionBar.i6.l1(e2Var.I, e2Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20818d6));
         Paint paint = this.f12712x0;
         paint.setColor(l1);
         if (e2Var.E && e2Var.f12343x != null) {

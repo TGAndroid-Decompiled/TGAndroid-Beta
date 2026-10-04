@@ -4,27 +4,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class q7 implements Runnable {
-    public final int f29937a;
-    public final r7 f29938b;
+    public final int f29938a;
+    public final r7 f29939b;
 
     public q7(r7 r7Var, int i10) {
-        this.f29937a = i10;
-        this.f29938b = r7Var;
+        this.f29938a = i10;
+        this.f29939b = r7Var;
     }
 
     @Override
     public final void run() {
         long j3;
-        switch (this.f29937a) {
+        switch (this.f29938a) {
             case 0:
-                r7 r7Var = this.f29938b;
+                r7 r7Var = this.f29939b;
                 int i10 = r7Var.v + 1;
                 r7Var.v = i10;
                 if (i10 == 1) {
                     j8 j8Var = r7Var.H;
                     j8Var.H0 = -1;
                     j8Var.I0 = MediaController.getInstance().getPlayingMessageObject().audioProgress;
-                    r7Var.f30280w = System.currentTimeMillis();
+                    r7Var.f30281w = System.currentTimeMillis();
                     AndroidUtilities.runOnUIThread(this, 2000L);
                     AndroidUtilities.runOnUIThread(r7Var.E);
                     return;
@@ -35,15 +35,15 @@ public final class q7 implements Runnable {
                     return;
                 }
             default:
-                r7 r7Var2 = this.f29938b;
+                r7 r7Var2 = this.f29939b;
                 j8 j8Var2 = r7Var2.H;
                 long duration = MediaController.getInstance().getDuration();
                 if (duration != 0 && duration != -9223372036854775807L) {
                     float f7 = j8Var2.I0;
                     long currentTimeMillis = System.currentTimeMillis();
-                    long j10 = currentTimeMillis - r7Var2.f30280w;
-                    r7Var2.f30280w = currentTimeMillis;
-                    long j11 = currentTimeMillis - r7Var2.f30281x;
+                    long j10 = currentTimeMillis - r7Var2.f30281w;
+                    r7Var2.f30281w = currentTimeMillis;
+                    long j11 = currentTimeMillis - r7Var2.f30282x;
                     int i11 = r7Var2.v;
                     if (i11 == 1) {
                         j3 = 3;
@@ -64,7 +64,7 @@ public final class q7 implements Runnable {
                     }
                     if (j8Var2.H0 == -1 && r7Var2.v > 0) {
                         if (j11 > 200 || j8Var2.I0 == 0.0f) {
-                            r7Var2.f30281x = currentTimeMillis;
+                            r7Var2.f30282x = currentTimeMillis;
                             if (j8Var2.I0 == 0.0f) {
                                 MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
                                 MediaController.getInstance().pauseByRewind();
@@ -80,7 +80,7 @@ public final class q7 implements Runnable {
                     }
                     return;
                 }
-                r7Var2.f30280w = System.currentTimeMillis();
+                r7Var2.f30281w = System.currentTimeMillis();
                 return;
         }
     }

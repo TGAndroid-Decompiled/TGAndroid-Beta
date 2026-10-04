@@ -97,7 +97,7 @@ public final class ia implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = kcVar2.E2;
                         if (z12) {
-                            trVar = tr.f31142i;
+                            trVar = tr.f31143i;
                         } else {
                             trVar = tr.h;
                         }

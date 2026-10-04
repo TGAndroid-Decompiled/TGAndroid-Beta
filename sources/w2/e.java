@@ -46,7 +46,7 @@ public final class e extends f implements Handler.Callback {
     public boolean X;
     public s Y;
     public long Z;
-    public long f48461a0;
+    public long f48462a0;
 
     public e(c0 c0Var, Looper looper) {
         super(3);
@@ -64,7 +64,7 @@ public final class e extends f implements Handler.Callback {
         this.I = new na.d(28);
         this.J = new h(1, 0);
         this.V = new y(17);
-        this.f48461a0 = -9223372036854775807L;
+        this.f48462a0 = -9223372036854775807L;
         this.Z = -9223372036854775807L;
     }
 
@@ -209,7 +209,7 @@ public final class e extends f implements Handler.Callback {
     @Override
     public final void o() {
         this.Y = null;
-        this.f48461a0 = -9223372036854775807L;
+        this.f48462a0 = -9223372036854775807L;
         d2.d dVar = new d2.d(E(this.Z), a1.f8720e);
         Handler handler = this.T;
         if (handler != null) {
@@ -244,7 +244,7 @@ public final class e extends f implements Handler.Callback {
         }
         this.W = false;
         this.X = false;
-        this.f48461a0 = -9223372036854775807L;
+        this.f48462a0 = -9223372036854775807L;
         s sVar = this.Y;
         if (sVar != null && !Objects.equals(sVar.f3564r, "application/x-media3-cues")) {
             if (this.N != 0) {
@@ -293,7 +293,7 @@ public final class e extends f implements Handler.Callback {
         boolean z10;
         long j11;
         if (this.f11603y) {
-            long j12 = this.f48461a0;
+            long j12 = this.f48462a0;
             if (j12 != -9223372036854775807L && j3 >= j12) {
                 H();
                 this.X = true;
@@ -474,9 +474,9 @@ public final class e extends f implements Handler.Callback {
                                     this.W = true;
                                     this.M = false;
                                 } else {
-                                    s sVar2 = (s) yVar.f16640c;
+                                    s sVar2 = (s) yVar.f16641c;
                                     if (sVar2 != null) {
-                                        jVar.f52372r = sVar2.f3568w;
+                                        jVar.f52373r = sVar2.f3568w;
                                         jVar.d();
                                         this.M &= !jVar.isKeyFrame();
                                     } else {

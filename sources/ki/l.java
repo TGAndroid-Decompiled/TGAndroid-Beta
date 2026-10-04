@@ -464,7 +464,7 @@ public final class l implements p {
                 throw new IllegalStateException(e7);
             }
         }
-        this.f14959a.k(mediaFormat, z10);
+        this.f14959a.l(mediaFormat, z10);
         m mVar = this.f14963f;
         StringBuilder sb2 = new StringBuilder();
         if (z10) {
@@ -1009,6 +1009,6 @@ public final class l implements p {
                 throw new IllegalStateException(e7);
             }
         }
-        this.f14959a.m(z10, byteBuffer, bufferInfo, this.f14960b);
+        this.f14959a.o(z10, byteBuffer, bufferInfo, this.f14960b);
     }
 }

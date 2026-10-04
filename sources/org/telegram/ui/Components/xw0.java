@@ -9,13 +9,13 @@ import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
 public final class xw0 extends CharacterStyle {
-    public final Paint f32988a;
-    public final Path f32989b;
+    public final Paint f32989a;
+    public final Path f32990b;
 
     public xw0() {
         Paint paint = new Paint(1);
-        this.f32988a = paint;
-        this.f32989b = new Path();
+        this.f32989a = paint;
+        this.f32990b = new Path();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -56,13 +56,13 @@ public final class xw0 extends CharacterStyle {
                         float dp = AndroidUtilities.dp(1.33f);
                         float dp2 = AndroidUtilities.dp(10.0f);
                         float dp3 = AndroidUtilities.dp(2.0f);
-                        Paint paint = xw0Var.f32988a;
+                        Paint paint = xw0Var.f32989a;
                         Spanned spanned2 = spanned;
                         xw0[] xw0VarArr2 = xw0VarArr;
                         int i12 = i10;
                         paint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false));
                         paint.setStrokeWidth(dp);
-                        Path path = xw0Var.f32989b;
+                        Path path = xw0Var.f32990b;
                         path.rewind();
                         path.moveTo(primaryHorizontal, lineBottom);
                         float f7 = primaryHorizontal;

@@ -2,16 +2,16 @@ package w7;
 
 import java.util.AbstractMap;
 public final class va extends sa {
-    public final wa f48856c;
+    public final wa f48857c;
 
     public va(wa waVar) {
-        this.f48856c = waVar;
+        this.f48857c = waVar;
     }
 
     @Override
     public final Object get(int i10) {
-        wa waVar = this.f48856c;
-        c8.a(i10, waVar.f48863e);
+        wa waVar = this.f48857c;
+        c8.a(i10, waVar.f48864e);
         Object[] objArr = waVar.d;
         int i11 = i10 + i10;
         Object obj = objArr[i11];
@@ -23,6 +23,6 @@ public final class va extends sa {
 
     @Override
     public final int size() {
-        return this.f48856c.f48863e;
+        return this.f48857c.f48864e;
     }
 }

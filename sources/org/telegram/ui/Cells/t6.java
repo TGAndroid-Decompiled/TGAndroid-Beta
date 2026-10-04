@@ -52,12 +52,12 @@ import org.telegram.ui.ly;
 import org.telegram.ui.oi;
 import org.telegram.ui.yn;
 public final class t6 implements Runnable {
-    public final int f23065a;
-    public final Object f23066b;
+    public final int f23066a;
+    public final Object f23067b;
 
     public t6(Object obj, int i10) {
-        this.f23065a = i10;
-        this.f23066b = obj;
+        this.f23066a = i10;
+        this.f23067b = obj;
     }
 
     @Override
@@ -70,33 +70,33 @@ public final class t6 implements Runnable {
         boolean z10;
         float f10;
         int dp;
-        switch (this.f23065a) {
+        switch (this.f23066a) {
             case 0:
-                u6 u6Var = (u6) this.f23066b;
+                u6 u6Var = (u6) this.f23067b;
                 u6Var.a();
-                RectF rectF = u6Var.f23515f;
+                RectF rectF = u6Var.f23516f;
                 u6Var.invalidate(((int) rectF.left) - 5, ((int) rectF.top) - 5, ((int) rectF.right) + 5, ((int) rectF.bottom) + 5);
                 AndroidUtilities.runOnUIThread(u6Var.v, 1000L);
                 return;
             case 1:
-                n7 n7Var = (n7) this.f23066b;
-                if (n7Var.f22533b == null) {
-                    n7Var.f22533b = new androidx.emoji2.text.j(n7Var, 4);
+                n7 n7Var = (n7) this.f23067b;
+                if (n7Var.f22534b == null) {
+                    n7Var.f22534b = new androidx.emoji2.text.j(n7Var, 4);
                 }
-                androidx.emoji2.text.j jVar = n7Var.f22533b;
-                int i11 = n7Var.f22535c + 1;
-                n7Var.f22535c = i11;
+                androidx.emoji2.text.j jVar = n7Var.f22534b;
+                int i11 = n7Var.f22536c + 1;
+                n7Var.f22536c = i11;
                 jVar.f2522b = i11;
                 n7Var.postDelayed(jVar, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             case 2:
-                w7 w7Var = (w7) this.f23066b;
-                RectF rectF2 = w7Var.f23682n;
+                w7 w7Var = (w7) this.f23067b;
+                RectF rectF2 = w7Var.f23683n;
                 w7Var.invalidate(((int) rectF2.left) - 5, ((int) rectF2.top) - 5, ((int) rectF2.right) + 5, ((int) rectF2.bottom) + 5);
-                AndroidUtilities.runOnUIThread(w7Var.f23687y, 1000L);
+                AndroidUtilities.runOnUIThread(w7Var.f23688y, 1000L);
                 return;
             case 3:
-                da daVar = (da) this.f23066b;
+                da daVar = (da) this.f23067b;
                 if (daVar.N && daVar.E != null) {
                     if (daVar.Z && daVar.W == null) {
                         n10 = AndroidUtilities.dp(8.0f);
@@ -105,7 +105,7 @@ public final class t6 implements Runnable {
                     } else {
                         return;
                     }
-                    if (!daVar.Z && !daVar.f21961k0) {
+                    if (!daVar.Z && !daVar.f21962k0) {
                         if (daVar.O) {
                             if (daVar.W.getBottom() - n10 < daVar.F.getMeasuredHeight() - daVar.p()) {
                                 i10 = daVar.W.getBottom() - daVar.F.getMeasuredHeight();
@@ -130,8 +130,8 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 4:
-                org.telegram.ui.Components.s7 s7Var = (org.telegram.ui.Components.s7) this.f23066b;
-                org.telegram.ui.Components.j8 j8Var = s7Var.f30643y;
+                org.telegram.ui.Components.s7 s7Var = (org.telegram.ui.Components.s7) this.f23067b;
+                org.telegram.ui.Components.j8 j8Var = s7Var.f30644y;
                 if (MediaController.getInstance().getPlayingMessageObject() != null) {
                     int i12 = j8Var.J0 + 1;
                     j8Var.J0 = i12;
@@ -158,7 +158,7 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 5:
-                org.telegram.ui.Components.j8 j8Var2 = (org.telegram.ui.Components.j8) this.f23066b;
+                org.telegram.ui.Components.j8 j8Var2 = (org.telegram.ui.Components.j8) this.f23067b;
                 long duration = MediaController.getInstance().getDuration();
                 if (duration != 0 && duration != -9223372036854775807L) {
                     float f11 = j8Var2.I0;
@@ -202,17 +202,17 @@ public final class t6 implements Runnable {
                 j8Var2.K0 = System.currentTimeMillis();
                 return;
             case 6:
-                gd gdVar = (gd) this.f23066b;
+                gd gdVar = (gd) this.f23067b;
                 gdVar.b(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                gdVar.f26803f.performHapticFeedback(0);
-                Runnable runnable = gdVar.f26806j;
+                gdVar.f26804f.performHapticFeedback(0);
+                Runnable runnable = gdVar.f26807j;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 7:
-                qk qkVar = (qk) this.f23066b;
+                qk qkVar = (qk) this.f23067b;
                 if (qkVar.S) {
                     qkVar.N.clear();
                     qkVar.P.clear();
@@ -222,17 +222,17 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 8:
-                sm smVar = (sm) this.f23066b;
+                sm smVar = (sm) this.f23067b;
                 tm tmVar = smVar.P;
                 if (tmVar.J != null && !tmVar.K) {
-                    int computeVerticalScrollOffset = tmVar.f31091r.computeVerticalScrollOffset();
-                    if (tmVar.f31091r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (smVar.e() - smVar.f30811r) + smVar.f30810n) {
+                    int computeVerticalScrollOffset = tmVar.f31092r.computeVerticalScrollOffset();
+                    if (tmVar.f31092r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (smVar.e() - smVar.f30812r) + smVar.f30811n) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     float max = Math.max(0.0f, (tmVar.E - Math.max(0, computeVerticalScrollOffset - tmVar.getListTopPadding())) - AndroidUtilities.dp(52.0f));
-                    float max2 = Math.max(0.0f, ((tmVar.f31091r.getMeasuredHeight() - (tmVar.E - computeVerticalScrollOffset)) - tmVar.getListTopPadding()) - AndroidUtilities.dp(84.0f));
+                    float max2 = Math.max(0.0f, ((tmVar.f31092r.getMeasuredHeight() - (tmVar.E - computeVerticalScrollOffset)) - tmVar.getListTopPadding()) - AndroidUtilities.dp(84.0f));
                     float dp2 = AndroidUtilities.dp(32.0f);
                     if (max < dp2 && computeVerticalScrollOffset > tmVar.getListTopPadding()) {
                         f10 = (-(1.0f - (max / dp2))) * AndroidUtilities.dp(6.0f);
@@ -242,9 +242,9 @@ public final class t6 implements Runnable {
                         f10 = 0.0f;
                     }
                     int i14 = (int) f10;
-                    if (Math.abs(i14) > 0 && tmVar.f31091r.canScrollVertically(i14) && (f10 <= 0.0f || !z10)) {
+                    if (Math.abs(i14) > 0 && tmVar.f31092r.canScrollVertically(i14) && (f10 <= 0.0f || !z10)) {
                         tmVar.E += f10;
-                        tmVar.f31091r.scrollBy(0, i14);
+                        tmVar.f31092r.scrollBy(0, i14);
                         smVar.invalidate();
                     }
                     smVar.L = true;
@@ -253,12 +253,12 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 9:
-                xn xnVar = (xn) this.f23066b;
+                xn xnVar = (xn) this.f23067b;
                 t6 t6Var = xnVar.U0;
-                d6 d6Var = xnVar.f32919g1;
+                d6 d6Var = xnVar.f32920g1;
                 if (d6Var != null) {
                     EditTextBoldCursor editField = d6Var.getEditField();
-                    if (!xnVar.H && editField != null && xnVar.G && !xnVar.f32915e1 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow && AndroidUtilities.isTablet()) {
+                    if (!xnVar.H && editField != null && xnVar.G && !xnVar.f32916e1 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow && AndroidUtilities.isTablet()) {
                         editField.requestFocus();
                         AndroidUtilities.showKeyboard(editField);
                         AndroidUtilities.cancelRunOnUIThread(t6Var);
@@ -269,10 +269,10 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 10:
-                mu muVar = (mu) this.f23066b;
+                mu muVar = (mu) this.f23067b;
                 t6 t6Var2 = muVar.P;
-                hu huVar = muVar.f28704a;
-                if (!muVar.f28714y && huVar != null && muVar.N && !muVar.v && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow && AndroidUtilities.isTablet()) {
+                hu huVar = muVar.f28705a;
+                if (!muVar.f28715y && huVar != null && muVar.N && !muVar.v && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow && AndroidUtilities.isTablet()) {
                     huVar.requestFocus();
                     AndroidUtilities.showKeyboard(huVar);
                     AndroidUtilities.cancelRunOnUIThread(t6Var2);
@@ -281,7 +281,7 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 11:
-                com.google.firebase.messaging.m mVar = (com.google.firebase.messaging.m) ((ai.y4) this.f23066b).d;
+                com.google.firebase.messaging.m mVar = (com.google.firebase.messaging.m) ((ai.y4) this.f23067b).d;
                 if (mVar.f7901a && !((ArrayList) mVar.d).isEmpty() && !((AnimatorSet) mVar.f7903c).isRunning()) {
                     try {
                         ((AnimatorSet) mVar.f7903c).start();
@@ -292,28 +292,28 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 12:
-                nz nzVar = (nz) this.f23066b;
-                if (nzVar.B0.f24602s == null) {
+                nz nzVar = (nz) this.f23067b;
+                if (nzVar.B0.f24603s == null) {
                     nzVar.X1 = false;
                     nzVar.X();
                     return;
                 }
                 return;
             case 13:
-                n00 n00Var = (n00) this.f23066b;
+                n00 n00Var = (n00) this.f23067b;
                 if (n00Var.O) {
                     long elapsedRealtime = SystemClock.elapsedRealtime();
                     if (elapsedRealtime > 17) {
                         elapsedRealtime = 17;
                     }
-                    float f13 = n00Var.f28783p0 + (((float) elapsedRealtime) / 320.0f);
-                    n00Var.f28783p0 = f13;
-                    n00Var.setAnimationIdicatorProgress(n00Var.f28776i0.getInterpolation(f13));
-                    if (n00Var.f28783p0 > 1.0f) {
-                        n00Var.f28783p0 = 1.0f;
+                    float f13 = n00Var.f28784p0 + (((float) elapsedRealtime) / 320.0f);
+                    n00Var.f28784p0 = f13;
+                    n00Var.setAnimationIdicatorProgress(n00Var.f28777i0.getInterpolation(f13));
+                    if (n00Var.f28784p0 > 1.0f) {
+                        n00Var.f28784p0 = 1.0f;
                     }
-                    if (n00Var.f28783p0 < 1.0f) {
-                        AndroidUtilities.runOnUIThread(n00Var.f28791v0);
+                    if (n00Var.f28784p0 < 1.0f) {
+                        AndroidUtilities.runOnUIThread(n00Var.f28792v0);
                         return;
                     }
                     n00Var.O = false;
@@ -327,13 +327,13 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 14:
-                FragmentContextView fragmentContextView = (FragmentContextView) this.f23066b;
+                FragmentContextView fragmentContextView = (FragmentContextView) this.f23067b;
                 float[] fArr = FragmentContextView.P0;
                 fragmentContextView.f();
-                AndroidUtilities.runOnUIThread(fragmentContextView.f24183s0, 1000L);
+                AndroidUtilities.runOnUIThread(fragmentContextView.f24184s0, 1000L);
                 return;
             case 15:
-                TextureView textureView = ((y50) this.f23066b).H0.f26318q0;
+                TextureView textureView = ((y50) this.f23067b).H0.f26319q0;
                 if (textureView != null) {
                     try {
                         AndroidUtilities.runOnUIThread(new yw(12, this, textureView.getBitmap(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f))));
@@ -345,8 +345,8 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 16:
-                e70 e70Var = (e70) this.f23066b;
-                f70 f70Var = e70Var.f25983x;
+                e70 e70Var = (e70) this.f23067b;
+                f70 f70Var = e70Var.f25984x;
                 s60 s60Var = f70Var.V;
                 if (s60Var != null && s60Var.getAdapter() != null) {
                     f70Var.V.getClass();
@@ -358,7 +358,7 @@ public final class t6 implements Runnable {
                 AndroidUtilities.runOnUIThread(this);
                 return;
             case 17:
-                ic0 ic0Var = (ic0) this.f23066b;
+                ic0 ic0Var = (ic0) this.f23067b;
                 ValueAnimator valueAnimator = ic0Var.h;
                 if (valueAnimator != null && !valueAnimator.isRunning()) {
                     ic0Var.h.start();
@@ -366,49 +366,49 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 18:
-                ee0 ee0Var = (ee0) this.f23066b;
+                ee0 ee0Var = (ee0) this.f23067b;
                 ee0Var.e();
                 AndroidUtilities.runOnUIThread(ee0Var.R, 100L);
                 return;
             case 19:
-                vi0 vi0Var = (vi0) this.f23066b;
-                vi0Var.f31718y = true;
-                ValueAnimator valueAnimator2 = vi0Var.f31719z;
+                vi0 vi0Var = (vi0) this.f23067b;
+                vi0Var.f31719y = true;
+                ValueAnimator valueAnimator2 = vi0Var.f31720z;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                vi0Var.f31717x = 0.0f;
+                vi0Var.f31718x = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                vi0Var.f31719z = ofFloat;
-                ofFloat.addUpdateListener(vi0Var.f31695b0);
-                vi0Var.f31719z.setInterpolator(new LinearInterpolator());
-                vi0Var.f31719z.setDuration(150L);
-                vi0Var.f31719z.start();
+                vi0Var.f31720z = ofFloat;
+                ofFloat.addUpdateListener(vi0Var.f31696b0);
+                vi0Var.f31720z.setInterpolator(new LinearInterpolator());
+                vi0Var.f31720z.setDuration(150L);
+                vi0Var.f31720z.start();
                 return;
             case 20:
-                zl0 zl0Var2 = (zl0) this.f23066b;
-                oi oiVar = zl0Var2.f33530h2;
-                int[] iArr = zl0Var2.f33539m2;
+                zl0 zl0Var2 = (zl0) this.f23067b;
+                oi oiVar = zl0Var2.f33531h2;
+                int[] iArr = zl0Var2.f33540m2;
                 yn ynVar = oiVar.d;
-                iArr[0] = (int) ynVar.f43468q9;
-                iArr[1] = ynVar.f43573ya;
-                if (zl0Var2.f33534j2) {
+                iArr[0] = (int) ynVar.f43469q9;
+                iArr[1] = ynVar.f43574ya;
+                if (zl0Var2.f33535j2) {
                     dp = -AndroidUtilities.dp(12.0f);
-                    zl0Var2.N0(0.0f, zl0Var2.f33539m2[0]);
+                    zl0Var2.N0(0.0f, zl0Var2.f33540m2[0]);
                 } else {
                     dp = AndroidUtilities.dp(12.0f);
-                    zl0Var2.N0(0.0f, zl0Var2.getMeasuredHeight() - zl0Var2.f33539m2[1]);
+                    zl0Var2.N0(0.0f, zl0Var2.getMeasuredHeight() - zl0Var2.f33540m2[1]);
                 }
-                zl0Var2.f33530h2.d.f43525v0.scrollBy(0, dp);
-                if (zl0Var2.f33532i2) {
+                zl0Var2.f33531h2.d.f43526v0.scrollBy(0, dp);
+                if (zl0Var2.f33533i2) {
                     AndroidUtilities.runOnUIThread(zl0Var2.D2);
                     return;
                 }
                 return;
             case 21:
-                fl0 fl0Var = (fl0) this.f23066b;
-                t6 t6Var3 = fl0Var.f26500i0;
-                if (fl0Var.f26504n) {
+                fl0 fl0Var = (fl0) this.f23067b;
+                t6 t6Var3 = fl0Var.f26501i0;
+                if (fl0Var.f26505n) {
                     AndroidUtilities.cancelRunOnUIThread(t6Var3);
                     AndroidUtilities.runOnUIThread(t6Var3, 4000L);
                     return;
@@ -417,15 +417,15 @@ public final class t6 implements Runnable {
                 fl0Var.invalidate();
                 return;
             case 22:
-                dm0 dm0Var = (dm0) this.f23066b;
-                RecyclerView recyclerView = dm0Var.f25763a;
+                dm0 dm0Var = (dm0) this.f23067b;
+                RecyclerView recyclerView = dm0Var.f25764a;
                 if (recyclerView != null) {
-                    if (dm0Var.f25768g) {
-                        recyclerView.scrollBy(0, -dm0Var.f25769i);
+                    if (dm0Var.f25769g) {
+                        recyclerView.scrollBy(0, -dm0Var.f25770i);
                         AndroidUtilities.runOnUIThread(this);
                         return;
                     } else if (dm0Var.h) {
-                        recyclerView.scrollBy(0, dm0Var.f25769i);
+                        recyclerView.scrollBy(0, dm0Var.f25770i);
                         AndroidUtilities.runOnUIThread(this);
                         return;
                     } else {
@@ -434,25 +434,25 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 23:
-                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f23066b;
+                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f23067b;
                 if (scrollSlidingTextTabStrip.H) {
                     long elapsedRealtime2 = SystemClock.elapsedRealtime();
                     if (elapsedRealtime2 > 17) {
                         elapsedRealtime2 = 17;
                     }
-                    float f14 = scrollSlidingTextTabStrip.S + (((float) elapsedRealtime2) / ((float) scrollSlidingTextTabStrip.f24303b0));
+                    float f14 = scrollSlidingTextTabStrip.S + (((float) elapsedRealtime2) / ((float) scrollSlidingTextTabStrip.f24304b0));
                     scrollSlidingTextTabStrip.S = f14;
                     scrollSlidingTextTabStrip.setAnimationIdicatorProgress(scrollSlidingTextTabStrip.N.getInterpolation(f14));
                     if (scrollSlidingTextTabStrip.S > 1.0f) {
                         scrollSlidingTextTabStrip.S = 1.0f;
                     }
                     if (scrollSlidingTextTabStrip.S < 1.0f) {
-                        AndroidUtilities.runOnUIThread(scrollSlidingTextTabStrip.f24306d0);
+                        AndroidUtilities.runOnUIThread(scrollSlidingTextTabStrip.f24307d0);
                         return;
                     }
                     scrollSlidingTextTabStrip.H = false;
                     scrollSlidingTextTabStrip.setEnabled(true);
-                    dn0 dn0Var = scrollSlidingTextTabStrip.f24302b;
+                    dn0 dn0Var = scrollSlidingTextTabStrip.f24303b;
                     if (dn0Var != null) {
                         dn0Var.E0(1.0f);
                         return;
@@ -461,47 +461,47 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 24:
-                ShutterButton shutterButton = (ShutterButton) this.f23066b;
-                uv0 uv0Var = shutterButton.f24327e;
+                ShutterButton shutterButton = (ShutterButton) this.f23067b;
+                uv0 uv0Var = shutterButton.f24328e;
                 if (uv0Var != null && !((ul) uv0Var).a()) {
                     shutterButton.v = false;
                     return;
                 }
                 return;
             case 25:
-                tx0 tx0Var = (tx0) this.f23066b;
-                View view = tx0Var.f31198s;
+                tx0 tx0Var = (tx0) this.f23067b;
+                View view = tx0Var.f31199s;
                 if (view != null) {
                     if (view.getVisibility() != 0) {
-                        tx0Var.f31198s.setVisibility(0);
-                        tx0Var.f31198s.setAlpha(0.0f);
+                        tx0Var.f31199s.setVisibility(0);
+                        tx0Var.f31199s.setAlpha(0.0f);
                     }
-                    tx0Var.f31198s.animate().setListener(null).cancel();
-                    tx0Var.f31198s.animate().alpha(1.0f).setDuration(150L).start();
+                    tx0Var.f31199s.animate().setListener(null).cancel();
+                    tx0Var.f31199s.animate().alpha(1.0f).setDuration(150L).start();
                     return;
                 }
-                tx0Var.f31193c.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+                tx0Var.f31194c.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
                 return;
             case 26:
-                f91 f91Var = (f91) this.f23066b;
+                f91 f91Var = (f91) this.f23067b;
                 if (f91Var.J) {
                     long elapsedRealtime3 = SystemClock.elapsedRealtime();
                     if (elapsedRealtime3 > 17) {
                         elapsedRealtime3 = 17;
                     }
-                    float f15 = f91Var.f26402f0 + (((float) elapsedRealtime3) / 200.0f);
-                    f91Var.f26402f0 = f15;
-                    f91Var.setAnimationIdicatorProgress(f91Var.f26393a0.getInterpolation(f15));
-                    if (f91Var.f26402f0 > 1.0f) {
-                        f91Var.f26402f0 = 1.0f;
+                    float f15 = f91Var.f26403f0 + (((float) elapsedRealtime3) / 200.0f);
+                    f91Var.f26403f0 = f15;
+                    f91Var.setAnimationIdicatorProgress(f91Var.f26394a0.getInterpolation(f15));
+                    if (f91Var.f26403f0 > 1.0f) {
+                        f91Var.f26403f0 = 1.0f;
                     }
-                    if (f91Var.f26402f0 < 1.0f) {
-                        AndroidUtilities.runOnUIThread(f91Var.f26405i0);
+                    if (f91Var.f26403f0 < 1.0f) {
+                        AndroidUtilities.runOnUIThread(f91Var.f26406i0);
                         return;
                     }
                     f91Var.J = false;
                     f91Var.setEnabled(true);
-                    e91 e91Var = f91Var.f26419y;
+                    e91 e91Var = f91Var.f26420y;
                     if (e91Var != null) {
                         ((n2.c) e91Var).k(1.0f);
                         return;
@@ -510,26 +510,26 @@ public final class t6 implements Runnable {
                 }
                 return;
             case 27:
-                a40 a40Var = (a40) this.f23066b;
-                if (a40Var.f31975b && a40Var.Q0.f36977z0 == null) {
-                    a40Var.f31984g0 = false;
+                a40 a40Var = (a40) this.f23067b;
+                if (a40Var.f31976b && a40Var.Q0.f36978z0 == null) {
+                    a40Var.f31985g0 = false;
                     org.telegram.ui.Components.voip.m0.a(a40Var);
                     return;
                 }
-                AndroidUtilities.runOnUIThread(a40Var.f31985h0, 3000L);
+                AndroidUtilities.runOnUIThread(a40Var.f31986h0, 3000L);
                 return;
             case 28:
-                ((p4.s0) this.f23066b).c();
+                ((p4.s0) this.f23067b).c();
                 return;
             default:
-                p8.a aVar = (p8.a) this.f23066b;
-                synchronized (aVar.f44336a) {
+                p8.a aVar = (p8.a) this.f23067b;
+                synchronized (aVar.f44337a) {
                     try {
                         if (aVar.b()) {
-                            Log.e("WakeLock", String.valueOf(aVar.f44343j).concat(" ** IS FORCE-RELEASED ON TIMEOUT **"));
+                            Log.e("WakeLock", String.valueOf(aVar.f44344j).concat(" ** IS FORCE-RELEASED ON TIMEOUT **"));
                             aVar.d();
                             if (aVar.b()) {
-                                aVar.f44338c = 1;
+                                aVar.f44339c = 1;
                                 aVar.e();
                                 return;
                             }

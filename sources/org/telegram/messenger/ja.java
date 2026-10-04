@@ -10,66 +10,66 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ja implements RequestDelegate {
-    public final int f18243a;
-    public final Object f18244b;
-    public final long f18245c;
+    public final int f18244a;
+    public final Object f18245b;
+    public final long f18246c;
     public final Object d;
-    public final Object f18246e;
+    public final Object f18247e;
 
     public ja(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f18243a = i10;
-        this.f18244b = obj;
+        this.f18244a = i10;
+        this.f18245b = obj;
         this.d = obj2;
-        this.f18245c = j3;
-        this.f18246e = obj3;
+        this.f18246c = j3;
+        this.f18247e = obj3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18243a) {
+        switch (this.f18244a) {
             case 0:
-                ((MessagesController) this.f18244b).lambda$deleteSavedDialog$143(this.f18245c, (int[]) this.d, (TLRPC.InputPeer) this.f18246e, tLObject, tL_error);
+                ((MessagesController) this.f18245b).lambda$deleteSavedDialog$143(this.f18246c, (int[]) this.d, (TLRPC.InputPeer) this.f18247e, tLObject, tL_error);
                 return;
             case 1:
-                ((MessagesController) this.f18244b).lambda$getSavedReactionTags$486(this.f18245c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.f18246e, tLObject, tL_error);
+                ((MessagesController) this.f18245b).lambda$getSavedReactionTags$486(this.f18246c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.f18247e, tLObject, tL_error);
                 return;
             case 2:
-                ((MessagesController) this.f18244b).lambda$addUsersToChannel$274((org.telegram.ui.ActionBar.n2) this.d, (TLRPC.TL_channels_inviteToChannel) this.f18246e, this.f18245c, tLObject, tL_error);
+                ((MessagesController) this.f18245b).lambda$addUsersToChannel$274((org.telegram.ui.ActionBar.n2) this.d, (TLRPC.TL_channels_inviteToChannel) this.f18247e, this.f18246c, tLObject, tL_error);
                 return;
             case 3:
-                ((TopicsController) this.f18244b).lambda$pinTopic$20((org.telegram.ui.ActionBar.n2) this.d, this.f18245c, (ArrayList) this.f18246e, tLObject, tL_error);
+                ((TopicsController) this.f18245b).lambda$pinTopic$20((org.telegram.ui.ActionBar.n2) this.d, this.f18246c, (ArrayList) this.f18247e, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((org.telegram.ui.ActionBar.b2) this.f18244b, tLObject, this.f18245c, (AccountInstance) this.d, (MessagesStorage.BooleanCallback) this.f18246e, 5));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((org.telegram.ui.ActionBar.b2) this.f18245b, tLObject, this.f18246c, (AccountInstance) this.d, (MessagesStorage.BooleanCallback) this.f18247e, 5));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new ai.ga((org.telegram.ui.ActionBar.n2) this.f18244b, tLObject, (MessagesController.DialogFilter) this.d, tL_error, (Runnable) this.f18246e, this.f18245c, 3));
+                AndroidUtilities.runOnUIThread(new ai.ga((org.telegram.ui.ActionBar.n2) this.f18245b, tLObject, (MessagesController.DialogFilter) this.d, tL_error, (Runnable) this.f18247e, this.f18246c, 3));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.o) this.f18244b, (org.telegram.ui.ActionBar.b2) this.d, tLObject, this.f18245c, (Utilities.Callback) this.f18246e));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.o) this.f18245b, (org.telegram.ui.ActionBar.b2) this.d, tLObject, this.f18246c, (Utilities.Callback) this.f18247e));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new ai.ga((yh.x3) this.f18244b, tLObject, (String) this.d, (TL_stars.InputSavedStarGift) this.f18246e, tL_error, this.f18245c, 4));
+                AndroidUtilities.runOnUIThread(new ai.ga((yh.x3) this.f18245b, tLObject, (String) this.d, (TL_stars.InputSavedStarGift) this.f18247e, tL_error, this.f18246c, 4));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.t5) this.f18244b, tLObject, (MessageObject) this.d, this.f18245c, (Runnable) this.f18246e, 10));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.t5) this.f18245b, tLObject, (MessageObject) this.d, this.f18246c, (Runnable) this.f18247e, 10));
                 return;
         }
     }
 
     public ja(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f18243a = i10;
-        this.f18244b = obj;
+        this.f18244a = i10;
+        this.f18245b = obj;
         this.d = obj2;
-        this.f18246e = obj3;
-        this.f18245c = j3;
+        this.f18247e = obj3;
+        this.f18246c = j3;
     }
 
     public ja(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j3, Object obj, Object obj2, int i10) {
-        this.f18243a = i10;
-        this.f18244b = notificationCenterDelegate;
-        this.f18245c = j3;
+        this.f18244a = i10;
+        this.f18245b = notificationCenterDelegate;
+        this.f18246c = j3;
         this.d = obj;
-        this.f18246e = obj2;
+        this.f18247e = obj2;
     }
 }

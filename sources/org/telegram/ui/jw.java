@@ -4,21 +4,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.UndoView;
 public final class jw implements Runnable {
-    public final int f37778a;
-    public final uy f37779b;
+    public final int f37779a;
+    public final uy f37780b;
 
     public jw(uy uyVar, int i10) {
-        this.f37778a = i10;
-        this.f37779b = uyVar;
+        this.f37779a = i10;
+        this.f37780b = uyVar;
     }
 
     @Override
     public final void run() {
         yf1 yf1Var;
-        switch (this.f37778a) {
+        switch (this.f37779a) {
             case 0:
-                uy uyVar = this.f37779b;
-                hh.g gVar = uyVar.f41493y1;
+                uy uyVar = this.f37780b;
+                hh.g gVar = uyVar.f41494y1;
                 if (gVar != null) {
                     gVar.d();
                 }
@@ -31,36 +31,36 @@ public final class jw implements Runnable {
                 }
                 return;
             case 1:
-                this.f37779b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
+                this.f37780b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
                 return;
             case 2:
-                this.f37779b.V3();
+                this.f37780b.V3();
                 return;
             case 3:
-                this.f37779b.d5();
+                this.f37780b.d5();
                 return;
             case 4:
-                MessagesController.getInstance(this.f37779b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                MessagesController.getInstance(this.f37780b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
                 return;
             case 5:
-                uy.G0(this.f37779b);
+                uy.G0(this.f37780b);
                 return;
             case 6:
-                this.f37779b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
+                this.f37780b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 7:
-                uy uyVar2 = this.f37779b;
-                ci.e4 e4Var = uyVar2.f41450q0;
+                uy uyVar2 = this.f37780b;
+                ci.e4 e4Var = uyVar2.f41451q0;
                 if (e4Var != null) {
                     e4Var.e(true);
                 }
                 uyVar2.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 8:
-                this.f37779b.f41392e0[0].d.l();
+                this.f37780b.f41393e0[0].d.l();
                 return;
             case 9:
-                uy uyVar3 = this.f37779b;
+                uy uyVar3 = this.f37780b;
                 UndoView h42 = uyVar3.h4();
                 if (h42 != null) {
                     h42.l(0L, 15, null, new pv(uyVar3, 24));
@@ -68,8 +68,8 @@ public final class jw implements Runnable {
                 }
                 return;
             case 10:
-                uy uyVar4 = this.f37779b;
-                uyVar4.f41392e0[0].f40983a.requestLayout();
+                uy uyVar4 = this.f37780b;
+                uyVar4.f41393e0[0].f40984a.requestLayout();
                 mx mxVar = uyVar4.F3;
                 if (mxVar != null && (mxVar.getFragment() instanceof yf1)) {
                     yf1Var = (yf1) uyVar4.F3.getFragment();
@@ -88,7 +88,7 @@ public final class jw implements Runnable {
                 }
                 return;
             default:
-                this.f37779b.j5();
+                this.f37780b.j5();
                 return;
         }
     }

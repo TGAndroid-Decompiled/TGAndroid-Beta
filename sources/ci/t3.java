@@ -103,7 +103,7 @@ public final class t3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.s4((bh1) obj, tL_error, tLObject, this.f5960b, 29));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f34593i0;
+                int[][] iArr = WallpapersListActivity.f34594i0;
                 AndroidUtilities.runOnUIThread(new ha0((WallpapersListActivity) obj, tLObject, z10, 10));
                 return;
         }

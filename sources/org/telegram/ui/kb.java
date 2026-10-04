@@ -8,13 +8,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class kb extends tb {
-    public final hh.l f37915x0;
-    public final wb f37916y0;
+    public final hh.l f37916x0;
+    public final wb f37917y0;
 
     public kb(wb wbVar, Context context) {
         super(wbVar, context);
-        this.f37916y0 = wbVar;
-        this.f37915x0 = new hh.l();
+        this.f37917y0 = wbVar;
+        this.f37916x0 = new hh.l();
     }
 
     @Override
@@ -22,11 +22,11 @@ public final class kb extends tb {
         if (drawable instanceof org.telegram.ui.Components.pc0) {
             ((org.telegram.ui.Components.pc0) drawable).p();
         }
-        hh.l lVar = this.f37915x0;
+        hh.l lVar = this.f37916x0;
         fh.a c10 = lVar.c(drawable);
         AndroidUtilities.computePerceivedBrightness(lVar.a(c10));
-        wb wbVar = this.f37916y0;
-        wbVar.f42013a.f9866a = c10;
+        wb wbVar = this.f37917y0;
+        wbVar.f42014a.f9866a = c10;
         jh.f fVar = wbVar.W;
         if (fVar != null) {
             fVar.invalidate();
@@ -53,9 +53,9 @@ public final class kb extends tb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            wb wbVar = this.f37916y0;
-            if (dialogId == (-wbVar.f42022f.f20037id)) {
-                MediaController.getInstance().setTextureView(wbVar.Q0(false), wbVar.f42021e0, wbVar.f42019d0, true);
+            wb wbVar = this.f37917y0;
+            if (dialogId == (-wbVar.f42023f.f20038id)) {
+                MediaController.getInstance().setTextureView(wbVar.Q0(false), wbVar.f42022e0, wbVar.f42020d0, true);
             }
         }
     }
@@ -73,8 +73,8 @@ public final class kb extends tb {
         org.telegram.ui.ActionBar.k kVar4;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        wb wbVar = this.f37916y0;
-        fh.a aVar = wbVar.f42013a.f9866a;
+        wb wbVar = this.f37917y0;
+        fh.a aVar = wbVar.f42014a.f9866a;
         if (aVar instanceof fh.b) {
             ((fh.b) aVar).c(size, size2);
         }
@@ -94,14 +94,14 @@ public final class kb extends tb {
             if (childAt != null && childAt.getVisibility() != 8) {
                 kVar4 = ((org.telegram.ui.ActionBar.n2) wbVar).actionBar;
                 if (childAt != kVar4) {
-                    if (childAt != wbVar.v && childAt != wbVar.f42030n) {
+                    if (childAt != wbVar.v && childAt != wbVar.f42031n) {
                         if (childAt == wbVar.H) {
                             childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                         } else {
                             measureChildWithMargins(childAt, i10, 0, i11, 0);
                         }
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (wbVar.f42020e * 2), 1073741824));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (wbVar.f42021e * 2), 1073741824));
                     }
                 }
             }

@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.LinearLayout;
 public final class od extends LinearLayout {
-    public final pd[] f29338a;
+    public final pd[] f29339a;
 
     public od(Context context) {
         super(context);
-        this.f29338a = new pd[2];
+        this.f29339a = new pd[2];
     }
 
     public final void a(org.telegram.ui.mk mkVar, LinearLayout.LayoutParams layoutParams) {
         int childCount = getChildCount();
         if (childCount < 2) {
-            this.f29338a[childCount] = mkVar;
+            this.f29339a[childCount] = mkVar;
             addView(mkVar, layoutParams);
         }
     }
 
     public pd[] getButtons() {
-        return this.f29338a;
+        return this.f29339a;
     }
 }

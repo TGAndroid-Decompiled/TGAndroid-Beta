@@ -24,10 +24,10 @@ public final class r01 extends org.telegram.ui.Cells.a7 {
         int i14;
         int i15;
         this.h = s01Var;
-        this.f21801f = UserConfig.selectedAccount;
+        this.f21802f = UserConfig.selectedAccount;
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f21797a = textView;
+        this.f21798a = textView;
         com.google.android.gms.internal.vision.e2.l(15.0f, 1, textView);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         if (LocaleController.isRTL) {
@@ -44,7 +44,7 @@ public final class r01 extends org.telegram.ui.Cells.a7 {
         }
         addView(textView, w7.z5.t(-1, -2, i11 | 48, 21, 15, 21, 0));
         org.telegram.ui.Components.q90 q90Var = new org.telegram.ui.Components.q90(context, d6Var);
-        this.f21798b = q90Var;
+        this.f21799b = q90Var;
         q90Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
         q90Var.setTextSize(1, 14.0f);
         q90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.J6, d6Var));
@@ -87,25 +87,25 @@ public final class r01 extends org.telegram.ui.Cells.a7 {
             }
             linearLayout.addView(textView2, w7.z5.m(0.5f, 0, 44, i14, i15, 0));
             if (i16 == 0) {
-                this.f21799c = textView2;
+                this.f21800c = textView2;
                 textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final r01 f23803b;
+                    public final r01 f23804b;
 
                     {
-                        this.f23803b = this;
+                        this.f23804b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                r01 r01Var = this.f23803b;
-                                AndroidUtilities.runOnUIThread(new ld(r01Var, r01Var.f21800e, 23));
+                                r01 r01Var = this.f23804b;
+                                AndroidUtilities.runOnUIThread(new ld(r01Var, r01Var.f21801e, 23));
                                 return;
                             default:
-                                r01 r01Var2 = this.f23803b;
-                                int i17 = r01Var2.f21800e;
-                                ProfileActivity profileActivity = r01Var2.h.f40317e;
+                                r01 r01Var2 = this.f23804b;
+                                int i17 = r01Var2.f21801e;
+                                ProfileActivity profileActivity = r01Var2.h.f40318e;
                                 if (i17 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.h(3));
                                     return;
@@ -119,23 +119,23 @@ public final class r01 extends org.telegram.ui.Cells.a7 {
             } else {
                 this.d = textView2;
                 textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final r01 f23803b;
+                    public final r01 f23804b;
 
                     {
-                        this.f23803b = this;
+                        this.f23804b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                r01 r01Var = this.f23803b;
-                                AndroidUtilities.runOnUIThread(new ld(r01Var, r01Var.f21800e, 23));
+                                r01 r01Var = this.f23804b;
+                                AndroidUtilities.runOnUIThread(new ld(r01Var, r01Var.f21801e, 23));
                                 return;
                             default:
-                                r01 r01Var2 = this.f23803b;
-                                int i17 = r01Var2.f21800e;
-                                ProfileActivity profileActivity = r01Var2.h.f40317e;
+                                r01 r01Var2 = this.f23804b;
+                                int i17 = r01Var2.f21801e;
+                                ProfileActivity profileActivity = r01Var2.h.f40318e;
                                 if (i17 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.h(3));
                                     return;

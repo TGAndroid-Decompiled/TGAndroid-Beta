@@ -65,7 +65,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f34487s0;
+        int i10 = ProfileStoriesView.f34488s0;
         ((lz0) iVar.f326b).a(canvas, h6Var, h6Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
@@ -80,7 +80,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         org.telegram.ui.ActionBar.n3 n3Var = (org.telegram.ui.ActionBar.n3) this.f971a;
         ((boolean[]) this.f972b)[0] = true;
-        n3Var.h(n3Var.f21421w, (org.telegram.ui.ActionBar.m3) this.f973c, true);
+        n3Var.h(n3Var.f21422w, (org.telegram.ui.ActionBar.m3) this.f973c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
         ((org.telegram.ui.ActionBar.b2[]) this.f974e)[0].dismiss();
     }
@@ -95,7 +95,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
         kotlin.jvm.internal.i.e(e7, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.i.e(request, "request");
-        for (v0.q qVar : request.f47750a) {
+        for (v0.q qVar : request.f47751a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.f9543e).g(request, cancellationSignal, executor, iVar);

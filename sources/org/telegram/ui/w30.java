@@ -4,34 +4,34 @@ import android.graphics.Canvas;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class w30 extends org.telegram.ui.Components.zl0 {
-    public final h60 f41897e3;
+    public final h60 f41898e3;
 
     public w30(h60 h60Var, LaunchActivity launchActivity) {
         super(launchActivity, null);
-        this.f41897e3 = h60Var;
+        this.f41898e3 = h60Var;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         org.telegram.ui.Components.v20 v20Var = (org.telegram.ui.Components.v20) view;
-        h60 h60Var = this.f41897e3;
+        h60 h60Var = this.f41898e3;
         o50 o50Var = h60Var.Q;
         a40 a40Var = h60Var.a2;
-        if (a40Var.f31995r == null && !h60Var.N2.k()) {
+        if (a40Var.f31996r == null && !h60Var.N2.k()) {
             v20Var.setAlpha(1.0f);
             v20Var.setTranslationX(0.0f);
             v20Var.setTranslationY(0.0f);
         }
-        w30 w30Var = h60Var.f36922m2;
+        w30 w30Var = h60Var.f36923m2;
         v20Var.getClass();
         w30Var.getClass();
         if (RecyclerView.R(v20Var) == -1 && v20Var.getRenderer() != null) {
             return true;
         }
-        if (v20Var.getTranslationY() != 0.0f && v20Var.getRenderer() != null && v20Var.getRenderer().f32174c != null) {
+        if (v20Var.getTranslationY() != 0.0f && v20Var.getRenderer() != null && v20Var.getRenderer().f32175c != null) {
             float top = o50Var.getTop() - getTop();
             float measuredHeight = o50Var.getMeasuredHeight() + top;
-            float f7 = a40Var.f31977c;
+            float f7 = a40Var.f31978c;
             canvas.save();
             float f10 = 1.0f - f7;
             canvas.clipRect(0.0f, top * f10, getMeasuredWidth(), (getMeasuredHeight() * f7) + (measuredHeight * f10));

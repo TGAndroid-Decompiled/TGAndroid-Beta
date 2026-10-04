@@ -23,21 +23,21 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.Utilities;
 public final class y31 extends org.telegram.ui.ActionBar.n2 implements NotificationCenter.NotificationCenterDelegate {
-    public static boolean f43035s;
+    public static boolean f43036s;
     public static HashSet v;
-    public x31 f43036a;
-    public org.telegram.ui.Components.zl0 f43037b;
-    public x31 f43038c;
+    public x31 f43037a;
+    public org.telegram.ui.Components.zl0 f43038b;
+    public x31 f43039c;
     public org.telegram.ui.Components.pz d;
-    public int f43039e;
-    public ArrayList f43040f;
+    public int f43040e;
+    public ArrayList f43041f;
     public ArrayList h;
-    public HashSet f43041n;
-    public HashSet f43042r;
+    public HashSet f43042n;
+    public HashSet f43043r;
 
     public y31() {
         super(null);
-        this.f43039e = -1;
+        this.f43040e = -1;
     }
 
     public static void S(y31 y31Var, View view, int i10) {
@@ -46,15 +46,15 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
         ArrayList arrayList;
         if (y31Var.getParentActivity() != null && y31Var.parentLayout != null && (view instanceof org.telegram.ui.Cells.x8)) {
             int i11 = 0;
-            if (y31Var.f43037b.getAdapter() == y31Var.f43038c) {
+            if (y31Var.f43038b.getAdapter() == y31Var.f43039c) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (z10 && (arrayList = y31Var.f43040f) != null) {
+            if (z10 && (arrayList = y31Var.f43041f) != null) {
                 language = (TranslateController.Language) arrayList.get(i10);
             } else {
-                int i12 = y31Var.f43039e;
+                int i12 = y31Var.f43040e;
                 if (i12 >= 0 && i10 > i12) {
                     i10--;
                 }
@@ -67,20 +67,20 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
             if (language != null && language.code != null) {
                 LocaleController.LocaleInfo currentLocaleInfo = LocaleController.getInstance().getCurrentLocaleInfo();
                 String str = language.code;
-                if (y31Var.f43042r.contains(str)) {
-                    Collection.EL.removeIf(y31Var.f43042r, new q80(str, 2));
+                if (y31Var.f43043r.contains(str)) {
+                    Collection.EL.removeIf(y31Var.f43043r, new q80(str, 2));
                 } else {
-                    y31Var.f43042r.add(str);
+                    y31Var.f43043r.add(str);
                 }
-                if (y31Var.f43042r.size() == 1 && y31Var.f43042r.contains(currentLocaleInfo.pluralLangCode)) {
+                if (y31Var.f43043r.size() == 1 && y31Var.f43043r.contains(currentLocaleInfo.pluralLangCode)) {
                     Z(null, null);
                 } else {
-                    Z(y31Var.f43042r, Boolean.TRUE);
+                    Z(y31Var.f43043r, Boolean.TRUE);
                 }
                 if (z10) {
                     int i13 = 0;
-                    while (i11 < y31Var.f43040f.size()) {
-                        if (TextUtils.equals(str, ((TranslateController.Language) y31Var.f43040f.get(i11)).code)) {
+                    while (i11 < y31Var.f43041f.size()) {
+                        if (TextUtils.equals(str, ((TranslateController.Language) y31Var.f43041f.get(i11)).code)) {
                             y31Var.Y(i13);
                         }
                         i11++;
@@ -89,7 +89,7 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
                 } else {
                     int i14 = 0;
                     while (i11 < y31Var.h.size()) {
-                        if (i14 == y31Var.f43039e) {
+                        if (i14 == y31Var.f43040e) {
                             i14++;
                         }
                         if (TextUtils.equals(str, ((TranslateController.Language) y31Var.h.get(i11)).code)) {
@@ -280,20 +280,20 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
     }
 
     public static void U() {
-        f43035s = false;
+        f43036s = false;
         MessagesController.getGlobalMainSettings().edit().remove("translate_button_restricted_languages_changed").remove("translate_button_restricted_languages_version").remove("translate_button_restricted_languages").apply();
         T(false);
     }
 
     public static HashSet X() {
-        if (!f43035s) {
+        if (!f43036s) {
             HashSet hashSet = null;
             Set<String> stringSet = MessagesController.getGlobalMainSettings().getStringSet("translate_button_restricted_languages", null);
             if (stringSet != null) {
                 hashSet = new HashSet(stringSet);
             }
             v = hashSet;
-            f43035s = true;
+            f43036s = true;
         }
         if (v == null) {
             HashSet hashSet2 = new HashSet(e9.q.c(1));
@@ -305,7 +305,7 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
 
     public static void Z(HashSet hashSet, Boolean bool) {
         v = hashSet;
-        f43035s = true;
+        f43036s = true;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         if (hashSet == null) {
             edit.remove("translate_button_restricted_languages");
@@ -324,7 +324,7 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
         this.h = TranslateController.getLanguages();
         String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
         ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList(this.f43041n);
+        ArrayList arrayList2 = new ArrayList(this.f43042n);
         TranslateController.Language language = null;
         int i10 = 0;
         while (i10 < this.h.size()) {
@@ -334,7 +334,7 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
                 this.h.remove(i10);
                 i10--;
                 language = language2;
-            } else if (this.f43041n.contains(language2.code)) {
+            } else if (this.f43042n.contains(language2.code)) {
                 arrayList.add(language2);
                 arrayList2.remove(language2.code);
                 this.h.remove(i10);
@@ -349,26 +349,26 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
             String upperCase = str2.toUpperCase();
             language3.displayName = upperCase;
             language3.ownDisplayName = upperCase;
-            language3.f17277q = language3.code.toLowerCase();
+            language3.f17278q = language3.code.toLowerCase();
             arrayList.add(language3);
         }
-        this.f43039e = 0;
+        this.f43040e = 0;
         this.h.addAll(0, arrayList);
-        this.f43039e = arrayList.size() + this.f43039e;
+        this.f43040e = arrayList.size() + this.f43040e;
         if (language != null) {
             this.h.add(0, language);
-            this.f43039e++;
+            this.f43040e++;
         }
-        if (this.f43039e <= 0) {
-            this.f43039e = -1;
+        if (this.f43040e <= 0) {
+            this.f43040e = -1;
         }
     }
 
     public final void Y(int i10) {
         int b10;
-        s4.h0 adapter = this.f43037b.getAdapter();
-        for (int i11 = 0; i11 < this.f43037b.getChildCount(); i11++) {
-            s4.c1 T = this.f43037b.T(this.f43037b.getChildAt(i11));
+        s4.h0 adapter = this.f43038b.getAdapter();
+        for (int i11 = 0; i11 < this.f43038b.getChildCount(); i11++) {
+            s4.c1 T = this.f43038b.T(this.f43038b.getChildAt(i11));
             if (T != null && (b10 = T.b()) != -1 && b10 == i10) {
                 adapter.v(T, i10);
                 return;
@@ -387,8 +387,8 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
         a2.F();
         a2.H = new hg.d2(this, 17);
         a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f43036a = new x31(this, context, false);
-        this.f43038c = new x31(this, context, true);
+        this.f43037a = new x31(this, context, false);
+        this.f43039c = new x31(this, context, true);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         org.telegram.ui.Components.pz pzVar = new org.telegram.ui.Components.pz(context, null);
@@ -398,48 +398,48 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
         this.d.setShowAtCenter(true);
         frameLayout.addView(this.d, w7.z5.c(-1.0f, -1));
         org.telegram.ui.Components.zl0 zl0Var = new org.telegram.ui.Components.zl0(context, null);
-        this.f43037b = zl0Var;
+        this.f43038b = zl0Var;
         zl0Var.s1();
-        this.f43037b.setEmptyView(this.d);
-        this.f43037b.setSectionsDrawBackground(true);
-        this.f43037b.setLayoutManager(new s4.c0(1, false));
-        this.f43037b.setVerticalScrollBarEnabled(false);
-        this.f43037b.setAdapter(this.f43036a);
-        frameLayout.addView(this.f43037b, w7.z5.c(-1.0f, -1));
-        this.f43037b.setOnItemClickListener(new t21(this, 2));
-        this.f43037b.setOnScrollListener(new i3(this, 28));
+        this.f43038b.setEmptyView(this.d);
+        this.f43038b.setSectionsDrawBackground(true);
+        this.f43038b.setLayoutManager(new s4.c0(1, false));
+        this.f43038b.setVerticalScrollBarEnabled(false);
+        this.f43038b.setAdapter(this.f43037a);
+        frameLayout.addView(this.f43038b, w7.z5.c(-1.0f, -1));
+        this.f43038b.setOnItemClickListener(new t21(this, 2));
+        this.f43038b.setOnScrollListener(new i3(this, 28));
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.suggestedLangpack && this.f43036a != null) {
+        if (i10 == NotificationCenter.suggestedLangpack && this.f43037a != null) {
             W();
-            this.f43036a.l();
+            this.f43037a.l();
         }
     }
 
     @Override
     public final org.telegram.ui.Components.zl0 getListViewForSimpleGlass() {
-        return this.f43037b;
+        return this.f43038b;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43037b, 16, new Class[]{org.telegram.ui.Cells.q4.class}, null, null, null, org.telegram.ui.ActionBar.i6.f20817d6));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43037b, 32768, null, null, null, null, org.telegram.ui.ActionBar.i6.f21099s8));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.i6.f21154v8));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43038b, 16, new Class[]{org.telegram.ui.Cells.q4.class}, null, null, null, org.telegram.ui.ActionBar.i6.f20818d6));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43038b, 32768, null, null, null, null, org.telegram.ui.ActionBar.i6.f21100s8));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.i6.f21155v8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.i6.A8));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.i6.f21118t8));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.i6.f21119t8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 134217728, null, null, null, null, org.telegram.ui.ActionBar.i6.C8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 67108864, null, null, null, null, org.telegram.ui.ActionBar.i6.D8));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43037b, 4096, null, null, null, null, org.telegram.ui.ActionBar.i6.f20908i6));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.d, 4, null, null, null, null, org.telegram.ui.ActionBar.i6.f20800c7));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43037b, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.i6.f20940k0, null, null, org.telegram.ui.ActionBar.i6.f20818d7));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43037b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.i6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43037b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"textView2"}, null, null, -1, null, org.telegram.ui.ActionBar.i6.A6));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43037b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"checkImage"}, null, null, -1, null, org.telegram.ui.ActionBar.i6.Mh));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43038b, 4096, null, null, null, null, org.telegram.ui.ActionBar.i6.f20909i6));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.d, 4, null, null, null, null, org.telegram.ui.ActionBar.i6.f20801c7));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43038b, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.i6.f20941k0, null, null, org.telegram.ui.ActionBar.i6.f20819d7));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43038b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.i6.G6));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43038b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"textView2"}, null, null, -1, null, org.telegram.ui.ActionBar.i6.A6));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f43038b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"checkImage"}, null, null, -1, null, org.telegram.ui.ActionBar.i6.Mh));
         return arrayList;
     }
 
@@ -450,8 +450,8 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f43041n = X();
-        this.f43042r = X();
+        this.f43042n = X();
+        this.f43043r = X();
         W();
         LocaleController.getInstance().loadRemoteLanguages(this.currentAccount);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.suggestedLangpack);
@@ -467,7 +467,7 @@ public final class y31 extends org.telegram.ui.ActionBar.n2 implements Notificat
     @Override
     public final void onResume() {
         super.onResume();
-        x31 x31Var = this.f43036a;
+        x31 x31Var = this.f43037a;
         if (x31Var != null) {
             x31Var.l();
         }

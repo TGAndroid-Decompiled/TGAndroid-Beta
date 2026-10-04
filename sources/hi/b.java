@@ -44,8 +44,8 @@ public final class b extends cb {
         this.f11479a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.f25301e.setTitle(y());
-        setBackgroundColor(i6.v0(i6.f20761a7, this.resourcesProvider));
+        this.f25302e.setTitle(y());
+        setBackgroundColor(i6.v0(i6.f20762a7, this.resourcesProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
@@ -130,7 +130,7 @@ public final class b extends cb {
     public final yl0 v(zl0 zl0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
         this.X = u61Var;
-        u61Var.f31306r = false;
+        u61Var.f31307r = false;
         return u61Var;
     }
 

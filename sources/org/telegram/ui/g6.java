@@ -9,20 +9,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
 public final class g6 implements Runnable {
-    public final int f36503a;
-    public final a7 f36504b;
-    public final ArrayList f36505c;
+    public final int f36504a;
+    public final a7 f36505b;
+    public final ArrayList f36506c;
     public final ArrayList d;
-    public final ArrayList f36506e;
-    public final zh.b f36507f;
+    public final ArrayList f36507e;
+    public final zh.b f36508f;
 
     public g6(a7 a7Var, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, zh.b bVar, int i10) {
-        this.f36503a = i10;
-        this.f36504b = a7Var;
-        this.f36505c = arrayList;
+        this.f36504a = i10;
+        this.f36505b = a7Var;
+        this.f36506c = arrayList;
         this.d = arrayList2;
-        this.f36506e = arrayList3;
-        this.f36507f = bVar;
+        this.f36507e = arrayList3;
+        this.f36508f = bVar;
     }
 
     @Override
@@ -30,13 +30,13 @@ public final class g6 implements Runnable {
         boolean z10;
         float f7;
         boolean z11;
-        switch (this.f36503a) {
+        switch (this.f36504a) {
             case 0:
-                a7 a7Var = this.f36504b;
-                ArrayList<Long> arrayList = this.f36505c;
+                a7 a7Var = this.f36505b;
+                ArrayList<Long> arrayList = this.f36506c;
                 ArrayList arrayList2 = this.d;
-                ArrayList arrayList3 = this.f36506e;
-                zh.b bVar = this.f36507f;
+                ArrayList arrayList3 = this.f36507e;
+                zh.b bVar = this.f36508f;
                 ArrayList<TLRPC.User> arrayList4 = new ArrayList<>();
                 ArrayList<TLRPC.Chat> arrayList5 = new ArrayList<>();
                 if (!arrayList.isEmpty()) {
@@ -55,7 +55,7 @@ public final class g6 implements Runnable {
                 }
                 int i10 = 0;
                 while (i10 < arrayList3.size()) {
-                    if (((u6) arrayList3.get(i10)).f41067c <= 0) {
+                    if (((u6) arrayList3.get(i10)).f41068c <= 0) {
                         arrayList3.remove(i10);
                         i10--;
                     }
@@ -65,11 +65,11 @@ public final class g6 implements Runnable {
                 AndroidUtilities.runOnUIThread(new g6(a7Var, arrayList4, arrayList5, arrayList3, bVar, 1));
                 return;
             default:
-                a7 a7Var2 = this.f36504b;
-                ArrayList<TLRPC.User> arrayList6 = this.f36505c;
+                a7 a7Var2 = this.f36505b;
+                ArrayList<TLRPC.User> arrayList6 = this.f36506c;
                 ArrayList<TLRPC.Chat> arrayList7 = this.d;
-                ArrayList arrayList8 = this.f36506e;
-                zh.b bVar2 = this.f36507f;
+                ArrayList arrayList8 = this.f36507e;
+                zh.b bVar2 = this.f36508f;
                 a7Var2.getMessagesController().putUsers(arrayList6, true);
                 a7Var2.getMessagesController().putChats(arrayList7, true);
                 boolean z12 = false;
@@ -77,8 +77,8 @@ public final class g6 implements Runnable {
                 int i11 = 0;
                 while (i11 < arrayList8.size()) {
                     u6 u6Var2 = (u6) arrayList8.get(i11);
-                    if (a7Var2.getMessagesController().getUserOrChat(u6Var2.f41065a) == null) {
-                        u6Var2.f41065a = Long.MAX_VALUE;
+                    if (a7Var2.getMessagesController().getUserOrChat(u6Var2.f41066a) == null) {
+                        u6Var2.f41066a = Long.MAX_VALUE;
                         if (u6Var != null) {
                             SparseArray sparseArray = u6Var.d;
                             int i12 = 0;
@@ -94,14 +94,14 @@ public final class g6 implements Runnable {
                                     }
                                     v6Var.getClass();
                                     u6 u6Var3 = u6Var;
-                                    v6Var2.f41564a += v6Var.f41564a;
-                                    u6Var3.f41067c += v6Var.f41564a;
-                                    v6Var2.f41565b.addAll(v6Var.f41565b);
+                                    v6Var2.f41565a += v6Var.f41565a;
+                                    u6Var3.f41068c += v6Var.f41565a;
+                                    v6Var2.f41566b.addAll(v6Var.f41566b);
                                     i12++;
                                     u6Var = u6Var3;
                                     z12 = false;
                                 } else {
-                                    u6Var.f41066b += u6Var2.f41066b;
+                                    u6Var.f41067b += u6Var2.f41067b;
                                     arrayList8.remove(i11);
                                     i11--;
                                     z11 = true;
@@ -118,8 +118,8 @@ public final class g6 implements Runnable {
                     i11++;
                     z12 = false;
                 }
-                bVar2.f53557b = arrayList8;
-                LongSparseArray longSparseArray = bVar2.f53558c;
+                bVar2.f53558b = arrayList8;
+                LongSparseArray longSparseArray = bVar2.f53559c;
                 longSparseArray.clear();
                 int size = arrayList8.size();
                 int i13 = 0;
@@ -127,17 +127,17 @@ public final class g6 implements Runnable {
                     Object obj = arrayList8.get(i13);
                     i13++;
                     u6 u6Var4 = (u6) obj;
-                    longSparseArray.put(u6Var4.f41065a, u6Var4);
+                    longSparseArray.put(u6Var4.f41066a, u6Var4);
                 }
                 if (!a7.m0) {
-                    a7Var2.f34685e0 = bVar2;
+                    a7Var2.f34686e0 = bVar2;
                     k6 k6Var = a7Var2.M;
                     if (k6Var != null) {
                         k6Var.setCacheModel(bVar2);
                     }
                     a7Var2.v0(true);
                     a7Var2.t0();
-                    if (a7Var2.X != null && !a7Var2.K && System.currentTimeMillis() - a7Var2.f34678a0 > 120) {
+                    if (a7Var2.X != null && !a7Var2.K && System.currentTimeMillis() - a7Var2.f34679a0 > 120) {
                         m6 m6Var = a7Var2.X;
                         long j3 = a7Var2.G;
                         if (j3 > 0) {

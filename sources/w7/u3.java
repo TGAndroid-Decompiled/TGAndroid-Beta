@@ -1,6 +1,6 @@
 package w7;
 public final class u3 implements ia.d {
-    public static final u3 f48845a = new Object();
+    public static final u3 f48846a = new Object();
 
     static {
         t8.b.t(t8.b.m(d.class, t8.b.q(2, t8.b.m(d.class, new a(1)))));

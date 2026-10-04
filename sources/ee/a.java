@@ -137,25 +137,25 @@ public abstract class a {
             cVar2.getContext();
             if (a0Var.e()) {
                 hVar.f8874f = vVar;
-                hVar.f53237c = 1;
+                hVar.f53238c = 1;
                 a0Var.c(cVar2.getContext(), hVar);
                 return;
             }
             w0 a10 = c2.a();
-            if (a10.f53283c >= 4294967296L) {
+            if (a10.f53284c >= 4294967296L) {
                 hVar.f8874f = vVar;
-                hVar.f53237c = 1;
-                hd.e eVar = a10.f53284e;
+                hVar.f53238c = 1;
+                hd.e eVar = a10.f53285e;
                 if (eVar == null) {
                     eVar = new hd.e();
-                    a10.f53284e = eVar;
+                    a10.f53285e = eVar;
                 }
                 eVar.addLast(hVar);
                 return;
             }
             a10.h(true);
             try {
-                f1 f1Var = (f1) cVar2.getContext().get(b0.f53194b);
+                f1 f1Var = (f1) cVar2.getContext().get(b0.f53195b);
                 if (f1Var != null && !f1Var.isActive()) {
                     CancellationException cancellationException = f1Var.getCancellationException();
                     hVar.c(vVar, cancellationException);

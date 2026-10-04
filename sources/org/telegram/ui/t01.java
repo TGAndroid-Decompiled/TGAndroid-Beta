@@ -21,20 +21,20 @@ public final class t01 extends View implements org.telegram.ui.Components.wh0 {
     public float N;
     public int O;
     public final ProfileActivity P;
-    public final int f40645a;
-    public final Rect f40646b;
-    public final Rect f40647c;
+    public final int f40646a;
+    public final Rect f40647b;
+    public final Rect f40648c;
     public final RectF d;
-    public final GradientDrawable f40648e;
-    public final GradientDrawable f40649f;
+    public final GradientDrawable f40649e;
+    public final GradientDrawable f40650f;
     public final ValueAnimator h;
-    public final float[] f40650n;
-    public final Paint f40651r;
-    public final Paint f40652s;
+    public final float[] f40651n;
+    public final Paint f40652r;
+    public final Paint f40653s;
     public final Paint v;
-    public final GradientDrawable[] f40653w;
-    public final boolean[] f40654x;
-    public final float[] f40655y;
+    public final GradientDrawable[] f40654w;
+    public final boolean[] f40655x;
+    public final float[] f40656y;
 
     public t01(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t01.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
@@ -42,13 +42,13 @@ public final class t01 extends View implements org.telegram.ui.Components.wh0 {
 
     @Override
     public final void a() {
-        Arrays.fill(this.f40654x, false);
+        Arrays.fill(this.f40655x, false);
         postInvalidateOnAnimation();
     }
 
     @Override
     public final void b(boolean z10) {
-        this.f40654x[!z10 ? 1 : 0] = true;
+        this.f40655x[!z10 ? 1 : 0] = true;
         postInvalidateOnAnimation();
     }
 
@@ -64,10 +64,10 @@ public final class t01 extends View implements org.telegram.ui.Components.wh0 {
 
     public final void e(float f7, boolean z10) {
         int i10 = (int) (255.0f * f7);
-        this.f40648e.setAlpha(i10);
-        this.f40649f.setAlpha(i10);
-        this.f40651r.setAlpha((int) (66.0f * f7));
-        this.f40652s.setAlpha((int) (85.0f * f7));
+        this.f40649e.setAlpha(i10);
+        this.f40650f.setAlpha(i10);
+        this.f40652r.setAlpha((int) (66.0f * f7));
+        this.f40653s.setAlpha((int) (85.0f * f7));
         this.v.setAlpha(i10);
         this.G = f7;
         if (!z10) {
@@ -82,7 +82,7 @@ public final class t01 extends View implements org.telegram.ui.Components.wh0 {
             ValueAnimator valueAnimator = this.h;
             valueAnimator.cancel();
             float f10 = this.F;
-            float[] fArr = this.f40650n;
+            float[] fArr = this.f40651n;
             float lerp = AndroidUtilities.lerp(fArr, f10);
             float f11 = 1.0f;
             if (z10) {
@@ -106,14 +106,14 @@ public final class t01 extends View implements org.telegram.ui.Components.wh0 {
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f40645a;
-        Rect rect = this.f40646b;
+        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f40646a;
+        Rect rect = this.f40647b;
         rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
-        Rect rect2 = this.f40647c;
+        Rect rect2 = this.f40648c;
         rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
-        this.f40648e.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
-        this.f40649f.setBounds(0, ((i11 - this.P.O3()) - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
-        GradientDrawable[] gradientDrawableArr = this.f40653w;
+        this.f40649e.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
+        this.f40650f.setBounds(0, ((i11 - this.P.O3()) - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.f40654w;
         int i14 = i10 / 5;
         gradientDrawableArr[0].setBounds(0, 0, i14, i11);
         gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);

@@ -52,29 +52,29 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
     public final boolean X;
     public final int Y;
     public final long Z;
-    public final boolean f50327a0;
-    public final boolean f50328b0;
-    public final TL_stars.StarGift f50329c0;
-    public GiftAuctionController.Auction f50330d0;
-    public final rg.k f50331e0;
-    public final String f50332f0;
-    public final Runnable f50333g0;
-    public final t4 f50334h0;
-    public final LinearLayout f50335i0;
-    public final long f50336j0;
-    public final org.telegram.ui.Cells.w0 f50337k0;
-    public final TLRPC.MessageAction f50338l0;
+    public final boolean f50328a0;
+    public final boolean f50329b0;
+    public final TL_stars.StarGift f50330c0;
+    public GiftAuctionController.Auction f50331d0;
+    public final rg.k f50332e0;
+    public final String f50333f0;
+    public final Runnable f50334g0;
+    public final t4 f50335h0;
+    public final LinearLayout f50336i0;
+    public final long f50337j0;
+    public final org.telegram.ui.Cells.w0 f50338k0;
+    public final TLRPC.MessageAction f50339l0;
     public final MessageObject m0;
-    public final ci.d f50339n0;
-    public final FrameLayout f50340o0;
-    public boolean f50341p0;
-    public boolean f50342q0;
-    public boolean f50343r0;
-    public final u4 f50344s0;
-    public u61 f50345t0;
-    public int f50346u0;
-    public final rq[] f50347v0;
-    public boolean f50348w0;
+    public final ci.d f50340n0;
+    public final FrameLayout f50341o0;
+    public boolean f50342p0;
+    public boolean f50343q0;
+    public boolean f50344r0;
+    public final u4 f50345s0;
+    public u61 f50346t0;
+    public int f50347u0;
+    public final rq[] f50348v0;
+    public boolean f50349w0;
 
     public z4(Context context, int i10, final TL_stars.StarGift starGift, final rg.k kVar, long j3, Runnable runnable, final boolean z10, final boolean z11) {
         super(context, null, true, false, 2, null);
@@ -83,12 +83,12 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
         Integer num;
         boolean z12;
         int i11;
-        this.f50342q0 = false;
-        this.f50343r0 = false;
-        this.f50346u0 = -2;
+        this.f50343q0 = false;
+        this.f50344r0 = false;
+        this.f50347u0 = -2;
         new AnimationNotificationsLocker();
-        this.f50347v0 = new rq[1];
-        this.f50348w0 = false;
+        this.f50348v0 = new rq[1];
+        this.f50349w0 = false;
         boolean z13 = j3 == UserConfig.getInstance(i10).getClientUserId();
         this.X = z13;
         setImageReceiverNumLevel(0, 4);
@@ -96,40 +96,40 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
         this.I = AndroidUtilities.dp(4.0f);
         this.J = AndroidUtilities.dp(-10.0f);
         if (z13) {
-            this.f50341p0 = true;
+            this.f50342p0 = true;
         }
         this.Y = i10;
         this.Z = j3;
-        this.f50329c0 = starGift;
+        this.f50330c0 = starGift;
         if (starGift == null || !starGift.auction) {
             f7 = 4.0f;
         } else {
             f7 = 4.0f;
-            this.f50330d0 = GiftAuctionController.getInstance(i10).subscribeToGiftAuction(starGift.f20264id, this);
+            this.f50331d0 = GiftAuctionController.getInstance(i10).subscribeToGiftAuction(starGift.f20265id, this);
         }
-        this.f50331e0 = kVar;
-        this.f50333g0 = runnable;
-        this.f50327a0 = z10;
-        this.f50328b0 = z11;
+        this.f50332e0 = kVar;
+        this.f50334g0 = runnable;
+        this.f50328a0 = z10;
+        this.f50329b0 = z11;
         if (z10) {
-            this.f50342q0 = true;
+            this.f50343q0 = true;
         } else if (z11) {
-            this.f50342q0 = false;
+            this.f50343q0 = false;
         }
         this.v = 0.2f;
         if (j3 >= 0) {
             j10 = 0;
-            this.f50332f0 = UserObject.getForcedFirstName(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
+            this.f50333f0 = UserObject.getForcedFirstName(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
         } else {
             j10 = 0;
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
-            this.f50332f0 = chat == null ? "" : chat.title;
+            this.f50333f0 = chat == null ? "" : chat.title;
         }
         org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, this.resourcesProvider, false);
-        this.f50337k0 = w0Var;
+        this.f50338k0 = w0Var;
         w0Var.setDelegate(new Object());
         t4 t4Var = new t4(this, context);
-        this.f50334h0 = t4Var;
+        this.f50335h0 = t4Var;
         Drawable e7 = b7.e(null, i10, j3, i6.I.q());
         t4Var.V(e7);
         fh.c cVar = new fh.c();
@@ -138,10 +138,10 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
         } else {
             if (e7 instanceof pc0) {
                 pc0 pc0Var = (pc0) e7;
-                if (pc0Var.f29618q < 0) {
+                if (pc0Var.f29619q < 0) {
                     num = -16777216;
                 } else {
-                    int[] iArr = pc0Var.f29600a;
+                    int[] iArr = pc0Var.f29601a;
                     if (iArr != null && iArr.length > 0) {
                         num = Integer.valueOf(iArr[0]);
                     }
@@ -149,15 +149,15 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
             }
             num = null;
         }
-        cVar.a(num != null ? num.intValue() : getThemedColor(i6.f20889h5));
+        cVar.a(num != null ? num.intValue() : getThemedColor(i6.f20890h5));
         ch.f fVar = new ch.f(cVar);
         d6 d6Var = this.resourcesProvider;
-        int i12 = i6.f20889h5;
+        int i12 = i6.f20890h5;
         fVar.x(new dh.b(i12, d6Var));
         fVar.z(AndroidUtilities.dp(20.0f));
         fVar.y(AndroidUtilities.dp(f7));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f50335i0 = linearLayout;
+        this.f50336i0 = linearLayout;
         linearLayout.setOrientation(1);
         if (starGift != null) {
             TLRPC.TL_messageActionStarGift tL_messageActionStarGift = new TLRPC.TL_messageActionStarGift();
@@ -166,12 +166,12 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
             tL_messageActionStarGift.message = new TLRPC.TL_textWithEntities();
             tL_messageActionStarGift.convert_stars = starGift.convert_stars;
             tL_messageActionStarGift.forceIn = true;
-            this.f50338l0 = tL_messageActionStarGift;
+            this.f50339l0 = tL_messageActionStarGift;
             z12 = z13;
             i11 = i12;
         } else {
             boolean z14 = z13;
-            if (kVar != null && kVar.f46138b != null) {
+            if (kVar != null && kVar.f46139b != null) {
                 TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode = new TLRPC.TL_messageActionGiftCode();
                 tL_messageActionGiftCode.unclaimed = true;
                 tL_messageActionGiftCode.via_giveaway = false;
@@ -189,11 +189,11 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
                 }
                 tL_messageActionGiftCode.flags |= 16;
                 tL_messageActionGiftCode.message = new TLRPC.TL_textWithEntities();
-                this.f50338l0 = tL_messageActionGiftCode;
+                this.f50339l0 = tL_messageActionGiftCode;
             } else {
                 z12 = z14;
                 i11 = i12;
-                if (kVar != null && kVar.f46137a != null) {
+                if (kVar != null && kVar.f46138a != null) {
                     TLRPC.TL_messageActionGiftPremium tL_messageActionGiftPremium = new TLRPC.TL_messageActionGiftPremium();
                     tL_messageActionGiftPremium.months = kVar.d();
                     tL_messageActionGiftPremium.currency = kVar.a();
@@ -204,36 +204,36 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
                     }
                     tL_messageActionGiftPremium.flags |= 2;
                     tL_messageActionGiftPremium.message = new TLRPC.TL_textWithEntities();
-                    this.f50338l0 = tL_messageActionGiftPremium;
+                    this.f50339l0 = tL_messageActionGiftPremium;
                 } else {
                     throw new RuntimeException("SendGiftSheet with no star gift and no premium tier");
                 }
             }
         }
-        TLRPC.MessageAction messageAction = this.f50338l0;
+        TLRPC.MessageAction messageAction = this.f50339l0;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             TLRPC.TL_messageActionStarGift tL_messageActionStarGift2 = (TLRPC.TL_messageActionStarGift) messageAction;
-            boolean z15 = this.f50342q0;
+            boolean z15 = this.f50343q0;
             tL_messageActionStarGift2.can_upgrade = z15 || (z12 && starGift != null && starGift.can_upgrade);
             tL_messageActionStarGift2.upgrade_stars = (!z12 && z15) ? starGift.upgrade_stars : j10;
             tL_messageActionStarGift2.convert_stars = z15 ? j10 : starGift.convert_stars;
         }
         TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
-        tL_messageService.f20058id = 1;
+        tL_messageService.f20059id = 1;
         tL_messageService.dialog_id = j3;
         tL_messageService.from_id = MessagesController.getInstance(i10).getPeer(UserConfig.getInstance(i10).getClientUserId());
         tL_messageService.peer_id = MessagesController.getInstance(i10).getPeer(j3);
-        tL_messageService.action = this.f50338l0;
+        tL_messageService.action = this.f50339l0;
         long sendPaidMessagesStars = starGift != null ? MessagesController.getInstance(i10).getSendPaidMessagesStars(j3) : j10;
-        this.f50336j0 = sendPaidMessagesStars;
+        this.f50337j0 = sendPaidMessagesStars;
         MessageObject messageObject = new MessageObject(i10, tL_messageService, false, false);
         this.m0 = messageObject;
         w0Var.S(messageObject, true);
         linearLayout.addView(w0Var, z5.t(-1, -1, 119, 0, sendPaidMessagesStars > j10 ? 0 : 8, 0, 8));
         t4Var.addView(linearLayout, z5.e(-1, -1, 119));
         u4 u4Var = new u4(this, context, (lw0) this.containerView, LocaleController.getString(starGift != null ? R.string.Gift2Message : R.string.Gift2MessageOptional), MessagesController.getInstance(i10).stargiftsMessageLengthMax, this.resourcesProvider, fVar, i10);
-        this.f50344s0 = u4Var;
-        org.telegram.ui.Cells.e3 e3Var = u4Var.f22127b;
+        this.f50345s0 = u4Var;
+        org.telegram.ui.Cells.e3 e3Var = u4Var.f22128b;
         e3Var.getEditText().addTextChangedListener(new org.telegram.ui.Cells.i3());
         e3Var.Q = true;
         u4Var.setShowLimitWhenNear(50);
@@ -247,12 +247,12 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
         u4Var.setPadding(i13, 0, i13, 0);
         s4.j jVar = new s4.j();
         jVar.C = false;
-        jVar.f46562m = false;
+        jVar.f46563m = false;
         jVar.n(350L);
         jVar.o(tr.h);
         jVar.D = 40L;
         this.d.setItemAnimator(jVar);
-        this.f50345t0.N(false);
+        this.f50346t0.N(false);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
         int i14 = i11;
@@ -267,16 +267,16 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
         linearLayout2.addView(view, layoutParams);
         float clamp = Utilities.clamp(starGift == null ? 0.0f : starGift.availability_remains / starGift.availability_total, 1.0f, 0.0f);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackground(i6.b0(AndroidUtilities.dp(6.0f), i6.v0(i6.f20761a7, this.resourcesProvider)));
+        frameLayout.setBackground(i6.b0(AndroidUtilities.dp(6.0f), i6.v0(i6.f20762a7, this.resourcesProvider)));
         if (starGift != null && starGift.auction) {
             FrameLayout frameLayout2 = new FrameLayout(context);
-            this.f50340o0 = frameLayout2;
+            this.f50341o0 = frameLayout2;
             frameLayout2.addView(frameLayout, z5.k(10.0f, 14.0f, 10.0f, 14.0f, -1, 30));
             frameLayout2.setBackgroundColor(i6.v0(i14, this.resourcesProvider));
         } else {
             frameLayout.setVisibility((starGift == null || !starGift.limited) ? 8 : 0);
             linearLayout2.addView(frameLayout, z5.k(10.0f, 10.0f, 10.0f, 0.0f, -1, 30));
-            this.f50340o0 = null;
+            this.f50341o0 = null;
         }
         TextView textView = new TextView(context);
         textView.setTextSize(1, 13.0f);
@@ -321,19 +321,19 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
         }
         x4Var.addView(textView3, z5.d(-1, -1.0f, 5, 11.0f, 0.0f, 11.0f, 0.0f));
         ci.d dVar = new ci.d(context, this.resourcesProvider, true);
-        this.f50339n0 = dVar;
+        this.f50340n0 = dVar;
         dVar.e();
         Y(false);
         linearLayout2.addView(dVar, z5.t(-1, 48, 119, 10, 10, 10, 10));
         dVar.setOnClickListener(new n(this, j3, context, runnable, starGift));
-        gg.b0 b0Var = this.f25300c;
+        gg.b0 b0Var = this.f25301c;
         this.P = true;
         b0Var.k1(true);
-        this.f50345t0.N(false);
-        this.f25300c.h1(this.f50345t0.f31309x.size(), AndroidUtilities.dp(200.0f));
+        this.f50346t0.N(false);
+        this.f25301c.h1(this.f50346t0.f31310x.size(), AndroidUtilities.dp(200.0f));
         zl0 zl0Var = this.d;
         int i18 = this.backgroundPaddingLeft;
-        zl0Var.setPadding(i18, 0, i18, AndroidUtilities.dp(68 + ((starGift != null && starGift.limited && this.f50340o0 == null) ? 40 : 0)));
+        zl0Var.setPadding(i18, 0, i18, AndroidUtilities.dp(68 + ((starGift != null && starGift.limited && this.f50341o0 == null) ? 40 : 0)));
         this.d.i(new y4(this));
         this.d.setOnItemClickListener(new ml0() {
             @Override
@@ -342,12 +342,12 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
                 long j11;
                 TL_stars.StarGift starGift2;
                 z4 z4Var = z4.this;
-                TL_stars.StarGift starGift3 = z4Var.f50329c0;
+                TL_stars.StarGift starGift3 = z4Var.f50330c0;
                 boolean z17 = z4Var.X;
-                org.telegram.ui.Cells.w0 w0Var2 = z4Var.f50337k0;
-                TLRPC.MessageAction messageAction2 = z4Var.f50338l0;
+                org.telegram.ui.Cells.w0 w0Var2 = z4Var.f50338k0;
+                TLRPC.MessageAction messageAction2 = z4Var.f50339l0;
                 MessageObject messageObject2 = z4Var.m0;
-                u61 u61Var = z4Var.f50345t0;
+                u61 u61Var = z4Var.f50346t0;
                 if (!z4Var.P) {
                     i19--;
                 }
@@ -355,18 +355,18 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
                 if (G != null) {
                     int i20 = G.d;
                     if (i20 == 1) {
-                        boolean z18 = !z4Var.f50341p0;
-                        z4Var.f50341p0 = z18;
+                        boolean z18 = !z4Var.f50342p0;
+                        z4Var.f50342p0 = z18;
                         if (messageAction2 instanceof TLRPC.TL_messageActionStarGift) {
                             ((TLRPC.TL_messageActionStarGift) messageAction2).name_hidden = z18;
                         }
                         messageObject2.updateMessageText();
                         w0Var2.S(messageObject2, true);
-                        z4Var.f50345t0.N(true);
+                        z4Var.f50346t0.N(true);
                     } else if (i20 == 2) {
                         if (!z10 && !z11) {
-                            boolean z19 = z4Var.f50342q0;
-                            z4Var.f50342q0 = !z19;
+                            boolean z19 = z4Var.f50343q0;
+                            z4Var.f50343q0 = !z19;
                             if (messageAction2 instanceof TLRPC.TL_messageActionStarGift) {
                                 TLRPC.TL_messageActionStarGift tL_messageActionStarGift3 = (TLRPC.TL_messageActionStarGift) messageAction2;
                                 if (z19 && (!z17 || (starGift2 = starGift) == null || !starGift2.can_upgrade)) {
@@ -389,16 +389,16 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
                             }
                             messageObject2.updateMessageText();
                             w0Var2.S(messageObject2, true);
-                            z4Var.f50345t0.N(true);
+                            z4Var.f50346t0.N(true);
                             z4Var.Y(true);
                             return;
                         }
-                        int i21 = -z4Var.f50346u0;
-                        z4Var.f50346u0 = i21;
+                        int i21 = -z4Var.f50347u0;
+                        z4Var.f50347u0 = i21;
                         AndroidUtilities.shakeViewSpring(view2, i21);
                     } else if (i20 == 3) {
-                        boolean z20 = z4Var.f50343r0;
-                        z4Var.f50343r0 = !z20;
+                        boolean z20 = z4Var.f50344r0;
+                        z4Var.f50344r0 = !z20;
                         boolean z21 = messageAction2 instanceof TLRPC.TL_messageActionGiftPremium;
                         rg.k kVar2 = kVar;
                         if (z21) {
@@ -430,43 +430,43 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
                         }
                         messageObject2.updateMessageText();
                         w0Var2.S(messageObject2, true);
-                        z4Var.f50345t0.N(true);
+                        z4Var.f50346t0.N(true);
                         z4Var.Y(true);
                     }
                 }
             }
         });
-        this.f25301e.setTitle(y());
+        this.f25302e.setTitle(y());
     }
 
     public static void N(z4 z4Var, TLRPC.User user, Boolean bool, String str) {
         if (bool.booleanValue()) {
-            Runnable runnable = z4Var.f50333g0;
+            Runnable runnable = z4Var.f50334g0;
             if (runnable != null) {
                 runnable.run();
             }
-            AndroidUtilities.hideKeyboard(z4Var.f50344s0);
+            AndroidUtilities.hideKeyboard(z4Var.f50345s0);
             z4Var.dismiss();
             AndroidUtilities.runOnUIThread(new q4(1, user), 250L);
         } else if (!TextUtils.isEmpty(str)) {
             hg.k0.p(R.string.UnknownErrorCode, new Object[]{str}, new yc(z4Var.topBulletinContainer, z4Var.resourcesProvider), R.raw.error, 36);
         }
-        z4Var.f50339n0.setLoading(false);
+        z4Var.f50340n0.setLoading(false);
     }
 
     public static void O(z4 z4Var, TLRPC.User user, Boolean bool, String str) {
         if (bool.booleanValue()) {
-            Runnable runnable = z4Var.f50333g0;
+            Runnable runnable = z4Var.f50334g0;
             if (runnable != null) {
                 runnable.run();
             }
-            AndroidUtilities.hideKeyboard(z4Var.f50344s0);
+            AndroidUtilities.hideKeyboard(z4Var.f50345s0);
             z4Var.dismiss();
             AndroidUtilities.runOnUIThread(new q4(2, user), 250L);
         } else if (!TextUtils.isEmpty(str)) {
             hg.k0.p(R.string.UnknownErrorCode, new Object[]{str}, new yc(z4Var.topBulletinContainer, z4Var.resourcesProvider), R.raw.error, 36);
         }
-        z4Var.f50339n0.setLoading(false);
+        z4Var.f50340n0.setLoading(false);
     }
 
     public static void Q(xh.z4 r17, long r18, android.content.Context r20, java.lang.Runnable r21, org.telegram.tgnet.tl.TL_stars.StarGift r22) {
@@ -474,14 +474,14 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public static void S(z4 z4Var) {
-        new yh.x3(z4Var.getContext(), z4Var.Y, z4Var.Z, z4Var.resourcesProvider, null).V1(z4Var.f50329c0.f20264id, z4Var.f50332f0);
+        new yh.x3(z4Var.getContext(), z4Var.Y, z4Var.Z, z4Var.resourcesProvider, null).V1(z4Var.f50330c0.f20265id, z4Var.f50333f0);
     }
 
     public final TLRPC.TL_textWithEntities U() {
         if (MessagesController.getInstance(this.Y).getSendPaidMessagesStars(this.Z) > 0) {
             return null;
         }
-        TLRPC.MessageAction messageAction = this.f50338l0;
+        TLRPC.MessageAction messageAction = this.f50339l0;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             return ((TLRPC.TL_messageActionStarGift) messageAction).message;
         }
@@ -513,9 +513,9 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
             TLRPC.User user = (TLRPC.User) userOrChat;
             user.premium = true;
             MessagesController.getInstance(i10).putUser(user, true);
-            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(user.f20184id), userFull);
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(user.f20185id), userFull);
         }
-        org.telegram.ui.ActionBar.n2 n2Var = this.f25303n;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f25304n;
         if (n2Var != null) {
             ArrayList arrayList = new ArrayList(((LaunchActivity) n2Var.getParentActivity()).O().getFragmentStack());
             c5 parentLayout = n2Var.getParentLayout();
@@ -549,18 +549,18 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
         long j3;
         long j10;
         String str;
-        GiftAuctionController.Auction auction = this.f50330d0;
+        GiftAuctionController.Auction auction = this.f50331d0;
         int i10 = this.Y;
-        ci.d dVar = this.f50339n0;
+        ci.d dVar = this.f50340n0;
         if (auction != null) {
             int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
-            if (this.f50330d0.isUpcoming(currentTime)) {
-                int i11 = this.f50330d0.gift.auction_start_date - currentTime;
+            if (this.f50331d0.isUpcoming(currentTime)) {
+                int i11 = this.f50331d0.gift.auction_start_date - currentTime;
                 dVar.g(LocaleController.getString(R.string.Gift2AuctionPlaceAEarlyBid), z10, true);
                 dVar.f(LocaleController.formatString(R.string.Gift2AuctionStartsIn, LocaleController.formatTTLString(i11)), z10);
                 return;
             }
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f50330d0.auctionStateActive;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f50331d0.auctionStateActive;
             if (tL_starGiftAuctionState != null) {
                 int i12 = tL_starGiftAuctionState.end_date - currentTime;
                 dVar.g(LocaleController.getString(R.string.Gift2AuctionPlaceABid), z10, true);
@@ -571,21 +571,21 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
             dVar.f(null, z10);
             return;
         }
-        TL_stars.StarGift starGift = this.f50329c0;
-        rq[] rqVarArr = this.f50347v0;
+        TL_stars.StarGift starGift = this.f50330c0;
+        rq[] rqVarArr = this.f50348v0;
         if (starGift != null) {
             long j11 = t5.y(i10, false).p().amount;
             long j12 = starGift.stars;
-            if (this.f50342q0) {
+            if (this.f50343q0) {
                 j3 = starGift.upgrade_stars;
             } else {
                 j3 = 0;
             }
             long j13 = j12 + j3;
-            if (TextUtils.isEmpty(this.f50344s0.getText())) {
+            if (TextUtils.isEmpty(this.f50345s0.getText())) {
                 j10 = 0;
             } else {
-                j10 = this.f50336j0;
+                j10 = this.f50337j0;
             }
             long j14 = j13 + j10;
             if (this.X) {
@@ -594,7 +594,7 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
                 str = "Gift2Send";
             }
             dVar.g(x7.b1(false, LocaleController.formatPluralStringComma(str, (int) j14), rqVarArr), z10, true);
-            if (t5.y(i10, false).f52013e && j14 > j11) {
+            if (t5.y(i10, false).f52014e && j14 > j11) {
                 dVar.f(LocaleController.formatPluralStringComma("Gift2SendYourBalance", (int) j11), z10);
                 return;
             } else {
@@ -602,9 +602,9 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
                 return;
             }
         }
-        rg.k kVar = this.f50331e0;
+        rg.k kVar = this.f50332e0;
         if (kVar != null) {
-            if (this.f50343r0) {
+            if (this.f50344r0) {
                 dVar.g(x7.X0(LocaleController.formatString(R.string.Gift2SendPremiumStars, LocaleController.formatNumber(kVar.g(), ',')), 1.0f, rqVarArr), z10, true);
                 rqVarArr[0].spaceScaleX = 0.85f;
             } else {
@@ -618,8 +618,8 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.starBalanceUpdated) {
             Y(true);
-            u61 u61Var = this.f50345t0;
-            if (u61Var != null && this.f50331e0 != null) {
+            u61 u61Var = this.f50346t0;
+            if (u61Var != null && this.f50332e0 != null) {
                 u61Var.N(true);
             }
         }
@@ -627,19 +627,19 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
 
     @Override
     public final void dismiss() {
-        u4 u4Var = this.f50344s0;
-        org.telegram.ui.Cells.e3 e3Var = u4Var.f22127b;
-        org.telegram.ui.Cells.e3 e3Var2 = u4Var.f22127b;
+        u4 u4Var = this.f50345s0;
+        org.telegram.ui.Cells.e3 e3Var = u4Var.f22128b;
+        org.telegram.ui.Cells.e3 e3Var2 = u4Var.f22128b;
         if (e3Var.getEmojiPadding() > 0) {
             e3Var2.k(true);
         } else if (e3Var2.v) {
             e3Var2.d();
         } else {
             e3Var2.r();
-            if (this.f50330d0 != null) {
-                GiftAuctionController.getInstance(this.Y).unsubscribeFromGiftAuction(this.f50330d0.giftId, this);
+            if (this.f50331d0 != null) {
+                GiftAuctionController.getInstance(this.Y).unsubscribeFromGiftAuction(this.f50331d0.giftId, this);
             }
-            this.f50348w0 = true;
+            this.f50349w0 = true;
             super.dismiss();
         }
     }
@@ -652,9 +652,9 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
 
     @Override
     public final void onBackPressed() {
-        u4 u4Var = this.f50344s0;
-        org.telegram.ui.Cells.e3 e3Var = u4Var.f22127b;
-        org.telegram.ui.Cells.e3 e3Var2 = u4Var.f22127b;
+        u4 u4Var = this.f50345s0;
+        org.telegram.ui.Cells.e3 e3Var = u4Var.f22128b;
+        org.telegram.ui.Cells.e3 e3Var2 = u4Var.f22128b;
         if (e3Var.getEmojiPadding() > 0) {
             e3Var2.k(true);
         } else if (e3Var2.v) {
@@ -678,14 +678,14 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
 
     @Override
     public final void onUpdate(GiftAuctionController.Auction auction) {
-        this.f50330d0 = auction;
+        this.f50331d0 = auction;
     }
 
     @Override
     public final void show() {
-        u4 u4Var = this.f50344s0;
+        u4 u4Var = this.f50345s0;
         if (u4Var != null) {
-            u4Var.f22127b.s();
+            u4Var.f22128b.s();
         }
         super.show();
     }
@@ -693,8 +693,8 @@ public class z4 extends cb implements NotificationCenter.NotificationCenterDeleg
     @Override
     public final yl0 v(zl0 zl0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.Y, 0, true, new n4(this, 0), this.resourcesProvider);
-        this.f50345t0 = u61Var;
-        u61Var.f31306r = false;
+        this.f50346t0 = u61Var;
+        u61Var.f31307r = false;
         return u61Var;
     }
 

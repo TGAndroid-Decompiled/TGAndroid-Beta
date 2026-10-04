@@ -6,10 +6,10 @@ import android.os.Build;
 import android.view.View;
 import android.view.WindowInsets;
 public final class s2 implements View.OnApplyWindowInsetsListener {
-    public final t2 f45331a;
+    public final t2 f45332a;
 
     public s2(t2 t2Var) {
-        this.f45331a = t2Var;
+        this.f45332a = t2Var;
     }
 
     @Override
@@ -19,8 +19,8 @@ public final class s2 implements View.OnApplyWindowInsetsListener {
         int i11;
         int i12;
         int i13;
-        t2 t2Var = this.f45331a;
-        ai.f0 f0Var = t2Var.f45344b;
+        t2 t2Var = this.f45332a;
+        ai.f0 f0Var = t2Var.f45345b;
         Rect rect = t2Var.h;
         int i14 = Build.VERSION.SDK_INT;
         if (i14 >= 30) {

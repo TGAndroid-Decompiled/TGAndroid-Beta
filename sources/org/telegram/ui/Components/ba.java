@@ -37,31 +37,31 @@ public final class ba extends s4.n0 implements bh.a {
     public short[] X;
     public int Y;
     public int Z;
-    public final zl0 f24869a;
-    public boolean f24870a0;
-    public final Utilities.CallbackReturn f24871b;
-    public float[] f24872b0;
-    public final Utilities.CallbackReturn f24873c;
-    public int f24874c0;
+    public final zl0 f24870a;
+    public boolean f24871a0;
+    public final Utilities.CallbackReturn f24872b;
+    public float[] f24873b0;
+    public final Utilities.CallbackReturn f24874c;
+    public int f24875c0;
     public final Utilities.Callback5 d;
-    public float[] f24875d0;
-    public final int f24876e;
-    public int f24877e0;
-    public final float f24878f;
+    public float[] f24876d0;
+    public final int f24877e;
+    public int f24878e0;
+    public final float f24879f;
     public final boolean h;
-    public final Paint f24879n = new Paint(3);
-    public final Paint f24880r = new Paint(3);
-    public final Paint f24881s = new Paint();
+    public final Paint f24880n = new Paint(3);
+    public final Paint f24881r = new Paint(3);
+    public final Paint f24882s = new Paint();
     public final Paint v = new Paint();
-    public final Paint f24882w;
-    public final RectF f24883x;
-    public final Rect f24884y;
+    public final Paint f24883w;
+    public final RectF f24884x;
+    public final Rect f24885y;
 
     public ba(zl0 zl0Var, Utilities.CallbackReturn callbackReturn, Utilities.CallbackReturn callbackReturn2, int i10, float f7, pv pvVar, boolean z10, boolean z11, xl0 xl0Var) {
         Paint paint = new Paint();
-        this.f24882w = paint;
-        this.f24883x = new RectF();
-        this.f24884y = new Rect();
+        this.f24883w = paint;
+        this.f24884x = new RectF();
+        this.f24885y = new Rect();
         this.E = new RectF();
         this.G = new float[32];
         this.J = -1.0f;
@@ -71,13 +71,13 @@ public final class ba extends s4.n0 implements bh.a {
         this.V = new float[128];
         this.W = new float[128];
         this.X = new short[96];
-        this.f24872b0 = new float[48];
-        this.f24875d0 = new float[32];
-        this.f24869a = zl0Var;
-        this.f24871b = callbackReturn;
-        this.f24873c = callbackReturn2;
-        this.f24876e = i10;
-        this.f24878f = f7;
+        this.f24873b0 = new float[48];
+        this.f24876d0 = new float[32];
+        this.f24870a = zl0Var;
+        this.f24872b = callbackReturn;
+        this.f24874c = callbackReturn2;
+        this.f24877e = i10;
+        this.f24879f = f7;
         this.d = pvVar;
         this.h = z10;
         this.K = z11;
@@ -90,7 +90,7 @@ public final class ba extends s4.n0 implements bh.a {
         int b10;
         int dp;
         if (s(view)) {
-            int i10 = this.f24876e;
+            int i10 = this.f24877e;
             rect.right = i10;
             rect.left = i10;
             s4.c1 T = recyclerView.T(view);
@@ -118,10 +118,10 @@ public final class ba extends s4.n0 implements bh.a {
 
     @Override
     public final void c(Canvas canvas, RecyclerView recyclerView) {
-        zl0 zl0Var = this.f24869a;
+        zl0 zl0Var = this.f24870a;
         if (recyclerView == zl0Var) {
             int sectionsBackgroundColorForDecoration = zl0Var.getSectionsBackgroundColorForDecoration();
-            Paint paint = this.f24881s;
+            Paint paint = this.f24882s;
             if (paint.getColor() != sectionsBackgroundColorForDecoration) {
                 paint.setColor(sectionsBackgroundColorForDecoration);
                 this.F = null;
@@ -150,7 +150,7 @@ public final class ba extends s4.n0 implements bh.a {
                     if (i10 == 0) {
                         return;
                     }
-                    canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10, this.M, 0, null, 0, this.N, 0, this.O, 0, this.R, this.f24882w);
+                    canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10, this.M, 0, null, 0, this.N, 0, this.O, 0, this.R, this.f24883w);
                     return;
                 }
                 int p5 = p(1.0f);
@@ -172,12 +172,12 @@ public final class ba extends s4.n0 implements bh.a {
     public final void d(Canvas canvas, RecyclerView recyclerView) {
         int i10;
         ba baVar = this;
-        zl0 zl0Var = baVar.f24869a;
+        zl0 zl0Var = baVar.f24870a;
         if (recyclerView == zl0Var) {
-            float f7 = baVar.f24878f;
+            float f7 = baVar.f24879f;
             if (f7 > 0.0f) {
                 int sectionsBackgroundColorForDecoration = zl0Var.getSectionsBackgroundColorForDecoration();
-                Paint paint = baVar.f24881s;
+                Paint paint = baVar.f24882s;
                 if (paint.getColor() != sectionsBackgroundColorForDecoration) {
                     paint.setColor(sectionsBackgroundColorForDecoration);
                     baVar.F = null;
@@ -186,7 +186,7 @@ public final class ba extends s4.n0 implements bh.a {
                 boolean z10 = true;
                 int max = Math.max(1, (int) Math.ceil(f7));
                 Bitmap bitmap = baVar.F;
-                Paint paint2 = baVar.f24880r;
+                Paint paint2 = baVar.f24881r;
                 if (bitmap == null || baVar.I != max || baVar.J != f7) {
                     baVar.I = max;
                     baVar.J = f7;
@@ -202,20 +202,20 @@ public final class ba extends s4.n0 implements bh.a {
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     paint2.setShader(new BitmapShader(bitmap2, tileMode, tileMode));
                 }
-                z10 = (baVar.K && baVar.L == xl0.f32898b) ? false : false;
-                baVar.f24870a0 = z10;
+                z10 = (baVar.K && baVar.L == xl0.f32899b) ? false : false;
+                baVar.f24871a0 = z10;
                 if (z10) {
                     baVar.Y = 0;
                     baVar.Z = 0;
                 }
                 if (zl0Var.b0()) {
                     int paddingLeft = zl0Var.getPaddingLeft();
-                    int i12 = baVar.f24876e;
+                    int i12 = baVar.f24877e;
                     float f11 = paddingLeft + i12;
                     float width = (zl0Var.getWidth() - zl0Var.getPaddingRight()) - i12;
                     float f12 = f7 * 0.2f;
-                    for (int i13 = 0; i13 < baVar.f24877e0; i13 += 4) {
-                        float[] fArr = baVar.f24875d0;
+                    for (int i13 = 0; i13 < baVar.f24878e0; i13 += 4) {
+                        float[] fArr = baVar.f24876d0;
                         float f13 = fArr[i13];
                         float f14 = fArr[i13 + 1];
                         float f15 = fArr[i13 + 2];
@@ -224,8 +224,8 @@ public final class ba extends s4.n0 implements bh.a {
                         if (i14 > 0 && i13 > 0) {
                             f15 = Math.min(f15, Math.max(0.0f, Math.min(1.0f, (f13 - fArr[i13 - 3]) / f12)));
                         }
-                        if (i14 > 0 && (i10 = i13 + 4) < baVar.f24877e0) {
-                            f16 = Math.min(f16, Math.max(0.0f, Math.min(1.0f, (baVar.f24875d0[i10] - f14) / f12)));
+                        if (i14 > 0 && (i10 = i13 + 4) < baVar.f24878e0) {
+                            f16 = Math.min(f16, Math.max(0.0f, Math.min(1.0f, (baVar.f24876d0[i10] - f14) / f12)));
                         }
                         baVar.o(canvas, f11, width, f13, f15);
                         baVar.i(canvas, f11, width, f14, f16);
@@ -263,8 +263,8 @@ public final class ba extends s4.n0 implements bh.a {
                         }
                     }
                 }
-                if (this.f24870a0) {
-                    this.f24870a0 = false;
+                if (this.f24871a0) {
+                    this.f24871a0 = false;
                     int i17 = this.Y;
                     if (i17 != 0) {
                         canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i17, this.V, 0, this.W, 0, null, 0, this.X, 0, this.Z, paint2);
@@ -399,7 +399,7 @@ public final class ba extends s4.n0 implements bh.a {
     public final void h(Canvas canvas, float f7, float f10, float f11, float f12) {
         if (f11 > f7 && f12 > f10) {
             boolean z10 = this.S;
-            Paint paint = this.f24881s;
+            Paint paint = this.f24882s;
             if (z10) {
                 g(f7, f10, f11, f12, paint.getColor());
             } else {
@@ -431,7 +431,7 @@ public final class ba extends s4.n0 implements bh.a {
         } else {
             i12 = this.I;
         }
-        if (this.f24870a0) {
+        if (this.f24871a0) {
             float f13 = i11;
             float f14 = i12;
             int i13 = this.I;
@@ -516,11 +516,11 @@ public final class ba extends s4.n0 implements bh.a {
             return;
         }
         int i33 = this.I;
-        Rect rect = this.f24884y;
+        Rect rect = this.f24885y;
         rect.set(i11, i12, i11 + i33, i33 + i12);
         RectF rectF = this.E;
         rectF.set(f7, f10, f11, f12);
-        canvas.drawBitmap(this.F, rect, rectF, this.f24879n);
+        canvas.drawBitmap(this.F, rect, rectF, this.f24880n);
     }
 
     public final void k(Canvas canvas, float f7) {
@@ -529,11 +529,11 @@ public final class ba extends s4.n0 implements bh.a {
         ba baVar;
         float f12;
         float f13;
-        zl0 zl0Var = this.f24869a;
+        zl0 zl0Var = this.f24870a;
         float width = zl0Var.getWidth();
         float height = zl0Var.getHeight();
         int paddingLeft = zl0Var.getPaddingLeft();
-        int i10 = this.f24876e;
+        int i10 = this.f24877e;
         float max = Math.max(0.0f, Math.min(width, paddingLeft + i10));
         float max2 = Math.max(max, Math.min(width, (width - zl0Var.getPaddingRight()) - i10));
         if (max >= max2) {
@@ -675,8 +675,8 @@ public final class ba extends s4.n0 implements bh.a {
                 f7 = 0.0f;
             }
             float left = view.getLeft();
-            this.f24869a.getClass();
-            float f12 = this.f24878f;
+            this.f24870a.getClass();
+            float f12 = this.f24879f;
             float f13 = -f12;
             float v12 = zl0.v1(view);
             if (z10) {
@@ -692,7 +692,7 @@ public final class ba extends s4.n0 implements bh.a {
                 f11 = f12;
             }
             float min = Math.min(height, (H0 + f11) - f7);
-            RectF rectF = this.f24883x;
+            RectF rectF = this.f24884x;
             rectF.set(left, max, right, min);
             if (rectF.bottom >= rectF.top) {
                 m(canvas, rectF, view.getAlpha());
@@ -705,9 +705,9 @@ public final class ba extends s4.n0 implements bh.a {
         boolean z10 = this.U;
         Paint paint = this.v;
         if (z10) {
-            int sectionColorForDecoration = this.f24869a.getSectionColorForDecoration();
+            int sectionColorForDecoration = this.f24870a.getSectionColorForDecoration();
             paint.setColor(i0.a.k(sectionColorForDecoration, Math.round(Math.max(0.0f, Math.min(1.0f, f7)) * Color.alpha(sectionColorForDecoration))));
-            float f10 = this.f24878f;
+            float f10 = this.f24879f;
             canvas.drawRoundRect(rectF, f10, f10, paint);
         } else if (this.K) {
             paint.setColor(p(f7));
@@ -739,16 +739,16 @@ public final class ba extends s4.n0 implements bh.a {
     }
 
     public final int p(float f7) {
-        int sectionColorForDecoration = this.f24869a.getSectionColorForDecoration();
-        return i0.a.h(i0.a.k(sectionColorForDecoration, Math.round(Math.max(0.0f, Math.min(1.0f, f7)) * Color.alpha(sectionColorForDecoration))), this.f24881s.getColor());
+        int sectionColorForDecoration = this.f24870a.getSectionColorForDecoration();
+        return i0.a.h(i0.a.k(sectionColorForDecoration, Math.round(Math.max(0.0f, Math.min(1.0f, f7)) * Color.alpha(sectionColorForDecoration))), this.f24882s.getColor());
     }
 
     public final boolean q(int i10, View view) {
         if (view != null && i10 <= 0) {
-            s4.h0 adapter = this.f24869a.getAdapter();
+            s4.h0 adapter = this.f24870a.getAdapter();
             int R = RecyclerView.R(view);
             if (adapter != null && R > 0) {
-                if (((Boolean) this.f24873c.run(Integer.valueOf(adapter.j(R - 1)))).booleanValue()) {
+                if (((Boolean) this.f24874c.run(Integer.valueOf(adapter.j(R - 1)))).booleanValue()) {
                     return true;
                 }
                 return false;
@@ -760,12 +760,12 @@ public final class ba extends s4.n0 implements bh.a {
 
     public final boolean r(int i10, View view) {
         if (view != null) {
-            zl0 zl0Var = this.f24869a;
+            zl0 zl0Var = this.f24870a;
             if (i10 >= zl0Var.getChildCount() - 1) {
                 s4.h0 adapter = zl0Var.getAdapter();
                 int R = RecyclerView.R(view);
                 if (adapter != null && R >= 0 && R < adapter.h() - 1) {
-                    if (((Boolean) this.f24873c.run(Integer.valueOf(adapter.j(R + 1)))).booleanValue()) {
+                    if (((Boolean) this.f24874c.run(Integer.valueOf(adapter.j(R + 1)))).booleanValue()) {
                         return true;
                     }
                     return false;
@@ -778,11 +778,11 @@ public final class ba extends s4.n0 implements bh.a {
     }
 
     public final boolean s(View view) {
-        return ((Boolean) this.f24871b.run(view)).booleanValue();
+        return ((Boolean) this.f24872b.run(view)).booleanValue();
     }
 
     public final boolean t(int i10) {
-        zl0 zl0Var = this.f24869a;
+        zl0 zl0Var = this.f24870a;
         s4.h0 adapter = zl0Var.getAdapter();
         if (i10 >= 0 && adapter != null && i10 < adapter.h()) {
             View V0 = zl0Var.V0(i10);
@@ -792,7 +792,7 @@ public final class ba extends s4.n0 implements bh.a {
                 }
                 return true;
             }
-            if (((Boolean) this.f24873c.run(Integer.valueOf(adapter.j(i10)))).booleanValue() && !zl0Var.i1(i10)) {
+            if (((Boolean) this.f24874c.run(Integer.valueOf(adapter.j(i10)))).booleanValue() && !zl0Var.i1(i10)) {
                 return true;
             }
         }

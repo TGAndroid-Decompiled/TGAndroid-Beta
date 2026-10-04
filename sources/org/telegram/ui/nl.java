@@ -15,11 +15,11 @@ public final class nl extends org.telegram.ui.Components.l11 {
         super(activity);
         this.K = ynVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f28254b = textPaint;
+        this.f28255b = textPaint;
         Paint paint = new Paint(1);
-        this.f28255c = paint;
+        this.f28256c = paint;
         this.d = AndroidUtilities.dp(24.0f);
-        this.f28256e = new OvershootInterpolator();
+        this.f28257e = new OvershootInterpolator();
         this.H = new org.telegram.ui.Components.br0(this, 16);
         this.J = new Path();
         int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Hi, d6Var);

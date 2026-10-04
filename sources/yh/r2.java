@@ -12,18 +12,18 @@ import org.telegram.ui.Components.w9;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.yn;
 public final class r2 implements Runnable {
-    public final int f51885a;
-    public final Object f51886b;
+    public final int f51886a;
+    public final Object f51887b;
 
     public r2(Object obj, int i10) {
-        this.f51885a = i10;
-        this.f51886b = obj;
+        this.f51886a = i10;
+        this.f51887b = obj;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f51885a;
-        Object obj = this.f51886b;
+        int i10 = this.f51886a;
+        Object obj = this.f51887b;
         switch (i10) {
             case 0:
                 ((s2) obj).invalidate();
@@ -33,40 +33,40 @@ public final class r2 implements Runnable {
                 return;
             case 2:
                 u3 u3Var = (u3) obj;
-                r2 r2Var = u3Var.f52064i0;
+                r2 r2Var = u3Var.f52065i0;
                 w9[] w9VarArr = u3Var.d;
-                if (w9VarArr[2 - u3Var.f52074r0].getImageReceiver().hasImageLoaded()) {
+                if (w9VarArr[2 - u3Var.f52075r0].getImageReceiver().hasImageLoaded()) {
                     f4.d dVar = u3Var.U;
                     if (dVar != null && dVar.f9633b == 1 && u3Var.isAttachedToWindow()) {
                         AndroidUtilities.cancelRunOnUIThread(r2Var);
-                        ValueAnimator valueAnimator = u3Var.f52063h0;
+                        ValueAnimator valueAnimator = u3Var.f52064h0;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
-                            u3Var.f52063h0 = null;
+                            u3Var.f52064h0 = null;
                         }
-                        int i11 = 1 - u3Var.f52074r0;
-                        u3Var.f52074r0 = i11;
+                        int i11 = 1 - u3Var.f52075r0;
+                        u3Var.f52075r0 = i11;
                         kj0 lottieAnimation = w9VarArr[2 - i11].getImageReceiver().getLottieAnimation();
-                        kj0 lottieAnimation2 = w9VarArr[u3Var.f52074r0 + 1].getImageReceiver().getLottieAnimation();
+                        kj0 lottieAnimation2 = w9VarArr[u3Var.f52075r0 + 1].getImageReceiver().getLottieAnimation();
                         if (lottieAnimation2 != null && lottieAnimation != null) {
                             lottieAnimation2.T(lottieAnimation.t(), false);
                         }
                         u3Var.W.c();
-                        int i12 = u3Var.f52074r0 + 1;
+                        int i12 = u3Var.f52075r0 + 1;
                         TL_stars.starGiftAttributeBackdrop[] stargiftattributebackdropArr = u3Var.V;
-                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) u3Var.f52054b0.c();
+                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) u3Var.f52055b0.c();
                         stargiftattributebackdropArr[i12] = stargiftattributebackdrop;
                         u3Var.e(i12, stargiftattributebackdrop);
-                        u3Var.g(1, (TL_stars.starGiftAttributePattern) u3Var.f52052a0.c(), true);
+                        u3Var.g(1, (TL_stars.starGiftAttributePattern) u3Var.f52053a0.c(), true);
                         u3Var.a();
-                        float f7 = u3Var.f52074r0;
+                        float f7 = u3Var.f52075r0;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f - f7, f7);
-                        u3Var.f52063h0 = ofFloat;
+                        u3Var.f52064h0 = ofFloat;
                         ofFloat.addUpdateListener(new q3(u3Var, 2));
-                        u3Var.f52063h0.addListener(new s3(u3Var));
-                        u3Var.f52063h0.setDuration(320L);
-                        u3Var.f52063h0.setInterpolator(tr.h);
-                        u3Var.f52063h0.start();
+                        u3Var.f52064h0.addListener(new s3(u3Var));
+                        u3Var.f52064h0.setDuration(320L);
+                        u3Var.f52064h0.setInterpolator(tr.h);
+                        u3Var.f52064h0.start();
                         return;
                     }
                     return;
@@ -98,18 +98,18 @@ public final class r2 implements Runnable {
                 nf.f.s(((n7) obj).getContext(), LocaleController.getString(R.string.StarsTOSLink));
                 return;
             case 9:
-                zg.t tVar = (zg.t) ((w9.k) obj).f48940a;
-                zg.s sVar = tVar.f53525b;
+                zg.t tVar = (zg.t) ((w9.k) obj).f48941a;
+                zg.s sVar = tVar.f53526b;
                 if (sVar != null) {
                     sVar.d();
                 }
-                tVar.f53524a.z7(true);
+                tVar.f53525a.z7(true);
                 return;
             case 10:
                 ((ValueAnimator) obj).start();
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 n2Var = ((zg.x) obj).f53544f2.f53331r;
+                org.telegram.ui.ActionBar.n2 n2Var = ((zg.x) obj).f53545f2.f53332r;
                 if (n2Var instanceof yn) {
                     n2Var.showDialog(new rg.y0(n2Var, 11, false));
                     return;

@@ -14,12 +14,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class m81 extends org.telegram.ui.Components.yl0 {
-    public final Context f38464c;
+    public final Context f38465c;
     public final SessionsActivity d;
 
     public m81(SessionsActivity sessionsActivity, Context context) {
         this.d = sessionsActivity;
-        this.f38464c = context;
+        this.f38465c = context;
         C(true);
     }
 
@@ -33,7 +33,7 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
         if (b10 != i10) {
             if (b10 < sessionsActivity.K || b10 >= sessionsActivity.L) {
                 if (b10 < sessionsActivity.M || b10 >= sessionsActivity.N) {
-                    if ((b10 < sessionsActivity.G || b10 >= sessionsActivity.H) && b10 != sessionsActivity.f34473y) {
+                    if ((b10 < sessionsActivity.G || b10 >= sessionsActivity.H) && b10 != sessionsActivity.f34474y) {
                         i11 = sessionsActivity.ttlRow;
                         if (b10 != i11) {
                             return false;
@@ -75,7 +75,7 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
             hash = Objects.hash(0, 5);
         } else if (i10 == sessionsActivity.P) {
             hash = Objects.hash(0, 6);
-        } else if (i10 == sessionsActivity.f34472x) {
+        } else if (i10 == sessionsActivity.f34473x) {
             hash = Objects.hash(0, 7);
         } else if (i10 == sessionsActivity.J) {
             hash = Objects.hash(0, 8);
@@ -83,12 +83,12 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
             hash = Objects.hash(0, 9);
         } else if (i10 == sessionsActivity.T) {
             hash = Objects.hash(0, 10);
-        } else if (i10 == sessionsActivity.f34473y) {
+        } else if (i10 == sessionsActivity.f34474y) {
             hash = Objects.hash(0, 11);
         } else {
             int i13 = sessionsActivity.K;
             if (i10 >= i13 && i10 < sessionsActivity.L) {
-                TLObject tLObject = (TLObject) sessionsActivity.f34466e.get(i10 - i13);
+                TLObject tLObject = (TLObject) sessionsActivity.f34467e.get(i10 - i13);
                 if (tLObject instanceof TLRPC.TL_authorization) {
                     hash = Objects.hash(1, Long.valueOf(((TLRPC.TL_authorization) tLObject).hash));
                 } else {
@@ -104,7 +104,7 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                 } else {
                     int i15 = sessionsActivity.G;
                     if (i10 >= i15 && i10 < sessionsActivity.H) {
-                        TLObject tLObject2 = (TLObject) sessionsActivity.f34467f.get(i10 - i15);
+                        TLObject tLObject2 = (TLObject) sessionsActivity.f34468f.get(i10 - i15);
                         if (tLObject2 instanceof TLRPC.TL_authorization) {
                             hash = Objects.hash(2, Long.valueOf(((TLRPC.TL_authorization) tLObject2).hash));
                         } else {
@@ -136,8 +136,8 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
         i11 = sessionsActivity.terminateAllSessionsRow;
         if (i10 != i11) {
             if (i10 != sessionsActivity.E && i10 != sessionsActivity.O && i10 != sessionsActivity.I && i10 != sessionsActivity.R && i10 != sessionsActivity.U && i10 != sessionsActivity.P) {
-                if (i10 != sessionsActivity.f34472x && i10 != sessionsActivity.J && i10 != sessionsActivity.F && i10 != sessionsActivity.T) {
-                    if (i10 != sessionsActivity.f34473y) {
+                if (i10 != sessionsActivity.f34473x && i10 != sessionsActivity.J && i10 != sessionsActivity.F && i10 != sessionsActivity.T) {
+                    if (i10 != sessionsActivity.f34474y) {
                         if (i10 < sessionsActivity.K || i10 >= sessionsActivity.L) {
                             if (i10 < sessionsActivity.M || i10 >= sessionsActivity.N) {
                                 if (i10 < sessionsActivity.G || i10 >= sessionsActivity.H) {
@@ -170,20 +170,20 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
         int i11;
         String formatPluralString;
         int i12;
-        int i13 = c1Var.f46527f;
+        int i13 = c1Var.f46528f;
         boolean z10 = false;
         if (i13 != 0) {
             if (i13 != 1) {
                 if (i13 != 2) {
                     if (i13 != 5) {
                         if (i13 != 6) {
-                            org.telegram.ui.Cells.v6 v6Var = (org.telegram.ui.Cells.v6) c1Var.f46523a;
+                            org.telegram.ui.Cells.v6 v6Var = (org.telegram.ui.Cells.v6) c1Var.f46524a;
                             SessionsActivity sessionsActivity = this.d;
-                            if (i10 == sessionsActivity.f34473y) {
-                                TLRPC.TL_authorization tL_authorization = sessionsActivity.f34468n;
+                            if (i10 == sessionsActivity.f34474y) {
+                                TLRPC.TL_authorization tL_authorization = sessionsActivity.f34469n;
                                 if (tL_authorization == null) {
-                                    v6Var.f23564w = sessionsActivity.d;
-                                    v6Var.f23563s = true;
+                                    v6Var.f23565w = sessionsActivity.d;
+                                    v6Var.f23564s = true;
                                     Context context = ApplicationLoader.applicationContext;
                                     if (AndroidUtilities.isTablet()) {
                                         i12 = R.drawable.device_tablet_android;
@@ -193,7 +193,7 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                                     Drawable mutate = context.getDrawable(i12).mutate();
                                     mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.J7, false), PorterDuff.Mode.SRC_IN));
                                     org.telegram.ui.Components.sq sqVar = new org.telegram.ui.Components.sq(org.telegram.ui.ActionBar.i6.K(AndroidUtilities.dp(42.0f), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.R7, false)), mutate);
-                                    org.telegram.ui.Components.w9 w9Var = v6Var.f23560f;
+                                    org.telegram.ui.Components.w9 w9Var = v6Var.f23561f;
                                     if (w9Var != null) {
                                         w9Var.setImageDrawable(sqVar);
                                     } else {
@@ -202,12 +202,12 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                                     v6Var.invalidate();
                                     return;
                                 }
-                                v6Var.c(tL_authorization, (sessionsActivity.f34466e.isEmpty() && this.d.f34467f.isEmpty() && this.d.Q == -1) ? true : true);
+                                v6Var.c(tL_authorization, (sessionsActivity.f34467e.isEmpty() && this.d.f34468f.isEmpty() && this.d.Q == -1) ? true : true);
                                 return;
                             }
                             int i14 = sessionsActivity.K;
                             if (i10 >= i14 && i10 < sessionsActivity.L) {
-                                TLObject tLObject = (TLObject) sessionsActivity.f34466e.get(i10 - i14);
+                                TLObject tLObject = (TLObject) sessionsActivity.f34467e.get(i10 - i14);
                                 if (i10 != this.d.L - 1) {
                                     z10 = true;
                                 }
@@ -231,7 +231,7 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                             }
                             int i17 = sessionsActivity.G;
                             if (i10 >= i17 && i10 < sessionsActivity.H) {
-                                TLObject tLObject2 = (TLObject) sessionsActivity.f34467f.get(i10 - i17);
+                                TLObject tLObject2 = (TLObject) sessionsActivity.f34468f.get(i10 - i17);
                                 if (i10 != this.d.H - 1) {
                                     z10 = true;
                                 }
@@ -240,7 +240,7 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                             }
                             return;
                         }
-                        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) c1Var.f46523a;
+                        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) c1Var.f46524a;
                         int i18 = this.d.v;
                         if (i18 > 30 && i18 <= 183) {
                             formatPluralString = LocaleController.formatPluralString("Months", i18 / 30, new Object[0]);
@@ -254,13 +254,13 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                     }
                     return;
                 }
-                org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) c1Var.f46523a;
+                org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) c1Var.f46524a;
                 SessionsActivity sessionsActivity3 = this.d;
-                if (i10 == sessionsActivity3.f34472x) {
+                if (i10 == sessionsActivity3.f34473x) {
                     m4Var.setText(LocaleController.getString(R.string.CurrentSession));
                     return;
                 } else if (i10 == sessionsActivity3.J) {
-                    if (sessionsActivity3.f34471w == 0) {
+                    if (sessionsActivity3.f34472w == 0) {
                         m4Var.setText(LocaleController.getString(R.string.OtherSessions));
                         return;
                     } else {
@@ -277,11 +277,11 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                     return;
                 }
             }
-            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) c1Var.f46523a;
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) c1Var.f46524a;
             e9Var.setFixedSize(0);
             SessionsActivity sessionsActivity4 = this.d;
             if (i10 == sessionsActivity4.E) {
-                if (sessionsActivity4.f34471w == 0) {
+                if (sessionsActivity4.f34472w == 0) {
                     e9Var.setText(LocaleController.getString(R.string.ClearOtherSessionsHelp));
                     return;
                 } else {
@@ -289,8 +289,8 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                     return;
                 }
             } else if (i10 == sessionsActivity4.O) {
-                if (sessionsActivity4.f34471w == 0) {
-                    if (sessionsActivity4.f34466e.isEmpty()) {
+                if (sessionsActivity4.f34472w == 0) {
+                    if (sessionsActivity4.f34467e.isEmpty()) {
                         e9Var.setText("");
                         return;
                     } else {
@@ -311,13 +311,13 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
                 return;
             }
         }
-        org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) c1Var.f46523a;
+        org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) c1Var.f46524a;
         i11 = this.d.terminateAllSessionsRow;
         if (i10 == i11) {
-            int i19 = org.telegram.ui.ActionBar.i6.f21039p7;
+            int i19 = org.telegram.ui.ActionBar.i6.f21040p7;
             r8Var.e(i19, i19);
             r8Var.setTag(Integer.valueOf(i19));
-            if (this.d.f34471w == 0) {
+            if (this.d.f34472w == 0) {
                 r8Var.m(R.drawable.msg_block2, LocaleController.getString(R.string.TerminateAllSessions), false);
             } else {
                 r8Var.m(R.drawable.msg_block2, LocaleController.getString(R.string.TerminateAllWebSessions), false);
@@ -326,7 +326,7 @@ public final class m81 extends org.telegram.ui.Components.yl0 {
             int i20 = org.telegram.ui.ActionBar.i6.q6;
             r8Var.e(i20, i20);
             r8Var.setTag(Integer.valueOf(i20));
-            r8Var.m(R.drawable.msg_qrcode, LocaleController.getString(R.string.AuthAnotherClient), !this.d.f34466e.isEmpty());
+            r8Var.m(R.drawable.msg_qrcode, LocaleController.getString(R.string.AuthAnotherClient), !this.d.f34467e.isEmpty());
         }
     }
 

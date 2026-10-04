@@ -17,9 +17,9 @@ public final class r4 extends f61 {
     @Override
     public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
         s4 s4Var = (s4) view;
-        s4Var.a(g61Var.d, g61Var.f26681z, (k8) g61Var.G);
-        s4Var.b(g61Var.f26662e, false);
-        boolean z11 = g61Var.f26663f;
+        s4Var.a(g61Var.d, g61Var.f26682z, (k8) g61Var.G);
+        s4Var.b(g61Var.f26663e, false);
+        boolean z11 = g61Var.f26664f;
         if (s4Var.f5906f != z11) {
             s4Var.f5906f = z11;
             s4Var.E.a(z11);

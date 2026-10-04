@@ -35,9 +35,9 @@ public final class w1 extends ReplacementSpan {
                 float f10 = (i12 + i14) / 2.0f;
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f11 = dpf2 / 2.0f;
-                rectF.set(f7, f10 - f11, ((int) (((e11) this.f11390c).f25878c + AndroidUtilities.dp(10.0f))) + f7, f11 + f10);
+                rectF.set(f7, f10 - f11, ((int) (((e11) this.f11390c).f25879c + AndroidUtilities.dp(10.0f))) + f7, f11 + f10);
                 Paint paint2 = (Paint) this.f11389b;
-                int i15 = i6.f21223z6;
+                int i15 = i6.f21224z6;
                 paint2.setColor(i6.l1(0.15f, i6.w0(null, i15, false)));
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint2);
                 ((e11) this.f11390c).c(f7 + AndroidUtilities.dp(5.0f), f10, Utilities.clamp((paint.getAlpha() * 2) / 255.0f, 1.0f, 0.0f), i6.w0(null, i15, false), canvas);
@@ -45,7 +45,7 @@ public final class w1 extends ReplacementSpan {
             case 1:
                 float f12 = (i12 + i14) / 2.0f;
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(f7, f12 - AndroidUtilities.dp(7.66f), ((e11) this.f11390c).f25878c + f7 + AndroidUtilities.dp(6.66f), AndroidUtilities.dp(7.66f) + f12);
+                rectF2.set(f7, f12 - AndroidUtilities.dp(7.66f), ((e11) this.f11390c).f25879c + f7 + AndroidUtilities.dp(6.66f), AndroidUtilities.dp(7.66f) + f12);
                 canvas.saveLayerAlpha(rectF2, 255, 31);
                 Paint paint3 = (Paint) this.f11389b;
                 paint3.setColor(paint.getColor());
@@ -79,9 +79,9 @@ public final class w1 extends ReplacementSpan {
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
         switch (this.f11388a) {
             case 0:
-                return (int) (((e11) this.f11390c).f25878c + AndroidUtilities.dp(10.0f));
+                return (int) (((e11) this.f11390c).f25879c + AndroidUtilities.dp(10.0f));
             case 1:
-                return (int) (((e11) this.f11390c).f25878c + AndroidUtilities.dp(6.66f));
+                return (int) (((e11) this.f11390c).f25879c + AndroidUtilities.dp(6.66f));
             default:
                 return AndroidUtilities.dp(20.0f);
         }
@@ -98,6 +98,6 @@ public final class w1 extends ReplacementSpan {
         this.f11389b = new Paint(1);
         e11 e11Var = new e11("x50", 13.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
         this.f11390c = e11Var;
-        e11Var.f25876a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        e11Var.f25877a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 }

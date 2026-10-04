@@ -69,9 +69,9 @@ public final class g1 extends n2 implements NotificationCenter.NotificationCente
         String string2 = LocaleController.getString(R.string.BusinessHoursInfo);
         int i10 = R.raw.biz_clock;
         g61 g61Var = new g61(2);
-        g61Var.f26668l = string;
-        g61Var.f26671o = string2;
-        g61Var.f26667k = i10;
+        g61Var.f26669l = string;
+        g61Var.f26672o = string2;
+        g61Var.f26668k = i10;
         arrayList.add(g61Var);
         g61 i11 = g61.i(-1, LocaleController.getString(R.string.BusinessHoursShow));
         i11.K(g1Var.f11205e);
@@ -90,8 +90,8 @@ public final class g1 extends n2 implements NotificationCenter.NotificationCente
                     String Z = Z(g1Var.h[i12]);
                     g61 g61Var2 = new g61(5);
                     g61Var2.d = i12;
-                    g61Var2.f26668l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    g61Var2.f26669m = Z;
+                    g61Var2.f26669l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    g61Var2.f26670m = Z;
                     g61Var2.K(!g1Var.h[i12].isEmpty());
                     arrayList.add(g61Var2);
                     i12++;
@@ -275,7 +275,7 @@ public final class g1 extends n2 implements NotificationCenter.NotificationCente
                 if (A1 instanceof j5) {
                     ((j5) A1).setValue(Z(this.h[i11]));
                 } else {
-                    this.f11202a.f25244f3.N(true);
+                    this.f11202a.f25245f3.N(true);
                 }
             }
         }
@@ -345,7 +345,7 @@ public final class g1 extends n2 implements NotificationCenter.NotificationCente
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessHours));
         this.actionBar.setActionBarMenuOnItemClick(new ei.u(this, 14));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = i6.f21154v8;
+        int i10 = i6.f21155v8;
         mutate.setColorFilter(new PorterDuffColorFilter(i6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
         this.f11203b = new sr(mutate, new wp(i6.w0(null, i10, false)));
         this.f11204c = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f11203b);
@@ -355,7 +355,7 @@ public final class g1 extends n2 implements NotificationCenter.NotificationCente
         this.f11202a = c71Var;
         c71Var.s1();
         c71 c71Var2 = this.f11202a;
-        c71Var2.f25244f3.f31306r = false;
+        c71Var2.f25245f3.f31307r = false;
         c71Var2.setSectionsDrawBackground(true);
         frameLayout.addView(this.f11202a, z5.c(-1.0f, -1));
         e0();
@@ -364,7 +364,7 @@ public final class g1 extends n2 implements NotificationCenter.NotificationCente
     }
 
     public final void d0() {
-        if (this.f11203b.f30863c > 0.0f) {
+        if (this.f11203b.f30864c > 0.0f) {
             return;
         }
         if (!b0()) {
@@ -418,7 +418,7 @@ public final class g1 extends n2 implements NotificationCenter.NotificationCente
                 this.f11208r = f2.b(this.currentAccount).c();
             }
             c71 c71Var = this.f11202a;
-            if (c71Var != null && (u61Var = c71Var.f25244f3) != null) {
+            if (c71Var != null && (u61Var = c71Var.f25245f3) != null) {
                 u61Var.N(true);
             }
         }
@@ -468,7 +468,7 @@ public final class g1 extends n2 implements NotificationCenter.NotificationCente
             }
         }
         c71 c71Var = this.f11202a;
-        if (c71Var != null && (u61Var = c71Var.f25244f3) != null) {
+        if (c71Var != null && (u61Var = c71Var.f25245f3) != null) {
             u61Var.N(true);
         }
         X(false);

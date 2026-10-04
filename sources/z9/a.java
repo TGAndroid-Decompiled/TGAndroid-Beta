@@ -9,15 +9,15 @@ import y9.e2;
 import y9.o0;
 import y9.r0;
 public final class a implements b, d {
-    public final int f53048a;
+    public final int f53049a;
 
     public a(int i10) {
-        this.f53048a = i10;
+        this.f53049a = i10;
     }
 
     @Override
     public Object E(cf.c cVar) {
-        switch (this.f53048a) {
+        switch (this.f53049a) {
             case 4:
                 return FirebaseSessionsRegistrar.e(cVar);
             case 5:
@@ -41,7 +41,7 @@ public final class a implements b, d {
         String str2 = "";
         String str3 = null;
         Long l4 = null;
-        switch (this.f53048a) {
+        switch (this.f53049a) {
             case 0:
                 jsonReader.beginObject();
                 Integer num = null;
@@ -165,7 +165,7 @@ public final class a implements b, d {
                             l10 = Long.valueOf(jsonReader.nextLong());
                             break;
                         case 2:
-                            str5 = new String(Base64.decode(jsonReader.nextString(), 2), e2.f50626a);
+                            str5 = new String(Base64.decode(jsonReader.nextString(), 2), e2.f50627a);
                             break;
                         case 3:
                             l4 = Long.valueOf(jsonReader.nextLong());

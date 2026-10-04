@@ -105,7 +105,7 @@ public final class w3 implements View.OnClickListener {
                                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                                 org.telegram.ui.ActionBar.f3 f3Var3 = f3Var2;
                                 if (updates != null) {
-                                    long j12 = user2.f20184id;
+                                    long j12 = user2.f20185id;
                                     TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
                                     String str = tL_messages_editChatParticipantRank2.rank;
                                     MessagesController messagesController2 = MessagesController.this;
@@ -122,7 +122,7 @@ public final class w3 implements View.OnClickListener {
                                             i11 = R.string.TagEdited;
                                         }
                                         rc M = a02.M(LocaleController.getString(i11), tL_messages_editChatParticipantRank2.rank, i12);
-                                        vb vbVar = M.f30334e;
+                                        vb vbVar = M.f30335e;
                                         if (vbVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
                                             ((FrameLayout.LayoutParams) vbVar.getLayoutParams()).width = -2;
                                             ((FrameLayout.LayoutParams) vbVar.getLayoutParams()).gravity |= 1;
@@ -137,8 +137,8 @@ public final class w3 implements View.OnClickListener {
                         });
                         return;
                     }
-                    float f7 = -w01Var.f32429y;
-                    w01Var.f32429y = f7;
+                    float f7 = -w01Var.f32430y;
+                    w01Var.f32430y = f7;
                     AndroidUtilities.shakeViewSpring(textView, f7);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;

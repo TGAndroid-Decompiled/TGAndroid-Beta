@@ -18,18 +18,18 @@ import org.telegram.ui.Components.eu;
 import org.telegram.ui.p61;
 import org.telegram.ui.t51;
 public final class c6 extends eu {
-    public final int f21875c;
+    public final int f21876c;
     public final Object d;
 
     public c6(FrameLayout frameLayout, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
         super(context, d6Var);
-        this.f21875c = i10;
+        this.f21876c = i10;
         this.d = frameLayout;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 3:
                 super.dispatchDraw(canvas);
                 Drawable drawable = (Drawable) this.d;
@@ -44,7 +44,7 @@ public final class c6 extends eu {
 
     @Override
     public int emojiCacheType() {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 0:
                 return 3;
             case 1:
@@ -57,9 +57,9 @@ public final class c6 extends eu {
 
     @Override
     public void invalidate() {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 1:
-                if (!zg.e0.f53366b) {
+                if (!zg.e0.f53367b) {
                     super.invalidate();
                     return;
                 }
@@ -72,10 +72,10 @@ public final class c6 extends eu {
 
     @Override
     public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 0:
                 InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                if (((d6) this.d).f21925s) {
+                if (((d6) this.d).f21926s) {
                     editorInfo.imeOptions &= -1073741825;
                 }
                 return onCreateInputConnection;
@@ -91,7 +91,7 @@ public final class c6 extends eu {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 0:
                 super.onDraw(canvas);
                 ((d6) this.d).getClass();
@@ -104,14 +104,14 @@ public final class c6 extends eu {
 
     @Override
     public void onFocusChanged(boolean z10, int i10, Rect rect) {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 0:
                 super.onFocusChanged(z10, i10, rect);
                 ((d6) this.d).i(z10);
                 return;
             case 1:
                 if (z10) {
-                    ((t51) this.d).f39936y.q();
+                    ((t51) this.d).f39937y.q();
                     AndroidUtilities.runOnUIThread(new p61(this, 0), 200L);
                 }
                 super.onFocusChanged(z10, i10, rect);
@@ -124,7 +124,7 @@ public final class c6 extends eu {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 2:
                 super.onSizeChanged(i10, i11, i12, i13);
                 postOnAnimation(new org.telegram.ui.web.u0(this, 19));
@@ -138,7 +138,7 @@ public final class c6 extends eu {
     @Override
     public boolean onTextContextMenuItem(int i10) {
         ClipData primaryClip;
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 0:
                 if (i10 == 16908322 && (primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip()) != null && primaryClip.getItemCount() == 1 && AndroidUtilities.charSequenceIndexOf(primaryClip.getItemAt(0).getText(), "\n") > 0) {
                     CharSequence text = primaryClip.getItemAt(0).getText();
@@ -168,7 +168,7 @@ public final class c6 extends eu {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 0:
                 if (!isEnabled()) {
                     return false;
@@ -178,7 +178,7 @@ public final class c6 extends eu {
                 }
                 return super.onTouchEvent(motionEvent);
             case 1:
-                if (motionEvent.getAction() == 1 && ((t51) this.d).f39936y.u()) {
+                if (motionEvent.getAction() == 1 && ((t51) this.d).f39937y.u()) {
                     AndroidUtilities.runOnUIThread(new p61(this, 1), 200L);
                     return false;
                 }
@@ -190,7 +190,7 @@ public final class c6 extends eu {
 
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback, int i10) {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 0:
                 ActionMode startActionMode = super.startActionMode(callback, i10);
                 ((d6) this.d).g(this, startActionMode);
@@ -202,13 +202,13 @@ public final class c6 extends eu {
 
     public c6(Context context, org.telegram.ui.ActionBar.d6 d6Var, Drawable drawable) {
         super(context, d6Var);
-        this.f21875c = 3;
+        this.f21876c = 3;
         this.d = drawable;
     }
 
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback) {
-        switch (this.f21875c) {
+        switch (this.f21876c) {
             case 0:
                 ActionMode startActionMode = super.startActionMode(callback);
                 ((d6) this.d).g(this, startActionMode);

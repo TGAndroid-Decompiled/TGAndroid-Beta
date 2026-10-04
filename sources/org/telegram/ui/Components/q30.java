@@ -25,49 +25,49 @@ public final class q30 extends View {
     public final org.telegram.ui.ActionBar.d6 G;
     public final boolean H;
     public final boolean I;
-    public final String f29869a;
-    public final long f29870b;
-    public final String f29871c;
+    public final String f29870a;
+    public final long f29871b;
+    public final String f29872c;
     public final boolean d;
-    public final Drawable f29872e;
-    public final RectF f29873f;
+    public final Drawable f29873e;
+    public final RectF f29874f;
     public final ImageReceiver h;
-    public final StaticLayout f29874n;
-    public final h9 f29875r;
-    public final ContactsController.Contact f29876s;
+    public final StaticLayout f29875n;
+    public final h9 f29876r;
+    public final ContactsController.Contact f29877s;
     public final int v;
-    public final float f29877w;
-    public float f29878x;
-    public boolean f29879y;
+    public final float f29878w;
+    public float f29879x;
+    public boolean f29880y;
 
     public q30(Context context, Object obj) {
         this(context, obj, null, false, null);
     }
 
     public final void a() {
-        if (!this.f29879y) {
+        if (!this.f29880y) {
             return;
         }
-        this.f29879y = false;
+        this.f29880y = false;
         this.E = System.currentTimeMillis();
         invalidate();
     }
 
     public final void b() {
-        if (this.f29879y) {
+        if (this.f29880y) {
             return;
         }
-        this.f29879y = true;
+        this.f29880y = true;
         this.E = System.currentTimeMillis();
         invalidate();
     }
 
     public final void c() {
-        int b10 = this.f29875r.b();
+        int b10 = this.f29876r.b();
         int i10 = org.telegram.ui.ActionBar.i6.G6;
         org.telegram.ui.ActionBar.d6 d6Var = this.G;
         int l1 = org.telegram.ui.ActionBar.i6.l1(0.05f, org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20829di, d6Var);
+        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20830di, d6Var);
         int red = Color.red(l1);
         int[] iArr = this.F;
         iArr[0] = red;
@@ -78,24 +78,24 @@ public final class q30 extends View {
         iArr[5] = Color.blue(b10);
         iArr[6] = Color.alpha(l1);
         iArr[7] = Color.alpha(b10);
-        this.f29872e.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.MULTIPLY));
+        this.f29873e.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.MULTIPLY));
         K.setColor(l1);
     }
 
     public ContactsController.Contact getContact() {
-        return this.f29876s;
+        return this.f29877s;
     }
 
     public String getCountryIso2() {
-        return this.f29869a;
+        return this.f29870a;
     }
 
     public String getKey() {
-        return this.f29871c;
+        return this.f29872c;
     }
 
     public long getUid() {
-        return this.f29870b;
+        return this.f29871b;
     }
 
     @Override
@@ -113,23 +113,23 @@ public final class q30 extends View {
         float f14;
         float f15;
         float f16;
-        boolean z10 = this.f29879y;
-        if ((z10 && this.f29878x != 1.0f) || (!z10 && this.f29878x != 0.0f)) {
+        boolean z10 = this.f29880y;
+        if ((z10 && this.f29879x != 1.0f) || (!z10 && this.f29879x != 0.0f)) {
             long currentTimeMillis = System.currentTimeMillis() - this.E;
             if (currentTimeMillis < 0 || currentTimeMillis > 17) {
                 currentTimeMillis = 17;
             }
-            if (this.f29879y) {
-                float f17 = (((float) currentTimeMillis) / 120.0f) + this.f29878x;
-                this.f29878x = f17;
+            if (this.f29880y) {
+                float f17 = (((float) currentTimeMillis) / 120.0f) + this.f29879x;
+                this.f29879x = f17;
                 if (f17 >= 1.0f) {
-                    this.f29878x = 1.0f;
+                    this.f29879x = 1.0f;
                 }
             } else {
-                float f18 = this.f29878x - (((float) currentTimeMillis) / 120.0f);
-                this.f29878x = f18;
+                float f18 = this.f29879x - (((float) currentTimeMillis) / 120.0f);
+                this.f29879x = f18;
                 if (f18 < 0.0f) {
-                    this.f29878x = 0.0f;
+                    this.f29879x = 0.0f;
                 }
             }
             invalidate();
@@ -142,11 +142,11 @@ public final class q30 extends View {
         } else {
             f7 = 32.0f;
         }
-        RectF rectF = this.f29873f;
+        RectF rectF = this.f29874f;
         rectF.set(0.0f, 0.0f, measuredWidth, AndroidUtilities.dp(f7));
         int[] iArr = this.F;
         int i14 = iArr[6];
-        float f19 = this.f29878x;
+        float f19 = this.f29879x;
         int argb = Color.argb(i14 + ((int) ((iArr[7] - i14) * f19)), iArr[0] + ((int) ((iArr[1] - i10) * f19)), iArr[2] + ((int) ((iArr[3] - i11) * f19)), iArr[4] + ((int) ((iArr[5] - i12) * f19)));
         Paint paint = K;
         paint.setColor(argb);
@@ -163,12 +163,12 @@ public final class q30 extends View {
             f11 = 16.0f;
         }
         canvas.drawRoundRect(rectF, dp, AndroidUtilities.dp(f11), paint);
-        if (this.f29878x != 1.0f) {
+        if (this.f29879x != 1.0f) {
             this.h.draw(canvas);
         }
-        if (this.f29878x != 0.0f) {
-            paint.setColor(this.f29875r.b());
-            paint.setAlpha((int) (this.f29878x * 255.0f * (Color.alpha(b10) / 255.0f)));
+        if (this.f29879x != 0.0f) {
+            paint.setColor(this.f29876r.b());
+            paint.setAlpha((int) (this.f29879x * 255.0f * (Color.alpha(b10) / 255.0f)));
             if (z11) {
                 f13 = 14.0f;
             } else {
@@ -186,7 +186,7 @@ public final class q30 extends View {
             }
             canvas.drawCircle(dp2, dp3, AndroidUtilities.dp(f20), paint);
             canvas.save();
-            canvas.rotate((1.0f - this.f29878x) * 45.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+            canvas.rotate((1.0f - this.f29879x) * 45.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
             float f21 = 11.0f;
             if (z11) {
                 f15 = 9.0f;
@@ -209,9 +209,9 @@ public final class q30 extends View {
                 f22 = 19.0f;
             }
             int dp7 = AndroidUtilities.dp(f22);
-            Drawable drawable = this.f29872e;
+            Drawable drawable = this.f29873e;
             drawable.setBounds(dp4, dp5, dp6, dp7);
-            drawable.setAlpha((int) (this.f29878x * 255.0f));
+            drawable.setAlpha((int) (this.f29879x * 255.0f));
             drawable.draw(canvas);
             canvas.restore();
         }
@@ -220,25 +220,25 @@ public final class q30 extends View {
         } else {
             i13 = 32;
         }
-        float dp8 = this.f29877w + AndroidUtilities.dp(i13 + 9);
+        float dp8 = this.f29878w + AndroidUtilities.dp(i13 + 9);
         if (z11) {
             f12 = 6.0f;
         } else {
             f12 = 8.0f;
         }
         canvas.translate(dp8, AndroidUtilities.dp(f12));
-        int i15 = org.telegram.ui.ActionBar.i6.f20791bi;
+        int i15 = org.telegram.ui.ActionBar.i6.f20792bi;
         org.telegram.ui.ActionBar.d6 d6Var = this.G;
-        J.setColor(i0.a.d(this.f29878x, org.telegram.ui.ActionBar.i6.v0(i15, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.J7, d6Var)));
-        this.f29874n.draw(canvas);
+        J.setColor(i0.a.d(this.f29879x, org.telegram.ui.ActionBar.i6.v0(i15, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.J7, d6Var)));
+        this.f29875n.draw(canvas);
         canvas.restore();
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(this.f29874n.getText());
-        if (this.f29879y) {
+        accessibilityNodeInfo.setText(this.f29875n.getText());
+        if (this.f29880y) {
             accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), LocaleController.getString(R.string.Delete)));
         }
     }

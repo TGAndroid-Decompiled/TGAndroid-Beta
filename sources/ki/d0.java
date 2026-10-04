@@ -112,11 +112,11 @@ public final class d0 implements Runnable {
                     long j14 = s0Var2.E;
                     long j15 = s0Var2.G;
                     long j16 = s0Var2.H;
-                    ((e60) gVar.f15266b).f25965w.setProgress(((float) j14) / 60000.0f);
-                    e60 e60Var = (e60) gVar.f15266b;
-                    e60Var.f25948h0 = r32;
+                    ((e60) gVar.f15267b).f25966w.setProgress(((float) j14) / 60000.0f);
+                    e60 e60Var = (e60) gVar.f15267b;
+                    e60Var.f25949h0 = r32;
                     e60Var.I.setAlpha(0.0f);
-                    s0 s0Var3 = ((e60) gVar.f15266b).P;
+                    s0 s0Var3 = ((e60) gVar.f15267b).P;
                     if (s0Var3 == null) {
                         file = null;
                     } else {
@@ -124,9 +124,9 @@ public final class d0 implements Runnable {
                         file = s0Var3.R;
                     }
                     if (file != null) {
-                        e60 e60Var2 = (e60) gVar.f15266b;
+                        e60 e60Var2 = (e60) gVar.f15267b;
                         e60Var2.U = e60Var2.p(file, j14, null);
-                        e60 e60Var3 = (e60) gVar.f15266b;
+                        e60 e60Var3 = (e60) gVar.f15267b;
                         VideoEditedInfo videoEditedInfo = e60Var3.U;
                         if (j15 > j3) {
                             j10 = j15;
@@ -142,8 +142,8 @@ public final class d0 implements Runnable {
                         videoEditedInfo.endTime = j11;
                         NotificationCenter notificationCenter = NotificationCenter.getInstance(e60Var3.h);
                         int i10 = NotificationCenter.audioDidSent;
-                        Integer valueOf = Integer.valueOf(((e60) gVar.f15266b).f25953n);
-                        VideoEditedInfo videoEditedInfo2 = ((e60) gVar.f15266b).U;
+                        Integer valueOf = Integer.valueOf(((e60) gVar.f15267b).f25954n);
+                        VideoEditedInfo videoEditedInfo2 = ((e60) gVar.f15267b).U;
                         String absolutePath = file.getAbsolutePath();
                         ArrayList arrayList = new ArrayList();
                         Object[] objArr = new Object[4];
@@ -155,11 +155,11 @@ public final class d0 implements Runnable {
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        j60 j60Var = ((e60) gVar.f15266b).f27967b;
-                        if (j60Var != null && (jkVar = ((re) j60Var).f40102b.W) != null && (s81Var = jkVar.f23882f1) != null) {
+                        j60 j60Var = ((e60) gVar.f15267b).f27968b;
+                        if (j60Var != null && (jkVar = ((re) j60Var).f40103b.W) != null && (s81Var = jkVar.f23883f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            s81Var.f30650b = max2;
-                            s81Var.f30651c = Math.max(max2, Math.min(1.0f, f10));
+                            s81Var.f30651b = max2;
+                            s81Var.f30652c = Math.max(max2, Math.min(1.0f, f10));
                             s81Var.invalidate();
                         }
                     }

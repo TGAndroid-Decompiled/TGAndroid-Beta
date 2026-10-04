@@ -7,34 +7,34 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class is0 extends Drawable {
-    public final int f27490a;
-    public final ShapeDrawable f27491b;
-    public final Rect f27492c;
+    public final int f27491a;
+    public final ShapeDrawable f27492b;
+    public final Rect f27493c;
 
     public is0(fs0 fs0Var) {
-        this.f27490a = 1;
-        this.f27491b = org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), 0);
-        this.f27492c = new Rect();
+        this.f27491a = 1;
+        this.f27492b = org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), 0);
+        this.f27493c = new Rect();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f27490a) {
+        switch (this.f27491a) {
             case 0:
                 Rect bounds = getBounds();
-                Rect rect = this.f27492c;
+                Rect rect = this.f27493c;
                 rect.set(bounds);
                 rect.inset(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.0f));
-                ShapeDrawable shapeDrawable = this.f27491b;
+                ShapeDrawable shapeDrawable = this.f27492b;
                 shapeDrawable.setBounds(rect);
                 shapeDrawable.draw(canvas);
                 return;
             default:
                 Rect bounds2 = getBounds();
-                Rect rect2 = this.f27492c;
+                Rect rect2 = this.f27493c;
                 rect2.set(bounds2);
                 rect2.inset(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.0f));
-                ShapeDrawable shapeDrawable2 = this.f27491b;
+                ShapeDrawable shapeDrawable2 = this.f27492b;
                 shapeDrawable2.setBounds(rect2);
                 shapeDrawable2.draw(canvas);
                 return;
@@ -43,7 +43,7 @@ public final class is0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f27490a) {
+        switch (this.f27491a) {
             case 0:
                 return -2;
             default:
@@ -53,29 +53,29 @@ public final class is0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f27490a) {
+        switch (this.f27491a) {
             case 0:
-                this.f27491b.setAlpha(i10);
+                this.f27492b.setAlpha(i10);
                 return;
             default:
-                this.f27491b.setAlpha(i10);
+                this.f27492b.setAlpha(i10);
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f27490a;
+        int i10 = this.f27491a;
     }
 
     public is0(js0 js0Var) {
-        this.f27490a = 0;
+        this.f27491a = 0;
         int dp = AndroidUtilities.dp(16.0f);
         int dp2 = AndroidUtilities.dp(16.0f);
-        int i10 = org.telegram.ui.ActionBar.i6.f20817d6;
-        org.telegram.ui.ActionBar.d6 d6Var = js0Var.f27890c;
-        this.f27491b = org.telegram.ui.ActionBar.i6.c0(dp, dp2, org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.v0(i10, d6Var), org.telegram.ui.ActionBar.i6.l1(0.04f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var))));
-        this.f27492c = new Rect();
+        int i10 = org.telegram.ui.ActionBar.i6.f20818d6;
+        org.telegram.ui.ActionBar.d6 d6Var = js0Var.f27891c;
+        this.f27492b = org.telegram.ui.ActionBar.i6.c0(dp, dp2, org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.v0(i10, d6Var), org.telegram.ui.ActionBar.i6.l1(0.04f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var))));
+        this.f27493c = new Rect();
     }
 
     private final void a(ColorFilter colorFilter) {

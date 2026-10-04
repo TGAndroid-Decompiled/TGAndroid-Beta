@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class pr implements org.telegram.ui.Cells.a5, gg.b2 {
-    public final qr f39529a;
+    public final qr f39530a;
 
     public pr(qr qrVar) {
-        this.f39529a = qrVar;
+        this.f39530a = qrVar;
     }
 
     @Override
     public void a(int i10) {
-        qr qrVar = this.f39529a;
-        rr rrVar = qrVar.f39800y;
+        qr qrVar = this.f39530a;
+        rr rrVar = qrVar.f39801y;
         if (!qrVar.h.e()) {
-            int i11 = qrVar.f39796r;
+            int i11 = qrVar.f39797r;
             qrVar.l();
-            if (qrVar.f39796r > i11) {
+            if (qrVar.f39797r > i11) {
                 rrVar.y0(i11);
             }
-            if (!qrVar.f39797s && qrVar.f39796r == 0 && i10 != 0) {
-                rrVar.f40186b.e(false, true);
+            if (!qrVar.f39798s && qrVar.f39797r == 0 && i10 != 0) {
+                rrVar.f40187b.e(false, true);
             }
         }
     }
@@ -29,10 +29,10 @@ public final class pr implements org.telegram.ui.Cells.a5, gg.b2 {
     @Override
     public boolean e(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
         int intValue = ((Integer) b5Var.getTag()).intValue();
-        qr qrVar = this.f39529a;
+        qr qrVar = this.f39530a;
         TLObject E = qrVar.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
-            return qrVar.f39800y.h0((TLRPC.ChannelParticipant) E, !z10, b5Var);
+            return qrVar.f39801y.h0((TLRPC.ChannelParticipant) E, !z10, b5Var);
         }
         return false;
     }

@@ -1,20 +1,20 @@
 package u2;
 public final class p1 {
     public static final p1 d = new p1(new b2.l1[0]);
-    public static final String f47369e;
-    public final int f47370a;
-    public final e9.a1 f47371b;
-    public int f47372c;
+    public static final String f47370e;
+    public final int f47371a;
+    public final e9.a1 f47372b;
+    public int f47373c;
 
     static {
         String str = e2.d0.f8537a;
-        f47369e = Integer.toString(0, 36);
+        f47370e = Integer.toString(0, 36);
     }
 
     public p1(b2.l1... l1VarArr) {
         e9.a1 w10 = e9.i0.w(l1VarArr);
-        this.f47371b = w10;
-        this.f47370a = l1VarArr.length;
+        this.f47372b = w10;
+        this.f47371a = l1VarArr.length;
         int i10 = 0;
         while (i10 < w10.d) {
             int i11 = i10 + 1;
@@ -28,11 +28,11 @@ public final class p1 {
     }
 
     public final b2.l1 a(int i10) {
-        return (b2.l1) this.f47371b.get(i10);
+        return (b2.l1) this.f47372b.get(i10);
     }
 
     public final int b(b2.l1 l1Var) {
-        int indexOf = this.f47371b.indexOf(l1Var);
+        int indexOf = this.f47372b.indexOf(l1Var);
         if (indexOf >= 0) {
             return indexOf;
         }
@@ -43,7 +43,7 @@ public final class p1 {
         if (this != obj) {
             if (obj != null && p1.class == obj.getClass()) {
                 p1 p1Var = (p1) obj;
-                if (this.f47370a == p1Var.f47370a && this.f47371b.equals(p1Var.f47371b)) {
+                if (this.f47371a == p1Var.f47371a && this.f47372b.equals(p1Var.f47372b)) {
                     return true;
                 }
                 return false;
@@ -54,13 +54,13 @@ public final class p1 {
     }
 
     public final int hashCode() {
-        if (this.f47372c == 0) {
-            this.f47372c = this.f47371b.hashCode();
+        if (this.f47373c == 0) {
+            this.f47373c = this.f47372b.hashCode();
         }
-        return this.f47372c;
+        return this.f47373c;
     }
 
     public final String toString() {
-        return this.f47371b.toString();
+        return this.f47372b.toString();
     }
 }

@@ -8,28 +8,28 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import w7.z;
 public final class a extends z {
-    public final boolean f16431a;
-    public final Paint f16432b = new Paint();
-    public final Paint f16433c;
+    public final boolean f16432a;
+    public final Paint f16433b = new Paint();
+    public final Paint f16434c;
     public final Paint d;
-    public int f16434e;
-    public int f16435f;
-    public final f f16436g;
+    public int f16435e;
+    public int f16436f;
+    public final f f16437g;
 
     public a(f fVar, boolean z10) {
-        this.f16436g = fVar;
+        this.f16437g = fVar;
         Paint paint = new Paint(1);
-        this.f16433c = paint;
+        this.f16434c = paint;
         this.d = new Paint(1);
-        this.f16434e = -1;
-        this.f16435f = -1;
-        this.f16431a = z10;
+        this.f16435e = -1;
+        this.f16436f = -1;
+        this.f16432a = z10;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
     @Override
     public final void b() {
-        this.f16434e = -1;
+        this.f16435e = -1;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class a extends z {
         f fVar;
         float f7;
         float f10;
-        f fVar2 = this.f16436g;
+        f fVar2 = this.f16437g;
         Rect bounds = fVar2.getBounds();
         int width = bounds.width();
         int height = bounds.height();
@@ -49,67 +49,67 @@ public final class a extends z {
         int ceil = (int) Math.ceil(f11 / 5.0f);
         float f12 = height;
         int ceil2 = (int) Math.ceil(f12 / 5.0f);
-        boolean z13 = this.f16431a;
+        boolean z13 = this.f16432a;
         if (z13) {
-            z10 = fVar2.f16459j;
+            z10 = fVar2.f16460j;
         } else {
-            z10 = fVar2.f16460k;
+            z10 = fVar2.f16461k;
         }
-        Paint paint2 = this.f16433c;
+        Paint paint2 = this.f16434c;
         Paint paint3 = this.d;
-        if (!z10 && this.f16434e == width && this.f16435f == height) {
+        if (!z10 && this.f16435e == width && this.f16436f == height) {
             fVar = fVar2;
             paint = paint3;
             z11 = z13;
         } else {
-            int i10 = fVar2.f16461l;
+            int i10 = fVar2.f16462l;
             if (i10 != 1 && i10 != 4) {
                 f12 = f11;
             }
             if (z13) {
-                g gVar = fVar2.f16462m;
+                g gVar = fVar2.f16463m;
                 gVar.getClass();
                 float f13 = 0;
                 paint = paint3;
                 z11 = z13;
                 z12 = false;
                 paint2.setShader(f.m(fVar2, gVar, f12, f13, -1, 5));
-                g gVar2 = fVar2.f16463n;
+                g gVar2 = fVar2.f16464n;
                 gVar2.getClass();
-                paint.setShader(f.m(fVar2, gVar2, f12, f13, fVar2.f16466q, 5));
+                paint.setShader(f.m(fVar2, gVar2, f12, f13, fVar2.f16467q, 5));
                 fVar = fVar2;
             } else {
                 paint = paint3;
                 z11 = z13;
                 z12 = false;
-                g gVar3 = fVar2.f16464o;
+                g gVar3 = fVar2.f16465o;
                 gVar3.getClass();
                 fVar = fVar2;
-                paint.setShader(f.m(fVar2, gVar3, f12, 0, fVar2.f16468s, 5));
+                paint.setShader(f.m(fVar2, gVar3, f12, 0, fVar2.f16469s, 5));
             }
-            this.f16434e = width;
-            this.f16435f = height;
+            this.f16435e = width;
+            this.f16436f = height;
             if (z11) {
-                fVar.f16459j = z12;
+                fVar.f16460j = z12;
             } else {
-                fVar.f16460k = z12;
+                fVar.f16461k = z12;
             }
         }
         canvas.save();
         canvas.scale(5.0f, 5.0f);
         float f14 = ceil;
         float f15 = ceil2;
-        int saveLayer = canvas.saveLayer(0.0f, 0.0f, f14, f15, this.f16432b);
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, f14, f15, this.f16433b);
         if (z11) {
-            canvas.drawColor((fVar.f16466q & 16777215) | (-16777216));
+            canvas.drawColor((fVar.f16467q & 16777215) | (-16777216));
             canvas.save();
             canvas.scale(0.2f, 0.2f);
-            float f16 = fVar.f15649c;
+            float f16 = fVar.f15650c;
             float f17 = bounds.left + f16;
             float f18 = fVar.d;
             float f19 = bounds.top + f18;
             canvas.translate(-f17, -f19);
-            fVar.f16455e.y(canvas, f17, f19, bounds.right + f16, bounds.bottom + f18);
+            fVar.f16456e.y(canvas, f17, f19, bounds.right + f16, bounds.bottom + f18);
             canvas.restore();
             f7 = f14;
             f10 = f15;
@@ -130,7 +130,7 @@ public final class a extends z {
 
     @Override
     public final void e(float f7) {
-        this.f16432b.setAlpha(Math.round(f7 * 255.0f));
+        this.f16433b.setAlpha(Math.round(f7 * 255.0f));
     }
 
     @Override

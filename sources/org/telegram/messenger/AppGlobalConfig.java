@@ -49,6 +49,7 @@ public class AppGlobalConfig {
     public final ConfigInt richMessageMaxMedia;
     public final ConfigInt richMessageMaxTableCols;
     public final ConfigString richMessagePosting;
+    public final ConfigBoolean roundVideoRecorder2Allowed;
     public final ConfigBoolean settingsDisplayPasskeys;
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
@@ -422,6 +423,7 @@ public class AppGlobalConfig {
         this.messageLengthLimitPremium = ofInt("message_length_limit_premium", 8192);
         this.quickReplyMessagesLimit = ofInt("quick_reply_messages_limit", 20);
         this.ephemeralWelcomeMessagesMax = ofInt("ephemeral_welcome_messages_max", 5);
+        this.roundVideoRecorder2Allowed = ofBoolean("round_video_recorder_2_allowed", true);
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
         this.botAllowedSuffixes = ofStringSet("bot_allowed_suffixes", Collections.singleton("bot"));
     }

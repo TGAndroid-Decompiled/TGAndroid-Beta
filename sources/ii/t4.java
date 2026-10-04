@@ -143,9 +143,9 @@ public final class t4 implements View.OnClickListener {
                         }, true);
                         f02.a0(0.0f, -AndroidUtilities.dp(38.0f));
                         if (w4Var.H) {
-                            f02.f24846u = false;
+                            f02.f24847u = false;
                             f02.v = true;
-                            f02.f24844s = 0;
+                            f02.f24845s = 0;
                         }
                         f02.Z();
                         return;

@@ -80,7 +80,7 @@ public final class ba implements Runnable {
                 r90 r90Var = (r90) this.f667c;
                 r90 r90Var2 = vaVar.f1764a;
                 if (r90Var == r90Var2 && r90Var2 != null) {
-                    CharacterStyle characterStyle = r90Var2.f30305i;
+                    CharacterStyle characterStyle = r90Var2.f30306i;
                     if (characterStyle instanceof URLSpan) {
                         wa waVar = vaVar.v;
                         n90 n90Var = vaVar.f1766c;
@@ -142,7 +142,7 @@ public final class ba implements Runnable {
                 }
                 return;
             case 8:
-                ((c1.e) this.f666b).e().onError(((kotlin.jvm.internal.p) this.f667c).f15114a);
+                ((c1.e) this.f666b).e().onError(((kotlin.jvm.internal.p) this.f667c).f15115a);
                 return;
             case 9:
                 ((c1.e) this.f666b).e().onError((w0.h) this.f667c);
@@ -158,7 +158,7 @@ public final class ba implements Runnable {
                 ca.c cVar = (ca.c) this.f666b;
                 CountDownLatch countDownLatch = (CountDownLatch) this.f667c;
                 try {
-                    l5.t.a().d.e(cVar.h.f15365a.b(i5.d.f11965c), 1);
+                    l5.t.a().d.e(cVar.h.f15366a.b(i5.d.f11965c), 1);
                 } catch (SQLException unused2) {
                 }
                 countDownLatch.countDown();
@@ -303,7 +303,7 @@ public final class ba implements Runnable {
                         }
                         if (document != null) {
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_inputDocument.f20049id = document.f20043id;
+                            tL_inputDocument.f20050id = document.f20044id;
                             tL_inputDocument.access_hash = document.access_hash;
                             tL_inputDocument.file_reference = document.file_reference;
                             k8Var2.V0.add(tL_inputDocument);
@@ -319,7 +319,7 @@ public final class ba implements Runnable {
                 ci.t8 t8Var = (ci.t8) this.f666b;
                 TextView textView = (TextView) this.f667c;
                 ClipboardManager clipboardManager = (ClipboardManager) t8Var.getContext().getSystemService("clipboard");
-                org.telegram.ui.Cells.h3 h3Var = t8Var.Y.f22306b;
+                org.telegram.ui.Cells.h3 h3Var = t8Var.Y.f22307b;
                 if ((TextUtils.isEmpty(h3Var.getText()) || TextUtils.equals(h3Var.getText(), "https://") || TextUtils.isEmpty(h3Var.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     i10 = 1;
                 }

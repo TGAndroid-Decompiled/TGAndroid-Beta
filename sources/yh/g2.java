@@ -45,15 +45,15 @@ public final class g2 extends g91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                n2Var = x3Var.f52208b0;
-                if (n2Var != null && view2 == n2Var.Y && (i2Var3 = n2Var.f52212d0) != null) {
+                n2Var = x3Var.f52209b0;
+                if (n2Var != null && view2 == n2Var.Y && (i2Var3 = n2Var.f52213d0) != null) {
                     i2Var3.invalidate();
                 }
-                if (view2 == x3Var.Y && (i2Var2 = x3Var.f52212d0) != null) {
+                if (view2 == x3Var.Y && (i2Var2 = x3Var.f52213d0) != null) {
                     i2Var2.invalidate();
                 }
-                n2Var2 = x3Var.f52210c0;
-                if (n2Var2 == null && view2 == n2Var2.Y && (i2Var = n2Var2.f52212d0) != null) {
+                n2Var2 = x3Var.f52211c0;
+                if (n2Var2 == null && view2 == n2Var2.Y && (i2Var = n2Var2.f52213d0) != null) {
                     i2Var.invalidate();
                     return;
                 }
@@ -61,14 +61,14 @@ public final class g2 extends g91 {
             }
         }
         view2 = null;
-        n2Var = x3Var.f52208b0;
+        n2Var = x3Var.f52209b0;
         if (n2Var != null) {
             i2Var3.invalidate();
         }
         if (view2 == x3Var.Y) {
             i2Var2.invalidate();
         }
-        n2Var2 = x3Var.f52210c0;
+        n2Var2 = x3Var.f52211c0;
         if (n2Var2 == null) {
         }
     }
@@ -76,11 +76,11 @@ public final class g2 extends g91 {
     @Override
     public final void G() {
         super.G();
-        int i10 = this.f26730b;
+        int i10 = this.f26731b;
         x3 x3Var = this.U;
         boolean z10 = false;
         if (i10 != x3Var.L1(false)) {
-            if (this.f26730b > x3Var.L1(false)) {
+            if (this.f26731b > x3Var.L1(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new es0(16, this, z10));

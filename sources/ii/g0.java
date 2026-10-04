@@ -27,7 +27,7 @@ public final class g0 extends f61 {
     @Override
     public final View createView(Context context, zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         h0 h0Var = new h0(context, i10, d6Var);
-        h0Var.setBackground(new b2(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20817d6, d6Var)));
+        h0Var.setBackground(new b2(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20818d6, d6Var)));
         return h0Var;
     }
 

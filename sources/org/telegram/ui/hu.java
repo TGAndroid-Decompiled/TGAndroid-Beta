@@ -6,26 +6,26 @@ import android.text.TextUtils;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 public final class hu extends org.telegram.ui.Cells.d5 {
-    public final int f37170e;
-    public final org.telegram.ui.Cells.e9 f37171f;
+    public final int f37171e;
+    public final org.telegram.ui.Cells.e9 f37172f;
     public final org.telegram.ui.Cells.w8[] h;
-    public final AnimatorSet[] f37172n;
-    public final DataAutoDownloadActivity f37173r;
+    public final AnimatorSet[] f37173n;
+    public final DataAutoDownloadActivity f37174r;
 
     public hu(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
         super(activity);
         int i11;
         int i12;
         int i13;
-        this.f37173r = dataAutoDownloadActivity;
-        this.f37170e = i10;
-        this.f37171f = e9Var;
+        this.f37174r = dataAutoDownloadActivity;
+        this.f37171e = i10;
+        this.f37172f = e9Var;
         this.h = w8VarArr;
-        this.f37172n = animatorSetArr;
+        this.f37173n = animatorSetArr;
         setWillNotDraw(false);
         TextView textView = new TextView(activity);
-        this.f21915a = textView;
-        org.telegram.messenger.ok.t(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20925j5, false), 1, 16.0f, 1);
+        this.f21916a = textView;
+        org.telegram.messenger.ok.t(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20926j5, false), 1, 16.0f, 1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         if (LocaleController.isRTL) {
@@ -43,8 +43,8 @@ public final class hu extends org.telegram.ui.Cells.d5 {
         }
         addView(textView, w7.z5.d(-1, -1.0f, i12 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(activity);
-        this.f21916b = textView2;
-        org.telegram.messenger.ok.t(textView2, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21002n5, false), 1, 16.0f, 1);
+        this.f21917b = textView2;
+        org.telegram.messenger.ok.t(textView2, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21003n5, false), 1, 16.0f, 1);
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);
         if (LocaleController.isRTL) {
@@ -56,7 +56,7 @@ public final class hu extends org.telegram.ui.Cells.d5 {
         textView2.setImportantForAccessibility(2);
         addView(textView2, w7.z5.d(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         org.telegram.ui.Cells.j0 j0Var = new org.telegram.ui.Cells.j0(activity);
-        this.f21917c = j0Var;
+        this.f21918c = j0Var;
         j0Var.setReportChanges(true);
         j0Var.setDelegate(new org.telegram.ui.Cells.c5(this));
         j0Var.setImportantForAccessibility(2);

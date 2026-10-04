@@ -6,12 +6,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class rd implements View.OnFocusChangeListener {
-    public final int f40027a;
-    public final Object f40028b;
+    public final int f40028a;
+    public final Object f40029b;
 
     public rd(Object obj, int i10) {
-        this.f40027a = i10;
-        this.f40028b = obj;
+        this.f40028a = i10;
+        this.f40029b = obj;
     }
 
     @Override
@@ -24,9 +24,9 @@ public final class rd implements View.OnFocusChangeListener {
         float f14;
         float f15;
         float f16;
-        switch (this.f40027a) {
+        switch (this.f40028a) {
             case 0:
-                ae aeVar = ((me) this.f40028b).N1;
+                ae aeVar = ((me) this.f40029b).N1;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
@@ -35,22 +35,22 @@ public final class rd implements View.OnFocusChangeListener {
                 aeVar.b(f7, f7, true);
                 return;
             case 1:
-                uy uyVar = (uy) this.f40028b;
+                uy uyVar = (uy) this.f40029b;
                 if (z10) {
                     uyVar.Y.b(true);
                     return;
                 }
                 return;
             case 2:
-                ug0 ug0Var = ((ee0) this.f40028b).W;
+                ug0 ug0Var = ((ee0) this.f40029b).W;
                 if (z10) {
-                    ug0Var.f41196c.setEditText((EditText) view);
-                    ug0Var.f41196c.setDispatchBackWhenEmpty(true);
+                    ug0Var.f41197c.setEditText((EditText) view);
+                    ug0Var.f41197c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 3:
-                org.telegram.ui.Components.ld0 ld0Var = (org.telegram.ui.Components.ld0) this.f40028b;
+                org.telegram.ui.Components.ld0 ld0Var = (org.telegram.ui.Components.ld0) this.f40029b;
                 if (z10) {
                     f10 = 1.0f;
                 } else {
@@ -59,7 +59,7 @@ public final class rd implements View.OnFocusChangeListener {
                 ld0Var.b(f10, f10, true);
                 return;
             case 4:
-                org.telegram.ui.Components.ld0 ld0Var2 = ((ne0) this.f40028b).f38953x;
+                org.telegram.ui.Components.ld0 ld0Var2 = ((ne0) this.f40029b).f38954x;
                 if (z10) {
                     f11 = 1.0f;
                 } else {
@@ -68,7 +68,7 @@ public final class rd implements View.OnFocusChangeListener {
                 ld0Var2.b(f11, f11, true);
                 return;
             case 5:
-                org.telegram.ui.Components.ld0 ld0Var3 = ((ve0) this.f40028b).f41712b;
+                org.telegram.ui.Components.ld0 ld0Var3 = ((ve0) this.f40029b).f41713b;
                 if (z10) {
                     f12 = 1.0f;
                 } else {
@@ -77,15 +77,15 @@ public final class rd implements View.OnFocusChangeListener {
                 ld0Var3.b(f12, f12, true);
                 return;
             case 6:
-                ug0 ug0Var2 = ((ye0) this.f40028b).f43152y;
+                ug0 ug0Var2 = ((ye0) this.f40029b).f43153y;
                 if (z10) {
-                    ug0Var2.f41196c.setEditText((EditText) view);
-                    ug0Var2.f41196c.setDispatchBackWhenEmpty(true);
+                    ug0Var2.f41197c.setEditText((EditText) view);
+                    ug0Var2.f41197c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 7:
-                org.telegram.ui.Components.ld0 ld0Var4 = ((jf0) this.f40028b).f37671a;
+                org.telegram.ui.Components.ld0 ld0Var4 = ((jf0) this.f40029b).f37672a;
                 if (z10) {
                     f13 = 1.0f;
                 } else {
@@ -94,15 +94,15 @@ public final class rd implements View.OnFocusChangeListener {
                 ld0Var4.b(f13, f13, true);
                 return;
             case 8:
-                ug0 ug0Var3 = ((xf0) this.f40028b).f42874s0;
+                ug0 ug0Var3 = ((xf0) this.f40029b).f42875s0;
                 if (z10) {
-                    ug0Var3.f41196c.setEditText((EditText) view);
-                    ug0Var3.f41196c.setDispatchBackWhenEmpty(true);
+                    ug0Var3.f41197c.setEditText((EditText) view);
+                    ug0Var3.f41197c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 9:
-                org.telegram.ui.Components.ld0 ld0Var5 = ((tg0) this.f40028b).f40819e;
+                org.telegram.ui.Components.ld0 ld0Var5 = ((tg0) this.f40029b).f40820e;
                 if (z10) {
                     f14 = 1.0f;
                 } else {
@@ -111,7 +111,7 @@ public final class rd implements View.OnFocusChangeListener {
                 ld0Var5.b(f14, f14, true);
                 return;
             case 10:
-                org.telegram.ui.Components.ld0 ld0Var6 = ((PasscodeActivity) this.f40028b).f33843f;
+                org.telegram.ui.Components.ld0 ld0Var6 = ((PasscodeActivity) this.f40029b).f33844f;
                 if (z10) {
                     f15 = 1.0f;
                 } else {
@@ -120,7 +120,7 @@ public final class rd implements View.OnFocusChangeListener {
                 ld0Var6.b(f15, f15, true);
                 return;
             case 11:
-                wd1 wd1Var = (wd1) this.f40028b;
+                wd1 wd1Var = (wd1) this.f40029b;
                 if (z10) {
                     wd1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
                     return;
@@ -129,7 +129,7 @@ public final class rd implements View.OnFocusChangeListener {
                     return;
                 }
             default:
-                org.telegram.ui.Components.ld0 ld0Var7 = ((TwoStepVerificationActivity) this.f40028b).v;
+                org.telegram.ui.Components.ld0 ld0Var7 = ((TwoStepVerificationActivity) this.f40029b).v;
                 if (z10) {
                     f16 = 1.0f;
                 } else {

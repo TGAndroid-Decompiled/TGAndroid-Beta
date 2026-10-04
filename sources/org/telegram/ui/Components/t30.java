@@ -2,35 +2,35 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class t30 implements gg.b2 {
-    public final u30 f30954a;
+    public final u30 f30955a;
 
     public t30(u30 u30Var) {
-        this.f30954a = u30Var;
+        this.f30955a = u30Var;
     }
 
     @Override
     public final void a(int i10) {
-        u30 u30Var = this.f30954a;
-        v30 v30Var = u30Var.f31272w;
-        if (i10 >= 0 && i10 == u30Var.f31269n && !u30Var.h) {
+        u30 u30Var = this.f30955a;
+        v30 v30Var = u30Var.f31273w;
+        if (i10 >= 0 && i10 == u30Var.f31270n && !u30Var.h) {
             boolean z10 = true;
-            int i11 = u30Var.f31268f - 1;
-            if (v30Var.f28893s.getVisibility() != 0) {
+            int i11 = u30Var.f31269f - 1;
+            if (v30Var.f28894s.getVisibility() != 0) {
                 z10 = false;
             }
             u30Var.l();
-            if (u30Var.f31268f > i11) {
+            if (u30Var.f31269f > i11) {
                 v30Var.H(i11);
             }
             if (!u30Var.d.e() && v30Var.d.T0()) {
-                v30Var.f28893s.e(false, z10);
+                v30Var.f28894s.e(false, z10);
             }
         }
     }
 
     @Override
     public final a0.i w() {
-        return this.f30954a.f31272w.f31529e0;
+        return this.f30955a.f31273w.f31530e0;
     }
 
     @Override

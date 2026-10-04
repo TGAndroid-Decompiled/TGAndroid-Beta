@@ -27,10 +27,10 @@ import w7.z5;
 import yh.j5;
 import yh.t5;
 public final class i2 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final o2 f50006a;
+    public final o2 f50007a;
 
     public i2(o2 o2Var) {
-        this.f50006a = o2Var;
+        this.f50007a = o2Var;
     }
 
     @Override
@@ -40,41 +40,41 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        o2 o2Var = this.f50006a;
-        fs0 fs0Var = o2Var.f50143a;
-        int i10 = o2Var.f50144b;
-        if (o2Var.f50146e == null) {
+        o2 o2Var = this.f50007a;
+        fs0 fs0Var = o2Var.f50144a;
+        int i10 = o2Var.f50145b;
+        if (o2Var.f50147e == null) {
             return;
         }
         Object obj6 = g61Var.G;
         if (obj6 instanceof TL_stars.SavedStarGift) {
             TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj6;
-            if (o2Var.f50148n) {
+            if (o2Var.f50149n) {
                 if (!o2Var.d && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
                     boolean z10 = savedStarGift.pinned_to_top;
                     boolean z11 = !z10;
                     if (!z10 && savedStarGift.unsaved) {
                         savedStarGift.unsaved = false;
                         TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
-                        savestargift.stargift = o2Var.f50146e.g(savedStarGift);
+                        savestargift.stargift = o2Var.f50147e.g(savedStarGift);
                         savestargift.unsave = savedStarGift.unsaved;
                         ConnectionsManager.getInstance(i10).sendRequest(savestargift, null, 64);
                     }
-                    if (o2Var.f50146e.m(savedStarGift, z11, true)) {
-                        yc.a0(fs0Var.f50216a).Q(R.raw.chats_infotip, 36, LocaleController.formatPluralStringComma("GiftsPinLimit", MessagesController.getInstance(i10).stargiftsPinnedToTopLimit)).j();
+                    if (o2Var.f50147e.m(savedStarGift, z11, true)) {
+                        yc.a0(fs0Var.f50217a).Q(R.raw.chats_infotip, 36, LocaleController.formatPluralStringComma("GiftsPinLimit", MessagesController.getInstance(i10).stargiftsPinnedToTopLimit)).j();
                     }
                     if (z10) {
                         return;
                     }
-                    o2Var.f50147f.v0(0);
+                    o2Var.f50148f.v0(0);
                     return;
                 }
                 return;
             }
-            yh.x3 x3Var = new yh.x3(o2Var.getContext(), o2Var.f50144b, fs0Var.f50218c, o2Var.f50145c, null);
-            x3Var.f52213d1 = new d2(o2Var, 2);
+            yh.x3 x3Var = new yh.x3(o2Var.getContext(), o2Var.f50145b, fs0Var.f50219c, o2Var.f50146c, null);
+            x3Var.f52214d1 = new d2(o2Var, 2);
             x3Var.O0 = new rg.x(14, o2Var, savedStarGift);
-            x3Var.j2(savedStarGift, o2Var.f50146e);
+            x3Var.j2(savedStarGift, o2Var.f50147e);
             x3Var.show();
         }
     }
@@ -101,19 +101,19 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        o2 o2Var3 = this.f50006a;
-        d6 d6Var2 = o2Var3.f50145c;
-        int i10 = o2Var3.f50144b;
-        fs0 fs0Var3 = o2Var3.f50143a;
+        o2 o2Var3 = this.f50007a;
+        d6 d6Var2 = o2Var3.f50146c;
+        int i10 = o2Var3.f50145b;
+        fs0 fs0Var3 = o2Var3.f50144a;
         boolean z13 = false;
-        if (o2Var3.f50146e != null) {
+        if (o2Var3.f50147e != null) {
             if (view instanceof i1) {
                 Object obj7 = g61Var.G;
                 if (obj7 instanceof TL_stars.SavedStarGift) {
                     i1 i1Var3 = (i1) view;
                     final TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj7;
-                    org.telegram.ui.ActionBar.n2 n2Var = fs0Var3.f50216a;
-                    j5 j5Var2 = fs0Var3.f50219e;
+                    org.telegram.ui.ActionBar.n2 n2Var = fs0Var3.f50217a;
+                    j5 j5Var2 = fs0Var3.f50220e;
                     b80 I = b80.I(n2Var, view);
                     fs0Var3.I = I;
                     if (j5Var2.h()) {
@@ -129,7 +129,7 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                         linearLayout2.setOrientation(1);
                         J.r(uxVar, z5.n(-1, -2));
                         if (j5Var2.d().size() + 1 < MessagesController.getInstance(i10).config.stargiftsCollectionsLimit.get()) {
-                            org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(0, o2Var3.getContext(), o2Var3.f50145c, false, false);
+                            org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(0, o2Var3.getContext(), o2Var3.f50146c, false, false);
                             f1Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
                             int i11 = i6.E8;
                             f1Var.c(i6.v0(i11, d6Var2), i6.v0(i6.F8, d6Var2));
@@ -144,7 +144,7 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                         while (i12 < size) {
                             int i13 = i12 + 1;
                             TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) d.get(i12);
-                            ArrayList arrayList = j5Var2.e(tL_starGiftCollection.collection_id).f51527l;
+                            ArrayList arrayList = j5Var2.e(tL_starGiftCollection.collection_id).f51528l;
                             fs0 fs0Var4 = fs0Var3;
                             int size2 = arrayList.size();
                             i1 i1Var4 = i1Var3;
@@ -165,7 +165,7 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                                 }
                                 size2 = i15;
                             }
-                            org.telegram.ui.ActionBar.f1 f1Var2 = new org.telegram.ui.ActionBar.f1(2, o2Var3.getContext(), o2Var3.f50145c, false, false);
+                            org.telegram.ui.ActionBar.f1 f1Var2 = new org.telegram.ui.ActionBar.f1(2, o2Var3.getContext(), o2Var3.f50146c, false, false);
                             f1Var2.setChecked(z12);
                             o2 o2Var4 = o2Var3;
                             LinearLayout linearLayout3 = linearLayout;
@@ -243,19 +243,19 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                                     switch (r3) {
                                         case 0:
                                             o2 o2Var5 = o2Var2;
-                                            n2 n2Var2 = new n2(o2Var5, o2Var5.getContext(), o2Var5.f50144b, o2Var5.f50143a.f50218c, o2Var5.f50145c, 0);
+                                            n2 n2Var2 = new n2(o2Var5, o2Var5.getContext(), o2Var5.f50145b, o2Var5.f50144a.f50219c, o2Var5.f50146c, 0);
                                             n2Var2.j2(savedStarGift, null);
                                             n2Var2.r2(false);
                                             return;
                                         case 1:
                                             o2 o2Var6 = o2Var2;
-                                            n2 n2Var3 = new n2(o2Var6, o2Var6.getContext(), o2Var6.f50144b, o2Var6.f50143a.f50218c, o2Var6.f50145c, 1);
+                                            n2 n2Var3 = new n2(o2Var6, o2Var6.getContext(), o2Var6.f50145b, o2Var6.f50144a.f50219c, o2Var6.f50146c, 1);
                                             n2Var3.j2(savedStarGift, null);
                                             n2Var3.S1();
                                             return;
                                         default:
                                             o2 o2Var7 = o2Var2;
-                                            n2 n2Var4 = new n2(o2Var7, o2Var7.getContext(), o2Var7.f50144b, o2Var7.f50143a.f50218c, o2Var7.f50145c, 2);
+                                            n2 n2Var4 = new n2(o2Var7, o2Var7.getContext(), o2Var7.f50145b, o2Var7.f50144a.f50219c, o2Var7.f50146c, 2);
                                             n2Var4.j2(savedStarGift, null);
                                             n2Var4.Y1();
                                             return;
@@ -270,19 +270,19 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                                 switch (r3) {
                                     case 0:
                                         o2 o2Var5 = o2Var2;
-                                        n2 n2Var2 = new n2(o2Var5, o2Var5.getContext(), o2Var5.f50144b, o2Var5.f50143a.f50218c, o2Var5.f50145c, 0);
+                                        n2 n2Var2 = new n2(o2Var5, o2Var5.getContext(), o2Var5.f50145b, o2Var5.f50144a.f50219c, o2Var5.f50146c, 0);
                                         n2Var2.j2(savedStarGift, null);
                                         n2Var2.r2(false);
                                         return;
                                     case 1:
                                         o2 o2Var6 = o2Var2;
-                                        n2 n2Var3 = new n2(o2Var6, o2Var6.getContext(), o2Var6.f50144b, o2Var6.f50143a.f50218c, o2Var6.f50145c, 1);
+                                        n2 n2Var3 = new n2(o2Var6, o2Var6.getContext(), o2Var6.f50145b, o2Var6.f50144a.f50219c, o2Var6.f50146c, 1);
                                         n2Var3.j2(savedStarGift, null);
                                         n2Var3.S1();
                                         return;
                                     default:
                                         o2 o2Var7 = o2Var2;
-                                        n2 n2Var4 = new n2(o2Var7, o2Var7.getContext(), o2Var7.f50144b, o2Var7.f50143a.f50218c, o2Var7.f50145c, 2);
+                                        n2 n2Var4 = new n2(o2Var7, o2Var7.getContext(), o2Var7.f50145b, o2Var7.f50144a.f50219c, o2Var7.f50146c, 2);
                                         n2Var4.j2(savedStarGift, null);
                                         n2Var4.Y1();
                                         return;
@@ -298,7 +298,7 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                             I.c(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new d2(o2Var2, 3), false);
                         }
                     }
-                    if (yh.x3.O1(i10, fs0Var2.f50218c)) {
+                    if (yh.x3.O1(i10, fs0Var2.f50219c)) {
                         boolean z15 = savedStarGift.unsaved;
                         I.c(z15 ? R.drawable.msg_message : R.drawable.menu_hide_gift, LocaleController.getString(z15 ? R.string.Gift2ShowGift : R.string.Gift2HideGift), new tg.q(o2Var2, savedStarGift, i1Var2, 7), z10);
                     }
@@ -310,19 +310,19 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                                 switch (r3) {
                                     case 0:
                                         o2 o2Var5 = o2Var2;
-                                        n2 n2Var2 = new n2(o2Var5, o2Var5.getContext(), o2Var5.f50144b, o2Var5.f50143a.f50218c, o2Var5.f50145c, 0);
+                                        n2 n2Var2 = new n2(o2Var5, o2Var5.getContext(), o2Var5.f50145b, o2Var5.f50144a.f50219c, o2Var5.f50146c, 0);
                                         n2Var2.j2(savedStarGift, null);
                                         n2Var2.r2(false);
                                         return;
                                     case 1:
                                         o2 o2Var6 = o2Var2;
-                                        n2 n2Var3 = new n2(o2Var6, o2Var6.getContext(), o2Var6.f50144b, o2Var6.f50143a.f50218c, o2Var6.f50145c, 1);
+                                        n2 n2Var3 = new n2(o2Var6, o2Var6.getContext(), o2Var6.f50145b, o2Var6.f50144a.f50219c, o2Var6.f50146c, 1);
                                         n2Var3.j2(savedStarGift, null);
                                         n2Var3.S1();
                                         return;
                                     default:
                                         o2 o2Var7 = o2Var2;
-                                        n2 n2Var4 = new n2(o2Var7, o2Var7.getContext(), o2Var7.f50144b, o2Var7.f50143a.f50218c, o2Var7.f50145c, 2);
+                                        n2 n2Var4 = new n2(o2Var7, o2Var7.getContext(), o2Var7.f50145b, o2Var7.f50144a.f50219c, o2Var7.f50146c, 2);
                                         n2Var4.j2(savedStarGift, null);
                                         n2Var4.Y1();
                                         return;
@@ -340,7 +340,7 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                     }
                     if (I.x() > 0) {
                         I.V(5);
-                        I.f24846u = z11;
+                        I.f24847u = z11;
                         I.v = z11;
                         I.L = z11;
                         Point point = AndroidUtilities.displaySize;
@@ -350,7 +350,7 @@ public final class i2 implements Utilities.Callback5, Utilities.Callback5Return 
                         I.P = z11;
                         I.W = z11;
                         I.Z();
-                        i1Var2.f50005y.getImageReceiver().startAnimation(z11);
+                        i1Var2.f50006y.getImageReceiver().startAnimation(z11);
                         z13 = true;
                     }
                     z13 = false;

@@ -74,22 +74,22 @@ public final class k0 extends AnimatorListenerAdapter {
                     ((org.telegram.ui.Cells.u1) view2).getTransitionParams().h = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (nVar.f46597y.remove(c1Var2)) {
+                if (nVar.f46598y.remove(c1Var2)) {
                     nVar.u(c1Var2);
                     nVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((s4.c1) this.f10664b).f46523a.setAlpha(1.0f);
+                ((s4.c1) this.f10664b).f46524a.setAlpha(1.0f);
                 ((AnimatorSet) this.f10665c).removeAllListeners();
                 dt dtVar = (dt) this.f10666e;
                 bt btVar = (bt) this.d;
-                dtVar.d(btVar.f25050a);
-                dtVar.f25820y.remove(btVar.f25050a);
+                dtVar.d(btVar.f25051a);
+                dtVar.f25821y.remove(btVar.f25051a);
                 dtVar.A();
-                dtVar.d(btVar.f25051b);
-                dtVar.f25820y.remove(btVar.f25051b);
+                dtVar.d(btVar.f25052b);
+                dtVar.f25821y.remove(btVar.f25052b);
                 dtVar.A();
                 return;
             case 3:
@@ -103,7 +103,7 @@ public final class k0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 q2 q2Var = (q2) this.f10666e;
-                TextView[] textViewArr = q2Var.f32093a;
+                TextView[] textViewArr = q2Var.f32094a;
                 View view4 = (View) this.f10665c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
@@ -120,16 +120,16 @@ public final class k0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                q2Var.f32097f = false;
-                CharSequence charSequence = q2Var.f32096e;
+                q2Var.f32098f = false;
+                CharSequence charSequence = q2Var.f32097e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
                         q2Var.e(true);
                     } else {
-                        textViewArr[1].setText(q2Var.f32096e);
+                        textViewArr[1].setText(q2Var.f32097e);
                         q2Var.a(textViewArr[0], textViewArr[1], new i2.h0(this, 24));
                     }
-                    q2Var.f32096e = null;
+                    q2Var.f32097e = null;
                     return;
                 }
                 return;
@@ -148,12 +148,12 @@ public final class k0 extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f34232e0.setProgressToExpand(0.0f);
-                profileActivity.f34201a.setLayerType(0, null);
+                profileActivity.f34233e0.setProgressToExpand(0.0f);
+                profileActivity.f34202a.setLayerType(0, null);
                 if (profileActivity.P0 != null) {
                     kVar = ((n2) profileActivity).actionBar;
                     org.telegram.ui.ActionBar.z n10 = kVar.n();
-                    ArrayList arrayList = n10.f21721e;
+                    ArrayList arrayList = n10.f21722e;
                     if (arrayList != null) {
                         arrayList.clear();
                     }
@@ -163,15 +163,15 @@ public final class k0 extends AnimatorListenerAdapter {
                 runnable2.run();
                 if (profileActivity.J1 == 2) {
                     profileActivity.J1 = 1;
-                    profileActivity.f34232e0.setForegroundAlpha(1.0f);
+                    profileActivity.f34233e0.setForegroundAlpha(1.0f);
                     profileActivity.Y.setVisibility(8);
-                    profileActivity.f34293n0.setAlpha(1.0f);
-                    profileActivity.f34293n0.L();
-                    profileActivity.f34293n0.setVisibility(0);
+                    profileActivity.f34294n0.setAlpha(1.0f);
+                    profileActivity.f34294n0.L();
+                    profileActivity.f34294n0.setVisibility(0);
                 }
                 profileActivity.W4 = null;
                 profileActivity.Z.invalidate();
-                profileActivity.f34252g5 = null;
+                profileActivity.f34253g5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }
@@ -188,9 +188,9 @@ public final class k0 extends AnimatorListenerAdapter {
             case 2:
                 dt dtVar = (dt) this.f10666e;
                 bt btVar = (bt) this.d;
-                s4.c1 c1Var = btVar.f25050a;
+                s4.c1 c1Var = btVar.f25051a;
                 dtVar.getClass();
-                s4.c1 c1Var2 = btVar.f25051b;
+                s4.c1 c1Var2 = btVar.f25052b;
                 dtVar.getClass();
                 return;
             default:

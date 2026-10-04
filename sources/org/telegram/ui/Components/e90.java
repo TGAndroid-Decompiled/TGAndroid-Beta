@@ -22,7 +22,7 @@ public final class e90 extends zq0 {
             return;
         }
         if (iVar != null && iVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) iVar.n(0)).f20041id;
+            long j3 = ((TLRPC.Dialog) iVar.n(0)).f20042id;
             if (j3 != 0 && j3 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j3, true));
             } else {

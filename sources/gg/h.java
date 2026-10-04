@@ -19,35 +19,35 @@ public final class h extends c3 {
     public h(m mVar, Context context) {
         super(context);
         this.f10600f = mVar;
-        this.f21862a = UserConfig.selectedAccount;
+        this.f21863a = UserConfig.selectedAccount;
         setOrientation(1);
-        setBackgroundColor(i6.w0(null, i6.f20761a7, false));
+        setBackgroundColor(i6.w0(null, i6.f20762a7, false));
         w5 w5Var = new w5(context, 3);
         w5Var.f6232c = new Path();
         Paint paint = new Paint(1);
         w5Var.f6231b = paint;
-        paint.setColor(i6.w0(null, i6.f20817d6, false));
+        paint.setColor(i6.w0(null, i6.f20818d6, false));
         paint.setShadowLayer(AndroidUtilities.dp(1.33f), 0.0f, AndroidUtilities.dp(0.33f), 503316480);
         w5Var.setWillNotDraw(false);
         w5Var.setOrientation(1);
         w5Var.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
         w9 w9Var = new w9(context);
-        this.f21863b = w9Var;
+        this.f21864b = w9Var;
         w9Var.setOnClickListener(new View.OnClickListener(this) {
-            public final gg.h f21823b;
+            public final gg.h f21824b;
 
             {
-                this.f21823b = this;
+                this.f21824b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f21823b.f21863b.getImageReceiver().startAnimation();
+                        this.f21824b.f21864b.getImageReceiver().startAnimation();
                         return;
                     default:
-                        this.f21823b.f10600f.K();
+                        this.f21824b.f10600f.K();
                         return;
                 }
             }
@@ -55,7 +55,7 @@ public final class h extends c3 {
         a();
         w5Var.addView(w9Var, z5.q(130, 130, 49));
         TextView textView = new TextView(context);
-        this.f21864c = textView;
+        this.f21865c = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(i6.w0(null, i6.G6, false));
@@ -65,10 +65,10 @@ public final class h extends c3 {
         this.d = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(i6.w0(null, i6.f21204y6, false));
+        textView2.setTextColor(i6.w0(null, i6.f21205y6, false));
         w5Var.addView(textView2, z5.t(-1, -2, 49, 0, 7, 0, 0));
         TextView textView3 = new TextView(context);
-        this.f21865e = textView3;
+        this.f21866e = textView3;
         textView3.setGravity(17);
         textView3.setBackground(x5.f(new float[]{8.0f}, i6.Oh));
         textView3.setTextSize(1, 14.0f);
@@ -76,20 +76,20 @@ public final class h extends c3 {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final gg.h f21823b;
+            public final gg.h f21824b;
 
             {
-                this.f21823b = this;
+                this.f21824b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f21823b.f21863b.getImageReceiver().startAnimation();
+                        this.f21824b.f21864b.getImageReceiver().startAnimation();
                         return;
                     default:
-                        this.f21823b.f10600f.K();
+                        this.f21824b.f10600f.K();
                         return;
                 }
             }

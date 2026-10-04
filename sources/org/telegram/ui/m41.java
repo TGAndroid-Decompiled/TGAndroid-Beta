@@ -3,13 +3,13 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.graphics.Canvas;
 public final class m41 extends org.telegram.ui.Components.p6 {
-    public boolean f38409s;
+    public boolean f38410s;
     public final org.telegram.ui.Components.e6 v;
-    public final SaveToGallerySettingsActivity f38410w;
+    public final SaveToGallerySettingsActivity f38411w;
 
     public m41(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
         super(activity, true, true, false);
-        this.f38410w = saveToGallerySettingsActivity;
+        this.f38411w = saveToGallerySettingsActivity;
         this.v = new org.telegram.ui.Components.e6(this);
         getDrawable().D = true;
     }
@@ -17,23 +17,23 @@ public final class m41 extends org.telegram.ui.Components.p6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        if (this.f38409s) {
+        if (this.f38410s) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         org.telegram.ui.Components.e6 e6Var = this.v;
         e6Var.d(f7, false);
-        int i10 = org.telegram.ui.ActionBar.i6.f21204y6;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f38410w;
-        setTextColor(i0.a.d(e6Var.f25933c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.i6.f21003n6)));
+        int i10 = org.telegram.ui.ActionBar.i6.f21205y6;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f38411w;
+        setTextColor(i0.a.d(e6Var.f25934c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.i6.f21004n6)));
         super.dispatchDraw(canvas);
     }
 
     public final void e(boolean z10, boolean z11) {
         float f7;
-        if (this.f38409s != z10) {
-            this.f38409s = z10;
+        if (this.f38410s != z10) {
+            this.f38410s = z10;
             if (z10) {
                 f7 = 1.0f;
             } else {

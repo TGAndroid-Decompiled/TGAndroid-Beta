@@ -2,16 +2,16 @@ package l;
 
 import android.view.MenuItem;
 public final class q implements MenuItem.OnMenuItemClickListener {
-    public final MenuItem.OnMenuItemClickListener f15221a;
-    public final r f15222b;
+    public final MenuItem.OnMenuItemClickListener f15222a;
+    public final r f15223b;
 
     public q(r rVar, MenuItem.OnMenuItemClickListener onMenuItemClickListener) {
-        this.f15222b = rVar;
-        this.f15221a = onMenuItemClickListener;
+        this.f15223b = rVar;
+        this.f15222a = onMenuItemClickListener;
     }
 
     @Override
     public final boolean onMenuItemClick(MenuItem menuItem) {
-        return this.f15221a.onMenuItemClick(this.f15222b.f(menuItem));
+        return this.f15222a.onMenuItemClick(this.f15223b.f(menuItem));
     }
 }

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.VideoEditedInfo;
 public final class rl extends ou0 {
-    public final ArrayList f40157a;
-    public final boolean[] f40158b;
-    public final yn f40159c;
+    public final ArrayList f40158a;
+    public final boolean[] f40159b;
+    public final yn f40160c;
 
     public rl(yn ynVar, ArrayList arrayList, boolean[] zArr) {
-        this.f40159c = ynVar;
-        this.f40157a = arrayList;
-        this.f40158b = zArr;
+        this.f40160c = ynVar;
+        this.f40158a = arrayList;
+        this.f40159b = zArr;
     }
 
     @Override
@@ -26,18 +26,18 @@ public final class rl extends ou0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        ArrayList arrayList = this.f40157a;
+        ArrayList arrayList = this.f40158a;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f40158b[size]) {
+            if (!this.f40159b[size]) {
                 arrayList.remove(size);
             }
         }
-        this.f40159c.db(arrayList, i11, z10, z11);
+        this.f40160c.db(arrayList, i11, z10, z11);
     }
 
     @Override
     public final boolean x(int i10) {
-        return this.f40158b[i10];
+        return this.f40159b[i10];
     }
 
     @Override

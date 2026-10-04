@@ -40,12 +40,12 @@ public final class d4 implements Utilities.Callback {
                 e6 e6Var = ((f4) this.d).f942a;
                 TLRPC.User user = e6Var.f850d3.getAdapter().f10695w0;
                 if (user != null) {
-                    j3 = user.f20184id;
+                    j3 = user.f20185id;
                 } else {
                     j3 = 0;
                 }
                 HashMap hashMap = new HashMap();
-                hashMap.put("id", botInlineResult.f20035id);
+                hashMap.put("id", botInlineResult.f20036id);
                 hashMap.put("query_id", "" + botInlineResult.query_id);
                 hashMap.put("bot", "" + j3);
                 TLRPC.User user2 = e6Var.f850d3.getAdapter().f10695w0;

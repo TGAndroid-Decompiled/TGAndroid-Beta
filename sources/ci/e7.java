@@ -137,7 +137,7 @@ public final class e7 {
         paint.setShadowLayer(1.0804527E9f, 0.0f, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
         this.f5028j = new Path();
         this.f5022b = a0Var;
-        tr trVar = tr.f31141g;
+        tr trVar = tr.f31142g;
         this.d = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 320L, trVar);
         this.f5024e = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, trVar);
         this.f5025f = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, trVar);

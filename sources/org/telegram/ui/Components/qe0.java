@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import androidx.core.widget.NestedScrollView;
 public final class qe0 implements u0.g, d5 {
-    public final bf0 f30014a;
+    public final bf0 f30015a;
 
     public qe0(bf0 bf0Var) {
-        this.f30014a = bf0Var;
+        this.f30015a = bf0Var;
     }
 
     @Override
     public void K(int i10, int i11, boolean z10) {
-        bf0 bf0Var = this.f30014a;
+        bf0 bf0Var = this.f30015a;
         bf0Var.K.a(bf0Var.N, z10, i10, 0L);
         bf0Var.dismiss();
     }
 
     @Override
     public void a(NestedScrollView nestedScrollView) {
-        bf0 bf0Var = this.f30014a;
-        bf0Var.F(!bf0Var.f24938s);
+        bf0 bf0Var = this.f30015a;
+        bf0Var.F(!bf0Var.f24939s);
     }
 }

@@ -14,12 +14,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public final class x0 implements Utilities.Callback3 {
-    public final int f52178a;
-    public final NotificationCenter.NotificationCenterDelegate f52179b;
+    public final int f52179a;
+    public final NotificationCenter.NotificationCenterDelegate f52180b;
 
     public x0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f52178a = i10;
-        this.f52179b = notificationCenterDelegate;
+        this.f52179a = i10;
+        this.f52180b = notificationCenterDelegate;
     }
 
     @Override
@@ -28,15 +28,15 @@ public final class x0 implements Utilities.Callback3 {
         int i10;
         ci.t tVar;
         float f7;
-        switch (this.f52178a) {
+        switch (this.f52179a) {
             case 0:
-                ((x3) this.f52179b).o2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((x3) this.f52180b).o2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                x3.v0((x3) this.f52179b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
+                x3.v0((x3) this.f52180b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
                 return;
             default:
-                kc kcVar = (kc) this.f52179b;
+                kc kcVar = (kc) this.f52180b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj3;

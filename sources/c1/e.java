@@ -78,7 +78,7 @@ public final class e extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         x5.b bVar2 = bVar;
         boolean z11 = false;
-        for (q qVar : request.f47750a) {
+        for (q qVar : request.f47751a) {
             if ((qVar instanceof q) && !z11) {
                 if (j3 >= 231815000) {
                     LinkedHashMap linkedHashMap = f.f7998a;
@@ -98,7 +98,7 @@ public final class e extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z10 = request.f47751b;
+            z10 = request.f47752b;
         } else {
             z10 = false;
         }

@@ -126,8 +126,8 @@ public final class f1 implements Runnable {
                 String str4 = (String) this.h;
                 TLRPC.User user = (TLRPC.User) this.f9030n;
                 String str5 = (String) this.f9031r;
-                ArrayList arrayList = launchActivity.f33777f0;
-                ArrayList arrayList2 = launchActivity.f33773d0;
+                ArrayList arrayList = launchActivity.f33778f0;
+                ArrayList arrayList2 = launchActivity.f33774d0;
                 ArrayList arrayList3 = launchActivity.E0;
                 TLObject tLObject3 = this.f9026b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
@@ -184,13 +184,13 @@ public final class f1 implements Runnable {
                             if (ynVar.i() != null) {
                                 tLObject = ynVar.i();
                             } else {
-                                tLObject = ynVar.f43314e;
+                                tLObject = ynVar.f43315e;
                             }
                             if (!MediaDataController.canShowAttachMenuBot(tL_attachMenuBot, tLObject)) {
                                 a02 = yc.a0(n2Var);
                                 i11 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                ynVar.V9(user.f20184id, str5, false);
+                                ynVar.V9(user.f20185id, str5, false);
                                 return;
                             }
                         } else {
@@ -199,7 +199,7 @@ public final class f1 implements Runnable {
                         }
                     } else {
                         w6 w6Var = new w6(launchActivity);
-                        w6Var.setColor(i6.w0(null, i6.f20912ia, false));
+                        w6Var.setColor(i6.w0(null, i6.f20913ia, false));
                         w6Var.setBackgroundColor(i6.w0(null, i6.L5, false));
                         w6Var.setAttachBot(tL_attachMenuBot);
                         ej1.a(launchActivity, new wq(launchActivity, i13, this.d, uyVar, n2Var, user, str5), null);

@@ -64,17 +64,17 @@ public final class m0 implements Utilities.Callback {
             case 0:
                 n2 n2Var = (n2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j3 = ((TLRPC.Chat) obj2).f20037id;
+                long j3 = ((TLRPC.Chat) obj2).f20038id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean isChannel = ChatObject.isChannel(chat);
                 int i12 = this.f9933b;
                 if (!isChannel) {
                     b2 b2Var = new b2(n2Var.getContext(), 3, null);
                     b2Var.q(250L);
-                    MessagesController.getInstance(i12).convertToMegaGroup(n2Var.getParentActivity(), chat.f20037id, n2Var, new n0(b2Var, n2Var, i12, j3, booleanValue));
+                    MessagesController.getInstance(i12).convertToMegaGroup(n2Var.getParentActivity(), chat.f20038id, n2Var, new n0(b2Var, n2Var, i12, j3, booleanValue));
                     return;
                 }
-                long j10 = chat.f20037id;
+                long j10 = chat.f20038id;
                 MessagesController.getInstance(i12).linkCommunity(-j10, j3, booleanValue, new o0(n2Var, j10, 0));
                 return;
             case 1:
@@ -107,7 +107,7 @@ public final class m0 implements Utilities.Callback {
                 wv wvVar = (wv) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                n2 n2Var2 = wvVar.f32629c;
+                n2 n2Var2 = wvVar.f32630c;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
@@ -157,19 +157,19 @@ public final class m0 implements Utilities.Callback {
                 MessageObject messageObject = (MessageObject) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f33985o5 = str2;
-                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33985o5)) {
-                        if (photoViewer.f33976n5) {
-                            photoViewer.f33980o0.K(20);
-                            photoViewer.f33980o0.r(19);
+                    photoViewer.f33986o5 = str2;
+                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33986o5)) {
+                        if (photoViewer.f33977n5) {
+                            photoViewer.f33981o0.K(20);
+                            photoViewer.f33981o0.r(19);
                             return;
                         }
-                        photoViewer.f33980o0.K(19);
-                        photoViewer.f33980o0.r(20);
+                        photoViewer.f33981o0.K(19);
+                        photoViewer.f33981o0.r(20);
                         return;
                     }
-                    photoViewer.f33980o0.r(19);
-                    photoViewer.f33980o0.r(20);
+                    photoViewer.f33981o0.r(19);
+                    photoViewer.f33981o0.r(20);
                     return;
                 }
                 return;

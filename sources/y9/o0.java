@@ -1,14 +1,14 @@
 package y9;
 public final class o0 extends n1 {
-    public final long f50728a;
-    public final long f50729b;
-    public final String f50730c;
+    public final long f50729a;
+    public final long f50730b;
+    public final String f50731c;
     public final String d;
 
     public o0(String str, long j3, long j10, String str2) {
-        this.f50728a = j3;
-        this.f50729b = j10;
-        this.f50730c = str;
+        this.f50729a = j3;
+        this.f50730b = j10;
+        this.f50731c = str;
         this.d = str2;
     }
 
@@ -20,7 +20,7 @@ public final class o0 extends n1 {
         if (obj instanceof n1) {
             o0 o0Var = (o0) ((n1) obj);
             String str2 = o0Var.d;
-            if (this.f50728a == o0Var.f50728a && this.f50729b == o0Var.f50729b && this.f50730c.equals(o0Var.f50730c) && ((str = this.d) != null ? str.equals(str2) : str2 == null)) {
+            if (this.f50729a == o0Var.f50729a && this.f50730b == o0Var.f50730b && this.f50731c.equals(o0Var.f50731c) && ((str = this.d) != null ? str.equals(str2) : str2 == null)) {
                 return true;
             }
         }
@@ -29,9 +29,9 @@ public final class o0 extends n1 {
 
     public final int hashCode() {
         int hashCode;
-        long j3 = this.f50728a;
-        long j10 = this.f50729b;
-        int hashCode2 = (((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ this.f50730c.hashCode()) * 1000003;
+        long j3 = this.f50729a;
+        long j10 = this.f50730b;
+        int hashCode2 = (((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ this.f50731c.hashCode()) * 1000003;
         String str = this.d;
         if (str == null) {
             hashCode = 0;
@@ -43,11 +43,11 @@ public final class o0 extends n1 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("BinaryImage{baseAddress=");
-        sb2.append(this.f50728a);
+        sb2.append(this.f50729a);
         sb2.append(", size=");
-        sb2.append(this.f50729b);
+        sb2.append(this.f50730b);
         sb2.append(", name=");
-        sb2.append(this.f50730c);
+        sb2.append(this.f50731c);
         sb2.append(", uuid=");
         return a4.a.s(sb2, this.d, "}");
     }

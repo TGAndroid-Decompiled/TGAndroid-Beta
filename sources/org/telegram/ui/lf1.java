@@ -50,19 +50,19 @@ public final class lf1 extends s4.j {
     @Override
     public final void z(s4.c1 c1Var) {
         yf1 yf1Var = this.H;
-        View view = yf1Var.f43167b1;
-        if (view == c1Var.f46523a) {
+        View view = yf1Var.f43168b1;
+        if (view == c1Var.f46524a) {
             view.setTranslationX(0.0f);
             cf1 cf1Var = yf1Var.O;
             if (cf1Var != null) {
                 cf1Var.F.clear();
             }
-            View view2 = yf1Var.f43167b1;
+            View view2 = yf1Var.f43168b1;
             if (view2 instanceof vf1) {
                 vf1 vf1Var = (vf1) view2;
                 vf1Var.setTopicIcon(vf1Var.Y4);
             }
-            yf1Var.f43167b1 = null;
+            yf1Var.f43168b1 = null;
         }
     }
 }

@@ -47,7 +47,7 @@ public final class l extends FrameLayout {
         textView.setTextSize(1, 14.0f);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, z5.t(-1, -2, 55, 0, 0, 0, 1), context);
         this.f9135c = h;
-        ok.n(i6.f21223z6, d6Var, h, 1, 14.0f);
+        ok.n(i6.f21224z6, d6Var, h, 1, 14.0f);
         linearLayout.addView(h, z5.t(-1, -2, 55, 0, 0, 0, 0));
     }
 

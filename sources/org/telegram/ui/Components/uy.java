@@ -11,32 +11,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class uy extends FrameLayout {
-    public final ImageView f31459a;
-    public final TextView f31460b;
-    public final RadialProgressView f31461c;
+    public final ImageView f31460a;
+    public final TextView f31461b;
+    public final RadialProgressView f31462c;
     public boolean d;
-    public final nz f31462e;
+    public final nz f31463e;
 
     public uy(nz nzVar, Context context) {
         super(context);
-        this.f31462e = nzVar;
+        this.f31463e = nzVar;
         ImageView imageView = new ImageView(getContext());
-        this.f31459a = imageView;
+        this.f31460a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.gif_empty);
         int i10 = org.telegram.ui.ActionBar.i6.Le;
         imageView.setColorFilter(new PorterDuffColorFilter(nzVar.z(i10), PorterDuff.Mode.MULTIPLY));
         addView(imageView, w7.z5.d(-2, -2.0f, 17, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView = new TextView(getContext());
-        this.f31460b = textView;
+        this.f31461b = textView;
         textView.setText(LocaleController.getString(R.string.NoGIFsFound));
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(nzVar.z(i10));
         addView(textView, w7.z5.d(-2, -2.0f, 17, 0.0f, 42.0f, 0.0f, 0.0f));
         RadialProgressView radialProgressView = new RadialProgressView(context, nzVar.Z1);
-        this.f31461c = radialProgressView;
+        this.f31462c = radialProgressView;
         radialProgressView.setVisibility(8);
-        radialProgressView.setProgressColor(nzVar.z(org.telegram.ui.ActionBar.i6.f20890h6));
+        radialProgressView.setProgressColor(nzVar.z(org.telegram.ui.ActionBar.i6.f20891h6));
         addView(radialProgressView, w7.z5.e(-2, -2, 17));
     }
 
@@ -51,27 +51,27 @@ public final class uy extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            this.f31459a.setVisibility(i10);
+            this.f31460a.setVisibility(i10);
             if (z10) {
                 i11 = 8;
             } else {
                 i11 = 0;
             }
-            this.f31460b.setVisibility(i11);
+            this.f31461b.setVisibility(i11);
             if (!z10) {
                 i12 = 8;
             }
-            this.f31461c.setVisibility(i12);
+            this.f31462c.setVisibility(i12);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int dp;
-        nz nzVar = this.f31462e;
-        int measuredHeight = nzVar.f29107h0.getMeasuredHeight();
+        nz nzVar = this.f31463e;
+        int measuredHeight = nzVar.f29108h0.getMeasuredHeight();
         if (!this.d) {
-            dp = (int) (org.telegram.messenger.ok.z(8.0f, measuredHeight - nzVar.f29087b1, 3) * 1.7f);
+            dp = (int) (org.telegram.messenger.ok.z(8.0f, measuredHeight - nzVar.f29088b1, 3) * 1.7f);
         } else {
             dp = measuredHeight - AndroidUtilities.dp(80.0f);
         }

@@ -43,7 +43,7 @@ public final class g implements View.OnLongClickListener {
             case 0:
                 b bVar = ((h) this.f14158c).f14165n;
                 if (bVar != null) {
-                    yn ynVar = ((re) bVar).f40102b;
+                    yn ynVar = ((re) bVar).f40103b;
                     int i10 = this.f14157b;
                     if (i10 == 2) {
                         yfVar = new yf(ynVar, 7);
@@ -74,8 +74,8 @@ public final class g implements View.OnLongClickListener {
                     f1Var.setOnClickListener(new uy0(1, yfVar));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(f1Var);
                     n1 n1Var = new n1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                    n1Var.f21408e = true;
-                    n1Var.f21407c = 220;
+                    n1Var.f21409e = true;
+                    n1Var.f21408c = 220;
                     n1Var.setOutsideTouchable(true);
                     n1Var.setClippingEnabled(true);
                     n1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -95,7 +95,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     n1Var.showAtLocation(qmVar, 51, (int) width, (int) measuredHeight);
                     ynVar.O8 = n1Var;
-                    ynVar.f8(ynVar.f43352h1, false);
+                    ynVar.f8(ynVar.f43353h1, false);
                     ynVar.O8.setOnDismissListener(new f0(ynVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
@@ -106,7 +106,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f14158c;
-                if (!scrollSlidingTextTabStrip.f24318n0 && (dn0Var = scrollSlidingTextTabStrip.f24302b) != null && dn0Var.o1(this.f14157b, view)) {
+                if (!scrollSlidingTextTabStrip.f24319n0 && (dn0Var = scrollSlidingTextTabStrip.f24303b) != null && dn0Var.o1(this.f14157b, view)) {
                     return true;
                 }
                 return false;

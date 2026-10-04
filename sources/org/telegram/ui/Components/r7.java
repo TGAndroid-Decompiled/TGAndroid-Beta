@@ -7,19 +7,19 @@ public final class r7 extends nj0 {
     public long F;
     public final float G;
     public final j8 H;
-    public float f30278r;
-    public float f30279s;
+    public float f30279r;
+    public float f30280s;
     public int v;
-    public long f30280w;
-    public long f30281x;
-    public final q7 f30282y;
+    public long f30281w;
+    public long f30282x;
+    public final q7 f30283y;
 
     public r7(j8 j8Var, Context context, float f7) {
         super(context);
         this.H = j8Var;
         this.G = f7;
         this.v = 0;
-        this.f30282y = new q7(this, 0);
+        this.f30283y = new q7(this, 0);
         this.E = new q7(this, 1);
     }
 

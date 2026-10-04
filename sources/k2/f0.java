@@ -643,8 +643,8 @@ public final class f0 implements q {
         eVar.getClass();
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 29 && i10 != -1) {
-            Context context = (Context) bVar.f17157b;
-            Boolean bool = (Boolean) bVar.f17158c;
+            Context context = (Context) bVar.f17158b;
+            Boolean bool = (Boolean) bVar.f17159c;
             if (bool != null) {
                 booleanValue = bool.booleanValue();
             } else {
@@ -655,11 +655,11 @@ public final class f0 implements q {
                     } else {
                         z10 = false;
                     }
-                    bVar.f17158c = Boolean.valueOf(z10);
+                    bVar.f17159c = Boolean.valueOf(z10);
                 } else {
-                    bVar.f17158c = Boolean.FALSE;
+                    bVar.f17159c = Boolean.FALSE;
                 }
-                booleanValue = ((Boolean) bVar.f17158c).booleanValue();
+                booleanValue = ((Boolean) bVar.f17159c).booleanValue();
             }
             String str = sVar.f3564r;
             str.getClass();

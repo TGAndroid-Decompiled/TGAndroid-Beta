@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
 public final class u51 extends g.p {
-    public final c61 f31298c;
+    public final c61 f31299c;
 
     public u51(c61 c61Var) {
-        this.f31298c = c61Var;
+        this.f31299c = c61Var;
     }
 
     @Override
     public final int i(int i10) {
-        c61 c61Var = this.f31298c;
-        s4.h0 adapter = c61Var.f25231n.getAdapter();
-        b61 b61Var = c61Var.f25233s;
+        c61 c61Var = this.f31299c;
+        s4.h0 adapter = c61Var.f25232n.getAdapter();
+        b61 b61Var = c61Var.f25234s;
         if (adapter == b61Var) {
-            if ((b61Var.d.get(i10) instanceof Integer) || i10 >= b61Var.f24806w) {
+            if ((b61Var.d.get(i10) instanceof Integer) || i10 >= b61Var.f24807w) {
                 return b61Var.v;
             }
             return 1;

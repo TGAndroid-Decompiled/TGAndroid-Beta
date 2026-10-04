@@ -24,14 +24,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.pc0;
 import org.telegram.ui.Components.v9;
 public final class c6 implements NotificationCenter.NotificationCenterDelegate {
-    public static c6 f20505c;
-    public int f20506a;
-    public HashMap f20507b;
+    public static c6 f20506c;
+    public int f20507a;
+    public HashMap f20508b;
 
     public static void a(boolean z10) {
         String str;
         ArrayList arrayList;
-        if (f20505c != null && !z10) {
+        if (f20506c != null && !z10) {
             return;
         }
         ArrayList arrayList2 = null;
@@ -54,11 +54,11 @@ public final class c6 implements NotificationCenter.NotificationCenterDelegate {
                 str = "Blue";
             }
             h6 h6Var = (h6) i6.H.get(str);
-            if (h6Var != null && (arrayList = h6Var.f20690b0) != null && !arrayList.isEmpty()) {
-                int size = h6Var.f20690b0.size();
+            if (h6Var != null && (arrayList = h6Var.f20691b0) != null && !arrayList.isEmpty()) {
+                int size = h6Var.f20691b0.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    f6 f6Var = (f6) h6Var.f20690b0.get(i11);
-                    if (f6Var.f20610a != i6.f20996n && !TextUtils.isEmpty(f6Var.f20622o)) {
+                    f6 f6Var = (f6) h6Var.f20691b0.get(i11);
+                    if (f6Var.f20611a != i6.f20997n && !TextUtils.isEmpty(f6Var.f20623o)) {
                         if (arrayList2 == null) {
                             arrayList2 = new ArrayList();
                         }
@@ -68,11 +68,11 @@ public final class c6 implements NotificationCenter.NotificationCenterDelegate {
             }
         }
         ?? obj = new Object();
-        obj.f20506a = UserConfig.selectedAccount;
+        obj.f20507a = UserConfig.selectedAccount;
         if (arrayList2 != null) {
             Utilities.globalQueue.postRunnable(new ki.h0(28, (Object) obj, arrayList2));
         }
-        f20505c = obj;
+        f20506c = obj;
     }
 
     public static Bitmap b(Bitmap bitmap, boolean z10, File file, f6 f6Var) {
@@ -88,12 +88,12 @@ public final class c6 implements NotificationCenter.NotificationCenterDelegate {
             if (d == null) {
                 return null;
             }
-            h6 h6Var = f6Var.f20611b;
+            h6 h6Var = f6Var.f20612b;
             SparseIntArray Q0 = i6.Q0(null, h6Var.d, null);
             i6.G(Q0, h6Var);
-            int i14 = f6Var.f20612c;
-            int i15 = (int) f6Var.f20617j;
-            long j3 = f6Var.f20618k;
+            int i14 = f6Var.f20613c;
+            int i15 = (int) f6Var.f20618j;
+            long j3 = f6Var.f20619k;
             int i16 = (int) j3;
             if (i16 == 0 && j3 == 0) {
                 if (i15 != 0) {
@@ -106,12 +106,12 @@ public final class c6 implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 i14 = 0;
             }
-            long j10 = f6Var.f20619l;
+            long j10 = f6Var.f20620l;
             int i18 = (int) j10;
             if (i18 == 0 && j10 == 0 && (i13 = Q0.get(i6.Pd)) != 0) {
                 i18 = i6.B(h6Var, i14, i13);
             }
-            long j11 = f6Var.f20620m;
+            long j11 = f6Var.f20621m;
             int i19 = (int) j11;
             if (i19 == 0 && j11 == 0 && (i11 = Q0.get(i6.Qd)) != 0) {
                 i19 = i6.B(h6Var, i14, i11);
@@ -122,7 +122,7 @@ public final class c6 implements NotificationCenter.NotificationCenterDelegate {
             if (i18 != 0) {
                 patternColor = pc0.g(i15, i16, i18, i19);
             } else if (i16 != 0) {
-                Drawable v9Var = new v9(v9.d(f6Var.f20621n), new int[]{i15, i16});
+                Drawable v9Var = new v9(v9.d(f6Var.f20622n), new int[]{i15, i16});
                 patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(i15, i16));
                 drawable = v9Var;
             } else {
@@ -151,7 +151,7 @@ public final class c6 implements NotificationCenter.NotificationCenterDelegate {
                     drawable.draw(canvas);
                     Paint paint = new Paint(2);
                     paint.setColorFilter(new PorterDuffColorFilter(patternColor, PorterDuff.Mode.SRC_IN));
-                    paint.setAlpha((int) (Math.abs(f6Var.f20623p) * 255.0f));
+                    paint.setAlpha((int) (Math.abs(f6Var.f20624p) * 255.0f));
                     canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
                     createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(d));
                     return bitmap2;
@@ -173,7 +173,7 @@ public final class c6 implements NotificationCenter.NotificationCenterDelegate {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        HashMap hashMap = this.f20507b;
+        HashMap hashMap = this.f20508b;
         if (hashMap != null) {
             if (i10 == NotificationCenter.fileLoaded) {
                 b6 b6Var = (b6) hashMap.remove((String) objArr[0]);

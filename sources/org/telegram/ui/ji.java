@@ -12,37 +12,37 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class ji implements View.OnClickListener {
-    public final di0 f37699a;
-    public final org.telegram.ui.Components.zl0 f37700b;
-    public final LinearLayout f37701c;
+    public final di0 f37700a;
+    public final org.telegram.ui.Components.zl0 f37701b;
+    public final LinearLayout f37702c;
     public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
-    public final int[] f37702e;
-    public final yn f37703f;
+    public final int[] f37703e;
+    public final yn f37704f;
 
     public ji(yn ynVar, di0 di0Var, org.telegram.ui.Components.zl0 zl0Var, LinearLayout linearLayout, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f37703f = ynVar;
-        this.f37699a = di0Var;
-        this.f37700b = zl0Var;
-        this.f37701c = linearLayout;
+        this.f37704f = ynVar;
+        this.f37700a = di0Var;
+        this.f37701b = zl0Var;
+        this.f37702c = linearLayout;
         this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f37702e = iArr;
+        this.f37703e = iArr;
     }
 
     @Override
     public final void onClick(View view) {
-        di0 di0Var = this.f37699a;
-        ArrayList arrayList = di0Var.f35777b;
-        ArrayList arrayList2 = di0Var.f35778c;
-        yn ynVar = this.f37703f;
+        di0 di0Var = this.f37700a;
+        ArrayList arrayList = di0Var.f35778b;
+        ArrayList arrayList2 = di0Var.f35779c;
+        yn ynVar = this.f37704f;
         if (ynVar.O8 != null && !arrayList2.isEmpty()) {
             if (arrayList2.size() == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
                 TLObject tLObject = (TLObject) arrayList2.get(0);
                 if (tLObject != null) {
                     Bundle bundle = new Bundle();
                     if (tLObject instanceof TLRPC.User) {
-                        bundle.putLong("user_id", ((TLRPC.User) tLObject).f20184id);
+                        bundle.putLong("user_id", ((TLRPC.User) tLObject).f20185id);
                     } else if (tLObject instanceof TLRPC.Chat) {
-                        bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20037id);
+                        bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20038id);
                     }
                     ynVar.presentFragment(new ProfileActivity(bundle, null));
                     ynVar.A7(true);
@@ -51,17 +51,17 @@ public final class ji implements View.OnClickListener {
                 return;
             }
             if (SharedConfig.messageSeenHintCount > 0 && ynVar.V0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-                org.telegram.ui.Components.rc t10 = new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(ynVar.getParentActivity()), ynVar.f43299ca).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                org.telegram.ui.Components.rc t10 = new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(ynVar.getParentActivity()), ynVar.f43300ca).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
                 ynVar.l1 = t10;
-                t10.f30338j = 4000;
+                t10.f30339j = 4000;
                 t10.j();
                 SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
             }
-            org.telegram.ui.Components.zl0 zl0Var = this.f37700b;
+            org.telegram.ui.Components.zl0 zl0Var = this.f37701b;
             zl0Var.requestLayout();
-            this.f37701c.requestLayout();
+            this.f37702c.requestLayout();
             zl0Var.getAdapter().l();
-            this.d.getSwipeBack().e(this.f37702e[0]);
+            this.d.getSwipeBack().e(this.f37703e[0]);
         }
     }
 }

@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class aj1 extends org.telegram.ui.Components.yl0 {
-    public final Context f34836c;
+    public final Context f34837c;
     public final WallpapersListActivity d;
 
     public aj1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f34836c = context;
+        this.f34837c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f46527f == 0) {
+        if (c1Var.f46528f == 0) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class aj1 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final int h() {
-        return this.d.f34597a;
+        return this.d.f34598a;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class aj1 extends org.telegram.ui.Components.yl0 {
         int i11;
         WallpapersListActivity wallpapersListActivity = this.d;
         i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f34599b && i10 != wallpapersListActivity.f34604e) {
-            if (i10 != wallpapersListActivity.f34606f && i10 != wallpapersListActivity.f34610n) {
+        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f34600b && i10 != wallpapersListActivity.f34605e) {
+            if (i10 != wallpapersListActivity.f34607f && i10 != wallpapersListActivity.f34611n) {
                 return 2;
             }
             return 3;
@@ -47,7 +47,7 @@ public final class aj1 extends org.telegram.ui.Components.yl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View r8Var;
-        Context context = this.f34836c;
+        Context context = this.f34837c;
         if (i10 != 0) {
             if (i10 != 3) {
                 r8Var = new org.telegram.ui.Components.lj(this, context, 1);

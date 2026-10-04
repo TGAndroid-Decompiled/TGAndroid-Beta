@@ -73,14 +73,14 @@ public final class h0 implements Runnable {
                 s0Var.N++;
                 s0Var.f15062w = true;
                 s0Var.f15053m.b("camera switch started: target=" + ((l0) obj));
-                e60 e60Var = (e60) s0Var.d.f15266b;
+                e60 e60Var = (e60) s0Var.d.f15267b;
                 il ilVar = e60Var.E;
-                FrameLayout frameLayout = e60Var.f25967x;
+                FrameLayout frameLayout = e60Var.f25968x;
                 e60Var.s(false);
                 Bitmap bitmap2 = e60Var.m0;
                 if (bitmap2 != null) {
                     ilVar.setImageBitmap(bitmap2);
-                    e60Var.f25952l0 = true;
+                    e60Var.f25953l0 = true;
                     ilVar.animate().cancel();
                     ilVar.setAlpha(1.0f);
                 }
@@ -119,10 +119,10 @@ public final class h0 implements Runnable {
                     e2.a.o("MediaSessionLegacyStub", "Custom command failed", e);
                     k1Var = new k1(-1);
                 }
-                resultReceiver.send(k1Var.f16225a, k1Var.f16226b);
+                resultReceiver.send(k1Var.f16226a, k1Var.f16227b);
                 return;
             case 6:
-                qi.f fVar = ((a1) obj2).f16059b;
+                qi.f fVar = ((a1) obj2).f16060b;
                 m4.r t10 = fVar.t(((m4.i) obj).asBinder());
                 if (t10 != null) {
                     fVar.M(t10);
@@ -130,20 +130,20 @@ public final class h0 implements Runnable {
                 }
                 return;
             case 7:
-                ((a1) obj2).f16059b.n((m4.r) obj);
+                ((a1) obj2).f16060b.n((m4.r) obj);
                 return;
             case 8:
                 me.b bVar = (me.b) obj2;
                 View view = (View) obj;
-                me.a aVar = bVar.f16389a;
-                if ((bVar.f16391c & 2) != 0) {
-                    if (aVar.onLongPressRequestedAt(view, bVar.d, bVar.f16392e)) {
-                        bVar.f16391c &= -3;
-                        bVar.f16390b = null;
+                me.a aVar = bVar.f16390a;
+                if ((bVar.f16392c & 2) != 0) {
+                    if (aVar.onLongPressRequestedAt(view, bVar.d, bVar.f16393e)) {
+                        bVar.f16392c &= -3;
+                        bVar.f16391b = null;
                         float f10 = bVar.d;
-                        float f11 = bVar.f16392e;
-                        bVar.f16393f = f10;
-                        bVar.f16394g = f11;
+                        float f11 = bVar.f16393e;
+                        bVar.f16394f = f10;
+                        bVar.f16395g = f11;
                         if (aVar.ignoreHapticFeedbackSettings(f10, f11)) {
                             boolean forceEnableVibration = aVar.forceEnableVibration();
                             if (view != null) {
@@ -155,11 +155,11 @@ public final class h0 implements Runnable {
                         } else {
                             view.performHapticFeedback(0);
                         }
-                        bVar.f16391c = (bVar.f16391c | 4) & (-11);
-                        bVar.f16390b = null;
+                        bVar.f16392c = (bVar.f16392c | 4) & (-11);
+                        bVar.f16391b = null;
                         return;
                     }
-                    bVar.f16391c |= 8;
+                    bVar.f16392c |= 8;
                     return;
                 }
                 return;
@@ -167,16 +167,16 @@ public final class h0 implements Runnable {
                 n2.e eVar = (n2.e) obj2;
                 b2.s sVar = (b2.s) obj;
                 n2.f fVar2 = eVar.d;
-                if (fVar2.E != 0 && !eVar.f16525c) {
+                if (fVar2.E != 0 && !eVar.f16526c) {
                     Looper looper = fVar2.I;
                     looper.getClass();
-                    eVar.f16524b = fVar2.a(looper, eVar.f16523a, sVar, false);
-                    fVar2.f16535x.add(eVar);
+                    eVar.f16525b = fVar2.a(looper, eVar.f16524a, sVar, false);
+                    fVar2.f16536x.add(eVar);
                     return;
                 }
                 return;
             case 10:
-                ((p2.b) ((o2.k) ((o2.q) obj2).f17071c.f15266b).f17034b.d.get(((o2.j) obj).f17031x)).c(true);
+                ((p2.b) ((o2.k) ((o2.q) obj2).f17072c.f15267b).f17035b.d.get(((o2.j) obj).f17032x)).c(true);
                 return;
             case 11:
                 ((VideoAds) obj2).lambda$showPremium$19((y0) obj);
@@ -221,23 +221,23 @@ public final class h0 implements Runnable {
                 org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj2;
                 boolean canScrollVertically = ((ro0) obj).canScrollVertically(-1);
                 boolean z10 = !canScrollVertically;
-                if (kVar.f21291t1 != z10) {
-                    ValueAnimator valueAnimator = kVar.f21295v1;
+                if (kVar.f21292t1 != z10) {
+                    ValueAnimator valueAnimator = kVar.f21296v1;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    float f12 = kVar.f21293u1;
-                    kVar.f21291t1 = z10;
+                    float f12 = kVar.f21294u1;
+                    kVar.f21292t1 = z10;
                     if (!canScrollVertically) {
                         f7 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f12, f7);
-                    kVar.f21295v1 = ofFloat;
+                    kVar.f21296v1 = ofFloat;
                     ofFloat.addUpdateListener(new org.telegram.ui.ActionBar.a(kVar, 0));
-                    kVar.f21295v1.addListener(new org.telegram.ui.ActionBar.c(kVar, z10, 1));
-                    kVar.f21295v1.setDuration(320L);
-                    kVar.f21295v1.setInterpolator(tr.h);
-                    kVar.f21295v1.start();
+                    kVar.f21296v1.addListener(new org.telegram.ui.ActionBar.c(kVar, z10, 1));
+                    kVar.f21296v1.setDuration(320L);
+                    kVar.f21296v1.setInterpolator(tr.h);
+                    kVar.f21296v1.start();
                     return;
                 }
                 return;
@@ -245,29 +245,29 @@ public final class h0 implements Runnable {
                 org.telegram.ui.ActionBar.k kVar2 = (org.telegram.ui.ActionBar.k) obj2;
                 boolean canScrollVertically2 = ((RecyclerView) obj).canScrollVertically(-1);
                 boolean z11 = !canScrollVertically2;
-                if (kVar2.f21291t1 != z11) {
-                    ValueAnimator valueAnimator2 = kVar2.f21295v1;
+                if (kVar2.f21292t1 != z11) {
+                    ValueAnimator valueAnimator2 = kVar2.f21296v1;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
                     }
-                    float f13 = kVar2.f21293u1;
-                    kVar2.f21291t1 = z11;
+                    float f13 = kVar2.f21294u1;
+                    kVar2.f21292t1 = z11;
                     if (!canScrollVertically2) {
                         f7 = 1.0f;
                     }
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f13, f7);
-                    kVar2.f21295v1 = ofFloat2;
+                    kVar2.f21296v1 = ofFloat2;
                     ofFloat2.addUpdateListener(new org.telegram.ui.ActionBar.a(kVar2, 4));
-                    kVar2.f21295v1.addListener(new org.telegram.ui.ActionBar.c(kVar2, z11, 0));
-                    kVar2.f21295v1.setDuration(320L);
-                    kVar2.f21295v1.setInterpolator(tr.h);
-                    kVar2.f21295v1.start();
+                    kVar2.f21296v1.addListener(new org.telegram.ui.ActionBar.c(kVar2, z11, 0));
+                    kVar2.f21296v1.setDuration(320L);
+                    kVar2.f21296v1.setInterpolator(tr.h);
+                    kVar2.f21296v1.start();
                     return;
                 }
                 return;
             case 26:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj2;
-                Drawable drawable = ActionBarLayout.f20303p1;
+                Drawable drawable = ActionBarLayout.f20304p1;
                 actionBarLayout.b0((n2) obj, false);
                 actionBarLayout.setVisibility(8);
                 View view2 = actionBarLayout.B0;
@@ -279,7 +279,7 @@ public final class h0 implements Runnable {
             case 27:
                 n2 n2Var = (n2) obj2;
                 n2 n2Var2 = (n2) obj;
-                Drawable drawable2 = ActionBarLayout.f20303p1;
+                Drawable drawable2 = ActionBarLayout.f20304p1;
                 if (n2Var != null) {
                     n2Var.onTransitionAnimationEnd(false, false);
                 }
@@ -302,8 +302,8 @@ public final class h0 implements Runnable {
                         if (arrayList == null) {
                             arrayList = new ArrayList();
                         }
-                        if (!arrayList.contains(f6Var.f20622o)) {
-                            arrayList.add(f6Var.f20622o);
+                        if (!arrayList.contains(f6Var.f20623o)) {
+                            arrayList.add(f6Var.f20623o);
                         }
                     }
                     i12++;
@@ -316,21 +316,21 @@ public final class h0 implements Runnable {
                         tL_inputWallPaperSlug.slug = (String) arrayList.get(i13);
                         getmultiwallpapers.wallpapers.add(tL_inputWallPaperSlug);
                     }
-                    ConnectionsManager.getInstance(c6Var.f20506a).sendRequest(getmultiwallpapers, new v1(20, c6Var, arrayList2));
+                    ConnectionsManager.getInstance(c6Var.f20507a).sendRequest(getmultiwallpapers, new v1(20, c6Var, arrayList2));
                     return;
                 }
                 return;
             default:
                 c6 c6Var2 = (c6) obj2;
                 b6 b6Var = (b6) obj;
-                TLRPC.TL_wallPaper tL_wallPaper = b6Var.f20473a;
+                TLRPC.TL_wallPaper tL_wallPaper = b6Var.f20474a;
                 File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_wallPaper.document, true);
-                ArrayList arrayList3 = b6Var.f20474b;
+                ArrayList arrayList3 = b6Var.f20475b;
                 int size3 = arrayList3.size();
                 ArrayList arrayList4 = null;
                 for (int i14 = 0; i14 < size3; i14++) {
                     f6 f6Var2 = (f6) arrayList3.get(i14);
-                    if (f6Var2.f20622o.equals(tL_wallPaper.slug)) {
+                    if (f6Var2.f20623o.equals(tL_wallPaper.slug)) {
                         Bitmap b10 = c6.b(bitmap, "application/x-tgwallpattern".equals(tL_wallPaper.document.mime_type), pathToAttach, f6Var2);
                         if (arrayList4 == null) {
                             arrayList4 = new ArrayList();

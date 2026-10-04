@@ -2,27 +2,27 @@ package m4;
 
 import java.util.List;
 public final class m0 implements x0, y0 {
-    public final int f16240a;
-    public final a1 f16241b;
-    public final int f16242c;
+    public final int f16241a;
+    public final a1 f16242b;
+    public final int f16243c;
 
     public m0(a1 a1Var, int i10, int i11) {
-        this.f16240a = i11;
-        this.f16241b = a1Var;
-        this.f16242c = i10;
+        this.f16241a = i11;
+        this.f16242b = a1Var;
+        this.f16243c = i10;
     }
 
     @Override
     public void a(e1 e1Var, r rVar, List list) {
-        switch (this.f16240a) {
+        switch (this.f16241a) {
             case 1:
-                e1Var.b0(this.f16241b.K0(rVar, e1Var, this.f16242c), list);
+                e1Var.b0(this.f16242b.K0(rVar, e1Var, this.f16243c), list);
                 return;
             case 2:
-                a1 a1Var = this.f16241b;
+                a1 a1Var = this.f16242b;
                 a1Var.getClass();
                 int size = list.size();
-                int i10 = this.f16242c;
+                int i10 = this.f16243c;
                 if (size == 1) {
                     e1Var.s0((b2.k0) list.get(0), a1Var.K0(rVar, e1Var, i10));
                     return;
@@ -30,19 +30,19 @@ public final class m0 implements x0, y0 {
                 e1Var.P(a1Var.K0(rVar, e1Var, i10), a1Var.K0(rVar, e1Var, i10 + 1), list);
                 return;
             default:
-                e1Var.b0(this.f16241b.K0(rVar, e1Var, this.f16242c), list);
+                e1Var.b0(this.f16242b.K0(rVar, e1Var, this.f16243c), list);
                 return;
         }
     }
 
     @Override
     public void c(e1 e1Var, r rVar) {
-        switch (this.f16240a) {
+        switch (this.f16241a) {
             case 0:
-                e1Var.Y(this.f16241b.K0(rVar, e1Var, this.f16242c));
+                e1Var.Y(this.f16242b.K0(rVar, e1Var, this.f16243c));
                 return;
             default:
-                e1Var.R(this.f16241b.K0(rVar, e1Var, this.f16242c));
+                e1Var.R(this.f16242b.K0(rVar, e1Var, this.f16243c));
                 return;
         }
     }

@@ -12,21 +12,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 public abstract class i {
-    public final com.google.firebase.messaging.m f44909a;
-    public final AtomicInteger f44910b = new AtomicInteger(0);
-    public final AtomicBoolean f44911c = new AtomicBoolean(false);
+    public final com.google.firebase.messaging.m f44910a;
+    public final AtomicInteger f44911b = new AtomicInteger(0);
+    public final AtomicBoolean f44912c = new AtomicBoolean(false);
 
     public i() {
         ?? obj = new Object();
         obj.f7902b = new Object();
         obj.f7903c = new ArrayDeque();
         obj.d = new AtomicReference();
-        this.f44909a = obj;
+        this.f44910a = obj;
     }
 
     public final Task a(final Executor executor, final Callable callable, final CancellationToken cancellationToken) {
         boolean z10;
-        if (this.f44910b.get() > 0) {
+        if (this.f44911b.get() > 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -52,13 +52,13 @@ public abstract class i {
                 }
             }
         };
-        this.f44909a.w(new Runnable() {
+        this.f44910a.w(new Runnable() {
             @Override
             public final void run() {
                 Callable callable2 = callable;
                 TaskCompletionSource taskCompletionSource2 = taskCompletionSource;
                 i iVar = i.this;
-                AtomicBoolean atomicBoolean = iVar.f44911c;
+                AtomicBoolean atomicBoolean = iVar.f44912c;
                 CancellationToken cancellationToken2 = cancellationToken;
                 boolean isCancellationRequested = cancellationToken2.isCancellationRequested();
                 CancellationTokenSource cancellationTokenSource2 = cancellationTokenSource;
@@ -103,14 +103,14 @@ public abstract class i {
 
     public final void d(Executor executor) {
         boolean z10;
-        if (this.f44910b.get() > 0) {
+        if (this.f44911b.get() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         n6.l.k(z10);
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        this.f44909a.w(new i9.s(26, this, taskCompletionSource), executor);
+        this.f44910a.w(new i9.s(26, this, taskCompletionSource), executor);
         taskCompletionSource.getTask();
     }
 }

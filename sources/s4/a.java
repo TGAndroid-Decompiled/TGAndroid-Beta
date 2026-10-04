@@ -1,24 +1,24 @@
 package s4;
 public final class a {
-    public int f46485a;
-    public int f46486b;
-    public Object f46487c;
+    public int f46486a;
+    public int f46487b;
+    public Object f46488c;
     public int d;
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && a.class == obj.getClass()) {
                 a aVar = (a) obj;
-                int i10 = this.f46485a;
-                if (i10 == aVar.f46485a) {
-                    if (i10 != 8 || Math.abs(this.d - this.f46486b) != 1 || this.d != aVar.f46486b || this.f46486b != aVar.d) {
-                        if (this.d == aVar.d && this.f46486b == aVar.f46486b) {
-                            Object obj2 = this.f46487c;
+                int i10 = this.f46486a;
+                if (i10 == aVar.f46486a) {
+                    if (i10 != 8 || Math.abs(this.d - this.f46487b) != 1 || this.d != aVar.f46487b || this.f46487b != aVar.d) {
+                        if (this.d == aVar.d && this.f46487b == aVar.f46487b) {
+                            Object obj2 = this.f46488c;
                             if (obj2 != null) {
-                                if (!obj2.equals(aVar.f46487c)) {
+                                if (!obj2.equals(aVar.f46488c)) {
                                     return false;
                                 }
-                            } else if (aVar.f46487c != null) {
+                            } else if (aVar.f46488c != null) {
                                 return false;
                             }
                         } else {
@@ -36,7 +36,7 @@ public final class a {
     }
 
     public final int hashCode() {
-        return (((this.f46485a * 31) + this.f46486b) * 31) + this.d;
+        return (((this.f46486a * 31) + this.f46487b) * 31) + this.d;
     }
 
     public final String toString() {
@@ -44,7 +44,7 @@ public final class a {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(Integer.toHexString(System.identityHashCode(this)));
         sb2.append("[");
-        int i10 = this.f46485a;
+        int i10 = this.f46486a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 4) {
@@ -64,11 +64,11 @@ public final class a {
         }
         sb2.append(str);
         sb2.append(",s:");
-        sb2.append(this.f46486b);
+        sb2.append(this.f46487b);
         sb2.append("c:");
         sb2.append(this.d);
         sb2.append(",p:");
-        sb2.append(this.f46487c);
+        sb2.append(this.f46488c);
         sb2.append("]");
         return sb2.toString();
     }

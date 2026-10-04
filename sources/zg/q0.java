@@ -17,7 +17,7 @@ import yh.l1;
 public abstract class q0 {
     public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, p pVar, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j3 = document.f20043id;
+        long j3 = document.f20044id;
         z5 e7 = e(document, Long.valueOf(j3), fontMetricsInt);
         linkedHashMap.put(Long.valueOf(j3), e7);
         arrayList.add(Long.valueOf(j3));
@@ -70,11 +70,11 @@ public abstract class q0 {
     }
 
     public static boolean d(TLRPC.Reaction reaction, o0 o0Var) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && o0Var.f53480g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, o0Var.f53479f)) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && o0Var.f53481g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, o0Var.f53480f)) {
             return true;
         }
         if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            long j3 = o0Var.f53480g;
+            long j3 = o0Var.f53481g;
             if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                 return true;
             }
@@ -86,7 +86,7 @@ public abstract class q0 {
     public static z5 e(TLRPC.Document document, Long l4, Paint.FontMetricsInt fontMetricsInt) {
         z5 z5Var;
         if (document != null) {
-            z5Var = new z5(document.f20043id, 1.0f, fontMetricsInt);
+            z5Var = new z5(document.f20044id, 1.0f, fontMetricsInt);
             z5Var.document = document;
         } else {
             z5Var = new z5(l4.longValue(), 1.0f, fontMetricsInt);

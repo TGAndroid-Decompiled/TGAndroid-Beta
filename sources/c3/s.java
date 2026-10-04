@@ -35,7 +35,7 @@ public final class s implements ub {
     public void c(vb vbVar, gb gbVar, eb ebVar, hb hbVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(vbVar, vb.IN_OUT_OFFSET_Y2, vbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(nt.f29060c);
+        ofFloat.setInterpolator(nt.f29061c);
         ofFloat.addListener(new ai.z(gbVar, ebVar, 17));
         ofFloat.addUpdateListener(new ai.x(12, hbVar, vbVar));
         ofFloat.start();

@@ -808,7 +808,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
 
     @Override
     public void a0(int i10, float f7, float f10, e eVar) {
-        ((TextView) this.f4603b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((le.b) this.d).f15434e));
+        ((TextView) this.f4603b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((le.b) this.d).f15435e));
         ((jh.c) this.f4605e).b(this);
     }
 
@@ -880,8 +880,8 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
         byte[] bArr2 = (byte[]) this.f4603b;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = dj1.f35788b;
-        BigInteger bigInteger3 = dj1.f35787a;
+        BigInteger bigInteger2 = dj1.f35789b;
+        BigInteger bigInteger3 = dj1.f35788a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -974,7 +974,7 @@ public final class c implements rk0, d, le.d, n5.b, q9.b {
         }
         if (z10) {
             if (((oa) this.f4602a) == null) {
-                this.f4602a = new oa(q6Var.f5753e2, q6Var.Z1.getReactionsWindow().f53318c, 0, false);
+                this.f4602a = new oa(q6Var.f5753e2, q6Var.Z1.getReactionsWindow().f53319c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;

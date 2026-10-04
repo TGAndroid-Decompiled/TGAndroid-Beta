@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 public final class e11 extends TextView implements org.telegram.ui.ActionBar.y5 {
-    public final ProfileActivity f35884a;
+    public final ProfileActivity f35885a;
 
     public e11(ProfileActivity profileActivity, Context context) {
         super(context);
-        this.f35884a = profileActivity;
+        this.f35885a = profileActivity;
         e();
     }
 
     @Override
     public final void e() {
-        setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, this.f35884a.f34376z0));
+        setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, this.f35885a.f34377z0));
     }
 
     @Override

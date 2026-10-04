@@ -67,7 +67,7 @@ public final class c extends FrameLayout implements y5 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f20037id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f20038id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -88,7 +88,7 @@ public final class c extends FrameLayout implements y5 {
 
     @Override
     public final void e() {
-        int i10 = i6.f21223z6;
+        int i10 = i6.f21224z6;
         d6 d6Var = this.f10895a;
         this.f10898e.setColorFilter(i6.v0(i10, d6Var));
         this.f10897c.setTextColor(i6.v0(i6.G6, d6Var));

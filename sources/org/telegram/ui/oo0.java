@@ -8,22 +8,22 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class oo0 extends FrameLayout {
-    public final Paint f39250a;
-    public float f39251b;
-    public o1.k f39252c;
+    public final Paint f39251a;
+    public float f39252b;
+    public o1.k f39253c;
     public final so0 d;
 
     public oo0(so0 so0Var, Context context) {
         super(context);
         this.d = so0Var;
-        this.f39250a = new Paint(1);
+        this.f39251a = new Paint(1);
         setWillNotDraw(false);
     }
 
     public final void a(boolean z10, boolean z11) {
         float f7;
         float f10;
-        o1.k kVar = this.f39252c;
+        o1.k kVar = this.f39253c;
         if (kVar != null) {
             kVar.c();
         }
@@ -33,7 +33,7 @@ public final class oo0 extends FrameLayout {
             f7 = 0.0f;
         }
         if (z11) {
-            float f11 = this.f39251b;
+            float f11 = this.f39252b;
             if (f11 == f7) {
                 return;
             }
@@ -46,14 +46,14 @@ public final class oo0 extends FrameLayout {
             }
             lVar.b(f10);
             lVar.a(1.0f);
-            kVar2.f16983u = lVar;
-            this.f39252c = kVar2;
+            kVar2.f16984u = lVar;
+            this.f39253c = kVar2;
             kVar2.b(new rd0(this, 1));
-            this.f39252c.a(new p9(this, 1));
-            this.f39252c.f();
+            this.f39253c.a(new p9(this, 1));
+            this.f39253c.f();
             return;
         }
-        this.f39251b = f7;
+        this.f39252b = f7;
         TextView textView = this.d.U;
         if (textView != null) {
             textView.setAlpha((f7 * 0.2f) + 0.8f);
@@ -68,14 +68,14 @@ public final class oo0 extends FrameLayout {
         int i10 = org.telegram.ui.ActionBar.i6.O6;
         so0 so0Var = this.d;
         canvas.drawColor(so0Var.getThemedColor(i10));
-        int themedColor = so0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20846ei);
-        Paint paint = this.f39250a;
+        int themedColor = so0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20847ei);
+        Paint paint = this.f39251a;
         paint.setColor(themedColor);
         if (LocaleController.isRTL) {
             dp = getWidth() - AndroidUtilities.dp(28.0f);
         } else {
             dp = AndroidUtilities.dp(28.0f);
         }
-        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f39251b, paint);
+        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f39252b, paint);
     }
 }

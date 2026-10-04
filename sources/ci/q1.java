@@ -66,8 +66,8 @@ public final class q1 implements View.OnTouchListener {
                 org.telegram.ui.Components.i8 i8Var = (org.telegram.ui.Components.i8) this.f5733b;
                 org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f5734c;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.j8 j8Var = i8Var.f27329n;
-                    j8Var.H.r(j8Var.f27637n.T(xVar));
+                    org.telegram.ui.Components.j8 j8Var = i8Var.f27330n;
+                    j8Var.H.r(j8Var.f27638n.T(xVar));
                     return false;
                 }
                 return false;
@@ -81,7 +81,7 @@ public final class q1 implements View.OnTouchListener {
                 azVar.getClass();
                 if (motionEvent.getAction() == 0) {
                     dz dzVar = azVar.d;
-                    dzVar.f35863c.r(dzVar.f35862b.T(g4Var));
+                    dzVar.f35864c.r(dzVar.f35863b.T(g4Var));
                     return false;
                 }
                 return false;
@@ -89,8 +89,8 @@ public final class q1 implements View.OnTouchListener {
                 d20 d20Var = (d20) this.f5733b;
                 z10 z10Var = (z10) this.f5734c;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = d20Var.f35621e;
-                    filtersSetupActivity.f33752c.r(filtersSetupActivity.f33750a.T(z10Var));
+                    FiltersSetupActivity filtersSetupActivity = d20Var.f35622e;
+                    filtersSetupActivity.f33753c.r(filtersSetupActivity.f33751a.T(z10Var));
                     return false;
                 }
                 return false;
@@ -139,7 +139,7 @@ public final class q1 implements View.OnTouchListener {
                         if (intValue == 8) {
                             x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new pw(24, kn0Var, editTextBoldCursor));
                         }
-                        kn0Var.showDialog(x10.f20367a);
+                        kn0Var.showDialog(x10.f20368a);
                     } catch (Exception e7) {
                         FileLog.e(e7);
                     }

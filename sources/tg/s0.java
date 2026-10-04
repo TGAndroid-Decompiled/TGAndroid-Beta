@@ -28,9 +28,9 @@ public final class s0 extends cb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final d0 f47092a0;
-    public r0 f47093b0;
-    public l0 f47094c0;
+    public final d0 f47093a0;
+    public r0 f47094b0;
+    public l0 f47095c0;
 
     public s0(n2 n2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(n2Var, false);
@@ -46,7 +46,7 @@ public final class s0 extends cb {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20037id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20038id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
@@ -54,9 +54,9 @@ public final class s0 extends cb {
         o20Var.setClickable(true);
         o20Var.setOrientation(1);
         o20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        o20Var.setBackgroundColor(i6.v0(i6.f20889h5, this.resourcesProvider));
+        o20Var.setBackgroundColor(i6.v0(i6.f20890h5, this.resourcesProvider));
         d0 d0Var = new d0(getContext(), this.resourcesProvider);
-        this.f47092a0 = d0Var;
+        this.f47093a0 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new py0(17, this, chat));
@@ -89,16 +89,16 @@ public final class s0 extends cb {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             s0Var.Q(true);
-            s0Var.f47093b0.a(arrayList, chat);
+            s0Var.f47094b0.a(arrayList, chat);
         }
     }
 
     public static void O(s0 s0Var, TLRPC.Chat chat, ArrayList arrayList, HashSet hashSet, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
-        MessagesController.getInstance(s0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f20037id, new e4(s0Var, tL_premium_myBoosts, arrayList, hashSet, 18));
+        MessagesController.getInstance(s0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f20038id, new e4(s0Var, tL_premium_myBoosts, arrayList, hashSet, 18));
     }
 
     public final void Q(boolean z10) {
-        d0 d0Var = this.f47092a0;
+        d0 d0Var = this.f47093a0;
         boolean z11 = false;
         d0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -117,18 +117,18 @@ public final class s0 extends cb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f47094c0 = new l0(this);
+        this.f47095c0 = new l0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f47094c0.cancel();
+        this.f47095c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f47094c0.start();
+        this.f47095c0.start();
     }
 
     @Override

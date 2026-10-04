@@ -2,22 +2,22 @@ package yh;
 
 import android.content.DialogInterface;
 public final class y1 implements DialogInterface.OnDismissListener {
-    public final int f52282a;
-    public final x3 f52283b;
+    public final int f52283a;
+    public final x3 f52284b;
 
     public y1(x3 x3Var, int i10) {
-        this.f52282a = i10;
-        this.f52283b = x3Var;
+        this.f52283a = i10;
+        this.f52284b = x3Var;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f52282a) {
+        switch (this.f52283a) {
             case 0:
-                this.f52283b.f52224j0.setLoading(false);
+                this.f52284b.f52225j0.setLoading(false);
                 return;
             default:
-                this.f52283b.f52224j0.setLoading(false);
+                this.f52284b.f52225j0.setLoading(false);
                 return;
         }
     }

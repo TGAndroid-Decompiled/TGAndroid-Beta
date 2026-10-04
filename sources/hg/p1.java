@@ -42,11 +42,11 @@ public final class p1 extends org.telegram.ui.ActionBar.j {
             }
         } else if (i10 == 2) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(y1Var.getParentActivity(), 0, y1Var.getResourceProvider());
-            alertDialog$Builder.f20367a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
-            alertDialog$Builder.f20367a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
+            alertDialog$Builder.f20368a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
+            alertDialog$Builder.f20368a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
             alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new ei.f(this, 6));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            y1Var.showDialog(alertDialog$Builder.f20367a);
+            y1Var.showDialog(alertDialog$Builder.f20368a);
         }
     }
 }

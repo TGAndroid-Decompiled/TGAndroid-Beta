@@ -4,25 +4,25 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.drawable.Drawable;
 public final class r extends AnimatorListenerAdapter {
-    public final int f21483a;
-    public final ActionBarLayout f21484b;
+    public final int f21484a;
+    public final ActionBarLayout f21485b;
 
     public r(ActionBarLayout actionBarLayout, int i10) {
-        this.f21483a = i10;
-        this.f21484b = actionBarLayout;
+        this.f21484a = i10;
+        this.f21485b = actionBarLayout;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f21483a;
-        ActionBarLayout actionBarLayout = this.f21484b;
+        int i10 = this.f21484a;
+        ActionBarLayout actionBarLayout = this.f21485b;
         switch (i10) {
             case 0:
-                Drawable drawable = ActionBarLayout.f20303p1;
+                Drawable drawable = ActionBarLayout.f20304p1;
                 actionBarLayout.F(false);
                 return;
             default:
-                Drawable drawable2 = ActionBarLayout.f20303p1;
+                Drawable drawable2 = ActionBarLayout.f20304p1;
                 actionBarLayout.F(false);
                 return;
         }
@@ -30,9 +30,9 @@ public final class r extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f21483a) {
+        switch (this.f21484a) {
             case 0:
-                this.f21484b.f20348v0 = System.currentTimeMillis();
+                this.f21485b.f20349v0 = System.currentTimeMillis();
                 return;
             default:
                 super.onAnimationStart(animator);

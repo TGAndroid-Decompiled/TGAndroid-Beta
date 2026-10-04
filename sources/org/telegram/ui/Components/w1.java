@@ -10,10 +10,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 public final class w1 implements cd0, org.telegram.ui.ActionBar.a2, d5, ImageReceiver.ImageReceiverDelegate, GenericProvider {
-    public final int f32430a;
+    public final int f32431a;
 
     public w1(int i10) {
-        this.f32430a = i10;
+        this.f32431a = i10;
     }
 
     public static boolean a(Object obj) {
@@ -22,7 +22,7 @@ public final class w1 implements cd0, org.telegram.ui.ActionBar.a2, d5, ImageRec
 
     @Override
     public void K(int i10, int i11, boolean z10) {
-        switch (this.f32430a) {
+        switch (this.f32431a) {
             case 25:
                 MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
                 return;
@@ -51,7 +51,7 @@ public final class w1 implements cd0, org.telegram.ui.ActionBar.a2, d5, ImageRec
     @Override
     public String e(int i10) {
         int i11;
-        switch (this.f32430a) {
+        switch (this.f32431a) {
             case 0:
                 return String.format("%02d", Integer.valueOf(i10));
             case 1:
@@ -195,7 +195,7 @@ public final class w1 implements cd0, org.telegram.ui.ActionBar.a2, d5, ImageRec
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f32430a) {
+        switch (this.f32431a) {
             case 5:
                 b2Var.dismiss();
                 return;
@@ -203,7 +203,7 @@ public final class w1 implements cd0, org.telegram.ui.ActionBar.a2, d5, ImageRec
                 b2Var.dismiss();
                 return;
             default:
-                Pattern pattern = e5.f25913a;
+                Pattern pattern = e5.f25914a;
                 return;
         }
     }

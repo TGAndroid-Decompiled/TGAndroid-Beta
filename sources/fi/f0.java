@@ -38,7 +38,7 @@ public final class f0 extends h0 {
         this.d = c71Var;
         c71Var.s1();
         c71 c71Var2 = this.d;
-        c71Var2.f25244f3.f31306r = false;
+        c71Var2.f25245f3.f31307r = false;
         c71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         AndroidUtilities.removeFromParent(this.f9898b);
@@ -50,9 +50,9 @@ public final class f0 extends h0 {
         this.f9897a = kVar;
         kVar.setOccupyStatusBar(false);
         this.f9897a.setTitleColor(k0Var.getThemedColor(i6.G6));
-        this.f9897a.A(k0Var.getThemedColor(i6.f21225z8), false);
+        this.f9897a.A(k0Var.getThemedColor(i6.f21226z8), false);
         this.f9897a.setBackButtonImage(R.drawable.ic_ab_back);
-        this.f9897a.B(k0Var.getThemedColor(i6.f21206y8), false);
+        this.f9897a.B(k0Var.getThemedColor(i6.f21207y8), false);
         this.f9897a.setTitle(DialogObject.getName(k0Var.f9917f));
         this.f9897a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f9897a.setActionBarMenuOnItemClick(new ei.u(this, 7));
@@ -93,7 +93,7 @@ public final class f0 extends h0 {
 
     @Override
     public final float b() {
-        return d9.a(this.f9891r.f9914b.f15434e) * super.b();
+        return d9.a(this.f9891r.f9914b.f15435e) * super.b();
     }
 
     @Override

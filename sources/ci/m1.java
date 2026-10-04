@@ -22,14 +22,14 @@ public final class m1 extends ji.o {
                 ((p1) this.f5556r).f5683i3 = true;
                 return;
             case 1:
-                ((nz) this.f5556r).f29101f0 = true;
+                ((nz) this.f5556r).f29102f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((c71) this.f5556r).f35347w1 = true;
+                ((c71) this.f5556r).f35348w1 = true;
                 return;
         }
     }
@@ -41,19 +41,19 @@ public final class m1 extends ji.o {
                 ((p1) this.f5556r).f5683i3 = false;
                 return;
             case 1:
-                ((nz) this.f5556r).f29101f0 = false;
+                ((nz) this.f5556r).f29102f0 = false;
                 return;
             case 2:
-                ((nx) this.f5556r).Q.f29101f0 = false;
+                ((nx) this.f5556r).Q.f29102f0 = false;
                 return;
             case 3:
-                ((q51) this.f5556r).R.f35347w1 = false;
+                ((q51) this.f5556r).R.f35348w1 = false;
                 return;
             case 4:
-                ((c71) this.f5556r).f35347w1 = false;
+                ((c71) this.f5556r).f35348w1 = false;
                 return;
             default:
-                ((q51) this.f5556r).R.f35347w1 = false;
+                ((q51) this.f5556r).R.f35348w1 = false;
                 return;
         }
     }

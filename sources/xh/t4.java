@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.ui.Components.lw0;
 public final class t4 extends lw0 {
-    public int f50234w0;
-    public final z4 f50235x0;
+    public int f50235w0;
+    public final z4 f50236x0;
 
     public t4(z4 z4Var, Context context) {
         super(context, null);
-        this.f50235x0 = z4Var;
-        this.f50234w0 = -1;
+        this.f50236x0 = z4Var;
+        this.f50235w0 = -1;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class t4 extends lw0 {
 
     @Override
     public final void T() {
-        this.f50235x0.d.invalidate();
+        this.f50236x0.d.invalidate();
     }
 
     @Override
@@ -41,26 +41,26 @@ public final class t4 extends lw0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        z4 z4Var = this.f50235x0;
-        LinearLayout linearLayout = z4Var.f50335i0;
+        z4 z4Var = this.f50236x0;
+        LinearLayout linearLayout = z4Var.f50336i0;
         linearLayout.setTranslationY(((i13 - i11) - linearLayout.getMeasuredHeight()) / 2.0f);
-        z4Var.f50337k0.U(z4Var.f50337k0.getY() + z4Var.f50335i0.getY(), getBackgroundSizeY());
+        z4Var.f50338k0.U(z4Var.f50338k0.getY() + z4Var.f50336i0.getY(), getBackgroundSizeY());
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f50234w0 != -1) {
+        if (this.f50235w0 != -1) {
             super.onMeasure(i10, i11);
             int measuredHeight = getMeasuredHeight();
-            int i12 = this.f50234w0;
+            int i12 = this.f50235w0;
             if (measuredHeight < i12) {
                 i11 = View.MeasureSpec.makeMeasureSpec(Math.max(i12, getMeasuredHeight()), Integer.MIN_VALUE);
             }
         }
         super.onMeasure(i10, i11);
-        int i13 = this.f50234w0;
+        int i13 = this.f50235w0;
         if (i13 == -1) {
-            this.f50234w0 = Math.max(i13, getMeasuredHeight());
+            this.f50235w0 = Math.max(i13, getMeasuredHeight());
         }
     }
 }

@@ -48,7 +48,7 @@ public final class z8 implements Runnable {
         }
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(t5Var.f52010a).sendRequest(tL_payments_canPurchaseStore, new fh1(oVar, hVar, m0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
+        ConnectionsManager.getInstance(t5Var.f52011a).sendRequest(tL_payments_canPurchaseStore, new fh1(oVar, hVar, m0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
     }
 
     private final void b() {
@@ -58,7 +58,7 @@ public final class z8 implements Runnable {
         TLRPC.InputInvoice inputInvoice = (TLRPC.InputInvoice) this.f1942e;
         TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = (TLRPC.TL_payments_paymentFormStars) this.f1943f;
         Utilities.Callback callback = (Utilities.Callback) this.h;
-        if (!t5Var.f52013e) {
+        if (!t5Var.f52014e) {
             yh.t5.e("NO_BALANCE");
             runnable.run();
             return;

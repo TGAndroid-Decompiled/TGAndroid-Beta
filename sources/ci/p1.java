@@ -49,12 +49,12 @@ public final class p1 extends zl0 {
                 } else {
                     i12 = 1;
                 }
-                bl0Var.f24994b = i12;
+                bl0Var.f24995b = i12;
                 p1Var.f5679e3.d(i10, i11, false, false);
                 return;
             }
             m1 m1Var = new m1(p1Var, p1Var.getContext(), 0);
-            m1Var.f46691a = i10;
+            m1Var.f46692a = i10;
             m1Var.f14236p = i11;
             sVar.w0(m1Var);
         }
@@ -82,7 +82,7 @@ public final class p1 extends zl0 {
         if (!rect.isEmpty()) {
             this.D1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f33543o2;
+            q0.a aVar = this.f33544o2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -212,7 +212,7 @@ public final class p1 extends zl0 {
         if (o0Var instanceof s4.c0) {
             bl0 bl0Var = new bl0(this, (s4.c0) o0Var);
             this.f5679e3 = bl0Var;
-            bl0Var.f24999i = new l1(this, 0);
+            bl0Var.f25000i = new l1(this, 0);
             bl0Var.h = new a1.c(this, 15);
         }
     }

@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.app.Activity;
 import org.telegram.ui.Components.UndoView;
 public final class tl extends org.telegram.ui.Components.r20 {
-    public final yn f40869b;
+    public final yn f40870b;
 
     public tl(yn ynVar, Activity activity, org.telegram.ui.ActionBar.n2 n2Var) {
         super(activity, n2Var);
-        this.f40869b = ynVar;
+        this.f40870b = ynVar;
     }
 
     @Override
     public final void m() {
-        yn ynVar = this.f40869b;
+        yn ynVar = this.f40870b;
         ynVar.Q7();
-        UndoView undoView = ynVar.f43541w3;
+        UndoView undoView = ynVar.f43542w3;
         if (undoView == null) {
             return;
         }
@@ -24,7 +24,7 @@ public final class tl extends org.telegram.ui.Components.r20 {
 
     @Override
     public final void n() {
-        yn ynVar = this.f40869b;
-        ynVar.getMessagesController().convertToGigaGroup(ynVar.getParentActivity(), ynVar.f43314e, ynVar, new z0(this, 21));
+        yn ynVar = this.f40870b;
+        ynVar.getMessagesController().convertToGigaGroup(ynVar.getParentActivity(), ynVar.f43315e, ynVar, new z0(this, 21));
     }
 }

@@ -14,29 +14,29 @@ import n6.h0;
 import n6.l;
 import w6.b;
 public final class a {
-    public static final Object f46888b = new Object();
-    public static volatile a f46889c;
-    public final ConcurrentHashMap f46890a = new ConcurrentHashMap();
+    public static final Object f46889b = new Object();
+    public static volatile a f46890c;
+    public final ConcurrentHashMap f46891a = new ConcurrentHashMap();
 
     public static a a() {
-        if (f46889c == null) {
-            synchronized (f46888b) {
+        if (f46890c == null) {
+            synchronized (f46889b) {
                 try {
-                    if (f46889c == null) {
-                        f46889c = new a();
+                    if (f46890c == null) {
+                        f46890c = new a();
                     }
                 } finally {
                 }
             }
         }
-        a aVar = f46889c;
+        a aVar = f46890c;
         l.h(aVar);
         return aVar;
     }
 
     public final void b(Context context, ServiceConnection serviceConnection) {
         if (!(serviceConnection instanceof h0)) {
-            ConcurrentHashMap concurrentHashMap = this.f46890a;
+            ConcurrentHashMap concurrentHashMap = this.f46891a;
             if (concurrentHashMap.containsKey(serviceConnection)) {
                 try {
                     try {
@@ -62,7 +62,7 @@ public final class a {
             String packageName = component.getPackageName();
             "com.google.android.gms".equals(packageName);
             try {
-                if ((b.a(context).f47746a.getPackageManager().getApplicationInfo(packageName, 0).flags & 2097152) != 0) {
+                if ((b.a(context).f47747a.getPackageManager().getApplicationInfo(packageName, 0).flags & 2097152) != 0) {
                     Log.w("ConnectionTracker", "Attempted to bind to a service in a STOPPED package.");
                     return false;
                 }
@@ -70,7 +70,7 @@ public final class a {
             }
         }
         if (!(serviceConnection instanceof h0)) {
-            ConcurrentHashMap concurrentHashMap = this.f46890a;
+            ConcurrentHashMap concurrentHashMap = this.f46891a;
             ServiceConnection serviceConnection2 = (ServiceConnection) concurrentHashMap.putIfAbsent(serviceConnection, serviceConnection);
             if (serviceConnection2 != null && serviceConnection != serviceConnection2) {
                 Log.w("ConnectionTracker", String.format("Duplicate binding with the same ServiceConnection: %s, %s, %s.", serviceConnection, str, intent.getAction()));

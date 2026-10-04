@@ -4,10 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class s0 extends AnimatorListenerAdapter {
-    public final i4 f40313a;
+    public final i4 f40314a;
 
     public s0(i4 i4Var) {
-        this.f40313a = i4Var;
+        this.f40314a = i4Var;
     }
 
     @Override

@@ -15,11 +15,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public abstract class p30 extends org.telegram.ui.ActionBar.f3 {
-    public final z4.g f29491b;
-    public final m30 f29492c;
+    public final z4.g f29492b;
+    public final m30 f29493c;
     public final LinearLayout d;
-    public final TextView[] f29493e;
-    public float f29494f;
+    public final TextView[] f29494e;
+    public float f29495f;
     public int h;
 
     public p30(Context context, TLRPC.Chat chat, boolean z10) {
@@ -27,7 +27,7 @@ public abstract class p30 extends org.telegram.ui.ActionBar.f3 {
         int i10;
         int i11;
         int i12;
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20862fg, false);
+        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20863fg, false);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
         k30 k30Var = new k30(this, context);
         this.containerView = k30Var;
@@ -68,9 +68,9 @@ public abstract class p30 extends org.telegram.ui.ActionBar.f3 {
         }
         textView2.setGravity(i12 | 48);
         this.containerView.addView(textView2, w7.z5.d(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 62.0f, 24.0f, 0.0f));
-        this.f29493e = new TextView[3];
+        this.f29494e = new TextView[3];
         z4.g gVar = new z4.g(context);
-        this.f29491b = gVar;
+        this.f29492b = gVar;
         gVar.setClipChildren(false);
         gVar.setOffscreenPageLimit(4);
         gVar.setClipToPadding(false);
@@ -87,11 +87,11 @@ public abstract class p30 extends org.telegram.ui.ActionBar.f3 {
         view2.setBackground(new GradientDrawable(orientation, new int[]{0, w02}));
         this.containerView.addView(view2, w7.z5.d(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
         m30 m30Var = new m30(this, getContext());
-        this.f29492c = m30Var;
+        this.f29493c = m30Var;
         m30Var.setMinWidth(AndroidUtilities.dp(64.0f));
         m30Var.setTag(-1);
         m30Var.setTextSize(1, 14.0f);
-        int i14 = org.telegram.ui.ActionBar.i6.f21010ng;
+        int i14 = org.telegram.ui.ActionBar.i6.f21011ng;
         m30Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i14, false));
         m30Var.setGravity(17);
         m30Var.setTypeface(AndroidUtilities.bold());
@@ -109,36 +109,36 @@ public abstract class p30 extends org.telegram.ui.ActionBar.f3 {
         this.containerView.addView(linearLayout, w7.z5.e(-2, 64, 80));
         int i15 = 0;
         while (true) {
-            TextView[] textViewArr = this.f29493e;
+            TextView[] textViewArr = this.f29494e;
             if (i15 >= textViewArr.length) {
                 break;
             }
             textViewArr[i15] = new TextView(context);
-            this.f29493e[i15].setTextSize(1, 12.0f);
-            this.f29493e[i15].setTextColor(-1);
-            this.f29493e[i15].setTypeface(AndroidUtilities.bold());
-            this.f29493e[i15].setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-            this.f29493e[i15].setGravity(16);
-            this.f29493e[i15].setSingleLine(true);
-            this.d.addView(this.f29493e[i15], w7.z5.n(-2, -1));
+            this.f29494e[i15].setTextSize(1, 12.0f);
+            this.f29494e[i15].setTextColor(-1);
+            this.f29494e[i15].setTypeface(AndroidUtilities.bold());
+            this.f29494e[i15].setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+            this.f29494e[i15].setGravity(16);
+            this.f29494e[i15].setSingleLine(true);
+            this.d.addView(this.f29494e[i15], w7.z5.n(-2, -1));
             if (i15 == 0) {
-                this.f29493e[i15].setText(LocaleController.getString(R.string.VoipRecordAudio));
+                this.f29494e[i15].setText(LocaleController.getString(R.string.VoipRecordAudio));
             } else if (i15 == 1) {
-                this.f29493e[i15].setText(LocaleController.getString(R.string.VoipRecordPortrait));
+                this.f29494e[i15].setText(LocaleController.getString(R.string.VoipRecordPortrait));
             } else {
-                this.f29493e[i15].setText(LocaleController.getString(R.string.VoipRecordLandscape));
+                this.f29494e[i15].setText(LocaleController.getString(R.string.VoipRecordLandscape));
             }
-            this.f29493e[i15].setOnClickListener(new ci.n4(this, i15, 9));
+            this.f29494e[i15].setOnClickListener(new ci.n4(this, i15, 9));
             i15++;
         }
         if (z10) {
-            this.f29491b.setCurrentItem(1);
+            this.f29492b.setCurrentItem(1);
         }
     }
 
     public static void m(p30 p30Var) {
         TextView textView;
-        TextView[] textViewArr = p30Var.f29493e;
+        TextView[] textViewArr = p30Var.f29494e;
         int i10 = p30Var.h;
         TextView textView2 = textViewArr[i10];
         if (i10 < textViewArr.length - 1) {
@@ -150,7 +150,7 @@ public abstract class p30 extends org.telegram.ui.ActionBar.f3 {
         float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
         float measuredWidth2 = (p30Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
         if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * p30Var.f29494f;
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * p30Var.f29495f;
         }
         for (int i11 = 0; i11 < textViewArr.length; i11++) {
             int i12 = p30Var.h;
@@ -158,11 +158,11 @@ public abstract class p30 extends org.telegram.ui.ActionBar.f3 {
             float f10 = 0.7f;
             if (i11 >= i12 && i11 <= i12 + 1) {
                 if (i11 == i12) {
-                    float f11 = p30Var.f29494f;
+                    float f11 = p30Var.f29495f;
                     f10 = 1.0f - (0.3f * f11);
                     f7 = 1.0f - (f11 * 0.1f);
                 } else {
-                    float f12 = p30Var.f29494f;
+                    float f12 = p30Var.f29495f;
                     f10 = 0.7f + (0.3f * f12);
                     f7 = 0.9f + (f12 * 0.1f);
                 }
@@ -172,7 +172,7 @@ public abstract class p30 extends org.telegram.ui.ActionBar.f3 {
             textViewArr[i11].setScaleY(f7);
         }
         p30Var.d.setTranslationX(measuredWidth2);
-        p30Var.f29492c.invalidate();
+        p30Var.f29493c.invalidate();
     }
 
     public abstract void n(int i10);

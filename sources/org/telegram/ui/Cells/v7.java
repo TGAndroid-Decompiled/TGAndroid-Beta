@@ -14,24 +14,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.ui.Components.jl;
 public final class v7 implements Runnable {
-    public final int f23567a;
-    public final FrameLayout f23568b;
-    public final double f23569c;
+    public final int f23568a;
+    public final FrameLayout f23569b;
+    public final double f23570c;
     public final double d;
 
     public v7(FrameLayout frameLayout, double d, double d10, int i10) {
-        this.f23567a = i10;
-        this.f23568b = frameLayout;
-        this.f23569c = d;
+        this.f23568a = i10;
+        this.f23569b = frameLayout;
+        this.f23570c = d;
         this.d = d10;
     }
 
     @Override
     public final void run() {
-        switch (this.f23567a) {
+        switch (this.f23568a) {
             case 0:
-                w7 w7Var = (w7) this.f23568b;
-                double d = this.f23569c;
+                w7 w7Var = (w7) this.f23569b;
+                double d = this.f23570c;
                 double d10 = this.d;
                 try {
                     List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d, d10, 1);
@@ -72,20 +72,20 @@ public final class v7 implements Runnable {
                 AndroidUtilities.runOnUIThread(new v7(w7Var, d, d10, 1));
                 return;
             case 1:
-                w7 w7Var2 = (w7) this.f23568b;
-                double d11 = this.f23569c;
+                w7 w7Var2 = (w7) this.f23569b;
+                double d11 = this.f23570c;
                 double d12 = this.d;
                 w7Var2.F = d11;
                 w7Var2.G = d12;
                 w7Var2.E = false;
                 CharSequence charSequence = w7Var2.I;
-                org.telegram.ui.ActionBar.i5 i5Var = w7Var2.f23678b;
+                org.telegram.ui.ActionBar.i5 i5Var = w7Var2.f23679b;
                 CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, i5Var.getPaint().getFontMetricsInt(), false);
                 w7Var2.I = replaceEmoji;
                 i5Var.l(replaceEmoji, false);
                 return;
             default:
-                ((jl) this.f23568b).b0(this.f23569c, this.d);
+                ((jl) this.f23569b).b0(this.f23570c, this.d);
                 return;
         }
     }

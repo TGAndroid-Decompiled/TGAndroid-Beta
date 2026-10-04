@@ -2,25 +2,25 @@ package z7;
 
 import android.content.Context;
 public final class xf implements tf {
-    public final q9.n f53001a;
-    public final sf f53002b;
+    public final q9.n f53002a;
+    public final sf f53003b;
 
     public xf(Context context, sf sfVar) {
-        this.f53002b = sfVar;
+        this.f53003b = sfVar;
         j5.a aVar = j5.a.f13984e;
         l5.t.b(context);
         l5.r c10 = l5.t.a().c(aVar);
         if (j5.a.d.contains(new i5.c("json"))) {
             new q9.n(new v7.a9(c10, 6));
         }
-        this.f53001a = new q9.n(new v7.a9(c10, 7));
+        this.f53002a = new q9.n(new v7.a9(c10, 7));
     }
 
     @Override
     public final void a(a5.a aVar) {
         i5.a aVar2;
-        this.f53002b.getClass();
-        l5.s sVar = (l5.s) this.f53001a.get();
+        this.f53003b.getClass();
+        l5.s sVar = (l5.s) this.f53002a.get();
         if (aVar.f299b != 0) {
             aVar2 = new i5.a(null, aVar.B(), i5.d.f11963a, null);
         } else {

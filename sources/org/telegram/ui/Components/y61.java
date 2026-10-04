@@ -11,7 +11,7 @@ public final class y61 extends s4.c0 {
 
     @Override
     public final int W0(s4.z0 z0Var) {
-        if (this.I.f25246h3) {
+        if (this.I.f25247h3) {
             return AndroidUtilities.displaySize.y;
         }
         return super.W0(z0Var);

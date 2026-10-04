@@ -9,11 +9,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class pc extends nb {
-    public Runnable f29594a;
-    public Runnable f29595b;
-    public rc f29596c;
+    public Runnable f29595a;
+    public Runnable f29596b;
+    public rc f29597c;
     public final TextView d;
-    public boolean f29597e;
+    public boolean f29598e;
 
     public pc(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
         super(context);
@@ -52,14 +52,14 @@ public final class pc extends nb {
 
     @Override
     public final void a(rc rcVar) {
-        this.f29596c = rcVar;
+        this.f29597c = rcVar;
     }
 
     @Override
     public final void b() {
-        this.f29596c = null;
-        Runnable runnable = this.f29595b;
-        if (runnable != null && !this.f29597e) {
+        this.f29597c = null;
+        Runnable runnable = this.f29596b;
+        if (runnable != null && !this.f29598e) {
             runnable.run();
         }
     }
@@ -72,13 +72,13 @@ public final class pc extends nb {
     }
 
     public final void f() {
-        if (this.f29596c != null) {
-            this.f29597e = true;
-            Runnable runnable = this.f29594a;
+        if (this.f29597c != null) {
+            this.f29598e = true;
+            Runnable runnable = this.f29595a;
             if (runnable != null) {
                 runnable.run();
             }
-            rc rcVar = this.f29596c;
+            rc rcVar = this.f29597c;
             if (rcVar != null) {
                 rcVar.b();
             }

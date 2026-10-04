@@ -9,25 +9,25 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e implements m {
-    public static final ArrayDeque f45701g = new ArrayDeque();
+    public static final ArrayDeque f45702g = new ArrayDeque();
     public static final Object h = new Object();
-    public final MediaCodec f45702a;
-    public final HandlerThread f45703b;
-    public androidx.mediarouter.app.c f45704c;
+    public final MediaCodec f45703a;
+    public final HandlerThread f45704b;
+    public androidx.mediarouter.app.c f45705c;
     public final AtomicReference d;
-    public final e2.g f45705e;
-    public boolean f45706f;
+    public final e2.g f45706e;
+    public boolean f45707f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
         e2.g gVar = new e2.g();
-        this.f45702a = mediaCodec;
-        this.f45703b = handlerThread;
-        this.f45705e = gVar;
+        this.f45703a = mediaCodec;
+        this.f45704b = handlerThread;
+        this.f45706e = gVar;
         this.d = new AtomicReference();
     }
 
     public static d d() {
-        ArrayDeque arrayDeque = f45701g;
+        ArrayDeque arrayDeque = f45702g;
         synchronized (arrayDeque) {
             try {
                 if (arrayDeque.isEmpty()) {
@@ -41,7 +41,7 @@ public final class e implements m {
     }
 
     public static void e(d dVar) {
-        ArrayDeque arrayDeque = f45701g;
+        ArrayDeque arrayDeque = f45702g;
         synchronized (arrayDeque) {
             arrayDeque.add(dVar);
         }
@@ -51,11 +51,11 @@ public final class e implements m {
     public final void a(long j3, int i10, int i11, int i12) {
         c();
         d d = d();
-        d.f45697a = i10;
-        d.f45698b = i11;
+        d.f45698a = i10;
+        d.f45699b = i11;
         d.d = j3;
-        d.f45700e = i12;
-        androidx.mediarouter.app.c cVar = this.f45704c;
+        d.f45701e = i12;
+        androidx.mediarouter.app.c cVar = this.f45705c;
         String str = d0.f8537a;
         cVar.obtainMessage(1, d).sendToTarget();
     }
@@ -64,11 +64,11 @@ public final class e implements m {
     public final void b(int i10, h2.d dVar, long j3, int i11) {
         c();
         d d = d();
-        d.f45697a = i10;
-        d.f45698b = 0;
+        d.f45698a = i10;
+        d.f45699b = 0;
         d.d = j3;
-        d.f45700e = i11;
-        MediaCodec.CryptoInfo cryptoInfo = d.f45699c;
+        d.f45701e = i11;
+        MediaCodec.CryptoInfo cryptoInfo = d.f45700c;
         cryptoInfo.numSubSamples = dVar.f10973f;
         int[] iArr = dVar.d;
         int[] iArr2 = cryptoInfo.numBytesOfClearData;
@@ -116,7 +116,7 @@ public final class e implements m {
         if (Build.VERSION.SDK_INT >= 24) {
             cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f10974g, dVar.h));
         }
-        androidx.mediarouter.app.c cVar = this.f45704c;
+        androidx.mediarouter.app.c cVar = this.f45705c;
         String str = d0.f8537a;
         cVar.obtainMessage(2, d).sendToTarget();
     }
@@ -132,16 +132,16 @@ public final class e implements m {
 
     @Override
     public final void flush() {
-        if (this.f45706f) {
+        if (this.f45707f) {
             try {
-                androidx.mediarouter.app.c cVar = this.f45704c;
+                androidx.mediarouter.app.c cVar = this.f45705c;
                 cVar.getClass();
                 cVar.removeCallbacksAndMessages(null);
-                e2.g gVar = this.f45705e;
+                e2.g gVar = this.f45706e;
                 synchronized (gVar) {
                     gVar.f8554b = false;
                 }
-                androidx.mediarouter.app.c cVar2 = this.f45704c;
+                androidx.mediarouter.app.c cVar2 = this.f45705c;
                 cVar2.getClass();
                 cVar2.obtainMessage(3).sendToTarget();
                 gVar.a();
@@ -155,27 +155,27 @@ public final class e implements m {
     @Override
     public final void setParameters(Bundle bundle) {
         c();
-        androidx.mediarouter.app.c cVar = this.f45704c;
+        androidx.mediarouter.app.c cVar = this.f45705c;
         String str = d0.f8537a;
         cVar.obtainMessage(4, bundle).sendToTarget();
     }
 
     @Override
     public final void shutdown() {
-        if (this.f45706f) {
+        if (this.f45707f) {
             flush();
-            this.f45703b.quit();
+            this.f45704b.quit();
         }
-        this.f45706f = false;
+        this.f45707f = false;
     }
 
     @Override
     public final void start() {
-        if (!this.f45706f) {
-            HandlerThread handlerThread = this.f45703b;
+        if (!this.f45707f) {
+            HandlerThread handlerThread = this.f45704b;
             handlerThread.start();
-            this.f45704c = new androidx.mediarouter.app.c(this, handlerThread.getLooper(), 11);
-            this.f45706f = true;
+            this.f45705c = new androidx.mediarouter.app.c(this, handlerThread.getLooper(), 11);
+            this.f45707f = true;
         }
     }
 }

@@ -40,15 +40,15 @@ public final class i0 extends pi implements NotificationCenter.NotificationCente
         this.f11214n = new le.b(0, this, tr.h, 380L, false);
         this.f11217w = new HashSet();
         this.f11219y = new g0(this, context);
-        wi wiVar = new wi(context, i6.f20817d6, d6Var);
+        wi wiVar = new wi(context, i6.f20818d6, d6Var);
         wiVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f11215r = frameLayout;
-        ti tiVar = new ti(context, d6Var, this.f29642b);
+        ti tiVar = new ti(context, d6Var, this.f29643b);
         this.F = tiVar;
         tiVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         c0 c0Var = new c0(this);
-        h2 h2Var = tiVar.f26246r;
+        h2 h2Var = tiVar.f26247r;
         h2Var.addTextChangedListener(c0Var);
         h2Var.setHint(LocaleController.getString(R.string.BusinessRepliesSearch));
         frameLayout.addView(wiVar, z5.g());
@@ -65,7 +65,7 @@ public final class i0 extends pi implements NotificationCenter.NotificationCente
         setBlur3Capture(w0Var);
         this.d = w0Var;
         this.h = true;
-        this.f29645f = true;
+        this.f29646f = true;
         NotificationCenter.getGlobalInstance().listen(w0Var, NotificationCenter.emojiLoaded, new ai.y1(this, 23));
         w0Var.setClipToPadding(false);
         getContext();
@@ -80,7 +80,7 @@ public final class i0 extends pi implements NotificationCenter.NotificationCente
         f0 f0Var = new f0(this, context);
         this.f11218x = f0Var;
         w0Var.setAdapter(f0Var);
-        w0Var.setGlowColor(i6.v0(i6.A5, this.f29641a));
+        w0Var.setGlowColor(i6.v0(i6.A5, this.f29642a));
         w0Var.setOnItemClickListener(new ai.g(this, 10));
         w0Var.setOnScrollListener(new ai.r(this, 10));
         FrameLayout.LayoutParams e7 = z5.e(-1, 60, 51);
@@ -201,17 +201,17 @@ public final class i0 extends pi implements NotificationCenter.NotificationCente
             }
         };
         ArrayList<k6> arrayList = new ArrayList<>();
-        arrayList.add(new k6(this.E, 4, null, null, null, null, i6.f20800c7));
-        arrayList.add(new k6(this.E, 2048, null, null, null, null, i6.f20890h6));
+        arrayList.add(new k6(this.E, 4, null, null, null, null, i6.f20801c7));
+        arrayList.add(new k6(this.E, 2048, null, null, null, null, i6.f20891h6));
         int i10 = i6.A5;
         ai.w0 w0Var = this.f11216s;
         arrayList.add(new k6(w0Var, 32768, null, null, null, null, i10));
-        arrayList.add(new k6(w0Var, 4096, null, null, null, null, i6.f20908i6));
-        arrayList.add(new k6(w0Var, 0, new Class[]{View.class}, i6.f20940k0, null, null, i6.f20818d7));
-        int i11 = i6.f21057q5;
+        arrayList.add(new k6(w0Var, 4096, null, null, null, null, i6.f20909i6));
+        arrayList.add(new k6(w0Var, 0, new Class[]{View.class}, i6.f20941k0, null, null, i6.f20819d7));
+        int i11 = i6.f21058q5;
         arrayList.add(new k6(w0Var, 0, new Class[]{h0.class}, new String[]{"nameTextView"}, null, null, -1, null, i11));
         arrayList.add(new k6(w0Var, 0, new Class[]{h0.class}, new String[]{"statusTextView"}, null, null, -1, j6Var, i11));
-        arrayList.add(new k6(w0Var, 0, new Class[]{h0.class}, null, i6.f21071r0, null, i6.J7));
+        arrayList.add(new k6(w0Var, 0, new Class[]{h0.class}, null, i6.f21072r0, null, i6.J7));
         arrayList.add(new k6(null, 0, null, null, null, j6Var, i6.O7));
         arrayList.add(new k6(null, 0, null, null, null, j6Var, i6.P7));
         arrayList.add(new k6(null, 0, null, null, null, j6Var, i6.Q7));
@@ -231,21 +231,21 @@ public final class i0 extends pi implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f29642b.getSheetContainer().invalidate();
+        this.f29643b.getSheetContainer().invalidate();
     }
 
     public void setupBlurredSearchField(ah.c cVar) {
         ti tiVar = this.F;
         if (tiVar != null) {
-            tiVar.setupBlurredBackground(cVar.c(tiVar, eh.b.a(this.f29641a), false));
+            tiVar.setupBlurredBackground(cVar.c(tiVar, eh.b.a(this.f29642a), false));
         }
     }
 
     @Override
     public final void y(int i10, int i11) {
         int i12;
-        xi xiVar = this.f29642b;
-        if (xiVar.f32849r1.R() > AndroidUtilities.dp(20.0f)) {
+        xi xiVar = this.f29643b;
+        if (xiVar.f32850r1.R() > AndroidUtilities.dp(20.0f)) {
             i12 = AndroidUtilities.dp(8.0f);
             xiVar.setAllowNestedScroll(false);
         } else {
@@ -259,7 +259,7 @@ public final class i0 extends pi implements NotificationCenter.NotificationCente
             i12 = (i11 / 5) * 2;
             xiVar.setAllowNestedScroll(true);
         }
-        this.f11216s.r1(0, i12 + AndroidUtilities.statusBarHeight, 0, this.f29644e);
+        this.f11216s.r1(0, i12 + AndroidUtilities.statusBarHeight, 0, this.f29645e);
     }
 
     @Override

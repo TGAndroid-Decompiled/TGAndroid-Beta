@@ -10,51 +10,51 @@ import com.google.firebase.messaging.n;
 import i2.f0;
 import java.util.HashMap;
 public final class e {
-    public static int f44407n;
-    public static final Rect f44408o = new Rect();
-    public final n f44409a;
-    public final rf.e f44410b;
-    public final String f44411c;
+    public static int f44408n;
+    public static final Rect f44409o = new Rect();
+    public final n f44410a;
+    public final rf.e f44411b;
+    public final String f44412c;
     public final int d;
-    public final int f44412e;
-    public final boolean f44413f;
-    public final rf.a f44414g;
+    public final int f44413e;
+    public final boolean f44414f;
+    public final rf.a f44415g;
     public final sf.b h;
-    public final qi.f f44415i;
-    public View f44416j;
-    public View f44417k;
-    public f0 f44418l;
-    public boolean f44419m;
+    public final qi.f f44416i;
+    public View f44417j;
+    public View f44418k;
+    public f0 f44419l;
+    public boolean f44420m;
 
     public e(n nVar, d dVar) {
-        int i10 = f44407n;
-        f44407n = i10 + 1;
+        int i10 = f44408n;
+        f44408n = i10 + 1;
         sf.b bVar = new sf.b();
         this.h = bVar;
         g4 g4Var = new g4(this, 1);
         ?? obj = new Object();
         obj.d = new u2(obj, 11);
-        obj.f45526a = g4Var;
-        this.f44415i = obj;
+        obj.f45527a = g4Var;
+        this.f44416i = obj;
         StringBuilder sb2 = new StringBuilder();
-        String str = dVar.f44400c;
+        String str = dVar.f44401c;
         sb2.append(str == null ? "pip-source" : str);
         sb2.append("-");
         sb2.append(i10);
         String sb3 = sb2.toString();
-        this.f44411c = sb3;
-        this.f44414g = dVar.f44399b;
-        this.d = dVar.f44401e;
-        this.f44412e = dVar.d;
-        this.f44413f = dVar.f44402f;
-        this.f44409a = nVar;
-        bVar.c(dVar.h, dVar.f44404i);
-        this.f44418l = dVar.f44403g;
-        this.f44417k = dVar.f44406k;
-        this.f44410b = new rf.e(this);
-        View view = dVar.f44405j;
+        this.f44412c = sb3;
+        this.f44415g = dVar.f44400b;
+        this.d = dVar.f44402e;
+        this.f44413e = dVar.d;
+        this.f44414f = dVar.f44403f;
+        this.f44410a = nVar;
+        bVar.c(dVar.h, dVar.f44405i);
+        this.f44419l = dVar.f44404g;
+        this.f44418k = dVar.f44407k;
+        this.f44411b = new rf.e(this);
+        View view = dVar.f44406j;
         obj.P(view);
-        this.f44416j = view;
+        this.f44417j = view;
         if (view != null) {
             e(view);
         }
@@ -81,15 +81,15 @@ public final class e {
 
     public final void b(boolean z10) {
         boolean z11;
-        if (this.h.b() && this.f44414g.g()) {
+        if (this.h.b() && this.f44415g.g()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f44419m != z11) {
-            this.f44419m = z11;
+        if (this.f44420m != z11) {
+            this.f44420m = z11;
             if (z10) {
-                n nVar = this.f44409a;
+                n nVar = this.f44410a;
                 nVar.I();
                 ((a) nVar.f7906c).invalidate();
             }
@@ -97,9 +97,9 @@ public final class e {
     }
 
     public final void c() {
-        this.f44415i.P(null);
-        n nVar = this.f44409a;
-        if (((HashMap) nVar.f7904a).remove(this.f44411c) != null) {
+        this.f44416i.P(null);
+        n nVar = this.f44410a;
+        if (((HashMap) nVar.f7904a).remove(this.f44412c) != null) {
             nVar.I();
         }
     }
@@ -107,7 +107,7 @@ public final class e {
     public final void d(int i10, int i11) {
         if (this.h.c(i10, i11)) {
             b(true);
-            this.f44409a.n(this);
+            this.f44410a.n(this);
         }
     }
 

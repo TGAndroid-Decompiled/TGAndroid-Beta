@@ -9,7 +9,7 @@ public class bm0 extends g91 {
     public final aw0 U;
     public boolean V;
     public View W;
-    public View f25004a0;
+    public View f25005a0;
 
     public bm0(Context context, org.telegram.ui.ActionBar.d6 d6Var, aw0 aw0Var) {
         super(context, d6Var);
@@ -35,7 +35,7 @@ public class bm0 extends g91 {
             View view2 = viewPages[1];
             if (view != null && view2 != null && view.getTranslationX() == 0.0f && view.getMeasuredWidth() > 0 && Math.abs(view2.getTranslationX()) >= view.getMeasuredWidth()) {
                 this.W = view;
-                this.f25004a0 = view2;
+                this.f25005a0 = view2;
                 aw0 aw0Var = this.U;
                 aw0Var.f0("PAGER_DRAG_ABORTED");
                 aw0Var.k0();
@@ -55,13 +55,13 @@ public class bm0 extends g91 {
 
     public final void L(View view) {
         this.W = null;
-        this.f25004a0 = null;
+        this.f25005a0 = null;
         aw0 aw0Var = this.U;
         aw0Var.e0("PAGE_BOUND", view, 0, 0, true);
         if (aw0Var.U0 == null) {
             return;
         }
-        if (aw0Var.f24691g1) {
+        if (aw0Var.f24692g1) {
             aw0Var.h0("page_bound");
         }
         RecyclerView i10 = aw0Var.U0.i(view);
@@ -154,7 +154,7 @@ public class bm0 extends g91 {
     @Override
     public final void v() {
         this.W = null;
-        this.f25004a0 = null;
+        this.f25005a0 = null;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         if (i10 != 0) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.message = "";
-            tL_message.f20058id = i10;
+            tL_message.f20059id = i10;
             tL_message.peer_id = accountInstance.getMessagesController().getPeer(j3);
             messageObject = new MessageObject(accountInstance.getCurrentAccount(), tL_message, false, false);
         } else {
@@ -44,7 +44,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         if (i11 != 0) {
             TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
             tL_message2.message = "";
-            tL_message2.f20058id = (int) j10;
+            tL_message2.f20059id = (int) j10;
             tL_message2.peer_id = accountInstance.getMessagesController().getPeer(j3);
             TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = new TLRPC.TL_messageActionTopicCreate();
             tL_message2.action = tL_messageActionTopicCreate;
@@ -83,20 +83,20 @@ public class WearReplyReceiver extends BroadcastReceiver {
                     if (DialogObject.isUserDialog(longExtra)) {
                         if (accountInstance.getMessagesController().getUser(Long.valueOf(longExtra)) == null) {
                             Utilities.globalQueue.postRunnable(new Runnable(this) {
-                                public final WearReplyReceiver f19749b;
+                                public final WearReplyReceiver f19750b;
 
                                 {
-                                    this.f19749b = this;
+                                    this.f19750b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r10) {
                                         case 0:
-                                            this.f19749b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            this.f19750b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                             return;
                                         default:
-                                            this.f19749b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            this.f19750b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                             return;
                                     }
                                 }
@@ -105,20 +105,20 @@ public class WearReplyReceiver extends BroadcastReceiver {
                         }
                     } else if (DialogObject.isChatDialog(longExtra) && accountInstance.getMessagesController().getChat(Long.valueOf(-longExtra)) == null) {
                         Utilities.globalQueue.postRunnable(new Runnable(this) {
-                            public final WearReplyReceiver f19749b;
+                            public final WearReplyReceiver f19750b;
 
                             {
-                                this.f19749b = this;
+                                this.f19750b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r10) {
                                     case 0:
-                                        this.f19749b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        this.f19750b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                         return;
                                     default:
-                                        this.f19749b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        this.f19750b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                         return;
                                 }
                             }

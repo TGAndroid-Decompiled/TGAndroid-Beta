@@ -8,12 +8,12 @@ import java.io.IOException;
 import o2.t;
 import org.telegram.tgnet.SerializedData;
 public final class a {
-    public static SparseIntArray f44724b;
-    public static final a f44725c = new a();
-    public final SparseArray f44726a;
+    public static SparseIntArray f44725b;
+    public static final a f44726c = new a();
+    public final SparseArray f44727a;
 
     public a() {
-        this.f44726a = new SparseArray();
+        this.f44727a = new SparseArray();
     }
 
     public static SparseArray a(Context context, String str, SparseArray sparseArray) {
@@ -48,7 +48,7 @@ public final class a {
 
     public final String b(String str) {
         if (str != null) {
-            return (String) this.f44726a.get(str.hashCode());
+            return (String) this.f44727a.get(str.hashCode());
         }
         return null;
     }
@@ -62,7 +62,7 @@ public final class a {
         }
         if (str2 == null && i10 != 0) {
             if (context != null && i10 != 0) {
-                if (f44724b == null) {
+                if (f44725b == null) {
                     try {
                         BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
                         SerializedData serializedData = new SerializedData(bufferedInputStream);
@@ -72,14 +72,14 @@ public final class a {
                             sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
                         }
                         bufferedInputStream.close();
-                        f44724b = sparseIntArray;
+                        f44725b = sparseIntArray;
                     } catch (IOException e7) {
                         throw new RuntimeException(e7);
                     }
                 }
-                int i12 = f44724b.get(i10);
+                int i12 = f44725b.get(i10);
                 if (i12 != 0) {
-                    return (String) this.f44726a.get(i12);
+                    return (String) this.f44727a.get(i12);
                 }
             }
             return null;
@@ -88,7 +88,7 @@ public final class a {
     }
 
     public a(t tVar) {
-        SparseArray sparseArray = tVar.f17099a;
-        this.f44726a = sparseArray == null ? new SparseArray() : sparseArray;
+        SparseArray sparseArray = tVar.f17100a;
+        this.f44727a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

@@ -89,7 +89,7 @@ public class StatsController extends BaseController {
                         StatsController.this.statsFile.seek(0L);
                         RandomAccessFile randomAccessFile = StatsController.this.statsFile;
                         yf.z zVar = StatsController.this.byteArrayOutputStream;
-                        randomAccessFile.write(zVar.f51035a, 0, zVar.f51036b);
+                        randomAccessFile.write(zVar.f51036a, 0, zVar.f51037b);
                         StatsController.this.statsFile.getFD().sync();
                     } catch (Exception unused) {
                     }

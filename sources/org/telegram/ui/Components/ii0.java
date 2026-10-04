@@ -27,39 +27,39 @@ public final class ii0 extends View {
     public float H;
     public float I;
     public float J;
-    public final org.telegram.ui.ActionBar.d6 f27418a;
-    public final PorterDuffColorFilter f27419b;
-    public final PorterDuffColorFilter f27420c;
+    public final org.telegram.ui.ActionBar.d6 f27419a;
+    public final PorterDuffColorFilter f27420b;
+    public final PorterDuffColorFilter f27421c;
     public e11 d;
-    public e11 f27421e;
-    public final Paint f27422f;
+    public e11 f27422e;
+    public final Paint f27423f;
     public final Paint h;
-    public final Path f27423n;
-    public final Drawable f27424r;
-    public final RectF f27425s;
+    public final Path f27424n;
+    public final Drawable f27425r;
+    public final RectF f27426s;
     public final Paint v;
-    public final Path f27426w;
-    public final zc f27427x;
-    public int f27428y;
+    public final Path f27427w;
+    public final zc f27428x;
+    public int f27429y;
 
     public ii0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f27419b = new PorterDuffColorFilter(-1, mode);
-        this.f27420c = new PorterDuffColorFilter(-16777216, mode);
-        this.f27422f = new Paint();
+        this.f27420b = new PorterDuffColorFilter(-1, mode);
+        this.f27421c = new PorterDuffColorFilter(-16777216, mode);
+        this.f27423f = new Paint();
         Paint paint = new Paint();
         this.h = paint;
         Path path = new Path();
-        this.f27423n = path;
-        this.f27425s = new RectF();
+        this.f27424n = path;
+        this.f27426s = new RectF();
         this.v = new Paint(1);
         new Paint(1);
-        this.f27426w = new Path();
-        this.f27427x = new zc(this);
-        this.f27428y = -1;
-        this.f27418a = d6Var;
-        this.f27424r = context.getResources().getDrawable(R.drawable.files_music).mutate();
+        this.f27427w = new Path();
+        this.f27428x = new zc(this);
+        this.f27429y = -1;
+        this.f27419a = d6Var;
+        this.f27425r = context.getResources().getDrawable(R.drawable.files_music).mutate();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -84,15 +84,15 @@ public final class ii0 extends View {
         } else {
             i10 = -1;
         }
-        this.f27428y = i10;
+        this.f27429y = i10;
         if (z10) {
-            porterDuffColorFilter = this.f27420c;
+            porterDuffColorFilter = this.f27421c;
         } else {
-            porterDuffColorFilter = this.f27419b;
+            porterDuffColorFilter = this.f27420b;
         }
-        this.f27424r.setColorFilter(porterDuffColorFilter);
-        this.f27422f.setColor(this.f27428y);
-        this.h.setColor(org.telegram.ui.ActionBar.i6.l1(0.85f, this.f27428y));
+        this.f27425r.setColorFilter(porterDuffColorFilter);
+        this.f27423f.setColor(this.f27429y);
+        this.h.setColor(org.telegram.ui.ActionBar.i6.l1(0.85f, this.f27429y));
         invalidate();
     }
 
@@ -105,7 +105,7 @@ public final class ii0 extends View {
 
     public final void c(String str, String str2) {
         this.d = new e11(str, 11.0f, AndroidUtilities.bold());
-        this.f27421e = new e11(str2, 11.0f, null);
+        this.f27422e = new e11(str2, 11.0f, null);
         setContentDescription(LocaleController.getString(R.string.AccDescrProfileMusic) + " " + ((Object) str) + " — " + ((Object) str2));
     }
 
@@ -115,8 +115,8 @@ public final class ii0 extends View {
             return false;
         }
         int action = motionEvent.getAction();
-        RectF rectF = this.f27425s;
-        zc zcVar = this.f27427x;
+        RectF rectF = this.f27426s;
+        zc zcVar = this.f27428x;
         if (action == 0) {
             zcVar.c(rectF.contains(motionEvent.getX(), motionEvent.getY()));
         } else if (motionEvent.getAction() == 2 && zcVar.h) {
@@ -136,19 +136,19 @@ public final class ii0 extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.d != null && this.f27421e != null) {
+        if (this.d != null && this.f27422e != null) {
             float clamp01 = Utilities.clamp01(this.J / AndroidUtilities.dp(21.0f));
-            float a2 = this.f27427x.a(0.02f);
+            float a2 = this.f27428x.a(0.02f);
             if (clamp01 > 0.0f) {
                 int width = getWidth() - (AndroidUtilities.dp(12.0f) * 2);
-                this.d.f25889p = (width - AndroidUtilities.dp(35.0f)) / 2.0f;
-                this.f27421e.f25889p = (width - this.d.l()) - AndroidUtilities.dp(35.0f);
-                float l4 = this.f27421e.l() + this.d.l() + AndroidUtilities.dp(16.6f) + AndroidUtilities.dp(8.0f);
+                this.d.f25890p = (width - AndroidUtilities.dp(35.0f)) / 2.0f;
+                this.f27422e.f25890p = (width - this.d.l()) - AndroidUtilities.dp(35.0f);
+                float l4 = this.f27422e.l() + this.d.l() + AndroidUtilities.dp(16.6f) + AndroidUtilities.dp(8.0f);
                 float dp = AndroidUtilities.dp(16.0f) + l4;
                 canvas.save();
                 canvas.scale(a2, a2, getWidth() / 2.0f, getHeight() / 2.0f);
                 float dp2 = (AndroidUtilities.dp(17.0f) * clamp01) + AndroidUtilities.dp(10.0f);
-                RectF rectF = this.f27425s;
+                RectF rectF = this.f27426s;
                 rectF.set((getWidth() - dp) / 2.0f, AndroidUtilities.dp(10.0f), (getWidth() + dp) / 2.0f, dp2);
                 Paint paint = this.v;
                 paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
@@ -156,7 +156,7 @@ public final class ii0 extends View {
                 paint.setAlpha((int) (alpha * clamp01));
                 canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint);
                 paint.setAlpha(alpha);
-                Path path = this.f27426w;
+                Path path = this.f27427w;
                 path.rewind();
                 path.addRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, Path.Direction.CW);
                 canvas.save();
@@ -178,19 +178,19 @@ public final class ii0 extends View {
                 int i11 = dp3 / 2;
                 int i12 = i10 - i11;
                 int i13 = i10 + i11;
-                Drawable drawable = this.f27424r;
+                Drawable drawable = this.f27425r;
                 drawable.setBounds(0, i12, dp3, i13);
                 drawable.draw(canvas);
                 canvas.translate(AndroidUtilities.dp(16.6f), 0.0f);
-                this.d.c(0.0f, height, clamp01, this.f27428y, canvas);
+                this.d.c(0.0f, height, clamp01, this.f27429y, canvas);
                 canvas.translate(this.d.l(), 0.0f);
-                this.f27421e.c(0.0f, height, clamp01 * 0.85f, this.f27428y, canvas);
-                canvas.translate(this.f27421e.l(), 0.0f);
+                this.f27422e.c(0.0f, height, clamp01 * 0.85f, this.f27429y, canvas);
+                canvas.translate(this.f27422e.l(), 0.0f);
                 float dpf2 = AndroidUtilities.dpf2(1.16f);
                 Paint paint2 = this.h;
                 paint2.setStrokeWidth(dpf2);
                 canvas.translate(AndroidUtilities.dpf2(4.8f), height);
-                canvas.drawPath(this.f27423n, paint2);
+                canvas.drawPath(this.f27424n, paint2);
                 canvas.restore();
                 canvas.restore();
             }
@@ -205,16 +205,16 @@ public final class ii0 extends View {
     public void setColor(MessagesController.PeerColor peerColor) {
         int bgColor1;
         int bgColor2;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27418a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27419a;
         if (peerColor == null) {
-            bgColor1 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21099s8, d6Var);
+            bgColor1 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21100s8, d6Var);
             bgColor2 = bgColor1;
         } else {
             bgColor1 = peerColor.getBgColor1(org.telegram.ui.ActionBar.i6.I.q());
             bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.i6.I.q());
         }
         if (peerColor == null) {
-            this.F = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20817d6, d6Var);
+            this.F = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20818d6, d6Var);
         } else {
             this.F = org.telegram.ui.ActionBar.i6.b(0.04f, -0.09f, i0.a.d(0.15f, bgColor1, bgColor2));
         }

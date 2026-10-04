@@ -5,7 +5,7 @@ import bf.p;
 import bf.s;
 import ye.b;
 public final class a implements ef.a {
-    public final char f53293a;
+    public final char f53294a;
 
     public a(int i10) {
         this('*');
@@ -20,18 +20,18 @@ public final class a implements ef.a {
 
     @Override
     public final char a() {
-        return this.f53293a;
+        return this.f53294a;
     }
 
     @Override
     public final int b(b bVar, b bVar2) {
-        if (bVar.d || bVar2.f50858c) {
+        if (bVar.d || bVar2.f50859c) {
             int i10 = bVar2.h;
             if (i10 % 3 != 0 && (bVar.h + i10) % 3 == 0) {
                 return 0;
             }
         }
-        if (bVar.f50861g >= 2 && bVar2.f50861g >= 2) {
+        if (bVar.f50862g >= 2 && bVar2.f50862g >= 2) {
             return 2;
         }
         return 1;
@@ -45,7 +45,7 @@ public final class a implements ef.a {
     @Override
     public final void d(s sVar, s sVar2, int i10) {
         g gVar;
-        String.valueOf(this.f53293a);
+        String.valueOf(this.f53294a);
         if (i10 == 1) {
             gVar = new g(0);
         } else {
@@ -71,10 +71,10 @@ public final class a implements ef.a {
 
     @Override
     public final char e() {
-        return this.f53293a;
+        return this.f53294a;
     }
 
     public a(char c10) {
-        this.f53293a = c10;
+        this.f53294a = c10;
     }
 }

@@ -13,11 +13,11 @@ public final class y41 extends f61 {
     public static g61 a(int i10, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z10, View.OnClickListener onClickListener2, n nVar) {
         g61 J = g61.J(y41.class);
         J.d = i10;
-        J.f26668l = charSequence;
-        J.f26669m = charSequence2;
-        J.f26670n = charSequence3;
+        J.f26669l = charSequence;
+        J.f26670m = charSequence2;
+        J.f26671n = charSequence3;
         J.D = onClickListener;
-        J.f26662e = z10;
+        J.f26663e = z10;
         J.E = onClickListener2;
         J.G = nVar;
         return J;
@@ -34,11 +34,11 @@ public final class y41 extends f61 {
         boolean z11;
         int i11;
         z41 z41Var = (z41) view;
-        CharSequence charSequence = g61Var.f26668l;
-        CharSequence charSequence2 = g61Var.f26669m;
-        CharSequence charSequence3 = g61Var.f26670n;
+        CharSequence charSequence = g61Var.f26669l;
+        CharSequence charSequence2 = g61Var.f26670m;
+        CharSequence charSequence3 = g61Var.f26671n;
         View.OnClickListener onClickListener2 = g61Var.D;
-        boolean z12 = g61Var.f26662e;
+        boolean z12 = g61Var.f26663e;
         View.OnClickListener onClickListener3 = g61Var.E;
         Object obj = g61Var.G;
         if (obj instanceof View.OnClickListener) {
@@ -46,13 +46,13 @@ public final class y41 extends f61 {
         } else {
             onClickListener = null;
         }
-        LinearLayout linearLayout = z41Var.f33385r;
+        LinearLayout linearLayout = z41Var.f33386r;
         LinearLayout linearLayout2 = z41Var.h;
-        LinearLayout linearLayout3 = z41Var.f33380b;
-        z41Var.f33381c.setText(charSequence);
+        LinearLayout linearLayout3 = z41Var.f33381b;
+        z41Var.f33382c.setText(charSequence);
         z41Var.d.setText(charSequence2);
-        z41Var.f33382e.setText(charSequence3);
-        ImageView imageView = z41Var.f33383f;
+        z41Var.f33383e.setText(charSequence3);
+        ImageView imageView = z41Var.f33384f;
         int i12 = 8;
         if (onClickListener2 != null) {
             i10 = 0;
@@ -67,7 +67,7 @@ public final class y41 extends f61 {
             z11 = false;
         }
         linearLayout3.setClickable(z11);
-        z41Var.f33384n.a(z12, false);
+        z41Var.f33385n.a(z12, false);
         if (onClickListener3 != null) {
             i11 = 0;
         } else {
@@ -85,7 +85,7 @@ public final class y41 extends f61 {
 
     @Override
     public final boolean contentsEquals(g61 g61Var, g61 g61Var2) {
-        if (TextUtils.equals(g61Var.f26668l, g61Var2.f26668l) && TextUtils.equals(g61Var.f26669m, g61Var2.f26669m) && TextUtils.equals(g61Var.f26670n, g61Var2.f26670n) && g61Var.E == g61Var2.E) {
+        if (TextUtils.equals(g61Var.f26669l, g61Var2.f26669l) && TextUtils.equals(g61Var.f26670m, g61Var2.f26670m) && TextUtils.equals(g61Var.f26671n, g61Var2.f26671n) && g61Var.E == g61Var2.E) {
             return true;
         }
         return false;

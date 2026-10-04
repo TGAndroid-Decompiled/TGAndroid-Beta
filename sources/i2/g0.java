@@ -37,11 +37,11 @@ public final class g0 implements Runnable {
                 fVar.q(p5, 1033, new ga.a(p5, i11, i12, this.f11654b));
                 return;
             case 1:
-                ((cg0) this.d).f25362a.f25715b.y3(this.f11655c, this.f11654b);
+                ((cg0) this.d).f25363a.f25716b.y3(this.f11655c, this.f11654b);
                 return;
             case 2:
                 qn0 qn0Var = (qn0) this.d;
-                qn0Var.f30111o = null;
+                qn0Var.f30112o = null;
                 qn0Var.c(this.f11655c, this.f11654b, true);
                 return;
             case 3:
@@ -59,7 +59,7 @@ public final class g0 implements Runnable {
                     formatPluralString = LocaleController.formatPluralString("FolderLinkRemovedChats", i13, new Object[0]);
                 }
                 rc M = a02.M(formatPluralString, LocaleController.getString(R.string.FolderLinkChatlistUpdate), i10);
-                M.f30338j = 5000;
+                M.f30339j = 5000;
                 M.j();
                 return;
             default:

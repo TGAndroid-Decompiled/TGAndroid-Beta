@@ -2,7 +2,7 @@ package u6;
 
 import java.util.regex.Pattern;
 public abstract class e {
-    public static final int f47549a = 0;
+    public static final int f47550a = 0;
 
     static {
         Pattern.compile("\\$\\{(.*?)\\}");

@@ -19,16 +19,16 @@ public abstract class i40 extends u61 {
     public String X;
     public String Y;
     public int Z;
-    public zm f27305a0;
-    public final boolean[] f27306b0;
+    public zm f27306a0;
+    public final boolean[] f27307b0;
 
     public i40(zl0 zl0Var, Context context, int i10) {
         super(zl0Var, context, i10, 0, false, null, null);
         this.O = new ArrayList();
         this.T = 0;
         this.U = -1;
-        this.f27306b0 = new boolean[1];
-        this.f31307s = new d(this, 16);
+        this.f27307b0 = new boolean[1];
+        this.f31308s = new d(this, 16);
         this.N = i10;
     }
 
@@ -69,7 +69,7 @@ public abstract class i40 extends u61 {
             ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
             this.U = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f27305a0);
+        AndroidUtilities.cancelRunOnUIThread(this.f27306a0);
         this.T++;
         this.S = false;
     }
@@ -88,7 +88,7 @@ public abstract class i40 extends u61 {
 
     public final void Y(String str) {
         this.X = str;
-        String X = X(str, this.f27306b0);
+        String X = X(str, this.f27307b0);
         if (!TextUtils.equals(this.Y, X)) {
             this.O.clear();
             this.V = false;
@@ -105,7 +105,7 @@ public abstract class i40 extends u61 {
         this.S = true;
         N(true);
         zm zmVar = new zm(this, i10, X, 5);
-        this.f27305a0 = zmVar;
+        this.f27306a0 = zmVar;
         AndroidUtilities.runOnUIThread(zmVar, 300L);
     }
 }

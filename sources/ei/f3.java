@@ -25,7 +25,7 @@ public final class f3 implements Runnable {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
                     rc Q = yc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
-                    Q.f30348t = true;
+                    Q.f30349t = true;
                     Q.j();
                     return;
                 }

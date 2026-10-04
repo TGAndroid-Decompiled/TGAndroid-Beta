@@ -33,24 +33,24 @@ public final class f extends j {
         h hVar = this.F;
         e eVar = hVar.U0;
         int b10 = c1Var.b();
-        List list = eVar.f15596c;
+        List list = eVar.f15597c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f15596c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f15597c.get(b10);
         }
         if (groupCallMessage != null && (o0Var = groupCallMessage.visibleReaction) != null) {
-            View view = c1Var.f46523a;
+            View view = c1Var.f46524a;
             if ((view instanceof c) && (gVar = hVar.Z0) != null) {
-                h60 h60Var = ((g40) gVar).f36494a;
+                h60 h60Var = ((g40) gVar).f36495a;
                 Context context = h60Var.getContext();
                 sk0 sk0Var = h60Var.K;
                 i10 = ((f3) h60Var).currentAccount;
                 k0 k0Var = new k0(context, null, sk0Var, (c) view, null, 0.0f, 0.0f, o0Var, i10, 1, false);
                 k0.B = k0Var;
-                k0Var.f53422i.setTag(R.id.parent_tag, 1);
-                h60Var.container.addView(k0Var.f53422i);
-                k0Var.f53432s = true;
-                k0Var.f53437y = System.currentTimeMillis();
+                k0Var.f53423i.setTag(R.id.parent_tag, 1);
+                h60Var.container.addView(k0Var.f53423i);
+                k0Var.f53433s = true;
+                k0Var.f53438y = System.currentTimeMillis();
             }
         }
     }

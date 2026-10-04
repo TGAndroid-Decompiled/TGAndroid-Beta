@@ -3,40 +3,40 @@ package org.telegram.ui;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class uw implements Runnable {
-    public final int f41359a;
-    public final ty f41360b;
+    public final int f41360a;
+    public final ty f41361b;
 
     public uw(ty tyVar, int i10) {
-        this.f41359a = i10;
-        this.f41360b = tyVar;
+        this.f41360a = i10;
+        this.f41361b = tyVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f41359a) {
+        switch (this.f41360a) {
             case 0:
-                this.f41360b.d.l();
+                this.f41361b.d.l();
                 return;
             case 1:
-                ty tyVar = this.f41360b;
+                ty tyVar = this.f41361b;
                 uy uyVar = tyVar.K;
-                qy qyVar = tyVar.f40983a;
-                if (qyVar != null && qyVar.getScrollState() == 0 && tyVar.f40983a.getChildCount() > 0 && tyVar.f40983a.getLayoutManager() != null) {
+                qy qyVar = tyVar.f40984a;
+                if (qyVar != null && qyVar.getScrollState() == 0 && tyVar.f40984a.getChildCount() > 0 && tyVar.f40984a.getLayoutManager() != null) {
                     int i10 = 1;
-                    if (tyVar.f40990s == 0 && uyVar.i4() && tyVar.v == 2) {
+                    if (tyVar.f40991s == 0 && uyVar.i4() && tyVar.v == 2) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     float f7 = uyVar.N;
-                    s4.c0 c0Var = (s4.c0) tyVar.f40983a.getLayoutManager();
+                    s4.c0 c0Var = (s4.c0) tyVar.f40984a.getLayoutManager();
                     View view = null;
                     int i11 = Integer.MAX_VALUE;
                     int i12 = -1;
-                    for (int i13 = 0; i13 < tyVar.f40983a.getChildCount(); i13++) {
-                        int R = RecyclerView.R(tyVar.f40983a.getChildAt(i13));
-                        View childAt = tyVar.f40983a.getChildAt(i13);
+                    for (int i13 = 0; i13 < tyVar.f40984a.getChildCount(); i13++) {
+                        int R = RecyclerView.R(tyVar.f40984a.getChildAt(i13));
+                        View childAt = tyVar.f40984a.getChildAt(i13);
                         if (R != -1 && childAt != null && childAt.getTop() < i11) {
                             i11 = childAt.getTop();
                             i12 = R;
@@ -44,12 +44,12 @@ public final class uw implements Runnable {
                         }
                     }
                     if (view != null) {
-                        float top = view.getTop() - tyVar.f40983a.getPaddingTop();
+                        float top = view.getTop() - tyVar.f40984a.getPaddingTop();
                         if (uyVar.K) {
                             f7 = 0.0f;
                         }
-                        if (tyVar.f40983a.getScrollState() != 1) {
-                            if (z10 && i12 == 0 && ((tyVar.f40983a.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f7 < 0.0f) {
+                        if (tyVar.f40984a.getScrollState() != 1) {
+                            if (z10 && i12 == 0 && ((tyVar.f40984a.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f7 < 0.0f) {
                                 top = f7;
                             } else {
                                 i10 = i12;
@@ -63,11 +63,11 @@ public final class uw implements Runnable {
                 }
                 return;
             default:
-                ty tyVar2 = this.f41360b;
+                ty tyVar2 = this.f41361b;
                 tyVar2.d.W(tyVar2.I);
                 tyVar2.K.Q = true;
-                qy qyVar2 = tyVar2.f40983a;
-                qyVar2.f39838k3 = true;
+                qy qyVar2 = tyVar2.f40984a;
+                qyVar2.f39839k3 = true;
                 tyVar2.H = false;
                 qyVar2.invalidate();
                 return;

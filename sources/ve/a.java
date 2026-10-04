@@ -11,7 +11,7 @@ public final class a implements ef.a {
 
     @Override
     public final int b(b bVar, b bVar2) {
-        if (bVar.f50861g >= 2 && bVar2.f50861g >= 2) {
+        if (bVar.f50862g >= 2 && bVar2.f50862g >= 2) {
             return 2;
         }
         return 0;

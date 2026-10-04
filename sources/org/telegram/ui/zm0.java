@@ -5,16 +5,16 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class zm0 extends ClickableSpan {
-    public final kn0 f43853a;
+    public final kn0 f43854a;
 
     public zm0(kn0 kn0Var) {
-        this.f43853a = kn0Var;
+        this.f43854a = kn0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        kn0 kn0Var = this.f43853a;
-        nf.f.s(kn0Var.getParentActivity(), kn0Var.f38059y.privacy_policy_url);
+        kn0 kn0Var = this.f43854a;
+        nf.f.s(kn0Var.getParentActivity(), kn0Var.f38060y.privacy_policy_url);
     }
 
     @Override

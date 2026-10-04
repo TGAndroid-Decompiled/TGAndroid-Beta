@@ -16,25 +16,25 @@ import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k extends FrameLayout {
-    public final org.telegram.ui.ActionBar.i5 f22366a;
-    public final TextView f22367b;
-    public final org.telegram.ui.Components.w9 f22368c;
+    public final org.telegram.ui.ActionBar.i5 f22367a;
+    public final TextView f22368b;
+    public final org.telegram.ui.Components.w9 f22369c;
     public final ImageView d;
-    public final org.telegram.ui.Components.h9 f22369e;
-    public int f22370f;
+    public final org.telegram.ui.Components.h9 f22370e;
+    public int f22371f;
 
     public k(Activity activity, boolean z10) {
         super(activity);
         setMinimumWidth(AndroidUtilities.dp(196.0f));
         org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        this.f22369e = h9Var;
+        this.f22370e = h9Var;
         h9Var.u(AndroidUtilities.dp(12.0f));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f22368c = w9Var;
+        this.f22369c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(18.0f));
         addView(w9Var, w7.z5.d(36, 36.0f, 51, 10.0f, 10.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(activity);
-        this.f22366a = i5Var;
+        this.f22367a = i5Var;
         i5Var.setTextSize(15);
         i5Var.setTypeface(AndroidUtilities.bold());
         i5Var.setEllipsizeByGradient(true);
@@ -42,11 +42,11 @@ public final class k extends FrameLayout {
         i5Var.setGravity(19);
         if (z10) {
             addView(i5Var, w7.z5.d(-2, -2.0f, 51, 61.0f, 7.0f, 8.0f, 0.0f));
-            i5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21010ng, false));
+            i5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21011ng, false));
             i5Var.l(LocaleController.getString(R.string.VoipGroupDisplayAs), false);
             TextView textView = new TextView(activity);
-            this.f22367b = textView;
-            ok.t(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21029og, false), 1, 15.0f, 1);
+            this.f22368b = textView;
+            ok.t(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21030og, false), 1, 15.0f, 1);
             textView.setMaxLines(1);
             textView.setSingleLine(true);
             textView.setMaxWidth(AndroidUtilities.dp(320.0f));
@@ -66,14 +66,14 @@ public final class k extends FrameLayout {
     }
 
     public int getAccountNumber() {
-        return this.f22370f;
+        return this.f22371f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f22367b == null) {
-            this.f22366a.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G9, false));
+        if (this.f22368b == null) {
+            this.f22367a.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G9, false));
         }
     }
 
@@ -83,7 +83,7 @@ public final class k extends FrameLayout {
         int i12;
         float f7;
         ImageView imageView = this.d;
-        if (imageView == null && ((textView = this.f22367b) == null || getLayoutParams().width == -2)) {
+        if (imageView == null && ((textView = this.f22368b) == null || getLayoutParams().width == -2)) {
             if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
                 float dp = AndroidUtilities.dp(196.0f);
                 if (imageView != null) {
@@ -92,7 +92,7 @@ public final class k extends FrameLayout {
                     i12 = 0;
                 }
                 float dp2 = AndroidUtilities.dp(i12 + 69);
-                org.telegram.ui.ActionBar.i5 i5Var = this.f22366a;
+                org.telegram.ui.ActionBar.i5 i5Var = this.f22367a;
                 float measureText = i5Var.getTextPaint().measureText(i5Var.getText().toString());
                 if (textView != null) {
                     f7 = textView.getPaint().measureText(textView.getText().toString());
@@ -111,9 +111,9 @@ public final class k extends FrameLayout {
     public void setObject(TLObject tLObject) {
         String str;
         boolean z10 = tLObject instanceof TLRPC.User;
-        org.telegram.ui.Components.w9 w9Var = this.f22368c;
-        TextView textView = this.f22367b;
-        org.telegram.ui.Components.h9 h9Var = this.f22369e;
+        org.telegram.ui.Components.w9 w9Var = this.f22369c;
+        TextView textView = this.f22368b;
+        org.telegram.ui.Components.h9 h9Var = this.f22370e;
         if (z10) {
             TLRPC.User user = (TLRPC.User) tLObject;
             h9Var.r(user);

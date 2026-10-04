@@ -82,13 +82,13 @@ public final class b6 {
             }
             kj0Var.P(i11);
         } else if (z10) {
-            if (kj0Var.f28118a0 > 20) {
+            if (kj0Var.f28119a0 > 20) {
                 kj0Var.N(0, false, false);
             }
             kj0Var.P(20);
             kj0Var.start();
         } else {
-            int i12 = kj0Var.f28118a0;
+            int i12 = kj0Var.f28119a0;
             if (i12 != 0 && i12 < 43) {
                 kj0Var.P(43);
                 kj0Var.start();

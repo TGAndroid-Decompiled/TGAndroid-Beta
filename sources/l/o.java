@@ -4,21 +4,21 @@ import android.view.CollapsibleActionView;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class o extends FrameLayout implements k.b {
-    public final CollapsibleActionView f15218a;
+    public final CollapsibleActionView f15219a;
 
     public o(View view) {
         super(view.getContext());
-        this.f15218a = (CollapsibleActionView) view;
+        this.f15219a = (CollapsibleActionView) view;
         addView(view);
     }
 
     @Override
     public final void onActionViewCollapsed() {
-        this.f15218a.onActionViewCollapsed();
+        this.f15219a.onActionViewCollapsed();
     }
 
     @Override
     public final void onActionViewExpanded() {
-        this.f15218a.onActionViewExpanded();
+        this.f15219a.onActionViewExpanded();
     }
 }

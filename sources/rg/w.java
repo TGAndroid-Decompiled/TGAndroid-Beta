@@ -13,33 +13,33 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.n20;
 public final class w implements Runnable {
-    public final int f46328a;
-    public final k0 f46329b;
+    public final int f46329a;
+    public final k0 f46330b;
 
     public w(k0 k0Var, int i10) {
-        this.f46328a = i10;
-        this.f46329b = k0Var;
+        this.f46329a = i10;
+        this.f46330b = k0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f46328a;
-        k0 k0Var = this.f46329b;
+        int i10 = this.f46329a;
+        k0 k0Var = this.f46330b;
         switch (i10) {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f21349a = true;
+                    obj.f21350a = true;
                     k0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 1:
-                k0Var.f46165x0.e(k0Var.f46144b0, false);
+                k0Var.f46166x0.e(k0Var.f46145b0, false);
                 k0Var.z1();
                 return;
             case 2:
-                HashSet hashSet = k0Var.f46166y0;
+                HashSet hashSet = k0Var.f46167y0;
                 yc X = yc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {

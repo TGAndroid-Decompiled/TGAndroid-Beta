@@ -10,45 +10,45 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.yc;
 public final class r5 implements Runnable {
-    public final int f51898a;
-    public final Object f51899b;
-    public final Object f51900c;
+    public final int f51899a;
+    public final Object f51900b;
+    public final Object f51901c;
 
     public r5(int i10, Object obj, Object obj2) {
-        this.f51898a = i10;
-        this.f51899b = obj;
-        this.f51900c = obj2;
+        this.f51899a = i10;
+        this.f51900b = obj;
+        this.f51901c = obj2;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.z5[] z5VarArr;
         org.telegram.ui.Components.z5[] z5VarArr2;
-        switch (this.f51898a) {
+        switch (this.f51899a) {
             case 0:
-                ((MessagesController) this.f51899b).processUpdates((TLRPC.Updates) ((TLObject) this.f51900c), false);
+                ((MessagesController) this.f51900b).processUpdates((TLRPC.Updates) ((TLObject) this.f51901c), false);
                 return;
             case 1:
-                new yc(((org.telegram.ui.ActionBar.f3[]) this.f51899b)[0].topBulletinContainer, (org.telegram.ui.ActionBar.d6) this.f51900c).Q(R.raw.copy, 36, LocaleController.getString(R.string.StarsTransactionIDCopied)).k(false);
+                new yc(((org.telegram.ui.ActionBar.f3[]) this.f51900b)[0].topBulletinContainer, (org.telegram.ui.ActionBar.d6) this.f51901c).Q(R.raw.copy, 36, LocaleController.getString(R.string.StarsTransactionIDCopied)).k(false);
                 return;
             case 2:
-                p8 p8Var = (p8) this.f51899b;
+                p8 p8Var = (p8) this.f51900b;
                 p8Var.R = true;
-                p8Var.o(new p5((s5) this.f51900c, 2));
+                p8Var.o(new p5((s5) this.f51901c, 2));
                 AndroidUtilities.runOnUIThread(new y7(p8Var, 1), 240L);
                 return;
             case 3:
-                zg.q qVar = (zg.q) this.f51899b;
-                org.telegram.ui.Components.z5 z5Var = (org.telegram.ui.Components.z5) this.f51900c;
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar.f53514n.getText());
+                zg.q qVar = (zg.q) this.f51900b;
+                org.telegram.ui.Components.z5 z5Var = (org.telegram.ui.Components.z5) this.f51901c;
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar.f53515n.getText());
                 for (org.telegram.ui.Components.z5 z5Var2 : (org.telegram.ui.Components.z5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), org.telegram.ui.Components.z5.class)) {
                     if (z5Var2 == z5Var) {
-                        int editTextSelectionEnd = qVar.f53514n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd = qVar.f53515n.getEditTextSelectionEnd();
                         int spanEnd = spannableStringBuilder.getSpanEnd(z5Var2);
                         int spanStart = spannableStringBuilder.getSpanStart(z5Var2);
-                        qVar.f53514n.getText().delete(spanStart, spanEnd);
+                        qVar.f53515n.getText().delete(spanStart, spanEnd);
                         int i10 = spanEnd - spanStart;
-                        zg.o oVar = qVar.f53514n;
+                        zg.o oVar = qVar.f53515n;
                         if (spanEnd <= editTextSelectionEnd) {
                             editTextSelectionEnd -= i10;
                         }
@@ -58,8 +58,8 @@ public final class r5 implements Runnable {
                 }
                 return;
             case 4:
-                zg.q qVar2 = (zg.q) this.f51899b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f51900c;
+                zg.q qVar2 = (zg.q) this.f51900b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f51901c;
                 if (qVar2.Q != null && tL_error.text.equals("BOOSTS_REQUIRED")) {
                     zg.q0.f(-qVar2.M, qVar2.R, qVar2.Q);
                     return;
@@ -71,17 +71,17 @@ public final class r5 implements Runnable {
                 yc.a0(qVar2).t(str, null).j();
                 return;
             case 5:
-                org.telegram.ui.Components.z5 z5Var3 = (org.telegram.ui.Components.z5) this.f51900c;
-                zg.q qVar3 = ((zg.p) this.f51899b).f53482e2;
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(qVar3.f53514n.getText());
+                org.telegram.ui.Components.z5 z5Var3 = (org.telegram.ui.Components.z5) this.f51901c;
+                zg.q qVar3 = ((zg.p) this.f51900b).f53483e2;
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(qVar3.f53515n.getText());
                 for (org.telegram.ui.Components.z5 z5Var4 : (org.telegram.ui.Components.z5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), org.telegram.ui.Components.z5.class)) {
                     if (z5Var4 == z5Var3) {
-                        int editTextSelectionEnd2 = qVar3.f53514n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd2 = qVar3.f53515n.getEditTextSelectionEnd();
                         int spanEnd2 = spannableStringBuilder2.getSpanEnd(z5Var4);
                         int spanStart2 = spannableStringBuilder2.getSpanStart(z5Var4);
-                        qVar3.f53514n.getText().delete(spanStart2, spanEnd2);
+                        qVar3.f53515n.getText().delete(spanStart2, spanEnd2);
                         int i11 = spanEnd2 - spanStart2;
-                        zg.o oVar2 = qVar3.f53514n;
+                        zg.o oVar2 = qVar3.f53515n;
                         if (spanEnd2 <= editTextSelectionEnd2) {
                             editTextSelectionEnd2 -= i11;
                         }
@@ -91,27 +91,27 @@ public final class r5 implements Runnable {
                 }
                 return;
             case 6:
-                zg.b0 b0Var = (zg.b0) this.f51899b;
-                sk0 sk0Var = (sk0) this.f51900c;
-                b0Var.f53325l = true;
-                b0Var.f53316a.invalidate();
-                sk0Var.f30758b1 = false;
+                zg.b0 b0Var = (zg.b0) this.f51900b;
+                sk0 sk0Var = (sk0) this.f51901c;
+                b0Var.f53326l = true;
+                b0Var.f53317a.invalidate();
+                sk0Var.f30759b1 = false;
                 sk0Var.invalidate();
                 b0Var.c(true);
                 return;
             case 7:
-                zg.d0 d0Var = (zg.d0) this.f51899b;
-                zg.b bVar = (zg.b) this.f51900c;
+                zg.d0 d0Var = (zg.d0) this.f51900b;
+                zg.b bVar = (zg.b) this.f51901c;
                 d0Var.getText().delete(d0Var.getText().getSpanStart(bVar), d0Var.getText().getSpanEnd(bVar));
                 d0Var.setCursorVisible(true);
                 d0Var.setLongClickable(true);
                 return;
             default:
-                zg.p0 p0Var = (zg.p0) this.f51899b;
-                zg.m0 m0Var = (zg.m0) this.f51900c;
+                zg.p0 p0Var = (zg.p0) this.f51900b;
+                zg.m0 m0Var = (zg.m0) this.f51901c;
                 p0Var.getClass();
-                TLRPC.ReactionCount reactionCount = m0Var.f53443a;
-                org.telegram.ui.Cells.a0 a0Var = p0Var.f53508z;
+                TLRPC.ReactionCount reactionCount = m0Var.f53444a;
+                org.telegram.ui.Cells.a0 a0Var = p0Var.f53509z;
                 if (com.google.android.gms.internal.vision.e2.u(a0Var)) {
                     ((org.telegram.ui.Cells.o4) a0Var).f(reactionCount, true, 0.0f, 0.0f);
                 }

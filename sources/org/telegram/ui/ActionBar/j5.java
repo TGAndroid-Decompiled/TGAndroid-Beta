@@ -7,21 +7,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.wp;
 public abstract class j5 extends TextView {
-    public boolean f21243a;
-    public final org.telegram.ui.Components.e6 f21244b;
-    public final wp f21245c;
+    public boolean f21244a;
+    public final org.telegram.ui.Components.e6 f21245b;
+    public final wp f21246c;
 
     public j5(Context context) {
         super(context);
-        this.f21243a = false;
-        this.f21244b = new org.telegram.ui.Components.e6(this, 320L, tr.h);
-        this.f21245c = new wp(-1);
+        this.f21244a = false;
+        this.f21245b = new org.telegram.ui.Components.e6(this, 320L, tr.h);
+        this.f21246c = new wp(-1);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float e7 = this.f21244b.e(this.f21243a);
+        float e7 = this.f21245b.e(this.f21244a);
         if (e7 < 1.0f) {
             if (e7 <= 0.0f) {
                 canvas.save();
@@ -39,7 +39,7 @@ public abstract class j5 extends TextView {
         if (e7 > 0.0f) {
             int height = getHeight() / 2;
             int width = (getWidth() / 2) - ((int) ((1.0f - e7) * AndroidUtilities.dp(6.0f)));
-            wp wpVar = this.f21245c;
+            wp wpVar = this.f21246c;
             wpVar.setAlpha((int) (e7 * 255.0f));
             wpVar.setBounds(width - (wpVar.getIntrinsicWidth() / 2), height - (wpVar.getIntrinsicWidth() / 2), (wpVar.getIntrinsicWidth() / 2) + width, (wpVar.getIntrinsicHeight() / 2) + height);
             wpVar.draw(canvas2);
@@ -50,6 +50,6 @@ public abstract class j5 extends TextView {
     @Override
     public void setTextColor(int i10) {
         super.setTextColor(i10);
-        this.f21245c.b(i10);
+        this.f21246c.b(i10);
     }
 }

@@ -68,7 +68,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         d6 resourceProvider = n2Var.getResourceProvider();
         this.f3892c = resourceProvider;
         this.d = j3;
-        setBackgroundColor(i6.v(i6.v0(i6.f20817d6, resourceProvider), i6.l1(0.04f, i6.v0(i6.G6, resourceProvider))));
+        setBackgroundColor(i6.v(i6.v0(i6.f20818d6, resourceProvider), i6.l1(0.04f, i6.v0(i6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -95,7 +95,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         addView(aVar, z5.e(-1, -1, 119));
         f91 n10 = aVar.n(9, true);
         this.f3896r = n10;
-        n10.f26414r = 12;
+        n10.f26415r = 12;
         n10.setPreTabClick(new a1.c(ds0Var, 11));
         addView(n10, z5.e(-1, 42, 48));
         i(false);
@@ -108,8 +108,8 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             xiVar.G1(1, false);
             xiVar.T0 = true;
             xiVar.S0 = false;
-            xiVar.f32825j1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            xiVar.f32824j0.f0();
+            xiVar.f32826j1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            xiVar.f32825j0.f0();
             int i10 = Build.VERSION.SDK_INT;
             if (i10 == 21 || i10 == 22) {
                 AndroidUtilities.hideKeyboard(n2Var.getFragmentView().findFocus());
@@ -411,7 +411,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         spannableString.setSpan(rqVar, 0, 1, 33);
         f91 f91Var = this.f3896r;
         f91Var.a(-1, spannableString);
-        f91Var.f26418x.l();
+        f91Var.f26419x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {

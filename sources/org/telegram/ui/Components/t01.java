@@ -11,12 +11,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class t01 implements org.telegram.ui.Cells.l1 {
-    public final boolean f30915a;
-    public final boolean f30916b;
+    public final boolean f30916a;
+    public final boolean f30917b;
 
     public t01(boolean z10, boolean z11) {
-        this.f30915a = z10;
-        this.f30916b = z11;
+        this.f30916a = z10;
+        this.f30917b = z11;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class t01 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean M0(long j3) {
-        if (this.f30915a && this.f30916b) {
+        if (this.f30916a && this.f30917b) {
             return true;
         }
         return false;
@@ -104,7 +104,7 @@ public final class t01 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean a2(long j3) {
-        return this.f30915a;
+        return this.f30916a;
     }
 
     @Override
@@ -180,8 +180,8 @@ public final class t01 implements org.telegram.ui.Cells.l1 {
     @Override
     public final String w(long j3) {
         int i10;
-        if (this.f30915a) {
-            if (this.f30916b) {
+        if (this.f30916a) {
+            if (this.f30917b) {
                 i10 = R.string.TagInfoOwnerTitle;
             } else {
                 i10 = R.string.TagInfoAdminTitle;

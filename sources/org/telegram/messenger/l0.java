@@ -3,15 +3,15 @@ package org.telegram.messenger;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class l0 implements Utilities.Callback2 {
-    public final int f18419a;
+    public final int f18420a;
 
     public l0(int i10) {
-        this.f18419a = i10;
+        this.f18420a = i10;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f18419a) {
+        switch (this.f18420a) {
             case 0:
                 BotForumHelper.lambda$stopStreaming$2((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;

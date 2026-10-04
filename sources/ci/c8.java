@@ -166,20 +166,20 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
             this.m0 = new ah.c(d);
         }
         this.f4822n0 = new x7(this, 0);
-        int i10 = org.telegram.ui.ActionBar.i6.f20761a7;
+        int i10 = org.telegram.ui.ActionBar.i6.f20762a7;
         wi wiVar = new wi(context, i10, d6Var);
         this.f4820k0 = wiVar;
         wiVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f4819j0 = frameLayout;
         f20 f20Var = new f20(context, d6Var);
-        f20Var.f26246r.setOnFocusChangeListener(new z7(this));
-        f20Var.f26248w = true;
+        f20Var.f26247r.setOnFocusChangeListener(new z7(this));
+        f20Var.f26249w = true;
         f20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         f20Var.e();
         f20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        f20Var.f26246r.addTextChangedListener(new a8(this));
-        f20Var.f26246r.setHint(LocaleController.getString(R.string.Search));
+        f20Var.f26247r.addTextChangedListener(new a8(this));
+        f20Var.f26247r.setHint(LocaleController.getString(R.string.Search));
         frameLayout.addView(wiVar, w7.z5.g());
         frameLayout.addView(f20Var, w7.z5.d(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
         f20Var.setupBlurredBackground(this.m0.c(f20Var, eh.b.o(d6Var), false));
@@ -191,7 +191,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
         zl0Var.setPadding(i11, 0, i11, 0);
         this.d.s1();
         s4.j jVar = new s4.j();
-        jVar.f46562m = false;
+        jVar.f46563m = false;
         jVar.C = false;
         jVar.o(trVar);
         jVar.n(350L);
@@ -236,7 +236,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
         this.glassEngine.b(this.d);
         this.glassEngine.h(this.containerView);
         li.m mVar = this.glassEngine;
-        mVar.f15661a = new w7(this);
+        mVar.f15662a = new w7(this);
         mVar.d = new ni.b(AndroidUtilities.dp(48.0f));
     }
 
@@ -321,7 +321,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
                         tL_message.out = true;
                         int i11 = c8Var.H0;
                         c8Var.H0 = i11 - 1;
-                        tL_message.f20058id = i11;
+                        tL_message.f20059id = i11;
                         tL_message.peer_id = new TLRPC.TL_peerUser();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         tL_message.from_id = tL_peerUser;
@@ -359,7 +359,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
             int i10 = -2000000000;
             while (query.moveToNext()) {
                 MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                audioEntry.f17249id = query.getInt(0);
+                audioEntry.f17250id = query.getInt(0);
                 audioEntry.author = query.getString(1);
                 audioEntry.title = query.getString(2);
                 audioEntry.path = query.getString(3);
@@ -368,7 +368,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
                 File file = new File(audioEntry.path);
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f20058id = i10;
+                tL_message.f20059id = i10;
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
@@ -386,7 +386,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
                 tL_message.flags |= 768;
                 String fileExtension = FileLoader.getFileExtension(file);
                 TLRPC.Document document = tL_message.media.document;
-                document.f20043id = 0L;
+                document.f20044id = 0L;
                 document.access_hash = 0L;
                 document.file_reference = new byte[0];
                 document.date = tL_message.date;
@@ -528,7 +528,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
                     Object obj2 = arrayList3.get(i13);
                     i13++;
                     y7 y7Var = new y7(this, 0);
-                    int i14 = org.telegram.ui.Cells.i7.f22275a;
+                    int i14 = org.telegram.ui.Cells.i7.f22276a;
                     g61 J = g61.J(org.telegram.ui.Cells.i7.class);
                     J.G = (MessageObject) obj2;
                     J.H = y7Var;
@@ -543,7 +543,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
                 }
                 if (z12 && !z11) {
                     g61 c10 = g61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
-                    c10.f26673q = true;
+                    c10.f26674q = true;
                     arrayList.add(c10);
                     i11 += AndroidUtilities.dp(50.0f);
                 }
@@ -661,7 +661,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
                     str3 = str4;
                 }
                 this.f4830v0 = str3;
-                tL_messages_searchGlobal.f20148q = str3;
+                tL_messages_searchGlobal.f20149q = str3;
                 tL_messages_searchGlobal.limit = 20;
                 if (arrayList.size() > 0) {
                     MessageObject messageObject = (MessageObject) hg.k0.g(1, arrayList);
@@ -751,7 +751,7 @@ public final class c8 extends org.telegram.ui.Components.cb implements Notificat
     public final yl0 v(zl0 zl0Var) {
         u61 u61Var = new u61(zl0Var, getContext(), this.currentAccount, 0, false, new u7(this, 0), this.resourcesProvider);
         this.f4823o0 = u61Var;
-        u61Var.f31306r = false;
+        u61Var.f31307r = false;
         return u61Var;
     }
 

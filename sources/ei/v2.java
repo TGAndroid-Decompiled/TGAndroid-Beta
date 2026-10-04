@@ -43,7 +43,7 @@ public final class v2 implements View.OnLayoutChangeListener {
                     o1.l lVar = new o1.l(0.0f);
                     lVar.a(0.75f);
                     lVar.b(500.0f);
-                    kVar.f16983u = lVar;
+                    kVar.f16984u = lVar;
                     kVar.a(new o1.f() {
                         @Override
                         public final void a(o1.h hVar, boolean z10, float f7, float f10) {

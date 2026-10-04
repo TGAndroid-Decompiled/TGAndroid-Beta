@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.content.Context;
 import android.graphics.Canvas;
 public final class qb0 extends zd {
-    public final vb0 f39686c;
+    public final vb0 f39687c;
 
     public qb0(vb0 vb0Var, Context context) {
         super(context);
-        this.f39686c = vb0Var;
+        this.f39687c = vb0Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.f39686c.getClass();
+        this.f39687c.getClass();
     }
 
     @Override

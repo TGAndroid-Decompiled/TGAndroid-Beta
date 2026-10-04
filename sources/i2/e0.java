@@ -7,7 +7,7 @@ public final class e0 implements x0 {
     public e0(Object obj, u2.a0 a0Var) {
         this.f11587a = obj;
         this.f11588b = a0Var;
-        this.f11589c = a0Var.f47203o;
+        this.f11589c = a0Var.f47204o;
     }
 
     @Override

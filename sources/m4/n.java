@@ -2,23 +2,23 @@ package m4;
 
 import android.os.Bundle;
 public final class n {
-    public static final String f16259a;
-    public static final String f16260b;
-    public static final String f16261c;
+    public static final String f16260a;
+    public static final String f16261b;
+    public static final String f16262c;
     public static final String d;
 
     static {
         String str = e2.d0.f8537a;
-        f16259a = Integer.toString(0, 36);
-        f16260b = Integer.toString(1, 36);
-        f16261c = Integer.toString(2, 36);
+        f16260a = Integer.toString(0, 36);
+        f16261b = Integer.toString(1, 36);
+        f16262c = Integer.toString(2, 36);
         d = Integer.toString(3, 36);
     }
 
     public static n a(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle(f16259a);
-        bundle.getBoolean(f16260b, false);
-        bundle.getBoolean(f16261c, false);
+        Bundle bundle2 = bundle.getBundle(f16260a);
+        bundle.getBoolean(f16261b, false);
+        bundle.getBoolean(f16262c, false);
         bundle.getBoolean(d, false);
         if (bundle2 == null) {
             bundle2 = Bundle.EMPTY;

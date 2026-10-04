@@ -16,28 +16,28 @@ import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.wp;
 import yf.p;
 public final class e extends qh.e implements Drawable.Callback, le.d {
-    public final String f46421b;
+    public final String f46422b;
     public final Drawable d;
-    public final wp f46424f;
+    public final wp f46425f;
     public qh.d h;
-    public TLRPC.WebPage f46425n;
-    public final le.b f46426r;
-    public final le.b f46427s;
-    public final a5.a f46422c = new a5.a((char) 0, 14);
-    public final Paint f46423e = new Paint(1);
+    public TLRPC.WebPage f46426n;
+    public final le.b f46427r;
+    public final le.b f46428s;
+    public final a5.a f46423c = new a5.a((char) 0, 14);
+    public final Paint f46424e = new Paint(1);
 
     public e(String str) {
         wp wpVar = new wp(-1);
-        this.f46424f = wpVar;
+        this.f46425f = wpVar;
         tr trVar = tr.h;
-        this.f46426r = new le.b(0, this, trVar, 320L, false);
-        this.f46427s = new le.b(0, this, trVar, 320L, false);
-        this.f46421b = str;
-        this.f45458a.setRoundRadius(AndroidUtilities.dp(7.0f));
+        this.f46427r = new le.b(0, this, trVar, 320L, false);
+        this.f46428s = new le.b(0, this, trVar, 320L, false);
+        this.f46422b = str;
+        this.f45459a.setRoundRadius(AndroidUtilities.dp(7.0f));
         this.d = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
         wpVar.setCallback(this);
-        wpVar.b(i6.w0(null, i6.f21021o7, false));
-        wpVar.f32589a = AndroidUtilities.dp(15.0f);
+        wpVar.b(i6.w0(null, i6.f21022o7, false));
+        wpVar.f32590a = AndroidUtilities.dp(15.0f);
     }
 
     @Override
@@ -64,20 +64,20 @@ public final class e extends qh.e implements Drawable.Callback, le.d {
     public final void c(Canvas canvas, int i10, int i11) {
         float f7 = i10;
         float f10 = i11;
-        ImageReceiver imageReceiver = this.f45458a;
+        ImageReceiver imageReceiver = this.f45459a;
         imageReceiver.setImageCoords(0.0f, 0.0f, f7, f10);
         imageReceiver.draw(canvas);
-        wp wpVar = this.f46424f;
+        wp wpVar = this.f46425f;
         wpVar.setBounds(0, 0, i10, i11);
-        int w02 = i6.w0(null, i6.f20761a7, false);
-        le.b bVar = this.f46427s;
-        int d = i0.a.d(bVar.f15434e, w02, 1073741824);
-        Paint paint = this.f46423e;
+        int w02 = i6.w0(null, i6.f20762a7, false);
+        le.b bVar = this.f46428s;
+        int d = i0.a.d(bVar.f15435e, w02, 1073741824);
+        Paint paint = this.f46424e;
         paint.setColor(d);
         canvas.drawRoundRect(0.0f, 0.0f, f7, f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), paint);
-        int d10 = i0.a.d(bVar.f15434e, i6.w0(null, i6.f21021o7, false), -1);
+        int d10 = i0.a.d(bVar.f15435e, i6.w0(null, i6.f21022o7, false), -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        a5.a aVar = this.f46422c;
+        a5.a aVar = this.f46423c;
         aVar.getClass();
         if (((PorterDuffColorFilter) aVar.f300c) == null || aVar.f299b != d10 || ((PorterDuff.Mode) aVar.d) != mode) {
             aVar.f300c = new PorterDuffColorFilter(d10, mode);
@@ -87,9 +87,9 @@ public final class e extends qh.e implements Drawable.Callback, le.d {
         Drawable drawable = this.d;
         drawable.setColorFilter((PorterDuffColorFilter) aVar.f300c);
         p.e(this.d, f7 / 2.0f, f10 / 2.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
-        le.b bVar2 = this.f46426r;
-        p.b(canvas, drawable, 1.0f - bVar2.f15434e);
-        p.b(canvas, wpVar, bVar2.f15434e);
+        le.b bVar2 = this.f46427r;
+        p.b(canvas, drawable, 1.0f - bVar2.f15435e);
+        p.b(canvas, wpVar, bVar2.f15435e);
     }
 
     @Override

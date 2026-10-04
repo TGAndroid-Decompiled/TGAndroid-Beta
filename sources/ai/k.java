@@ -62,7 +62,7 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
             default:
                 f10 f10Var = (f10) this.f1204c;
                 LongSparseIntArray longSparseIntArray = f10Var.H;
-                f10Var.f36143y = i10;
+                f10Var.f36144y = i10;
                 if (this.f1203b) {
                     f10Var.o0(f10Var.F, arrayList, true);
                     f10Var.F = arrayList;
@@ -107,9 +107,9 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
     public void b(vh.g gVar, float f7, float f10) {
         vh.n nVar = (vh.n) this.f1204c;
         if (!nVar.d && this.f1203b) {
-            gVar.f48396q = new vh.m(nVar, 0);
+            gVar.f48397q = new vh.m(nVar, 0);
             float sqrt = (float) Math.sqrt(Math.pow(nVar.getHeight(), 2.0d) + Math.pow(nVar.getWidth(), 2.0d));
-            ArrayList arrayList = nVar.f48432b;
+            ArrayList arrayList = nVar.f48433b;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -122,7 +122,7 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
 
     @Override
     public void e(long j3) {
-        org.telegram.ui.Components.o6 o6Var = ((org.telegram.ui.Cells.u1) this.f1204c).f23437w4;
+        org.telegram.ui.Components.o6 o6Var = ((org.telegram.ui.Cells.u1) this.f1204c).f23438w4;
         if (o6Var != null) {
             o6Var.q(LocaleController.formatPollEndTime((int) j3, this.f1203b), true, true);
         }
@@ -157,8 +157,8 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
                 return;
             case 6:
             default:
-                h60 h60Var = ((l50) this.f1204c).f38163b;
-                h60Var.f36873a1.toggleRecord(null, 0);
+                h60 h60Var = ((l50) this.f1204c).f38164b;
+                h60Var.f36874a1.toggleRecord(null, 0);
                 UndoView k12 = h60Var.k1();
                 if (this.f1203b) {
                     i11 = 101;
@@ -216,12 +216,12 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
                 if (z11) {
                     l02 = -1;
                 } else {
-                    l02 = a0Var.f16052t.l0();
+                    l02 = a0Var.f16053t.l0();
                 }
                 if (z11) {
                     J0 = -9223372036854775807L;
                 } else {
-                    J0 = a0Var.f16052t.J0();
+                    J0 = a0Var.f16053t.J0();
                 }
                 return a0Var.q(rVar, z10, l02, J0);
             default:
@@ -230,12 +230,12 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
                 if (z12) {
                     l03 = -1;
                 } else {
-                    l03 = a0Var.f16052t.l0();
+                    l03 = a0Var.f16053t.l0();
                 }
                 if (z12) {
                     J02 = -9223372036854775807L;
                 } else {
-                    J02 = a0Var.f16052t.J0();
+                    J02 = a0Var.f16053t.J0();
                 }
                 return a0Var.q(rVar, list, l03, J02);
         }

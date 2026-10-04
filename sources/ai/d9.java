@@ -129,20 +129,20 @@ public class d9 {
             for (int i10 = 0; i10 < list.size(); i10++) {
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) list.get(i10);
                 if (storyItem != null) {
-                    Integer valueOf = Integer.valueOf(storyItem.f20274id);
+                    Integer valueOf = Integer.valueOf(storyItem.f20275id);
                     AbstractSet abstractSet = this.f792l;
                     boolean contains = abstractSet.contains(valueOf);
                     AbstractSet abstractSet2 = this.f791k;
-                    if (contains || abstractSet2.contains(Integer.valueOf(storyItem.f20274id))) {
-                        abstractSet.remove(Integer.valueOf(storyItem.f20274id));
-                        abstractSet2.remove(Integer.valueOf(storyItem.f20274id));
+                    if (contains || abstractSet2.contains(Integer.valueOf(storyItem.f20275id))) {
+                        abstractSet.remove(Integer.valueOf(storyItem.f20275id));
+                        abstractSet2.remove(Integer.valueOf(storyItem.f20275id));
                         int i11 = this.f799s;
                         if (i11 != -1) {
                             this.f799s = i11 - 1;
                         }
                         z10 = true;
                     }
-                    u(storyItem.f20274id, true);
+                    u(storyItem.f20275id, true);
                 }
             }
             if (z10) {
@@ -187,7 +187,7 @@ public class d9 {
         d(false);
         if (z10) {
             TL_stories.TL_togglePinnedToTop tL_togglePinnedToTop = new TL_stories.TL_togglePinnedToTop();
-            tL_togglePinnedToTop.f20287id.addAll(arrayList3);
+            tL_togglePinnedToTop.f20288id.addAll(arrayList3);
             tL_togglePinnedToTop.peer = MessagesController.getInstance(i10).getInputPeer(this.d);
             ConnectionsManager.getInstance(i10).sendRequest(tL_togglePinnedToTop, new u7(3));
         }
@@ -219,11 +219,11 @@ public class d9 {
                 }
                 TL_stories.StoryItem storyItem2 = (TL_stories.StoryItem) list.get(i12);
                 if (storyItem2 != null) {
-                    Integer valueOf = Integer.valueOf(storyItem2.f20274id);
+                    Integer valueOf = Integer.valueOf(storyItem2.f20275id);
                     AbstractSet abstractSet = this.f792l;
                     boolean contains = abstractSet.contains(valueOf);
                     AbstractSet abstractSet2 = this.f791k;
-                    if (!contains && !abstractSet2.contains(Integer.valueOf(storyItem2.f20274id))) {
+                    if (!contains && !abstractSet2.contains(Integer.valueOf(storyItem2.f20275id))) {
                         z11 = false;
                     } else {
                         z11 = true;
@@ -247,22 +247,22 @@ public class d9 {
                     HashMap hashMap = this.f790j;
                     if (z11 != z12) {
                         if (!z12) {
-                            org.telegram.messenger.f0.n(storyItem2.f20274id, new StringBuilder("StoriesList remove story "));
-                            u(storyItem2.f20274id, true);
+                            org.telegram.messenger.f0.n(storyItem2.f20275id, new StringBuilder("StoriesList remove story "));
+                            u(storyItem2.f20275id, true);
                             int i13 = this.f799s;
                             if (i13 != -1) {
                                 this.f799s = i13 - 1;
                             }
                         } else if (this.f798r) {
-                            FileLog.d("StoriesList put story " + storyItem2.f20274id);
+                            FileLog.d("StoriesList put story " + storyItem2.f20275id);
                             t(y(storyItem2), false);
-                            arrayList.add(Integer.valueOf(storyItem2.f20274id));
+                            arrayList.add(Integer.valueOf(storyItem2.f20275id));
                             int i14 = this.f799s;
                             if (i14 != -1) {
                                 this.f799s = i14 + 1;
                             }
                         } else if (!this.f801u) {
-                            FileLog.d("StoriesList cannot put story " + storyItem2.f20274id + " -> reload");
+                            FileLog.d("StoriesList cannot put story " + storyItem2.f20275id + " -> reload");
                             if (this.A != -1) {
                                 ConnectionsManager.getInstance(this.f785c).cancelRequest(this.A, true);
                                 this.A = -1;
@@ -277,9 +277,9 @@ public class d9 {
                             this.f802w = false;
                             p(Utilities.clamp(size2, 50, 10), true);
                         }
-                    } else if (z11 && z12 && ((messageObject = (MessageObject) hashMap.get(Integer.valueOf(storyItem2.f20274id))) == null || z10 || (storyItem = messageObject.storyItem) == null || (storyItem != storyItem2 && (storyItem.f20274id != storyItem2.f20274id || storyItem.media != storyItem2.media || !TextUtils.equals(storyItem.caption, storyItem2.caption))))) {
-                        org.telegram.messenger.f0.n(storyItem2.f20274id, new StringBuilder("StoriesList update story "));
-                        hashMap.put(Integer.valueOf(storyItem2.f20274id), y(storyItem2));
+                    } else if (z11 && z12 && ((messageObject = (MessageObject) hashMap.get(Integer.valueOf(storyItem2.f20275id))) == null || z10 || (storyItem = messageObject.storyItem) == null || (storyItem != storyItem2 && (storyItem.f20275id != storyItem2.f20275id || storyItem.media != storyItem2.media || !TextUtils.equals(storyItem.caption, storyItem2.caption))))) {
+                        org.telegram.messenger.f0.n(storyItem2.f20275id, new StringBuilder("StoriesList update story "));
+                        hashMap.put(Integer.valueOf(storyItem2.f20275id), y(storyItem2));
                     }
                     z13 = true;
                 }
@@ -387,7 +387,7 @@ public class d9 {
             while (i10 < size) {
                 Object obj = arrayList4.get(i10);
                 i10++;
-                arrayList3.add(Integer.valueOf(((MessageObject) obj).storyItem.f20274id));
+                arrayList3.add(Integer.valueOf(((MessageObject) obj).storyItem.f20275id));
             }
             arrayList2.add(arrayList3);
             return arrayList2;
@@ -521,7 +521,7 @@ public class d9 {
         } else if (i12 == 2) {
             TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
             tL_stories_getStoriesByID.peer = MessagesController.getInstance(i13).getInputPeer(j3);
-            tL_stories_getStoriesByID.f20281id.addAll(list);
+            tL_stories_getStoriesByID.f20282id.addAll(list);
             n10 = -1;
             tL_stories_getStoriesArchive = tL_stories_getStoriesByID;
         } else {
@@ -553,7 +553,7 @@ public class d9 {
         TL_stories.TL_stories_incrementStoryViews tL_stories_incrementStoryViews = new TL_stories.TL_stories_incrementStoryViews();
         int i11 = this.f785c;
         tL_stories_incrementStoryViews.peer = MessagesController.getInstance(i11).getInputPeer(this.d);
-        tL_stories_incrementStoryViews.f20285id.add(Integer.valueOf(i10));
+        tL_stories_incrementStoryViews.f20286id.add(Integer.valueOf(i10));
         ConnectionsManager.getInstance(i11).sendRequest(tL_stories_incrementStoryViews, new u7(8));
         NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesReadUpdated, new Object[0]);
         return true;
@@ -634,7 +634,7 @@ public class d9 {
 
     public final MessageObject y(TL_stories.StoryItem storyItem) {
         storyItem.dialogId = this.d;
-        storyItem.messageId = storyItem.f20274id;
+        storyItem.messageId = storyItem.f20275id;
         MessageObject messageObject = new MessageObject(this.f785c, storyItem);
         messageObject.generateThumbs(false);
         return messageObject;

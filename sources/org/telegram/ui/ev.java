@@ -1,10 +1,10 @@
 package org.telegram.ui;
 public final class ev extends g.p {
-    public final int f36093c;
+    public final int f36094c;
 
     @Override
     public int h(int i10, int i11) {
-        switch (this.f36093c) {
+        switch (this.f36094c) {
             case 1:
                 return i10 % i11;
             default:
@@ -14,7 +14,7 @@ public final class ev extends g.p {
 
     @Override
     public final int i(int i10) {
-        switch (this.f36093c) {
+        switch (this.f36094c) {
             case 0:
                 return 1;
             default:

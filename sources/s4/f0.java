@@ -39,14 +39,14 @@ public final class f0 extends androidx.emoji2.text.g {
             case 0:
                 p0 p0Var = (p0) view.getLayoutParams();
                 ((c0) this.f2519b).getClass();
-                Rect rect = ((p0) view.getLayoutParams()).f46643b;
+                Rect rect = ((p0) view.getLayoutParams()).f46644b;
                 measuredWidth = view.getMeasuredWidth() + rect.left + rect.right + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin;
                 i10 = ((ViewGroup.MarginLayoutParams) p0Var).rightMargin;
                 break;
             default:
                 p0 p0Var2 = (p0) view.getLayoutParams();
                 ((c0) this.f2519b).getClass();
-                Rect rect2 = ((p0) view.getLayoutParams()).f46643b;
+                Rect rect2 = ((p0) view.getLayoutParams()).f46644b;
                 measuredWidth = view.getMeasuredHeight() + rect2.top + rect2.bottom + ((ViewGroup.MarginLayoutParams) p0Var2).topMargin;
                 i10 = ((ViewGroup.MarginLayoutParams) p0Var2).bottomMargin;
                 break;
@@ -62,14 +62,14 @@ public final class f0 extends androidx.emoji2.text.g {
             case 0:
                 p0 p0Var = (p0) view.getLayoutParams();
                 ((c0) this.f2519b).getClass();
-                Rect rect = ((p0) view.getLayoutParams()).f46643b;
+                Rect rect = ((p0) view.getLayoutParams()).f46644b;
                 measuredHeight = view.getMeasuredHeight() + rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) p0Var).topMargin;
                 i10 = ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin;
                 break;
             default:
                 p0 p0Var2 = (p0) view.getLayoutParams();
                 ((c0) this.f2519b).getClass();
-                Rect rect2 = ((p0) view.getLayoutParams()).f46643b;
+                Rect rect2 = ((p0) view.getLayoutParams()).f46644b;
                 measuredHeight = view.getMeasuredWidth() + rect2.left + rect2.right + ((ViewGroup.MarginLayoutParams) p0Var2).leftMargin;
                 i10 = ((ViewGroup.MarginLayoutParams) p0Var2).rightMargin;
                 break;
@@ -100,9 +100,9 @@ public final class f0 extends androidx.emoji2.text.g {
     public final int e() {
         switch (this.d) {
             case 0:
-                return ((c0) this.f2519b).f46636m;
+                return ((c0) this.f2519b).f46637m;
             default:
-                return ((c0) this.f2519b).f46637n;
+                return ((c0) this.f2519b).f46638n;
         }
     }
 
@@ -113,12 +113,12 @@ public final class f0 extends androidx.emoji2.text.g {
         switch (this.d) {
             case 0:
                 c0 c0Var = (c0) this.f2519b;
-                i10 = c0Var.f46636m;
+                i10 = c0Var.f46637m;
                 E = c0Var.E();
                 break;
             default:
                 c0 c0Var2 = (c0) this.f2519b;
-                i10 = c0Var2.f46637n;
+                i10 = c0Var2.f46638n;
                 E = c0Var2.C();
                 break;
         }
@@ -139,9 +139,9 @@ public final class f0 extends androidx.emoji2.text.g {
     public final int h() {
         switch (this.d) {
             case 0:
-                return ((c0) this.f2519b).f46634k;
+                return ((c0) this.f2519b).f46635k;
             default:
-                return ((c0) this.f2519b).f46635l;
+                return ((c0) this.f2519b).f46636l;
         }
     }
 
@@ -149,9 +149,9 @@ public final class f0 extends androidx.emoji2.text.g {
     public final int i() {
         switch (this.d) {
             case 0:
-                return ((c0) this.f2519b).f46635l;
+                return ((c0) this.f2519b).f46636l;
             default:
-                return ((c0) this.f2519b).f46634k;
+                return ((c0) this.f2519b).f46635k;
         }
     }
 
@@ -170,7 +170,7 @@ public final class f0 extends androidx.emoji2.text.g {
         switch (this.d) {
             case 0:
                 c0 c0Var = (c0) this.f2519b;
-                return (c0Var.f46636m - c0Var.D()) - c0Var.E();
+                return (c0Var.f46637m - c0Var.D()) - c0Var.E();
             default:
                 return ((c0) this.f2519b).K();
         }
@@ -208,7 +208,7 @@ public final class f0 extends androidx.emoji2.text.g {
     public final void n(int i10) {
         switch (this.d) {
             case 0:
-                RecyclerView recyclerView = ((c0) this.f2519b).f46627b;
+                RecyclerView recyclerView = ((c0) this.f2519b).f46628b;
                 if (recyclerView != null) {
                     int C = recyclerView.f3066e.C();
                     for (int i11 = 0; i11 < C; i11++) {
@@ -218,7 +218,7 @@ public final class f0 extends androidx.emoji2.text.g {
                 }
                 return;
             default:
-                RecyclerView recyclerView2 = ((c0) this.f2519b).f46627b;
+                RecyclerView recyclerView2 = ((c0) this.f2519b).f46628b;
                 if (recyclerView2 != null) {
                     int C2 = recyclerView2.f3066e.C();
                     for (int i12 = 0; i12 < C2; i12++) {

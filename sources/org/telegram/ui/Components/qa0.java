@@ -16,14 +16,14 @@ public final class qa0 extends wh.n {
             case 0:
                 wh.b bVar = (wh.b) this.F;
                 tx0 tx0Var = bVar.W;
-                if (this.f49137e.isEmpty()) {
+                if (this.f49138e.isEmpty()) {
                     if (tx0Var.getVisibility() != 4) {
                         tx0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z11) {
-                    bVar.f28894w.J.setText("");
+                    bVar.f28895w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

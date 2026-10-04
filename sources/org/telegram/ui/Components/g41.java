@@ -5,18 +5,18 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 public final class g41 extends zl0 {
-    public final t41 f26644e3;
+    public final t41 f26645e3;
 
     public g41(t41 t41Var, Context context) {
         super(context, null);
-        this.f26644e3 = t41Var;
+        this.f26645e3 = t41Var;
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            t41 t41Var = this.f26644e3;
+            t41 t41Var = this.f26645e3;
             if (y3 < t41Var.z(true) - getTop()) {
                 t41Var.dismiss();
                 return true;

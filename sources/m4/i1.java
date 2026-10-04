@@ -4,17 +4,17 @@ import android.os.Bundle;
 import j$.util.Objects;
 public final class i1 {
     public static final String d;
-    public static final String f16181e;
-    public static final String f16182f;
-    public final int f16183a;
-    public final String f16184b;
-    public final Bundle f16185c;
+    public static final String f16182e;
+    public static final String f16183f;
+    public final int f16184a;
+    public final String f16185b;
+    public final Bundle f16186c;
 
     static {
         String str = e2.d0.f8537a;
         d = Integer.toString(0, 36);
-        f16181e = Integer.toString(1, 36);
-        f16182f = Integer.toString(2, 36);
+        f16182e = Integer.toString(1, 36);
+        f16183f = Integer.toString(2, 36);
     }
 
     public i1(int i10) {
@@ -23,11 +23,11 @@ public final class i1 {
 
     public final Bundle a() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d, this.f16183a);
-        bundle.putString(f16181e, this.f16184b);
-        Bundle bundle2 = this.f16185c;
+        bundle.putInt(d, this.f16184a);
+        bundle.putString(f16182e, this.f16185b);
+        Bundle bundle2 = this.f16186c;
         if (!bundle2.isEmpty()) {
-            bundle.putBundle(f16182f, bundle2);
+            bundle.putBundle(f16183f, bundle2);
         }
         return bundle;
     }
@@ -40,14 +40,14 @@ public final class i1 {
             return false;
         }
         i1 i1Var = (i1) obj;
-        if (this.f16183a == i1Var.f16183a && Objects.equals(this.f16184b, i1Var.f16184b)) {
+        if (this.f16184a == i1Var.f16184a && Objects.equals(this.f16185b, i1Var.f16185b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f16183a), this.f16184b);
+        return Objects.hash(Integer.valueOf(this.f16184a), this.f16185b);
     }
 
     public i1(String str, int i10, Bundle bundle) {
@@ -56,8 +56,8 @@ public final class i1 {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f16183a = i10;
-        this.f16184b = str;
-        this.f16185c = bundle;
+        this.f16184a = i10;
+        this.f16185b = str;
+        this.f16186c = bundle;
     }
 }

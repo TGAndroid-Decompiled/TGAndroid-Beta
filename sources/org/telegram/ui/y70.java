@@ -5,25 +5,25 @@ import android.view.TextureView;
 import org.telegram.messenger.Intro;
 import org.telegram.messenger.NotificationCenter;
 public final class y70 implements TextureView.SurfaceTextureListener {
-    public final int f43080a;
-    public final NotificationCenter.NotificationCenterDelegate f43081b;
+    public final int f43081a;
+    public final NotificationCenter.NotificationCenterDelegate f43082b;
 
     public y70(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f43080a = i10;
-        this.f43081b = notificationCenterDelegate;
+        this.f43081a = i10;
+        this.f43082b = notificationCenterDelegate;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        switch (this.f43080a) {
+        switch (this.f43081a) {
             case 0:
-                c80 c80Var = (c80) this.f43081b;
+                c80 c80Var = (c80) this.f43082b;
                 if (c80Var.I == null && surfaceTexture != null) {
                     c80Var.I = new a80(c80Var, surfaceTexture);
                     Intro.onSurfaceChanged(i10, i11, Math.min(i10 / 150.0f, i11 / 150.0f), 0);
                     c80Var.I.postRunnable(new g10(this, 11));
                     a80 a80Var = c80Var.I;
-                    a80Var.postRunnable(a80Var.f34718w);
+                    a80Var.postRunnable(a80Var.f34719w);
                     return;
                 }
                 return;
@@ -35,9 +35,9 @@ public final class y70 implements TextureView.SurfaceTextureListener {
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
         TextureView textureView;
-        switch (this.f43080a) {
+        switch (this.f43081a) {
             case 0:
-                c80 c80Var = (c80) this.f43081b;
+                c80 c80Var = (c80) this.f43082b;
                 a80 a80Var = c80Var.I;
                 if (a80Var != null) {
                     a80Var.postRunnable(new g10(a80Var, 13));
@@ -46,19 +46,19 @@ public final class y70 implements TextureView.SurfaceTextureListener {
                 }
                 return true;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f43081b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f43082b;
                 if (photoViewer.B2 != null) {
-                    org.telegram.ui.Components.rg0 rg0Var = org.telegram.ui.Components.rg0.f30377p0;
-                    if (rg0Var.P && org.telegram.ui.Components.rg0.p() != null && org.telegram.ui.Components.rg0.p().f44410b.f46018a != 0) {
+                    org.telegram.ui.Components.rg0 rg0Var = org.telegram.ui.Components.rg0.f30378p0;
+                    if (rg0Var.P && org.telegram.ui.Components.rg0.p() != null && org.telegram.ui.Components.rg0.p().f44411b.f46019a != 0) {
                         TextureView textureView2 = null;
                         if (rg0Var != null) {
-                            textureView = rg0Var.f30394l0;
+                            textureView = rg0Var.f30395l0;
                         } else {
                             textureView = null;
                         }
                         textureView.setSurfaceTexture(surfaceTexture);
                         if (rg0Var != null) {
-                            textureView2 = rg0Var.f30394l0;
+                            textureView2 = rg0Var.f30395l0;
                         }
                         textureView2.setVisibility(0);
                         return false;
@@ -69,7 +69,7 @@ public final class y70 implements TextureView.SurfaceTextureListener {
                         photoViewer.B2.setSurfaceTexture(surfaceTexture);
                         photoViewer.B2.setVisibility(0);
                         photoViewer.F3 = false;
-                        photoViewer.f33894e0.invalidate();
+                        photoViewer.f33895e0.invalidate();
                         return false;
                     }
                 }
@@ -79,9 +79,9 @@ public final class y70 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        switch (this.f43080a) {
+        switch (this.f43081a) {
             case 0:
-                if (((c80) this.f43081b).I != null) {
+                if (((c80) this.f43082b).I != null) {
                     Intro.onSurfaceChanged(i10, i11, Math.min(i10 / 150.0f, i11 / 150.0f), 0);
                     return;
                 }
@@ -93,11 +93,11 @@ public final class y70 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        switch (this.f43080a) {
+        switch (this.f43081a) {
             case 0:
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f43081b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f43082b;
                 if (photoViewer.G3 == 1) {
                     photoViewer.x0(true);
                     return;

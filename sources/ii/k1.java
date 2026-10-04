@@ -77,7 +77,7 @@ public final class k1 implements View.OnClickListener {
                     e2Var2.A0 = nzVar;
                     nzVar.setVisibility(8);
                     nz nzVar2 = e2Var2.A0;
-                    nzVar2.f29156w2 = false;
+                    nzVar2.f29157w2 = false;
                     nzVar2.setDelegate(new v1(e2Var2));
                     int indexOfChild = e2Var2.O.indexOfChild(e2Var2.f12313a0);
                     if (indexOfChild < 0) {

@@ -151,7 +151,7 @@ public final class e extends Drawable {
                     Matrix matrix3 = bVar.f9851b;
                     Matrix matrix4 = this.f470i;
                     matrix4.set(matrix3);
-                    matrix4.postTranslate(-dVar.f15649c, -dVar.d);
+                    matrix4.postTranslate(-dVar.f15650c, -dVar.d);
                     this.f469g.setLocalMatrix(matrix4);
                     paint2.setAlpha(this.f478q);
                     canvas.drawRect(bounds, paint2);

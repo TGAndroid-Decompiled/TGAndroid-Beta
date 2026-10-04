@@ -23,7 +23,7 @@ public final class k2 extends ai.ca {
     public final boolean d(long j3) {
         s2 s2Var = this.S;
         int i10 = s2Var.F0;
-        uy uyVar = s2Var.f22899z4;
+        uy uyVar = s2Var.f22900z4;
         if (uyVar != null && !s2Var.O0) {
             if (j3 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
@@ -46,7 +46,7 @@ public final class k2 extends ai.ca {
     @Override
     public final void e() {
         s2 s2Var = this.S;
-        o2 o2Var = s2Var.f22783d0;
+        o2 o2Var = s2Var.f22784d0;
         if (o2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class k2 extends ai.ca {
     @Override
     public final void f(long j3) {
         s2 s2Var = this.S;
-        o2 o2Var = s2Var.f22783d0;
+        o2 o2Var = s2Var.f22784d0;
         if (o2Var == null) {
             return;
         }

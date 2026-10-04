@@ -74,10 +74,10 @@ public final class l0 extends cb {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(UserObject.getUserName(user));
         linearLayout.addView(textView, z5.r(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f25301e.setTitle(UserObject.getUserName(user));
+        this.f25302e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(i6.f21204y6));
+        textView2.setTextColor(getThemedColor(i6.f21205y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, z5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -90,7 +90,7 @@ public final class l0 extends cb {
             textView3.setGravity(17);
             linearLayout.addView(textView3, z5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = i6.f20761a7;
+        int i10 = i6.f20762a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
         zl0 zl0Var = this.d;
@@ -122,7 +122,7 @@ public final class l0 extends cb {
         e7.rightMargin += i13;
         this.containerView.addView(frameLayout, e7);
         s4.j jVar = new s4.j();
-        jVar.f46562m = false;
+        jVar.f46563m = false;
         jVar.C = false;
         jVar.o(tr.h);
         jVar.n(350L);
@@ -177,7 +177,7 @@ public final class l0 extends cb {
 
     @Override
     public final void A(float f7) {
-        i5 titleTextView = this.f25301e.getTitleTextView();
+        i5 titleTextView = this.f25302e.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f7);
         }
@@ -383,7 +383,7 @@ public final class l0 extends cb {
     public final yl0 v(zl0 zl0Var) {
         u61 u61Var = new u61(zl0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
         this.f11257d0 = u61Var;
-        u61Var.f31306r = false;
+        u61Var.f31307r = false;
         return u61Var;
     }
 

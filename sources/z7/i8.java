@@ -1,6 +1,6 @@
 package z7;
 public final class i8 implements ia.d {
-    public static final i8 f52783a = new Object();
+    public static final i8 f52784a = new Object();
 
     static {
         t8.b.t(t8.b.o(w.class, t8.b.s(2, t8.b.o(w.class, new s(1)))));

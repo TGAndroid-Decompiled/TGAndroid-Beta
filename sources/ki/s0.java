@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.e60;
 import org.telegram.ui.Components.pv;
@@ -229,7 +230,7 @@ public final class s0 {
                 }
                 v(9);
                 m("error");
-                e60 e60Var = (e60) this.d.f15266b;
+                e60 e60Var = (e60) this.d.f15267b;
                 e60Var.u();
                 FileLog.e(exc);
                 z01 z01Var = e60Var.T;
@@ -237,7 +238,13 @@ public final class s0 {
                     z01Var.d(true);
                 }
                 e60Var.T = null;
-                NotificationCenter.getInstance(e60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(e60Var.f25953n));
+                MediaController.getInstance().requestRecordAudioFocus(false);
+                if (e60Var.f25945e0) {
+                    e60Var.r(6);
+                } else {
+                    NotificationCenter.getInstance(e60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(e60Var.f25954n));
+                }
+                e60Var.t(false, false);
                 if (!this.B && !this.f15052l.D()) {
                     i();
                     return;
@@ -338,7 +345,7 @@ public final class s0 {
         l0 l0Var = this.f15056p;
         l0 l0Var2 = this.f15057q;
         k0 k0Var = new k0(l0Var, l0Var2, this.X, this.f15060t);
-        e60 e60Var = (e60) this.d.f15266b;
+        e60 e60Var = (e60) this.d.f15267b;
         e60Var.S = k0Var;
         if (l0Var2 != null) {
             ri.e.h.b(l0Var2);
@@ -355,7 +362,7 @@ public final class s0 {
         boolean z11 = this.f15061u;
         long j11 = this.f15055o;
         r0 r0Var = new r0(i11, j3, j10, j11, z10, z11);
-        e60 e60Var = (e60) this.d.f15266b;
+        e60 e60Var = (e60) this.d.f15267b;
         r0 r0Var2 = e60Var.R;
         int i12 = e60Var.h;
         if (r0Var2 == null) {
@@ -367,25 +374,25 @@ public final class s0 {
         if (i10 == 3 && i11 != 3) {
             e60Var.s(true);
         }
-        e60Var.f25954n0 = Math.max(e60Var.f25954n0, j3);
+        e60Var.f25955n0 = Math.max(e60Var.f25955n0, j3);
         if (i11 == 3) {
-            if (!e60Var.f25964v0) {
-                e60Var.f25964v0 = true;
+            if (!e60Var.f25965v0) {
+                e60Var.f25965v0 = true;
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             }
             e60.l(e60Var);
             e60.m(e60Var, true);
             e60Var.w();
-            if (!e60Var.f25944e0) {
-                e60Var.f25944e0 = true;
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(e60Var.f25953n), Boolean.FALSE);
-            } else if (e60Var.f25946f0) {
-                e60Var.f25946f0 = false;
+            if (!e60Var.f25945e0) {
+                e60Var.f25945e0 = true;
+                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(e60Var.f25954n), Boolean.FALSE);
+            } else if (e60Var.f25947f0) {
+                e60Var.f25947f0 = false;
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordResumed, new Object[0]);
             }
         } else {
             e60.m(e60Var, false);
-            e60Var.f25965w.setProgress(((float) j3) / ((float) j11));
+            e60Var.f25966w.setProgress(((float) j3) / ((float) j11));
         }
         if (i11 == 8 || i11 == 9 || i11 == 10) {
             e60Var.u();
@@ -464,7 +471,7 @@ public final class s0 {
         c(z10);
         g();
         a3.z a2 = w7.k.a(file, this.Q, j3, j10, z10);
-        this.Q.f();
+        this.Q.g();
         long e7 = w7.k.e(this.Q.f15066a) / 1000;
         m mVar2 = this.f15053m;
         StringBuilder t11 = a4.a.t(e7, "final range remux completed: durationMs=", ", requestedDurationMs=");
@@ -485,7 +492,7 @@ public final class s0 {
             this.v = z10;
             pv pvVar = this.f15047f;
             if (pvVar != null) {
-                e60.j((e60) pvVar.f29746b, z10);
+                e60.j((e60) pvVar.f29747b, z10);
             }
         }
     }

@@ -23,10 +23,10 @@ public class SequenceParameterSetRbsp {
         ?? obj = new Object();
         b0 b0Var = new b0((char) 0, 5);
         b0Var.f4153c = new char[50];
-        obj.f44367e = b0Var;
-        obj.f44364a = inputStream;
-        obj.f44365b = inputStream.read();
-        obj.f44366c = inputStream.read();
+        obj.f44368e = b0Var;
+        obj.f44365a = inputStream;
+        obj.f44366b = inputStream.read();
+        obj.f44367c = inputStream.read();
         obj.d(4, "sps_video_parameter_set_id");
         this.sps_max_sub_layers_minus1 = (int) obj.d(3, "sps_max_sub_layers_minus1");
         obj.b("sps_temporal_id_nesting_flag");
@@ -138,20 +138,20 @@ public class SequenceParameterSetRbsp {
         long[] jArr;
         int i11 = i10;
         long d = aVar.d(2, "general_profile_space");
-        InputStream inputStream = aVar.f44364a;
+        InputStream inputStream = aVar.f44365a;
         this.general_profile_space = (int) d;
         this.general_tier_flag = aVar.b("general_tier_flag");
         this.general_profile_idc = (int) aVar.d(5, "general_profile_idc");
         this.general_profile_compatibility_flags = aVar.c(32);
         this.general_constraint_indicator_flags = aVar.c(48);
         if (aVar.d > 0) {
-            aVar.f44365b = aVar.f44366c;
-            aVar.f44366c = inputStream.read();
+            aVar.f44366b = aVar.f44367c;
+            aVar.f44367c = inputStream.read();
             aVar.d = 0;
         }
-        int i12 = aVar.f44365b;
-        aVar.f44365b = aVar.f44366c;
-        aVar.f44366c = inputStream.read();
+        int i12 = aVar.f44366b;
+        aVar.f44366b = aVar.f44367c;
+        aVar.f44367c = inputStream.read();
         aVar.d = 0;
         this.general_level_idc = (byte) i12;
         boolean[] zArr3 = new boolean[i11];

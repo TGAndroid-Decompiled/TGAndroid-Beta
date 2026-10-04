@@ -4,13 +4,13 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.RemoteException;
 public abstract class c9 {
-    public static t7.r f47883a;
-    public static s7.e f47884b;
+    public static t7.r f47884a;
+    public static s7.e f47885b;
 
     public static ii.n4 a(Bitmap bitmap) {
         n6.l.i(bitmap, "image must not be null");
         try {
-            s7.e eVar = f47884b;
+            s7.e eVar = f47885b;
             n6.l.i(eVar, "IBitmapDescriptorFactory is not initialized");
             s7.c cVar = (s7.c) eVar;
             Parcel O0 = cVar.O0();
@@ -26,7 +26,7 @@ public abstract class c9 {
 
     public static ii.n4 b(int i10) {
         try {
-            s7.e eVar = f47884b;
+            s7.e eVar = f47885b;
             n6.l.i(eVar, "IBitmapDescriptorFactory is not initialized");
             s7.c cVar = (s7.c) eVar;
             Parcel O0 = cVar.O0();
@@ -44,10 +44,10 @@ public abstract class c9 {
         y8 y8Var;
         synchronized (c9.class) {
             try {
-                if (f47883a == null) {
-                    f47883a = new t7.r(1);
+                if (f47884a == null) {
+                    f47884a = new t7.r(1);
                 }
-                y8Var = (y8) f47883a.O0(v8Var);
+                y8Var = (y8) f47884a.O0(v8Var);
             } catch (Throwable th2) {
                 throw th2;
             }

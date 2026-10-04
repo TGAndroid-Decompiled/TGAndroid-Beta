@@ -55,7 +55,7 @@ public final class x5 extends AnimatorListenerAdapter {
                 yn ynVar2 = (yn) this.f6290c;
                 ynVar2.S9 = 0.0f;
                 ynVar2.fragmentView.invalidate();
-                ynVar2.f43525v0.invalidate();
+                ynVar2.f43526v0.invalidate();
                 ynVar2.R9 = null;
                 ynVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
@@ -76,15 +76,15 @@ public final class x5 extends AnimatorListenerAdapter {
                 return;
             default:
                 qg.m0 m0Var = (qg.m0) this.f6291e;
-                m0Var.f45166g1 = m0Var.f45168h1;
-                m0Var.f45168h1 = -1;
-                m0Var.f45164f1.invalidate();
+                m0Var.f45167g1 = m0Var.f45169h1;
+                m0Var.f45169h1 = -1;
+                m0Var.f45165f1.invalidate();
                 View view2 = (View) this.f6290c;
                 if (view2 != null && ((View) this.d) != null) {
                     view2.setVisibility(8);
                 }
-                if (animator == m0Var.f45172j1) {
-                    m0Var.f45172j1 = null;
+                if (animator == m0Var.f45173j1) {
+                    m0Var.f45173j1 = null;
                     return;
                 }
                 return;

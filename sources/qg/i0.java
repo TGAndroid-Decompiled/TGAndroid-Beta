@@ -9,28 +9,28 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.vt0;
 public final class i0 extends FrameLayout {
-    public final vt0 f45048a;
+    public final vt0 f45049a;
 
     public i0(vt0 vt0Var, Context context) {
         super(context);
-        this.f45048a = vt0Var;
+        this.f45049a = vt0Var;
         setWillNotDraw(false);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        vt0 vt0Var = this.f45048a;
+        vt0 vt0Var = this.f45049a;
         Paint paint = vt0Var.B1;
-        o1 o1Var = vt0Var.f45187u1;
+        o1 o1Var = vt0Var.f45188u1;
         paint.setAlpha((int) ((1.0f - vt0Var.D1) * o1Var.getAlpha() * 102.0f));
         RectF rectF = AndroidUtilities.rectTmp;
         o1Var.b(rectF);
-        k0 k0Var = vt0Var.f45158c1;
+        k0 k0Var = vt0Var.f45159c1;
         int top = k0Var.getTop();
         float translationY = o1Var.getTranslationY() + k0Var.getTranslationY() + o1Var.getTop() + top;
         float f7 = rectF.left;
-        t1 t1Var = vt0Var.f45188v1;
+        t1 t1Var = vt0Var.f45189v1;
         rectF.set(AndroidUtilities.lerp(f7, t1Var.getLeft(), vt0Var.D1), AndroidUtilities.lerp(rectF.top + translationY, t1Var.getTop() - t1Var.getTranslationY(), vt0Var.D1), AndroidUtilities.lerp(rectF.right, t1Var.getRight(), vt0Var.D1), AndroidUtilities.lerp(translationY + rectF.bottom, t1Var.getBottom() - t1Var.getTranslationY(), vt0Var.D1));
         float dp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, vt0Var.D1));
         Paint paint2 = vt0Var.C1;
@@ -44,7 +44,7 @@ public final class i0 extends FrameLayout {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getActionMasked() == 0) {
-            vt0 vt0Var = this.f45048a;
+            vt0 vt0Var = this.f45049a;
             if (vt0Var.E1) {
                 vt0Var.A0(false);
                 return true;

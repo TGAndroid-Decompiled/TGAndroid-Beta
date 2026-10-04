@@ -37,35 +37,35 @@ public class g91 extends FrameLayout {
     public final ArrayList Q;
     public ValueAnimator R;
     public float S;
-    public final org.telegram.ui.ActionBar.d6 f26729a;
-    public int f26730b;
-    public float f26731c;
+    public final org.telegram.ui.ActionBar.d6 f26730a;
+    public int f26731b;
+    public float f26732c;
     public int d;
-    public final View[] f26732e;
-    public final int[] f26733f;
+    public final View[] f26733e;
+    public final int[] f26734f;
     public final SparseArray h;
-    public int f26734n;
-    public int f26735r;
-    public int f26736s;
+    public int f26735n;
+    public int f26736r;
+    public int f26737s;
     public VelocityTracker v;
-    public AnimatorSet f26737w;
-    public boolean f26738x;
-    public boolean f26739y;
+    public AnimatorSet f26738w;
+    public boolean f26739x;
+    public boolean f26740y;
 
     public g91(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f26731c = 1.0f;
+        this.f26732c = 1.0f;
         this.h = new SparseArray();
         this.J = new AnimationNotificationsLocker();
         this.N = new ai.k6(this, 9);
         this.O = new Rect();
         this.P = true;
         this.Q = new ArrayList();
-        this.f26729a = d6Var;
+        this.f26730a = d6Var;
         this.K = AndroidUtilities.getPixelsInCM(0.3f, true);
         this.G = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
-        this.f26733f = new int[2];
-        this.f26732e = new View[2];
+        this.f26734f = new int[2];
+        this.f26733e = new View[2];
         setClipChildren(true);
     }
 
@@ -92,24 +92,24 @@ public class g91 extends FrameLayout {
 
     public final boolean C(MotionEvent motionEvent, boolean z10) {
         int i10;
-        if (!z10 && this.f26730b == 0) {
+        if (!z10 && this.f26731b == 0) {
             this.S = 0.0f;
             return false;
-        } else if ((z10 && this.f26730b == this.L.e() - 1) || this.R != null || !i(motionEvent) || ((z10 && !k(motionEvent)) || (!z10 && !j(motionEvent)))) {
+        } else if ((z10 && this.f26731b == this.L.e() - 1) || this.R != null || !i(motionEvent) || ((z10 && !k(motionEvent)) || (!z10 && !j(motionEvent)))) {
             return false;
         } else {
             getParent().requestDisallowInterceptTouchEvent(true);
             this.I = false;
             this.H = true;
             v();
-            this.f26735r = (int) (motionEvent.getX() + this.E);
+            this.f26736r = (int) (motionEvent.getX() + this.E);
             v81 v81Var = this.M;
             if (v81Var != null) {
                 v81Var.setEnabled(false);
             }
             this.J.lock();
-            this.f26739y = z10;
-            int i11 = this.f26730b;
+            this.f26740y = z10;
+            int i11 = this.f26731b;
             if (z10) {
                 i10 = 1;
             } else {
@@ -117,7 +117,7 @@ public class g91 extends FrameLayout {
             }
             this.d = i11 + i10;
             K(1);
-            View[] viewArr = this.f26732e;
+            View[] viewArr = this.f26733e;
             View view = viewArr[1];
             if (view != null) {
                 if (z10) {
@@ -140,12 +140,12 @@ public class g91 extends FrameLayout {
         if (!(x81Var instanceof org.telegram.ui.f7)) {
             z10 = false;
         }
-        AnimatorSet animatorSet = this.f26737w;
+        AnimatorSet animatorSet = this.f26738w;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f26737w = null;
+            this.f26738w = null;
         }
-        View[] viewArr = this.f26732e;
+        View[] viewArr = this.f26733e;
         View view = viewArr[1];
         if (view != null) {
             removeView(view);
@@ -172,18 +172,18 @@ public class g91 extends FrameLayout {
             }
             return;
         }
-        if (this.f26730b > this.L.e() - 1) {
-            this.f26730b = this.L.e() - 1;
+        if (this.f26731b > this.L.e() - 1) {
+            this.f26731b = this.L.e() - 1;
         }
-        if (this.f26730b < 0) {
-            this.f26730b = 0;
+        if (this.f26731b < 0) {
+            this.f26731b = 0;
         }
-        int h = this.L.h(this.f26730b);
-        int[] iArr = this.f26733f;
+        int h = this.L.h(this.f26731b);
+        int[] iArr = this.f26734f;
         iArr[0] = h;
         View d = this.L.d(h);
         viewArr[0] = d;
-        this.L.b(d, this.f26730b, iArr[0]);
+        this.L.b(d, this.f26731b, iArr[0]);
         addView(viewArr[0]);
         viewArr[0].setVisibility(0);
         if (viewArr[0].getTag() == null) {
@@ -199,7 +199,7 @@ public class g91 extends FrameLayout {
         }
         o(z10);
         if (z10) {
-            this.f26737w = new AnimatorSet();
+            this.f26738w = new AnimatorSet();
             View view5 = viewArr[1];
             if (view5 != null) {
                 F(view5, 0.0f);
@@ -210,26 +210,26 @@ public class g91 extends FrameLayout {
             }
             View view7 = viewArr[1];
             if (view7 != null) {
-                this.f26737w.playTogether(I(view7, getMeasuredWidth()));
+                this.f26738w.playTogether(I(view7, getMeasuredWidth()));
             }
             View view8 = viewArr[0];
             if (view8 != null) {
-                this.f26737w.playTogether(I(view8, 0.0f));
+                this.f26738w.playTogether(I(view8, 0.0f));
             }
             x(true);
             v81 v81Var = this.M;
-            v81Var.f26392a = 0.0f;
+            v81Var.f26393a = 0.0f;
             v81Var.v.h1();
             this.M.invalidate();
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new t81(this, 2));
-            this.f26737w.playTogether(ofFloat);
-            this.f26737w.setInterpolator(T);
-            this.f26737w.setDuration(220L);
-            this.f26737w.addListener(new u81(this, 2));
+            this.f26738w.playTogether(ofFloat);
+            this.f26738w.setInterpolator(T);
+            this.f26738w.setDuration(220L);
+            this.f26738w.addListener(new u81(this, 2));
             this.M.setEnabled(false);
-            this.f26738x = true;
-            this.f26737w.start();
+            this.f26739x = true;
+            this.f26738w.start();
             return;
         }
         View view9 = viewArr[1];
@@ -242,23 +242,23 @@ public class g91 extends FrameLayout {
     public final void E(int i10) {
         boolean z10;
         int i11;
-        if (i10 != this.f26730b) {
+        if (i10 != this.f26731b) {
             ValueAnimator valueAnimator = this.R;
             if (valueAnimator == null || this.d != i10) {
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                     this.R = null;
                 }
-                if (this.f26730b < i10) {
+                if (this.f26731b < i10) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f26739y = z10;
+                this.f26740y = z10;
                 this.d = i10;
                 K(1);
                 z(i10, z10);
-                View[] viewArr = this.f26732e;
+                View[] viewArr = this.f26733e;
                 View view = viewArr[0];
                 if (view != null) {
                     i11 = view.getMeasuredWidth();
@@ -286,17 +286,17 @@ public class g91 extends FrameLayout {
     }
 
     public void G() {
-        View[] viewArr = this.f26732e;
+        View[] viewArr = this.f26733e;
         View view = viewArr[0];
         View view2 = viewArr[1];
         viewArr[0] = view2;
         viewArr[1] = view;
-        int i10 = this.f26730b;
+        int i10 = this.f26731b;
         int i11 = this.d;
-        this.f26730b = i11;
+        this.f26731b = i11;
         this.d = i10;
-        this.f26731c = 1.0f - this.f26731c;
-        int[] iArr = this.f26733f;
+        this.f26732c = 1.0f - this.f26732c;
+        int[] iArr = this.f26734f;
         int i12 = iArr[0];
         iArr[0] = iArr[1];
         iArr[1] = i12;
@@ -315,10 +315,10 @@ public class g91 extends FrameLayout {
     }
 
     public final void J() {
-        int[] iArr = this.f26733f;
-        if (iArr[0] != this.L.h(this.f26730b)) {
+        int[] iArr = this.f26734f;
+        if (iArr[0] != this.L.h(this.f26731b)) {
             K(0);
-            View[] viewArr = this.f26732e;
+            View[] viewArr = this.f26733e;
             View view = viewArr[1];
             if (view != null) {
                 this.h.put(iArr[1], view);
@@ -333,15 +333,15 @@ public class g91 extends FrameLayout {
     public final void K(int i10) {
         int i11;
         if (i10 == 0) {
-            i11 = this.f26730b;
+            i11 = this.f26731b;
         } else {
             i11 = this.d;
         }
         if (i11 >= 0 && i11 < this.L.e()) {
-            View[] viewArr = this.f26732e;
+            View[] viewArr = this.f26733e;
             View view = viewArr[i10];
             SparseArray sparseArray = this.h;
-            int[] iArr = this.f26733f;
+            int[] iArr = this.f26734f;
             if (view == null) {
                 int h = this.L.h(i11);
                 iArr[i10] = h;
@@ -387,13 +387,13 @@ public class g91 extends FrameLayout {
     public boolean canScrollHorizontally(int i10) {
         boolean z10;
         if (i10 != 0) {
-            if (!this.f26738x && !this.H) {
+            if (!this.f26739x && !this.H) {
                 if (i10 > 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if ((z10 || this.f26730b != 0) && (!z10 || this.f26730b != this.L.e() - 1)) {
+                if ((z10 || this.f26731b != 0) && (!z10 || this.f26731b != this.L.e() - 1)) {
                 }
             }
             return true;
@@ -406,11 +406,11 @@ public class g91 extends FrameLayout {
     }
 
     public int getCurrentPosition() {
-        return this.f26730b;
+        return this.f26731b;
     }
 
     public float getCurrentPositionAlpha() {
-        View[] viewArr = this.f26732e;
+        View[] viewArr = this.f26733e;
         View view = viewArr[0];
         if (view == null || view.getVisibility() != 0) {
             return 0.0f;
@@ -419,7 +419,7 @@ public class g91 extends FrameLayout {
     }
 
     public View getCurrentView() {
-        return this.f26732e[0];
+        return this.f26733e[0];
     }
 
     public long getManualScrollDuration() {
@@ -431,7 +431,7 @@ public class g91 extends FrameLayout {
     }
 
     public float getNextPositionAlpha() {
-        View[] viewArr = this.f26732e;
+        View[] viewArr = this.f26733e;
         View view = viewArr[1];
         if (view == null || view.getVisibility() != 0) {
             return 0.0f;
@@ -441,10 +441,10 @@ public class g91 extends FrameLayout {
 
     public float getPositionAnimated() {
         float f7;
-        View[] viewArr = this.f26732e;
+        View[] viewArr = this.f26733e;
         View view = viewArr[0];
         if (view != null && view.getVisibility() == 0) {
-            f7 = (this.f26730b * Utilities.clamp(1.0f - Math.abs(viewArr[0].getTranslationX() / getAvailableTranslationX()), 1.0f, 0.0f)) + 0.0f;
+            f7 = (this.f26731b * Utilities.clamp(1.0f - Math.abs(viewArr[0].getTranslationX() / getAvailableTranslationX()), 1.0f, 0.0f)) + 0.0f;
         } else {
             f7 = 0.0f;
         }
@@ -456,7 +456,7 @@ public class g91 extends FrameLayout {
     }
 
     public View[] getViewPages() {
-        return this.f26732e;
+        return this.f26733e;
     }
 
     public boolean i(MotionEvent motionEvent) {
@@ -486,13 +486,13 @@ public class g91 extends FrameLayout {
             velocityTracker.computeCurrentVelocity(1000, this.G);
         }
         if (this.H) {
-            View[] viewArr = this.f26732e;
+            View[] viewArr = this.f26733e;
             float x10 = viewArr[0].getX();
-            this.f26737w = new AnimatorSet();
+            this.f26738w = new AnimatorSet();
             if (this.E != 0.0f) {
                 if (Math.abs(0.0f) > 1500.0f) {
                     this.F = false;
-                } else if (this.f26739y) {
+                } else if (this.f26740y) {
                     View view3 = viewArr[1];
                     if (view3 != null) {
                         if (view3.getX() > (viewArr[0].getMeasuredWidth() >> 1)) {
@@ -522,32 +522,32 @@ public class g91 extends FrameLayout {
             }
             if (this.F) {
                 f7 = Math.abs(x10);
-                if (this.f26739y) {
-                    this.f26737w.playTogether(I(viewArr[0], 0.0f));
+                if (this.f26740y) {
+                    this.f26738w.playTogether(I(viewArr[0], 0.0f));
                     View view4 = viewArr[1];
                     if (view4 != null) {
-                        this.f26737w.playTogether(I(view4, view4.getMeasuredWidth()));
+                        this.f26738w.playTogether(I(view4, view4.getMeasuredWidth()));
                     }
                 } else {
-                    this.f26737w.playTogether(I(viewArr[0], 0.0f));
+                    this.f26738w.playTogether(I(viewArr[0], 0.0f));
                     View view5 = viewArr[1];
                     if (view5 != null) {
-                        this.f26737w.playTogether(I(view5, -view5.getMeasuredWidth()));
+                        this.f26738w.playTogether(I(view5, -view5.getMeasuredWidth()));
                     }
                 }
             } else if (this.d >= 0) {
                 f7 = viewArr[0].getMeasuredWidth() - Math.abs(x10);
-                if (this.f26739y) {
-                    this.f26737w.playTogether(I(viewArr[0], -view2.getMeasuredWidth()));
+                if (this.f26740y) {
+                    this.f26738w.playTogether(I(viewArr[0], -view2.getMeasuredWidth()));
                     View view6 = viewArr[1];
                     if (view6 != null) {
-                        this.f26737w.playTogether(I(view6, 0.0f));
+                        this.f26738w.playTogether(I(view6, 0.0f));
                     }
                 } else {
-                    this.f26737w.playTogether(I(viewArr[0], view.getMeasuredWidth()));
+                    this.f26738w.playTogether(I(viewArr[0], view.getMeasuredWidth()));
                     View view7 = viewArr[1];
                     if (view7 != null) {
-                        this.f26737w.playTogether(I(view7, 0.0f));
+                        this.f26738w.playTogether(I(view7, 0.0f));
                     }
                 }
             } else {
@@ -562,12 +562,12 @@ public class g91 extends FrameLayout {
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
                 ofFloat.addUpdateListener(new t81(this, 3));
-                this.f26737w.playTogether(ofFloat);
+                this.f26738w.playTogether(ofFloat);
             }
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat2.addUpdateListener(this.N);
-            this.f26737w.playTogether(ofFloat2);
-            this.f26737w.setInterpolator(T);
+            this.f26738w.playTogether(ofFloat2);
+            this.f26738w.setInterpolator(T);
             float measuredWidth3 = getMeasuredWidth() / 2;
             float sin = (((float) Math.sin((Math.min(1.0f, (f7 * 1.0f) / measuredWidth) - 0.5f) * 0.47123894f)) * measuredWidth3) + measuredWidth3;
             float abs = Math.abs(0.0f);
@@ -576,10 +576,10 @@ public class g91 extends FrameLayout {
             } else {
                 measuredWidth2 = (int) (((f7 / getMeasuredWidth()) + 1.0f) * 100.0f);
             }
-            this.f26737w.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
-            this.f26737w.addListener(new u81(this, 3));
-            this.f26737w.start();
-            this.f26738x = true;
+            this.f26738w.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
+            this.f26738w.addListener(new u81(this, 3));
+            this.f26738w.start();
+            this.f26739x = true;
             this.H = false;
             x(false);
         } else {
@@ -598,19 +598,19 @@ public class g91 extends FrameLayout {
 
     public final boolean m() {
         boolean z10;
-        if (!this.f26738x) {
+        if (!this.f26739x) {
             return false;
         }
         boolean z11 = this.F;
         int i10 = -1;
-        View[] viewArr = this.f26732e;
+        View[] viewArr = this.f26733e;
         if (z11) {
             if (Math.abs(viewArr[0].getTranslationX()) < 1.0f) {
                 F(viewArr[0], 0.0f);
                 View view = viewArr[1];
                 if (view != null) {
                     int measuredWidth = viewArr[0].getMeasuredWidth();
-                    if (this.f26739y) {
+                    if (this.f26740y) {
                         i10 = 1;
                     }
                     F(view, measuredWidth * i10);
@@ -622,7 +622,7 @@ public class g91 extends FrameLayout {
             if (Math.abs(viewArr[1].getTranslationX()) < 1.0f) {
                 View view2 = viewArr[0];
                 int measuredWidth2 = view2.getMeasuredWidth();
-                if (!this.f26739y) {
+                if (!this.f26740y) {
                     i10 = 1;
                 }
                 F(view2, measuredWidth2 * i10);
@@ -636,20 +636,20 @@ public class g91 extends FrameLayout {
         }
         x(true);
         if (z10) {
-            AnimatorSet animatorSet = this.f26737w;
+            AnimatorSet animatorSet = this.f26738w;
             if (animatorSet != null) {
                 animatorSet.cancel();
-                this.f26737w = null;
+                this.f26738w = null;
             }
-            this.f26738x = false;
+            this.f26739x = false;
         }
-        return this.f26738x;
+        return this.f26739x;
     }
 
     public final f91 n(int i10, boolean z10) {
-        v81 v81Var = new v81(this, getContext(), z10, i10, this.f26729a);
+        v81 v81Var = new v81(this, getContext(), z10, i10, this.f26730a);
         this.M = v81Var;
-        v81Var.f26414r = H();
+        v81Var.f26415r = H();
         this.M.setDelegate(new n2.c(this, 9));
         o(false);
         return this.M;
@@ -659,10 +659,10 @@ public class g91 extends FrameLayout {
         v81 v81Var;
         if (this.L != null && (v81Var = this.M) != null) {
             v81Var.h.clear();
-            v81Var.f26395b0.clear();
-            v81Var.f26397c0.clear();
-            v81Var.f26398d0.clear();
-            v81Var.f26400e0.clear();
+            v81Var.f26396b0.clear();
+            v81Var.f26398c0.clear();
+            v81Var.f26399d0.clear();
+            v81Var.f26401e0.clear();
             v81Var.H = 0;
             for (int i10 = 0; i10 < this.L.e(); i10++) {
                 this.L.getClass();
@@ -676,10 +676,10 @@ public class g91 extends FrameLayout {
                 changeBounds.setDuration(150L);
                 transitionSet.addTransition(new Fade().setDuration(150L)).addTransition(changeBounds);
                 transitionSet.setOrdering(0);
-                transitionSet.setInterpolator((TimeInterpolator) tr.f31140f);
+                transitionSet.setInterpolator((TimeInterpolator) tr.f31141f);
                 TransitionManager.beginDelayedTransition(w0Var, transitionSet);
             }
-            this.M.f26418x.l();
+            this.M.f26419x.l();
         }
     }
 
@@ -740,19 +740,19 @@ public class g91 extends FrameLayout {
 
     public void setAdapter(x81 x81Var) {
         this.L = x81Var;
-        int h = x81Var.h(this.f26730b);
-        int[] iArr = this.f26733f;
+        int h = x81Var.h(this.f26731b);
+        int[] iArr = this.f26734f;
         iArr[0] = h;
         View d = x81Var.d(h);
-        View[] viewArr = this.f26732e;
+        View[] viewArr = this.f26733e;
         viewArr[0] = d;
-        if (d == null && this.f26730b != 0) {
-            this.f26730b = 0;
+        if (d == null && this.f26731b != 0) {
+            this.f26731b = 0;
             int h10 = x81Var.h(0);
             iArr[0] = h10;
             viewArr[0] = x81Var.d(h10);
         }
-        x81Var.b(viewArr[0], this.f26730b, iArr[0]);
+        x81Var.b(viewArr[0], this.f26731b, iArr[0]);
         addView(viewArr[0]);
         viewArr[0].setVisibility(0);
         o(false);
@@ -764,32 +764,32 @@ public class g91 extends FrameLayout {
 
     public void setPosition(int i10) {
         if (this.L == null) {
-            this.f26730b = i10;
+            this.f26731b = i10;
             x(false);
         }
-        AnimatorSet animatorSet = this.f26737w;
+        AnimatorSet animatorSet = this.f26738w;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
-        View[] viewArr = this.f26732e;
+        View[] viewArr = this.f26733e;
         View view = viewArr[1];
         if (view != null) {
-            this.h.put(this.f26733f[1], view);
+            this.h.put(this.f26734f[1], view);
             removeView(viewArr[1]);
             viewArr[1] = null;
         }
-        int i11 = this.f26730b;
+        int i11 = this.f26731b;
         if (i11 != i10) {
-            this.f26730b = i10;
+            this.f26731b = i10;
             this.d = 0;
-            this.f26731c = 1.0f;
+            this.f26732c = 1.0f;
             View view2 = viewArr[0];
             K(0);
-            t(viewArr[0], view2, this.f26730b, i11);
+            t(viewArr[0], view2, this.f26731b, i11);
             F(viewArr[0], 0.0f);
             v81 v81Var = this.M;
             if (v81Var != null) {
-                v81Var.e(this.f26731c, this.f26730b, this.d);
+                v81Var.e(this.f26732c, this.f26731b, this.d);
             }
             x(true);
         }
@@ -802,7 +802,7 @@ public class g91 extends FrameLayout {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((li.g) obj).f15651a.f15664e++;
+            ((li.g) obj).f15652a.f15665e++;
         }
         w(z10);
     }

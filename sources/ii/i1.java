@@ -259,14 +259,14 @@ public final class i1 extends eu {
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
                     for (n11 n11Var : (n11[]) spanned.getSpans(0, spanned.length(), n11.class)) {
-                        int i12 = n11Var.f28817b.f28496a;
+                        int i12 = n11Var.f28818b.f28497a;
                         if ((65536 & i12) != 0) {
                             int spanStart = spanned.getSpanStart(n11Var);
                             int spanEnd = spanned.getSpanEnd(n11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (k90Var == null) {
                                     k90Var = new k90(0);
-                                    k90Var.f28035n = false;
+                                    k90Var.f28036n = false;
                                 }
                                 k90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
@@ -286,13 +286,13 @@ public final class i1 extends eu {
                                 } else {
                                     i11 = 0;
                                 }
-                                k90Var.f28036o = i11;
+                                k90Var.f28037o = i11;
                                 layout.getSelectionPath(spanStart, spanEnd, k90Var);
                             }
                         }
                     }
                     if (k90Var != null) {
-                        k90Var.f28035n = true;
+                        k90Var.f28036n = true;
                     }
                     this.F = k90Var;
                 }
@@ -659,7 +659,7 @@ public final class i1 extends eu {
         }
         setHintTextColor(v02);
         setCursorColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
-        setHandlesColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20964l6, d6Var));
+        setHandlesColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20965l6, d6Var));
         m();
     }
 

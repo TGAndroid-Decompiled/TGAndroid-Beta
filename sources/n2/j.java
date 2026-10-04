@@ -2,6 +2,6 @@ package n2;
 
 import android.os.Handler;
 public final class j {
-    public Handler f16541a;
-    public Object f16542b;
+    public Handler f16542a;
+    public Object f16543b;
 }

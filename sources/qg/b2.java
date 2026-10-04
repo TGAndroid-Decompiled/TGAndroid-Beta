@@ -24,26 +24,26 @@ public final class b2 extends j {
     public boolean A0;
     public boolean B0;
     public final e6 C0;
-    public final int f44976q0;
-    public boolean f44977r0;
-    public final e6 f44978s0;
-    public final fw0 f44979t0;
-    public final TextureView f44980u0;
-    public final Bitmap f44981v0;
-    public final Rect f44982w0;
-    public final Rect f44983x0;
-    public float f44984y0;
-    public final Path f44985z0;
+    public final int f44977q0;
+    public boolean f44978r0;
+    public final e6 f44979s0;
+    public final fw0 f44980t0;
+    public final TextureView f44981u0;
+    public final Bitmap f44982v0;
+    public final Rect f44983w0;
+    public final Rect f44984x0;
+    public float f44985y0;
+    public final Path f44986z0;
 
     public b2(Context context, PointF pointF, fw0 fw0Var, String str) {
         super(context, pointF);
-        this.f44976q0 = -1;
-        this.f44977r0 = false;
+        this.f44977q0 = -1;
+        this.f44978r0 = false;
         Rect rect = new Rect();
-        this.f44982w0 = rect;
-        this.f44983x0 = new Rect();
-        this.f44984y0 = 1.0f;
-        this.f44985z0 = new Path();
+        this.f44983w0 = rect;
+        this.f44984x0 = new Rect();
+        this.f44985y0 = 1.0f;
+        this.f44986z0 = new Path();
         this.A0 = true;
         this.B0 = true;
         tr trVar = tr.h;
@@ -51,17 +51,17 @@ public final class b2 extends j {
         new Paint(1).setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         setRotation(0.0f);
         setScale(1.0f);
-        this.f44979t0 = fw0Var;
+        this.f44980t0 = fw0Var;
         Bitmap decodeFile = BitmapFactory.decodeFile(str);
-        this.f44981v0 = decodeFile;
+        this.f44982v0 = decodeFile;
         if (decodeFile != null) {
-            this.f44984y0 = decodeFile.getWidth() / decodeFile.getHeight();
+            this.f44985y0 = decodeFile.getWidth() / decodeFile.getHeight();
             rect.set(0, 0, decodeFile.getWidth(), decodeFile.getHeight());
         }
         TextureView textureView = new TextureView(context);
-        this.f44980u0 = textureView;
+        this.f44981u0 = textureView;
         addView(textureView, z5.c(-1.0f, -1));
-        this.f44978s0 = new e6(this, 0L, 500L, trVar);
+        this.f44979s0 = new e6(this, 0L, 500L, trVar);
         k();
         setWillNotDraw(false);
     }
@@ -80,19 +80,19 @@ public final class b2 extends j {
         if (!this.A0) {
             return false;
         }
-        if (view == this.f44980u0) {
+        if (view == this.f44981u0) {
             canvas.save();
-            float e7 = this.f44978s0.e(this.f44977r0);
+            float e7 = this.f44979s0.e(this.f44978r0);
             canvas.scale(1.0f - (e7 * 2.0f), 1.0f, getMeasuredWidth() / 2.0f, 0.0f);
             canvas.skew(0.0f, org.telegram.messenger.f0.z(1.0f, e7, 4.0f * e7, 0.25f));
             float e10 = this.C0.e(this.B0);
             float width = (view.getWidth() / 2.0f) + view.getX();
             float height = (view.getHeight() / 2.0f) + view.getY();
             float min = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
-            Rect rect2 = this.f44982w0;
-            Rect rect3 = this.f44983x0;
-            Bitmap bitmap2 = this.f44981v0;
-            Path path2 = this.f44985z0;
+            Rect rect2 = this.f44983w0;
+            Rect rect3 = this.f44984x0;
+            Bitmap bitmap2 = this.f44982v0;
+            Path path2 = this.f44986z0;
             if (e10 < 1.0f) {
                 rect = rect3;
                 bitmap = bitmap2;
@@ -120,7 +120,7 @@ public final class b2 extends j {
                 rect.set(0, 0, view.getWidth(), view.getHeight());
                 canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
             }
-            if ((getParent() instanceof d) && ((d) getParent()).f44993a) {
+            if ((getParent() instanceof d) && ((d) getParent()).f44994a) {
                 drawChild = true;
             } else {
                 drawChild = super.drawChild(canvas, view, j3);
@@ -133,11 +133,11 @@ public final class b2 extends j {
     }
 
     public int getAnchor() {
-        return this.f44976q0;
+        return this.f44977q0;
     }
 
     public fw0 getBaseSize() {
-        return this.f44979t0;
+        return this.f44980t0;
     }
 
     @Override
@@ -157,15 +157,15 @@ public final class b2 extends j {
 
     @Override
     public final void k() {
-        fw0 fw0Var = this.f44979t0;
-        setX(getPositionX() - (fw0Var.f26584a / 2.0f));
-        setY(getPositionY() - (fw0Var.f26585b / 2.0f));
+        fw0 fw0Var = this.f44980t0;
+        setX(getPositionX() - (fw0Var.f26585a / 2.0f));
+        setY(getPositionY() - (fw0Var.f26586b / 2.0f));
         m();
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        TextureView textureView = this.f44980u0;
+        TextureView textureView = this.f44981u0;
         if (textureView != null) {
             int measuredHeight = ((i13 - i11) - textureView.getMeasuredHeight()) / 2;
             int measuredWidth = ((i12 - i10) - textureView.getMeasuredWidth()) / 2;
@@ -177,19 +177,19 @@ public final class b2 extends j {
     public final void onMeasure(int i10, int i11) {
         int i12;
         int i13;
-        fw0 fw0Var = this.f44979t0;
-        int i14 = (int) fw0Var.f26584a;
-        int i15 = (int) fw0Var.f26585b;
-        TextureView textureView = this.f44980u0;
+        fw0 fw0Var = this.f44980t0;
+        int i14 = (int) fw0Var.f26585a;
+        int i15 = (int) fw0Var.f26586b;
+        TextureView textureView = this.f44981u0;
         if (textureView != null) {
-            float f7 = this.f44984y0;
+            float f7 = this.f44985y0;
             if (f7 >= 1.0f) {
                 i12 = (int) (f7 * i15);
             } else {
                 i12 = i14;
             }
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-            float f10 = this.f44984y0;
+            float f10 = this.f44985y0;
             if (f10 >= 1.0f) {
                 i13 = i15;
             } else {

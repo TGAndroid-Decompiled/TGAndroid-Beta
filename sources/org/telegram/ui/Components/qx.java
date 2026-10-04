@@ -14,7 +14,7 @@ public final class qx extends mz {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            this.d.f29101f0 = false;
+            this.d.f29102f0 = false;
         }
         super.a(recyclerView, i10);
     }
@@ -26,9 +26,9 @@ public final class qx extends mz {
         nzVar.S(nxVar.I0());
         super.b(recyclerView, i10, i11);
         ny nyVar = nzVar.S;
-        if (nyVar != null && nzVar.P.getAdapter() == nyVar && !nyVar.f29080x.a() && !nyVar.f29080x.f28748a.E) {
+        if (nyVar != null && nzVar.P.getAdapter() == nyVar && !nyVar.f29081x.a() && !nyVar.f29081x.f28749a.E) {
             if (nxVar.N0() + 20 > nyVar.h()) {
-                my myVar = nyVar.f29080x;
+                my myVar = nyVar.f29081x;
                 Objects.requireNonNull(myVar);
                 AndroidUtilities.runOnUIThread(new uw(myVar, 1));
             }

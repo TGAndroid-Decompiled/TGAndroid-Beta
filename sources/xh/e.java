@@ -23,15 +23,15 @@ public final class e extends cb implements GiftAuctionController.OnActiveAuction
     public final g61 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f49919a0;
-    public u61 f49920b0;
+    public boolean f49920a0;
+    public u61 f49921b0;
 
     public e(Context context) {
         super(context, null, false, false, 2, null);
         int i10 = 0;
         this.Y = new LongSparseArray();
         this.Z = new ArrayList();
-        setBackgroundColor(i6.w0(null, i6.f20761a7, false));
+        setBackgroundColor(i6.w0(null, i6.f20762a7, false));
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
@@ -44,7 +44,7 @@ public final class e extends cb implements GiftAuctionController.OnActiveAuction
         this.X = g61.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f49920b0.N(false);
+        this.f49921b0.N(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -52,7 +52,7 @@ public final class e extends cb implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             d dVar = new d(context, auction2);
-            dVar.f49909a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            dVar.f49910a.setOnClickListener(new xg.e(this, context, auction2, 1));
             linearLayout.addView(dVar, z5.n(-1, -2));
             this.Y.put(auction2.giftId, dVar);
         }
@@ -69,7 +69,7 @@ public final class e extends cb implements GiftAuctionController.OnActiveAuction
     public final void onActiveAuctionsUpdate(List list) {
         int i10;
         this.Z = new ArrayList(list);
-        this.f25301e.setTitle(y());
+        this.f25302e.setTitle(y());
         Iterator it = list.iterator();
         while (it.hasNext()) {
             GiftAuctionController.Auction auction = (GiftAuctionController.Auction) it.next();
@@ -81,10 +81,10 @@ public final class e extends cb implements GiftAuctionController.OnActiveAuction
             }
             d dVar = (d) this.Y.get(auction.giftId);
             if (dVar != null) {
-                dVar.b(this.f49919a0);
+                dVar.b(this.f49920a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                dVar.a(max, this.f49919a0);
-                dVar.f49913f.a(max);
+                dVar.a(max, this.f49920a0);
+                dVar.f49914f.a(max);
             }
         }
     }
@@ -92,14 +92,14 @@ public final class e extends cb implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f49919a0 = true;
+        this.f49920a0 = true;
     }
 
     @Override
     public final yl0 v(zl0 zl0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f49920b0 = u61Var;
-        u61Var.f31306r = false;
+        this.f49921b0 = u61Var;
+        u61Var.f31307r = false;
         return u61Var;
     }
 

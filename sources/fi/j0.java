@@ -31,7 +31,7 @@ public final class j0 extends h0 {
         this.d = c71Var;
         c71Var.s1();
         c71 c71Var2 = this.d;
-        c71Var2.f25244f3.f31306r = false;
+        c71Var2.f25245f3.f31307r = false;
         c71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.d.j(new ai.r(this, 8));
@@ -43,9 +43,9 @@ public final class j0 extends h0 {
         org.telegram.ui.ActionBar.k kVar2 = this.f9897a;
         int i11 = i6.G6;
         kVar2.setTitleColor(k0Var.getThemedColor(i11));
-        this.f9897a.A(k0Var.getThemedColor(i6.f21225z8), false);
+        this.f9897a.A(k0Var.getThemedColor(i6.f21226z8), false);
         this.f9897a.setBackButtonImage(R.drawable.ic_ab_back);
-        this.f9897a.B(k0Var.getThemedColor(i6.f21206y8), false);
+        this.f9897a.B(k0Var.getThemedColor(i6.f21207y8), false);
         this.f9897a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
         this.f9897a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f9897a.setActionBarMenuOnItemClick(new ei.u(this, 8));
@@ -55,7 +55,7 @@ public final class j0 extends h0 {
         d6Var3 = ((f3) k0Var).resourcesProvider;
         ci.d dVar = new ci.d(context, d6Var3, true);
         dVar.d();
-        dVar.setColor(i0.a.d(0.125f, k0Var.getThemedColor(i6.f20817d6), k0Var.getThemedColor(i11)));
+        dVar.setColor(i0.a.d(0.125f, k0Var.getThemedColor(i6.f20818d6), k0Var.getThemedColor(i11)));
         dVar.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         dVar.e();
         dVar.setOnClickListener(new View.OnClickListener(this) {

@@ -8,37 +8,37 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import ci.xa;
 public final class e {
-    public final int f15439a;
-    public final d f15440b;
-    public final Interpolator f15441c;
+    public final int f15440a;
+    public final d f15441b;
+    public final Interpolator f15442c;
     public final long d;
-    public float f15442e;
-    public float f15443f;
-    public boolean f15444g;
+    public float f15443e;
+    public float f15444f;
+    public boolean f15445g;
     public ValueAnimator h;
 
     public e(int i10, d dVar, Interpolator interpolator, long j3) {
-        this.f15439a = i10;
-        this.f15440b = dVar;
-        this.f15441c = interpolator;
+        this.f15440a = i10;
+        this.f15441b = dVar;
+        this.f15442c = interpolator;
         this.d = j3;
     }
 
     public final void a(float f7) {
         long j3;
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            if (this.f15444g) {
+            if (this.f15445g) {
                 b();
             }
-            float f10 = this.f15442e;
-            int i10 = this.f15439a;
-            d dVar = this.f15440b;
+            float f10 = this.f15443e;
+            int i10 = this.f15440a;
+            d dVar = this.f15441b;
             if (f10 == f7) {
                 dVar.V(f10, i10);
                 return;
             }
-            if (!this.f15444g) {
-                this.f15444g = true;
+            if (!this.f15445g) {
+                this.f15445g = true;
             }
             float f11 = f7 - f10;
             if (Build.VERSION.SDK_INT >= 26 && !ValueAnimator.areAnimatorsEnabled()) {
@@ -48,18 +48,18 @@ public final class e {
             }
             if (j3 <= 0) {
                 d(f7, 1.0f);
-                if (this.f15444g) {
-                    this.f15444g = false;
+                if (this.f15445g) {
+                    this.f15445g = false;
                 }
                 dVar.V(f7, i10);
                 return;
             }
-            this.f15443f = f7;
+            this.f15444f = f7;
             DecelerateInterpolator decelerateInterpolator = ke.a.f14758a;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.h = ofFloat;
             ofFloat.setDuration(j3);
-            this.h.setInterpolator(this.f15441c);
+            this.h.setInterpolator(this.f15442c);
             this.h.addUpdateListener(new xa(this, f10, f11, 1));
             this.h.addListener(new c(this, f10, f11, 0));
             try {
@@ -75,12 +75,12 @@ public final class e {
     }
 
     public final boolean b() {
-        if (!this.f15444g) {
+        if (!this.f15445g) {
             return false;
         }
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            if (this.f15444g) {
-                this.f15444g = false;
+            if (this.f15445g) {
+                this.f15445g = false;
             }
             ValueAnimator valueAnimator = this.h;
             if (valueAnimator != null) {
@@ -98,23 +98,23 @@ public final class e {
         if (!d(f7, 1.0f) && !b10) {
             return;
         }
-        this.f15440b.V(f7, this.f15439a);
+        this.f15441b.V(f7, this.f15440a);
     }
 
     public final boolean d(float f7, float f10) {
-        if (this.f15442e != f7) {
-            this.f15442e = f7;
-            this.f15440b.a0(this.f15439a, f7, f10, this);
+        if (this.f15443e != f7) {
+            this.f15443e = f7;
+            this.f15441b.a0(this.f15440a, f7, f10, this);
             return true;
         }
         return false;
     }
 
     public e(int i10, d dVar, Interpolator interpolator, long j3, float f7) {
-        this.f15439a = i10;
-        this.f15440b = dVar;
-        this.f15441c = interpolator;
+        this.f15440a = i10;
+        this.f15441b = dVar;
+        this.f15442c = interpolator;
         this.d = j3;
-        this.f15442e = f7;
+        this.f15443e = f7;
     }
 }

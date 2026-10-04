@@ -58,16 +58,16 @@ public final class u0 implements ml0 {
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj2;
                 Context context = (Context) obj;
                 org.telegram.ui.Cells.s sVar = (org.telegram.ui.Cells.s) view;
-                jb0 jb0Var = (jb0) tVar.f22926e3.get(i10);
-                if (jb0Var.f37628e && !UserConfig.hasPremiumOnAccounts()) {
+                jb0 jb0Var = (jb0) tVar.f22927e3.get(i10);
+                if (jb0Var.f37629e && !UserConfig.hasPremiumOnAccounts()) {
                     n2Var.showDialog(new rg.y0(n2Var, 10, true));
                     return;
                 } else if (!w7.g6.a(jb0Var)) {
                     s4.d0 d0Var = new s4.d0(context);
-                    d0Var.f46691a = i10;
-                    tVar.f22927f3.w0(d0Var);
+                    d0Var.f46692a = i10;
+                    tVar.f22928f3.w0(d0Var);
                     w7.g6.b(jb0Var);
-                    int i12 = org.telegram.ui.Cells.s.f22739f;
+                    int i12 = org.telegram.ui.Cells.s.f22740f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);

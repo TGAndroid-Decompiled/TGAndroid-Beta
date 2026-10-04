@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 public final class t {
-    public static final AtomicLong f47392b = new AtomicLong();
-    public final long f47393a;
+    public static final AtomicLong f47393b = new AtomicLong();
+    public final long f47394a;
 
     public t(g2.m mVar) {
         this(0L);
@@ -15,6 +15,6 @@ public final class t {
     }
 
     public t(long j3) {
-        this.f47393a = j3;
+        this.f47394a = j3;
     }
 }

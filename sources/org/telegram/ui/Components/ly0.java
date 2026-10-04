@@ -13,6 +13,6 @@ public final class ly0 extends org.telegram.ui.Cells.f8 {
     @Override
     public final void onMeasure(int i10, int i11) {
         my0 my0Var = this.O;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(my0Var.f28753r.O, 1073741824), View.MeasureSpec.makeMeasureSpec(my0Var.f28753r.O, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(my0Var.f28754r.O, 1073741824), View.MeasureSpec.makeMeasureSpec(my0Var.f28754r.O, 1073741824));
     }
 }

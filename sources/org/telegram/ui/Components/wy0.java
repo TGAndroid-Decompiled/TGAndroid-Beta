@@ -29,15 +29,15 @@ public abstract class wy0 {
     public static void b(TLRPC.StickerSet stickerSet, org.telegram.ui.ActionBar.d6 d6Var, Context context, Runnable runnable) {
         if (stickerSet != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
-            alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.StickersDeleteStickerSetTitle);
-            alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.StickersDeleteStickerSetDescription);
+            alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.StickersDeleteStickerSetTitle);
+            alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.StickersDeleteStickerSetDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new w2(runnable, stickerSet, false, 18));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20368a;
             b2Var.show();
             TextView textView = (TextView) b2Var.d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21058q7, d6Var));
+                textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21059q7, d6Var));
             }
         }
     }
@@ -60,18 +60,18 @@ public abstract class wy0 {
             i10 = R.string.NewStickerPack;
         }
         String string = LocaleController.getString(i10);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20368a;
         b2Var.R = string;
         b2Var.T = LocaleController.getString(R.string.StickersChooseNameForStickerPack);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(20.0f), 0);
         final ?? editTextBoldCursor = new EditTextBoldCursor(context);
-        int i13 = org.telegram.ui.ActionBar.i6.f20925j5;
+        int i13 = org.telegram.ui.ActionBar.i6.f20926j5;
         editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.i6.v0(i13, d6Var));
         editTextBoldCursor.setInputType(16385);
         editTextBoldCursor.setTextSize(1, 16.0f);
         editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.i6.v0(i13, d6Var));
-        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21160vf, d6Var));
+        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21161vf, d6Var));
         editTextBoldCursor.setHeaderHintColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.L6, d6Var));
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
@@ -87,7 +87,7 @@ public abstract class wy0 {
                 return charSequence;
             }
         }});
-        editTextBoldCursor.setLineColors(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20946k6, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20964l6, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21039p7, d6Var));
+        editTextBoldCursor.setLineColors(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20947k6, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20965l6, d6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21040p7, d6Var));
         editTextBoldCursor.setImeOptions(6);
         editTextBoldCursor.setBackground(null);
         editTextBoldCursor.requestFocus();
@@ -130,7 +130,7 @@ public abstract class wy0 {
         alertDialog$Builder.k(LocaleController.getString(i12), new ca.b((Object) editTextBoldCursor, callback2, context, z10, 5));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new pv(editTextBoldCursor, 25));
         org.telegram.ui.ActionBar.b2 o9 = alertDialog$Builder.o();
-        o9.f20423h0 = false;
+        o9.f20424h0 = false;
         editTextBoldCursor.setOnEditorActionListener(new e1(o9, 8));
     }
 }

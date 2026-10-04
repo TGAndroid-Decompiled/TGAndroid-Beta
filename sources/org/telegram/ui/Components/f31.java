@@ -11,36 +11,36 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class f31 implements Runnable {
-    public final int f26259a = 0;
-    public final boolean f26260b;
-    public final long f26261c;
+    public final int f26260a = 0;
+    public final boolean f26261b;
+    public final long f26262c;
     public final NotificationCenter.NotificationCenterDelegate d;
-    public final Object f26262e;
-    public final Object f26263f;
+    public final Object f26263e;
+    public final Object f26264f;
     public final Object h;
-    public final TLObject f26264n;
+    public final TLObject f26265n;
 
     public f31(v31 v31Var, boolean z10, org.telegram.ui.ActionBar.f1 f1Var, b80 b80Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
         this.d = v31Var;
-        this.f26260b = z10;
-        this.f26262e = f1Var;
-        this.f26263f = b80Var;
-        this.f26261c = j3;
+        this.f26261b = z10;
+        this.f26263e = f1Var;
+        this.f26264f = b80Var;
+        this.f26262c = j3;
         this.h = user;
-        this.f26264n = chat;
+        this.f26265n = chat;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f26259a) {
+        switch (this.f26260a) {
             case 0:
                 final v31 v31Var = (v31) this.d;
-                org.telegram.ui.ActionBar.f1 f1Var = (org.telegram.ui.ActionBar.f1) this.f26262e;
-                final b80 b80Var = (b80) this.f26263f;
+                org.telegram.ui.ActionBar.f1 f1Var = (org.telegram.ui.ActionBar.f1) this.f26263e;
+                final b80 b80Var = (b80) this.f26264f;
                 final TLRPC.User user = (TLRPC.User) this.h;
-                final TLRPC.Chat chat = (TLRPC.Chat) this.f26264n;
-                boolean z10 = this.f26260b;
+                final TLRPC.Chat chat = (TLRPC.Chat) this.f26265n;
+                boolean z10 = this.f26261b;
                 final boolean z11 = !z10;
                 f1Var.setVisibility(0);
                 if (!z10) {
@@ -49,12 +49,12 @@ public final class f31 implements Runnable {
                     i10 = R.string.BanUserMonoforum;
                 }
                 f1Var.setText(LocaleController.getString(i10));
-                final long j3 = this.f26261c;
+                final long j3 = this.f26262c;
                 f1Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         v31 v31Var2 = v31.this;
-                        int i11 = v31Var2.f31545b;
+                        int i11 = v31Var2.f31546b;
                         b80Var.u();
                         boolean z12 = z11;
                         TLRPC.User user2 = user;
@@ -71,18 +71,18 @@ public final class f31 implements Runnable {
                 });
                 return;
             default:
-                yh.g.Y((yh.g) this.d, (TLRPC.TL_error) this.f26262e, (TwoStepVerificationActivity) this.f26263f, (Activity) this.h, this.f26260b, this.f26261c, this.f26264n);
+                yh.g.Y((yh.g) this.d, (TLRPC.TL_error) this.f26263e, (TwoStepVerificationActivity) this.f26264f, (Activity) this.h, this.f26261b, this.f26262c, this.f26265n);
                 return;
         }
     }
 
     public f31(yh.g gVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j3, TLObject tLObject) {
         this.d = gVar;
-        this.f26262e = tL_error;
-        this.f26263f = twoStepVerificationActivity;
+        this.f26263e = tL_error;
+        this.f26264f = twoStepVerificationActivity;
         this.h = activity;
-        this.f26260b = z10;
-        this.f26261c = j3;
-        this.f26264n = tLObject;
+        this.f26261b = z10;
+        this.f26262c = j3;
+        this.f26265n = tLObject;
     }
 }

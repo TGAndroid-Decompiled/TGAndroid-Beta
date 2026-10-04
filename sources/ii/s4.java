@@ -66,7 +66,7 @@ public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
 
     @Override
     public final void e() {
-        int i10 = org.telegram.ui.ActionBar.i6.f21143uf;
+        int i10 = org.telegram.ui.ActionBar.i6.f21144uf;
         org.telegram.ui.ActionBar.d6 d6Var = this.f12631n;
         this.f12632r.setColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
         this.f12635x = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var);
@@ -138,7 +138,7 @@ public final class s4 extends a0 implements org.telegram.ui.ActionBar.y5, p9 {
         if (this.f12634w != null && (b3Var = this.f12636y) != null && (textSelectionHelper = b3Var.f12240a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f22694u0 && R <= textSelectionHelper.f22697x0) {
+            if (R >= 0 && R >= textSelectionHelper.f22695u0 && R <= textSelectionHelper.f22698x0) {
                 int[] iArr = this.E;
                 i(iArr);
                 canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f12632r);

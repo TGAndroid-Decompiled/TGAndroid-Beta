@@ -52,8 +52,8 @@ public final class h extends FrameLayout implements le.d {
                 aa.a aVar = aVarArr[i11];
                 if (aVar != null) {
                     ih.b bVar = (ih.b) aVar.f386b;
-                    float f10 = ((le.b) aVar.f387c).f15434e;
-                    float f11 = ((le.b) aVar.d).f15434e;
+                    float f10 = ((le.b) aVar.f387c).f15435e;
+                    float f11 = ((le.b) aVar.d).f15435e;
                     if (f10 > 0.0f) {
                         i10 = 0;
                     } else {

@@ -174,7 +174,7 @@ public final class g {
     public final lb.b d(Writer writer) {
         lb.b bVar = new lb.b(writer);
         bVar.k(this.f8208g);
-        bVar.f15423r = this.f8207f;
+        bVar.f15424r = this.f8207f;
         bVar.l(2);
         bVar.v = false;
         return bVar;
@@ -202,13 +202,13 @@ public final class g {
 
     public final void f(Object obj, Class cls, lb.b bVar) {
         u b10 = b(new kb.a(cls));
-        int i10 = bVar.f15422n;
+        int i10 = bVar.f15423n;
         if (i10 == 2) {
-            bVar.f15422n = 1;
+            bVar.f15423n = 1;
         }
-        boolean z10 = bVar.f15423r;
+        boolean z10 = bVar.f15424r;
         boolean z11 = bVar.v;
-        bVar.f15423r = this.f8207f;
+        bVar.f15424r = this.f8207f;
         bVar.v = false;
         try {
             try {
@@ -220,20 +220,20 @@ public final class g {
             }
         } finally {
             bVar.l(i10);
-            bVar.f15423r = z10;
+            bVar.f15424r = z10;
             bVar.v = z11;
         }
     }
 
     public final void g(lb.b bVar) {
         k kVar = k.f8210a;
-        int i10 = bVar.f15422n;
-        boolean z10 = bVar.f15423r;
+        int i10 = bVar.f15423n;
+        boolean z10 = bVar.f15424r;
         boolean z11 = bVar.v;
-        bVar.f15423r = this.f8207f;
+        bVar.f15424r = this.f8207f;
         bVar.v = false;
         if (i10 == 2) {
-            bVar.f15422n = 1;
+            bVar.f15423n = 1;
         }
         try {
             try {
@@ -247,7 +247,7 @@ public final class g {
             }
         } finally {
             bVar.l(i10);
-            bVar.f15423r = z10;
+            bVar.f15424r = z10;
             bVar.v = z11;
         }
     }

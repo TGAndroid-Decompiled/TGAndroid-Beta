@@ -38,7 +38,7 @@ public final class y6 extends FrameLayout {
         this.f1904e = new RectF();
         this.f1906n = new RectF();
         this.f1907r = 1.0f;
-        int i10 = org.telegram.ui.ActionBar.i6.f20908i6;
+        int i10 = org.telegram.ui.ActionBar.i6.f20909i6;
         d dVar = k7Var.f1222s;
         paint.setColor(org.telegram.ui.ActionBar.i6.v0(i10, dVar));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -46,7 +46,7 @@ public final class y6 extends FrameLayout {
         TextView textView = new TextView(context);
         this.f1903c = textView;
         textView.setText(LocaleController.getString(R.string.AllViewers));
-        int i11 = org.telegram.ui.ActionBar.i6.f20925j5;
+        int i11 = org.telegram.ui.ActionBar.i6.f20926j5;
         textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, dVar));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -68,7 +68,7 @@ public final class y6 extends FrameLayout {
         linearLayout2.setOrientation(0);
         hm0 hm0Var = new hm0(getContext());
         this.v = hm0Var;
-        hm0Var.f27166r = true;
+        hm0Var.f27167r = true;
         hm0Var.a(R.drawable.menu_views_reactions3, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -116,8 +116,8 @@ public final class y6 extends FrameLayout {
                         x6 x6Var = new x6(y6Var, y6Var.getContext(), k7Var4.f1222s);
                         k7Var4.f1219f = x6Var;
                         LinearLayout linearLayout3 = y6Var.f1901a;
-                        x6Var.f24650b = true;
-                        x6Var.f24649a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        x6Var.f24651b = true;
+                        x6Var.f24650a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -158,8 +158,8 @@ public final class y6 extends FrameLayout {
                         x6 x6Var = new x6(y6Var, y6Var.getContext(), k7Var4.f1222s);
                         k7Var4.f1219f = x6Var;
                         LinearLayout linearLayout3 = y6Var.f1901a;
-                        x6Var.f24650b = true;
-                        x6Var.f24649a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        x6Var.f24651b = true;
+                        x6Var.f24650a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -200,8 +200,8 @@ public final class y6 extends FrameLayout {
                         x6 x6Var = new x6(y6Var, y6Var.getContext(), k7Var4.f1222s);
                         k7Var4.f1219f = x6Var;
                         LinearLayout linearLayout3 = y6Var.f1901a;
-                        x6Var.f24650b = true;
-                        x6Var.f24649a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        x6Var.f24651b = true;
+                        x6Var.f24650a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }

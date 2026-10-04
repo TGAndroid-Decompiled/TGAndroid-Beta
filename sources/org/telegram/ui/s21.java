@@ -42,31 +42,31 @@ public final class s21 extends View {
     public String Q;
     public String R;
     public boolean S;
-    public final org.telegram.ui.Components.pc0 f40330a;
-    public final Paint f40331b;
-    public final BitmapShader f40332c;
+    public final org.telegram.ui.Components.pc0 f40331a;
+    public final Paint f40332b;
+    public final BitmapShader f40333c;
     public final BitmapShader d;
-    public i21 f40333e;
-    public Bitmap f40334f;
+    public i21 f40334e;
+    public Bitmap f40335f;
     public Bitmap h;
-    public Bitmap f40335n;
-    public boolean f40336r;
-    public final org.telegram.ui.Components.cp0 f40337s;
+    public Bitmap f40336n;
+    public boolean f40337r;
+    public final org.telegram.ui.Components.cp0 f40338s;
     public TextPaint v;
-    public StaticLayout f40338w;
-    public final org.telegram.ui.Components.e6 f40339x;
-    public final Paint f40340y;
+    public StaticLayout f40339w;
+    public final org.telegram.ui.Components.e6 f40340x;
+    public final Paint f40341y;
 
     public s21(Context context) {
         super(context);
         org.telegram.ui.Components.pc0 pc0Var = new org.telegram.ui.Components.pc0();
-        this.f40330a = pc0Var;
+        this.f40331a = pc0Var;
         Paint paint = new Paint(1);
-        this.f40331b = paint;
+        this.f40332b = paint;
         org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.h;
-        this.f40339x = new org.telegram.ui.Components.e6(1.0f, this, 0L, 2000L, trVar);
+        this.f40340x = new org.telegram.ui.Components.e6(1.0f, this, 0L, 2000L, trVar);
         Paint paint2 = new Paint(1);
-        this.f40340y = paint2;
+        this.f40341y = paint2;
         Paint paint3 = new Paint(1);
         this.E = paint3;
         this.L = new float[8];
@@ -74,20 +74,20 @@ public final class s21 extends View {
         this.S = true;
         pc0Var.N = true;
         pc0Var.r(this);
-        Bitmap bitmap = pc0Var.f29612k;
+        Bitmap bitmap = pc0Var.f29613k;
         Shader.TileMode tileMode = Shader.TileMode.MIRROR;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        this.f40332c = bitmapShader;
-        BitmapShader bitmapShader2 = new BitmapShader(pc0Var.f29612k, tileMode, tileMode);
+        this.f40333c = bitmapShader;
+        BitmapShader bitmapShader2 = new BitmapShader(pc0Var.f29613k, tileMode, tileMode);
         this.d = bitmapShader2;
         paint.setShader(bitmapShader);
         org.telegram.ui.Components.cp0 cp0Var = new org.telegram.ui.Components.cp0(this);
-        this.f40337s = cp0Var;
+        this.f40338s = cp0Var;
         cp0Var.k(0.35f, 300L, trVar);
         cp0Var.setCallback(this);
         cp0Var.u(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-        cp0Var.f29238a.setShader(bitmapShader2);
-        cp0Var.f29239b = 17;
+        cp0Var.f29239a.setShader(bitmapShader2);
+        cp0Var.f29240b = 17;
         cp0Var.t(AndroidUtilities.dp(35.0f));
         cp0Var.q("", true, true);
         Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
@@ -117,7 +117,7 @@ public final class s21 extends View {
             canvas.saveLayerAlpha(rectF, 255, 31);
             int i13 = width + 16;
             int i14 = i12 + 16;
-            Paint paint = this.f40331b;
+            Paint paint = this.f40332b;
             canvas.drawRect(i13, i14, (getWidth() - width) - 16, (((getWidth() + i12) - width) - width) - 16, paint);
             canvas.save();
             this.F.setBounds(i13, i14, (getWidth() - width) - 16, (((getWidth() + i12) - width) - width) - 16);
@@ -131,9 +131,9 @@ public final class s21 extends View {
             float round = ((Math.round((i10 / 4.65f) / f7) * z10) / 2) * 0.75f;
             canvas.drawCircle(width2, width3, round, paint);
             TelegramQRCodeWriter.drawSideQuads(canvas, f11, f10, paint, 7.0f, z10, 16, i11, 0.75f, this.L, true);
-            if (!this.M && (i21Var = this.f40333e) != null) {
-                y21 y21Var = i21Var.f37224a;
-                y21Var.f43018c.set((int) (width2 - round), (int) (width3 - round), (int) (width2 + round), (int) (width3 + round));
+            if (!this.M && (i21Var = this.f40334e) != null) {
+                y21 y21Var = i21Var.f37225a;
+                y21Var.f43019c.set((int) (width2 - round), (int) (width3 - round), (int) (width2 + round), (int) (width3 + round));
                 y21Var.E.requestLayout();
                 this.M = true;
             }
@@ -159,14 +159,14 @@ public final class s21 extends View {
         } else {
             this.I = str;
         }
-        this.f40336r = z11;
+        this.f40337r = z11;
         Utilities.themeQueue.postRunnable(new q21(this, getWidth(), getHeight(), 0));
         invalidate();
         this.N.run();
     }
 
     public final void d(boolean z10) {
-        if (!this.f40336r) {
+        if (!this.f40337r) {
             return;
         }
         if (z10) {
@@ -180,10 +180,10 @@ public final class s21 extends View {
             if (str == null) {
                 str = "";
             }
-            this.f40338w = org.telegram.ui.Components.fx0.c(Emoji.replaceEmoji(str, this.v.getFontMetricsInt(), false), this.v, getWidth(), Layout.Alignment.ALIGN_CENTER, 0.0f, false, TextUtils.TruncateAt.END, getWidth() - AndroidUtilities.dp(60.0f), 1, true);
+            this.f40339w = org.telegram.ui.Components.fx0.c(Emoji.replaceEmoji(str, this.v.getFontMetricsInt(), false), this.v, getWidth(), Layout.Alignment.ALIGN_CENTER, 0.0f, false, TextUtils.TruncateAt.END, getWidth() - AndroidUtilities.dp(60.0f), 1, true);
             return;
         }
-        this.f40338w = null;
+        this.f40339w = null;
     }
 
     @Override
@@ -214,17 +214,17 @@ public final class s21 extends View {
         if (i10 == i12 && i11 == i13) {
             return;
         }
-        Bitmap bitmap = this.f40334f;
+        Bitmap bitmap = this.f40335f;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f40334f = null;
+            this.f40335f = null;
         }
         Paint paint = new Paint(1);
         paint.setColor(-1);
         float f7 = T;
         paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, f7, 251658240);
-        this.f40334f = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(this.f40334f);
+        this.f40335f = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(this.f40335f);
         float f10 = i10;
         RectF rectF = new RectF(f7, f7, f10 - f7, getHeight() - f7);
         float f11 = U;
@@ -232,10 +232,10 @@ public final class s21 extends View {
         if (this.K) {
             Utilities.themeQueue.postRunnable(new q21(this, i10, i11, 1));
         }
-        float max = Math.max((getWidth() * 1.0f) / this.f40330a.f29612k.getWidth(), (getHeight() * 1.0f) / this.f40330a.f29612k.getHeight());
+        float max = Math.max((getWidth() * 1.0f) / this.f40331a.f29613k.getWidth(), (getHeight() * 1.0f) / this.f40331a.f29613k.getHeight());
         Matrix matrix = new Matrix();
         matrix.setScale(max, max);
-        this.f40332c.setLocalMatrix(matrix);
+        this.f40333c.setLocalMatrix(matrix);
         Matrix matrix2 = new Matrix();
         matrix2.setScale(max, max);
         matrix2.postTranslate(f10 / 2.0f, AndroidUtilities.dp(6.0f) + getWidth());

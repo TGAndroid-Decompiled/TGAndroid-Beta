@@ -6,15 +6,15 @@ import android.os.Parcelable;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 public final class u extends o6.a {
     public static final Parcelable.Creator<u> CREATOR = new m8.h(15);
-    public final int f16744a;
-    public final Account f16745b;
-    public final int f16746c;
+    public final int f16745a;
+    public final Account f16746b;
+    public final int f16747c;
     public final GoogleSignInAccount d;
 
     public u(int i10, Account account, int i11, GoogleSignInAccount googleSignInAccount) {
-        this.f16744a = i10;
-        this.f16745b = account;
-        this.f16746c = i11;
+        this.f16745a = i10;
+        this.f16746b = account;
+        this.f16747c = i11;
         this.d = googleSignInAccount;
     }
 
@@ -22,10 +22,10 @@ public final class u extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.g0.q(parcel, 20293);
         w7.g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f16744a);
-        w7.g0.k(parcel, 2, this.f16745b, i10);
+        parcel.writeInt(this.f16745a);
+        w7.g0.k(parcel, 2, this.f16746b, i10);
         w7.g0.s(parcel, 3, 4);
-        parcel.writeInt(this.f16746c);
+        parcel.writeInt(this.f16747c);
         w7.g0.k(parcel, 4, this.d, i10);
         w7.g0.r(parcel, q6);
     }

@@ -21,20 +21,20 @@ public final class a3 extends View {
     public final Paint I;
     public final Rect J;
     public final boolean K;
-    public final p3[] f31768a;
-    public final p3[] f31769b;
-    public ValueAnimator f31770c;
+    public final p3[] f31769a;
+    public final p3[] f31770b;
+    public ValueAnimator f31771c;
     public int d;
-    public int f31771e;
-    public int f31772f;
+    public int f31772e;
+    public int f31773f;
     public int h;
-    public int f31773n;
-    public int f31774r;
-    public int f31775s;
+    public int f31774n;
+    public int f31775r;
+    public int f31776s;
     public int v;
-    public int f31776w;
-    public int f31777x;
-    public boolean f31778y;
+    public int f31777w;
+    public int f31778x;
+    public boolean f31779y;
 
     public a3(Activity activity, TLRPC.User user, r1 r1Var) {
         super(activity);
@@ -47,26 +47,26 @@ public final class a3 extends View {
         if (!isEnabled) {
             return;
         }
-        this.f31768a = new p3[]{new p3(user, this, AndroidUtilities.dp(32.0f)), new p3(user, this, AndroidUtilities.dp(28.0f)), new p3(user, this, AndroidUtilities.dp(35.0f)), new p3(user, this, AndroidUtilities.dp(28.0f)), new p3(user, this, AndroidUtilities.dp(26.0f))};
-        this.f31769b = new p3[]{new p3(user, this, AndroidUtilities.dp(32.0f)), new p3(user, this, AndroidUtilities.dp(28.0f)), new p3(user, this, AndroidUtilities.dp(35.0f)), new p3(user, this, AndroidUtilities.dp(28.0f)), new p3(user, this, AndroidUtilities.dp(26.0f))};
+        this.f31769a = new p3[]{new p3(user, this, AndroidUtilities.dp(32.0f)), new p3(user, this, AndroidUtilities.dp(28.0f)), new p3(user, this, AndroidUtilities.dp(35.0f)), new p3(user, this, AndroidUtilities.dp(28.0f)), new p3(user, this, AndroidUtilities.dp(26.0f))};
+        this.f31770b = new p3[]{new p3(user, this, AndroidUtilities.dp(32.0f)), new p3(user, this, AndroidUtilities.dp(28.0f)), new p3(user, this, AndroidUtilities.dp(35.0f)), new p3(user, this, AndroidUtilities.dp(28.0f)), new p3(user, this, AndroidUtilities.dp(26.0f))};
         r1Var.a(this);
         setLayerType(2, null);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
 
     public final void a() {
-        if (!this.K || this.f31778y) {
+        if (!this.K || this.f31779y) {
             return;
         }
-        this.f31778y = true;
+        this.f31779y = true;
         int dp = AndroidUtilities.dp(12.0f);
         this.F = dp;
         ValueAnimator ofInt = ValueAnimator.ofInt(0, dp);
-        this.f31770c = ofInt;
+        this.f31771c = ofInt;
         ofInt.addUpdateListener(new z2(this, 0));
-        this.f31770c.setInterpolator(tr.f31141g);
-        this.f31770c.setDuration(200L);
-        this.f31770c.start();
+        this.f31771c.setInterpolator(tr.f31142g);
+        this.f31771c.setDuration(200L);
+        this.f31771c.start();
     }
 
     @Override
@@ -75,21 +75,21 @@ public final class a3 extends View {
         p3[] p3VarArr2;
         super.onAttachedToWindow();
         if (this.K) {
-            for (p3 p3Var : this.f31768a) {
-                o5 o5Var = p3Var.f32072a;
+            for (p3 p3Var : this.f31769a) {
+                o5 o5Var = p3Var.f32073a;
                 if (o5Var != null) {
                     o5Var.a();
-                    ValueAnimator valueAnimator = p3Var.f32073b;
+                    ValueAnimator valueAnimator = p3Var.f32074b;
                     if (valueAnimator != null) {
                         valueAnimator.start();
                     }
                 }
             }
-            for (p3 p3Var2 : this.f31769b) {
-                o5 o5Var2 = p3Var2.f32072a;
+            for (p3 p3Var2 : this.f31770b) {
+                o5 o5Var2 = p3Var2.f32073a;
                 if (o5Var2 != null) {
                     o5Var2.a();
-                    ValueAnimator valueAnimator2 = p3Var2.f32073b;
+                    ValueAnimator valueAnimator2 = p3Var2.f32074b;
                     if (valueAnimator2 != null) {
                         valueAnimator2.start();
                     }
@@ -104,29 +104,29 @@ public final class a3 extends View {
         p3[] p3VarArr2;
         super.onDetachedFromWindow();
         if (this.K) {
-            for (p3 p3Var : this.f31768a) {
-                o5 o5Var = p3Var.f32072a;
+            for (p3 p3Var : this.f31769a) {
+                o5 o5Var = p3Var.f32073a;
                 if (o5Var != null) {
-                    ValueAnimator valueAnimator = p3Var.f32073b;
+                    ValueAnimator valueAnimator = p3Var.f32074b;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        p3Var.f32073b = null;
+                        p3Var.f32074b = null;
                     }
                     o5Var.b();
                 }
             }
-            for (p3 p3Var2 : this.f31769b) {
-                o5 o5Var2 = p3Var2.f32072a;
+            for (p3 p3Var2 : this.f31770b) {
+                o5 o5Var2 = p3Var2.f32073a;
                 if (o5Var2 != null) {
-                    ValueAnimator valueAnimator2 = p3Var2.f32073b;
+                    ValueAnimator valueAnimator2 = p3Var2.f32074b;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
-                        p3Var2.f32073b = null;
+                        p3Var2.f32074b = null;
                     }
                     o5Var2.b();
                 }
             }
-            ValueAnimator valueAnimator3 = this.f31770c;
+            ValueAnimator valueAnimator3 = this.f31771c;
             if (valueAnimator3 != null) {
                 valueAnimator3.cancel();
             }
@@ -147,21 +147,21 @@ public final class a3 extends View {
         r1 r1Var = this.H;
         r1Var.d(x10, y3);
         int measuredWidth = getMeasuredWidth() / 2;
-        p3[] p3VarArr = this.f31768a;
-        p3VarArr[0].b((measuredWidth - AndroidUtilities.dp(120.0f)) - this.d, AndroidUtilities.dp(120.0f) - this.f31774r);
-        p3VarArr[1].b((measuredWidth - AndroidUtilities.dp(180.0f)) - this.f31771e, AndroidUtilities.dp(150.0f) - this.f31775s);
-        p3VarArr[2].b((measuredWidth - AndroidUtilities.dp(150.0f)) - this.f31772f, AndroidUtilities.dp(185.0f) - this.v);
-        p3VarArr[3].b((measuredWidth - AndroidUtilities.dp(176.0f)) - this.h, AndroidUtilities.dp(240.0f) - this.f31776w);
-        p3VarArr[4].b((measuredWidth - AndroidUtilities.dp(130.0f)) - this.f31773n, AndroidUtilities.dp(265.0f) - this.f31777x);
+        p3[] p3VarArr = this.f31769a;
+        p3VarArr[0].b((measuredWidth - AndroidUtilities.dp(120.0f)) - this.d, AndroidUtilities.dp(120.0f) - this.f31775r);
+        p3VarArr[1].b((measuredWidth - AndroidUtilities.dp(180.0f)) - this.f31772e, AndroidUtilities.dp(150.0f) - this.f31776s);
+        p3VarArr[2].b((measuredWidth - AndroidUtilities.dp(150.0f)) - this.f31773f, AndroidUtilities.dp(185.0f) - this.v);
+        p3VarArr[3].b((measuredWidth - AndroidUtilities.dp(176.0f)) - this.h, AndroidUtilities.dp(240.0f) - this.f31777w);
+        p3VarArr[4].b((measuredWidth - AndroidUtilities.dp(130.0f)) - this.f31774n, AndroidUtilities.dp(265.0f) - this.f31778x);
         for (p3 p3Var : p3VarArr) {
             p3Var.a(canvas);
         }
-        p3[] p3VarArr2 = this.f31769b;
-        p3VarArr2[0].b(AndroidUtilities.dp(50.0f) + measuredWidth + this.d, AndroidUtilities.dp(120.0f) - this.f31774r);
-        p3VarArr2[1].b(AndroidUtilities.dp(110.0f) + measuredWidth + this.f31771e, AndroidUtilities.dp(150.0f) - this.f31775s);
-        p3VarArr2[2].b(AndroidUtilities.dp(80.0f) + measuredWidth + this.f31772f, AndroidUtilities.dp(185.0f) - this.v);
-        p3VarArr2[3].b(AndroidUtilities.dp(106.0f) + measuredWidth + this.h, AndroidUtilities.dp(240.0f) - this.f31776w);
-        p3VarArr2[4].b(AndroidUtilities.dp(60.0f) + measuredWidth + this.f31773n, AndroidUtilities.dp(265.0f) - this.f31777x);
+        p3[] p3VarArr2 = this.f31770b;
+        p3VarArr2[0].b(AndroidUtilities.dp(50.0f) + measuredWidth + this.d, AndroidUtilities.dp(120.0f) - this.f31775r);
+        p3VarArr2[1].b(AndroidUtilities.dp(110.0f) + measuredWidth + this.f31772e, AndroidUtilities.dp(150.0f) - this.f31776s);
+        p3VarArr2[2].b(AndroidUtilities.dp(80.0f) + measuredWidth + this.f31773f, AndroidUtilities.dp(185.0f) - this.v);
+        p3VarArr2[3].b(AndroidUtilities.dp(106.0f) + measuredWidth + this.h, AndroidUtilities.dp(240.0f) - this.f31777w);
+        p3VarArr2[4].b(AndroidUtilities.dp(60.0f) + measuredWidth + this.f31774n, AndroidUtilities.dp(265.0f) - this.f31778x);
         for (p3 p3Var2 : p3VarArr2) {
             p3Var2.a(canvas);
         }
@@ -172,7 +172,7 @@ public final class a3 extends View {
         r1Var.b().setAlpha(255);
         canvas.drawRect(rect, r1Var.b());
         r1Var.b().setAlpha(alpha);
-        if (r1Var.f32105e) {
+        if (r1Var.f32106e) {
             int alpha2 = ((Paint) r1Var.d.f7904a).getAlpha();
             ((Paint) r1Var.d.f7904a).setAlpha(255);
             canvas.drawRect(rect, (Paint) r1Var.d.f7904a);
@@ -187,17 +187,17 @@ public final class a3 extends View {
         p3[] p3VarArr2;
         super.onLayout(z10, i10, i11, i12, i13);
         if (this.K) {
-            for (p3 p3Var : this.f31768a) {
+            for (p3 p3Var : this.f31769a) {
                 int measuredWidth = getMeasuredWidth();
                 getMeasuredHeight();
-                p3Var.f32084o = measuredWidth;
-                p3Var.f32080k.invalidate();
+                p3Var.f32085o = measuredWidth;
+                p3Var.f32081k.invalidate();
             }
-            for (p3 p3Var2 : this.f31769b) {
+            for (p3 p3Var2 : this.f31770b) {
                 int measuredWidth2 = getMeasuredWidth();
                 getMeasuredHeight();
-                p3Var2.f32084o = measuredWidth2;
-                p3Var2.f32080k.invalidate();
+                p3Var2.f32085o = measuredWidth2;
+                p3Var2.f32081k.invalidate();
             }
         }
     }

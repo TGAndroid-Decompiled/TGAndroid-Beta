@@ -7,24 +7,24 @@ import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
 public final class au0 extends yl0 {
-    public final Context f24660c;
+    public final Context f24661c;
     public final ArrayList d = new ArrayList();
-    public boolean f24661e;
-    public boolean f24662f;
+    public boolean f24662e;
+    public boolean f24663f;
     public boolean h;
-    public final pv0 f24663n;
+    public final pv0 f24664n;
 
     public au0(pv0 pv0Var, Context context) {
-        this.f24663n = pv0Var;
-        this.f24660c = context;
+        this.f24664n = pv0Var;
+        this.f24661c = context;
     }
 
     public static void E(au0 au0Var, long j3) {
-        pv0 pv0Var = au0Var.f24663n;
-        if (!au0Var.f24661e) {
+        pv0 pv0Var = au0Var.f24664n;
+        if (!au0Var.f24662e) {
             TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
-            long j10 = pv0Var.f29775j1;
-            org.telegram.ui.ActionBar.n2 n2Var = pv0Var.f29800v1;
+            long j10 = pv0Var.f29776j1;
+            org.telegram.ui.ActionBar.n2 n2Var = pv0Var.f29801v1;
             if (DialogObject.isEncryptedDialog(j10)) {
                 j10 = org.telegram.messenger.f0.l(n2Var.getMessagesController(), j10).user_id;
             }
@@ -35,7 +35,7 @@ public final class au0 extends yl0 {
             }
             tL_messages_getCommonChats.limit = 100;
             tL_messages_getCommonChats.max_id = j3;
-            au0Var.f24661e = true;
+            au0Var.f24662e = true;
             au0Var.l();
             n2Var.getConnectionsManager().bindRequestToGuid(n2Var.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new y1(au0Var, 12)), n2Var.getClassGuid());
         }
@@ -52,7 +52,7 @@ public final class au0 extends yl0 {
     @Override
     public final int h() {
         ArrayList arrayList = this.d;
-        if (arrayList.isEmpty() && !this.f24661e) {
+        if (arrayList.isEmpty() && !this.f24662e) {
             return 1;
         }
         int size = arrayList.size();
@@ -65,7 +65,7 @@ public final class au0 extends yl0 {
     @Override
     public final int j(int i10) {
         ArrayList arrayList = this.d;
-        if (arrayList.isEmpty() && !this.f24661e) {
+        if (arrayList.isEmpty() && !this.f24662e) {
             return 15;
         }
         if (i10 < arrayList.size()) {
@@ -76,8 +76,8 @@ public final class au0 extends yl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f46527f == 14) {
-            View view = c1Var.f46523a;
+        if (c1Var.f46528f == 14) {
+            View view = c1Var.f46524a;
             if (view instanceof org.telegram.ui.Cells.i6) {
                 org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) view;
                 ArrayList arrayList = this.d;
@@ -94,18 +94,18 @@ public final class au0 extends yl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.i6 i6Var;
-        pv0 pv0Var = this.f24663n;
+        pv0 pv0Var = this.f24664n;
         org.telegram.ui.ActionBar.d6 d6Var = pv0Var.F1;
-        Context context = this.f24660c;
+        Context context = this.f24661c;
         if (i10 != 14) {
             if (i10 != 15) {
                 w00 w00Var = new w00(context, d6Var);
                 w00Var.setIsSingleCell(true);
-                w00Var.f32416w = false;
+                w00Var.f32417w = false;
                 w00Var.setViewType(1);
                 i6Var = w00Var;
             } else {
-                cu0 M = pv0.M(6, pv0Var.f29775j1, context, d6Var);
+                cu0 M = pv0.M(6, pv0Var.f29776j1, context, d6Var);
                 M.setLayoutParams(new s4.p0(-1, -1));
                 return new s4.c1(M);
             }

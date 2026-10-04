@@ -19,7 +19,7 @@ public final class g4 implements ViewTreeObserver.OnGlobalLayoutListener {
                 return;
             default:
                 pf.e eVar = (pf.e) this.f5108b;
-                View view = eVar.f44416j;
+                View view = eVar.f44417j;
                 if (view != null) {
                     eVar.e(view);
                     return;

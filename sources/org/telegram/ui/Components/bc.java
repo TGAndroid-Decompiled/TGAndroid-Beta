@@ -9,18 +9,18 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class bc implements rk0 {
-    public final cc f24916a;
+    public final cc f24917a;
 
     public bc(cc ccVar) {
-        this.f24916a = ccVar;
+        this.f24917a = ccVar;
     }
 
     @Override
     public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
         boolean z12;
-        cc ccVar = this.f24916a;
-        org.telegram.ui.ActionBar.n2 n2Var = ccVar.f25313f;
-        if (ccVar.f25312e == null) {
+        cc ccVar = this.f24917a;
+        org.telegram.ui.ActionBar.n2 n2Var = ccVar.f25314f;
+        if (ccVar.f25313e == null) {
             return;
         }
         long clientUserId = UserConfig.getInstance(n2Var.getCurrentAccount()).getClientUserId();
@@ -30,16 +30,16 @@ public final class bc implements rk0 {
             z12 = false;
         }
         int i10 = 0;
-        for (int i11 = 0; i11 < ccVar.f25312e.size(); i11++) {
-            int keyAt = ccVar.f25312e.keyAt(i11);
+        for (int i11 = 0; i11 < ccVar.f25313e.size(); i11++) {
+            int keyAt = ccVar.f25313e.keyAt(i11);
             TLRPC.Message message = new TLRPC.Message();
             message.dialog_id = n2Var.getUserConfig().getClientUserId();
-            message.f20058id = keyAt;
+            message.f20059id = keyAt;
             MessageObject messageObject = new MessageObject(n2Var.getCurrentAccount(), message, false, false);
             ArrayList<zg.o0> arrayList = new ArrayList<>();
             arrayList.add(o0Var);
-            n2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, o0Var, false, false, ccVar.f25313f, null);
-            i10 = message.f20058id;
+            n2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, o0Var, false, false, ccVar.f25314f, null);
+            i10 = message.f20059id;
         }
         ccVar.f();
         rc.e();

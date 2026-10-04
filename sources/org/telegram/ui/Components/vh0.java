@@ -54,13 +54,13 @@ public final class vh0 extends w9 implements iw0 {
         bi0 bi0Var = this.P;
         float[] fArr = bi0Var.O0;
         Path path = bi0Var.M0;
-        ArrayList arrayList = bi0Var.f24960b1;
+        ArrayList arrayList = bi0Var.f24961b1;
         RectF rectF = bi0Var.N0;
-        org.telegram.ui.kv0 kv0Var = bi0Var.f24966h1;
-        if (kv0Var == null || !kv0Var.f38105n) {
+        org.telegram.ui.kv0 kv0Var = bi0Var.f24967h1;
+        if (kv0Var == null || !kv0Var.f38106n) {
             if (this.H != null) {
                 int k10 = bi0Var.D0.k(this.M);
-                if (bi0Var.f24967i1) {
+                if (bi0Var.f24968i1) {
                     k10--;
                 }
                 Drawable drawable = getImageReceiver().getDrawable();
@@ -68,12 +68,12 @@ public final class vh0 extends w9 implements iw0 {
                 if (k10 >= arrayList.size() || arrayList.get(k10) == null ? !(drawable == null || (this.L && (!(drawable instanceof d6) || ((d6) drawable).d[4] <= 0))) : ((Float) arrayList.get(k10)).floatValue() >= 1.0f) {
                     if (this.I == null) {
                         RadialProgress2 radialProgress2 = this.H;
-                        if (radialProgress2.f24258c) {
-                            ga0Var = radialProgress2.f24263j;
+                        if (radialProgress2.f24259c) {
+                            ga0Var = radialProgress2.f24264j;
                         } else {
-                            ga0Var = radialProgress2.f24262i;
+                            ga0Var = radialProgress2.f24263i;
                         }
-                        if (ga0Var.f26781w < 1.0f) {
+                        if (ga0Var.f26782w < 1.0f) {
                             radialProgress2.o(1.0f, true);
                             j10 = 100;
                         }
@@ -82,7 +82,7 @@ public final class vh0 extends w9 implements iw0 {
                         this.I = ofFloat;
                         ofFloat.setStartDelay(j10);
                         this.I.setDuration(this.J * 250.0f);
-                        this.I.setInterpolator(tr.f31140f);
+                        this.I.setInterpolator(tr.f31141f);
                         this.I.addUpdateListener(new v70(this, 4));
                         this.I.addListener(new ei.w2(this, k10, 8));
                         this.I.start();
@@ -98,34 +98,34 @@ public final class vh0 extends w9 implements iw0 {
                             j3 = 750;
                         }
                         if (currentTimeMillis <= 250 + j3 && currentTimeMillis > j3) {
-                            this.H.E = tr.f31140f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
+                            this.H.E = tr.f31141f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
                         }
                     }
-                    if (bi0Var.f24965g1) {
+                    if (bi0Var.f24966g1) {
                         invalidate();
                     } else {
                         postInvalidateOnAnimation();
                     }
                     invalidate();
                 }
-                int i10 = bi0Var.f24970m1;
-                if (i10 == 0 && bi0Var.f24971n1 == 0) {
+                int i10 = bi0Var.f24971m1;
+                if (i10 == 0 && bi0Var.f24972n1 == 0) {
                     canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.N);
                     canvas2 = canvas;
                 } else {
                     canvas2 = canvas;
-                    int i11 = bi0Var.f24971n1;
+                    int i11 = bi0Var.f24972n1;
                     Paint paint = this.N;
                     if (i10 == i11) {
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                        float f7 = bi0Var.f24970m1;
+                        float f7 = bi0Var.f24971m1;
                         canvas2.drawRoundRect(rectF, f7, f7, paint);
                     } else {
                         path.reset();
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                         for (int i12 = 0; i12 < 4; i12++) {
-                            fArr[i12] = bi0Var.f24970m1;
-                            fArr[i12 + 4] = bi0Var.f24971n1;
+                            fArr[i12] = bi0Var.f24971m1;
+                            fArr[i12 + 4] = bi0Var.f24972n1;
                         }
                         path.addRoundRect(rectF, fArr, Path.Direction.CW);
                         canvas2.drawPath(path, paint);
@@ -147,7 +147,7 @@ public final class vh0 extends w9 implements iw0 {
         int i14;
         super.onSizeChanged(i10, i11, i12, i13);
         if (this.H != null) {
-            if (this.P.f24978z0.getOccupyStatusBar()) {
+            if (this.P.f24979z0.getOccupyStatusBar()) {
                 i14 = AndroidUtilities.statusBarHeight;
             } else {
                 i14 = 0;
@@ -174,7 +174,7 @@ public final class vh0 extends w9 implements iw0 {
     public final void invalidate() {
         super.invalidate();
         bi0 bi0Var = this.P;
-        if (bi0Var.f24965g1) {
+        if (bi0Var.f24966g1) {
             bi0Var.invalidate();
         }
         Runnable runnable = this.O;

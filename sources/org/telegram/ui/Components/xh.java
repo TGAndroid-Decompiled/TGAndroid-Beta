@@ -10,26 +10,26 @@ import android.graphics.Shader;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class xh extends zl0 {
-    public final int f32785e3;
-    public final Paint f32786f3;
-    public final Paint f32787g3;
-    public boolean f32788h3;
-    public boolean f32789i3;
+    public final int f32786e3;
+    public final Paint f32787f3;
+    public final Paint f32788g3;
+    public boolean f32789h3;
+    public boolean f32790i3;
     public final Object j3;
-    public final Object f32790k3;
+    public final Object f32791k3;
 
     public xh(Context context, int i10) {
         super(context, null);
-        this.f32785e3 = i10;
+        this.f32786e3 = i10;
         switch (i10) {
             case 1:
                 super(context, null);
                 Paint paint = new Paint(1);
-                this.f32786f3 = paint;
+                this.f32787f3 = paint;
                 Paint paint2 = new Paint(1);
-                this.f32787g3 = paint2;
+                this.f32788g3 = paint2;
                 this.j3 = new e6(this);
-                this.f32790k3 = new e6(this);
+                this.f32791k3 = new e6(this);
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
                 paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
@@ -37,14 +37,14 @@ public final class xh extends zl0 {
             default:
                 tr trVar = tr.h;
                 this.j3 = new le.b(this, trVar, 320L);
-                this.f32790k3 = new le.b(this, trVar, 320L);
+                this.f32791k3 = new le.b(this, trVar, 320L);
                 Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
                 LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
                 Paint paint3 = new Paint(1);
-                this.f32786f3 = paint3;
+                this.f32787f3 = paint3;
                 Paint paint4 = new Paint(1);
-                this.f32787g3 = paint4;
+                this.f32788g3 = paint4;
                 paint3.setShader(linearGradient);
                 PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
                 paint3.setXfermode(new PorterDuffXfermode(mode));
@@ -57,32 +57,32 @@ public final class xh extends zl0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        switch (this.f32785e3) {
+        switch (this.f32786e3) {
             case 0:
-                this.f32789i3 = false;
-                this.f32788h3 = false;
+                this.f32790i3 = false;
+                this.f32789h3 = false;
                 super.dispatchDraw(canvas);
-                ((le.b) this.j3).a(this.f32788h3, true);
-                ((le.b) this.f32790k3).a(this.f32789i3, true);
+                ((le.b) this.j3).a(this.f32789h3, true);
+                ((le.b) this.f32791k3).a(this.f32790i3, true);
                 return;
             default:
                 super.dispatchDraw(canvas);
                 e6 e6Var = (e6) this.j3;
                 float f10 = 1.0f;
-                if (this.f32788h3) {
+                if (this.f32789h3) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                Paint paint = this.f32786f3;
+                Paint paint = this.f32787f3;
                 paint.setAlpha((int) (e6Var.d(f7, false) * 255.0f));
                 canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint);
-                e6 e6Var2 = (e6) this.f32790k3;
-                if (!this.f32789i3) {
+                e6 e6Var2 = (e6) this.f32791k3;
+                if (!this.f32790i3) {
                     f10 = 0.0f;
                 }
                 int d = (int) (e6Var2.d(f10, false) * 255.0f);
-                Paint paint2 = this.f32787g3;
+                Paint paint2 = this.f32788g3;
                 paint2.setAlpha(d);
                 canvas.save();
                 canvas.translate(0.0f, getHeight() - AndroidUtilities.dp(8.0f));
@@ -96,7 +96,7 @@ public final class xh extends zl0 {
     public boolean drawChild(Canvas canvas, View view, long j3) {
         boolean z10;
         boolean z11;
-        switch (this.f32785e3) {
+        switch (this.f32786e3) {
             case 0:
                 float x10 = view.getX();
                 float width = view.getWidth() + x10;
@@ -114,8 +114,8 @@ public final class xh extends zl0 {
                 if (!z10 && !z11) {
                     z12 = false;
                 }
-                this.f32788h3 |= z10;
-                this.f32789i3 |= z11;
+                this.f32789h3 |= z10;
+                this.f32790i3 |= z11;
                 canvas.save();
                 if (z12) {
                     canvas.clipRect(AndroidUtilities.dp(19.0f), 0, getMeasuredWidth() - AndroidUtilities.dp(19.0f), getMeasuredHeight());
@@ -127,8 +127,8 @@ public final class xh extends zl0 {
                     canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((le.b) this.j3).f15434e, AndroidUtilities.dp(8.0f), dp), 0.0f);
-                    canvas.drawPaint(this.f32786f3);
+                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((le.b) this.j3).f15435e, AndroidUtilities.dp(8.0f), dp), 0.0f);
+                    canvas.drawPaint(this.f32787f3);
                     canvas.restore();
                     canvas.restore();
                 }
@@ -137,8 +137,8 @@ public final class xh extends zl0 {
                     canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.z(1.0f, ((le.b) this.f32790k3).f15434e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
-                    canvas.drawPaint(this.f32787g3);
+                    canvas.translate(com.google.android.gms.internal.vision.e2.z(1.0f, ((le.b) this.f32791k3).f15435e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
+                    canvas.drawPaint(this.f32788g3);
                     canvas.restore();
                     canvas.restore();
                 }
@@ -150,13 +150,13 @@ public final class xh extends zl0 {
 
     @Override
     public void l0(int i10) {
-        switch (this.f32785e3) {
+        switch (this.f32786e3) {
             case 1:
                 boolean canScrollVertically = canScrollVertically(-1);
                 boolean canScrollVertically2 = canScrollVertically(1);
-                if (canScrollVertically != this.f32788h3 || canScrollVertically2 != this.f32789i3) {
-                    this.f32788h3 = canScrollVertically;
-                    this.f32789i3 = canScrollVertically2;
+                if (canScrollVertically != this.f32789h3 || canScrollVertically2 != this.f32790i3) {
+                    this.f32789h3 = canScrollVertically;
+                    this.f32790i3 = canScrollVertically2;
                     invalidate();
                     return;
                 }
@@ -170,7 +170,7 @@ public final class xh extends zl0 {
     public void onMeasure(int i10, int i11) {
         float f7;
         int i12;
-        switch (this.f32785e3) {
+        switch (this.f32786e3) {
             case 0:
                 int childCount = getChildCount();
                 int size = (View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight();
@@ -178,7 +178,7 @@ public final class xh extends zl0 {
                 for (int i13 = 0; i13 < childCount; i13++) {
                     View childAt = getChildAt(i13);
                     if (childAt instanceof si) {
-                        f10 = ((si) childAt).f30731a.c() + f10;
+                        f10 = ((si) childAt).f30732a.c() + f10;
                     }
                 }
                 if (size > f10 && childCount > 0) {
@@ -189,7 +189,7 @@ public final class xh extends zl0 {
                 for (int i14 = 0; i14 < childCount; i14++) {
                     View childAt2 = getChildAt(i14);
                     if (childAt2 instanceof si) {
-                        ((si) childAt2).f30731a.setAdditionalWidth(i12);
+                        ((si) childAt2).f30732a.setAdditionalWidth(i12);
                     }
                 }
                 super.onMeasure(i10, i11);

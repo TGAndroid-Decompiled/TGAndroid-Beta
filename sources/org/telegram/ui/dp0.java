@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 public final class dp0 extends org.telegram.ui.Components.f61 {
-    public static final int f35821a = 0;
+    public static final int f35822a = 0;
 
     static {
         org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
@@ -15,21 +15,21 @@ public final class dp0 extends org.telegram.ui.Components.f61 {
         ep0 ep0Var = (ep0) view;
         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) g61Var.G;
         xh.j1 j1Var = ep0Var.h;
-        xh.f1 f1Var = ep0Var.f36066e;
-        ep0Var.f36063a = savedStarGift.gift.f20264id;
+        xh.f1 f1Var = ep0Var.f36067e;
+        ep0Var.f36064a = savedStarGift.gift.f20265id;
         ep0Var.setPadding(0, 0, 0, 0);
         ep0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
-        ep0Var.f36064b = (TL_stars.starGiftAttributeBackdrop) yh.t5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        ep0Var.f36065c = (TL_stars.starGiftAttributePattern) yh.t5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
-        f1Var.d(ep0Var.f36064b);
-        f1Var.e(ep0Var.f36065c);
+        ep0Var.f36065b = (TL_stars.starGiftAttributeBackdrop) yh.t5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        ep0Var.f36066c = (TL_stars.starGiftAttributePattern) yh.t5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+        f1Var.d(ep0Var.f36065b);
+        f1Var.e(ep0Var.f36066c);
         if (j1Var != null) {
-            j1Var.setBackdrop(ep0Var.f36064b);
+            j1Var.setBackdrop(ep0Var.f36065b);
             String h = org.telegram.messenger.f0.h(savedStarGift.gift.num, ',', new StringBuilder("#"));
-            j1Var.f50032b = h;
-            j1Var.f50031a.e(9, h, false);
+            j1Var.f50033b = h;
+            j1Var.f50032a.e(9, h, false);
         }
-        ep0Var.b(g61Var.f26662e, false);
+        ep0Var.b(g61Var.f26663e, false);
     }
 
     @Override

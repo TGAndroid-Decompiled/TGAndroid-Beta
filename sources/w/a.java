@@ -42,10 +42,10 @@ import kotlin.jvm.internal.i;
 import n7.s0;
 import w7.f0;
 public final class a implements Parcelable.Creator {
-    public final int f48442a;
+    public final int f48443a;
 
     public a(int i10) {
-        this.f48442a = i10;
+        this.f48443a = i10;
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class a implements Parcelable.Creator {
         String str4 = null;
         c.b bVar = null;
         String str5 = null;
-        switch (this.f48442a) {
+        switch (this.f48443a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
@@ -486,7 +486,7 @@ public final class a implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f48442a) {
+        switch (this.f48443a) {
             case 0:
                 return new b[i10];
             case 1:

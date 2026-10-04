@@ -28,7 +28,7 @@ public final class t0 implements TextView.OnEditorActionListener {
                     if (TextUtils.isEmpty(u0Var.f11352f.getText())) {
                         u0Var.f11358y = null;
                         u0Var.d.b();
-                        u0Var.f11350c.f25244f3.N(true);
+                        u0Var.f11350c.f25245f3.N(true);
                     } else {
                         AndroidUtilities.runOnUIThread(n0Var);
                     }

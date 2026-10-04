@@ -11,35 +11,35 @@ import org.telegram.ui.Components.eu;
 import org.telegram.ui.Components.lw0;
 import org.telegram.ui.Components.tr;
 public abstract class g3 extends FrameLayout {
-    public boolean f22126a;
-    public final e3 f22127b;
-    public final int f22128c;
+    public boolean f22127a;
+    public final e3 f22128b;
+    public final int f22129c;
     public boolean d;
-    public int f22129e;
-    public boolean f22130f;
+    public int f22130e;
+    public boolean f22131f;
     public boolean h;
-    public boolean f22131n;
-    public final org.telegram.ui.Components.h5 f22132r;
-    public int f22133s;
+    public boolean f22132n;
+    public final org.telegram.ui.Components.h5 f22133r;
+    public int f22134s;
     public final org.telegram.ui.Components.o6 v;
-    public boolean f22134w;
+    public boolean f22135w;
 
     public g3(Context context, lw0 lw0Var, String str, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f22129e = -1;
-        this.f22131n = true;
+        this.f22130e = -1;
+        this.f22132n = true;
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
         this.v = o6Var;
         o6Var.k(0.2f, 160L, tr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
-        o6Var.f29239b = 5;
-        this.f22128c = i10;
+        o6Var.f29240b = 5;
+        this.f22129c = i10;
         e3 e3Var = new e3(this, context, lw0Var, d6Var, z10);
-        this.f22127b = e3Var;
+        this.f22128b = e3Var;
         eu editText = e3Var.getEditText();
         editText.setDelegate(new n7.z0(this, editText, false, 3));
         e3Var.setWillNotDraw(false);
-        this.f22132r = new org.telegram.ui.Components.h5(e3Var);
+        this.f22133r = new org.telegram.ui.Components.h5(e3Var);
         o6Var.setCallback(e3Var);
         editText.setTextSize(1, 17.0f);
         editText.setHintTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.H6, d6Var));
@@ -73,19 +73,19 @@ public abstract class g3 extends FrameLayout {
 
     public final void c() {
         int i10;
-        e3 e3Var = this.f22127b;
+        e3 e3Var = this.f22128b;
         if (e3Var != null && e3Var.getEditText() != null) {
-            this.f22133s = this.f22128c - getText().length();
+            this.f22134s = this.f22129c - getText().length();
             String str = "";
-            if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f22130f || this.h) && ((i10 = this.f22129e) == -1 || this.f22133s <= i10))) {
-                str = "" + this.f22133s;
+            if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f22131f || this.h) && ((i10 = this.f22130e) == -1 || this.f22134s <= i10))) {
+                str = "" + this.f22134s;
             }
             this.v.q(str, true, true);
         }
     }
 
     public CharSequence getText() {
-        return this.f22127b.getText();
+        return this.f22128b.getText();
     }
 
     @Override
@@ -93,7 +93,7 @@ public abstract class g3 extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f22134w) {
+        if (this.f22135w) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -106,7 +106,7 @@ public abstract class g3 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20940k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20941k0);
         }
     }
 
@@ -116,16 +116,16 @@ public abstract class g3 extends FrameLayout {
     }
 
     public void setDivider(boolean z10) {
-        this.f22134w = z10;
+        this.f22135w = z10;
         setWillNotDraw(!z10);
     }
 
     public void setEmojiViewCacheType(int i10) {
-        this.f22127b.setEmojiViewCacheType(i10);
+        this.f22128b.setEmojiViewCacheType(i10);
     }
 
     public void setShowLimitOnFocus(boolean z10) {
-        this.f22130f = z10;
+        this.f22131f = z10;
     }
 
     public void setShowLimitWhenEmpty(boolean z10) {
@@ -136,16 +136,16 @@ public abstract class g3 extends FrameLayout {
     }
 
     public void setShowLimitWhenNear(int i10) {
-        this.f22129e = i10;
+        this.f22130e = i10;
         c();
     }
 
     public void setText(CharSequence charSequence) {
-        this.f22126a = true;
-        e3 e3Var = this.f22127b;
+        this.f22127a = true;
+        e3 e3Var = this.f22128b;
         e3Var.setText(charSequence);
         e3Var.setSelection(e3Var.getText().length());
-        this.f22126a = false;
+        this.f22127a = false;
     }
 
     public void b() {

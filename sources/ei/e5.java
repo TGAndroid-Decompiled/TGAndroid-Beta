@@ -25,13 +25,13 @@ public final class e5 extends org.telegram.ui.ActionBar.n2 implements Notificati
 
     public final void S(ArrayList arrayList, u61 u61Var) {
         yh.m e7 = yh.o.g(this.currentAccount).e(this.f9017a);
-        ArrayList arrayList2 = e7.f51597e;
+        ArrayList arrayList2 = e7.f51598e;
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             Object obj = arrayList2.get(i10);
             int i11 = b4.f8943a;
             g61 J = g61.J(b4.class);
             J.G = obj;
-            J.f26674r = false;
+            J.f26675r = false;
             arrayList.add(J);
         }
         if (e7.h) {
@@ -54,14 +54,14 @@ public final class e5 extends org.telegram.ui.ActionBar.n2 implements Notificati
         org.telegram.ui.ActionBar.g2 g2Var = new org.telegram.ui.ActionBar.g2(false);
         this.f9018b = g2Var;
         kVar.setBackButtonDrawable(g2Var);
-        this.f9018b.f20648k = 240.0f;
+        this.f9018b.f20649k = 240.0f;
         this.actionBar.setActionBarMenuOnItemClick(new u(this, 2));
-        this.actionBar.setBackgroundColor(i6.w0(null, i6.f20817d6, false));
+        this.actionBar.setBackgroundColor(i6.w0(null, i6.f20818d6, false));
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
         int i10 = i6.G6;
         kVar2.B(i6.w0(null, i10, false), false);
         this.actionBar.B(i6.w0(null, i10, false), true);
-        this.actionBar.A(i6.w0(null, i6.f21225z8, false), false);
+        this.actionBar.A(i6.w0(null, i6.f21226z8, false), false);
         this.actionBar.setTitleColor(i6.w0(null, i10, false));
         this.actionBar.setTitle(LocaleController.getString(R.string.ChannelAffiliatePrograms));
         lw0 lw0Var = new lw0(context, null);
@@ -83,9 +83,9 @@ public final class e5 extends org.telegram.ui.ActionBar.n2 implements Notificati
     @Override
     public final boolean isLightStatusBar() {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
-            int w02 = i6.w0(null, i6.f20817d6, false);
+            int w02 = i6.w0(null, i6.f20818d6, false);
             if (this.actionBar.s()) {
-                w02 = i6.w0(null, i6.f21172w8, false);
+                w02 = i6.w0(null, i6.f21173w8, false);
             }
             if (i0.a.f(w02) > 0.699999988079071d) {
                 return true;

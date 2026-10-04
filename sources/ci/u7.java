@@ -43,7 +43,7 @@ public final class u7 implements Utilities.Callback2 {
                     if (TextUtils.isEmpty(c8Var.f4825q0) && !c8Var.f4817h0) {
                         u61Var.U();
                         g61 c10 = g61.c(1, R.drawable.msg2_folder, LocaleController.getString(R.string.StoryMusicSelectFromFiles));
-                        c10.f26673q = true;
+                        c10.f26674q = true;
                         arrayList.add(c10);
                         u61Var.T();
                         dp += AndroidUtilities.dp(50.0f);
@@ -78,10 +78,10 @@ public final class u7 implements Utilities.Callback2 {
                     if (TextUtils.isEmpty(c8Var.f4825q0)) {
                         String string3 = LocaleController.getString(R.string.NoAudioFound);
                         String string4 = LocaleController.getString(R.string.NoAudioFilesInfo);
-                        int i12 = hj.f27144a;
+                        int i12 = hj.f27145a;
                         g61 J = g61.J(hj.class);
-                        J.f26668l = string3;
-                        J.f26669m = string4;
+                        J.f26669l = string3;
+                        J.f26670m = string4;
                         arrayList.add(J);
                     } else {
                         String string5 = LocaleController.getString(R.string.NoAudioFound);
@@ -91,10 +91,10 @@ public final class u7 implements Utilities.Callback2 {
                             i11 = R.string.NoAudioFoundInfo;
                         }
                         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i11, c8Var.f4825q0));
-                        int i13 = hj.f27144a;
+                        int i13 = hj.f27145a;
                         g61 J2 = g61.J(hj.class);
-                        J2.f26668l = string5;
-                        J2.f26669m = replaceTags;
+                        J2.f26669l = string5;
+                        J2.f26670m = replaceTags;
                         arrayList.add(J2);
                     }
                 }

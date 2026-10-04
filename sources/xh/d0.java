@@ -2,21 +2,21 @@ package xh;
 
 import org.telegram.ui.Components.p6;
 public final class d0 implements Runnable {
-    public final int f49915a;
-    public final j0 f49916b;
+    public final int f49916a;
+    public final j0 f49917b;
 
     public d0(j0 j0Var, int i10) {
-        this.f49915a = i10;
-        this.f49916b = j0Var;
+        this.f49916a = i10;
+        this.f49917b = j0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f49915a) {
+        switch (this.f49916a) {
             case 0:
-                j0 j0Var = this.f49916b;
+                j0 j0Var = this.f49917b;
                 ph.i iVar = j0Var.h;
-                hh.g gVar = j0Var.f50024f;
+                hh.g gVar = j0Var.f50025f;
                 if (gVar != null) {
                     gVar.d();
                 }
@@ -24,17 +24,17 @@ public final class d0 implements Runnable {
                 if (i0Var != null) {
                     i0Var.setTranslationY(-iVar.c());
                 }
-                p6 p6Var = j0Var.f50028w;
+                p6 p6Var = j0Var.f50029w;
                 if (p6Var != null) {
                     p6Var.setTranslationY(-iVar.c());
                 }
                 j0Var.o();
                 return;
             case 1:
-                this.f49916b.H.performClick();
+                this.f49917b.H.performClick();
                 return;
             default:
-                this.f49916b.dismiss();
+                this.f49917b.dismiss();
                 return;
         }
     }

@@ -4,19 +4,19 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
 public final class b0 {
-    public static final b0 f53058a = new Object();
-    public static final k2.e f53059b;
+    public static final b0 f53059a = new Object();
+    public static final k2.e f53060b;
 
     static {
         ka.d dVar = new ka.d();
-        dVar.a(a0.class, g.f53093a);
-        dVar.a(j0.class, h.f53102a);
-        dVar.a(j.class, e.f53075a);
-        dVar.a(b.class, d.f53066a);
-        dVar.a(a.class, c.f53060a);
-        dVar.a(p.class, f.f53086a);
+        dVar.a(a0.class, g.f53094a);
+        dVar.a(j0.class, h.f53103a);
+        dVar.a(j.class, e.f53076a);
+        dVar.a(b.class, d.f53067a);
+        dVar.a(a.class, c.f53061a);
+        dVar.a(p.class, f.f53087a);
         dVar.d = true;
-        f53059b = new k2.e(dVar, 1);
+        f53060b = new k2.e(dVar, 1);
     }
 
     public static b a(k9.h hVar) {

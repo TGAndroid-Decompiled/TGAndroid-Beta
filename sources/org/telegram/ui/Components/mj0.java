@@ -6,28 +6,28 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class mj0 extends Drawable {
-    public final int f28633a;
-    public final int f28634b;
-    public final nj0 f28635c;
+    public final int f28634a;
+    public final int f28635b;
+    public final nj0 f28636c;
 
     public mj0(nj0 nj0Var, int i10, int i11) {
-        this.f28635c = nj0Var;
-        this.f28633a = i10;
-        this.f28634b = i11;
+        this.f28636c = nj0Var;
+        this.f28634a = i10;
+        this.f28635b = i11;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect rect = AndroidUtilities.rectTmp2;
         int centerX = getBounds().centerX();
-        float f7 = this.f28633a;
+        float f7 = this.f28634a;
         int dp = centerX - (AndroidUtilities.dp(f7) / 2);
         int centerY = getBounds().centerY();
-        float f10 = this.f28634b;
+        float f10 = this.f28635b;
         rect.set(dp, centerY - (AndroidUtilities.dp(f10) / 2), (AndroidUtilities.dp(f7) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f10) / 2) + getBounds().centerY());
-        nj0 nj0Var = this.f28635c;
-        nj0Var.f28994c.setImageCoords(rect);
-        nj0Var.f28994c.draw(canvas);
+        nj0 nj0Var = this.f28636c;
+        nj0Var.f28995c.setImageCoords(rect);
+        nj0Var.f28995c.draw(canvas);
     }
 
     @Override
@@ -37,11 +37,11 @@ public final class mj0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f28635c.f28994c.setAlpha(i10 / 255.0f);
+        this.f28636c.f28995c.setAlpha(i10 / 255.0f);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f28635c.f28994c.setColorFilter(colorFilter);
+        this.f28636c.f28995c.setColorFilter(colorFilter);
     }
 }

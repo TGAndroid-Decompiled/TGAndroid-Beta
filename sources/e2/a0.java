@@ -80,15 +80,15 @@ public final class a0 {
         }
         w0 w0Var = (w0) this.d;
         WeakReference weakReference = (WeakReference) this.f8524c;
-        if (w0Var.f15912m) {
-            w0Var.f15911l = typeface;
+        if (w0Var.f15913m) {
+            w0Var.f15912l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = i0.f45595a;
+                WeakHashMap weakHashMap = i0.f45596a;
                 if (textView.isAttachedToWindow()) {
-                    textView.post(new androidx.activity.g(textView, typeface, w0Var.f15909j, 5));
+                    textView.post(new androidx.activity.g(textView, typeface, w0Var.f15910j, 5));
                 } else {
-                    textView.setTypeface(typeface, w0Var.f15909j);
+                    textView.setTypeface(typeface, w0Var.f15910j);
                 }
             }
         }

@@ -6,12 +6,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class in implements oy {
-    public final Utilities.Callback f27441a;
-    public final fn f27442b;
+    public final Utilities.Callback f27442a;
+    public final fn f27443b;
 
     public in(Utilities.Callback callback, fn fnVar) {
-        this.f27441a = callback;
-        this.f27442b = fnVar;
+        this.f27442a = callback;
+        this.f27443b = fnVar;
     }
 
     @Override
@@ -56,8 +56,8 @@ public final class in implements oy {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f27441a.run(new rh.h(document, obj));
-        this.f27442b.dismiss(true);
+        this.f27442a.run(new rh.h(document, obj));
+        this.f27443b.dismiss(true);
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class in implements oy {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f27441a.run(new rh.h(document, null));
-        this.f27442b.dismiss(true);
+        this.f27442a.run(new rh.h(document, null));
+        this.f27443b.dismiss(true);
     }
 
     @Override

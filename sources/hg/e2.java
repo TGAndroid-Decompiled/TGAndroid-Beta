@@ -47,7 +47,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
                 }
             }
             ((w8) view).setChecked(e2Var.h);
-            e2Var.f11175a.f25244f3.N(true);
+            e2Var.f11175a.f25245f3.N(true);
         } else if (view.isEnabled()) {
             f2 b10 = f2.b(e2Var.currentAccount);
             ArrayList arrayList = b10.d;
@@ -57,7 +57,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
                 if (i10 < arrayList.size()) {
                     b10.g();
                     e2Var.h = false;
-                    String str2 = ((TLRPC.TL_timezone) arrayList.get(g61Var.d)).f20175id;
+                    String str2 = ((TLRPC.TL_timezone) arrayList.get(g61Var.d)).f20176id;
                     e2Var.f11180n = str2;
                     g3 g3Var2 = e2Var.f11177c;
                     if (g3Var2 != null) {
@@ -66,7 +66,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
                     if (e2Var.d) {
                         e2Var.actionBar.h(true);
                     }
-                    e2Var.f11175a.f25244f3.N(true);
+                    e2Var.f11175a.f25245f3.N(true);
                 }
             }
         }
@@ -87,7 +87,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
             String string = LocaleController.getString(R.string.TimezoneDetectAutomatically);
             g61 g61Var = new g61(9);
             g61Var.d = -1;
-            g61Var.f26668l = string;
+            g61Var.f26669l = string;
             g61Var.K(e2Var.h);
             arrayList.add(g61Var);
             u61Var.T();
@@ -119,15 +119,15 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
             String f7 = f2.f(tL_timezone);
             g61 g61Var2 = new g61(10);
             g61Var2.d = i10;
-            g61Var2.f26668l = e7;
-            g61Var2.f26670n = f7;
-            g61Var2.K(TextUtils.equals(tL_timezone.f20175id, e2Var.f11180n));
+            g61Var2.f26669l = e7;
+            g61Var2.f26671n = f7;
+            g61Var2.K(TextUtils.equals(tL_timezone.f20176id, e2Var.f11180n));
             if (e2Var.h && !z10) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            g61Var2.f26664g = z11;
+            g61Var2.f26665g = z11;
             arrayList.add(g61Var2);
             z12 = false;
             i10++;
@@ -151,7 +151,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
         a2.H = new d2(this, 0);
         a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(i6.w0(null, i6.f20761a7, false));
+        frameLayout.setBackgroundColor(i6.w0(null, i6.f20762a7, false));
         c71 c71Var = new c71(this, new t7(this, 1), new ei.f(this, 7), null);
         this.f11175a = c71Var;
         c71Var.s1();
@@ -168,7 +168,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
         this.f11176b.addView(w9Var, z5.t(130, 130, 49, 0, 42, 0, 12));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString(R.string.TimezoneNotFound));
-        ok.n(i6.f21204y6, this.resourceProvider, textView, 1, 15.0f);
+        ok.n(i6.f21205y6, this.resourceProvider, textView, 1, 15.0f);
         this.f11176b.addView(textView, z5.t(-2, -2, 49, 0, 0, 0, 0));
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -178,7 +178,7 @@ public final class e2 extends n2 implements NotificationCenter.NotificationCente
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         c71 c71Var;
         u61 u61Var;
-        if (i10 == NotificationCenter.timezonesUpdated && (c71Var = this.f11175a) != null && (u61Var = c71Var.f25244f3) != null) {
+        if (i10 == NotificationCenter.timezonesUpdated && (c71Var = this.f11175a) != null && (u61Var = c71Var.f25245f3) != null) {
             u61Var.N(true);
         }
     }

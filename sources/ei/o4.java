@@ -23,11 +23,11 @@ public final class o4 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f9241a) {
             case 1:
                 xr xrVar = (xr) this.f9243c;
-                ur urVar = xrVar.f32973r;
-                if (xrVar.f32972n) {
+                ur urVar = xrVar.f32974r;
+                if (xrVar.f32973n) {
                     xrVar.removeCallbacks(urVar);
                 }
-                xrVar.f32972n = true;
+                xrVar.f32973n = true;
                 xrVar.postDelayed(urVar, 200L);
                 xrVar.h.run();
                 return true;
@@ -86,8 +86,8 @@ public final class o4 extends GestureDetector.SimpleOnGestureListener {
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
                 hh0 hh0Var = (hh0) this.f9243c;
-                if (!hh0Var.f27135f && !hh0Var.h && f7 >= 600.0f) {
-                    hh0Var.f27134e = false;
+                if (!hh0Var.f27136f && !hh0Var.h && f7 >= 600.0f) {
+                    hh0Var.f27135e = false;
                     hh0Var.h = false;
                     hh0Var.a(0.0f, f7 / 6000.0f);
                 }

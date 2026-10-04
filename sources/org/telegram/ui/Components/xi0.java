@@ -9,21 +9,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class xi0 {
-    public final e6 f32879a;
-    public final o6 f32880b;
-    public final int f32881c;
+    public final e6 f32880a;
+    public final o6 f32881b;
+    public final int f32882c;
     public boolean d;
-    public final cj0 f32882e;
-    public final zc f32883f;
-    public final Paint f32884g = new Paint(1);
+    public final cj0 f32883e;
+    public final zc f32884f;
+    public final Paint f32885g = new Paint(1);
     public boolean h;
 
     public xi0(View view) {
-        this.f32879a = new e6(view, 350L, tr.h);
-        this.f32882e = new cj0(view);
-        this.f32883f = new zc(view);
+        this.f32880a = new e6(view, 350L, tr.h);
+        this.f32883e = new cj0(view);
+        this.f32884f = new zc(view);
         o6 o6Var = new o6(false, false, false, false);
-        this.f32880b = o6Var;
+        this.f32881b = o6Var;
         o6Var.t(AndroidUtilities.dp(11.0f));
         o6Var.o(true, true, false);
         o6Var.setCallback(view);
@@ -31,14 +31,14 @@ public final class xi0 {
         this.d = false;
         o6Var.q(LocaleController.getString(R.string.QuoteCollapse), false, true);
         String string = LocaleController.getString(R.string.QuoteExpand);
-        TextPaint textPaint = o6Var.f29238a;
-        this.f32881c = (int) Math.ceil(Math.max(textPaint.measureText(string), textPaint.measureText(LocaleController.getString(R.string.QuoteCollapse))));
+        TextPaint textPaint = o6Var.f29239a;
+        this.f32882c = (int) Math.ceil(Math.max(textPaint.measureText(string), textPaint.measureText(LocaleController.getString(R.string.QuoteCollapse))));
     }
 
     public final void a(Canvas canvas, RectF rectF, float f7, float f10, int i10, boolean z10, boolean z11) {
         int i11;
         boolean z12 = this.d;
-        o6 o6Var = this.f32880b;
+        o6 o6Var = this.f32881b;
         if (z10 != z12) {
             this.d = z10;
             if (z10) {
@@ -51,10 +51,10 @@ public final class xi0 {
         float d = o6Var.d();
         float dp = AndroidUtilities.dp(17.66f);
         rectF.set(f7 - ((int) (d + AndroidUtilities.dp(23.66f))), f10 - dp, f7, f10);
-        float a2 = this.f32883f.a(0.02f) * this.f32879a.e(z11);
+        float a2 = this.f32884f.a(0.02f) * this.f32880a.e(z11);
         if (a2 > 0.0f) {
             int k10 = i0.a.k(i10, 30);
-            Paint paint = this.f32884g;
+            Paint paint = this.f32885g;
             paint.setColor(k10);
             canvas.save();
             canvas.scale(a2, a2, f7, f10);
@@ -65,15 +65,15 @@ public final class xi0 {
             o6Var.draw(canvas);
             float dp2 = AndroidUtilities.dp(14.0f);
             float f12 = dp2 / 2.0f;
-            cj0 cj0Var = this.f32882e;
+            cj0 cj0Var = this.f32883e;
             cj0Var.setBounds((int) ((rectF.right - AndroidUtilities.dp(3.33f)) - dp2), (int) ((rectF.centerY() - f12) + AndroidUtilities.dp(0.33f)), (int) (rectF.right - AndroidUtilities.dp(3.33f)), (int) (rectF.centerY() + f12 + AndroidUtilities.dp(0.33f)));
-            Paint paint2 = cj0Var.f25394b;
+            Paint paint2 = cj0Var.f25395b;
             paint2.setColor(i10);
             paint2.setAlpha(cj0Var.d);
             boolean z13 = !z10;
-            if (cj0Var.f25396e != z13) {
-                cj0Var.f25396e = z13;
-                cj0Var.f25393a.invalidate();
+            if (cj0Var.f25397e != z13) {
+                cj0Var.f25397e = z13;
+                cj0Var.f25394a.invalidate();
             }
             cj0Var.draw(canvas);
             canvas.restore();
@@ -82,6 +82,6 @@ public final class xi0 {
 
     public final void b(boolean z10) {
         this.h = z10;
-        this.f32883f.c(z10);
+        this.f32884f.c(z10);
     }
 }

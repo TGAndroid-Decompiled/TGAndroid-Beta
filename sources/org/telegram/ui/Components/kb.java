@@ -7,25 +7,25 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.th1;
 public final class kb implements View.OnLayoutChangeListener {
-    public final boolean f28058a;
-    public final rc f28059b;
+    public final boolean f28059a;
+    public final rc f28060b;
 
     public kb(rc rcVar, boolean z10) {
-        this.f28059b = rcVar;
-        this.f28058a = z10;
+        this.f28060b = rcVar;
+        this.f28059a = z10;
     }
 
     @Override
     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
         pb pbVar;
         int i18;
-        rc rcVar = this.f28059b;
-        vb vbVar = rcVar.f30334e;
+        rc rcVar = this.f28060b;
+        vb vbVar = rcVar.f30335e;
         vbVar.removeOnLayoutChangeListener(this);
-        if (rcVar.f30340l) {
+        if (rcVar.f30341l) {
             vbVar.onShow();
-            org.telegram.ui.ActionBar.n2 n2Var = rcVar.f30336g;
-            boolean z10 = this.f28058a;
+            org.telegram.ui.ActionBar.n2 n2Var = rcVar.f30337g;
+            boolean z10 = this.f28059a;
             if (z10 && (n2Var instanceof th1)) {
                 n2Var = ((th1) n2Var).W();
             }
@@ -39,37 +39,37 @@ public final class kb implements View.OnLayoutChangeListener {
                 }
                 pbVar = null;
             }
-            rcVar.f30344p = pbVar;
+            rcVar.f30345p = pbVar;
             if (pbVar == null && n2Var != null) {
-                rcVar.f30344p = new ai.w4(n2Var, 5);
+                rcVar.f30345p = new ai.w4(n2Var, 5);
             }
             o1.k kVar = rcVar.d;
-            if (kVar == null || !kVar.f16976f) {
-                pb pbVar2 = rcVar.f30344p;
+            if (kVar == null || !kVar.f16977f) {
+                pb pbVar2 = rcVar.f30345p;
                 if (pbVar2 != null) {
-                    i18 = pbVar2.f(rcVar.f30331a);
+                    i18 = pbVar2.f(rcVar.f30332a);
                 } else {
                     i18 = 0;
                 }
-                rcVar.f30343o = i18;
+                rcVar.f30344o = i18;
             }
-            pb pbVar3 = rcVar.f30344p;
+            pb pbVar3 = rcVar.f30345p;
             if (pbVar3 != null) {
                 pbVar3.b(rcVar);
             }
-            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !rcVar.f30347s) {
-                if (vbVar != null && rcVar.f30345q == null) {
-                    rcVar.f30345q = vbVar.createTransition();
+            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !rcVar.f30348s) {
+                if (vbVar != null && rcVar.f30346q == null) {
+                    rcVar.f30346q = vbVar.createTransition();
                 }
                 vbVar.transitionRunningEnter = true;
-                vbVar.delegate = rcVar.f30344p;
+                vbVar.delegate = rcVar.f30345p;
                 vbVar.invalidate();
-                ub ubVar = rcVar.f30345q;
+                ub ubVar = rcVar.f30346q;
                 Objects.requireNonNull(vbVar);
                 ubVar.L(vbVar, new gb(vbVar, 1), new qg(this, 15), new pl(2, this, z10));
                 return;
             }
-            pb pbVar4 = rcVar.f30344p;
+            pb pbVar4 = rcVar.f30345p;
             vbVar.delegate = pbVar4;
             if (pbVar4 != null && !z10) {
                 pbVar4.c(vbVar.getHeight());
@@ -77,7 +77,7 @@ public final class kb implements View.OnLayoutChangeListener {
             rcVar.l();
             vbVar.onEnterTransitionStart();
             vbVar.onEnterTransitionEnd();
-            if (rcVar.f30349u) {
+            if (rcVar.f30350u) {
                 rcVar.i(true);
             }
         }

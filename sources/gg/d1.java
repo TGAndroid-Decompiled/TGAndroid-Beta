@@ -20,14 +20,14 @@ public final class d1 implements Comparator {
         TLObject tLObject = (TLObject) obj;
         TLObject tLObject2 = (TLObject) obj2;
         if (tLObject instanceof TLRPC.User) {
-            j3 = ((TLRPC.User) tLObject).f20184id;
+            j3 = ((TLRPC.User) tLObject).f20185id;
         } else {
-            j3 = -((TLRPC.Chat) tLObject).f20037id;
+            j3 = -((TLRPC.Chat) tLObject).f20038id;
         }
         if (tLObject2 instanceof TLRPC.User) {
-            j10 = ((TLRPC.User) tLObject2).f20184id;
+            j10 = ((TLRPC.User) tLObject2).f20185id;
         } else {
-            j10 = -((TLRPC.Chat) tLObject2).f20037id;
+            j10 = -((TLRPC.Chat) tLObject2).f20038id;
         }
         a0.i iVar = this.f10554a;
         if (iVar.h(j3) < 0 || iVar.h(j10) < 0) {

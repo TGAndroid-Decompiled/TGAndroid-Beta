@@ -5,32 +5,32 @@ import android.view.View;
 import android.view.WindowInsets;
 import j$.util.Objects;
 public final class l1 {
-    public static final l1 f45608b;
-    public final i1 f45609a;
+    public static final l1 f45609b;
+    public final i1 f45610a;
 
     static {
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 34) {
-            f45608b = h1.f45593s;
+            f45609b = h1.f45594s;
         } else if (i10 >= 30) {
-            f45608b = g1.f45583r;
+            f45609b = g1.f45584r;
         } else {
-            f45608b = i1.f45599b;
+            f45609b = i1.f45600b;
         }
     }
 
     public l1(WindowInsets windowInsets) {
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 34) {
-            this.f45609a = new h1(this, windowInsets);
+            this.f45610a = new h1(this, windowInsets);
         } else if (i10 >= 30) {
-            this.f45609a = new g1(this, windowInsets);
+            this.f45610a = new g1(this, windowInsets);
         } else if (i10 >= 29) {
-            this.f45609a = new f1(this, windowInsets);
+            this.f45610a = new f1(this, windowInsets);
         } else if (i10 >= 28) {
-            this.f45609a = new e1(this, windowInsets);
+            this.f45610a = new e1(this, windowInsets);
         } else {
-            this.f45609a = new d1(this, windowInsets);
+            this.f45610a = new d1(this, windowInsets);
         }
     }
 
@@ -50,7 +50,7 @@ public final class l1 {
         l1 l1Var = new l1(windowInsets);
         if (view != null && view.isAttachedToWindow()) {
             l1 f7 = i0.f(view);
-            i1 i1Var = l1Var.f45609a;
+            i1 i1Var = l1Var.f45610a;
             i1Var.r(f7);
             i1Var.d(view.getRootView());
             i1Var.t(view.getWindowSystemUiVisibility());
@@ -59,19 +59,19 @@ public final class l1 {
     }
 
     public final int a() {
-        return this.f45609a.k().d;
+        return this.f45610a.k().d;
     }
 
     public final int b() {
-        return this.f45609a.k().f11525a;
+        return this.f45610a.k().f11525a;
     }
 
     public final int c() {
-        return this.f45609a.k().f11527c;
+        return this.f45610a.k().f11527c;
     }
 
     public final int d() {
-        return this.f45609a.k().f11526b;
+        return this.f45610a.k().f11526b;
     }
 
     public final boolean equals(Object obj) {
@@ -81,7 +81,7 @@ public final class l1 {
         if (!(obj instanceof l1)) {
             return false;
         }
-        return Objects.equals(this.f45609a, ((l1) obj).f45609a);
+        return Objects.equals(this.f45610a, ((l1) obj).f45610a);
     }
 
     public final l1 f(int i10, int i11, int i12, int i13) {
@@ -101,15 +101,15 @@ public final class l1 {
     }
 
     public final WindowInsets g() {
-        i1 i1Var = this.f45609a;
+        i1 i1Var = this.f45610a;
         if (i1Var instanceof c1) {
-            return ((c1) i1Var).f45569c;
+            return ((c1) i1Var).f45570c;
         }
         return null;
     }
 
     public final int hashCode() {
-        i1 i1Var = this.f45609a;
+        i1 i1Var = this.f45610a;
         if (i1Var == null) {
             return 0;
         }
@@ -117,6 +117,6 @@ public final class l1 {
     }
 
     public l1() {
-        this.f45609a = new i1(this);
+        this.f45610a = new i1(this);
     }
 }

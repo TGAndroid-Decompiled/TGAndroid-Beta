@@ -25,7 +25,7 @@ public final class zy extends rx0 {
         super.G1(i10);
         az azVar = this.H3;
         nz nzVar = azVar.G;
-        zy zyVar = azVar.f24717r;
+        zy zyVar = azVar.f24718r;
         boolean z11 = true;
         if (zyVar.getSelectedCategory() == null) {
             z10 = true;
@@ -44,7 +44,7 @@ public final class zy extends rx0 {
             if (zyVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            axVar.f24597o0 = z11;
+            axVar.f24598o0 = z11;
             axVar.invalidate();
         }
         azVar.g(false);

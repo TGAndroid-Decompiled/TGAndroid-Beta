@@ -60,9 +60,9 @@ public final class p extends g {
                 e eVar = this.Q0;
                 if (eVar != null) {
                     getSelectedDate();
-                    fa1 fa1Var = (fa1) ((jl0) eVar).f37717b;
+                    fa1 fa1Var = (fa1) ((jl0) eVar).f37718b;
                     fa1Var.f();
-                    fa1Var.f36230b.f12144t0.d(false, false);
+                    fa1Var.f36231b.f12144t0.d(false, false);
                 }
                 invalidate();
                 B();

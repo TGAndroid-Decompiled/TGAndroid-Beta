@@ -80,7 +80,7 @@ public final class c extends cb {
     public final yl0 v(zl0 zl0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
         this.Y = u61Var;
-        u61Var.f31306r = false;
+        u61Var.f31307r = false;
         return u61Var;
     }
 

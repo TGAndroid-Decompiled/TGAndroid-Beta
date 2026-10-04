@@ -11,27 +11,27 @@ import java.util.List;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.n21;
 public final class k0 {
-    public static final k0 f44509e;
-    public static final List f44510f;
-    public static final List f44511g;
+    public static final k0 f44510e;
+    public static final List f44511f;
+    public static final List f44512g;
     public static ArrayList h;
-    public static boolean f44512i;
-    public final String f44513a;
-    public final String f44514b;
-    public final String f44515c;
+    public static boolean f44513i;
+    public final String f44514a;
+    public final String f44515b;
+    public final String f44516c;
     public final o0.a d;
 
     static {
         k0 k0Var = new k0("roboto", "PhotoEditorTypefaceRoboto", new o0.a(new org.telegram.ui.web.w(5)));
-        f44509e = k0Var;
-        f44510f = Arrays.asList(k0Var, new k0("italic", "PhotoEditorTypefaceItalic", new o0.a(new org.telegram.ui.web.w(6))), new k0("serif", "PhotoEditorTypefaceSerif", new o0.a(new org.telegram.ui.web.w(7))), new k0("condensed", "PhotoEditorTypefaceCondensed", new o0.a(new org.telegram.ui.web.w(8))), new k0("mono", "PhotoEditorTypefaceMono", new o0.a(new org.telegram.ui.web.w(9))), new k0("mw_bold", "PhotoEditorTypefaceMerriweather", new o0.a(new org.telegram.ui.web.w(10))));
-        f44511g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
+        f44510e = k0Var;
+        f44511f = Arrays.asList(k0Var, new k0("italic", "PhotoEditorTypefaceItalic", new o0.a(new org.telegram.ui.web.w(6))), new k0("serif", "PhotoEditorTypefaceSerif", new o0.a(new org.telegram.ui.web.w(7))), new k0("condensed", "PhotoEditorTypefaceCondensed", new o0.a(new org.telegram.ui.web.w(8))), new k0("mono", "PhotoEditorTypefaceMono", new o0.a(new org.telegram.ui.web.w(9))), new k0("mw_bold", "PhotoEditorTypefaceMerriweather", new o0.a(new org.telegram.ui.web.w(10))));
+        f44512g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
     public k0(String str, String str2, o0.a aVar) {
-        this.f44513a = str;
-        this.f44514b = str2;
-        this.f44515c = null;
+        this.f44514a = str;
+        this.f44515b = str2;
+        this.f44516c = null;
         this.d = aVar;
     }
 
@@ -42,11 +42,11 @@ public final class k0 {
     public static List c() {
         ArrayList arrayList = h;
         if (arrayList == null) {
-            if (arrayList == null && !f44512i) {
-                f44512i = true;
+            if (arrayList == null && !f44513i) {
+                f44513i = true;
                 Utilities.themeQueue.postRunnable(new n21(10));
             }
-            return f44510f;
+            return f44511f;
         }
         return arrayList;
     }
@@ -57,9 +57,9 @@ public final class k0 {
             return null;
         }
         randomAccessFile.seek(i10 + j0Var.d);
-        byte[] bArr = new byte[j0Var.f44506c];
+        byte[] bArr = new byte[j0Var.f44507c];
         randomAccessFile.read(bArr);
-        if (j0Var.f44504a == 1) {
+        if (j0Var.f44505a == 1) {
             charset = StandardCharsets.UTF_16BE;
         } else {
             charset = StandardCharsets.UTF_8;
@@ -69,16 +69,16 @@ public final class k0 {
 
     public final Typeface d() {
         o0.a aVar = this.d;
-        if (((Typeface) aVar.f16928c) == null) {
-            aVar.f16928c = ((i0) aVar.f16927b).a();
+        if (((Typeface) aVar.f16929c) == null) {
+            aVar.f16929c = ((i0) aVar.f16928b).a();
         }
-        return (Typeface) aVar.f16928c;
+        return (Typeface) aVar.f16929c;
     }
 
     public k0(Font font, String str) {
-        this.f44513a = str;
-        this.f44515c = str;
-        this.f44514b = null;
+        this.f44514a = str;
+        this.f44516c = str;
+        this.f44515b = null;
         this.d = new o0.a(new k2.v(font, 18));
     }
 }

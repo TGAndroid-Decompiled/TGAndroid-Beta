@@ -5,17 +5,17 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 public final class x7 extends FrameLayout {
-    public final RectF f32727a;
-    public boolean f32728b;
-    public int f32729c;
+    public final RectF f32728a;
+    public boolean f32729b;
+    public int f32730c;
     public int d;
-    public final j8 f32730e;
+    public final j8 f32731e;
 
     public x7(j8 j8Var, Context context) {
         super(context);
-        this.f32730e = j8Var;
-        this.f32727a = new RectF();
-        this.f32728b = false;
+        this.f32731e = j8Var;
+        this.f32728a = new RectF();
+        this.f32729b = false;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class x7 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        j8 j8Var = this.f32730e;
+        j8 j8Var = this.f32731e;
         j8.N(j8Var);
         j8Var.E0();
     }
@@ -55,7 +55,7 @@ public final class x7 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f32730e.isDismissed() && super.onTouchEvent(motionEvent)) {
+        if (!this.f32731e.isDismissed() && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ public final class x7 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f32728b) {
+        if (this.f32729b) {
             return;
         }
         super.requestLayout();

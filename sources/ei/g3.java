@@ -48,9 +48,9 @@ public final class g3 implements org.telegram.ui.web.h0 {
         l3 l3Var = this.d;
         TLRPC.User user = MessagesController.getInstance(l3Var.G).getUser(Long.valueOf(l3Var.H));
         o0.a aVar = new o0.a(3, (byte) 0);
-        aVar.f16927b = new d3(this, 0);
+        aVar.f16928b = new d3(this, 0);
         rc V = new yc(l3Var.f9169p0, l3Var.E).V(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequestGranted, UserObject.getUserName(user))), null, aVar);
-        V.f30338j = 5000;
+        V.f30339j = 5000;
         V.k(true);
     }
 
@@ -250,7 +250,7 @@ public final class g3 implements org.telegram.ui.web.h0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) obj.f9443e);
-            spannableStringBuilder.setSpan(new z5(obj.f9444f, 1.4f, wVarArr[0].f9411l.f29238a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new z5(obj.f9444f, 1.4f, wVarArr[0].f9411l.f29239a.getFontMetricsInt()), 0, 1, 33);
             wVarArr[0].f9411l.q(spannableStringBuilder, true, true);
         } else {
             wVarArr[0].f9411l.q(obj.f9443e, true, true);
@@ -339,9 +339,9 @@ public final class g3 implements org.telegram.ui.web.h0 {
         if (z10) {
             o0.a aVar = new o0.a(3, (byte) 0);
             LocaleController.getString(R.string.UndoNoCaps);
-            aVar.f16927b = new d3(this, 1);
+            aVar.f16928b = new d3(this, 1);
             rc V = new yc(frameLayout, d6Var).V(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestGranted, UserObject.getUserName(user))), null, aVar);
-            V.f30338j = 5000;
+            V.f30339j = 5000;
             V.k(true);
             return;
         }
@@ -350,7 +350,7 @@ public final class g3 implements org.telegram.ui.web.h0 {
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.BotLocationPermissionRequestDeniedAppSettings), new d3(this, 2)), true));
         rc P = new yc(frameLayout, d6Var).P(R.raw.error, spannableStringBuilder);
-        P.f30338j = 5000;
+        P.f30339j = 5000;
         P.k(true);
     }
 

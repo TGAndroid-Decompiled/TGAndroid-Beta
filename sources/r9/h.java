@@ -4,21 +4,21 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 public final class h extends c0.h implements ScheduledFuture {
-    public final ScheduledFuture f45951n;
+    public final ScheduledFuture f45952n;
 
     public h(g gVar) {
-        this.f45951n = gVar.a(new k2.e(this, 17));
+        this.f45952n = gVar.a(new k2.e(this, 17));
     }
 
     @Override
     public final int compareTo(Delayed delayed) {
-        return this.f45951n.compareTo(delayed);
+        return this.f45952n.compareTo(delayed);
     }
 
     @Override
     public final void d() {
         boolean z10;
-        ScheduledFuture scheduledFuture = this.f45951n;
+        ScheduledFuture scheduledFuture = this.f45952n;
         Object obj = this.f3922a;
         if ((obj instanceof c0.a) && ((c0.a) obj).f3906a) {
             z10 = true;
@@ -30,6 +30,6 @@ public final class h extends c0.h implements ScheduledFuture {
 
     @Override
     public final long getDelay(TimeUnit timeUnit) {
-        return this.f45951n.getDelay(timeUnit);
+        return this.f45952n.getDelay(timeUnit);
     }
 }

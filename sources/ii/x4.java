@@ -21,7 +21,7 @@ public abstract class x4 {
                         i11++;
                         TLRPC.Photo photo = (TLRPC.Photo) obj;
                         if (photo != null) {
-                            f12791a.put(Long.valueOf(photo.f20061id), photo);
+                            f12791a.put(Long.valueOf(photo.f20062id), photo);
                         }
                     }
                 }
@@ -32,7 +32,7 @@ public abstract class x4 {
                         i10++;
                         TLRPC.Document document = (TLRPC.Document) obj2;
                         if (document != null) {
-                            f12792b.put(Long.valueOf(document.f20043id), document);
+                            f12792b.put(Long.valueOf(document.f20044id), document);
                         }
                     }
                 }

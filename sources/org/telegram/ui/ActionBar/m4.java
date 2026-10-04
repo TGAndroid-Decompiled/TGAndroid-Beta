@@ -4,28 +4,28 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.RelativeLayout;
 public final class m4 extends Animation {
-    public final int f21391a;
-    public final int f21392b;
-    public final int f21393c;
+    public final int f21392a;
+    public final int f21393b;
+    public final int f21394c;
     public final float d;
-    public final u4 f21394e;
+    public final u4 f21395e;
 
     public m4(u4 u4Var, int i10, int i11, float f7, float f10, int i12) {
-        this.f21391a = i12;
-        this.f21394e = u4Var;
-        this.f21392b = i10;
-        this.f21393c = i11;
+        this.f21392a = i12;
+        this.f21395e = u4Var;
+        this.f21393b = i10;
+        this.f21394c = i11;
         this.d = f10;
     }
 
     @Override
     public final void applyTransformation(float f7, Transformation transformation) {
-        switch (this.f21391a) {
+        switch (this.f21392a) {
             case 0:
-                int i10 = this.f21392b;
-                int i11 = this.f21393c;
-                u4 u4Var = this.f21394e;
-                RelativeLayout relativeLayout = u4Var.f21541f;
+                int i10 = this.f21393b;
+                int i11 = this.f21394c;
+                u4 u4Var = this.f21395e;
+                RelativeLayout relativeLayout = u4Var.f21542f;
                 u4.l(relativeLayout, relativeLayout.getLayoutParams().width, i11 + ((int) (f7 * (i10 - i11))));
                 if (u4Var.M) {
                     relativeLayout.setY(this.d - relativeLayout.getHeight());
@@ -34,20 +34,20 @@ public final class m4 extends Animation {
                 }
                 return;
             case 1:
-                int i12 = this.f21392b;
-                int i13 = this.f21393c;
-                u4 u4Var2 = this.f21394e;
-                RelativeLayout relativeLayout2 = u4Var2.f21541f;
+                int i12 = this.f21393b;
+                int i13 = this.f21394c;
+                u4 u4Var2 = this.f21395e;
+                RelativeLayout relativeLayout2 = u4Var2.f21542f;
                 u4.l(relativeLayout2, ((int) (f7 * (i12 - i13))) + i13, relativeLayout2.getLayoutParams().height);
                 relativeLayout2.setX(this.d - relativeLayout2.getWidth());
-                u4Var2.f21542g.setX(relativeLayout2.getWidth() - i13);
+                u4Var2.f21543g.setX(relativeLayout2.getWidth() - i13);
                 u4Var2.h.setX(relativeLayout2.getWidth() - i12);
                 return;
             case 2:
-                int i14 = this.f21392b;
-                int i15 = this.f21393c;
-                u4 u4Var3 = this.f21394e;
-                RelativeLayout relativeLayout3 = u4Var3.f21541f;
+                int i14 = this.f21393b;
+                int i15 = this.f21394c;
+                u4 u4Var3 = this.f21395e;
+                RelativeLayout relativeLayout3 = u4Var3.f21542f;
                 u4.l(relativeLayout3, relativeLayout3.getLayoutParams().width, ((int) (f7 * (i14 - i15))) + i15);
                 if (u4Var3.M) {
                     relativeLayout3.setY(this.d - (relativeLayout3.getHeight() - i15));
@@ -56,23 +56,23 @@ public final class m4 extends Animation {
                 }
                 return;
             default:
-                int i16 = this.f21392b;
-                int i17 = this.f21393c;
-                u4 u4Var4 = this.f21394e;
-                RelativeLayout relativeLayout4 = u4Var4.f21541f;
+                int i16 = this.f21393b;
+                int i17 = this.f21394c;
+                u4 u4Var4 = this.f21395e;
+                RelativeLayout relativeLayout4 = u4Var4.f21542f;
                 u4.l(relativeLayout4, ((int) (f7 * (i16 - i17))) + i17, relativeLayout4.getLayoutParams().height);
                 relativeLayout4.setX(this.d - relativeLayout4.getWidth());
-                u4Var4.f21542g.setX(relativeLayout4.getWidth() - i16);
+                u4Var4.f21543g.setX(relativeLayout4.getWidth() - i16);
                 u4Var4.h.setX(relativeLayout4.getWidth() - i17);
                 return;
         }
     }
 
     public m4(u4 u4Var, int i10, int i11, float f7, int i12) {
-        this.f21391a = i12;
-        this.f21394e = u4Var;
-        this.f21392b = i10;
-        this.f21393c = i11;
+        this.f21392a = i12;
+        this.f21395e = u4Var;
+        this.f21393b = i10;
+        this.f21394c = i11;
         this.d = f7;
     }
 }

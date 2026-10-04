@@ -47,7 +47,7 @@ public final class g0 implements Runnable {
                 long j3 = this.f127b;
                 long j10 = this.f128c;
                 String str2 = e2.d0.f8537a;
-                j2.f fVar = ((i2.c0) ((l0) ((of.b) this.d).f17158c)).f11569a.f11632s;
+                j2.f fVar = ((i2.c0) ((l0) ((of.b) this.d).f17159c)).f11569a.f11632s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j10, j3));
                 return;
@@ -59,7 +59,7 @@ public final class g0 implements Runnable {
                 long j11 = this.f127b;
                 long j12 = this.f128c;
                 String str4 = e2.d0.f8537a;
-                j2.f fVar2 = ((i2.c0) ((k2.k) ((n4.y) this.d).f16640c)).f11569a.f11632s;
+                j2.f fVar2 = ((i2.c0) ((k2.k) ((n4.y) this.d).f16641c)).f11569a.f11632s;
                 j2.a p10 = fVar2.p();
                 fVar2.q(p10, 1008, new ga.a(p10, str3, j12, j11));
                 return;
@@ -114,7 +114,7 @@ public final class g0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j15, j16));
                     uyVar.C2.u(uyVar, arrayList, null, false, uyVar.J2, uyVar.K2, uyVar.L2, yf1Var);
-                    if (uyVar.f41415i2) {
+                    if (uyVar.f41416i2) {
                         uyVar.C2 = null;
                         return;
                     }
@@ -134,7 +134,7 @@ public final class g0 implements Runnable {
                 t10.append(" TL_forumTopic ");
                 t10.append(findTopic);
                 FileLog.d(t10.toString());
-                if (launchActivity.f33797q0 != null) {
+                if (launchActivity.f33798q0 != null) {
                     ng.d.a(ynVar, MessagesStorage.TopicKey.of(-j17, j18));
                     ((ActionBarLayout) launchActivity.O()).P(ynVar);
                     return;

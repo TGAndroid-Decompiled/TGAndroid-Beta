@@ -53,10 +53,10 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     public void K(int i10, int i11, boolean z10) {
         boolean D1;
         xi xiVar = (xi) this.f1927c;
-        pi piVar = xiVar.f32873y0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32824j0;
+        pi piVar = xiVar.f32874y0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32825j0;
         long j3 = this.f1926b;
-        if (piVar != chatAttachAlertPhotoLayout && piVar != xiVar.f32844q0) {
+        if (piVar != chatAttachAlertPhotoLayout && piVar != xiVar.f32845q0) {
             if (!piVar.G(i10, z10, i11, xiVar.p1(), j3)) {
                 xiVar.A2 = true;
                 xiVar.dismiss();
@@ -65,10 +65,10 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         } else {
             D1 = xiVar.D1(i10, z10, i11, xiVar.p1(), j3);
         }
-        of ofVar = xiVar.f32818h0;
+        of ofVar = xiVar.f32819h0;
         if (ofVar != null) {
             ofVar.h(!D1);
-            xiVar.f32818h0 = null;
+            xiVar.f32819h0 = null;
         }
     }
 
@@ -78,10 +78,10 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         ContentValues contentValues = new ContentValues();
         contentValues.put("next_request_ms", Long.valueOf(this.f1926b));
-        String str = iVar.f15345a;
-        i5.d dVar = iVar.f15347c;
+        String str = iVar.f15346a;
+        i5.d dVar = iVar.f15348c;
         if (sQLiteDatabase.update("transport_contexts", contentValues, "backend_name = ? and priority = ?", new String[]{str, String.valueOf(v5.a.a(dVar))}) < 1) {
-            contentValues.put("backend_name", iVar.f15345a);
+            contentValues.put("backend_name", iVar.f15346a);
             contentValues.put("priority", Integer.valueOf(v5.a.a(dVar)));
             sQLiteDatabase.insert("transport_contexts", null, contentValues);
         }
@@ -134,7 +134,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f1925a) {
             case 8:
-                jo0 jo0Var = ((uy) this.f1927c).C0.f30117c0;
+                jo0 jo0Var = ((uy) this.f1927c).C0.f30118c0;
                 a0.i iVar = jo0Var.f10639x0;
                 long j3 = this.f1926b;
                 gg.h0 h0Var = (gg.h0) iVar.f(j3);
@@ -149,7 +149,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
                 }
                 return;
             default:
-                ((fy) this.f1927c).f36427a.getMediaDataController().removePeer(this.f1926b);
+                ((fy) this.f1927c).f36428a.getMediaDataController().removePeer(this.f1926b);
                 return;
         }
     }
@@ -162,7 +162,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     @Override
     public void i(int i10, ArrayList arrayList) {
         if1 if1Var = (if1) this.f1927c;
-        org.telegram.ui.ActionBar.n2 n2Var = if1Var.f37414b;
+        org.telegram.ui.ActionBar.n2 n2Var = if1Var.f37415b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();

@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class nt implements Runnable {
-    public final rt f39036a;
+    public final rt f39037a;
 
     public nt(rt rtVar) {
-        this.f39036a = rtVar;
+        this.f39037a = rtVar;
     }
 
     @Override

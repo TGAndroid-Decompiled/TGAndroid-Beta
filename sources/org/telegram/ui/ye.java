@@ -18,42 +18,42 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.TLRPC;
 public final class ye implements View.OnClickListener {
-    public final int f43140a;
-    public final yn f43141b;
+    public final int f43141a;
+    public final yn f43142b;
 
     public ye(yn ynVar, int i10) {
-        this.f43140a = i10;
-        this.f43141b = ynVar;
+        this.f43141a = i10;
+        this.f43142b = ynVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         int i10;
-        int i11 = this.f43140a;
+        int i11 = this.f43141a;
         String str = "";
         MessageObject messageObject = null;
         int i12 = 0;
-        yn ynVar = this.f43141b;
+        yn ynVar = this.f43142b;
         switch (i11) {
             case 0:
-                yn ynVar2 = this.f43141b;
+                yn ynVar2 = this.f43142b;
                 rg.k0.C1(ynVar2, ynVar2.B1, ynVar2.C1, ynVar2.R5, false);
                 return;
             case 1:
                 ynVar.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", ynVar.f43472r);
+                bundle.putLong("user_id", ynVar.f43473r);
                 ynVar.presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 2:
                 if (ynVar.I3 != null) {
-                    ynVar.Kb(!ynVar.f43536vc.f15435f);
+                    ynVar.Kb(!ynVar.f43537vc.f15436f);
                     return;
                 }
                 return;
             case 3:
-                ynVar.jb(!ynVar.f43564y0.N);
+                ynVar.jb(!ynVar.f43565y0.N);
                 return;
             case 4:
                 ck ckVar = ynVar.G1;
@@ -64,15 +64,15 @@ public final class ye implements View.OnClickListener {
                 }
                 ynVar.Q2.setVisibility(8);
                 ynVar.R2.setVisibility(8);
-                ynVar.f43403l3 = true;
-                ynVar.f43414m3 = null;
-                ynVar.f43428n3 = null;
-                ynVar.f43351h0.setSearchFieldHint(LocaleController.getString(R.string.SearchMembers));
-                ynVar.f43351h0.setSearchFieldCaption(LocaleController.getString(R.string.SearchFrom));
-                AndroidUtilities.showKeyboard(ynVar.f43351h0.getSearchField());
-                org.telegram.ui.ActionBar.v0 v0Var = ynVar.f43351h0;
-                v0Var.f21590r = null;
-                ci.h2 h2Var = v0Var.f21575e;
+                ynVar.f43404l3 = true;
+                ynVar.f43415m3 = null;
+                ynVar.f43429n3 = null;
+                ynVar.f43352h0.setSearchFieldHint(LocaleController.getString(R.string.SearchMembers));
+                ynVar.f43352h0.setSearchFieldCaption(LocaleController.getString(R.string.SearchFrom));
+                AndroidUtilities.showKeyboard(ynVar.f43352h0.getSearchField());
+                org.telegram.ui.ActionBar.v0 v0Var = ynVar.f43352h0;
+                v0Var.f21591r = null;
+                ci.h2 h2Var = v0Var.f21576e;
                 if (h2Var != null) {
                     h2Var.setText("");
                     return;
@@ -80,11 +80,11 @@ public final class ye implements View.OnClickListener {
                 return;
             case 5:
                 if (ynVar.getParentActivity() != null) {
-                    org.telegram.ui.ActionBar.v0 v0Var2 = ynVar.f43351h0;
+                    org.telegram.ui.ActionBar.v0 v0Var2 = ynVar.f43352h0;
                     if (v0Var2 != null) {
                         AndroidUtilities.hideKeyboard(v0Var2.getSearchField());
                     }
-                    ynVar.showDialog(org.telegram.ui.Components.e5.p(ynVar.getParentActivity(), new cl(ynVar), ynVar.f43299ca).f20373a);
+                    ynVar.showDialog(org.telegram.ui.Components.e5.p(ynVar.getParentActivity(), new cl(ynVar), ynVar.f43300ca).f20374a);
                     return;
                 }
                 return;
@@ -92,22 +92,22 @@ public final class ye implements View.OnClickListener {
                 ynVar.A7(true);
                 return;
             case 7:
-                MessageObject messageObject2 = ynVar.f43280b5;
+                MessageObject messageObject2 = ynVar.f43281b5;
                 if (messageObject2 != null) {
                     ynVar.I9(messageObject2, false, false);
-                    nf.f.r(ynVar.getParentActivity(), Uri.parse(ynVar.f43280b5.sponsoredUrl), true, false, false, null, null, false, ynVar.getMessagesController().sponsoredLinksInappAllow, false);
+                    nf.f.r(ynVar.getParentActivity(), Uri.parse(ynVar.f43281b5.sponsoredUrl), true, false, false, null, null, false, ynVar.getMessagesController().sponsoredLinksInappAllow, false);
                     return;
                 }
                 return;
             case 8:
-                if (AndroidUtilities.addToClipboard(ynVar.f43280b5.sponsoredInfo)) {
-                    org.telegram.messenger.ok.o(R.string.TextCopied, new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(ynVar.getParentActivity()), ynVar.f43299ca));
+                if (AndroidUtilities.addToClipboard(ynVar.f43281b5.sponsoredInfo)) {
+                    org.telegram.messenger.ok.o(R.string.TextCopied, new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(ynVar.getParentActivity()), ynVar.f43300ca));
                     return;
                 }
                 return;
             case 9:
-                if (AndroidUtilities.addToClipboard(ynVar.f43280b5.sponsoredAdditionalInfo)) {
-                    org.telegram.messenger.ok.o(R.string.TextCopied, new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(ynVar.getParentActivity()), ynVar.f43299ca));
+                if (AndroidUtilities.addToClipboard(ynVar.f43281b5.sponsoredAdditionalInfo)) {
+                    org.telegram.messenger.ok.o(R.string.TextCopied, new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(ynVar.getParentActivity()), ynVar.f43300ca));
                     return;
                 }
                 return;
@@ -115,7 +115,7 @@ public final class ye implements View.OnClickListener {
                 if (ynVar.V0 != null && ynVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.f3 j3 = org.telegram.messenger.ok.j(1, ynVar.V0.getContext(), null, false);
                     Activity parentActivity = ynVar.getParentActivity();
-                    wn wnVar = ynVar.f43299ca;
+                    wn wnVar = ynVar.f43300ca;
                     final ?? frameLayout = new FrameLayout(parentActivity);
                     LinearLayout e7 = org.telegram.messenger.f0.e(parentActivity, 1);
                     TextView textView = new TextView(parentActivity);
@@ -198,7 +198,7 @@ public final class ye implements View.OnClickListener {
                     pkVar.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                     pkVar.setText(LocaleController.getString(R.string.SponsoredMessageAlertLearnMoreUrl));
                     pkVar.setTextColor(org.telegram.ui.ActionBar.i6.v0(i14, wnVar));
-                    pkVar.setBackground(org.telegram.ui.ActionBar.x5.e(new float[]{4.0f}, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20889h5, wnVar)));
+                    pkVar.setBackground(org.telegram.ui.ActionBar.x5.e(new float[]{4.0f}, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20890h5, wnVar)));
                     pkVar.setTextSize(1, 14.0f);
                     pkVar.setGravity(16);
                     org.telegram.ui.Components.q90 q90Var4 = new org.telegram.ui.Components.q90(parentActivity, null);
@@ -233,27 +233,27 @@ public final class ye implements View.OnClickListener {
                 ynVar.showDialog(new rg.y0((org.telegram.ui.ActionBar.n2) ynVar, 28, true));
                 return;
             case 13:
-                yn ynVar3 = this.f43141b;
+                yn ynVar3 = this.f43142b;
                 long j10 = ynVar3.R5;
-                TLRPC.User user = ynVar3.f43326f;
-                TLRPC.Chat chat = ynVar3.f43314e;
+                TLRPC.User user = ynVar3.f43327f;
+                TLRPC.Chat chat = ynVar3.f43315e;
                 TLRPC.EncryptedChat encryptedChat = ynVar3.h;
                 if (ynVar3.L1.getTag(R.id.object_tag) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Components.e5.j0(ynVar3, j10, user, chat, encryptedChat, z10, ynVar3.X7, new ah(ynVar3, 1), ynVar3.f43299ca);
+                org.telegram.ui.Components.e5.j0(ynVar3, j10, user, chat, encryptedChat, z10, ynVar3.X7, new ah(ynVar3, 1), ynVar3.f43300ca);
                 return;
             case 14:
                 yn.q1(ynVar);
                 return;
             case 15:
-                if (ynVar.f43265a4 != null) {
+                if (ynVar.f43266a4 != null) {
                     TopicsController topicsController = ynVar.getMessagesController().getTopicsController();
-                    long j11 = ynVar.f43314e.f20037id;
-                    TLRPC.TL_forumTopic tL_forumTopic = ynVar.f43265a4;
-                    int i15 = tL_forumTopic.f20089id;
+                    long j11 = ynVar.f43315e.f20038id;
+                    TLRPC.TL_forumTopic tL_forumTopic = ynVar.f43266a4;
+                    int i15 = tL_forumTopic.f20090id;
                     tL_forumTopic.closed = false;
                     topicsController.toggleCloseTopic(j11, i15, false);
                 }
@@ -264,18 +264,18 @@ public final class ye implements View.OnClickListener {
             case 16:
                 long j12 = ynVar.R5;
                 if (ynVar.h != null) {
-                    j12 = ynVar.f43326f.f20184id;
+                    j12 = ynVar.f43327f.f20185id;
                 }
                 ynVar.Vb = false;
-                ynVar.getMessagesController().hidePeerSettingsBar(j12, ynVar.f43326f, ynVar.f43314e);
+                ynVar.getMessagesController().hidePeerSettingsBar(j12, ynVar.f43327f, ynVar.f43315e);
                 ynVar.Pc(true);
                 ynVar.nc(true);
                 return;
             case 17:
-                yn ynVar4 = this.f43141b;
+                yn ynVar4 = this.f43142b;
                 ynVar4.B4 = true;
-                if (ynVar4.E9() && !ynVar4.f43331f4) {
-                    ynVar4.D((int) ynVar4.f43279b4, 0, 0, 0, true, true);
+                if (ynVar4.E9() && !ynVar4.f43332f4) {
+                    ynVar4.D((int) ynVar4.f43280b4, 0, 0, 0, true, true);
                     return;
                 }
                 int i16 = ynVar4.J4;
@@ -325,14 +325,14 @@ public final class ye implements View.OnClickListener {
                 SparseArray[] sparseArrayArr = ynVar.U5;
                 for (int i17 = 1; i17 >= 0; i17--) {
                     if (messageObject == null && sparseArrayArr[i17].size() != 0) {
-                        messageObject = (MessageObject) ynVar.f43417m6[i17].get(sparseArrayArr[i17].keyAt(0));
+                        messageObject = (MessageObject) ynVar.f43418m6[i17].get(sparseArrayArr[i17].keyAt(0));
                     }
                     sparseArrayArr[i17].clear();
                     ynVar.V5[i17].clear();
                     ynVar.W5[i17].clear();
                 }
                 ynVar.d9();
-                if (messageObject != null && ((i10 = messageObject.messageOwner.f20058id) > 0 || (i10 < 0 && ynVar.h != null))) {
+                if (messageObject != null && ((i10 = messageObject.messageOwner.f20059id) > 0 || (i10 < 0 && ynVar.h != null))) {
                     ynVar.Ab(messageObject);
                 }
                 ynVar.xc(0, true);
@@ -343,8 +343,8 @@ public final class ye implements View.OnClickListener {
                 yn.K0(ynVar);
                 return;
             case 27:
-                yn ynVar5 = this.f43141b;
-                MessageObject messageObject3 = ynVar5.f43430n5;
+                yn ynVar5 = this.f43142b;
+                MessageObject messageObject3 = ynVar5.f43431n5;
                 if (messageObject3 != null) {
                     ynVar5.D(messageObject3.getId(), 0, 0, 0, true, true);
                     return;
@@ -358,7 +358,7 @@ public final class ye implements View.OnClickListener {
                 return;
             default:
                 ynVar.Q7();
-                ynVar.f43541w3.m(ynVar.R5, LocaleController.getString(R.string.BroadcastGroupInfo), 18);
+                ynVar.f43542w3.m(ynVar.R5, LocaleController.getString(R.string.BroadcastGroupInfo), 18);
                 return;
         }
     }

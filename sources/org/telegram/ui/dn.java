@@ -1,17 +1,17 @@
 package org.telegram.ui;
 public final class dn implements Runnable {
-    public final int f35815a;
-    public final yn f35816b;
+    public final int f35816a;
+    public final yn f35817b;
 
     public dn(yn ynVar, int i10) {
-        this.f35815a = i10;
-        this.f35816b = ynVar;
+        this.f35816a = i10;
+        this.f35817b = ynVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f35815a;
-        yn ynVar = this.f35816b;
+        int i10 = this.f35816a;
+        yn ynVar = this.f35817b;
         switch (i10) {
             case 0:
                 int i11 = yn.Bc;

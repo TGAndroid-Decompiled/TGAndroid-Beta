@@ -28,10 +28,10 @@ public final class zc extends View {
         o6Var.r(-1);
         o6Var.u(AndroidUtilities.bold());
         o6Var.setCallback(this);
-        o6Var.f29239b = 1;
+        o6Var.f29240b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, o6Var.f29243g)) {
+        if (!TextUtils.equals(sb2, o6Var.f29244g)) {
             o6Var.b();
             o6Var.q(sb2, false, true);
         }

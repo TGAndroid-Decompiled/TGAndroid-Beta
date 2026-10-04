@@ -61,11 +61,11 @@ public final class v3 implements View.OnClickListener {
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f51721j;
+                ArrayList arrayList2 = g10.f51722j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f51723l;
+                ArrayList arrayList3 = g10.f51724l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }
@@ -80,12 +80,12 @@ public final class v3 implements View.OnClickListener {
                     int i13 = i12 + 1;
                     TLObject tLObject = (TLObject) arrayList.get(i12);
                     if (tLObject instanceof TLRPC.User) {
-                        j3 = ((TLRPC.User) tLObject).f20184id;
+                        j3 = ((TLRPC.User) tLObject).f20185id;
                     } else {
                         if (tLObject instanceof TLRPC.Chat) {
                             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                             if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                                j3 = -chat.f20037id;
+                                j3 = -chat.f20038id;
                             }
                         }
                         i12 = i13;
@@ -98,8 +98,8 @@ public final class v3 implements View.OnClickListener {
                     F.g(tLObject, z10, new q3(i11, j3, this.f9395f, this.h, f3Var, d6Var));
                     i12 = i13;
                 }
-                F.f24845t = false;
-                F.f24844s = 0;
+                F.f24846t = false;
+                F.f24845s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();

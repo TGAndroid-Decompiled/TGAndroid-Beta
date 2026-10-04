@@ -11,14 +11,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k70 implements Runnable {
-    public final int f27974a;
-    public final l70 f27975b;
-    public final String f27976c;
+    public final int f27975a;
+    public final l70 f27976b;
+    public final String f27977c;
 
     public k70(l70 l70Var, String str, int i10) {
-        this.f27974a = i10;
-        this.f27975b = l70Var;
-        this.f27976c = str;
+        this.f27975a = i10;
+        this.f27976b = l70Var;
+        this.f27977c = str;
     }
 
     @Override
@@ -29,18 +29,18 @@ public final class k70 implements Runnable {
         ArrayList arrayList;
         char c10;
         Object obj;
-        switch (this.f27974a) {
+        switch (this.f27975a) {
             case 0:
-                l70 l70Var = this.f27975b;
-                String str2 = this.f27976c;
+                l70 l70Var = this.f27976b;
+                String str2 = this.f27977c;
                 l70Var.getClass();
                 AndroidUtilities.runOnUIThread(new k70(l70Var, str2, 1));
                 return;
             case 1:
-                l70 l70Var2 = this.f27975b;
-                String str3 = this.f27976c;
-                gg.c2 c2Var = l70Var2.f28294e;
-                org.telegram.ui.bu buVar = l70Var2.f28296n.m0;
+                l70 l70Var2 = this.f27976b;
+                String str3 = this.f27977c;
+                gg.c2 c2Var = l70Var2.f28295e;
+                org.telegram.ui.bu buVar = l70Var2.f28297n.m0;
                 boolean z10 = false;
                 if (buVar != null) {
                     z10 = true;
@@ -56,9 +56,9 @@ public final class k70 implements Runnable {
                 dispatchQueue.postRunnable(k70Var);
                 return;
             default:
-                l70 l70Var3 = this.f27975b;
-                String str4 = this.f27976c;
-                ArrayList arrayList2 = l70Var3.f28296n.f29533e0;
+                l70 l70Var3 = this.f27976b;
+                String str4 = this.f27977c;
+                ArrayList arrayList2 = l70Var3.f28297n.f29534e0;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {
                     AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o(l70Var3, new ArrayList(), new ArrayList(), 24));

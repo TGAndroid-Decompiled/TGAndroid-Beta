@@ -1,25 +1,25 @@
 package org.telegram.ui;
 public final class qw0 implements Runnable {
-    public final int f39831a;
-    public final PremiumPreviewFragment f39832b;
+    public final int f39832a;
+    public final PremiumPreviewFragment f39833b;
 
     public qw0(PremiumPreviewFragment premiumPreviewFragment, int i10) {
-        this.f39831a = i10;
-        this.f39832b = premiumPreviewFragment;
+        this.f39832a = i10;
+        this.f39833b = premiumPreviewFragment;
     }
 
     @Override
     public final void run() {
-        switch (this.f39831a) {
+        switch (this.f39832a) {
             case 0:
-                this.f39832b.j0();
+                this.f39833b.j0();
                 return;
             case 1:
-                PremiumPreviewFragment premiumPreviewFragment = this.f39832b;
-                premiumPreviewFragment.f34115a.postOnAnimation(new qw0(premiumPreviewFragment, 0));
+                PremiumPreviewFragment premiumPreviewFragment = this.f39833b;
+                premiumPreviewFragment.f34116a.postOnAnimation(new qw0(premiumPreviewFragment, 0));
                 return;
             default:
-                this.f39832b.getMediaDataController().loadPremiumPromo(false);
+                this.f39833b.getMediaDataController().loadPremiumPromo(false);
                 return;
         }
     }

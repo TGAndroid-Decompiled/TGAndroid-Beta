@@ -4,24 +4,24 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class u81 extends AnimatorListenerAdapter {
-    public final int f31324a;
-    public final g91 f31325b;
+    public final int f31325a;
+    public final g91 f31326b;
 
     public u81(g91 g91Var, int i10) {
-        this.f31324a = i10;
-        this.f31325b = g91Var;
+        this.f31325a = i10;
+        this.f31326b = g91Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f31324a) {
+        switch (this.f31325a) {
             case 0:
-                g91 g91Var = this.f31325b;
-                View[] viewArr = g91Var.f26732e;
-                View[] viewArr2 = g91Var.f26732e;
+                g91 g91Var = this.f31326b;
+                View[] viewArr = g91Var.f26733e;
+                View[] viewArr2 = g91Var.f26733e;
                 if (viewArr[1] != null) {
                     g91Var.G();
-                    g91Var.h.put(g91Var.f26733f[1], viewArr2[1]);
+                    g91Var.h.put(g91Var.f26734f[1], viewArr2[1]);
                     g91Var.removeView(viewArr2[1]);
                     g91Var.F(viewArr2[0], 0.0f);
                     viewArr2[1] = null;
@@ -38,19 +38,19 @@ public final class u81 extends AnimatorListenerAdapter {
                 g91Var.J.unlock();
                 return;
             case 1:
-                g91 g91Var2 = this.f31325b;
-                g91Var2.f26737w = null;
-                View[] viewArr3 = g91Var2.f26732e;
+                g91 g91Var2 = this.f31326b;
+                g91Var2.f26738w = null;
+                View[] viewArr3 = g91Var2.f26733e;
                 if (viewArr3[1] != null) {
                     if (!g91Var2.F) {
                         g91Var2.G();
                     }
-                    g91Var2.h.put(g91Var2.f26733f[1], viewArr3[1]);
+                    g91Var2.h.put(g91Var2.f26734f[1], viewArr3[1]);
                     g91Var2.removeView(viewArr3[1]);
                     viewArr3[1].setVisibility(8);
                     viewArr3[1] = null;
                 }
-                g91Var2.f26738x = false;
+                g91Var2.f26739x = false;
                 g91Var2.I = false;
                 v81 v81Var2 = g91Var2.M;
                 if (v81Var2 != null) {
@@ -61,40 +61,40 @@ public final class u81 extends AnimatorListenerAdapter {
                 g91Var2.J.unlock();
                 return;
             case 2:
-                g91 g91Var3 = this.f31325b;
-                g91Var3.f26737w = null;
-                View[] viewArr4 = g91Var3.f26732e;
+                g91 g91Var3 = this.f31326b;
+                g91Var3.f26738w = null;
+                View[] viewArr4 = g91Var3.f26733e;
                 View view = viewArr4[1];
                 if (view != null) {
                     g91Var3.removeView(view);
                     viewArr4[1] = null;
                 }
-                g91Var3.f26738x = false;
+                g91Var3.f26739x = false;
                 v81 v81Var3 = g91Var3.M;
                 if (v81Var3 != null) {
                     v81Var3.setEnabled(true);
                     v81 v81Var4 = g91Var3.M;
                     v81Var4.J = false;
-                    v81Var4.f26392a = 1.0f;
+                    v81Var4.f26393a = 1.0f;
                     v81Var4.v.h1();
                     g91Var3.M.invalidate();
                     return;
                 }
                 return;
             default:
-                g91 g91Var4 = this.f31325b;
-                g91Var4.f26737w = null;
-                View[] viewArr5 = g91Var4.f26732e;
+                g91 g91Var4 = this.f31326b;
+                g91Var4.f26738w = null;
+                View[] viewArr5 = g91Var4.f26733e;
                 if (viewArr5[1] != null) {
                     if (!g91Var4.F) {
                         g91Var4.G();
                     }
-                    g91Var4.h.put(g91Var4.f26733f[1], viewArr5[1]);
+                    g91Var4.h.put(g91Var4.f26734f[1], viewArr5[1]);
                     g91Var4.removeView(viewArr5[1]);
                     viewArr5[1].setVisibility(8);
                     viewArr5[1] = null;
                 }
-                g91Var4.f26738x = false;
+                g91Var4.f26739x = false;
                 g91Var4.I = false;
                 v81 v81Var5 = g91Var4.M;
                 if (v81Var5 != null) {

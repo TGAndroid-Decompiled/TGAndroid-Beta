@@ -5,22 +5,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 public final class ik0 implements org.telegram.ui.Components.ro {
-    public final long f37450a;
-    public final boolean f37451b;
-    public final rk0 f37452c;
+    public final long f37451a;
+    public final boolean f37452b;
+    public final rk0 f37453c;
     public final boolean d;
-    public final int f37453e;
-    public final ArrayList f37454f;
+    public final int f37454e;
+    public final ArrayList f37455f;
     public final NotificationsCustomSettingsActivity h;
 
     public ik0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, long j3, boolean z10, rk0 rk0Var, boolean z11, int i10, ArrayList arrayList) {
         this.h = notificationsCustomSettingsActivity;
-        this.f37450a = j3;
-        this.f37451b = z10;
-        this.f37452c = rk0Var;
+        this.f37451a = j3;
+        this.f37452b = z10;
+        this.f37453c = rk0Var;
         this.d = z11;
-        this.f37453e = i10;
-        this.f37454f = arrayList;
+        this.f37454e = i10;
+        this.f37455f = arrayList;
     }
 
     public final void a() {
@@ -30,20 +30,20 @@ public final class ik0 implements org.telegram.ui.Components.ro {
             return;
         }
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
-        ArrayList arrayList = notificationsCustomSettingsActivity.f33825w;
-        rk0 rk0Var = this.f37452c;
-        ArrayList arrayList2 = this.f37454f;
+        ArrayList arrayList = notificationsCustomSettingsActivity.f33826w;
+        rk0 rk0Var = this.f37453c;
+        ArrayList arrayList2 = this.f37455f;
         if (arrayList2 != arrayList && (indexOf = arrayList.indexOf(rk0Var)) >= 0) {
-            notificationsCustomSettingsActivity.f33825w.remove(indexOf);
-            notificationsCustomSettingsActivity.f33826x.remove(Long.valueOf(rk0Var.d));
+            notificationsCustomSettingsActivity.f33826w.remove(indexOf);
+            notificationsCustomSettingsActivity.f33827x.remove(Long.valueOf(rk0Var.d));
         }
         arrayList2.remove(rk0Var);
-        if (arrayList2 == notificationsCustomSettingsActivity.f33825w) {
+        if (arrayList2 == notificationsCustomSettingsActivity.f33826w) {
             notificationsCustomSettingsActivity.l0(true);
             notificationsCustomSettingsActivity.d0();
         } else {
             notificationsCustomSettingsActivity.l0(true);
-            notificationsCustomSettingsActivity.d.m(this.f37453e);
+            notificationsCustomSettingsActivity.d.m(this.f37454e);
         }
         kVar = ((org.telegram.ui.ActionBar.n2) notificationsCustomSettingsActivity).actionBar;
         kVar.h(true);
@@ -52,29 +52,29 @@ public final class ik0 implements org.telegram.ui.Components.ro {
     public final void b() {
         org.telegram.ui.ActionBar.k kVar;
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
-        if (notificationsCustomSettingsActivity.getMessagesController().isDialogMuted(this.f37450a, 0) != this.f37451b) {
+        if (notificationsCustomSettingsActivity.getMessagesController().isDialogMuted(this.f37451a, 0) != this.f37452b) {
             a();
             return;
         }
         SharedPreferences notificationsSettings = notificationsCustomSettingsActivity.getNotificationsSettings();
         StringBuilder sb2 = new StringBuilder("custom_");
-        rk0 rk0Var = this.f37452c;
+        rk0 rk0Var = this.f37453c;
         sb2.append(rk0Var.d);
-        rk0Var.f40153b = notificationsSettings.getBoolean(sb2.toString(), false);
+        rk0Var.f40154b = notificationsSettings.getBoolean(sb2.toString(), false);
         int i10 = notificationsSettings.getInt("notify2_" + rk0Var.d, 0);
-        rk0Var.f40154c = i10;
+        rk0Var.f40155c = i10;
         if (i10 != 0) {
             int i11 = notificationsSettings.getInt("notifyuntil_" + rk0Var.d, -1);
             if (i11 != -1) {
-                rk0Var.f40152a = i11;
+                rk0Var.f40153a = i11;
             }
         }
         if (this.d) {
-            notificationsCustomSettingsActivity.f33825w.add(rk0Var);
-            notificationsCustomSettingsActivity.f33826x.put(Long.valueOf(rk0Var.d), rk0Var);
+            notificationsCustomSettingsActivity.f33826w.add(rk0Var);
+            notificationsCustomSettingsActivity.f33827x.put(Long.valueOf(rk0Var.d), rk0Var);
             notificationsCustomSettingsActivity.l0(true);
         } else {
-            notificationsCustomSettingsActivity.f33817a.getAdapter().m(this.f37453e);
+            notificationsCustomSettingsActivity.f33818a.getAdapter().m(this.f37454e);
         }
         kVar = ((org.telegram.ui.ActionBar.n2) notificationsCustomSettingsActivity).actionBar;
         kVar.h(true);
@@ -85,18 +85,18 @@ public final class ik0 implements org.telegram.ui.Components.ro {
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
         MessagesController messagesController = notificationsCustomSettingsActivity.getMessagesController();
         long j3 = 0;
-        long j10 = this.f37450a;
-        notificationsCustomSettingsActivity.getNotificationsController().muteDialog(this.f37450a, j3, !messagesController.isDialogMuted(j10, j3));
+        long j10 = this.f37451a;
+        notificationsCustomSettingsActivity.getNotificationsController().muteDialog(this.f37451a, j3, !messagesController.isDialogMuted(j10, j3));
         org.telegram.ui.Components.yc.A(notificationsCustomSettingsActivity, notificationsCustomSettingsActivity.getMessagesController().isDialogMuted(j10, j3), null).j();
         b();
     }
 
     @Override
     public final void l() {
-        long j3 = this.f37450a;
+        long j3 = this.f37451a;
         if (j3 != 0) {
             p11 p11Var = new p11(t8.b.f(j3, "dialog_id"), null);
-            p11Var.f39319r = new g(this, 28);
+            p11Var.f39320r = new g(this, 28);
             this.h.presentFragment(p11Var);
         }
     }
@@ -104,7 +104,7 @@ public final class ik0 implements org.telegram.ui.Components.ro {
     @Override
     public final void r() {
         int i10;
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(this.f37450a, 0);
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(this.f37451a, 0);
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
         i10 = ((org.telegram.ui.ActionBar.n2) notificationsCustomSettingsActivity).currentAccount;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
@@ -121,14 +121,14 @@ public final class ik0 implements org.telegram.ui.Components.ro {
     public final void t(int i10) {
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
         if (i10 == 0) {
-            if (notificationsCustomSettingsActivity.getMessagesController().isDialogMuted(this.f37450a, 0)) {
+            if (notificationsCustomSettingsActivity.getMessagesController().isDialogMuted(this.f37451a, 0)) {
                 k();
             }
             if (org.telegram.ui.Components.yc.a(notificationsCustomSettingsActivity)) {
                 org.telegram.ui.Components.yc.z(notificationsCustomSettingsActivity, 4, i10, notificationsCustomSettingsActivity.getResourceProvider()).j();
             }
         } else {
-            notificationsCustomSettingsActivity.getNotificationsController().muteUntil(this.f37450a, 0, i10);
+            notificationsCustomSettingsActivity.getNotificationsController().muteUntil(this.f37451a, 0, i10);
             if (org.telegram.ui.Components.yc.a(notificationsCustomSettingsActivity)) {
                 org.telegram.ui.Components.yc.z(notificationsCustomSettingsActivity, 5, i10, notificationsCustomSettingsActivity.getResourceProvider()).j();
             }

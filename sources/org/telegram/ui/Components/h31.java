@@ -24,18 +24,18 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class h31 implements Runnable {
-    public final int f26999a;
-    public final long f27000b;
-    public final Object f27001c;
+    public final int f27000a;
+    public final long f27001b;
+    public final Object f27002c;
     public final Object d;
-    public final Object f27002e;
+    public final Object f27003e;
 
     public h31(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f26999a = i10;
-        this.f27001c = obj;
+        this.f27000a = i10;
+        this.f27002c = obj;
         this.d = obj2;
-        this.f27000b = j3;
-        this.f27002e = obj3;
+        this.f27001b = j3;
+        this.f27003e = obj3;
     }
 
     @Override
@@ -45,16 +45,16 @@ public final class h31 implements Runnable {
         org.telegram.ui.uy uyVar;
         org.telegram.ui.uy uyVar2;
         ChatObject.Call groupCall;
-        int i11 = this.f26999a;
-        long j3 = this.f27000b;
-        Object obj = this.f27002e;
+        int i11 = this.f27000a;
+        long j3 = this.f27001b;
+        Object obj = this.f27003e;
         Object obj2 = this.d;
-        Object obj3 = this.f27001c;
+        Object obj3 = this.f27002c;
         switch (i11) {
             case 0:
                 v31 v31Var = (v31) obj3;
                 ArrayList arrayList = (ArrayList) obj;
-                v31Var.f31551e0.removeAll((HashSet) obj2);
+                v31Var.f31552e0.removeAll((HashSet) obj2);
                 v31Var.o();
                 int size = arrayList.size();
                 int i12 = 0;
@@ -82,7 +82,7 @@ public final class h31 implements Runnable {
                 } else {
                     i10 = Integer.MAX_VALUE;
                 }
-                long j10 = this.f27000b;
+                long j10 = this.f27001b;
                 if (DialogObject.isEncryptedDialog(j10)) {
                     encryptedChat = org.telegram.messenger.f0.l(uyVar3.getMessagesController(), j10);
                 } else {
@@ -117,10 +117,10 @@ public final class h31 implements Runnable {
                     }
                     uyVar2.getMessagesController().reorderPinnedDialogs(uyVar2.V2, null, 0L);
                     uyVar2.c5(true);
-                    if (uyVar2.f41392e0 != null) {
+                    if (uyVar2.f41393e0 != null) {
                         int i15 = 0;
                         while (true) {
-                            org.telegram.ui.ty[] tyVarArr = uyVar2.f41392e0;
+                            org.telegram.ui.ty[] tyVarArr = uyVar2.f41393e0;
                             if (i15 < tyVarArr.length) {
                                 tyVarArr[i15].d.H = false;
                                 i15++;
@@ -135,8 +135,8 @@ public final class h31 implements Runnable {
                 org.telegram.ui.h60 h60Var = (org.telegram.ui.h60) obj3;
                 org.telegram.ui.ActionBar.b2[] b2VarArr = (org.telegram.ui.ActionBar.b2[]) obj2;
                 TLRPC.User user = (TLRPC.User) obj;
-                ChatObject.Call call = h60Var.f36873a1;
-                if (call != null && !h60Var.f36947s0) {
+                ChatObject.Call call = h60Var.f36874a1;
+                if (call != null && !h60Var.f36948s0) {
                     call.addInvitedUser(j3);
                     h60Var.O0(true);
                     v30 v30Var = h60Var.E1;
@@ -168,12 +168,12 @@ public final class h31 implements Runnable {
                 return;
             case 4:
                 org.telegram.ui.ya0 ya0Var = (org.telegram.ui.ya0) obj3;
-                LaunchActivity launchActivity = ya0Var.f43109g;
+                LaunchActivity launchActivity = ya0Var.f43110g;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
                 if (((String) obj2) != null) {
                     AccountInstance accountInstance = AccountInstance.getInstance(launchActivity.O);
                     MessagesController messagesController2 = accountInstance.getMessagesController();
-                    long j11 = this.f27000b;
+                    long j11 = this.f27001b;
                     long j12 = -j11;
                     if (messagesController2.getGroupCall(j12, false) != null) {
                         TLRPC.Chat chat = accountInstance.getMessagesController().getChat(Long.valueOf(j12));
@@ -200,7 +200,7 @@ public final class h31 implements Runnable {
                 PhotoViewer photoViewer = (PhotoViewer) obj3;
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
-                long j13 = this.f27000b;
+                long j13 = this.f27001b;
                 ai.l lVar = new ai.l(photoViewer, (String) obj2, photoEntry, j13, 8);
                 if (photoViewer.D2) {
                     Bitmap createBitmap = Bitmap.createBitmap(photoViewer.C2.getWidth(), photoViewer.C2.getHeight(), Bitmap.Config.ARGB_8888);
@@ -219,9 +219,9 @@ public final class h31 implements Runnable {
             case 6:
                 yh.x3 x3Var = (yh.x3) obj3;
                 Utilities.Callback callback = (Utilities.Callback) obj;
-                if (!((yh.t5) obj2).f52013e) {
+                if (!((yh.t5) obj2).f52014e) {
                     rc Q = x3Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f30348t = true;
+                    Q.f30349t = true;
                     Q.j();
                     return;
                 }
@@ -234,11 +234,11 @@ public final class h31 implements Runnable {
                 yh.x3 x3Var2 = (yh.x3) obj3;
                 x3Var2.getClass();
                 ((boolean[]) obj2)[0] = true;
-                x3Var2.f52224j0.setLoading(false);
+                x3Var2.f52225j0.setLoading(false);
                 x3Var2.v1(j3, (Utilities.Callback) obj);
                 return;
             case 9:
-                ((yh.t5) obj2).d0((MessageObject) obj, ((yh.b4) obj3).f51118a, this.f27000b, true, true, null);
+                ((yh.t5) obj2).d0((MessageObject) obj, ((yh.b4) obj3).f51119a, this.f27001b, true, true, null);
                 return;
             case 10:
                 yh.t5 t5Var = (yh.t5) obj3;
@@ -257,12 +257,12 @@ public final class h31 implements Runnable {
                 yh.t5 t5Var2 = (yh.t5) obj3;
                 Utilities.Callback callback3 = (Utilities.Callback) obj2;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                if (!t5Var2.f52013e) {
+                if (!t5Var2.f52014e) {
                     yh.t5.e("NO_BALANCE");
                     callback3.run(null);
                     return;
                 }
-                t5Var2.H(starGift, this.f27000b, null, true, callback3);
+                t5Var2.H(starGift, this.f27001b, null, true, callback3);
                 return;
             case 12:
                 CharSequence charSequence = (CharSequence) obj;
@@ -281,18 +281,18 @@ public final class h31 implements Runnable {
     }
 
     public h31(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f26999a = i10;
-        this.f27001c = obj;
+        this.f27000a = i10;
+        this.f27002c = obj;
         this.d = obj2;
-        this.f27002e = obj3;
-        this.f27000b = j3;
+        this.f27003e = obj3;
+        this.f27001b = j3;
     }
 
     public h31(org.telegram.ui.ActionBar.f3 f3Var, long j3, Object obj, Object obj2, int i10) {
-        this.f26999a = i10;
-        this.f27001c = f3Var;
-        this.f27000b = j3;
+        this.f27000a = i10;
+        this.f27002c = f3Var;
+        this.f27001b = j3;
         this.d = obj;
-        this.f27002e = obj2;
+        this.f27003e = obj2;
     }
 }

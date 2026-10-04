@@ -14,12 +14,12 @@ import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.q90;
 public abstract class a7 extends LinearLayout {
-    public TextView f21797a;
-    public q90 f21798b;
-    public TextView f21799c;
+    public TextView f21798a;
+    public q90 f21799b;
+    public TextView f21800c;
     public TextView d;
-    public int f21800e;
-    public int f21801f;
+    public int f21801e;
+    public int f21802f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -27,12 +27,12 @@ public abstract class a7 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f21801f;
-        TextView textView = this.f21799c;
-        q90 q90Var = this.f21798b;
-        TextView textView2 = this.f21797a;
+        int i11 = this.f21802f;
+        TextView textView = this.f21800c;
+        q90 q90Var = this.f21799b;
+        TextView textView2 = this.f21798a;
         TextView textView3 = this.d;
-        this.f21800e = i10;
+        this.f21801e = i10;
         if (i10 == 0) {
             textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, ok.h(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, gf.b.c())));
             String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);

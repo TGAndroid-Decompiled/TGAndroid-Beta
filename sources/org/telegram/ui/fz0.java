@@ -3,26 +3,26 @@ package org.telegram.ui;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class fz0 extends s4.s0 {
-    public final int f36447a;
-    public final ProfileActivity f36448b;
+    public final int f36448a;
+    public final ProfileActivity f36449b;
 
     public fz0(ProfileActivity profileActivity, int i10) {
-        this.f36447a = i10;
-        this.f36448b = profileActivity;
+        this.f36448a = i10;
+        this.f36449b = profileActivity;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         boolean z10;
-        switch (this.f36447a) {
+        switch (this.f36448a) {
             case 0:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f36448b.getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(this.f36449b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             default:
-                ProfileActivity profileActivity = this.f36448b;
+                ProfileActivity profileActivity = this.f36449b;
                 boolean z11 = true;
                 if (i10 == 1) {
                     AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
@@ -37,11 +37,11 @@ public final class fz0 extends s4.s0 {
                     } else {
                         z10 = false;
                     }
-                    profileActivity.f34377z1 = z10;
-                    v0Var.setEnabled((z10 || profileActivity.f34309p2) ? false : false);
+                    profileActivity.f34378z1 = z10;
+                    v0Var.setEnabled((z10 || profileActivity.f34310p2) ? false : false);
                 }
                 e01 e01Var = profileActivity.O;
-                boolean z12 = profileActivity.f34201a.K1;
+                boolean z12 = profileActivity.f34202a.K1;
                 e01Var.getClass();
                 return;
         }
@@ -49,16 +49,16 @@ public final class fz0 extends s4.s0 {
 
     @Override
     public void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f36447a) {
+        switch (this.f36448a) {
             case 1:
-                ProfileActivity profileActivity = this.f36448b;
+                ProfileActivity profileActivity = this.f36449b;
                 org.telegram.ui.Components.m40 m40Var = profileActivity.X;
                 boolean z10 = true;
                 if (m40Var != null) {
                     m40Var.b(true);
                 }
                 profileActivity.A3();
-                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f34216c.N0() > profileActivity.f34353v4 - 8) {
+                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f34217c.N0() > profileActivity.f34354v4 - 8) {
                     profileActivity.R3(false);
                 }
                 e01 e01Var = profileActivity.O;

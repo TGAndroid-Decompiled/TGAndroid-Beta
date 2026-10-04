@@ -49,14 +49,14 @@ public final class f implements bh.a {
                 gh.d.a(zl0Var, canvas, rectF, zl0Var, (FrameLayout) this.f8370c);
                 return;
             case 2:
-                ((a7) this.f8369b).f34680b0.c0(canvas, rectF, (d6) this.f8370c);
+                ((a7) this.f8369b).f34681b0.c0(canvas, rectF, (d6) this.f8370c);
                 return;
             case 3:
                 zu zuVar = (zu) this.f8369b;
                 w5 w5Var = (w5) this.f8370c;
-                int childCount = zuVar.f43896a.getChildCount();
+                int childCount = zuVar.f43897a.getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = zuVar.f43896a.getChildAt(i10);
+                    View childAt = zuVar.f43897a.getChildAt(i10);
                     if (childAt instanceof zl0) {
                         zl0 zl0Var2 = (zl0) childAt;
                         gh.d.a(zl0Var2, canvas, rectF, zl0Var2, w5Var);
@@ -65,7 +65,7 @@ public final class f implements bh.a {
                 return;
             case 4:
                 ((n) this.f8370c).f(canvas, rectF);
-                mh mhVar = ((ProfileActivity) this.f8369b).O.f29759c2;
+                mh mhVar = ((ProfileActivity) this.f8369b).O.f29760c2;
                 if (mhVar != null) {
                     mhVar.f(canvas, rectF);
                     return;

@@ -4,15 +4,15 @@ import android.os.AsyncTask;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.BuildVars;
 public final class y91 extends AsyncTask {
-    public final String f33121a;
-    public final CountDownLatch f33122b = new CountDownLatch(1);
-    public final String[] f33123c = new String[2];
+    public final String f33122a;
+    public final CountDownLatch f33123b = new CountDownLatch(1);
+    public final String[] f33124c = new String[2];
     public String d;
-    public final z91 f33124e;
+    public final z91 f33125e;
 
     public y91(z91 z91Var, String str) {
-        this.f33124e = z91Var;
-        this.f33121a = str;
+        this.f33125e = z91Var;
+        this.f33122a = str;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class y91 extends AsyncTask {
     public final void onPostExecute(Object obj) {
         String[] strArr = (String[]) obj;
         String str = strArr[0];
-        z91 z91Var = this.f33124e;
+        z91 z91Var = this.f33125e;
         if (str != null) {
             if (BuildVars.LOGS_ENABLED) {
                 StringBuilder sb2 = new StringBuilder("start play youtube video ");
@@ -32,18 +32,18 @@ public final class y91 extends AsyncTask {
                 sb2.append(" ");
                 com.google.android.gms.internal.vision.e2.t(strArr[0], sb2);
             }
-            z91Var.f33458w = true;
-            z91Var.f33459x = strArr[0];
+            z91Var.f33459w = true;
+            z91Var.f33460x = strArr[0];
             String str2 = strArr[1];
-            z91Var.f33460y = str2;
+            z91Var.f33461y = str2;
             if (str2.equals("hls")) {
                 z91Var.H = true;
             }
-            if (z91Var.f33457s) {
+            if (z91Var.f33458s) {
                 z91Var.i();
             }
             z91Var.j(false, true);
-            z91Var.f33449f0.d(true, true);
+            z91Var.f33450f0.d(true, true);
         } else if (!isCancelled()) {
             z91Var.h();
         }

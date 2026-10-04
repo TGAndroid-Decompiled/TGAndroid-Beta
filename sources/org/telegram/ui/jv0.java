@@ -12,19 +12,19 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class jv0 extends FrameLayout {
-    public final FrameLayout f37774a;
-    public final TextureView f37775b;
-    public final l4 f37776c;
+    public final FrameLayout f37775a;
+    public final TextureView f37776b;
+    public final l4 f37777c;
     public final org.telegram.ui.Components.w9 d;
-    public final kv0 f37777e;
+    public final kv0 f37778e;
 
     public jv0(kv0 kv0Var, Context context) {
         super(context);
-        this.f37777e = kv0Var;
+        this.f37778e = kv0Var;
         new Path();
         new Paint(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f37774a = frameLayout;
+        this.f37775a = frameLayout;
         frameLayout.setOutlineProvider(new ViewOutlineProvider());
         frameLayout.setClipToOutline(true);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
@@ -32,11 +32,11 @@ public final class jv0 extends FrameLayout {
         frameLayout.addView(w9Var);
         frameLayout.setWillNotDraw(false);
         l4 l4Var = new l4(context);
-        this.f37776c = l4Var;
+        this.f37777c = l4Var;
         l4Var.setBackgroundColor(0);
         frameLayout.addView(l4Var, w7.z5.e(-1, -1, 17));
         TextureView textureView = new TextureView(context);
-        this.f37775b = textureView;
+        this.f37776b = textureView;
         textureView.setOpaque(false);
         l4Var.addView(textureView, w7.z5.c(-1.0f, -1));
         addView(frameLayout, w7.z5.c(-2.0f, -2));
@@ -46,23 +46,23 @@ public final class jv0 extends FrameLayout {
     public final void a(Canvas canvas) {
         float f7;
         float f10;
-        kv0 kv0Var = this.f37777e;
-        float[] fArr = kv0Var.f38104m;
-        vh.g gVar = kv0Var.f38101j;
-        Path path = kv0Var.f38103l;
-        if (kv0Var.f38105n && kv0Var.f38097e != null && kv0Var.f38094a != null) {
+        kv0 kv0Var = this.f37778e;
+        float[] fArr = kv0Var.f38105m;
+        vh.g gVar = kv0Var.f38102j;
+        Path path = kv0Var.f38104l;
+        if (kv0Var.f38106n && kv0Var.f38098e != null && kv0Var.f38095a != null) {
             kv0Var.i();
-            float left = kv0Var.f38106o - getLeft();
-            float top = kv0Var.f38107p - getTop();
+            float left = kv0Var.f38107o - getLeft();
+            float top = kv0Var.f38108p - getTop();
             canvas.save();
             float f11 = kv0Var.O;
             float f12 = kv0Var.A;
             float f13 = ((f11 * f12) + 1.0f) - f12;
-            canvas.scale(f13, f13, kv0Var.f38110s + left, kv0Var.f38111t + top);
+            canvas.scale(f13, f13, kv0Var.f38111s + left, kv0Var.f38112t + top);
             float f14 = kv0Var.J;
             float f15 = kv0Var.A;
             canvas.translate((f14 * f15) + left, (kv0Var.K * f15) + top);
-            ImageReceiver imageReceiver = kv0Var.f38099g;
+            ImageReceiver imageReceiver = kv0Var.f38100g;
             if (imageReceiver != null && imageReceiver.hasNotThumb()) {
                 float f16 = kv0Var.B;
                 if (f16 != 1.0f) {
@@ -74,13 +74,13 @@ public final class jv0 extends FrameLayout {
                         kv0Var.e();
                     }
                 }
-                kv0Var.f38099g.setAlpha(kv0Var.B);
+                kv0Var.f38100g.setAlpha(kv0Var.B);
             }
-            float f18 = kv0Var.f38112u;
+            float f18 = kv0Var.f38113u;
             float f19 = kv0Var.v;
-            float f20 = kv0Var.f38113w;
-            float f21 = kv0Var.f38115y;
-            if (f20 == f21 && kv0Var.f38114x == kv0Var.f38116z) {
+            float f20 = kv0Var.f38114w;
+            float f21 = kv0Var.f38116y;
+            if (f20 == f21 && kv0Var.f38115x == kv0Var.f38117z) {
                 f10 = 1.0f;
             } else {
                 if (f13 < 1.0f) {
@@ -91,51 +91,51 @@ public final class jv0 extends FrameLayout {
                     f7 = 1.0f;
                 }
                 f10 = 1.0f;
-                float f22 = kv0Var.f38116z;
-                float f23 = kv0Var.f38114x;
+                float f22 = kv0Var.f38117z;
+                float f23 = kv0Var.f38115x;
                 float f24 = ((f22 - f23) / 2.0f) * f7;
                 f18 -= f24;
                 float f25 = ((f21 - f20) / 2.0f) * f7;
                 f19 -= f25;
-                ImageReceiver imageReceiver2 = kv0Var.f38098f;
+                ImageReceiver imageReceiver2 = kv0Var.f38099f;
                 if (imageReceiver2 != null) {
                     imageReceiver2.setImageCoords(f18, f19, (f24 * 2.0f) + f23, (f25 * 2.0f) + f20);
                 }
             }
             if (!kv0Var.R) {
-                ImageReceiver imageReceiver3 = kv0Var.f38098f;
+                ImageReceiver imageReceiver3 = kv0Var.f38099f;
                 if (imageReceiver3 != null) {
                     if (kv0Var.B != f10) {
-                        if (imageReceiver3.getLottieAnimation() != null || kv0Var.f38098f.getAnimation() != null || kv0Var.f38099g.getLottieAnimation() != null || kv0Var.f38099g.getAnimation() != null) {
+                        if (imageReceiver3.getLottieAnimation() != null || kv0Var.f38099f.getAnimation() != null || kv0Var.f38100g.getLottieAnimation() != null || kv0Var.f38100g.getAnimation() != null) {
                             invalidate();
                         }
-                        kv0Var.f38098f.draw(canvas);
-                        kv0Var.f38099g.setImageCoords(kv0Var.f38098f.getImageX(), kv0Var.f38098f.getImageY(), kv0Var.f38098f.getImageWidth(), kv0Var.f38098f.getImageHeight());
-                        kv0Var.f38099g.draw(canvas);
+                        kv0Var.f38099f.draw(canvas);
+                        kv0Var.f38100g.setImageCoords(kv0Var.f38099f.getImageX(), kv0Var.f38099f.getImageY(), kv0Var.f38099f.getImageWidth(), kv0Var.f38099f.getImageHeight());
+                        kv0Var.f38100g.draw(canvas);
                     } else {
-                        kv0Var.f38099g.setImageCoords(imageReceiver3.getImageX(), kv0Var.f38098f.getImageY(), kv0Var.f38098f.getImageWidth(), kv0Var.f38098f.getImageHeight());
-                        kv0Var.f38099g.draw(canvas);
-                        if (kv0Var.f38099g.getLottieAnimation() != null || kv0Var.f38099g.getAnimation() != null) {
+                        kv0Var.f38100g.setImageCoords(imageReceiver3.getImageX(), kv0Var.f38099f.getImageY(), kv0Var.f38099f.getImageWidth(), kv0Var.f38099f.getImageHeight());
+                        kv0Var.f38100g.draw(canvas);
+                        if (kv0Var.f38100g.getLottieAnimation() != null || kv0Var.f38100g.getAnimation() != null) {
                             invalidate();
                         }
                     }
                 }
             } else {
-                float f26 = kv0Var.f38110s - kv0Var.f38112u;
-                FrameLayout frameLayout = this.f37774a;
+                float f26 = kv0Var.f38111s - kv0Var.f38113u;
+                FrameLayout frameLayout = this.f37775a;
                 frameLayout.setPivotX(f26);
-                frameLayout.setPivotY(kv0Var.f38111t - kv0Var.v);
+                frameLayout.setPivotY(kv0Var.f38112t - kv0Var.v);
                 frameLayout.setScaleY(f13);
                 frameLayout.setScaleX(f13);
                 frameLayout.setTranslationX((kv0Var.J * f13 * kv0Var.A) + f18 + left);
                 frameLayout.setTranslationY((kv0Var.K * f13 * kv0Var.A) + f19 + top);
             }
-            if (kv0Var.f38100i) {
-                kv0Var.h.setAlpha(kv0Var.f38098f.getAlpha());
-                kv0Var.h.setRoundRadius(kv0Var.f38098f.getRoundRadius(true));
-                kv0Var.h.setImageCoords(kv0Var.f38098f.getImageX(), kv0Var.f38098f.getImageY(), kv0Var.f38098f.getImageWidth(), kv0Var.f38098f.getImageHeight());
+            if (kv0Var.f38101i) {
+                kv0Var.h.setAlpha(kv0Var.f38099f.getAlpha());
+                kv0Var.h.setRoundRadius(kv0Var.f38099f.getRoundRadius(true));
+                kv0Var.h.setImageCoords(kv0Var.f38099f.getImageX(), kv0Var.f38099f.getImageY(), kv0Var.f38099f.getImageWidth(), kv0Var.f38099f.getImageHeight());
                 kv0Var.h.draw(canvas);
-                int[] roundRadius = kv0Var.f38098f.getRoundRadius(true);
+                int[] roundRadius = kv0Var.f38099f.getRoundRadius(true);
                 float f27 = roundRadius[0];
                 fArr[1] = f27;
                 fArr[0] = f27;
@@ -149,17 +149,17 @@ public final class jv0 extends FrameLayout {
                 fArr[7] = f30;
                 fArr[6] = f30;
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(kv0Var.f38098f.getImageX(), kv0Var.f38098f.getImageY(), kv0Var.f38098f.getImageX2(), kv0Var.f38098f.getImageY2());
+                rectF.set(kv0Var.f38099f.getImageX(), kv0Var.f38099f.getImageY(), kv0Var.f38099f.getImageX2(), kv0Var.f38099f.getImageY2());
                 path.rewind();
                 path.addRoundRect(rectF, fArr, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
-                if (kv0Var.f38102k != null) {
-                    canvas.translate(kv0Var.f38098f.getImageX(), kv0Var.f38098f.getImageY());
-                    kv0Var.f38102k.c(canvas, kv0Var.d, (int) kv0Var.f38098f.getImageWidth(), (int) kv0Var.f38098f.getImageHeight(), 1.0f, false);
+                if (kv0Var.f38103k != null) {
+                    canvas.translate(kv0Var.f38099f.getImageX(), kv0Var.f38099f.getImageY());
+                    kv0Var.f38103k.c(canvas, kv0Var.d, (int) kv0Var.f38099f.getImageWidth(), (int) kv0Var.f38099f.getImageHeight(), 1.0f, false);
                 } else {
-                    gVar.h(i0.a.k(-1, (int) (kv0Var.f38098f.getAlpha() * Color.alpha(-1) * 0.325f)));
-                    gVar.setBounds((int) kv0Var.f38098f.getImageX(), (int) kv0Var.f38098f.getImageY(), (int) kv0Var.f38098f.getImageX2(), (int) kv0Var.f38098f.getImageY2());
+                    gVar.h(i0.a.k(-1, (int) (kv0Var.f38099f.getAlpha() * Color.alpha(-1) * 0.325f)));
+                    gVar.setBounds((int) kv0Var.f38099f.getImageX(), (int) kv0Var.f38099f.getImageY(), (int) kv0Var.f38099f.getImageX2(), (int) kv0Var.f38099f.getImageY2());
                     gVar.draw(canvas);
                 }
                 canvas.restore();
@@ -173,7 +173,7 @@ public final class jv0 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         float f7;
         hv0 hv0Var;
-        kv0 kv0Var = this.f37777e;
+        kv0 kv0Var = this.f37778e;
         float[] fArr = kv0Var.Q;
         if (kv0Var.C == null) {
             float f10 = kv0Var.P;
@@ -187,7 +187,7 @@ public final class jv0 extends FrameLayout {
                 }
             }
         }
-        float interpolation = org.telegram.ui.Components.tr.f31140f.getInterpolation(kv0Var.P) * kv0Var.A;
+        float interpolation = org.telegram.ui.Components.tr.f31141f.getInterpolation(kv0Var.P) * kv0Var.A;
         float measuredHeight = getMeasuredHeight();
         float f12 = 0.0f;
         if (interpolation != 1.0f && (hv0Var = kv0Var.F) != null) {
@@ -207,6 +207,6 @@ public final class jv0 extends FrameLayout {
             super.dispatchDraw(canvas);
             f7 = measuredHeight;
         }
-        kv0Var.c(canvas, 1.0f - interpolation, kv0Var.f38106o - getLeft(), kv0Var.f38107p - getTop(), f12, f7);
+        kv0Var.c(canvas, 1.0f - interpolation, kv0Var.f38107o - getLeft(), kv0Var.f38108p - getTop(), f12, f7);
     }
 }

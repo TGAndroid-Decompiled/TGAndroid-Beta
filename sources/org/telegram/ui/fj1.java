@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessageObject;
 public final class fj1 extends org.telegram.ui.ActionBar.j {
-    public final hj1 f36338a;
+    public final hj1 f36339a;
 
     public fj1(hj1 hj1Var) {
-        this.f36338a = hj1Var;
+        this.f36339a = hj1Var;
     }
 
     @Override
     public final void b(int i10) {
-        hj1 hj1Var = this.f36338a;
-        MessageObject messageObject = hj1Var.f37108n;
+        hj1 hj1Var = this.f36339a;
+        MessageObject messageObject = hj1Var.f37109n;
         if (i10 == -1) {
             hj1Var.finishFragment();
         } else if (i10 == 1) {
@@ -20,7 +20,7 @@ public final class fj1 extends org.telegram.ui.ActionBar.j {
                 hj1Var.showDialog(org.telegram.ui.Components.zq0.K0(hj1Var.getParentActivity(), messageObject, null, false, hj1Var.h));
             }
         } else if (i10 == 2) {
-            hj1.T(hj1Var.d, messageObject, hj1Var.getParentActivity(), hj1Var.f37109r, hj1Var.f37106e);
+            hj1.T(hj1Var.d, messageObject, hj1Var.getParentActivity(), hj1Var.f37110r, hj1Var.f37107e);
         }
     }
 }

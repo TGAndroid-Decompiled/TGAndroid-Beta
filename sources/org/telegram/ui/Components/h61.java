@@ -3,13 +3,13 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 public final class h61 extends k61 {
     public static boolean h = true;
-    public final int f27028e;
-    public final m11 f27029f;
+    public final int f27029e;
+    public final m11 f27030f;
 
     public h61(String str, int i10, m11 m11Var) {
         super(str, (m11) null);
-        this.f27028e = i10;
-        this.f27029f = m11Var;
+        this.f27029e = i10;
+        this.f27030f = m11Var;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class h61 extends k61 {
         int i10;
         int i11;
         super.updateDrawState(textPaint);
-        int i12 = this.f27028e;
+        int i12 = this.f27029e;
         if (i12 == 2) {
             textPaint.setColor(-1);
         } else if (i12 == 1) {
             if (h) {
-                i11 = org.telegram.ui.ActionBar.i6.f20895hc;
+                i11 = org.telegram.ui.ActionBar.i6.f20896hc;
             } else {
-                i11 = org.telegram.ui.ActionBar.i6.f20859fc;
+                i11 = org.telegram.ui.ActionBar.i6.f20860fc;
             }
             textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         } else {
@@ -35,7 +35,7 @@ public final class h61 extends k61 {
             }
             textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
         }
-        m11 m11Var = this.f27029f;
+        m11 m11Var = this.f27030f;
         if (m11Var != null) {
             m11Var.a(textPaint);
         } else {

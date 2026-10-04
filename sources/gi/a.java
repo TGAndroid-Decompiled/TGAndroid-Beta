@@ -33,7 +33,7 @@ public final class a extends View {
         this.f10890e = e61Var;
         e61Var.setCallback(this);
         e61Var.b(-1);
-        e61Var.f25978i = true;
+        e61Var.f25979i = true;
     }
 
     @Override
@@ -93,7 +93,7 @@ public final class a extends View {
                 Paint paint = this.f10888b;
                 paint.setColor(v02);
                 canvas.drawCircle(width, height, AndroidUtilities.dp(19.0f), paint);
-                float f7 = ((le.b) this.f10889c).f15434e;
+                float f7 = ((le.b) this.f10889c).f15435e;
                 float f10 = 1.0f - f7;
                 if (f10 > 0.0f) {
                     p.b(canvas, (e61) this.f10890e, f10 * 1.35f);
@@ -153,7 +153,7 @@ public final class a extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f10887a) {
             case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((e61) this.f10890e) || ((le.b) this.f10889c).f15435f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((e61) this.f10890e) || ((le.b) this.f10889c).f15436f)) {
                     return false;
                 }
                 return true;
@@ -172,7 +172,7 @@ public final class a extends View {
         this.d = paint3;
         this.f10890e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(i6.v0(i6.f20817d6, d6Var));
+        paint.setColor(i6.v0(i6.f20818d6, d6Var));
         paint3.setColor(i6.v0(i6.wj, d6Var));
     }
 

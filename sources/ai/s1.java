@@ -103,8 +103,8 @@ public final class s1 implements Runnable {
                 qg.r1 r1Var = q6Var.f5764k1;
                 int i17 = r1Var.d + 1;
                 r1Var.a(i17);
-                AndroidUtilities.updateImageViewImageAnimated(r1Var.f45309a[i17], i16);
-                r1Var.f45312e = true;
+                AndroidUtilities.updateImageViewImageAnimated(r1Var.f45310a[i17], i16);
+                r1Var.f45313e = true;
                 return;
             case 6:
                 AndroidUtilities.runOnUIThread(new o8(this.f1616b, ((MessagesStorage) this.f1617c).getUsers(new ArrayList<>((HashSet) this.d)), 5));
@@ -203,7 +203,7 @@ public final class s1 implements Runnable {
                 return;
             case 16:
                 n2.k kVar = (n2.k) this.f1617c;
-                this.d.a(kVar.f16543a, kVar.f16544b, this.f1616b);
+                this.d.a(kVar.f16544a, kVar.f16545b, this.f1616b);
                 return;
             case 17:
                 ((View) this.d).postOnAnimation(new o8((nh.a) this.f1617c, this.f1616b, 13));
@@ -232,8 +232,8 @@ public final class s1 implements Runnable {
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f1617c;
                 String str3 = (String) this.d;
                 int i26 = this.f1616b;
-                HashMap hashMap = new HashMap(i4Var.f37274u0[0].f38394c.f36491w);
-                ArrayList arrayList2 = new ArrayList(i4Var.f37274u0[0].f38394c.f36492x);
+                HashMap hashMap = new HashMap(i4Var.f37275u0[0].f38395c.f36492w);
+                ArrayList arrayList2 = new ArrayList(i4Var.f37275u0[0].f38395c.f36493x);
                 i4Var.V0 = null;
                 Utilities.searchQueue.postRunnable(new ei.m3(i4Var, arrayList2, hashMap, str3, i26, 14));
                 return;
@@ -254,7 +254,7 @@ public final class s1 implements Runnable {
                 int i28 = this.f1616b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f1617c;
                 MessagesController.getInstance(i28).putUsers(tL_chatInviteJoinResultWebView.users, false);
-                BotGuardHelper.getInstance(i28).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20037id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+                BotGuardHelper.getInstance(i28).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20038id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
                 return;
             case 25:
                 org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f1617c;
@@ -277,7 +277,7 @@ public final class s1 implements Runnable {
             case 28:
                 int i30 = this.f1616b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                ((yn) this.f1617c).f43525v0.w0(0, i30, null);
+                ((yn) this.f1617c).f43526v0.w0(0, i30, null);
                 if (!AndroidUtilities.showKeyboard(editTextBoldCursor)) {
                     editTextBoldCursor.clearFocus();
                     editTextBoldCursor.requestFocus();
@@ -289,7 +289,7 @@ public final class s1 implements Runnable {
                 int i31 = this.f1616b;
                 amVar.getClass();
                 MessageObject messageObject = ((org.telegram.ui.Cells.w0) this.d).getMessageObject();
-                jm jmVar = amVar.f34861a;
+                jm jmVar = amVar.f34862a;
                 yn ynVar = jmVar.Q;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == jmVar.Q.J6) {

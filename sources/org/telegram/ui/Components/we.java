@@ -18,23 +18,23 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class we extends FrameLayout {
-    public final Paint f32518a;
-    public final RectF f32519b;
-    public final org.telegram.ui.ActionBar.d6 f32520c;
+    public final Paint f32519a;
+    public final RectF f32520b;
+    public final org.telegram.ui.ActionBar.d6 f32521c;
     public final ChatActivityEnterView d;
 
     public we(ChatActivityEnterView chatActivityEnterView, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
         this.d = chatActivityEnterView;
-        this.f32520c = d6Var;
-        this.f32518a = new Paint(1);
-        this.f32519b = new RectF();
+        this.f32521c = d6Var;
+        this.f32519a = new Paint(1);
+        this.f32520b = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        if (!chatActivityEnterView.f23849a1) {
+        if (!chatActivityEnterView.f23850a1) {
             df dfVar = chatActivityEnterView.S0;
             float f7 = 1.0f;
             if (dfVar != null && dfVar.getVisibility() == 0) {
@@ -42,7 +42,7 @@ public final class we extends FrameLayout {
             }
             float dpf2 = AndroidUtilities.dpf2(19.0f);
             int i02 = chatActivityEnterView.i0(org.telegram.ui.ActionBar.i6.Yd);
-            Paint paint = this.f32518a;
+            Paint paint = this.f32519a;
             paint.setColor(i02);
             float dpf22 = AndroidUtilities.dpf2(3.0f);
             float dpf23 = AndroidUtilities.dpf2(38.0f);
@@ -50,7 +50,7 @@ public final class we extends FrameLayout {
             float measuredHeight = (getMeasuredHeight() - dpf23) - dpf22;
             float measuredWidth2 = getMeasuredWidth() - dpf22;
             float measuredHeight2 = getMeasuredHeight() - dpf22;
-            RectF rectF = this.f32519b;
+            RectF rectF = this.f32520b;
             rectF.set(measuredWidth, measuredHeight, measuredWidth2, measuredHeight2);
             canvas.save();
             canvas.scale(f7, f7, rectF.centerX(), rectF.centerY());
@@ -62,7 +62,7 @@ public final class we extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.d.f23919l5) {
+        if (this.d.f23920l5) {
             return false;
         }
         return true;
@@ -92,25 +92,25 @@ public final class we extends FrameLayout {
         cf cfVar = chatActivityEnterView.H3;
         kg kgVar = chatActivityEnterView.K3;
         ze zeVar = chatActivityEnterView.J0;
-        if (!chatActivityEnterView.f23919l5) {
+        if (!chatActivityEnterView.f23920l5) {
             chatActivityEnterView.X();
             if (motionEvent.getAction() == 0) {
-                if (ChatActivityEnterView.this.f23957s4) {
-                    boolean z10 = chatActivityEnterView.f23876e2;
+                if (ChatActivityEnterView.this.f23958s4) {
+                    boolean z10 = chatActivityEnterView.f23877e2;
                     if (!z10 || chatActivityEnterView.J3) {
                         chatActivityEnterView.D2 = -1.0f;
-                        if (z10 && chatActivityEnterView.f23862c1) {
+                        if (z10 && chatActivityEnterView.f23863c1) {
                             if (e5.d0(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
-                                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23911k1;
+                                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23912k1;
                                 if (slideTextView != null) {
                                     slideTextView.setEnabled(false);
                                 }
                                 chatActivityEnterView.Z2.n1();
                                 e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new Utilities.Callback(this) {
-                                    public final we f31361b;
+                                    public final we f31362b;
 
                                     {
-                                        this.f31361b = this;
+                                        this.f31362b = this;
                                     }
 
                                     @Override
@@ -118,16 +118,16 @@ public final class we extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -149,33 +149,33 @@ public final class we extends FrameLayout {
                                 long a2 = ynVar.a();
                                 w1 w1Var = new w1(25);
                                 ai.f fVar = new ai.f(28);
-                                Pattern pattern = e5.f25913a;
-                                org.telegram.ui.ActionBar.d6 d6Var = this.f32520c;
+                                Pattern pattern = e5.f25914a;
+                                org.telegram.ui.ActionBar.d6 d6Var = this.f32521c;
                                 e5.K(activity, a2, -1L, 0, false, w1Var, fVar, new c5(d6Var), d6Var);
                             }
                             if (e5.d0(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
-                                if (chatActivityEnterView.f23862c1) {
-                                    ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f23911k1;
+                                if (chatActivityEnterView.f23863c1) {
+                                    ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f23912k1;
                                     if (slideTextView2 != null) {
                                         slideTextView2.setEnabled(false);
                                     }
                                     chatActivityEnterView.Z2.n1();
                                 } else {
-                                    if (chatActivityEnterView.f23957s4) {
+                                    if (chatActivityEnterView.f23958s4) {
                                         chatActivityEnterView.J3 = true;
                                     }
                                     MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.O);
                                     chatActivityEnterView.Z2.a1(0);
-                                    ChatActivityEnterView.SlideTextView slideTextView3 = chatActivityEnterView.f23911k1;
+                                    ChatActivityEnterView.SlideTextView slideTextView3 = chatActivityEnterView.f23912k1;
                                     if (slideTextView3 != null) {
                                         slideTextView3.setEnabled(false);
                                     }
                                 }
                                 e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new Utilities.Callback(this) {
-                                    public final we f31361b;
+                                    public final we f31362b;
 
                                     {
-                                        this.f31361b = this;
+                                        this.f31362b = this;
                                     }
 
                                     @Override
@@ -183,16 +183,16 @@ public final class we extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -209,31 +209,31 @@ public final class we extends FrameLayout {
                             chatActivityEnterView.Z2.a1(0);
                         }
                         chatActivityEnterView.F2 = false;
-                        chatActivityEnterView.f23887g0 = false;
+                        chatActivityEnterView.f23888g0 = false;
                         Runnable runnable = new Runnable(this) {
-                            public final we f31640b;
+                            public final we f31641b;
 
                             {
-                                this.f31640b = this;
+                                this.f31641b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ChatActivityEnterView chatActivityEnterView2 = this.f31640b.d;
-                                        chatActivityEnterView2.f23881f0 = null;
+                                        ChatActivityEnterView chatActivityEnterView2 = this.f31641b.d;
+                                        chatActivityEnterView2.f23882f0 = null;
                                         chatActivityEnterView2.K1(1, true);
                                         return;
                                     default:
-                                        ChatActivityEnterView chatActivityEnterView3 = this.f31640b.d;
-                                        chatActivityEnterView3.f23881f0 = null;
+                                        ChatActivityEnterView chatActivityEnterView3 = this.f31641b.d;
+                                        chatActivityEnterView3.f23882f0 = null;
                                         chatActivityEnterView3.K1(1, true);
                                         return;
                                 }
                             }
                         };
-                        chatActivityEnterView.f23881f0 = runnable;
+                        chatActivityEnterView.f23882f0 = runnable;
                         AndroidUtilities.runOnUIThread(runnable, 200L);
                     }
                     getParent().requestDisallowInterceptTouchEvent(true);
@@ -242,17 +242,17 @@ public final class we extends FrameLayout {
                 if (ynVar == null) {
                     chat = null;
                 } else {
-                    chat = ynVar.f43314e;
+                    chat = ynVar.f43315e;
                 }
                 if (ynVar == null) {
                     userFull = chatActivityEnterView.K;
                 } else {
                     userFull = ynVar.Y7;
                 }
-                if ((chat != null && !ChatObject.canSendVoice(chat) && (!ChatObject.canSendRoundVideo(chat) || !chatActivityEnterView.f23876e2)) || (userFull != null && userFull.voice_messages_forbidden)) {
+                if ((chat != null && !ChatObject.canSendVoice(chat) && (!ChatObject.canSendRoundVideo(chat) || !chatActivityEnterView.f23877e2)) || (userFull != null && userFull.voice_messages_forbidden)) {
                     chatActivityEnterView.Z2.i2();
                     return true;
-                } else if (chatActivityEnterView.f23876e2) {
+                } else if (chatActivityEnterView.f23877e2) {
                     chatActivityEnterView.J3 = false;
                     chatActivityEnterView.I3 = true;
                     AndroidUtilities.runOnUIThread(kgVar, 150L);
@@ -267,27 +267,27 @@ public final class we extends FrameLayout {
                     float y3 = motionEvent.getY();
                     ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.N1;
                     ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
-                    boolean z11 = chatActivityEnterView2.f23957s4;
+                    boolean z11 = chatActivityEnterView2.f23958s4;
                     if (!z11) {
                         if (!z11) {
                             if (chatActivityEnterView2.l4 == -1.0f) {
-                                chatActivityEnterView2.f23914k4 = y3;
+                                chatActivityEnterView2.f23915k4 = y3;
                             }
                             chatActivityEnterView2.l4 = y3;
                             recordCircle.invalidate();
-                            if (!chatActivityEnterView2.f23951r4 && chatActivityEnterView2.f23908j4 >= 0.7f && chatActivityEnterView2.f23914k4 - chatActivityEnterView2.l4 >= AndroidUtilities.dp(57.0f)) {
-                                chatActivityEnterView2.f23957s4 = true;
+                            if (!chatActivityEnterView2.f23952r4 && chatActivityEnterView2.f23909j4 >= 0.7f && chatActivityEnterView2.f23915k4 - chatActivityEnterView2.l4 >= AndroidUtilities.dp(57.0f)) {
+                                chatActivityEnterView2.f23958s4 = true;
                                 tg tgVar = chatActivityEnterView2.O1;
                                 if (tgVar != null && MessagesController.getGlobalMainSettings().getInt("voicepausehint", 0) <= 3) {
                                     tgVar.a();
                                     ci.e4 e4Var = new ci.e4(tgVar.getContext(), 2);
-                                    tgVar.f31043a = e4Var;
+                                    tgVar.f31044a = e4Var;
                                     e4Var.l(1.0f, 0.0f);
-                                    tgVar.f31043a.p(true);
-                                    tgVar.f31043a.s(LocaleController.getString(R.string.VoicePauseHint));
+                                    tgVar.f31044a.p(true);
+                                    tgVar.f31044a.s(LocaleController.getString(R.string.VoicePauseHint));
                                     MessagesController.getGlobalMainSettings().edit().putInt("voicepausehint", MessagesController.getGlobalMainSettings().getInt("voicepausehint", 0) + 1).apply();
-                                    tgVar.addView(tgVar.f31043a, w7.z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
-                                    ci.e4 e4Var2 = tgVar.f31043a;
+                                    tgVar.addView(tgVar.f31044a, w7.z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
+                                    ci.e4 e4Var2 = tgVar.f31044a;
                                     e4Var2.f4997l0 = new rg(tgVar, e4Var2, 3);
                                     e4Var2.u();
                                 }
@@ -299,15 +299,15 @@ public final class we extends FrameLayout {
                                 recordCircle2.G = y3;
                                 recordCircle2.F = x10;
                                 ChatActivityEnterView chatActivityEnterView3 = ChatActivityEnterView.this;
-                                if (chatActivityEnterView3.f23878e4 && chatActivityEnterView3.f23891g4 == 0.0f && f13 > recordCircle2.E) {
+                                if (chatActivityEnterView3.f23879e4 && chatActivityEnterView3.f23892g4 == 0.0f && f13 > recordCircle2.E) {
                                     f7 = 1.0f;
-                                    chatActivityEnterView3.f23885f4 = System.currentTimeMillis();
+                                    chatActivityEnterView3.f23886f4 = System.currentTimeMillis();
                                 } else {
                                     f7 = 1.0f;
                                 }
                                 if (chatActivityEnterView.D2 == -1.0f) {
                                     chatActivityEnterView.D2 = x10;
-                                    float measuredWidth = (float) (chatActivityEnterView.f23920m1.getMeasuredWidth() * 0.35d);
+                                    float measuredWidth = (float) (chatActivityEnterView.f23921m1.getMeasuredWidth() * 0.35d);
                                     chatActivityEnterView.E2 = measuredWidth;
                                     if (measuredWidth > AndroidUtilities.dp(140.0f)) {
                                         chatActivityEnterView.E2 = AndroidUtilities.dp(140.0f);
@@ -324,15 +324,15 @@ public final class we extends FrameLayout {
                                     } else {
                                         f10 = f15;
                                     }
-                                    ChatActivityEnterView.SlideTextView slideTextView4 = chatActivityEnterView.f23911k1;
+                                    ChatActivityEnterView.SlideTextView slideTextView4 = chatActivityEnterView.f23912k1;
                                     if (slideTextView4 != null) {
-                                        slideTextView4.f24012r = f10;
+                                        slideTextView4.f24013r = f10;
                                     }
                                     chatActivityEnterView.setSlideToCancelProgress(f10);
                                     f15 = f10;
                                 }
                                 if (f15 == 0.0f) {
-                                    if (chatActivityEnterView.f23876e2 && chatActivityEnterView.f23862c1) {
+                                    if (chatActivityEnterView.f23877e2 && chatActivityEnterView.f23863c1) {
                                         CameraController.getInstance().cancelOnInitRunnable(cfVar);
                                         pg pgVar2 = chatActivityEnterView.Z2;
                                         if (chatActivityEnterView.O) {
@@ -359,8 +359,8 @@ public final class we extends FrameLayout {
                 }
                 return true;
             } else if (motionEvent.getAction() == 3 && chatActivityEnterView.F2) {
-                if (chatActivityEnterView.f23908j4 < 0.7f) {
-                    if (chatActivityEnterView.f23876e2 && chatActivityEnterView.f23862c1) {
+                if (chatActivityEnterView.f23909j4 < 0.7f) {
+                    if (chatActivityEnterView.f23877e2 && chatActivityEnterView.f23863c1) {
                         CameraController.getInstance().cancelOnInitRunnable(cfVar);
                         pg pgVar3 = chatActivityEnterView.Z2;
                         if (chatActivityEnterView.O) {
@@ -377,22 +377,22 @@ public final class we extends FrameLayout {
                         MediaController.getInstance().stopRecording(0, false, 0, chatActivityEnterView.O, 0L);
                         j12 = 0;
                     }
-                    chatActivityEnterView.f23900i1 = j12;
+                    chatActivityEnterView.f23901i1 = j12;
                     chatActivityEnterView.F2 = false;
                     chatActivityEnterView.K1(5, true);
                     return false;
                 }
-                chatActivityEnterView.f23957s4 = true;
+                chatActivityEnterView.f23958s4 = true;
                 ChatActivityEnterView.m(chatActivityEnterView);
                 return false;
             } else {
                 ChatActivityEnterView.RecordCircle recordCircle3 = chatActivityEnterView.N1;
-                if ((recordCircle3 != null && ChatActivityEnterView.this.f23957s4) || ((meVar = chatActivityEnterView.f23875e1) != null && meVar.getVisibility() == 0)) {
+                if ((recordCircle3 != null && ChatActivityEnterView.this.f23958s4) || ((meVar = chatActivityEnterView.f23876e1) != null && meVar.getVisibility() == 0)) {
                     if (chatActivityEnterView.I3) {
                         AndroidUtilities.cancelRunOnUIThread(kgVar);
                     }
                 } else if ((((weVar.getX() + motionEvent.getX()) - chatActivityEnterView.D2) / chatActivityEnterView.E2) + 1.0f < 0.45d) {
-                    if (chatActivityEnterView.f23876e2 && chatActivityEnterView.f23862c1) {
+                    if (chatActivityEnterView.f23877e2 && chatActivityEnterView.f23863c1) {
                         CameraController.getInstance().cancelOnInitRunnable(cfVar);
                         pg pgVar4 = chatActivityEnterView.Z2;
                         if (chatActivityEnterView.O) {
@@ -409,15 +409,15 @@ public final class we extends FrameLayout {
                         MediaController.getInstance().stopRecording(0, false, 0, chatActivityEnterView.O, 0L);
                         j11 = 0;
                     }
-                    chatActivityEnterView.f23900i1 = j11;
+                    chatActivityEnterView.f23901i1 = j11;
                     chatActivityEnterView.F2 = false;
                     chatActivityEnterView.K1(5, true);
                     return true;
                 } else if (chatActivityEnterView.I3) {
                     AndroidUtilities.cancelRunOnUIThread(kgVar);
-                    if (chatActivityEnterView.f23986y0 && chatActivityEnterView.f23980x0) {
-                        chatActivityEnterView.Z2.X(!chatActivityEnterView.f23862c1);
-                        chatActivityEnterView.j1(!chatActivityEnterView.f23862c1, true);
+                    if (chatActivityEnterView.f23987y0 && chatActivityEnterView.f23981x0) {
+                        chatActivityEnterView.Z2.X(!chatActivityEnterView.f23863c1);
+                        chatActivityEnterView.j1(!chatActivityEnterView.f23863c1, true);
                     } else {
                         chatActivityEnterView.Z2.i2();
                     }
@@ -425,21 +425,21 @@ public final class we extends FrameLayout {
                     sendAccessibilityEvent(1);
                     return true;
                 } else {
-                    boolean z12 = chatActivityEnterView.f23876e2;
+                    boolean z12 = chatActivityEnterView.f23877e2;
                     if (!z12 || chatActivityEnterView.J3) {
                         chatActivityEnterView.D2 = -1.0f;
-                        if (z12 && chatActivityEnterView.f23862c1) {
+                        if (z12 && chatActivityEnterView.f23863c1) {
                             if (e5.d0(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
-                                ChatActivityEnterView.SlideTextView slideTextView5 = chatActivityEnterView.f23911k1;
+                                ChatActivityEnterView.SlideTextView slideTextView5 = chatActivityEnterView.f23912k1;
                                 if (slideTextView5 != null) {
                                     slideTextView5.setEnabled(false);
                                 }
                                 chatActivityEnterView.Z2.n1();
                                 e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new Utilities.Callback(this) {
-                                    public final we f31361b;
+                                    public final we f31362b;
 
                                     {
-                                        this.f31361b = this;
+                                        this.f31362b = this;
                                     }
 
                                     @Override
@@ -447,16 +447,16 @@ public final class we extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -476,23 +476,23 @@ public final class we extends FrameLayout {
                             zeVar.setEffect(0L);
                         } else {
                             j3 = 0;
-                            if (!chatActivityEnterView.f23986y0) {
+                            if (!chatActivityEnterView.f23987y0) {
                                 chatActivityEnterView.Z2.i2();
                             } else if (e5.d0(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
-                                if (chatActivityEnterView.f23957s4) {
+                                if (chatActivityEnterView.f23958s4) {
                                     chatActivityEnterView.J3 = true;
                                 }
                                 MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.O);
                                 chatActivityEnterView.Z2.a1(0);
-                                ChatActivityEnterView.SlideTextView slideTextView6 = chatActivityEnterView.f23911k1;
+                                ChatActivityEnterView.SlideTextView slideTextView6 = chatActivityEnterView.f23912k1;
                                 if (slideTextView6 != null) {
                                     slideTextView6.setEnabled(false);
                                 }
                                 e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new Utilities.Callback(this) {
-                                    public final we f31361b;
+                                    public final we f31362b;
 
                                     {
-                                        this.f31361b = this;
+                                        this.f31362b = this;
                                     }
 
                                     @Override
@@ -500,16 +500,16 @@ public final class we extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f31361b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f31362b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -521,7 +521,7 @@ public final class we extends FrameLayout {
                                     long a10 = ynVar.a();
                                     w1 w1Var2 = new w1(26);
                                     ai.f fVar2 = new ai.f(29);
-                                    org.telegram.ui.ActionBar.d6 d6Var2 = this.f32520c;
+                                    org.telegram.ui.ActionBar.d6 d6Var2 = this.f32521c;
                                     e5.K(activity2, a10, -1L, 0, false, w1Var2, fVar2, new c5(d6Var2), d6Var2);
                                 }
                                 chatActivityEnterView.Z2.a1(0);
@@ -535,32 +535,32 @@ public final class we extends FrameLayout {
                             }
                         }
                         chatActivityEnterView.F2 = false;
-                        chatActivityEnterView.f23887g0 = false;
+                        chatActivityEnterView.f23888g0 = false;
                         Runnable runnable2 = new Runnable(this) {
-                            public final we f31640b;
+                            public final we f31641b;
 
                             {
-                                this.f31640b = this;
+                                this.f31641b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ChatActivityEnterView chatActivityEnterView22 = this.f31640b.d;
-                                        chatActivityEnterView22.f23881f0 = null;
+                                        ChatActivityEnterView chatActivityEnterView22 = this.f31641b.d;
+                                        chatActivityEnterView22.f23882f0 = null;
                                         chatActivityEnterView22.K1(1, true);
                                         return;
                                     default:
-                                        ChatActivityEnterView chatActivityEnterView32 = this.f31640b.d;
-                                        chatActivityEnterView32.f23881f0 = null;
+                                        ChatActivityEnterView chatActivityEnterView32 = this.f31641b.d;
+                                        chatActivityEnterView32.f23882f0 = null;
                                         chatActivityEnterView32.K1(1, true);
                                         return;
                                 }
                             }
                         };
-                        chatActivityEnterView.f23881f0 = runnable2;
-                        if (chatActivityEnterView.f23989y4) {
+                        chatActivityEnterView.f23882f0 = runnable2;
+                        if (chatActivityEnterView.f23990y4) {
                             j10 = 500;
                         } else {
                             j10 = j3;

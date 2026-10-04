@@ -157,7 +157,7 @@ public final class v implements le.d, li.i, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                 ((dr0) this.f14537b).run();
                 return;
             default:
-                ((qg.b0) this.f14537b).f44975a.f45165f2.r();
+                ((qg.b0) this.f14537b).f44976a.f45166f2.r();
                 return;
         }
     }
@@ -173,7 +173,7 @@ public final class v implements le.d, li.i, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                 x0 x0Var = (x0) obj;
                 i9.u uVar = i9.u.f12029b;
                 if (!a0Var.j()) {
-                    x0Var.c(a0Var.f16052t, rVar);
+                    x0Var.c(a0Var.f16053t, rVar);
                     a1.O0(a0Var, rVar, i10, new k1(0));
                 }
                 return i9.u.f12029b;
@@ -184,9 +184,9 @@ public final class v implements le.d, li.i, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
     public void j() {
         float f7;
         vt0 vt0Var = (vt0) this.f14537b;
-        TextView textView = vt0Var.f45191y1;
+        TextView textView = vt0Var.f45192y1;
         boolean a2 = vt0Var.F0.a();
-        ImageView imageView = vt0Var.f45189w1;
+        ImageView imageView = vt0Var.f45190w1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f10 = 0.6f;
@@ -211,41 +211,41 @@ public final class v implements le.d, li.i, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
         boolean z10;
         int i11;
         li.a aVar = (li.a) this.f14537b;
-        li.m mVar = aVar.f15603a;
+        li.m mVar = aVar.f15604a;
         ah.i iVar = aVar.d;
-        li.d dVar = aVar.f15606e;
+        li.d dVar = aVar.f15607e;
         if (Build.VERSION.SDK_INT >= 31 && iVar != null) {
             if (w7.e0.a(i10, 4) || w7.e0.a(i10, 2)) {
                 ni.a e7 = mVar.e();
                 ViewGroup viewGroup = aVar.h;
                 if (viewGroup != null) {
-                    e7.b(viewGroup.getY(), aVar.f15608g.getWidth(), aVar.h.getY() + aVar.h.getHeight());
+                    e7.b(viewGroup.getY(), aVar.f15609g.getWidth(), aVar.h.getY() + aVar.h.getHeight());
                 }
                 if (dVar != null) {
-                    ArrayList arrayList = dVar.f15631a;
-                    dVar.f15632b = e7.f16909b;
-                    while (dVar.f15632b > arrayList.size()) {
+                    ArrayList arrayList = dVar.f15632a;
+                    dVar.f15633b = e7.f16910b;
+                    while (dVar.f15633b > arrayList.size()) {
                         arrayList.add(new li.b(arrayList.size()));
                     }
-                    for (int i12 = 0; i12 < dVar.f15632b; i12++) {
+                    for (int i12 = 0; i12 < dVar.f15633b; i12++) {
                         li.b bVar = (li.b) arrayList.get(i12);
-                        bVar.f15610a.set(e7.c(i12));
-                        bVar.b(dVar.f15638j, dVar.f15639k, dVar.f15640l);
-                        int i13 = dVar.f15641m;
-                        int i14 = dVar.f15642n;
-                        int i15 = dVar.f15643o;
-                        int i16 = dVar.f15644p;
-                        bVar.f15625r = i13;
-                        bVar.f15626s = i14;
-                        bVar.f15627t = i15;
-                        bVar.f15628u = i16;
+                        bVar.f15611a.set(e7.c(i12));
+                        bVar.b(dVar.f15639j, dVar.f15640k, dVar.f15641l);
+                        int i13 = dVar.f15642m;
+                        int i14 = dVar.f15643n;
+                        int i15 = dVar.f15644o;
+                        int i16 = dVar.f15645p;
+                        bVar.f15626r = i13;
+                        bVar.f15627s = i14;
+                        bVar.f15628t = i15;
+                        bVar.f15629u = i16;
                     }
                 }
                 iVar.h(e7);
             }
             if (dVar != null) {
-                dVar.f15633c = aVar.f15609i;
-                dVar.d = aVar.f15608g;
+                dVar.f15634c = aVar.f15610i;
+                dVar.d = aVar.f15609g;
                 int i17 = 1;
                 if (mVar.h > 0) {
                     z10 = true;
@@ -253,32 +253,32 @@ public final class v implements le.d, li.i, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                     z10 = false;
                 }
                 boolean z11 = !z10;
-                if (dVar.f15637i != z11) {
-                    dVar.f15637i = z11;
+                if (dVar.f15638i != z11) {
+                    dVar.f15638i = z11;
                     if (!z10) {
                         i11 = 5;
                     } else {
                         i11 = 1;
                     }
-                    dVar.f15638j = i11;
+                    dVar.f15639j = i11;
                     if (!z10) {
                         i17 = 10;
                     }
-                    dVar.f15639k = i17;
-                    dVar.f15640l = Math.max(i11, i17);
-                    for (int i18 = 0; i18 < dVar.f15632b; i18++) {
-                        ((li.b) dVar.f15631a.get(i18)).b(dVar.f15638j, dVar.f15639k, dVar.f15640l);
+                    dVar.f15640k = i17;
+                    dVar.f15641l = Math.max(i11, i17);
+                    for (int i18 = 0; i18 < dVar.f15633b; i18++) {
+                        ((li.b) dVar.f15632a.get(i18)).b(dVar.f15639j, dVar.f15640k, dVar.f15641l);
                     }
                     dVar.f();
                 }
-                int i19 = mVar.f15667i;
-                int i20 = mVar.f15668j;
-                dVar.f15645q = i19;
-                dVar.f15646r = i20;
+                int i19 = mVar.f15668i;
+                int i20 = mVar.f15669j;
+                dVar.f15646q = i19;
+                dVar.f15647r = i20;
                 dVar.f();
                 dVar.e();
             }
-            iVar.e(aVar.f15609i, aVar.f15608g.getWidth(), aVar.f15608g.getHeight());
+            iVar.e(aVar.f15610i, aVar.f15609g.getWidth(), aVar.f15609g.getHeight());
         }
     }
 
@@ -305,11 +305,11 @@ public final class v implements le.d, li.i, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                 for (int i11 = 0; i11 < bVar2.f410a.size(); i11++) {
                     ac.a aVar = (ac.a) bVar2.f410a.get(i11);
                     ?? obj3 = new Object();
-                    obj3.f45193a = aVar.f406a;
-                    obj3.f45194b = aVar.d;
-                    obj3.f45195c = aVar.f409e;
+                    obj3.f45194a = aVar.f406a;
+                    obj3.f45195b = aVar.d;
+                    obj3.f45196c = aVar.f409e;
                     obj3.d = aVar.f407b;
-                    obj3.f45196e = aVar.f408c;
+                    obj3.f45197e = aVar.f408c;
                     arrayList.add(obj3);
                 }
                 s4Var.run(arrayList);
@@ -322,25 +322,25 @@ public final class v implements le.d, li.i, m4.z, z0, e2.h, x0, q9.d, Vector.TLD
                     FileLog.d("objimg: no objects");
                     return;
                 }
-                int i12 = ((xb.a) list.get(0)).f49815c;
+                int i12 = ((xb.a) list.get(0)).f49816c;
                 String str = null;
-                if (n6.f48788a == null) {
-                    n6.f48788a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
+                if (n6.f48789a == null) {
+                    n6.f48789a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
                 }
                 if (i12 >= 0) {
-                    String[] strArr = n6.f48788a;
+                    String[] strArr = n6.f48789a;
                     if (i12 < strArr.length) {
                         str = strArr[i12];
                     }
                 }
-                n2Var.f45214c0 = str;
+                n2Var.f45215c0 = str;
                 StringBuilder sb2 = new StringBuilder("objimg: detected #");
-                sb2.append(((xb.a) list.get(0)).f49815c);
+                sb2.append(((xb.a) list.get(0)).f49816c);
                 sb2.append(" ");
-                sb2.append(n2Var.f45214c0);
+                sb2.append(n2Var.f45215c0);
                 sb2.append(" ");
-                e2.t(((xb.a) list.get(0)).f49813a, sb2);
-                Emoji.getEmojiDrawable(n2Var.f45214c0);
+                e2.t(((xb.a) list.get(0)).f49814a, sb2);
+                Emoji.getEmojiDrawable(n2Var.f45215c0);
                 return;
         }
     }

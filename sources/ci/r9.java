@@ -54,10 +54,10 @@ public final class r9 extends s4.s0 {
             default:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5873c;
                 wl wlVar = chatAttachAlertPhotoLayout.E;
-                xi xiVar = chatAttachAlertPhotoLayout.f29642b;
+                xi xiVar = chatAttachAlertPhotoLayout.f29643b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.v0 v0Var = xiVar.f32795a1;
+                    org.telegram.ui.ActionBar.v0 v0Var = xiVar.f32796a1;
                     if (v0Var != null) {
                         i11 = AndroidUtilities.dp(v0Var.getAlpha() * 26.0f);
                     } else {
@@ -65,8 +65,8 @@ public final class r9 extends s4.s0 {
                     }
                     int i12 = dp + i11;
                     int backgroundPaddingTop = xiVar.getBackgroundPaddingTop();
-                    if (((xiVar.f32799b2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (xiVar.O0.getAlpha() * xiVar.O0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (il0Var = (il0) wlVar.K(0)) != null) {
-                        View view = il0Var.f46523a;
+                    if (((xiVar.f32800b2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (xiVar.O0.getAlpha() * xiVar.O0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (il0Var = (il0) wlVar.K(0)) != null) {
+                        View view = il0Var.f46524a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -114,7 +114,7 @@ public final class r9 extends s4.s0 {
                 return;
             default:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5873c;
-                xi xiVar = chatAttachAlertPhotoLayout.f29642b;
+                xi xiVar = chatAttachAlertPhotoLayout.f29643b;
                 wl wlVar = chatAttachAlertPhotoLayout.E;
                 if (wlVar.getChildCount() > 0) {
                     xiVar.U1(chatAttachAlertPhotoLayout, i11);

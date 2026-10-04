@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.view.animation.OvershootInterpolator;
 public final class n30 extends kh.b {
     public final OvershootInterpolator d;
-    public int f38806e;
-    public final h60 f38807f;
+    public int f38807e;
+    public final h60 f38808f;
 
     public n30(h60 h60Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f38807f = h60Var;
+        this.f38808f = h60Var;
         this.d = new OvershootInterpolator(1.5f);
     }
 

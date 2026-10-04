@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 public final class j81 {
-    public final double f27657a;
-    public final int f27658b;
-    public final int f27659c;
+    public final double f27658a;
+    public final int f27659b;
+    public final int f27660c;
 
     public j81(int i10, int i11, double d) {
-        this.f27657a = d;
-        this.f27658b = i10;
-        this.f27659c = i11;
+        this.f27658a = d;
+        this.f27659b = i10;
+        this.f27660c = i11;
     }
 }

@@ -88,7 +88,7 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = i6.f20925j5;
+        int i10 = i6.f20926j5;
         d6 d6Var = this.J;
         this.d.setTextColor(i6.v0(i10, d6Var));
         this.f14785e.setTextColor(i6.v0(i10, d6Var));
@@ -97,9 +97,9 @@ public class e extends FrameLayout {
         this.h.setProgressColor(i6.v0(i11, d6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = i6.i0(dp, dp, dp, dp, i6.v0(i6.f20889h5, d6Var), i6.v0(i6.f20908i6, d6Var), -16777216);
+        this.I = i6.i0(dp, dp, dp, dp, i6.v0(i6.f20890h5, d6Var), i6.v0(i6.f20909i6, d6Var), -16777216);
         sq sqVar = new sq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        sqVar.f30856w = true;
+        sqVar.f30857w = true;
         setBackground(sqVar);
     }
 
@@ -137,7 +137,7 @@ public class e extends FrameLayout {
             linearLayout2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
             if (this.E) {
                 TextView textView = new TextView(getContext());
-                obj.f45528c = textView;
+                obj.f45529c = textView;
                 linearLayout2.addView(textView);
                 textView.getLayoutParams().width = AndroidUtilities.dp(36.0f);
                 textView.setVisibility(8);
@@ -145,10 +145,10 @@ public class e extends FrameLayout {
                 textView.setTextSize(1, 13.0f);
             }
             TextView textView2 = new TextView(getContext());
-            obj.f45527b = textView2;
+            obj.f45528b = textView2;
             linearLayout2.addView(textView2, z5.k(0.0f, 0.0f, 20.0f, 0.0f, -2, -2));
             y5 y5Var = new y5(getContext());
-            obj.f45526a = y5Var;
+            obj.f45527a = y5Var;
             linearLayout2.addView(y5Var, z5.n(-1, -2));
             textView2.setGravity(8388611);
             y5Var.setGravity(8388613);

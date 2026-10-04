@@ -60,19 +60,19 @@ public final class f0 implements Runnable {
                     s0Var.m("completed");
                     l2.g gVar = s0Var.d;
                     long j10 = o0Var.f14997a;
-                    e60 e60Var = (e60) gVar.f15266b;
+                    e60 e60Var = (e60) gVar.f15267b;
                     d60 d60Var = e60Var.V;
                     if (d60Var != null) {
                         e60Var.V = null;
-                        e60Var.f25949i0 = true;
+                        e60Var.f25950i0 = true;
                         z01 z01Var = e60Var.T;
                         if (z01Var == null) {
                             y01Var2 = null;
                         } else {
                             synchronized (z01Var) {
-                                x01 x01Var = (x01) z01Var.f33327c.get(Long.valueOf(j10));
-                                if (x01Var != null && !x01Var.f32683e) {
-                                    y01Var = new y01(Math.max(x01Var.f32682c, file.length()), x01Var.f32684f, x01Var.f32685g, x01Var.h, x01Var.f32686i);
+                                x01 x01Var = (x01) z01Var.f33328c.get(Long.valueOf(j10));
+                                if (x01Var != null && !x01Var.f32684e) {
+                                    y01Var = new y01(Math.max(x01Var.f32683c, file.length()), x01Var.f32685f, x01Var.f32686g, x01Var.h, x01Var.f32687i);
                                 }
                                 y01Var = new y01(file.length(), null, null, null, null);
                             }
@@ -81,9 +81,9 @@ public final class f0 implements Runnable {
                         VideoEditedInfo p5 = e60Var.p(file, j3, y01Var2);
                         p5.muted = !z10;
                         MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, true, 0, 0, 0L);
-                        photoEntry.ttl = d60Var.f25604c;
+                        photoEntry.ttl = d60Var.f25605c;
                         photoEntry.effectId = d60Var.d;
-                        e60Var.f25945f.q(photoEntry, p5, d60Var.f25602a, d60Var.f25603b, 0, false, d60Var.f25605e);
+                        e60Var.f25946f.q(photoEntry, p5, d60Var.f25603a, d60Var.f25604b, 0, false, d60Var.f25606e);
                         z01 z01Var2 = e60Var.T;
                         if (z01Var2 != null) {
                             z01Var2.d(false);

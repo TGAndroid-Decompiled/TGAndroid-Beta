@@ -8,30 +8,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 public final class tg0 extends hx0 {
-    public boolean f31054a = false;
-    public final Paint f31055b = new Paint(1);
-    public final int f31056c = UserConfig.selectedAccount;
+    public boolean f31055a = false;
+    public final Paint f31056b = new Paint(1);
+    public final int f31057c = UserConfig.selectedAccount;
     public long d = 0;
-    public boolean f31057e = false;
-    public final RectF f31058f = new RectF();
-    public float f31059g;
+    public boolean f31058e = false;
+    public final RectF f31059f = new RectF();
+    public float f31060g;
     public final boolean h;
-    public final org.telegram.ui.ActionBar.d6 f31060i;
+    public final org.telegram.ui.ActionBar.d6 f31061i;
 
     public tg0(org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         this.h = z10;
-        this.f31060i = d6Var;
+        this.f31061i = d6Var;
     }
 
     @Override
     public final void c(boolean z10) {
-        this.f31054a = z10;
+        this.f31055a = z10;
     }
 
     @Override
     public final void d() {
         this.d = System.currentTimeMillis();
-        this.f31057e = true;
+        this.f31058e = true;
         invalidateSelf();
     }
 
@@ -42,22 +42,22 @@ public final class tg0 extends hx0 {
         int i11;
         int dp = AndroidUtilities.dp(10.0f);
         int dp2 = ((AndroidUtilities.dp(18.0f) - dp) / 2) + getBounds().top;
-        if (!this.f31054a) {
+        if (!this.f31055a) {
             dp2 += AndroidUtilities.dp(1.0f);
         }
         int i12 = dp2;
         boolean z10 = this.h;
         if (z10) {
-            i10 = org.telegram.ui.ActionBar.i6.f21041p9;
+            i10 = org.telegram.ui.ActionBar.i6.f21042p9;
         } else {
-            i10 = org.telegram.ui.ActionBar.i6.f21042pa;
+            i10 = org.telegram.ui.ActionBar.i6.f21043pa;
         }
-        int v02 = org.telegram.ui.ActionBar.i6.v0(i10, this.f31060i);
-        Paint paint = this.f31055b;
+        int v02 = org.telegram.ui.ActionBar.i6.v0(i10, this.f31061i);
+        Paint paint = this.f31056b;
         paint.setColor(v02);
-        RectF rectF = this.f31058f;
+        RectF rectF = this.f31059f;
         rectF.set(0.0f, i12, dp, i12 + dp);
-        float f10 = this.f31059g;
+        float f10 = this.f31060g;
         if (f10 < 0.5f) {
             f7 = org.telegram.messenger.ok.x(f10, 0.5f, 1.0f, 35.0f);
         } else {
@@ -66,7 +66,7 @@ public final class tg0 extends hx0 {
         int i13 = (int) f7;
         for (int i14 = 0; i14 < 3; i14++) {
             int dp3 = AndroidUtilities.dp(9.2f);
-            float f11 = this.f31059g;
+            float f11 = this.f31060g;
             float dp4 = (dp3 + (AndroidUtilities.dp(5.0f) * i14)) - (AndroidUtilities.dp(5.0f) * f11);
             if (i14 == 2) {
                 paint.setAlpha(Math.min(255, (int) ((f11 * 255.0f) / 0.5f)));
@@ -84,9 +84,9 @@ public final class tg0 extends hx0 {
         paint.setAlpha(255);
         canvas.drawArc(rectF, i13, 360 - (i13 * 2), true, paint);
         if (z10) {
-            i11 = org.telegram.ui.ActionBar.i6.f20817d6;
+            i11 = org.telegram.ui.ActionBar.i6.f20818d6;
         } else {
-            i11 = org.telegram.ui.ActionBar.i6.f21099s8;
+            i11 = org.telegram.ui.ActionBar.i6.f21100s8;
         }
         paint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         canvas.drawCircle(AndroidUtilities.dp(4.0f), ((dp / 2) + i12) - AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f), paint);
@@ -95,26 +95,26 @@ public final class tg0 extends hx0 {
 
     @Override
     public final void e() {
-        this.f31059g = 0.0f;
-        this.f31057e = false;
+        this.f31060g = 0.0f;
+        this.f31058e = false;
     }
 
     public final void f() {
-        if (this.f31057e) {
-            if (!NotificationCenter.getInstance(this.f31056c).isAnimationInProgress()) {
+        if (this.f31058e) {
+            if (!NotificationCenter.getInstance(this.f31057c).isAnimationInProgress()) {
                 long currentTimeMillis = System.currentTimeMillis();
                 long j3 = currentTimeMillis - this.d;
                 this.d = currentTimeMillis;
                 if (j3 > 50) {
                     j3 = 50;
                 }
-                if (this.f31059g >= 1.0f) {
-                    this.f31059g = 0.0f;
+                if (this.f31060g >= 1.0f) {
+                    this.f31060g = 0.0f;
                 }
-                float f7 = (((float) j3) / 300.0f) + this.f31059g;
-                this.f31059g = f7;
+                float f7 = (((float) j3) / 300.0f) + this.f31060g;
+                this.f31060g = f7;
                 if (f7 > 1.0f) {
-                    this.f31059g = 1.0f;
+                    this.f31060g = 1.0f;
                 }
                 a();
                 return;

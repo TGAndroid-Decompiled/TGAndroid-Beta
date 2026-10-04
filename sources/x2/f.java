@@ -3,25 +3,25 @@ package x2;
 import b2.l1;
 import hg.k0;
 public final class f extends n implements Comparable {
-    public final int f49195e;
-    public final int f49196f;
+    public final int f49196e;
+    public final int f49197f;
 
     public f(int i10, l1 l1Var, int i11, i iVar, int i12) {
         super(i10, l1Var, i11);
         int i13;
-        this.f49195e = k0.d(i12, iVar.f49207t0) ? 1 : 0;
+        this.f49196e = k0.d(i12, iVar.f49208t0) ? 1 : 0;
         b2.s sVar = this.d;
         int i14 = sVar.f3570y;
         int i15 = -1;
         if (i14 != -1 && (i13 = sVar.f3571z) != -1) {
             i15 = i14 * i13;
         }
-        this.f49196f = i15;
+        this.f49197f = i15;
     }
 
     @Override
     public final int a() {
-        return this.f49195e;
+        return this.f49196e;
     }
 
     @Override
@@ -32,6 +32,6 @@ public final class f extends n implements Comparable {
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f49196f, ((f) obj).f49196f);
+        return Integer.compare(this.f49197f, ((f) obj).f49197f);
     }
 }

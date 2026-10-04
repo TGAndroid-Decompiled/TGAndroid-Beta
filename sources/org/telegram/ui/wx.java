@@ -5,20 +5,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class wx extends UndoView {
-    public final uy f42643f0;
+    public final uy f42644f0;
 
     public wx(uy uyVar, Activity activity) {
         super(activity);
-        this.f42643f0 = uyVar;
+        this.f42644f0 = uyVar;
     }
 
     @Override
     public final boolean a() {
         int i10 = 0;
         while (true) {
-            ty[] tyVarArr = this.f42643f0.f41392e0;
+            ty[] tyVarArr = this.f42644f0.f41393e0;
             if (i10 < tyVarArr.length) {
-                if (tyVarArr[i10].f40992x.k()) {
+                if (tyVarArr[i10].f40993x.k()) {
                     return false;
                 }
                 i10++;
@@ -33,14 +33,14 @@ public final class wx extends UndoView {
         if (i10 != 1 && i10 != 27) {
             return;
         }
-        uy uyVar = this.f42643f0;
+        uy uyVar = this.f42644f0;
         uyVar.y3 = 1;
         uyVar.J4(true, true);
         if (uyVar.R1 != null) {
             int i11 = 0;
             while (true) {
                 if (i11 < uyVar.R1.size()) {
-                    if (((TLRPC.Dialog) uyVar.R1.get(i11)).f20041id == j3) {
+                    if (((TLRPC.Dialog) uyVar.R1.get(i11)).f20042id == j3) {
                         break;
                     }
                     i11++;
@@ -50,7 +50,7 @@ public final class wx extends UndoView {
                 }
             }
             if (i11 >= 0) {
-                uyVar.f41392e0[0].d.l();
+                uyVar.f41393e0[0].d.l();
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.zm(this, i11, (TLRPC.Dialog) uyVar.R1.remove(i11), 25));
             } else {
                 uyVar.J4(false, true);
@@ -62,12 +62,12 @@ public final class wx extends UndoView {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        uy uyVar = this.f42643f0;
-        UndoView[] undoViewArr = uyVar.f41492y0;
+        uy uyVar = this.f42644f0;
+        UndoView[] undoViewArr = uyVar.f41493y0;
         if (this == undoViewArr[0]) {
             UndoView undoView = undoViewArr[1];
             if (undoView == null || undoView.getVisibility() != 0) {
-                uyVar.f41473u1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f7);
+                uyVar.f41474u1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f7);
                 uyVar.g5();
             }
         }

@@ -41,7 +41,7 @@ public final class x7 implements bh.a {
                     if (view instanceof xh.o2) {
                         xh.o2 o2Var = (xh.o2) view;
                         if (o2Var.h == null) {
-                            final xh.j2 j2Var = o2Var.f50147f;
+                            final xh.j2 j2Var = o2Var.f50148f;
                             ViewGroup viewGroup = s2Var.S;
                             Objects.requireNonNull(j2Var);
                             o2Var.h = new ah.n(j2Var, viewGroup, new ah.m() {

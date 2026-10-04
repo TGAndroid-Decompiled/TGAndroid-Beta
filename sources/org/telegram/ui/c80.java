@@ -36,35 +36,35 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
     public LocaleController.LocaleInfo L;
     public boolean M;
     public boolean N;
-    public final Object f35359a;
-    public final Object f35360b;
-    public final int f35361c;
+    public final Object f35360a;
+    public final Object f35361b;
+    public final int f35362c;
     public z4.g d;
-    public org.telegram.ui.Components.ta f35362e;
-    public TextView f35363f;
+    public org.telegram.ui.Components.ta f35363e;
+    public TextView f35364f;
     public GradientDrawable h;
-    public bi.o f35364n;
-    public FrameLayout f35365r;
-    public ci.m6 f35366s;
+    public bi.o f35365n;
+    public FrameLayout f35366r;
+    public ci.m6 f35367s;
     public org.telegram.ui.Components.kj0 v;
-    public int f35367w;
-    public boolean f35368x;
-    public boolean f35369y;
+    public int f35368w;
+    public boolean f35369x;
+    public boolean f35370y;
 
     public c80() {
         super(null);
-        this.f35359a = new Object();
-        this.f35360b = new Object();
-        this.f35361c = UserConfig.selectedAccount;
-        this.f35367w = 0;
-        this.f35368x = false;
-        this.f35369y = false;
+        this.f35360a = new Object();
+        this.f35361b = new Object();
+        this.f35362c = UserConfig.selectedAccount;
+        this.f35368w = 0;
+        this.f35369x = false;
+        this.f35370y = false;
     }
 
     public final void S() {
         String str;
         LocaleController.LocaleInfo currentLocaleInfo = LocaleController.getInstance().getCurrentLocaleInfo();
-        int i10 = this.f35361c;
+        int i10 = this.f35362c;
         String str2 = MessagesController.getInstance(i10).suggestedLangCode;
         if ((str2 == null || (str2.equals("en") && LocaleController.getInstance().getSystemDefaultLocale().getLanguage() != null && !LocaleController.getInstance().getSystemDefaultLocale().getLanguage().equals("en"))) && (str2 = LocaleController.getInstance().getSystemDefaultLocale().getLanguage()) == null) {
             str2 = "en";
@@ -109,16 +109,16 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
         gradientDrawable.setColors(new int[]{getThemedColor(i10), getThemedColor(org.telegram.ui.ActionBar.i6.Ph)});
         this.E.setColorFilter(org.telegram.ui.ActionBar.i6.l1(0.9f, getThemedColor(org.telegram.ui.ActionBar.i6.A8)), PorterDuff.Mode.MULTIPLY);
         View view = this.fragmentView;
-        int i11 = org.telegram.ui.ActionBar.i6.f20817d6;
+        int i11 = org.telegram.ui.ActionBar.i6.f20818d6;
         view.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
-        this.f35363f.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.q6, false));
-        this.f35364n.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
-        bi.o oVar = this.f35364n;
+        this.f35364f.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.q6, false));
+        this.f35365n.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
+        bi.o oVar = this.f35365n;
         int dp = AndroidUtilities.dp(24.0f);
         int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Qh, false);
         oVar.setBackground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, 0, w02, w02));
         this.v.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, i10, false), PorterDuff.Mode.SRC_IN));
-        this.f35362e.invalidate();
+        this.f35363e.invalidate();
         if (z10) {
             a80 a80Var = this.I;
             if (a80Var != null) {
@@ -127,8 +127,8 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
             for (int i12 = 0; i12 < this.d.getChildCount(); i12++) {
                 View childAt = this.d.getChildAt(i12);
                 int i13 = org.telegram.ui.ActionBar.i6.G6;
-                ((TextView) childAt.findViewWithTag(this.f35359a)).setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
-                ((TextView) childAt.findViewWithTag(this.f35360b)).setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
+                ((TextView) childAt.findViewWithTag(this.f35360a)).setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
+                ((TextView) childAt.findViewWithTag(this.f35361b)).setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
             }
             return;
         }
@@ -153,7 +153,7 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.addView((View) imageView, w7.z5.e(28, 28, 17));
         ci.m6 m6Var = new ci.m6(this, context, frameLayout, 17);
-        this.f35366s = m6Var;
+        this.f35367s = m6Var;
         scrollView.addView(m6Var, w7.z5.x(-1, -2, 51));
         org.telegram.ui.Components.kj0 kj0Var = new org.telegram.ui.Components.kj0(R.raw.sun, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.v = kj0Var;
@@ -162,14 +162,14 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
         kj0Var.o();
         org.telegram.ui.Components.kj0 kj0Var2 = this.v;
         if (org.telegram.ui.ActionBar.i6.A0().q()) {
-            i10 = this.v.f28124e[0] - 1;
+            i10 = this.v.f28125e[0] - 1;
         } else {
             i10 = 0;
         }
         kj0Var2.P(i10);
         org.telegram.ui.Components.kj0 kj0Var3 = this.v;
         if (org.telegram.ui.ActionBar.i6.A0().q()) {
-            i11 = this.v.f28124e[0] - 1;
+            i11 = this.v.f28125e[0] - 1;
         } else {
             i11 = 0;
         }
@@ -183,56 +183,56 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
         imageView.setAnimation(this.v);
         frameLayout.setOnClickListener(new tv(11, this, imageView));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f35365r = frameLayout2;
-        this.f35366s.addView(frameLayout2, w7.z5.d(-1, -2.0f, 51, 0.0f, 78.0f, 0.0f, 0.0f));
+        this.f35366r = frameLayout2;
+        this.f35367s.addView(frameLayout2, w7.z5.d(-1, -2.0f, 51, 0.0f, 78.0f, 0.0f, 0.0f));
         TextureView textureView = new TextureView(context);
-        this.f35365r.addView(textureView, w7.z5.e(200, 150, 17));
+        this.f35366r.addView(textureView, w7.z5.e(200, 150, 17));
         textureView.setSurfaceTextureListener(new y70(this, 0));
         z4.g gVar = new z4.g(context);
         this.d = gVar;
         gVar.setAdapter(new b80(this, 0));
         this.d.setPageMargin(0);
         this.d.setOffscreenPageLimit(1);
-        this.f35366s.addView(this.d, w7.z5.c(-1.0f, -1));
+        this.f35367s.addView(this.d, w7.z5.c(-1.0f, -1));
         this.d.b(new m2(this, 1));
         this.h = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
         bi.o oVar = new bi.o(this, context);
-        this.f35364n = oVar;
+        this.f35365n = oVar;
         w7.b6.b(oVar, 0.02f, 1.2f);
-        this.f35364n.setText(LocaleController.getString(R.string.StartMessaging));
-        this.f35364n.setGravity(17);
-        this.f35364n.setTypeface(AndroidUtilities.bold());
-        this.f35364n.setTextSize(1, 15.0f);
-        this.f35364n.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.f35366s.addView(this.f35364n, w7.z5.d(-1, 48.0f, 81, 16.0f, 0.0f, 16.0f, 76.0f));
-        this.f35364n.setOnClickListener(new View.OnClickListener(this) {
-            public final c80 f42762b;
+        this.f35365n.setText(LocaleController.getString(R.string.StartMessaging));
+        this.f35365n.setGravity(17);
+        this.f35365n.setTypeface(AndroidUtilities.bold());
+        this.f35365n.setTextSize(1, 15.0f);
+        this.f35365n.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        this.f35367s.addView(this.f35365n, w7.z5.d(-1, 48.0f, 81, 16.0f, 0.0f, 16.0f, 76.0f));
+        this.f35365n.setOnClickListener(new View.OnClickListener(this) {
+            public final c80 f42763b;
 
             {
-                this.f42762b = this;
+                this.f42763b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        c80 c80Var = this.f42762b;
-                        if (!c80Var.f35369y) {
-                            c80Var.f35369y = true;
+                        c80 c80Var = this.f42763b;
+                        if (!c80Var.f35370y) {
+                            c80Var.f35370y = true;
                             c80Var.presentFragment(new ug0(), true);
                             c80Var.M = true;
                             return;
                         }
                         return;
                     default:
-                        c80 c80Var2 = this.f42762b;
-                        if (!c80Var2.f35369y && c80Var2.L != null) {
-                            c80Var2.f35369y = true;
+                        c80 c80Var2 = this.f42763b;
+                        if (!c80Var2.f35370y && c80Var2.L != null) {
+                            c80Var2.f35370y = true;
                             org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(view.getContext(), 3, null);
-                            b2Var.f20422g0 = false;
+                            b2Var.f20423g0 = false;
                             b2Var.q(1000L);
                             NotificationCenter.getGlobalInstance().addObserver(new z70(c80Var2, b2Var), NotificationCenter.reloadInterface);
-                            LocaleController.getInstance().applyLanguage(c80Var2.L, true, false, c80Var2.f35361c);
+                            LocaleController.getInstance().applyLanguage(c80Var2.L, true, false, c80Var2.f35362c);
                             return;
                         }
                         return;
@@ -240,41 +240,41 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
             }
         });
         org.telegram.ui.Components.ta taVar = new org.telegram.ui.Components.ta(context, this.d, 6);
-        this.f35362e = taVar;
-        this.f35366s.addView(taVar, w7.z5.d(66, 5.0f, 49, 0.0f, 350.0f, 0.0f, 0.0f));
+        this.f35363e = taVar;
+        this.f35367s.addView(taVar, w7.z5.d(66, 5.0f, 49, 0.0f, 350.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f35363f = textView;
+        this.f35364f = textView;
         textView.setGravity(17);
-        this.f35363f.setTextSize(1, 16.0f);
-        this.f35366s.addView(this.f35363f, w7.z5.d(-2, 30.0f, 81, 0.0f, 0.0f, 0.0f, 20.0f));
-        this.f35363f.setOnClickListener(new View.OnClickListener(this) {
-            public final c80 f42762b;
+        this.f35364f.setTextSize(1, 16.0f);
+        this.f35367s.addView(this.f35364f, w7.z5.d(-2, 30.0f, 81, 0.0f, 0.0f, 0.0f, 20.0f));
+        this.f35364f.setOnClickListener(new View.OnClickListener(this) {
+            public final c80 f42763b;
 
             {
-                this.f42762b = this;
+                this.f42763b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        c80 c80Var = this.f42762b;
-                        if (!c80Var.f35369y) {
-                            c80Var.f35369y = true;
+                        c80 c80Var = this.f42763b;
+                        if (!c80Var.f35370y) {
+                            c80Var.f35370y = true;
                             c80Var.presentFragment(new ug0(), true);
                             c80Var.M = true;
                             return;
                         }
                         return;
                     default:
-                        c80 c80Var2 = this.f42762b;
-                        if (!c80Var2.f35369y && c80Var2.L != null) {
-                            c80Var2.f35369y = true;
+                        c80 c80Var2 = this.f42763b;
+                        if (!c80Var2.f35370y && c80Var2.L != null) {
+                            c80Var2.f35370y = true;
                             org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(view.getContext(), 3, null);
-                            b2Var.f20422g0 = false;
+                            b2Var.f20423g0 = false;
                             b2Var.q(1000L);
                             NotificationCenter.getGlobalInstance().addObserver(new z70(c80Var2, b2Var), NotificationCenter.reloadInterface);
-                            LocaleController.getInstance().applyLanguage(c80Var2.L, true, false, c80Var2.f35361c);
+                            LocaleController.getInstance().applyLanguage(c80Var2.L, true, false, c80Var2.f35362c);
                             return;
                         }
                         return;
@@ -282,15 +282,15 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
             }
         });
         float f7 = 4;
-        this.f35366s.addView(frameLayout, w7.z5.d(64, 64.0f, 53, 0.0f, f7, f7, 0.0f));
+        this.f35367s.addView(frameLayout, w7.z5.d(64, 64.0f, 53, 0.0f, f7, f7, 0.0f));
         this.fragmentView = scrollView;
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.suggestedLangpack);
-        int i13 = this.f35361c;
+        int i13 = this.f35362c;
         NotificationCenter.getInstance(i13).addObserver(this, NotificationCenter.configLoaded);
         ConnectionsManager.getInstance(i13).updateDcSettings();
         LocaleController.getInstance().loadRemoteLanguages(i13);
         S();
-        this.f35368x = true;
+        this.f35369x = true;
         T(false);
         return this.fragmentView;
     }
@@ -305,7 +305,7 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
 
     @Override
     public final ArrayList getThemeDescriptions() {
-        return w7.c6.a(new e(this, 18), org.telegram.ui.ActionBar.i6.f20817d6, org.telegram.ui.ActionBar.i6.q6, org.telegram.ui.ActionBar.i6.P9, org.telegram.ui.ActionBar.i6.Q9, org.telegram.ui.ActionBar.i6.Sh, org.telegram.ui.ActionBar.i6.G6);
+        return w7.c6.a(new e(this, 18), org.telegram.ui.ActionBar.i6.f20818d6, org.telegram.ui.ActionBar.i6.q6, org.telegram.ui.ActionBar.i6.P9, org.telegram.ui.ActionBar.i6.Q9, org.telegram.ui.ActionBar.i6.Sh, org.telegram.ui.ActionBar.i6.G6);
     }
 
     @Override
@@ -315,7 +315,7 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
 
     @Override
     public final boolean isLightStatusBar() {
-        if (i0.a.f(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20817d6, true)) > 0.699999988079071d) {
+        if (i0.a.f(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20818d6, true)) > 0.699999988079071d) {
             return true;
         }
         return false;
@@ -344,7 +344,7 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
         super.onFragmentDestroy();
         this.M = true;
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.suggestedLangpack);
-        NotificationCenter.getInstance(this.f35361c).removeObserver(this, NotificationCenter.configLoaded);
+        NotificationCenter.getInstance(this.f35362c).removeObserver(this, NotificationCenter.configLoaded);
         MessagesController.getGlobalMainSettings().edit().putLong("intro_crashed_time", 0L).apply();
     }
 
@@ -357,15 +357,15 @@ public final class c80 extends org.telegram.ui.ActionBar.n2 implements Notificat
     @Override
     public final void onResume() {
         super.onResume();
-        if (this.f35368x) {
+        if (this.f35369x) {
             if (LocaleController.isRTL) {
                 this.d.setCurrentItem(6);
-                this.f35367w = 6;
+                this.f35368w = 6;
             } else {
                 this.d.setCurrentItem(0);
-                this.f35367w = 0;
+                this.f35368w = 0;
             }
-            this.f35368x = false;
+            this.f35369x = false;
         }
         AndroidUtilities.lockOrientation(getParentActivity(), 1);
     }

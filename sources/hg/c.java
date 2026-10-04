@@ -51,10 +51,10 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         String string = LocaleController.getString(R.string.BusinessAway);
         String string2 = LocaleController.getString(R.string.BusinessAwayInfo);
         g61 g61Var = new g61(2);
-        g61Var.f26668l = string;
-        g61Var.f26671o = string2;
-        g61Var.f26669m = "RestrictedEmoji";
-        g61Var.f26670n = "💤";
+        g61Var.f26669l = string;
+        g61Var.f26672o = string2;
+        g61Var.f26670m = "RestrictedEmoji";
+        g61Var.f26671n = "💤";
         arrayList.add(g61Var);
         g61 i10 = g61.i(1, LocaleController.getString(R.string.BusinessAwaySend));
         i10.K(cVar.f11141s);
@@ -68,7 +68,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
                 arrayList.add(g61Var2);
             } else {
                 g61 c10 = g61.c(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessAwayCreate));
-                c10.f26673q = true;
+                c10.f26674q = true;
                 arrayList.add(c10);
             }
             arrayList.add(g61.B(null));
@@ -201,7 +201,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
     }
 
     public final void W() {
-        if (this.f11134a.f30863c <= 0.0f) {
+        if (this.f11134a.f30864c <= 0.0f) {
             if (!U()) {
                 finishFragment();
                 return;
@@ -323,7 +323,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
                 this.E = i11;
                 this.G = i11;
                 c71Var = this.f11136c;
-                if (c71Var != null && (u61Var = c71Var.f25244f3) != null) {
+                if (c71Var != null && (u61Var = c71Var.f25245f3) != null) {
                     u61Var.N(true);
                 }
                 T(true);
@@ -359,13 +359,13 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessAway));
         this.actionBar.setActionBarMenuOnItemClick(new ei.u(this, 9));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = i6.f21154v8;
+        int i10 = i6.f21155v8;
         mutate.setColorFilter(new PorterDuffColorFilter(i6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
         this.f11134a = new sr(mutate, new wp(i6.w0(null, i10, false)));
         this.f11135b = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f11134a);
         T(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(i6.w0(null, i6.f20761a7, false));
+        frameLayout.setBackgroundColor(i6.w0(null, i6.f20762a7, false));
         a0 a0Var = new a0(this, new qc(this, 18));
         this.d = a0Var;
         a0Var.h = this.v;
@@ -380,7 +380,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         this.f11136c = c71Var;
         c71Var.s1();
         c71 c71Var2 = this.f11136c;
-        c71Var2.f25244f3.f31306r = false;
+        c71Var2.f25245f3.f31307r = false;
         frameLayout.addView(c71Var2, z5.c(-1.0f, -1));
         this.actionBar.z(this.f11136c, true);
         X();
@@ -393,7 +393,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         u61 u61Var;
         if (i10 == NotificationCenter.quickRepliesUpdated) {
             c71 c71Var = this.f11136c;
-            if (c71Var != null && (u61Var = c71Var.f25244f3) != null) {
+            if (c71Var != null && (u61Var = c71Var.f25245f3) != null) {
                 u61Var.N(true);
             }
             T(true);
@@ -416,11 +416,11 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
                     return false;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.BusinessAwayUnsavedChanges);
+                alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.BusinessAwayUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new a(this, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new a(this, 2));
-                showDialog(alertDialog$Builder.f20367a);
+                showDialog(alertDialog$Builder.f20368a);
             }
             return false;
         }

@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 public final class f5 extends MetricAffectingSpan {
-    public String f26276a;
+    public String f26277a;
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {

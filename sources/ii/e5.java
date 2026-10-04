@@ -128,7 +128,7 @@ public abstract class e5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = h6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (fj0Var != null && fj0Var.f26467e) {
+                    if (fj0Var != null && fj0Var.f26468e) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -543,7 +543,7 @@ public abstract class e5 {
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
         ?? obj = new Object();
-        obj.f28496a = i10;
+        obj.f28497a = i10;
         spannableStringBuilder2.setSpan(new n11(obj, 0), 0, spannableStringBuilder2.length(), 33);
         return spannableStringBuilder2;
     }

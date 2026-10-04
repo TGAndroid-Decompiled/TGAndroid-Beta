@@ -17,31 +17,31 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class qg implements Runnable {
-    public final int f30019a;
-    public final Object f30020b;
+    public final int f30020a;
+    public final Object f30021b;
 
     public qg(Object obj, int i10) {
-        this.f30019a = i10;
-        this.f30020b = obj;
+        this.f30020a = i10;
+        this.f30021b = obj;
     }
 
     @Override
     public final void run() {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
-        int i10 = this.f30019a;
-        Object obj = this.f30020b;
+        int i10 = this.f30020a;
+        Object obj = this.f30021b;
         switch (i10) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = ((tg) obj).V;
                 if (!MediaController.getInstance().isRecordingPaused()) {
                     MessagesController.getGlobalMainSettings().edit().putInt("voicepausehint", 3).apply();
                 }
-                if (chatActivityEnterView.f23957s4) {
+                if (chatActivityEnterView.f23958s4) {
                     chatActivityEnterView.J3 = true;
                 }
                 MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.O);
                 chatActivityEnterView.Z2.a1(0);
-                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23911k1;
+                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23912k1;
                 if (slideTextView != null) {
                     slideTextView.setEnabled(false);
                     return;
@@ -49,7 +49,7 @@ public final class qg implements Runnable {
                 return;
             case 1:
                 yc ycVar = (yc) obj;
-                new rg.y0(ycVar.W(), 42, ycVar.f33130c).show();
+                new rg.y0(ycVar.W(), 42, ycVar.f33131c).show();
                 return;
             case 2:
                 AndroidUtilities.removeFromParent((ci.e4) obj);
@@ -58,14 +58,14 @@ public final class qg implements Runnable {
                 AndroidUtilities.showKeyboard((EditText) obj);
                 return;
             case 4:
-                SparseArray sparseArray = q5.f29894q;
+                SparseArray sparseArray = q5.f29895q;
                 ((q5) obj).v();
                 return;
             case 5:
                 m5 m5Var = (m5) obj;
-                ArrayList arrayList = new ArrayList(m5Var.f28529c);
-                m5Var.f28529c.clear();
-                MessagesStorage.getInstance(m5Var.f28530e).getStorageQueue().postRunnable(new j5(m5Var, arrayList, 0));
+                ArrayList arrayList = new ArrayList(m5Var.f28530c);
+                m5Var.f28530c.clear();
+                MessagesStorage.getInstance(m5Var.f28531e).getStorageQueue().postRunnable(new j5(m5Var, arrayList, 0));
                 m5Var.d = null;
                 return;
             case 6:
@@ -76,36 +76,36 @@ public final class qg implements Runnable {
                 return;
             case 8:
                 p6 p6Var = (p6) obj;
-                CharSequence charSequence = p6Var.f29518f;
+                CharSequence charSequence = p6Var.f29519f;
                 if (charSequence != null) {
                     p6Var.c(charSequence, p6Var.h, true);
-                    p6Var.f29518f = null;
+                    p6Var.f29519f = null;
                     p6Var.h = false;
                     return;
                 }
                 return;
             case 9:
-                ((i8) obj).f27329n.f27637n.setVisibility(8);
+                ((i8) obj).f27330n.f27638n.setVisibility(8);
                 return;
             case 10:
-                ((o8) obj).f29276c.l1();
+                ((o8) obj).f29277c.l1();
                 return;
             case 11:
                 ga gaVar = (ga) obj;
-                gaVar.f26752o = true;
+                gaVar.f26753o = true;
                 gaVar.d.invalidate();
                 return;
             case 12:
                 fa faVar = (fa) obj;
-                if (!faVar.f26420a) {
+                if (!faVar.f26421a) {
                     ga gaVar2 = faVar.d;
-                    Bitmap[] bitmapArr = gaVar2.f26745g;
+                    Bitmap[] bitmapArr = gaVar2.f26746g;
                     Canvas[] canvasArr = gaVar2.h;
-                    gaVar2.f26745g = gaVar2.f26744f;
-                    gaVar2.h = gaVar2.f26746i;
-                    gaVar2.f26744f = bitmapArr;
-                    gaVar2.f26746i = canvasArr;
-                    gaVar2.f26748k = false;
+                    gaVar2.f26746g = gaVar2.f26745f;
+                    gaVar2.h = gaVar2.f26747i;
+                    gaVar2.f26745f = bitmapArr;
+                    gaVar2.f26747i = canvasArr;
+                    gaVar2.f26749k = false;
                     ci.r6 r6Var = gaVar2.d;
                     if (r6Var != null) {
                         r6Var.invalidate();
@@ -115,7 +115,7 @@ public final class qg implements Runnable {
                 }
                 return;
             case 13:
-                ka kaVar = ((qa) obj).f29988t;
+                ka kaVar = ((qa) obj).f29989t;
                 if (kaVar != null) {
                     kaVar.d();
                     return;
@@ -123,15 +123,15 @@ public final class qg implements Runnable {
                 return;
             case 14:
                 ka kaVar2 = (ka) obj;
-                kaVar2.f28056o = kaVar2.f28055n.f29577b;
+                kaVar2.f28057o = kaVar2.f28056n.f29578b;
                 kaVar2.d();
                 return;
             case 15:
-                rc rcVar = ((kb) obj).f28059b;
-                vb vbVar = rcVar.f30334e;
+                rc rcVar = ((kb) obj).f28060b;
+                vb vbVar = rcVar.f30335e;
                 vbVar.transitionRunningEnter = false;
                 vbVar.onEnterTransitionEnd();
-                if (rcVar.f30349u) {
+                if (rcVar.f30350u) {
                     rcVar.i(true);
                     return;
                 }
@@ -146,8 +146,8 @@ public final class qg implements Runnable {
                 return;
             case 17:
                 md mdVar = (md) obj;
-                if (mdVar.f28586o1) {
-                    mdVar.f28586o1 = false;
+                if (mdVar.f28587o1) {
+                    mdVar.f28587o1 = false;
                     mdVar.invalidate();
                     return;
                 }
@@ -156,12 +156,12 @@ public final class qg implements Runnable {
                 ((Dialog) obj).dismiss();
                 return;
             case 19:
-                ChatActivityEnterView chatActivityEnterView2 = ((tf) obj).f31031f;
-                int i11 = ChatActivityEnterView.f23846n5;
+                ChatActivityEnterView chatActivityEnterView2 = ((tf) obj).f31032f;
+                int i11 = ChatActivityEnterView.f23847n5;
                 chatActivityEnterView2.p1();
                 return;
             case 20:
-                ((ch) obj).f25364s = null;
+                ((ch) obj).f25365s = null;
                 return;
             case 21:
                 ((ki) obj).B0.A1.l();
@@ -182,22 +182,22 @@ public final class qg implements Runnable {
                     return;
                 }
             case 23:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ((am) obj).f24570b;
-                boolean z10 = ChatAttachAlertPhotoLayout.f24017q1;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ((am) obj).f24571b;
+                boolean z10 = ChatAttachAlertPhotoLayout.f24018q1;
                 chatAttachAlertPhotoLayout2.p0(-1, true);
                 return;
             case 24:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = ((xl) obj).f32896c;
-                if (chatAttachAlertPhotoLayout3.P != null && !chatAttachAlertPhotoLayout3.f29642b.isDismissed()) {
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = ((xl) obj).f32897c;
+                if (chatAttachAlertPhotoLayout3.P != null && !chatAttachAlertPhotoLayout3.f29643b.isDismissed()) {
                     chatAttachAlertPhotoLayout3.P.setSystemUiVisibility(1028);
                     return;
                 }
                 return;
             case 25:
                 tm tmVar = (tm) obj;
-                xi xiVar = tmVar.f29642b;
-                if (tmVar.Q && (chatAttachAlertPhotoLayout = xiVar.f32824j0) != null) {
-                    org.telegram.ui.ActionBar.f1 f1Var = chatAttachAlertPhotoLayout.f24027c1;
+                xi xiVar = tmVar.f29643b;
+                if (tmVar.Q && (chatAttachAlertPhotoLayout = xiVar.f32825j0) != null) {
+                    org.telegram.ui.ActionBar.f1 f1Var = chatAttachAlertPhotoLayout.f24028c1;
                     f1Var.setIcon(R.drawable.ic_ab_back);
                     f1Var.setText(LocaleController.getString(R.string.Back));
                     f1Var.setRightIcon(0);
@@ -206,8 +206,8 @@ public final class qg implements Runnable {
                 return;
             case 26:
                 xn xnVar = (xn) obj;
-                xnVar.f32927k1 = -1;
-                xnVar.f32925j1 = null;
+                xnVar.f32928k1 = -1;
+                xnVar.f32926j1 = null;
                 return;
             case 27:
                 ((ro) obj).k();
@@ -216,7 +216,7 @@ public final class qg implements Runnable {
                 ((to) obj).setVisibility(8);
                 return;
             default:
-                ((sp) obj).f30844b.a();
+                ((sp) obj).f30845b.a();
                 return;
         }
     }

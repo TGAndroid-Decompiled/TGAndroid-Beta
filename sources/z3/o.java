@@ -9,19 +9,19 @@ import e2.v;
 import hg.k0;
 import java.io.EOFException;
 public final class o implements h0 {
-    public final h0 f52378a;
-    public final l f52379b;
-    public n f52383g;
+    public final h0 f52379a;
+    public final l f52380b;
+    public n f52384g;
     public s h;
-    public boolean f52384i;
+    public boolean f52385i;
     public int d = 0;
-    public int f52381e = 0;
-    public byte[] f52382f = d0.f8538b;
-    public final v f52380c = new v();
+    public int f52382e = 0;
+    public byte[] f52383f = d0.f8538b;
+    public final v f52381c = new v();
 
     public o(h0 h0Var, l lVar) {
-        this.f52378a = h0Var;
-        this.f52379b = lVar;
+        this.f52379a = h0Var;
+        this.f52380b = lVar;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class o implements h0 {
         }
         e2.d.b(z10);
         boolean equals = sVar.equals(this.h);
-        l lVar = this.f52379b;
+        l lVar = this.f52380b;
         if (!equals) {
             this.h = sVar;
             if (lVar.V(sVar)) {
@@ -50,10 +50,10 @@ public final class o implements h0 {
             } else {
                 nVar = null;
             }
-            this.f52383g = nVar;
+            this.f52384g = nVar;
         }
-        n nVar2 = this.f52383g;
-        h0 h0Var = this.f52378a;
+        n nVar2 = this.f52384g;
+        h0 h0Var = this.f52379a;
         if (nVar2 == null) {
             h0Var.b(sVar);
             return;
@@ -78,42 +78,42 @@ public final class o implements h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        if (this.f52383g == null) {
-            return this.f52378a.e(kVar, i10, z10);
+        if (this.f52384g == null) {
+            return this.f52379a.e(kVar, i10, z10);
         }
         g(i10);
-        int read = kVar.read(this.f52382f, this.f52381e, i10);
+        int read = kVar.read(this.f52383f, this.f52382e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        this.f52381e += read;
+        this.f52382e += read;
         return read;
     }
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        if (this.f52383g == null) {
-            this.f52378a.f(vVar, i10, i11);
+        if (this.f52384g == null) {
+            this.f52379a.f(vVar, i10, i11);
             return;
         }
         g(i10);
-        vVar.h(this.f52381e, i10, this.f52382f);
-        this.f52381e += i10;
+        vVar.h(this.f52382e, i10, this.f52383f);
+        this.f52382e += i10;
     }
 
     public final void g(int i10) {
         byte[] bArr;
-        int length = this.f52382f.length;
-        int i11 = this.f52381e;
+        int length = this.f52383f.length;
+        int i11 = this.f52382e;
         if (length - i11 >= i10) {
             return;
         }
         int i12 = i11 - this.d;
         int max = Math.max(i12 * 2, i10 + i12);
-        byte[] bArr2 = this.f52382f;
+        byte[] bArr2 = this.f52383f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -121,7 +121,7 @@ public final class o implements h0 {
         }
         System.arraycopy(bArr2, this.d, bArr, 0, i12);
         this.d = 0;
-        this.f52381e = i12;
-        this.f52382f = bArr;
+        this.f52382e = i12;
+        this.f52383f = bArr;
     }
 }

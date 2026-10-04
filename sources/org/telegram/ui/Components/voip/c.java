@@ -13,21 +13,21 @@ import android.view.accessibility.AccessibilityNodeProvider;
 import android.widget.Button;
 import org.telegram.ui.ki1;
 public abstract class c extends AccessibilityNodeProvider {
-    public final e f31790a;
+    public final e f31791a;
     public final AccessibilityManager d;
-    public final Rect f31792c = new Rect();
-    public int f31793e = -1;
-    public final int f31791b = 2;
+    public final Rect f31793c = new Rect();
+    public int f31794e = -1;
+    public final int f31792b = 2;
 
     public c(e eVar) {
-        this.f31790a = eVar;
+        this.f31791a = eVar;
         this.d = (AccessibilityManager) f0.e.f(eVar.getContext(), AccessibilityManager.class);
     }
 
     public final void a(int i10) {
         View view;
         ViewParent parent;
-        if (this.d.isTouchExplorationEnabled() && (parent = (view = this.f31790a).getParent()) != null) {
+        if (this.d.isTouchExplorationEnabled() && (parent = (view = this.f31791a).getParent()) != null) {
             AccessibilityEvent obtain = AccessibilityEvent.obtain(32768);
             obtain.setPackageName(view.getContext().getPackageName());
             obtain.setSource(view, i10);
@@ -39,11 +39,11 @@ public abstract class c extends AccessibilityNodeProvider {
     public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i10) {
         StaticLayout staticLayout;
         CharSequence text;
-        e eVar = this.f31790a;
+        e eVar = this.f31791a;
         if (i10 == -1) {
             AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(eVar);
             obtain.setPackageName(eVar.getContext().getPackageName());
-            for (int i11 = 0; i11 < this.f31791b; i11++) {
+            for (int i11 = 0; i11 < this.f31792b; i11++) {
                 obtain.addChild(eVar, i11);
             }
             return obtain;
@@ -53,7 +53,7 @@ public abstract class c extends AccessibilityNodeProvider {
         int i12 = Build.VERSION.SDK_INT;
         obtain2.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
         b bVar = (b) this;
-        e eVar2 = bVar.f31780g;
+        e eVar2 = bVar.f31781g;
         if (i10 == 0) {
             if (eVar2.R) {
                 StaticLayout staticLayout2 = eVar2.h;
@@ -62,14 +62,14 @@ public abstract class c extends AccessibilityNodeProvider {
                 }
                 text = null;
             } else {
-                StaticLayout staticLayout3 = eVar2.f31831e;
+                StaticLayout staticLayout3 = eVar2.f31832e;
                 if (staticLayout3 != null) {
                     text = staticLayout3.getText();
                 }
                 text = null;
             }
         } else {
-            if (i10 == 1 && (staticLayout = eVar2.f31832f) != null) {
+            if (i10 == 1 && (staticLayout = eVar2.f31833f) != null) {
                 text = staticLayout.getText();
             }
             text = null;
@@ -83,7 +83,7 @@ public abstract class c extends AccessibilityNodeProvider {
         obtain2.setClickable(true);
         obtain2.setEnabled(true);
         obtain2.setParent(eVar);
-        Rect rect = this.f31792c;
+        Rect rect = this.f31793c;
         if (i10 == 0) {
             rect.set(eVar2.M);
         } else if (i10 == 1) {
@@ -91,7 +91,7 @@ public abstract class c extends AccessibilityNodeProvider {
         } else {
             rect.setEmpty();
         }
-        int[] iArr = bVar.f31779f;
+        int[] iArr = bVar.f31780f;
         eVar2.getLocationOnScreen(iArr);
         rect.offset(iArr[0], iArr[1]);
         obtain2.setBoundsInScreen(rect);
@@ -101,13 +101,13 @@ public abstract class c extends AccessibilityNodeProvider {
     @Override
     public final boolean performAction(int i10, int i11, Bundle bundle) {
         if (i10 == -1) {
-            return this.f31790a.performAccessibilityAction(i11, bundle);
+            return this.f31791a.performAccessibilityAction(i11, bundle);
         }
         if (i11 == 64) {
             a(i10);
             return false;
         } else if (i11 == 16) {
-            d dVar = ((b) this).f31780g.Q;
+            d dVar = ((b) this).f31781g.Q;
             if (dVar != null) {
                 if (i10 == 0) {
                     ((ki1) dVar).a();

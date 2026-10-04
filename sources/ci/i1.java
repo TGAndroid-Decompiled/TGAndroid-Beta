@@ -30,9 +30,9 @@ public final class i1 extends g91 {
             case 3:
                 if (i10 == 0) {
                     yn ynVar = (yn) this.V;
-                    if (ynVar.f43461q1) {
-                        ynVar.f43461q1 = false;
-                        ynVar.f43437o1.h.clear();
+                    if (ynVar.f43462q1) {
+                        ynVar.f43462q1 = false;
+                        ynVar.f43438o1.h.clear();
                         return;
                     }
                     return;
@@ -103,7 +103,7 @@ public final class i1 extends g91 {
         switch (this.U) {
             case 2:
                 if (getCurrentPosition() == 1) {
-                    ((fi.k0) this.V).v.d.f25244f3.N(false);
+                    ((fi.k0) this.V).v.d.f25245f3.N(false);
                     return;
                 }
                 return;
@@ -117,7 +117,7 @@ public final class i1 extends g91 {
         t31 t31Var;
         switch (this.U) {
             case 6:
-                if ((getCurrentView() instanceof u31) && (t31Var = ((u31) getCurrentView()).f41041n) != null) {
+                if ((getCurrentView() instanceof u31) && (t31Var = ((u31) getCurrentView()).f41042n) != null) {
                     AndroidUtilities.hideKeyboard(t31Var);
                     return;
                 }
@@ -158,15 +158,15 @@ public final class i1 extends g91 {
                 wp0 wp0Var = (wp0) this.V;
                 float positionAnimated = wp0Var.I.getPositionAnimated();
                 wp0Var.M.setSelected(positionAnimated);
-                wp0Var.f42578e.setProgressToGradient(1.0f - w7.q.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                wp0Var.f42579e.setProgressToGradient(1.0f - w7.q.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
                 wp0Var.F0();
                 qp0 C0 = wp0Var.C0();
                 d dVar = wp0Var.Q;
                 if (dVar != null && C0 != null && C0 != wp0Var.R) {
                     wp0Var.R = C0;
-                    n7.z0 z0Var = C0.f39769e;
-                    dVar.g((CharSequence) z0Var.f16846b, true, true);
-                    wp0Var.Q.f((SpannableStringBuilder) z0Var.f16847c, true);
+                    n7.z0 z0Var = C0.f39770e;
+                    dVar.g((CharSequence) z0Var.f16847b, true, true);
+                    wp0Var.Q.f((SpannableStringBuilder) z0Var.f16848c, true);
                     return;
                 }
                 return;

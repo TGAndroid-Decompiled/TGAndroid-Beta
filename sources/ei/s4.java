@@ -38,7 +38,7 @@ public final class s4 implements Utilities.Callback {
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f9337c;
                 TLRPC.Chat chat = (TLRPC.Chat) this.d;
                 TLRPC.Chat chat2 = (TLRPC.Chat) obj;
-                n2Var.showDialog(new hi.b(n2Var.getContext(), chat, -chat2.f20037id, new fi.m0(n2Var, this.f9336b, chat2, chat, 0)));
+                n2Var.showDialog(new hi.b(n2Var.getContext(), chat, -chat2.f20038id, new fi.m0(n2Var, this.f9336b, chat2, chat, 0)));
                 return;
             case 2:
                 float f7 = this.f9336b;
@@ -59,8 +59,8 @@ public final class s4 implements Utilities.Callback {
                 xh.s2 s2Var = (xh.s2) this.f9337c;
                 int i11 = this.f9336b;
                 ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.ActionBar.n2 n2Var2 = s2Var.f50216a;
-                j5 j5Var = s2Var.f50219e;
+                org.telegram.ui.ActionBar.n2 n2Var2 = s2Var.f50217a;
+                j5 j5Var = s2Var.f50220e;
                 j5Var.a(i11, arrayList);
                 ((xh.o2) this.d).f(true);
                 s2Var.f(true);
@@ -69,13 +69,13 @@ public final class s4 implements Utilities.Callback {
                 if (c10 != null) {
                     if (arrayList.size() > 1) {
                         rc R = yc.a0(n2Var2).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), c10.title)));
-                        R.f30346r = false;
+                        R.f30347r = false;
                         R.j();
                         return;
                     } else if (arrayList.size() == 1) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
                         rc R2 = yc.a0(n2Var2).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.x3.D1(savedStarGift.gift), c10.title)));
-                        R2.f30346r = false;
+                        R2.f30347r = false;
                         R2.j();
                         return;
                     } else {

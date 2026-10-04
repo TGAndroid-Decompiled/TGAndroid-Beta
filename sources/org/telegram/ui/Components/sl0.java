@@ -5,23 +5,23 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
 public final class sl0 extends p20 {
-    public View f30803a;
-    public final tl0 f30804b;
+    public View f30804a;
+    public final tl0 f30805b;
 
     public sl0(tl0 tl0Var) {
-        this.f30804b = tl0Var;
+        this.f30805b = tl0Var;
     }
 
     @Override
     public final boolean a() {
-        if (((zl0) this.f30804b.f31089b).Y0 != null) {
+        if (((zl0) this.f30805b.f31090b).Y0 != null) {
             return true;
         }
         return false;
     }
 
     public final void b(MotionEvent motionEvent, View view) {
-        zl0 zl0Var = (zl0) this.f30804b.f31089b;
+        zl0 zl0Var = (zl0) this.f30805b.f31090b;
         if (view != null) {
             if (zl0Var.V0 != null || zl0Var.W0 != null) {
                 float x10 = motionEvent.getX();
@@ -47,10 +47,10 @@ public final class sl0 extends p20 {
                 rl0 rl0Var = new rl0(this, view, i10, x10, y3);
                 zl0Var.S1 = rl0Var;
                 AndroidUtilities.runOnUIThread(rl0Var, ViewConfiguration.getPressedStateDuration());
-                ql0 ql0Var = zl0Var.f33523e1;
+                ql0 ql0Var = zl0Var.f33524e1;
                 if (ql0Var != null) {
                     AndroidUtilities.cancelRunOnUIThread(ql0Var);
-                    zl0Var.f33523e1 = null;
+                    zl0Var.f33524e1 = null;
                     zl0Var.N1 = null;
                     zl0Var.P1 = false;
                     zl0Var.n1(motionEvent, view);
@@ -62,11 +62,11 @@ public final class sl0 extends p20 {
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
         nl0 nl0Var;
-        zl0 zl0Var = (zl0) this.f30804b.f31089b;
-        View view = this.f30803a;
+        zl0 zl0Var = (zl0) this.f30805b.f31090b;
+        View view = this.f30804a;
         if (view != null && (nl0Var = zl0Var.W0) != null && nl0Var.f1(view)) {
-            zl0Var.W0.s0(this.f30803a, motionEvent.getX(), motionEvent.getY());
-            this.f30803a = null;
+            zl0Var.W0.s0(this.f30804a, motionEvent.getX(), motionEvent.getY());
+            this.f30804a = null;
             return true;
         }
         return false;
@@ -80,7 +80,7 @@ public final class sl0 extends p20 {
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
         int i10;
-        zl0 zl0Var = (zl0) this.f30804b.f31089b;
+        zl0 zl0Var = (zl0) this.f30805b.f31090b;
         View view = zl0Var.N1;
         if (view != null && (i10 = zl0Var.O1) != -1) {
             ol0 ol0Var = zl0Var.X0;
@@ -108,10 +108,10 @@ public final class sl0 extends p20 {
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
         nl0 nl0Var;
-        View view = this.f30803a;
-        if (view != null && (nl0Var = ((zl0) this.f30804b.f31089b).W0) != null && nl0Var.f1(view)) {
-            b(motionEvent, this.f30803a);
-            this.f30803a = null;
+        View view = this.f30804a;
+        if (view != null && (nl0Var = ((zl0) this.f30805b.f31090b).W0) != null && nl0Var.f1(view)) {
+            b(motionEvent, this.f30804a);
+            this.f30804a = null;
             return true;
         }
         return false;
@@ -119,12 +119,12 @@ public final class sl0 extends p20 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        zl0 zl0Var = (zl0) this.f30804b.f31089b;
+        zl0 zl0Var = (zl0) this.f30805b.f31090b;
         View view = zl0Var.N1;
         if (view != null) {
             nl0 nl0Var = zl0Var.W0;
             if (nl0Var != null && nl0Var.f1(view)) {
-                this.f30803a = zl0Var.N1;
+                this.f30804a = zl0Var.N1;
                 return false;
             }
             b(motionEvent, zl0Var.N1);

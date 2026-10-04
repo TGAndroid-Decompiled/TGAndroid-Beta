@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class sa extends k9 implements List, RandomAccess {
-    public static final qa f48834b = new qa(ua.f48848e, 0);
+    public static final qa f48835b = new qa(ua.f48849e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -126,7 +126,7 @@ public abstract class sa extends k9 implements List, RandomAccess {
             return this;
         }
         if (i12 == 0) {
-            return ua.f48848e;
+            return ua.f48849e;
         }
         return new ra(this, i10, i12);
     }
@@ -136,7 +136,7 @@ public abstract class sa extends k9 implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f48834b;
+                return f48835b;
             }
             return new qa(this, i10);
         }

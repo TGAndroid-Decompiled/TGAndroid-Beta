@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class k30 extends FrameLayout {
-    public final p30 f27946a;
+    public final p30 f27947a;
 
     public k30(p30 p30Var, Context context) {
         super(context);
-        this.f27946a = p30Var;
+        this.f27947a = p30Var;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        p30.m(this.f27946a);
+        p30.m(this.f27947a);
     }
 
     @Override
@@ -27,8 +27,8 @@ public final class k30 extends FrameLayout {
         } else {
             z10 = false;
         }
-        p30 p30Var = this.f27946a;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) p30Var.f29492c.getLayoutParams();
+        p30 p30Var = this.f27947a;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) p30Var.f29493c.getLayoutParams();
         if (z10) {
             int dp = AndroidUtilities.dp(80.0f);
             marginLayoutParams.leftMargin = dp;
@@ -39,7 +39,7 @@ public final class k30 extends FrameLayout {
             marginLayoutParams.rightMargin = dp2;
         }
         int z11 = org.telegram.messenger.ok.z(200.0f, View.MeasureSpec.getSize(i10), 2);
-        p30Var.f29491b.setPadding(z11, 0, z11, 0);
+        p30Var.f29492b.setPadding(z11, 0, z11, 0);
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(370.0f), 1073741824));
         measureChildWithMargins(p30Var.d, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
     }

@@ -38,7 +38,7 @@ public final class p0 extends FrameLayout {
 
     public final void a() {
         int dp = AndroidUtilities.dp(28.0f);
-        int i10 = i6.f20810ci;
+        int i10 = i6.f20811ci;
         d6 d6Var = this.f10745a;
         setBackground(i6.b0(dp, i6.v0(i10, d6Var)));
         this.f10747c.setTextColor(i6.v0(i6.G6, d6Var));
@@ -68,8 +68,8 @@ public final class p0 extends FrameLayout {
             this.d = L;
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
-            L.f30851e = dp;
-            L.f30852f = dp2;
+            L.f30852e = dp;
+            L.f30853f = dp2;
             i6.v1(this.d, i6.v0(i6.Oh, d6Var), false);
             i6.v1(this.d, i6.v0(i6.Sh, d6Var), true);
             w9Var.setImageDrawable(this.d);
@@ -87,12 +87,12 @@ public final class p0 extends FrameLayout {
             TLObject tLObject = q0Var.f10758f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20184id == user.f20184id) {
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20185id == user.f20185id) {
                     sq L3 = i6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp3 = AndroidUtilities.dp(16.0f);
                     int dp4 = AndroidUtilities.dp(16.0f);
-                    L3.f30851e = dp3;
-                    L3.f30852f = dp4;
+                    L3.f30852e = dp3;
+                    L3.f30853f = dp4;
                     i6.v1(L3, i6.v0(i11, d6Var), false);
                     i6.v1(L3, i6.v0(i12, d6Var), true);
                     w9Var.setImageDrawable(L3);

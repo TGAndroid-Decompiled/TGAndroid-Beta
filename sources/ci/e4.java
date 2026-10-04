@@ -228,7 +228,7 @@ public class e4 extends View {
                 i12 = Math.max(max, spanEnd2);
                 if (i12 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(d61VarArr[i13].f25606a);
+                    textPaint3.setTypeface(d61VarArr[i13].f25607a);
                     textPaint3.setTypeface(typeface);
                     f7 = textPaint3.measureText(spanned, max, i12) + f7;
                 }
@@ -446,7 +446,7 @@ public class e4 extends View {
             if (this.I) {
                 f7 = this.P;
             } else {
-                f7 = o6Var.f29241e;
+                f7 = o6Var.f29242e;
             }
             if (this.f5003r) {
                 if (this.f4998n == null) {
@@ -583,7 +583,7 @@ public class e4 extends View {
                 float f28 = rectF2.left;
                 float f29 = e4Var.P / 2.0f;
                 o6Var.setBounds((int) (f12 + f27 + f28), (int) (f18 - f29), (int) (f27 + f28 + f14), (int) (f29 + f18));
-                o6Var.f29257w = (int) (f13 * f11);
+                o6Var.f29258w = (int) (f13 * f11);
                 o6Var.draw(canvas2);
             }
             if (e4Var.f5003r) {
@@ -616,7 +616,7 @@ public class e4 extends View {
         invalidate();
         Runnable runnable2 = this.f4997l0;
         if (runnable2 != null) {
-            AndroidUtilities.runOnUIThread(runnable2, e6Var.f25933c * ((float) e6Var.f25936g));
+            AndroidUtilities.runOnUIThread(runnable2, e6Var.f25934c * ((float) e6Var.f25937g));
         }
         this.Q.d(true);
     }
@@ -641,7 +641,7 @@ public class e4 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f29243g;
+            return this.H.f29244g;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -654,7 +654,7 @@ public class e4 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f29238a;
+        return this.H.f29239a;
     }
 
     public final void h(int i10) {
@@ -690,8 +690,8 @@ public class e4 extends View {
             this.d = Math.max(this.d, kj0Var3.r());
         }
         kj0 kj0Var4 = this.f4986c0;
-        this.f4991f0 = kj0Var4.f28119b;
-        this.f4992g0 = kj0Var4.f28121c;
+        this.f4991f0 = kj0Var4.f28120b;
+        this.f4992g0 = kj0Var4.f28122c;
         this.f4993h0 = true;
     }
 
@@ -834,7 +834,7 @@ public class e4 extends View {
             this.f4999n0 = ofFloat;
             ofFloat.addUpdateListener(new ai.a(this, 19));
             this.f4999n0.addListener(new ai.b(this, 14));
-            this.f4999n0.setInterpolator(tr.f31144k);
+            this.f4999n0.setInterpolator(tr.f31145k);
             this.f4999n0.setDuration(300L);
             this.f4999n0.start();
         }

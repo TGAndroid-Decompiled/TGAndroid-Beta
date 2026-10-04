@@ -6,16 +6,16 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class lp0 extends FrameLayout {
-    public final gf f28402a;
+    public final gf f28403a;
 
     public lp0(gf gfVar, Context context) {
         super(context);
-        this.f28402a = gfVar;
+        this.f28403a = gfVar;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        gf gfVar = this.f28402a;
+        gf gfVar = this.f28403a;
         View contentView = gfVar.getContentView();
         contentView.getLocationInWindow(r3);
         int[] iArr = {iArr[0] + gfVar.E, iArr[1] + gfVar.F};

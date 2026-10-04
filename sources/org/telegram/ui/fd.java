@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class fd implements View.OnClickListener {
-    public final int f36270a;
-    public final nd f36271b;
+    public final int f36271a;
+    public final nd f36272b;
 
     public fd(nd ndVar, int i10) {
-        this.f36270a = i10;
-        this.f36271b = ndVar;
+        this.f36271a = i10;
+        this.f36272b = ndVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
-        switch (this.f36270a) {
+        switch (this.f36271a) {
             case 0:
-                nd.W(this.f36271b, view);
+                nd.W(this.f36272b, view);
                 return;
             case 1:
-                nd ndVar = this.f36271b;
+                nd ndVar = this.f36272b;
                 org.telegram.ui.Components.y40 y40Var = ndVar.v;
-                if (ndVar.f38934x != null) {
+                if (ndVar.f38935x != null) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -31,21 +31,21 @@ public final class fd implements View.OnClickListener {
                 ndVar.h.d();
                 return;
             case 2:
-                nd ndVar2 = this.f36271b;
-                if (!ndVar2.f38917j0) {
+                nd ndVar2 = this.f36272b;
+                if (!ndVar2.f38918j0) {
                     ndVar2.f0();
                     return;
-                } else if (ndVar2.f38904a0) {
-                    ndVar2.f38904a0 = false;
+                } else if (ndVar2.f38905a0) {
+                    ndVar2.f38905a0 = false;
                     ndVar2.h0();
                     return;
                 } else {
                     return;
                 }
             default:
-                nd ndVar3 = this.f36271b;
-                if (!ndVar3.f38904a0) {
-                    ndVar3.f38904a0 = true;
+                nd ndVar3 = this.f36272b;
+                if (!ndVar3.f38905a0) {
+                    ndVar3.f38905a0 = true;
                     ndVar3.h0();
                     return;
                 }

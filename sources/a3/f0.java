@@ -39,7 +39,7 @@ public final class f0 {
         long j11;
         b2.s sVar;
         n4.y yVar = this.f111a;
-        f fVar = (f) yVar.f16640c;
+        f fVar = (f) yVar.f16641c;
         while (true) {
             e2.q qVar = this.f115f;
             int i10 = qVar.f8576c;
@@ -90,7 +90,7 @@ public final class f0 {
                         rVar.f3512x = x1Var.f3611a;
                         rVar.f3513y = x1Var.f3612b;
                         rVar.f3506q = r0.n("video/raw");
-                        yVar.f16639b = new b2.s(rVar);
+                        yVar.f16640b = new b2.s(rVar);
                         fVar.h.execute(new e(yVar, x1Var));
                     }
                     if (z10) {
@@ -108,7 +108,7 @@ public final class f0 {
                     if (z11 && fVar.d != null) {
                         fVar.h.execute(new e(0, yVar));
                     }
-                    b2.s sVar2 = (b2.s) yVar.f16639b;
+                    b2.s sVar2 = (b2.s) yVar.f16640b;
                     if (sVar2 == null) {
                         sVar = new b2.s(new b2.r());
                     } else {

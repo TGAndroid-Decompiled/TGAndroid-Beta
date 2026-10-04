@@ -1,23 +1,23 @@
 package org.telegram.ui;
 public final class d81 implements Runnable {
-    public final int f35696a;
-    public final SessionsActivity f35697b;
-    public final boolean f35698c;
+    public final int f35697a;
+    public final SessionsActivity f35698b;
+    public final boolean f35699c;
 
     public d81(SessionsActivity sessionsActivity, boolean z10, int i10) {
-        this.f35696a = i10;
-        this.f35697b = sessionsActivity;
-        this.f35698c = z10;
+        this.f35697a = i10;
+        this.f35698b = sessionsActivity;
+        this.f35699c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f35696a) {
+        switch (this.f35697a) {
             case 0:
-                this.f35697b.k0(this.f35698c);
+                this.f35698b.k0(this.f35699c);
                 return;
             default:
-                this.f35697b.k0(this.f35698c);
+                this.f35698b.k0(this.f35699c);
                 return;
         }
     }

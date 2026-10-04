@@ -26,7 +26,7 @@ public final class m0 extends s4.o {
                 if (tLObject instanceof TLRPC.User) {
                     TLObject tLObject2 = q0Var2.f10758f;
                     if (tLObject2 instanceof TLRPC.User) {
-                        if (((TLRPC.User) tLObject).f20184id == ((TLRPC.User) tLObject2).f20184id) {
+                        if (((TLRPC.User) tLObject).f20185id == ((TLRPC.User) tLObject2).f20185id) {
                             return true;
                         }
                         return false;
@@ -34,7 +34,7 @@ public final class m0 extends s4.o {
                 }
                 if (tLObject instanceof TLRPC.Chat) {
                     TLObject tLObject3 = q0Var2.f10758f;
-                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f20037id == ((TLRPC.Chat) tLObject3).f20037id) {
+                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f20038id == ((TLRPC.Chat) tLObject3).f20038id) {
                         return true;
                     }
                     return false;

@@ -12,40 +12,40 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stars;
 public final class z4 implements Runnable {
-    public final int f52331a;
-    public final t5 f52332b;
-    public final TLObject f52333c;
+    public final int f52332a;
+    public final t5 f52333b;
+    public final TLObject f52334c;
 
     public z4(t5 t5Var, TLObject tLObject, int i10) {
-        this.f52331a = i10;
-        this.f52332b = t5Var;
-        this.f52333c = tLObject;
+        this.f52332a = i10;
+        this.f52333b = t5Var;
+        this.f52334c = tLObject;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f52331a) {
+        switch (this.f52332a) {
             case 0:
-                t5 t5Var = this.f52332b;
-                int i10 = t5Var.f52010a;
+                t5 t5Var = this.f52333b;
+                int i10 = t5Var.f52011a;
                 t5Var.A = false;
-                TLObject tLObject = this.f52333c;
+                TLObject tLObject = this.f52334c;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
                     MessagesController.getInstance(i10).putUsers(starsStatus.users, false);
                     MessagesController.getInstance(i10).putChats(starsStatus.chats, false);
-                    t5Var.f52032z.addAll(starsStatus.subscriptions);
+                    t5Var.f52033z.addAll(starsStatus.subscriptions);
                     t5Var.k0(starsStatus.balance);
                     NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starSubscriptionsLoaded, new Object[0]);
                     return;
                 }
                 return;
             case 1:
-                t5 t5Var2 = this.f52332b;
-                int i11 = t5Var2.f52010a;
-                t5Var2.f52030x = false;
-                TLObject tLObject2 = this.f52333c;
+                t5 t5Var2 = this.f52333b;
+                int i11 = t5Var2.f52011a;
+                t5Var2.f52031x = false;
+                TLObject tLObject2 = this.f52334c;
                 if (tLObject2 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus2 = (TL_stars.StarsStatus) tLObject2;
                     MessagesController.getInstance(i11).putUsers(starsStatus2.users, false);
@@ -56,8 +56,8 @@ public final class z4 implements Runnable {
                     } else {
                         z10 = false;
                     }
-                    t5Var2.f52031y = z10;
-                    t5Var2.f52029w = starsStatus2.subscriptions_next_offset;
+                    t5Var2.f52032y = z10;
+                    t5Var2.f52030w = starsStatus2.subscriptions_next_offset;
                     t5Var2.k0(starsStatus2.balance);
                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starSubscriptionsLoaded, new Object[0]);
                     return;
@@ -66,9 +66,9 @@ public final class z4 implements Runnable {
             case 2:
                 ArrayList arrayList = new ArrayList();
                 final ArrayList arrayList2 = new ArrayList();
-                TLObject tLObject3 = this.f52333c;
+                TLObject tLObject3 = this.f52334c;
                 boolean z11 = tLObject3 instanceof Vector;
-                final t5 t5Var3 = this.f52332b;
+                final t5 t5Var3 = this.f52333b;
                 if (z11) {
                     ArrayList<T> arrayList3 = ((Vector) tLObject3).objects;
                     int size = arrayList3.size();
@@ -85,11 +85,11 @@ public final class z4 implements Runnable {
                             }
                         }
                     }
-                    t5Var3.f52016i = true;
+                    t5Var3.f52017i = true;
                 }
-                t5Var3.f52017j = arrayList;
+                t5Var3.f52018j = arrayList;
                 t5Var3.h = false;
-                NotificationCenter.getInstance(t5Var3.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                NotificationCenter.getInstance(t5Var3.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                 if (!arrayList2.isEmpty()) {
                     Runnable runnable = new Runnable() {
                         @Override
@@ -157,15 +157,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var6 = t5Var5;
-                                                                            if (t5Var6.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var6.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var6.f52020m.get(i16);
+                                                                            if (t5Var6.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var6.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var6.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var6.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var6.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -198,15 +198,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var7 = t5Var5;
-                                                                            if (t5Var7.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var7.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var7.f52023p.get(i19);
+                                                                            if (t5Var7.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var7.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var7.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var7.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var7.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -239,15 +239,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var5;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -297,15 +297,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var62 = t5Var6;
-                                                                            if (t5Var62.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var62.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52020m.get(i16);
+                                                                            if (t5Var62.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var62.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var62.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var62.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -338,15 +338,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var7 = t5Var6;
-                                                                            if (t5Var7.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var7.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var7.f52023p.get(i19);
+                                                                            if (t5Var7.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var7.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var7.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var7.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var7.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -379,15 +379,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var6;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -437,15 +437,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var62 = t5Var7;
-                                                                            if (t5Var62.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var62.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52020m.get(i16);
+                                                                            if (t5Var62.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var62.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var62.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var62.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -478,15 +478,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -519,15 +519,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -601,15 +601,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var62 = t5Var52;
-                                                                            if (t5Var62.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var62.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52020m.get(i16);
+                                                                            if (t5Var62.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var62.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var62.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var62.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -642,15 +642,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var52;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -683,15 +683,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var52;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -741,15 +741,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var62 = t5Var6;
-                                                                            if (t5Var62.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var62.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52020m.get(i16);
+                                                                            if (t5Var62.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var62.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var62.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var62.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -782,15 +782,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var6;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -823,15 +823,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var6;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -881,15 +881,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var62 = t5Var7;
-                                                                            if (t5Var62.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var62.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52020m.get(i16);
+                                                                            if (t5Var62.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var62.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var62.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var62.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -922,15 +922,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -963,15 +963,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1045,15 +1045,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var62 = t5Var52;
-                                                                            if (t5Var62.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var62.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52020m.get(i16);
+                                                                            if (t5Var62.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var62.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var62.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var62.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var62.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -1086,15 +1086,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var52;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -1127,15 +1127,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var52;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1185,15 +1185,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var62;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -1226,15 +1226,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var62;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -1267,15 +1267,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var62;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1325,15 +1325,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var7;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -1366,15 +1366,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -1407,15 +1407,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1442,9 +1442,9 @@ public final class z4 implements Runnable {
             case 3:
                 ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
-                TLObject tLObject4 = this.f52333c;
+                TLObject tLObject4 = this.f52334c;
                 boolean z12 = tLObject4 instanceof Vector;
-                final t5 t5Var4 = this.f52332b;
+                final t5 t5Var4 = this.f52333b;
                 if (z12) {
                     ArrayList<T> arrayList6 = ((Vector) tLObject4).objects;
                     int size2 = arrayList6.size();
@@ -1461,11 +1461,11 @@ public final class z4 implements Runnable {
                             }
                         }
                     }
-                    t5Var4.f52019l = true;
+                    t5Var4.f52020l = true;
                 }
-                t5Var4.f52020m = arrayList4;
-                t5Var4.f52018k = false;
-                NotificationCenter.getInstance(t5Var4.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                t5Var4.f52021m = arrayList4;
+                t5Var4.f52019k = false;
+                NotificationCenter.getInstance(t5Var4.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                 if (!arrayList5.isEmpty()) {
                     Runnable runnable2 = new Runnable() {
                         @Override
@@ -1533,15 +1533,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var52;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -1574,15 +1574,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var52;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -1615,15 +1615,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var52;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1673,15 +1673,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var62;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -1714,15 +1714,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var62;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -1755,15 +1755,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var62;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1813,15 +1813,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var7;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -1854,15 +1854,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -1895,15 +1895,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1977,15 +1977,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var52;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -2018,15 +2018,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var52;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -2059,15 +2059,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var52;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2117,15 +2117,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var62;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -2158,15 +2158,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var62;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -2199,15 +2199,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var62;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2257,15 +2257,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var7;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -2298,15 +2298,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -2339,15 +2339,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2421,15 +2421,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var52;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -2462,15 +2462,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var52;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -2503,15 +2503,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var52;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2561,15 +2561,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var62;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -2602,15 +2602,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var62;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -2643,15 +2643,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var62;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2701,15 +2701,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var7;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -2742,15 +2742,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -2783,15 +2783,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2818,9 +2818,9 @@ public final class z4 implements Runnable {
             case 4:
                 ArrayList arrayList7 = new ArrayList();
                 final ArrayList arrayList8 = new ArrayList();
-                TLObject tLObject5 = this.f52333c;
+                TLObject tLObject5 = this.f52334c;
                 boolean z13 = tLObject5 instanceof Vector;
-                final t5 t5Var5 = this.f52332b;
+                final t5 t5Var5 = this.f52333b;
                 if (z13) {
                     ArrayList<T> arrayList9 = ((Vector) tLObject5).objects;
                     int size3 = arrayList9.size();
@@ -2837,11 +2837,11 @@ public final class z4 implements Runnable {
                             }
                         }
                     }
-                    t5Var5.f52022o = true;
+                    t5Var5.f52023o = true;
                 }
-                t5Var5.f52023p = arrayList7;
-                t5Var5.f52021n = false;
-                NotificationCenter.getInstance(t5Var5.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                t5Var5.f52024p = arrayList7;
+                t5Var5.f52022n = false;
+                NotificationCenter.getInstance(t5Var5.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                 if (!arrayList8.isEmpty()) {
                     Runnable runnable3 = new Runnable() {
                         @Override
@@ -2909,15 +2909,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var52;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -2950,15 +2950,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var52;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -2991,15 +2991,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var52;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3049,15 +3049,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var62;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -3090,15 +3090,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var62;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -3131,15 +3131,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var62;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3189,15 +3189,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var7;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -3230,15 +3230,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -3271,15 +3271,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3353,15 +3353,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var522;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -3394,15 +3394,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var522;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -3435,15 +3435,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var522;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3493,15 +3493,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var62;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -3534,15 +3534,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var62;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -3575,15 +3575,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var62;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3633,15 +3633,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var7;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -3674,15 +3674,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -3715,15 +3715,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3797,15 +3797,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var522;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -3838,15 +3838,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var522;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -3879,15 +3879,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var522;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3937,15 +3937,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var62;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -3978,15 +3978,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var62;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -4019,15 +4019,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var62;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -4077,15 +4077,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var622 = t5Var7;
-                                                                            if (t5Var622.f52020m != null) {
-                                                                                for (int i16 = 0; i16 < t5Var622.f52020m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52020m.get(i16);
+                                                                            if (t5Var622.f52021m != null) {
+                                                                                for (int i16 = 0; i16 < t5Var622.f52021m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) t5Var622.f52021m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var622.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var622.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
@@ -4118,15 +4118,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var72 = t5Var7;
-                                                                            if (t5Var72.f52023p != null) {
-                                                                                for (int i19 = 0; i19 < t5Var72.f52023p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52023p.get(i19);
+                                                                            if (t5Var72.f52024p != null) {
+                                                                                for (int i19 = 0; i19 < t5Var72.f52024p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) t5Var72.f52024p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var72.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var72.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
@@ -4159,15 +4159,15 @@ public final class z4 implements Runnable {
                                                                                 }
                                                                             }
                                                                             t5 t5Var8 = t5Var7;
-                                                                            if (t5Var8.f52017j != null) {
-                                                                                for (int i22 = 0; i22 < t5Var8.f52017j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52017j.get(i22);
+                                                                            if (t5Var8.f52018j != null) {
+                                                                                for (int i22 = 0; i22 < t5Var8.f52018j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) t5Var8.f52018j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(t5Var8.f52010a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(t5Var8.f52011a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -4192,7 +4192,7 @@ public final class z4 implements Runnable {
                 }
                 return;
             default:
-                MessagesController.getInstance(this.f52332b.f52010a).processUpdates((TLRPC.Updates) this.f52333c, false);
+                MessagesController.getInstance(this.f52333b.f52011a).processUpdates((TLRPC.Updates) this.f52334c, false);
                 return;
         }
     }

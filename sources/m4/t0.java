@@ -2,25 +2,25 @@ package m4;
 
 import gg.d2;
 public final class t0 implements z0 {
-    public final int f16294a;
-    public final z0 f16295b;
+    public final int f16295a;
+    public final z0 f16296b;
 
     public t0(z0 z0Var, int i10) {
-        this.f16294a = i10;
-        this.f16295b = z0Var;
+        this.f16295a = i10;
+        this.f16296b = z0Var;
     }
 
     @Override
     public final Object h(a0 a0Var, r rVar, int i10) {
-        switch (this.f16294a) {
+        switch (this.f16295a) {
             case 0:
                 if (a0Var == null) {
-                    a1.I0(null, rVar, i10, this.f16295b, new i2.s(rVar, i10, 3));
+                    a1.I0(null, rVar, i10, this.f16296b, new i2.s(rVar, i10, 3));
                     throw null;
                 }
                 throw new ClassCastException();
             default:
-                return a1.I0(a0Var, rVar, i10, this.f16295b, new d2(a0Var, rVar, i10, 4));
+                return a1.I0(a0Var, rVar, i10, this.f16296b, new d2(a0Var, rVar, i10, 4));
         }
     }
 }

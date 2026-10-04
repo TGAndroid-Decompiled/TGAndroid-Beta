@@ -4,23 +4,23 @@ import android.net.Uri;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 public final class e7 implements Utilities.Callback {
-    public final int f25980a;
-    public final j8 f25981b;
+    public final int f25981a;
+    public final j8 f25982b;
 
     public e7(j8 j8Var, int i10) {
-        this.f25980a = i10;
-        this.f25981b = j8Var;
+        this.f25981a = i10;
+        this.f25982b = j8Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f25980a) {
+        switch (this.f25981a) {
             case 0:
-                j8.u(this.f25981b, (MessageObject) obj);
+                j8.u(this.f25982b, (MessageObject) obj);
                 return;
             default:
                 Uri uri = (Uri) obj;
-                j8.x(this.f25981b);
+                j8.x(this.f25982b);
                 return;
         }
     }

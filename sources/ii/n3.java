@@ -45,7 +45,7 @@ public final class n3 extends s4.s0 {
                 return;
             case 5:
                 nv nvVar = (nv) this.f12541c;
-                mv[] mvVarArr = nvVar.f39049f;
+                mv[] mvVarArr = nvVar.f39050f;
                 ((s4.s0) this.f12540b).a(recyclerView, i10);
                 if (i10 != 1) {
                     int i11 = (int) (-nv.h0(nvVar).getTranslationY());
@@ -54,7 +54,7 @@ public final class n3 extends s4.s0 {
                         if (i11 < currentActionBarHeight / 2) {
                             int i12 = -i11;
                             mvVarArr[0].d.w0(0, i12, null);
-                            ai.w0 w0Var = mvVarArr[0].f38763e;
+                            ai.w0 w0Var = mvVarArr[0].f38764e;
                             if (w0Var != null) {
                                 w0Var.w0(0, i12, null);
                                 return;
@@ -63,7 +63,7 @@ public final class n3 extends s4.s0 {
                         }
                         int i13 = currentActionBarHeight - i11;
                         mvVarArr[0].d.w0(0, i13, null);
-                        ai.w0 w0Var2 = mvVarArr[0].f38763e;
+                        ai.w0 w0Var2 = mvVarArr[0].f38764e;
                         if (w0Var2 != null) {
                             w0Var2.w0(0, i13, null);
                             return;
@@ -75,7 +75,7 @@ public final class n3 extends s4.s0 {
                 return;
             case 7:
                 br0 br0Var = (br0) this.f12541c;
-                zq0[] zq0VarArr = br0Var.f35180n;
+                zq0[] zq0VarArr = br0Var.f35181n;
                 ((s4.s0) this.f12540b).a(recyclerView, i10);
                 if (i10 != 1) {
                     kVar = ((org.telegram.ui.ActionBar.n2) br0Var).actionBar;
@@ -127,7 +127,7 @@ public final class n3 extends s4.s0 {
                 }
                 return;
             case 1:
-                c71 c71Var = ((ge) this.f12541c).f36597a;
+                c71 c71Var = ((ge) this.f12541c).f36598a;
                 if (c71Var.canScrollVertically(1)) {
                     for (int i15 = 0; i15 < c71Var.getChildCount(); i15++) {
                         if (!(c71Var.getChildAt(i15) instanceof w00)) {
@@ -152,10 +152,10 @@ public final class n3 extends s4.s0 {
                     if (ynVar.P3 == 7) {
                         if (!ynVar.E6 && !ynVar.A6[0]) {
                             ynVar.E6 = true;
-                            ynVar.f43333f6.add(Integer.valueOf(ynVar.T5));
+                            ynVar.f43334f6.add(Integer.valueOf(ynVar.T5));
                             i13 = ((org.telegram.ui.ActionBar.n2) ynVar).currentAccount;
                             HashtagSearchController hashtagSearchController = HashtagSearchController.getInstance(i13);
-                            String str = ynVar.f43490s3;
+                            String str = ynVar.f43491s3;
                             i14 = ((org.telegram.ui.ActionBar.n2) ynVar).classGuid;
                             int i16 = ynVar.M3;
                             int i17 = ynVar.T5;
@@ -172,11 +172,11 @@ public final class n3 extends s4.s0 {
             case 3:
                 uy uyVar = (uy) this.f12540b;
                 lh0 lh0Var = (lh0) this.f12541c;
-                c71 c71Var2 = lh0Var.f28366c;
-                if (TextUtils.isEmpty(lh0Var.f28372w)) {
-                    arrayList = lh0Var.f28367e;
+                c71 c71Var2 = lh0Var.f28367c;
+                if (TextUtils.isEmpty(lh0Var.f28373w)) {
+                    arrayList = lh0Var.f28368e;
                 } else {
-                    arrayList = lh0Var.f28369n;
+                    arrayList = lh0Var.f28370n;
                 }
                 if (!arrayList.isEmpty()) {
                     if (c71Var2.canScrollVertically(1)) {
@@ -201,8 +201,8 @@ public final class n3 extends s4.s0 {
             case 5:
                 ((s4.s0) this.f12540b).b(recyclerView, i10, i11);
                 nv nvVar = (nv) this.f12541c;
-                mv mvVar = nvVar.f39049f[0];
-                if (recyclerView == mvVar.d || recyclerView == mvVar.f38763e) {
+                mv mvVar = nvVar.f39050f[0];
+                if (recyclerView == mvVar.d || recyclerView == mvVar.f38764e) {
                     float translationY = nv.i0(nvVar).getTranslationY();
                     float f7 = translationY - i11;
                     if (f7 < (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight())) {
@@ -219,7 +219,7 @@ public final class n3 extends s4.s0 {
                 return;
             case 6:
                 wh0 wh0Var = (wh0) this.f12541c;
-                if (wh0Var.f42469b0 && !wh0Var.W) {
+                if (wh0Var.f42470b0 && !wh0Var.W) {
                     if (wh0Var.X - ((gg.b0) this.f12540b).N0() < 10) {
                         wh0Var.d0(true);
                         return;
@@ -230,7 +230,7 @@ public final class n3 extends s4.s0 {
             case 7:
                 ((s4.s0) this.f12540b).b(recyclerView, i10, i11);
                 br0 br0Var = (br0) this.f12541c;
-                if (recyclerView == br0Var.f35180n[0].d) {
+                if (recyclerView == br0Var.f35181n[0].d) {
                     kVar = ((org.telegram.ui.ActionBar.n2) br0Var).actionBar;
                     float translationY2 = kVar.getTranslationY();
                     float f10 = translationY2 - i11;
@@ -252,7 +252,7 @@ public final class n3 extends s4.s0 {
                 return;
             default:
                 xh.o2 o2Var = (xh.o2) this.f12541c;
-                xh.j2 j2Var = o2Var.f50147f;
+                xh.j2 j2Var = o2Var.f50148f;
                 if (o2Var.isAttachedToWindow()) {
                     if (j2Var.canScrollVertically(1)) {
                         for (int i19 = 0; i19 < j2Var.getChildCount(); i19++) {
@@ -260,7 +260,7 @@ public final class n3 extends s4.s0 {
                             }
                         }
                     }
-                    o2Var.f50146e.a();
+                    o2Var.f50147e.a();
                 }
                 ((fs0) this.f12540b).o();
                 return;

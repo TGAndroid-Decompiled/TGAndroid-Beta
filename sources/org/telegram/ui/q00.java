@@ -12,13 +12,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class q00 extends FrameLayout {
-    public final r00 f39571a;
+    public final r00 f39572a;
 
     public q00(r00 r00Var, Context context) {
         super(context);
         int i10;
         String string;
-        this.f39571a = r00Var;
+        this.f39572a = r00Var;
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
@@ -29,7 +29,7 @@ public final class q00 extends FrameLayout {
         vh.n nVar = new vh.n(context);
         nVar.setTypeface(AndroidUtilities.bold());
         nVar.setTextSize(1, 20.0f);
-        int i11 = org.telegram.ui.ActionBar.i6.f20925j5;
+        int i11 = org.telegram.ui.ActionBar.i6.f20926j5;
         nVar.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         nVar.setGravity(1);
         nVar.setText(r00Var.P(nVar));

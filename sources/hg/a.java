@@ -42,39 +42,39 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a
         final c cVar = this.f11100b;
         if (!cVar.d.h(g61Var)) {
             int i10 = g61Var.d;
-            if (i10 != 2 && g61Var.f17182a != 17) {
+            if (i10 != 2 && g61Var.f17183a != 17) {
                 if (i10 == 1) {
                     cVar.f11141s = !cVar.f11141s;
-                    cVar.f11136c.f25244f3.N(true);
+                    cVar.f11136c.f25245f3.N(true);
                     cVar.T(true);
                     return;
                 } else if (i10 == 6) {
                     a0 a0Var = cVar.d;
                     cVar.v = true;
                     a0Var.h = true;
-                    cVar.f11136c.f25244f3.N(true);
+                    cVar.f11136c.f25245f3.N(true);
                     cVar.T(true);
                     return;
                 } else if (i10 == 7) {
                     a0 a0Var2 = cVar.d;
                     cVar.v = false;
                     a0Var2.h = false;
-                    cVar.f11136c.f25244f3.N(true);
+                    cVar.f11136c.f25245f3.N(true);
                     cVar.T(true);
                     return;
                 } else if (i10 == 3) {
                     cVar.f11143x = 0;
-                    cVar.f11136c.f25244f3.N(true);
+                    cVar.f11136c.f25245f3.N(true);
                     cVar.T(true);
                     return;
                 } else if (i10 == 4) {
                     cVar.f11143x = 1;
-                    cVar.f11136c.f25244f3.N(true);
+                    cVar.f11136c.f25245f3.N(true);
                     cVar.T(true);
                     return;
                 } else if (i10 == 5) {
                     cVar.f11143x = 2;
-                    cVar.f11136c.f25244f3.N(true);
+                    cVar.f11136c.f25245f3.N(true);
                     cVar.T(true);
                     return;
                 } else if (i10 == 8) {

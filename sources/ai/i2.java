@@ -40,11 +40,11 @@ public final class i2 extends GestureDetector.SimpleOnGestureListener {
         m2 m2Var = m2.Z;
         if (m2Var.E && !m2Var.F) {
             o1.k kVar = m2Var.P;
-            kVar.f16972a = f7;
+            kVar.f16973a = f7;
             float f12 = m2Var.N;
-            kVar.f16973b = f12;
-            kVar.f16974c = true;
-            o1.l lVar = kVar.f16983u;
+            kVar.f16974b = f12;
+            kVar.f16975c = true;
+            o1.l lVar = kVar.f16984u;
             int i10 = m2Var.J;
             float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
             int i11 = AndroidUtilities.displaySize.x;
@@ -53,13 +53,13 @@ public final class i2 extends GestureDetector.SimpleOnGestureListener {
             } else {
                 dp = AndroidUtilities.dp(16.0f);
             }
-            lVar.f16990i = dp;
+            lVar.f16991i = dp;
             m2Var.P.f();
             o1.k kVar2 = m2Var.Q;
-            kVar2.f16972a = f7;
-            kVar2.f16973b = m2Var.O;
-            kVar2.f16974c = true;
-            kVar2.f16983u.f16990i = w7.q.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - m2Var.K) - AndroidUtilities.dp(16.0f));
+            kVar2.f16973a = f7;
+            kVar2.f16974b = m2Var.O;
+            kVar2.f16975c = true;
+            kVar2.f16984u.f16991i = w7.q.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - m2Var.K) - AndroidUtilities.dp(16.0f));
             m2Var.Q.f();
             return true;
         }

@@ -42,20 +42,20 @@ public final class j extends cb implements NotificationCenter.NotificationCenter
         zl0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.g(this, 7));
         s4.j jVar = new s4.j();
-        jVar.f46562m = false;
+        jVar.f46563m = false;
         jVar.C = false;
         jVar.o(tr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        setBackgroundColor(i6.v0(i6.f20889h5, d6Var));
+        setBackgroundColor(i6.v0(i6.f20890h5, d6Var));
         this.X = aVar;
         d1 d1Var = new d1(context, 1, d6Var);
         this.Y = d1Var;
-        ((TextView) d1Var.f752c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f53295b - t5.y(this.currentAccount, true).s().f53295b, zf.b.f53297b).d()));
+        ((TextView) d1Var.f752c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f53296b - t5.y(this.currentAccount, true).s().f53296b, zf.b.f53298b).d()));
         TextView textView = (TextView) d1Var.d;
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
         textView.setMaxWidth(e4.a(textView.getText(), textView.getPaint()));
-        this.f25301e.setTitle(y());
+        this.f25302e.setTitle(y());
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         ci.d dVar = new ci.d(getContext(), getResourcesProvider(), true);
@@ -120,12 +120,12 @@ public final class j extends cb implements NotificationCenter.NotificationCenter
             zf.a s10 = t5.y(this.currentAccount, true).s();
             int i12 = R.string.TonNeededTitle;
             zf.a aVar = this.X;
-            ((TextView) this.Y.f752c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f53295b - s10.f53295b, zf.b.f53297b).d()));
-            ya yaVar = this.f25301e;
+            ((TextView) this.Y.f752c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f53296b - s10.f53296b, zf.b.f53298b).d()));
+            ya yaVar = this.f25302e;
             if (yaVar != null) {
                 yaVar.setTitle(y());
             }
-            if (s10.f53295b >= aVar.f53295b && (runnable = this.f8376a0) != null) {
+            if (s10.f53296b >= aVar.f53296b && (runnable = this.f8376a0) != null) {
                 runnable.run();
                 this.f8376a0 = null;
                 dismiss();
@@ -152,7 +152,7 @@ public final class j extends cb implements NotificationCenter.NotificationCenter
     @Override
     public final void show() {
         jk jkVar;
-        if (t5.y(this.currentAccount, true).s().f53295b >= this.X.f53295b) {
+        if (t5.y(this.currentAccount, true).s().f53296b >= this.X.f53296b) {
             Runnable runnable = this.f8376a0;
             if (runnable != null) {
                 runnable.run();

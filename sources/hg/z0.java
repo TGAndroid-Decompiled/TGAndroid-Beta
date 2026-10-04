@@ -51,18 +51,18 @@ public final class z0 implements Utilities.Callback5, org.telegram.ui.ActionBar.
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         int i10 = g61Var.d;
-        if (i10 != 1 && g61Var.f26661c != e1Var.h) {
+        if (i10 != 1 && g61Var.f26662c != e1Var.h) {
             if (i10 == 2) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e1Var.getParentActivity());
-                alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
-                alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
+                alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
+                alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new z0(e1Var, 3));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                e1Var.showDialog(alertDialog$Builder.f20367a);
+                e1Var.showDialog(alertDialog$Builder.f20368a);
             }
-        } else if (e1Var.f11173x != null && g61Var.f26661c != e1Var.h) {
+        } else if (e1Var.f11173x != null && g61Var.f26662c != e1Var.h) {
             e1Var.f11173x = null;
-            e1Var.f11164a.f25244f3.N(true);
+            e1Var.f11164a.f25245f3.N(true);
         } else {
             gd0 gd0Var = new gd0(8);
             if (e1Var.f11173x != null) {
@@ -74,7 +74,7 @@ public final class z0 implements Utilities.Callback5, org.telegram.ui.ActionBar.
             gd0Var.F0 = new ah.b(15, e1Var, gd0Var);
             if (e1Var.f11173x == null && !TextUtils.isEmpty(e1Var.f11174y)) {
                 org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(e1Var.getParentActivity(), 3, null);
-                b2Var.f20422g0 = false;
+                b2Var.f20423g0 = false;
                 b2Var.q(200L);
                 Utilities.searchQueue.postRunnable(new x0(e1Var, gd0Var, b2Var));
                 return;

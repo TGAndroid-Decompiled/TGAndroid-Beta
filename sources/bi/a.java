@@ -33,7 +33,7 @@ public final class a extends g91 {
                 }
                 return;
             default:
-                ((ks0) this.W).f40667n.f26395b0.get(i10, -1);
+                ((ks0) this.W).f40668n.f26396b0.get(i10, -1);
                 ((js0) this.V).d.J0(1.0f);
                 return;
         }
@@ -62,7 +62,7 @@ public final class a extends g91 {
                 }
                 return;
             default:
-                ((js0) this.V).d.J0(((ks0) this.W).f40667n.getAnimatingIndicatorProgress());
+                ((js0) this.V).d.J0(((ks0) this.W).f40668n.getAnimatingIndicatorProgress());
                 return;
         }
     }
@@ -88,13 +88,13 @@ public final class a extends g91 {
     public void z(int i10, boolean z10) {
         switch (this.U) {
             case 1:
-                int i11 = ((ks0) this.W).f40667n.f26395b0.get(i10, -1);
+                int i11 = ((ks0) this.W).f40668n.f26396b0.get(i10, -1);
                 pv0 pv0Var = ((js0) this.V).d;
                 if (i11 <= 0) {
                     pv0.t(pv0Var, 8, z10);
                     return;
                 } else {
-                    pv0.t(pv0Var, pv0Var.i1(i11).f29454a, z10);
+                    pv0.t(pv0Var, pv0Var.i1(i11).f29455a, z10);
                     return;
                 }
             default:

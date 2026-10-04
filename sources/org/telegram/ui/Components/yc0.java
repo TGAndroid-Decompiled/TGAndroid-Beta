@@ -5,20 +5,20 @@ import android.view.View;
 public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListener {
     public int A0;
     public boolean B0;
-    public final b2.q0 f33131w0;
-    public View f33132x0;
-    public xc0 f33133y0;
-    public org.telegram.ui.ActionBar.d3 f33134z0;
+    public final b2.q0 f33132w0;
+    public View f33133x0;
+    public xc0 f33134y0;
+    public org.telegram.ui.ActionBar.d3 f33135z0;
 
     public yc0(Context context) {
         super(context, null);
-        this.f33131w0 = new Object();
+        this.f33132w0 = new Object();
     }
 
     public final void Z() {
-        View view = this.f33132x0;
-        if (view != null && this.f33133y0 != null) {
-            this.A0 = (view.getMeasuredHeight() - this.f33132x0.getPaddingBottom()) - this.f33133y0.getMeasuredHeight();
+        View view = this.f33133x0;
+        if (view != null && this.f33134y0 != null) {
+            this.A0 = (view.getMeasuredHeight() - this.f33133x0.getPaddingBottom()) - this.f33134y0.getMeasuredHeight();
         }
     }
 
@@ -29,8 +29,8 @@ public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListen
 
     @Override
     public final void m(int i10, View view) {
-        this.f33131w0.f3454a = 0;
-        org.telegram.ui.ActionBar.d3 d3Var = this.f33134z0;
+        this.f33132w0.f3454a = 0;
+        org.telegram.ui.ActionBar.d3 d3Var = this.f33135z0;
         if (d3Var != null) {
             d3Var.onStopNestedScroll(view);
         }
@@ -39,9 +39,9 @@ public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListen
     @Override
     public final void n(View view, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         xc0 xc0Var;
-        if (view == this.f33132x0 && (xc0Var = this.f33133y0) != null && ((org.telegram.ui.v7) xc0Var).getListView() != null) {
-            zl0 listView = ((org.telegram.ui.v7) this.f33133y0).getListView();
-            if (this.f33133y0.getTop() == this.A0) {
+        if (view == this.f33133x0 && (xc0Var = this.f33134y0) != null && ((org.telegram.ui.v7) xc0Var).getListView() != null) {
+            zl0 listView = ((org.telegram.ui.v7) this.f33134y0).getListView();
+            if (this.f33134y0.getTop() == this.A0) {
                 iArr[1] = i13;
                 listView.scrollBy(0, i13);
             }
@@ -52,7 +52,7 @@ public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListen
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.B0 = true;
-        xc0 xc0Var = this.f33133y0;
+        xc0 xc0Var = this.f33134y0;
         if (xc0Var != null) {
             xc0Var.addOnLayoutChangeListener(this);
         }
@@ -62,7 +62,7 @@ public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListen
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.B0 = false;
-        xc0 xc0Var = this.f33133y0;
+        xc0 xc0Var = this.f33134y0;
         if (xc0Var != null) {
             xc0Var.removeOnLayoutChangeListener(this);
         }
@@ -89,16 +89,16 @@ public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListen
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f33131w0.f3454a = i10;
+        this.f33132w0.f3454a = i10;
     }
 
     public void setBottomSheetContainerView(org.telegram.ui.ActionBar.d3 d3Var) {
-        this.f33134z0 = d3Var;
+        this.f33135z0 = d3Var;
     }
 
     public void setChildLayout(xc0 xc0Var) {
-        if (this.f33133y0 != xc0Var) {
-            this.f33133y0 = xc0Var;
+        if (this.f33134y0 != xc0Var) {
+            this.f33134y0 = xc0Var;
             if (this.B0 && xc0Var != null) {
                 org.telegram.ui.v7 v7Var = (org.telegram.ui.v7) xc0Var;
                 if (v7Var.getListView() != null) {
@@ -110,7 +110,7 @@ public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListen
     }
 
     public void setTargetListView(View view) {
-        this.f33132x0 = view;
+        this.f33133x0 = view;
         Z();
     }
 
@@ -118,17 +118,17 @@ public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListen
     public final void t(View view, int i10, int i11, int[] iArr, int i12) {
         xc0 xc0Var;
         int max;
-        if (view == this.f33132x0 && (xc0Var = this.f33133y0) != null && ((org.telegram.ui.v7) xc0Var).getListView() != null) {
-            int top = this.f33133y0.getTop();
+        if (view == this.f33133x0 && (xc0Var = this.f33134y0) != null && ((org.telegram.ui.v7) xc0Var).getListView() != null) {
+            int top = this.f33134y0.getTop();
             if (i11 < 0) {
                 if (top <= this.A0) {
-                    zl0 listView = ((org.telegram.ui.v7) this.f33133y0).getListView();
+                    zl0 listView = ((org.telegram.ui.v7) this.f33134y0).getListView();
                     int L0 = ((s4.c0) listView.getLayoutManager()).L0();
                     int i13 = -1;
                     if (L0 != -1) {
                         s4.c1 K = listView.K(L0);
                         if (K != null) {
-                            i13 = K.f46523a.getTop();
+                            i13 = K.f46524a.getTop();
                         }
                         int paddingTop = listView.getPaddingTop();
                         if (i13 != paddingTop || L0 != 0) {
@@ -144,14 +144,14 @@ public abstract class yc0 extends lw0 implements r0.m, View.OnLayoutChangeListen
                         return;
                     }
                     return;
-                } else if (this.f33134z0 != null && !this.f33132x0.canScrollVertically(i11)) {
-                    this.f33134z0.onNestedScroll(view, 0, 0, i10, i11);
+                } else if (this.f33135z0 != null && !this.f33133x0.canScrollVertically(i11)) {
+                    this.f33135z0.onNestedScroll(view, 0, 0, i10, i11);
                     return;
                 } else {
                     return;
                 }
             }
-            org.telegram.ui.ActionBar.d3 d3Var = this.f33134z0;
+            org.telegram.ui.ActionBar.d3 d3Var = this.f33135z0;
             if (d3Var != null) {
                 d3Var.onNestedPreScroll(view, i10, i11, iArr);
             }

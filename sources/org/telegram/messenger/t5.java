@@ -2,22 +2,22 @@ package org.telegram.messenger;
 
 import android.location.Location;
 public final class t5 implements q0.a {
-    public final int f19209a;
-    public final LocationController f19210b;
+    public final int f19210a;
+    public final LocationController f19211b;
 
     public t5(LocationController locationController, int i10) {
-        this.f19209a = i10;
-        this.f19210b = locationController;
+        this.f19210a = i10;
+        this.f19211b = locationController;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f19209a) {
+        switch (this.f19210a) {
             case 0:
-                this.f19210b.lambda$onConnected$4((Integer) obj);
+                this.f19211b.lambda$onConnected$4((Integer) obj);
                 return;
             default:
-                this.f19210b.setLastKnownLocation((Location) obj);
+                this.f19211b.setLastKnownLocation((Location) obj);
                 return;
         }
     }

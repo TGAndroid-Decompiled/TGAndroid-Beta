@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 public final class w9 {
-    public final CharSequence f23699a;
+    public final CharSequence f23700a;
 
     public w9(String str) {
-        this.f23699a = str;
+        this.f23700a = str;
     }
 }

@@ -12,20 +12,20 @@ public final class ty extends FrameLayout {
     public final uw I;
     public final uw J;
     public final uy K;
-    public qy f40983a;
-    public a5.a f40984b;
-    public vw f40985c;
+    public qy f40984a;
+    public a5.a f40985b;
+    public vw f40986c;
     public zw d;
-    public s4.y f40986e;
-    public sy f40987f;
+    public s4.y f40987e;
+    public sy f40988f;
     public int h;
-    public yw f40988n;
-    public org.telegram.ui.Components.bl0 f40989r;
-    public int f40990s;
+    public yw f40989n;
+    public org.telegram.ui.Components.bl0 f40990r;
+    public int f40991s;
     public int v;
-    public org.telegram.ui.Components.w00 f40991w;
-    public tw f40992x;
-    public org.telegram.ui.Components.dl0 f40993y;
+    public org.telegram.ui.Components.w00 f40992w;
+    public tw f40993x;
+    public org.telegram.ui.Components.dl0 f40994y;
 
     public ty(Context context, uy uyVar) {
         super(context);
@@ -35,15 +35,15 @@ public final class ty extends FrameLayout {
     }
 
     public static void a(ty tyVar, vw vwVar) {
-        tyVar.f40985c = vwVar;
+        tyVar.f40986c = vwVar;
     }
 
     public static s4.y b(ty tyVar) {
-        return tyVar.f40986e;
+        return tyVar.f40987e;
     }
 
     public static void c(ty tyVar, s4.y yVar) {
-        tyVar.f40986e = yVar;
+        tyVar.f40987e = yVar;
     }
 
     public static int d(ty tyVar) {
@@ -55,31 +55,31 @@ public final class ty extends FrameLayout {
     }
 
     public static void f(ty tyVar, org.telegram.ui.Components.w00 w00Var) {
-        tyVar.f40991w = w00Var;
+        tyVar.f40992w = w00Var;
     }
 
     public static sy g(ty tyVar) {
-        return tyVar.f40987f;
+        return tyVar.f40988f;
     }
 
     public static void h(ty tyVar, sy syVar) {
-        tyVar.f40987f = syVar;
+        tyVar.f40988f = syVar;
     }
 
     public static void i(ty tyVar, tw twVar) {
-        tyVar.f40992x = twVar;
+        tyVar.f40993x = twVar;
     }
 
     public static void j(ty tyVar, org.telegram.ui.Components.dl0 dl0Var) {
-        tyVar.f40993y = dl0Var;
+        tyVar.f40994y = dl0Var;
     }
 
     public static void k(ty tyVar, org.telegram.ui.Components.bl0 bl0Var) {
-        tyVar.f40989r = bl0Var;
+        tyVar.f40990r = bl0Var;
     }
 
     public static void l(ty tyVar, int i10) {
-        tyVar.f40990s = i10;
+        tyVar.f40991s = i10;
     }
 
     public static gg.m m(ty tyVar) {
@@ -91,17 +91,17 @@ public final class ty extends FrameLayout {
     }
 
     public static void o(ty tyVar, yw ywVar) {
-        tyVar.f40988n = ywVar;
+        tyVar.f40989n = ywVar;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ((FrameLayout.LayoutParams) this.f40983a.getLayoutParams()).bottomMargin = 0;
+        ((FrameLayout.LayoutParams) this.f40984a.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);
     }
 
     public final boolean p() {
-        int i10 = this.f40990s;
+        int i10 = this.f40991s;
         if (i10 != 0 && i10 != 7 && i10 != 8) {
             return false;
         }
@@ -115,13 +115,13 @@ public final class ty extends FrameLayout {
             uw uwVar = this.J;
             if (z10) {
                 AndroidUtilities.cancelRunOnUIThread(uwVar);
-                this.f40983a.setItemAnimator(this.f40992x);
+                this.f40984a.setItemAnimator(this.f40993x);
                 uwVar.run();
             } else if (this.H) {
             } else {
                 this.H = true;
-                if (!this.f40992x.k()) {
-                    this.f40983a.setItemAnimator(null);
+                if (!this.f40993x.k()) {
+                    this.f40984a.setItemAnimator(null);
                 }
                 AndroidUtilities.runOnUIThread(uwVar, 36L);
             }
@@ -135,8 +135,8 @@ public final class ty extends FrameLayout {
         if (getTranslationX() != f7) {
             super.setTranslationX(f7);
             uy uyVar = this.K;
-            if (uyVar.f41406g3 && (tyVar = uyVar.f41392e0[0]) == this) {
-                uyVar.f41495z0.g(Math.abs(tyVar.getTranslationX()) / uyVar.f41392e0[0].getMeasuredWidth(), uyVar.f41392e0[1].h);
+            if (uyVar.f41407g3 && (tyVar = uyVar.f41393e0[0]) == this) {
+                uyVar.f41496z0.g(Math.abs(tyVar.getTranslationX()) / uyVar.f41393e0[0].getMeasuredWidth(), uyVar.f41393e0[1].h);
             }
             mVar = ((org.telegram.ui.ActionBar.n2) uyVar).glassEngine;
             mVar.g();

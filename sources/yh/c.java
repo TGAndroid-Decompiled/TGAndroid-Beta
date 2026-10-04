@@ -2,28 +2,28 @@ package yh;
 
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class c implements Runnable {
-    public final int f51141a;
-    public final g f51142b;
-    public final TwoStepVerificationActivity f51143c;
+    public final int f51142a;
+    public final g f51143b;
+    public final TwoStepVerificationActivity f51144c;
 
     public c(g gVar, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f51141a = i10;
-        this.f51142b = gVar;
-        this.f51143c = twoStepVerificationActivity;
+        this.f51142a = i10;
+        this.f51143b = gVar;
+        this.f51144c = twoStepVerificationActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f51141a) {
+        switch (this.f51142a) {
             case 0:
-                g gVar = this.f51142b;
+                g gVar = this.f51143b;
                 gVar.Y.setLoading(false);
-                gVar.presentFragment(this.f51143c);
+                gVar.presentFragment(this.f51144c);
                 return;
             default:
-                g gVar2 = this.f51142b;
+                g gVar2 = this.f51143b;
                 gVar2.R.setLoading(false);
-                gVar2.presentFragment(this.f51143c);
+                gVar2.presentFragment(this.f51144c);
                 return;
         }
     }

@@ -3,9 +3,9 @@ package li;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public abstract class e extends Drawable {
-    public n f15647a = m.f();
-    public int f15648b = 255;
-    public float f15649c;
+    public n f15648a = m.f();
+    public int f15649b = 255;
+    public float f15650c;
     public float d;
 
     public abstract void a();
@@ -26,14 +26,14 @@ public abstract class e extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f15648b;
+        return this.f15649b;
     }
 
     public final void i(float f7, float f10) {
-        if (this.f15649c == f7 && this.d == f10) {
+        if (this.f15650c == f7 && this.d == f10) {
             return;
         }
-        this.f15649c = f7;
+        this.f15650c = f7;
         this.d = f10;
         h();
     }
@@ -44,9 +44,9 @@ public abstract class e extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f15648b;
+        int i11 = this.f15649b;
         if (i11 != i10) {
-            this.f15648b = i10;
+            this.f15649b = i10;
             f(i11, i10);
         }
     }

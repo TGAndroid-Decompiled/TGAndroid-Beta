@@ -7,18 +7,18 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public final class hz0 extends View {
-    public String f27257a;
-    public Drawable f27258b;
-    public boolean f27259c;
+    public String f27258a;
+    public Drawable f27259b;
+    public boolean f27260c;
     public int d;
-    public final e6 f27260e;
-    public final iz0 f27261f;
+    public final e6 f27261e;
+    public final iz0 f27262f;
 
     public hz0(iz0 iz0Var, Context context) {
         super(context);
-        this.f27261f = iz0Var;
+        this.f27262f = iz0Var;
         this.d = 0;
-        this.f27260e = new e6(this, 350L, new OvershootInterpolator(5.0f));
+        this.f27261e = new e6(this, 350L, new OvershootInterpolator(5.0f));
     }
 
     @Override
@@ -29,37 +29,37 @@ public final class hz0 extends View {
         } else {
             f7 = 0.0f;
         }
-        float d = ((1.0f - this.f27260e.d(f7, false)) * 0.2f) + 0.8f;
-        if (this.f27258b != null) {
+        float d = ((1.0f - this.f27261e.d(f7, false)) * 0.2f) + 0.8f;
+        if (this.f27259b != null) {
             int height = getHeight() - getPaddingBottom();
-            this.f27258b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+            this.f27259b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
             canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
-            Drawable drawable = this.f27258b;
+            Drawable drawable = this.f27259b;
             if (drawable instanceof q5) {
                 ((q5) drawable).q(System.currentTimeMillis());
             }
-            this.f27258b.draw(canvas);
+            this.f27259b.draw(canvas);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Drawable drawable = this.f27258b;
+        Drawable drawable = this.f27259b;
         if (drawable instanceof q5) {
             ((q5) drawable).a(this);
         }
-        this.f27259c = true;
+        this.f27260c = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Drawable drawable = this.f27258b;
+        Drawable drawable = this.f27259b;
         if (drawable instanceof q5) {
             ((q5) drawable).o(this);
         }
-        this.f27259c = false;
+        this.f27260c = false;
     }
 
     @Override
@@ -87,12 +87,12 @@ public final class hz0 extends View {
     }
 
     public void setImageDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f27258b;
+        Drawable drawable2 = this.f27259b;
         if (drawable2 instanceof q5) {
             ((q5) drawable2).o(this);
         }
-        this.f27258b = drawable;
-        if ((drawable instanceof q5) && this.f27259c) {
+        this.f27259b = drawable;
+        if ((drawable instanceof q5) && this.f27260c) {
             ((q5) drawable).a(this);
         }
     }

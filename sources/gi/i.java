@@ -18,7 +18,7 @@ public final class i extends f61 {
     @Override
     public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
         long j3 = g61Var.B;
-        ((j) view).a((int) j3, (int) (j3 >>> 32), g61Var.f26667k, g61Var.f26668l, g61Var.f26670n, g61Var.f26673q);
+        ((j) view).a((int) j3, (int) (j3 >>> 32), g61Var.f26668k, g61Var.f26669l, g61Var.f26671n, g61Var.f26674q);
     }
 
     @Override

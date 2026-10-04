@@ -24,51 +24,51 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
     public String F;
     public br0 G;
     public dr0 H;
-    public final cr0[] f26108a;
-    public int f26109b;
-    public int f26110c;
+    public final cr0[] f26109a;
+    public int f26110b;
+    public int f26111c;
     public long d;
-    public ArrayList f26111e;
-    public final ArrayList f26112f;
+    public ArrayList f26112e;
+    public final ArrayList f26113f;
     public boolean h;
-    public boolean f26113n;
-    public String f26114r;
-    public final ArrayList f26115s;
+    public boolean f26114n;
+    public String f26115r;
+    public final ArrayList f26116s;
     public final HashMap v;
-    public TLRPC.WebPage f26116w;
-    public int f26117x;
-    public int f26118y;
+    public TLRPC.WebPage f26117w;
+    public int f26118x;
+    public int f26119y;
 
     public er0(Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
-        this.f26108a = new cr0[2];
-        this.f26109b = 0;
-        this.f26112f = new ArrayList();
-        this.f26113n = true;
-        this.f26115s = new ArrayList();
+        this.f26109a = new cr0[2];
+        this.f26110b = 0;
+        this.f26113f = new ArrayList();
+        this.f26114n = true;
+        this.f26116s = new ArrayList();
         this.v = new HashMap();
         int i10 = 0;
         while (true) {
-            cr0[] cr0VarArr = this.f26108a;
+            cr0[] cr0VarArr = this.f26109a;
             if (i10 < cr0VarArr.length) {
                 cr0VarArr[i10] = new cr0(this, activity, d6Var);
-                addView(this.f26108a[i10], w7.z5.c(-1.0f, -1));
+                addView(this.f26109a[i10], w7.z5.c(-1.0f, -1));
                 i10++;
             } else {
                 cr0VarArr[0].setVisibility(0);
-                this.f26108a[1].setVisibility(8);
+                this.f26109a[1].setVisibility(8);
                 return;
             }
         }
     }
 
     public static void a(cr0 cr0Var, TLRPC.WebPage webPage, String str) {
-        ImageView imageView = cr0Var.f25434b;
-        w9 w9Var = cr0Var.f25438n;
+        ImageView imageView = cr0Var.f25435b;
+        w9 w9Var = cr0Var.f25439n;
         imageView.setImageResource(R.drawable.msg_link2);
-        cr0Var.f25434b.setVisibility(0);
-        cr0Var.f25437f.setVisibility(8);
-        cr0Var.f25439r.setVisibility(0);
+        cr0Var.f25435b.setVisibility(0);
+        cr0Var.f25438f.setVisibility(8);
+        cr0Var.f25440r.setVisibility(0);
         String str2 = webPage.site_name;
         if (str2 == null) {
             str2 = webPage.title;
@@ -76,7 +76,7 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
         if (str2 == null) {
             str2 = str;
         }
-        cr0Var.f25435c.l(str2, false);
+        cr0Var.f25436c.l(str2, false);
         String str3 = webPage.title;
         if (str3 == null || webPage.site_name == null) {
             str3 = webPage.description;
@@ -103,7 +103,7 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
         } else {
             w9Var.setVisibility(8);
         }
-        cr0Var.f25433a.setClickable(false);
+        cr0Var.f25434a.setClickable(false);
     }
 
     public static void b(w9 w9Var, MediaController.PhotoEntry photoEntry) {
@@ -131,7 +131,7 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
     public final String c(cr0 cr0Var) {
         int measuredWidth;
         String shortName;
-        ArrayList arrayList = this.f26112f;
+        ArrayList arrayList = this.f26113f;
         if (arrayList.isEmpty()) {
             return "";
         }
@@ -149,9 +149,9 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
                 sb2.append(LocaleController.getString(R.string.SavedMessages));
             } else {
                 if (arrayList.size() == 1) {
-                    shortName = DialogObject.getName(this.f26110c, longValue);
+                    shortName = DialogObject.getName(this.f26111c, longValue);
                 } else {
-                    shortName = DialogObject.getShortName(this.f26110c, longValue);
+                    shortName = DialogObject.getShortName(this.f26111c, longValue);
                 }
                 sb2.append(shortName);
             }
@@ -171,26 +171,26 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public final void d() {
-        if (this.f26117x != 0) {
-            AccountInstance.getInstance(this.f26110c).getConnectionsManager().cancelRequest(this.f26117x, true);
-            this.f26117x = 0;
+        if (this.f26118x != 0) {
+            AccountInstance.getInstance(this.f26111c).getConnectionsManager().cancelRequest(this.f26118x, true);
+            this.f26118x = 0;
         }
-        this.f26118y++;
+        this.f26119y++;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         String str;
-        if (i10 == NotificationCenter.didReceivedWebpagesInUpdates && this.f26116w != null && i11 == this.f26110c) {
+        if (i10 == NotificationCenter.didReceivedWebpagesInUpdates && this.f26117w != null && i11 == this.f26111c) {
             a0.i iVar = (a0.i) objArr[0];
             for (int i12 = 0; i12 < iVar.m(); i12++) {
                 TLRPC.WebPage webPage = (TLRPC.WebPage) iVar.n(i12);
-                if (webPage != null && webPage.f20190id == this.f26116w.f20190id) {
+                if (webPage != null && webPage.f20191id == this.f26117w.f20191id) {
                     if (webPage instanceof TLRPC.TL_webPageEmpty) {
-                        this.f26116w = null;
+                        this.f26117w = null;
                         d();
-                        if (this.f26109b != 0) {
-                            this.f26109b = 0;
+                        if (this.f26110b != 0) {
+                            this.f26110b = 0;
                             dr0 dr0Var = this.H;
                             if (dr0Var != null) {
                                 ((org.telegram.ui.xv) dr0Var).i(0);
@@ -200,8 +200,8 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
                         }
                         return;
                     } else if (webPage instanceof TLRPC.TL_webPage) {
-                        this.f26116w = webPage;
-                        ArrayList arrayList = this.f26115s;
+                        this.f26117w = webPage;
+                        ArrayList arrayList = this.f26116s;
                         if (arrayList.isEmpty()) {
                             str = "";
                         } else {
@@ -211,7 +211,7 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
                         if (!hashMap.containsKey(str)) {
                             hashMap.put(str, webPage);
                         }
-                        a(this.f26108a[0], webPage, str);
+                        a(this.f26109a[0], webPage, str);
                         return;
                     } else {
                         return;
@@ -227,7 +227,7 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
 
     public final w9 f(int i10) {
         w9[] w9VarArr;
-        if (this.f26109b == 1 && (w9VarArr = this.f26108a[0].h) != null && i10 >= 0 && i10 < w9VarArr.length && w9VarArr[i10].getVisibility() == 0) {
+        if (this.f26110b == 1 && (w9VarArr = this.f26109a[0].h) != null && i10 >= 0 && i10 < w9VarArr.length && w9VarArr[i10].getVisibility() == 0) {
             return w9VarArr[i10];
         }
         return null;
@@ -236,38 +236,38 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
     public final void g(int i10) {
         h(i10);
         this.d = AccountInstance.getInstance(i10).getUserConfig().getClientUserId();
-        this.f26111e = null;
+        this.f26112e = null;
         this.h = true;
-        this.f26113n = true;
-        this.f26114r = null;
-        this.f26116w = null;
+        this.f26114n = true;
+        this.f26115r = null;
+        this.f26117w = null;
         d();
-        this.f26115s.clear();
+        this.f26116s.clear();
     }
 
     public TLRPC.WebPage getLoadedWebPage() {
-        return this.f26116w;
+        return this.f26117w;
     }
 
     public int getMode() {
-        return this.f26109b;
+        return this.f26110b;
     }
 
     public final void h(int i10) {
-        if (this.f26110c == i10) {
-            this.f26110c = i10;
+        if (this.f26111c == i10) {
+            this.f26111c = i10;
             if (isAttachedToWindow()) {
-                NotificationCenter.getInstance(this.f26110c).addObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
+                NotificationCenter.getInstance(this.f26111c).addObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
                 return;
             }
             return;
         }
         if (isAttachedToWindow()) {
-            NotificationCenter.getInstance(this.f26110c).removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
+            NotificationCenter.getInstance(this.f26111c).removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
         }
-        this.f26110c = i10;
+        this.f26111c = i10;
         if (isAttachedToWindow()) {
-            NotificationCenter.getInstance(this.f26110c).addObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
+            NotificationCenter.getInstance(this.f26111c).addObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
         }
     }
 
@@ -279,35 +279,35 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
         int i11;
         h(i10);
         this.d = AccountInstance.getInstance(i10).getUserConfig().getClientUserId();
-        this.f26111e = arrayList;
+        this.f26112e = arrayList;
         this.h = false;
         MediaController.PhotoEntry photoEntry3 = null;
-        this.f26116w = null;
+        this.f26117w = null;
         d();
-        this.f26115s.clear();
-        int i12 = this.f26109b;
+        this.f26116s.clear();
+        int i12 = this.f26110b;
         if (i12 != 1 && i12 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f26109b = 1;
+        this.f26110b = 1;
         if (z10) {
             k();
         }
-        cr0[] cr0VarArr = this.f26108a;
+        cr0[] cr0VarArr = this.f26109a;
         cr0 cr0Var = cr0VarArr[0];
-        ImageView imageView = cr0Var.f25434b;
+        ImageView imageView = cr0Var.f25435b;
         org.telegram.ui.ActionBar.i5 i5Var = cr0Var.d;
         w9[] w9VarArr = cr0Var.h;
-        org.telegram.ui.ActionBar.i5 i5Var2 = cr0Var.f25435c;
+        org.telegram.ui.ActionBar.i5 i5Var2 = cr0Var.f25436c;
         imageView.setImageResource(R.drawable.filled_forward);
-        cr0Var.f25434b.setVisibility(0);
-        cr0Var.f25438n.setVisibility(8);
-        cr0Var.f25437f.setVisibility(0);
-        cr0Var.f25439r.setVisibility(8);
-        cr0Var.f25433a.setClickable(true);
-        ArrayList arrayList2 = this.f26111e;
+        cr0Var.f25435b.setVisibility(0);
+        cr0Var.f25439n.setVisibility(8);
+        cr0Var.f25438f.setVisibility(0);
+        cr0Var.f25440r.setVisibility(8);
+        cr0Var.f25434a.setClickable(true);
+        ArrayList arrayList2 = this.f26112e;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             int size = arrayList2.size();
             int i13 = 0;
@@ -367,9 +367,9 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
         cr0 cr0Var2 = cr0VarArr[0];
         String str = this.F;
         if (str != null) {
-            cr0Var2.f25436e.l(str, false);
+            cr0Var2.f25437e.l(str, false);
         }
-        int i16 = this.f26109b;
+        int i16 = this.f26110b;
         if (i12 != i16 && (dr0Var = this.H) != null) {
             ((org.telegram.ui.xv) dr0Var).i(i16);
         }
@@ -383,17 +383,17 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
             this.G = null;
         }
         this.E = false;
-        for (cr0 cr0Var : this.f26108a) {
+        for (cr0 cr0Var : this.f26109a) {
             org.telegram.ui.ActionBar.i5 i5Var = cr0Var.d;
             i5Var.setAlpha(1.0f);
             i5Var.setScaleX(1.0f);
             i5Var.setScaleY(1.0f);
-            cr0Var.f25436e.setAlpha(0.0f);
+            cr0Var.f25437e.setAlpha(0.0f);
         }
     }
 
     public final void k() {
-        cr0[] cr0VarArr = this.f26108a;
+        cr0[] cr0VarArr = this.f26109a;
         cr0 cr0Var = cr0VarArr[0];
         cr0 cr0Var2 = cr0VarArr[1];
         cr0VarArr[0] = cr0Var2;
@@ -415,19 +415,19 @@ public final class er0 extends FrameLayout implements NotificationCenter.Notific
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f26110c).addObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
+        NotificationCenter.getInstance(this.f26111c).addObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f26110c).removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
+        NotificationCenter.getInstance(this.f26111c).removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
         d();
     }
 
     public void setLayoutClickListener(View.OnClickListener onClickListener) {
-        for (cr0 cr0Var : this.f26108a) {
-            cr0Var.f25433a.setOnClickListener(onClickListener);
+        for (cr0 cr0Var : this.f26109a) {
+            cr0Var.f25434a.setOnClickListener(onClickListener);
         }
     }
 

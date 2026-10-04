@@ -3,7 +3,7 @@ package org.telegram.ui;
 import org.telegram.messenger.IMapsProvider;
 import org.telegram.tgnet.TLRPC;
 public final class fd0 {
-    public int f36272a;
-    public IMapsProvider.IMarker f36273b;
-    public TLRPC.TL_messageMediaVenue f36274c;
+    public int f36273a;
+    public IMapsProvider.IMarker f36274b;
+    public TLRPC.TL_messageMediaVenue f36275c;
 }

@@ -7,29 +7,29 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 public final class qd implements Runnable {
-    public final int f39696a;
-    public final me f39697b;
-    public final int f39698c;
+    public final int f39697a;
+    public final me f39698b;
+    public final int f39699c;
 
     public qd(me meVar, int i10, int i11) {
-        this.f39696a = i11;
-        this.f39697b = meVar;
-        this.f39698c = i10;
+        this.f39697a = i11;
+        this.f39698b = meVar;
+        this.f39699c = i10;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String formatPluralStringSpaced;
-        int i10 = this.f39696a;
-        int i11 = this.f39698c;
-        me meVar = this.f39697b;
+        int i10 = this.f39697a;
+        int i11 = this.f39699c;
+        me meVar = this.f39698b;
         switch (i10) {
             case 0:
                 nf.f.s(meVar.getContext(), LocaleController.getString(i11));
                 return;
             case 1:
-                qd qdVar = meVar.f38550i2;
+                qd qdVar = meVar.f38551i2;
                 fi.o oVar = meVar.R1;
                 org.telegram.ui.Components.rc.e();
                 if (meVar.G1.amount < MessagesController.getInstance(i11).starsRevenueWithdrawalMin) {
@@ -47,7 +47,7 @@ public final class qd implements Runnable {
                 qdVar.run();
                 return;
             default:
-                qd qdVar2 = meVar.f38550i2;
+                qd qdVar2 = meVar.f38551i2;
                 int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
                 ce ceVar = meVar.J1;
                 if (meVar.Q1 <= 0 && meVar.E1 <= currentTime) {
@@ -58,20 +58,20 @@ public final class qd implements Runnable {
                 ceVar.setEnabled(z10);
                 if (currentTime < meVar.E1) {
                     ceVar.g(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true, true);
-                    if (meVar.f38549h2 == null) {
-                        meVar.f38549h2 = new SpannableStringBuilder("l");
+                    if (meVar.f38550h2 == null) {
+                        meVar.f38550h2 = new SpannableStringBuilder("l");
                         org.telegram.ui.Components.rq rqVar = new org.telegram.ui.Components.rq(R.drawable.mini_switch_lock, 0);
                         rqVar.setTopOffset(1);
-                        meVar.f38549h2.setSpan(rqVar, 0, 1, 33);
+                        meVar.f38550h2.setSpan(rqVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) meVar.f38549h2).append((CharSequence) yh.g.j0(meVar.E1 - currentTime));
+                    spannableStringBuilder.append((CharSequence) meVar.f38550h2).append((CharSequence) yh.g.j0(meVar.E1 - currentTime));
                     ceVar.f(spannableStringBuilder, true);
                     org.telegram.ui.Components.rc rcVar = meVar.S1;
                     if (rcVar != null) {
-                        org.telegram.ui.Components.vb vbVar = rcVar.f30334e;
+                        org.telegram.ui.Components.vb vbVar = rcVar.f30335e;
                         if ((vbVar instanceof org.telegram.ui.Components.zb) && vbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.ok.q(R.string.BotStarsWithdrawalToast, new Object[]{yh.g.j0(meVar.E1 - currentTime)}, ((org.telegram.ui.Components.zb) meVar.S1.f30334e).f33465b);
+                            org.telegram.messenger.ok.q(R.string.BotStarsWithdrawalToast, new Object[]{yh.g.j0(meVar.E1 - currentTime)}, ((org.telegram.ui.Components.zb) meVar.S1.f30335e).f33466b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(qdVar2);

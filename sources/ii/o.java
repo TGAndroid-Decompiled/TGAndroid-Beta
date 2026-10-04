@@ -44,7 +44,7 @@ public final class o implements ik {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f12545b.f29642b.f32812f0.startActivityForResult(intent, 21);
+            this.f12545b.f29643b.f32813f0.startActivityForResult(intent, 21);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

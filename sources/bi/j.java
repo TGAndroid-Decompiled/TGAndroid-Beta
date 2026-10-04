@@ -74,7 +74,7 @@ public final class j extends fv0 {
     @Override
     public final gl0 getMovingAdapter() {
         u uVar = this.f3854x3;
-        if (uVar.G.f46690y == 0 && !uVar.W.G.C1) {
+        if (uVar.G.f46691y == 0 && !uVar.W.G.C1) {
             return uVar.v;
         }
         return null;

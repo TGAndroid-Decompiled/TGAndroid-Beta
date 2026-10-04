@@ -46,18 +46,18 @@ public final class d implements View.OnTouchListener {
                 int i10 = u.f3872a0;
                 return true;
             case 1:
-                int i11 = f3.f20603a;
+                int i11 = f3.f20604a;
                 return true;
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = i4.f37230b1;
+                HashSet hashSet = i4.f37231b1;
                 return true;
             case 4:
-                int i12 = j9.f37601e;
+                int i12 = j9.f37602e;
                 return true;
             case 5:
-                int i13 = y2.f23747w;
+                int i13 = y2.f23748w;
                 return true;
             case 6:
                 Paint paint = sa.H;
@@ -71,25 +71,25 @@ public final class d implements View.OnTouchListener {
             case 9:
                 return true;
             case 10:
-                Pattern pattern = e5.f25913a;
+                Pattern pattern = e5.f25914a;
                 return true;
             case 11:
                 j8 j8Var = j8.T0;
                 return true;
             case 12:
-                int i16 = ChatActivityEnterView.f23846n5;
+                int i16 = ChatActivityEnterView.f23847n5;
                 return true;
             case 13:
                 int i17 = xi.H2;
                 return true;
             case 14:
-                int i18 = rk.f30424g0;
+                int i18 = rk.f30425g0;
                 return true;
             case 15:
                 int i19 = jl.E0;
                 return true;
             case 16:
-                int i20 = pp.f29680i0;
+                int i20 = pp.f29681i0;
                 return true;
             case 17:
                 zu zuVar = zu.S;
@@ -98,7 +98,7 @@ public final class d implements View.OnTouchListener {
                 int i21 = pz.h;
                 return true;
             case 19:
-                int[] iArr = ee0.f26050a0;
+                int[] iArr = ee0.f26051a0;
                 return true;
             case 20:
                 int i22 = ri0.R;
@@ -110,25 +110,25 @@ public final class d implements View.OnTouchListener {
                 int i24 = zq0.W0;
                 return true;
             case 23:
-                int[] iArr2 = pv0.f29747d2;
+                int[] iArr2 = pv0.f29748d2;
                 return true;
             case 24:
-                int i25 = qy0.f30184u0;
+                int i25 = qy0.f30185u0;
                 return true;
             case 25:
-                int i26 = UndoView.f24367e0;
+                int i26 = UndoView.f24368e0;
                 return true;
             case 26:
-                int i27 = UndoView.f24367e0;
+                int i27 = UndoView.f24368e0;
                 return true;
             case 27:
-                int i28 = ak0.f34838d0;
+                int i28 = ak0.f34839d0;
                 return true;
             case 28:
-                List list = so0.f40537g1;
+                List list = so0.f40538g1;
                 return true;
             default:
-                int i29 = PopupNotificationActivity.f34102b0;
+                int i29 = PopupNotificationActivity.f34103b0;
                 return true;
         }
     }

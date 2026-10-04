@@ -11,19 +11,19 @@ public final class oh0 {
     public static final oh0 K;
     public static final oh0[] L;
     public static final oh0 d;
-    public static final oh0 f29350e;
-    public static final oh0 f29351f;
+    public static final oh0 f29351e;
+    public static final oh0 f29352f;
     public static final oh0 h;
-    public static final oh0 f29352n;
-    public static final oh0 f29353r;
-    public static final oh0 f29354s;
+    public static final oh0 f29353n;
+    public static final oh0 f29354r;
+    public static final oh0 f29355s;
     public static final oh0 v;
-    public static final oh0 f29355w;
-    public static final oh0 f29356x;
-    public static final oh0 f29357y;
-    public final int f29358a;
-    public final int f29359b;
-    public final int f29360c;
+    public static final oh0 f29356w;
+    public static final oh0 f29357x;
+    public static final oh0 f29358y;
+    public final int f29359a;
+    public final int f29360b;
+    public final int f29361c;
 
     static {
         int i10 = R.string.ProfileActionsMessage;
@@ -32,27 +32,27 @@ public final class oh0 {
         oh0 oh0Var = new oh0("MESSAGE", 0, i10, i11, i12);
         d = oh0Var;
         oh0 oh0Var2 = new oh0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
-        f29350e = oh0Var2;
+        f29351e = oh0Var2;
         oh0 oh0Var3 = new oh0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
-        f29351f = oh0Var3;
+        f29352f = oh0Var3;
         oh0 oh0Var4 = new oh0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
         h = oh0Var4;
         oh0 oh0Var5 = new oh0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
-        f29352n = oh0Var5;
+        f29353n = oh0Var5;
         oh0 oh0Var6 = new oh0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
-        f29353r = oh0Var6;
+        f29354r = oh0Var6;
         oh0 oh0Var7 = new oh0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
-        f29354s = oh0Var7;
+        f29355s = oh0Var7;
         oh0 oh0Var8 = new oh0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
         v = oh0Var8;
         oh0 oh0Var9 = new oh0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
-        f29355w = oh0Var9;
+        f29356w = oh0Var9;
         oh0 oh0Var10 = new oh0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-        f29356x = oh0Var10;
+        f29357x = oh0Var10;
         int i13 = R.string.ProfileActionsLeave;
         int i14 = R.drawable.leave;
         oh0 oh0Var11 = new oh0("LEAVE", 10, i13, i14, i14);
-        f29357y = oh0Var11;
+        f29358y = oh0Var11;
         int i15 = R.string.ProfileActionsVoiceChat;
         int i16 = R.drawable.live_stream;
         oh0 oh0Var12 = new oh0("VOICE_CHAT", 11, i15, i16, i16);
@@ -77,9 +77,9 @@ public final class oh0 {
     }
 
     public oh0(String str, int i10, int i11, int i12, int i13) {
-        this.f29358a = i11;
-        this.f29359b = i12;
-        this.f29360c = i13;
+        this.f29359a = i11;
+        this.f29360b = i12;
+        this.f29361c = i13;
     }
 
     public static oh0 valueOf(String str) {

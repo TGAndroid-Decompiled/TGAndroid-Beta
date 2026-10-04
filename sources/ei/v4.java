@@ -56,7 +56,7 @@ public final class v4 implements org.telegram.ui.ActionBar.a2, ak0, ed0 {
         zArr[0] = true;
         TL_account.updateEmojiStatus updateemojistatus = new TL_account.updateEmojiStatus();
         TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-        tL_emojiStatus.document_id = document.f20043id;
+        tL_emojiStatus.document_id = document.f20044id;
         int i12 = this.f9398b;
         if (i12 > 0) {
             tL_emojiStatus.flags = 1 | tL_emojiStatus.flags;

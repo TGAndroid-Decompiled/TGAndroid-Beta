@@ -15,18 +15,18 @@ import w7.z5;
 import yh.k5;
 import yh.t5;
 public final class r2 extends org.telegram.ui.ActionBar.f3 {
-    public long f50206b;
+    public long f50207b;
 
     public r2(Context context, long j3, TL_stars.SavedStarGift savedStarGift, d6 d6Var, Utilities.Callback0Return callback0Return) {
         super(1, context, d6Var, false);
-        this.f50206b = 0L;
+        this.f50207b = 0L;
         fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         TextView b10 = w7.d6.b(context, 20.0f, i6.G6, true, d6Var);
         b10.setText(LocaleController.getString(R.string.Gift2UnpinAlertTitle));
         linearLayout.addView(b10, z5.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
-        TextView b11 = w7.d6.b(context, 14.0f, i6.f21204y6, false, d6Var);
+        TextView b11 = w7.d6.b(context, 14.0f, i6.f21205y6, false, d6Var);
         b11.setText(LocaleController.getString(R.string.Gift2UnpinAlertSubtitle));
         linearLayout.addView(b11, z5.k(22.0f, 4.33f, 22.0f, 10.0f, -1, -2));
         ci.d dVar = new ci.d(context, d6Var, true);

@@ -7,34 +7,34 @@ import java.io.Serializable;
 import java.util.HashMap;
 import org.telegram.messenger.NotificationCenter;
 public final class ey0 implements TextWatcher {
-    public final int f26172a = 0;
-    public final EditTextBoldCursor f26173b;
-    public final Serializable f26174c;
+    public final int f26173a = 0;
+    public final EditTextBoldCursor f26174b;
+    public final Serializable f26175c;
     public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate f26175e;
+    public final NotificationCenter.NotificationCenterDelegate f26176e;
 
     public ey0(qy0 qy0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
-        this.f26175e = qy0Var;
-        this.f26174c = iArr;
+        this.f26176e = qy0Var;
+        this.f26175c = iArr;
         this.d = textView;
-        this.f26173b = editTextBoldCursor;
+        this.f26174b = editTextBoldCursor;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         boolean z10;
-        switch (this.f26172a) {
+        switch (this.f26173a) {
             case 0:
                 return;
             default:
-                org.telegram.ui.kn0 kn0Var = (org.telegram.ui.kn0) this.f26175e;
-                String str = (String) this.f26174c;
-                if (((HashMap) this.d) == kn0Var.f38048t1) {
+                org.telegram.ui.kn0 kn0Var = (org.telegram.ui.kn0) this.f26176e;
+                String str = (String) this.f26175c;
+                if (((HashMap) this.d) == kn0Var.f38049t1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                EditTextBoldCursor editTextBoldCursor = this.f26173b;
+                EditTextBoldCursor editTextBoldCursor = this.f26174b;
                 org.telegram.ui.kn0.J0(kn0Var, editTextBoldCursor, str, editable, z10);
                 int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
                 EditTextBoldCursor editTextBoldCursor2 = kn0Var.Y[intValue];
@@ -48,15 +48,15 @@ public final class ey0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f26172a;
+        int i13 = this.f26173a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f26172a) {
+        switch (this.f26173a) {
             case 0:
-                if (((int[]) this.f26174c)[0] == 2) {
-                    ((qy0) this.f26175e).m0((TextView) this.d, this.f26173b.getText().toString(), false);
+                if (((int[]) this.f26175c)[0] == 2) {
+                    ((qy0) this.f26176e).m0((TextView) this.d, this.f26174b.getText().toString(), false);
                     return;
                 }
                 return;
@@ -66,9 +66,9 @@ public final class ey0 implements TextWatcher {
     }
 
     public ey0(org.telegram.ui.kn0 kn0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
-        this.f26175e = kn0Var;
-        this.f26173b = editTextBoldCursor;
-        this.f26174c = str;
+        this.f26176e = kn0Var;
+        this.f26174b = editTextBoldCursor;
+        this.f26175c = str;
         this.d = hashMap;
     }
 

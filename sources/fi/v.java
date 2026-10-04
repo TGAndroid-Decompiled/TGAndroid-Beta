@@ -17,21 +17,21 @@ public final class v implements Runnable {
         switch (this.f9992a) {
             case 0:
                 k0 k0Var = this.f9993b;
-                k0Var.v.d.f25243e3.h1(1, k0Var.U.f11526b);
+                k0Var.v.d.f25244e3.h1(1, k0Var.U.f11526b);
                 k0Var.f9914b.a(false, true);
                 k0Var.setAllowNestedScroll(true);
                 f20 f20Var = k0Var.f9923y;
-                AndroidUtilities.hideKeyboard(f20Var.f26246r);
-                f20Var.f26246r.clearFocus();
+                AndroidUtilities.hideKeyboard(f20Var.f26247r);
+                f20Var.f26247r.clearFocus();
                 return;
             case 1:
                 k0 k0Var2 = this.f9993b;
-                k0Var2.f9922x.d.f25243e3.h1(1, k0Var2.U.f11526b);
+                k0Var2.f9922x.d.f25244e3.h1(1, k0Var2.U.f11526b);
                 k0Var2.f9915c.a(false, true);
                 k0Var2.setAllowNestedScroll(true);
                 f20 f20Var2 = k0Var2.E;
-                AndroidUtilities.hideKeyboard(f20Var2.f26246r);
-                f20Var2.f26246r.clearFocus();
+                AndroidUtilities.hideKeyboard(f20Var2.f26247r);
+                f20Var2.f26247r.clearFocus();
                 return;
             default:
                 k0 k0Var3 = this.f9993b;

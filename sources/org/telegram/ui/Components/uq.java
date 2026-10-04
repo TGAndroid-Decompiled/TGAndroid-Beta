@@ -5,7 +5,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public abstract class uq extends Drawable {
-    public final Paint f31419a = new Paint(1);
+    public final Paint f31420a = new Paint(1);
 
     public uq(View view) {
         if (view != null) {
@@ -23,12 +23,12 @@ public abstract class uq extends Drawable {
 
     @Override
     public void setAlpha(int i10) {
-        this.f31419a.setAlpha(i10);
+        this.f31420a.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f31419a.setColorFilter(colorFilter);
+        this.f31420a.setColorFilter(colorFilter);
     }
 
     public void a() {

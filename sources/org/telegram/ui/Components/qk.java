@@ -31,12 +31,12 @@ public final class qk extends ul0 {
     public int T;
     public boolean V;
     public final rk X;
-    public final Context f30052r;
+    public final Context f30053r;
     public mk v;
-    public be f30054w;
-    public long f30055x;
-    public gg.q0 f30056y;
-    public ArrayList f30053s = new ArrayList();
+    public be f30055w;
+    public long f30056x;
+    public gg.q0 f30057y;
+    public ArrayList f30054s = new ArrayList();
     public final org.telegram.ui.p10 H = new org.telegram.ui.p10(0, 0);
     public final ArrayList L = new ArrayList();
     public final ArrayList M = new ArrayList();
@@ -50,7 +50,7 @@ public final class qk extends ul0 {
 
     public qk(rk rkVar, Context context) {
         this.X = rkVar;
-        this.f30052r = context;
+        this.f30053r = context;
     }
 
     @Override
@@ -67,7 +67,7 @@ public final class qk extends ul0 {
     @Override
     public final int M(int i10) {
         if (i10 == 0) {
-            return this.f30053s.size();
+            return this.f30054s.size();
         }
         int i11 = i10 - 1;
         ArrayList arrayList = this.P;
@@ -80,7 +80,7 @@ public final class qk extends ul0 {
             return 0;
         }
         int size = arrayList2.size();
-        if (i11 == 0 && this.f30053s.isEmpty()) {
+        if (i11 == 0 && this.f30054s.isEmpty()) {
             i12 = 0;
         }
         return size + i12;
@@ -91,15 +91,15 @@ public final class qk extends ul0 {
         ArrayList arrayList;
         int i12;
         if (i10 == 0) {
-            if (i11 < this.f30053s.size()) {
-                return this.f30053s.get(i11);
+            if (i11 < this.f30054s.size()) {
+                return this.f30054s.get(i11);
             }
             return null;
         }
         int i13 = i10 - 1;
         ArrayList arrayList2 = this.P;
         if (i13 < arrayList2.size() && (arrayList = (ArrayList) this.Q.get(arrayList2.get(i13))) != null) {
-            if (i13 == 0 && this.f30053s.isEmpty()) {
+            if (i13 == 0 && this.f30054s.isEmpty()) {
                 i12 = 0;
             } else {
                 i12 = 1;
@@ -123,7 +123,7 @@ public final class qk extends ul0 {
         }
         int i12 = i10 - 1;
         if (i12 < this.P.size()) {
-            if ((i12 != 0 || !this.f30053s.isEmpty()) && i11 == 0) {
+            if ((i12 != 0 || !this.f30054s.isEmpty()) && i11 == 0) {
                 return 0;
             }
             return 4;
@@ -145,12 +145,12 @@ public final class qk extends ul0 {
         String formatSectionDate;
         org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) view;
         if (v3Var == null) {
-            Context context = this.f30052r;
+            Context context = this.f30053r;
             rk rkVar = this.X;
-            v3Var = new org.telegram.ui.Cells.v3(context, rkVar.f29641a);
-            v3Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.e7, rkVar.f29641a) & (-218103809));
+            v3Var = new org.telegram.ui.Cells.v3(context, rkVar.f29642a);
+            v3Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.e7, rkVar.f29642a) & (-218103809));
         }
-        if (i10 != 0 && (i10 != 1 || !this.f30053s.isEmpty())) {
+        if (i10 != 0 && (i10 != 1 || !this.f30054s.isEmpty())) {
             int i11 = i10 - 1;
             ArrayList arrayList = this.P;
             if (i11 < arrayList.size()) {
@@ -158,7 +158,7 @@ public final class qk extends ul0 {
                 ArrayList arrayList2 = (ArrayList) this.Q.get((String) arrayList.get(i11));
                 if (arrayList2 != null) {
                     MessageObject messageObject = (MessageObject) arrayList2.get(0);
-                    if (i11 == 0 && !this.f30053s.isEmpty()) {
+                    if (i11 == 0 && !this.f30054s.isEmpty()) {
                         formatSectionDate = LocaleController.getString(R.string.GlobalSearch);
                     } else {
                         formatSectionDate = LocaleController.formatSectionDate(messageObject.messageOwner.date);
@@ -174,7 +174,7 @@ public final class qk extends ul0 {
 
     @Override
     public final boolean V(int i10, int i11, s4.c1 c1Var) {
-        int i12 = c1Var.f46527f;
+        int i12 = c1Var.f46528f;
         if (i12 == 1 || i12 == 4) {
             return true;
         }
@@ -186,8 +186,8 @@ public final class qk extends ul0 {
         String formatSectionDate;
         boolean z10;
         int i12 = i11;
-        int i13 = c1Var.f46527f;
-        View view = c1Var.f46523a;
+        int i13 = c1Var.f46528f;
+        View view = c1Var.f46524a;
         if (i13 != 2 && i13 != 3) {
             HashMap hashMap = this.Q;
             ArrayList arrayList = this.P;
@@ -197,13 +197,13 @@ public final class qk extends ul0 {
                     org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
                     if (i10 == 0) {
                         lk lkVar = (lk) O(S(i12), Q(i12));
-                        int i14 = lkVar.f28384a;
+                        int i14 = lkVar.f28385a;
                         if (i14 != 0) {
-                            k7Var.d(lkVar.f28385b, lkVar.f28386c, null, null, i14, false);
+                            k7Var.d(lkVar.f28386b, lkVar.f28387c, null, null, i14, false);
                         } else {
-                            k7Var.d(lkVar.f28385b, lkVar.f28386c, lkVar.d.toUpperCase().substring(0, Math.min(lkVar.d.length(), 4)), lkVar.f28387e, 0, false);
+                            k7Var.d(lkVar.f28386b, lkVar.f28387c, lkVar.d.toUpperCase().substring(0, Math.min(lkVar.d.length(), 4)), lkVar.f28388e, 0, false);
                         }
-                        File file = lkVar.f28388f;
+                        File file = lkVar.f28389f;
                         rk rkVar = this.X;
                         if (file != null) {
                             k7Var.b(rkVar.R.containsKey(file.toString()), !rkVar.U);
@@ -214,7 +214,7 @@ public final class qk extends ul0 {
                         }
                     }
                     int i15 = i10 - 1;
-                    if (i15 != 0 || !this.f30053s.isEmpty()) {
+                    if (i15 != 0 || !this.f30054s.isEmpty()) {
                         i12--;
                     }
                     ArrayList arrayList2 = (ArrayList) hashMap.get((String) arrayList.get(i15));
@@ -240,7 +240,7 @@ public final class qk extends ul0 {
             ArrayList arrayList3 = (ArrayList) hashMap.get((String) arrayList.get(i16));
             if (arrayList3 != null) {
                 MessageObject messageObject2 = (MessageObject) arrayList3.get(0);
-                if (i16 == 0 && !this.f30053s.isEmpty()) {
+                if (i16 == 0 && !this.f30054s.isEmpty()) {
                     formatSectionDate = LocaleController.getString(R.string.GlobalSearch);
                 } else {
                     formatSectionDate = LocaleController.formatSectionDate(messageObject2.messageOwner.date);
@@ -254,15 +254,15 @@ public final class qk extends ul0 {
         long j3;
         rk rkVar = this.X;
         kk kkVar = rkVar.v;
-        gk gkVar = rkVar.f30432r;
-        be beVar = this.f30054w;
+        gk gkVar = rkVar.f30433r;
+        be beVar = this.f30055w;
         if (beVar != null) {
             AndroidUtilities.cancelRunOnUIThread(beVar);
-            this.f30054w = null;
+            this.f30055w = null;
         }
         if (TextUtils.isEmpty(str)) {
-            if (!this.f30053s.isEmpty()) {
-                this.f30053s.clear();
+            if (!this.f30054s.isEmpty()) {
+                this.f30054s.clear();
             }
             if (gkVar.getAdapter() != kkVar) {
                 gkVar.setAdapter(kkVar);
@@ -270,7 +270,7 @@ public final class qk extends ul0 {
             l();
         } else {
             be beVar2 = new be(11, this, str);
-            this.f30054w = beVar2;
+            this.f30055w = beVar2;
             AndroidUtilities.runOnUIThread(beVar2, 300L);
         }
         if (!rkVar.W && kkVar.d.isEmpty()) {
@@ -286,9 +286,9 @@ public final class qk extends ul0 {
                     if (i11 == 4) {
                         TLObject tLObject = q0Var.f10758f;
                         if (tLObject instanceof TLRPC.User) {
-                            j3 = ((TLRPC.User) tLObject).f20184id;
+                            j3 = ((TLRPC.User) tLObject).f20185id;
                         } else if (tLObject instanceof TLRPC.Chat) {
-                            j3 = -((TLRPC.Chat) tLObject).f20037id;
+                            j3 = -((TLRPC.Chat) tLObject).f20038id;
                         }
                         j10 = j3;
                     } else if (i11 == 6) {
@@ -310,7 +310,7 @@ public final class qk extends ul0 {
         boolean z12;
         long j12;
         rk rkVar = this.X;
-        gk gkVar = rkVar.f30432r;
+        gk gkVar = rkVar.f30433r;
         ai.d7 d7Var = rkVar.L;
         Locale locale = Locale.ENGLISH;
         final String str2 = j3 + j10 + j11 + q0Var.d + str;
@@ -325,8 +325,8 @@ public final class qk extends ul0 {
         } else {
             z12 = false;
         }
-        this.f30056y = q0Var;
-        this.f30055x = j3;
+        this.f30057y = q0Var;
+        this.f30056x = j3;
         this.E = j10;
         this.F = j11;
         mk mkVar = this.v;
@@ -389,9 +389,9 @@ public final class qk extends ul0 {
                 final boolean z13 = z11;
                 if (j15 != 0) {
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
-                    tL_messages_search.f20146q = str5;
+                    tL_messages_search.f20147q = str5;
                     tL_messages_search.limit = 20;
-                    tL_messages_search.filter = qkVar.f30056y.f10757e;
+                    tL_messages_search.filter = qkVar.f30057y.f10757e;
                     tL_messages_search.peer = accountInstance2.getMessagesController().getInputPeer(j15);
                     if (j16 > 0) {
                         tL_messages_search.min_date = (int) (j16 / 1000);
@@ -423,8 +423,8 @@ public final class qk extends ul0 {
                     }
                     TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = new TLRPC.TL_messages_searchGlobal();
                     tL_messages_searchGlobal2.limit = i11;
-                    tL_messages_searchGlobal2.f20148q = str4;
-                    tL_messages_searchGlobal2.filter = qkVar.f30056y.f10757e;
+                    tL_messages_searchGlobal2.f20149q = str4;
+                    tL_messages_searchGlobal2.filter = qkVar.f30057y.f10757e;
                     if (j16 > 0) {
                         tL_messages_searchGlobal2.min_date = (int) (j16 / 1000);
                     }
@@ -508,7 +508,7 @@ public final class qk extends ul0 {
         org.telegram.ui.Cells.v3 v3Var;
         View view;
         rk rkVar = this.X;
-        Context context = this.f30052r;
+        Context context = this.f30053r;
         if (i10 != 0) {
             int i11 = 2;
             if (i10 != 1) {
@@ -519,7 +519,7 @@ public final class qk extends ul0 {
                         return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
                     }
                 } else {
-                    w00 w00Var = new w00(context, rkVar.f29641a);
+                    w00 w00Var = new w00(context, rkVar.f29642a);
                     w00Var.setViewType(3);
                     w00Var.setIsSingleCell(true);
                     v3Var = w00Var;
@@ -528,12 +528,12 @@ public final class qk extends ul0 {
             if (i10 == 1) {
                 i11 = 1;
             }
-            org.telegram.ui.Cells.k7 k7Var = new org.telegram.ui.Cells.k7(context, i11, rkVar.f29641a);
+            org.telegram.ui.Cells.k7 k7Var = new org.telegram.ui.Cells.k7(context, i11, rkVar.f29642a);
             k7Var.setDrawDownloadIcon(false);
             view = k7Var;
             return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
         }
-        v3Var = new org.telegram.ui.Cells.v3(context, rkVar.f29641a);
+        v3Var = new org.telegram.ui.Cells.v3(context, rkVar.f29642a);
         view = v3Var;
         return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
     }

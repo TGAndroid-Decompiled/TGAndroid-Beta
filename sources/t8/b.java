@@ -21,7 +21,7 @@ import z7.w;
 public abstract class b {
     public static z3.b a(n nVar, byte[] bArr, int i10) {
         f0 u10 = i0.u();
-        nVar.F(bArr, 0, i10, m.f52375c, new g(u10, 1));
+        nVar.F(bArr, 0, i10, m.f52376c, new g(u10, 1));
         return new z3.b(u10.i());
     }
 
@@ -70,15 +70,15 @@ public abstract class b {
     public static ia.c g(int i10, y yVar) {
         Map unmodifiableMap;
         s sVar = new s(i10);
-        if (((HashMap) yVar.f16640c) == null) {
-            yVar.f16640c = new HashMap();
+        if (((HashMap) yVar.f16641c) == null) {
+            yVar.f16641c = new HashMap();
         }
-        ((HashMap) yVar.f16640c).put(w.class, sVar);
-        String str = (String) yVar.f16639b;
-        if (((HashMap) yVar.f16640c) == null) {
+        ((HashMap) yVar.f16641c).put(w.class, sVar);
+        String str = (String) yVar.f16640b;
+        if (((HashMap) yVar.f16641c) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) yVar.f16640c));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) yVar.f16641c));
         }
         return new ia.c(str, unmodifiableMap);
     }

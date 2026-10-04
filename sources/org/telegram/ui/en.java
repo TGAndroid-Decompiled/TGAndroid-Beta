@@ -15,31 +15,31 @@ public final class en extends org.telegram.ui.Components.zq0 {
         super(activity, ynVar, arrayList, null, null, z10, null, null, false, false, z11, null, d6Var);
         this.Y0 = knVar;
         this.X0 = messageObject;
-        this.f33595a0 = z12;
+        this.f33596a0 = z12;
     }
 
     @Override
     public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         kn knVar = this.Y0;
-        yn ynVar = knVar.f38002a;
+        yn ynVar = knVar.f38003a;
         int i11 = yn.Bc;
         ynVar.Q7();
-        if (knVar.f38002a.f43541w3 != null && z10) {
+        if (knVar.f38003a.f43542w3 != null && z10) {
             if (iVar.m() == 1) {
-                if (((TLRPC.Dialog) iVar.n(0)).f20041id != knVar.f38002a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.yc.a0(knVar.f38002a).e0(i10, ((TLRPC.Dialog) iVar.n(0)).f20041id)) {
-                    knVar.f38002a.f43541w3.k(((TLRPC.Dialog) iVar.n(0)).f20041id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) iVar.n(0)).f20042id != knVar.f38003a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.yc.a0(knVar.f38003a).e0(i10, ((TLRPC.Dialog) iVar.n(0)).f20042id)) {
+                    knVar.f38003a.f43542w3.k(((TLRPC.Dialog) iVar.n(0)).f20042id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            knVar.f38002a.f43541w3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+            knVar.f38003a.f43542w3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
         }
     }
 
     @Override
     public final void P0(final View view) {
         ci.dc dcVar;
-        yn ynVar = this.Y0.f38002a;
+        yn ynVar = this.Y0.f38003a;
         MessageObject.GroupedMessages groupedMessages = null;
         if (view instanceof org.telegram.ui.Cells.g7) {
             dcVar = ci.fc.b((org.telegram.ui.Cells.g7) view);
@@ -49,7 +49,7 @@ public final class en extends org.telegram.ui.Components.zq0 {
         ArrayList arrayList = new ArrayList();
         MessageObject messageObject = this.X0;
         if (messageObject.getGroupId() != 0) {
-            groupedMessages = (MessageObject.GroupedMessages) ynVar.f43531v6.f(messageObject.getGroupId());
+            groupedMessages = (MessageObject.GroupedMessages) ynVar.f43532v6.f(messageObject.getGroupId());
         }
         if (groupedMessages != null) {
             arrayList.addAll(groupedMessages.messages);
@@ -87,7 +87,7 @@ public final class en extends org.telegram.ui.Components.zq0 {
     @Override
     public final void dismissInternal() {
         int i10;
-        yn ynVar = this.Y0.f38002a;
+        yn ynVar = this.Y0.f38003a;
         Activity parentActivity = ynVar.getParentActivity();
         i10 = ((org.telegram.ui.ActionBar.n2) ynVar).classGuid;
         AndroidUtilities.requestAdjustResize(parentActivity, i10);

@@ -5,7 +5,7 @@ import q3.i;
 import s3.c;
 import w7.m;
 public final class a {
-    public static final a f46474a = new Object();
+    public static final a f46475a = new Object();
 
     public final m a(s sVar) {
         String str = sVar.f3564r;

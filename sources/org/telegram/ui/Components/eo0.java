@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class eo0 extends us {
-    public final org.telegram.ui.dy f26095i0;
+    public final org.telegram.ui.dy f26096i0;
 
     public eo0(org.telegram.ui.dy dyVar, zl0 zl0Var, Context context, int i10, int i11) {
         super(zl0Var, context, i10, i11, false, null);
-        this.f26095i0 = dyVar;
+        this.f26096i0 = dyVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class eo0 extends us {
         boolean z11;
         ArrayList arrayList;
         super.N(z10);
-        do0 do0Var = this.f26095i0.m0;
-        if (!this.Z && !this.f31430a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
+        do0 do0Var = this.f26096i0.m0;
+        if (!this.Z && !this.f31431a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
             z11 = false;
         } else {
             z11 = true;
         }
         do0Var.e(z11, z10);
         do0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        do0Var.f31194e.setVisibility(8);
+        do0Var.f31195e.setVisibility(8);
     }
 }

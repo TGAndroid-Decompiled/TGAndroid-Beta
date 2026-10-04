@@ -30,7 +30,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f19445w;
+    int f19446w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -115,7 +115,7 @@ public class VideoFramesRewinder {
         int[] iArr = this.meta;
         int i12 = iArr[4];
         int i13 = 0;
-        int min = Math.min(this.f19445w / 4, iArr[0]);
+        int min = Math.min(this.f19446w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i14 = this.maxFrameSide;
         if (min > i14 || min2 > i14) {
@@ -195,7 +195,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i10, int i11) {
-        this.f19445w = i10;
+        this.f19446w = i10;
         this.h = i11;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();

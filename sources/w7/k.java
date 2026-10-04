@@ -32,9 +32,9 @@ public abstract class k {
                     int d10 = d(mediaExtractor, true);
                     int d11 = d(mediaExtractor, false);
                     if (d10 >= 0 && (!z10 || d11 >= 0)) {
-                        tVar.k(mediaExtractor.getTrackFormat(d10), true);
+                        tVar.l(mediaExtractor.getTrackFormat(d10), true);
                         if (z10) {
-                            tVar.k(mediaExtractor.getTrackFormat(d11), false);
+                            tVar.l(mediaExtractor.getTrackFormat(d11), false);
                         }
                         mediaExtractor.release();
                         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(2097152);
@@ -78,7 +78,7 @@ public abstract class k {
                     int readSampleData = mediaExtractor.readSampleData(byteBuffer, 0);
                     if (readSampleData >= 0) {
                         bufferInfo.set(0, readSampleData, mediaExtractor.getSampleTime(), mediaExtractor.getSampleFlags());
-                        tVar.m(z11, byteBuffer, bufferInfo, -j3);
+                        tVar.o(z11, byteBuffer, bufferInfo, -j3);
                         mediaExtractor.advance();
                         z11 = z10;
                     }

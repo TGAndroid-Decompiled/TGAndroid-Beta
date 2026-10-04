@@ -12,11 +12,11 @@ import java.io.IOException;
 import k6.h;
 import v0.k;
 public abstract class b {
-    public static final char[] f47542a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    public static Boolean f47543b;
-    public static Boolean f47544c;
+    public static final char[] f47543a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static Boolean f47544b;
+    public static Boolean f47545c;
     public static Boolean d;
-    public static Boolean f47545e;
+    public static Boolean f47546e;
 
     public static void a(Closeable closeable) {
         if (closeable != null) {
@@ -76,14 +76,14 @@ public abstract class b {
 
     public static boolean f(Context context) {
         PackageManager packageManager = context.getPackageManager();
-        if (f47543b == null) {
-            f47543b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+        if (f47544b == null) {
+            f47544b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
         }
-        if (!f47543b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            if (f47544c == null) {
-                f47544c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
+        if (!f47544b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
+            if (f47545c == null) {
+                f47545c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
             }
-            if (f47544c.booleanValue()) {
+            if (f47545c.booleanValue()) {
                 if (!d() || Build.VERSION.SDK_INT >= 30) {
                     return true;
                 }
@@ -98,7 +98,7 @@ public abstract class b {
         k a2 = w6.b.a(context);
         a2.getClass();
         try {
-            AppOpsManager appOpsManager = (AppOpsManager) a2.f47746a.getSystemService("appops");
+            AppOpsManager appOpsManager = (AppOpsManager) a2.f47747a.getSystemService("appops");
             if (appOpsManager != null) {
                 appOpsManager.checkPackage(i10, str);
                 return true;

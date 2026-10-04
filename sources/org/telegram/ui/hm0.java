@@ -6,10 +6,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.R;
 public final class hm0 implements v9 {
-    public final kn0 f37116a;
+    public final kn0 f37117a;
 
     public hm0(kn0 kn0Var) {
-        this.f37116a = kn0Var;
+        this.f37117a = kn0Var;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class hm0 implements v9 {
     @Override
     public final void T0(MrzRecognizer.Result result) {
         boolean isEmpty = TextUtils.isEmpty(result.firstName);
-        kn0 kn0Var = this.f37116a;
+        kn0 kn0Var = this.f37117a;
         if (!isEmpty) {
             kn0Var.Y[0].setText(result.firstName);
         }
@@ -34,17 +34,17 @@ public final class hm0 implements v9 {
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    kn0Var.f38053w = "female";
+                    kn0Var.f38054w = "female";
                     kn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
                 }
             } else {
-                kn0Var.f38053w = "male";
+                kn0Var.f38054w = "male";
                 kn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
             }
         }
         if (!TextUtils.isEmpty(result.nationality)) {
             String str = result.nationality;
-            kn0Var.f38044s = str;
+            kn0Var.f38045s = str;
             String str2 = (String) kn0Var.Y0.get(str);
             if (str2 != null) {
                 kn0Var.Y[5].setText(str2);

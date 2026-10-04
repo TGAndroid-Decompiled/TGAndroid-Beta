@@ -7,12 +7,12 @@ import org.telegram.ui.uy;
 public final class g0 extends uy {
     public final da A4;
     public final c1 B4;
-    public final boolean[] f42184z4;
+    public final boolean[] f42185z4;
 
     public g0(c1 c1Var, Bundle bundle, boolean[] zArr, da daVar) {
         super(bundle);
         this.B4 = c1Var;
-        this.f42184z4 = zArr;
+        this.f42185z4 = zArr;
         this.A4 = daVar;
     }
 
@@ -20,7 +20,7 @@ public final class g0 extends uy {
     public final void onFragmentDestroy() {
         JSONObject jSONObject;
         super.onFragmentDestroy();
-        boolean[] zArr = this.f42184z4;
+        boolean[] zArr = this.f42185z4;
         if (!zArr[0]) {
             zArr[0] = true;
             try {

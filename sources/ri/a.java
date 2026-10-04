@@ -1,31 +1,34 @@
 package ri;
+
+import android.content.SharedPreferences;
 public final class a {
-    public final String f46433a;
-    public volatile boolean f46434b;
-    public volatile boolean f46435c;
+    public final String f46434a;
+    public volatile boolean f46435b;
+    public volatile boolean f46436c;
+    public volatile boolean d;
 
     public a(String str) {
-        this.f46433a = str;
+        this.f46434a = str;
     }
 
-    public final boolean a() {
-        if (!this.f46434b) {
-            synchronized (this) {
-                try {
-                    if (!this.f46434b) {
-                        this.f46435c = d.f46441a.getBoolean(this.f46433a, true);
-                        this.f46434b = true;
-                    }
-                } finally {
-                }
+    public final void a() {
+        if (this.f46435b) {
+            return;
+        }
+        synchronized (this) {
+            if (!this.f46435b) {
+                SharedPreferences sharedPreferences = d.f46442a;
+                this.f46436c = sharedPreferences.contains(this.f46434a);
+                this.d = sharedPreferences.getBoolean(this.f46434a, true);
+                this.f46435b = true;
             }
         }
-        return this.f46435c;
     }
 
     public final synchronized void b(boolean z10) {
-        this.f46435c = z10;
-        this.f46434b = true;
-        d.f46441a.edit().putBoolean(this.f46433a, z10).apply();
+        this.d = z10;
+        this.f46436c = true;
+        this.f46435b = true;
+        d.f46442a.edit().putBoolean(this.f46434a, z10).apply();
     }
 }

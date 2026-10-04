@@ -3,17 +3,17 @@ package q3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class f extends j {
-    public final String f44774b;
-    public final String f44775c;
+    public final String f44775b;
+    public final String f44776c;
     public final String d;
-    public final byte[] f44776e;
+    public final byte[] f44777e;
 
     public f(String str, byte[] bArr, String str2, String str3) {
         super("GEOB");
-        this.f44774b = str;
-        this.f44775c = str2;
+        this.f44775b = str;
+        this.f44776c = str2;
         this.d = str3;
-        this.f44776e = bArr;
+        this.f44777e = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -22,7 +22,7 @@ public final class f extends j {
         }
         if (obj != null && f.class == obj.getClass()) {
             f fVar = (f) obj;
-            if (Objects.equals(this.f44774b, fVar.f44774b) && Objects.equals(this.f44775c, fVar.f44775c) && Objects.equals(this.d, fVar.d) && Arrays.equals(this.f44776e, fVar.f44776e)) {
+            if (Objects.equals(this.f44775b, fVar.f44775b) && Objects.equals(this.f44776c, fVar.f44776c) && Objects.equals(this.d, fVar.d) && Arrays.equals(this.f44777e, fVar.f44777e)) {
                 return true;
             }
         }
@@ -33,14 +33,14 @@ public final class f extends j {
         int i10;
         int i11;
         int i12 = 0;
-        String str = this.f44774b;
+        String str = this.f44775b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (527 + i10) * 31;
-        String str2 = this.f44775c;
+        String str2 = this.f44776c;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
@@ -51,11 +51,11 @@ public final class f extends j {
         if (str3 != null) {
             i12 = str3.hashCode();
         }
-        return Arrays.hashCode(this.f44776e) + ((i14 + i12) * 31);
+        return Arrays.hashCode(this.f44777e) + ((i14 + i12) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f44782a + ": mimeType=" + this.f44774b + ", filename=" + this.f44775c + ", description=" + this.d;
+        return this.f44783a + ": mimeType=" + this.f44775b + ", filename=" + this.f44776c + ", description=" + this.d;
     }
 }

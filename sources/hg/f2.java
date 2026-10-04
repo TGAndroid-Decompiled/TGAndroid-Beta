@@ -109,7 +109,7 @@ public final class f2 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
-            if (TextUtils.equals(tL_timezone.f20175id, str)) {
+            if (TextUtils.equals(tL_timezone.f20176id, str)) {
                 return tL_timezone;
             }
             i10++;

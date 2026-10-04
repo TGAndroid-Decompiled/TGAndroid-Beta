@@ -5,16 +5,16 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
 public final class qp0 extends hx0 {
-    public boolean f30143a = false;
-    public long f30144b = 0;
-    public boolean f30145c = false;
+    public boolean f30144a = false;
+    public long f30145b = 0;
+    public boolean f30146c = false;
     public float d;
-    public final Paint f30146e;
+    public final Paint f30147e;
 
     public qp0(boolean z10) {
         if (z10) {
             Paint paint = new Paint(1);
-            this.f30146e = paint;
+            this.f30147e = paint;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
@@ -23,7 +23,7 @@ public final class qp0 extends hx0 {
 
     @Override
     public final void b(int i10) {
-        Paint paint = this.f30146e;
+        Paint paint = this.f30147e;
         if (paint != null) {
             paint.setColor(i10);
         }
@@ -31,13 +31,13 @@ public final class qp0 extends hx0 {
 
     @Override
     public final void c(boolean z10) {
-        this.f30143a = z10;
+        this.f30144a = z10;
     }
 
     @Override
     public final void d() {
-        this.f30144b = System.currentTimeMillis();
-        this.f30145c = true;
+        this.f30145b = System.currentTimeMillis();
+        this.f30146c = true;
         invalidateSelf();
     }
 
@@ -46,9 +46,9 @@ public final class qp0 extends hx0 {
         float f7;
         float f10;
         float f11;
-        Paint paint = this.f30146e;
+        Paint paint = this.f30147e;
         if (paint == null) {
-            paint = org.telegram.ui.ActionBar.i6.f20813d2;
+            paint = org.telegram.ui.ActionBar.i6.f20814d2;
         }
         Paint paint2 = paint;
         int i10 = 0;
@@ -61,7 +61,7 @@ public final class qp0 extends hx0 {
                 paint2.setAlpha(255);
             }
             float dp = (AndroidUtilities.dp(5.0f) * i10) + (AndroidUtilities.dp(5.0f) * this.d);
-            if (this.f30143a) {
+            if (this.f30144a) {
                 f7 = 3.0f;
             } else {
                 f7 = 4.0f;
@@ -69,7 +69,7 @@ public final class qp0 extends hx0 {
             float dp2 = AndroidUtilities.dp(f7);
             float dp3 = dp + AndroidUtilities.dp(4.0f);
             float f12 = 8.0f;
-            if (this.f30143a) {
+            if (this.f30144a) {
                 f10 = 7.0f;
             } else {
                 f10 = 8.0f;
@@ -77,24 +77,24 @@ public final class qp0 extends hx0 {
             float dp4 = AndroidUtilities.dp(f10);
             Canvas canvas2 = canvas;
             canvas2.drawLine(dp, dp2, dp3, dp4, paint2);
-            if (this.f30143a) {
+            if (this.f30144a) {
                 f11 = 11.0f;
             } else {
                 f11 = 12.0f;
             }
             float dp5 = AndroidUtilities.dp(f11);
             float dp6 = dp + AndroidUtilities.dp(4.0f);
-            if (this.f30143a) {
+            if (this.f30144a) {
                 f12 = 7.0f;
             }
             canvas2.drawLine(dp, dp5, dp6, AndroidUtilities.dp(f12), paint2);
             i10++;
             canvas = canvas2;
         }
-        if (this.f30145c) {
+        if (this.f30146c) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f30144b;
-            this.f30144b = currentTimeMillis;
+            long j3 = currentTimeMillis - this.f30145b;
+            this.f30145b = currentTimeMillis;
             if (j3 > 50) {
                 j3 = 50;
             }
@@ -113,7 +113,7 @@ public final class qp0 extends hx0 {
 
     @Override
     public final void e() {
-        this.f30145c = false;
+        this.f30146c = false;
     }
 
     @Override

@@ -6,18 +6,18 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class pi extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f29641a;
-    public final xi f29642b;
-    public zl0 f29643c;
+    public final org.telegram.ui.ActionBar.d6 f29642a;
+    public final xi f29643b;
+    public zl0 f29644c;
     public zl0 d;
-    public int f29644e;
-    public boolean f29645f;
+    public int f29645e;
+    public boolean f29646f;
     public boolean h;
 
     public pi(Context context, org.telegram.ui.ActionBar.d6 d6Var, xi xiVar) {
         super(context);
-        this.f29641a = d6Var;
-        this.f29642b = xiVar;
+        this.f29642a = d6Var;
+        this.f29643b = xiVar;
     }
 
     public boolean B(int i10) {
@@ -111,8 +111,8 @@ public abstract class pi extends FrameLayout {
     }
 
     public void setBlur3Capture(zl0 zl0Var) {
-        xi.R(this.f29642b).b(zl0Var);
-        this.f29643c = zl0Var;
+        xi.R(this.f29643b).b(zl0Var);
+        this.f29644c = zl0Var;
     }
 
     public abstract void y(int i10, int i11);

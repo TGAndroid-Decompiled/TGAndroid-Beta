@@ -22,16 +22,16 @@ public final class o5 implements SensorEventListener {
                 i6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
             }
             long j3 = 1800;
-            if (i6.h <= i6.f21051q) {
+            if (i6.h <= i6.f21052q) {
                 if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
-                    if (i6.f20920j) {
-                        i6.f20920j = false;
-                        AndroidUtilities.cancelRunOnUIThread(i6.f20959l);
+                    if (i6.f20921j) {
+                        i6.f20921j = false;
+                        AndroidUtilities.cancelRunOnUIThread(i6.f20960l);
                     }
-                    if (!i6.f20939k) {
-                        i6.f20939k = true;
-                        z9 z9Var = i6.f20977m;
-                        if (Math.abs(i6.f20901i - SystemClock.elapsedRealtime()) < 12000) {
+                    if (!i6.f20940k) {
+                        i6.f20940k = true;
+                        z9 z9Var = i6.f20978m;
+                        if (Math.abs(i6.f20902i - SystemClock.elapsedRealtime()) < 12000) {
                             j3 = 12000;
                         }
                         AndroidUtilities.runOnUIThread(z9Var, j3);
@@ -41,14 +41,14 @@ public final class o5 implements SensorEventListener {
                 }
                 return;
             }
-            if (i6.f20939k) {
-                i6.f20939k = false;
-                AndroidUtilities.cancelRunOnUIThread(i6.f20977m);
+            if (i6.f20940k) {
+                i6.f20940k = false;
+                AndroidUtilities.cancelRunOnUIThread(i6.f20978m);
             }
-            if (!i6.f20920j) {
-                i6.f20920j = true;
-                z9 z9Var2 = i6.f20959l;
-                if (Math.abs(i6.f20901i - SystemClock.elapsedRealtime()) < 12000) {
+            if (!i6.f20921j) {
+                i6.f20921j = true;
+                z9 z9Var2 = i6.f20960l;
+                if (Math.abs(i6.f20902i - SystemClock.elapsedRealtime()) < 12000) {
                     j3 = 12000;
                 }
                 AndroidUtilities.runOnUIThread(z9Var2, j3);

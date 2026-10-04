@@ -14,43 +14,43 @@ import java.util.concurrent.atomic.AtomicReference;
 import n7.z0;
 import u2.l0;
 public final class p {
-    public final Context f48965a;
-    public final s f48966b;
-    public final o0.a f48967c;
+    public final Context f48966a;
+    public final s f48967b;
+    public final o0.a f48968c;
     public z0 d;
-    public z0 f48968e;
-    public n f48969f;
-    public final v f48970g;
+    public z0 f48969e;
+    public n f48970f;
+    public final v f48971g;
     public final ba.c h;
-    public final s9.a f48971i;
-    public final s9.a f48972j;
-    public final ExecutorService f48973k;
-    public final com.google.firebase.messaging.s f48974l;
-    public final j f48975m;
-    public final t9.a f48976n;
-    public final l2.g f48977o;
+    public final s9.a f48972i;
+    public final s9.a f48973j;
+    public final ExecutorService f48974k;
+    public final com.google.firebase.messaging.s f48975l;
+    public final j f48976m;
+    public final t9.a f48977n;
+    public final l2.g f48978o;
 
     public p(k9.h hVar, v vVar, t9.a aVar, s sVar, s9.a aVar2, s9.a aVar3, ba.c cVar, ExecutorService executorService, j jVar, l2.g gVar) {
-        this.f48966b = sVar;
+        this.f48967b = sVar;
         hVar.a();
-        this.f48965a = hVar.f14714a;
-        this.f48970g = vVar;
-        this.f48976n = aVar;
-        this.f48971i = aVar2;
-        this.f48972j = aVar3;
-        this.f48973k = executorService;
+        this.f48966a = hVar.f14714a;
+        this.f48971g = vVar;
+        this.f48977n = aVar;
+        this.f48972i = aVar2;
+        this.f48973j = aVar3;
+        this.f48974k = executorService;
         this.h = cVar;
-        this.f48974l = new com.google.firebase.messaging.s(executorService);
-        this.f48975m = jVar;
-        this.f48977o = gVar;
+        this.f48975l = new com.google.firebase.messaging.s(executorService);
+        this.f48976m = jVar;
+        this.f48978o = gVar;
         System.currentTimeMillis();
-        this.f48967c = new o0.a();
+        this.f48968c = new o0.a();
     }
 
     public static Task a(p pVar, da.b bVar) {
         Task forException;
         o oVar;
-        com.google.firebase.messaging.s sVar = pVar.f48974l;
+        com.google.firebase.messaging.s sVar = pVar.f48975l;
         if (Boolean.TRUE.equals(((ThreadLocal) sVar.f7923e).get())) {
             pVar.d.o();
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -58,8 +58,8 @@ public final class p {
             }
             try {
                 try {
-                    pVar.f48971i.a(new l0(12));
-                    pVar.f48969f.g();
+                    pVar.f48972i.a(new l0(12));
+                    pVar.f48970f.g();
                     if (!bVar.d().f8175b.f411a) {
                         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                             Log.d("FirebaseCrashlytics", "Collection of crash reports disabled in Crashlytics settings.", null);
@@ -67,10 +67,10 @@ public final class p {
                         forException = Tasks.forException(new RuntimeException("Collection of crash reports disabled in Crashlytics settings."));
                         oVar = new o(pVar, 0);
                     } else {
-                        if (!pVar.f48969f.d(bVar)) {
+                        if (!pVar.f48970f.d(bVar)) {
                             Log.w("FirebaseCrashlytics", "Previous sessions could not be finalized.", null);
                         }
-                        forException = pVar.f48969f.h(((TaskCompletionSource) ((AtomicReference) bVar.f8185i).get()).getTask());
+                        forException = pVar.f48970f.h(((TaskCompletionSource) ((AtomicReference) bVar.f8185i).get()).getTask());
                         oVar = new o(pVar, 0);
                     }
                 } catch (Exception e7) {
@@ -89,7 +89,7 @@ public final class p {
     }
 
     public final void b(da.b bVar) {
-        Future<?> submit = this.f48973k.submit(new u4.e(5, this, bVar));
+        Future<?> submit = this.f48974k.submit(new u4.e(5, this, bVar));
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics detected incomplete initialization on previous app launch. Will initialize synchronously.", null);
         }

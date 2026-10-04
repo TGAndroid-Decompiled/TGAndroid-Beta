@@ -24,12 +24,12 @@ public final class l0 extends c2.i {
         String str = e2.d0.f8537a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
         c81 c81Var = this.f14482i;
-        float[] fArr = c81Var.f25261b;
-        ByteBuffer byteBuffer2 = c81Var.f25262c;
-        FourierTransform.FFT fft = c81Var.f25260a;
-        d81 d81Var = c81Var.f25264f;
+        float[] fArr = c81Var.f25262b;
+        ByteBuffer byteBuffer2 = c81Var.f25263c;
+        FourierTransform.FFT fft = c81Var.f25261a;
+        d81 d81Var = c81Var.f25265f;
         w71 w71Var = d81Var.K;
-        Handler handler = d81Var.f25633a0;
+        Handler handler = d81Var.f25634a0;
         if (w71Var != null) {
             if (order != c2.h.f3961a && d81Var.I) {
                 if (w71Var.needUpdate()) {
@@ -93,8 +93,8 @@ public final class l0 extends c2.i {
                                     i10++;
                                 }
                             }
-                            if (System.currentTimeMillis() - c81Var.f25263e >= 64) {
-                                c81Var.f25263e = System.currentTimeMillis();
+                            if (System.currentTimeMillis() - c81Var.f25264e >= 64) {
+                                c81Var.f25264e = System.currentTimeMillis();
                                 handler.postDelayed(new uo0(21, c81Var, fArr2), 130L);
                             }
                         }

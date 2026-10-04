@@ -1,7 +1,7 @@
 package y6;
 public abstract class g {
-    public static ClassLoader f50437a;
-    public static Thread f50438b;
+    public static ClassLoader f50438a;
+    public static Thread f50439b;
 
     public static synchronized java.lang.ClassLoader a() {
         throw new UnsupportedOperationException("Method not decompiled: y6.g.a():java.lang.ClassLoader");

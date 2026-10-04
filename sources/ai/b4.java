@@ -128,7 +128,7 @@ public final class b4 implements pg {
     @Override
     public final boolean i1() {
         f60 f60Var = this.f632a.J2;
-        if (f60Var != null && !f60Var.f26311j0) {
+        if (f60Var != null && !f60Var.f26312j0) {
             return true;
         }
         return false;
@@ -160,7 +160,7 @@ public final class b4 implements pg {
             }
         }
         m40 m40Var2 = e6Var.W2;
-        if (e6Var.f841b2.f23862c1) {
+        if (e6Var.f841b2.f23863c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;

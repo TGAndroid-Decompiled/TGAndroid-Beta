@@ -9,25 +9,25 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class ev0 extends org.telegram.ui.Components.zl0 {
-    public final Drawable f36094e3;
-    public final Paint f36095f3;
-    public final RectF f36096g3;
+    public final Drawable f36095e3;
+    public final Paint f36096f3;
+    public final RectF f36097g3;
 
     public ev0(Context context) {
         super(context, null);
         Paint paint = new Paint(1);
-        this.f36095f3 = paint;
-        this.f36096g3 = new RectF();
+        this.f36096f3 = paint;
+        this.f36097g3 = new RectF();
         setWillNotDraw(false);
         setClipToPadding(false);
         setTranslationY(-AndroidUtilities.dp(10.0f));
         dv0 dv0Var = new dv0(this);
         setItemAnimator(dv0Var);
         dv0Var.C = false;
-        dv0Var.f46562m = false;
+        dv0Var.f46563m = false;
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
         paint.setColor(2130706432);
-        this.f36094e3 = context.getResources().getDrawable(R.drawable.photo_tooltip2).mutate();
+        this.f36095e3 = context.getResources().getDrawable(R.drawable.photo_tooltip2).mutate();
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class ev0 extends org.telegram.ui.Components.zl0 {
         int childCount = getChildCount();
         if (childCount > 0) {
             int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(87.0f);
-            Drawable drawable = this.f36094e3;
+            Drawable drawable = this.f36095e3;
             drawable.setBounds(measuredWidth, 0, drawable.getIntrinsicWidth() + measuredWidth, AndroidUtilities.dp(6.0f));
             drawable.draw(canvas);
             int i10 = Integer.MAX_VALUE;
@@ -47,9 +47,9 @@ public final class ev0 extends org.telegram.ui.Components.zl0 {
                 i11 = (int) Math.max(i11, Math.ceil(childAt.getX() + childAt.getMeasuredWidth()));
             }
             if (i10 != Integer.MAX_VALUE && i11 != Integer.MIN_VALUE) {
-                RectF rectF = this.f36096g3;
+                RectF rectF = this.f36097g3;
                 rectF.set(i10 - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f) + i11, AndroidUtilities.dp(103.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f36095f3);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f36096f3);
             }
         }
     }

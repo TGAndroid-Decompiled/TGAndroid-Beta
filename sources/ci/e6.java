@@ -99,8 +99,8 @@ public final class e6 implements oy {
     public final void n() {
         q6 q6Var = this.f5020a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(q6Var.getContext(), 0, q6Var.G1);
-        alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 19));
         hg.k0.o(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -122,7 +122,7 @@ public final class e6 implements oy {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    z5Var = new org.telegram.ui.Components.z5(document.f20043id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(document.f20044id, 1.0f, editText.getPaint().getFontMetricsInt());
                     z5Var.document = document;
                 } else {
                     z5Var = new org.telegram.ui.Components.z5(j3, 1.0f, editText.getPaint().getFontMetricsInt());

@@ -62,7 +62,7 @@ public final class x1 extends FrameLayout {
         this.f11398c = nVar;
         nVar.setLines(2);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
-        nVar.setTextColor(i6.v0(i6.f21223z6, d6Var));
+        nVar.setTextColor(i6.v0(i6.f21224z6, d6Var));
         nVar.setTextSize(1, 14.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -94,7 +94,7 @@ public final class x1 extends FrameLayout {
         }
         qp qpVar = new qp(getContext(), 21, d6Var);
         this.d = qpVar;
-        qpVar.b(-1, i6.f20817d6, i6.f20947k7);
+        qpVar.b(-1, i6.f20818d6, i6.f20948k7);
         qpVar.setDrawUnchecked(false);
         qpVar.setDrawBackgroundAsArc(3);
         addView(qpVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -127,7 +127,7 @@ public final class x1 extends FrameLayout {
         d6 d6Var = this.f11400f;
         spannableStringBuilder.setSpan(new ForegroundColorSpan(i6.v0(i10, d6Var)), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(i6.v0(i6.f21020o6, d6Var));
+            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(i6.v0(i6.f21021o6, d6Var));
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -156,7 +156,7 @@ public final class x1 extends FrameLayout {
             int i11 = w1.d;
             SpannableString spannableString = new SpannableString("+");
             w1 w1Var = new w1(a2Var.a() - 1);
-            this.f11401n[0] = (int) (((e11) w1Var.f11390c).f25878c + AndroidUtilities.dp(10.0f));
+            this.f11401n[0] = (int) (((e11) w1Var.f11390c).f25879c + AndroidUtilities.dp(10.0f));
             spannableString.setSpan(w1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, nVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -234,7 +234,7 @@ public final class x1 extends FrameLayout {
         if (this.f11402r) {
             Paint T0 = i6.T0("paintDivider", this.f11400f);
             if (T0 == null) {
-                T0 = i6.f20940k0;
+                T0 = i6.f20941k0;
             }
             Paint paint = T0;
             float f11 = 64.0f;

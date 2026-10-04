@@ -49,7 +49,7 @@ public final class pa implements CameraView.CameraViewDelegate, r0.n, org.telegr
         kcVar.f5374a0 = defaultWindowInsets.f11527c;
         kcVar.f5377b0 = defaultWindowInsets.d;
         kcVar.f5414n.requestLayout();
-        return r0.l1.f45608b;
+        return r0.l1.f45609b;
     }
 
     @Override

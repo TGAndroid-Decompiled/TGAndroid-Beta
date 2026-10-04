@@ -19,19 +19,19 @@ import org.telegram.ui.Components.sq;
 import org.telegram.ui.oa1;
 import org.telegram.ui.sa1;
 public abstract class c8 extends FrameLayout {
-    public final a8 f21877a;
-    public final b8 f21878b;
-    public final TextView f21879c;
+    public final a8 f21878a;
+    public final b8 f21879b;
+    public final TextView f21880c;
     public final TextView d;
-    public final TextView f21880e;
-    public final TextView f21881f;
+    public final TextView f21881e;
+    public final TextView f21882f;
     public final Paint h;
-    public final org.telegram.ui.Components.h9 f21882n;
-    public final ai.ca f21883r;
-    public final org.telegram.ui.ActionBar.d6 f21884s;
+    public final org.telegram.ui.Components.h9 f21883n;
+    public final ai.ca f21884r;
+    public final org.telegram.ui.ActionBar.d6 f21885s;
     public sa1 v;
-    public final TLRPC.ChatFull f21885w;
-    public boolean f21886x;
+    public final TLRPC.ChatFull f21886w;
+    public boolean f21887x;
 
     public c8(Context context, TLRPC.ChatFull chatFull, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -42,12 +42,12 @@ public abstract class c8 extends FrameLayout {
         float f11;
         float f12;
         this.h = new Paint(1);
-        this.f21882n = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        this.f21883r = new ai.ca(null, false);
-        this.f21885w = chatFull;
-        this.f21884s = d6Var;
+        this.f21883n = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f21884r = new ai.ca(null, false);
+        this.f21886w = chatFull;
+        this.f21885s = d6Var;
         a8 a8Var = new a8(this, context, d6Var);
-        this.f21877a = a8Var;
+        this.f21878a = a8Var;
         setClipChildren(false);
         boolean z10 = LocaleController.isRTL;
         if (!z10) {
@@ -71,7 +71,7 @@ public abstract class c8 extends FrameLayout {
         linearLayout.setOrientation(1);
         LinearLayout f13 = ok.f(context, 0);
         ?? i5Var = new org.telegram.ui.ActionBar.i5(context);
-        this.f21878b = i5Var;
+        this.f21879b = i5Var;
         NotificationCenter.listenEmojiLoading(i5Var);
         i5Var.setTypeface(AndroidUtilities.bold());
         i5Var.setTextSize(16);
@@ -84,7 +84,7 @@ public abstract class c8 extends FrameLayout {
         }
         i5Var.setGravity(i11);
         TextView textView = new TextView(context);
-        this.f21879c = textView;
+        this.f21880c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(-16777216);
         if (!LocaleController.isRTL) {
@@ -96,7 +96,7 @@ public abstract class c8 extends FrameLayout {
         }
         linearLayout.addView(f13, w7.z5.d(-1, -2.0f, 8388659, 0.0f, 7.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f21880e = textView2;
+        this.f21881e = textView2;
         textView2.setTextSize(1, 13.0f);
         textView2.setTextColor(-16777216);
         textView2.setLines(1);
@@ -107,7 +107,7 @@ public abstract class c8 extends FrameLayout {
         textView3.setTextColor(-16777216);
         textView3.setGravity(16);
         TextView textView4 = new TextView(context);
-        this.f21881f = textView4;
+        this.f21882f = textView4;
         textView4.setTextSize(1, 13.0f);
         textView4.setTextColor(-16777216);
         textView4.setGravity(16);
@@ -134,7 +134,7 @@ public abstract class c8 extends FrameLayout {
             f12 = 72.0f;
         }
         addView(linearLayout, w7.z5.d(-1, -2.0f, 0, f11, 0.0f, f12, 0.0f));
-        int i13 = org.telegram.ui.ActionBar.i6.f20925j5;
+        int i13 = org.telegram.ui.ActionBar.i6.f20926j5;
         i5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
         textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
         int i14 = org.telegram.ui.ActionBar.i6.A6;
@@ -149,14 +149,14 @@ public abstract class c8 extends FrameLayout {
         int intrinsicWidth = mutate2.getIntrinsicWidth();
         int intrinsicHeight = mutate2.getIntrinsicHeight();
         sqVar.h = intrinsicWidth;
-        sqVar.f30853n = intrinsicHeight;
+        sqVar.f30854n = intrinsicHeight;
         textView4.setCompoundDrawablesWithIntrinsicBounds(sqVar, (Drawable) null, (Drawable) null, (Drawable) null);
         textView4.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
         sq sqVar2 = new sq(null, mutate2, 0, AndroidUtilities.dp(1.0f));
         int intrinsicWidth2 = mutate2.getIntrinsicWidth();
         int intrinsicHeight2 = mutate2.getIntrinsicHeight();
         sqVar2.h = intrinsicWidth2;
-        sqVar2.f30853n = intrinsicHeight2;
+        sqVar2.f30854n = intrinsicHeight2;
         textView3.setCompoundDrawablesWithIntrinsicBounds(sqVar2, (Drawable) null, (Drawable) null, (Drawable) null);
         textView3.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
         setWillNotDraw(false);
@@ -165,8 +165,8 @@ public abstract class c8 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f21886x) {
-            int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20818d7, this.f21884s);
+        if (this.f21887x) {
+            int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20819d7, this.f21885s);
             Paint paint = this.h;
             paint.setColor(v02);
             if (LocaleController.isRTL) {
@@ -178,7 +178,7 @@ public abstract class c8 extends FrameLayout {
     }
 
     public org.telegram.ui.Components.w9 getImageView() {
-        return this.f21877a;
+        return this.f21878a;
     }
 
     public sa1 getPostInfo() {
@@ -186,31 +186,31 @@ public abstract class c8 extends FrameLayout {
     }
 
     public ai.ca getStoryAvatarParams() {
-        return this.f21883r;
+        return this.f21884r;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f21883r.g();
+        this.f21884r.g();
     }
 
     public void setData(oa1 oa1Var) {
-        TLRPC.User user = oa1Var.f39150a;
-        org.telegram.ui.Components.h9 h9Var = this.f21882n;
+        TLRPC.User user = oa1Var.f39151a;
+        org.telegram.ui.Components.h9 h9Var = this.f21883n;
         h9Var.r(user);
-        TLRPC.User user2 = oa1Var.f39150a;
-        a8 a8Var = this.f21877a;
+        TLRPC.User user2 = oa1Var.f39151a;
+        a8 a8Var = this.f21878a;
         a8Var.e(user2, h9Var);
         a8Var.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
-        this.f21878b.k(oa1Var.f39150a.first_name);
-        this.f21880e.setText(oa1Var.f39151b);
-        this.f21879c.setVisibility(8);
+        this.f21879b.k(oa1Var.f39151a.first_name);
+        this.f21881e.setText(oa1Var.f39152b);
+        this.f21880c.setVisibility(8);
         this.d.setVisibility(8);
-        this.f21881f.setVisibility(8);
+        this.f21882f.setVisibility(8);
     }
 
     public void setImageViewAction(View.OnClickListener onClickListener) {
-        this.f21877a.setOnClickListener(onClickListener);
+        this.f21878a.setOnClickListener(onClickListener);
     }
 }

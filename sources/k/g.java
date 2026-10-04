@@ -105,10 +105,10 @@ public final class g {
         if (this.f14266r >= 2) {
             if (menuItem instanceof m) {
                 m mVar = (m) menuItem;
-                mVar.f15213x = (mVar.f15213x & (-5)) | 4;
+                mVar.f15214x = (mVar.f15214x & (-5)) | 4;
             } else if (menuItem instanceof r) {
                 r rVar = (r) menuItem;
-                l0.a aVar = rVar.f15223c;
+                l0.a aVar = rVar.f15224c;
                 try {
                     if (rVar.d == null) {
                         rVar.d = aVar.getClass().getDeclaredMethod("setExclusiveCheckable", Boolean.TYPE);

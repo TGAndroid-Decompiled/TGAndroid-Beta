@@ -15,25 +15,25 @@ import org.telegram.ui.Components.r2;
 import org.telegram.ui.Components.tn;
 import w7.z5;
 public final class v extends FrameLayout {
-    public final TextView f44651a;
-    public final r f44652b;
-    public final EditTextBoldCursor f44653c;
+    public final TextView f44652a;
+    public final r f44653b;
+    public final EditTextBoldCursor f44654c;
     public int d;
-    public boolean f44654e;
-    public final x f44655f;
+    public boolean f44655e;
+    public final x f44656f;
 
     public v(x xVar, Context context) {
         super(context);
-        this.f44655f = xVar;
+        this.f44656f = xVar;
         TextView textView = new TextView(context);
-        this.f44651a = textView;
+        this.f44652a = textView;
         org.telegram.messenger.f0.q(textView, -1711276033, 1, 14.0f);
         addView(textView, z5.d(-2, -2.0f, 3, 8.0f, 0.0f, 8.0f, 0.0f));
         r rVar = new r(xVar, context);
-        this.f44652b = rVar;
+        this.f44653b = rVar;
         addView(rVar, z5.d(-1, -1.0f, 3, 0.0f, 16.0f, 78.0f, 0.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f44653c = editTextBoldCursor;
+        this.f44654c = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 16.0f);
         editTextBoldCursor.setBackground(i6.b0(AndroidUtilities.dp(10.0f), 436207615));
         editTextBoldCursor.setPadding(0, 0, 0, 0);
@@ -52,8 +52,8 @@ public final class v extends FrameLayout {
 
     public final void a(int i10) {
         this.d = i10;
-        this.f44652b.f44568c = i10;
-        TextView textView = this.f44651a;
+        this.f44653b.f44569c = i10;
+        TextView textView = this.f44652a;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
@@ -69,29 +69,29 @@ public final class v extends FrameLayout {
     }
 
     public final void b() {
-        this.f44654e = true;
-        r rVar = this.f44652b;
-        rVar.d = i0.a.k(rVar.f44569e.f44677f, 255);
+        this.f44655e = true;
+        r rVar = this.f44653b;
+        rVar.d = i0.a.k(rVar.f44570e.f44678f, 255);
         rVar.a();
         rVar.invalidate();
-        EditTextBoldCursor editTextBoldCursor = this.f44653c;
+        EditTextBoldCursor editTextBoldCursor = this.f44654c;
         int selectionStart = editTextBoldCursor.getSelectionStart();
         int selectionEnd = editTextBoldCursor.getSelectionEnd();
         int i10 = this.d;
-        x xVar = this.f44655f;
+        x xVar = this.f44656f;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    editTextBoldCursor.setText(String.valueOf(Color.blue(xVar.f44677f)));
+                    editTextBoldCursor.setText(String.valueOf(Color.blue(xVar.f44678f)));
                 }
             } else {
-                editTextBoldCursor.setText(String.valueOf(Color.green(xVar.f44677f)));
+                editTextBoldCursor.setText(String.valueOf(Color.green(xVar.f44678f)));
             }
         } else {
-            editTextBoldCursor.setText(String.valueOf(Color.red(xVar.f44677f)));
+            editTextBoldCursor.setText(String.valueOf(Color.red(xVar.f44678f)));
         }
         editTextBoldCursor.setSelection(selectionStart, selectionEnd);
-        this.f44654e = false;
+        this.f44655e = false;
     }
 
     @Override

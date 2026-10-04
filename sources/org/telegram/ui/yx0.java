@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.GenericProvider;
 public final class yx0 implements GenericProvider, org.telegram.ui.Components.ol0, z60 {
-    public final by0 f43646a;
+    public final by0 f43647a;
 
     public yx0(by0 by0Var) {
-        this.f43646a = by0Var;
+        this.f43647a = by0Var;
     }
 
     @Override
     public void b(ArrayList arrayList, boolean z10, boolean z11) {
         Iterator it = arrayList.iterator();
         if (!it.hasNext()) {
-            this.f43646a.T();
+            this.f43647a.T();
         } else {
             Long l4 = (Long) it.next();
             throw null;
@@ -24,10 +24,10 @@ public final class yx0 implements GenericProvider, org.telegram.ui.Components.ol
 
     @Override
     public boolean d(int i10, View view) {
-        by0 by0Var = this.f43646a;
-        if (i10 >= by0Var.f35210r && i10 < by0Var.f35211s) {
-            if (by0Var.f35214y == 1) {
-                by0Var.S(Long.valueOf(by0Var.getMessagesController().blockePeers.keyAt(i10 - by0Var.f35210r)), view);
+        by0 by0Var = this.f43647a;
+        if (i10 >= by0Var.f35211r && i10 < by0Var.f35212s) {
+            if (by0Var.f35215y == 1) {
+                by0Var.S(Long.valueOf(by0Var.getMessagesController().blockePeers.keyAt(i10 - by0Var.f35211r)), view);
                 return true;
             }
             throw null;
@@ -37,11 +37,11 @@ public final class yx0 implements GenericProvider, org.telegram.ui.Components.ol
 
     @Override
     public Object provide(Object obj) {
-        by0 by0Var = this.f43646a;
+        by0 by0Var = this.f43647a;
         by0Var.getClass();
-        if (((Integer) obj).intValue() != by0Var.f35212w) {
+        if (((Integer) obj).intValue() != by0Var.f35213w) {
             return null;
         }
-        return Integer.valueOf(org.telegram.ui.ActionBar.i6.l1(0.12f, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21039p7, false)));
+        return Integer.valueOf(org.telegram.ui.ActionBar.i6.l1(0.12f, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21040p7, false)));
     }
 }

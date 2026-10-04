@@ -46,12 +46,12 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, a2, Message
         o oVar = (o) this.d;
         z3.a aVar = (z3.a) obj;
         e2.d.h(oVar.h);
-        byte[] C2 = ob.a.C2(aVar.f52353a, aVar.f52355c);
-        v vVar = oVar.f52380c;
+        byte[] C2 = ob.a.C2(aVar.f52354a, aVar.f52356c);
+        v vVar = oVar.f52381c;
         vVar.getClass();
         vVar.H(C2.length, C2);
-        oVar.f52378a.d(C2.length, vVar);
-        long j3 = aVar.f52354b;
+        oVar.f52379a.d(C2.length, vVar);
+        long j3 = aVar.f52355b;
         long j10 = this.f13650c;
         if (j3 == -9223372036854775807L) {
             if (oVar.h.f3568w == Long.MAX_VALUE) {
@@ -68,7 +68,7 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, a2, Message
                 j10 = j3 + j11;
             }
         }
-        oVar.f52378a.c(j10, this.f13649b | 1, C2.length, 0, null);
+        oVar.f52379a.c(j10, this.f13649b | 1, C2.length, 0, null);
     }
 
     @Override
@@ -164,12 +164,12 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, a2, Message
         List list = (List) this.d;
         int i12 = this.f13649b;
         if (i12 == -1) {
-            i11 = a0Var.f16052t.l0();
+            i11 = a0Var.f16053t.l0();
         } else {
             i11 = i12;
         }
         if (i12 == -1) {
-            j3 = a0Var.f16052t.J0();
+            j3 = a0Var.f16053t.J0();
         } else {
             j3 = this.f13650c;
         }

@@ -7,31 +7,31 @@ import android.graphics.Rect;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class mw0 extends lw0 {
-    public Activity f28738w0;
-    public final Rect f28739x0;
-    public int f28740y0;
-    public boolean f28741z0;
+    public Activity f28739w0;
+    public final Rect f28740x0;
+    public int f28741y0;
+    public boolean f28742z0;
 
     public mw0(Context context, Activity activity) {
         super(context, null);
-        this.f28739x0 = new Rect();
+        this.f28740x0 = new Rect();
         setActivity(activity);
     }
 
     @Override
     public int R() {
         View rootView = getRootView();
-        Rect rect = this.f28739x0;
+        Rect rect = this.f28740x0;
         getWindowVisibleDisplayFrame(rect);
         int i10 = 0;
-        if (this.f28741z0) {
+        if (this.f28742z0) {
             int height = rootView.getHeight();
             if (rect.top != 0) {
                 i10 = AndroidUtilities.statusBarHeight;
             }
             return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
         }
-        int height2 = (this.f28738w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
+        int height2 = (this.f28739w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
         if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
             return 0;
         }
@@ -41,10 +41,10 @@ public abstract class mw0 extends lw0 {
     @Override
     public void S() {
         boolean z10;
-        if (this.f28458n == null && this.f28463r.isEmpty()) {
+        if (this.f28459n == null && this.f28464r.isEmpty()) {
             return;
         }
-        this.f28740y0 = R();
+        this.f28741y0 = R();
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             z10 = true;
@@ -61,7 +61,7 @@ public abstract class mw0 extends lw0 {
 
     @Override
     public int getKeyboardHeight() {
-        return this.f28740y0;
+        return this.f28741y0;
     }
 
     @Override
@@ -71,10 +71,10 @@ public abstract class mw0 extends lw0 {
     }
 
     public void setActivity(Activity activity) {
-        this.f28738w0 = activity;
+        this.f28739w0 = activity;
     }
 
     public void setWithoutWindow(boolean z10) {
-        this.f28741z0 = z10;
+        this.f28742z0 = z10;
     }
 }

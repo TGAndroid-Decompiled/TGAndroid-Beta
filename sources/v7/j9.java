@@ -1,25 +1,25 @@
 package v7;
 public final class j9 extends h9 {
-    public static final j9 f47974e = new j9(0, new Object[0]);
-    public final transient Object[] f47975c;
+    public static final j9 f47975e = new j9(0, new Object[0]);
+    public final transient Object[] f47976c;
     public final transient int d;
 
     public j9(int i10, Object[] objArr) {
-        this.f47975c = objArr;
+        this.f47976c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         w7.y7.a(i10, this.d);
-        Object obj = this.f47975c[i10];
+        Object obj = this.f47976c[i10];
         obj.getClass();
         return obj;
     }
 
     @Override
     public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f47975c;
+        Object[] objArr2 = this.f47976c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -37,7 +37,7 @@ public final class j9 extends h9 {
 
     @Override
     public final Object[] p() {
-        return this.f47975c;
+        return this.f47976c;
     }
 
     @Override

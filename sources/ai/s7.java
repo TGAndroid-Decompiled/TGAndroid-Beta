@@ -48,7 +48,7 @@ public final class s7 extends FrameLayout {
         this.h = l7Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.f1638s = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20889h5, dVar), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20890h5, dVar), PorterDuff.Mode.MULTIPLY));
         q7 q7Var = new q7(this, context);
         this.f1634e = q7Var;
         m7 m7Var = new m7(this, context);
@@ -196,7 +196,7 @@ public final class s7 extends FrameLayout {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
             ofFloat.addUpdateListener(new a(this, 11));
-            ofFloat.setInterpolator(org.telegram.ui.ActionBar.p1.f21443w);
+            ofFloat.setInterpolator(org.telegram.ui.ActionBar.p1.f21444w);
             ofFloat.setDuration(250L);
             ofFloat.start();
         }
@@ -205,7 +205,7 @@ public final class s7 extends FrameLayout {
             currentPage.f1221r.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
             FrameLayout frameLayout = currentPage.f1217c;
             if (frameLayout.getTranslationY() != 0.0f) {
-                currentPage.d.w((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.p1.f21443w);
+                currentPage.d.w((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.p1.f21444w);
             }
         }
     }
@@ -235,7 +235,7 @@ public final class s7 extends FrameLayout {
                         gcVar.f991c = null;
                     }
                     zb zbVar = jcVar.f1174n0;
-                    int i12 = messageObject.storyItem.f20274id;
+                    int i12 = messageObject.storyItem.f20275id;
                     jc jcVar2 = zbVar.N0;
                     int i13 = 0;
                     while (true) {

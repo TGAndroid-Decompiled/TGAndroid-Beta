@@ -4,14 +4,14 @@ import com.google.android.gms.internal.cast.l0;
 import java.util.Iterator;
 import java.util.Map;
 public final class i extends f {
-    public final transient l0 f46904c;
+    public final transient l0 f46905c;
     public final transient Object[] d;
-    public final transient int f46905e;
+    public final transient int f46906e;
 
     public i(l0 l0Var, Object[] objArr, int i10) {
-        this.f46904c = l0Var;
+        this.f46905c = l0Var;
         this.d = objArr;
-        this.f46905e = i10;
+        this.f46906e = i10;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class i extends f {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f46904c.get(key))) {
+            if (value != null && value.equals(this.f46905c.get(key))) {
                 return true;
             }
         }
@@ -29,26 +29,26 @@ public final class i extends f {
 
     @Override
     public final int i(Object[] objArr) {
-        d dVar = this.f46900b;
+        d dVar = this.f46901b;
         if (dVar == null) {
             dVar = new h(this);
-            this.f46900b = dVar;
+            this.f46901b = dVar;
         }
         return dVar.i(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        d dVar = this.f46900b;
+        d dVar = this.f46901b;
         if (dVar == null) {
             dVar = new h(this);
-            this.f46900b = dVar;
+            this.f46901b = dVar;
         }
         return dVar.listIterator(0);
     }
 
     @Override
     public final int size() {
-        return this.f46905e;
+        return this.f46906e;
     }
 }

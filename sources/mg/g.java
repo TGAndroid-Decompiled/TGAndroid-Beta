@@ -22,20 +22,20 @@ import s4.c1;
 import s4.p0;
 import w7.z5;
 public final class g extends yl0 {
-    public final int f16411c = 0;
+    public final int f16412c = 0;
     public final Context d;
-    public final FrameLayout f16412e;
+    public final FrameLayout f16413e;
 
     public g(i iVar, LaunchActivity launchActivity) {
-        this.f16412e = iVar;
+        this.f16413e = iVar;
         this.d = launchActivity;
     }
 
     @Override
     public final boolean D(c1 c1Var) {
-        switch (this.f16411c) {
+        switch (this.f16412c) {
             case 0:
-                if (j.d(3)[c1Var.f46527f] == 1) {
+                if (j.d(3)[c1Var.f46528f] == 1) {
                     return true;
                 }
                 return false;
@@ -46,19 +46,19 @@ public final class g extends yl0 {
 
     @Override
     public final int h() {
-        switch (this.f16411c) {
+        switch (this.f16412c) {
             case 0:
-                return ((i) this.f16412e).E.size();
+                return ((i) this.f16413e).E.size();
             default:
-                return ((f91) this.f16412e).h.size();
+                return ((f91) this.f16413e).h.size();
         }
     }
 
     @Override
     public long i(int i10) {
-        switch (this.f16411c) {
+        switch (this.f16412c) {
             case 1:
-                return ((c91) ((f91) this.f16412e).h.get(i10)).f25276a;
+                return ((c91) ((f91) this.f16413e).h.get(i10)).f25277a;
             default:
                 return super.i(i10);
         }
@@ -66,9 +66,9 @@ public final class g extends yl0 {
 
     @Override
     public final int j(int i10) {
-        switch (this.f16411c) {
+        switch (this.f16412c) {
             case 0:
-                return j.c(((a) ((i) this.f16412e).E.get(i10)).f16396b);
+                return j.c(((a) ((i) this.f16413e).E.get(i10)).f16397b);
             default:
                 return 0;
         }
@@ -78,23 +78,23 @@ public final class g extends yl0 {
     public final void v(c1 c1Var, int i10) {
         boolean z10;
         e91 e91Var;
-        switch (this.f16411c) {
+        switch (this.f16412c) {
             case 0:
-                View view = c1Var.f46523a;
-                a aVar = (a) ((i) this.f16412e).E.get(i10);
-                int i11 = aVar.f16396b;
-                r6 r6Var = aVar.f16399f;
-                CharSequence charSequence = aVar.f16395a;
+                View view = c1Var.f46524a;
+                a aVar = (a) ((i) this.f16413e).E.get(i10);
+                int i11 = aVar.f16397b;
+                r6 r6Var = aVar.f16400f;
+                CharSequence charSequence = aVar.f16396a;
                 int c10 = j.c(i11);
                 if (c10 != 0) {
                     if (c10 != 1) {
                         if (c10 == 2) {
                             h hVar = (h) view;
-                            hVar.f16417f = charSequence.toString();
+                            hVar.f16418f = charSequence.toString();
                             hVar.d = ((Float) r6Var.get(null)).floatValue();
-                            hVar.f16414b = aVar.d;
-                            hVar.f16415c = aVar.f16398e;
-                            hVar.f16416e = r6Var;
+                            hVar.f16415b = aVar.d;
+                            hVar.f16416c = aVar.f16399e;
+                            hVar.f16417e = r6Var;
                             hVar.invalidate();
                             return;
                         }
@@ -106,18 +106,18 @@ public final class g extends yl0 {
                     return;
                 }
                 x1 x1Var = (x1) view;
-                x1Var.setTextColor(i6.w0(null, i6.f20925j5, false));
+                x1Var.setTextColor(i6.w0(null, i6.f20926j5, false));
                 x1Var.a(0, charSequence);
                 return;
             default:
-                d91 d91Var = (d91) c1Var.f46523a;
-                f91 f91Var = (f91) this.f16412e;
+                d91 d91Var = (d91) c1Var.f46524a;
+                f91 f91Var = (f91) this.f16413e;
                 c91 c91Var = (c91) f91Var.h.get(i10);
-                d91Var.f25666a = c91Var;
-                d91Var.setContentDescription(c91Var.f25277b);
+                d91Var.f25667a = c91Var;
+                d91Var.setContentDescription(c91Var.f25278b);
                 d91Var.setAlpha(1.0f);
                 d91Var.requestLayout();
-                if (f91Var.m0 && (e91Var = f91Var.f26419y) != null && ((n2.c) e91Var).b(i10)) {
+                if (f91Var.m0 && (e91Var = f91Var.f26420y) != null && ((n2.c) e91Var).b(i10)) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -130,7 +130,7 @@ public final class g extends yl0 {
     @Override
     public final c1 x(ViewGroup viewGroup, int i10) {
         FrameLayout frameLayout;
-        switch (this.f16411c) {
+        switch (this.f16412c) {
             case 0:
                 int c10 = j.c(j.d(3)[i10]);
                 Context context = this.d;
@@ -144,7 +144,7 @@ public final class g extends yl0 {
                         frameLayout2.h = textPaint;
                         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
                         yo0 yo0Var = new yo0(context);
-                        frameLayout2.f16413a = yo0Var;
+                        frameLayout2.f16414a = yo0Var;
                         yo0Var.setReportChanges(true);
                         yo0Var.setDelegate(new k2.e((Object) frameLayout2, 4));
                         yo0Var.setImportantForAccessibility(2);
@@ -157,12 +157,12 @@ public final class g extends yl0 {
                 frameLayout.setLayoutParams(new p0(-1, -2));
                 return new c1(frameLayout);
             default:
-                return new c1(new d91((f91) this.f16412e, this.d));
+                return new c1(new d91((f91) this.f16413e, this.d));
         }
     }
 
     public g(f91 f91Var, Context context) {
-        this.f16412e = f91Var;
+        this.f16413e = f91Var;
         this.d = context;
     }
 }

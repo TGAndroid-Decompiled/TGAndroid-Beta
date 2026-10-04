@@ -16,7 +16,7 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.zl0;
 public final class d extends f61 {
-    public static final int f42158a = 0;
+    public static final int f42159a = 0;
 
     static {
         f61.setup(new f61());
@@ -30,20 +30,20 @@ public final class d extends f61 {
             eVar.setAsShowMore((k) g61Var.H);
             return;
         }
-        int i11 = g61Var.f26681z;
-        String charSequence = g61Var.f26668l.toString();
+        int i11 = g61Var.f26682z;
+        String charSequence = g61Var.f26669l.toString();
         View.OnClickListener onClickListener = g61Var.D;
         k kVar = (k) g61Var.H;
-        ImageView imageView = eVar.f42166a;
+        ImageView imageView = eVar.f42167a;
         imageView.setVisibility(0);
         int i12 = kVar.F;
         int i13 = kVar.H;
-        TextView textView = eVar.f42167b;
+        TextView textView = eVar.f42168b;
         textView.setTextColor(i13);
         int l1 = i6.l1(0.6f, i13);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(l1, mode));
-        ImageView imageView2 = eVar.f42168c;
+        ImageView imageView2 = eVar.f42169c;
         imageView2.setColorFilter(new PorterDuffColorFilter(i6.l1(0.6f, i13), mode));
         imageView2.setBackground(i6.Z(0, i6.l1(0.15f, i13), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
         if (i11 == 0) {
@@ -55,7 +55,7 @@ public final class d extends f61 {
         textView.setText(charSequence);
         imageView2.setOnClickListener(onClickListener);
         eVar.d.setColor(i6.l1(0.1f, kVar.H));
-        eVar.f42169e = z10;
+        eVar.f42170e = z10;
         eVar.setWillNotDraw(!z10);
     }
 

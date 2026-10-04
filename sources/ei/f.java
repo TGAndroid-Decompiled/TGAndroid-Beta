@@ -392,7 +392,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     boolean z10 = !g1Var.f11205e;
                     g1Var.f11205e = z10;
                     ((w8) view3).setChecked(z10);
-                    g1Var.f11202a.f25244f3.N(true);
+                    g1Var.f11202a.f25245f3.N(true);
                     g1Var.X(true);
                     return;
                 } else if (i12 == -2) {
@@ -401,7 +401,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     n2Var.f11177c = new ai.g3(18, g1Var, view3);
                     g1Var.presentFragment((org.telegram.ui.ActionBar.n2) n2Var);
                     return;
-                } else if (g61Var2.f17182a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
+                } else if (g61Var2.f17183a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
                     if (!LocaleController.isRTL ? floatValue >= view3.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
                         if (g1Var.h[g61Var2.d].isEmpty()) {
                             ((j5) view3).setChecked(true);
@@ -431,7 +431,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = g61Var2.f26668l;
+                    CharSequence charSequence = g61Var2.f26669l;
                     ArrayList arrayList = g1Var.h[g61Var2.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
@@ -467,16 +467,16 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     }
                     w8 w8Var = (w8) view4;
                     boolean z11 = i1Var2.f11226r;
-                    g61Var3.f26662e = z11;
+                    g61Var3.f26663e = z11;
                     w8Var.setChecked(z11);
                     boolean z12 = i1Var2.f11226r;
                     if (z12) {
-                        i11 = i6.f20854f6;
+                        i11 = i6.f20855f6;
                     } else {
-                        i11 = i6.f20837e6;
+                        i11 = i6.f20838e6;
                     }
                     w8Var.b(i6.w0(null, i11, false), z12);
-                    i1Var2.f11225n.f25244f3.N(true);
+                    i1Var2.f11225n.f25245f3.N(true);
                     qc qcVar = i1Var2.f11224f;
                     if (qcVar != null) {
                         qcVar.run();
@@ -499,9 +499,9 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     if (qcVar2 != null) {
                         qcVar2.run();
                     }
-                    i1Var2.f11225n.f25244f3.N(true);
+                    i1Var2.f11225n.f25245f3.N(true);
                     return;
-                } else if (g61Var3.f17182a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (g61Var3.f17183a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i26 = i10 - 1;
                     if (i26 >= 0) {
                         f1Var = (hg.f1) arrayList3.get(i26);
@@ -535,7 +535,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                         f1Var3.f11190a = intValue;
                                         ((r8) view4).u(f1.a(intValue), true);
                                         if (T != i1Var3.T()) {
-                                            i1Var3.f11225n.f25244f3.N(true);
+                                            i1Var3.f11225n.f25245f3.N(true);
                                         }
                                         qc qcVar3 = i1Var3.f11224f;
                                         if (qcVar3 != null) {
@@ -550,7 +550,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                         f1Var3.f11191b = intValue2;
                                         ((r8) view4).u(f1.a(intValue2), true);
                                         if (T2 != i1Var4.T()) {
-                                            i1Var4.f11225n.f25244f3.N(true);
+                                            i1Var4.f11225n.f25245f3.N(true);
                                         }
                                         qc qcVar4 = i1Var4.f11224f;
                                         if (qcVar4 != null) {
@@ -582,7 +582,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                         f1Var3.f11190a = intValue;
                                         ((r8) view4).u(f1.a(intValue), true);
                                         if (T != i1Var3.T()) {
-                                            i1Var3.f11225n.f25244f3.N(true);
+                                            i1Var3.f11225n.f25245f3.N(true);
                                         }
                                         qc qcVar3 = i1Var3.f11224f;
                                         if (qcVar3 != null) {
@@ -597,7 +597,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                         f1Var3.f11191b = intValue2;
                                         ((r8) view4).u(f1.a(intValue2), true);
                                         if (T2 != i1Var4.T()) {
-                                            i1Var4.f11225n.f25244f3.N(true);
+                                            i1Var4.f11225n.f25245f3.N(true);
                                         }
                                         qc qcVar4 = i1Var4.f11224f;
                                         if (qcVar4 != null) {
@@ -614,7 +614,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new hg.f1(0, 1439));
                         }
-                        i1Var2.f11225n.f25244f3.N(true);
+                        i1Var2.f11225n.f25245f3.N(true);
                         qc qcVar3 = i1Var2.f11224f;
                         if (qcVar3 != null) {
                             qcVar3.run();

@@ -51,11 +51,11 @@ public final class l extends Drawable {
         kVar.k(0.3f, 250L, trVar);
         kVar.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar.t(AndroidUtilities.dpf2(12.0f));
-        kVar.f29239b = 17;
+        kVar.f29240b = 17;
         kVar2.k(0.3f, 250L, trVar);
         kVar2.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar2.t(AndroidUtilities.dpf2(12.0f));
-        kVar2.f29239b = 17;
+        kVar2.f29240b = 17;
         e(-1, -15033089, -1);
     }
 
@@ -94,7 +94,7 @@ public final class l extends Drawable {
         rect.set((int) (this.f5472n - AndroidUtilities.dp(20.0f)), (int) (this.f5473o - AndroidUtilities.dp(20.0f)), (int) (this.f5472n + AndroidUtilities.dp(20.0f)), (int) (this.f5473o + AndroidUtilities.dp(20.0f)));
         k kVar = this.f5463c;
         kVar.setBounds(rect);
-        kVar.f29257w = (int) (Color.alpha(this.f5470l) * f7);
+        kVar.f29258w = (int) (Color.alpha(this.f5470l) * f7);
         kVar.draw(canvas);
         if (i10 > 0) {
             Path path = this.f5466g;
@@ -103,7 +103,7 @@ public final class l extends Drawable {
             canvas.clipPath(path);
             k kVar2 = this.d;
             kVar2.setBounds(rect);
-            kVar2.f29257w = (int) (f7 * 255.0f);
+            kVar2.f29258w = (int) (f7 * 255.0f);
             kVar2.draw(canvas);
         }
         canvas.restore();
@@ -120,7 +120,7 @@ public final class l extends Drawable {
                 porterDuffXfermode = null;
             }
             this.f5461a.setXfermode(porterDuffXfermode);
-            TextPaint textPaint = this.f5463c.f29238a;
+            TextPaint textPaint = this.f5463c.f29239a;
             if (z10) {
                 porterDuffXfermode2 = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
             }

@@ -2,9 +2,9 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class py extends TLRPC.Dialog {
-    public final int f39554a;
+    public final int f39555a;
 
     public py(int i10) {
-        this.f39554a = i10;
+        this.f39555a = i10;
     }
 }

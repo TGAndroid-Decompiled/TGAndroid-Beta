@@ -16,13 +16,13 @@ public final class jb0 extends g91 {
         boolean z10;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.U.f27359f.f26732e;
+            View[] viewArr = this.U.f27360f.f26733e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     cc0 cc0Var = (cc0) view;
-                    if (cc0Var.f25315a == 0) {
-                        z10 = cc0Var.f25321e.f21956i;
+                    if (cc0Var.f25316a == 0) {
+                        z10 = cc0Var.f25322e.f21957i;
                         break;
                     }
                 }
@@ -40,24 +40,24 @@ public final class jb0 extends g91 {
 
     @Override
     public final void u() {
-        View view = this.f26732e[0];
+        View view = this.f26733e[0];
         if (view instanceof cc0) {
-            ((cc0) view).f25321e.W();
+            ((cc0) view).f25322e.W();
         }
     }
 
     @Override
     public final void w(boolean z10) {
         ic0 ic0Var = this.U;
-        ic0Var.f27358e.setSelectedTab(ic0Var.f27359f.getPositionAnimated());
-        View[] viewArr = this.f26732e;
+        ic0Var.f27359e.setSelectedTab(ic0Var.f27360f.getPositionAnimated());
+        View[] viewArr = this.f26733e;
         View view = viewArr[0];
         if (view instanceof cc0) {
-            ((cc0) view).f25321e.H();
+            ((cc0) view).f25322e.H();
         }
         View view2 = viewArr[1];
         if (view2 instanceof cc0) {
-            ((cc0) view2).f25321e.H();
+            ((cc0) view2).f25322e.H();
         }
     }
 }

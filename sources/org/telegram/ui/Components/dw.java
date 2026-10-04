@@ -6,7 +6,7 @@ public final class dw extends cw {
     public final ew K;
 
     public dw(ew ewVar, Context context, int i10, int i11) {
-        super(ewVar.f26161s, context, i10, i11);
+        super(ewVar.f26162s, context, i10, i11);
         this.K = ewVar;
     }
 

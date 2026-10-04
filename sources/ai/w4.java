@@ -49,7 +49,7 @@ public final class w4 implements org.telegram.ui.Components.pb {
         org.telegram.ui.ActionBar.d6 d6Var;
         switch (this.f1799a) {
             case 0:
-                if (rcVar.f30331a == 2 && (x5Var = ((a5) this.f1800b).f567x.Q1) != null) {
+                if (rcVar.f30332a == 2 && (x5Var = ((a5) this.f1800b).f567x.Q1) != null) {
                     jc jcVar = ((ac) x5Var).d;
                     jcVar.Y0 = true;
                     jcVar.P();
@@ -67,9 +67,9 @@ public final class w4 implements org.telegram.ui.Components.pb {
             case 9:
                 return;
             case 10:
-                org.telegram.ui.Components.vb vbVar = rcVar.f30334e;
+                org.telegram.ui.Components.vb vbVar = rcVar.f30335e;
                 xh.j0 j0Var = (xh.j0) this.f1800b;
-                ch.d c10 = j0Var.f50023e.c(vbVar, null, true);
+                ch.d c10 = j0Var.f50024e.c(vbVar, null, true);
                 d6Var = ((org.telegram.ui.ActionBar.f3) j0Var).resourcesProvider;
                 dh.e eVar = new dh.e(d6Var);
                 eVar.f8353e = new d2.c(4);
@@ -96,7 +96,7 @@ public final class w4 implements org.telegram.ui.Components.pb {
         x5 x5Var;
         switch (this.f1799a) {
             case 0:
-                if (rcVar.f30331a == 2 && (x5Var = ((a5) this.f1800b).f567x.Q1) != null) {
+                if (rcVar.f30332a == 2 && (x5Var = ((a5) this.f1800b).f567x.Q1) != null) {
                     jc jcVar = ((ac) x5Var).d;
                     jcVar.Y0 = false;
                     jcVar.P();
@@ -167,7 +167,7 @@ public final class w4 implements org.telegram.ui.Components.pb {
                 dp = AndroidUtilities.dp(12.0f);
                 break;
             case 4:
-                return ((org.telegram.ui.Components.x7) this.f1800b).f32730e.E.getHeight();
+                return ((org.telegram.ui.Components.x7) this.f1800b).f32731e.E.getHeight();
             case 5:
                 return ((org.telegram.ui.ActionBar.n2) this.f1800b).getBottomInset();
             case 6:
@@ -178,10 +178,10 @@ public final class w4 implements org.telegram.ui.Components.pb {
                 return pbVar.f(i10);
             case 7:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((gm) this.f1800b).f26886c.f29642b.getBottomInset();
+                dp = ((gm) this.f1800b).f26887c.f29643b.getBottomInset();
                 break;
             case 8:
-                FrameLayout frameLayout = ((qy0) this.f1800b).f30211w;
+                FrameLayout frameLayout = ((qy0) this.f1800b).f30212w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
@@ -196,7 +196,7 @@ public final class w4 implements org.telegram.ui.Components.pb {
             case 10:
                 return 0;
             default:
-                return (int) ((zg.b0) ((yh.t3) this.f1800b).f52006c).f53334u;
+                return (int) ((zg.b0) ((yh.t3) this.f1800b).f52007c).f53335u;
         }
         return dp + editTextHeight;
     }

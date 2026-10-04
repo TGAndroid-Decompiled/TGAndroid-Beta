@@ -1,6 +1,6 @@
 package v7;
 public final class v3 implements ia.d {
-    public static final v3 f48067a = new Object();
+    public static final v3 f48068a = new Object();
 
     static {
         t8.b.t(t8.b.l(h.class, t8.b.p(2, t8.b.l(h.class, new e(1)))));

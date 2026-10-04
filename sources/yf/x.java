@@ -25,32 +25,32 @@ public final class x extends View {
     public final AtomicBoolean G;
     public final Handler H;
     public final c1 I;
-    public int f51017a;
-    public long f51018b;
-    public int f51019c;
+    public int f51018a;
+    public long f51019b;
+    public int f51020c;
     public pf.b d;
-    public final AtomicInteger f51020e;
-    public int f51021f;
+    public final AtomicInteger f51021e;
+    public int f51022f;
     public final Paint h;
-    public final Paint f51022n;
-    public WindowManager f51023r;
-    public WindowManager.LayoutParams f51024s;
+    public final Paint f51023n;
+    public WindowManager f51024r;
+    public WindowManager.LayoutParams f51025s;
     public Window v;
-    public HandlerThread f51025w;
-    public v f51026x;
-    public View f51027y;
+    public HandlerThread f51026w;
+    public v f51027x;
+    public View f51028y;
 
     public x(LaunchActivity launchActivity) {
         super(launchActivity.getApplicationContext());
-        this.f51017a = 0;
-        this.f51018b = 0L;
-        this.f51019c = 0;
-        this.f51020e = new AtomicInteger(0);
-        this.f51021f = 0;
+        this.f51018a = 0;
+        this.f51019b = 0L;
+        this.f51020c = 0;
+        this.f51021e = new AtomicInteger(0);
+        this.f51022f = 0;
         Paint paint = new Paint(1);
         this.h = paint;
         Paint paint2 = new Paint(1);
-        this.f51022n = paint2;
+        this.f51023n = paint2;
         this.F = new AtomicBoolean(false);
         this.G = new AtomicBoolean(false);
         this.H = new Handler(Looper.getMainLooper());
@@ -66,16 +66,16 @@ public final class x extends View {
     public static void a(FrameMetrics frameMetrics) {
         w[] values;
         for (w wVar : w.values()) {
-            if (Build.VERSION.SDK_INT >= wVar.f51015c) {
-                long metric = frameMetrics.getMetric(wVar.f51013a);
+            if (Build.VERSION.SDK_INT >= wVar.f51016c) {
+                long metric = frameMetrics.getMetric(wVar.f51014a);
                 wVar.d = metric;
                 if (metric >= 0) {
                     double d = metric / 1000000.0d;
-                    double d10 = wVar.f51016e;
+                    double d10 = wVar.f51017e;
                     if (d10 != 0.0d) {
                         d = ((d - d10) * 0.05d) + d10;
                     }
-                    wVar.f51016e = d;
+                    wVar.f51017e = d;
                 }
             } else {
                 wVar.d = Long.MIN_VALUE;
@@ -86,31 +86,31 @@ public final class x extends View {
     public static x b(LaunchActivity launchActivity, k0 k0Var) {
         x xVar = new x(launchActivity);
         xVar.setObservedView(k0Var);
-        xVar.f51023r = (WindowManager) launchActivity.getSystemService("window");
+        xVar.f51024r = (WindowManager) launchActivity.getSystemService("window");
         xVar.v = launchActivity.getWindow();
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-2, -2, 2, 792, -3);
-        xVar.f51024s = layoutParams;
+        xVar.f51025s = layoutParams;
         layoutParams.gravity = 8388627;
         int dp = AndroidUtilities.dp(12);
-        WindowManager.LayoutParams layoutParams2 = xVar.f51024s;
+        WindowManager.LayoutParams layoutParams2 = xVar.f51025s;
         layoutParams2.x = dp;
         layoutParams2.y = dp;
         layoutParams2.width = AndroidUtilities.dp(260.0f);
-        xVar.f51023r.addView(xVar, xVar.f51024s);
+        xVar.f51024r.addView(xVar, xVar.f51025s);
         xVar.G.set(true);
         if (xVar.F.getAndSet(true)) {
             return xVar;
         }
         HandlerThread handlerThread = new HandlerThread("FrameMetrics");
-        xVar.f51025w = handlerThread;
+        xVar.f51026w = handlerThread;
         handlerThread.start();
-        Handler handler = new Handler(xVar.f51025w.getLooper());
+        Handler handler = new Handler(xVar.f51026w.getLooper());
         ?? obj = new Object();
-        xVar.f51026x = obj;
+        xVar.f51027x = obj;
         xVar.v.addOnFrameMetricsAvailableListener(obj, handler);
         xVar.d = new pf.b(xVar, 3);
         Choreographer.getInstance().postFrameCallback(xVar.d);
-        View view = xVar.f51027y;
+        View view = xVar.f51028y;
         if (view != null) {
             xVar.E = new tf.a(1, xVar);
             ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
@@ -127,14 +127,14 @@ public final class x extends View {
         this.F.set(false);
         this.H.removeCallbacks(this.I);
         Window window = this.v;
-        if (window != null && (vVar = this.f51026x) != null) {
+        if (window != null && (vVar = this.f51027x) != null) {
             window.removeOnFrameMetricsAvailableListener(vVar);
         }
         if (this.d != null) {
             Choreographer.getInstance().removeFrameCallback(this.d);
             this.d = null;
         }
-        View view = this.f51027y;
+        View view = this.f51028y;
         if (view != null && this.E != null) {
             ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
             if (viewTreeObserver.isAlive()) {
@@ -142,18 +142,18 @@ public final class x extends View {
             }
             this.E = null;
         }
-        HandlerThread handlerThread = this.f51025w;
+        HandlerThread handlerThread = this.f51026w;
         if (handlerThread != null) {
             handlerThread.quitSafely();
         }
-        if (this.f51023r != null && this.G.getAndSet(false)) {
+        if (this.f51024r != null && this.G.getAndSet(false)) {
             try {
-                this.f51023r.removeViewImmediate(this);
+                this.f51024r.removeViewImmediate(this);
             } catch (Throwable unused) {
             }
         }
-        this.f51023r = null;
-        this.f51024s = null;
+        this.f51024r = null;
+        this.f51025s = null;
         this.v = null;
     }
 
@@ -189,27 +189,27 @@ public final class x extends View {
         long j12 = 0;
         while (true) {
             float f11 = f10;
-            Paint paint = xVar.f51022n;
+            Paint paint = xVar.f51023n;
             if (i10 < length2) {
                 int i11 = length2;
                 w wVar = values[i10];
                 int i12 = i10;
-                if (Build.VERSION.SDK_INT >= wVar.f51015c) {
+                if (Build.VERSION.SDK_INT >= wVar.f51016c) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                String str2 = wVar.f51014b;
+                String str2 = wVar.f51015b;
                 long j13 = j12;
                 if (z10) {
                     long j14 = wVar.d;
                     if (j14 >= 0) {
-                        format = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", str2, Double.valueOf(j14 / 1000000.0d), Double.valueOf(wVar.f51016e));
+                        format = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", str2, Double.valueOf(j14 / 1000000.0d), Double.valueOf(wVar.f51017e));
                         switch (wVar.ordinal()) {
                             case 0:
                             case 7:
                                 j12 = j13 + wVar.d;
-                                d10 += wVar.f51016e;
+                                d10 += wVar.f51017e;
                                 continue;
                                 canvas.drawText(format, dp2, f7, paint);
                                 f7 += f11;
@@ -222,24 +222,24 @@ public final class x extends View {
                             case 3:
                             case 4:
                                 j3 += wVar.d;
-                                d11 += wVar.f51016e;
+                                d11 += wVar.f51017e;
                                 break;
                             case 5:
                                 long j15 = wVar.d;
                                 j3 += j15;
-                                d = wVar.f51016e;
+                                d = wVar.f51017e;
                                 d11 += d;
                                 j10 += j15;
                                 d13 += d;
                                 break;
                             case 6:
                                 j10 += wVar.d;
-                                d = wVar.f51016e;
+                                d = wVar.f51017e;
                                 d13 += d;
                                 break;
                             case 8:
                                 j11 += wVar.d;
-                                d12 += wVar.f51016e;
+                                d12 += wVar.f51017e;
                                 break;
                         }
                         j12 = j13;
@@ -280,14 +280,14 @@ public final class x extends View {
                 float f16 = f15 + f11;
                 canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "frame", Double.valueOf(max / 1000000.0d), Double.valueOf(max2)), dp2, f16, paint);
                 float f17 = f16 + f11 + f11;
-                canvas.drawText(String.format(locale, "%-16s : %d /s", "vsync", Integer.valueOf(this.f51019c)), dp2, f17, paint);
+                canvas.drawText(String.format(locale, "%-16s : %d /s", "vsync", Integer.valueOf(this.f51020c)), dp2, f17, paint);
                 float f18 = f17 + f11;
-                if (this.f51027y != null) {
+                if (this.f51028y != null) {
                     str = "onDraw";
                 } else {
                     str = "onDraw (none)";
                 }
-                canvas.drawText(String.format(locale, "%-16s : %d /s", str, Integer.valueOf(this.f51021f)), dp2, f18, paint);
+                canvas.drawText(String.format(locale, "%-16s : %d /s", str, Integer.valueOf(this.f51022f)), dp2, f18, paint);
                 return;
             }
         }
@@ -300,7 +300,7 @@ public final class x extends View {
 
     public void setObservedView(View view) {
         View view2;
-        View view3 = this.f51027y;
+        View view3 = this.f51028y;
         if (view3 != null && this.E != null) {
             ViewTreeObserver viewTreeObserver = view3.getViewTreeObserver();
             if (viewTreeObserver.isAlive()) {
@@ -308,8 +308,8 @@ public final class x extends View {
             }
             this.E = null;
         }
-        this.f51027y = view;
-        if (this.F.get() && (view2 = this.f51027y) != null) {
+        this.f51028y = view;
+        if (this.F.get() && (view2 = this.f51028y) != null) {
             this.E = new tf.a(1, this);
             ViewTreeObserver viewTreeObserver2 = view2.getViewTreeObserver();
             if (viewTreeObserver2.isAlive()) {

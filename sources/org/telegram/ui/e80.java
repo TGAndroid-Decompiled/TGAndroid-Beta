@@ -6,27 +6,27 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 public final class e80 implements Runnable {
-    public final int f35955a;
-    public final f80 f35956b;
-    public final String f35957c;
+    public final int f35956a;
+    public final f80 f35957b;
+    public final String f35958c;
 
     public e80(f80 f80Var, String str, int i10) {
-        this.f35955a = i10;
-        this.f35956b = f80Var;
-        this.f35957c = str;
+        this.f35956a = i10;
+        this.f35957b = f80Var;
+        this.f35958c = str;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f35955a) {
+        switch (this.f35956a) {
             case 0:
-                Utilities.searchQueue.postRunnable(new e80(this.f35956b, this.f35957c, 1));
+                Utilities.searchQueue.postRunnable(new e80(this.f35957b, this.f35958c, 1));
                 return;
             default:
-                f80 f80Var = this.f35956b;
-                String str = this.f35957c;
-                g80 g80Var = f80Var.f36213b;
+                f80 f80Var = this.f35957b;
+                String str = this.f35958c;
+                g80 g80Var = f80Var.f36214b;
                 String lowerCase = str.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     ArrayList arrayList = new ArrayList();
@@ -50,8 +50,8 @@ public final class e80 implements Runnable {
                 }
                 ArrayList arrayList3 = new ArrayList();
                 ArrayList arrayList4 = new ArrayList();
-                for (int i12 = 0; i12 < g80Var.f36529n.f37885w.size(); i12++) {
-                    ContactsController.Contact contact = (ContactsController.Contact) g80Var.f36529n.f37885w.get(i12);
+                for (int i12 = 0; i12 < g80Var.f36530n.f37886w.size(); i12++) {
+                    ContactsController.Contact contact = (ContactsController.Contact) g80Var.f36530n.f37886w.get(i12);
                     String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
                     String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
                     if (lowerCase2.equals(translitString2)) {

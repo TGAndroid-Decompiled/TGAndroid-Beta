@@ -65,12 +65,12 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
         int i10;
         m4.k0 k0Var = (m4.k0) this.f10558c;
         n4.l lVar = (n4.l) this.d;
-        if (TextUtils.isEmpty(lVar.f16602a)) {
+        if (TextUtils.isEmpty(lVar.f16603a)) {
             e2.a.n("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
             return;
         }
-        int i11 = m4.k.f16205a;
-        String str = lVar.f16602a;
+        int i11 = m4.k.f16206a;
+        String str = lVar.f16603a;
         b2.y yVar = new b2.y();
         e9.g0 g0Var = e9.i0.f8757b;
         e9.a1 a1Var = e9.a1.f8720e;
@@ -82,16 +82,16 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
         }
         String str2 = str;
         aa.a aVar = new aa.a(4);
-        aVar.f387c = lVar.f16607n;
+        aVar.f387c = lVar.f16608n;
         b2.g0 g0Var3 = new b2.g0(aVar);
-        CharSequence charSequence = lVar.f16603b;
+        CharSequence charSequence = lVar.f16604b;
         b2.m0 m0Var = new b2.m0();
-        m0Var.f3345f = lVar.f16604c;
+        m0Var.f3345f = lVar.f16605c;
         m0Var.f3346g = lVar.d;
-        m0Var.f3351m = lVar.f16606f;
+        m0Var.f3351m = lVar.f16607f;
         Bundle bundle = null;
         m0Var.f3347i = m4.k.c(null);
-        Bitmap bitmap = lVar.f16605e;
+        Bitmap bitmap = lVar.f16606e;
         if (bitmap != null) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -158,7 +158,7 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             m0Var.H = bundle;
         }
         m0Var.f3356r = Boolean.TRUE;
-        i9.w l4 = k0Var.f16208g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var), g0Var3)));
+        i9.w l4 = k0Var.f16209g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var), g0Var3)));
         l4.a(new i9.s(0, l4, new a5.a(k0Var, rVar, this.f10557b)), i9.q.f12024a);
     }
 
@@ -197,10 +197,10 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             case 6:
                 yn ynVar = (yn) this.f10558c;
                 boolean[] zArr = (boolean[]) this.d;
-                ynVar.getMessagesController().pinMessage(ynVar.f43314e, ynVar.f43326f, this.f10557b, false, !zArr[1], zArr[0]);
-                rc B = yc.B(ynVar, true, null, null, ynVar.f43299ca);
+                ynVar.getMessagesController().pinMessage(ynVar.f43315e, ynVar.f43327f, this.f10557b, false, !zArr[1], zArr[0]);
+                rc B = yc.B(ynVar, true, null, null, ynVar.f43300ca);
                 B.j();
-                vb vbVar = B.f30334e;
+                vb vbVar = B.f30335e;
                 vbVar.postDelayed(new gh(0, vbVar), 550L);
                 return;
             case 7:
@@ -230,13 +230,13 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
                 return;
             case 11:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                l50 l50Var = ((h50) this.f10558c).f36867n;
-                ChatObject.Call call = l50Var.f38163b.f36873a1;
+                l50 l50Var = ((h50) this.f10558c).f36868n;
+                ChatObject.Call call = l50Var.f38164b.f36874a1;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f10557b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView k12 = l50Var.f38163b.k1();
+                UndoView k12 = l50Var.f38164b.k1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -251,7 +251,7 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) this.f10558c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f33773d0;
+                ArrayList arrayList = launchActivity.f33774d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((n2) hg.k0.g(1, arrayList))) {
                     gd0 gd0Var = new gd0(0);
                     gd0Var.F0 = new i2.s(hashMap, this.f10557b, 12);

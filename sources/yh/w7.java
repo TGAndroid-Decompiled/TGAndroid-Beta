@@ -13,19 +13,19 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.g91;
 import org.telegram.ui.Components.zl0;
 public final class w7 extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final int f52170a;
-    public final g91 f52171b;
-    public final v7 f52172c;
+    public final int f52171a;
+    public final g91 f52172b;
+    public final v7 f52173c;
     public final FrameLayout d;
-    public final aw0 f52173e;
+    public final aw0 f52174e;
 
     public w7(Context context, int i10, boolean z10, long j3, int i11, org.telegram.ui.ActionBar.d6 d6Var, aw0 aw0Var) {
         super(context);
         g91 bm0Var;
         bm0 bm0Var2;
         int i12;
-        this.f52173e = aw0Var;
-        this.f52170a = i10;
+        this.f52174e = aw0Var;
+        this.f52171a = i10;
         setOrientation(1);
         if (aw0Var == null) {
             bm0Var = new g91(context, null);
@@ -33,15 +33,15 @@ public final class w7 extends LinearLayout implements NotificationCenter.Notific
             bm0Var = new bm0(context, d6Var, aw0Var);
         }
         g91 g91Var = bm0Var;
-        this.f52171b = g91Var;
+        this.f52172b = g91Var;
         v7 v7Var = new v7(context, i10, z10, j3, i11, d6Var);
-        this.f52172c = v7Var;
+        this.f52173c = v7Var;
         if (aw0Var == null) {
             bm0Var2 = null;
         } else {
             bm0Var2 = (bm0) g91Var;
         }
-        v7Var.f52135g = bm0Var2;
+        v7Var.f52136g = bm0Var2;
         g91Var.setAdapter(v7Var);
         if (aw0Var == null) {
             i12 = 3;
@@ -50,12 +50,12 @@ public final class w7 extends LinearLayout implements NotificationCenter.Notific
         }
         View n10 = g91Var.n(i12, true);
         View view = new View(context);
-        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20818d7, d6Var));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20819d7, d6Var));
         if (aw0Var == null) {
             this.d = null;
             addView(n10, w7.z5.n(-1, 48));
             addView(view, new LinearLayout.LayoutParams(w7.z5.z(-1.0f), w7.z5.z(1.0f / AndroidUtilities.density)));
-            setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20889h5, d6Var));
+            setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20890h5, d6Var));
         } else {
             setClipChildren(false);
             setClipToPadding(false);
@@ -69,19 +69,19 @@ public final class w7 extends LinearLayout implements NotificationCenter.Notific
 
     public final void a(boolean z10) {
         int i10;
-        v7 v7Var = this.f52172c;
-        g91 g91Var = this.f52171b;
-        aw0 aw0Var = this.f52173e;
+        v7 v7Var = this.f52173c;
+        g91 g91Var = this.f52172b;
+        aw0 aw0Var = this.f52174e;
         if (aw0Var == null) {
             v7Var.i();
             g91Var.o(z10);
             return;
         }
-        ArrayList arrayList = v7Var.f52136i;
-        ArrayList arrayList2 = v7Var.f52136i;
+        ArrayList arrayList = v7Var.f52137i;
+        ArrayList arrayList2 = v7Var.f52137i;
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            i11 |= 1 << ((g61) arrayList.get(i12)).f26681z;
+            i11 |= 1 << ((g61) arrayList.get(i12)).f26682z;
         }
         View currentView = g91Var.getCurrentView();
         if (currentView instanceof u7) {
@@ -92,14 +92,14 @@ public final class w7 extends LinearLayout implements NotificationCenter.Notific
         v7Var.i();
         int i13 = 0;
         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
-            i13 |= 1 << ((g61) arrayList2.get(i14)).f26681z;
+            i13 |= 1 << ((g61) arrayList2.get(i14)).f26682z;
         }
         if (i11 != i13) {
             g91Var.onTouchEvent(null);
             int i15 = 0;
             while (true) {
                 if (i15 < arrayList2.size()) {
-                    if (((g61) arrayList2.get(i15)).f26681z == i10) {
+                    if (((g61) arrayList2.get(i15)).f26682z == i10) {
                         break;
                     }
                     i15++;
@@ -125,11 +125,11 @@ public final class w7 extends LinearLayout implements NotificationCenter.Notific
     }
 
     public zl0 getCurrentListView() {
-        View currentView = this.f52171b.getCurrentView();
+        View currentView = this.f52172b.getCurrentView();
         if (!(currentView instanceof u7)) {
             return null;
         }
-        return ((u7) currentView).f52102a;
+        return ((u7) currentView).f52103a;
     }
 
     public FrameLayout getTabsContainer() {
@@ -137,33 +137,33 @@ public final class w7 extends LinearLayout implements NotificationCenter.Notific
     }
 
     public g91 getViewPager() {
-        return this.f52171b;
+        return this.f52172b;
     }
 
     @Override
     public final void onAttachedToWindow() {
         a(false);
-        NotificationCenter.getInstance(this.f52170a).addObserver(this, NotificationCenter.starTransactionsLoaded);
+        NotificationCenter.getInstance(this.f52171a).addObserver(this, NotificationCenter.starTransactionsLoaded);
         super.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        NotificationCenter.getInstance(this.f52170a).removeObserver(this, NotificationCenter.starTransactionsLoaded);
+        NotificationCenter.getInstance(this.f52171a).removeObserver(this, NotificationCenter.starTransactionsLoaded);
         super.onDetachedFromWindow();
     }
 
     public void setGlassEngine(li.m mVar) {
         View[] viewPages;
         if (mVar != null) {
-            v7 v7Var = this.f52172c;
+            v7 v7Var = this.f52173c;
             if (v7Var.h != mVar) {
                 v7Var.h = mVar;
-                g91 g91Var = this.f52171b;
+                g91 g91Var = this.f52172b;
                 mVar.c(g91Var);
                 for (View view : g91Var.getViewPages()) {
                     if (view instanceof u7) {
-                        mVar.b(((u7) view).f52102a);
+                        mVar.b(((u7) view).f52103a);
                     }
                 }
             }

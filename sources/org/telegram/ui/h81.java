@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class h81 extends org.telegram.ui.ActionBar.j {
-    public final int f36999a;
-    public final Object f37000b;
+    public final int f37000a;
+    public final Object f37001b;
 
     public h81(Object obj, int i10) {
-        this.f36999a = i10;
-        this.f37000b = obj;
+        this.f37000a = i10;
+        this.f37001b = obj;
     }
 
     @Override
     public final void b(int i10) {
-        switch (this.f36999a) {
+        switch (this.f37000a) {
             case 0:
                 if (i10 == -1) {
-                    ((SessionsActivity) this.f37000b).finishFragment();
+                    ((SessionsActivity) this.f37001b).finishFragment();
                     return;
                 }
                 return;
             case 1:
-                a91 a91Var = (a91) this.f37000b;
+                a91 a91Var = (a91) this.f37001b;
                 if (i10 == -1) {
                     a91Var.finishFragment();
                     return;
@@ -30,12 +30,12 @@ public final class h81 extends org.telegram.ui.ActionBar.j {
                 }
             case 2:
                 if (i10 == -1) {
-                    ((va1) this.f37000b).finishFragment();
+                    ((va1) this.f37001b).finishFragment();
                     return;
                 }
                 return;
             case 3:
-                StickersActivity stickersActivity = (StickersActivity) this.f37000b;
+                StickersActivity stickersActivity = (StickersActivity) this.f37001b;
                 if (i10 == -1) {
                     if (stickersActivity.onBackPressed(true)) {
                         stickersActivity.finishFragment();
@@ -46,7 +46,7 @@ public final class h81 extends org.telegram.ui.ActionBar.j {
                 StickersActivity.d0(stickersActivity, i10);
                 return;
             case 4:
-                wd1 wd1Var = (wd1) this.f37000b;
+                wd1 wd1Var = (wd1) this.f37001b;
                 if (i10 == -1) {
                     wd1Var.finishFragment();
                     return;
@@ -58,19 +58,19 @@ public final class h81 extends org.telegram.ui.ActionBar.j {
                 }
             case 5:
                 if (i10 == -1) {
-                    ((ne1) this.f37000b).finishFragment();
+                    ((ne1) this.f37001b).finishFragment();
                     return;
                 }
                 return;
             case 6:
                 if (i10 == -1) {
-                    ((eg1) this.f37000b).finishFragment();
+                    ((eg1) this.f37001b).finishFragment();
                     return;
                 }
                 return;
             case 7:
                 if (i10 == -1) {
-                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f37000b;
+                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f37001b;
                     if (twoStepVerificationActivity.X >= 0) {
                         twoStepVerificationActivity.x0();
                         return;
@@ -81,7 +81,7 @@ public final class h81 extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 8:
-                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f37000b;
+                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f37001b;
                 if (i10 == -1) {
                     if (userInfoActivity.onBackPressed(true)) {
                         userInfoActivity.finishFragment();
@@ -95,7 +95,7 @@ public final class h81 extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 9:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f37000b;
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f37001b;
                 if (i10 == -1) {
                     usersSelectActivity.finishFragment();
                     return;
@@ -107,24 +107,24 @@ public final class h81 extends org.telegram.ui.ActionBar.j {
                 }
             case 10:
                 if (i10 == -1) {
-                    ((rg.y0) this.f37000b).dismiss();
+                    ((rg.y0) this.f37001b).dismiss();
                     return;
                 }
                 return;
             case 11:
                 if (i10 == -1) {
-                    ((xh.i4) this.f37000b).finishFragment();
+                    ((xh.i4) this.f37001b).finishFragment();
                     return;
                 }
                 return;
             case 12:
                 if (i10 == -1) {
-                    ((yh.g) this.f37000b).finishFragment();
+                    ((yh.g) this.f37001b).finishFragment();
                     return;
                 }
                 return;
             default:
-                zg.q qVar = (zg.q) this.f37000b;
+                zg.q qVar = (zg.q) this.f37001b;
                 if (i10 == -1 && !qVar.W(true)) {
                     qVar.finishFragment();
                     return;

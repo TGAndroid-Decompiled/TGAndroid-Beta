@@ -2,33 +2,33 @@ package ra;
 
 import m1.j;
 public final class b {
-    public final String f45967a;
-    public final int f45968b;
-    public final String f45969c;
+    public final String f45968a;
+    public final int f45969b;
+    public final String f45970c;
     public final String d;
-    public final long f45970e;
-    public final long f45971f;
-    public final String f45972g;
+    public final long f45971e;
+    public final long f45972f;
+    public final String f45973g;
 
     public b(String str, int i10, String str2, String str3, long j3, long j10, String str4) {
-        this.f45967a = str;
-        this.f45968b = i10;
-        this.f45969c = str2;
+        this.f45968a = str;
+        this.f45969b = i10;
+        this.f45970c = str2;
         this.d = str3;
-        this.f45970e = j3;
-        this.f45971f = j10;
-        this.f45972g = str4;
+        this.f45971e = j3;
+        this.f45972f = j10;
+        this.f45973g = str4;
     }
 
     public final a a() {
         a aVar = new a(0);
-        aVar.f45963c = this.f45967a;
-        aVar.f45962b = this.f45968b;
-        aVar.d = this.f45969c;
-        aVar.f45964e = this.d;
-        aVar.f45966g = Long.valueOf(this.f45970e);
-        aVar.h = Long.valueOf(this.f45971f);
-        aVar.f45965f = this.f45972g;
+        aVar.f45964c = this.f45968a;
+        aVar.f45963b = this.f45969b;
+        aVar.d = this.f45970c;
+        aVar.f45965e = this.d;
+        aVar.f45967g = Long.valueOf(this.f45971e);
+        aVar.h = Long.valueOf(this.f45972f);
+        aVar.f45966f = this.f45973g;
         return aVar;
     }
 
@@ -36,11 +36,11 @@ public final class b {
         if (obj != this) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                String str = bVar.f45972g;
+                String str = bVar.f45973g;
                 String str2 = bVar.d;
-                String str3 = bVar.f45969c;
-                String str4 = bVar.f45967a;
-                String str5 = this.f45967a;
+                String str3 = bVar.f45970c;
+                String str4 = bVar.f45968a;
+                String str5 = this.f45968a;
                 if (str5 == null) {
                     if (str4 != null) {
                         return false;
@@ -48,8 +48,8 @@ public final class b {
                 } else if (!str5.equals(str4)) {
                     return false;
                 }
-                if (j.b(this.f45968b, bVar.f45968b)) {
-                    String str6 = this.f45969c;
+                if (j.b(this.f45969b, bVar.f45969b)) {
+                    String str6 = this.f45970c;
                     if (str6 == null) {
                         if (str3 != null) {
                             return false;
@@ -65,8 +65,8 @@ public final class b {
                     } else if (!str7.equals(str2)) {
                         return false;
                     }
-                    if (this.f45970e == bVar.f45970e && this.f45971f == bVar.f45971f) {
-                        String str8 = this.f45972g;
+                    if (this.f45971e == bVar.f45971e && this.f45972f == bVar.f45972f) {
+                        String str8 = this.f45973g;
                         if (str8 == null) {
                             if (str == null) {
                                 return true;
@@ -92,14 +92,14 @@ public final class b {
         int hashCode2;
         int hashCode3;
         int i10 = 0;
-        String str = this.f45967a;
+        String str = this.f45968a;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
-        int c10 = (((hashCode ^ 1000003) * 1000003) ^ j.c(this.f45968b)) * 1000003;
-        String str2 = this.f45969c;
+        int c10 = (((hashCode ^ 1000003) * 1000003) ^ j.c(this.f45969b)) * 1000003;
+        String str2 = this.f45970c;
         if (str2 == null) {
             hashCode2 = 0;
         } else {
@@ -112,10 +112,10 @@ public final class b {
         } else {
             hashCode3 = str3.hashCode();
         }
-        long j3 = this.f45970e;
-        long j10 = this.f45971f;
+        long j3 = this.f45971e;
+        long j10 = this.f45972f;
         int i12 = (((((i11 ^ hashCode3) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003;
-        String str4 = this.f45972g;
+        String str4 = this.f45973g;
         if (str4 != null) {
             i10 = str4.hashCode();
         }
@@ -125,9 +125,9 @@ public final class b {
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("PersistedInstallationEntry{firebaseInstallationId=");
-        sb2.append(this.f45967a);
+        sb2.append(this.f45968a);
         sb2.append(", registrationStatus=");
-        int i10 = this.f45968b;
+        int i10 = this.f45969b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -151,14 +151,14 @@ public final class b {
         }
         sb2.append(str);
         sb2.append(", authToken=");
-        sb2.append(this.f45969c);
+        sb2.append(this.f45970c);
         sb2.append(", refreshToken=");
         sb2.append(this.d);
         sb2.append(", expiresInSecs=");
-        sb2.append(this.f45970e);
+        sb2.append(this.f45971e);
         sb2.append(", tokenCreationEpochInSecs=");
-        sb2.append(this.f45971f);
+        sb2.append(this.f45972f);
         sb2.append(", fisError=");
-        return a4.a.s(sb2, this.f45972g, "}");
+        return a4.a.s(sb2, this.f45973g, "}");
     }
 }

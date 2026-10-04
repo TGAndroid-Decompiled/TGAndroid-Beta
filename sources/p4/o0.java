@@ -3,10 +3,10 @@ package p4;
 import android.os.Bundle;
 import android.util.Log;
 public final class o0 {
-    public final p0 f44222a;
+    public final p0 f44223a;
 
     public o0(p0 p0Var) {
-        this.f44222a = p0Var;
+        this.f44223a = p0Var;
     }
 
     public static void a(String str, Bundle bundle) {
@@ -15,8 +15,8 @@ public final class o0 {
 
     public final void b(Bundle bundle) {
         String string = bundle.getString("groupableTitle");
-        p0 p0Var = this.f44222a;
-        p0Var.f44228g = string;
+        p0 p0Var = this.f44223a;
+        p0Var.f44229g = string;
         p0Var.h = bundle.getString("transferableTitle");
     }
 }

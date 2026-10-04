@@ -197,7 +197,7 @@ public abstract class e extends ul0 {
             ?? frameLayout = new FrameLayout(this.f10560s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f22715a = textView;
+            frameLayout.f22716a = textView;
             com.google.android.gms.internal.vision.e2.l(22.0f, 1, textView);
             com.google.android.gms.internal.vision.e2.p(i6.B6, null, false, textView, 17);
             frameLayout.addView(textView, z5.d(-1, -1.0f, 119, 12.0f, 0.0f, 0.0f, 0.0f));
@@ -296,8 +296,8 @@ public abstract class e extends ul0 {
         int i12;
         ArrayList<TLRPC.TL_contact> arrayList2;
         float f7;
-        int i13 = c1Var.f46527f;
-        View view = c1Var.f46523a;
+        int i13 = c1Var.f46528f;
+        View view = c1Var.f46524a;
         int i14 = 7;
         boolean z10 = this.E;
         int i15 = this.f10559r;
@@ -311,7 +311,7 @@ public abstract class e extends ul0 {
                                 p4 p4Var = (p4) view;
                                 int i16 = i11 - 2;
                                 if (i16 >= 0 && i16 < ContactsController.getInstance(i15).phoneBookContacts.size()) {
-                                    p4Var.f22653f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
+                                    p4Var.f22654f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
                                     p4Var.h = null;
                                     p4Var.a();
                                     return;
@@ -433,7 +433,7 @@ public abstract class e extends ul0 {
         }
         TLRPC.User user = MessagesController.getInstance(i15).getUser(Long.valueOf(arrayList2.get(i11).user_id));
         zaVar.d(user, null, null, false);
-        if (this.f10562x.h(user.f20184id) < 0) {
+        if (this.f10562x.h(user.f20185id) < 0) {
             z11 = false;
         }
         zaVar.c(z11, false);

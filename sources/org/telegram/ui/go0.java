@@ -3,25 +3,25 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class go0 implements qo0 {
-    public final so0 f36690a;
+    public final so0 f36691a;
 
     public go0(so0 so0Var) {
-        this.f36690a = so0Var;
+        this.f36691a = so0Var;
     }
 
     @Override
     public final void a(TL_account.Password password) {
-        this.f36690a.f40540a0 = password;
+        this.f36691a.f40541a0 = password;
     }
 
     @Override
     public final void b() {
-        this.f36690a.f40554f0 = null;
+        this.f36691a.f40555f0 = null;
     }
 
     @Override
     public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        so0 so0Var = this.f36690a;
+        so0 so0Var = this.f36691a;
         qo0 qo0Var = so0Var.T;
         if (qo0Var != null) {
             qo0Var.c(str, str2, z10, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);

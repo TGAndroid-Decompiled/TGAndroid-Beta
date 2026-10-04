@@ -8,7 +8,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.f5;
 import org.telegram.ui.Components.w61;
 public final class g1 extends f5 {
-    public final u0 f42185f = new u0(this, 1);
+    public final u0 f42186f = new u0(this, 1);
     public final h1 h;
 
     public g1(h1 h1Var) {
@@ -36,16 +36,16 @@ public final class g1 extends f5 {
     public final void m() {
         int i10;
         h1 h1Var = this.h;
-        h1Var.f42200r = null;
-        h1Var.f42199n = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f42185f);
-        w61 w61Var = h1Var.f32724a;
+        h1Var.f42201r = null;
+        h1Var.f42200n = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f42186f);
+        w61 w61Var = h1Var.f32725a;
         if (w61Var != null) {
-            w61Var.f25244f3.N(true);
-            h1Var.f32724a.f25243e3.h1(0, 0);
+            w61Var.f25245f3.N(true);
+            h1Var.f32725a.f25244e3.h1(0, 0);
         }
-        vh.n nVar = h1Var.f42203x.d;
-        if (TextUtils.isEmpty(h1Var.f42200r)) {
+        vh.n nVar = h1Var.f42204x.d;
+        if (TextUtils.isEmpty(h1Var.f42201r)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
@@ -57,15 +57,15 @@ public final class g1 extends f5 {
     public final void q(EditText editText) {
         int i10;
         h1 h1Var = this.h;
-        boolean z10 = !TextUtils.isEmpty(h1Var.f42200r);
+        boolean z10 = !TextUtils.isEmpty(h1Var.f42201r);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(h1Var.f42200r, obj)) {
-            h1Var.f42200r = obj;
-            h1Var.f42199n = true;
-            u0 u0Var = this.f42185f;
+        if (!TextUtils.equals(h1Var.f42201r, obj)) {
+            h1Var.f42201r = obj;
+            h1Var.f42200n = true;
+            u0 u0Var = this.f42186f;
             AndroidUtilities.cancelRunOnUIThread(u0Var);
             AndroidUtilities.runOnUIThread(u0Var, 500L);
-            vh.n nVar = h1Var.f42203x.d;
+            vh.n nVar = h1Var.f42204x.d;
             if (TextUtils.isEmpty(obj)) {
                 i10 = R.string.WebNoHistory;
             } else {
@@ -73,11 +73,11 @@ public final class g1 extends f5 {
             }
             nVar.setText(LocaleController.getString(i10));
         }
-        w61 w61Var = h1Var.f32724a;
+        w61 w61Var = h1Var.f32725a;
         if (w61Var != null) {
-            w61Var.f25244f3.N(true);
+            w61Var.f25245f3.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                h1Var.f32724a.f25243e3.h1(0, 0);
+                h1Var.f32725a.f25244e3.h1(0, 0);
             }
         }
     }

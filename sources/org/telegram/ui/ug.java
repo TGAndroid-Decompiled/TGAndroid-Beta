@@ -12,12 +12,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ug implements Runnable {
-    public final int f41189a;
-    public final yn f41190b;
+    public final int f41190a;
+    public final yn f41191b;
 
     public ug(yn ynVar, int i10) {
-        this.f41189a = i10;
-        this.f41190b = ynVar;
+        this.f41190a = i10;
+        this.f41191b = ynVar;
     }
 
     @Override
@@ -25,18 +25,18 @@ public final class ug implements Runnable {
         boolean z10;
         boolean z11;
         ci.e4 e4Var;
-        int i10 = this.f41189a;
+        int i10 = this.f41190a;
         boolean z12 = true;
-        yn ynVar = this.f41190b;
+        yn ynVar = this.f41191b;
         switch (i10) {
             case 0:
-                ArrayList arrayList = ynVar.f43493s6;
+                ArrayList arrayList = ynVar.f43494s6;
                 ynVar.Eb = System.currentTimeMillis();
-                if (ynVar.f43525v0 != null && ynVar.f43564y0 != null) {
+                if (ynVar.f43526v0 != null && ynVar.f43565y0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < ynVar.f43525v0.getChildCount(); i13++) {
-                        View childAt = ynVar.f43525v0.getChildAt(i13);
+                    for (int i13 = 0; i13 < ynVar.f43526v0.getChildCount(); i13++) {
+                        View childAt = ynVar.f43526v0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.u1) {
                             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                             if (u1Var.getCurrentMessagesGroup() != null) {
@@ -56,7 +56,7 @@ public final class ug implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) ynVar.f43531v6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) ynVar.f43532v6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -94,16 +94,16 @@ public final class ug implements Runnable {
                 return;
             case 1:
                 jk jkVar = ynVar.W;
-                if (jkVar != null && ynVar.f43588zc != null) {
+                if (jkVar != null && ynVar.f43589zc != null) {
                     if (jkVar.t0()) {
                         ynVar.W.m0(false);
-                        AndroidUtilities.showKeyboard(ynVar.f43588zc.f45444a);
-                        ynVar.f43588zc.f45445b.f45441a.a(false, true);
+                        AndroidUtilities.showKeyboard(ynVar.f43589zc.f45445a);
+                        ynVar.f43589zc.f45446b.f45442a.a(false, true);
                         return;
                     }
                     ynVar.W.U0(false, false, false);
                     ynVar.W.r1();
-                    ynVar.f43588zc.f45445b.f45441a.a(true, true);
+                    ynVar.f43589zc.f45446b.f45442a.a(true, true);
                     return;
                 }
                 return;
@@ -142,26 +142,26 @@ public final class ug implements Runnable {
                 ynVar.N6();
                 return;
             case 13:
-                ynVar.f43261a = (ynVar.f43261a + 1) % 3;
+                ynVar.f43262a = (ynVar.f43262a + 1) % 3;
                 return;
             case 14:
-                ynVar.f43274b = !ynVar.f43274b;
+                ynVar.f43275b = !ynVar.f43275b;
                 return;
             case 15:
                 ynVar.A7(true);
                 org.telegram.messenger.f0.p(R.string.TranscriptionReportSent, org.telegram.ui.Components.yc.a0(ynVar), R.raw.chats_infotip, 36);
                 return;
             case 16:
-                ynVar.f43564y0.M.clear();
-                jm jmVar = ynVar.f43564y0;
+                ynVar.f43565y0.M.clear();
+                jm jmVar = ynVar.f43565y0;
                 jmVar.L = false;
                 jmVar.O(true);
                 ynVar.Ob(false);
                 return;
             case 17:
-                ynVar.f43338fc = 0;
+                ynVar.f43339fc = 0;
                 ynVar.gc = false;
-                ynVar.f43525v0.h1();
+                ynVar.f43526v0.h1();
                 return;
             case 18:
                 ynVar.o9();
@@ -174,7 +174,7 @@ public final class ug implements Runnable {
                 return;
             case 20:
                 nk nkVar = ynVar.P2;
-                if ((nkVar == null || nkVar.getVisibility() != 0) && (e4Var = ynVar.f43513u1) != null) {
+                if ((nkVar == null || nkVar.getVisibility() != 0) && (e4Var = ynVar.f43514u1) != null) {
                     e4Var.u();
                     return;
                 }
@@ -188,18 +188,18 @@ public final class ug implements Runnable {
             case 23:
                 FrameLayout.LayoutParams e7 = w7.z5.e(-1, -2, 87);
                 e7.bottomMargin = ynVar.W.getMeasuredHeight();
-                ynVar.V0.addView(ynVar.f43539w1, e7);
-                ynVar.f43539w1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                ynVar.f43539w1.m(0.0f, ynVar.W.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                ynVar.f43539w1.u();
+                ynVar.V0.addView(ynVar.f43540w1, e7);
+                ynVar.f43540w1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                ynVar.f43540w1.m(0.0f, ynVar.W.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                ynVar.f43540w1.u();
                 return;
             case 24:
                 ynVar.J5 = null;
                 if (ynVar.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ynVar.getParentActivity(), 0, ynVar.f43299ca);
-                    boolean isChannel = ChatObject.isChannel(ynVar.f43314e);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
-                    if (isChannel && !ynVar.f43314e.megagroup) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ynVar.getParentActivity(), 0, ynVar.f43300ca);
+                    boolean isChannel = ChatObject.isChannel(ynVar.f43315e);
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20368a;
+                    if (isChannel && !ynVar.f43315e.megagroup) {
                         b2Var.T = LocaleController.getString(R.string.JoinByPeekChannelText);
                         b2Var.R = LocaleController.getString(R.string.JoinByPeekChannelTitle);
                     } else {

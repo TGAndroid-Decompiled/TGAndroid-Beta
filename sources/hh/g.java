@@ -86,9 +86,9 @@ public final class g extends FrameLayout {
 
     public final void c() {
         int i10;
-        l1 l1Var = ((ph.i) this.f11451a).f44719r;
+        l1 l1Var = ((ph.i) this.f11451a).f44720r;
         if (l1Var != null) {
-            i10 = l1Var.f45609a.f(2).d;
+            i10 = l1Var.f45610a.f(2).d;
         } else {
             i10 = 0;
         }
@@ -114,7 +114,7 @@ public final class g extends FrameLayout {
         this.v = ((ph.i) this.f11451a).b();
         int i12 = 0;
         boolean z11 = true;
-        if (((ph.i) this.f11451a).f44720s != 1) {
+        if (((ph.i) this.f11451a).f44721s != 1) {
             z10 = true;
         } else {
             z10 = false;
@@ -135,7 +135,7 @@ public final class g extends FrameLayout {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) f0Var.getLayoutParams();
         int i13 = layoutParams.height;
-        int i14 = ((ph.i) this.f11451a).f44721w;
+        int i14 = ((ph.i) this.f11451a).f44722w;
         if (i13 != i14) {
             layoutParams.height = i14;
             requestLayout();
@@ -256,7 +256,7 @@ public final class g extends FrameLayout {
             int x10 = (int) motionEvent.getX();
             int y3 = (int) motionEvent.getY();
             ch.d dVar2 = this.f11455f;
-            if ((dVar2 != null && dVar2.f15648b == 255 && dVar2.getBounds().contains(x10, y3)) || ((dVar = this.h) != null && dVar.getBounds().contains(x10, y3))) {
+            if ((dVar2 != null && dVar2.f15649b == 255 && dVar2.getBounds().contains(x10, y3)) || ((dVar = this.h) != null && dVar.getBounds().contains(x10, y3))) {
                 z10 = true;
             } else {
                 z10 = false;

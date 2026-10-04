@@ -41,46 +41,46 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
     public boolean S;
     public MessageObject.GroupedMessagePosition T;
     public boolean U;
-    public final t70 f42709a;
-    public final g4 f42710b;
-    public b3 f42711c;
+    public final t70 f42710a;
+    public final g4 f42711b;
+    public b3 f42712c;
     public b3 d;
-    public final ImageReceiver f42712e;
-    public final FrameLayout f42713f;
+    public final ImageReceiver f42713e;
+    public final FrameLayout f42714f;
     public final l4 h;
-    public final TextureView f42714n;
-    public final RadialProgress2 f42715r;
-    public final d1 f42716s;
+    public final TextureView f42715n;
+    public final RadialProgress2 f42716r;
+    public final d1 f42717s;
     public final int v;
-    public boolean f42717w;
-    public int f42718x;
-    public int f42719y;
+    public boolean f42718w;
+    public int f42719x;
+    public int f42720y;
 
     public x2(Context context, t70 t70Var, g4 g4Var, int i10) {
         super(context);
-        this.f42709a = t70Var;
-        this.f42710b = g4Var;
+        this.f42710a = t70Var;
+        this.f42711b = g4Var;
         setWillNotDraw(false);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f42712e = imageReceiver;
+        this.f42713e = imageReceiver;
         imageReceiver.setNeedsQualityThumb(true);
         imageReceiver.setShouldGenerateQualityThumb(true);
         this.v = i10;
         RadialProgress2 radialProgress2 = new RadialProgress2(this, null);
-        this.f42715r = radialProgress2;
+        this.f42716r = radialProgress2;
         radialProgress2.d = -1;
         radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
         this.K = DownloadController.getInstance(((i4) t70Var).X).generateObserverTag();
         d1 d1Var = new d1(context, t70Var, g4Var, 1);
-        this.f42716s = d1Var;
+        this.f42717s = d1Var;
         l4 l4Var = new l4(context);
         this.h = l4Var;
         l4Var.setResizeMode(0);
         TextureView textureView = new TextureView(context);
-        this.f42714n = textureView;
+        this.f42715n = textureView;
         textureView.setOpaque(false);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f42713f = frameLayout;
+        this.f42714f = frameLayout;
         l4Var.addView(textureView, w7.z5.e(-1, -2, 1));
         frameLayout.addView(l4Var, w7.z5.e(-1, -1, 17));
         addView(frameLayout, w7.z5.c(-2.0f, -1));
@@ -105,15 +105,15 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
     }
 
     public final void a() {
-        int i10 = ((i4) this.f42709a).X;
+        int i10 = ((i4) this.f42710a).X;
         int i11 = this.I;
-        ImageReceiver imageReceiver = this.f42712e;
-        RadialProgress2 radialProgress2 = this.f42715r;
+        ImageReceiver imageReceiver = this.f42713e;
+        RadialProgress2 radialProgress2 = this.f42716r;
         if (i11 == 0) {
             this.S = false;
             radialProgress2.o(0.0f, false);
             boolean z10 = this.P;
-            g4 g4Var = this.f42710b;
+            g4 g4Var = this.f42711b;
             if (z10) {
                 imageReceiver.setImage(ImageLocation.getForDocument(this.O), null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(this.O.thumbs, 40), this.O), "80_80_b", this.O.size, null, g4Var.E, 1);
             } else {
@@ -145,8 +145,8 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
         t70 t70Var;
         VideoPlayerHolderBase videoPlayerHolderBase;
         TL_iv.pageBlockVideo pageblockvideo2 = this.L;
-        if (pageblockvideo2 != null && (videoPlayerHolderBase = (t70Var = this.f42709a).f40709w) != null && t70Var.f40710x == this) {
-            a0.i iVar = t70Var.f40711y;
+        if (pageblockvideo2 != null && (videoPlayerHolderBase = (t70Var = this.f42710a).f40710w) != null && t70Var.f40711x == this) {
+            a0.i iVar = t70Var.f40712y;
             long j3 = pageblockvideo2.video_id;
             y2 a2 = y2.a(videoPlayerHolderBase, this);
             this.M = a2;
@@ -156,7 +156,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
         this.M = y2Var;
         this.N = null;
         this.Q = z10;
-        g4 g4Var = this.f42710b;
+        g4 g4Var = this.f42711b;
         if (g4Var != null) {
             this.O = f4.a(g4Var.E, pageblockvideo.video_id);
         } else {
@@ -168,8 +168,8 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
             z12 = true;
         }
         this.P = z12;
-        this.f42717w = z11;
-        this.f42716s.setVisibility(4);
+        this.f42718w = z11;
+        this.f42717s.setVisibility(4);
         e(false);
         requestLayout();
     }
@@ -179,14 +179,14 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
         Bitmap bitmap2;
         Bitmap bitmap3;
         y2 y2Var2 = this.M;
-        if (y2Var2 != null && (bitmap2 = y2Var.f43012b) != null && (bitmap3 = y2Var2.f43012b) != null && bitmap2 != bitmap3) {
+        if (y2Var2 != null && (bitmap2 = y2Var.f43013b) != null && (bitmap3 = y2Var2.f43013b) != null && bitmap2 != bitmap3) {
             bitmap3.recycle();
-            this.M.f43012b = null;
+            this.M.f43013b = null;
         }
         y2 y2Var3 = this.M;
-        if (y2Var3 != null && y2Var.f43012b == null && (bitmap = y2Var3.f43012b) != null) {
-            y2Var.f43011a = y2Var3.f43011a;
-            y2Var.f43012b = bitmap;
+        if (y2Var3 != null && y2Var.f43013b == null && (bitmap = y2Var3.f43013b) != null) {
+            y2Var.f43012a = y2Var3.f43012a;
+            y2Var.f43013b = bitmap;
         }
         this.M = y2Var;
     }
@@ -194,7 +194,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
     public final void d() {
         VideoPlayerHolderBase videoPlayerHolderBase;
         int visibility = getVisibility();
-        ImageReceiver imageReceiver = this.f42712e;
+        ImageReceiver imageReceiver = this.f42713e;
         if (visibility == 0 && isAttachedToWindow()) {
             if (!this.U) {
                 this.U = true;
@@ -205,9 +205,9 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
         } else {
             this.U = false;
             TL_iv.pageBlockVideo pageblockvideo = this.L;
-            t70 t70Var = this.f42709a;
-            if (pageblockvideo != null && (videoPlayerHolderBase = t70Var.f40709w) != null && t70Var.f40710x == this) {
-                a0.i iVar = t70Var.f40711y;
+            t70 t70Var = this.f42710a;
+            if (pageblockvideo != null && (videoPlayerHolderBase = t70Var.f40710w) != null && t70Var.f40711x == this) {
+                a0.i iVar = t70Var.f40712y;
                 long j3 = pageblockvideo.video_id;
                 y2 a2 = y2.a(videoPlayerHolderBase, this);
                 c(a2);
@@ -225,7 +225,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
 
     public final void e(boolean z10) {
         boolean z11;
-        int i10 = ((i4) this.f42709a).X;
+        int i10 = ((i4) this.f42710a).X;
         String attachFileName = FileLoader.getAttachFileName(this.O);
         File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(this.O);
         boolean z12 = true;
@@ -236,7 +236,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
             z11 = true;
         }
         boolean isEmpty = TextUtils.isEmpty(attachFileName);
-        RadialProgress2 radialProgress2 = this.f42715r;
+        RadialProgress2 radialProgress2 = this.f42716r;
         if (isEmpty) {
             radialProgress2.setIcon(4, false, false);
             return;
@@ -253,7 +253,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
             DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, null, this);
             y2 y2Var = this.M;
             float f7 = 0.0f;
-            if (y2Var != null && y2Var.f43012b != null) {
+            if (y2Var != null && y2Var.f43013b != null) {
                 this.I = -1;
             } else {
                 if (!FileLoader.getInstance(i10).isLoadingFile(attachFileName)) {
@@ -281,7 +281,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        b3 b3Var = this.f42711c;
+        b3 b3Var = this.f42712c;
         if (b3Var != null) {
             arrayList.add(b3Var);
         }
@@ -292,7 +292,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
     }
 
     public View getChannelCell() {
-        return this.f42716s;
+        return this.f42717s;
     }
 
     public TL_iv.pageBlockVideo getCurrentBlock() {
@@ -300,7 +300,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
     }
 
     public ImageReceiver getImageView() {
-        return this.f42712e;
+        return this.f42713e;
     }
 
     @Override
@@ -309,14 +309,14 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
     }
 
     public TextureView getTextureView() {
-        return this.f42714n;
+        return this.f42715n;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         d();
-        b3 b3Var = this.f42711c;
+        b3 b3Var = this.f42712c;
         if (b3Var != null) {
             b3Var.attach(this);
         }
@@ -330,7 +330,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         d();
-        b3 b3Var = this.f42711c;
+        b3 b3Var = this.f42712c;
         if (b3Var != null) {
             b3Var.detach(this);
         }
@@ -343,25 +343,25 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.L != null) {
-            ImageReceiver imageReceiver = this.f42712e;
+            ImageReceiver imageReceiver = this.f42713e;
             if (!imageReceiver.hasBitmapImage() || imageReceiver.getCurrentAlpha() != 1.0f) {
-                canvas.drawRect(imageReceiver.getDrawRegion(), i4.f37242o1);
+                canvas.drawRect(imageReceiver.getDrawRegion(), i4.f37243o1);
             }
             imageReceiver.draw(canvas);
-            b3 b3Var = this.f42711c;
-            t70 t70Var = this.f42709a;
+            b3 b3Var = this.f42712c;
+            t70 t70Var = this.f42710a;
             int i10 = 0;
             if (b3Var != null) {
                 canvas.save();
-                canvas.translate(this.f42718x, this.f42719y);
+                canvas.translate(this.f42719x, this.f42720y);
                 i4.v(t70Var, canvas, this, 0);
-                this.f42711c.draw(canvas, this);
+                this.f42712c.draw(canvas, this);
                 canvas.restore();
                 i10 = 1;
             }
             if (this.d != null) {
                 canvas.save();
-                canvas.translate(this.f42718x, this.f42719y + this.E);
+                canvas.translate(this.f42719x, this.f42720y + this.E);
                 i4.v(t70Var, canvas, this, i10);
                 this.d.draw(canvas, this);
                 canvas.restore();
@@ -369,7 +369,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
             i4.u(canvas, t70Var, this.L, getMeasuredHeight());
             super.onDraw(canvas);
             if (imageReceiver.getVisible()) {
-                this.f42715r.draw(canvas);
+                this.f42716r.draw(canvas);
             }
         }
     }
@@ -384,9 +384,9 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
         StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.AttachVideo));
-        if (this.f42711c != null) {
+        if (this.f42712c != null) {
             sb2.append(", ");
-            sb2.append(this.f42711c.d.getText());
+            sb2.append(this.f42712c.d.getText());
         }
         accessibilityNodeInfo.setText(sb2.toString());
     }
@@ -398,7 +398,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
 
     @Override
     public final void onProgressDownload(String str, long j3, long j10) {
-        this.f42715r.o(Math.min(1.0f, ((float) j3) / ((float) j10)), true);
+        this.f42716r.o(Math.min(1.0f, ((float) j3) / ((float) j10)), true);
         if (this.I != 1) {
             e(true);
         }
@@ -406,7 +406,7 @@ public final class x2 extends FrameLayout implements DownloadController.FileDown
 
     @Override
     public final void onSuccessDownload(String str) {
-        this.f42715r.o(1.0f, true);
+        this.f42716r.o(1.0f, true);
         if (this.P) {
             this.I = 2;
             a();

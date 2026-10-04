@@ -93,21 +93,21 @@ public final class l implements OnSuccessListener, le.k {
                     this.d = new Object();
                 }
                 c3 c3Var = (c3) this.d;
-                c3Var.f15704c = null;
-                c3Var.f15703b = false;
+                c3Var.f15705c = null;
+                c3Var.f15704b = false;
                 c3Var.d = null;
-                c3Var.f15702a = false;
+                c3Var.f15703a = false;
                 ColorStateList imageTintList = imageView.getImageTintList();
                 if (imageTintList != null) {
-                    c3Var.f15703b = true;
-                    c3Var.f15704c = imageTintList;
+                    c3Var.f15704b = true;
+                    c3Var.f15705c = imageTintList;
                 }
                 PorterDuff.Mode imageTintMode = imageView.getImageTintMode();
                 if (imageTintMode != null) {
-                    c3Var.f15702a = true;
+                    c3Var.f15703a = true;
                     c3Var.d = imageTintMode;
                 }
-                if (c3Var.f15703b || c3Var.f15702a) {
+                if (c3Var.f15704b || c3Var.f15703a) {
                     q.d(drawable, c3Var, imageView.getDrawableState());
                     return;
                 }
@@ -193,8 +193,8 @@ public final class l implements OnSuccessListener, le.k {
         Context context = imageView.getContext();
         int[] iArr = f.a.f9518f;
         la.h Q = la.h.Q(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) Q.f15398c;
-        i0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) Q.f15398c, i10);
+        TypedArray typedArray = (TypedArray) Q.f15399c;
+        i0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) Q.f15399c, i10);
         try {
             Drawable drawable3 = imageView.getDrawable();
             if (drawable3 == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable3 = v7.b(imageView.getContext(), resourceId)) != null) {
@@ -264,7 +264,7 @@ public final class l implements OnSuccessListener, le.k {
         Iterator it = ((le.l) this.d).iterator();
         while (it.hasNext()) {
             le.g gVar = (le.g) it.next();
-            fArr[((Integer) gVar.f15445a).intValue()] = gVar.c();
+            fArr[((Integer) gVar.f15446a).intValue()] = gVar.c();
         }
         ((ug) this.f14025c).run();
     }

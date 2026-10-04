@@ -6,25 +6,25 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class jg0 extends FrameLayout {
-    public float f27771a;
-    public float f27772b;
-    public boolean f27773c;
+    public float f27772a;
+    public float f27773b;
+    public boolean f27774c;
     public boolean d;
-    public final PipRoundVideoView f27774e;
+    public final PipRoundVideoView f27775e;
 
     public jg0(PipRoundVideoView pipRoundVideoView, Activity activity) {
         super(activity);
-        this.f27774e = pipRoundVideoView;
+        this.f27775e = pipRoundVideoView;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.g5 g5Var = org.telegram.ui.ActionBar.i6.f20943k3;
+        org.telegram.ui.ActionBar.g5 g5Var = org.telegram.ui.ActionBar.i6.f20944k3;
         if (g5Var != null) {
             g5Var.setAlpha((int) (getAlpha() * 255.0f));
-            org.telegram.ui.ActionBar.i6.f20943k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
-            org.telegram.ui.ActionBar.i6.f20943k3.draw(canvas);
-            org.telegram.ui.ActionBar.i6.S1.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21081ra, false));
+            org.telegram.ui.ActionBar.i6.f20944k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
+            org.telegram.ui.ActionBar.i6.f20944k3.draw(canvas);
+            org.telegram.ui.ActionBar.i6.S1.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21082ra, false));
             org.telegram.ui.ActionBar.i6.S1.setAlpha((int) (getAlpha() * 255.0f));
             canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), org.telegram.ui.ActionBar.i6.S1);
         }
@@ -33,8 +33,8 @@ public final class jg0 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f27771a = motionEvent.getRawX();
-            this.f27772b = motionEvent.getRawY();
+            this.f27772a = motionEvent.getRawX();
+            this.f27773b = motionEvent.getRawY();
             this.d = true;
         }
         return true;

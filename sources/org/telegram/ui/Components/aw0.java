@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public class aw0 extends lw0 implements r0.m {
-    public static final int f24684o1 = 0;
+    public static final int f24685o1 = 0;
     public long A0;
     public long B0;
     public long C0;
@@ -38,24 +38,24 @@ public class aw0 extends lw0 implements r0.m {
     public int X0;
     public int Y0;
     public int Z0;
-    public float f24685a1;
-    public float f24686b1;
-    public float f24687c1;
-    public float f24688d1;
-    public float f24689e1;
-    public boolean f24690f1;
-    public boolean f24691g1;
-    public boolean f24692h1;
-    public boolean f24693i1;
-    public boolean f24694j1;
-    public boolean f24695k1;
+    public float f24686a1;
+    public float f24687b1;
+    public float f24688c1;
+    public float f24689d1;
+    public float f24690e1;
+    public boolean f24691f1;
+    public boolean f24692g1;
+    public boolean f24693h1;
+    public boolean f24694i1;
+    public boolean f24695j1;
+    public boolean f24696k1;
     public final k2.e l1;
-    public final xb0 f24696m1;
-    public final ut f24697n1;
-    public boolean f24698w0;
-    public int f24699x0;
-    public int f24700y0;
-    public long f24701z0;
+    public final xb0 f24697m1;
+    public final ut f24698n1;
+    public boolean f24699w0;
+    public int f24700x0;
+    public int f24701y0;
+    public long f24702z0;
 
     public aw0(Context context) {
         super(context, null);
@@ -64,8 +64,8 @@ public class aw0 extends lw0 implements r0.m {
         this.I0 = new int[2];
         this.J0 = new Object();
         this.l1 = new k2.e(this, 12);
-        this.f24696m1 = new xb0(this, 6);
-        this.f24697n1 = new ut(2, this);
+        this.f24697m1 = new xb0(this, 6);
+        this.f24698n1 = new ut(2, this);
         setClipChildren(false);
         setClipToPadding(false);
         ai.f0 f0Var = new ai.f0(this, context);
@@ -152,10 +152,10 @@ public class aw0 extends lw0 implements r0.m {
 
     private void setTabsPinned(boolean z10) {
         String str;
-        if (this.f24692h1 == z10) {
+        if (this.f24693h1 == z10) {
             return;
         }
-        this.f24692h1 = z10;
+        this.f24693h1 = z10;
         if (z10) {
             str = "TABS_PINNED";
         } else {
@@ -173,8 +173,8 @@ public class aw0 extends lw0 implements r0.m {
             s4.o0 layoutManager = this.K0.getLayoutManager();
             if (b10 != -1 && (layoutManager instanceof s4.c0)) {
                 v0();
-                ((s4.c0) layoutManager).h1(b10, (Math.round(this.f24685a1) - this.K0.getTop()) - this.K0.getPaddingTop());
-                this.f24694j1 = true;
+                ((s4.c0) layoutManager).h1(b10, (Math.round(this.f24686a1) - this.K0.getTop()) - this.K0.getPaddingTop());
+                this.f24695j1 = true;
                 requestLayout();
             }
         }
@@ -194,7 +194,7 @@ public class aw0 extends lw0 implements r0.m {
             }
             setBleed(recyclerView);
             int i11 = this.Y0;
-            o0(recyclerView, Math.max(0, i10) + Math.round(this.f24685a1) + i11, this.S0.e1() + this.Z0);
+            o0(recyclerView, Math.max(0, i10) + Math.round(this.f24686a1) + i11, this.S0.e1() + this.Z0);
             if (!recyclerView.isNestedScrollingEnabled()) {
                 recyclerView.setNestedScrollingEnabled(true);
             }
@@ -203,7 +203,7 @@ public class aw0 extends lw0 implements r0.m {
 
     public final boolean b0() {
         g91 g91Var = this.N0;
-        if (g91Var != null && g91Var.getCurrentView() != null && !Float.isInfinite(j0()) && this.f24689e1 < getHeight()) {
+        if (g91Var != null && g91Var.getCurrentView() != null && !Float.isInfinite(j0()) && this.f24690e1 < getHeight()) {
             return true;
         }
         return false;
@@ -215,7 +215,7 @@ public class aw0 extends lw0 implements r0.m {
 
     public final void d0(String str, View view, int i10, int i11) {
         String str2;
-        if (this.f24698w0) {
+        if (this.f24699w0) {
             long uptimeMillis = SystemClock.uptimeMillis();
             if (uptimeMillis - this.A0 < 250) {
                 return;
@@ -234,7 +234,7 @@ public class aw0 extends lw0 implements r0.m {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         String str;
         if (motionEvent.getActionMasked() == 0) {
-            if (this.f24698w0) {
+            if (this.f24699w0) {
                 this.D0++;
                 this.A0 = 0L;
                 e0("TOUCH_DOWN", null, 0, 0, true);
@@ -261,13 +261,13 @@ public class aw0 extends lw0 implements r0.m {
         int height;
         float f7;
         yv0 yv0Var;
-        if (this.f24698w0) {
+        if (this.f24699w0) {
             long uptimeMillis = SystemClock.uptimeMillis();
             if (!z10) {
-                if (uptimeMillis - this.f24701z0 < 250) {
+                if (uptimeMillis - this.f24702z0 < 250) {
                     return;
                 }
-                this.f24701z0 = uptimeMillis;
+                this.f24702z0 = uptimeMillis;
             }
             g91 g91Var = this.N0;
             int i12 = 0;
@@ -298,26 +298,26 @@ public class aw0 extends lw0 implements r0.m {
             sb2.append(" used=");
             sb2.append(i11);
             sb2.append(" transitioning=");
-            sb2.append(this.f24691g1);
+            sb2.append(this.f24692g1);
             sb2.append(" progress=");
-            sb2.append(this.J0.f24574e);
+            sb2.append(this.J0.f24575e);
             sb2.append(" ageMs=");
             long j10 = 0;
-            if (this.f24691g1) {
+            if (this.f24692g1) {
                 j3 = uptimeMillis - this.B0;
             } else {
                 j3 = 0;
             }
             sb2.append(j3);
             sb2.append(" unchangedMs=");
-            if (this.f24691g1) {
+            if (this.f24692g1) {
                 j10 = uptimeMillis - this.C0;
             }
             sb2.append(j10);
             sb2.append(" depth=");
             sb2.append(this.W0);
             sb2.append(" updating=");
-            sb2.append(this.f24690f1);
+            sb2.append(this.f24691f1);
             sb2.append(" callback=");
             sb2.append(g0(this.V0));
             sb2.append(" common=");
@@ -335,11 +335,11 @@ public class aw0 extends lw0 implements r0.m {
             sb2.append(" boundary=");
             sb2.append(j0());
             sb2.append(" pin=");
-            sb2.append(this.f24685a1);
+            sb2.append(this.f24686a1);
             sb2.append(" tail=");
-            sb2.append(this.f24688d1);
+            sb2.append(this.f24689d1);
             sb2.append(" alignPending=");
-            sb2.append(this.f24694j1);
+            sb2.append(this.f24695j1);
             wv0 wv0Var = this.T0;
             int i13 = -1;
             if (wv0Var == null) {
@@ -393,9 +393,9 @@ public class aw0 extends lw0 implements r0.m {
             }
             j11.append(f7);
             j11.append(" tabsTop=");
-            j11.append(this.f24689e1);
+            j11.append(this.f24690e1);
             j11.append(" draw=");
-            j11.append(this.f24700y0);
+            j11.append(this.f24701y0);
             sb2.append(j11.toString());
             Log.d("SiblingScroll", sb2.toString());
         }
@@ -420,7 +420,7 @@ public class aw0 extends lw0 implements r0.m {
     }
 
     public float getTabsTop() {
-        return this.f24689e1;
+        return this.f24690e1;
     }
 
     public int getTopBleed() {
@@ -429,13 +429,13 @@ public class aw0 extends lw0 implements r0.m {
 
     public final void h0(String str) {
         aw0 aw0Var;
-        if (this.f24698w0) {
+        if (this.f24699w0) {
             aw0Var = this;
             aw0Var.e0("TRANSITION_END_".concat(str), null, 0, 0, true);
         } else {
             aw0Var = this;
         }
-        aw0Var.f24691g1 = false;
+        aw0Var.f24692g1 = false;
         aw0Var.R0 = null;
         aw0Var.Q0 = null;
         aw0Var.G0.invalidate();
@@ -475,7 +475,7 @@ public class aw0 extends lw0 implements r0.m {
         if (recyclerView2 != this.L0) {
             e0("ACTIVE_CHANGE", recyclerView2, 0, 0, true);
             RecyclerView recyclerView3 = this.L0;
-            xb0 xb0Var = this.f24696m1;
+            xb0 xb0Var = this.f24697m1;
             if (recyclerView3 != null) {
                 recyclerView3.C0();
                 ArrayList arrayList = this.L0.f3087v0;
@@ -553,7 +553,7 @@ public class aw0 extends lw0 implements r0.m {
         RecyclerView recyclerView;
         boolean z10;
         if (this.W0 == 0 && (view == (recyclerView = this.K0) || view == this.L0)) {
-            if (this.f24691g1) {
+            if (this.f24692g1) {
                 d0("POST_BLOCKED", view, i13, i14);
                 iArr[1] = iArr[1] + i13;
                 return;
@@ -591,7 +591,7 @@ public class aw0 extends lw0 implements r0.m {
     public final void n0(zl0 zl0Var, wv0 wv0Var) {
         RecyclerView recyclerView = this.K0;
         ai.f0 f0Var = this.G0;
-        xb0 xb0Var = this.f24696m1;
+        xb0 xb0Var = this.f24697m1;
         if (recyclerView != null) {
             recyclerView.C0();
             ArrayList arrayList = this.K0.f3087v0;
@@ -619,13 +619,13 @@ public class aw0 extends lw0 implements r0.m {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        getViewTreeObserver().addOnPreDrawListener(this.f24697n1);
+        getViewTreeObserver().addOnPreDrawListener(this.f24698n1);
     }
 
     @Override
     public void onDetachedFromWindow() {
         t0();
-        getViewTreeObserver().removeOnPreDrawListener(this.f24697n1);
+        getViewTreeObserver().removeOnPreDrawListener(this.f24698n1);
         super.onDetachedFromWindow();
     }
 
@@ -677,7 +677,7 @@ public class aw0 extends lw0 implements r0.m {
         if (this.W0 == 0 && z10 && (view2 == this.K0 || view2 == this.L0)) {
             z11 = true;
         }
-        if (this.f24698w0) {
+        if (this.f24699w0) {
             StringBuilder sb2 = new StringBuilder();
             if (z11) {
                 str = "NESTED_START";
@@ -699,7 +699,7 @@ public class aw0 extends lw0 implements r0.m {
             return;
         }
         RecyclerView i10 = this.U0.i(view);
-        float f10 = this.f24685a1;
+        float f10 = this.f24686a1;
         i10.setTranslationY((f7 + f10) - Math.round(f10));
     }
 
@@ -743,18 +743,18 @@ public class aw0 extends lw0 implements r0.m {
     }
 
     public void setCommonInsetsManagedExternally(boolean z10) {
-        if (this.f24695k1 == z10) {
+        if (this.f24696k1 == z10) {
             return;
         }
-        this.f24695k1 = z10;
+        this.f24696k1 = z10;
         u0();
         requestLayout();
     }
 
     public void setDebugLoggingEnabled(boolean z10) {
-        this.f24698w0 = z10;
+        this.f24699w0 = z10;
         if (z10) {
-            this.f24701z0 = 0L;
+            this.f24702z0 = 0L;
             this.A0 = 0L;
             long uptimeMillis = SystemClock.uptimeMillis();
             this.B0 = uptimeMillis;
@@ -796,14 +796,14 @@ public class aw0 extends lw0 implements r0.m {
         float h;
         View view;
         am0 am0Var = this.J0;
-        if (!this.f24690f1 && this.S0 != null) {
+        if (!this.f24691f1 && this.S0 != null) {
             boolean z10 = true;
-            this.f24690f1 = true;
+            this.f24691f1 = true;
             try {
-                float f7 = this.f24688d1;
+                float f7 = this.f24689d1;
                 v0();
                 RecyclerView recyclerView = this.K0;
-                if (recyclerView != null && !this.f24695k1) {
+                if (recyclerView != null && !this.f24696k1) {
                     setBleed(recyclerView);
                     RecyclerView recyclerView2 = this.K0;
                     int i10 = this.Y0;
@@ -823,7 +823,7 @@ public class aw0 extends lw0 implements r0.m {
                     ai.f0 f0Var = this.G0;
                     float f10 = 0.0f;
                     if (isInfinite) {
-                        this.f24688d1 = Float.POSITIVE_INFINITY;
+                        this.f24689d1 = Float.POSITIVE_INFINITY;
                         this.O0.setVisibility(4);
                         this.P0.setVisibility(4);
                         RecyclerView recyclerView3 = this.K0;
@@ -831,26 +831,26 @@ public class aw0 extends lw0 implements r0.m {
                             recyclerView3.setTranslationY(0.0f);
                         }
                         setTabsPinned(false);
-                        if (f7 != this.f24688d1) {
+                        if (f7 != this.f24689d1) {
                             f0Var.invalidate();
                         }
-                        this.f24690f1 = false;
+                        this.f24691f1 = false;
                         return;
                     }
-                    float f11 = this.f24685a1;
+                    float f11 = this.f24686a1;
                     if (j02 > f11 + 0.5f) {
                         f11 = j02;
                     }
-                    this.f24687c1 = f11;
+                    this.f24688c1 = f11;
                     this.O0.setVisibility(0);
                     this.P0.setVisibility(0);
-                    if (this.f24691g1) {
-                        this.f24688d1 = am0Var.b();
-                        this.f24689e1 = Math.max(am0Var.d, am0Var.b());
+                    if (this.f24692g1) {
+                        this.f24689d1 = am0Var.b();
+                        this.f24690e1 = Math.max(am0Var.d, am0Var.b());
                         View view3 = this.Q0;
-                        float max = Math.max(0.0f, am0Var.f24571a - am0Var.d);
-                        if (!am0Var.f24575f) {
-                            f10 = am0Var.b() - am0Var.f24572b;
+                        float max = Math.max(0.0f, am0Var.f24572a - am0Var.d);
+                        if (!am0Var.f24576f) {
+                            f10 = am0Var.b() - am0Var.f24573b;
                         }
                         p0(view3, max + f10);
                         p0(this.R0, Math.max(am0Var.d, am0Var.b()) - am0Var.d);
@@ -861,25 +861,25 @@ public class aw0 extends lw0 implements r0.m {
                         } else {
                             h = this.U0.h(recyclerView4);
                         }
-                        float max2 = this.f24687c1 - Math.max(0.0f, Math.min(h, Math.max(0.0f, this.f24685a1 - this.f24686b1)));
-                        this.f24688d1 = max2;
-                        this.f24689e1 = Math.max(this.f24685a1, max2);
-                        p0(this.N0.getCurrentView(), Math.max(0.0f, this.f24687c1 - this.f24685a1));
+                        float max2 = this.f24688c1 - Math.max(0.0f, Math.min(h, Math.max(0.0f, this.f24686a1 - this.f24687b1)));
+                        this.f24689d1 = max2;
+                        this.f24690e1 = Math.max(this.f24686a1, max2);
+                        p0(this.N0.getCurrentView(), Math.max(0.0f, this.f24688c1 - this.f24686a1));
                     }
-                    this.K0.setTranslationY(this.f24688d1 - j02);
-                    this.P0.setTranslationY(this.f24689e1 - view.getTop());
-                    if (this.f24689e1 > this.f24685a1 + 0.5f) {
+                    this.K0.setTranslationY(this.f24689d1 - j02);
+                    this.P0.setTranslationY(this.f24690e1 - view.getTop());
+                    if (this.f24690e1 > this.f24686a1 + 0.5f) {
                         z10 = false;
                     }
                     setTabsPinned(z10);
                     this.S0.getClass();
-                    if (f7 != this.f24688d1) {
+                    if (f7 != this.f24689d1) {
                         f0Var.invalidate();
                     }
-                    this.f24690f1 = false;
+                    this.f24691f1 = false;
                 }
             } finally {
-                this.f24690f1 = false;
+                this.f24691f1 = false;
             }
         }
     }
@@ -893,34 +893,34 @@ public class aw0 extends lw0 implements r0.m {
         float Y0 = xv0Var.Y0();
         this.S0.getClass();
         if (!Float.isNaN(Y0) && !Float.isInfinite(Y0) && !Float.isNaN(0.0f) && !Float.isInfinite(0.0f) && Y0 >= 0.0f) {
-            if (this.f24693i1 && (Y0 != this.f24685a1 || 0.0f != this.f24686b1)) {
+            if (this.f24694i1 && (Y0 != this.f24686a1 || 0.0f != this.f24687b1)) {
                 float j02 = j0();
                 if (!Float.isInfinite(j02)) {
-                    float f7 = this.f24685a1;
+                    float f7 = this.f24686a1;
                     if (j02 > 0.5f + f7 && j02 >= Y0) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
                     if (z10 && Y0 != f7) {
-                        this.f24694j1 = true;
+                        this.f24695j1 = true;
                     }
-                    if (this.f24691g1) {
+                    if (this.f24692g1) {
                         am0 am0Var = this.J0;
-                        float f10 = am0Var.f24574e;
+                        float f10 = am0Var.f24575e;
                         if (z10) {
                             j02 = Y0;
                         }
                         yv0 yv0Var = this.U0;
                         am0Var.a(j02, yv0Var.h(yv0Var.i(this.Q0)), Y0, 0.0f);
-                        am0Var.f24574e = Math.max(0.0f, Math.min(1.0f, f10));
+                        am0Var.f24575e = Math.max(0.0f, Math.min(1.0f, f10));
                         this.G0.invalidate();
                     }
                 }
             }
-            this.f24685a1 = Y0;
-            this.f24686b1 = 0.0f;
-            this.f24693i1 = true;
+            this.f24686a1 = Y0;
+            this.f24687b1 = 0.0f;
+            this.f24694i1 = true;
             return;
         }
         throw new IllegalArgumentException("Require finite 0 <= commonHiddenTop <= tabsPinnedTop");

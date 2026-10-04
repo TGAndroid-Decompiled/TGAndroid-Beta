@@ -4,29 +4,29 @@ import android.graphics.Rect;
 import android.view.GestureDetector;
 import android.widget.FrameLayout;
 public final class jb extends FrameLayout {
-    public final vb f27708a;
-    public final Rect f27709b;
-    public final GestureDetector f27710c;
+    public final vb f27709a;
+    public final Rect f27710b;
+    public final GestureDetector f27711c;
     public boolean d;
-    public boolean f27711e;
-    public float f27712f;
+    public boolean f27712e;
+    public float f27713f;
     public float h;
-    public float f27713n;
-    public boolean f27714r;
-    public boolean f27715s;
+    public float f27714n;
+    public boolean f27715r;
+    public boolean f27716s;
     public boolean v;
-    public boolean f27716w;
-    public final FrameLayout f27717x;
-    public final rc f27718y;
+    public boolean f27717w;
+    public final FrameLayout f27718x;
+    public final rc f27719y;
 
     public jb(rc rcVar, vb vbVar, FrameLayout frameLayout) {
         super(vbVar.getContext());
-        this.f27718y = rcVar;
-        this.f27717x = frameLayout;
-        this.f27709b = new Rect();
-        this.f27708a = vbVar;
+        this.f27719y = rcVar;
+        this.f27718x = frameLayout;
+        this.f27710b = new Rect();
+        this.f27709a = vbVar;
         GestureDetector gestureDetector = new GestureDetector(vbVar.getContext(), new gc(this, vbVar));
-        this.f27710c = gestureDetector;
+        this.f27711c = gestureDetector;
         gestureDetector.setIsLongpressEnabled(false);
         addView(vbVar);
     }

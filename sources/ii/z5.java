@@ -143,7 +143,7 @@ public final class z5 implements h1 {
                 a aVar = f6Var.f12376x;
                 x3 x3Var = ((f3) c6Var).f12361a;
                 ArrayList arrayList = x3Var.f12786w4;
-                u61 u61Var = x3Var.f25244f3;
+                u61 u61Var = x3Var.f25245f3;
                 ArrayList arrayList2 = x3Var.f12777s3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {

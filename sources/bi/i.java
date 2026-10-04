@@ -32,8 +32,8 @@ public final class i extends qz {
         switch (this.X) {
             case 0:
                 fw0 fw0Var = (fw0) this.Y;
-                fw0Var.f26585b = 100.0f;
-                fw0Var.f26584a = 100.0f;
+                fw0Var.f26586b = 100.0f;
+                fw0Var.f26585a = 100.0f;
                 return fw0Var;
             default:
                 return super.D1(i10);
@@ -46,7 +46,7 @@ public final class i extends qz {
         switch (this.X) {
             case 0:
                 super.U(eVar, z0Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46470a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46471a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     aVar = new e.a(collectionItemInfo);
@@ -72,7 +72,7 @@ public final class i extends qz {
     public int W0(z0 z0Var) {
         switch (this.X) {
             case 1:
-                if (((c71) this.Y).f25246h3) {
+                if (((c71) this.Y).f25247h3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(z0Var);

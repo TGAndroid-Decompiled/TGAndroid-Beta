@@ -81,9 +81,9 @@ public final class v implements Runnable {
             case 4:
                 ca.c cVar = (ca.c) this.d;
                 cVar.b((w9.b) this.f4244b, (TaskCompletionSource) this.f4245c);
-                ((AtomicInteger) cVar.f4527i.f16928c).set(0);
+                ((AtomicInteger) cVar.f4527i.f16929c).set(0);
                 double min = Math.min(3600000.0d, Math.pow(cVar.f4522b, cVar.a()) * (60000.0d / cVar.f4521a));
-                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f48921b;
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f48922b;
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", str2, null);
                 }
@@ -142,7 +142,7 @@ public final class v implements Runnable {
                         lVar2.get();
                         return;
                     } catch (Exception e7) {
-                        fVar2.f47534c.l(e7);
+                        fVar2.f47535c.l(e7);
                         return;
                     }
                 }
@@ -184,7 +184,7 @@ public final class v implements Runnable {
             default:
                 k0 k0Var = (k0) this.f4245c;
                 y8.e0 e0Var = (y8.e0) this.d;
-                Task<byte[]> onRequest = ((x8.m) this.f4244b).f49767c.onRequest(k0Var.d, k0Var.f50494b, k0Var.f50495c);
+                Task<byte[]> onRequest = ((x8.m) this.f4244b).f49768c.onRequest(k0Var.d, k0Var.f50495b, k0Var.f50496c);
                 if (onRequest == null) {
                     x8.m.M0(e0Var, false, null);
                     return;

@@ -1,16 +1,16 @@
 package za;
 public final class z {
-    public final String f53163a;
-    public final String f53164b;
-    public final int f53165c;
+    public final String f53164a;
+    public final String f53165b;
+    public final int f53166c;
     public final long d;
 
     public z(int i10, long j3, String sessionId, String firstSessionId) {
         kotlin.jvm.internal.i.e(sessionId, "sessionId");
         kotlin.jvm.internal.i.e(firstSessionId, "firstSessionId");
-        this.f53163a = sessionId;
-        this.f53164b = firstSessionId;
-        this.f53165c = i10;
+        this.f53164a = sessionId;
+        this.f53165b = firstSessionId;
+        this.f53166c = i10;
         this.d = j3;
     }
 
@@ -22,7 +22,7 @@ public final class z {
             return false;
         }
         z zVar = (z) obj;
-        if (kotlin.jvm.internal.i.a(this.f53163a, zVar.f53163a) && kotlin.jvm.internal.i.a(this.f53164b, zVar.f53164b) && this.f53165c == zVar.f53165c && this.d == zVar.d) {
+        if (kotlin.jvm.internal.i.a(this.f53164a, zVar.f53164a) && kotlin.jvm.internal.i.a(this.f53165b, zVar.f53165b) && this.f53166c == zVar.f53166c && this.d == zVar.d) {
             return true;
         }
         return false;
@@ -30,10 +30,10 @@ public final class z {
 
     public final int hashCode() {
         long j3 = this.d;
-        return ((a4.a.h(this.f53163a.hashCode() * 31, 31, this.f53164b) + this.f53165c) * 31) + ((int) (j3 ^ (j3 >>> 32)));
+        return ((a4.a.h(this.f53164a.hashCode() * 31, 31, this.f53165b) + this.f53166c) * 31) + ((int) (j3 ^ (j3 >>> 32)));
     }
 
     public final String toString() {
-        return "SessionDetails(sessionId=" + this.f53163a + ", firstSessionId=" + this.f53164b + ", sessionIndex=" + this.f53165c + ", sessionStartTimestampUs=" + this.d + ')';
+        return "SessionDetails(sessionId=" + this.f53164a + ", firstSessionId=" + this.f53165b + ", sessionIndex=" + this.f53166c + ", sessionStartTimestampUs=" + this.d + ')';
     }
 }

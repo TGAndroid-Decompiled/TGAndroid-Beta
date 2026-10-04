@@ -61,8 +61,8 @@ public final class n4 implements o1.f {
                 return;
             case 3:
                 xi xiVar = (xi) ((fi) this.f9221b).d;
-                xiVar.f32876z0.setTranslationY(0.0f);
-                xiVar.f32876z0.k(xiVar.f32831l2);
+                xiVar.f32877z0.setTranslationY(0.0f);
+                xiVar.f32877z0.k(xiVar.f32832l2);
                 viewGroup = ((org.telegram.ui.ActionBar.f3) xiVar).containerView;
                 viewGroup.invalidate();
                 ((ih) this.f9222c).run();

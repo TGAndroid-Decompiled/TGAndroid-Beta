@@ -15,37 +15,37 @@ import org.telegram.ui.Components.yc;
 import org.telegram.ui.bp;
 import org.telegram.ui.wd1;
 public final class i extends ClickableSpan {
-    public final int f22224a;
-    public final Object f22225b;
-    public final Object f22226c;
+    public final int f22225a;
+    public final Object f22226b;
+    public final Object f22227c;
 
     public i(int i10, Object obj, Object obj2) {
-        this.f22224a = i10;
-        this.f22226c = obj;
-        this.f22225b = obj2;
+        this.f22225a = i10;
+        this.f22227c = obj;
+        this.f22226b = obj2;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f22224a) {
+        switch (this.f22225a) {
             case 0:
-                j jVar = (j) this.f22226c;
-                jVar.d((ClickableSpan) this.f22225b, jVar.f22291a, 0.0f);
+                j jVar = (j) this.f22227c;
+                jVar.d((ClickableSpan) this.f22226b, jVar.f22292a, 0.0f);
                 return;
             case 1:
-                w0 w0Var = (w0) this.f22226c;
+                w0 w0Var = (w0) this.f22227c;
                 if (w0Var.X0 != null) {
-                    w0Var.O((CharacterStyle) this.f22225b);
+                    w0Var.O((CharacterStyle) this.f22226b);
                     return;
                 }
                 return;
             case 2:
-                CharacterStyle characterStyle = (CharacterStyle) this.f22225b;
+                CharacterStyle characterStyle = (CharacterStyle) this.f22226b;
                 if (characterStyle instanceof q1) {
                     ((q1) characterStyle).onClick(view);
                     return;
                 }
-                u1 u1Var = ((r1) this.f22226c).d;
+                u1 u1Var = ((r1) this.f22227c).d;
                 l1 l1Var = u1Var.Jc;
                 if (l1Var != null) {
                     l1Var.V0(u1Var, characterStyle, false);
@@ -54,9 +54,9 @@ public final class i extends ClickableSpan {
                 return;
             case 3:
                 try {
-                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f22225b));
-                    if (yc.a((org.telegram.ui.sa) this.f22226c)) {
-                        yc.j((org.telegram.ui.sa) this.f22226c).j();
+                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f22226b));
+                    if (yc.a((org.telegram.ui.sa) this.f22227c)) {
+                        yc.j((org.telegram.ui.sa) this.f22227c).j();
                         return;
                     }
                     return;
@@ -65,25 +65,25 @@ public final class i extends ClickableSpan {
                     return;
                 }
             case 4:
-                Context context = ((y1) this.f22226c).getContext();
-                nf.f.s(context, "https://fragment.com/username/" + ((String) this.f22225b));
+                Context context = ((y1) this.f22227c).getContext();
+                nf.f.s(context, "https://fragment.com/username/" + ((String) this.f22226b));
                 return;
             case 5:
-                Context context2 = ((bp) this.f22226c).getContext();
-                nf.f.s(context2, "https://fragment.com/username/" + ((String) this.f22225b));
+                Context context2 = ((bp) this.f22227c).getContext();
+                nf.f.s(context2, "https://fragment.com/username/" + ((String) this.f22226b));
                 return;
             case 6:
-                ((be) this.f22226c).run();
+                ((be) this.f22227c).run();
                 return;
             case 7:
-                AndroidUtilities.addToClipboard((CharSequence) this.f22225b);
-                ((Runnable) this.f22226c).run();
+                AndroidUtilities.addToClipboard((CharSequence) this.f22226b);
+                ((Runnable) this.f22227c).run();
                 return;
             default:
                 try {
-                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f22225b));
-                    if (yc.a((wd1) this.f22226c)) {
-                        yc.j((wd1) this.f22226c).j();
+                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f22226b));
+                    if (yc.a((wd1) this.f22227c)) {
+                        yc.j((wd1) this.f22227c).j();
                         return;
                     }
                     return;
@@ -96,7 +96,7 @@ public final class i extends ClickableSpan {
 
     @Override
     public void updateDrawState(TextPaint textPaint) {
-        switch (this.f22224a) {
+        switch (this.f22225a) {
             case 3:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
@@ -112,7 +112,7 @@ public final class i extends ClickableSpan {
             case 6:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Gi, (org.telegram.ui.ActionBar.d6) this.f22225b));
+                textPaint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Gi, (org.telegram.ui.ActionBar.d6) this.f22226b));
                 return;
             case 7:
                 textPaint.setColor(textPaint.linkColor);
@@ -128,14 +128,14 @@ public final class i extends ClickableSpan {
     }
 
     public i(Object obj, Runnable runnable, int i10) {
-        this.f22224a = i10;
-        this.f22225b = obj;
-        this.f22226c = runnable;
+        this.f22225a = i10;
+        this.f22226b = obj;
+        this.f22227c = runnable;
     }
 
     public i(String str, org.telegram.ui.ActionBar.n2 n2Var, int i10) {
-        this.f22224a = i10;
-        this.f22226c = n2Var;
-        this.f22225b = str;
+        this.f22225a = i10;
+        this.f22227c = n2Var;
+        this.f22226b = str;
     }
 }

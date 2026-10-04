@@ -87,8 +87,8 @@ public final class cb implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
                 TLObject tLObject = (TLObject) this.f737c;
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.h;
-                t70Var.f40707r = false;
-                if (!((org.telegram.ui.g4) this.f739f).f36486e.isEmpty()) {
+                t70Var.f40708r = false;
+                if (!((org.telegram.ui.g4) this.f739f).f36487e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
@@ -97,7 +97,7 @@ public final class cb implements Runnable {
                             MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            t70Var.f40706n = chat;
+                            t70Var.f40707n = chat;
                             if (chat.left && !chat.kicked) {
                                 d1Var.a(0, false);
                                 return;
@@ -137,7 +137,7 @@ public final class cb implements Runnable {
                     b2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f20054id = groupCall.f20047id;
+                        tL_inputGroupCall.f20055id = groupCall.f20048id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.m9.i0(context, i12, tL_inputGroupCall, groupCall.invite_link, d6Var, true, true);
                         AndroidUtilities.runOnUIThread(t60Var);
@@ -152,7 +152,7 @@ public final class cb implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f20054id = groupCall2.f20047id;
+                    tL_inputGroupCall2.f20055id = groupCall2.f20048id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                     ConnectionsManager.getInstance(i12).sendRequest(exportgroupcallinvite, new hi(b2Var, context, i12, exportgroupcallinvite, d6Var, t60Var));
                     return;
@@ -245,11 +245,11 @@ public final class cb implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c1Var.getContext());
-                    alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new fs0(24, c1Var, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new org.telegram.ui.web.w(1));
-                    c1Var.Y(3, alertDialog$Builder.f20367a, new org.telegram.ui.web.x(strArr2, i15, z0Var, daVar, 1));
+                    c1Var.Y(3, alertDialog$Builder.f20368a, new org.telegram.ui.web.x(strArr2, i15, z0Var, daVar, 1));
                     return;
                 }
             case 13:

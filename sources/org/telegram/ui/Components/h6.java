@@ -8,21 +8,21 @@ import java.util.ArrayList;
 import java.util.Locale;
 public final class h6 {
     public static final org.telegram.ui.Cells.t8 h = new org.telegram.ui.Cells.t8("progress", 3);
-    public final TextPaint f27024c;
+    public final TextPaint f27025c;
     public ObjectAnimator d;
-    public final org.telegram.ui.Cells.u1 f27027g;
-    public final ArrayList f27022a = new ArrayList();
-    public final ArrayList f27023b = new ArrayList();
-    public float f27025e = 0.0f;
-    public int f27026f = 1;
+    public final org.telegram.ui.Cells.u1 f27028g;
+    public final ArrayList f27023a = new ArrayList();
+    public final ArrayList f27024b = new ArrayList();
+    public float f27026e = 0.0f;
+    public int f27027f = 1;
 
     public h6(org.telegram.ui.Cells.u1 u1Var, TextPaint textPaint) {
-        this.f27024c = textPaint;
-        this.f27027g = u1Var;
+        this.f27025c = textPaint;
+        this.f27028g = u1Var;
     }
 
     public final int a() {
-        ArrayList arrayList = this.f27022a;
+        ArrayList arrayList = this.f27023a;
         int size = arrayList.size();
         float f7 = 0.0f;
         for (int i10 = 0; i10 < size; i10++) {
@@ -37,8 +37,8 @@ public final class h6 {
         String str;
         TextPaint textPaint;
         ArrayList arrayList;
-        int i11 = this.f27026f;
-        ArrayList arrayList2 = this.f27022a;
+        int i11 = this.f27027f;
+        ArrayList arrayList2 = this.f27023a;
         if (i11 == i10 && !arrayList2.isEmpty()) {
             return;
         }
@@ -47,25 +47,25 @@ public final class h6 {
             objectAnimator.cancel();
             this.d = null;
         }
-        ArrayList arrayList3 = this.f27023b;
+        ArrayList arrayList3 = this.f27024b;
         arrayList3.clear();
         arrayList3.addAll(arrayList2);
         arrayList2.clear();
         Locale locale = Locale.US;
-        int i12 = this.f27026f;
+        int i12 = this.f27027f;
         StringBuilder sb2 = new StringBuilder();
         sb2.append(i12);
         String sb3 = sb2.toString();
         StringBuilder sb4 = new StringBuilder();
         sb4.append(i10);
         String sb5 = sb4.toString();
-        if (i10 > this.f27026f) {
+        if (i10 > this.f27027f) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f27026f = i10;
-        this.f27025e = 0.0f;
+        this.f27027f = i10;
+        this.f27026e = 0.0f;
         int i13 = 0;
         while (i13 < sb5.length()) {
             int i14 = i13 + 1;
@@ -81,7 +81,7 @@ public final class h6 {
                 arrayList = arrayList3;
             } else {
                 arrayList = arrayList3;
-                arrayList2.add(new StaticLayout(substring, this.f27024c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                arrayList2.add(new StaticLayout(substring, this.f27025c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
             }
             i13 = i14;
             arrayList3 = arrayList;
@@ -99,6 +99,6 @@ public final class h6 {
             this.d.addListener(new org.telegram.ui.u4(this, 26));
             this.d.start();
         }
-        this.f27027g.invalidate();
+        this.f27028g.invalidate();
     }
 }

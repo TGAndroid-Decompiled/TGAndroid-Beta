@@ -21,8 +21,8 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public static DispatchQueue f28439u0;
-    public static boolean f28440v0;
+    public static DispatchQueue f28440u0;
+    public static boolean f28441v0;
     public int E;
     public boolean F;
     public final org.telegram.ui.ActionBar.c5 G;
@@ -42,62 +42,62 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     public final Matrix U;
     public final Matrix V;
     public final Paint W;
-    public final Rect f28441a;
-    public final Paint f28442a0;
-    public Drawable f28443b;
-    public final Paint f28444b0;
-    public boolean f28445c;
-    public final Paint f28446c0;
+    public final Rect f28442a;
+    public final Paint f28443a0;
+    public Drawable f28444b;
+    public final Paint f28445b0;
+    public boolean f28446c;
+    public final Paint f28447c0;
     public Drawable d;
-    public Paint f28447d0;
-    public boolean f28448e;
-    public Paint f28449e0;
-    public int f28450f;
-    public float f28451f0;
-    public ValueAnimator f28452g0;
+    public Paint f28448d0;
+    public boolean f28449e;
+    public Paint f28450e0;
+    public int f28451f;
+    public float f28452f0;
+    public ValueAnimator f28453g0;
     public int h;
-    public boolean f28453h0;
-    public int f28454i0;
-    public int f28455j0;
-    public int f28456k0;
-    public float f28457l0;
+    public boolean f28454h0;
+    public int f28455i0;
+    public int f28456j0;
+    public int f28457k0;
+    public float f28458l0;
     public final androidx.activity.g m0;
-    public kw0 f28458n;
-    public float f28459n0;
-    public float f28460o0;
-    public RenderNode[] f28461p0;
-    public final boolean[] f28462q0;
-    public final ArrayList f28463r;
-    public final boolean[] f28464r0;
-    public boolean f28465s;
-    public final ArrayList f28466s0;
-    public final ArrayList f28467t0;
+    public kw0 f28459n;
+    public float f28460n0;
+    public float f28461o0;
+    public RenderNode[] f28462p0;
+    public final boolean[] f28463q0;
+    public final ArrayList f28464r;
+    public final boolean[] f28465r0;
+    public boolean f28466s;
+    public final ArrayList f28467s0;
+    public final ArrayList f28468t0;
     public j91 v;
-    public float f28468w;
-    public float f28469x;
-    public float f28470y;
+    public float f28469w;
+    public float f28470x;
+    public float f28471y;
 
     public lw0(Context context, org.telegram.ui.ActionBar.c5 c5Var) {
         super(context);
-        this.f28441a = new Rect();
-        this.f28463r = new ArrayList();
-        this.f28465s = true;
-        this.f28470y = 1.0f;
+        this.f28442a = new Rect();
+        this.f28464r = new ArrayList();
+        this.f28466s = true;
+        this.f28471y = 1.0f;
         this.F = true;
         this.S = new ArrayList(10);
         this.T = new ArrayList();
         this.U = new Matrix();
         this.V = new Matrix();
         this.W = new Paint();
-        this.f28442a0 = new Paint();
-        this.f28444b0 = new Paint();
-        this.f28446c0 = new Paint();
-        this.f28457l0 = 1.0f;
+        this.f28443a0 = new Paint();
+        this.f28445b0 = new Paint();
+        this.f28447c0 = new Paint();
+        this.f28458l0 = 1.0f;
         this.m0 = new androidx.activity.g(this);
-        this.f28462q0 = new boolean[2];
-        this.f28464r0 = new boolean[2];
-        this.f28466s0 = new ArrayList();
-        this.f28467t0 = new ArrayList();
+        this.f28463q0 = new boolean[2];
+        this.f28465r0 = new boolean[2];
+        this.f28467s0 = new ArrayList();
+        this.f28468t0 = new ArrayList();
         setWillNotDraw(false);
         this.G = c5Var;
         this.H = null;
@@ -115,7 +115,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
             if (lw0Var.K == null) {
                 ww0 ww0Var = new ww0(1);
                 lw0Var.K = ww0Var;
-                ww0Var.f32643g = -1;
+                ww0Var.f32644g = -1;
                 ww0Var.c();
             }
             lw0Var.K.b(canvas, lw0Var.L);
@@ -149,14 +149,14 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public final void I() {
-        if (!this.f28448e && !this.f28445c) {
+        if (!this.f28449e && !this.f28446c) {
             j91 j91Var = this.v;
             if (j91Var != null) {
                 j91Var.c(false);
                 this.v = null;
-                this.f28470y = 1.0f;
-                this.f28468w = 0.0f;
-                this.f28469x = 0.0f;
+                this.f28471y = 1.0f;
+                this.f28469w = 0.0f;
+                this.f28470x = 0.0f;
                 return;
             }
             return;
@@ -164,13 +164,13 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
         if (this.v == null) {
             j91 j91Var2 = new j91(getContext());
             this.v = j91Var2;
-            j91Var2.f27699n = new pv(this, 22);
+            j91Var2.f27700n = new pv(this, 22);
             if (getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
                 j91 j91Var3 = this.v;
                 int measuredWidth = getMeasuredWidth();
                 int measuredHeight = getMeasuredHeight();
                 j91Var3.getClass();
-                this.f28470y = j91.a(measuredWidth, measuredHeight);
+                this.f28471y = j91.a(measuredWidth, measuredHeight);
             }
         }
         if (!this.F) {
@@ -181,9 +181,9 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     public void J(Canvas canvas, float f7, Rect rect, Paint paint, boolean z10) {
         int i10;
         if (G() && SharedConfig.getDevicePerformanceClass() == 2) {
-            i10 = org.telegram.ui.ActionBar.i6.f21195xf;
+            i10 = org.telegram.ui.ActionBar.i6.f21196xf;
         } else {
-            i10 = org.telegram.ui.ActionBar.i6.f21213yf;
+            i10 = org.telegram.ui.ActionBar.i6.f21214yf;
         }
         K(canvas, f7, rect, paint, z10, Color.alpha(org.telegram.ui.ActionBar.i6.v0(i10, getResourceProvider())));
     }
@@ -194,7 +194,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
 
     public void M() {
         if (SharedConfig.chatBlurEnabled()) {
-            this.f28453h0 = true;
+            this.f28454h0 = true;
             if (this.O && !this.P) {
                 invalidate();
             }
@@ -202,7 +202,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public final void N() {
-        boolean[] zArr = this.f28464r0;
+        boolean[] zArr = this.f28465r0;
         int i10 = 0;
         zArr[0] = true;
         zArr[1] = true;
@@ -232,7 +232,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     public int R() {
         int i10;
         View rootView = getRootView();
-        Rect rect = this.f28441a;
+        Rect rect = this.f28442a;
         getWindowVisibleDisplayFrame(rect);
         if (rect.bottom == 0 && rect.top == 0) {
             return 0;
@@ -244,19 +244,19 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
             i10 = 0;
         }
         int max = Math.max(0, ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top));
-        this.f28450f = max;
+        this.f28451f = max;
         return max;
     }
 
     public void S() {
         boolean z10;
         if (this.v != null) {
-            this.f28470y = j91.a(getMeasuredWidth(), getMeasuredHeight());
+            this.f28471y = j91.a(getMeasuredWidth(), getMeasuredHeight());
         }
-        if (this.f28458n == null && this.f28463r.isEmpty()) {
+        if (this.f28459n == null && this.f28464r.isEmpty()) {
             return;
         }
-        this.f28450f = R();
+        this.f28451f = R();
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             z10 = true;
@@ -267,7 +267,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public final void V(Drawable drawable) {
-        if (this.f28443b == drawable) {
+        if (this.f28444b == drawable) {
             return;
         }
         if (this.L == null) {
@@ -279,28 +279,28 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
             ((pc0) drawable).r(this.L);
         }
         if (this.M) {
-            Drawable drawable2 = this.f28443b;
+            Drawable drawable2 = this.f28444b;
             if (drawable2 instanceof org.telegram.ui.bo) {
                 ((org.telegram.ui.bo) drawable2).g(this.L);
             }
         }
-        this.f28443b = drawable;
+        this.f28444b = drawable;
         if (this.M && (drawable instanceof org.telegram.ui.bo)) {
             ((org.telegram.ui.bo) drawable).f(this.L);
         }
         if (this.M) {
-            Drawable drawable3 = this.f28443b;
+            Drawable drawable3 = this.f28444b;
             if (drawable3 instanceof pc0) {
                 ((pc0) drawable3).l();
             }
         }
         if (this.M) {
-            Drawable drawable4 = this.f28443b;
+            Drawable drawable4 = this.f28444b;
             if (drawable4 instanceof pc0) {
                 ((pc0) drawable4).k();
             }
         }
-        U(this.f28443b);
+        U(this.f28444b);
         I();
         this.L.invalidate();
     }
@@ -308,11 +308,11 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     public final void W() {
         hw0 hw0Var;
         hw0 hw0Var2;
-        if (this.O && !this.P && this.f28453h0 && SharedConfig.chatBlurEnabled() && !G() && Color.alpha(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21213yf, false)) != 255) {
+        if (this.O && !this.P && this.f28454h0 && SharedConfig.chatBlurEnabled() && !G() && Color.alpha(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21214yf, false)) != 255) {
             int measuredWidth = getMeasuredWidth();
             int dp = AndroidUtilities.dp(100.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
             if (measuredWidth != 0 && dp != 0) {
-                this.f28453h0 = false;
+                this.f28454h0 = false;
                 this.P = true;
                 float f7 = dp;
                 int i10 = ((int) (f7 / 12.0f)) + 34;
@@ -327,42 +327,42 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
                 }
                 if (hw0Var == null) {
                     ?? obj = new Object();
-                    obj.f27253c = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
-                    obj.f27252b = new Canvas(obj.f27253c);
+                    obj.f27254c = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
+                    obj.f27253b = new Canvas(obj.f27254c);
                     hw0Var2 = obj;
                 } else {
-                    hw0Var.f27253c.eraseColor(0);
+                    hw0Var.f27254c.eraseColor(0);
                     hw0Var2 = hw0Var;
                 }
-                float width = hw0Var2.f27253c.getWidth() / f10;
-                float height = (hw0Var2.f27253c.getHeight() - 34) / f7;
-                int save = hw0Var2.f27252b.save();
-                hw0Var2.f27251a = getScrollOffset() % 24;
+                float width = hw0Var2.f27254c.getWidth() / f10;
+                float height = (hw0Var2.f27254c.getHeight() - 34) / f7;
+                int save = hw0Var2.f27253b.save();
+                hw0Var2.f27252a = getScrollOffset() % 24;
                 float f11 = 10.0f * height;
-                hw0Var2.f27252b.clipRect(1.0f, f11, hw0Var2.f27253c.getWidth(), hw0Var2.f27253c.getHeight() - 1);
-                hw0Var2.f27252b.scale(width, height);
-                hw0Var2.f27252b.translate(0.0f, f11 + hw0Var2.f27251a);
+                hw0Var2.f27253b.clipRect(1.0f, f11, hw0Var2.f27254c.getWidth(), hw0Var2.f27254c.getHeight() - 1);
+                hw0Var2.f27253b.scale(width, height);
+                hw0Var2.f27253b.translate(0.0f, f11 + hw0Var2.f27252a);
                 hw0Var2.d = 1.0f / width;
-                hw0Var2.f27254e = 1.0f / height;
-                L(hw0Var2.f27252b, null);
+                hw0Var2.f27255e = 1.0f / height;
+                L(hw0Var2.f27253b, null);
                 try {
-                    hw0Var2.f27252b.restoreToCount(save);
+                    hw0Var2.f27253b.restoreToCount(save);
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
                 System.currentTimeMillis();
-                int i12 = this.f28456k0 + 1;
-                this.f28456k0 = i12;
+                int i12 = this.f28457k0 + 1;
+                this.f28457k0 = i12;
                 if (i12 >= 20) {
-                    this.f28456k0 = 0;
+                    this.f28457k0 = 0;
                 }
-                if (f28439u0 == null) {
-                    f28439u0 = new DispatchQueue("BlurQueue");
+                if (f28440u0 == null) {
+                    f28440u0 = new DispatchQueue("BlurQueue");
                 }
                 androidx.activity.g gVar = this.m0;
                 gVar.f2049b = (int) (((int) (Math.max(6, Math.max(dp, measuredWidth) / 180) * 2.5f)) * org.telegram.ui.j5.d);
                 gVar.d = hw0Var2;
-                f28439u0.postRunnable(gVar);
+                f28440u0.postRunnable(gVar);
             }
         }
     }
@@ -379,7 +379,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        boolean[] zArr = this.f28462q0;
+        boolean[] zArr = this.f28463q0;
         zArr[0] = false;
         zArr[1] = false;
         if (this.O) {
@@ -389,12 +389,12 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public Drawable getBackgroundImage() {
-        return this.f28443b;
+        return this.f28444b;
     }
 
     public int getBackgroundSizeY() {
         int i10;
-        if (this.f28443b instanceof org.telegram.ui.bo) {
+        if (this.f28444b instanceof org.telegram.ui.bo) {
             i10 = this.E;
         } else {
             i10 = 0;
@@ -403,7 +403,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public int getBackgroundTranslationY() {
-        Drawable drawable = this.f28443b;
+        Drawable drawable = this.f28444b;
         if (drawable instanceof pc0) {
             return this.E;
         }
@@ -434,11 +434,11 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public int getHeightWithKeyboard() {
-        return getMeasuredHeight() + this.f28450f;
+        return getMeasuredHeight() + this.f28451f;
     }
 
     public int getKeyboardHeight() {
-        return this.f28450f;
+        return this.f28451f;
     }
 
     public float getListTranslationY() {
@@ -450,7 +450,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public boolean getNewDrawableMotion() {
-        return org.telegram.ui.ActionBar.i6.f20902i0;
+        return org.telegram.ui.ActionBar.i6.f20903i0;
     }
 
     public org.telegram.ui.ActionBar.d6 getResourceProvider() {
@@ -467,13 +467,13 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
         this.M = true;
         if (this.N && !this.O) {
             this.O = true;
-            this.f28453h0 = true;
+            this.f28454h0 = true;
         }
-        Drawable drawable = this.f28443b;
+        Drawable drawable = this.f28444b;
         if (drawable instanceof org.telegram.ui.bo) {
             ((org.telegram.ui.bo) drawable).f(this.L);
         }
-        Drawable drawable2 = this.f28443b;
+        Drawable drawable2 = this.f28444b;
         if (drawable2 instanceof pc0) {
             ((pc0) drawable2).k();
         }
@@ -493,16 +493,16 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
         super.onDetachedFromWindow();
         this.M = false;
         this.W.setShader(null);
-        this.f28442a0.setShader(null);
-        this.f28444b0.setShader(null);
-        this.f28446c0.setShader(null);
-        ValueAnimator valueAnimator = this.f28452g0;
+        this.f28443a0.setShader(null);
+        this.f28445b0.setShader(null);
+        this.f28447c0.setShader(null);
+        ValueAnimator valueAnimator = this.f28453g0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         hw0 hw0Var = this.Q;
         if (hw0Var != null) {
-            hw0Var.f27253c.recycle();
+            hw0Var.f27254c.recycle();
             this.Q = null;
         }
         int i10 = 0;
@@ -512,13 +512,13 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
                 break;
             }
             if (arrayList.get(i10) != null) {
-                ((hw0) arrayList.get(i10)).f27253c.recycle();
+                ((hw0) arrayList.get(i10)).f27254c.recycle();
             }
             i10++;
         }
         arrayList.clear();
         this.O = false;
-        Drawable drawable = this.f28443b;
+        Drawable drawable = this.f28444b;
         if (drawable instanceof org.telegram.ui.bo) {
             ((org.telegram.ui.bo) drawable).g(this.L);
         }
@@ -526,7 +526,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
         if (drawable2 instanceof org.telegram.ui.bo) {
             ((org.telegram.ui.bo) drawable2).g(this.L);
         }
-        Drawable drawable3 = this.f28443b;
+        Drawable drawable3 = this.f28444b;
         if (drawable3 instanceof pc0) {
             ((pc0) drawable3).l();
         }
@@ -563,7 +563,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public void setDelegate(kw0 kw0Var) {
-        this.f28458n = kw0Var;
+        this.f28459n = kw0Var;
     }
 
     public void setEmojiKeyboardHeight(int i10) {
@@ -577,7 +577,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
     }
 
     public void setOccupyStatusBar(boolean z10) {
-        this.f28465s = z10;
+        this.f28466s = z10;
     }
 
     public void setSkipBackgroundDrawing(boolean z10) {

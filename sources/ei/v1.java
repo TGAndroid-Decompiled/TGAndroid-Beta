@@ -158,7 +158,7 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         op opVar = (op) this.f9388e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f9387c) {
-            Drawable drawable = opVar.f29423b;
+            Drawable drawable = opVar.f29424b;
             if (drawable instanceof pc0) {
                 pc0 pc0Var = (pc0) drawable;
                 if (this.f9386b >= 0) {
@@ -243,7 +243,7 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         e7.setClipChildren(false);
         e7.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(activity);
-        frameLayout.setBackground(i6.c0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), i6.w0(null, i6.f20810ci, false)));
+        frameLayout.setBackground(i6.c0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), i6.w0(null, i6.f20811ci, false)));
         w9 w9Var = new w9(activity);
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         h9 h9Var = new h9((d6) null);
@@ -251,12 +251,12 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         w9Var.e(user2, h9Var);
         frameLayout.addView(w9Var, z5.e(28, 28, 51));
         w9 w9Var2 = new w9(activity);
-        w9Var2.setEmojiColorFilter(new PorterDuffColorFilter(i6.w0(null, i6.f21226z9, false), PorterDuff.Mode.SRC_IN));
+        w9Var2.setEmojiColorFilter(new PorterDuffColorFilter(i6.w0(null, i6.f21227z9, false), PorterDuff.Mode.SRC_IN));
         final w1 w1Var2 = w1Var;
         w9Var2.setAnimatedEmojiDrawable(q5.n(i15, botverifiersettings.icon, null, 3));
         frameLayout.addView(w9Var2, z5.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         i5 i5Var = new i5(activity);
-        i5Var.setTextColor(i6.w0(null, i6.f20925j5, false));
+        i5Var.setTextColor(i6.w0(null, i6.f20926j5, false));
         i5Var.setTextSize(13);
         i5Var.setEllipsizeByGradient(true);
         i5Var.l(str2, false);
@@ -301,8 +301,8 @@ public final class v1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(i6.w0(null, i6.f21143uf, false));
-        editTextBoldCursor.setHandlesColor(i6.w0(null, i6.f21160vf, false));
+        editTextBoldCursor.setHighlightColor(i6.w0(null, i6.f21144uf, false));
+        editTextBoldCursor.setHandlesColor(i6.w0(null, i6.f21161vf, false));
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {

@@ -8,19 +8,19 @@ import java.util.Iterator;
 import li.h;
 import yf.x;
 public final class a implements ViewTreeObserver.OnDrawListener {
-    public final int f46939a;
-    public final View f46940b;
+    public final int f46940a;
+    public final View f46941b;
 
     public a(int i10, View view) {
-        this.f46939a = i10;
-        this.f46940b = view;
+        this.f46940a = i10;
+        this.f46941b = view;
     }
 
     @Override
     public final void onDraw() {
-        switch (this.f46939a) {
+        switch (this.f46940a) {
             case 0:
-                n4 n4Var = (n4) this.f46940b;
+                n4 n4Var = (n4) this.f46941b;
                 Trace.beginSection("OnDraw");
                 try {
                     Iterator it = ((pe.b) n4Var.f1400b).iterator();
@@ -33,7 +33,7 @@ public final class a implements ViewTreeObserver.OnDrawListener {
                     n4Var.forceLayout();
                 }
             default:
-                ((x) this.f46940b).f51020e.incrementAndGet();
+                ((x) this.f46941b).f51021e.incrementAndGet();
                 return;
         }
     }

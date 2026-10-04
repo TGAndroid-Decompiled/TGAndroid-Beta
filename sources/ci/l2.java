@@ -70,7 +70,7 @@ public final class l2 extends FrameLayout {
         this.f5484n = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new j2(d6Var));
-        imageView2.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20908i6, d6Var), 1, AndroidUtilities.dp(15.0f)));
+        imageView2.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20909i6, d6Var), 1, AndroidUtilities.dp(15.0f)));
         imageView2.setAlpha(0.0f);
         imageView2.setScaleX(0.7f);
         imageView2.setScaleY(0.7f);
@@ -90,7 +90,7 @@ public final class l2 extends FrameLayout {
                         return;
                     default:
                         l2 l2Var = this.f5070b;
-                        int i12 = l2Var.f5481c.f30107k;
+                        int i12 = l2Var.f5481c.f30108k;
                         if (i12 == 1) {
                             l2Var.b();
                             k2 k2Var = l2Var.f5483f;
@@ -124,7 +124,7 @@ public final class l2 extends FrameLayout {
                         return;
                     default:
                         l2 l2Var = this.f5070b;
-                        int i12 = l2Var.f5481c.f30107k;
+                        int i12 = l2Var.f5481c.f30108k;
                         if (i12 == 1) {
                             l2Var.b();
                             k2 k2Var = l2Var.f5483f;
@@ -197,7 +197,7 @@ public final class l2 extends FrameLayout {
                                 return;
                             }
                             l2Var2.f5483f.H1(nx0Var);
-                            String str = nx0Var.f29070a;
+                            String str = nx0Var.f29071a;
                             int categoryIndex = l2Var2.f5483f.getCategoryIndex();
                             Utilities.Callback2 callback22 = l2Var2.v;
                             if (callback22 != null) {
@@ -242,7 +242,7 @@ public final class l2 extends FrameLayout {
                                 return;
                             }
                             l2Var2.f5483f.H1(nx0Var);
-                            String str = nx0Var.f29070a;
+                            String str = nx0Var.f29071a;
                             int categoryIndex = l2Var2.f5483f.getCategoryIndex();
                             Utilities.Callback2 callback22 = l2Var2.v;
                             if (callback22 != null) {
@@ -288,7 +288,7 @@ public final class l2 extends FrameLayout {
         if (z11 && ((h2Var.length() != 0 || ((k2Var2 = this.f5483f) != null && k2Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (h2Var.length() <= 0 && ((k2Var = this.f5483f) == null || k2Var.f30536v3 <= 0.5f || ((k2Var == null || !k2Var.f30531q3) && k2Var.getSelectedCategory() == null))) {
+        if (h2Var.length() <= 0 && ((k2Var = this.f5483f) == null || k2Var.f30537v3 <= 0.5f || ((k2Var == null || !k2Var.f30532q3) && k2Var.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;

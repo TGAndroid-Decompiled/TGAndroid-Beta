@@ -79,14 +79,14 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ei.u(this, 3));
         fh.c cVar = new fh.c();
-        cVar.a(getThemedColor(i6.f20817d6));
+        cVar.a(getThemedColor(i6.f20818d6));
         ah.c cVar2 = new ah.c(cVar);
         this.actionBar.setBackground(null);
         this.actionBar.K(cVar2, eh.b.p(this.resourceProvider), false);
         this.actionBar.Q0 = true;
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
-        frameLayout.setBackgroundColor(i6.w0(null, i6.f20761a7, false));
+        frameLayout.setBackgroundColor(i6.w0(null, i6.f20762a7, false));
         e eVar = new e(context, this.resourceProvider);
         this.f9888f = eVar;
         eVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
@@ -113,7 +113,7 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         this.f9887e = c71Var;
         c71Var.setClipToPadding(false);
         c71 c71Var2 = this.f9887e;
-        c71Var2.f25244f3.f31306r = false;
+        c71Var2.f25245f3.f31307r = false;
         c71Var2.s1();
         this.d.addView(this.f9887e, z5.c(-1.0f, -1));
         this.d.addView(this.actionBar, z5.e(-1, -2, 48));
@@ -127,7 +127,7 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         int i12;
         if (i10 == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j3 = chatFull.f20038id;
+            long j3 = chatFull.f20039id;
             View A1 = this.f9887e.A1((int) (j3 ^ (j3 >>> 32)));
             if (A1 instanceof org.telegram.ui.Cells.i6) {
                 org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) A1;
@@ -140,7 +140,7 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
                 i6Var.setSubLabel(LocaleController.formatPluralString("Chats", i12, new Object[0]));
                 return;
             }
-            this.f9887e.f25244f3.N(false);
+            this.f9887e.f25245f3.N(false);
         }
     }
 

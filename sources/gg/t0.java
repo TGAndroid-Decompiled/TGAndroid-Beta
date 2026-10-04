@@ -92,7 +92,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f46527f;
+        int i10 = c1Var.f46528f;
         if (i10 == 6) {
             if (LocationController.getInstance(this.K).getSharingLocationInfo(this.U) == null && this.O == null) {
                 return false;
@@ -253,7 +253,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         this.Y = new ArrayList(arrayList);
         long clientUserId = UserConfig.getInstance(this.K).getClientUserId();
         for (int i10 = 0; i10 < this.Y.size(); i10++) {
-            if (((ad0) this.Y.get(i10)).f34788a == clientUserId || ((ad0) this.Y.get(i10)).f34789b.out) {
+            if (((ad0) this.Y.get(i10)).f34789a == clientUserId || ((ad0) this.Y.get(i10)).f34790b.out) {
                 this.Y.remove(i10);
                 break;
             }
@@ -473,8 +473,8 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         boolean z10;
         long j3;
         int i12;
-        int i13 = c1Var.f46527f;
-        View view = c1Var.f46523a;
+        int i13 = c1Var.f46528f;
+        View view = c1Var.f46524a;
         int i14 = this.T;
         int i15 = 2;
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue = null;
@@ -554,7 +554,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 if (i17 < h() && j(i17) == 7) {
                     z11 = true;
                 }
-                u6Var.f23518s = z11;
+                u6Var.f23519s = z11;
                 u6Var.invalidate();
                 return;
             case 7:
@@ -575,31 +575,31 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 if (tL_channelLocation != null) {
                     TextView textView = w7Var.d;
                     Location location = w7Var.v;
-                    w9 w9Var = w7Var.f23677a;
-                    w7Var.f23686x = UserConfig.selectedAccount;
+                    w9 w9Var = w7Var.f23678a;
+                    w7Var.f23687x = UserConfig.selectedAccount;
                     String str = tL_channelLocation.address;
-                    w7Var.f23681f = null;
+                    w7Var.f23682f = null;
                     String str2 = "";
                     if (DialogObject.isUserDialog(j10)) {
-                        TLRPC.User user = MessagesController.getInstance(w7Var.f23686x).getUser(Long.valueOf(j10));
+                        TLRPC.User user = MessagesController.getInstance(w7Var.f23687x).getUser(Long.valueOf(j10));
                         if (user != null) {
-                            w7Var.f23681f = new h9(0, user);
+                            w7Var.f23682f = new h9(0, user);
                             str2 = UserObject.getUserName(user);
-                            w9Var.e(user, w7Var.f23681f);
+                            w9Var.e(user, w7Var.f23682f);
                         }
                     } else {
-                        TLRPC.Chat chat = MessagesController.getInstance(w7Var.f23686x).getChat(Long.valueOf(-j10));
+                        TLRPC.Chat chat = MessagesController.getInstance(w7Var.f23687x).getChat(Long.valueOf(-j10));
                         if (chat != null) {
                             h9 h9Var = new h9(chat);
-                            w7Var.f23681f = h9Var;
+                            w7Var.f23682f = h9Var;
                             str2 = chat.title;
                             w9Var.e(chat, h9Var);
                         }
                     }
-                    w7Var.f23678b.l(str2, false);
+                    w7Var.f23679b.l(str2, false);
                     location.setLatitude(tL_channelLocation.geo_point.lat);
                     location.setLongitude(tL_channelLocation.geo_point._long);
-                    w7Var.f23680e = true;
+                    w7Var.f23681e = true;
                     textView.setSingleLine(true);
                     textView.setText(str);
                     return;
@@ -621,29 +621,29 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                     ad0 ad0Var = (ad0) this.Y.get(i18);
                     Location location2 = this.O;
                     TextView textView2 = w7Var.d;
-                    w9 w9Var2 = w7Var.f23677a;
-                    i5 i5Var = w7Var.f23678b;
+                    w9 w9Var2 = w7Var.f23678a;
+                    i5 i5Var = w7Var.f23679b;
                     Location location3 = w7Var.v;
-                    w7Var.f23684s = ad0Var;
-                    if (DialogObject.isUserDialog(ad0Var.f34788a)) {
-                        TLRPC.User user2 = MessagesController.getInstance(w7Var.f23686x).getUser(Long.valueOf(ad0Var.f34788a));
+                    w7Var.f23685s = ad0Var;
+                    if (DialogObject.isUserDialog(ad0Var.f34789a)) {
+                        TLRPC.User user2 = MessagesController.getInstance(w7Var.f23687x).getUser(Long.valueOf(ad0Var.f34789a));
                         if (user2 != null) {
-                            w7Var.f23681f.m(w7Var.f23686x, user2);
+                            w7Var.f23682f.m(w7Var.f23687x, user2);
                             i5Var.l(ContactsController.formatName(user2.first_name, user2.last_name), false);
-                            w9Var2.e(user2, w7Var.f23681f);
+                            w9Var2.e(user2, w7Var.f23682f);
                         }
                     } else {
-                        TLRPC.Chat chat2 = MessagesController.getInstance(w7Var.f23686x).getChat(Long.valueOf(-ad0Var.f34788a));
+                        TLRPC.Chat chat2 = MessagesController.getInstance(w7Var.f23687x).getChat(Long.valueOf(-ad0Var.f34789a));
                         if (chat2 != null) {
-                            w7Var.f23681f.k(w7Var.f23686x, chat2);
+                            w7Var.f23682f.k(w7Var.f23687x, chat2);
                             i5Var.l(chat2.title, false);
-                            w9Var2.e(chat2, w7Var.f23681f);
+                            w9Var2.e(chat2, w7Var.f23682f);
                         }
                     }
-                    IMapsProvider.LatLng position = ad0Var.f34791e.getPosition();
+                    IMapsProvider.LatLng position = ad0Var.f34792e.getPosition();
                     location3.setLatitude(position.latitude);
                     location3.setLongitude(position.longitude);
-                    TLRPC.Message message = ad0Var.f34789b;
+                    TLRPC.Message message = ad0Var.f34790b;
                     int i19 = message.edit_date;
                     if (i19 != 0) {
                         j3 = i19;
@@ -661,9 +661,9 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 return;
             case 11:
                 if (this.f10802j0) {
-                    i12 = i6.f20907i5;
+                    i12 = i6.f20908i5;
                 } else {
-                    i12 = i6.f20889h5;
+                    i12 = i6.f20890h5;
                 }
                 view.setBackgroundColor(i6.v0(i12, this.f10794b0));
                 return;
@@ -714,15 +714,15 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
             case 4:
                 ?? frameLayout2 = new FrameLayout(context);
                 RadialProgressView radialProgressView = new RadialProgressView(context, d6Var);
-                frameLayout2.f23669a = radialProgressView;
+                frameLayout2.f23670a = radialProgressView;
                 frameLayout2.addView(radialProgressView, z5.e(-2, -2, 17));
                 ImageView imageView = new ImageView(context);
-                frameLayout2.f23671c = imageView;
+                frameLayout2.f23672c = imageView;
                 imageView.setImageResource(R.drawable.location_empty);
                 imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.W5, d6Var), PorterDuff.Mode.MULTIPLY));
                 frameLayout2.addView(imageView, z5.d(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 24.0f));
                 TextView textView = new TextView(context);
-                frameLayout2.f23670b = textView;
+                frameLayout2.f23671b = textView;
                 textView.setTextColor(i6.v0(i6.X5, d6Var));
                 textView.setGravity(17);
                 textView.setTypeface(AndroidUtilities.bold());
@@ -776,7 +776,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
             case 9:
                 ?? frameLayout4 = new FrameLayout(context);
                 FrameLayout frameLayout5 = new FrameLayout(context);
-                frameLayout4.f23551a = frameLayout5;
+                frameLayout4.f23552a = frameLayout5;
                 frameLayout5.setBackground(x5.e(new float[]{8.0f}, i6.v0(i6.Oh, d6Var)));
                 frameLayout4.addView(frameLayout5, z5.d(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
                 i5 i5Var = new i5(context);
@@ -789,7 +789,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 i5Var.setLeftDrawable(R.drawable.filled_directions);
                 i5Var.setTypeface(AndroidUtilities.bold());
                 frameLayout5.addView(i5Var, z5.c(-1.0f, -1));
-                frameLayout5.setOutlineProvider(yf.f0.f50980b);
+                frameLayout5.setOutlineProvider(yf.f0.f50981b);
                 frameLayout5.setClipToOutline(true);
                 b6.b(frameLayout5, 0.02f, 1.2f);
                 frameLayout4.setOnButtonClick(new ai.v0(this, 22));
@@ -797,7 +797,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 break;
             case 10:
                 View b7Var = new b7(context, (org.telegram.ui.Cells.c1) null);
-                new sq(new ColorDrawable(i6.v0(i6.f20761a7, d6Var)), i6.V0(context, R.drawable.greydivider_bottom, i6.f20781b7)).f30856w = true;
+                new sq(new ColorDrawable(i6.v0(i6.f20762a7, d6Var)), i6.V0(context, R.drawable.greydivider_bottom, i6.f20782b7)).f30857w = true;
                 view2 = b7Var;
                 break;
             case 11:

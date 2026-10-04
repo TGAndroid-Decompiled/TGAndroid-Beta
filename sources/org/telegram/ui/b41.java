@@ -55,8 +55,8 @@ public final class b41 extends org.telegram.ui.Components.cb {
             imageView2.setImageDrawable(context.getDrawable(R.drawable.ic_ab_other));
             imageView2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             imageView2.setScaleType(scaleType);
-            imageView2.setColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21076r5, false));
-            imageView2.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20908i6, false), 1, -1));
+            imageView2.setColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21077r5, false));
+            imageView2.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20909i6, false), 1, -1));
             d6Var2 = d6Var;
             imageView2.setOnClickListener(new ai.o5(this, callback, d6Var, imageView2, 15));
             frameLayout.addView(imageView2, w7.z5.d(24, 24.0f, 53, 12.0f, 14.0f, 14.0f, 12.0f));
@@ -110,17 +110,17 @@ public final class b41 extends org.telegram.ui.Components.cb {
         String formatString = LocaleController.formatString(i14, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
         int i21 = org.telegram.ui.ActionBar.i6.gc;
         linearLayout.addView(new ai.w5(this, context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i21, 0, new Runnable(this) {
-            public final b41 f43695b;
+            public final b41 f43696b;
 
             {
-                this.f43695b = this;
+                this.f43696b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        b41 b41Var = this.f43695b;
+                        b41 b41Var = this.f43696b;
                         b41Var.getClass();
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != null) {
@@ -130,7 +130,7 @@ public final class b41 extends org.telegram.ui.Components.cb {
                         }
                         return;
                     default:
-                        b41 b41Var2 = this.f43695b;
+                        b41 b41Var2 = this.f43696b;
                         b41Var2.dismiss();
                         nf.f.s(b41Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -138,7 +138,7 @@ public final class b41 extends org.telegram.ui.Components.cb {
             }
         })), w7.z5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20818d7, d6Var2));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20819d7, d6Var2));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -162,17 +162,17 @@ public final class b41 extends org.telegram.ui.Components.cb {
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i16));
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i21, 0, new Runnable(this) {
-            public final b41 f43695b;
+            public final b41 f43696b;
 
             {
-                this.f43695b = this;
+                this.f43696b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        b41 b41Var = this.f43695b;
+                        b41 b41Var = this.f43696b;
                         b41Var.getClass();
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != null) {
@@ -182,7 +182,7 @@ public final class b41 extends org.telegram.ui.Components.cb {
                         }
                         return;
                     default:
-                        b41 b41Var2 = this.f43695b;
+                        b41 b41Var2 = this.f43696b;
                         b41Var2.dismiss();
                         nf.f.s(b41Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;

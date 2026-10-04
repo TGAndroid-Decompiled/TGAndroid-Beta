@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class pf1 extends og.a {
-    public final TLRPC.TL_forumTopic f39471c;
+    public final TLRPC.TL_forumTopic f39472c;
 
     public pf1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
         super(i10, true);
-        this.f39471c = tL_forumTopic;
+        this.f39472c = tL_forumTopic;
     }
 
     public final boolean equals(Object obj) {
@@ -15,8 +15,8 @@ public final class pf1 extends og.a {
         }
         if (obj != null && pf1.class == obj.getClass()) {
             pf1 pf1Var = (pf1) obj;
-            int i10 = this.f17182a;
-            if (i10 == pf1Var.f17182a && i10 == 0 && this.f39471c.f20089id == pf1Var.f39471c.f20089id) {
+            int i10 = this.f17183a;
+            if (i10 == pf1Var.f17183a && i10 == 0 && this.f39472c.f20090id == pf1Var.f39472c.f20090id) {
                 return true;
             }
         }

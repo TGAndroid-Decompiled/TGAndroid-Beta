@@ -28,10 +28,10 @@ public final class g3 implements b5 {
         uVar.f12662a = 2;
         TL_iv.PageBlock pageBlock = this.f12391b.f12186b;
         if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20043id;
+            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20044id;
         }
         x3Var.f12760g4.remove(uVar);
-        x3Var.f25244f3.N(false);
+        x3Var.f25245f3.N(false);
         x3Var.f12769o3.onContentChanged();
     }
 
@@ -59,7 +59,7 @@ public final class g3 implements b5 {
         x3 x3Var = this.d;
         x3Var.f12760g4.remove(uVar);
         x3Var.f12777s3.remove(this.f12391b);
-        x3Var.f25244f3.N(true);
+        x3Var.f25245f3.N(true);
         x3Var.f12769o3.onContentChanged();
     }
 

@@ -50,7 +50,7 @@ public final class ya implements Utilities.Callback2 {
                                 mbVar2.f5766l2 = true;
                                 j6 j6Var = mbVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f20062w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f20063w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
@@ -158,7 +158,7 @@ public final class ya implements Utilities.Callback2 {
                         if (intValue == 1) {
                             org.telegram.ui.Components.yc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            org.telegram.ui.Components.yc.l(DialogObject.getShortName(profileActivity.f34233e1), profileActivity, z12).j();
+                            org.telegram.ui.Components.yc.l(DialogObject.getShortName(profileActivity.f34234e1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             org.telegram.ui.Components.yc.b0(tL_error);
                         }

@@ -13,36 +13,36 @@ import e2.d0;
 import java.nio.ByteBuffer;
 import org.telegram.ui.web.u0;
 public final class c implements l {
-    public final MediaCodec f45692a;
-    public final f f45693b;
-    public final m f45694c;
+    public final MediaCodec f45693a;
+    public final f f45694b;
+    public final m f45695c;
     public final j d;
-    public boolean f45695e;
-    public int f45696f = 0;
+    public boolean f45696e;
+    public int f45697f = 0;
 
     public c(MediaCodec mediaCodec, HandlerThread handlerThread, m mVar, j jVar) {
-        this.f45692a = mediaCodec;
-        this.f45693b = new f(handlerThread);
-        this.f45694c = mVar;
+        this.f45693a = mediaCodec;
+        this.f45694b = new f(handlerThread);
+        this.f45695c = mVar;
         this.d = jVar;
     }
 
     public static void l(c cVar, MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i10) {
         j jVar;
-        f fVar = cVar.f45693b;
-        MediaCodec mediaCodec = cVar.f45692a;
+        f fVar = cVar.f45694b;
+        MediaCodec mediaCodec = cVar.f45693a;
         fVar.b(mediaCodec);
         Trace.beginSection("configureCodec");
         mediaCodec.configure(mediaFormat, surface, mediaCrypto, i10);
         Trace.endSection();
-        cVar.f45694c.start();
+        cVar.f45695c.start();
         Trace.beginSection("startCodec");
         mediaCodec.start();
         Trace.endSection();
         if (Build.VERSION.SDK_INT >= 35 && (jVar = cVar.d) != null) {
             jVar.a(mediaCodec);
         }
-        cVar.f45696f = 1;
+        cVar.f45697f = 1;
     }
 
     public static String m(int i10, String str) {
@@ -61,72 +61,72 @@ public final class c implements l {
 
     @Override
     public final void a(long j3, int i10, int i11, int i12) {
-        this.f45694c.a(j3, i10, i11, i12);
+        this.f45695c.a(j3, i10, i11, i12);
     }
 
     @Override
     public final void b(int i10, h2.d dVar, long j3, int i11) {
-        this.f45694c.b(i10, dVar, j3, i11);
+        this.f45695c.b(i10, dVar, j3, i11);
     }
 
     @Override
     public final void c(int i10) {
-        this.f45692a.releaseOutputBuffer(i10, false);
+        this.f45693a.releaseOutputBuffer(i10, false);
     }
 
     @Override
     public final void d(a3.m mVar, Handler handler) {
-        this.f45692a.setOnFrameRenderedListener(new a(this, mVar, 0), handler);
+        this.f45693a.setOnFrameRenderedListener(new a(this, mVar, 0), handler);
     }
 
     @Override
     public final void e() {
-        this.f45692a.detachOutputSurface();
+        this.f45693a.detachOutputSurface();
     }
 
     @Override
     public final boolean f(n2.c cVar) {
-        f fVar = this.f45693b;
-        synchronized (fVar.f45707a) {
-            fVar.f45719o = cVar;
+        f fVar = this.f45694b;
+        synchronized (fVar.f45708a) {
+            fVar.f45720o = cVar;
         }
         return true;
     }
 
     @Override
     public final void flush() {
-        this.f45694c.flush();
-        this.f45692a.flush();
-        f fVar = this.f45693b;
-        synchronized (fVar.f45707a) {
-            fVar.f45716l++;
-            Handler handler = fVar.f45709c;
+        this.f45695c.flush();
+        this.f45693a.flush();
+        f fVar = this.f45694b;
+        synchronized (fVar.f45708a) {
+            fVar.f45717l++;
+            Handler handler = fVar.f45710c;
             String str = d0.f8537a;
             handler.post(new u0(fVar, 23));
         }
-        this.f45692a.start();
+        this.f45693a.start();
     }
 
     @Override
     public final void g(int i10, long j3) {
-        this.f45692a.releaseOutputBuffer(i10, j3);
+        this.f45693a.releaseOutputBuffer(i10, j3);
     }
 
     @Override
     public final ByteBuffer getInputBuffer(int i10) {
-        return this.f45692a.getInputBuffer(i10);
+        return this.f45693a.getInputBuffer(i10);
     }
 
     @Override
     public final ByteBuffer getOutputBuffer(int i10) {
-        return this.f45692a.getOutputBuffer(i10);
+        return this.f45693a.getOutputBuffer(i10);
     }
 
     @Override
     public final MediaFormat getOutputFormat() {
         MediaFormat mediaFormat;
-        f fVar = this.f45693b;
-        synchronized (fVar.f45707a) {
+        f fVar = this.f45694b;
+        synchronized (fVar.f45708a) {
             try {
                 mediaFormat = fVar.h;
                 if (mediaFormat == null) {
@@ -151,12 +151,12 @@ public final class c implements l {
 
     @Override
     public final void j(int i10) {
-        this.f45692a.setVideoScalingMode(i10);
+        this.f45693a.setVideoScalingMode(i10);
     }
 
     @Override
     public final void k(Surface surface) {
-        this.f45692a.setOutputSurface(surface);
+        this.f45693a.setOutputSurface(surface);
     }
 
     @Override
@@ -164,42 +164,42 @@ public final class c implements l {
         j jVar;
         j jVar2;
         try {
-            if (this.f45696f == 1) {
-                this.f45694c.shutdown();
-                f fVar = this.f45693b;
-                synchronized (fVar.f45707a) {
-                    fVar.f45717m = true;
-                    fVar.f45708b.quit();
+            if (this.f45697f == 1) {
+                this.f45695c.shutdown();
+                f fVar = this.f45694b;
+                synchronized (fVar.f45708a) {
+                    fVar.f45718m = true;
+                    fVar.f45709b.quit();
                     fVar.a();
                 }
             }
-            this.f45696f = 2;
-            if (!this.f45695e) {
+            this.f45697f = 2;
+            if (!this.f45696e) {
                 try {
                     int i10 = Build.VERSION.SDK_INT;
                     if (i10 >= 30 && i10 < 33) {
-                        this.f45692a.stop();
+                        this.f45693a.stop();
                     }
                     if (i10 >= 35 && (jVar2 = this.d) != null) {
-                        jVar2.c(this.f45692a);
+                        jVar2.c(this.f45693a);
                     }
-                    this.f45692a.release();
-                    this.f45695e = true;
+                    this.f45693a.release();
+                    this.f45696e = true;
                 } finally {
                 }
             }
         } catch (Throwable th2) {
-            if (!this.f45695e) {
+            if (!this.f45696e) {
                 try {
                     int i11 = Build.VERSION.SDK_INT;
                     if (i11 >= 30 && i11 < 33) {
-                        this.f45692a.stop();
+                        this.f45693a.stop();
                     }
                     if (i11 >= 35 && (jVar = this.d) != null) {
-                        jVar.c(this.f45692a);
+                        jVar.c(this.f45693a);
                     }
-                    this.f45692a.release();
-                    this.f45695e = true;
+                    this.f45693a.release();
+                    this.f45696e = true;
                 } finally {
                 }
             }
@@ -209,6 +209,6 @@ public final class c implements l {
 
     @Override
     public final void setParameters(Bundle bundle) {
-        this.f45694c.setParameters(bundle);
+        this.f45695c.setParameters(bundle);
     }
 }

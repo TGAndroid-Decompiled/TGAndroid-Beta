@@ -14,22 +14,22 @@ public final class k extends g91 {
     public final Path U;
     public final Paint V;
     public boolean W;
-    public boolean f47024a0;
-    public final boolean f47025b0;
-    public final z0 f47026c0;
-    public final d6 f47027d0;
-    public final a0 f47028e0;
-    public final m f47029f0;
+    public boolean f47025a0;
+    public final boolean f47026b0;
+    public final z0 f47027c0;
+    public final d6 f47028d0;
+    public final a0 f47029e0;
+    public final m f47030f0;
 
     public k(m mVar, Context context, z0 z0Var, d6 d6Var, a0 a0Var) {
         super(context, null);
-        this.f47029f0 = mVar;
-        this.f47026c0 = z0Var;
-        this.f47027d0 = d6Var;
-        this.f47028e0 = a0Var;
+        this.f47030f0 = mVar;
+        this.f47027c0 = z0Var;
+        this.f47028d0 = d6Var;
+        this.f47029e0 = a0Var;
         this.U = new Path();
         this.V = new Paint(1);
-        this.f47025b0 = AndroidUtilities.isTablet();
+        this.f47026b0 = AndroidUtilities.isTablet();
     }
 
     @Override
@@ -37,24 +37,24 @@ public final class k extends g91 {
         int i10;
         int i11;
         float f7;
-        m mVar = this.f47029f0;
-        k kVar = mVar.f47037b;
-        int v02 = i6.v0(i6.f20889h5, this.f47027d0);
+        m mVar = this.f47030f0;
+        k kVar = mVar.f47038b;
+        int v02 = i6.v0(i6.f20890h5, this.f47028d0);
         Paint paint = this.V;
         paint.setColor(v02);
         if (this.W) {
             int i12 = -AndroidUtilities.dp(16.0f);
-            a0 a0Var = this.f47028e0;
-            int i13 = a0Var.f46967s0;
-            if (a0Var.f25301e.getVisibility() == 0) {
+            a0 a0Var = this.f47029e0;
+            int i13 = a0Var.f46968s0;
+            if (a0Var.f25302e.getVisibility() == 0) {
                 i10 = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
             } else {
                 i10 = 0;
             }
             int dp = AndroidUtilities.dp(10.0f) + Math.max(i12, i13 - i10);
-            z0 z0Var = this.f47026c0;
-            int i14 = z0Var.f47137t0;
-            if (z0Var.m0.f25933c == 1.0f) {
+            z0 z0Var = this.f47027c0;
+            int i14 = z0Var.f47138t0;
+            if (z0Var.m0.f25934c == 1.0f) {
                 i11 = AndroidUtilities.statusBarHeight;
             } else {
                 i11 = 0;
@@ -90,7 +90,7 @@ public final class k extends g91 {
             canvas.restore();
             return;
         }
-        if (this.f47025b0 || mVar.d) {
+        if (this.f47026b0 || mVar.d) {
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
         super.dispatchDraw(canvas);
@@ -98,7 +98,7 @@ public final class k extends g91 {
 
     @Override
     public final float getAvailableTranslationX() {
-        if (!this.f47025b0 && !this.f47029f0.d) {
+        if (!this.f47026b0 && !this.f47030f0.d) {
             return super.getAvailableTranslationX();
         }
         return getMeasuredWidth();
@@ -106,7 +106,7 @@ public final class k extends g91 {
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        if (this.f47029f0.f47037b.getCurrentPosition() == 1) {
+        if (this.f47030f0.f47038b.getCurrentPosition() == 1) {
             return true;
         }
         return false;
@@ -115,13 +115,13 @@ public final class k extends g91 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        boolean z11 = this.f47024a0;
-        m mVar = this.f47029f0;
+        boolean z11 = this.f47025a0;
+        m mVar = this.f47030f0;
         if (z11 != mVar.isKeyboardVisible()) {
             boolean isKeyboardVisible = mVar.isKeyboardVisible();
-            this.f47024a0 = isKeyboardVisible;
+            this.f47025a0 = isKeyboardVisible;
             if (isKeyboardVisible) {
-                this.f47026c0.W(true);
+                this.f47027c0.W(true);
             }
         }
     }
@@ -129,19 +129,19 @@ public final class k extends g91 {
     @Override
     public final void u() {
         this.W = false;
-        this.f47029f0.f47037b.invalidate();
+        this.f47030f0.f47038b.invalidate();
     }
 
     @Override
     public final void w(boolean z10) {
-        m mVar = this.f47029f0;
-        k kVar = mVar.f47037b;
+        m mVar = this.f47030f0;
+        k kVar = mVar.f47038b;
         float positionAnimated = kVar.getPositionAnimated();
         if (positionAnimated > 0.0f && positionAnimated < 1.0f) {
             if (!this.W) {
                 this.W = true;
                 if (mVar.isKeyboardVisible()) {
-                    AndroidUtilities.hideKeyboard(mVar.f47038c.getContainerView());
+                    AndroidUtilities.hideKeyboard(mVar.f47039c.getContainerView());
                 }
             }
         } else {

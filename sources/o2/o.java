@@ -9,36 +9,36 @@ import j$.util.Objects;
 import java.io.EOFException;
 import java.util.Arrays;
 public final class o implements h0 {
-    public static final b2.s f17060f;
-    public static final b2.s f17061g;
-    public final h0 f17062a;
-    public final b2.s f17063b;
-    public b2.s f17064c;
+    public static final b2.s f17061f;
+    public static final b2.s f17062g;
+    public final h0 f17063a;
+    public final b2.s f17064b;
+    public b2.s f17065c;
     public byte[] d;
-    public int f17065e;
+    public int f17066e;
 
     static {
         b2.r rVar = new b2.r();
         rVar.f3506q = r0.n("application/id3");
-        f17060f = new b2.s(rVar);
+        f17061f = new b2.s(rVar);
         b2.r rVar2 = new b2.r();
         rVar2.f3506q = r0.n("application/x-emsg");
-        f17061g = new b2.s(rVar2);
+        f17062g = new b2.s(rVar2);
     }
 
     public o(h0 h0Var, int i10) {
-        this.f17062a = h0Var;
+        this.f17063a = h0Var;
         if (i10 != 1) {
             if (i10 == 3) {
-                this.f17063b = f17061g;
+                this.f17064b = f17062g;
             } else {
                 throw new IllegalArgumentException(k0.h(i10, "Unknown metadataType: "));
             }
         } else {
-            this.f17063b = f17060f;
+            this.f17064b = f17061f;
         }
         this.d = new byte[0];
-        this.f17065e = 0;
+        this.f17066e = 0;
     }
 
     @Override
@@ -48,24 +48,24 @@ public final class o implements h0 {
 
     @Override
     public final void b(b2.s sVar) {
-        this.f17064c = sVar;
-        this.f17062a.b(this.f17063b);
+        this.f17065c = sVar;
+        this.f17063a.b(this.f17064b);
     }
 
     @Override
     public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
-        this.f17064c.getClass();
-        int i13 = this.f17065e - i12;
+        this.f17065c.getClass();
+        int i13 = this.f17066e - i12;
         v vVar = new v(Arrays.copyOfRange(this.d, i13 - i11, i13));
         byte[] bArr = this.d;
         System.arraycopy(bArr, i13, bArr, 0, i12);
-        this.f17065e = i12;
-        String str = this.f17064c.f3564r;
-        b2.s sVar = this.f17063b;
+        this.f17066e = i12;
+        String str = this.f17065c.f3564r;
+        b2.s sVar = this.f17064b;
         String str2 = sVar.f3564r;
         String str3 = sVar.f3564r;
         if (!Objects.equals(str, str2)) {
-            if ("application/x-emsg".equals(this.f17064c.f3564r)) {
+            if ("application/x-emsg".equals(this.f17065c.f3564r)) {
                 n3.a c10 = m3.b.c(vVar);
                 b2.s a2 = c10.a();
                 if (a2 != null && Objects.equals(str3, a2.f3564r)) {
@@ -78,12 +78,12 @@ public final class o implements h0 {
                     return;
                 }
             } else {
-                e2.a.n("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f17064c.f3564r);
+                e2.a.n("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f17065c.f3564r);
                 return;
             }
         }
         int a11 = vVar.a();
-        h0 h0Var = this.f17062a;
+        h0 h0Var = this.f17063a;
         h0Var.d(a11, vVar);
         h0Var.c(j3, i10, a11, 0, g0Var);
     }
@@ -95,30 +95,30 @@ public final class o implements h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        int i11 = this.f17065e + i10;
+        int i11 = this.f17066e + i10;
         byte[] bArr = this.d;
         if (bArr.length < i11) {
             this.d = Arrays.copyOf(bArr, (i11 / 2) + i11);
         }
-        int read = kVar.read(this.d, this.f17065e, i10);
+        int read = kVar.read(this.d, this.f17066e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        this.f17065e += read;
+        this.f17066e += read;
         return read;
     }
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        int i12 = this.f17065e + i10;
+        int i12 = this.f17066e + i10;
         byte[] bArr = this.d;
         if (bArr.length < i12) {
             this.d = Arrays.copyOf(bArr, (i12 / 2) + i12);
         }
-        vVar.h(this.f17065e, i10, this.d);
-        this.f17065e += i10;
+        vVar.h(this.f17066e, i10, this.d);
+        this.f17066e += i10;
     }
 }

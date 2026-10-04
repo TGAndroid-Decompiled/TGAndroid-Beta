@@ -329,7 +329,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
 
     @Override
     public void a0(long j3, int i10, ai.d5 d5Var) {
-        int i11 = ProfileStoriesView.f34487s0;
+        int i11 = ProfileStoriesView.f34488s0;
         ((lz0) this.f326b).f(true, false);
         d5Var.run();
     }
@@ -483,7 +483,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
         gcVar.f991c = null;
         lz0 lz0Var = (lz0) this.f326b;
         f01 f01Var = lz0Var.h;
-        ArrayList arrayList = lz0Var.f34513w;
+        ArrayList arrayList = lz0Var.f34514w;
         if (lz0Var.N < 0.2f) {
             gcVar.f990b = f01Var.getImageReceiver();
             gcVar.f991c = null;
@@ -491,7 +491,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
             gcVar.h = 0.0f;
             gcVar.f995i = AndroidUtilities.displaySize.y;
             gcVar.f994g = (View) lz0Var.getParent();
-            gcVar.d = lz0Var.f34515y;
+            gcVar.d = lz0Var.f34516y;
             gcVar.f1000n = true;
             return true;
         }
@@ -623,7 +623,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, ya
             z10 = false;
         }
         bVar.a(z10, true);
-        sVar.d.f25244f3.N(true);
+        sVar.d.f25245f3.N(true);
     }
 
     @Override

@@ -149,7 +149,7 @@ public final class j7 extends View implements w2 {
         this.T = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
         this.U = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
         this.V = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
-        this.f5227h0 = new org.telegram.ui.Components.e6(this, 0L, 200L, tr.f31140f);
+        this.f5227h0 = new org.telegram.ui.Components.e6(this, 0L, 200L, tr.f31141f);
         this.m0 = new org.telegram.ui.Components.e6(this, 0L, 350L, trVar);
         this.f5233n0 = -1.0f;
         this.f5234o0 = true;
@@ -159,7 +159,7 @@ public final class j7 extends View implements w2 {
         this.f5241t0 = new org.telegram.ui.Components.e6(this, 0L, 350L, trVar);
         this.B0 = new org.telegram.ui.Components.e6(this, 0L, 350L, trVar);
         this.C0 = new org.telegram.ui.Components.e6(this, 0L, 650L, trVar);
-        this.D0 = new org.telegram.ui.Components.e6(this, 0L, 160L, tr.f31142i);
+        this.D0 = new org.telegram.ui.Components.e6(this, 0L, 160L, tr.f31143i);
         this.E0 = new org.telegram.ui.Components.e6(this, 0L, 750L, trVar);
         this.F0 = new org.telegram.ui.Components.e6(this, 0L, 650L, trVar);
         this.G0 = new org.telegram.ui.Components.e6(this, 0L, 320L, trVar);
@@ -218,11 +218,11 @@ public final class j7 extends View implements w2 {
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         sq sqVar = new sq(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(6.0f), -13750737), mutate);
         this.f5219c = sqVar;
-        sqVar.f30856w = false;
+        sqVar.f30857w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
-        sqVar.f30851e = dp;
-        sqVar.f30852f = dp2;
+        sqVar.f30852e = dp;
+        sqVar.f30853f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -279,7 +279,7 @@ public final class j7 extends View implements w2 {
         } else {
             j3 = 310;
         }
-        this.N.f25936g = j3;
+        this.N.f25937g = j3;
         this.M += f7;
         invalidate();
     }

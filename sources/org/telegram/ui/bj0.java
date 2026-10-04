@@ -5,19 +5,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bj0 implements RequestDelegate {
-    public final int f35121a;
-    public final hj0 f35122b;
+    public final int f35122a;
+    public final hj0 f35123b;
 
     public bj0(hj0 hj0Var, int i10) {
-        this.f35121a = i10;
-        this.f35122b = hj0Var;
+        this.f35122a = i10;
+        this.f35123b = hj0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f35121a) {
+        switch (this.f35122a) {
             case 0:
-                final hj0 hj0Var = this.f35122b;
+                final hj0 hj0Var = this.f35123b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -36,7 +36,7 @@ public final class bj0 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final hj0 hj0Var2 = this.f35122b;
+                final hj0 hj0Var2 = this.f35123b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -55,7 +55,7 @@ public final class bj0 implements RequestDelegate {
                 });
                 return;
             default:
-                final hj0 hj0Var3 = this.f35122b;
+                final hj0 hj0Var3 = this.f35123b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

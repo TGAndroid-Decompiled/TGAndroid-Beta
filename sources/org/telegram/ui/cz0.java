@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.content.DialogInterface;
 import org.telegram.messenger.SharedConfig;
 public final class cz0 implements DialogInterface.OnClickListener {
-    public final int f35578a;
-    public final int f35579b;
+    public final int f35579a;
+    public final int f35580b;
 
     public cz0(int i10, int i11) {
-        this.f35578a = i11;
-        this.f35579b = i10;
+        this.f35579a = i11;
+        this.f35580b = i10;
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f35578a) {
+        switch (this.f35579a) {
             case 0:
                 int i11 = 2 - i10;
-                if (i11 == this.f35579b) {
+                if (i11 == this.f35580b) {
                     SharedConfig.overrideDevicePerformanceClass(-1);
                     return;
                 } else {
@@ -25,7 +25,7 @@ public final class cz0 implements DialogInterface.OnClickListener {
                 }
             default:
                 int i12 = 2 - i10;
-                if (i12 == this.f35579b) {
+                if (i12 == this.f35580b) {
                     SharedConfig.overrideDevicePerformanceClass(-1);
                     return;
                 } else {

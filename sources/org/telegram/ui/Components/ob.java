@@ -60,7 +60,7 @@ public abstract class ob extends vb {
     public void setTimer() {
         kc kcVar = new kc(getContext(), this.resourcesProvider);
         this.timerView = kcVar;
-        kcVar.f28063b = 5000L;
+        kcVar.f28064b = 5000L;
         addView(kcVar, w7.z5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

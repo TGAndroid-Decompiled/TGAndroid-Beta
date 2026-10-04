@@ -41,7 +41,7 @@ public final class b extends f implements Handler.Callback {
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f46474a;
+        this.I = a.f46475a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -200,7 +200,7 @@ public final class b extends f implements Handler.Callback {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
                     } else if (aVar.f10980e >= this.f11601w) {
-                        aVar.f15320r = this.P;
+                        aVar.f15321r = this.P;
                         aVar.d();
                         m mVar = this.M;
                         String str = d0.f8537a;
@@ -214,7 +214,7 @@ public final class b extends f implements Handler.Callback {
                         }
                     }
                 } else if (w10 == -5) {
-                    s sVar = (s) yVar.f16640c;
+                    s sVar = (s) yVar.f16641c;
                     sVar.getClass();
                     this.P = sVar.f3568w;
                 }

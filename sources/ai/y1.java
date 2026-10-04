@@ -79,7 +79,7 @@ public final class y1 implements Utilities.Callback {
                     }
                     d2Var.c();
                     d2Var.k();
-                    NotificationCenter.getInstance(d2Var.f756e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.f757f.f20054id));
+                    NotificationCenter.getInstance(d2Var.f756e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.f757f.f20055id));
                     return;
                 }
                 return;
@@ -162,7 +162,7 @@ public final class y1 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new ba(16, x2Var, (Runnable) obj), 80L);
                 return;
             case 9:
-                ((ci.w3) this.f1893b).f6223s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21443w).start();
+                ((ci.w3) this.f1893b).f6223s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21444w).start();
                 return;
             case 10:
                 ci.t4 t4Var = (ci.t4) this.f1893b;
@@ -171,7 +171,7 @@ public final class y1 implements Utilities.Callback {
                 if (view2 instanceof ci.s4) {
                     o4Var.getClass();
                     int R = RecyclerView.R(view2);
-                    g61 G = o4Var.f25244f3.G(R);
+                    g61 G = o4Var.f25245f3.G(R);
                     if (G != null) {
                         ci.s4 s4Var = (ci.s4) view2;
                         s4Var.setPosition(t4Var.b(R));
@@ -258,8 +258,8 @@ public final class y1 implements Utilities.Callback {
                     t8Var.S();
                     return;
                 }
-                t8Var.f6010o0 = n0Var.f45203e;
-                t8Var.f6009n0 = n0Var.f45204f;
+                t8Var.f6010o0 = n0Var.f45204e;
+                t8Var.f6009n0 = n0Var.f45205f;
                 return;
             case 16:
                 ((ci.t9) this.f1893b).f6013n.W.H = ((Integer) obj).intValue();
@@ -273,7 +273,7 @@ public final class y1 implements Utilities.Callback {
                 arrayList4.clear();
                 arrayList4.addAll((ArrayList) obj);
                 c71 c71Var = vVar.f9379a;
-                if (c71Var != null && (u61Var = c71Var.f25244f3) != null) {
+                if (c71Var != null && (u61Var = c71Var.f25245f3) != null) {
                     u61Var.N(true);
                     return;
                 }
@@ -286,7 +286,7 @@ public final class y1 implements Utilities.Callback {
                 fVar.h = arrayList5;
                 c71 c71Var2 = fVar.f9887e;
                 if (c71Var2 != null) {
-                    c71Var2.f25244f3.N(z14);
+                    c71Var2.f25245f3.N(z14);
                     return;
                 }
                 return;
@@ -303,7 +303,7 @@ public final class y1 implements Utilities.Callback {
                         uyVar.T3();
                     }
                     MessagesController.getInstance(dyVar.I0).openApp(user2, 0);
-                    jo0Var.R(user2.f20184id, user2);
+                    jo0Var.R(user2.f20185id, user2);
                     return;
                 }
                 return;
@@ -317,7 +317,7 @@ public final class y1 implements Utilities.Callback {
                 if (mVar.G != z11) {
                     mVar.G = z11;
                     if (!z11) {
-                        mVar.f32724a.y0(0);
+                        mVar.f32725a.y0(0);
                         return;
                     }
                     return;
@@ -365,7 +365,7 @@ public final class y1 implements Utilities.Callback {
                     a0Var.i(tL_businessBotRecipients);
                 }
                 c71 c71Var3 = u0Var.f11350c;
-                if (c71Var3 != null && (u61Var2 = c71Var3.f25244f3) != null) {
+                if (c71Var3 != null && (u61Var2 = c71Var3.f25245f3) != null) {
                     z13 = true;
                     u61Var2.N(true);
                 } else {
@@ -481,7 +481,7 @@ public final class y1 implements Utilities.Callback {
                         }
                         arrayList8.addAll(i14, arrayList9);
                         x3Var.u4();
-                        x3Var.f25244f3.N(false);
+                        x3Var.f25245f3.N(false);
                         ii.i2 i2Var2 = x3Var.Q3;
                         if (i2Var2 != null) {
                             i2Var2.h();

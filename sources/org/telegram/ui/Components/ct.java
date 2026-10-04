@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public final class ct {
-    public s4.c1 f25443a;
-    public int f25444b;
-    public int f25445c;
+    public s4.c1 f25444a;
+    public int f25445b;
+    public int f25446c;
     public int d;
-    public int f25446e;
+    public int f25447e;
 }

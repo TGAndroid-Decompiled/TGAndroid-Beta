@@ -269,7 +269,7 @@ public abstract class d extends li.e {
         Rect rect = this.f4632l.f4623m;
         RectF rectF = this.f4645z;
         rectF.set(rect);
-        rectF.offset(this.f15649c, this.d);
+        rectF.offset(this.f15650c, this.d);
         RectF rectF2 = this.A;
         if (!rectF.equals(rectF2)) {
             rectF2.set(rectF);
@@ -290,7 +290,7 @@ public abstract class d extends li.e {
                 o(canvas, ((fh.c) aVar).f9857b);
             } else if (aVar instanceof fh.b) {
                 fh.b bVar = (fh.b) aVar;
-                int i11 = this.f15648b;
+                int i11 = this.f15649b;
                 Bitmap bitmap = bVar.d;
                 Bitmap bitmap2 = (Bitmap) this.f4643x.get();
                 Paint paint = this.f4640t;
@@ -317,7 +317,7 @@ public abstract class d extends li.e {
                     Matrix matrix = bVar.f9851b;
                     Matrix matrix2 = this.f4642w;
                     matrix2.set(matrix);
-                    matrix2.postTranslate(-this.f15649c, -this.d);
+                    matrix2.postTranslate(-this.f15650c, -this.d);
                     this.f4644y.setLocalMatrix(matrix2);
                     paint.setAlpha(i11);
                     cVar.b(canvas, paint);
@@ -336,7 +336,7 @@ public abstract class d extends li.e {
                 }
             } else if (aVar instanceof fh.e) {
                 n(canvas, ((fh.e) aVar).f9866a);
-            } else if (aVar != null && (i10 = this.f15648b) != 0) {
+            } else if (aVar != null && (i10 = this.f15649b) != 0) {
                 int l12 = i6.l1(i10 / 255.0f, this.f4628g);
                 if (Color.alpha(this.f4627f) > 0 && i10 == 255) {
                     float f7 = this.f4637q;
@@ -349,7 +349,7 @@ public abstract class d extends li.e {
                         cVar.c(canvas, paint3, this.f4634n);
                     }
                 }
-                float f12 = this.f15649c;
+                float f12 = this.f15650c;
                 float f13 = this.d;
                 float f14 = rect2.left;
                 float f15 = f14 + f12;
@@ -387,7 +387,7 @@ public abstract class d extends li.e {
     }
 
     public final void o(Canvas canvas, int i10) {
-        int i11 = this.f15648b;
+        int i11 = this.f15649b;
         int h = i0.a.h(this.f4628g, i10);
         if (Color.alpha(h) == 0 && Color.alpha(this.f4627f) == 0) {
             return;
@@ -411,7 +411,7 @@ public abstract class d extends li.e {
     }
 
     public final void r(Canvas canvas) {
-        float f7 = this.f15648b / 255.0f;
+        float f7 = this.f15649b / 255.0f;
         int l1 = i6.l1(f7, this.h);
         int l12 = i6.l1(f7, this.f4629i);
         int alpha = Color.alpha(l1);

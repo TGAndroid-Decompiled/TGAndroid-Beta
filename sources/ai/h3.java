@@ -68,7 +68,7 @@ public final class h3 implements Runnable {
                 final boolean z11 = this.f1017b;
                 storiesController.i0(j10, z11, false);
                 o0.a aVar = new o0.a(3, (byte) 0);
-                aVar.f16927b = new Runnable() {
+                aVar.f16928b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -81,7 +81,7 @@ public final class h3 implements Runnable {
                         }
                     }
                 };
-                aVar.f16928c = new Runnable() {
+                aVar.f16929c = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -100,7 +100,7 @@ public final class h3 implements Runnable {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
                 org.telegram.ui.Components.rc V = new yc(e6Var.f848d1, e6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, aVar);
-                V.f30331a = 2;
+                V.f30332a = 2;
                 V.k(true);
                 return;
             case 1:
@@ -124,7 +124,7 @@ public final class h3 implements Runnable {
                         if (z10 && R != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, d6Var);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
+                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20368a;
                             b2Var.R = string;
                             b2Var.T = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
                             org.telegram.messenger.f0.o(R.string.OK, alertDialog$Builder, null);
@@ -153,7 +153,7 @@ public final class h3 implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                ChatActivityEnterView chatActivityEnterView = ((ig) obj4).f27400a;
+                ChatActivityEnterView chatActivityEnterView = ((ig) obj4).f27401a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -194,8 +194,8 @@ public final class h3 implements Runnable {
                 return;
             case 4:
                 a01 a01Var = (a01) obj4;
-                ProfileActivity profileActivity = a01Var.f34622b;
-                mq mqVar = new mq(profileActivity.f34233e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
+                ProfileActivity profileActivity = a01Var.f34623b;
+                mq mqVar = new mq(profileActivity.f34234e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 mqVar.X0 = new zz0(a01Var, (uy) obj2);
                 profileActivity.presentFragment(mqVar);
                 return;

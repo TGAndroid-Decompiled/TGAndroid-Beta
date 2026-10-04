@@ -73,7 +73,7 @@ public final class r0 implements h1 {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f12186b;
             if (!pageblockdetails.open) {
                 pageblockdetails.open = true;
-                x3Var.f25244f3.N(true);
+                x3Var.f25245f3.N(true);
             }
             int i10 = indexOf + 1;
             if (i10 < arrayList.size() && !((a) arrayList.get(i10)).f12191i && !x3.z3((a) arrayList.get(i10))) {

@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class ei0 implements Runnable {
-    public final int f36031a;
-    public final zi0 f36032b;
+    public final int f36032a;
+    public final zi0 f36033b;
 
     public ei0(zi0 zi0Var, int i10) {
-        this.f36031a = i10;
-        this.f36032b = zi0Var;
+        this.f36032a = i10;
+        this.f36033b = zi0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f36031a) {
+        switch (this.f36032a) {
             case 0:
                 super/*android.app.Dialog*/.dismiss();
                 return;
             case 1:
-                zi0 zi0Var = this.f36032b;
+                zi0 zi0Var = this.f36033b;
                 zi0Var.getClass();
                 vh.f.f(false);
-                vh.f fVar = zi0Var.f43804i0;
+                vh.f fVar = zi0Var.f43805i0;
                 if (fVar != null) {
                     fVar.b(zi0Var.F);
                 }
@@ -28,8 +28,8 @@ public final class ei0 implements Runnable {
                 return;
             case 2:
                 vh.f.f(false);
-                zi0 zi0Var2 = this.f36032b;
-                vh.f fVar2 = zi0Var2.f43804i0;
+                zi0 zi0Var2 = this.f36033b;
+                vh.f fVar2 = zi0Var2.f43805i0;
                 if (fVar2 != null) {
                     fVar2.b(zi0Var2.F);
                 }

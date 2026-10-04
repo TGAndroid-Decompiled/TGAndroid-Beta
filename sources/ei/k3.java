@@ -235,7 +235,7 @@ public final class k3 extends lw0 implements org.telegram.ui.ActionBar.u3 {
                     canvas2 = canvas;
                 }
                 if (!l3Var.V) {
-                    int v02 = i6.v0(i6.f20817d6, l3Var.E);
+                    int v02 = i6.v0(i6.f20818d6, l3Var.E);
                     paint2.setColor(v02);
                     l3Var.f9180x.setFlickerViewColor(v02);
                     org.telegram.ui.d3 d3Var = l3Var.U0;

@@ -22,11 +22,11 @@ public final class h3 implements b5 {
         uVar.f12662a = 2;
         TL_iv.PageBlock pageBlock = this.f12412b.f12186b;
         if (pageBlock instanceof TL_iv.pageBlockAudio) {
-            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f20043id;
+            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f20044id;
         }
         x3 x3Var = this.f12413c;
         x3Var.f12760g4.remove(uVar);
-        x3Var.f25244f3.N(false);
+        x3Var.f25245f3.N(false);
         x3Var.f12769o3.onContentChanged();
     }
 
@@ -52,7 +52,7 @@ public final class h3 implements b5 {
         int indexOf = x3Var.f12777s3.indexOf(this.f12412b);
         if (indexOf >= 0) {
             x3Var.f12777s3.remove(indexOf);
-            x3Var.f25244f3.N(true);
+            x3Var.f25245f3.N(true);
         }
         x3Var.f12769o3.onContentChanged();
     }

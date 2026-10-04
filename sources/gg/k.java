@@ -50,7 +50,7 @@ public final class k extends og.a {
     public k(m mVar, TLRPC.User user) {
         super(23, false);
         this.f10662n = user;
-        long j3 = user.f20184id;
+        long j3 = user.f20185id;
         LongSparseIntArray longSparseIntArray = mVar.X;
         int i10 = longSparseIntArray.get(j3, -1);
         if (i10 >= 0) {
@@ -60,13 +60,13 @@ public final class k extends og.a {
         int i11 = mVar.W;
         mVar.W = i11 + 1;
         this.f10659k = i11;
-        longSparseIntArray.put(user.f20184id, i11);
+        longSparseIntArray.put(user.f20185id, i11);
     }
 
     public k(m mVar, TLRPC.Chat chat) {
         super(23, false);
         this.f10661m = chat;
-        long j3 = chat.f20037id;
+        long j3 = chat.f20038id;
         LongSparseIntArray longSparseIntArray = mVar.X;
         int i10 = longSparseIntArray.get(-j3, -1);
         if (i10 >= 0) {
@@ -76,7 +76,7 @@ public final class k extends og.a {
         int i11 = mVar.W;
         mVar.W = i11 + 1;
         this.f10659k = i11;
-        longSparseIntArray.put(-chat.f20037id, i11);
+        longSparseIntArray.put(-chat.f20038id, i11);
     }
 
     public k(m mVar, int i10, TLRPC.Dialog dialog) {
@@ -85,14 +85,14 @@ public final class k extends og.a {
         boolean z10 = true;
         this.f10653c = dialog;
         if (dialog != null) {
-            int i11 = longSparseIntArray.get(dialog.f20041id, -1);
+            int i11 = longSparseIntArray.get(dialog.f20042id, -1);
             if (i11 >= 0) {
                 this.f10659k = i11;
             } else {
                 int i12 = mVar.W;
                 mVar.W = i12 + 1;
                 this.f10659k = i12;
-                longSparseIntArray.put(dialog.f20041id, i12);
+                longSparseIntArray.put(dialog.f20042id, i12);
             }
         } else if (i10 == 19) {
             this.f10659k = 5;
@@ -108,10 +108,10 @@ public final class k extends og.a {
                 this.f10656g = dialog.pinned;
             } else {
                 MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(i15).selectedDialogFilter[mVar.h == 8 ? (char) 1 : (char) 0];
-                this.f10656g = (dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(dialog.f20041id) < 0) ? false : false;
+                this.f10656g = (dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(dialog.f20042id) < 0) ? false : false;
             }
             this.h = dialog.isFolder;
-            this.f10655f = MessagesController.getInstance(i15).isForum(dialog.f20041id);
+            this.f10655f = MessagesController.getInstance(i15).isForum(dialog.f20042id);
         }
     }
 

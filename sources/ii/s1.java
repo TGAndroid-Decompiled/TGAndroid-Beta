@@ -25,7 +25,7 @@ public final class s1 implements el, gj {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f20260w = 600;
+            pageblockmap.f20261w = 600;
             pageblockmap.h = 400;
             e2Var.P.T1(pageblockmap);
             xiVar.dismiss(true);

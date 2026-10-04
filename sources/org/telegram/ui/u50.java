@@ -14,41 +14,41 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class u50 {
-    public final int f41052a;
-    public Emoji.EmojiDrawable f41054c;
+    public final int f41053a;
+    public Emoji.EmojiDrawable f41055c;
     public org.telegram.ui.Components.q5 d;
-    public boolean f41055e;
-    public boolean f41056f;
-    public long f41057g;
-    public String f41061l;
-    public final Drawable[] f41053b = new Drawable[6];
+    public boolean f41056e;
+    public boolean f41057f;
+    public long f41058g;
+    public String f41062l;
+    public final Drawable[] f41054b = new Drawable[6];
     public final k20 h = new k20();
-    public final HashSet f41058i = new HashSet();
-    public boolean f41059j = false;
-    public final t50 f41060k = new t50(this, 0);
-    public final RectF f41062m = new RectF();
+    public final HashSet f41059i = new HashSet();
+    public boolean f41060j = false;
+    public final t50 f41061k = new t50(this, 0);
+    public final RectF f41063m = new RectF();
 
     public u50(int i10) {
         int i11 = 0;
-        this.f41052a = i10;
+        this.f41053a = i10;
         while (true) {
-            Drawable[] drawableArr = this.f41053b;
+            Drawable[] drawableArr = this.f41054b;
             if (i11 < drawableArr.length) {
                 drawableArr[i11] = Emoji.getEmojiDrawable(h60.A0());
                 i11++;
             } else {
-                this.f41057g = System.currentTimeMillis();
+                this.f41058g = System.currentTimeMillis();
                 return;
             }
         }
     }
 
     public final void a() {
-        boolean isEmpty = this.f41058i.isEmpty();
+        boolean isEmpty = this.f41059i.isEmpty();
         boolean z10 = !isEmpty;
-        if (this.f41059j != z10) {
-            this.f41059j = z10;
-            t50 t50Var = this.f41060k;
+        if (this.f41060j != z10) {
+            this.f41060j = z10;
+            t50 t50Var = this.f41061k;
             if (!isEmpty) {
                 org.telegram.ui.Components.q5 q5Var = this.d;
                 if (q5Var != null) {
@@ -69,19 +69,19 @@ public final class u50 {
         float f10;
         float f11;
         float dp = AndroidUtilities.dp(6.0f);
-        RectF rectF2 = this.f41062m;
+        RectF rectF2 = this.f41063m;
         rectF2.set(rectF);
         float f12 = -dp;
         rectF2.inset(f12, f12);
         canvas.saveLayerAlpha(rectF2.left, rectF2.top, rectF2.right, rectF2.bottom, 255, 31);
-        long currentTimeMillis = (this.f41052a * 45) + System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f41057g;
+        long currentTimeMillis = (this.f41053a * 45) + System.currentTimeMillis();
+        long j10 = currentTimeMillis - this.f41058g;
         float f13 = ((float) j10) / 180.0f;
         float min = Math.min(1.0f, f13);
-        boolean z10 = this.f41056f;
-        Drawable[] drawableArr = this.f41053b;
+        boolean z10 = this.f41057f;
+        Drawable[] drawableArr = this.f41054b;
         boolean z11 = false;
-        if (z10 && this.d != null && this.f41054c != null && this.f41055e) {
+        if (z10 && this.d != null && this.f41055c != null && this.f41056e) {
             rectF2.set(rectF);
             rectF2.offset(0.0f, (min - 1.0f) * (rectF.height() + dp));
             if (f7 < 1.0f) {
@@ -89,11 +89,11 @@ public final class u50 {
                 f10 = 255.0f;
                 f11 = 0.0f;
                 j3 = j10;
-                this.f41054c.setBounds(0, 0, (int) rectF2.width(), (int) rectF2.height());
+                this.f41055c.setBounds(0, 0, (int) rectF2.width(), (int) rectF2.height());
                 canvas.translate(rectF2.left, rectF2.top);
-                this.f41054c.setAlpha((int) ((1.0f - f7) * 255.0f));
-                this.f41054c.draw(canvas);
-                this.f41054c.setAlpha(255);
+                this.f41055c.setAlpha((int) ((1.0f - f7) * 255.0f));
+                this.f41055c.draw(canvas);
+                this.f41055c.setAlpha(255);
                 canvas.restore();
             } else {
                 j3 = j10;
@@ -132,10 +132,10 @@ public final class u50 {
         drawableArr[0].setAlpha(255);
         canvas.restore();
         if (f13 >= 1.0f) {
-            if (this.f41056f && this.f41055e) {
+            if (this.f41057f && this.f41056e) {
                 z11 = true;
             } else {
-                this.f41057g = currentTimeMillis - (j3 % 180);
+                this.f41058g = currentTimeMillis - (j3 % 180);
                 int i10 = 0;
                 while (i10 < drawableArr.length - 1) {
                     int i11 = i10 + 1;
@@ -143,8 +143,8 @@ public final class u50 {
                     i10 = i11;
                 }
                 drawableArr[drawableArr.length - 1] = Emoji.getEmojiDrawable(h60.A0());
-                if (this.f41056f) {
-                    this.f41055e = true;
+                if (this.f41057f) {
+                    this.f41056e = true;
                 }
             }
         }
@@ -168,13 +168,13 @@ public final class u50 {
 
     public final void c() {
         TLRPC.Document document;
-        if (this.d != null && this.f41061l != null) {
+        if (this.d != null && this.f41062l != null) {
             int productionAccount = UserConfig.getProductionAccount();
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
             tL_inputStickerSetShortName.short_name = "StaticEmoji";
             TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(productionAccount).getStickerSet(tL_inputStickerSetShortName, 0, false, true, new t3(this, 7));
             if (stickerSet != null) {
-                String replace = this.f41061l.replace("️", "");
+                String replace = this.f41062l.replace("️", "");
                 ArrayList<TLRPC.Document> arrayList = stickerSet.documents;
                 int size = arrayList.size();
                 int i10 = 0;
@@ -193,11 +193,11 @@ public final class u50 {
                 }
                 if (document != null) {
                     org.telegram.ui.Components.q5 q5Var = this.d;
-                    q5Var.f29903e = document;
+                    q5Var.f29904e = document;
                     q5Var.j(false);
                     return;
                 }
-                FileLog.e("emoji \"" + this.f41061l + "\" not found in addemoji/" + tL_inputStickerSetShortName.short_name);
+                FileLog.e("emoji \"" + this.f41062l + "\" not found in addemoji/" + tL_inputStickerSetShortName.short_name);
             }
         }
     }

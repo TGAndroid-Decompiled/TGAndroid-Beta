@@ -49,12 +49,12 @@ import u2.p1;
 import y8.e0;
 import za.a0;
 public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google.android.gms.common.api.internal.o, OnCompleteListener {
-    public final int f15265a;
-    public final Object f15266b;
+    public final int f15266a;
+    public final Object f15267b;
 
     public g(Object obj, int i10) {
-        this.f15265a = i10;
-        this.f15266b = obj;
+        this.f15266a = i10;
+        this.f15267b = obj;
     }
 
     @Override
@@ -63,13 +63,13 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
     }
 
     public void B(a0 a0Var) {
-        ((r) ((i5.f) ((pa.b) this.f15266b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new z3.g(this, 2)).a(new i5.a(null, a0Var, i5.d.f11963a, null), new j2.e(20));
+        ((r) ((i5.f) ((pa.b) this.f15267b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new z3.g(this, 2)).a(new i5.a(null, a0Var, i5.d.f11963a, null), new j2.e(20));
     }
 
     public void C() {
         q[] qVarArr;
         q[] qVarArr2;
-        o2.k kVar = (o2.k) this.f15266b;
+        o2.k kVar = (o2.k) this.f15267b;
         int i10 = kVar.H - 1;
         kVar.H = i10;
         if (i10 > 0) {
@@ -78,13 +78,13 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
         int i11 = 0;
         for (q qVar : kVar.J) {
             qVar.e();
-            i11 += qVar.Y.f47370a;
+            i11 += qVar.Y.f47371a;
         }
         b2.l1[] l1VarArr = new b2.l1[i11];
         int i12 = 0;
         for (q qVar2 : kVar.J) {
             qVar2.e();
-            int i13 = qVar2.Y.f47370a;
+            int i13 = qVar2.Y.f47371a;
             int i14 = 0;
             while (i14 < i13) {
                 qVar2.e();
@@ -98,7 +98,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
     }
 
     public byte D() {
-        int read = ((com.google.firebase.messaging.d) this.f15266b).read();
+        int read = ((com.google.firebase.messaging.d) this.f15267b).read();
         if (read >= 0) {
             return (byte) read;
         }
@@ -107,7 +107,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void E(float f7) {
-        ((n2) this.f15266b).setOutlineWidth(f7);
+        ((n2) this.f15267b).setOutlineWidth(f7);
     }
 
     @Override
@@ -130,13 +130,13 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public String J0() {
-        return ((c1) this.f15266b).f42131i0;
+        return ((c1) this.f15267b).f42132i0;
     }
 
     public void K(long j3) {
         long j10 = 0;
         while (j10 < j3) {
-            long skip = ((com.google.firebase.messaging.d) this.f15266b).skip(j3 - j10);
+            long skip = ((com.google.firebase.messaging.d) this.f15267b).skip(j3 - j10);
             if (skip > 0) {
                 j10 += skip;
             } else {
@@ -147,7 +147,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void L(String str) {
-        c1 c1Var = (c1) this.f15266b;
+        c1 c1Var = (c1) this.f15267b;
         try {
             c1Var.P = System.currentTimeMillis();
             c1Var.z("qr_text_received", new JSONObject().put("data", str));
@@ -178,10 +178,10 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void P0(int i10, u1 u1Var) {
-        ia iaVar = (ia) this.f15266b;
+        ia iaVar = (ia) this.f15267b;
         org.telegram.ui.Cells.g gVar = iaVar.v;
         if (iaVar.a()) {
-            iaVar.f22285s = 2;
+            iaVar.f22286s = 2;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -190,10 +190,10 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void P1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        ia iaVar = (ia) this.f15266b;
+        ia iaVar = (ia) this.f15267b;
         org.telegram.ui.Cells.g gVar = iaVar.v;
         if (iaVar.a()) {
-            iaVar.f22285s = 2;
+            iaVar.f22286s = 2;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
@@ -246,7 +246,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void a() {
-        h hVar = (h) this.f15266b;
+        h hVar = (h) this.f15267b;
         hVar.A.a();
         b5 b5Var = hVar.C;
         if (b5Var == null) {
@@ -267,10 +267,10 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void b2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
-        ia iaVar = (ia) this.f15266b;
+        ia iaVar = (ia) this.f15267b;
         org.telegram.ui.Cells.g gVar = iaVar.v;
         if (iaVar.a()) {
-            iaVar.f22285s = 0;
+            iaVar.f22286s = 0;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -279,7 +279,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public Cursor c(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15266b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15267b;
         if (contentProviderClient == null) {
             return null;
         }
@@ -298,7 +298,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public boolean c1(int i10, u1 u1Var) {
-        if (i10 == ((ia) this.f15266b).f22285s) {
+        if (i10 == ((ia) this.f15267b).f22286s) {
             return true;
         }
         return false;
@@ -311,7 +311,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15266b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15267b;
         if (contentProviderClient != null) {
             if (contentProviderClient instanceof AutoCloseable) {
                 contentProviderClient.close();
@@ -325,13 +325,13 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public boolean e() {
-        return ((ia) this.f15266b).a();
+        return ((ia) this.f15267b).a();
     }
 
     @Override
     public void f(e1 e1Var) {
         q qVar = (q) e1Var;
-        o2.k kVar = (o2.k) this.f15266b;
+        o2.k kVar = (o2.k) this.f15267b;
         kVar.G.f(kVar);
     }
 
@@ -352,11 +352,11 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public Object mo28get() {
-        switch (this.f15265a) {
+        switch (this.f15266a) {
             case 3:
-                return new la.h((Context) ((e.a) this.f15266b).f8395a, new rb.a(23), new qb.b(23), 5);
+                return new la.h((Context) ((e.a) this.f15267b).f8395a, new rb.a(23), new qb.b(23), 5);
             default:
-                return new s5.i((Context) ((fd.a) this.f15266b).mo28get(), "com.google.android.datatransport.events", Integer.valueOf(s5.i.d).intValue());
+                return new s5.i((Context) ((fd.a) this.f15267b).mo28get(), "com.google.android.datatransport.events", Integer.valueOf(s5.i.d).intValue());
         }
     }
 
@@ -386,15 +386,15 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
     }
 
     public void m() {
-        pg.d1 d1Var = ((f1) this.f15266b).d;
+        pg.d1 d1Var = ((f1) this.f15267b).d;
         if (d1Var != null) {
-            b1 b1Var = d1Var.f44447s;
+            b1 b1Var = d1Var.f44448s;
             if (b1Var != null) {
                 d1Var.cancelRunnable(b1Var);
-                d1Var.f44447s = null;
+                d1Var.f44448s = null;
             }
             b1 b1Var2 = new b1(d1Var, 1);
-            d1Var.f44447s = b1Var2;
+            d1Var.f44448s = b1Var2;
             d1Var.postRunnable(b1Var2, 1L);
         }
     }
@@ -406,7 +406,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void onComplete(Task task) {
-        e0 e0Var = (e0) this.f15266b;
+        e0 e0Var = (e0) this.f15267b;
         if (task.isSuccessful()) {
             x8.m.M0(e0Var, true, (byte[]) task.getResult());
             return;
@@ -417,16 +417,16 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
 
     @Override
     public void onDismiss() {
-        c1 c1Var = (c1) this.f15266b;
+        c1 c1Var = (c1) this.f15267b;
         c1Var.z("scan_qr_popup_closed", null);
-        c1Var.f42130h0 = false;
+        c1Var.f42131h0 = false;
     }
 
     @Override
     public void q(Object obj) {
         com.google.android.gms.common.api.internal.n nVar;
         g8.c cVar = (g8.c) obj;
-        androidx.activity.n nVar2 = ((r7.i) this.f15266b).f45842b;
+        androidx.activity.n nVar2 = ((r7.i) this.f15267b).f45843b;
         synchronized (nVar2) {
             nVar2.f2069b = false;
             nVar = ((com.google.android.gms.common.api.internal.p) nVar2.f2070c).f6602c;
@@ -437,18 +437,18 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
     }
 
     public String toString() {
-        switch (this.f15265a) {
+        switch (this.f15266a) {
             case 12:
-                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f15266b).flattenToShortString() + " }";
+                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f15267b).flattenToShortString() + " }";
             default:
                 return super.toString();
         }
     }
 
     public StringBuilder v() {
-        df.a aVar = (df.a) this.f15266b;
+        df.a aVar = (df.a) this.f15267b;
         if (aVar instanceof ye.m) {
-            StringBuilder sb2 = ((ye.m) aVar).f50923b.f50908b;
+            StringBuilder sb2 = ((ye.m) aVar).f50924b.f50909b;
             if (sb2.length() != 0) {
                 return sb2;
             }
@@ -521,7 +521,7 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
         } else {
             Log.e("ProfileInstaller", str, (Throwable) obj);
         }
-        ((ProfileInstallReceiver) this.f15266b).setResultCode(i10);
+        ((ProfileInstallReceiver) this.f15267b).setResultCode(i10);
     }
 
     @Override
@@ -530,13 +530,13 @@ public class g implements y2.m, x0, n5.b, o0.b, d1, l1, v9, v1, r4.c, com.google
     }
 
     public g(Context context, Uri uri) {
-        this.f15265a = 5;
-        this.f15266b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+        this.f15266a = 5;
+        this.f15267b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
     @Override
     public float get() {
-        return ((n2) this.f15266b).F;
+        return ((n2) this.f15267b).F;
     }
 
     @Override

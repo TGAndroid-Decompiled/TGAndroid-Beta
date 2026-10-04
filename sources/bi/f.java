@@ -125,7 +125,7 @@ public final class f implements Runnable {
                 return;
             case 7:
                 String str2 = d0.f8537a;
-                f0 f0Var = ((c0) ((k2.k) ((n4.y) obj).f16640c)).f11569a;
+                f0 f0Var = ((c0) ((k2.k) ((n4.y) obj).f16641c)).f11569a;
                 if (f0Var.f11604a0 != z10) {
                     f0Var.f11604a0 = z10;
                     f0Var.f11625m.e(23, new i2.y(1, z10));
@@ -182,7 +182,7 @@ public final class f implements Runnable {
                 nf.f.s(context, LocaleController.getString(i10));
                 return;
             case 20:
-                iz0 iz0Var = ((nm) obj).f39009c.f43276b1;
+                iz0 iz0Var = ((nm) obj).f39010c.f43277b1;
                 if (iz0Var != null && z10) {
                     iz0Var.setVisibility(8);
                     return;
@@ -190,8 +190,8 @@ public final class f implements Runnable {
                 return;
             case 21:
                 to toVar = (to) obj;
-                toVar.f40913x0.autotranslation = z10;
-                toVar.getMessagesController().putChat(toVar.f40913x0, false);
+                toVar.f40914x0.autotranslation = z10;
+                toVar.getMessagesController().putChat(toVar.f40914x0, false);
                 return;
             case 22:
                 pp ppVar = (pp) obj;
@@ -203,19 +203,19 @@ public final class f implements Runnable {
                         if (ppVar.v()) {
                             wallPaper = null;
                         } else {
-                            wallPaper = ppVar.f29693n.h;
+                            wallPaper = ppVar.f29694n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        c4 c4Var = ppVar.M.f29422a;
-                        if (c4Var.f20499a) {
-                            ppVar.f29693n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        c4 c4Var = ppVar.M.f29423a;
+                        if (c4Var.f20500a) {
+                            ppVar.f29694n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            ppVar.f29693n.i(c4Var, wallPaper2, false, Boolean.valueOf(z10), false);
+                            ppVar.f29694n.i(c4Var, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (npVar.d != null) {
                         while (i12 < npVar.d.size()) {
-                            ((op) npVar.d.get(i12)).f29424c = z10 ? 1 : 0;
+                            ((op) npVar.d.get(i12)).f29425c = z10 ? 1 : 0;
                             i12++;
                         }
                         npVar.l();
@@ -233,12 +233,12 @@ public final class f implements Runnable {
                 return;
             case 24:
                 f10 f10Var = (f10) obj;
-                f10Var.P(f10Var.f26226y0, z10);
+                f10Var.P(f10Var.f26227y0, z10);
                 return;
             case 25:
                 f40 f40Var = (f40) obj;
                 if (!z10) {
-                    f40Var.f26271r.setVisibility(8);
+                    f40Var.f26272r.setVisibility(8);
                     return;
                 } else {
                     f40Var.getClass();
@@ -246,23 +246,23 @@ public final class f implements Runnable {
                 }
             case 26:
                 f60 f60Var = ((y50) obj).H0;
-                if (!f60Var.f26313l0) {
+                if (!f60Var.f26314l0) {
                     try {
                         f60Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    AndroidUtilities.lockOrientation(f60Var.f26314n.getParentActivity());
+                    AndroidUtilities.lockOrientation(f60Var.f26315n.getParentActivity());
                     if (z10) {
-                        j3 = f60Var.f26312k0;
+                        j3 = f60Var.f26313k0;
                     } else {
                         j3 = 0;
                     }
-                    f60Var.f26310i0 = j3;
-                    f60Var.f26309h0 = System.currentTimeMillis();
-                    f60Var.f26311j0 = true;
+                    f60Var.f26311i0 = j3;
+                    f60Var.f26310h0 = System.currentTimeMillis();
+                    f60Var.f26312j0 = true;
                     f60Var.u();
                     f60Var.invalidate();
-                    NotificationCenter.getInstance(f60Var.f26304f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(f60Var.V), Boolean.FALSE);
+                    NotificationCenter.getInstance(f60Var.f26305f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(f60Var.V), Boolean.FALSE);
                     return;
                 }
                 return;

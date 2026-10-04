@@ -1,14 +1,14 @@
 package pg;
 public abstract class r1 {
-    public final boolean f44572a;
-    public boolean f44573b;
-    public boolean f44574c;
+    public final boolean f44573a;
+    public boolean f44574b;
+    public boolean f44575c;
     public float d;
-    public float f44575e;
+    public float f44576e;
 
     public r1() {
-        this.f44573b = true;
-        this.f44574c = true;
+        this.f44574b = true;
+        this.f44575c = true;
         a();
     }
 
@@ -17,9 +17,9 @@ public abstract class r1 {
     public abstract void b(float f7, float f10);
 
     public r1(int i10) {
-        this.f44573b = true;
-        this.f44574c = true;
-        this.f44572a = true;
+        this.f44574b = true;
+        this.f44575c = true;
+        this.f44573a = true;
         a();
     }
 }

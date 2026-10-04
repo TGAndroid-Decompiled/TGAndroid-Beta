@@ -8,19 +8,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class h5 implements RequestDelegate {
-    public final int f51385a;
-    public final j5 f51386b;
+    public final int f51386a;
+    public final j5 f51387b;
 
     public h5(j5 j5Var, int i10) {
-        this.f51385a = i10;
-        this.f51386b = j5Var;
+        this.f51386a = i10;
+        this.f51387b = j5Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f51385a) {
+        switch (this.f51386a) {
             case 0:
-                final j5 j5Var = this.f51386b;
+                final j5 j5Var = this.f51387b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -29,9 +29,9 @@ public final class h5 implements RequestDelegate {
                         j5 j5Var2 = j5Var;
                         switch (i10) {
                             case 0:
-                                long j3 = j5Var2.f51474b;
-                                int i11 = j5Var2.f51473a;
-                                ArrayList arrayList = j5Var2.f51476e;
+                                long j3 = j5Var2.f51475b;
+                                int i11 = j5Var2.f51474a;
+                                ArrayList arrayList = j5Var2.f51477e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
                                     arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
@@ -45,19 +45,19 @@ public final class h5 implements RequestDelegate {
                                         if (j5Var2.e(tL_starGiftCollection.collection_id) == null) {
                                             k5 k5Var = new k5(i11, j3, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            k5Var.f51520c = true;
+                                            k5Var.f51521c = true;
                                             k5Var.d = i13;
                                             j5Var2.h.put(Integer.valueOf(i13), k5Var);
                                         }
                                     }
                                     j5Var2.d = true;
-                                    j5Var2.f51475c = false;
+                                    j5Var2.f51476c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var2);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     j5Var2.j();
                                     j5Var2.d = true;
-                                    j5Var2.f51475c = false;
+                                    j5Var2.f51476c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var2);
                                     return;
                                 } else {
@@ -69,7 +69,7 @@ public final class h5 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f7 = j5Var2.f(tL_starGiftCollection2.collection_id);
                                     if (f7 >= 0) {
-                                        j5Var2.f51476e.set(f7, tL_starGiftCollection2);
+                                        j5Var2.f51477e.set(f7, tL_starGiftCollection2);
                                         return;
                                     }
                                     return;
@@ -81,7 +81,7 @@ public final class h5 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f10 = j5Var2.f(tL_starGiftCollection3.collection_id);
                                     if (f10 >= 0) {
-                                        j5Var2.f51476e.set(f10, tL_starGiftCollection3);
+                                        j5Var2.f51477e.set(f10, tL_starGiftCollection3);
                                         return;
                                     }
                                     return;
@@ -92,7 +92,7 @@ public final class h5 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final j5 j5Var2 = this.f51386b;
+                final j5 j5Var2 = this.f51387b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -101,9 +101,9 @@ public final class h5 implements RequestDelegate {
                         j5 j5Var22 = j5Var2;
                         switch (i10) {
                             case 0:
-                                long j3 = j5Var22.f51474b;
-                                int i11 = j5Var22.f51473a;
-                                ArrayList arrayList = j5Var22.f51476e;
+                                long j3 = j5Var22.f51475b;
+                                int i11 = j5Var22.f51474a;
+                                ArrayList arrayList = j5Var22.f51477e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
                                     arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
@@ -117,19 +117,19 @@ public final class h5 implements RequestDelegate {
                                         if (j5Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             k5 k5Var = new k5(i11, j3, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            k5Var.f51520c = true;
+                                            k5Var.f51521c = true;
                                             k5Var.d = i13;
                                             j5Var22.h.put(Integer.valueOf(i13), k5Var);
                                         }
                                     }
                                     j5Var22.d = true;
-                                    j5Var22.f51475c = false;
+                                    j5Var22.f51476c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var22);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     j5Var22.j();
                                     j5Var22.d = true;
-                                    j5Var22.f51475c = false;
+                                    j5Var22.f51476c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var22);
                                     return;
                                 } else {
@@ -141,7 +141,7 @@ public final class h5 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f7 = j5Var22.f(tL_starGiftCollection2.collection_id);
                                     if (f7 >= 0) {
-                                        j5Var22.f51476e.set(f7, tL_starGiftCollection2);
+                                        j5Var22.f51477e.set(f7, tL_starGiftCollection2);
                                         return;
                                     }
                                     return;
@@ -153,7 +153,7 @@ public final class h5 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f10 = j5Var22.f(tL_starGiftCollection3.collection_id);
                                     if (f10 >= 0) {
-                                        j5Var22.f51476e.set(f10, tL_starGiftCollection3);
+                                        j5Var22.f51477e.set(f10, tL_starGiftCollection3);
                                         return;
                                     }
                                     return;
@@ -164,7 +164,7 @@ public final class h5 implements RequestDelegate {
                 });
                 return;
             default:
-                final j5 j5Var3 = this.f51386b;
+                final j5 j5Var3 = this.f51387b;
                 j5Var3.getClass();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -174,9 +174,9 @@ public final class h5 implements RequestDelegate {
                         j5 j5Var22 = j5Var3;
                         switch (i10) {
                             case 0:
-                                long j3 = j5Var22.f51474b;
-                                int i11 = j5Var22.f51473a;
-                                ArrayList arrayList = j5Var22.f51476e;
+                                long j3 = j5Var22.f51475b;
+                                int i11 = j5Var22.f51474a;
+                                ArrayList arrayList = j5Var22.f51477e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
                                     arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
@@ -190,19 +190,19 @@ public final class h5 implements RequestDelegate {
                                         if (j5Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             k5 k5Var = new k5(i11, j3, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            k5Var.f51520c = true;
+                                            k5Var.f51521c = true;
                                             k5Var.d = i13;
                                             j5Var22.h.put(Integer.valueOf(i13), k5Var);
                                         }
                                     }
                                     j5Var22.d = true;
-                                    j5Var22.f51475c = false;
+                                    j5Var22.f51476c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var22);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     j5Var22.j();
                                     j5Var22.d = true;
-                                    j5Var22.f51475c = false;
+                                    j5Var22.f51476c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var22);
                                     return;
                                 } else {
@@ -214,7 +214,7 @@ public final class h5 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f7 = j5Var22.f(tL_starGiftCollection2.collection_id);
                                     if (f7 >= 0) {
-                                        j5Var22.f51476e.set(f7, tL_starGiftCollection2);
+                                        j5Var22.f51477e.set(f7, tL_starGiftCollection2);
                                         return;
                                     }
                                     return;
@@ -226,7 +226,7 @@ public final class h5 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f10 = j5Var22.f(tL_starGiftCollection3.collection_id);
                                     if (f10 >= 0) {
-                                        j5Var22.f51476e.set(f10, tL_starGiftCollection3);
+                                        j5Var22.f51477e.set(f10, tL_starGiftCollection3);
                                         return;
                                     }
                                     return;

@@ -11,15 +11,15 @@ import n6.l;
 import w7.g0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(26);
-    public final int f16321a;
-    public final Uri f16322b;
-    public final int f16323c;
+    public final int f16322a;
+    public final Uri f16323b;
+    public final int f16324c;
     public final int d;
 
     public a(int i10, Uri uri, int i11, int i12) {
-        this.f16321a = i10;
-        this.f16322b = uri;
-        this.f16323c = i11;
+        this.f16322a = i10;
+        this.f16323b = uri;
+        this.f16324c = i11;
         this.d = i12;
     }
 
@@ -29,7 +29,7 @@ public final class a extends o6.a {
         }
         if (obj != null && (obj instanceof a)) {
             a aVar = (a) obj;
-            if (l.l(this.f16322b, aVar.f16322b) && this.f16323c == aVar.f16323c && this.d == aVar.d) {
+            if (l.l(this.f16323b, aVar.f16323b) && this.f16324c == aVar.f16324c && this.d == aVar.d) {
                 return true;
             }
         }
@@ -37,13 +37,13 @@ public final class a extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f16322b, Integer.valueOf(this.f16323c), Integer.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{this.f16323b, Integer.valueOf(this.f16324c), Integer.valueOf(this.d)});
     }
 
     public final String toString() {
         Locale locale = Locale.US;
-        String uri = this.f16322b.toString();
-        StringBuilder k10 = k0.k("Image ", this.f16323c, "x", this.d, " ");
+        String uri = this.f16323b.toString();
+        StringBuilder k10 = k0.k("Image ", this.f16324c, "x", this.d, " ");
         k10.append(uri);
         return k10.toString();
     }
@@ -52,10 +52,10 @@ public final class a extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = g0.q(parcel, 20293);
         g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f16321a);
-        g0.k(parcel, 2, this.f16322b, i10);
+        parcel.writeInt(this.f16322a);
+        g0.k(parcel, 2, this.f16323b, i10);
         g0.s(parcel, 3, 4);
-        parcel.writeInt(this.f16323c);
+        parcel.writeInt(this.f16324c);
         g0.s(parcel, 4, 4);
         parcel.writeInt(this.d);
         g0.r(parcel, q6);

@@ -41,49 +41,49 @@ public final class qc implements Runnable {
         y2.e eVar = (y2.e) tVar.f8579a.get();
         if (eVar != null) {
             int b10 = tVar.f8581c.b();
-            y2.f fVar = eVar.f50369a;
+            y2.f fVar = eVar.f50370a;
             synchronized (fVar) {
                 synchronized (fVar) {
-                    int i11 = fVar.f50387n;
-                    if (i11 != 0 && !fVar.f50379e) {
+                    int i11 = fVar.f50388n;
+                    if (i11 != 0 && !fVar.f50380e) {
                         return;
                     }
-                    if (i11 == b10 && fVar.f50388o != null) {
+                    if (i11 == b10 && fVar.f50389o != null) {
                         return;
                     }
-                    fVar.f50387n = b10;
+                    fVar.f50388n = b10;
                     if (b10 != 1 && b10 != 0 && b10 != 8) {
-                        if (fVar.f50388o == null) {
-                            Context context = fVar.f50376a;
+                        if (fVar.f50389o == null) {
+                            Context context = fVar.f50377a;
                             String str = e2.d0.f8537a;
                             if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
                                 String networkCountryIso = telephonyManager.getNetworkCountryIso();
                                 if (!TextUtils.isEmpty(networkCountryIso)) {
                                     c10 = v7.r6.c(networkCountryIso);
-                                    fVar.f50388o = c10;
+                                    fVar.f50389o = c10;
                                 }
                             }
                             c10 = v7.r6.c(Locale.getDefault().getCountry());
-                            fVar.f50388o = c10;
+                            fVar.f50389o = c10;
                         }
-                        fVar.f50385l = fVar.a(b10);
+                        fVar.f50386l = fVar.a(b10);
                         fVar.d.getClass();
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (fVar.f50381g > 0) {
+                        if (fVar.f50382g > 0) {
                             i10 = (int) (elapsedRealtime - fVar.h);
                         } else {
                             i10 = 0;
                         }
-                        fVar.c(i10, fVar.f50382i, fVar.f50385l);
+                        fVar.c(i10, fVar.f50383i, fVar.f50386l);
                         fVar.h = elapsedRealtime;
-                        fVar.f50382i = 0L;
-                        fVar.f50384k = 0L;
-                        fVar.f50383j = 0L;
-                        y2.q qVar = fVar.f50380f;
-                        qVar.f50411a.clear();
-                        qVar.f50413c = -1;
+                        fVar.f50383i = 0L;
+                        fVar.f50385k = 0L;
+                        fVar.f50384j = 0L;
+                        y2.q qVar = fVar.f50381f;
+                        qVar.f50412a.clear();
+                        qVar.f50414c = -1;
                         qVar.d = 0;
-                        qVar.f50414e = 0;
+                        qVar.f50415e = 0;
                     }
                 }
             }
@@ -201,7 +201,7 @@ public final class qc implements Runnable {
                 return;
             case 18:
                 hg.c cVar2 = (hg.c) this.f5801b;
-                cVar2.f11136c.f25244f3.N(true);
+                cVar2.f11136c.f25245f3.N(true);
                 cVar2.T(true);
                 return;
             case 19:
@@ -217,18 +217,18 @@ public final class qc implements Runnable {
                 l0Var.R(true);
                 return;
             case 21:
-                hg.u0 u0Var = (hg.u0) ((xa.c) this.f5801b).f49812b;
-                u0Var.f11350c.f25244f3.N(true);
+                hg.u0 u0Var = (hg.u0) ((xa.c) this.f5801b).f49813b;
+                u0Var.f11350c.f25245f3.N(true);
                 u0Var.b0();
                 return;
             case 22:
                 hg.w0 w0Var = (hg.w0) this.f5801b;
-                w0Var.f11381c.f25244f3.N(true);
+                w0Var.f11381c.f25245f3.N(true);
                 w0Var.T(true);
                 return;
             case 23:
                 hg.g1 g1Var = (hg.g1) this.f5801b;
-                g1Var.f11202a.f25244f3.N(true);
+                g1Var.f11202a.f25245f3.N(true);
                 g1Var.X(true);
                 return;
             case 24:

@@ -9,28 +9,28 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class qn0 extends Drawable {
-    public final Paint f30100b;
-    public boolean f30103f;
-    public int f30106j;
-    public boolean f30109m;
-    public i2.g0 f30111o;
-    public float f30112p;
-    public float f30113q;
-    public float f30114r;
-    public int f30099a = 255;
-    public final Path f30101c = new Path();
+    public final Paint f30101b;
+    public boolean f30104f;
+    public int f30107j;
+    public boolean f30110m;
+    public i2.g0 f30112o;
+    public float f30113p;
+    public float f30114q;
+    public float f30115r;
+    public int f30100a = 255;
+    public final Path f30102c = new Path();
     public final RectF d = new RectF();
-    public long f30102e = -1;
-    public float f30104g = 0.0f;
+    public long f30103e = -1;
+    public float f30105g = 0.0f;
     public float h = 0.0f;
-    public final float[] f30105i = new float[2];
-    public int f30107k = 0;
-    public boolean f30108l = false;
-    public final e6 f30110n = new e6(1.0f, new lc0(this, 22), 0, 350, tr.h);
+    public final float[] f30106i = new float[2];
+    public int f30108k = 0;
+    public boolean f30109l = false;
+    public final e6 f30111n = new e6(1.0f, new lc0(this, 22), 0, 350, tr.h);
 
     public qn0() {
         Paint paint = new Paint(1);
-        this.f30100b = paint;
+        this.f30101b = paint;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -39,9 +39,9 @@ public final class qn0 extends Drawable {
     }
 
     public final void a(int i10) {
-        Paint paint = this.f30100b;
+        Paint paint = this.f30101b;
         paint.setColor(i10);
-        this.f30099a = paint.getAlpha();
+        this.f30100a = paint.getAlpha();
         paint.setAlpha(255);
     }
 
@@ -50,31 +50,31 @@ public final class qn0 extends Drawable {
     }
 
     public final void c(int i10, boolean z10, boolean z11) {
-        if (this.f30107k == i10) {
+        if (this.f30108k == i10) {
             if (i10 != 2) {
-                AndroidUtilities.cancelRunOnUIThread(this.f30111o);
-                this.f30111o = null;
+                AndroidUtilities.cancelRunOnUIThread(this.f30112o);
+                this.f30112o = null;
             }
         } else if (!z11 && i10 == 2) {
-            if (this.f30111o == null) {
+            if (this.f30112o == null) {
                 i2.g0 g0Var = new i2.g0(this, i10, z10, 2);
-                this.f30111o = g0Var;
+                this.f30112o = g0Var;
                 AndroidUtilities.runOnUIThread(g0Var, 65L);
             }
         } else {
-            i2.g0 g0Var2 = this.f30111o;
+            i2.g0 g0Var2 = this.f30112o;
             if (g0Var2 != null) {
                 AndroidUtilities.cancelRunOnUIThread(g0Var2);
             }
-            e6 e6Var = this.f30110n;
+            e6 e6Var = this.f30111n;
             boolean z12 = false;
-            if (e6Var.f25933c < 1.0f && z10) {
-                c(this.f30107k, false, false);
+            if (e6Var.f25934c < 1.0f && z10) {
+                c(this.f30108k, false, false);
             }
             if (i10 == 2) {
-                this.f30104g = 180.0f;
-                this.f30102e = -1L;
-            } else if (this.f30107k == 2) {
+                this.f30105g = 180.0f;
+                this.f30103e = -1L;
+            } else if (this.f30108k == 2) {
                 if (i10 == 0) {
                     this.h = -45.0f;
                 } else {
@@ -82,18 +82,18 @@ public final class qn0 extends Drawable {
                 }
             }
             if (z10) {
-                int i11 = this.f30107k;
-                this.f30106j = i11;
-                this.f30107k = i10;
+                int i11 = this.f30108k;
+                this.f30107j = i11;
+                this.f30108k = i10;
                 if (i11 == 2 && i10 != 2) {
                     z12 = true;
                 }
-                this.f30108l = z12;
+                this.f30109l = z12;
                 e6Var.d(0.0f, true);
             } else {
-                this.f30107k = i10;
-                this.f30106j = i10;
-                this.f30108l = false;
+                this.f30108k = i10;
+                this.f30107j = i10;
+                this.f30109l = false;
                 e6Var.d(1.0f, true);
             }
             invalidateSelf();
@@ -101,7 +101,7 @@ public final class qn0 extends Drawable {
     }
 
     public final float d(float f7) {
-        return com.google.android.gms.internal.vision.e2.b(0.5f, f7, this.f30112p, this.f30113q);
+        return com.google.android.gms.internal.vision.e2.b(0.5f, f7, this.f30113p, this.f30114q);
     }
 
     @Override
@@ -124,10 +124,10 @@ public final class qn0 extends Drawable {
         boolean z11;
         float d11;
         Rect bounds = getBounds();
-        this.f30112p = Math.min(bounds.width(), bounds.height());
-        this.f30113q = bounds.centerX();
-        this.f30114r = bounds.centerY();
-        int i10 = this.f30099a;
+        this.f30113p = Math.min(bounds.width(), bounds.height());
+        this.f30114q = bounds.centerX();
+        this.f30115r = bounds.centerY();
+        int i10 = this.f30100a;
         if (i10 < 255) {
             float f18 = bounds.bottom;
             canvas2 = canvas;
@@ -135,14 +135,14 @@ public final class qn0 extends Drawable {
         } else {
             canvas2 = canvas;
         }
-        if (this.f30108l) {
+        if (this.f30109l) {
             f7 = 0.0f;
         } else {
             f7 = 1.0f;
         }
-        float d12 = this.f30110n.d(f7, false);
-        int i11 = this.f30107k;
-        int i12 = this.f30106j;
+        float d12 = this.f30111n.d(f7, false);
+        int i11 = this.f30108k;
+        int i12 = this.f30107j;
         if (i11 == 0) {
             if (i12 == 0) {
                 f10 = 1.0f;
@@ -154,7 +154,7 @@ public final class qn0 extends Drawable {
         } else {
             f10 = 0.0f;
         }
-        int i13 = this.f30106j;
+        int i13 = this.f30107j;
         if (i11 == 1) {
             if (i13 == 1) {
                 f11 = 1.0f;
@@ -167,24 +167,24 @@ public final class qn0 extends Drawable {
             f11 = 0.0f;
         }
         if (i11 == 2) {
-            if (this.f30106j == 2) {
+            if (this.f30107j == 2) {
                 f12 = 1.0f;
             } else {
                 f12 = d12;
             }
-        } else if (this.f30106j == 2) {
+        } else if (this.f30107j == 2) {
             f12 = 1.0f - d12;
         } else {
             f12 = 0.0f;
         }
-        Paint paint = this.f30100b;
+        Paint paint = this.f30101b;
         int i14 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
         if (i14 > 0) {
             c10 = 1;
             float lerp = AndroidUtilities.lerp(d(0.25f), d(0.444f), f10);
             float lerp2 = AndroidUtilities.lerp(e(0.5f), e(0.444f), f10);
-            float lerp3 = AndroidUtilities.lerp(0.0f, this.f30112p * 0.208f, f10);
-            if (lerp3 >= this.f30112p * 0.075f) {
+            float lerp3 = AndroidUtilities.lerp(0.0f, this.f30113p * 0.208f, f10);
+            if (lerp3 >= this.f30113p * 0.075f) {
                 canvas2.drawCircle(lerp, lerp2, lerp3, paint);
             }
         } else {
@@ -200,10 +200,10 @@ public final class qn0 extends Drawable {
         } else {
             canvas2.save();
             f13 = 45.0f;
-            canvas2.rotate(f10 * 45.0f, this.f30113q, this.f30114r);
+            canvas2.rotate(f10 * 45.0f, this.f30114q, this.f30115r);
             float d13 = d(0.914f);
             float d14 = d(0.7638f);
-            if (this.f30106j == 2) {
+            if (this.f30107j == 2) {
                 d = d(0.75f);
             } else {
                 d = d(0.2409f);
@@ -213,14 +213,14 @@ public final class qn0 extends Drawable {
             float d15 = d(0.658f);
             float d16 = d(0.2409f);
             c11 = 0;
-            if (this.f30106j == 2) {
+            if (this.f30107j == 2) {
                 d10 = d(0.75f);
             } else {
                 d10 = d(0.2409f);
             }
             float f20 = (d10 * f12) + (d16 * f11) + (d15 * f10);
             float e10 = e(0.5f);
-            if (v7.z6.a(f19, e7, f20, e10) <= this.f30112p * 0.075f) {
+            if (v7.z6.a(f19, e7, f20, e10) <= this.f30113p * 0.075f) {
                 f14 = f12;
                 f15 = 0.5f;
                 f16 = 0.25f;
@@ -235,20 +235,20 @@ public final class qn0 extends Drawable {
             canvas2.restore();
         }
         if (f11 > f17) {
-            if (this.f30106j == 2) {
+            if (this.f30107j == 2) {
                 d11 = AndroidUtilities.lerp(d(0.75f), d(0.2409f), f11);
             } else {
                 d11 = d(0.2409f);
             }
             canvas2.save();
-            canvas2.rotate(f10 * f13, this.f30113q, this.f30114r);
+            canvas2.rotate(f10 * f13, this.f30114q, this.f30115r);
             float d17 = (d(0.2452f) * f11) + d11;
             float lerp4 = AndroidUtilities.lerp(e(f15), e(f16), f11);
             float e11 = e(f15);
             float d18 = (d(0.2452f) * f11) + d11;
             float lerp5 = AndroidUtilities.lerp(e(f15), e(0.75f), f11);
-            if (Math.max(v7.z6.a(d17, lerp4, d11, e11), v7.z6.a(d18, lerp5, d11, e11)) > this.f30112p * 0.075f) {
-                Path path = this.f30101c;
+            if (Math.max(v7.z6.a(d17, lerp4, d11, e11), v7.z6.a(d18, lerp5, d11, e11)) > this.f30113p * 0.075f) {
+                Path path = this.f30102c;
                 path.rewind();
                 path.moveTo(d17, lerp4);
                 path.lineTo(d11, e11);
@@ -258,22 +258,22 @@ public final class qn0 extends Drawable {
             canvas2.restore();
         }
         if (f14 > f17) {
-            if (this.f30102e < 0 && f14 > 0.8f) {
-                this.f30102e = System.currentTimeMillis();
-                this.f30109m = this.f30108l;
+            if (this.f30103e < 0 && f14 > 0.8f) {
+                this.f30103e = System.currentTimeMillis();
+                this.f30110m = this.f30109l;
             }
-            if (this.f30102e > 0) {
-                float[] fArr = this.f30105i;
-                wp.a(fArr, ((float) (System.currentTimeMillis() - this.f30102e)) % 5400.0f);
+            if (this.f30103e > 0) {
+                float[] fArr = this.f30106i;
+                wp.a(fArr, ((float) (System.currentTimeMillis() - this.f30103e)) % 5400.0f);
                 float f21 = fArr[c11];
                 float f22 = fArr[c10];
-                if (this.f30107k != 2 && !this.f30108l) {
+                if (this.f30108k != 2 && !this.f30109l) {
                     float max = Math.max(0.0f, (((float) Math.floor((f21 - 180.0f) / 360.0f)) * 360.0f) + 180.0f);
                     f22 = Math.min(f22, this.h + max);
                     f21 = AndroidUtilities.lerp(f22, Math.min(f21, max + this.h), f14);
                 }
                 float f23 = this.h;
-                float f24 = this.f30104g;
+                float f24 = this.f30105g;
                 float f25 = f24 + f21;
                 float f26 = f24 + f22;
                 float f27 = f25 % 360.0f;
@@ -289,19 +289,19 @@ public final class qn0 extends Drawable {
                 } else {
                     z10 = true;
                 }
-                boolean z12 = this.f30108l;
-                if (z12 && !this.f30109m) {
-                    this.f30109m = z12;
-                    this.f30103f = z10;
+                boolean z12 = this.f30109l;
+                if (z12 && !this.f30110m) {
+                    this.f30110m = z12;
+                    this.f30104f = z10;
                 }
-                if (this.f30103f && !z10) {
+                if (this.f30104f && !z10) {
                     z11 = false;
-                    this.f30103f = false;
+                    this.f30104f = false;
                 } else {
                     z11 = false;
                 }
-                if (z12 && z10 && !this.f30103f) {
-                    this.f30108l = z11;
+                if (z12 && z10 && !this.f30104f) {
+                    this.f30109l = z11;
                 }
                 float d19 = d(f16);
                 float e12 = e(f16);
@@ -310,11 +310,11 @@ public final class qn0 extends Drawable {
                 float f29 = f21;
                 RectF rectF = this.d;
                 rectF.set(d19, e12, d20, e13);
-                canvas2.drawArc(rectF, this.f30104g + f29, f22 - f29, false, paint);
+                canvas2.drawArc(rectF, this.f30105g + f29, f22 - f29, false, paint);
                 invalidateSelf();
             }
         }
-        if (this.f30099a < 255) {
+        if (this.f30100a < 255) {
             canvas.restore();
         }
         if (d12 < 1.0f) {
@@ -323,7 +323,7 @@ public final class qn0 extends Drawable {
     }
 
     public final float e(float f7) {
-        return com.google.android.gms.internal.vision.e2.b(0.5f, f7, this.f30112p, this.f30114r);
+        return com.google.android.gms.internal.vision.e2.b(0.5f, f7, this.f30113p, this.f30115r);
     }
 
     @Override
@@ -343,11 +343,11 @@ public final class qn0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f30099a = i10;
+        this.f30100a = i10;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f30100b.setColorFilter(colorFilter);
+        this.f30101b.setColorFilter(colorFilter);
     }
 }

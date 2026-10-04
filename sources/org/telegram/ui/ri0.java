@@ -9,21 +9,21 @@ public final class ri0 extends org.telegram.ui.Components.lw0 {
     public final Paint B0;
     public final org.telegram.ui.ActionBar.d6 C0;
     public final zi0 D0;
-    public final int[] f40133w0;
-    public final int[] f40134x0;
-    public int f40135y0;
-    public final int[] f40136z0;
+    public final int[] f40134w0;
+    public final int[] f40135x0;
+    public int f40136y0;
+    public final int[] f40137z0;
 
     public ri0(zi0 zi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null);
         this.D0 = zi0Var;
         this.C0 = d6Var;
-        this.f40133w0 = new int[2];
-        this.f40134x0 = new int[2];
-        this.f40135y0 = 0;
-        this.f40136z0 = new int[2];
+        this.f40134w0 = new int[2];
+        this.f40135x0 = new int[2];
+        this.f40136y0 = 0;
+        this.f40137z0 = new int[2];
         this.A0 = new k20();
-        org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.f31140f;
+        org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.f31141f;
         this.B0 = new Paint(1);
     }
 
@@ -35,7 +35,7 @@ public final class ri0 extends org.telegram.ui.Components.lw0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         zi0 zi0Var = this.D0;
-        if (zi0Var.f43820w) {
+        if (zi0Var.f43821w) {
             if (view != zi0Var.X) {
                 org.telegram.ui.Cells.u1 u1Var = zi0Var.Q;
                 if (view == u1Var && u1Var != null && u1Var.getCurrentPosition() == null) {

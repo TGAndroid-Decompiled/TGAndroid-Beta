@@ -10,7 +10,7 @@ public final class w7 implements li.j, li.i {
     public int f() {
         c8 c8Var = this.f6237a;
         c8Var.getClass();
-        return c8Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20817d6);
+        return c8Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20818d6);
     }
 
     @Override

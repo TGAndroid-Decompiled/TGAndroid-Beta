@@ -51,8 +51,8 @@ public final class a implements m0, tx {
         ez ezVar;
         rf rfVar;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3945c;
-        if (chatActivityEnterView.f23983x3) {
-            if ((chatActivityEnterView.f23993z3 || (rfVar = chatActivityEnterView.E0) == null || rfVar.length() <= 0) && (ezVar = chatActivityEnterView.U0.f29162y0) != null && ezVar.h() > 0 && !chatActivityEnterView.f23913k3) {
+        if (chatActivityEnterView.f23984x3) {
+            if ((chatActivityEnterView.f23994z3 || (rfVar = chatActivityEnterView.E0) == null || rfVar.length() <= 0) && (ezVar = chatActivityEnterView.U0.f29163y0) != null && ezVar.h() > 0 && !chatActivityEnterView.f23914k3) {
                 return true;
             }
             return false;
@@ -63,15 +63,15 @@ public final class a implements m0, tx {
     public void e() {
         int i10;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3945c;
-        lw0 lw0Var = chatActivityEnterView.f23920m1;
+        lw0 lw0Var = chatActivityEnterView.f23921m1;
         if (d()) {
             AnimatorSet animatorSet = chatActivityEnterView.B3;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
             chatActivityEnterView.E3 = true;
-            this.f3943a = chatActivityEnterView.f23993z3;
-            chatActivityEnterView.f23993z3 = true;
+            this.f3943a = chatActivityEnterView.f23994z3;
+            chatActivityEnterView.f23994z3 = true;
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 1);
             int height = ((((lw0Var.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
             chatActivityEnterView.D3 = height;
@@ -79,18 +79,18 @@ public final class a implements m0, tx {
                 int dp = AndroidUtilities.dp(175.0f);
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
-                    i10 = chatActivityEnterView.f23988y2;
+                    i10 = chatActivityEnterView.f23989y2;
                 } else {
-                    i10 = chatActivityEnterView.f23982x2;
+                    i10 = chatActivityEnterView.f23983x2;
                 }
                 chatActivityEnterView.D3 = Math.min(height, dp + i10);
             }
-            if (chatActivityEnterView.f23872d5 == null) {
+            if (chatActivityEnterView.f23873d5 == null) {
                 chatActivityEnterView.U0.getLayoutParams().height = chatActivityEnterView.D3;
             }
             chatActivityEnterView.U0.setLayerType(2, null);
             lw0Var.requestLayout();
-            if (chatActivityEnterView.f23989y4) {
+            if (chatActivityEnterView.f23990y4) {
                 lw0Var.setForeground(new fd(chatActivityEnterView));
             }
             this.f3944b = (int) chatActivityEnterView.getTranslationY();

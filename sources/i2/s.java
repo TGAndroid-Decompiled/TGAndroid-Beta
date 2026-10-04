@@ -102,7 +102,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
                 e2.a.o("MediaSessionStub", "Library operation failed", e);
                 String str = m4.l.d;
                 m4.i1 i1Var = new m4.i1("no error message provided", -1, Bundle.EMPTY);
-                lVar = new m4.l(i1Var.f16183a, SystemClock.elapsedRealtime(), i1Var);
+                lVar = new m4.l(i1Var.f16184a, SystemClock.elapsedRealtime(), i1Var);
                 lVar2 = lVar;
                 m4.q qVar = rVar.d;
                 e2.d.h(qVar);
@@ -111,7 +111,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
                 e2.a.o("MediaSessionStub", "Library operation cancelled", e10);
                 String str2 = m4.l.d;
                 m4.i1 i1Var2 = new m4.i1("no error message provided", 1, Bundle.EMPTY);
-                lVar = new m4.l(i1Var2.f16183a, SystemClock.elapsedRealtime(), i1Var2);
+                lVar = new m4.l(i1Var2.f16184a, SystemClock.elapsedRealtime(), i1Var2);
                 lVar2 = lVar;
                 m4.q qVar2 = rVar.d;
                 e2.d.h(qVar2);
@@ -121,7 +121,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
                 e2.a.o("MediaSessionStub", "Library operation failed", e);
                 String str3 = m4.l.d;
                 m4.i1 i1Var3 = new m4.i1("no error message provided", -1, Bundle.EMPTY);
-                lVar = new m4.l(i1Var3.f16183a, SystemClock.elapsedRealtime(), i1Var3);
+                lVar = new m4.l(i1Var3.f16184a, SystemClock.elapsedRealtime(), i1Var3);
                 lVar2 = lVar;
                 m4.q qVar22 = rVar.d;
                 e2.d.h(qVar22);
@@ -163,11 +163,11 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
             sk0Var.getClass();
             return false;
         }
-        rk0 rk0Var = sk0Var.f30770g0;
+        rk0 rk0Var = sk0Var.f30771g0;
         if (rk0Var == null || !(view instanceof qk0)) {
             return false;
         }
-        rk0Var.h(sk0Var, ((qk0) view).f30060e, true, false);
+        rk0Var.h(sk0Var, ((qk0) view).f30061e, true, false);
         return true;
     }
 
@@ -175,8 +175,8 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         int i10;
         e8 e8Var = (e8) this.f11834c;
-        if (this.f11833b == e8Var.f25996b) {
-            j8 j8Var = ((z7) e8Var).f33393e;
+        if (this.f11833b == e8Var.f25997b) {
+            j8 j8Var = ((z7) e8Var).f33394e;
             Bitmap bitmap = imageReceiver.getBitmap();
             if ((bitmap != null && imageReceiver.hasImageLoaded()) || imageReceiver.hasBitmapImage()) {
                 i10 = AndroidUtilities.dp(64.0f);
@@ -202,8 +202,8 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
                 j8Var.S0.addUpdateListener(new k6(j8Var, 2));
                 j8Var.S0.start();
             }
-            if (j8Var.f27633i0.getTag() != null) {
-                j8Var.f27634j0.setImageBitmap(bitmap);
+            if (j8Var.f27634i0.getTag() != null) {
+                j8Var.f27635j0.setImageBitmap(bitmap);
             }
         }
     }
@@ -241,7 +241,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
     public void g(b2 b2Var, int i10) {
         switch (this.f11832a) {
             case 11:
-                ArrayList arrayList = ((LaunchActivity) this.f11834c).f33773d0;
+                ArrayList arrayList = ((LaunchActivity) this.f11834c).f33774d0;
                 if (!arrayList.isEmpty()) {
                     MessagesController.getInstance(this.f11833b).openByUserName("spambot", (n2) hg.k0.g(1, arrayList), 1);
                     return;
@@ -252,14 +252,14 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
             case 15:
             default:
                 ProfileActivity profileActivity = (ProfileActivity) this.f11834c;
-                TLRPC.UserFull userFull = profileActivity.getMessagesController().getUserFull(profileActivity.f34233e1);
+                TLRPC.UserFull userFull = profileActivity.getMessagesController().getUserFull(profileActivity.f34234e1);
                 if (userFull != null) {
                     userFull.flags2 &= -4194305;
                     userFull.note = null;
                     profileActivity.getMessagesStorage().updateUserInfo(userFull, true);
                 }
                 TLRPC.TL_updateContactNote tL_updateContactNote = new TLRPC.TL_updateContactNote();
-                tL_updateContactNote.f20176id = profileActivity.getMessagesController().getInputUser(profileActivity.f34233e1);
+                tL_updateContactNote.f20177id = profileActivity.getMessagesController().getInputUser(profileActivity.f34234e1);
                 tL_updateContactNote.note = new TLRPC.TL_textWithEntities();
                 profileActivity.getConnectionsManager().sendRequest(tL_updateContactNote, null);
                 profileActivity.j5();
@@ -275,7 +275,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
                 ug0Var.finishFragment();
                 return;
             case 16:
-                kn0 kn0Var = ((sm0) this.f11834c).f40531a;
+                kn0 kn0Var = ((sm0) this.f11834c).f40532a;
                 kn0Var.z1(kn0Var.Y[this.f11833b]);
                 return;
             case 17:
@@ -310,7 +310,7 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
 
     @Override
     public int run() {
-        s4.c0 c0Var = ((lc0) this.f11834c).f38230c;
+        s4.c0 c0Var = ((lc0) this.f11834c).f38231c;
         int dp = AndroidUtilities.dp(60.0f);
         int i10 = this.f11833b;
         c0Var.h1(i10, dp);
@@ -331,19 +331,19 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
     @Override
     public boolean mo18c(float f7, float f10, int i10, View view) {
         tg.m1 m1Var = (tg.m1) this.f11834c;
-        o20 o20Var = m1Var.f47043d0;
-        HashSet hashSet = m1Var.f47047h0;
+        o20 o20Var = m1Var.f47044d0;
+        HashSet hashSet = m1Var.f47048h0;
         if (view instanceof xg.l) {
             xg.l lVar = (xg.l) view;
             TLRPC.User user = lVar.getUser();
-            long j3 = user != null ? user.f20184id : -lVar.getChat().f20037id;
+            long j3 = user != null ? user.f20185id : -lVar.getChat().f20038id;
             int i11 = this.f11833b;
             boolean z10 = (i11 == 4 && hashSet.isEmpty()) ? false : true;
             if (hashSet.contains(Long.valueOf(j3))) {
                 hashSet.remove(Long.valueOf(j3));
             } else {
                 hashSet.add(Long.valueOf(j3));
-                m1Var.f47052n0.put(Long.valueOf(j3), user);
+                m1Var.f47053n0.put(Long.valueOf(j3), user);
             }
             if (hashSet.size() == m1Var.Y() + 1) {
                 hashSet.remove(Long.valueOf(j3));
@@ -354,11 +354,11 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
             if (z10 != z11) {
                 o20Var.setVisibility(0);
                 o20Var.animate().alpha(z11 ? 1.0f : 0.0f).translationY(z11 ? 0.0f : AndroidUtilities.dp(12.0f)).setInterpolator(tr.h).setDuration(320L).withEndAction(!z11 ? new tg.a1(m1Var, 7) : null).start();
-                ug.h hVar = m1Var.f47054p0;
+                ug.h hVar = m1Var.f47055p0;
                 boolean z12 = !z11;
-                if (hVar.f47674y != z12) {
-                    hVar.f47674y = z12;
-                    AndroidUtilities.forEachViews((RecyclerView) hVar.f47668f, (Utilities.Callback<View>) new ug.f(z12));
+                if (hVar.f47675y != z12) {
+                    hVar.f47675y = z12;
+                    AndroidUtilities.forEachViews((RecyclerView) hVar.f47669f, (Utilities.Callback<View>) new ug.f(z12));
                 }
             }
             m1Var.U();
@@ -372,10 +372,10 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
 
     @Override
     public void run(boolean z10) {
-        yn ynVar = ((lj) this.f11834c).f38278b;
+        yn ynVar = ((lj) this.f11834c).f38279b;
         int i10 = this.f11833b;
-        if (i10 == 15 && ChatObject.isChannel(ynVar.f43314e)) {
-            TLRPC.Chat chat = ynVar.f43314e;
+        if (i10 == 15 && ChatObject.isChannel(ynVar.f43315e)) {
+            TLRPC.Chat chat = ynVar.f43315e;
             if (!chat.megagroup || ChatObject.isPublic(chat)) {
                 ynVar.getMessagesController().deleteDialog(ynVar.R5, 2, z10);
                 return;
@@ -387,10 +387,10 @@ public final class s implements e2.m, e2.h, MessagesStorage.BooleanCallback, cd0
             notificationCenter.removeObserver(ynVar, i11);
             ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
             ynVar.finishFragment();
-            ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ynVar.R5), ynVar.f43326f, ynVar.f43314e, Boolean.valueOf(z10));
+            ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ynVar.R5), ynVar.f43327f, ynVar.f43315e, Boolean.valueOf(z10));
             return;
         }
-        ynVar.pa(ynVar.f43279b4, z10);
+        ynVar.pa(ynVar.f43280b4, z10);
     }
 
     public s(Object obj, int i10, int i11) {

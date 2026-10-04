@@ -10,22 +10,22 @@ import android.util.Log;
 import android.util.SparseArray;
 import org.telegram.ui.Cells.c1;
 public final class m0 implements IBinder.DeathRecipient {
-    public final Messenger f44209a;
-    public final g.d f44210b;
-    public final Messenger f44211c;
-    public int f44213f;
-    public int f44214g;
-    public final r0 f44215i;
+    public final Messenger f44210a;
+    public final g.d f44211b;
+    public final Messenger f44212c;
+    public int f44214f;
+    public int f44215g;
+    public final r0 f44216i;
     public int d = 1;
-    public int f44212e = 1;
+    public int f44213e = 1;
     public final SparseArray h = new SparseArray();
 
     public m0(r0 r0Var, Messenger messenger) {
-        this.f44215i = r0Var;
-        this.f44209a = messenger;
+        this.f44216i = r0Var;
+        this.f44210a = messenger;
         g.d dVar = new g.d(this);
-        this.f44210b = dVar;
-        this.f44211c = new Messenger(dVar);
+        this.f44211b = dVar;
+        this.f44212c = new Messenger(dVar);
     }
 
     public final void a(int i10) {
@@ -41,9 +41,9 @@ public final class m0 implements IBinder.DeathRecipient {
         obtain.arg2 = i12;
         obtain.obj = bundle;
         obtain.setData(bundle2);
-        obtain.replyTo = this.f44211c;
+        obtain.replyTo = this.f44212c;
         try {
-            this.f44209a.send(obtain);
+            this.f44210a.send(obtain);
             return true;
         } catch (DeadObjectException unused) {
             return false;
@@ -58,7 +58,7 @@ public final class m0 implements IBinder.DeathRecipient {
 
     @Override
     public final void binderDied() {
-        this.f44215i.f44245s.post(new l0(this, 1));
+        this.f44216i.f44246s.post(new l0(this, 1));
     }
 
     public final void c(int i10, int i11) {

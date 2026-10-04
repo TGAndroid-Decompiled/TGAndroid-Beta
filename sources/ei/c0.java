@@ -54,7 +54,7 @@ public final class c0 extends yl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        b0 b0Var = (b0) c1Var.f46523a;
+        b0 b0Var = (b0) c1Var.f46524a;
         String str = (String) this.f8947c.get(i10);
         if (((Boolean) this.f8948e.get(i10)).booleanValue()) {
             rq rqVar = new rq(R.drawable.mini_ephemeral_hidden_14, 0);
@@ -90,7 +90,7 @@ public final class c0 extends yl0 {
         TextView textView = new TextView(context);
         linearLayout.f8920a = textView;
         textView.setTextSize(1, 14.0f);
-        int i12 = i6.f21204y6;
+        int i12 = i6.f21205y6;
         textView.setTextColor(i6.w0(null, i12, false));
         textView.setTag(Integer.valueOf(i12));
         linearLayout.addView(textView, z5.o(-2, -2, 0.0f, 16));

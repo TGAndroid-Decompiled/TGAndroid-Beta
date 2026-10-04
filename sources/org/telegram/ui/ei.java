@@ -13,7 +13,7 @@ public final class ei extends org.telegram.ui.Components.wv {
     @Override
     public final void dismiss() {
         super.dismiss();
-        yn ynVar = this.W.f36332p;
+        yn ynVar = this.W.f36333p;
         ynVar.getClass();
         ynVar.g8(false, true, 0.0f);
     }

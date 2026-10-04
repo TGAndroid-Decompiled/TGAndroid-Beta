@@ -5,17 +5,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public final class vc0 implements org.telegram.ui.Components.bu0 {
-    public final gd0 f41697a;
+    public final gd0 f41698a;
 
     public vc0(gd0 gd0Var) {
-        this.f41697a = gd0Var;
+        this.f41698a = gd0Var;
     }
 
     @Override
     public final void P() {
         int c02;
         boolean z10;
-        gd0 gd0Var = this.f41697a;
+        gd0 gd0Var = this.f41698a;
         wc0 wc0Var = gd0Var.K0;
         if (wc0Var == null) {
             c02 = 0;
@@ -43,7 +43,7 @@ public final class vc0 implements org.telegram.ui.Components.bu0 {
 
     @Override
     public final org.telegram.ui.Components.zl0 f() {
-        return this.f41697a.U;
+        return this.f41698a.U;
     }
 
     @Override

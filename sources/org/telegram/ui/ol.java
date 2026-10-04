@@ -4,10 +4,10 @@ import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 public final class ol implements eq0 {
-    public final yn f39228a;
+    public final yn f39229a;
 
     public ol(yn ynVar) {
-        this.f39228a = ynVar;
+        this.f39229a = ynVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class ol implements eq0 {
             intent2.setType("image/*");
             Intent createChooser = Intent.createChooser(intent2, null);
             createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
-            this.f39228a.startActivityForResult(createChooser, 1);
+            this.f39229a.startActivityForResult(createChooser, 1);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

@@ -50,10 +50,10 @@ public final class sb extends AnimatorListenerAdapter {
                 if (gcVar.d != null && (t10 = jcVar.t()) != null && (oj0Var = t10.f880o1.d) != null) {
                     oj0 oj0Var2 = gcVar.d;
                     oj0Var2.getClass();
-                    oj0Var2.f29372c = oj0Var.f29372c;
-                    oj0Var2.f29374f = oj0Var.f29374f;
-                    oj0Var2.f29371b = oj0Var.f29371b;
-                    oj0Var2.f29370a = System.currentTimeMillis();
+                    oj0Var2.f29373c = oj0Var.f29373c;
+                    oj0Var2.f29375f = oj0Var.f29375f;
+                    oj0Var2.f29372b = oj0Var.f29372b;
+                    oj0Var2.f29371a = System.currentTimeMillis();
                     oj0Var2.c();
                 }
                 d6 d6Var = jcVar.G0;

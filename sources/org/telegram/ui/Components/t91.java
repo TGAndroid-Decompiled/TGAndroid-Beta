@@ -9,56 +9,56 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 public final class t91 extends AsyncTask {
-    public final int f30995a;
-    public String f30996b;
-    public final String[] f30997c;
+    public final int f30996a;
+    public String f30997b;
+    public final String[] f30998c;
     public final z91 d;
 
     public t91(z91 z91Var, String str, int i10) {
-        this.f30995a = i10;
+        this.f30996a = i10;
         switch (i10) {
             case 1:
                 this.d = z91Var;
-                this.f30997c = new String[4];
-                this.f30996b = str;
+                this.f30998c = new String[4];
+                this.f30997b = str;
                 return;
             case 2:
                 this.d = z91Var;
-                this.f30997c = new String[2];
-                this.f30996b = str;
+                this.f30998c = new String[2];
+                this.f30997b = str;
                 return;
             case 3:
                 this.d = z91Var;
-                this.f30997c = new String[2];
-                this.f30996b = str;
+                this.f30998c = new String[2];
+                this.f30997b = str;
                 return;
             case 4:
                 this.d = z91Var;
-                this.f30997c = new String[2];
-                this.f30996b = str;
+                this.f30998c = new String[2];
+                this.f30997b = str;
                 return;
             default:
                 this.d = z91Var;
-                this.f30997c = new String[2];
-                this.f30996b = str;
+                this.f30998c = new String[2];
+                this.f30997b = str;
                 return;
         }
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
-        switch (this.f30995a) {
+        switch (this.f30996a) {
             case 0:
                 Void[] voidArr = (Void[]) objArr;
-                String[] strArr = this.f30997c;
+                String[] strArr = this.f30998c;
                 Locale locale = Locale.US;
                 this.d.getClass();
-                String c10 = z91.c(this, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/" + this.f30996b, null, true);
+                String c10 = z91.c(this, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/" + this.f30997b, null, true);
                 if (isCancelled()) {
                     return null;
                 }
                 try {
-                    Matcher matcher = z91.f33430r0.matcher(c10);
+                    Matcher matcher = z91.f33431r0.matcher(c10);
                     if (matcher.find()) {
                         JSONArray jSONArray = new JSONArray(matcher.group(1));
                         for (int i10 = 0; i10 < jSONArray.length(); i10++) {
@@ -81,10 +81,10 @@ public final class t91 extends AsyncTask {
                 return strArr[0];
             case 1:
                 Void[] voidArr2 = (Void[]) objArr;
-                String[] strArr2 = this.f30997c;
+                String[] strArr2 = this.f30998c;
                 Locale locale2 = Locale.US;
                 this.d.getClass();
-                String c11 = z91.c(this, "https://coub.com/api/v2/coubs/" + this.f30996b + ".json", null, true);
+                String c11 = z91.c(this, "https://coub.com/api/v2/coubs/" + this.f30997b + ".json", null, true);
                 if (isCancelled()) {
                     return null;
                 }
@@ -107,15 +107,15 @@ public final class t91 extends AsyncTask {
                 return strArr2[0];
             case 2:
                 Void[] voidArr3 = (Void[]) objArr;
-                String[] strArr3 = this.f30997c;
-                String str = this.f30996b;
+                String[] strArr3 = this.f30998c;
+                String str = this.f30997b;
                 this.d.getClass();
                 String c12 = z91.c(this, str, null, false);
                 if (isCancelled()) {
                     return null;
                 }
                 try {
-                    Matcher matcher2 = z91.f33431s0.matcher(c12);
+                    Matcher matcher2 = z91.f33432s0.matcher(c12);
                     if (matcher2.find()) {
                         strArr3[0] = new JSONObject(matcher2.group(1)).getJSONArray("quality_options").getJSONObject(0).getString("source");
                         strArr3[1] = "other";
@@ -129,26 +129,26 @@ public final class t91 extends AsyncTask {
                 return strArr3[0];
             case 3:
                 Void[] voidArr4 = (Void[]) objArr;
-                String[] strArr4 = this.f30997c;
+                String[] strArr4 = this.f30998c;
                 HashMap hashMap = new HashMap();
                 hashMap.put("Client-ID", "jzkbprff40iqj646a697cyrvl0zt2m6");
-                int indexOf = this.f30996b.indexOf(38);
+                int indexOf = this.f30997b.indexOf(38);
                 if (indexOf > 0) {
-                    this.f30996b = this.f30996b.substring(0, indexOf);
+                    this.f30997b = this.f30997b.substring(0, indexOf);
                 }
                 Locale locale3 = Locale.US;
                 this.d.getClass();
-                String c13 = z91.c(this, "https://api.twitch.tv/kraken/streams/" + this.f30996b + "?stream_type=all", hashMap, false);
+                String c13 = z91.c(this, "https://api.twitch.tv/kraken/streams/" + this.f30997b + "?stream_type=all", hashMap, false);
                 if (isCancelled()) {
                     return null;
                 }
                 try {
                     new JSONObject(c13).getJSONObject("stream");
-                    JSONObject jSONObject3 = new JSONObject(z91.c(this, "https://api.twitch.tv/api/channels/" + this.f30996b + "/access_token", hashMap, false));
+                    JSONObject jSONObject3 = new JSONObject(z91.c(this, "https://api.twitch.tv/api/channels/" + this.f30997b + "/access_token", hashMap, false));
                     String encode = URLEncoder.encode(jSONObject3.getString("sig"), "UTF-8");
                     String encode2 = URLEncoder.encode(jSONObject3.getString("token"), "UTF-8");
-                    URLEncoder.encode("https://youtube.googleapis.com/v/" + this.f30996b, "UTF-8");
-                    String str2 = this.f30996b;
+                    URLEncoder.encode("https://youtube.googleapis.com/v/" + this.f30997b, "UTF-8");
+                    String str2 = this.f30997b;
                     strArr4[0] = "https://usher.ttvnw.net/api/channel/hls/" + str2 + ".m3u8?" + ("allow_source=true&allow_audio_only=true&allow_spectre=true&player=twitchweb&segment_preference=4&p=" + ((int) (Math.random() * 1.0E7d)) + "&sig=" + encode + "&token=" + encode2);
                     strArr4[1] = "hls";
                 } catch (Exception e12) {
@@ -160,10 +160,10 @@ public final class t91 extends AsyncTask {
                 return strArr4[0];
             default:
                 Void[] voidArr5 = (Void[]) objArr;
-                String[] strArr5 = this.f30997c;
+                String[] strArr5 = this.f30998c;
                 Locale locale4 = Locale.US;
                 this.d.getClass();
-                String c14 = z91.c(this, "https://player.vimeo.com/video/" + this.f30996b + "/config", null, true);
+                String c14 = z91.c(this, "https://player.vimeo.com/video/" + this.f30997b + "/config", null, true);
                 if (isCancelled()) {
                     return null;
                 }
@@ -193,19 +193,19 @@ public final class t91 extends AsyncTask {
 
     @Override
     public final void onPostExecute(Object obj) {
-        switch (this.f30995a) {
+        switch (this.f30996a) {
             case 0:
                 String str = (String) obj;
                 z91 z91Var = this.d;
                 if (str != null) {
-                    z91Var.f33458w = true;
-                    z91Var.f33459x = str;
-                    z91Var.f33460y = this.f30997c[1];
-                    if (z91Var.f33457s) {
+                    z91Var.f33459w = true;
+                    z91Var.f33460x = str;
+                    z91Var.f33461y = this.f30998c[1];
+                    if (z91Var.f33458s) {
                         z91Var.i();
                     }
                     z91Var.j(false, true);
-                    z91Var.f33449f0.d(true, true);
+                    z91Var.f33450f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     z91Var.h();
@@ -217,17 +217,17 @@ public final class t91 extends AsyncTask {
                 String str2 = (String) obj;
                 z91 z91Var2 = this.d;
                 if (str2 != null) {
-                    z91Var2.f33458w = true;
-                    z91Var2.f33459x = str2;
-                    String[] strArr = this.f30997c;
-                    z91Var2.f33460y = strArr[1];
+                    z91Var2.f33459w = true;
+                    z91Var2.f33460x = str2;
+                    String[] strArr = this.f30998c;
+                    z91Var2.f33461y = strArr[1];
                     z91Var2.E = strArr[2];
                     z91Var2.F = strArr[3];
-                    if (z91Var2.f33457s) {
+                    if (z91Var2.f33458s) {
                         z91Var2.i();
                     }
                     z91Var2.j(false, true);
-                    z91Var2.f33449f0.d(true, true);
+                    z91Var2.f33450f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     z91Var2.h();
@@ -239,14 +239,14 @@ public final class t91 extends AsyncTask {
                 String str3 = (String) obj;
                 z91 z91Var3 = this.d;
                 if (str3 != null) {
-                    z91Var3.f33458w = true;
-                    z91Var3.f33459x = str3;
-                    z91Var3.f33460y = this.f30997c[1];
-                    if (z91Var3.f33457s) {
+                    z91Var3.f33459w = true;
+                    z91Var3.f33460x = str3;
+                    z91Var3.f33461y = this.f30998c[1];
+                    if (z91Var3.f33458s) {
                         z91Var3.i();
                     }
                     z91Var3.j(false, true);
-                    z91Var3.f33449f0.d(true, true);
+                    z91Var3.f33450f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     z91Var3.h();
@@ -258,14 +258,14 @@ public final class t91 extends AsyncTask {
                 String str4 = (String) obj;
                 z91 z91Var4 = this.d;
                 if (str4 != null) {
-                    z91Var4.f33458w = true;
-                    z91Var4.f33459x = str4;
-                    z91Var4.f33460y = this.f30997c[1];
-                    if (z91Var4.f33457s) {
+                    z91Var4.f33459w = true;
+                    z91Var4.f33460x = str4;
+                    z91Var4.f33461y = this.f30998c[1];
+                    if (z91Var4.f33458s) {
                         z91Var4.i();
                     }
                     z91Var4.j(false, true);
-                    z91Var4.f33449f0.d(true, true);
+                    z91Var4.f33450f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     z91Var4.h();
@@ -277,14 +277,14 @@ public final class t91 extends AsyncTask {
                 String str5 = (String) obj;
                 z91 z91Var5 = this.d;
                 if (str5 != null) {
-                    z91Var5.f33458w = true;
-                    z91Var5.f33459x = str5;
-                    z91Var5.f33460y = this.f30997c[1];
-                    if (z91Var5.f33457s) {
+                    z91Var5.f33459w = true;
+                    z91Var5.f33460x = str5;
+                    z91Var5.f33461y = this.f30998c[1];
+                    if (z91Var5.f33458s) {
                         z91Var5.i();
                     }
                     z91Var5.j(false, true);
-                    z91Var5.f33449f0.d(true, true);
+                    z91Var5.f33450f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     z91Var5.h();

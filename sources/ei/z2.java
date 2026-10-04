@@ -38,15 +38,15 @@ public final class z2 extends AnimatorListenerAdapter {
                 v20Var.M = this.f9510c;
                 v20Var.F.setColorFilter(new PorterDuffColorFilter(v20Var.L, PorterDuff.Mode.MULTIPLY));
                 v20Var.E.setColor(v20Var.L);
-                v20Var.f31514r.setColor(v20Var.M);
+                v20Var.f31515r.setColor(v20Var.M);
                 v20Var.J.d(i0.a.k(v20Var.M, 38));
                 return;
             case 2:
                 pv0 pv0Var = (pv0) this.d;
-                iu0[] iu0VarArr = pv0Var.f29776k0;
+                iu0[] iu0VarArr = pv0Var.f29777k0;
                 pv0Var.I1.unlock();
-                pv0Var.f29784o1 = false;
-                int[] iArr = pv0Var.f29779m1;
+                pv0Var.f29785o1 = false;
+                int[] iArr = pv0Var.f29780m1;
                 int i11 = this.f9510c;
                 int i12 = this.f9509b;
                 iArr[i12] = i11;
@@ -55,16 +55,16 @@ public final class z2 extends AnimatorListenerAdapter {
                     if (iu0Var != null && iu0Var.h != null && (((i10 = iu0Var.F) == 0 || pv0.p0(i10)) && (adapter = iu0VarArr[i13].h.getAdapter()) != null)) {
                         int h = adapter.h();
                         if (i13 == 0) {
-                            pv0Var.f29796t1[0].g(false);
+                            pv0Var.f29797t1[0].g(false);
                         }
-                        iu0VarArr[i13].f27504x.y1(iArr[i12]);
+                        iu0VarArr[i13].f27505x.y1(iArr[i12]);
                         iu0VarArr[i13].h.a0();
                         if (adapter.h() == h) {
                             AndroidUtilities.updateVisibleRows(iu0VarArr[i13].h);
                         } else {
                             adapter.l();
                         }
-                        iu0VarArr[i13].f27501r.setVisibility(8);
+                        iu0VarArr[i13].f27502r.setVisibility(8);
                     }
                 }
                 pv0Var.X0();
