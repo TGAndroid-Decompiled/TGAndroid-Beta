@@ -8,20 +8,20 @@ public enum e0 implements Parcelable {
     RESIDENT_KEY_REQUIRED("required");
     
     public static final Parcelable.Creator<e0> CREATOR = new r0(1);
-    public final String f4079a;
+    public final String f4412a;
 
     e0(String str) {
-        this.f4079a = str;
+        this.f4412a = str;
     }
 
     public static e0 a(String str) {
         e0[] values;
         for (e0 e0Var : values()) {
-            if (str.equals(e0Var.f4079a)) {
+            if (str.equals(e0Var.f4412a)) {
                 return e0Var;
             }
         }
-        throw new Exception(a4.a.q("Resident key requirement ", str, " not supported"));
+        throw new Exception(a4.a.p("Resident key requirement ", str, " not supported"));
     }
 
     @Override
@@ -31,11 +31,11 @@ public enum e0 implements Parcelable {
 
     @Override
     public final String toString() {
-        return this.f4079a;
+        return this.f4412a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f4079a);
+        parcel.writeString(this.f4412a);
     }
 }

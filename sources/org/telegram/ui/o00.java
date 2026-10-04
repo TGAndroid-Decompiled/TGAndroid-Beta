@@ -1,58 +1,113 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class o00 extends org.telegram.ui.Components.p6 {
-    public final int f36021s = 0;
-    public final Object v;
-    public final ViewGroup f36022w;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class o00 extends y00 {
+    public final p00 E;
 
-    public o00(yh.k7 k7Var, Context context, Drawable drawable) {
-        super(context, false, false, false);
-        this.f36022w = k7Var;
-        this.v = drawable;
+    public o00(p00 p00Var, Context context, int i10, int i11) {
+        super(context, null, i10, i11);
+        this.E = p00Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        switch (this.f36021s) {
-            case 0:
-                p00 p00Var = (p00) this.f36022w;
-                int a2 = p00Var.f36376w.a(p00Var.v, false);
-                setTextColor(a2);
-                Paint paint = (Paint) this.v;
-                if (org.telegram.ui.ActionBar.h6.I.q()) {
-                    f7 = 0.2f;
-                } else {
-                    f7 = 0.1f;
-                }
-                paint.setColor(org.telegram.ui.ActionBar.h6.l1(f7, a2));
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set((getWidth() - getDrawable().d()) - AndroidUtilities.dpf2(9.32f), (getHeight() - AndroidUtilities.dpf2(14.66f)) / 2.0f, getWidth(), (AndroidUtilities.dpf2(14.66f) + getHeight()) / 2.0f);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                Drawable drawable = (Drawable) this.v;
-                if (!((yh.k7) this.f36022w).d) {
-                    int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().d()) - AndroidUtilities.dp(20.0f));
-                    drawable.setBounds(measuredWidth, org.telegram.messenger.ok.A(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
-                    drawable.draw(canvas);
-                }
-                super.dispatchDraw(canvas);
-                return;
-        }
+    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
+        p00 p00Var = this.E;
+        p00Var.d.Y.remove(tL_exportedChatlistInvite);
+        p00Var.d.R();
+        p00Var.d.S(true);
     }
 
-    public o00(p00 p00Var, Context context) {
-        super(context, false, true, true);
-        this.f36022w = p00Var;
-        this.v = new Paint(1);
+    @Override
+    public final void c() {
+        org.telegram.ui.Components.b80 F = org.telegram.ui.Components.b80.F(this.E.d.container, null, this);
+        F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
+            public final o00 f38793b;
+
+            {
+                this.f38793b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        o00 o00Var = this.f38793b;
+                        String str = o00Var.f42985x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.yc(o00Var.E.d.Z, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f38793b.d();
+                        return;
+                    default:
+                        this.f38793b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
+            public final o00 f38793b;
+
+            {
+                this.f38793b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        o00 o00Var = this.f38793b;
+                        String str = o00Var.f42985x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.yc(o00Var.E.d.Z, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f38793b.d();
+                        return;
+                    default:
+                        this.f38793b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
+            public final o00 f38793b;
+
+            {
+                this.f38793b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        o00 o00Var = this.f38793b;
+                        String str = o00Var.f42985x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.yc(o00Var.E.d.Z, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f38793b.d();
+                        return;
+                    default:
+                        this.f38793b.a();
+                        return;
+                }
+            }
+        }, true);
+        if (LocaleController.isRTL) {
+            F.f24826i = 3;
+        }
+        F.Z();
     }
 }

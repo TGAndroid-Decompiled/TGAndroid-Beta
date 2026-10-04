@@ -1,34 +1,27 @@
 package org.telegram.ui.Components;
-public final class cp0 implements o1.f {
-    public final int f23359a;
-    public final kp0 f23360b;
-    public final o1.k f23361c;
+public final class cp0 extends o6 {
+    public final int W = 0;
+    public final Object X;
 
-    public cp0(kp0 kp0Var, o1.k kVar, int i10) {
-        this.f23359a = i10;
-        this.f23360b = kp0Var;
-        this.f23361c = kVar;
+    public cp0(Runnable runnable) {
+        super(false, true, true, true);
+        this.X = runnable;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f23359a) {
+    public final void invalidateSelf() {
+        switch (this.W) {
             case 0:
-                if (!z10) {
-                    this.f23360b.f25791z.remove(this.f23361c);
-                    hVar.c();
-                    return;
-                }
+                ((Runnable) this.X).run();
                 return;
             default:
-                kp0 kp0Var = this.f23360b;
-                if (!z10) {
-                    kp0Var.f25791z.remove(this.f23361c);
-                    hVar.c();
-                    return;
-                }
-                kp0Var.getClass();
+                ((org.telegram.ui.s21) this.X).invalidate();
                 return;
         }
+    }
+
+    public cp0(org.telegram.ui.s21 s21Var) {
+        super(false, true, false, false);
+        this.X = s21Var;
     }
 }

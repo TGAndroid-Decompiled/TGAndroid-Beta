@@ -1,26 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class uv implements Utilities.Callback {
-    public final int f38560a;
-    public final qy f38561b;
+import org.telegram.tgnet.TLRPC;
+public final class uv implements Runnable {
+    public final int f41320a;
+    public final uy f41321b;
+    public final TLRPC.TL_attachMenuBot f41322c;
+    public final LaunchActivity d;
 
-    public uv(qy qyVar, int i10) {
-        this.f38560a = i10;
-        this.f38561b = qyVar;
+    public uv(uy uyVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
+        this.f41320a = i10;
+        this.f41321b = uyVar;
+        this.f41322c = tL_attachMenuBot;
+        this.d = launchActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f38560a) {
+    public final void run() {
+        switch (this.f41320a) {
             case 0:
-                qy qyVar = this.f38561b;
-                qyVar.O1 = (Long) obj;
-                qyVar.U4();
+                uy.w0(this.f41321b, this.f41322c, this.d);
                 return;
             default:
-                qy.c0(this.f38561b, (TL_account.TL_birthday) obj);
+                uy.x0(this.f41321b, this.f41322c, this.d);
                 return;
         }
     }

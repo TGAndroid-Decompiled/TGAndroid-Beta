@@ -1,128 +1,139 @@
 package u2;
+public final class o1 implements d0, c0 {
+    public final d0 f47350a;
+    public final long f47351b;
+    public c0 f47352c;
 
-import android.hardware.fingerprint.FingerprintManager;
-import android.util.Log;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import java.io.File;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.zg1;
-import xh.h4;
-import yh.x3;
-public final class o1 implements d9.e, q3.g, Continuation, q9.d, z1, GenericProvider, e2.h, Vector.TLDeserializer {
-    public final int f43743a;
-
-    public o1(int i10) {
-        this.f43743a = i10;
-    }
-
-    public static FingerprintManager a(Object obj) {
-        return (FingerprintManager) obj;
+    public o1(d0 d0Var, long j3) {
+        this.f47350a = d0Var;
+        this.f47351b = j3;
     }
 
     @Override
-    public Object G(cf.c cVar) {
-        Set x10 = cVar.x(xa.a.class);
-        xa.c cVar2 = xa.c.f46015c;
-        if (cVar2 == null) {
-            synchronized (xa.c.class) {
-                try {
-                    cVar2 = xa.c.f46015c;
-                    if (cVar2 == null) {
-                        cVar2 = new xa.c(0);
-                        xa.c.f46015c = cVar2;
-                    }
-                } finally {
-                }
+    public final void b(d0 d0Var) {
+        c0 c0Var = this.f47352c;
+        c0Var.getClass();
+        c0Var.b(this);
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f47350a.c();
+    }
+
+    @Override
+    public final long d() {
+        long d = this.f47350a.d();
+        if (d == Long.MIN_VALUE) {
+            return Long.MIN_VALUE;
+        }
+        return d + this.f47351b;
+    }
+
+    @Override
+    public final void f(e1 e1Var) {
+        d0 d0Var = (d0) e1Var;
+        c0 c0Var = this.f47352c;
+        c0Var.getClass();
+        c0Var.f(this);
+    }
+
+    @Override
+    public final void g() {
+        this.f47350a.g();
+    }
+
+    @Override
+    public final long h(long j3) {
+        long j10 = this.f47351b;
+        return this.f47350a.h(j3 - j10) + j10;
+    }
+
+    @Override
+    public final void i(long j3) {
+        this.f47350a.i(j3 - this.f47351b);
+    }
+
+    @Override
+    public final void k(c0 c0Var, long j3) {
+        this.f47352c = c0Var;
+        this.f47350a.k(this, j3 - this.f47351b);
+    }
+
+    @Override
+    public final long l() {
+        long l4 = this.f47350a.l();
+        if (l4 == -9223372036854775807L) {
+            return -9223372036854775807L;
+        }
+        return l4 + this.f47351b;
+    }
+
+    @Override
+    public final boolean m(i2.s0 s0Var) {
+        ?? obj = new Object();
+        long j3 = s0Var.f11835a;
+        obj.f11826b = s0Var.f11836b;
+        obj.f11827c = s0Var.f11837c;
+        obj.f11825a = j3 - this.f47351b;
+        return this.f47350a.m(new i2.s0(obj));
+    }
+
+    @Override
+    public final long n(x2.r[] rVarArr, boolean[] zArr, c1[] c1VarArr, boolean[] zArr2, long j3) {
+        c1[] c1VarArr2 = new c1[c1VarArr.length];
+        int i10 = 0;
+        while (true) {
+            c1 c1Var = null;
+            if (i10 >= c1VarArr.length) {
+                break;
             }
-        }
-        return new xa.b(x10, cVar2);
-    }
-
-    @Override
-    public void accept(Object obj) {
-        ((ExecutorService) obj).shutdown();
-    }
-
-    @Override
-    public java.lang.Object apply(java.lang.Object r26) {
-        throw new UnsupportedOperationException("Method not decompiled: u2.o1.apply(java.lang.Object):java.lang.Object");
-    }
-
-    @Override
-    public boolean c(int i10, int i11, int i12, int i13, int i14) {
-        if (i11 != 67 || i12 != 79 || i13 != 77 || (i14 != 77 && i10 != 2)) {
-            if (i11 == 77 && i12 == 76 && i13 == 76) {
-                if (i14 == 84 || i10 == 2) {
-                    return true;
-                }
-                return false;
+            n1 n1Var = (n1) c1VarArr[i10];
+            if (n1Var != null) {
+                c1Var = n1Var.f47343a;
             }
-            return false;
+            c1VarArr2[i10] = c1Var;
+            i10++;
         }
-        return true;
-    }
-
-    @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i10, z10);
-    }
-
-    @Override
-    public void f(a2 a2Var, int i10) {
-        switch (this.f43743a) {
-            case 15:
-                a2Var.dismiss();
-                return;
-            case 16:
-                a2Var.dismiss();
-                return;
-            case 20:
-                x3.d2(new zg1(6, null));
-                return;
-            default:
-                int i11 = x3.f48229q1;
-                return;
-        }
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        Integer num = (Integer) obj;
-        int i10 = h4.f46169k0;
-        return 0;
-    }
-
-    @Override
-    public Object then(Task task) {
-        boolean z10;
-        File file;
-        if (task.isSuccessful()) {
-            w9.b bVar = (w9.b) task.getResult();
-            t9.b bVar2 = t9.b.f43340a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f45195b);
-            z10 = true;
-            if (bVar.f45196c.delete()) {
-                bVar2.b("Deleted report file: " + file.getPath());
+        d0 d0Var = this.f47350a;
+        long j10 = this.f47351b;
+        long n10 = d0Var.n(rVarArr, zArr, c1VarArr2, zArr2, j3 - j10);
+        for (int i11 = 0; i11 < c1VarArr.length; i11++) {
+            c1 c1Var2 = c1VarArr2[i11];
+            if (c1Var2 == null) {
+                c1VarArr[i11] = null;
             } else {
-                bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
+                c1 c1Var3 = c1VarArr[i11];
+                if (c1Var3 == null || ((n1) c1Var3).f47343a != c1Var2) {
+                    c1VarArr[i11] = new n1(c1Var2, j10);
+                }
             }
-        } else {
-            Log.w("FirebaseCrashlytics", "Crashlytics report could not be enqueued to DataTransport", task.getException());
-            z10 = false;
         }
-        return Boolean.valueOf(z10);
+        return n10 + j10;
     }
 
-    public o1(Object obj, int i10) {
-        this.f43743a = i10;
+    @Override
+    public final p1 o() {
+        return this.f47350a.o();
+    }
+
+    @Override
+    public final long p() {
+        long p5 = this.f47350a.p();
+        if (p5 == Long.MIN_VALUE) {
+            return Long.MIN_VALUE;
+        }
+        return p5 + this.f47351b;
+    }
+
+    @Override
+    public final long q(long j3, i2.q1 q1Var) {
+        long j10 = this.f47351b;
+        return this.f47350a.q(j3 - j10, q1Var) + j10;
+    }
+
+    @Override
+    public final void r(long j3) {
+        this.f47350a.r(j3 - this.f47351b);
     }
 }

@@ -1,87 +1,26 @@
 package org.telegram.ui;
+public final class nd0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f38936a;
+    public final ug0 f38937b;
 
-import android.graphics.PointF;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class nd0 implements o1.g {
-    public final int f35861a;
-    public final Object f35862b;
-
-    public nd0(Object obj, int i10) {
-        this.f35861a = i10;
-        this.f35862b = obj;
+    public nd0(ug0 ug0Var, int i10) {
+        this.f38936a = i10;
+        this.f38937b = ug0Var;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        int i10 = this.f35861a;
-        int i11 = 0;
-        Object obj = this.f35862b;
-        switch (i10) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f38936a) {
             case 0:
-                eg0 eg0Var = ((qg0) obj).f36889b0;
-                if (eg0Var != null) {
-                    int i12 = eg0.E;
-                    View view = eg0Var.f33387c;
-                    ViewGroup viewGroup = eg0Var.f33386b;
-                    PointF pointF = eg0Var.f33394y;
-                    hh.k.b(view, viewGroup, pointF);
-                    org.telegram.ui.Components.b20 b20Var = eg0Var.h;
-                    b20Var.setTranslationX(pointF.x);
-                    b20Var.setTranslationY(pointF.y);
-                    eg0Var.requestLayout();
-                    return;
-                }
-                return;
-            case 1:
-                ko0 ko0Var = (ko0) obj;
-                float f11 = f7 / 100.0f;
-                ko0Var.f35100b = f11;
-                TextView textView = ko0Var.d.U;
-                if (textView != null) {
-                    textView.setAlpha((f11 * 0.2f) + 0.8f);
-                }
-                ko0Var.invalidate();
-                return;
-            case 2:
-                gu0 gu0Var = (gu0) obj;
-                gu0Var.f34056c0 = f7;
-                gu0Var.f34058e0 = f10;
-                gu0Var.G();
-                return;
-            case 3:
-                cv0 cv0Var = (cv0) obj;
-                if (cv0Var.e > cv0Var.f32804f) {
-                    i11 = AndroidUtilities.dp(48.0f);
-                }
-                org.telegram.ui.Components.w71 w71Var = cv0Var.f32807s.f31331q3;
-                int measuredWidth = (int) (((cv0Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - i11);
-                int measuredHeight = cv0Var.getMeasuredHeight();
-                w71Var.h = measuredWidth;
-                w71Var.f29848i = measuredHeight;
-                View view2 = w71Var.v;
-                if (view2 != null) {
-                    view2.invalidate();
-                    return;
-                }
-                return;
-            case 4:
-                d41 d41Var = (d41) obj;
-                d41Var.f32919y = f7 / 1000.0f;
-                d41Var.invalidate();
+                ug0 ug0Var = this.f38937b;
+                ug0Var.f41194b[ug0Var.f41192a].d();
+                ug0Var.k1(true, true);
                 return;
             default:
-                v41 v41Var = (v41) obj;
-                org.telegram.ui.Components.w71 w71Var2 = v41Var.f38635r.Q;
-                int measuredWidth2 = (int) (((v41Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - 0);
-                int measuredHeight2 = v41Var.getMeasuredHeight();
-                w71Var2.h = measuredWidth2;
-                w71Var2.f29848i = measuredHeight2;
-                View view3 = w71Var2.v;
-                if (view3 != null) {
-                    view3.invalidate();
+                ug0 ug0Var2 = this.f38937b;
+                ug0Var2.f41208l0 = true;
+                if (ug0Var2.f41192a != 0) {
+                    ug0Var2.u1(0, true, null, true);
                     return;
                 }
                 return;

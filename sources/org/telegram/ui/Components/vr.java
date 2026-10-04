@@ -1,46 +1,41 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class vr extends View {
-    public final TextPaint f29713a;
-    public final TextPaint f29714b;
-    public final String f29715c;
-    public final String d;
-    public final Rect e;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+public final class vr extends ImageView {
+    public final int f32344a = 1;
+    public Object f32345b;
+    public final ViewGroup f32346c;
 
-    public vr(Context context, String str, String str2) {
+    public vr(xr xrVar, Context context, k2.e eVar) {
         super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f29713a = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        this.f29714b = textPaint2;
-        this.e = new Rect();
-        this.f29715c = str;
-        this.d = str2;
-        textPaint.setTextSize(AndroidUtilities.dp(24.0f));
-        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        textPaint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.H6, false));
+        this.f32346c = xrVar;
+        this.f32345b = eVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f29714b;
-        String str = this.d;
-        float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f29713a;
-        String str2 = this.f29715c;
-        float measureText2 = textPaint2.measureText(str2);
-        int length = str2.length();
-        Rect rect = this.e;
-        textPaint2.getTextBounds(str2, 0, length, rect);
-        textPaint.getTextBounds(str, 0, str.length(), rect);
-        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
-        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f32344a) {
+            case 0:
+                xr xrVar = (xr) this.f32346c;
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (xrVar.f32972n || xrVar.f32971f)) {
+                    xrVar.f32972n = false;
+                    xrVar.f32971f = false;
+                    removeCallbacks(xrVar.f32973r);
+                    removeCallbacks(xrVar.h);
+                }
+                super.onTouchEvent(motionEvent);
+                return ((GestureDetector) ((k2.e) this.f32345b).f14388b).onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public vr(sk0 sk0Var, Context context) {
+        super(context);
+        this.f32346c = sk0Var;
     }
 }

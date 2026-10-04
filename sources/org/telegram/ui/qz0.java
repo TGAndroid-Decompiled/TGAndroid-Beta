@@ -1,23 +1,25 @@
 package org.telegram.ui;
-public final class qz0 extends lu0 {
-    public final ProfileActivity f37147a;
 
-    public qz0(ProfileActivity profileActivity) {
-        this.f37147a = profileActivity;
+import org.telegram.tgnet.TLRPC;
+public final class qz0 extends mq {
+    public final boolean[] f39858d1;
+    public final TLRPC.User f39859e1;
+    public final ProfileActivity f39860f1;
+
+    public qz0(ProfileActivity profileActivity, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
+        super(j3, j10, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
+        this.f39860f1 = profileActivity;
+        this.f39858d1 = zArr;
+        this.f39859e1 = user;
     }
 
     @Override
-    public final org.telegram.ui.vu0 E(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qz0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.vu0");
-    }
-
-    @Override
-    public final void G() {
-        this.f37147a.f31556e0.getImageReceiver().setVisible(true, true);
-    }
-
-    @Override
-    public final void f(String str, String str2, boolean z10) {
-        this.f37147a.f31637q0.q(str, str2, z10);
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f39858d1[0]) {
+            ProfileActivity profileActivity = this.f39860f1;
+            if (org.telegram.ui.Components.yc.a(profileActivity)) {
+                org.telegram.ui.Components.yc.C(profileActivity, this.f39859e1.first_name).j();
+            }
+        }
     }
 }

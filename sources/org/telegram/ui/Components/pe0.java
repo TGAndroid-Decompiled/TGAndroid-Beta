@@ -14,7 +14,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public abstract class pe0 {
-    public static int f27344a = 1500;
+    public static int f29632a = 1500;
 
     public static void a(String[] strArr, Activity activity, Utilities.Callback callback) {
         int length = strArr.length;
@@ -76,11 +76,11 @@ public abstract class pe0 {
                     for (String str2 : strArr) {
                         if (activity.shouldShowRequestPermissionRationale(str2)) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
-                            alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                            alertDialog$Builder.f18663a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
+                            alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.L5, false), null);
+                            alertDialog$Builder.f20367a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
                             alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new j1(activity, 2));
                             alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                            alertDialog$Builder.f18663a.show();
+                            alertDialog$Builder.f20367a.show();
                             callback.run(Boolean.FALSE);
                             return;
                         }
@@ -113,11 +113,11 @@ public abstract class pe0 {
             for (String str2 : strArr) {
                 if (!activity.shouldShowRequestPermissionRationale(str2)) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
-                    alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                    alertDialog$Builder.f18663a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
+                    alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.L5, false), null);
+                    alertDialog$Builder.f20367a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
                     alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new j1(activity, 1));
                     alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                    alertDialog$Builder.f18663a.show();
+                    alertDialog$Builder.f20367a.show();
                     callback.run(Boolean.FALSE);
                     return;
                 }
@@ -150,8 +150,8 @@ public abstract class pe0 {
         }
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 23) {
-                int i11 = f27344a;
-                f27344a = i11 + 1;
+                int i11 = f29632a;
+                f29632a = i11 + 1;
                 NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new oe0(i11, callback, notificationCenterDelegateArr)};
                 NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
                 activity.requestPermissions(strArr, i11);
@@ -182,8 +182,8 @@ public abstract class pe0 {
         intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
         try {
             activity.startActivity(intent);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 }

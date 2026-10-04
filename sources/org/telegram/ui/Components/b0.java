@@ -8,20 +8,20 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class b0 extends LinearLayout {
-    public final RectF f22757a;
-    public final RectF f22758b;
-    public final RectF f22759c;
+    public final RectF f24735a;
+    public final RectF f24736b;
+    public final RectF f24737c;
     public final Paint d;
-    public final org.telegram.ui.ActionBar.d6 e;
-    public final d0 f22760f;
+    public final org.telegram.ui.ActionBar.d6 f24738e;
+    public final d0 f24739f;
 
     public b0(d0 d0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f22760f = d0Var;
-        this.e = d6Var;
-        this.f22757a = new RectF();
-        this.f22758b = new RectF();
-        this.f22759c = new RectF();
+        this.f24739f = d0Var;
+        this.f24738e = d6Var;
+        this.f24735a = new RectF();
+        this.f24736b = new RectF();
+        this.f24737c = new RectF();
         this.d = new Paint(1);
     }
 
@@ -29,29 +29,29 @@ public final class b0 extends LinearLayout {
     public final void dispatchDraw(Canvas canvas) {
         d0 d0Var;
         float d;
-        e6 e6Var = this.f22760f.h;
+        e6 e6Var = this.f24739f.h;
         if (e6Var == null) {
             d = 0.0f;
         } else {
-            d = e6Var.d(d0Var.f23451f, false);
+            d = e6Var.d(d0Var.f25494f, false);
         }
         double d10 = d;
         int floor = (int) Math.floor(d10);
         int ceil = (int) Math.ceil(d10);
         float f7 = d - floor;
-        RectF rectF = this.f22757a;
+        RectF rectF = this.f24735a;
         if (floor >= 0 && floor < getChildCount()) {
             View childAt = getChildAt(floor);
             rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
         }
-        RectF rectF2 = this.f22758b;
+        RectF rectF2 = this.f24736b;
         if (ceil >= 0 && ceil < getChildCount()) {
             View childAt2 = getChildAt(ceil);
             rectF2.set(childAt2.getLeft(), childAt2.getTop(), childAt2.getRight(), childAt2.getBottom());
         }
-        RectF rectF3 = this.f22759c;
+        RectF rectF3 = this.f24737c;
         AndroidUtilities.lerp(rectF, rectF2, f7, rectF3);
-        int l1 = org.telegram.ui.ActionBar.h6.l1(0.1f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, this.e));
+        int l1 = org.telegram.ui.ActionBar.i6.l1(0.1f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, this.f24738e));
         Paint paint = this.d;
         paint.setColor(l1);
         canvas.drawRoundRect(rectF3, AndroidUtilities.dp(d0Var.d), AndroidUtilities.dp(d0Var.d), paint);

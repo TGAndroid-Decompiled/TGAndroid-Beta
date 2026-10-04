@@ -6,51 +6,51 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import androidx.appcompat.widget.Toolbar;
 import java.util.ArrayList;
-public final class g3 implements l.y {
-    public l.l f14423a;
-    public l.n f14424b;
-    public final Toolbar f14425c;
+public final class g3 implements l.x {
+    public l.k f15740a;
+    public l.m f15741b;
+    public final Toolbar f15742c;
 
     public g3(Toolbar toolbar) {
-        this.f14425c = toolbar;
+        this.f15742c = toolbar;
     }
 
     @Override
-    public final boolean b(l.n nVar) {
-        Toolbar toolbar = this.f14425c;
+    public final boolean b(l.m mVar) {
+        Toolbar toolbar = this.f15742c;
         toolbar.c();
-        ViewParent parent = toolbar.f2031n.getParent();
+        ViewParent parent = toolbar.f2209n.getParent();
         if (parent != toolbar) {
             if (parent instanceof ViewGroup) {
-                ((ViewGroup) parent).removeView(toolbar.f2031n);
+                ((ViewGroup) parent).removeView(toolbar.f2209n);
             }
-            toolbar.addView(toolbar.f2031n);
+            toolbar.addView(toolbar.f2209n);
         }
-        View actionView = nVar.getActionView();
-        toolbar.f2032r = actionView;
-        this.f14424b = nVar;
+        View actionView = mVar.getActionView();
+        toolbar.f2210r = actionView;
+        this.f15741b = mVar;
         ViewParent parent2 = actionView.getParent();
         if (parent2 != toolbar) {
             if (parent2 instanceof ViewGroup) {
-                ((ViewGroup) parent2).removeView(toolbar.f2032r);
+                ((ViewGroup) parent2).removeView(toolbar.f2210r);
             }
             h3 h = Toolbar.h();
-            h.f14439a = (toolbar.f2036y & 112) | 8388611;
-            h.f14440b = 2;
-            toolbar.f2032r.setLayoutParams(h);
-            toolbar.addView(toolbar.f2032r);
+            h.f15757a = (toolbar.f2214y & 112) | 8388611;
+            h.f15758b = 2;
+            toolbar.f2210r.setLayoutParams(h);
+            toolbar.addView(toolbar.f2210r);
         }
         for (int childCount = toolbar.getChildCount() - 1; childCount >= 0; childCount--) {
             View childAt = toolbar.getChildAt(childCount);
-            if (((h3) childAt.getLayoutParams()).f14440b != 2 && childAt != toolbar.f2017a) {
+            if (((h3) childAt.getLayoutParams()).f15758b != 2 && childAt != toolbar.f2194a) {
                 toolbar.removeViewAt(childCount);
                 toolbar.U.add(childAt);
             }
         }
         toolbar.requestLayout();
-        nVar.C = true;
-        nVar.f13992n.p(false);
-        View view = toolbar.f2032r;
+        mVar.C = true;
+        mVar.f15204n.p(false);
+        View view = toolbar.f2210r;
         if (view instanceof k.b) {
             ((k.b) view).onActionViewExpanded();
         }
@@ -59,65 +59,65 @@ public final class g3 implements l.y {
     }
 
     @Override
-    public final boolean c() {
+    public final boolean d() {
         return false;
     }
 
     @Override
-    public final void d() {
-        if (this.f14424b != null) {
-            l.l lVar = this.f14423a;
-            if (lVar != null) {
-                int size = lVar.f13962f.size();
+    public final void e() {
+        if (this.f15741b != null) {
+            l.k kVar = this.f15740a;
+            if (kVar != null) {
+                int size = kVar.f15173f.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    if (this.f14423a.getItem(i10) == this.f14424b) {
+                    if (this.f15740a.getItem(i10) == this.f15741b) {
                         return;
                     }
                 }
             }
-            k(this.f14424b);
+            k(this.f15741b);
         }
     }
 
     @Override
-    public final void i(Context context, l.l lVar) {
-        l.n nVar;
-        l.l lVar2 = this.f14423a;
-        if (lVar2 != null && (nVar = this.f14424b) != null) {
-            lVar2.d(nVar);
+    public final void i(Context context, l.k kVar) {
+        l.m mVar;
+        l.k kVar2 = this.f15740a;
+        if (kVar2 != null && (mVar = this.f15741b) != null) {
+            kVar2.d(mVar);
         }
-        this.f14423a = lVar;
+        this.f15740a = kVar;
     }
 
     @Override
-    public final boolean j(l.e0 e0Var) {
+    public final boolean j(l.d0 d0Var) {
         return false;
     }
 
     @Override
-    public final boolean k(l.n nVar) {
-        Toolbar toolbar = this.f14425c;
-        View view = toolbar.f2032r;
+    public final boolean k(l.m mVar) {
+        Toolbar toolbar = this.f15742c;
+        View view = toolbar.f2210r;
         if (view instanceof k.b) {
             ((k.b) view).onActionViewCollapsed();
         }
-        toolbar.removeView(toolbar.f2032r);
-        toolbar.removeView(toolbar.f2031n);
-        toolbar.f2032r = null;
+        toolbar.removeView(toolbar.f2210r);
+        toolbar.removeView(toolbar.f2209n);
+        toolbar.f2210r = null;
         ArrayList arrayList = toolbar.U;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             toolbar.addView((View) arrayList.get(size));
         }
         arrayList.clear();
-        this.f14424b = null;
+        this.f15741b = null;
         toolbar.requestLayout();
-        nVar.C = false;
-        nVar.f13992n.p(false);
+        mVar.C = false;
+        mVar.f15204n.p(false);
         toolbar.t();
         return true;
     }
 
     @Override
-    public final void g(l.l lVar, boolean z10) {
+    public final void c(l.k kVar, boolean z10) {
     }
 }

@@ -1,77 +1,175 @@
 package ci;
 
-import android.animation.ValueAnimator;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.fw;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.fi1;
-public final class ya implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5890a;
-    public final float f5891b;
-    public final float f5892c;
-    public final Object d;
+import android.graphics.Bitmap;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FlagSecureReason;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.fw0;
+import org.telegram.ui.ProfileActivity;
+public final class ya implements Utilities.Callback2 {
+    public final int f6349a;
+    public final boolean f6350b;
+    public final NotificationCenter.NotificationCenterDelegate f6351c;
 
-    public ya(Object obj, float f7, float f10, int i10) {
-        this.f5890a = i10;
-        this.d = obj;
-        this.f5891b = f7;
-        this.f5892c = f10;
+    public ya(boolean z10, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f6349a = i10;
+        this.f6351c = notificationCenterDelegate;
+        this.f6350b = z10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f5890a;
-        float f7 = this.f5892c;
-        float f10 = this.f5891b;
-        Object obj = this.d;
-        switch (i10) {
+    public final void run(Object obj, Object obj2) {
+        boolean z10;
+        float f7;
+        fw0 fw0Var;
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        switch (this.f6349a) {
             case 0:
-                lc lcVar = (lc) obj;
-                lcVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lcVar.f5079r.setTranslationY(f10 * floatValue);
-                lcVar.f5079r.b(f7 * floatValue);
-                return;
-            case 1:
-                le.f fVar = (le.f) obj;
-                if (fVar.f14210g) {
-                    DecelerateInterpolator decelerateInterpolator = ke.a.f13575a;
-                    float animatedFraction = valueAnimator.getAnimatedFraction();
-                    fVar.d((f7 * animatedFraction) + f10, animatedFraction);
+                kc kcVar = (kc) this.f6351c;
+                Bitmap bitmap = (Bitmap) obj2;
+                int i10 = kcVar.f5380c;
+                if (obj != null && kcVar.f5423p2 == null && !kcVar.W && kcVar.J()) {
+                    int i11 = 0;
+                    if (this.f6350b) {
+                        if (kcVar.K1 != null) {
+                            kcVar.u();
+                            kcVar.K1.f5330j = true;
+                            if (obj instanceof MediaController.PhotoEntry) {
+                                mb mbVar = kcVar.f5442v1;
+                                mbVar.d0(mbVar.k0(((MediaController.PhotoEntry) obj).path, false));
+                            } else if (obj instanceof TLObject) {
+                                mb mbVar2 = kcVar.f5442v1;
+                                TLObject tLObject = (TLObject) obj;
+                                mbVar2.f5766l2 = true;
+                                j6 j6Var = mbVar2.R0;
+                                if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
+                                    f7 = closestPhotoSizeWithSize.f20062w / closestPhotoSizeWithSize.h;
+                                } else {
+                                    f7 = 1.0f;
+                                }
+                                if (f7 > 1.0f) {
+                                    float floor = (float) Math.floor(Math.max(mbVar2.R1, j6Var.getMeasuredWidth()) * 0.5d);
+                                    fw0Var = new fw0(floor, floor / f7);
+                                } else {
+                                    float floor2 = (float) Math.floor(Math.max(mbVar2.S1, j6Var.getMeasuredHeight()) * 0.5d);
+                                    fw0Var = new fw0(f7 * floor2, floor2);
+                                }
+                                qg.x1 x1Var = new qg.x1(mbVar2.getContext(), mbVar2.e0(), fw0Var, tLObject);
+                                x1Var.setDelegate(mbVar2);
+                                j6Var.addView(x1Var);
+                                mbVar2.g0();
+                                mbVar2.d0(x1Var);
+                            }
+                            kcVar.f(false);
+                        } else {
+                            return;
+                        }
+                    } else {
+                        kcVar.i0(false, true);
+                        kcVar.Q0.a(kcVar.O1);
+                        j7 j7Var = kcVar.O0;
+                        if (kcVar.O1 == 1) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        j7Var.f5233n0 = -1.0f;
+                        j7Var.f5234o0 = z10;
+                        j7Var.invalidate();
+                        kcVar.f(false);
+                        boolean z11 = obj instanceof MediaController.PhotoEntry;
+                        if (z11) {
+                            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                            if (photoEntry.isVideo && !photoEntry.isLivePhoto()) {
+                                i11 = 1;
+                            }
+                            kcVar.O1 = i11;
+                            k8 l4 = k8.l(photoEntry);
+                            l4.M0 = bitmap;
+                            l4.J0 = kcVar.f5441v0;
+                            l4.K0 = kcVar.f5445w0;
+                            l4.A();
+                            kcVar.L1 = true;
+                            if (kcVar.A0.j()) {
+                                kcVar.G1 = null;
+                                l4.P = 1.0f;
+                                if (kcVar.A0.l(l4)) {
+                                    kcVar.K1 = k8.a(kcVar.A0.getLayout(), kcVar.A0.getContent());
+                                }
+                                kcVar.m0(true);
+                            } else {
+                                l4.B();
+                                kcVar.K1 = l4;
+                                if (z11) {
+                                    fa.a(i10, l4);
+                                }
+                                kcVar.K(1, true);
+                            }
+                        } else if (obj instanceof k8) {
+                            k8 k8Var = (k8) obj;
+                            if (k8Var.L == null && !k8Var.v()) {
+                                kcVar.f5389e1.c(R.raw.error, "Failed to load draft");
+                                MessagesController.getInstance(i10).getStoriesController().f1309w.b(k8Var);
+                                return;
+                            }
+                            k8Var.J0 = kcVar.f5441v0;
+                            k8Var.K0 = kcVar.f5445w0;
+                            kcVar.O1 = k8Var.K ? 1 : 0;
+                            k8Var.M0 = bitmap;
+                            kcVar.L1 = false;
+                            kcVar.A0.n(k8Var);
+                            kcVar.K1 = k8Var;
+                            if (z11) {
+                                fa.a(i10, k8Var);
+                            }
+                            kcVar.K(1, true);
+                        } else {
+                            return;
+                        }
+                    }
+                    jb jbVar = kcVar.M0;
+                    if (jbVar != null) {
+                        kcVar.f5411l2 = jbVar.f6214e.e0();
+                        kcVar.f5413m2 = kcVar.M0.getSelectedAlbum();
+                        return;
+                    }
                     return;
                 }
                 return;
-            case 2:
-                fw fwVar = (fw) obj;
-                fwVar.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fwVar.L = floatValue2;
-                fwVar.K = AndroidUtilities.lerp(f10, f7, floatValue2);
-                fwVar.f22697b.invalidate();
-                return;
-            case 3:
-                fi1 fi1Var = (fi1) obj;
-                fi1Var.f29222y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float dp = f10 + AndroidUtilities.dp(28.0f);
-                float dp2 = f7 + AndroidUtilities.dp(52.0f);
-                float f11 = fi1Var.f29222y;
-                fi1Var.G = dp - (dp * f11);
-                fi1Var.H = dp2 - (f11 * dp2);
-                fi1Var.invalidate();
+            case 1:
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                fi.k0.m((fi.k0) this.f6351c, this.f6350b, (TLRPC.TL_error) obj2);
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.C1.f24542b.f14324a;
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f10;
-                float f12 = photoViewer.f31193a6;
-                cropAreaView.f22244n0 = floatValue3;
-                cropAreaView.f22245o0 = ((photoViewer.f31231e6 - f12) * photoViewer.f31290l6) + f12;
-                cropAreaView.f22246p0 = 0.0f;
-                cropAreaView.f22247q0 = 0.0f;
-                cropAreaView.invalidate();
-                photoViewer.C1.f24543c.b(AndroidUtilities.lerp(f7, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                ProfileActivity profileActivity = (ProfileActivity) this.f6351c;
+                Integer num = (Integer) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (!profileActivity.M3()) {
+                    if (org.telegram.ui.Components.yc.a(profileActivity)) {
+                        int intValue = num.intValue();
+                        boolean z12 = this.f6350b;
+                        if (intValue == 1) {
+                            org.telegram.ui.Components.yc.l(null, profileActivity, z12).j();
+                        } else if (num.intValue() == 2) {
+                            org.telegram.ui.Components.yc.l(DialogObject.getShortName(profileActivity.f34233e1), profileActivity, z12).j();
+                        } else if (tL_error != null) {
+                            org.telegram.ui.Components.yc.b0(tL_error);
+                        }
+                    }
+                    FlagSecureReason flagSecureReason = profileActivity.X1;
+                    if (flagSecureReason != null) {
+                        flagSecureReason.invalidate();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

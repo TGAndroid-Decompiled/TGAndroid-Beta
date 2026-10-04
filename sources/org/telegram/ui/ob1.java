@@ -1,68 +1,39 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.os.Bundle;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
+import android.location.Address;
+import android.location.Geocoder;
+import java.util.List;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class ob1 extends FrameLayout {
-    public final org.telegram.ui.Components.uo0 f36125a;
-    public final int f36126b;
-    public final TextPaint f36127c;
-    public final ThemeActivity d;
+import org.telegram.messenger.ApplicationLoader;
+public final class ob1 implements Runnable {
+    public final int f39154a;
+    public final ThemeActivity f39155b;
 
-    public ob1(ThemeActivity themeActivity, Context context) {
-        super(context);
-        this.d = themeActivity;
-        this.f36126b = 17;
-        setWillNotDraw(false);
-        TextPaint textPaint = new TextPaint(1);
-        this.f36127c = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.uo0 uo0Var = new org.telegram.ui.Components.uo0(context);
-        this.f36125a = uo0Var;
-        uo0Var.setReportChanges(true);
-        uo0Var.setSeparatorsCount(18);
-        uo0Var.setDelegate(new aw0(this, 3));
-        uo0Var.setImportantForAccessibility(2);
-        addView(uo0Var, w7.y5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
+    public ob1(ThemeActivity themeActivity, int i10) {
+        this.f39154a = i10;
+        this.f39155b = themeActivity;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f36125a.invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.I6, false);
-        TextPaint textPaint = this.f36127c;
-        textPaint.setColor(w02);
-        canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f36125a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-        this.f36125a.setProgress(SharedConfig.bubbleRadius / this.f36126b);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f36125a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
-            return false;
+    public final void run() {
+        switch (this.f39154a) {
+            case 0:
+                ThemeActivity themeActivity = this.f39155b;
+                themeActivity.f34521b.f1(new kb1(themeActivity, 0), 700, true);
+                return;
+            default:
+                ThemeActivity themeActivity2 = this.f39155b;
+                String str = null;
+                try {
+                    List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, Locale.getDefault()).getFromLocation(org.telegram.ui.ActionBar.i6.f21180x, org.telegram.ui.ActionBar.i6.f21198y, 1);
+                    if (fromLocation.size() > 0) {
+                        str = fromLocation.get(0).getLocality();
+                    }
+                } catch (Exception unused) {
+                }
+                AndroidUtilities.runOnUIThread(new g91(3, themeActivity2, str));
+                return;
         }
-        return true;
     }
 }

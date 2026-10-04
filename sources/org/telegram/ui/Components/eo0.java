@@ -1,22 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class eo0 extends h40 {
-    public final org.telegram.ui.zx f24034c0;
+public final class eo0 extends us {
+    public final org.telegram.ui.dy f26095i0;
 
-    public eo0(org.telegram.ui.zx zxVar, yl0 yl0Var, Context context, int i10) {
-        super(yl0Var, context, i10);
-        this.f24034c0 = zxVar;
+    public eo0(org.telegram.ui.dy dyVar, zl0 zl0Var, Context context, int i10, int i11) {
+        super(zl0Var, context, i10, i11, false, null);
+        this.f26095i0 = dyVar;
     }
 
     @Override
     public final void N(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
         super.N(z10);
-        ao0 ao0Var = this.f24034c0.f26834s0;
-        ao0Var.e(false, z10);
-        ao0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        ao0Var.e.setVisibility(8);
+        do0 do0Var = this.f26095i0.m0;
+        if (!this.Z && !this.f31430a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        do0Var.e(z11, z10);
+        do0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        do0Var.f31194e.setVisibility(8);
     }
 }

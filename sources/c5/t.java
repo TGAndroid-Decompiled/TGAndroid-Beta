@@ -3,18 +3,18 @@ package c5;
 import android.text.TextUtils;
 import org.json.JSONObject;
 public final class t {
-    public final String f3917a;
-    public final String f3918b;
-    public final String f3919c;
+    public final String f4237a;
+    public final String f4238b;
+    public final String f4239c;
     public final int d;
 
     public t(String str) {
         int i10;
-        this.f3917a = str;
+        this.f4237a = str;
         JSONObject jSONObject = new JSONObject(str);
-        this.f3918b = jSONObject.optString("productId");
+        this.f4238b = jSONObject.optString("productId");
         String optString = jSONObject.optString("type");
-        this.f3919c = optString;
+        this.f4239c = optString;
         if (jSONObject.has("statusCode")) {
             i10 = jSONObject.optInt("statusCode");
         } else {
@@ -35,19 +35,19 @@ public final class t {
         if (!(obj instanceof t)) {
             return false;
         }
-        return TextUtils.equals(this.f3917a, ((t) obj).f3917a);
+        return TextUtils.equals(this.f4237a, ((t) obj).f4237a);
     }
 
     public final int hashCode() {
-        return this.f3917a.hashCode();
+        return this.f4237a.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("UnfetchedProduct{productId='");
-        sb2.append(this.f3918b);
+        sb2.append(this.f4238b);
         sb2.append("', productType='");
-        sb2.append(this.f3919c);
+        sb2.append(this.f4239c);
         sb2.append("', statusCode=");
-        return a4.a.o(this.d, "}", sb2);
+        return a4.a.n(this.d, "}", sb2);
     }
 }

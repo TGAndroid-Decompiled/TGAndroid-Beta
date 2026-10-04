@@ -1,58 +1,38 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.w9;
-public final class a7 extends w9 {
-    public vh.f G;
-    public Path H;
-    public RectF I;
-    public Drawable J;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.ld0;
+public final class a7 implements TextWatcher {
+    public boolean f51097a;
+    public int f51098b = 2;
+    public final EditTextBoldCursor f51099c;
+    public final ld0 d;
+    public final long f51100e;
+    public final boolean f51101f;
+    public final ci.d h;
+    public final TextView f51102n;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        RectF rectF = this.I;
-        Path path = this.H;
-        Drawable drawable = this.J;
-        super.dispatchDraw(canvas);
-        if (this.G == null) {
-            this.G = vh.f.e(this);
-        }
-        if (this.G != null) {
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            path.rewind();
-            path.addRoundRect(rectF, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            canvas2 = canvas;
-            this.G.c(canvas2, this, getWidth(), getHeight(), 1.0f, false);
-            canvas2.restore();
-        } else {
-            canvas2 = canvas;
-        }
-        drawable.setBounds((getWidth() - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
-        drawable.draw(canvas2);
+    public a7(EditTextBoldCursor editTextBoldCursor, ld0 ld0Var, long j3, boolean z10, ci.d dVar, TextView textView) {
+        this.f51099c = editTextBoldCursor;
+        this.d = ld0Var;
+        this.f51100e = j3;
+        this.f51101f = z10;
+        this.h = dVar;
+        this.f51102n = textView;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        vh.f fVar = this.G;
-        if (fVar != null) {
-            fVar.a(this);
-        }
-        super.onAttachedToWindow();
+    public final void afterTextChanged(android.text.Editable r11) {
+        throw new UnsupportedOperationException("Method not decompiled: yh.a7.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        vh.f fVar = this.G;
-        if (fVar != null) {
-            fVar.b(this);
-        }
-        super.onDetachedFromWindow();
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

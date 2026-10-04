@@ -5,16 +5,16 @@ import android.os.Trace;
 import android.view.ViewGroup;
 import java.util.List;
 public abstract class h0 {
-    public final i0 f43011a = new Observable();
-    public boolean f43012b = false;
+    public final i0 f46579a = new Observable();
+    public boolean f46580b = false;
 
     public void B(j0 j0Var) {
-        this.f43011a.registerObserver(j0Var);
+        this.f46579a.registerObserver(j0Var);
     }
 
     public final void C(boolean z10) {
-        if (!this.f43011a.a()) {
-            this.f43012b = z10;
+        if (!this.f46579a.a()) {
+            this.f46580b = z10;
             return;
         }
         throw new IllegalStateException("Cannot change whether this adapter has stable IDs while the adapter has registered observers.");
@@ -22,17 +22,17 @@ public abstract class h0 {
 
     public final c1 g(ViewGroup viewGroup, int i10) {
         try {
-            int i11 = n0.g.f15080a;
+            int i11 = n0.g.f16487a;
             Trace.beginSection("RV CreateView");
             c1 x10 = x(viewGroup, i10);
-            if (x10.f42962a.getParent() == null) {
-                x10.f42965f = i10;
+            if (x10.f46523a.getParent() == null) {
+                x10.f46527f = i10;
                 Trace.endSection();
                 return x10;
             }
             throw new IllegalStateException("ViewHolder views must not be attached when created. Ensure that you are not passing 'true' to the attachToRoot parameter of LayoutInflater.inflate(..., boolean attachToRoot)");
         } catch (Throwable th2) {
-            int i12 = n0.g.f15080a;
+            int i12 = n0.g.f16487a;
             Trace.endSection();
             throw th2;
         }
@@ -53,43 +53,43 @@ public abstract class h0 {
     }
 
     public void l() {
-        this.f43011a.b();
+        this.f46579a.b();
     }
 
     public void m(int i10) {
-        this.f43011a.d(i10, 1, null);
+        this.f46579a.d(i10, 1, null);
     }
 
     public final void n(int i10, Object obj) {
-        this.f43011a.d(i10, 1, obj);
+        this.f46579a.d(i10, 1, obj);
     }
 
     public void o(int i10) {
-        this.f43011a.e(i10, 1);
+        this.f46579a.e(i10, 1);
     }
 
     public void p(int i10, int i11) {
-        this.f43011a.c(i10, i11);
+        this.f46579a.c(i10, i11);
     }
 
     public void q(int i10, int i11) {
-        this.f43011a.d(i10, i11, null);
+        this.f46579a.d(i10, i11, null);
     }
 
     public void r(int i10, int i11, Object obj) {
-        this.f43011a.d(i10, i11, obj);
+        this.f46579a.d(i10, i11, obj);
     }
 
     public void s(int i10, int i11) {
-        this.f43011a.e(i10, i11);
+        this.f46579a.e(i10, i11);
     }
 
     public void t(int i10, int i11) {
-        this.f43011a.f(i10, i11);
+        this.f46579a.f(i10, i11);
     }
 
     public void u(int i10) {
-        this.f43011a.f(i10, 1);
+        this.f46579a.f(i10, 1);
     }
 
     public abstract void v(c1 c1Var, int i10);

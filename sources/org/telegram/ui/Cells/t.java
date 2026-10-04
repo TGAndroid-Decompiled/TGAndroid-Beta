@@ -6,17 +6,17 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.yl0;
-import org.telegram.ui.fb0;
-public final class t extends yl0 implements NotificationCenter.NotificationCenterDelegate {
-    public ArrayList X2;
-    public s4.c0 Y2;
-    public int Z2;
+import org.telegram.ui.Components.zl0;
+import org.telegram.ui.jb0;
+public final class t extends zl0 implements NotificationCenter.NotificationCenterDelegate {
+    public ArrayList f22926e3;
+    public s4.c0 f22927f3;
+    public int f22928g3;
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.premiumStatusChangedGlobal) {
-            w1();
+            y1();
         }
     }
 
@@ -43,14 +43,14 @@ public final class t extends yl0 implements NotificationCenter.NotificationCente
         a0();
     }
 
-    public final void w1() {
-        ArrayList arrayList = this.X2;
+    public final void y1() {
+        ArrayList arrayList = this.f22926e3;
         arrayList.clear();
-        arrayList.addAll(Arrays.asList(fb0.values()));
-        if (MessagesController.getInstance(this.Z2).premiumFeaturesBlocked()) {
+        arrayList.addAll(Arrays.asList(jb0.values()));
+        if (MessagesController.getInstance(this.f22928g3).premiumFeaturesBlocked()) {
             int i10 = 0;
             while (i10 < arrayList.size()) {
-                if (((fb0) arrayList.get(i10)).e) {
+                if (((jb0) arrayList.get(i10)).f37628e) {
                     arrayList.remove(i10);
                     i10--;
                 }
@@ -60,8 +60,8 @@ public final class t extends yl0 implements NotificationCenter.NotificationCente
         getAdapter().l();
         a0();
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (w7.f6.a((fb0) arrayList.get(i11))) {
-                this.Y2.h1(i11, AndroidUtilities.dp(16.0f));
+            if (w7.g6.a((jb0) arrayList.get(i11))) {
+                this.f22927f3.h1(i11, AndroidUtilities.dp(16.0f));
                 return;
             }
         }

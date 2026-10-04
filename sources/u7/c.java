@@ -1,43 +1,43 @@
 package u7;
 
-import w7.s7;
+import w7.t7;
 public final class c extends d {
-    public final transient int f43925c;
+    public final transient int f47557c;
     public final transient int d;
-    public final d e;
+    public final d f47558e;
 
     public c(d dVar, int i10, int i11) {
-        this.e = dVar;
-        this.f43925c = i10;
+        this.f47558e = dVar;
+        this.f47557c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        s7.a(i10, this.d);
-        return this.e.get(i10 + this.f43925c);
+        t7.a(i10, this.d);
+        return this.f47558e.get(i10 + this.f47557c);
     }
 
     @Override
     public final int n() {
-        return this.e.o() + this.f43925c + this.d;
+        return this.f47558e.o() + this.f47557c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.e.o() + this.f43925c;
+        return this.f47558e.o() + this.f47557c;
     }
 
     @Override
     public final Object[] p() {
-        return this.e.p();
+        return this.f47558e.p();
     }
 
     @Override
     public final d subList(int i10, int i11) {
-        s7.b(i10, i11, this.d);
-        int i12 = this.f43925c;
-        return this.e.subList(i10 + i12, i11 + i12);
+        t7.b(i10, i11, this.d);
+        int i12 = this.f47557c;
+        return this.f47558e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

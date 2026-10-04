@@ -1,38 +1,39 @@
 package f5;
 
 import com.google.android.gms.internal.vision.e2;
+import ii.n4;
 import java.nio.ByteBuffer;
-import w7.t6;
+import w7.u6;
 public final class o extends com.googlecode.mp4parser.c {
-    public static final ka.c f8919n;
-    public static final ka.c f8920r;
-    public static final ka.c f8921s;
-    public static final ka.c v;
-    public long e;
-    public long[] f8922f;
+    public static final n4 f9704n;
+    public static final n4 f9705r;
+    public static final n4 f9706s;
+    public static final n4 v;
+    public long f9707e;
+    public long[] f9708f;
     public int h;
 
     static {
         re.a aVar = new re.a(o.class, "SampleSizeBox.java");
-        f8919n = aVar.e(aVar.d("getSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
+        f9704n = aVar.e(aVar.d("getSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
         aVar.e(aVar.d("setSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "long", "sampleSize", "void"));
         aVar.e(aVar.d("getSampleSizeAtIndex", "com.coremedia.iso.boxes.SampleSizeBox", "int", "index", "long"));
-        f8920r = aVar.e(aVar.d("getSampleCount", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
+        f9705r = aVar.e(aVar.d("getSampleCount", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
         aVar.e(aVar.d("getSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "[J"));
-        f8921s = aVar.e(aVar.d("setSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "[J", "sampleSizes", "void"));
+        f9706s = aVar.e(aVar.d("setSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "[J", "sampleSizes", "void"));
         v = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "java.lang.String"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        this.e = e5.b.i(byteBuffer);
-        int a2 = t6.a(e5.b.i(byteBuffer));
+        this.f9707e = e5.b.i(byteBuffer);
+        int a2 = u6.a(e5.b.i(byteBuffer));
         this.h = a2;
-        if (this.e == 0) {
-            this.f8922f = new long[a2];
+        if (this.f9707e == 0) {
+            this.f9708f = new long[a2];
             for (int i10 = 0; i10 < this.h; i10++) {
-                this.f8922f[i10] = e5.b.i(byteBuffer);
+                this.f9708f[i10] = e5.b.i(byteBuffer);
             }
         }
     }
@@ -40,10 +41,10 @@ public final class o extends com.googlecode.mp4parser.c {
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt((int) this.e);
-        if (this.e == 0) {
-            byteBuffer.putInt(this.f8922f.length);
-            for (long j3 : this.f8922f) {
+        byteBuffer.putInt((int) this.f9707e);
+        if (this.f9707e == 0) {
+            byteBuffer.putInt(this.f9708f.length);
+            for (long j3 : this.f9708f) {
                 byteBuffer.putInt((int) j3);
             }
             return;
@@ -54,8 +55,8 @@ public final class o extends com.googlecode.mp4parser.c {
     @Override
     public final long getContentSize() {
         int i10;
-        if (this.e == 0) {
-            i10 = this.f8922f.length * 4;
+        if (this.f9707e == 0) {
+            i10 = this.f9708f.length * 4;
         } else {
             i10 = 0;
         }
@@ -64,19 +65,19 @@ public final class o extends com.googlecode.mp4parser.c {
 
     public final String toString() {
         int length;
-        com.google.firebase.messaging.t b10 = re.a.b(v, this, this);
+        com.google.firebase.messaging.s b10 = re.a.b(v, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("SampleSizeBox[sampleSize=");
-        e2.q(re.a.b(f8919n, this, this));
-        sb2.append(this.e);
+        e2.q(re.a.b(f9704n, this, this));
+        sb2.append(this.f9707e);
         sb2.append(";sampleCount=");
-        e2.q(re.a.b(f8920r, this, this));
-        if (this.e > 0) {
+        e2.q(re.a.b(f9705r, this, this));
+        if (this.f9707e > 0) {
             length = this.h;
         } else {
-            length = this.f8922f.length;
+            length = this.f9708f.length;
         }
-        return a4.a.s(sb2, length, "]");
+        return a4.a.r(sb2, length, "]");
     }
 }

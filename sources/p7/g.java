@@ -3,13 +3,13 @@ package p7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.ArrayList;
-import w7.f0;
+import w7.g0;
 public final class g extends o6.a {
-    public final String f40970a;
-    public final l f40971b;
-    public final int f40972c;
+    public final String f44307a;
+    public final l f44308b;
+    public final int f44309c;
     public final byte[] d;
-    public static final int e = Integer.parseInt("-1");
+    public static final int f44306e = Integer.parseInt("-1");
     public static final Parcelable.Creator<g> CREATOR = new m8.h(28);
 
     static {
@@ -23,12 +23,12 @@ public final class g extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 1, this.f40970a);
-        f0.k(parcel, 3, this.f40971b, i10);
-        f0.s(parcel, 4, 4);
-        parcel.writeInt(this.f40972c);
-        f0.c(parcel, 5, this.d);
-        f0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.l(parcel, 1, this.f44307a);
+        g0.k(parcel, 3, this.f44308b, i10);
+        g0.s(parcel, 4, 4);
+        parcel.writeInt(this.f44309c);
+        g0.c(parcel, 5, this.d);
+        g0.r(parcel, q6);
     }
 }

@@ -1,27 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class jx0 extends AnimatorListenerAdapter {
-    public final int f25528a;
-    public final kx0 f25529b;
+import android.animation.ValueAnimator;
+public final class jx0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27908a;
+    public final mx0 f27909b;
 
-    public jx0(kx0 kx0Var, int i10) {
-        this.f25528a = i10;
-        this.f25529b = kx0Var;
+    public jx0(mx0 mx0Var, int i10) {
+        this.f27908a = i10;
+        this.f27909b = mx0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25528a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27908a) {
             case 0:
-                this.f25529b.f25848s.setVisibility(8);
+                mx0 mx0Var = this.f27909b;
+                mx0Var.getClass();
+                mx0Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mx0Var.invalidate();
                 return;
             case 1:
-                this.f25529b.f25848s.setVisibility(8);
+                mx0 mx0Var2 = this.f27909b;
+                mx0Var2.getClass();
+                mx0Var2.m(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                this.f25529b.f25848s.setVisibility(8);
+                mx0 mx0Var3 = this.f27909b;
+                mx0Var3.getClass();
+                mx0Var3.f28747y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mx0Var3.invalidate();
                 return;
         }
     }

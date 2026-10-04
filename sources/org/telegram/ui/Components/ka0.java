@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ka0 extends org.telegram.ui.d01 {
+public final class ka0 extends org.telegram.ui.f01 {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);

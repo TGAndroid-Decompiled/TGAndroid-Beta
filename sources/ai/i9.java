@@ -1,21 +1,21 @@
 package ai;
 public final class i9 implements Runnable {
-    public final int f998a;
-    public final k9 f999b;
+    public final int f1083a;
+    public final k9 f1084b;
 
     public i9(k9 k9Var, int i10) {
-        this.f998a = i10;
-        this.f999b = k9Var;
+        this.f1083a = i10;
+        this.f1084b = k9Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f998a) {
+        switch (this.f1083a) {
             case 0:
-                this.f999b.e();
+                this.f1084b.e();
                 return;
             default:
-                this.f999b.b();
+                this.f1084b.b();
                 return;
         }
     }

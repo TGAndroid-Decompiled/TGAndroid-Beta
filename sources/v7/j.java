@@ -1,198 +1,223 @@
 package v7;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import j$.util.DesugarCollections;
-import java.io.File;
-import java.util.Collections;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class j {
-    public static z3.b a(z3.m mVar, byte[] bArr, int i10) {
-        e9.f0 u10 = e9.i0.u();
-        mVar.C(bArr, 0, i10, z3.l.f48375c, new r5.d(u10, 29));
-        return new z3.b(u10.i());
+public final class j implements ia.e {
+    public static final Charset f47957f = Charset.forName("UTF-8");
+    public static final ia.c f47958g = new ia.c("key", hg.k0.m(t8.b.l(h.class, new e(1))));
+    public static final ia.c h = new ia.c("value", hg.k0.m(t8.b.l(h.class, new e(2))));
+    public static final i f47959i = i.f47946b;
+    public OutputStream f47960a;
+    public final HashMap f47961b;
+    public final HashMap f47962c;
+    public final ia.d d;
+    public final la.i f47963e = new la.i(this, 1);
+
+    public j(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, ia.d dVar) {
+        this.f47960a = byteArrayOutputStream;
+        this.f47961b = hashMap;
+        this.f47962c = hashMap2;
+        this.d = dVar;
     }
 
-    public static int b(String str) {
-        if (str == null) {
-            return 0;
+    public static int i(ia.c cVar) {
+        h hVar = (h) cVar.b(h.class);
+        if (hVar != null) {
+            return ((e) hVar).f47904a;
         }
-        try {
-            return u(str);
-        } catch (IllegalArgumentException unused) {
-            return 0;
-        }
+        throw new RuntimeException("Field has no @Protobuf config");
     }
 
-    public static int c(int i10) {
-        int i11 = 1;
-        if (i10 != 1) {
-            i11 = 2;
-            if (i10 != 2) {
-                i11 = 3;
-                if (i10 != 3) {
-                    if (i10 == 4) {
-                        return 4;
+    @Override
+    public final ia.e a(ia.c cVar, Object obj) {
+        d(cVar, obj, true);
+        return this;
+    }
+
+    public final void b(ia.c cVar, double d, boolean z10) {
+        if (z10 && d == 0.0d) {
+            return;
+        }
+        k((i(cVar) << 3) | 1);
+        this.f47960a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+    }
+
+    @Override
+    public final ia.e c(ia.c cVar, boolean z10) {
+        h(cVar, z10 ? 1 : 0, true);
+        return this;
+    }
+
+    public final void d(ia.c cVar, Object obj, boolean z10) {
+        if (obj != null) {
+            if (obj instanceof CharSequence) {
+                CharSequence charSequence = (CharSequence) obj;
+                if (!z10 || charSequence.length() != 0) {
+                    k((i(cVar) << 3) | 2);
+                    byte[] bytes = charSequence.toString().getBytes(f47957f);
+                    k(bytes.length);
+                    this.f47960a.write(bytes);
+                }
+            } else if (obj instanceof Collection) {
+                for (Object obj2 : (Collection) obj) {
+                    d(cVar, obj2, false);
+                }
+            } else if (obj instanceof Map) {
+                for (Map.Entry entry : ((Map) obj).entrySet()) {
+                    j(f47959i, cVar, entry, false);
+                }
+            } else if (obj instanceof Double) {
+                b(cVar, ((Double) obj).doubleValue(), z10);
+            } else if (obj instanceof Float) {
+                float floatValue = ((Float) obj).floatValue();
+                if (!z10 || floatValue != 0.0f) {
+                    k((i(cVar) << 3) | 5);
+                    this.f47960a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                }
+            } else if (obj instanceof Number) {
+                long longValue = ((Number) obj).longValue();
+                if (!z10 || longValue != 0) {
+                    h hVar = (h) cVar.b(h.class);
+                    if (hVar != null) {
+                        k(((e) hVar).f47904a << 3);
+                        l(longValue);
+                        return;
                     }
-                    throw null;
+                    throw new RuntimeException("Field has no @Protobuf config");
+                }
+            } else if (obj instanceof Boolean) {
+                h(cVar, ((Boolean) obj).booleanValue() ? 1 : 0, z10);
+            } else if (obj instanceof byte[]) {
+                byte[] bArr = (byte[]) obj;
+                if (z10 && bArr.length == 0) {
+                    return;
+                }
+                k((i(cVar) << 3) | 2);
+                k(bArr.length);
+                this.f47960a.write(bArr);
+            } else {
+                ia.d dVar = (ia.d) this.f47961b.get(obj.getClass());
+                if (dVar != null) {
+                    j(dVar, cVar, obj, z10);
+                    return;
+                }
+                ia.f fVar = (ia.f) this.f47962c.get(obj.getClass());
+                if (fVar != null) {
+                    la.i iVar = this.f47963e;
+                    iVar.f15400b = false;
+                    iVar.d = cVar;
+                    iVar.f15401c = z10;
+                    fVar.a(obj, iVar);
+                } else if (obj instanceof f) {
+                    h(cVar, ((f) obj).zza(), true);
+                } else if (obj instanceof Enum) {
+                    h(cVar, ((Enum) obj).ordinal(), true);
+                } else {
+                    j(this.d, cVar, obj, z10);
                 }
             }
         }
-        return i11;
     }
 
-    public static int d(Float f7, float f10) {
-        return AndroidUtilities.dp(f7.floatValue() * f10);
+    @Override
+    public final ia.e e(ia.c cVar, int i10) {
+        h(cVar, i10, true);
+        return this;
     }
 
-    public static Bundle e(long j3, String str) {
-        Bundle bundle = new Bundle();
-        bundle.putLong(str, j3);
-        return bundle;
-    }
-
-    public static ia.c f(int i10, n4.y yVar) {
-        Map unmodifiableMap;
-        z7.s sVar = new z7.s(i10);
-        if (((HashMap) yVar.f15224c) == null) {
-            yVar.f15224c = new HashMap();
+    @Override
+    public final ia.e f(ia.c cVar, long j3) {
+        if (j3 != 0) {
+            h hVar = (h) cVar.b(h.class);
+            if (hVar != null) {
+                k(((e) hVar).f47904a << 3);
+                l(j3);
+                return this;
+            }
+            throw new RuntimeException("Field has no @Protobuf config");
         }
-        ((HashMap) yVar.f15224c).put(z7.w.class, sVar);
-        String str = (String) yVar.f15223b;
-        if (((HashMap) yVar.f15224c) == null) {
-            unmodifiableMap = Collections.EMPTY_MAP;
-        } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) yVar.f15224c));
+        return this;
+    }
+
+    @Override
+    public final ia.e g(ia.c cVar, double d) {
+        b(cVar, d, true);
+        return this;
+    }
+
+    public final void h(ia.c cVar, int i10, boolean z10) {
+        if (z10 && i10 == 0) {
+            return;
         }
-        return new ia.c(str, unmodifiableMap);
-    }
-
-    public static String g(String str, String str2) {
-        return str + str2;
-    }
-
-    public static StringBuilder h(String str, String str2) {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(str);
-        sb2.append(str2);
-        return sb2;
-    }
-
-    public static UnsupportedOperationException i(Parcel parcel) {
-        f8.a.b(parcel);
-        return new UnsupportedOperationException();
-    }
-
-    public static HashMap j(Class cls, e eVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, eVar);
-        return hashMap;
-    }
-
-    public static HashMap k(Class cls, w7.a aVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, aVar);
-        return hashMap;
-    }
-
-    public static HashMap l(Class cls, x7.z zVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, zVar);
-        return hashMap;
-    }
-
-    public static HashMap m(Class cls, z7.s sVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, sVar);
-        return hashMap;
-    }
-
-    public static e n(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new e(i10);
-    }
-
-    public static w7.a o(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new w7.a(i10);
-    }
-
-    public static x7.z p(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new x7.z(i10);
-    }
-
-    public static z7.s q(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new z7.s(i10);
-    }
-
-    public static void r(HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-    }
-
-    public static boolean s(String str) {
-        return new File(str).exists();
-    }
-
-    public static String t(String str, String str2) {
-        return str + str2;
-    }
-
-    public static int u(String str) {
-        if (str != null) {
-            if (str.equals("GET")) {
-                return 1;
-            }
-            if (str.equals("PUT")) {
-                return 2;
-            }
-            if (str.equals("POST")) {
-                return 3;
-            }
-            if (str.equals("DELETE")) {
-                return 4;
-            }
-            if (str.equals("HEAD")) {
-                return 5;
-            }
-            if (str.equals("OPTIONS")) {
-                return 6;
-            }
-            if (str.equals("TRACE")) {
-                return 7;
-            }
-            if (str.equals("CONNECT")) {
-                return 8;
-            }
-            if (str.equals("PATCH")) {
-                return 9;
-            }
-            if (str.equals("PROPFIND")) {
-                return 10;
-            }
-            if (str.equals("PROPPATCH")) {
-                return 11;
-            }
-            if (str.equals("MKCOL")) {
-                return 12;
-            }
-            if (str.equals("MOVE")) {
-                return 13;
-            }
-            if (str.equals("COPY")) {
-                return 14;
-            }
-            if (str.equals("LOCK")) {
-                return 15;
-            }
-            if (str.equals("UNLOCK")) {
-                return 16;
-            }
-            throw new IllegalArgumentException("No enum constant fi.iki.elonen.NanoHTTPD.Method.".concat(str));
+        h hVar = (h) cVar.b(h.class);
+        if (hVar != null) {
+            k(((e) hVar).f47904a << 3);
+            k(i10);
+            return;
         }
-        throw new NullPointerException("Name is null");
+        throw new RuntimeException("Field has no @Protobuf config");
+    }
+
+    public final void j(ia.d dVar, ia.c cVar, Object obj, boolean z10) {
+        la.b bVar = new la.b(1);
+        bVar.f15385b = 0L;
+        try {
+            OutputStream outputStream = this.f47960a;
+            this.f47960a = bVar;
+            dVar.a(obj, this);
+            this.f47960a = outputStream;
+            long j3 = bVar.f15385b;
+            bVar.close();
+            if (z10 && j3 == 0) {
+                return;
+            }
+            k((i(cVar) << 3) | 2);
+            l(j3);
+            dVar.a(obj, this);
+        } catch (Throwable th2) {
+            try {
+                bVar.close();
+            } catch (Throwable th3) {
+                try {
+                    Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th2, th3);
+                } catch (Exception unused) {
+                }
+            }
+            throw th2;
+        }
+    }
+
+    public final void k(int i10) {
+        while (true) {
+            int i11 = ((i10 & (-128)) > 0L ? 1 : ((i10 & (-128)) == 0L ? 0 : -1));
+            OutputStream outputStream = this.f47960a;
+            if (i11 != 0) {
+                outputStream.write((i10 & 127) | 128);
+                i10 >>>= 7;
+            } else {
+                outputStream.write(i10 & 127);
+                return;
+            }
+        }
+    }
+
+    public final void l(long j3) {
+        while (true) {
+            int i10 = (((-128) & j3) > 0L ? 1 : (((-128) & j3) == 0L ? 0 : -1));
+            OutputStream outputStream = this.f47960a;
+            if (i10 != 0) {
+                outputStream.write((((int) j3) & 127) | 128);
+                j3 >>>= 7;
+            } else {
+                outputStream.write(((int) j3) & 127);
+                return;
+            }
+        }
     }
 }

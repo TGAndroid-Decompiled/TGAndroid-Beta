@@ -5,6 +5,7 @@ import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.util.Pair;
 import e6.n;
+import hg.k0;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -20,39 +21,39 @@ import m4.o0;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
-import org.telegram.ui.Components.yg;
+import org.telegram.ui.Components.zg;
 import t7.u;
 import yc.i;
 public final class d extends i {
-    public static final f f15699l;
-    public static final HashMap f15700m;
-    public final ExtendedDefaultDataSourceFactory e;
-    public final o0 f15701f;
-    public final u f15702g;
+    public static final f f17162l;
+    public static final HashMap f17163m;
+    public final ExtendedDefaultDataSourceFactory f17164e;
+    public final o0 f17165f;
+    public final u f17166g;
     public final HashMap h;
-    public Pair f15703i;
-    public boolean f15704j;
-    public final AtomicInteger f15705k;
+    public Pair f17167i;
+    public boolean f17168j;
+    public final AtomicInteger f17169k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f15699l = fVar;
+        f17162l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f15700m = hashMap;
+        f17163m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
 
     public d() {
-        this.f46980c = new n(9);
+        this.f50844c = new n(9);
         this.h = new HashMap();
-        this.f15703i = null;
-        this.f15704j = false;
-        this.f15705k = new AtomicInteger();
-        this.f15701f = new o0(27);
-        this.f15702g = new Object();
-        this.e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+        this.f17167i = null;
+        this.f17168j = false;
+        this.f17169k = new AtomicInteger();
+        this.f17165f = new o0(28);
+        this.f17166g = new Object();
+        this.f17164e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
     public static String i() {
@@ -70,8 +71,8 @@ public final class d extends i {
                         }
                     }
                 }
-            } catch (SocketException e) {
-                FileLog.e(e);
+            } catch (SocketException e7) {
+                FileLog.e(e7);
             }
         }
         StringBuilder sb2 = new StringBuilder();
@@ -81,15 +82,15 @@ public final class d extends i {
     }
 
     public static String j(String str, String str2) {
-        return a4.a.q("http://", str, str2);
+        return a4.a.p("http://", str, str2);
     }
 
     @Override
     public final yc.g e(yc.d dVar) {
         String str;
-        int incrementAndGet = this.f15705k.incrementAndGet();
-        StringBuilder j3 = hg.c.j(incrementAndGet, "Request ", " ");
-        switch (dVar.f46958g) {
+        int incrementAndGet = this.f17169k.incrementAndGet();
+        StringBuilder j3 = k0.j(incrementAndGet, "Request ", " ");
+        switch (dVar.f50820g) {
             case 1:
                 str = "GET";
                 break;
@@ -144,62 +145,62 @@ public final class d extends i {
         }
         j3.append(str);
         j3.append(" ");
-        j3.append(dVar.f46957f);
+        j3.append(dVar.f50819f);
         j3.append(" ");
-        j3.append((String) dVar.f46959i.get("range"));
+        j3.append((String) dVar.f50821i.get("range"));
         Log.d("CAST_SERVER", j3.toString());
         try {
             yc.g k10 = k(dVar);
-            yg ygVar = k10.e;
-            ygVar.put("Access-Control-Allow-Origin", "*");
-            ygVar.put("Access-Control-Max-Age", "3628800");
-            ygVar.put("Access-Control-Allow-Methods", "*");
-            ygVar.put("Access-Control-Allow-Headers", "*");
+            zg zgVar = k10.f50836e;
+            zgVar.put("Access-Control-Allow-Origin", "*");
+            zgVar.put("Access-Control-Max-Age", "3628800");
+            zgVar.put("Access-Control-Allow-Methods", "*");
+            zgVar.put("Access-Control-Allow-Headers", "*");
             return k10;
         } catch (Throwable unused) {
             Log.d("CAST_SERVER", "Error " + incrementAndGet);
             yc.g c10 = i.c(yc.f.INTERNAL_ERROR, "text/plain", "Error reading file");
-            yg ygVar2 = c10.e;
-            ygVar2.put("Access-Control-Allow-Origin", "*");
-            ygVar2.put("Access-Control-Max-Age", "3628800");
-            ygVar2.put("Access-Control-Allow-Methods", "*");
-            ygVar2.put("Access-Control-Allow-Headers", "*");
+            zg zgVar2 = c10.f50836e;
+            zgVar2.put("Access-Control-Allow-Origin", "*");
+            zgVar2.put("Access-Control-Max-Age", "3628800");
+            zgVar2.put("Access-Control-Allow-Methods", "*");
+            zgVar2.put("Access-Control-Allow-Headers", "*");
             return c10;
         }
     }
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f15704j) {
+            if (this.f17168j) {
                 try {
-                    i.d(this.f46978a);
-                    n nVar = this.f46980c;
+                    i.d(this.f50842a);
+                    n nVar = this.f50844c;
                     nVar.getClass();
-                    ArrayList arrayList = new ArrayList((List) nVar.f8014c);
+                    ArrayList arrayList = new ArrayList((List) nVar.f8695c);
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
                         yc.a aVar = (yc.a) obj;
-                        i.d(aVar.f46945a);
-                        i.d(aVar.f46946b);
+                        i.d(aVar.f50805a);
+                        i.d(aVar.f50806b);
                     }
-                    Thread thread = this.f46979b;
+                    Thread thread = this.f50843b;
                     if (thread != null) {
                         thread.join();
                     }
-                } catch (Exception e) {
-                    i.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
+                } catch (Exception e7) {
+                    i.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e7);
                 }
-                this.f15704j = false;
+                this.f17168j = false;
             }
-        } else if (!this.f15704j) {
+        } else if (!this.f17168j) {
             try {
                 f();
-                this.f15704j = true;
-            } catch (IOException e7) {
-                throw new RuntimeException(e7);
+                this.f17168j = true;
+            } catch (IOException e10) {
+                throw new RuntimeException(e10);
             }
         }
     }
@@ -210,16 +211,16 @@ public final class d extends i {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f15703i = new Pair(str, file);
+            this.f17167i = new Pair(str, file);
         } else {
-            Pair pair = this.f15703i;
+            Pair pair = this.f17167i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f15703i.second).delete();
+                    ((File) this.f17167i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f15703i = null;
+            this.f17167i = null;
         }
         h();
     }

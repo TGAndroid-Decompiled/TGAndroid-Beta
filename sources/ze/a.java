@@ -5,7 +5,7 @@ import bf.p;
 import bf.s;
 import ye.b;
 public final class a implements ef.a {
-    public final char f49226a;
+    public final char f53293a;
 
     public a(int i10) {
         this('*');
@@ -20,18 +20,18 @@ public final class a implements ef.a {
 
     @Override
     public final char a() {
-        return this.f49226a;
+        return this.f53293a;
     }
 
     @Override
     public final int b(b bVar, b bVar2) {
-        if (bVar.d || bVar2.f46993c) {
+        if (bVar.d || bVar2.f50858c) {
             int i10 = bVar2.h;
             if (i10 % 3 != 0 && (bVar.h + i10) % 3 == 0) {
                 return 0;
             }
         }
-        if (bVar.f46995g >= 2 && bVar2.f46995g >= 2) {
+        if (bVar.f50861g >= 2 && bVar2.f50861g >= 2) {
             return 2;
         }
         return 1;
@@ -45,36 +45,36 @@ public final class a implements ef.a {
     @Override
     public final void d(s sVar, s sVar2, int i10) {
         g gVar;
-        String.valueOf(this.f49226a);
+        String.valueOf(this.f53293a);
         if (i10 == 1) {
             gVar = new g(0);
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f3546f; pVar != null && pVar != sVar2; pVar = (p) pVar.f3546f) {
+        for (p pVar = (p) sVar.f3834f; pVar != null && pVar != sVar2; pVar = (p) pVar.f3834f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f3546f;
-        gVar.f3546f = pVar2;
+        p pVar2 = (p) sVar.f3834f;
+        gVar.f3834f = pVar2;
         if (pVar2 != null) {
-            pVar2.e = gVar;
+            pVar2.f3833e = gVar;
         }
-        gVar.e = sVar;
-        sVar.f3546f = gVar;
-        p pVar3 = (p) sVar.f3544b;
-        gVar.f3544b = pVar3;
-        if (((p) gVar.f3546f) == null) {
+        gVar.f3833e = sVar;
+        sVar.f3834f = gVar;
+        p pVar3 = (p) sVar.f3831b;
+        gVar.f3831b = pVar3;
+        if (((p) gVar.f3834f) == null) {
             pVar3.d = gVar;
         }
     }
 
     @Override
     public final char e() {
-        return this.f49226a;
+        return this.f53293a;
     }
 
     public a(char c10) {
-        this.f49226a = c10;
+        this.f53293a = c10;
     }
 }

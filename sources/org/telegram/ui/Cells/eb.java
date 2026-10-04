@@ -12,42 +12,43 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.CheckBox;
 public abstract class eb extends FrameLayout {
-    public int f20267a;
-    public boolean f20268b;
-    public final db[] f20269c;
+    public int f22058a;
+    public boolean f22059b;
+    public final db[] f22060c;
     public int d;
-    public boolean e;
-    public boolean f20270f;
+    public boolean f22061e;
+    public boolean f22062f;
     public int h;
-    public final Paint f20271n;
-    public final Paint f20272r;
-    public final Paint f20273s;
+    public final Paint f22063n;
+    public final Paint f22064r;
+    public final Paint f22065s;
     public final Drawable v;
 
     public eb(Context context, int i10) {
         super(context);
-        this.f20268b = true;
+        this.f22059b = true;
         this.d = 3;
-        this.f20269c = new db[i10];
+        this.f22060c = new db[i10];
         int i11 = 0;
         while (true) {
-            db[] dbVarArr = this.f20269c;
+            db[] dbVarArr = this.f22060c;
             if (i11 < dbVarArr.length) {
                 db dbVar = new db(this, context);
                 dbVarArr[i11] = dbVar;
+                dbVar.setClipToOutline(true);
                 addView(dbVar);
                 dbVar.setOnClickListener(new ua(this, dbVar, i11, 1));
                 dbVar.setOnLongClickListener(new cb(this, dbVar, i11));
                 i11++;
             } else {
                 Paint paint = new Paint();
-                this.f20271n = paint;
+                this.f22063n = paint;
                 paint.setColor(855638016);
-                this.f20272r = new Paint(1);
+                this.f22064r = new Paint(1);
                 this.v = context.getResources().getDrawable(R.drawable.background_selected).mutate();
                 Paint paint2 = new Paint();
-                this.f20273s = paint2;
-                paint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Lh, false));
+                this.f22065s = paint2;
+                paint2.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Lh, false));
                 return;
             }
         }
@@ -62,22 +63,22 @@ public abstract class eb extends FrameLayout {
     public final void c(int i10, boolean z10, boolean z11) {
         float f7;
         float f10;
-        db dbVar = this.f20269c[i10];
-        ai.y5 y5Var = dbVar.f20198a;
-        CheckBox checkBox = dbVar.f20200c;
+        db dbVar = this.f22060c[i10];
+        ai.y5 y5Var = dbVar.f21984a;
+        CheckBox checkBox = dbVar.f21986c;
         if (checkBox.getVisibility() != 0) {
             checkBox.setVisibility(0);
         }
         checkBox.b(z10, z11);
-        AnimatorSet animatorSet = dbVar.f20201f;
+        AnimatorSet animatorSet = dbVar.f21988f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            dbVar.f20201f = null;
+            dbVar.f21988f = null;
         }
         float f11 = 1.0f;
         if (z11) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            dbVar.f20201f = animatorSet2;
+            dbVar.f21988f = animatorSet2;
             if (z10) {
                 f10 = 0.8875f;
             } else {
@@ -88,9 +89,9 @@ public abstract class eb extends FrameLayout {
                 f11 = 0.8875f;
             }
             animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(y5Var, "scaleY", f11));
-            dbVar.f20201f.setDuration(200L);
-            dbVar.f20201f.addListener(new ai.n(25, dbVar, z10));
-            dbVar.f20201f.start();
+            dbVar.f21988f.setDuration(200L);
+            dbVar.f21988f.addListener(new ai.n(25, dbVar, z10));
+            dbVar.f21988f.start();
         } else {
             if (z10) {
                 f7 = 0.8875f;
@@ -107,23 +108,58 @@ public abstract class eb extends FrameLayout {
     }
 
     public final void d(int i10, boolean z10, boolean z11) {
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        boolean z15;
         int i11;
         this.d = i10;
-        this.e = z10;
-        this.f20270f = z11;
+        this.f22061e = z10;
+        this.f22062f = z11;
         int i12 = 0;
         while (true) {
-            db[] dbVarArr = this.f20269c;
+            db[] dbVarArr = this.f22060c;
             if (i12 < dbVarArr.length) {
-                db dbVar = dbVarArr[i12];
+                yf.e0 e0Var = null;
+                if ((!z10 && !z11) || (i12 != 0 && i12 != i10 - 1)) {
+                    dbVarArr[i12].setOutlineProvider(null);
+                    z14 = z10;
+                    z15 = z11;
+                } else {
+                    db dbVar = dbVarArr[i12];
+                    int dp = AndroidUtilities.dp(16.0f);
+                    if (i12 == 0) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    if (i12 == i10 - 1) {
+                        z13 = true;
+                    } else {
+                        z13 = false;
+                    }
+                    ai.k2 k2Var = yf.f0.f50979a;
+                    if ((!z12 && !z13) || (!z10 && !z11)) {
+                        z14 = z10;
+                        z15 = z11;
+                    } else {
+                        z14 = z10;
+                        z15 = z11;
+                        e0Var = new yf.e0(dp, z12, z14, z13, z15);
+                    }
+                    dbVar.setOutlineProvider(e0Var);
+                }
+                db dbVar2 = dbVarArr[i12];
                 if (i12 < i10) {
                     i11 = 0;
                 } else {
                     i11 = 8;
                 }
-                dbVar.setVisibility(i11);
+                dbVar2.setVisibility(i11);
                 dbVarArr[i12].clearAnimation();
                 i12++;
+                z10 = z14;
+                z11 = z15;
             } else {
                 return;
             }
@@ -132,7 +168,7 @@ public abstract class eb extends FrameLayout {
 
     public final void e(int i10, Object obj, Object obj2, int i11) {
         this.h = i10;
-        db[] dbVarArr = this.f20269c;
+        db[] dbVarArr = this.f22060c;
         if (obj == null) {
             dbVarArr[i11].setVisibility(8);
             dbVarArr[i11].clearAnimation();
@@ -146,7 +182,7 @@ public abstract class eb extends FrameLayout {
     public final void invalidate() {
         super.invalidate();
         for (int i10 = 0; i10 < this.d; i10++) {
-            this.f20269c[i10].invalidate();
+            this.f22060c[i10].invalidate();
         }
     }
 
@@ -157,18 +193,18 @@ public abstract class eb extends FrameLayout {
             super.onLayout(z10, i10, i11, i12, i13);
             return;
         }
-        int dp = AndroidUtilities.dp(14.0f);
-        if (this.e) {
-            i14 = AndroidUtilities.dp(14.0f);
+        int dp = AndroidUtilities.dp(12.0f);
+        if (this.f22061e) {
+            i14 = AndroidUtilities.dp(12.0f);
         } else {
             i14 = 0;
         }
         for (int i15 = 0; i15 < this.d; i15++) {
-            db[] dbVarArr = this.f20269c;
+            db[] dbVarArr = this.f22060c;
             int measuredWidth = dbVarArr[i15].getMeasuredWidth();
             db dbVar = dbVarArr[i15];
             dbVar.layout(dp, i14, dp + measuredWidth, dbVar.getMeasuredHeight() + i14);
-            dp = org.telegram.messenger.f0.C(6.0f, measuredWidth, dp);
+            dp = org.telegram.messenger.f0.C(3.0f, measuredWidth, dp);
         }
     }
 
@@ -177,15 +213,15 @@ public abstract class eb extends FrameLayout {
         int dp;
         int i12;
         int i13;
-        float f7 = 6.0f;
+        float f7 = 3.0f;
         int i14 = 0;
         if (this.d == 1) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f20267a, 1073741824), ok.C(6.0f, this.f20267a, 1073741824));
-            setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22058a, 1073741824), ok.B(3.0f, this.f22058a, 1073741824));
+            setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
             return;
         }
         int size = View.MeasureSpec.getSize(i10);
-        int dp2 = size - AndroidUtilities.dp(hg.c.f(this.d, 1, 6, 28));
+        int dp2 = size - AndroidUtilities.dp(hg.k0.f(this.d, 1, 3, 24));
         int i15 = dp2 / this.d;
         int i16 = this.h;
         if (i16 != 0 && i16 != 2 && i16 != 3) {
@@ -193,20 +229,20 @@ public abstract class eb extends FrameLayout {
         } else {
             dp = AndroidUtilities.dp(180.0f);
         }
-        if (this.e) {
-            i12 = AndroidUtilities.dp(14.0f);
+        if (this.f22061e) {
+            i12 = AndroidUtilities.dp(12.0f);
         } else {
             i12 = 0;
         }
         int i17 = i12 + dp;
-        if (this.f20270f) {
-            f7 = 14.0f;
+        if (this.f22062f) {
+            f7 = 12.0f;
         }
         setMeasuredDimension(size, AndroidUtilities.dp(f7) + i17);
         while (true) {
             int i18 = this.d;
             if (i14 < i18) {
-                db dbVar = this.f20269c[i14];
+                db dbVar = this.f22060c[i14];
                 if (i14 == i18 - 1) {
                     i13 = dp2;
                 } else {
@@ -222,8 +258,8 @@ public abstract class eb extends FrameLayout {
     }
 
     public void setSize(int i10) {
-        if (this.f20267a != i10) {
-            this.f20267a = i10;
+        if (this.f22058a != i10) {
+            this.f22058a = i10;
             requestLayout();
         }
     }

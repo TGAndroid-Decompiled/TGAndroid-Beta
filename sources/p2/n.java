@@ -2,19 +2,19 @@ package p2;
 
 import android.net.Uri;
 public final class n {
-    public final Uri f40753a;
-    public final b2.s f40754b;
-    public final String f40755c;
+    public final Uri f44074a;
+    public final b2.s f44075b;
+    public final String f44076c;
     public final String d;
-    public final String e;
-    public final String f40756f;
+    public final String f44077e;
+    public final String f44078f;
 
     public n(Uri uri, b2.s sVar, String str, String str2, String str3, String str4) {
-        this.f40753a = uri;
-        this.f40754b = sVar;
-        this.f40755c = str;
+        this.f44074a = uri;
+        this.f44075b = sVar;
+        this.f44076c = str;
         this.d = str2;
-        this.e = str3;
-        this.f40756f = str4;
+        this.f44077e = str3;
+        this.f44078f = str4;
     }
 }

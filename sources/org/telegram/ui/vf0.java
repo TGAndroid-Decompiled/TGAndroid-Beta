@@ -1,43 +1,68 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class vf0 implements Runnable {
-    public final int f38710a;
-    public final zf0 f38711b;
+import android.content.Context;
+public final class vf0 extends org.telegram.ui.Components.voip.o2 {
+    public final int f41733e;
+    public final org.telegram.ui.Components.qw0 f41734f;
 
-    public vf0(zf0 zf0Var, int i10) {
-        this.f38710a = i10;
-        this.f38711b = zf0Var;
+    public vf0(xf0 xf0Var, Context context, int i10) {
+        super(xf0Var.f42874s0, context);
+        this.f41733e = i10;
+        switch (i10) {
+            case 1:
+                this.f41734f = xf0Var;
+                super(xf0Var.f42874s0, context);
+                return;
+            default:
+                this.f41734f = xf0Var;
+                return;
+        }
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f38710a) {
+    public final boolean a() {
+        switch (this.f41733e) {
             case 0:
-                qg0 qg0Var = this.f38711b.v;
-                qg0Var.u1(0, true, null, true);
-                qg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
-                return;
+                return ((xf0) this.f41734f).f42862i0;
             case 1:
-                qg0 qg0Var2 = this.f38711b.v;
-                qg0Var2.u1(0, true, null, true);
-                qg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
-                return;
-            case 2:
-                this.f38711b.p();
-                return;
-            case 3:
-                this.f38711b.f40461b.setLoading(false);
-                return;
+                return ((xf0) this.f41734f).f42862i0;
             default:
-                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "sms");
-                qg0 qg0Var3 = this.f38711b.v;
-                i10 = ((org.telegram.ui.ActionBar.m2) qg0Var3).currentAccount;
-                premiumPreviewFragment.setCurrentAccount(i10);
-                qg0Var3.presentFragment(premiumPreviewFragment);
-                return;
+                return ((ve0) this.f41734f).M;
         }
+    }
+
+    @Override
+    public final boolean b() {
+        vf0 vf0Var;
+        switch (this.f41733e) {
+            case 0:
+                if (getVisibility() == 0) {
+                    xf0 xf0Var = (xf0) this.f41734f;
+                    if (xf0Var.V <= 0 || xf0Var.R == null) {
+                        return true;
+                    }
+                }
+                return false;
+            case 1:
+                xf0 xf0Var2 = (xf0) this.f41734f;
+                if (isClickable() && getVisibility() == 0 && !xf0Var2.f42855d0 && (((vf0Var = xf0Var2.v) == null || vf0Var.getVisibility() == 8) && !xf0Var2.f42862i0)) {
+                    return true;
+                }
+                return false;
+            default:
+                if (getVisibility() == 0) {
+                    ve0 ve0Var = (ve0) this.f41734f;
+                    if (ve0Var.P <= 0 || ve0Var.N == null) {
+                        return true;
+                    }
+                }
+                return false;
+        }
+    }
+
+    public vf0(ve0 ve0Var, Context context) {
+        super(ve0Var.f41711a0, context);
+        this.f41733e = 2;
+        this.f41734f = ve0Var;
     }
 }

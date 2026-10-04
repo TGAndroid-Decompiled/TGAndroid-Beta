@@ -1,15 +1,10 @@
 package v7;
 public final class t3 implements ia.d {
-    public static final t3 f44382a = new Object();
-    public static final ia.c f44383b = new ia.c("confidence", hg.c.m(j.j(h.class, new e(1))));
-    public static final ia.c f44384c = new ia.c("languageCode", hg.c.m(j.j(h.class, new e(2))));
+    public static final t3 f48054a = new Object();
+    public static final ia.c f48055b = new ia.c("identifiedLanguage", hg.k0.m(t8.b.l(h.class, new e(1))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        d7 d7Var = (d7) obj;
-        ia.e eVar = (ia.e) obj2;
-        d7Var.getClass();
-        eVar.a(f44383b, null);
-        eVar.a(f44384c, d7Var.f44228a);
+        ((ia.e) obj2).a(f48055b, ((e7) obj).f47909a);
     }
 }

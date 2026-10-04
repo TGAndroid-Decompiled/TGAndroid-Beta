@@ -1,18 +1,41 @@
 package org.telegram.ui;
+public final class h30 extends g.p {
+    public final h60 f36848c;
 
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public final class h30 extends s4.s0 {
-    public final d60 f34117a;
-
-    public h30(d60 d60Var) {
-        this.f34117a = d60Var;
+    public h30(h60 h60Var) {
+        this.f36848c = h60Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) this.f34117a).containerView;
-        viewGroup.invalidate();
+    public final int i(int i10) {
+        int i11;
+        b60 b60Var;
+        int i12;
+        int i13;
+        int i14;
+        if (h60.F3) {
+            i11 = 6;
+        } else {
+            i11 = 2;
+        }
+        if (!h60.G3 && i10 >= (i12 = (b60Var = this.f36848c.P).G) && i10 < (i13 = b60Var.H)) {
+            int i15 = i13 - i12;
+            if (i10 == i13 - 1 && (h60.F3 || i15 % 2 != 0)) {
+                i14 = 2;
+            } else {
+                i14 = 1;
+            }
+            if (h60.F3) {
+                if (i15 == 1) {
+                    return 6;
+                }
+                if (i15 != 2) {
+                    return 2;
+                }
+                return 3;
+            }
+            return i14;
+        }
+        return i11;
     }
 }

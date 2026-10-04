@@ -1,35 +1,21 @@
 package org.telegram.ui.Components;
-public final class gb implements q0.a {
-    public final int f24475a;
-    public final Object f24476b;
+public final class gb implements Runnable {
+    public final int f26785a;
+    public final vb f26786b;
 
-    public gb(Object obj, int i10) {
-        this.f24475a = i10;
-        this.f24476b = obj;
+    public gb(vb vbVar, int i10) {
+        this.f26785a = i10;
+        this.f26786b = vbVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f24475a) {
+    public final void run() {
+        switch (this.f26785a) {
             case 0:
-                qc qcVar = (qc) this.f24476b;
-                Float f7 = (Float) obj;
-                ob obVar = qcVar.f27647p;
-                if (obVar != null) {
-                    ub ubVar = qcVar.e;
-                    if (!ubVar.top) {
-                        obVar.c(ubVar.getHeight() - f7.floatValue());
-                        return;
-                    }
-                    return;
-                }
+                this.f26786b.onExitTransitionStart();
                 return;
             default:
-                ui uiVar = ((wi) this.f24476b).Z1;
-                if (uiVar != null) {
-                    uiVar.U0(obj);
-                    return;
-                }
+                this.f26786b.onEnterTransitionStart();
                 return;
         }
     }

@@ -1,42 +1,29 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class m40 extends LinearLayout {
-    public boolean f35477a;
-    public final org.telegram.ui.Components.gd0 f35478b;
-    public final i40 f35479c;
-    public final j40 d;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.voip.VoIPService;
+public final class m40 implements org.telegram.ui.ActionBar.z2 {
+    public final h60 f38408a;
 
-    public m40(LaunchActivity launchActivity, org.telegram.ui.Components.gd0 gd0Var, i40 i40Var, j40 j40Var) {
-        super(launchActivity);
-        this.f35478b = gd0Var;
-        this.f35479c = i40Var;
-        this.d = j40Var;
-        this.f35477a = false;
+    public m40(h60 h60Var) {
+        this.f38408a = h60Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f35477a = true;
-        org.telegram.ui.Components.gd0 gd0Var = this.f35478b;
-        gd0Var.setItemCount(5);
-        i40 i40Var = this.f35479c;
-        i40Var.setItemCount(5);
-        j40 j40Var = this.d;
-        j40Var.setItemCount(5);
-        gd0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        i40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        j40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        this.f35477a = false;
-        super.onMeasure(i10, i11);
+    public final boolean g() {
+        return true;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f35477a) {
-            return;
+    public final void onOpenAnimationEnd() {
+        CountDownLatch groupCallBottomSheetLatch;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
+            groupCallBottomSheetLatch.countDown();
         }
-        super.requestLayout();
+        h60 h60Var = this.f38408a;
+        if (h60Var.F1 == 6) {
+            h60.B0(h60Var);
+        }
     }
 }

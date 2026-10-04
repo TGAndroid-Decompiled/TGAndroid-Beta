@@ -6,7 +6,7 @@ public interface ei0 {
 
     void b(float f7);
 
-    void c(ov ovVar, Canvas canvas);
+    void c(pv pvVar, Canvas canvas);
 
     void d(int i10, int i11);
 }

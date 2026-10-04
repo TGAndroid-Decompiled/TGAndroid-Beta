@@ -1,15 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class xf extends Property {
-    @Override
-    public final Object get(Object obj) {
-        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getControlsScale());
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class xf extends AnimatorListenerAdapter {
+    public final ChatActivityEnterView f32777a;
+
+    public xf(ChatActivityEnterView chatActivityEnterView) {
+        this.f32777a = chatActivityEnterView;
     }
 
     @Override
-    public final void set(Object obj, Object obj2) {
-        ((ChatActivityEnterView.RecordCircle) obj).setControlsScale(((Float) obj2).floatValue());
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.f32777a;
+        chatActivityEnterView.f23894h1.setAllowDraw(true);
+        chatActivityEnterView.N1.setTransformToSeekbar(1.0f);
+        chatActivityEnterView.x0();
     }
 }

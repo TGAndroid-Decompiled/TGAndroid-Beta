@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.MessageObject;
 public final class fm extends org.telegram.ui.Components.r6 {
-    public final im f33699b;
+    public final im f36344b;
 
     public fm(im imVar) {
         super("p2", 0);
-        this.f33699b = imVar;
+        this.f36344b = imVar;
     }
 
     @Override
-    public final void b(Object obj, float f7) {
+    public final void c(Object obj, float f7) {
         ((MessageObject.SendAnimationData) obj).currentX = f7;
-        View view = this.f33699b.f34545b.Q.fragmentView;
+        View view = this.f36344b.f37459b.Q.fragmentView;
         if (view != null) {
             view.invalidate();
         }

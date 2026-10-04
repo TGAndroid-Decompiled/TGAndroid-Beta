@@ -1,54 +1,46 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class a1 extends b1 {
-    public final z0 f18669e0;
-    public String f18670f0;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.fd;
+import org.telegram.ui.Components.x00;
+public final class a1 extends x00 {
+    public final b1 f20372e;
 
-    public a1(Context context, d6 d6Var) {
-        super(context, d6Var);
-        this.f18670f0 = null;
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        setImportantForAccessibility(1);
-        z0 z0Var = new z0(this);
-        this.f18669e0 = z0Var;
-        setAccessibilityDelegate(z0Var);
-    }
-
-    public final void d(float f7, boolean z10) {
-        c((f7 - 0.2f) / 2.8f, z10);
-    }
-
-    public float getSpeed() {
-        return (getValue() * 2.8f) + 0.2f;
+    public a1(b1 b1Var) {
+        super(false);
+        this.f20372e = b1Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f18669e0.e(this, accessibilityNodeInfo);
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(fd.a(this.f20372e.getSpeed()));
+        sb2.append("x  ");
+        return org.telegram.messenger.f0.g(R.string.AccDescrSpeedSlider, sb2);
     }
 
     @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f18669e0.g(this, i10, bundle)) {
-            return false;
-        }
-        return true;
-    }
-
-    public void setLabel(String str) {
-        this.f18670f0 = str;
+    public final float h() {
+        return 0.2f;
     }
 
     @Override
-    public void setStops(float[] fArr) {
-        for (int i10 = 0; i10 < fArr.length; i10++) {
-            fArr[i10] = (fArr[i10] - 0.2f) / 2.8f;
-        }
-        super.setStops(fArr);
+    public final float i() {
+        return 3.0f;
+    }
+
+    @Override
+    public final float j() {
+        return 0.2f;
+    }
+
+    @Override
+    public final float k() {
+        return this.f20372e.getSpeed();
+    }
+
+    @Override
+    public final void l(float f7) {
+        this.f20372e.d(f7, true);
     }
 }

@@ -2,18 +2,18 @@ package z2;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
-import u2.o1;
+import u2.l0;
 public final class a implements Executor {
-    public final Executor f48350a;
-    public final o1 f48351b;
+    public final Executor f52348a;
+    public final l0 f52349b;
 
-    public a(ExecutorService executorService, o1 o1Var) {
-        this.f48350a = executorService;
-        this.f48351b = o1Var;
+    public a(ExecutorService executorService, l0 l0Var) {
+        this.f52348a = executorService;
+        this.f52349b = l0Var;
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        this.f48350a.execute(runnable);
+        this.f52348a.execute(runnable);
     }
 }

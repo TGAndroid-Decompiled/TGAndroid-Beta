@@ -317,7 +317,7 @@ public class UnconfirmedAuthController {
             if (z11) {
                 MessagesController.getInstance(UnconfirmedAuthController.this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             }
-            hg.g.a(UnconfirmedAuthController.this.currentAccount).b();
+            hg.f.a(UnconfirmedAuthController.this.currentAccount).b();
             if (callback != null) {
                 if ((z11 && tL_error == null) || UnconfirmedAuthController.this.debug) {
                     z10 = true;

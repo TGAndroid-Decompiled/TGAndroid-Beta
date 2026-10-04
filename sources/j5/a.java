@@ -7,29 +7,29 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
-import l5.k;
-import v7.v8;
-public final class a implements k {
-    public static final String f12866c;
+import l5.l;
+import v7.u8;
+public final class a implements l {
+    public static final String f13983c;
     public static final Set d;
-    public static final a e;
-    public static final a f12867f;
-    public final String f12868a;
-    public final String f12869b;
+    public static final a f13984e;
+    public static final a f13985f;
+    public final String f13986a;
+    public final String f13987b;
 
     static {
-        String a2 = v8.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-        f12866c = a2;
-        String a10 = v8.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
-        String a11 = v8.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
+        String a2 = u8.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
+        f13983c = a2;
+        String a10 = u8.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
+        String a11 = u8.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
         d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new c("proto"), new c("json"))));
-        e = new a(a2, null);
-        f12867f = new a(a10, a11);
+        f13984e = new a(a2, null);
+        f13985f = new a(a10, a11);
     }
 
     public a(String str, String str2) {
-        this.f12868a = str;
-        this.f12869b = str2;
+        this.f13986a = str;
+        this.f13987b = str2;
     }
 
     public static a a(byte[] bArr) {

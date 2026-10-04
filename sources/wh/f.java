@@ -5,41 +5,41 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.re;
+import org.telegram.ui.te;
 import yh.x3;
 public final class f implements RequestDelegate {
-    public final int f45366a = 0;
-    public final boolean f45367b;
-    public final boolean f45368c;
+    public final int f49105a = 0;
+    public final boolean f49106b;
+    public final boolean f49107c;
     public final Object d;
-    public final Object e;
-    public final Object f45369f;
+    public final Object f49108e;
+    public final Object f49109f;
 
     public f(n nVar, boolean z10, e eVar, String str, boolean z11) {
         this.d = nVar;
-        this.f45367b = z10;
-        this.e = eVar;
-        this.f45369f = str;
-        this.f45368c = z11;
+        this.f49106b = z10;
+        this.f49108e = eVar;
+        this.f49109f = str;
+        this.f49107c = z11;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f45366a) {
+        switch (this.f49105a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new re((n) this.d, this.f45367b, (Runnable) this.e, (String) this.f45369f, tL_error, tLObject, this.f45368c));
+                AndroidUtilities.runOnUIThread(new te((n) this.d, this.f49106b, (Runnable) this.f49108e, (String) this.f49109f, tL_error, tLObject, this.f49107c));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new re((x3) this.d, tLObject, this.f45367b, (TLRPC.Document) this.e, this.f45368c, tL_error, (TL_stars.saveStarGift) this.f45369f));
+                AndroidUtilities.runOnUIThread(new te((x3) this.d, tLObject, this.f49106b, (TLRPC.Document) this.f49108e, this.f49107c, tL_error, (TL_stars.saveStarGift) this.f49109f));
                 return;
         }
     }
 
     public f(x3 x3Var, boolean z10, TLRPC.Document document, boolean z11, TL_stars.saveStarGift savestargift) {
         this.d = x3Var;
-        this.f45367b = z10;
-        this.e = document;
-        this.f45368c = z11;
-        this.f45369f = savestargift;
+        this.f49106b = z10;
+        this.f49108e = document;
+        this.f49107c = z11;
+        this.f49109f = savestargift;
     }
 }

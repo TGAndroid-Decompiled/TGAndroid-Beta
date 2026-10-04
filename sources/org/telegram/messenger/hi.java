@@ -11,50 +11,50 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.yn0;
+import org.telegram.ui.Components.yw;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cx0;
-import org.telegram.ui.h31;
-import org.telegram.ui.p60;
-import org.telegram.ui.qy;
-import org.telegram.ui.wl0;
+import org.telegram.ui.am0;
+import org.telegram.ui.fx0;
+import org.telegram.ui.j31;
+import org.telegram.ui.t60;
+import org.telegram.ui.uy;
 public final class hi implements RequestDelegate {
-    public final int f16571a;
-    public final int f16572b;
-    public final Object f16573c;
+    public final int f18071a;
+    public final int f18072b;
+    public final Object f18073c;
     public final Object d;
-    public final Object e;
-    public final Object f16574f;
-    public final Object f16575g;
+    public final Object f18074e;
+    public final Object f18075f;
+    public final Object f18076g;
 
     public hi(int i10, int i11, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject) {
-        this.f16571a = i11;
+        this.f18071a = i11;
         this.d = obj;
-        this.e = tLObject;
-        this.f16574f = obj2;
-        this.f16575g = obj3;
-        this.f16572b = i10;
-        this.f16573c = obj4;
+        this.f18074e = tLObject;
+        this.f18075f = obj2;
+        this.f18076g = obj3;
+        this.f18072b = i10;
+        this.f18073c = obj4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f16571a;
-        int i11 = this.f16572b;
-        Object obj = this.f16573c;
-        Object obj2 = this.f16575g;
-        Object obj3 = this.f16574f;
-        Object obj4 = this.e;
+        int i10 = this.f18071a;
+        int i11 = this.f18072b;
+        Object obj = this.f18073c;
+        Object obj2 = this.f18076g;
+        Object obj3 = this.f18075f;
+        Object obj4 = this.f18074e;
         Object obj5 = this.d;
         switch (i10) {
             case 0:
-                ((SendMessagesHelper) obj5).lambda$performSendDelayedMessage$54((TLRPC.InputFile) obj4, (TLRPC.InputMedia) obj3, (SendMessagesHelper.DelayedMessage) obj2, this.f16572b, (String) obj, tLObject, tL_error);
+                ((SendMessagesHelper) obj5).lambda$performSendDelayedMessage$54((TLRPC.InputFile) obj4, (TLRPC.InputMedia) obj3, (SendMessagesHelper.DelayedMessage) obj2, this.f18072b, (String) obj, tLObject, tL_error);
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.i4) obj5, this.f16572b, (nf.e) obj4, tLObject, (String) obj, (org.telegram.ui.g0) obj3, (TLRPC.TL_messages_getWebPage) obj2));
+                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.i4) obj5, this.f18072b, (nf.e) obj4, tLObject, (String) obj, (org.telegram.ui.g0) obj3, (TLRPC.TL_messages_getWebPage) obj2));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new gg.e1(tLObject, (org.telegram.ui.ActionBar.a2) obj5, (Context) obj4, this.f16572b, (TL_phone.exportGroupCallInvite) obj3, (org.telegram.ui.ActionBar.d6) obj2, (p60) obj));
+                AndroidUtilities.runOnUIThread(new gg.e1(tLObject, (org.telegram.ui.ActionBar.b2) obj5, (Context) obj4, this.f18072b, (TL_phone.exportGroupCallInvite) obj3, (org.telegram.ui.ActionBar.d6) obj2, (t60) obj));
                 return;
             case 3:
                 boolean[] zArr = (boolean[]) obj5;
@@ -74,32 +74,32 @@ public final class hi implements RequestDelegate {
             case 4:
                 String str = (String) obj;
                 Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.e1((LaunchActivity) obj5, tLObject, this.f16572b, (qy) obj4, (org.telegram.ui.ActionBar.m2) obj3, (TLRPC.User) obj2, str));
+                AndroidUtilities.runOnUIThread(new gg.e1((LaunchActivity) obj5, tLObject, this.f18072b, (uy) obj4, (org.telegram.ui.ActionBar.n2) obj3, (TLRPC.User) obj2, str));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new y5(tLObject, (org.telegram.ui.ActionBar.m2) obj5, (TLRPC.TL_inputStorePaymentPremiumSubscription) obj4, (cx0) obj3, (c5.f) obj2, this.f16572b, tL_error, (TLRPC.TL_payments_canPurchaseStore) obj));
+                AndroidUtilities.runOnUIThread(new y5(tLObject, (org.telegram.ui.ActionBar.n2) obj5, (TLRPC.TL_inputStorePaymentPremiumSubscription) obj4, (fx0) obj3, (c5.f) obj2, this.f18072b, tL_error, (TLRPC.TL_payments_canPurchaseStore) obj));
                 return;
             default:
                 Context context2 = (Context) obj5;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj4;
                 byte[] bArr = (byte[]) obj3;
-                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj2;
-                yn0 yn0Var = (yn0) obj;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj2;
+                yw ywVar = (yw) obj;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        AndroidUtilities.runOnUIThread(new ai.z8(tLObject, context2, d6Var, bArr, m2Var, yn0Var, 11));
+                        AndroidUtilities.runOnUIThread(new ai.z8(tLObject, context2, d6Var, bArr, n2Var, ywVar, 11));
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        AndroidUtilities.runOnUIThread(new h31(m2Var, context2, d6Var, yn0Var, 0), 200L);
+                        AndroidUtilities.runOnUIThread(new j31(n2Var, context2, d6Var, ywVar, 0), 200L);
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        AndroidUtilities.runOnUIThread(new wl0(m2Var, i11, yn0Var, 7), 200L);
+                        AndroidUtilities.runOnUIThread(new am0(n2Var, i11, ywVar, 7), 200L);
                         return;
                     } else {
                         return;
                     }
                 } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new h31(m2Var, context2, d6Var, yn0Var, 1), 200L);
+                    AndroidUtilities.runOnUIThread(new j31(n2Var, context2, d6Var, ywVar, 1), 200L);
                     return;
                 } else {
                     return;
@@ -108,52 +108,52 @@ public final class hi implements RequestDelegate {
     }
 
     public hi(int i10, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context) {
-        this.f16571a = 3;
-        this.f16572b = i10;
+        this.f18071a = 3;
+        this.f18072b = i10;
         this.d = zArr;
-        this.e = file;
-        this.f16574f = setcallrating;
-        this.f16575g = arrayList;
-        this.f16573c = context;
+        this.f18074e = file;
+        this.f18075f = setcallrating;
+        this.f18076g = arrayList;
+        this.f18073c = context;
     }
 
-    public hi(Context context, org.telegram.ui.ActionBar.d6 d6Var, byte[] bArr, org.telegram.ui.ActionBar.m2 m2Var, yn0 yn0Var, int i10) {
-        this.f16571a = 6;
+    public hi(Context context, org.telegram.ui.ActionBar.d6 d6Var, byte[] bArr, org.telegram.ui.ActionBar.n2 n2Var, yw ywVar, int i10) {
+        this.f18071a = 6;
         this.d = context;
-        this.e = d6Var;
-        this.f16574f = bArr;
-        this.f16575g = m2Var;
-        this.f16573c = yn0Var;
-        this.f16572b = i10;
+        this.f18074e = d6Var;
+        this.f18075f = bArr;
+        this.f18076g = n2Var;
+        this.f18073c = ywVar;
+        this.f18072b = i10;
     }
 
-    public hi(org.telegram.ui.ActionBar.a2 a2Var, Context context, int i10, TL_phone.exportGroupCallInvite exportgroupcallinvite, org.telegram.ui.ActionBar.d6 d6Var, p60 p60Var) {
-        this.f16571a = 2;
-        this.d = a2Var;
-        this.e = context;
-        this.f16572b = i10;
-        this.f16574f = exportgroupcallinvite;
-        this.f16575g = d6Var;
-        this.f16573c = p60Var;
+    public hi(org.telegram.ui.ActionBar.b2 b2Var, Context context, int i10, TL_phone.exportGroupCallInvite exportgroupcallinvite, org.telegram.ui.ActionBar.d6 d6Var, t60 t60Var) {
+        this.f18071a = 2;
+        this.d = b2Var;
+        this.f18074e = context;
+        this.f18072b = i10;
+        this.f18075f = exportgroupcallinvite;
+        this.f18076g = d6Var;
+        this.f18073c = t60Var;
     }
 
     public hi(org.telegram.ui.i4 i4Var, int i10, nf.e eVar, String str, org.telegram.ui.g0 g0Var, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
-        this.f16571a = 1;
+        this.f18071a = 1;
         this.d = i4Var;
-        this.f16572b = i10;
-        this.e = eVar;
-        this.f16573c = str;
-        this.f16574f = g0Var;
-        this.f16575g = tL_messages_getWebPage;
+        this.f18072b = i10;
+        this.f18074e = eVar;
+        this.f18073c = str;
+        this.f18075f = g0Var;
+        this.f18076g = tL_messages_getWebPage;
     }
 
-    public hi(LaunchActivity launchActivity, int i10, qy qyVar, org.telegram.ui.ActionBar.m2 m2Var, TLRPC.User user, String str) {
-        this.f16571a = 4;
+    public hi(LaunchActivity launchActivity, int i10, uy uyVar, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.User user, String str) {
+        this.f18071a = 4;
         this.d = launchActivity;
-        this.f16572b = i10;
-        this.e = qyVar;
-        this.f16574f = m2Var;
-        this.f16575g = user;
-        this.f16573c = str;
+        this.f18072b = i10;
+        this.f18074e = uyVar;
+        this.f18075f = n2Var;
+        this.f18076g = user;
+        this.f18073c = str;
     }
 }

@@ -1,54 +1,20 @@
 package ci;
+public final class w7 implements li.j, li.i {
+    public final c8 f6237a;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import j$.util.Objects;
-import org.telegram.ui.Components.yl0;
-public final class w7 implements bh.a {
-    public final int f5732a;
-    public final Object f5733b;
-
-    public w7(Object obj, int i10) {
-        this.f5732a = i10;
-        this.f5733b = obj;
+    public w7(c8 c8Var) {
+        this.f6237a = c8Var;
     }
 
     @Override
-    public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f5732a) {
-            case 0:
-            default:
-                aVar.f417a = true;
-                return;
-        }
+    public int f() {
+        c8 c8Var = this.f6237a;
+        c8Var.getClass();
+        return c8Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20817d6);
     }
 
     @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        View[] viewPages;
-        switch (this.f5732a) {
-            case 0:
-                d8 d8Var = (d8) this.f5733b;
-                yl0 yl0Var = d8Var.d;
-                gh.d.b(yl0Var, canvas, rectF, yl0Var, d8Var.getContainerView(), 255);
-                return;
-            default:
-                xh.s2 s2Var = (xh.s2) this.f5733b;
-                for (View view : s2Var.h.getViewPages()) {
-                    if (view instanceof xh.o2) {
-                        xh.o2 o2Var = (xh.o2) view;
-                        if (o2Var.h == null) {
-                            xh.j2 j2Var = o2Var.f46332f;
-                            ViewGroup viewGroup = s2Var.S;
-                            Objects.requireNonNull(j2Var);
-                            o2Var.h = new ah.n(j2Var, viewGroup, new org.telegram.ui.v8(j2Var, 0));
-                        }
-                        o2Var.h.f(canvas, rectF);
-                    }
-                }
-                return;
-        }
+    public void k(int i10) {
+        c8.S(this.f6237a, i10);
     }
 }

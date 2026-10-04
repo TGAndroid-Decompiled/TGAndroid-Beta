@@ -1,21 +1,21 @@
 package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
-public final class ri1 implements org.telegram.ui.ActionBar.z1, nd1 {
-    public final WallpapersListActivity f37343a;
+public final class ri1 implements org.telegram.ui.ActionBar.a2, qd1 {
+    public final WallpapersListActivity f40137a;
 
     public ri1(WallpapersListActivity wallpapersListActivity) {
-        this.f37343a = wallpapersListActivity;
+        this.f40137a = wallpapersListActivity;
     }
 
     @Override
     public void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        int[][] iArr = WallpapersListActivity.f31906k0;
-        this.f37343a.removeSelfFromStack();
+        int[][] iArr = WallpapersListActivity.f34593i0;
+        this.f40137a.removeSelfFromStack();
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        WallpapersListActivity.U(this.f37343a);
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        WallpapersListActivity.S(this.f40137a);
     }
 }

@@ -5,41 +5,41 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p81;
-import org.telegram.ui.Components.zr0;
-public final class b extends p81 {
-    public final Context f3553a;
-    public final zr0 f3554b;
+import org.telegram.ui.Components.ds0;
+import org.telegram.ui.Components.t41;
+import org.telegram.ui.Components.x81;
+public final class b extends x81 {
+    public final Context f3841a;
+    public final ds0 f3842b;
 
-    public b(zr0 zr0Var, Context context) {
-        this.f3554b = zr0Var;
-        this.f3553a = context;
+    public b(ds0 ds0Var, Context context) {
+        this.f3842b = ds0Var;
+        this.f3841a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         u8 u8Var;
         u uVar = (u) view;
-        zr0 zr0Var = this.f3554b;
+        ds0 ds0Var = this.f3842b;
         if (i10 == 0) {
-            u8Var = zr0Var.e;
+            u8Var = ds0Var.f3893e;
         } else {
-            u8Var = (u8) zr0Var.f3602f.get(i10 - 1);
+            u8Var = (u8) ds0Var.f3894f.get(i10 - 1);
         }
         u8Var.H(null);
         uVar.setList(u8Var);
-        uVar.setVisibleHeight(zr0Var.v);
+        uVar.setVisibleHeight(ds0Var.v);
     }
 
     @Override
     public final View d(int i10) {
-        return new u(this.f3554b, this.f3553a);
+        return new u(this.f3842b, this.f3841a);
     }
 
     @Override
     public final int e() {
-        return this.f3554b.f3602f.size() + 1;
+        return this.f3842b.f3894f.size() + 1;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class b extends p81 {
         if (i10 == 0) {
             return 0;
         }
-        return ((u8) this.f3554b.f3602f.get(i10 - 1)).E.hashCode();
+        return ((u8) this.f3842b.f3894f.get(i10 - 1)).E.hashCode();
     }
 
     @Override
@@ -55,10 +55,10 @@ public final class b extends p81 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.ProfileBotLanguageGeneral);
         }
-        String E = k41.E(((u8) this.f3554b.f3602f.get(i10 - 1)).E, null, null);
-        if (E == null) {
+        String C = t41.C(((u8) this.f3842b.f3894f.get(i10 - 1)).E, null, null);
+        if (C == null) {
             return null;
         }
-        return E.substring(0, 1).toUpperCase() + E.substring(1);
+        return C.substring(0, 1).toUpperCase() + C.substring(1);
     }
 }

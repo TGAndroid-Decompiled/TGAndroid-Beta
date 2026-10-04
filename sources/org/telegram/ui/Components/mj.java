@@ -1,42 +1,79 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class mj implements ol0, rj {
-    public final ak f26433a;
-
-    public mj(ak akVar) {
-        this.f26433a = akVar;
-    }
-
-    @Override
-    public void a(TLRPC.User user, boolean z10, int i10, long j3) {
-        ak akVar = this.f26433a;
-        akVar.f27075b.dismiss(true);
-        akVar.J.a(user, z10, i10, j3);
-    }
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mj extends pi {
+    public ai.w0 f28628n;
+    public int f28629r;
+    public bi.l f28630s;
+    public ab v;
+    public int f28631w;
+    public q0.a f28632x;
 
     @Override
-    public boolean d(int i10, View view) {
-        Object O;
-        ak akVar = this.f26433a;
-        s4.h0 adapter = akVar.f22678s.getAdapter();
-        wj wjVar = akVar.F;
-        if (adapter == wjVar) {
-            O = wjVar.E(i10);
-        } else {
-            uj ujVar = akVar.E;
-            O = ujVar.O(ujVar.S(i10), ujVar.Q(i10));
+    public final void C(pi piVar) {
+        xi xiVar = this.f29642b;
+        try {
+            xiVar.X0.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
         }
-        if (O != null) {
-            akVar.L((zj) view, O);
-            return true;
-        }
-        return false;
+        xiVar.X0.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.f28630s.h1(0, 0);
     }
 
     @Override
-    public void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
+    public final void E() {
+        this.f28628n.y0(0);
+    }
+
+    @Override
+    public int getCurrentItemTop() {
+        ai.w0 w0Var = this.f28628n;
+        if (w0Var.getChildCount() <= 0) {
+            w0Var.setTopGlowOffset(w0Var.getPaddingTop());
+            return Integer.MAX_VALUE;
+        }
+        View childAt = w0Var.getChildAt(0);
+        il0 il0Var = (il0) w0Var.G(childAt);
+        int top = childAt.getTop();
+        int dp = AndroidUtilities.dp(7.0f);
+        if (top < AndroidUtilities.dp(7.0f) || il0Var == null || il0Var.b() != 0) {
+            top = dp;
+        }
+        w0Var.setTopGlowOffset(top);
+        return top;
+    }
+
+    @Override
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(56.0f) + getListTopPadding();
+    }
+
+    @Override
+    public int getListTopPadding() {
+        return this.f28628n.getPaddingTop();
+    }
+
+    @Override
+    public final int h() {
+        return 1;
+    }
+
+    public void setDelegate(q0.a aVar) {
+        this.f28632x = aVar;
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        this.f29642b.getSheetContainer().invalidate();
+        invalidate();
+    }
+
+    @Override
+    public final void y(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mj.y(int, int):void");
     }
 }

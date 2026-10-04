@@ -6,13 +6,17 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
 public final class di implements TextWatcher {
-    public boolean f23649a;
-    public boolean f23650b;
-    public final wi f23651c;
+    public boolean f25732a;
+    public boolean f25733b;
+    public final org.telegram.ui.ActionBar.n2 f25734c;
+    public final xi d;
 
-    public di(wi wiVar) {
-        this.f23651c = wiVar;
+    public di(xi xiVar, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.d = xiVar;
+        this.f25734c = n2Var;
     }
 
     @Override
@@ -21,36 +25,37 @@ public final class di implements TextWatcher {
         boolean z11;
         int i10;
         boolean z12;
-        wi wiVar = this.f23651c;
-        p6 p6Var = wiVar.v;
-        bi biVar = wiVar.E0;
-        p6 p6Var2 = wiVar.f29973s;
-        if (this.f23650b != TextUtils.isEmpty(editable)) {
-            oi oiVar = wiVar.f29995y0;
-            if (oiVar != null) {
-                oiVar.A(oiVar.getSelectedItemsCount());
+        xi xiVar = this.d;
+        p6 p6Var = xiVar.f32851s;
+        bi biVar = xiVar.P0;
+        int i11 = xiVar.J1;
+        p6 p6Var2 = xiVar.v;
+        if (this.f25733b != TextUtils.isEmpty(editable)) {
+            pi piVar = xiVar.f32873y0;
+            if (piVar != null) {
+                piVar.A(piVar.getSelectedItemsCount());
             }
-            this.f23650b = !this.f23650b;
+            this.f25733b = !this.f25733b;
         }
         boolean z13 = false;
-        if (this.f23649a) {
+        if (this.f25732a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, biVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f23649a = false;
+            this.f25732a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
-        wiVar.L = codePointCount;
-        le.c cVar = wiVar.e;
+        xiVar.L = codePointCount;
+        le.b bVar = xiVar.f32807e;
         if (codePointCount > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        cVar.a(z10, true);
-        int i11 = wiVar.K;
-        if (i11 > 0 && (i10 = i11 - wiVar.L) <= 100) {
+        bVar.a(z10, true);
+        int i12 = xiVar.K;
+        if (i12 > 0 && (i10 = i12 - xiVar.L) <= 100) {
             if (i10 < -9999) {
                 i10 = -9999;
             }
@@ -71,45 +76,49 @@ public final class di implements TextWatcher {
             p6Var2.animate().setListener(null).cancel();
             p6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19281p7));
+                p6Var2.setTextColor(xiVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21039p7));
                 z11 = false;
             } else {
-                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19444y6));
+                p6Var2.setTextColor(xiVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21204y6));
                 z11 = true;
             }
             p6Var.c(LocaleController.formatNumber(j3, ','), false, true);
             p6Var.setAlpha(1.0f);
         } else {
-            p6Var2.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new r8(this, 4));
+            p6Var2.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new r8(this, 5));
             p6Var.setAlpha(0.0f);
             z11 = true;
         }
-        if (wiVar.U0 != z11) {
-            wiVar.U0 = z11;
-            wiVar.I0.invalidate();
+        if (xiVar.U0 != z11) {
+            xiVar.U0 = z11;
+            xiVar.I0.invalidate();
         }
-        if (!wiVar.f29924c0) {
+        if (!xiVar.f32823i2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && xiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && xiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            xiVar.f32823i2 = true;
+            xiVar.L1(this.f25734c);
+        }
+        if (xiVar.f32801c0) {
             if (biVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(biVar.getText().toString().trim())) {
                 z13 = true;
             }
-            wiVar.M1(z13);
+            xiVar.J1(z13);
         }
-        wiVar.d1(true);
+        xiVar.b1(true);
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f23649a = true;
+            this.f25732a = true;
         }
-        wi wiVar = this.f23651c;
-        if (wiVar.B2 == null) {
-            wi.Q(wiVar);
+        xi xiVar = this.d;
+        if (xiVar.B2 == null) {
+            xi.H(xiVar);
         }
-        if (wiVar.B2.getAdapter() != null) {
-            wiVar.B2.setReversed(false);
-            wiVar.B2.getAdapter().U(charSequence, wiVar.E0.getEditText().getSelectionStart(), null, false, false);
-            wiVar.U1();
+        if (xiVar.B2.getAdapter() != null) {
+            xiVar.B2.setReversed(true);
+            xiVar.B2.getAdapter().U(charSequence, xiVar.P0.getEditText().getSelectionStart(), null, false, false);
+            xiVar.R1();
         }
     }
 

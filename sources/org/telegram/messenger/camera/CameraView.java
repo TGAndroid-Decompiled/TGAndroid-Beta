@@ -43,6 +43,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.google.android.gms.internal.vision.e2;
+import hg.k0;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -76,9 +77,9 @@ import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.m50;
-import org.telegram.ui.Components.sr;
-import w7.y5;
+import org.telegram.ui.Components.n50;
+import org.telegram.ui.Components.tr;
+import w7.z5;
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener, CameraController.ICameraView, CameraController.ErrorCallback {
     private static final int MSG_AUDIOFRAME_AVAILABLE = 3;
     private static final int MSG_START_RECORDING = 0;
@@ -273,11 +274,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.cameraId = new int[]{-1, -1};
             this.verticesData = new float[]{-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f};
             p pVar = new p(this, 2);
-            sr srVar = sr.h;
-            this.crossfade = new e6(pVar, 560L, srVar);
-            this.camera1Appear = new e6(1.0f, new p(this, 3), 0L, 420L, srVar);
-            this.dualAppear = new e6(new p(this, 4), 340L, srVar);
-            this.shape = new e6(new p(this, 5), 340L, srVar);
+            tr trVar = tr.h;
+            this.crossfade = new e6(pVar, 560L, trVar);
+            this.camera1Appear = new e6(1.0f, new p(this, 3), 0L, 420L, trVar);
+            this.dualAppear = new e6(new p(this, 4), 340L, trVar);
+            this.shape = new e6(new p(this, 5), 340L, trVar);
             this.shapeTo = MessagesController.getGlobalMainSettings().getInt("dualshape", 0);
             this.array = new int[1];
             this.updateTex1 = new Object();
@@ -689,7 +690,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                         f7 = 0.0f;
                                     }
                                     float d = e6Var.d(f7, false);
-                                    float e = 1.0f - this.camera1Appear.e(this.camera1Appeared);
+                                    float e7 = 1.0f - this.camera1Appear.e(this.camera1Appeared);
                                     if (f13 <= 0.0f) {
                                         this.crossfading = false;
                                     }
@@ -753,7 +754,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                                     }
                                                     int i21 = this.blurHandle;
                                                     if (i12 == 0) {
-                                                        f11 = e;
+                                                        f11 = e7;
                                                     } else {
                                                         f11 = 0.0f;
                                                     }
@@ -1318,7 +1319,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             videoRecorder.handleVideoFrameAvailable((message.arg1 << 32) | (message.arg2 & 4294967295L), (Integer) message.obj);
                             return;
                         } else if (i10 == 3) {
-                            videoRecorder.handleAudioFrameAvailable((m50) message.obj);
+                            videoRecorder.handleAudioFrameAvailable((n50) message.obj);
                             return;
                         } else {
                             return;
@@ -1335,8 +1336,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         FileLog.e("start encoder");
                     }
                     videoRecorder.prepareEncoder();
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     videoRecorder.handleStopRecording(0);
                     Looper.myLooper().quit();
                 }
@@ -1359,8 +1360,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private int audioTrackIndex;
         private boolean blendEnabled;
         private int blurHandle;
-        private ArrayBlockingQueue<m50> buffers;
-        private ArrayList<m50> buffersToWrite;
+        private ArrayBlockingQueue<n50> buffers;
+        private ArrayList<n50> buffersToWrite;
         private int cameraMatrixHandle;
         private int crossfadeHandle;
         private long currentTimestamp;
@@ -1450,8 +1451,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.recorderRunnable = new AnonymousClass1();
         }
 
-        public void handleAudioFrameAvailable(org.telegram.ui.Components.m50 r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.handleAudioFrameAvailable(org.telegram.ui.Components.m50):void");
+        public void handleAudioFrameAvailable(org.telegram.ui.Components.n50 r21) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.handleAudioFrameAvailable(org.telegram.ui.Components.n50):void");
         }
 
         public void handleStopRecording(int i10) {
@@ -1462,8 +1463,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
             try {
                 drainEncoder(true);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
             MediaCodec mediaCodec = this.videoEncoder;
             if (mediaCodec != null) {
@@ -1471,8 +1472,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     mediaCodec.stop();
                     this.videoEncoder.release();
                     this.videoEncoder = null;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                 }
             }
             MediaCodec mediaCodec2 = this.audioEncoder;
@@ -1481,24 +1482,24 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     mediaCodec2.stop();
                     this.audioEncoder.release();
                     this.audioEncoder = null;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
+                } catch (Exception e11) {
+                    FileLog.e(e11);
                 }
             }
             CountDownLatch countDownLatch = new CountDownLatch(1);
             this.fileWriteQueue.postRunnable(new s(0, this, countDownLatch));
             try {
                 countDownLatch.await();
-            } catch (InterruptedException e11) {
-                e11.printStackTrace();
+            } catch (InterruptedException e12) {
+                e12.printStackTrace();
             }
             if (this.writingToDifferentFile && !this.fileToWrite.renameTo(this.videoFile)) {
                 FileLog.e("unable to rename file, try move file");
                 try {
                     AndroidUtilities.copyFile(this.fileToWrite, this.videoFile);
                     this.fileToWrite.delete();
-                } catch (IOException e12) {
-                    FileLog.e(e12);
+                } catch (IOException e13) {
+                    FileLog.e(e13);
                     FileLog.e("unable to move file");
                 }
             }
@@ -1533,8 +1534,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             int height;
             try {
                 drainEncoder(false);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
             long currentTimeMillis = System.currentTimeMillis();
             if (!this.lastCameraId.equals(num)) {
@@ -1565,7 +1566,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             if (this.videoFirst == -1) {
                 this.videoFirst = j3 / 1000;
                 if (BuildVars.LOGS_ENABLED) {
-                    hg.c.u(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
+                    k0.t(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
                 }
             }
             this.videoLast = j3;
@@ -1689,24 +1690,24 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         public void lambda$drainEncoder$2(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
             try {
                 this.mediaMuxer.writeSampleData(this.videoTrackIndex, byteBuffer, bufferInfo, true);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
         }
 
         public void lambda$drainEncoder$3(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
             try {
                 this.mediaMuxer.writeSampleData(this.audioTrackIndex, byteBuffer, bufferInfo, false);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
         }
 
         public void lambda$handleStopRecording$0(CountDownLatch countDownLatch) {
             try {
                 this.mediaMuxer.finishMovie();
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception e7) {
+                e7.printStackTrace();
             }
             countDownLatch.countDown();
         }
@@ -1736,7 +1737,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     i10 = 49152;
                 }
                 for (int i11 = 0; i11 < 3; i11++) {
-                    this.buffers.add(new m50());
+                    this.buffers.add(new n50());
                 }
                 AudioRecord audioRecord = new AudioRecord(0, 44100, 16, 2, i10);
                 this.audioRecorder = audioRecord;
@@ -1892,8 +1893,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     throw new RuntimeException("unable to get EGL14 display");
                 }
                 throw new RuntimeException("EGL already set up");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            } catch (Exception e7) {
+                throw new RuntimeException(e7);
             }
         }
 
@@ -2554,7 +2555,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             return;
         }
         this.textureView.setSurfaceTextureListener(this);
-        addView(this.textureView, 0, y5.e(-1, -1, 17));
+        addView(this.textureView, 0, z5.e(-1, -1, 17));
         this.textureInited = true;
     }
 
@@ -2986,7 +2987,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         });
         this.flipAnimator.setDuration(500L);
-        this.flipAnimator.setInterpolator(sr.f28346f);
+        this.flipAnimator.setInterpolator(tr.f31140f);
         this.flipAnimator.start();
         invalidate();
     }
@@ -3118,7 +3119,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         setWillNotDraw(!z11);
         ImageView imageView = new ImageView(context);
         this.blurredStubView = imageView;
-        addView(imageView, y5.e(-1, -1, 17));
+        addView(imageView, z5.e(-1, -1, 17));
         this.blurredStubView.setVisibility(8);
         this.focusAreaSize = AndroidUtilities.dp(96.0f);
         this.outerPaint.setColor(-1);

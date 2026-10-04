@@ -1,89 +1,49 @@
 package org.telegram.ui;
-public final class e20 implements org.telegram.ui.Components.to0 {
-    public final int f33251a;
-    public final sg.a f33252b;
 
-    public e20(sg.a aVar, int i10) {
-        this.f33251a = i10;
-        this.f33252b = aVar;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class e20 extends FrameLayout {
+    public TextView f35886a;
+    public TextView f35887b;
+    public org.telegram.ui.Components.ki0 f35888c;
+    public boolean d;
+    public TLRPC.TL_dialogFilterSuggested f35889e;
+
+    public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
+        return this.f35889e;
     }
 
     @Override
-    public final void B() {
-        int i10 = this.f33251a;
-    }
-
-    @Override
-    public final void X(float f7, boolean z10) {
-        switch (this.f33251a) {
-            case 0:
-                sg.f fVar = this.f33252b.f43199c;
-                if (fVar != null) {
-                    fVar.v = f7 * 2.0f;
-                    return;
-                }
-                return;
-            case 1:
-                sg.f fVar2 = this.f33252b.f43199c;
-                if (fVar2 != null) {
-                    fVar2.f43258w = f7 * 2.0f;
-                    return;
-                }
-                return;
-            case 2:
-                sg.f fVar3 = this.f33252b.f43199c;
-                if (fVar3 != null) {
-                    fVar3.f43259x = f7;
-                    return;
-                }
-                return;
-            default:
-                sg.f fVar4 = this.f33252b.f43199c;
-                if (fVar4 != null) {
-                    fVar4.A = f7 * 2.0f;
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (this.d) {
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.i6.f20940k0);
         }
     }
 
     @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f33251a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            default:
-                return null;
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+        accessibilityNodeInfo.setText(this.f35888c.getText());
+        accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
     @Override
-    public final int m0() {
-        switch (this.f33251a) {
-            case 0:
-                return 0;
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            default:
-                return 0;
-        }
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
+        measureChildWithMargins(this.f35888c, i10, 0, i11, 0);
+        TextView textView = this.f35886a;
+        org.telegram.ui.Components.ki0 ki0Var = this.f35888c;
+        measureChildWithMargins(textView, i10, ki0Var.getMeasuredWidth(), i11, 0);
+        measureChildWithMargins(this.f35887b, i10, ki0Var.getMeasuredWidth(), i11, 0);
     }
 
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
+    public void setAddOnClickListener(View.OnClickListener onClickListener) {
+        this.f35888c.setOnClickListener(onClickListener);
     }
 }

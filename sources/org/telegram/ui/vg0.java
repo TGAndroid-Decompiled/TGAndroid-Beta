@@ -1,62 +1,137 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.util.SparseArray;
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.SharedConfig;
-public final class vg0 implements ah.j {
-    public final yg0 f38715a;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class vg0 extends org.telegram.ui.Components.yl0 {
+    public final Context f41745c;
+    public final wg0 d;
 
-    public vg0(yg0 yg0Var) {
-        this.f38715a = yg0Var;
+    public vg0(wg0 wg0Var, Context context) {
+        this.d = wg0Var;
+        this.f41745c = context;
     }
 
     @Override
-    public void U(ah.a aVar) {
-        yg0 yg0Var = this.f38715a;
-        RectF rectF = yg0Var.T;
-        aVar.a(yg0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19061d6));
-        aVar.b(SharedConfig.chatBlurEnabled());
-        SparseArray sparseArray = yg0Var.f38124a;
-        int size = sparseArray.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            org.telegram.ui.ActionBar.m2 m2Var = ((rh1) sparseArray.valueAt(i10)).f37338a;
-            View view = m2Var.fragmentView;
-            if (view != null && hh.k.c(view, yg0Var.f38125b, rectF) && rectF.right > 0.0f && rectF.left < yg0Var.fragmentView.getMeasuredWidth() && (m2Var instanceof xg0) && ((xg0) m2Var).x() != null) {
-                aVar.c(rectF.left);
-                aVar.c(rectF.top);
-                aVar.a(m2Var.getClassGuid());
-            }
+    public final boolean D(s4.c1 c1Var) {
+        int b10 = c1Var.b();
+        wg0 wg0Var = this.d;
+        if (b10 != wg0Var.f42456c && b10 != wg0Var.d && b10 != wg0Var.f42457e && b10 != wg0Var.f42458f && b10 != wg0Var.h && b10 != wg0Var.f42460r) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void d(Canvas canvas) {
-        fh.d x10;
-        Canvas canvas2;
-        yg0 yg0Var = this.f38715a;
-        RectF rectF = yg0Var.T;
-        int measuredWidth = yg0Var.fragmentView.getMeasuredWidth();
-        int measuredHeight = yg0Var.fragmentView.getMeasuredHeight();
-        canvas.drawColor(yg0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19061d6));
-        SparseArray sparseArray = yg0Var.f38124a;
-        int size = sparseArray.size();
-        int i10 = 0;
-        while (i10 < size) {
-            org.telegram.ui.ActionBar.m2 m2Var = ((rh1) sparseArray.valueAt(i10)).f37338a;
-            View view = m2Var.fragmentView;
-            if (view == null || !hh.k.c(view, yg0Var.f38125b, rectF) || rectF.right <= 0.0f || rectF.left >= yg0Var.fragmentView.getMeasuredWidth() || !(m2Var instanceof xg0) || (x10 = ((xg0) m2Var).x()) == null) {
-                canvas2 = canvas;
+    public final int h() {
+        return this.d.v;
+    }
+
+    @Override
+    public final int j(int i10) {
+        wg0 wg0Var = this.d;
+        wg0Var.getClass();
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 != wg0Var.f42456c && i10 != wg0Var.d && i10 != wg0Var.f42457e && i10 != wg0Var.f42458f && i10 != wg0Var.h) {
+            if (i10 == wg0Var.f42459n) {
+                return 2;
+            }
+            if (i10 == wg0Var.f42460r) {
+                return 3;
+            }
+            return 4;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        int i11 = c1Var.f46527f;
+        View view = c1Var.f46523a;
+        if (i11 != 0) {
+            wg0 wg0Var = this.d;
+            if (i11 != 1) {
+                if (i11 != 3) {
+                    if (i11 == 4) {
+                        org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+                        if (i10 == wg0Var.f42461s) {
+                            e9Var.setText(LocaleController.getString(R.string.LogOutInfo));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
+                if (i10 == wg0Var.f42460r) {
+                    eaVar.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21039p7, false));
+                    eaVar.b(LocaleController.getString(R.string.LogOutTitle), false);
+                    return;
+                }
+                return;
+            }
+            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
+            if (i10 == wg0Var.f42456c) {
+                d9Var.b(R.drawable.msg_contact_add, LocaleController.getString(R.string.AddAnotherAccount), LocaleController.getString(R.string.AddAnotherAccountInfo), true);
+                return;
+            } else if (i10 == wg0Var.d) {
+                d9Var.b(R.drawable.msg_permissions, LocaleController.getString(R.string.SetPasscode), LocaleController.getString(R.string.SetPasscodeInfo), true);
+                return;
+            } else if (i10 == wg0Var.f42457e) {
+                d9Var.b(R.drawable.msg_clearcache, LocaleController.getString(R.string.ClearCache), LocaleController.getString(R.string.ClearCacheInfo), true);
+                return;
+            } else if (i10 == wg0Var.f42458f) {
+                d9Var.b(R.drawable.msg_newphone, LocaleController.getString(R.string.ChangePhoneNumber), LocaleController.getString(R.string.ChangePhoneNumberInfo), true);
+                return;
+            } else if (i10 == wg0Var.h) {
+                d9Var.b(R.drawable.msg_help, LocaleController.getString(R.string.ContactSupport), LocaleController.getString(R.string.ContactSupportInfo), false);
+                return;
             } else {
-                canvas.save();
-                canvas.translate(rectF.left, rectF.top);
-                canvas2 = canvas;
-                x10.y(canvas2, 0.0f, 0.0f, measuredWidth, measuredHeight);
-                canvas2.restore();
+                return;
             }
-            i10++;
-            canvas = canvas2;
         }
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
+        if (i10 == 0) {
+            m4Var.setText(LocaleController.getString(R.string.AlternativeOptions));
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.d9 d9Var;
+        View view;
+        Context context = this.f41745c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        view = new org.telegram.ui.Cells.e9(context);
+                        view.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.V0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.i6.f20781b7));
+                    } else {
+                        FrameLayout eaVar = new org.telegram.ui.Cells.ea(context);
+                        eaVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20817d6, false));
+                        d9Var = eaVar;
+                    }
+                } else {
+                    view = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
+                }
+                return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
+            }
+            org.telegram.ui.Cells.d9 d9Var2 = new org.telegram.ui.Cells.d9(context);
+            d9Var2.setMultilineDetail(true);
+            d9Var2.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20817d6, false));
+            d9Var = d9Var2;
+        } else {
+            FrameLayout m4Var = new org.telegram.ui.Cells.m4(context);
+            m4Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20817d6, false));
+            d9Var = m4Var;
+        }
+        view = d9Var;
+        return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
     }
 }

@@ -1,13 +1,26 @@
 package k2;
-public final class o extends Exception {
-    public final int f13330a;
-    public final boolean f13331b;
-    public final b2.s f13332c;
+public interface o {
+    void A();
 
-    public o(int i10, b2.s sVar, boolean z10) {
-        super(hg.c.h(i10, "AudioTrack write failed: "));
-        this.f13331b = z10;
-        this.f13330a = i10;
-        this.f13332c = sVar;
-    }
+    void C(l lVar);
+
+    void H();
+
+    void K(l lVar);
+
+    void d(long j3);
+
+    void m();
+
+    void o();
+
+    void onAudioSessionIdChanged(int i10);
+
+    void onSkipSilenceEnabledChanged(boolean z10);
+
+    void s(int i10, long j3, long j10);
+
+    void u();
+
+    void w(Exception exc);
 }

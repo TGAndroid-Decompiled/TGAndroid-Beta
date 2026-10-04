@@ -1,38 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import androidx.core.widget.NestedScrollView;
-public final class y61 extends NestedScrollView {
-    public boolean W;
-    public final z61 f30587a0;
+import org.telegram.messenger.AndroidUtilities;
+public final class y61 extends s4.c0 {
+    public final c71 I;
 
-    public y61(z61 z61Var, Context context) {
-        super(context);
-        this.f30587a0 = z61Var;
+    public y61(c71 c71Var, int i10) {
+        super(i10, false);
+        this.I = c71Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        z61.m(this.f30587a0);
-    }
-
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y61.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        z61.m(this.f30587a0);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W) {
-            return;
+    public final int W0(s4.z0 z0Var) {
+        if (this.I.f25246h3) {
+            return AndroidUtilities.displaySize.y;
         }
-        super.requestLayout();
+        return super.W0(z0Var);
     }
 }

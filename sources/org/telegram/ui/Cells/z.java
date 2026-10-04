@@ -9,8 +9,8 @@ public final class z extends RippleDrawable {
         int save = canvas.save();
         try {
             super.draw(canvas);
-        } catch (Exception e) {
-            FileLog.e("probably forgot to put setCallback", e);
+        } catch (Exception e7) {
+            FileLog.e("probably forgot to put setCallback", e7);
         } finally {
             canvas.restoreToCount(save);
         }

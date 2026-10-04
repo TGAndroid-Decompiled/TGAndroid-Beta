@@ -5,11 +5,11 @@ import org.telegram.messenger.NotificationCenter;
 public final class wb0 extends ji.n {
     public int W;
     public Runnable X;
-    public final bc0 Y;
+    public final cc0 Y;
 
-    public wb0(bc0 bc0Var, ub0 ub0Var, org.telegram.ui.ActionBar.d6 d6Var) {
+    public wb0(cc0 cc0Var, ub0 ub0Var, org.telegram.ui.ActionBar.d6 d6Var) {
         super(null, ub0Var, d6Var);
-        this.Y = bc0Var;
+        this.Y = cc0Var;
         this.W = -1;
     }
 
@@ -23,20 +23,20 @@ public final class wb0 extends ji.n {
         vb0 vb0Var = new vb0(this, 0);
         this.X = vb0Var;
         AndroidUtilities.runOnUIThread(vb0Var);
-        bc0 bc0Var = this.Y;
-        if (bc0Var.V) {
-            bc0Var.V = false;
+        cc0 cc0Var = this.Y;
+        if (cc0Var.V) {
+            cc0Var.V = false;
             AndroidUtilities.runOnUIThread(new vb0(this, 1));
         }
     }
 
     @Override
     public final void W() {
-        hc0 hc0Var = this.Y.f22938c0;
-        AndroidUtilities.cancelRunOnUIThread(hc0Var.f24781y);
-        hc0Var.f24781y.run();
+        ic0 ic0Var = this.Y.f25320c0;
+        AndroidUtilities.cancelRunOnUIThread(ic0Var.f27365y);
+        ic0Var.f27365y.run();
         if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(hc0Var.f24779w).setAnimationInProgress(this.W, null, false);
+            this.W = NotificationCenter.getInstance(ic0Var.f27363w).setAnimationInProgress(this.W, null, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

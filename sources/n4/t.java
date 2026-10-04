@@ -5,12 +5,12 @@ import android.text.TextUtils;
 public class t extends s {
     @Override
     public final a0 c() {
-        MediaSessionManager.RemoteUserInfo currentControllerInfo = this.f15204a.getCurrentControllerInfo();
+        MediaSessionManager.RemoteUserInfo currentControllerInfo = this.f16619a.getCurrentControllerInfo();
         ?? obj = new Object();
         String packageName = currentControllerInfo.getPackageName();
         if (packageName != null) {
             if (!TextUtils.isEmpty(packageName)) {
-                obj.f15158a = new c0(currentControllerInfo.getPackageName(), currentControllerInfo.getPid(), currentControllerInfo.getUid());
+                obj.f16568a = new c0(currentControllerInfo.getPackageName(), currentControllerInfo.getPid(), currentControllerInfo.getUid());
                 return obj;
             }
             throw new IllegalArgumentException("packageName should be nonempty");

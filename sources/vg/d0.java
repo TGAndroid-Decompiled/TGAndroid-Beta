@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.e9;
-import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sq;
 public final class d0 extends e9 {
     public final d6 v;
 
@@ -23,10 +23,10 @@ public final class d0 extends e9 {
         } else {
             i10 = R.drawable.greydivider;
         }
-        int i11 = h6.f19025b7;
+        int i11 = i6.f20781b7;
         d6 d6Var = this.v;
-        rq rqVar = new rq(new ColorDrawable(h6.v0(h6.f19005a7, d6Var)), h6.U0(context, i10, h6.v0(i11, d6Var)), 0, 0);
-        rqVar.f28033w = true;
-        setBackground(rqVar);
+        sq sqVar = new sq(new ColorDrawable(i6.v0(i6.f20761a7, d6Var)), i6.U0(context, i10, i6.v0(i11, d6Var)), 0, 0);
+        sqVar.f30856w = true;
+        setBackground(sqVar);
     }
 }

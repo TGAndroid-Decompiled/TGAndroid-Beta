@@ -4,30 +4,30 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fa implements RequestDelegate {
-    public final int f16367a;
-    public final BaseController f16368b;
-    public final int f16369c;
+    public final int f17841a;
+    public final BaseController f17842b;
+    public final int f17843c;
 
     public fa(BaseController baseController, int i10, int i11) {
-        this.f16367a = i11;
-        this.f16368b = baseController;
-        this.f16369c = i10;
+        this.f17841a = i11;
+        this.f17842b = baseController;
+        this.f17843c = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16367a) {
+        switch (this.f17841a) {
             case 0:
-                ((MessagesController) this.f16368b).lambda$migrateDialogs$216(this.f16369c, tLObject, tL_error);
+                ((MessagesController) this.f17842b).lambda$migrateDialogs$216(this.f17843c, tLObject, tL_error);
                 return;
             case 1:
-                ((MessagesController) this.f16368b).lambda$loadPinnedDialogs$367(this.f16369c, tLObject, tL_error);
+                ((MessagesController) this.f17842b).lambda$loadPinnedDialogs$367(this.f17843c, tLObject, tL_error);
                 return;
             case 2:
-                ((MessagesController) this.f16368b).lambda$loadGlobalNotificationsSettings$201(this.f16369c, tLObject, tL_error);
+                ((MessagesController) this.f17842b).lambda$loadGlobalNotificationsSettings$201(this.f17843c, tLObject, tL_error);
                 return;
             default:
-                ((ContactsController) this.f16368b).lambda$loadPrivacySettings$65(this.f16369c, tLObject, tL_error);
+                ((ContactsController) this.f17842b).lambda$loadPrivacySettings$65(this.f17843c, tLObject, tL_error);
                 return;
         }
     }

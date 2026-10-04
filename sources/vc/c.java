@@ -10,9 +10,9 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 public final class c extends SSLSocketFactory {
-    public final SSLSocketFactory f44570a = HttpsURLConnection.getDefaultSSLSocketFactory();
-    public final boolean f44571b;
-    public final boolean f44572c;
+    public final SSLSocketFactory f48254a = HttpsURLConnection.getDefaultSSLSocketFactory();
+    public final boolean f48255b;
+    public final boolean f48256c;
 
     public c() {
         String[] strArr;
@@ -30,8 +30,8 @@ public final class c extends SSLSocketFactory {
                 z11 = true;
             }
         }
-        this.f44571b = z10;
-        this.f44572c = z11;
+        this.f48255b = z10;
+        this.f48256c = z11;
     }
 
     public final Socket a(Socket socket) {
@@ -40,10 +40,10 @@ public final class c extends SSLSocketFactory {
         }
         SSLSocket sSLSocket = (SSLSocket) socket;
         HashSet hashSet = new HashSet(Arrays.asList(sSLSocket.getEnabledProtocols()));
-        if (this.f44571b) {
+        if (this.f48255b) {
             hashSet.add("TLSv1.1");
         }
-        if (this.f44572c) {
+        if (this.f48256c) {
             hashSet.add("TLSv1.2");
         }
         sSLSocket.setEnabledProtocols((String[]) hashSet.toArray(new String[0]));
@@ -52,36 +52,36 @@ public final class c extends SSLSocketFactory {
 
     @Override
     public final Socket createSocket(Socket socket, String str, int i10, boolean z10) {
-        return a(this.f44570a.createSocket(socket, str, i10, z10));
+        return a(this.f48254a.createSocket(socket, str, i10, z10));
     }
 
     @Override
     public final String[] getDefaultCipherSuites() {
-        return this.f44570a.getDefaultCipherSuites();
+        return this.f48254a.getDefaultCipherSuites();
     }
 
     @Override
     public final String[] getSupportedCipherSuites() {
-        return this.f44570a.getSupportedCipherSuites();
+        return this.f48254a.getSupportedCipherSuites();
     }
 
     @Override
     public final Socket createSocket(String str, int i10) {
-        return a(this.f44570a.createSocket(str, i10));
+        return a(this.f48254a.createSocket(str, i10));
     }
 
     @Override
     public final Socket createSocket(String str, int i10, InetAddress inetAddress, int i11) {
-        return a(this.f44570a.createSocket(str, i10, inetAddress, i11));
+        return a(this.f48254a.createSocket(str, i10, inetAddress, i11));
     }
 
     @Override
     public final Socket createSocket(InetAddress inetAddress, int i10) {
-        return a(this.f44570a.createSocket(inetAddress, i10));
+        return a(this.f48254a.createSocket(inetAddress, i10));
     }
 
     @Override
     public final Socket createSocket(InetAddress inetAddress, int i10, InetAddress inetAddress2, int i11) {
-        return a(this.f44570a.createSocket(inetAddress, i10, inetAddress2, i11));
+        return a(this.f48254a.createSocket(inetAddress, i10, inetAddress2, i11));
     }
 }

@@ -3,17 +3,17 @@ package v8;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import w7.f0;
+import w7.g0;
 public final class t extends o6.a {
     public static final Parcelable.Creator<t> CREATOR = new r(5);
-    public String f44552a;
-    public Bundle f44553b;
+    public String f48233a;
+    public Bundle f48234b;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 2, this.f44552a);
-        f0.b(parcel, 3, this.f44553b);
-        f0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.l(parcel, 2, this.f48233a);
+        g0.b(parcel, 3, this.f48234b);
+        g0.r(parcel, q6);
     }
 }

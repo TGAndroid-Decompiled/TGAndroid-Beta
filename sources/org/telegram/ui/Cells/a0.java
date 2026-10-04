@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.zv0;
-public abstract class a0 extends ViewGroup implements zv0 {
-    public boolean f20003a;
-    public androidx.emoji2.text.j f20004b;
-    public int f20005c;
+import org.telegram.ui.Components.iw0;
+public abstract class a0 extends ViewGroup implements iw0 {
+    public boolean f21769a;
+    public androidx.emoji2.text.j f21770b;
+    public int f21771c;
     public ai.q4 d;
-    public Runnable e;
+    public Runnable f21772e;
 
     public a0(Context context) {
         super(context);
-        this.f20003a = false;
-        this.f20004b = null;
-        this.f20005c = 0;
+        this.f21769a = false;
+        this.f21770b = null;
+        this.f21771c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements zv0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.e = runnable;
+        this.f21772e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements zv0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.e;
+        Runnable runnable = this.f21772e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements zv0 {
     }
 
     public final void k() {
-        this.f20003a = false;
-        androidx.emoji2.text.j jVar = this.f20004b;
+        this.f21769a = false;
+        androidx.emoji2.text.j jVar = this.f21770b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class a0 extends ViewGroup implements zv0 {
     }
 
     public final void q() {
-        if (this.f20003a) {
+        if (this.f21769a) {
             return;
         }
-        this.f20003a = true;
+        this.f21769a = true;
         if (this.d == null) {
             this.d = new ai.q4(this, 28);
         }

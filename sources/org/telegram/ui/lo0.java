@@ -1,24 +1,90 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class lo0 extends ClickableSpan {
-    public final oo0 f35397a;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class lo0 extends WebViewClient {
+    public final Context f38311a;
+    public final so0 f38312b;
 
-    public lo0(oo0 oo0Var) {
-        this.f35397a = oo0Var;
+    public lo0(so0 so0Var, Context context) {
+        this.f38312b = so0Var;
+        this.f38311a = context;
     }
 
     @Override
-    public final void onClick(View view) {
-        oo0 oo0Var = this.f35397a;
-        oo0Var.presentFragment(new zg1(6, oo0Var.f36280a0));
+    public final void onPageFinished(WebView webView, String str) {
+        super.onPageFinished(webView, str);
+        so0 so0Var = this.f38312b;
+        so0Var.f40580z0 = false;
+        so0Var.H0(true, false);
+        so0Var.K0();
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setUnderlineText(false);
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        so0 so0Var = this.f38312b;
+        try {
+            if (!AndroidUtilities.isSafeToShow(so0Var.getParentActivity())) {
+                return true;
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(so0Var.getParentActivity(), 0, so0Var.Y0);
+            alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20367a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new nl0(this, 9));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
+            return true;
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            return false;
+        }
+    }
+
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        Uri parse;
+        boolean z10;
+        so0 so0Var = this.f38312b;
+        so0Var.f40578y = !str.equals(so0Var.f40576x);
+        try {
+            parse = Uri.parse(str);
+        } catch (Exception unused) {
+        }
+        if ("t.me".equals(parse.getHost())) {
+            so0Var.t0();
+            return true;
+        }
+        if (!so0.f40538h1.contains(parse.getScheme())) {
+            if (!so0.f40537g1.contains(parse.getScheme())) {
+                try {
+                    if (so0Var.getParentActivity() != null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        so0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
+                        return true;
+                    }
+                } catch (ActivityNotFoundException unused2) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f38311a);
+                    alertDialog$Builder.f20367a.R = so0Var.f40565p0;
+                    alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                    alertDialog$Builder.o();
+                }
+            }
+            return super.shouldOverrideUrlLoading(webView, str);
+        }
+        return true;
     }
 }

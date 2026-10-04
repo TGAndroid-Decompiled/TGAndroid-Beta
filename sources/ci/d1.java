@@ -22,7 +22,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public abstract class d1 extends CameraView {
-    public static final int[] f4491a0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
+    public static final int[] f4882a0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
     public boolean E;
     public boolean F;
     public boolean G;
@@ -42,35 +42,35 @@ public abstract class d1 extends CameraView {
     public final float[] U;
     public float[] V;
     public float[] W;
-    public boolean f4492a;
-    public final PointF f4493b;
-    public final PointF f4494c;
+    public boolean f4883a;
+    public final PointF f4884b;
+    public final PointF f4885c;
     public float d;
-    public double e;
-    public boolean f4495f;
+    public double f4886e;
+    public boolean f4887f;
     public boolean h;
-    public final Matrix f4496n;
-    public final Matrix f4497r;
-    public boolean f4498s;
+    public final Matrix f4888n;
+    public final Matrix f4889r;
+    public boolean f4890s;
     public float v;
-    public boolean f4499w;
-    public final Matrix f4500x;
-    public final Matrix f4501y;
+    public boolean f4891w;
+    public final Matrix f4892x;
+    public final Matrix f4893y;
 
     public d1(Context context, boolean z10) {
         super(context, z10, false);
-        this.f4493b = new PointF();
-        this.f4494c = new PointF();
-        this.f4496n = new Matrix();
-        this.f4497r = new Matrix();
-        this.f4500x = new Matrix();
-        this.f4501y = new Matrix();
+        this.f4884b = new PointF();
+        this.f4885c = new PointF();
+        this.f4888n = new Matrix();
+        this.f4889r = new Matrix();
+        this.f4892x = new Matrix();
+        this.f4893y = new Matrix();
         this.E = true;
         this.L = new Matrix();
         this.O = new float[2];
         new Matrix();
         this.U = new float[2];
-        this.f4492a = q(context);
+        this.f4883a = q(context);
     }
 
     private Matrix getSavedDualMatrix() {
@@ -86,8 +86,8 @@ public abstract class d1 extends CameraView {
         for (int i10 = 0; i10 < split.length; i10++) {
             try {
                 fArr[i10] = Float.parseFloat(split[i10]);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
                 return null;
             }
         }
@@ -116,7 +116,7 @@ public abstract class d1 extends CameraView {
                 int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
                 while (true) {
                     if (i10 < 32) {
-                        if (f4491a0[i10] == hashCode) {
+                        if (f4882a0[i10] == hashCode) {
                             break;
                         }
                         i10++;
@@ -179,19 +179,19 @@ public abstract class d1 extends CameraView {
         int i10;
         v();
         if (this.H) {
-            ob obVar = (ob) this;
+            nb nbVar = (nb) this;
             if (MessagesController.getGlobalMainSettings().getInt("storysvddualhint", 0) < 2) {
-                AndroidUtilities.runOnUIThread(new androidx.fragment.app.a0(obVar, 26), 340L);
+                AndroidUtilities.runOnUIThread(new androidx.fragment.app.a0(nbVar, 26), 340L);
             }
-            lc lcVar = obVar.f5263b0;
-            lcVar.F0.setValue(obVar.isDual());
-            yc ycVar = lcVar.F0;
-            if (obVar.isDual()) {
+            kc kcVar = nbVar.f5625b0;
+            kcVar.F0.setValue(nbVar.isDual());
+            xc xcVar = kcVar.F0;
+            if (nbVar.isDual()) {
                 i10 = R.string.AccDescrDualCameraOn;
             } else {
                 i10 = R.string.AccDescrDualCameraOff;
             }
-            ycVar.setContentDescription(LocaleController.getString(i10));
+            xcVar.setContentDescription(LocaleController.getString(i10));
         }
         t(true);
     }
@@ -201,11 +201,11 @@ public abstract class d1 extends CameraView {
         if (isDual()) {
             if (!p(getContext(), false)) {
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                this.f4492a = false;
+                this.f4883a = false;
                 edit.putBoolean("dual_available", false).apply();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-                alertDialog$Builder.f18663a.R = LocaleController.getString(R.string.DualErrorTitle);
-                alertDialog$Builder.f18663a.T = LocaleController.getString(R.string.DualErrorMessage);
+                alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.DualErrorTitle);
+                alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.DualErrorMessage);
                 org.telegram.messenger.f0.o(R.string.OK, alertDialog$Builder, null);
             }
             t(false);
@@ -228,11 +228,11 @@ public abstract class d1 extends CameraView {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        Matrix matrix = this.f4500x;
+        Matrix matrix = this.f4892x;
         matrix.reset();
         matrix.postTranslate(1.0f, -1.0f);
         matrix.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
-        matrix.invert(this.f4501y);
+        matrix.invert(this.f4893y);
     }
 
     @Override
@@ -268,11 +268,11 @@ public abstract class d1 extends CameraView {
         fArr[1] = 0.0f;
         matrix.mapPoints(fArr);
         this.R = (float) Math.toDegrees(Math.atan2(fArr[1] - this.Q, fArr[0] - this.P));
-        this.S = v7.a7.a(this.P, this.Q, fArr[0], fArr[1]) * 2.0f;
+        this.S = v7.z6.a(this.P, this.Q, fArr[0], fArr[1]) * 2.0f;
         fArr[0] = 0.0f;
         fArr[1] = 1.0f;
         matrix.mapPoints(fArr);
-        this.T = v7.a7.a(this.P, this.Q, fArr[0], fArr[1]) * 2.0f;
+        this.T = v7.z6.a(this.P, this.Q, fArr[0], fArr[1]) * 2.0f;
     }
 
     public final boolean s(float f7, float f10) {
@@ -283,7 +283,7 @@ public abstract class d1 extends CameraView {
         float[] fArr = this.U;
         fArr[0] = f7;
         fArr[1] = f10;
-        this.f4501y.mapPoints(fArr);
+        this.f4893y.mapPoints(fArr);
         Matrix dualPosition = getDualPosition();
         Matrix matrix = this.L;
         dualPosition.invert(matrix);
@@ -306,7 +306,7 @@ public abstract class d1 extends CameraView {
 
     @Override
     public void toggleDual() {
-        if (!isDual() && !this.f4492a) {
+        if (!isDual() && !this.f4883a) {
             return;
         }
         if (!isDual()) {
@@ -345,12 +345,12 @@ public abstract class d1 extends CameraView {
         if (savedDualMatrix != null) {
             dualPosition.set(savedDualMatrix);
         } else {
-            dualPosition.postConcat(this.f4500x);
+            dualPosition.postConcat(this.f4892x);
             float measuredWidth = getMeasuredWidth() * 0.43f;
             float min = Math.min(getMeasuredWidth(), getMeasuredWidth()) * 0.025f;
             dualPosition.postScale(measuredWidth / getMeasuredWidth(), (getMeasuredHeight() * 0.43f) / getMeasuredHeight());
             dualPosition.postTranslate((getMeasuredWidth() - min) - measuredWidth, min);
-            dualPosition.postConcat(this.f4501y);
+            dualPosition.postConcat(this.f4893y);
         }
         updateDualPosition();
     }

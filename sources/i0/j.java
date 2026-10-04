@@ -12,8 +12,8 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import v7.i8;
-public final class j extends i8 {
+import v7.h8;
+public final class j extends h8 {
     public static Font g(FontFamily fontFamily, int i10) {
         int i11;
         int i12;
@@ -46,15 +46,15 @@ public final class j extends i8 {
         FontFamily.Builder builder = null;
         for (o0.i iVar : iVarArr) {
             try {
-                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f15501a, "r", null);
-            } catch (IOException e) {
-                Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
+                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f16947a, "r", null);
+            } catch (IOException e7) {
+                Log.w("TypefaceCompatApi29Impl", "Font load failed", e7);
             }
             if (openFileDescriptor == null) {
                 if (openFileDescriptor == null) {
                 }
             } else {
-                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f15503c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f15502b).build();
+                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f16949c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f16948b).build();
                 if (builder == null) {
                     builder = new FontFamily.Builder(build);
                 } else {
@@ -85,9 +85,9 @@ public final class j extends i8 {
         h0.f[] fVarArr;
         try {
             FontFamily.Builder builder = null;
-            for (h0.f fVar : eVar.f10036a) {
+            for (h0.f fVar : eVar.f10932a) {
                 try {
-                    Font build = new Font.Builder(resources, fVar.f10040f).setWeight(fVar.f10038b).setSlant(fVar.f10039c ? 1 : 0).setTtcIndex(fVar.e).setFontVariationSettings(fVar.d).build();
+                    Font build = new Font.Builder(resources, fVar.f10937f).setWeight(fVar.f10934b).setSlant(fVar.f10935c ? 1 : 0).setTtcIndex(fVar.f10936e).setFontVariationSettings(fVar.d).build();
                     if (builder == null) {
                         builder = new FontFamily.Builder(build);
                     } else {
@@ -101,8 +101,8 @@ public final class j extends i8 {
             }
             FontFamily build2 = builder.build();
             return new Typeface.CustomFallbackBuilder(build2).setStyle(g(build2, i10).getStyle()).build();
-        } catch (Exception e) {
-            Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
+        } catch (Exception e7) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e7);
             return null;
         }
     }
@@ -115,8 +115,8 @@ public final class j extends i8 {
                 return null;
             }
             return new Typeface.CustomFallbackBuilder(h).setStyle(g(h, i10).getStyle()).build();
-        } catch (Exception e) {
-            Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
+        } catch (Exception e7) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e7);
             return null;
         }
     }
@@ -137,8 +137,8 @@ public final class j extends i8 {
                 }
             }
             return customFallbackBuilder.setStyle(g(h, i10).getStyle()).build();
-        } catch (Exception e) {
-            Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
+        } catch (Exception e7) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e7);
             return null;
         }
     }
@@ -153,8 +153,8 @@ public final class j extends i8 {
         try {
             Font build = new Font.Builder(resources, i10).build();
             return new Typeface.CustomFallbackBuilder(new FontFamily.Builder(build).build()).setStyle(build.getStyle()).build();
-        } catch (Exception e) {
-            Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
+        } catch (Exception e7) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e7);
             return null;
         }
     }

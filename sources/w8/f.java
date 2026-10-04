@@ -3,21 +3,21 @@ package w8;
 import android.os.Parcel;
 import android.os.Parcelable;
 import v8.r;
-import w7.f0;
+import w7.g0;
 public final class f extends o6.a {
     public static final Parcelable.Creator<f> CREATOR = new r(22);
-    public long f45182a;
-    public long f45183b;
+    public long f48906a;
+    public long f48907b;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        long j3 = this.f45182a;
-        f0.s(parcel, 2, 8);
+        int q6 = g0.q(parcel, 20293);
+        long j3 = this.f48906a;
+        g0.s(parcel, 2, 8);
         parcel.writeLong(j3);
-        long j10 = this.f45183b;
-        f0.s(parcel, 3, 8);
+        long j10 = this.f48907b;
+        g0.s(parcel, 3, 8);
         parcel.writeLong(j10);
-        f0.r(parcel, q6);
+        g0.r(parcel, q6);
     }
 }

@@ -2,6 +2,7 @@ package org.webrtc;
 
 import android.hardware.Camera;
 import android.os.SystemClock;
+import hg.k0;
 import java.util.ArrayList;
 import java.util.List;
 import org.webrtc.CameraEnumerationAndroid;
@@ -56,17 +57,17 @@ public class Camera1Enumerator implements CameraEnumerator {
                     for (Camera.Size size : parameters.getSupportedPreviewSizes()) {
                         arrayList.add(new CameraEnumerationAndroid.CaptureFormat(size.width, size.height, i12, i11));
                     }
-                } catch (Exception e) {
-                    Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i10, e);
+                } catch (Exception e7) {
+                    Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i10, e7);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                StringBuilder j3 = hg.c.j(i10, "Get supported formats for camera index ", " done. Time spent: ");
+                StringBuilder j3 = k0.j(i10, "Get supported formats for camera index ", " done. Time spent: ");
                 j3.append(elapsedRealtime2 - elapsedRealtime);
                 j3.append(" ms.");
                 Logging.d("Camera1Enumerator", j3.toString());
                 return arrayList;
-            } catch (RuntimeException e7) {
-                Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i10, e7);
+            } catch (RuntimeException e10) {
+                Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i10, e10);
                 ArrayList arrayList2 = new ArrayList();
                 if (camera != null) {
                     camera.release();
@@ -88,7 +89,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i10;
             }
         }
-        throw new IllegalArgumentException(v7.j.g("No such camera: ", str));
+        throw new IllegalArgumentException(t8.b.i("No such camera: ", str));
     }
 
     private static Camera.CameraInfo getCameraInfo(int i10) {
@@ -96,8 +97,8 @@ public class Camera1Enumerator implements CameraEnumerator {
         try {
             Camera.getCameraInfo(i10, cameraInfo);
             return cameraInfo;
-        } catch (Exception e) {
-            Logging.e("Camera1Enumerator", "getCameraInfo failed on index " + i10, e);
+        } catch (Exception e7) {
+            Logging.e("Camera1Enumerator", "getCameraInfo failed on index " + i10, e7);
             return null;
         }
     }

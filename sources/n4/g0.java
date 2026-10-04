@@ -6,19 +6,19 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 public final class g0 implements Parcelable {
     public static final Parcelable.Creator<g0> CREATOR = new m8.h(10);
-    public final String f15170a;
-    public final CharSequence f15171b;
-    public final int f15172c;
+    public final String f16581a;
+    public final CharSequence f16582b;
+    public final int f16583c;
     public final Bundle d;
 
     public g0(Parcel parcel) {
         String readString = parcel.readString();
         readString.getClass();
-        this.f15170a = readString;
+        this.f16581a = readString;
         CharSequence charSequence = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
         charSequence.getClass();
-        this.f15171b = charSequence;
-        this.f15172c = parcel.readInt();
+        this.f16582b = charSequence;
+        this.f16583c = parcel.readInt();
         this.d = parcel.readBundle(y.class.getClassLoader());
     }
 
@@ -28,14 +28,14 @@ public final class g0 implements Parcelable {
     }
 
     public final String toString() {
-        return "Action:mName='" + ((Object) this.f15171b) + ", mIcon=" + this.f15172c + ", mExtras=" + this.d;
+        return "Action:mName='" + ((Object) this.f16582b) + ", mIcon=" + this.f16583c + ", mExtras=" + this.d;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f15170a);
-        TextUtils.writeToParcel(this.f15171b, parcel, i10);
-        parcel.writeInt(this.f15172c);
+        parcel.writeString(this.f16581a);
+        TextUtils.writeToParcel(this.f16582b, parcel, i10);
+        parcel.writeInt(this.f16583c);
         parcel.writeBundle(this.d);
     }
 }

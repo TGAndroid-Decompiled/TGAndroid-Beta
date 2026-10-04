@@ -1,42 +1,43 @@
 package q9;
 
-import org.telegram.ui.ds0;
+import org.telegram.ui.fs0;
+import org.telegram.ui.web.w;
 public final class p implements pa.b {
-    public static final org.webrtc.audio.b f41494c = new org.webrtc.audio.b(11);
+    public static final w f44867c = new w(13);
     public static final f d = new f(1);
-    public pa.a f41495a;
-    public volatile pa.b f41496b;
+    public pa.a f44868a;
+    public volatile pa.b f44869b;
 
-    public p(org.webrtc.audio.b bVar, pa.b bVar2) {
-        this.f41495a = bVar;
-        this.f41496b = bVar2;
+    public p(w wVar, pa.b bVar) {
+        this.f44868a = wVar;
+        this.f44869b = bVar;
     }
 
     public final void a(pa.a aVar) {
         pa.b bVar;
         pa.b bVar2;
-        pa.b bVar3 = this.f41496b;
+        pa.b bVar3 = this.f44869b;
         f fVar = d;
         if (bVar3 != fVar) {
-            aVar.g(bVar3);
+            aVar.f(bVar3);
             return;
         }
         synchronized (this) {
-            bVar = this.f41496b;
+            bVar = this.f44869b;
             if (bVar != fVar) {
                 bVar2 = bVar;
             } else {
-                this.f41495a = new ds0(25, this.f41495a, aVar);
+                this.f44868a = new fs0(26, this.f44868a, aVar);
                 bVar2 = null;
             }
         }
         if (bVar2 != null) {
-            aVar.g(bVar);
+            aVar.f(bVar);
         }
     }
 
     @Override
     public final Object get() {
-        return this.f41496b.get();
+        return this.f44869b.get();
     }
 }

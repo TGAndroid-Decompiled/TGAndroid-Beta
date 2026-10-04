@@ -1,18 +1,18 @@
 package za;
 public final class f implements ia.d {
-    public static final f f49042a = new Object();
-    public static final ia.c f49043b = ia.c.c("processName");
-    public static final ia.c f49044c = ia.c.c("pid");
+    public static final f f53086a = new Object();
+    public static final ia.c f53087b = ia.c.c("processName");
+    public static final ia.c f53088c = ia.c.c("pid");
     public static final ia.c d = ia.c.c("importance");
-    public static final ia.c e = ia.c.c("defaultProcess");
+    public static final ia.c f53089e = ia.c.c("defaultProcess");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        r rVar = (r) obj;
+        p pVar = (p) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f49043b, rVar.f49103a);
-        eVar.e(f49044c, rVar.f49104b);
-        eVar.e(d, rVar.f49105c);
-        eVar.c(e, rVar.d);
+        eVar.a(f53087b, pVar.f53141a);
+        eVar.e(f53088c, pVar.f53142b);
+        eVar.e(d, pVar.f53143c);
+        eVar.c(f53089e, pVar.d);
     }
 }

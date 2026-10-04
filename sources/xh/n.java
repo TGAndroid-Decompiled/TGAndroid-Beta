@@ -6,64 +6,64 @@ import java.util.ArrayList;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.cb;
 public final class n implements View.OnClickListener {
-    public final int f46301a;
-    public final long f46302b;
-    public final Context f46303c;
+    public final int f50119a;
+    public final long f50120b;
+    public final Context f50121c;
     public final Object d;
-    public final Object e;
-    public final Object f46304f;
+    public final Object f50122e;
+    public final Object f50123f;
 
     public n(Context context, d6 d6Var, long j3, TL_stars.StarGift starGift, ArrayList arrayList) {
-        this.f46301a = 2;
-        this.f46303c = context;
+        this.f50119a = 2;
+        this.f50121c = context;
         this.d = d6Var;
-        this.f46302b = j3;
-        this.f46304f = starGift;
-        this.e = arrayList;
+        this.f50120b = j3;
+        this.f50123f = starGift;
+        this.f50122e = arrayList;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f46301a) {
+        switch (this.f50119a) {
             case 0:
-                v.Q((v) this.f46304f, this.f46302b, this.f46303c, (d6) this.d, (Runnable) this.e);
+                v.O((v) this.f50123f, this.f50120b, this.f50121c, (d6) this.d, (Runnable) this.f50122e);
                 return;
             case 1:
-                c0 c0Var = (c0) this.f46304f;
+                c0 c0Var = (c0) this.f50123f;
                 c0Var.getClass();
-                l lVar = new l(this.f46302b, true, null);
-                GiftAuctionController.Auction auction = c0Var.f46100d0;
-                m mVar = new m(this.f46303c, (d6) this.d, lVar, auction);
+                l lVar = new l(this.f50120b, true, null);
+                GiftAuctionController.Auction auction = c0Var.f49901d0;
+                m mVar = new m(this.f50121c, (d6) this.d, lVar, auction);
                 mVar.show();
-                mVar.f46274n0 = (Runnable) this.e;
+                mVar.f50087n0 = (Runnable) this.f50122e;
                 c0Var.dismiss();
                 return;
             case 2:
-                new c0(this.f46303c, (d6) this.d, this.f46302b, (TL_stars.StarGift) this.f46304f, (ArrayList) this.e, null, true).show();
+                new c0(this.f50121c, (d6) this.d, this.f50120b, (TL_stars.StarGift) this.f50123f, (ArrayList) this.f50122e, null, true).show();
                 return;
             default:
-                z4.S((z4) this.f46304f, this.f46302b, this.f46303c, (Runnable) this.e, (TL_stars.StarGift) this.d);
+                z4.Q((z4) this.f50123f, this.f50120b, this.f50121c, (Runnable) this.f50122e, (TL_stars.StarGift) this.d);
                 return;
         }
     }
 
-    public n(bb bbVar, long j3, Context context, d6 d6Var, Runnable runnable, int i10) {
-        this.f46301a = i10;
-        this.f46304f = bbVar;
-        this.f46302b = j3;
-        this.f46303c = context;
+    public n(cb cbVar, long j3, Context context, d6 d6Var, Runnable runnable, int i10) {
+        this.f50119a = i10;
+        this.f50123f = cbVar;
+        this.f50120b = j3;
+        this.f50121c = context;
         this.d = d6Var;
-        this.e = runnable;
+        this.f50122e = runnable;
     }
 
     public n(z4 z4Var, long j3, Context context, Runnable runnable, TL_stars.StarGift starGift) {
-        this.f46301a = 3;
-        this.f46304f = z4Var;
-        this.f46302b = j3;
-        this.f46303c = context;
-        this.e = runnable;
+        this.f50119a = 3;
+        this.f50123f = z4Var;
+        this.f50120b = j3;
+        this.f50121c = context;
+        this.f50122e = runnable;
         this.d = starGift;
     }
 }

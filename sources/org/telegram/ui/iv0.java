@@ -1,28 +1,25 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class iv0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34589a;
-    public final rv0 f34590b;
-
-    public iv0(rv0 rv0Var, int i10) {
-        this.f34589a = i10;
-        this.f34590b = rv0Var;
-    }
-
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+public final class iv0 extends ViewOutlineProvider {
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34589a) {
-            case 0:
-                rv0 rv0Var = this.f34590b;
-                rv0Var.getClass();
-                rv0Var.R.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                rv0 rv0Var2 = this.f34590b;
-                rv0Var2.getClass();
-                rv0Var2.R.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+    public final void getOutline(View view, Outline outline) {
+        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
+        if (imageReceiver != null) {
+            int[] roundRadius = imageReceiver.getRoundRadius(true);
+            int i10 = 0;
+            for (int i11 = 0; i11 < 4; i11++) {
+                i10 = Math.max(i10, roundRadius[i11]);
+            }
+            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
+            return;
         }
+        int i12 = AndroidUtilities.roundMessageSize;
+        outline.setOval(0, 0, i12, i12);
     }
 }

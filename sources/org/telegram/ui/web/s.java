@@ -5,37 +5,37 @@ import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class s implements Runnable {
-    public final int f39196a;
-    public final b1 f39197b;
+    public final int f42331a;
+    public final c1 f42332b;
 
-    public s(b1 b1Var, int i10) {
-        this.f39196a = i10;
-        this.f39197b = b1Var;
+    public s(c1 c1Var, int i10) {
+        this.f42331a = i10;
+        this.f42332b = c1Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f39196a) {
+        switch (this.f42331a) {
             case 0:
-                g0 g0Var = this.f39197b.f39001c;
-                if (g0Var != null) {
-                    g0Var.b();
+                h0 h0Var = this.f42332b.f42122c;
+                if (h0Var != null) {
+                    h0Var.b();
                 }
                 LaunchActivity.L();
                 return;
             case 1:
-                b1 b1Var = this.f39197b;
-                da daVar = b1Var.I0;
-                ei.w0 w0Var = b1Var.f39011k0;
-                w0Var.getClass();
+                c1 c1Var = this.f42332b;
+                da daVar = c1Var.I0;
+                ei.x0 x0Var = c1Var.f42133k0;
+                x0Var.getClass();
                 JSONObject jSONObject = new JSONObject();
                 try {
-                    jSONObject.put("available", w0Var.d());
-                    if (w0Var.d()) {
-                        jSONObject.put("access_requested", w0Var.d);
-                        if (w0Var.d) {
-                            if (w0Var.e && w0Var.a()) {
+                    jSONObject.put("available", x0Var.d());
+                    if (x0Var.d()) {
+                        jSONObject.put("access_requested", x0Var.d);
+                        if (x0Var.d) {
+                            if (x0Var.f9451e && x0Var.a()) {
                                 z10 = true;
                             } else {
                                 z10 = false;
@@ -43,28 +43,28 @@ public final class s implements Runnable {
                             jSONObject.put("access_granted", z10);
                         }
                     }
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                 }
-                b1Var.y(daVar, "location_checked", jSONObject);
+                c1Var.y(daVar, "location_checked", jSONObject);
                 return;
             default:
-                b1 b1Var2 = this.f39197b;
-                if (b1Var2.S) {
-                    b1Var2.S = false;
-                    g0 g0Var2 = b1Var2.f39001c;
-                    if (g0Var2 != null) {
-                        g0Var2.t(false);
+                c1 c1Var2 = this.f42332b;
+                if (c1Var2.S) {
+                    c1Var2.S = false;
+                    h0 h0Var2 = c1Var2.f42122c;
+                    if (h0Var2 != null) {
+                        h0Var2.t(false);
                     }
                 }
-                b1Var2.c();
-                b1Var2.N = false;
-                b1Var2.P = 0L;
-                b1Var2.T = false;
-                y0 y0Var = b1Var2.f38997a;
-                if (y0Var != null) {
-                    y0Var.onResume();
-                    b1Var2.f38997a.reload();
+                c1Var2.c();
+                c1Var2.N = false;
+                c1Var2.P = 0L;
+                c1Var2.T = false;
+                z0 z0Var = c1Var2.f42118a;
+                if (z0Var != null) {
+                    z0Var.onResume();
+                    c1Var2.f42118a.reload();
                     return;
                 }
                 return;

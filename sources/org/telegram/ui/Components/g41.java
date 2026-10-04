@@ -1,72 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.Rect;
 import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class g41 extends p6 {
-    public final Paint f24412s;
-    public final m90 v;
-    public final i41 f24413w;
+import android.view.View;
+public final class g41 extends zl0 {
+    public final t41 f26644e3;
 
-    public g41(i41 i41Var, Context context) {
-        super(context, false, false, false);
-        this.f24413w = i41Var;
-        this.f24412s = new Paint(1);
-        this.v = new m90();
+    public g41(t41 t41Var, Context context) {
+        super(context, null);
+        this.f26644e3 = t41Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (LocaleController.isRTL) {
-            AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-        } else {
-            AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            float y3 = motionEvent.getY();
+            t41 t41Var = this.f26644e3;
+            if (y3 < t41Var.z(true) - getTop()) {
+                t41Var.dismiss();
+                return true;
+            }
         }
-        k41 k41Var = this.f24413w.h;
-        int i10 = org.telegram.ui.ActionBar.h6.Pi;
-        String[] strArr = k41.R;
-        int l1 = org.telegram.ui.ActionBar.h6.l1(0.1175f, k41Var.getThemedColor(i10));
-        Paint paint = this.f24412s;
-        paint.setColor(l1);
-        canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-        if (this.v.f(canvas)) {
-            invalidate();
-        }
-        super.onDraw(canvas);
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.d6 d6Var;
-        k41 k41Var = this.f24413w.h;
-        int action = motionEvent.getAction();
-        m90 m90Var = this.v;
-        if (action == 0) {
-            d6Var = ((org.telegram.ui.ActionBar.e3) k41Var).resourcesProvider;
-            q90 q90Var = new q90(null, d6Var, motionEvent.getX(), motionEvent.getY(), 0);
-            q90Var.d(org.telegram.ui.ActionBar.h6.l1(0.1175f, k41Var.getThemedColor(org.telegram.ui.ActionBar.h6.Pi)));
-            j90 b10 = q90Var.b();
-            if (LocaleController.isRTL) {
-                AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-            } else {
-                AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-            }
-            b10.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
-            m90Var.a(q90Var, null);
-            invalidate();
-            return true;
-        }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (motionEvent.getAction() == 1) {
-                performClick();
-            }
-            m90Var.d(true);
-            invalidate();
-        }
-        return super.onTouchEvent(motionEvent);
+    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        return true;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
     }
 }

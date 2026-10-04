@@ -1,9 +1,9 @@
 package z7;
 public final class x5 implements ia.d {
-    public static final x5 f48962a = new Object();
+    public static final x5 f52993a = new Object();
 
     static {
-        v7.j.r(v7.j.m(w.class, new s(1)));
+        t8.b.t(t8.b.o(w.class, new s(1)));
     }
 
     @Override

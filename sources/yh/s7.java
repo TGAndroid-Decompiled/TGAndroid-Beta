@@ -1,77 +1,26 @@
 package yh;
+public final class s7 implements Runnable {
+    public final long f51982a;
+    public final int f51983b;
+    public final int f51984c;
+    public final boolean d;
 
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.x51;
-public final class s7 implements Utilities.Callback2 {
-    public final int f48017a;
-    public final NotificationCenter.NotificationCenterDelegate f48018b;
-
-    public s7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f48017a = i10;
-        this.f48018b = notificationCenterDelegate;
+    public s7(long j3, int i10, int i11, boolean z10) {
+        this.f51982a = j3;
+        this.f51983b = i10;
+        this.f51984c = i11;
+        this.d = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10 = this.f48017a;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f48018b;
-        switch (i10) {
-            case 0:
-                t7 t7Var = (t7) notificationCenterDelegate;
-                ArrayList arrayList = (ArrayList) obj;
-                l61 l61Var = (l61) obj2;
-                int i11 = t7Var.f48067c;
-                int i12 = t7Var.d;
-                long j3 = t7Var.f48068f;
-                int i13 = 0;
-                if (j3 != 0) {
-                    o g10 = o.g(i11);
-                    ArrayList arrayList2 = g10.k(j3).f47754a[i12];
-                    int size = arrayList2.size();
-                    while (i13 < size) {
-                        Object obj3 = arrayList2.get(i13);
-                        i13++;
-                        int i14 = p7.f47887a;
-                        x51 J = x51.J(p7.class);
-                        J.G = (TL_stars.StarsTransaction) obj3;
-                        J.f30283q = true;
-                        arrayList.add(J);
-                    }
-                    if (!g10.k(j3).e[i12]) {
-                        arrayList.add(x51.o(arrayList.size(), 7));
-                        arrayList.add(x51.o(arrayList.size(), 7));
-                        arrayList.add(x51.o(arrayList.size(), 7));
-                        return;
-                    }
-                    return;
-                }
-                t5 y3 = t5.y(i11, t7Var.e);
-                ArrayList arrayList3 = y3.f48054q[i12];
-                int size2 = arrayList3.size();
-                int i15 = 0;
-                while (i15 < size2) {
-                    Object obj4 = arrayList3.get(i15);
-                    i15++;
-                    int i16 = p7.f47887a;
-                    x51 J2 = x51.J(p7.class);
-                    J2.G = (TL_stars.StarsTransaction) obj4;
-                    J2.f30283q = false;
-                    arrayList.add(J2);
-                }
-                if (!y3.f48058u[i12]) {
-                    arrayList.add(x51.o(arrayList.size(), 7));
-                    arrayList.add(x51.o(arrayList.size(), 7));
-                    arrayList.add(x51.o(arrayList.size(), 7));
-                    return;
-                }
-                return;
-            default:
-                hg.f2.V((hg.f2) notificationCenterDelegate, (ArrayList) obj, (l61) obj2);
-                return;
+    public final void run() {
+        long j3 = this.f51982a;
+        int i10 = this.f51983b;
+        int i11 = this.f51984c;
+        if (j3 != 0) {
+            o.g(i10).p(i11, j3);
+        } else {
+            t5.y(i10, this.d).X(i11);
         }
     }
 }

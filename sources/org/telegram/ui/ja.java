@@ -1,80 +1,151 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.SpannableStringBuilder;
-import android.text.TextWatcher;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class ja implements TextWatcher {
-    public final ka f34709a;
+import org.telegram.tgnet.TLRPC;
+public final class ja extends org.telegram.ui.Components.yl0 {
+    public final sa f37613c;
 
-    public ja(ka kaVar) {
-        this.f34709a = kaVar;
+    public ja(sa saVar) {
+        this.f37613c = saVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        qa qaVar = this.f34709a.f35015c;
-        if (qaVar.f36836r.startsWith("@")) {
-            qaVar.f36836r = qaVar.f36836r.substring(1);
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f46527f == 4) {
+            return true;
         }
-        if (qaVar.f36836r.length() > 0) {
-            StringBuilder sb2 = new StringBuilder("https://");
-            i10 = ((org.telegram.ui.ActionBar.m2) qaVar).currentAccount;
-            sb2.append(MessagesController.getInstance(i10).linkPrefix);
-            sb2.append("/");
-            sb2.append(qaVar.f36836r);
-            String sb3 = sb2.toString();
-            String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, sb3);
-            int indexOf = formatString.indexOf(sb3);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Cells.i(sb3, qaVar, 3), indexOf, sb3.length() + indexOf, 33);
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        int i10;
+        sa saVar = this.f37613c;
+        org.telegram.ui.Components.zl0 zl0Var = saVar.f40423b;
+        ArrayList arrayList = saVar.v;
+        if (zl0Var != null) {
+            ArrayList arrayList2 = zl0Var.L2;
+            if (arrayList2 != null) {
+                arrayList2.clear();
+            } else {
+                zl0Var.L2 = new ArrayList();
+            }
+            if (arrayList.size() > 0) {
+                saVar.f40423b.L2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
             }
         }
+        if (saVar.v.size() > 0) {
+            i10 = saVar.v.size() + 2;
+        } else {
+            i10 = 0;
+        }
+        return i10 + 3;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        ka kaVar = this.f34709a;
-        qa qaVar = kaVar.f35015c;
-        String str = qaVar.f36836r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
         }
-        qaVar.f36836r = charSequence2;
-        qa qaVar2 = kaVar.f35015c;
-        na naVar = qaVar2.E;
-        if (naVar != null && str != null) {
-            naVar.b(qaVar2.f36836r);
+        if (i10 == 1) {
+            return 3;
         }
+        if (i10 == 2) {
+            return 1;
+        }
+        if (i10 == 3) {
+            return 0;
+        }
+        if (i10 == h() - 1) {
+            return 2;
+        }
+        return 4;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        ka kaVar = this.f34709a;
-        qa qaVar = kaVar.f35015c;
-        String str = qaVar.f36836r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        qaVar.f36836r = charSequence2;
-        qa qaVar2 = kaVar.f35015c;
-        na naVar = qaVar2.E;
-        if (naVar != null && str != null) {
-            naVar.b(qaVar2.f36836r);
-        }
-        if (qaVar.f36835n) {
+    public final void v(s4.c1 c1Var, int i10) {
+        int i11;
+        int i12;
+        boolean z10;
+        sa saVar = this.f37613c;
+        long j3 = saVar.f40431x;
+        int i13 = c1Var.f46527f;
+        View view = c1Var.f46523a;
+        if (i13 != 0) {
+            if (i13 != 2) {
+                if (i13 != 3) {
+                    if (i13 != 4) {
+                        return;
+                    }
+                    TLRPC.TL_username tL_username = (TLRPC.TL_username) saVar.v.get(i10 - 4);
+                    pa paVar = (pa) view;
+                    if (tL_username.editable) {
+                        saVar.E = paVar;
+                    } else if (saVar.E == paVar) {
+                        saVar.E = null;
+                    }
+                    if (i10 < h() - 2) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    paVar.a(tL_username, z10, false, saVar.f40431x);
+                    return;
+                }
+                saVar.f40427n = true;
+                ma maVar = (ma) view;
+                saVar.f40432y = maVar;
+                maVar.f38507a.setText(saVar.f40428r);
+                saVar.f40427n = false;
+                return;
+            }
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+            if (j3 != 0) {
+                i12 = R.string.BotUsernamesHelp;
+            } else {
+                i12 = R.string.UsernamesProfileHelp;
+            }
+            e9Var.setText(LocaleController.getString(i12));
             return;
         }
-        qaVar.d0(qaVar.f36836r);
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
+        if (i10 == 0) {
+            if (j3 != 0) {
+                i11 = R.string.BotSetPublicLinkHeader;
+            } else {
+                i11 = R.string.SetUsernameHeader;
+            }
+        } else {
+            i11 = R.string.UsernamesProfileHeader;
+        }
+        m4Var.setText(LocaleController.getString(i11));
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        sa saVar = this.f37613c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            return null;
+                        }
+                        return new s4.c1(new ia(this, saVar.getParentActivity(), saVar.getResourceProvider()));
+                    }
+                    return new s4.c1(new ma(saVar, saVar.getParentActivity()));
+                }
+                return new s4.c1(new org.telegram.ui.Cells.e9(saVar.getParentActivity()));
+            }
+            ra raVar = new ra(saVar, saVar.getParentActivity());
+            raVar.setTag(-33024);
+            return new s4.c1(raVar);
+        }
+        return new s4.c1(new org.telegram.ui.Cells.m4(saVar.getParentActivity()));
     }
 }

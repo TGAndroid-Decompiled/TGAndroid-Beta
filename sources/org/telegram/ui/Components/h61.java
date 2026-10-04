@@ -1,19 +1,45 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class h61 implements Utilities.Callback0Return {
-    public final int f24710a;
-    public final Object f24711b;
-    public final Object f24712c;
+import android.text.TextPaint;
+public final class h61 extends k61 {
+    public static boolean h = true;
+    public final int f27028e;
+    public final m11 f27029f;
 
-    public h61(int i10, Object obj, Object obj2) {
-        this.f24710a = i10;
-        this.f24711b = obj;
-        this.f24712c = obj2;
+    public h61(String str, int i10, m11 m11Var) {
+        super(str, (m11) null);
+        this.f27028e = i10;
+        this.f27029f = m11Var;
     }
 
     @Override
-    public final java.lang.Object run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h61.run():java.lang.Object");
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10;
+        int i11;
+        super.updateDrawState(textPaint);
+        int i12 = this.f27028e;
+        if (i12 == 2) {
+            textPaint.setColor(-1);
+        } else if (i12 == 1) {
+            if (h) {
+                i11 = org.telegram.ui.ActionBar.i6.f20895hc;
+            } else {
+                i11 = org.telegram.ui.ActionBar.i6.f20859fc;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
+        } else {
+            if (h) {
+                i10 = org.telegram.ui.ActionBar.i6.gc;
+            } else {
+                i10 = org.telegram.ui.ActionBar.i6.ec;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+        }
+        m11 m11Var = this.f27029f;
+        if (m11Var != null) {
+            m11Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
+        }
     }
 }

@@ -13,28 +13,28 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class sd implements Runnable {
-    public final int f28192a = 0;
-    public final Object f28193b;
-    public final boolean f28194c;
+    public final int f30685a = 0;
+    public final Object f30686b;
+    public final boolean f30687c;
     public final int d;
-    public final int e;
-    public final boolean f28195f;
+    public final int f30688e;
+    public final boolean f30689f;
     public final Long h;
-    public final String f28196n;
-    public final Object f28197r;
-    public final Object f28198s;
+    public final String f30690n;
+    public final Object f30691r;
+    public final Object f30692s;
     public final Object v;
 
-    public sd(hg hgVar, Object obj, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11, Long l4, String str, Object obj2) {
-        this.f28197r = hgVar;
-        this.f28193b = obj;
-        this.f28198s = photoEntry;
-        this.f28194c = z10;
+    public sd(ig igVar, Object obj, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11, Long l4, String str, Object obj2) {
+        this.f30691r = igVar;
+        this.f30686b = obj;
+        this.f30692s = photoEntry;
+        this.f30687c = z10;
         this.d = i10;
-        this.e = i11;
-        this.f28195f = z11;
+        this.f30688e = i11;
+        this.f30689f = z11;
         this.h = l4;
-        this.f28196n = str;
+        this.f30690n = str;
         this.v = obj2;
     }
 
@@ -50,37 +50,37 @@ public final class sd implements Runnable {
         String str;
         MessageObject threadMessage4;
         String str2;
-        switch (this.f28192a) {
+        switch (this.f30685a) {
             case 0:
-                ChatActivityEnterView.g((ChatActivityEnterView) this.f28197r, (TLRPC.Document) this.f28198s, this.f28196n, (MessageObject.SendAnimationData) this.v, this.f28194c, this.d, this.e, this.f28193b, this.h, this.f28195f);
+                ChatActivityEnterView.g((ChatActivityEnterView) this.f30691r, (TLRPC.Document) this.f30692s, this.f30690n, (MessageObject.SendAnimationData) this.v, this.f30687c, this.d, this.f30688e, this.f30686b, this.h, this.f30689f);
                 return;
             default:
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.f28198s;
-                ChatActivityEnterView chatActivityEnterView = ((hg) this.f28197r).f24795a;
-                boolean z11 = chatActivityEnterView.f22100z3;
-                org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.f30692s;
+                ChatActivityEnterView chatActivityEnterView = ((ig) this.f30691r).f27400a;
+                boolean z11 = chatActivityEnterView.f23993z3;
+                org.telegram.ui.yn ynVar = chatActivityEnterView.P2;
                 boolean z12 = false;
                 if (z11) {
                     if (chatActivityEnterView.R1 != 0) {
                         chatActivityEnterView.U0.A();
                     }
-                    chatActivityEnterView.n1(false, true, false, true);
+                    chatActivityEnterView.m1(false, true, false, true);
                 }
-                og ogVar = chatActivityEnterView.Z2;
+                pg pgVar = chatActivityEnterView.Z2;
                 SendMessageChatArguments sendMessageChatArguments = null;
-                if (ogVar != null) {
-                    storyItem = ogVar.d1();
+                if (pgVar != null) {
+                    storyItem = pgVar.d1();
                 } else {
                     storyItem = null;
                 }
-                Object obj = this.f28193b;
+                Object obj = this.f30686b;
                 boolean z13 = obj instanceof TLRPC.Document;
-                boolean z14 = this.f28194c;
+                boolean z14 = this.f30687c;
                 int i10 = this.d;
-                int i11 = this.e;
+                int i11 = this.f30688e;
                 Long l4 = this.h;
                 int i12 = i10;
-                String str3 = this.f28196n;
+                String str3 = this.f30690n;
                 Object obj2 = this.v;
                 if (z13) {
                     TLRPC.Document document = (TLRPC.Document) obj;
@@ -96,7 +96,7 @@ public final class sd implements Runnable {
                         videoEditedInfo.muted = true;
                         z12 = needConvert;
                     }
-                    boolean z15 = this.f28195f;
+                    boolean z15 = this.f30689f;
                     if (z12) {
                         ArrayList arrayList = new ArrayList();
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -141,12 +141,12 @@ public final class sd implements Runnable {
                         long j3 = chatActivityEnterView.Q2;
                         MessageObject messageObject = chatActivityEnterView.T2;
                         threadMessage4 = chatActivityEnterView.getThreadMessage();
-                        org.telegram.ui.mn mnVar = chatActivityEnterView.V2;
+                        org.telegram.ui.on onVar = chatActivityEnterView.V2;
                         MessageObject messageObject2 = chatActivityEnterView.Z1;
-                        if (wnVar != null) {
-                            sendMessageChatArguments = wnVar.C8();
+                        if (ynVar != null) {
+                            sendMessageChatArguments = ynVar.D8();
                         }
-                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j3, messageObject, threadMessage4, null, mnVar, false, false, messageObject2, z14, i12, i11, 0, false, null, sendMessageChatArguments, chatActivityEnterView.S4, z15, l4.longValue(), chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
+                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j3, messageObject, threadMessage4, null, onVar, false, false, messageObject2, z14, i12, i11, 0, false, null, sendMessageChatArguments, chatActivityEnterView.S4, z15, l4.longValue(), chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
                         z10 = z14;
                         i12 = i12;
                     } else {
@@ -160,11 +160,11 @@ public final class sd implements Runnable {
                         TL_stories.StoryItem storyItem2 = storyItem;
                         MessageObject messageObject3 = chatActivityEnterView.T2;
                         threadMessage3 = chatActivityEnterView.getThreadMessage();
-                        org.telegram.ui.mn mnVar2 = chatActivityEnterView.V2;
-                        if (wnVar != null) {
-                            sendMessageChatArguments = wnVar.C8();
+                        org.telegram.ui.on onVar2 = chatActivityEnterView.V2;
+                        if (ynVar != null) {
+                            sendMessageChatArguments = ynVar.D8();
                         }
-                        sendMessagesHelper.sendSticker(document, str3, j10, charSequence, videoEditedInfo, messageObject3, threadMessage3, storyItem2, mnVar2, null, z14, i12, i11, false, obj2, sendMessageChatArguments, l4.longValue(), chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams(), z15);
+                        sendMessagesHelper.sendSticker(document, str3, j10, charSequence, videoEditedInfo, messageObject3, threadMessage3, storyItem2, onVar2, null, z14, i12, i11, false, obj2, sendMessageChatArguments, l4.longValue(), chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams(), z15);
                         z10 = z14;
                         i12 = i12;
                         MediaDataController.getInstance(chatActivityEnterView.Q).addRecentGif(document, (int) (System.currentTimeMillis() / 1000), true);
@@ -185,20 +185,20 @@ public final class sd implements Runnable {
                         }
                         TLRPC.User user = (TLRPC.User) obj2;
                         HashMap hashMap = new HashMap();
-                        hashMap.put("id", botInlineResult.f18335id);
+                        hashMap.put("id", botInlineResult.f20035id);
                         hashMap.put("query_id", "" + botInlineResult.query_id);
                         hashMap.put("force_gif", "1");
                         if (storyItem3 == null) {
-                            org.telegram.ui.wn wnVar2 = chatActivityEnterView.P2;
+                            org.telegram.ui.yn ynVar2 = chatActivityEnterView.P2;
                             AccountInstance accountInstance2 = chatActivityEnterView.R;
                             long j11 = chatActivityEnterView.Q2;
                             MessageObject messageObject4 = chatActivityEnterView.T2;
                             threadMessage2 = chatActivityEnterView.getThreadMessage();
-                            org.telegram.ui.mn mnVar3 = chatActivityEnterView.V2;
-                            if (wnVar != null) {
-                                sendMessageChatArguments = wnVar.C8();
+                            org.telegram.ui.on onVar3 = chatActivityEnterView.V2;
+                            if (ynVar != null) {
+                                sendMessageChatArguments = ynVar.D8();
                             }
-                            SendMessagesHelper.prepareSendingBotContextResult(wnVar2, accountInstance2, botInlineResult, hashMap, j11, messageObject4, threadMessage2, null, mnVar3, z10, i12, 0, sendMessageChatArguments, l4.longValue(), chatActivityEnterView.getSendMonoForumPeerId());
+                            SendMessagesHelper.prepareSendingBotContextResult(ynVar2, accountInstance2, botInlineResult, hashMap, j11, messageObject4, threadMessage2, null, onVar3, z10, i12, 0, sendMessageChatArguments, l4.longValue(), chatActivityEnterView.getSendMonoForumPeerId());
                             z10 = z10;
                             i12 = i12;
                         } else {
@@ -207,22 +207,22 @@ public final class sd implements Runnable {
                             long j12 = chatActivityEnterView.Q2;
                             MessageObject messageObject5 = chatActivityEnterView.T2;
                             threadMessage = chatActivityEnterView.getThreadMessage();
-                            org.telegram.ui.mn mnVar4 = chatActivityEnterView.V2;
-                            if (wnVar != null) {
-                                sendMessageChatArguments = wnVar.C8();
+                            org.telegram.ui.on onVar4 = chatActivityEnterView.V2;
+                            if (ynVar != null) {
+                                sendMessageChatArguments = ynVar.D8();
                             }
-                            sendMessagesHelper2.sendSticker(document2, str3, j12, messageObject5, threadMessage, storyItem3, mnVar4, null, z10, i12, i11, false, obj2, sendMessageChatArguments, l4.longValue(), chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
+                            sendMessagesHelper2.sendSticker(document2, str3, j12, messageObject5, threadMessage, storyItem3, onVar4, null, z10, i12, i11, false, obj2, sendMessageChatArguments, l4.longValue(), chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
                         }
                         if (chatActivityEnterView.R1 != 0) {
-                            chatActivityEnterView.m1(0, true);
+                            chatActivityEnterView.l1(0, true);
                             chatActivityEnterView.U0.t(true);
                             chatActivityEnterView.U0.A();
                         }
                     }
                 }
-                og ogVar2 = chatActivityEnterView.Z2;
-                if (ogVar2 != null) {
-                    ogVar2.H(null, z10, i12, 0, 0L);
+                pg pgVar2 = chatActivityEnterView.Z2;
+                if (pgVar2 != null) {
+                    pgVar2.H(null, z10, i12, 0, 0L);
                     return;
                 }
                 return;
@@ -230,15 +230,15 @@ public final class sd implements Runnable {
     }
 
     public sd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10, int i11, Object obj, Long l4, boolean z11) {
-        this.f28197r = chatActivityEnterView;
-        this.f28198s = document;
-        this.f28196n = str;
+        this.f30691r = chatActivityEnterView;
+        this.f30692s = document;
+        this.f30690n = str;
         this.v = sendAnimationData;
-        this.f28194c = z10;
+        this.f30687c = z10;
         this.d = i10;
-        this.e = i11;
-        this.f28193b = obj;
+        this.f30688e = i11;
+        this.f30686b = obj;
         this.h = l4;
-        this.f28195f = z11;
+        this.f30689f = z11;
     }
 }

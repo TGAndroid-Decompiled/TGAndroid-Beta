@@ -1,112 +1,147 @@
 package org.telegram.ui;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ne0 implements Runnable {
-    public final int f35865a = 0;
-    public final re0 f35866b;
-    public final TLRPC.TL_error f35867c;
-    public final Bundle d;
-    public final TLObject e;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ne0 extends org.telegram.ui.Components.qw0 {
+    public final EditTextBoldCursor f38944a;
+    public final TextView f38945b;
+    public final TextView f38946c;
+    public final TextView d;
+    public final org.telegram.ui.Components.nj0 f38947e;
+    public Bundle f38948f;
+    public boolean h;
+    public TL_account.Password f38949n;
+    public String f38950r;
+    public String f38951s;
+    public String v;
+    public String f38952w;
+    public final org.telegram.ui.Components.ld0 f38953x;
+    public final ug0 f38954y;
 
-    public ne0(re0 re0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
-        this.f35866b = re0Var;
-        this.e = tLObject;
-        this.d = bundle;
-        this.f35867c = tL_error;
+    public ne0(org.telegram.ui.ug0 r20, android.content.Context r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ne0.<init>(org.telegram.ui.ug0, android.content.Context):void");
     }
 
     @Override
-    public final void run() {
-        String str;
-        switch (this.f35865a) {
-            case 0:
-                re0 re0Var = this.f35866b;
-                qg0 qg0Var = re0Var.f37312a0;
-                re0Var.M = false;
-                re0Var.v.invalidate();
-                TLObject tLObject = this.e;
-                if (tLObject != null) {
-                    Bundle bundle = this.d;
-                    re0Var.S = bundle;
-                    TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject;
-                    re0Var.T = tL_auth_sentCode;
-                    qg0Var.g1(bundle, tL_auth_sentCode, true);
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean c(boolean z10) {
+        this.h = false;
+        this.f38954y.k1(true, true);
+        this.f38948f = null;
+        return true;
+    }
+
+    @Override
+    public final void d() {
+        this.h = false;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return LocaleController.getString("LoginPassword", R.string.LoginPassword);
+    }
+
+    @Override
+    public final void h(String str) {
+        if (!this.h && this.f38949n != null) {
+            String obj = this.f38944a.getText().toString();
+            if (obj.length() == 0) {
+                ug0 ug0Var = this.f38954y;
+                if (ug0Var.getParentActivity() == null) {
                     return;
                 }
-                TLRPC.TL_error tL_error = this.f35867c;
-                if (tL_error != null && (str = tL_error.text) != null) {
-                    if (str.contains("PHONE_NUMBER_INVALID")) {
-                        qg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.InvalidPhoneNumber));
-                        return;
-                    } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
-                        if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                            re0Var.c(true);
-                            qg0Var.u1(0, true, null, true);
-                            qg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
-                            return;
-                        } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                            qg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.FloodWait));
-                            return;
-                        } else if (tL_error.code != -1000) {
-                            String string = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
-                            StringBuilder sb2 = new StringBuilder();
-                            org.telegram.ui.Cells.c1.n(R.string.ErrorOccurred, "\n", sb2);
-                            sb2.append(tL_error.text);
-                            qg0Var.l1(string, sb2.toString());
-                            return;
-                        } else {
-                            return;
-                        }
-                    } else {
-                        qg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.InvalidCode));
-                        return;
-                    }
-                }
+                ug0.U0(ug0Var, this.f38953x, true);
                 return;
-            default:
-                re0 re0Var2 = this.f35866b;
-                qg0 qg0Var2 = re0Var2.f37312a0;
-                re0Var2.R = false;
-                TLRPC.TL_error tL_error2 = this.f35867c;
-                if (tL_error2 == null) {
-                    qg0Var2.g1(this.d, (TLRPC.TL_auth_sentCode) this.e, true);
-                } else {
-                    String str2 = tL_error2.text;
-                    if (str2 != null) {
-                        if (str2.contains("PHONE_NUMBER_INVALID")) {
-                            qg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.InvalidPhoneNumber));
-                        } else if (!tL_error2.text.contains("PHONE_CODE_EMPTY") && !tL_error2.text.contains("PHONE_CODE_INVALID")) {
-                            if (tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
-                                re0Var2.c(true);
-                                qg0Var2.u1(0, true, null, true);
-                                qg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
-                            } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                qg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.FloodWait));
-                            } else if (tL_error2.code != -1000) {
-                                String string2 = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
-                                StringBuilder sb3 = new StringBuilder();
-                                org.telegram.ui.Cells.c1.n(R.string.ErrorOccurred, "\n", sb3);
-                                sb3.append(tL_error2.text);
-                                qg0Var2.l1(string2, sb3.toString());
-                            }
-                        } else {
-                            qg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.InvalidCode));
-                        }
-                    }
-                }
-                qg0Var2.k1(false, true);
-                return;
+            }
+            this.h = true;
+            this.f38954y.n1(0, true);
+            Utilities.globalQueue.postRunnable(new h90(16, this, obj));
         }
     }
 
-    public ne0(re0 re0Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
-        this.f35866b = re0Var;
-        this.f35867c = tL_error;
-        this.d = bundle;
-        this.e = tLObject;
+    @Override
+    public final void j() {
+        AndroidUtilities.runOnUIThread(new g10(this, 19), ug0.f41191t0);
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("passview_params");
+        this.f38948f = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+        String string = bundle.getString("passview_code");
+        if (string != null) {
+            this.f38944a.setText(string);
+        }
+    }
+
+    @Override
+    public final void l(Bundle bundle) {
+        String obj = this.f38944a.getText().toString();
+        if (obj.length() != 0) {
+            bundle.putString("passview_code", obj);
+        }
+        Bundle bundle2 = this.f38948f;
+        if (bundle2 != null) {
+            bundle.putBundle("passview_params", bundle2);
+        }
+    }
+
+    @Override
+    public final void m(Bundle bundle, boolean z10) {
+        if (bundle == null) {
+            return;
+        }
+        boolean isEmpty = bundle.isEmpty();
+        EditTextBoldCursor editTextBoldCursor = this.f38944a;
+        if (isEmpty) {
+            AndroidUtilities.hideKeyboard(editTextBoldCursor);
+            return;
+        }
+        editTextBoldCursor.setText("");
+        this.f38948f = bundle;
+        String string = bundle.getString("password");
+        this.f38950r = string;
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+            this.f38949n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+        }
+        this.f38951s = bundle.getString("phoneFormated");
+        this.v = bundle.getString("phoneHash");
+        this.f38952w = bundle.getString("code");
+        TL_account.Password password = this.f38949n;
+        if (password != null && !TextUtils.isEmpty(password.hint)) {
+            editTextBoldCursor.setHint(this.f38949n.hint);
+        } else {
+            editTextBoldCursor.setHint((CharSequence) null);
+        }
+    }
+
+    @Override
+    public final void n() {
+        int i10 = org.telegram.ui.ActionBar.i6.G6;
+        this.d.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+        this.f38945b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.D6, false));
+        int w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
+        EditTextBoldCursor editTextBoldCursor = this.f38944a;
+        editTextBoldCursor.setTextColor(w02);
+        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.H6, false));
+        this.f38946c.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.q6, false));
+        this.f38953x.f();
     }
 }

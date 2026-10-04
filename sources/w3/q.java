@@ -1,14 +1,22 @@
 package w3;
 
-import c3.g0;
+import e2.v;
 public final class q {
-    public final boolean f44852a;
-    public final String f44853b;
-    public final g0 f44854c;
-    public final int d;
-    public final byte[] e;
-
-    public q(boolean r5, java.lang.String r6, int r7, byte[] r8, int r9, int r10, byte[] r11) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.q.<init>(boolean, java.lang.String, int, byte[], int, int, byte[]):void");
-    }
+    public d f48562a;
+    public long f48563b;
+    public long f48564c;
+    public int d;
+    public int f48565e;
+    public boolean f48570k;
+    public p f48572m;
+    public boolean f48574o;
+    public long f48575p;
+    public boolean f48576q;
+    public long[] f48566f = new long[0];
+    public int[] f48567g = new int[0];
+    public int[] h = new int[0];
+    public long[] f48568i = new long[0];
+    public boolean[] f48569j = new boolean[0];
+    public boolean[] f48571l = new boolean[0];
+    public final v f48573n = new v();
 }

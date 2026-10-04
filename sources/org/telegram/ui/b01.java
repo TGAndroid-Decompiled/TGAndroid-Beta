@@ -1,57 +1,36 @@
 package org.telegram.ui;
+public final class b01 implements Runnable {
+    public final int f34944a;
+    public final c01 f34945b;
 
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-public final class b01 implements ci.cc {
-    public final ProfileActivity f32271a;
-
-    public b01(ProfileActivity profileActivity) {
-        this.f32271a = profileActivity;
+    public b01(c01 c01Var, int i10) {
+        this.f34944a = i10;
+        this.f34945b = c01Var;
     }
 
     @Override
-    public final ci.gc a(long j3) {
-        float f7;
-        ProfileActivity profileActivity = this.f32271a;
-        if (j3 == profileActivity.a()) {
-            profileActivity.f31556e0.setRoundRadiusForExpand((int) AndroidUtilities.lerp(profileActivity.c4(), 0.0f, profileActivity.f31600k2));
-            fz0 fz0Var = profileActivity.f31556e0;
-            boolean isForum = ChatObject.isForum(profileActivity.E2);
-            if (fz0Var != null && fz0Var.getRootView() != null) {
-                float scaleX = ((View) fz0Var.getParent()).getScaleX();
-                float imageWidth = fz0Var.getImageReceiver().getImageWidth() * scaleX;
-                if (isForum) {
-                    f7 = 0.32f * imageWidth;
-                } else {
-                    f7 = imageWidth;
+    public final void run() {
+        switch (this.f34944a) {
+            case 0:
+                ProfileActivity profileActivity = this.f34945b.D0;
+                pz0 pz0Var = profileActivity.B5;
+                if (pz0Var != null) {
+                    pz0Var.dismiss();
+                    profileActivity.B5 = null;
+                    return;
                 }
-                ci.ec ecVar = new ci.ec(fz0Var, 0);
-                int[] iArr = new int[2];
-                float[] fArr = new float[2];
-                fz0Var.getRootView().getLocationOnScreen(iArr);
-                AndroidUtilities.getViewPositionInParent(fz0Var, (ViewGroup) fz0Var.getRootView(), fArr);
-                float imageX = (fz0Var.getImageReceiver().getImageX() * scaleX) + iArr[0] + fArr[0];
-                float imageY = (fz0Var.getImageReceiver().getImageY() * scaleX) + iArr[1] + fArr[1];
-                ecVar.f4737c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
-                ecVar.e = fz0Var.getImageReceiver();
-                ecVar.f4736b = f7;
-                return ecVar;
-            }
-            return null;
+                return;
+            default:
+                try {
+                    org.telegram.ui.Components.zl0 currentListView = this.f34945b.f35235x0.O.getCurrentListView();
+                    if (currentListView != null && currentListView.getAdapter() != null) {
+                        currentListView.getAdapter().l();
+                        return;
+                    }
+                    return;
+                } catch (Throwable unused) {
+                    return;
+                }
         }
-        return null;
-    }
-
-    @Override
-    public final void b(long j3, ai.j jVar) {
-        ProfileActivity profileActivity = this.f32271a;
-        profileActivity.f31556e0.setHasStories(profileActivity.j4());
-        if (j3 == profileActivity.a() && profileActivity.f31626o2 && profileActivity.f31600k2 > 0.0f) {
-            profileActivity.f31541c.h1(0, profileActivity.T3() - profileActivity.f31526a.getPaddingTop());
-            profileActivity.f31526a.post(new sb0(profileActivity, 14));
-        }
-        AndroidUtilities.runOnUIThread(jVar, 30L);
     }
 }

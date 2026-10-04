@@ -2,11 +2,11 @@ package qh;
 
 import java.util.HashMap;
 public final class r {
-    public final int f42093a;
-    public final HashMap f42094b = new HashMap();
-    public final HashMap f42095c = new HashMap();
+    public final int f45502a;
+    public final HashMap f45503b = new HashMap();
+    public final HashMap f45504c = new HashMap();
 
     public r(int i10) {
-        this.f42093a = i10;
+        this.f45502a = i10;
     }
 }

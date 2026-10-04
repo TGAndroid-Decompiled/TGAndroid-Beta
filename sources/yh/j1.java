@@ -14,40 +14,40 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.nj0;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.l21;
+import org.telegram.ui.n21;
 public final class j1 implements Runnable {
-    public final int f47544a;
-    public final KeyEvent.Callback f47545b;
-    public final Object f47546c;
+    public final int f51448a;
+    public final KeyEvent.Callback f51449b;
+    public final Object f51450c;
     public final Object d;
-    public final Object e;
+    public final Object f51451e;
 
     public j1(KeyEvent.Callback callback, Object obj, Object obj2, Object obj3, int i10) {
-        this.f47544a = i10;
-        this.f47545b = callback;
-        this.f47546c = obj;
+        this.f51448a = i10;
+        this.f51449b = callback;
+        this.f51450c = obj;
         this.d = obj2;
-        this.e = obj3;
+        this.f51451e = obj3;
     }
 
     @Override
     public final void run() {
         boolean z10;
         int i10;
-        switch (this.f47544a) {
+        switch (this.f51448a) {
             case 0:
-                x3.R0((x3) this.f47545b, (TLObject) this.f47546c, (tg.r) this.d, (TLRPC.TL_error) this.e);
+                x3.R0((x3) this.f51449b, (TLObject) this.f51450c, (tg.q) this.d, (TLRPC.TL_error) this.f51451e);
                 return;
             case 1:
-                x3.S0((x3) this.f47545b, (MessageObject) this.f47546c, (ArrayList) this.d, (TL_stars.StarGift) this.e);
+                x3.S0((x3) this.f51449b, (MessageObject) this.f51450c, (ArrayList) this.d, (TL_stars.StarGift) this.f51451e);
                 return;
             case 2:
-                x3 x3Var = (x3) this.f47545b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.e;
-                TLObject tLObject = (TLObject) this.f47546c;
+                x3 x3Var = (x3) this.f51449b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f51451e;
+                TLObject tLObject = (TLObject) this.f51450c;
                 TL_stars.InputSavedStarGift inputSavedStarGift = (TL_stars.InputSavedStarGift) this.d;
                 if (tL_error == null && (tLObject instanceof TLRPC.Updates)) {
-                    x3Var.f48260q0 = true;
+                    x3Var.f52236q0 = true;
                     x3Var.l1 = null;
                     x3Var.r1(inputSavedStarGift, (TLRPC.Updates) tLObject, new b1(x3Var, 5));
                     Utilities.stageQueue.postRunnable(new u2.i0(19, x3Var, tLObject));
@@ -56,17 +56,17 @@ public final class j1 implements Runnable {
                 x3Var.getBulletinFactory().d0(tL_error, false);
                 return;
             default:
-                x2 x2Var = (x2) this.f47545b;
-                TL_stars.StarGift starGift = (TL_stars.StarGift) this.f47546c;
+                x2 x2Var = (x2) this.f51449b;
+                TL_stars.StarGift starGift = (TL_stars.StarGift) this.f51450c;
                 ArrayList arrayList = (ArrayList) this.d;
-                Runnable runnable = (Runnable) this.e;
+                Runnable runnable = (Runnable) this.f51451e;
                 org.telegram.ui.Components.p6 p6Var = x2Var.H;
-                x2Var.f48218h0 = false;
+                x2Var.f52194h0 = false;
                 if (starGift == null) {
-                    nj0 nj0Var = x2Var.f48222l0;
+                    nj0 nj0Var = x2Var.f52198l0;
                     if (nj0Var != null) {
                         nj0Var.d();
-                        AndroidUtilities.runOnUIThread(new l21(19), 750L);
+                        AndroidUtilities.runOnUIThread(new n21(19), 750L);
                     }
                     x2Var.Q.animate().alpha(0.0f).start();
                     x2Var.S.animate().alpha(1.0f).start();
@@ -80,27 +80,27 @@ public final class j1 implements Runnable {
                     if (x2Var.O != null) {
                         int i11 = 0;
                         while (true) {
-                            xh.j1[] j1VarArr = x2Var.O;
-                            if (i11 < j1VarArr.length) {
-                                AndroidUtilities.removeFromParent(j1VarArr[i11]);
+                            xh.i1[] i1VarArr = x2Var.O;
+                            if (i11 < i1VarArr.length) {
+                                AndroidUtilities.removeFromParent(i1VarArr[i11]);
                                 i11++;
                             } else {
                                 x2Var.O = null;
                             }
                         }
                     }
-                    x2Var.O = new xh.j1[arrayList.size()];
+                    x2Var.O = new xh.i1[arrayList.size()];
                     int i12 = 0;
                     while (i12 < arrayList.size()) {
                         TL_stars.StarGift starGift2 = (TL_stars.StarGift) arrayList.get(i12);
-                        xh.j1 j1Var = new xh.j1(x2Var.getContext(), x2Var.W, x2Var.f48207a);
-                        j1Var.g(starGift2, false, false, false, false, true);
-                        j1Var.f46224x.setVisibility(8);
-                        j1Var.setRibbonColor(-3065286);
-                        w9 w9Var = j1Var.f46225y;
-                        FrameLayout.LayoutParams e = w7.y5.e(42, 42, 17);
-                        j1Var.E = e;
-                        w9Var.setLayoutParams(e);
+                        xh.i1 i1Var = new xh.i1(x2Var.getContext(), x2Var.W, x2Var.f52182a);
+                        i1Var.g(starGift2, false, false, false, false, true);
+                        i1Var.f50004x.setVisibility(8);
+                        i1Var.setRibbonColor(-3065286);
+                        w9 w9Var = i1Var.f50005y;
+                        FrameLayout.LayoutParams e7 = w7.z5.e(42, 42, 17);
+                        i1Var.E = e7;
+                        w9Var.setLayoutParams(e7);
                         int i13 = i12 + 1;
                         if (i13 >= arrayList.size()) {
                             z10 = true;
@@ -108,13 +108,13 @@ public final class j1 implements Runnable {
                             z10 = false;
                         }
                         LinearLayout linearLayout = x2Var.N;
-                        x2Var.O[i12] = j1Var;
+                        x2Var.O[i12] = i1Var;
                         if (z10) {
                             i10 = 0;
                         } else {
                             i10 = 6;
                         }
-                        linearLayout.addView(j1Var, w7.y5.p(74, 74, 0.0f, 51, 0, 0, i10, 0));
+                        linearLayout.addView(i1Var, w7.z5.p(74, 74, 0.0f, 51, 0, 0, i10, 0));
                         i12 = i13;
                     }
                     return;
@@ -125,10 +125,10 @@ public final class j1 implements Runnable {
     }
 
     public j1(TLObject tLObject, TLRPC.TL_error tL_error, TL_stars.InputSavedStarGift inputSavedStarGift, x3 x3Var) {
-        this.f47544a = 2;
-        this.f47545b = x3Var;
-        this.e = tL_error;
-        this.f47546c = tLObject;
+        this.f51448a = 2;
+        this.f51449b = x3Var;
+        this.f51451e = tL_error;
+        this.f51450c = tLObject;
         this.d = inputSavedStarGift;
     }
 }

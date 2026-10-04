@@ -2,30 +2,30 @@ package fi;
 
 import android.view.View;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.no0;
-import org.telegram.ui.l10;
-import org.telegram.ui.s10;
-public final class a0 implements s10 {
-    public final k0 f9067a;
+import org.telegram.ui.ActionBar.f3;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.qo0;
+import org.telegram.ui.p10;
+import org.telegram.ui.w10;
+public final class a0 implements w10 {
+    public final k0 f9870a;
 
     public a0(k0 k0Var) {
-        this.f9067a = k0Var;
+        this.f9870a = k0Var;
     }
 
     @Override
-    public final boolean c(l10 l10Var) {
+    public final boolean c(p10 p10Var) {
         return false;
     }
 
     @Override
     public final void d(MessageObject messageObject) {
         int i10;
-        k0 k0Var = this.f9067a;
-        m2 m2Var = k0Var.f9112s;
-        i10 = ((e3) k0Var).currentAccount;
-        m2Var.presentFragment(no0.K(messageObject, i10));
+        k0 k0Var = this.f9870a;
+        n2 n2Var = k0Var.f9920s;
+        i10 = ((f3) k0Var).currentAccount;
+        n2Var.presentFragment(qo0.M(messageObject, i10));
         k0Var.dismiss();
     }
 

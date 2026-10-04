@@ -3,41 +3,41 @@ package org.telegram.ui;
 import android.widget.EditText;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class wi1 extends org.telegram.ui.ActionBar.e5 {
-    public final WallpapersListActivity f39376f;
+public final class wi1 extends org.telegram.ui.ActionBar.f5 {
+    public final WallpapersListActivity f42502f;
 
     public wi1(WallpapersListActivity wallpapersListActivity) {
-        this.f39376f = wallpapersListActivity;
+        this.f42502f = wallpapersListActivity;
     }
 
     @Override
     public final void k() {
-        WallpapersListActivity wallpapersListActivity = this.f39376f;
-        bj1 bj1Var = wallpapersListActivity.J;
-        bj1Var.f32441n = null;
+        WallpapersListActivity wallpapersListActivity = this.f42502f;
+        bj1 bj1Var = wallpapersListActivity.H;
+        bj1Var.f35126n = null;
         bj1Var.E(null, true);
-        wallpapersListActivity.L.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
+        wallpapersListActivity.J.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
     }
 
     @Override
     public final void m() {
-        WallpapersListActivity wallpapersListActivity = this.f39376f;
-        wallpapersListActivity.H.setAdapter(wallpapersListActivity.I);
-        wallpapersListActivity.H.invalidate();
-        wallpapersListActivity.J.E(null, true);
-        wallpapersListActivity.L.setSearchFieldCaption(null);
+        WallpapersListActivity wallpapersListActivity = this.f42502f;
+        wallpapersListActivity.F.setAdapter(wallpapersListActivity.G);
+        wallpapersListActivity.F.invalidate();
+        wallpapersListActivity.H.E(null, true);
+        wallpapersListActivity.J.setSearchFieldCaption(null);
         k();
     }
 
     @Override
     public final void n() {
-        WallpapersListActivity wallpapersListActivity = this.f39376f;
-        wallpapersListActivity.H.setAdapter(wallpapersListActivity.J);
-        wallpapersListActivity.H.invalidate();
+        WallpapersListActivity wallpapersListActivity = this.f42502f;
+        wallpapersListActivity.F.setAdapter(wallpapersListActivity.H);
+        wallpapersListActivity.F.invalidate();
     }
 
     @Override
     public final void q(EditText editText) {
-        this.f39376f.J.E(editText.getText().toString(), false);
+        this.f42502f.H.E(editText.getText().toString(), false);
     }
 }

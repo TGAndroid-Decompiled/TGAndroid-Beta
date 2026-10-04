@@ -1,92 +1,101 @@
 package org.telegram.ui;
 
-import android.view.WindowManager;
-import java.util.ArrayList;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.ClippingImageView;
-public final class cr0 implements Runnable {
-    public final int f32781a;
-    public final PhotoViewer f32782b;
-    public final vu0 f32783c;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class cr0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35537a;
+    public final PhotoViewer f35538b;
 
-    public cr0(PhotoViewer photoViewer, vu0 vu0Var, int i10) {
-        this.f32781a = i10;
-        this.f32782b = photoViewer;
-        this.f32783c = vu0Var;
+    public cr0(PhotoViewer photoViewer, int i10) {
+        this.f35537a = i10;
+        this.f35538b = photoViewer;
     }
 
     @Override
-    public final void run() {
-        ClippingImageView clippingImageView;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        switch (this.f32781a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f35537a;
+        PhotoViewer photoViewer = this.f35538b;
+        switch (i10) {
             case 0:
-                PhotoViewer photoViewer = this.f32782b;
-                photoViewer.f31251h0.setImageBitmap(null);
-                vu0 vu0Var = this.f32783c;
-                if (vu0Var != null && !AndroidUtilities.isTablet() && (clippingImageView = vu0Var.f38828m) != null) {
-                    clippingImageView.setImageBitmap(null);
-                }
-                try {
-                    if (photoViewer.f31242g0.getParent() != null) {
-                        ((WindowManager) photoViewer.f31403y.getSystemService("window")).removeView(photoViewer.f31242g0);
-                        photoViewer.W1();
-                        return;
-                    }
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                Drawable[] drawableArr = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f33932i3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
             case 1:
-                PhotoViewer photoViewer2 = this.f32782b;
-                photoViewer2.f31324p4 = null;
-                int i10 = 0;
-                photoViewer2.f31225e0.setLayerType(0, null);
-                photoViewer2.f31306n4 = 0;
-                photoViewer2.G1();
-                photoViewer2.Y1(this.f32783c);
-                MediaController.getInstance().tryResumePausedAudio();
-                if (photoViewer2.f31381v7 && !photoViewer2.f31391w7 && (arrayList = photoViewer2.f31249g7) != null) {
-                    int size = arrayList.size();
-                    while (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        if (obj instanceof MediaController.PhotoEntry) {
-                            ((MediaController.PhotoEntry) obj).deleteAll();
-                        }
-                    }
+                CropAreaView cropAreaView = photoViewer.C1.f26850b.f15574a;
+                float lerp = AndroidUtilities.lerp(photoViewer.f33861a6, photoViewer.f33900e6, photoViewer.f33959l6);
+                float lerp2 = AndroidUtilities.lerp(photoViewer.X5, photoViewer.f33881c6, photoViewer.f33959l6);
+                float lerp3 = AndroidUtilities.lerp(photoViewer.Y5, photoViewer.f33890d6, photoViewer.f33959l6);
+                cropAreaView.f24145n0 = 0.0f;
+                cropAreaView.f24146o0 = lerp;
+                cropAreaView.f24147p0 = lerp2;
+                cropAreaView.f24148q0 = lerp3;
+                cropAreaView.invalidate();
+                return;
+            case 2:
+                photoViewer.L1.u0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 3:
+                photoViewer.L1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 4:
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f33967m6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 5:
+                Drawable[] drawableArr3 = PhotoViewer.U8;
+                photoViewer.s3();
+                return;
+            case 6:
+                photoViewer.L1.u0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 7:
+                photoViewer.L1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 8:
+                vt0 vt0Var = photoViewer.L1;
+                if (vt0Var != null) {
+                    vt0Var.f45160d1.invalidate();
                     return;
                 }
                 return;
-            default:
-                PhotoViewer photoViewer3 = this.f32782b;
-                photoViewer3.f31324p4 = null;
-                nu0 nu0Var = photoViewer3.f31225e0;
-                if (nu0Var != null) {
-                    int i11 = 0;
-                    nu0Var.setLayerType(0, null);
-                    photoViewer3.f31306n4 = 0;
-                    photoViewer3.Y1(this.f32783c);
-                    photoViewer3.f31225e0.setScaleX(1.0f);
-                    photoViewer3.f31225e0.setScaleY(1.0f);
-                    MediaController.getInstance().tryResumePausedAudio();
-                    if (photoViewer3.f31381v7 && !photoViewer3.f31391w7 && (arrayList2 = photoViewer3.f31249g7) != null) {
-                        int size2 = arrayList2.size();
-                        while (i11 < size2) {
-                            Object obj2 = arrayList2.get(i11);
-                            i11++;
-                            if (obj2 instanceof MediaController.PhotoEntry) {
-                                ((MediaController.PhotoEntry) obj2).deleteAll();
-                            }
-                        }
-                        return;
-                    }
-                    return;
+            case 9:
+                Drawable[] drawableArr4 = PhotoViewer.U8;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.Z5 = floatValue;
+                vt0 vt0Var2 = photoViewer.L1;
+                if (vt0Var2 != null && Math.abs(floatValue - vt0Var2.X1) > 0.1f) {
+                    vt0Var2.X1 = floatValue;
+                    vt0Var2.w0(vt0Var2.I0, vt0Var2.J0, vt0Var2.K0, vt0Var2.N0, vt0Var2.O0);
                 }
+                photoViewer.f33894e0.invalidate();
+                return;
+            case 10:
+                Drawable[] drawableArr5 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f33967m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.G1();
+                return;
+            case 11:
+                Drawable[] drawableArr6 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f33967m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 12:
+                Drawable[] drawableArr7 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f33967m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 13:
+                photoViewer.W0[0].e(1, ((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
+                return;
+            default:
+                Drawable[] drawableArr8 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f33967m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
         }
     }

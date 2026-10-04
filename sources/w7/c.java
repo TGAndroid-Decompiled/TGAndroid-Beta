@@ -1,15 +1,15 @@
 package w7;
 public final class c {
-    public static final c f44900a;
-    public static final c[] f44901b;
+    public static final c f48610a;
+    public static final c[] f48611b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f44900a = r02;
-        f44901b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+        f48610a = r02;
+        f48611b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
     public static c[] values() {
-        return (c[]) f44901b.clone();
+        return (c[]) f48611b.clone();
     }
 }

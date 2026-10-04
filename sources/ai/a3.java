@@ -4,30 +4,30 @@ import android.os.Bundle;
 import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.t80;
+import org.telegram.ui.Components.u80;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.qy;
+import org.telegram.ui.uy;
 public final class a3 implements View.OnClickListener {
-    public final int f507a;
-    public final long f508b;
-    public final Object f509c;
+    public final int f554a;
+    public final long f555b;
+    public final Object f556c;
 
     public a3(Object obj, long j3, int i10) {
-        this.f507a = i10;
-        this.f509c = obj;
-        this.f508b = j3;
+        this.f554a = i10;
+        this.f556c = obj;
+        this.f555b = j3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f507a) {
+        switch (this.f554a) {
             case 0:
-                e6 e6Var = (e6) this.f509c;
+                e6 e6Var = (e6) this.f556c;
                 e6Var.getClass();
                 Bundle bundle = new Bundle();
-                long j3 = this.f508b;
+                long j3 = this.f555b;
                 if (j3 >= 0) {
                     bundle.putLong("user_id", j3);
                 } else {
@@ -36,38 +36,38 @@ public final class a3 implements View.OnClickListener {
                 e6Var.J0.H(new ProfileActivity(bundle, null));
                 return;
             case 1:
-                t80.q((t80) this.f509c, this.f508b);
+                u80.q((u80) this.f556c, this.f555b);
                 return;
             case 2:
-                qy qyVar = (qy) this.f509c;
-                MessagesController messagesController = qyVar.getMessagesController();
-                long j10 = this.f508b;
+                uy uyVar = (uy) this.f556c;
+                MessagesController messagesController = uyVar.getMessagesController();
+                long j10 = this.f555b;
                 boolean isDialogMuted = messagesController.isDialogMuted(j10, 0L);
                 if (!isDialogMuted) {
-                    qyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 3);
+                    uyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 3);
                 } else {
-                    qyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 4);
+                    uyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 4);
                 }
-                yc.A(qyVar, !isDialogMuted, null).j();
-                qyVar.finishPreviewFragment();
+                yc.A(uyVar, !isDialogMuted, null).j();
+                uyVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((qh.p) this.f509c).f42086f;
+                Utilities.Callback callback = ((qh.p) this.f556c).f45495f;
                 if (callback != null) {
-                    callback.run(Long.valueOf(this.f508b));
+                    callback.run(Long.valueOf(this.f555b));
                     return;
                 }
                 return;
             case 4:
-                xh.m.P((xh.m) this.f509c, this.f508b);
+                xh.m.N((xh.m) this.f556c, this.f555b);
                 return;
             default:
-                xh.r1 r1Var = (xh.r1) this.f509c;
-                r1Var.getClass();
-                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                xh.q1 q1Var = (xh.q1) this.f556c;
+                q1Var.getClass();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    r1Var.dismiss();
-                    U.presentFragment(ProfileActivity.m4(this.f508b));
+                    q1Var.dismiss();
+                    U.presentFragment(ProfileActivity.m4(this.f555b));
                     return;
                 }
                 return;

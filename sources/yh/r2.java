@@ -7,24 +7,23 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.yl0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.wn;
+import org.telegram.ui.yn;
 public final class r2 implements Runnable {
-    public final int f47946a;
-    public final Object f47947b;
+    public final int f51885a;
+    public final Object f51886b;
 
     public r2(Object obj, int i10) {
-        this.f47946a = i10;
-        this.f47947b = obj;
+        this.f51885a = i10;
+        this.f51886b = obj;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f47946a;
-        Object obj = this.f47947b;
+        int i10 = this.f51885a;
+        Object obj = this.f51886b;
         switch (i10) {
             case 0:
                 ((s2) obj).invalidate();
@@ -34,40 +33,40 @@ public final class r2 implements Runnable {
                 return;
             case 2:
                 u3 u3Var = (u3) obj;
-                r2 r2Var = u3Var.f48093i0;
+                r2 r2Var = u3Var.f52064i0;
                 w9[] w9VarArr = u3Var.d;
-                if (w9VarArr[2 - u3Var.f48103r0].getImageReceiver().hasImageLoaded()) {
+                if (w9VarArr[2 - u3Var.f52074r0].getImageReceiver().hasImageLoaded()) {
                     f4.d dVar = u3Var.U;
-                    if (dVar != null && dVar.f8858b == 1 && u3Var.isAttachedToWindow()) {
+                    if (dVar != null && dVar.f9633b == 1 && u3Var.isAttachedToWindow()) {
                         AndroidUtilities.cancelRunOnUIThread(r2Var);
-                        ValueAnimator valueAnimator = u3Var.f48092h0;
+                        ValueAnimator valueAnimator = u3Var.f52063h0;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
-                            u3Var.f48092h0 = null;
+                            u3Var.f52063h0 = null;
                         }
-                        int i11 = 1 - u3Var.f48103r0;
-                        u3Var.f48103r0 = i11;
+                        int i11 = 1 - u3Var.f52074r0;
+                        u3Var.f52074r0 = i11;
                         kj0 lottieAnimation = w9VarArr[2 - i11].getImageReceiver().getLottieAnimation();
-                        kj0 lottieAnimation2 = w9VarArr[u3Var.f48103r0 + 1].getImageReceiver().getLottieAnimation();
+                        kj0 lottieAnimation2 = w9VarArr[u3Var.f52074r0 + 1].getImageReceiver().getLottieAnimation();
                         if (lottieAnimation2 != null && lottieAnimation != null) {
                             lottieAnimation2.T(lottieAnimation.t(), false);
                         }
                         u3Var.W.c();
-                        int i12 = u3Var.f48103r0 + 1;
+                        int i12 = u3Var.f52074r0 + 1;
                         TL_stars.starGiftAttributeBackdrop[] stargiftattributebackdropArr = u3Var.V;
-                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) u3Var.f48084b0.c();
+                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) u3Var.f52054b0.c();
                         stargiftattributebackdropArr[i12] = stargiftattributebackdrop;
                         u3Var.e(i12, stargiftattributebackdrop);
-                        u3Var.g(1, (TL_stars.starGiftAttributePattern) u3Var.f48082a0.c(), true);
+                        u3Var.g(1, (TL_stars.starGiftAttributePattern) u3Var.f52052a0.c(), true);
                         u3Var.a();
-                        float f7 = u3Var.f48103r0;
+                        float f7 = u3Var.f52074r0;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f - f7, f7);
-                        u3Var.f48092h0 = ofFloat;
+                        u3Var.f52063h0 = ofFloat;
                         ofFloat.addUpdateListener(new q3(u3Var, 2));
-                        u3Var.f48092h0.addListener(new s3(u3Var));
-                        u3Var.f48092h0.setDuration(320L);
-                        u3Var.f48092h0.setInterpolator(sr.h);
-                        u3Var.f48092h0.start();
+                        u3Var.f52063h0.addListener(new s3(u3Var));
+                        u3Var.f52063h0.setDuration(320L);
+                        u3Var.f52063h0.setInterpolator(tr.h);
+                        u3Var.f52063h0.start();
                         return;
                     }
                     return;
@@ -76,53 +75,48 @@ public final class r2 implements Runnable {
                 AndroidUtilities.runOnUIThread(r2Var, 150L);
                 return;
             case 3:
-                ((sg.e) obj).setPaused(true);
-                return;
-            case 4:
-                AndroidUtilities.showKeyboard((EditTextBoldCursor) obj);
-                return;
-            case 5:
-                ((i0[]) obj)[0].dismiss();
-                return;
-            case 6:
-                di.f fVar = (di.f) obj;
-                fVar.getClass();
-                try {
-                    yl0 currentListView = ((w7) fVar.M0).R.getCurrentListView();
-                    if (currentListView != null && currentListView.getAdapter() != null) {
-                        currentListView.getAdapter().l();
-                        return;
-                    }
-                    return;
-                } catch (Throwable unused) {
+                x7 x7Var = (x7) obj;
+                if (x7Var.S != null && x7Var.Y != -1) {
+                    x7Var.q1("POSTED_ALIGN");
+                    x7Var.S.Z();
                     return;
                 }
-            case 7:
-                nf.f.s(((l7) obj).getContext(), LocaleController.getString(R.string.StarsTOSLink));
                 return;
-            case 8:
+            case 4:
+                ((sg.e) obj).setPaused(true);
+                return;
+            case 5:
+                AndroidUtilities.showKeyboard((EditTextBoldCursor) obj);
+                return;
+            case 6:
+                ((i0[]) obj)[0].dismiss();
+                return;
+            case 7:
                 nf.f.s(((m7) obj).getContext(), LocaleController.getString(R.string.StarsTOSLink));
                 return;
+            case 8:
+                nf.f.s(((n7) obj).getContext(), LocaleController.getString(R.string.StarsTOSLink));
+                return;
             case 9:
-                zg.t tVar = (zg.t) ((n2.e) obj).f15117b;
-                zg.s sVar = tVar.f49442b;
+                zg.t tVar = (zg.t) ((w9.k) obj).f48940a;
+                zg.s sVar = tVar.f53525b;
                 if (sVar != null) {
                     sVar.d();
                 }
-                tVar.f49441a.z7(true);
+                tVar.f53524a.z7(true);
                 return;
             case 10:
                 ((ValueAnimator) obj).start();
                 return;
             default:
-                org.telegram.ui.ActionBar.m2 m2Var = ((zg.x) obj).f49460f2.f49261r;
-                if (m2Var instanceof wn) {
-                    m2Var.showDialog(new rg.x0(m2Var, 11, false));
+                org.telegram.ui.ActionBar.n2 n2Var = ((zg.x) obj).f53544f2.f53331r;
+                if (n2Var instanceof yn) {
+                    n2Var.showDialog(new rg.y0(n2Var, 11, false));
                     return;
                 }
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != null) {
-                    R.showDialog(new rg.x0(m2Var, 11, false));
+                    R.showDialog(new rg.y0(n2Var, 11, false));
                     return;
                 }
                 return;

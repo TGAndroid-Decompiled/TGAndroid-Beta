@@ -1,49 +1,99 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class r91 extends s4.s0 {
-    public final int f37272a;
-    public final sa1 f37273b;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class r91 implements org.telegram.ui.Components.ol0, le.d {
+    public final va1 f39954a;
 
-    public r91(sa1 sa1Var, int i10) {
-        this.f37272a = i10;
-        this.f37273b = sa1Var;
+    public r91(va1 va1Var) {
+        this.f39954a = va1Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ah.h hVar;
-        sa1 sa1Var;
-        ah.h hVar2;
-        sa1 sa1Var2;
-        ah.h hVar3;
-        switch (this.f37272a) {
-            case 0:
-                sa1 sa1Var3 = this.f37273b;
-                if (sa1Var3.f37689r0.size() != sa1Var3.f37691s0.size() && !sa1Var3.f37696w0 && sa1Var3.U.N0() > sa1Var3.X.f39884c0 - 20) {
-                    sa1Var3.h0();
-                }
-                if (Build.VERSION.SDK_INT >= 31 && (hVar = sa1Var3.C0) != null) {
-                    hVar.f(i10, i11);
-                    sa1.W(sa1Var3);
-                    return;
-                }
-                return;
-            case 1:
-                if (Build.VERSION.SDK_INT >= 31 && (hVar2 = (sa1Var = this.f37273b).C0) != null) {
-                    hVar2.f(i10, i11);
-                    sa1.W(sa1Var);
-                    return;
-                }
-                return;
-            default:
-                if (Build.VERSION.SDK_INT >= 31 && (hVar3 = (sa1Var2 = this.f37273b).C0) != null) {
-                    hVar3.f(i10, i11);
-                    sa1.W(sa1Var2);
-                    return;
-                }
-                return;
+    public void a0(int i10, float f7, float f10, le.e eVar) {
+        this.f39954a.n0();
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        final va1 va1Var = this.f39954a;
+        org.telegram.ui.ActionBar.b2[] b2VarArr = va1Var.f41648g0;
+        aa1 aa1Var = va1Var.W;
+        int i11 = aa1Var.I;
+        if (i10 >= i11 && i10 <= aa1Var.J) {
+            final MessageObject messageObject = ((sa1) va1Var.f41671y0.get(i10 - i11)).f40437b;
+            if (!messageObject.isStory()) {
+                org.telegram.ui.Components.b80 H = org.telegram.ui.Components.b80.H(va1Var, view);
+                H.c(R.drawable.msg_stats, LocaleController.getString(R.string.ViewMessageStatistic), new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                va1 va1Var2 = va1Var;
+                                va1Var2.getClass();
+                                va1Var2.presentFragment(new hj0(messageObject));
+                                return;
+                            default:
+                                va1 va1Var3 = va1Var;
+                                va1Var3.getClass();
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", va1Var3.f41639b);
+                                bundle.putInt("message_id", messageObject.getId());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                va1Var3.presentFragment(new yn(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                H.c(R.drawable.msg_msgbubble3, LocaleController.getString(R.string.ViewMessage), new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                va1 va1Var2 = va1Var;
+                                va1Var2.getClass();
+                                va1Var2.presentFragment(new hj0(messageObject));
+                                return;
+                            default:
+                                va1 va1Var3 = va1Var;
+                                va1Var3.getClass();
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", va1Var3.f41639b);
+                                bundle.putInt("message_id", messageObject.getId());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                va1Var3.presentFragment(new yn(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                H.W(va1Var.S.W0(view, false));
+                H.Z();
+                return true;
+            }
+        } else {
+            int i12 = aa1Var.U;
+            if (i10 >= i12 && i10 <= aa1Var.V) {
+                ((oa1) va1Var.Q.get(i10 - i12)).c(va1Var.f41637a, va1Var, b2VarArr, true);
+                return true;
+            }
+            int i13 = aa1Var.R;
+            if (i10 >= i13 && i10 <= aa1Var.S) {
+                ((oa1) va1Var.O.get(i10 - i13)).c(va1Var.f41637a, va1Var, b2VarArr, true);
+                return true;
+            }
+            int i14 = aa1Var.X;
+            if (i10 >= i14 && i10 <= aa1Var.Y) {
+                ((oa1) va1Var.P.get(i10 - i14)).c(va1Var.f41637a, va1Var, b2VarArr, true);
+                return true;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public void V(float f7, int i10) {
     }
 }

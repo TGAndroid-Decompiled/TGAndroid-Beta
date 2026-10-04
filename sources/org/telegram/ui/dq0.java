@@ -1,187 +1,78 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class dq0 extends FrameLayout {
-    public int E;
-    public int F;
-    public boolean G;
-    public final fq0 H;
-    public final Paint f33160a;
-    public final Paint f33161b;
-    public final Paint f33162c;
-    public float d;
-    public float e;
-    public float f33163f;
-    public float h;
-    public int f33164n;
-    public float f33165r;
-    public float f33166s;
-    public int v;
-    public int f33167w;
-    public int f33168x;
-    public int f33169y;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+public final class dq0 extends org.telegram.ui.Components.yl0 {
+    public final Context f35824c;
+    public final fq0 d;
 
     public dq0(fq0 fq0Var, Context context) {
-        super(context);
-        this.H = fq0Var;
-        this.f33160a = null;
-        this.f33161b = null;
-        this.f33162c = null;
-        this.d = 600.0f;
-        this.e = 600.0f;
-        this.f33163f = -1.0f;
-        this.h = -1.0f;
-        this.f33164n = 0;
-        this.f33165r = 0.0f;
-        this.f33166s = 0.0f;
-        Paint paint = new Paint();
-        this.f33160a = paint;
-        paint.setColor(1073412858);
-        this.f33160a.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.f33160a.setStyle(Paint.Style.STROKE);
-        Paint paint2 = new Paint();
-        this.f33161b = paint2;
-        paint2.setColor(-1);
-        Paint paint3 = new Paint();
-        this.f33162c = paint3;
-        paint3.setColor(-939524096);
-        setBackgroundColor(-13421773);
-        setOnTouchListener(new e0(this, 4));
+        this.d = fq0Var;
+        this.f35824c = context;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        int i11;
-        fq0 fq0Var = this.H;
-        BitmapDrawable bitmapDrawable = fq0Var.f33744b;
-        if (bitmapDrawable != null) {
-            try {
-                int i12 = this.f33168x;
-                int i13 = this.f33169y;
-                bitmapDrawable.setBounds(i12, i13, this.v + i12, this.f33167w + i13);
-                fq0Var.f33744b.draw(canvas);
-            } catch (Throwable th2) {
-                FileLog.e(th2);
-            }
-        }
-        canvas.drawRect(this.f33168x, this.f33169y, i10 + this.v, this.h, this.f33162c);
-        float f7 = this.h;
-        canvas.drawRect(this.f33168x, f7, this.f33163f, f7 + this.e, this.f33162c);
-        float f10 = this.h;
-        canvas.drawRect(this.f33163f + this.d, f10, this.f33168x + this.v, f10 + this.e, this.f33162c);
-        canvas.drawRect(this.f33168x, this.h + this.e, i11 + this.v, this.f33169y + this.f33167w, this.f33162c);
-        float f11 = this.f33163f;
-        float f12 = this.h;
-        canvas.drawRect(f11, f12, f11 + this.d, f12 + this.e, this.f33160a);
-        int dp = AndroidUtilities.dp(1.0f);
-        float f13 = this.f33163f;
-        float f14 = dp;
-        float f15 = dp * 3;
-        canvas.drawRect(f13 + f14, this.h + f14, f13 + f14 + AndroidUtilities.dp(20.0f), this.h + f15, this.f33161b);
-        float f16 = this.f33163f;
-        float f17 = this.h;
-        canvas.drawRect(f16 + f14, f17 + f14, f16 + f15, f17 + f14 + AndroidUtilities.dp(20.0f), this.f33161b);
-        float dp2 = ((this.f33163f + this.d) - f14) - AndroidUtilities.dp(20.0f);
-        float f18 = this.h;
-        canvas.drawRect(dp2, f18 + f14, (this.f33163f + this.d) - f14, f18 + f15, this.f33161b);
-        float f19 = this.f33163f;
-        float f20 = this.d;
-        float f21 = this.h;
-        canvas.drawRect((f19 + f20) - f15, f21 + f14, (f19 + f20) - f14, f21 + f14 + AndroidUtilities.dp(20.0f), this.f33161b);
-        canvas.drawRect(this.f33163f + f14, ((this.h + this.e) - f14) - AndroidUtilities.dp(20.0f), this.f33163f + f15, (this.h + this.e) - f14, this.f33161b);
-        float f22 = this.f33163f;
-        canvas.drawRect(f22 + f14, (this.h + this.e) - f15, f22 + f14 + AndroidUtilities.dp(20.0f), (this.h + this.e) - f14, this.f33161b);
-        float dp3 = ((this.f33163f + this.d) - f14) - AndroidUtilities.dp(20.0f);
-        float f23 = this.h;
-        float f24 = this.e;
-        canvas.drawRect(dp3, (f23 + f24) - f15, (this.f33163f + this.d) - f14, (f23 + f24) - f14, this.f33161b);
-        canvas.drawRect((this.f33163f + this.d) - f15, ((this.h + this.e) - f14) - AndroidUtilities.dp(20.0f), (this.f33163f + this.d) - f14, (this.h + this.e) - f14, this.f33161b);
-        for (int i14 = 1; i14 < 3; i14++) {
-            float f25 = this.f33163f;
-            float f26 = this.d;
-            float f27 = i14;
-            float f28 = this.h;
-            canvas.drawRect(((f26 / 3.0f) * f27) + f25, f28 + f14, a4.a.e(f26, 3.0f, f27, f25 + f14), (f28 + this.e) - f14, this.f33161b);
-            float f29 = this.f33163f;
-            float f30 = this.h;
-            float f31 = this.e;
-            canvas.drawRect(f29 + f14, a4.a.e(f31, 3.0f, f27, f30), this.d + (f29 - f14), ((f31 / 3.0f) * f27) + f30 + f14, this.f33161b);
-        }
+    public final boolean D(s4.c1 c1Var) {
+        return true;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        fq0 fq0Var;
-        Bitmap bitmap;
-        float f7;
-        int i14;
-        int i15;
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.E = (i12 - i10) - AndroidUtilities.dp(28.0f);
-        int dp = (i13 - i11) - AndroidUtilities.dp(28.0f);
-        this.F = dp;
-        if (this.E != 0 && dp != 0 && (bitmap = (fq0Var = this.H).f33743a) != null) {
-            float f10 = this.f33163f - this.f33168x;
-            float f11 = this.v;
-            float f12 = f10 / f11;
-            float f13 = this.h - this.f33169y;
-            float f14 = this.f33167w;
-            float f15 = f13 / f14;
-            float f16 = this.d / f11;
-            float f17 = this.e / f14;
-            float width = bitmap.getWidth();
-            float height = fq0Var.f33743a.getHeight();
-            int i16 = this.E;
-            float f18 = i16 / width;
-            int i17 = this.F;
-            if (f18 > i17 / height) {
-                this.f33167w = i17;
-                this.v = (int) Math.ceil(width * f7);
-            } else {
-                this.v = i16;
-                this.f33167w = (int) Math.ceil(height * f18);
-            }
-            this.f33168x = AndroidUtilities.dp(14.0f) + ((this.E - this.v) / 2);
-            int dp2 = AndroidUtilities.dp(14.0f) + ((this.F - this.f33167w) / 2);
-            this.f33169y = dp2;
-            if (this.f33163f == -1.0f && this.h == -1.0f) {
-                if (this.G) {
-                    this.h = dp2;
-                    this.f33163f = this.f33168x;
-                    this.d = this.v;
-                    this.e = this.f33167w;
+    public final int h() {
+        fq0 fq0Var = this.d;
+        ArrayList arrayList = fq0Var.d;
+        if (arrayList != null) {
+            return (int) Math.ceil(arrayList.size() / fq0Var.f36364f);
+        }
+        return 0;
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        org.telegram.ui.Cells.y5 y5Var = (org.telegram.ui.Cells.y5) c1Var.f46523a;
+        fq0 fq0Var = this.d;
+        y5Var.setAlbumsCount(fq0Var.f36364f);
+        int i11 = 0;
+        while (true) {
+            int i12 = fq0Var.f36364f;
+            if (i11 < i12) {
+                int i13 = (i12 * i10) + i11;
+                if (i13 < fq0Var.d.size()) {
+                    y5Var.a(i11, (MediaController.AlbumEntry) fq0Var.d.get(i13));
                 } else {
-                    if (this.v > this.f33167w) {
-                        this.h = dp2;
-                        this.f33163f = AndroidUtilities.dp(14.0f) + ((this.E - i15) / 2);
-                        float f19 = this.f33167w;
-                        this.d = f19;
-                        this.e = f19;
-                    } else {
-                        this.f33163f = this.f33168x;
-                        this.h = AndroidUtilities.dp(14.0f) + ((this.F - i14) / 2);
-                        float f20 = this.v;
-                        this.d = f20;
-                        this.e = f20;
-                    }
+                    y5Var.a(i11, null);
                 }
+                i11++;
             } else {
-                float f21 = this.v;
-                this.f33163f = (f12 * f21) + this.f33168x;
-                float f22 = this.f33167w;
-                this.h = (f15 * f22) + dp2;
-                this.d = f16 * f21;
-                this.e = f17 * f22;
+                y5Var.requestLayout();
+                return;
             }
-            invalidate();
         }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        Context context = this.f35824c;
+        ?? frameLayout = new FrameLayout(context);
+        frameLayout.f23765e = new Paint();
+        frameLayout.f23763b = new MediaController.AlbumEntry[4];
+        frameLayout.f23762a = new org.telegram.ui.Cells.w5[4];
+        for (int i11 = 0; i11 < 4; i11++) {
+            frameLayout.f23762a[i11] = new org.telegram.ui.Cells.w5(frameLayout, context);
+            frameLayout.addView(frameLayout.f23762a[i11]);
+            frameLayout.f23762a[i11].setVisibility(4);
+            frameLayout.f23762a[i11].setTag(Integer.valueOf(i11));
+            frameLayout.f23762a[i11].setOnClickListener(new org.telegram.ui.Cells.a(frameLayout, 9));
+        }
+        frameLayout.setDelegate(new jl0(this, 2));
+        return new s4.c1(frameLayout);
     }
 }

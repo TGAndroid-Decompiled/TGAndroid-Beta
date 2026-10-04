@@ -25,7 +25,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import org.telegram.messenger.BillingController;
-import v7.b6;
+import v7.a6;
 public final class d0 extends c {
     public final Context C;
     public volatile int D;
@@ -47,19 +47,19 @@ public final class d0 extends c {
         }
         b0 b0Var = new b0(this, i10, 0);
         ?? obj = new Object();
-        obj.f6785c = new Object();
+        obj.f7322c = new Object();
         j4 j4Var = new j4(obj);
-        obj.f6784b = j4Var;
-        obj.f6783a = b0.class;
+        obj.f7321b = j4Var;
+        obj.f7320a = b0.class;
         try {
             b0Var.j(obj);
-            obj.f6783a = "billingOverrideService.getBillingOverride";
+            obj.f7320a = "billingOverrideService.getBillingOverride";
             return j4Var;
-        } catch (Exception e) {
-            g2 g2Var = new g2(e);
-            b6 b6Var = g4.f6772f;
-            i4 i4Var = j4Var.f6803b;
-            if (b6Var.d(i4Var, null, g2Var)) {
+        } catch (Exception e7) {
+            g2 g2Var = new g2(e7);
+            a6 a6Var = g4.f7308f;
+            i4 i4Var = j4Var.f7341b;
+            if (a6Var.d(i4Var, null, g2Var)) {
                 g4.d(i4Var);
             }
             return j4Var;
@@ -67,10 +67,10 @@ public final class d0 extends c {
     }
 
     public final void F(int i10, int i11, h hVar) {
-        int i12 = e0.f3865a;
+        int i12 = e0.f4180a;
         g3 b10 = e0.b(i10, i11, hVar, null, m3.BROADCAST_ACTION_UNSPECIFIED);
         Objects.requireNonNull(b10, "ApiFailure should not be null");
-        this.h.X(b10);
+        this.h.T(b10);
     }
 
     public final void G(int i10, q0.a aVar, Runnable runnable) {
@@ -89,17 +89,17 @@ public final class d0 extends c {
         }
         if (!E.isDone()) {
             ?? obj = new Object();
-            obj.f6887n = E;
+            obj.f7434n = E;
             ?? obj2 = new Object();
-            obj2.f6878a = obj;
-            obj.f6888r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
-            E.b(obj2, p0.f6844a);
+            obj2.f7424a = obj;
+            obj.f7435r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
+            E.b(obj2, p0.f7386a);
             E = obj;
         }
         ?? obj3 = new Object();
-        obj3.f12899a = i10;
-        obj3.f12900b = aVar;
-        obj3.f12901c = runnable;
+        obj3.f14023a = i10;
+        obj3.f14024b = aVar;
+        obj3.f14025c = runnable;
         obj3.d = this;
         E.b(new q0(E, obj3), e());
     }
@@ -118,7 +118,7 @@ public final class d0 extends c {
         G(4, new q0.a() {
             @Override
             public final void accept(Object obj) {
-                String str = iVar.f3892a;
+                String str = iVar.f4209a;
                 jVar.a((h) obj, str);
             }
         }, new v(this, iVar, jVar));
@@ -129,15 +129,15 @@ public final class d0 extends c {
         int i10 = 0;
         try {
             i10 = ((Integer) E(2).get(28500L, TimeUnit.MILLISECONDS)).intValue();
-        } catch (TimeoutException e) {
-            F(102, 28, g0.f3885p);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", e);
-        } catch (Exception e7) {
-            if (e7 instanceof InterruptedException) {
+        } catch (TimeoutException e7) {
+            F(102, 28, g0.f4202p);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", e7);
+        } catch (Exception e10) {
+            if (e10 instanceof InterruptedException) {
                 Thread.currentThread().interrupt();
             }
-            F(95, 28, g0.f3885p);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e7);
+            F(95, 28, g0.f4202p);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e10);
         }
         if (i10 > 0) {
             h a2 = g0.a(i10, "Billing override value was set by a license tester.");
@@ -147,10 +147,10 @@ public final class d0 extends c {
         }
         try {
             return super.b(activity, gVar);
-        } catch (Exception e10) {
-            h hVar = g0.f3876f;
+        } catch (Exception e11) {
+            h hVar = g0.f4193f;
             F(103, 2, hVar);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An internal error occurred.", e10);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An internal error occurred.", e11);
             return hVar;
         }
     }
@@ -165,12 +165,12 @@ public final class d0 extends c {
         synchronized (this) {
             if (J()) {
                 com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service connection is valid. No need to re-initialize.");
-                int i10 = e0.f3865a;
+                int i10 = e0.f4180a;
                 i3 c10 = e0.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 of.b bVar = this.h;
                 bVar.getClass();
-                bVar.f0(c10, (p3) bVar.f15694b);
+                bVar.c0(c10, (p3) bVar.f17157b);
             } else {
                 int i11 = 1;
                 if (this.D == 1) {

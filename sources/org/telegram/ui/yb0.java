@@ -1,30 +1,51 @@
 package org.telegram.ui;
+public final class yb0 implements Runnable {
+    public final int f43117a;
+    public final dc0 f43118b;
+    public final String f43119c;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class yb0 extends wn {
-    public boolean Pc;
-    public final TLRPC.User Qc;
-    public final TLRPC.User[] Rc;
-    public final long Sc;
-
-    public yb0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j3) {
-        super(bundle);
-        this.Qc = user;
-        this.Rc = userArr;
-        this.Sc = j3;
+    public yb0(dc0 dc0Var, String str, int i10) {
+        this.f43117a = i10;
+        this.f43118b = dc0Var;
+        this.f43119c = str;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Pc) {
-            this.Pc = true;
-            org.telegram.ui.Components.yc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Rc[0])), new ai.j(this, this.Sc, 25)), R.raw.contact_check).j();
+    public final void run() {
+        switch (this.f43117a) {
+            case 0:
+                dc0 dc0Var = this.f43118b;
+                dc0Var.getClass();
+                String str = this.f43119c;
+                if ("disable".equalsIgnoreCase(str)) {
+                    dc0Var.o("turnPasswordOffRow");
+                }
+                if ("change".equalsIgnoreCase(str)) {
+                    dc0Var.o("changePasswordRow");
+                }
+                if ("change-email".equalsIgnoreCase(str)) {
+                    dc0Var.o("emailRow");
+                    return;
+                }
+                return;
+            default:
+                dc0 dc0Var2 = this.f43118b;
+                dc0Var2.getClass();
+                String str2 = this.f43119c;
+                if ("disable".equalsIgnoreCase(str2)) {
+                    dc0Var2.o("disablePasscodeRow");
+                }
+                if ("change".equalsIgnoreCase(str2)) {
+                    dc0Var2.o("changePasscodeRow");
+                }
+                if ("auto-lock".equalsIgnoreCase(str2)) {
+                    dc0Var2.o("autoLockRow");
+                }
+                if ("fingerprint".equalsIgnoreCase(str2)) {
+                    dc0Var2.o("fingerprintRow");
+                    return;
+                }
+                return;
         }
     }
 }

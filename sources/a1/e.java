@@ -1,13 +1,13 @@
 package a1;
 public final class e implements Runnable {
-    public final int f41a;
-    public final Object f42b;
-    public final Object f43c;
+    public final int f45a;
+    public final Object f46b;
+    public final Object f47c;
 
     public e(int i10, Object obj, Object obj2) {
-        this.f41a = i10;
-        this.f42b = obj;
-        this.f43c = obj2;
+        this.f45a = i10;
+        this.f46b = obj;
+        this.f47c = obj2;
     }
 
     @Override

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import yh.l8;
-public final class h extends l8 {
+import yh.m8;
+public final class h extends m8 {
     public final m m0;
 
     public h(m mVar, Context context, d6 d6Var) {
@@ -18,7 +18,7 @@ public final class h extends l8 {
         if (getProgress() <= 0.99d && f7 <= getMeasuredWidth() * 0.9f) {
             return false;
         }
-        m.U(this.m0);
+        m.S(this.m0);
         return true;
     }
 
@@ -33,12 +33,12 @@ public final class h extends l8 {
 
     @Override
     public final void e(int i10) {
-        m.T(this.m0, i10);
+        m.R(this.m0, i10);
     }
 
     @Override
     public final void setValue(int i10) {
         super.setValue(i10);
-        m.T(this.m0, i10);
+        m.R(this.m0, i10);
     }
 }

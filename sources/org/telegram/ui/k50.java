@@ -1,80 +1,102 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
-public final class k50 implements org.telegram.ui.Components.w40 {
-    public float f34937a;
-    public TLRPC.FileLocation f34938b;
-    public TLRPC.FileLocation f34939c;
-    public ImageLocation d;
-    public final long e;
-    public final d60 f34940f;
+public final class k50 implements org.telegram.ui.Components.rk0 {
+    public final Path f37833a = new Path();
+    public final Paint f37834b;
+    public final h60 f37835c;
 
-    public k50(d60 d60Var, long j3) {
-        this.f34940f = d60Var;
-        this.e = j3;
+    public k50(h60 h60Var) {
+        this.f37835c = h60Var;
+        Paint paint = new Paint(1);
+        this.f37834b = paint;
+        paint.setColor(-14603467);
     }
 
     @Override
-    public final void B(float f7) {
-        this.f34940f.f32937b.O(this.d, f7);
-        a(f7);
+    public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
+        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
+        String str = o0Var.f53479f;
+        if (str == null) {
+            str = "👍";
+        }
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        tL_textWithEntities.text = str;
+        long j3 = o0Var.f53480g;
+        if (j3 != 0) {
+            tL_messageEntityCustomEmoji.document_id = j3;
+            tL_messageEntityCustomEmoji.offset = 0;
+            tL_messageEntityCustomEmoji.length = str.length();
+            tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
+        }
+        h60 h60Var = this.f37835c;
+        h60Var.A1(tL_textWithEntities);
+        i40 i40Var = h60Var.H;
+        if (i40Var.m()) {
+            i40Var.j();
+        } else {
+            i40Var.d();
+        }
+        zg.b0 reactionsWindow = h60Var.K.getReactionsWindow();
+        if (reactionsWindow != null && !reactionsWindow.f53330q) {
+            h60Var.K.getReactionsWindow().e();
+            h60Var.K.n();
+        }
     }
 
     @Override
-    public final void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        AndroidUtilities.runOnUIThread(new fi.k(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 3));
+    public final boolean j() {
+        return false;
     }
 
-    public final void a(float f7) {
-        this.f34937a = f7;
-        j50 j50Var = this.f34940f.Q;
-        if (j50Var != null) {
-            for (int i10 = 0; i10 < j50Var.getChildCount(); i10++) {
-                View childAt = j50Var.getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Cells.e4) {
-                    org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) childAt;
-                    if (e4Var.c()) {
-                        org.telegram.ui.Cells.z3 z3Var = e4Var.f20240x;
-                        z3Var.setProgress(f7);
-                        if (f7 < 1.0f) {
-                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, true, 1.0f, true);
-                        } else {
-                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, false, 1.0f, true);
-                        }
-                    }
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+        Paint paint = this.f37834b;
+        int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        if (i11 > 0) {
+            canvas.drawRoundRect(rectF, f7, f7, paint);
+        } else {
+            canvas.drawRect(rectF, paint);
+        }
+        if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
+            h60 h60Var = this.f37835c;
+            if (h60Var.Q2 != null) {
+                canvas.save();
+                if (i11 > 0) {
+                    Path path = this.f37833a;
+                    path.rewind();
+                    path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+                    path.close();
+                    canvas.clipPath(path);
+                } else {
+                    canvas.clipRect(rectF);
                 }
+                canvas.translate(-h60Var.K.getX(), -h60Var.K.getY());
+                float f12 = h60Var.R2;
+                canvas.scale(f12, f12);
+                canvas.drawRenderNode(h60Var.Q2);
+                canvas.restore();
             }
         }
     }
 
     @Override
-    public final boolean e() {
+    public final boolean p() {
         return true;
     }
 
     @Override
-    public final vu0 getCloseIntoObject() {
-        return null;
-    }
-
-    @Override
-    public final String getInitialSearchString() {
-        return null;
-    }
-
-    @Override
-    public final boolean t() {
-        return false;
-    }
-
-    @Override
-    public final void P() {
-    }
-
-    @Override
-    public final void L(boolean z10, boolean z11) {
+    public final void o() {
     }
 }

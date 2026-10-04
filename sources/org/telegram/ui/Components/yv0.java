@@ -1,10 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-public final class yv0 {
-    public int f30758a;
-    public aw0 f30759b;
-    public Bitmap f30760c;
-    public float d;
-    public float e;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public interface yv0 {
+    float h(RecyclerView recyclerView);
+
+    RecyclerView i(View view);
+
+    void n(RecyclerView recyclerView);
 }

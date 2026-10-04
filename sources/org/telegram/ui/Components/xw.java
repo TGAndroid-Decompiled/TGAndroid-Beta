@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class xw extends g.p {
-    public final mz f30494c;
+    public final nz f32987c;
 
-    public xw(mz mzVar) {
-        this.f30494c = mzVar;
+    public xw(nz nzVar) {
+        this.f32987c = nzVar;
     }
 
     @Override
     public final int i(int i10) {
-        mz mzVar = this.f30494c;
-        hz hzVar = mzVar.f26604z0;
-        s4.h0 adapter = mzVar.D0.getAdapter();
-        dz dzVar = mzVar.f26601y0;
-        if (adapter == dzVar) {
+        nz nzVar = this.f32987c;
+        iz izVar = nzVar.f29165z0;
+        s4.h0 adapter = nzVar.D0.getAdapter();
+        ez ezVar = nzVar.f29162y0;
+        if (adapter == ezVar) {
             if (i10 == 0) {
-                return dzVar.d;
+                return ezVar.d;
             }
-            if (i10 == dzVar.f23748s || (dzVar.h.get(i10) != null && !(dzVar.h.get(i10) instanceof TLRPC.Document))) {
-                return dzVar.d;
+            if (i10 == ezVar.f26181s || (ezVar.h.get(i10) != null && !(ezVar.h.get(i10) instanceof TLRPC.Document))) {
+                return ezVar.d;
             }
             return 1;
-        } else if (i10 != hzVar.f24930x && (hzVar.f24927r.get(i10) == null || (hzVar.f24927r.get(i10) instanceof TLRPC.Document))) {
+        } else if (i10 != izVar.f27522x && (izVar.f27519r.get(i10) == null || (izVar.f27519r.get(i10) instanceof TLRPC.Document))) {
             return 1;
         } else {
-            return dzVar.d;
+            return ezVar.d;
         }
     }
 }

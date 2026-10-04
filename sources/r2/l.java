@@ -17,11 +17,11 @@ public interface l {
 
     void e();
 
-    void f(int i10, long j3);
+    boolean f(n2.c cVar);
 
     void flush();
 
-    int g();
+    void g(int i10, long j3);
 
     ByteBuffer getInputBuffer(int i10);
 
@@ -29,13 +29,13 @@ public interface l {
 
     MediaFormat getOutputFormat();
 
-    int h(MediaCodec.BufferInfo bufferInfo);
+    int h();
 
-    void i(int i10);
+    int i(MediaCodec.BufferInfo bufferInfo);
 
-    void j(Surface surface);
+    void j(int i10);
 
-    boolean k(k2.u uVar);
+    void k(Surface surface);
 
     void release();
 

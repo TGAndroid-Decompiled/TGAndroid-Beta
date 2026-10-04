@@ -4,31 +4,30 @@ import a6.m;
 import android.content.Context;
 import android.os.Bundle;
 import w7.r;
-import za.d0;
-import za.t;
+import za.b0;
 public final class h {
-    public static final f f3465c = new Object();
-    public static final m1.c d = r.a(t.f49108b);
-    public final m f3466a;
-    public final d f3467b;
+    public static final f f3746c = new Object();
+    public static final m1.c d = r.a(za.r.f53146b);
+    public final m f3747a;
+    public final d f3748b;
 
     public h(k9.h hVar, id.h hVar2, id.h hVar3, qa.d dVar) {
         hVar.a();
-        Context context = hVar.f13534a;
+        Context context = hVar.f14714a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
-        d0 d0Var = d0.f49037a;
-        za.b a2 = d0.a(hVar);
+        b0 b0Var = b0.f53058a;
+        za.b a2 = b0.a(hVar);
         m mVar = new m(context);
         aa.a aVar = new aa.a(a2, hVar2);
-        f3465c.getClass();
-        d dVar2 = new d(hVar3, dVar, a2, aVar, d.a(context, f.f3461a[0]));
-        this.f3466a = mVar;
-        this.f3467b = dVar2;
+        f3746c.getClass();
+        d dVar2 = new d(hVar3, dVar, a2, aVar, d.a(context, f.f3742a[0]));
+        this.f3747a = mVar;
+        this.f3748b = dVar2;
     }
 
     public final double a() {
         Double d10;
-        Bundle bundle = (Bundle) this.f3466a.f307b;
+        Bundle bundle = (Bundle) this.f3747a.f330b;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {
@@ -40,9 +39,9 @@ public final class h {
                 return doubleValue;
             }
         }
-        e eVar = this.f3467b.f3457c.f3481b;
+        e eVar = this.f3748b.f3737c.f3763b;
         if (eVar != null) {
-            Double d11 = eVar.f3459b;
+            Double d11 = eVar.f3739b;
             if (d11 != null) {
                 double doubleValue2 = d11.doubleValue();
                 if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {

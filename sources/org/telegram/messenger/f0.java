@@ -94,8 +94,8 @@ public abstract class f0 {
         FileLog.d(sb2.toString());
     }
 
-    public static void o(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.z1 z1Var) {
-        alertDialog$Builder.k(LocaleController.getString(i10), z1Var);
+    public static void o(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
+        alertDialog$Builder.k(LocaleController.getString(i10), a2Var);
         alertDialog$Builder.o();
     }
 

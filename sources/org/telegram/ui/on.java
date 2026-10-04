@@ -1,473 +1,190 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.HashtagSearchController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public final class on extends org.telegram.ui.ActionBar.e5 {
-    public float f36272f;
-    public final wn h;
+public final class on {
+    public MessageObject f39235a;
+    public int f39236b;
+    public int f39237c;
+    public byte[] f39238e;
+    public boolean f39239f;
+    public boolean h;
+    public String f39241i;
+    public ArrayList f39242j;
+    public TLRPC.TodoItem f39243k;
+    public TLRPC.PollAnswer f39244l;
+    public boolean f39240g = false;
+    public int d = -1;
 
-    public on(wn wnVar) {
-        this.h = wnVar;
+    public on(int i10, int i11, MessageObject messageObject) {
+        this.f39235a = messageObject;
+        this.f39236b = i10;
+        this.f39237c = i11;
+        e();
     }
 
-    @Override
-    public final boolean a() {
-        if (this.h.f39659u3 == null) {
-            return true;
+    public static on b(int i10, int i11, MessageObject messageObject) {
+        if (messageObject == null) {
+            return null;
         }
-        return false;
+        messageObject.getDialogId();
+        return new on(i10, i11, messageObject);
     }
 
-    @Override
-    public final boolean b() {
-        wn wnVar;
-        wn wnVar2 = this.h;
-        if (!wnVar2.f39732zc.f14202f) {
-            if (wnVar2.f39659u3 != null && wnVar2.f39593p1 != null) {
-                View currentView = wnVar2.f39605q1.getCurrentView();
-                if (currentView instanceof yn) {
-                    wnVar = ((yn) currentView).f40193a;
-                } else {
-                    wnVar = wnVar2;
+    public static on c(MessageObject messageObject) {
+        TLRPC.Message message = messageObject.messageOwner;
+        if (message != null && message.message != null) {
+            return b(0, Math.min(MessagesController.getInstance(messageObject.currentAccount).quoteLengthMax, messageObject.messageOwner.message.length()), messageObject);
+        }
+        return null;
+    }
+
+    public final void a(MessageObject messageObject) {
+        String str;
+        int i10;
+        int i11;
+        TLRPC.Message message = messageObject.messageOwner;
+        if (message != null && (str = message.message) != null) {
+            int i12 = this.f39237c;
+            if (i12 >= this.f39236b && i12 <= str.length() && this.f39236b <= messageObject.messageOwner.message.length() && (i10 = this.f39236b) >= 0 && (i11 = this.f39237c) >= 0) {
+                if (TextUtils.equals(this.f39241i, messageObject.messageOwner.message.substring(i10, i11))) {
+                    this.f39235a = messageObject;
+                    e();
+                    this.f39239f = false;
+                    return;
                 }
-                if (!wnVar.xc.f14202f) {
-                    wnVar.Lb(true);
-                    return false;
+                int indexOf = messageObject.messageOwner.message.indexOf(this.f39241i);
+                if (indexOf >= 0) {
+                    this.f39235a = messageObject;
+                    this.f39237c = (this.f39237c - this.f39236b) + indexOf;
+                    this.f39236b = indexOf;
+                    e();
+                    this.f39239f = false;
+                    return;
                 }
-                int currentPosition = wnVar2.f39593p1.f29157a.getCurrentPosition();
-                int i10 = wnVar2.f39618r1;
-                if (currentPosition != i10) {
-                    wnVar2.f39593p1.f29157a.d(i10, i10);
-                    return false;
-                }
-            } else if (wnVar2.xc.f14202f) {
-                wnVar2.Lb(false);
+                this.f39235a = messageObject;
+                this.f39236b = 0;
+                this.f39237c = messageObject.messageOwner.message.length();
+                e();
+                this.f39239f = true;
+                return;
+            }
+            FileLog.e("ReplyQuote.checkEdit: start/end are invalid (" + this.f39236b + ", " + this.f39237c + ", len=" + messageObject.messageOwner.message.length() + ")");
+            this.f39239f = false;
+            return;
+        }
+        FileLog.e("ReplyQuote.checkEdit: message is null");
+        this.f39239f = false;
+    }
+
+    public final boolean d() {
+        if (this.f39240g) {
+            if (this.f39243k == null) {
                 return false;
             }
+        } else if (this.h) {
+            if (this.f39244l == null) {
+                return false;
+            }
+        } else {
+            return !TextUtils.isEmpty(this.f39241i);
         }
         return true;
     }
 
-    @Override
-    public final boolean f() {
-        return this.h.f39572n3;
-    }
-
-    @Override
-    public final void k() {
-        int i10;
-        wn wnVar = this.h;
-        wnVar.L7();
-        if (wnVar.f39583o3 == null && wnVar.f39595p3 == null) {
-            if (wnVar.f39572n3) {
-                wnVar.I1.getAdapter().U(null, 0, null, false, true);
-                wnVar.f39572n3 = false;
-                wnVar.f39520j0.H("", true);
-            }
-            org.telegram.ui.ActionBar.u0 u0Var = wnVar.f39520j0;
-            if (wnVar.E9()) {
-                i10 = R.string.SavedTagSearchHint;
-            } else {
-                i10 = R.string.Search;
-            }
-            u0Var.setSearchFieldHint(LocaleController.getString(i10));
-            wnVar.S2.setVisibility(0);
-            ImageView imageView = wnVar.T2;
-            if (imageView != null) {
-                imageView.setVisibility(0);
-            }
-            wnVar.f39583o3 = null;
-            wnVar.f39595p3 = null;
-            return;
-        }
-        ImageView imageView2 = wnVar.T2;
-        if (imageView2 != null) {
-            imageView2.callOnClick();
-        }
-    }
-
-    @Override
-    public final void m() {
-        int i10;
-        TLRPC.Chat chat;
-        int i11;
-        int i12;
-        MessageObject messageObject;
-        wn wnVar = this.h;
-        wnVar.f39634s3 = false;
-        wnVar.vc();
-        wnVar.Ic();
-        ImageView imageView = wnVar.S2;
-        if (imageView != null) {
-            imageView.setVisibility(0);
-        }
-        ImageView imageView2 = wnVar.T2;
-        if (imageView2 != null) {
-            imageView2.setVisibility(0);
-        }
-        if (wnVar.f39572n3) {
-            wnVar.I1.getAdapter().U(null, 0, null, false, true);
-            wnVar.f39572n3 = false;
-        }
-        wnVar.I1.setReversed(false);
-        wnVar.I1.getAdapter().f9808k0 = false;
-        wnVar.m7();
-        wnVar.f39583o3 = null;
-        wnVar.f39595p3 = null;
-        wnVar.f39659u3 = null;
-        org.telegram.ui.ActionBar.u0 u0Var = wnVar.f39520j0;
-        if (wnVar.E9()) {
-            i10 = R.string.SavedTagSearchHint;
-        } else {
-            i10 = R.string.Search;
-        }
-        u0Var.setSearchFieldHint(LocaleController.getString(i10));
-        wnVar.f39520j0.setSearchFieldCaption(null);
-        wnVar.f39719yc.a(false, true);
-        wnVar.f39732zc.a(false, true);
-        org.telegram.ui.ActionBar.x xVar = wnVar.f39507i0;
-        if (xVar != null && xVar.f19916o != null) {
-            org.telegram.ui.ActionBar.u0 u0Var2 = wnVar.f39495h0;
-            if (u0Var2 != null) {
-                u0Var2.setVisibility(8);
-            }
-            org.telegram.ui.ActionBar.x xVar2 = wnVar.f39507i0;
-            if (xVar2 != null) {
-                xVar2.f(0);
-                wn.J3(wnVar);
-            }
-            org.telegram.ui.ActionBar.x xVar3 = wnVar.f39460e0;
-            if (xVar3 != null) {
-                xVar3.f(8);
-            }
-            bs bsVar = wnVar.f39447d0;
-            if (bsVar != null) {
-                bsVar.b(false);
-            }
-            org.telegram.ui.ActionBar.u0 u0Var3 = wnVar.m0;
-            if (u0Var3 != null && wnVar.K9) {
-                u0Var3.setVisibility(8);
-            }
-            org.telegram.ui.ActionBar.x xVar4 = wnVar.f39569n0;
-            if (xVar4 != null && wnVar.L9) {
-                xVar4.f(8);
-            }
-            org.telegram.ui.ActionBar.u0 u0Var4 = wnVar.f39532k0;
-            if (u0Var4 != null) {
-                u0Var4.setVisibility(8);
-            }
-        } else if (wnVar.Y.k0() && TextUtils.isEmpty(wnVar.Y.getSlowModeTimer()) && ((chat = wnVar.e) == null || ChatObject.canSendPlain(chat))) {
-            org.telegram.ui.ActionBar.u0 u0Var5 = wnVar.f39495h0;
-            if (u0Var5 != null) {
-                u0Var5.setVisibility(8);
-            }
-            org.telegram.ui.ActionBar.x xVar5 = wnVar.f39507i0;
-            if (xVar5 != null) {
-                xVar5.f(8);
-            }
-            org.telegram.ui.ActionBar.x xVar6 = wnVar.f39460e0;
-            if (xVar6 != null) {
-                xVar6.f(0);
-            }
-            bs bsVar2 = wnVar.f39447d0;
-            if (bsVar2 != null) {
-                bsVar2.b(true);
-            }
-            org.telegram.ui.ActionBar.u0 u0Var6 = wnVar.m0;
-            if (u0Var6 != null && wnVar.K9) {
-                u0Var6.setVisibility(8);
-            }
-            org.telegram.ui.ActionBar.x xVar7 = wnVar.f39569n0;
-            if (xVar7 != null && wnVar.L9) {
-                xVar7.f(8);
-            }
-            org.telegram.ui.ActionBar.u0 u0Var7 = wnVar.f39532k0;
-            if (u0Var7 != null) {
-                u0Var7.setVisibility(8);
-            }
-        } else {
-            org.telegram.ui.ActionBar.u0 u0Var8 = wnVar.f39495h0;
-            if (u0Var8 != null) {
-                u0Var8.setVisibility(0);
-            }
-            org.telegram.ui.ActionBar.x xVar8 = wnVar.f39569n0;
-            if (xVar8 != null && wnVar.L9) {
-                xVar8.f(0);
-            }
-            org.telegram.ui.ActionBar.u0 u0Var9 = wnVar.f39532k0;
-            if (u0Var9 != null) {
-                u0Var9.setVisibility(0);
-            }
-            org.telegram.ui.ActionBar.u0 u0Var10 = wnVar.m0;
-            if (u0Var10 != null && wnVar.K9) {
-                u0Var10.setVisibility(0);
-            }
-            org.telegram.ui.ActionBar.x xVar9 = wnVar.f39507i0;
-            if (xVar9 != null) {
-                xVar9.f(8);
-            }
-            org.telegram.ui.ActionBar.x xVar10 = wnVar.f39460e0;
-            if (xVar10 != null) {
-                xVar10.f(8);
-            }
-            bs bsVar3 = wnVar.f39447d0;
-            if (bsVar3 != null) {
-                bsVar3.b(false);
-            }
-        }
-        if (wnVar.f39605q1 != null) {
-            if (wnVar.f39593p1.f29157a.getCurrentPosition() != 0) {
-                wnVar.f39593p1.f29157a.d(0, 0);
-                wnVar.f39632s1 = true;
-            } else {
-                wnVar.f39605q1.h.clear();
-            }
-        }
-        int i13 = wnVar.R3;
-        if (i13 == 3 || i13 == 8 || ((wnVar.f39451d4 == 0 && !UserObject.isReplyUser(wnVar.f39471f)) || ((messageObject = wnVar.X3) != null && messageObject.getRepliesCount() < 10))) {
-            wnVar.f39520j0.setVisibility(8);
-        }
-        wnVar.f39580o0 = false;
-        wnVar.getMediaDataController().clearFoundMessageObjects();
-        if (wnVar.O3 == 3) {
-            i12 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-            HashtagSearchController.getInstance(i12).clearSearchResults(3);
-        } else {
-            i11 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-            HashtagSearchController.getInstance(i11).clearSearchResults();
-        }
-        gg.o1 o1Var = wnVar.M3;
-        if (o1Var != null) {
-            o1Var.l();
-        }
-        wnVar.Ia();
-        wnVar.hc(false);
-        wnVar.yc(0, true);
-        wnVar.Wc(false);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f36272f, 0.0f);
-        ofFloat.addUpdateListener(new nn(this, 1));
-        ofFloat.setInterpolator(org.telegram.ui.Components.sr.h);
-        ofFloat.setDuration(320L);
-        ofFloat.start();
-        wnVar.xc.a(false, true);
-        wnVar.Hc();
-        wnVar.f39607q3 = null;
-        wnVar.Ic();
-        wnVar.vc();
-        vk vkVar = wnVar.f39581o1;
-        if (vkVar != null) {
-            vkVar.d.M(new fr(2));
-            vkVar.h = 0L;
-            wnVar.f39581o1.g(false);
-        }
-        hk hkVar = wnVar.f39593p1;
-        if (hkVar != null) {
-            hkVar.b(false);
-        }
-        wnVar.kb(false);
-    }
-
-    @Override
-    public final void n() {
-        hk hkVar;
-        int i10;
-        wn wnVar = this.h;
-        boolean z10 = true;
-        wnVar.f39634s3 = true;
-        wnVar.vc();
-        wnVar.Ic();
-        if (((wnVar.f39451d4 != 0 && wnVar.R3 != 3) || UserObject.isReplyUser(wnVar.f39471f)) && !wnVar.f39446cc) {
-            wnVar.la(null);
-        }
-        if (wnVar.W4) {
-            wnVar.saveKeyboardPositionBeforeTransition();
-            if (!wnVar.Oa) {
-                Activity parentActivity = wnVar.getParentActivity();
-                i10 = ((org.telegram.ui.ActionBar.m2) wnVar).classGuid;
-                AndroidUtilities.requestAdjustResize(parentActivity, i10);
-            }
-            AndroidUtilities.runOnUIThread(new aj(this, 9), 500L);
-            fj fjVar = wnVar.f39486g2;
-            if (fjVar != null) {
-                fjVar.b(true);
-            }
-            org.telegram.ui.Components.l40 l40Var = wnVar.f39509i2;
-            if (l40Var != null) {
-                l40Var.b(true);
-            }
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f36272f, 1.0f);
-        ofFloat.addUpdateListener(new nn(this, 0));
-        ofFloat.setInterpolator(org.telegram.ui.Components.sr.h);
-        ofFloat.setDuration(320L);
-        ofFloat.start();
-        vk vkVar = wnVar.f39581o1;
-        if (vkVar != null) {
-            vkVar.g((!wnVar.Oa && vkVar.a() && wnVar.f39659u3 == null) ? false : false);
-        }
-        if (wnVar.f39659u3 != null && (hkVar = wnVar.f39593p1) != null) {
-            int currentPosition = hkVar.f29157a.getCurrentPosition();
-            int i11 = wnVar.f39618r1;
-            if (currentPosition != i11) {
-                wnVar.f39593p1.f29157a.d(i11, i11);
-            }
-        }
-    }
-
-    @Override
-    public final void o(gg.q0 q0Var) {
-        wn wnVar = this.h;
-        vk vkVar = wnVar.f39581o1;
-        if (vkVar != null) {
-            vkVar.d.M(new fr(2));
-            vkVar.h = 0L;
-        }
-        wnVar.f39607q3 = null;
-        wnVar.Ic();
-        wnVar.vc();
-        wnVar.kb(false);
-    }
-
-    @Override
-    public final void p(ci.h2 h2Var) {
+    public final boolean e() {
+        TLRPC.Message message;
         String str;
         int i10;
-        int i11;
-        int i12;
-        int i13;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        wn wnVar = this.h;
-        boolean z10 = false;
-        wnVar.Fc(0, 0, -1);
-        if (h2Var != null) {
-            str = h2Var.getText().toString();
-        } else {
-            str = wnVar.f39647t3;
-        }
-        wnVar.f39647t3 = str;
-        if (!TextUtils.isEmpty(str) && (wnVar.f39647t3.startsWith("$") || wnVar.f39647t3.startsWith("#"))) {
-            wnVar.M7();
-            if (wnVar.f39647t3.contains("@")) {
-                String str2 = wnVar.f39647t3;
-                d6Var = ((org.telegram.ui.ActionBar.m2) wnVar).resourceProvider;
-                wnVar.presentFragment(new org.telegram.ui.Components.e40(str2, d6Var));
-                return;
-            }
-            if (wnVar.f39659u3 == null) {
-                wnVar.f39659u3 = wnVar.f39647t3;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f36272f, 1.0f);
-                ofFloat.addUpdateListener(new nn(this, 2));
-                ofFloat.setInterpolator(org.telegram.ui.Components.sr.h);
-                ofFloat.setDuration(320L);
-                ofFloat.start();
-                vk vkVar = wnVar.f39581o1;
-                if (vkVar != null) {
-                    if (!wnVar.Oa && vkVar.a() && wnVar.f39659u3 == null) {
-                        z10 = true;
+        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji;
+        MessageObject messageObject = this.f39235a;
+        if (messageObject != null && (message = messageObject.messageOwner) != null && (str = message.message) != null) {
+            if (this.f39240g) {
+                TLRPC.TodoItem findTodoItem = MessageObject.findTodoItem(messageObject, this.d);
+                if (findTodoItem == null) {
+                    FileLog.e("ReplyQuote: todo task is not found");
+                    return false;
+                }
+                this.f39243k = findTodoItem;
+                return true;
+            } else if (this.h) {
+                TLRPC.PollAnswer findPollItem = MessageObject.findPollItem(messageObject, this.f39238e);
+                if (findPollItem == null) {
+                    FileLog.e("ReplyQuote: poll item is not found");
+                    return false;
+                }
+                this.f39244l = findPollItem;
+                return true;
+            } else {
+                int i11 = this.f39237c;
+                if (i11 >= this.f39236b && i11 <= str.length() && this.f39236b <= this.f39235a.messageOwner.message.length() && (i10 = this.f39236b) >= 0 && this.f39237c >= 0) {
+                    String str2 = this.f39235a.messageOwner.message;
+                    int max = Math.max(0, i10);
+                    while (max < this.f39237c && Character.isWhitespace(str2.charAt(max))) {
+                        max++;
                     }
-                    vkVar.g(z10);
+                    int min = Math.min(this.f39237c, str2.length());
+                    while (min > max && Character.isWhitespace(str2.charAt(min - 1))) {
+                        min--;
+                    }
+                    if (max == min) {
+                        FileLog.e("ReplyQuote: message is full of whitespace");
+                        return false;
+                    }
+                    this.f39241i = this.f39235a.messageOwner.message.substring(max, min);
+                    ArrayList arrayList = this.f39242j;
+                    if (arrayList != null) {
+                        arrayList.clear();
+                    }
+                    ArrayList<TLRPC.MessageEntity> arrayList2 = this.f39235a.messageOwner.entities;
+                    if (arrayList2 != null && !arrayList2.isEmpty()) {
+                        for (int i12 = 0; i12 < this.f39235a.messageOwner.entities.size(); i12++) {
+                            TLRPC.MessageEntity messageEntity = this.f39235a.messageOwner.entities.get(i12);
+                            int i13 = messageEntity.offset;
+                            if (AndroidUtilities.intersect1dInclusive(max, min, i13, messageEntity.length + i13)) {
+                                if (messageEntity instanceof TLRPC.TL_messageEntityBold) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityBold();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityItalic) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityItalic();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityUnderline) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityUnderline();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityStrike) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityStrike();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntitySpoiler) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntitySpoiler();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji) {
+                                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji2 = new TLRPC.TL_messageEntityCustomEmoji();
+                                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji3 = (TLRPC.TL_messageEntityCustomEmoji) messageEntity;
+                                    tL_messageEntityCustomEmoji2.document_id = tL_messageEntityCustomEmoji3.document_id;
+                                    tL_messageEntityCustomEmoji2.document = tL_messageEntityCustomEmoji3.document;
+                                    tL_messageEntityCustomEmoji = tL_messageEntityCustomEmoji2;
+                                }
+                                int i14 = messageEntity.offset;
+                                int i15 = i14 - max;
+                                int i16 = (i14 + messageEntity.length) - max;
+                                if ((i15 >= 0 || i16 >= 0) && (i15 <= min || i16 <= min)) {
+                                    tL_messageEntityCustomEmoji.offset = Math.max(0, i15);
+                                    tL_messageEntityCustomEmoji.length = Math.min(i16, min - max) - tL_messageEntityCustomEmoji.offset;
+                                    if (this.f39242j == null) {
+                                        this.f39242j = new ArrayList();
+                                    }
+                                    this.f39242j.add(tL_messageEntityCustomEmoji);
+                                }
+                            }
+                        }
+                    }
+                    return true;
                 }
-            }
-            wnVar.f39659u3 = wnVar.f39647t3;
-            wnVar.R6(true);
-            i11 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-            HashtagSearchController.getInstance(i11).putToHistory(wnVar.f39659u3);
-            wnVar.f39645t1.f24411f.N(true);
-            View currentView = wnVar.f39605q1.getCurrentView();
-            if (wnVar.O3 == 3) {
-                i13 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-                HashtagSearchController.getInstance(i13).clearSearchResults(3);
-            } else {
-                i12 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-                HashtagSearchController.getInstance(i12).clearSearchResults();
-            }
-            if (currentView instanceof yn) {
-                ((yn) currentView).f40193a.Jc(wnVar.f39659u3);
-            }
-            wnVar.Hc();
-            wnVar.f39449d2.e(true, true);
-            wnVar.Lb(true);
-            z10 = true;
-        } else {
-            wnVar.f39659u3 = null;
-            hk hkVar = wnVar.f39593p1;
-            if (hkVar != null) {
-                hkVar.b(false);
-                wnVar.Hc();
-            }
-            hk hkVar2 = wnVar.f39593p1;
-            if (hkVar2 != null && hkVar2.f29157a.getCurrentPosition() != 0) {
-                wnVar.f39593p1.f29157a.d(0, 0);
+                FileLog.e("ReplyQuote: start/end are invalid (" + this.f39236b + ", " + this.f39237c + ", len=" + this.f39235a.messageOwner.message.length() + ")");
+                return false;
             }
         }
-        hk hkVar3 = wnVar.f39593p1;
-        if (hkVar3 != null) {
-            hkVar3.b(z10);
-        }
-        MediaDataController mediaDataController = wnVar.getMediaDataController();
-        String str3 = wnVar.f39647t3;
-        long j3 = wnVar.T5;
-        long j10 = wnVar.L6;
-        i10 = ((org.telegram.ui.ActionBar.m2) wnVar).classGuid;
-        mediaDataController.searchMessagesInChat(str3, j3, j10, i10, 0, wnVar.f39451d4, wnVar.f39583o3, wnVar.f39595p3, wnVar.f39607q3);
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        boolean z10;
-        wn wnVar = this.h;
-        le.c cVar = wnVar.f39732zc;
-        if (wnVar.f39659u3 == null) {
-            wnVar.Lb(false);
-        }
-        wnVar.L7();
-        if (wnVar.f39572n3) {
-            gg.k1 adapter = wnVar.I1.getAdapter();
-            adapter.U("@" + editText.getText().toString(), 0, wnVar.f39662u6, true, true);
-        } else if (wnVar.f39583o3 == null && wnVar.f39595p3 == null && wnVar.T2 != null && TextUtils.equals(editText.getText(), LocaleController.getString(R.string.SearchFrom))) {
-            wnVar.T2.callOnClick();
-        }
-        if (wnVar.f39659u3 != null) {
-            if (editText.length() == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (z10 != cVar.f14202f) {
-                if (z10) {
-                    wnVar.M7();
-                }
-                cVar.a(z10, true);
-                ci.i1 i1Var = wnVar.f39605q1;
-                if (i1Var != null) {
-                    i1Var.D(0);
-                }
-                if (z10) {
-                    wnVar.Lb(true);
-                }
-                wnVar.hc(false);
-            }
-        }
-    }
-
-    @Override
-    public final boolean r() {
-        if (this.h.f39659u3 == null) {
-            return true;
-        }
+        FileLog.e("ReplyQuote: message is null");
         return false;
     }
 }

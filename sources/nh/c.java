@@ -7,68 +7,67 @@ import android.text.TextUtils;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import le.e;
-import le.f;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.x5;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.y5;
 import org.telegram.ui.Cells.f8;
-import org.telegram.ui.Components.sr;
-import w7.y5;
+import org.telegram.ui.Components.tr;
+import w7.z5;
 import yf.p;
-public final class c extends FrameLayout implements e, x5 {
-    public ShapeDrawable f15461a;
-    public final d6 f15462b;
-    public final f8 f15463c;
+public final class c extends FrameLayout implements le.d, y5 {
+    public ShapeDrawable f16901a;
+    public final d6 f16902b;
+    public final f8 f16903c;
     public final TextView d;
-    public final le.c e;
+    public final le.b f16904e;
 
     public c(Context context, d6 d6Var) {
         super(context);
-        this.e = new le.c(0, this, sr.h, 380L, false);
-        this.f15462b = d6Var;
+        this.f16904e = new le.b(0, this, tr.h, 380L, false);
+        this.f16902b = d6Var;
         f8 f8Var = new f8(context, d6Var, false);
-        this.f15463c = f8Var;
-        addView(f8Var, y5.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
+        this.f16903c = f8Var;
+        addView(f8Var, z5.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 10.0f);
         textView.setGravity(17);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setSingleLine();
-        addView(textView, y5.d(-1, -2.0f, 80, 6.0f, 0.0f, 6.0f, 5.0f));
+        addView(textView, z5.d(-1, -2.0f, 80, 6.0f, 0.0f, 6.0f, 5.0f));
         e();
     }
 
+    public final void a(boolean z10, boolean z11) {
+        if (z10 && this.f16901a == null) {
+            this.f16901a = i6.b0(AndroidUtilities.dp(10.0f), i0.a.k(i6.v0(i6.Wk, this.f16902b), 25));
+        }
+        le.b bVar = this.f16904e;
+        if (bVar.f15435f == z10 && !z11) {
+            return;
+        }
+        bVar.a(z10, z11);
+    }
+
     @Override
-    public final void D(int i10, float f7, float f10, f fVar) {
-        ShapeDrawable shapeDrawable = this.f15461a;
+    public final void a0(int i10, float f7, float f10, e eVar) {
+        ShapeDrawable shapeDrawable = this.f16901a;
         if (shapeDrawable != null) {
             shapeDrawable.setAlpha((int) (f7 * 255.0f));
         }
         invalidate();
     }
 
-    public final void a(boolean z10, boolean z11) {
-        if (z10 && this.f15461a == null) {
-            this.f15461a = h6.b0(AndroidUtilities.dp(10.0f), i0.a.k(h6.v0(h6.Wk, this.f15462b), 25));
-        }
-        le.c cVar = this.e;
-        if (cVar.f14202f == z10 && !z11) {
-            return;
-        }
-        cVar.a(z10, z11);
-    }
-
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ShapeDrawable shapeDrawable = this.f15461a;
+        ShapeDrawable shapeDrawable = this.f16901a;
         if (shapeDrawable != null) {
-            le.c cVar = this.e;
-            if (cVar.e > 0.0f) {
+            le.b bVar = this.f16904e;
+            if (bVar.f15434e > 0.0f) {
                 shapeDrawable.setBounds(0, 0, getWidth(), getHeight());
-                p.b(canvas, this.f15461a, AndroidUtilities.lerp(0.9f, 1.0f, cVar.e));
+                p.b(canvas, this.f16901a, AndroidUtilities.lerp(0.9f, 1.0f, bVar.f15434e));
             }
         }
         super.dispatchDraw(canvas);
@@ -76,14 +75,14 @@ public final class c extends FrameLayout implements e, x5 {
 
     @Override
     public final void e() {
-        ShapeDrawable shapeDrawable = this.f15461a;
-        d6 d6Var = this.f15462b;
+        ShapeDrawable shapeDrawable = this.f16901a;
+        d6 d6Var = this.f16902b;
         if (shapeDrawable != null) {
-            ShapeDrawable b02 = h6.b0(AndroidUtilities.dp(10.0f), i0.a.k(h6.v0(h6.Wk, d6Var), 25));
-            this.f15461a = b02;
-            b02.setAlpha((int) (this.e.e * 255.0f));
+            ShapeDrawable b02 = i6.b0(AndroidUtilities.dp(10.0f), i0.a.k(i6.v0(i6.Wk, d6Var), 25));
+            this.f16901a = b02;
+            b02.setAlpha((int) (this.f16904e.f15434e * 255.0f));
         }
-        this.d.setTextColor(i0.a.k(h6.v0(h6.Wk, d6Var), 229));
+        this.d.setTextColor(i0.a.k(i6.v0(i6.Wk, d6Var), 229));
     }
 
     public int[] getColorKeys() {
@@ -92,7 +91,7 @@ public final class c extends FrameLayout implements e, x5 {
 
     @Override
     public final boolean isSelected() {
-        return this.e.f14202f;
+        return this.f16904e.f15435f;
     }
 
     public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
@@ -103,10 +102,10 @@ public final class c extends FrameLayout implements e, x5 {
         } else {
             document = null;
         }
-        this.f15463c.d(document, null, null, null, false, false);
+        this.f16903c.d(document, null, null, null, false, false);
     }
 
     @Override
-    public final void C(float f7, int i10) {
+    public final void V(float f7, int i10) {
     }
 }

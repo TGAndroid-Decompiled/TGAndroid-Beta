@@ -15,52 +15,42 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class u implements r {
-    public static final o0 d = new o0(24);
-    public final UUID f15149a;
-    public final MediaDrm f15150b;
-    public int f15151c;
+    public static final o0 d = new o0(25);
+    public final UUID f16558a;
+    public final MediaDrm f16559b;
+    public int f16560c;
 
     public u(UUID uuid) {
         UUID uuid2;
         uuid.getClass();
-        e2.d.a("Use C.CLEARKEY_UUID instead", !b2.i.f3010b.equals(uuid));
-        this.f15149a = uuid;
-        MediaDrm mediaDrm = new MediaDrm((Build.VERSION.SDK_INT >= 27 || !uuid.equals(b2.i.f3011c)) ? uuid : uuid2);
-        this.f15150b = mediaDrm;
-        this.f15151c = 1;
+        e2.d.a("Use C.CLEARKEY_UUID instead", !b2.i.f3255b.equals(uuid));
+        this.f16558a = uuid;
+        MediaDrm mediaDrm = new MediaDrm((Build.VERSION.SDK_INT >= 27 || !uuid.equals(b2.i.f3256c)) ? uuid : uuid2);
+        this.f16559b = mediaDrm;
+        this.f16560c = 1;
         if (b2.i.d.equals(uuid) && "ASUS_Z00AD".equals(Build.MODEL)) {
             mediaDrm.setPropertyString("securityLevel", "L3");
         }
     }
 
     @Override
-    public final h2.b B(byte[] bArr) {
-        int i10 = Build.VERSION.SDK_INT;
-        UUID uuid = this.f15149a;
-        if (i10 < 27 && Objects.equals(uuid, b2.i.f3011c)) {
-            uuid = b2.i.f3010b;
-        }
-        return new s(uuid, bArr);
+    public final byte[] B() {
+        return this.f16559b.openSession();
     }
 
     @Override
-    public final byte[] C() {
-        return this.f15150b.openSession();
-    }
-
-    @Override
-    public final void J(byte[] bArr, byte[] bArr2) {
-        this.f15150b.restoreKeys(bArr, bArr2);
+    public final void I(byte[] bArr, byte[] bArr2) {
+        this.f16559b.restoreKeys(bArr, bArr2);
     }
 
     @Override
     public final void K(byte[] bArr) {
-        this.f15150b.closeSession(bArr);
+        this.f16559b.closeSession(bArr);
     }
 
     @Override
     public final byte[] X(byte[] bArr, byte[] bArr2) {
-        if (b2.i.f3011c.equals(this.f15149a) && Build.VERSION.SDK_INT < 27) {
+        if (b2.i.f3256c.equals(this.f16558a) && Build.VERSION.SDK_INT < 27) {
             try {
                 JSONObject jSONObject = new JSONObject(d0.p(bArr2));
                 StringBuilder sb2 = new StringBuilder("{\"keys\":[");
@@ -80,36 +70,47 @@ public final class u implements r {
                 }
                 sb2.append("]}");
                 bArr2 = sb2.toString().getBytes(StandardCharsets.UTF_8);
-            } catch (JSONException e) {
-                e2.a.f("ClearKeyUtil", "Failed to adjust response data: ".concat(d0.p(bArr2)), e);
+            } catch (JSONException e7) {
+                e2.a.f("ClearKeyUtil", "Failed to adjust response data: ".concat(d0.p(bArr2)), e7);
             }
         }
-        return this.f15150b.provideKeyResponse(bArr, bArr2);
+        return this.f16559b.provideKeyResponse(bArr, bArr2);
     }
 
     @Override
-    public final Map c(byte[] bArr) {
-        return this.f15150b.queryKeyStatus(bArr);
+    public final Map b(byte[] bArr) {
+        return this.f16559b.queryKeyStatus(bArr);
     }
 
     @Override
-    public final void d(final l.d dVar) {
-        this.f15150b.setOnEventListener(new MediaDrm.OnEventListener() {
+    public final void d(byte[] bArr, j2.k kVar) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            try {
+                h0.g(this.f16559b, bArr, kVar);
+            } catch (UnsupportedOperationException unused) {
+                e2.a.n("FrameworkMediaDrm", "setLogSessionId failed.");
+            }
+        }
+    }
+
+    @Override
+    public final void i(final c cVar) {
+        this.f16559b.setOnEventListener(new MediaDrm.OnEventListener() {
             @Override
             public final void onEvent(MediaDrm mediaDrm, byte[] bArr, int i10, int i11, byte[] bArr2) {
                 u uVar = u.this;
-                l.d dVar2 = dVar;
+                c cVar2 = cVar;
                 uVar.getClass();
-                androidx.mediarouter.app.c cVar = ((f) dVar2.f13925a).M;
-                cVar.getClass();
-                cVar.obtainMessage(i10, bArr).sendToTarget();
+                androidx.mediarouter.app.c cVar3 = ((f) cVar2.f16522b).M;
+                cVar3.getClass();
+                cVar3.obtainMessage(i10, bArr).sendToTarget();
             }
         });
     }
 
     @Override
     public final void j0(byte[] bArr) {
-        this.f15150b.provideProvisionResponse(bArr);
+        this.f16559b.provideProvisionResponse(bArr);
     }
 
     @Override
@@ -118,19 +119,8 @@ public final class u implements r {
     }
 
     @Override
-    public final void l(byte[] bArr, j2.k kVar) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            try {
-                h0.e(this.f15150b, bArr, kVar);
-            } catch (UnsupportedOperationException unused) {
-                e2.a.n("FrameworkMediaDrm", "setLogSessionId failed.");
-            }
-        }
-    }
-
-    @Override
     public final q m() {
-        MediaDrm.ProvisionRequest provisionRequest = this.f15150b.getProvisionRequest();
+        MediaDrm.ProvisionRequest provisionRequest = this.f16559b.getProvisionRequest();
         return new q(provisionRequest.getDefaultUrl(), provisionRequest.getData());
     }
 
@@ -145,10 +135,10 @@ public final class u implements r {
         UUID uuid;
         boolean equals;
         int i10 = Build.VERSION.SDK_INT;
-        UUID uuid2 = this.f15149a;
+        UUID uuid2 = this.f16558a;
         if (i10 >= 31) {
             boolean equals2 = uuid2.equals(b2.i.d);
-            MediaDrm mediaDrm = this.f15150b;
+            MediaDrm mediaDrm = this.f16559b;
             if (equals2) {
                 String propertyString = mediaDrm.getPropertyString("version");
                 if (!propertyString.startsWith("v5.") && !propertyString.startsWith("14.") && !propertyString.startsWith("15.") && !propertyString.startsWith("16.0")) {
@@ -157,17 +147,17 @@ public final class u implements r {
                     equals = false;
                 }
             } else {
-                equals = uuid2.equals(b2.i.f3011c);
+                equals = uuid2.equals(b2.i.f3256c);
             }
             if (equals) {
-                return h0.b(mediaDrm, str, mediaDrm.getSecurityLevel(bArr));
+                return h0.d(mediaDrm, str, mediaDrm.getSecurityLevel(bArr));
             }
         }
         MediaCrypto mediaCrypto2 = null;
         try {
             try {
-                if (i10 < 27 && Objects.equals(uuid2, b2.i.f3011c)) {
-                    uuid = b2.i.f3010b;
+                if (i10 < 27 && Objects.equals(uuid2, b2.i.f3256c)) {
+                    uuid = b2.i.f3255b;
                 } else {
                     uuid = uuid2;
                 }
@@ -183,7 +173,7 @@ public final class u implements r {
             return requiresSecureDecoderComponent;
         } catch (MediaCryptoException unused2) {
             mediaCrypto2 = mediaCrypto;
-            boolean z10 = !uuid2.equals(b2.i.f3011c);
+            boolean z10 = !uuid2.equals(b2.i.f3256c);
             if (mediaCrypto2 != null) {
                 mediaCrypto2.release();
             }
@@ -200,10 +190,20 @@ public final class u implements r {
 
     @Override
     public final synchronized void release() {
-        int i10 = this.f15151c - 1;
-        this.f15151c = i10;
+        int i10 = this.f16560c - 1;
+        this.f16560c = i10;
         if (i10 == 0) {
-            this.f15150b.release();
+            this.f16559b.release();
         }
+    }
+
+    @Override
+    public final h2.b y(byte[] bArr) {
+        int i10 = Build.VERSION.SDK_INT;
+        UUID uuid = this.f16558a;
+        if (i10 < 27 && Objects.equals(uuid, b2.i.f3256c)) {
+            uuid = b2.i.f3255b;
+        }
+        return new s(uuid, bArr);
     }
 }

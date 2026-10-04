@@ -1,25 +1,75 @@
 package c3;
 
-import android.os.Parcel;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class j0 implements com.google.android.gms.common.api.internal.s {
-    public final String[] f3772a;
+import android.content.Context;
+import android.os.Looper;
+import java.nio.ByteBuffer;
+public final class j0 {
+    public final int f4080a;
+    public boolean f4081b;
 
-    public j0(g6.r rVar, String[] strArr) {
-        this.f3772a = strArr;
+    public j0() {
+        this.f4080a = 4;
     }
 
-    @Override
-    public void accept(Object obj, Object obj2) {
-        g6.q qVar = new g6.q(1, (TaskCompletionSource) obj2);
-        g6.i iVar = (g6.i) ((g6.s) obj).u();
-        Parcel O0 = iVar.O0();
-        com.google.android.gms.internal.cast.v.d(O0, qVar);
-        O0.writeStringArray(this.f3772a);
-        iVar.T0(O0, 6);
+    public void a(boolean z10) {
+        switch (this.f4080a) {
+            case 2:
+                if (this.f4081b != z10) {
+                    this.f4081b = z10;
+                    return;
+                }
+                return;
+            default:
+                if (this.f4081b != z10) {
+                    this.f4081b = z10;
+                    return;
+                }
+                return;
+        }
     }
 
-    public j0(String[] strArr) {
-        this.f3772a = strArr;
+    public j0(Context context, Looper looper, e2.x xVar, int i10) {
+        this.f4080a = i10;
+        switch (i10) {
+            case 3:
+                new na.d(context.getApplicationContext());
+                xVar.a(looper, null);
+                return;
+            default:
+                new t7.u(context.getApplicationContext());
+                xVar.a(looper, null);
+                return;
+        }
+    }
+
+    public j0(boolean z10) {
+        this.f4080a = 0;
+        this.f4081b = z10;
+    }
+
+    public j0(f2.o oVar, f2.q qVar) {
+        this.f4080a = 1;
+        int i10 = qVar.f9608a;
+        ByteBuffer byteBuffer = qVar.f9609b;
+        e2.d.b(i10 == 6 || i10 == 3);
+        int min = Math.min(4, byteBuffer.remaining());
+        byte[] bArr = new byte[min];
+        byteBuffer.asReadOnlyBuffer().get(bArr);
+        a4.h hVar = new a4.h(bArr, min);
+        oVar.getClass();
+        if (hVar.h()) {
+            this.f4081b = false;
+            return;
+        }
+        int i11 = hVar.i(2);
+        if (!hVar.h()) {
+            this.f4081b = true;
+            return;
+        }
+        if (i11 != 3 && i11 != 0) {
+            hVar.h();
+        }
+        hVar.s();
+        throw new Exception();
     }
 }

@@ -1,78 +1,81 @@
 package v7;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Collection;
-public abstract class f9 extends AbstractCollection implements Serializable {
-    public static final Object[] f44261a = new Object[0];
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+public final class f9 extends a9.o implements ListIterator {
+    public final int f47925b;
+    public int f47926c;
+    public final h9 d;
 
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    public abstract int i(Object[] objArr);
-
-    public int n() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int o() {
-        throw new UnsupportedOperationException();
-    }
-
-    public Object[] p() {
-        return null;
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return toArray(f44261a);
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        int length = objArr.length;
-        if (length < size) {
-            Object[] p5 = p();
-            if (p5 == null) {
-                objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), size);
-            } else {
-                return Arrays.copyOfRange(p5, o(), n(), objArr.getClass());
-            }
-        } else if (length > size) {
-            objArr[size] = null;
+    public f9(h9 h9Var, int i10) {
+        super(6);
+        int size = h9Var.size();
+        if (i10 >= 0 && i10 <= size) {
+            this.f47925b = size;
+            this.f47926c = i10;
+            this.d = h9Var;
+            return;
         }
-        i(objArr);
-        return objArr;
+        throw new IndexOutOfBoundsException(w7.y7.c(i10, size, "index"));
+    }
+
+    public final Object a(int i10) {
+        return this.d.get(i10);
+    }
+
+    @Override
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (this.f47926c < this.f47925b) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.f47926c > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i10 = this.f47926c;
+            this.f47926c = i10 + 1;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.f47926c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f47926c - 1;
+            this.f47926c = i10;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.f47926c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

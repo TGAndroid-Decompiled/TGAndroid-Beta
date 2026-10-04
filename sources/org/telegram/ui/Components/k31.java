@@ -1,51 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class k31 extends w51 {
-    public static final int f25593a = 0;
+import androidx.recyclerview.widget.RecyclerView;
+public final class k31 extends s4.s0 {
+    public final int f27947a;
+    public final v31 f27948b;
 
-    static {
-        w51.setup(new w51());
+    public k31(v31 v31Var, int i10) {
+        this.f27947a = i10;
+        this.f27948b = v31Var;
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
-        boolean z11;
-        l31 l31Var = (l31) view;
-        boolean z12 = false;
-        if (x51Var.f30284r) {
-            l31Var.e();
-        } else {
-            Object obj = x51Var.G;
-            if (obj == null) {
-                if (x51Var.B == -2) {
-                    l31Var.b(x51Var.f30283q, x51Var.e);
-                } else {
-                    if ((x51Var.f30290y & 1) != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    l31Var.c(z11, x51Var.f30283q, x51Var.e);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f27947a) {
+            case 0:
+                v31 v31Var = this.f27948b;
+                if (v31Var.k()) {
+                    v31Var.l();
+                    return;
                 }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!x51Var.I) {
-                    l31Var.f((TLRPC.TL_forumTopic) obj, x51Var.e);
-                } else {
-                    l31Var.a(x51Var.f30289x, (TLRPC.TL_forumTopic) obj, x51Var.e);
+                return;
+            default:
+                v31 v31Var2 = this.f27948b;
+                if (v31Var2.k()) {
+                    v31Var2.l();
+                    return;
                 }
-            }
+                return;
         }
-        if (t61Var != null && t61Var.f28480c3 && l31Var.f25897y) {
-            z12 = true;
-        }
-        l31Var.setReorder(z12);
-    }
-
-    @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new l31(context, i10, d6Var);
     }
 }

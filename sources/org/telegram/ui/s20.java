@@ -1,46 +1,69 @@
 package org.telegram.ui;
 
-import java.util.Calendar;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class s20 implements org.telegram.ui.Components.cd0 {
-    public final int f37576a;
-    public final long f37577b;
-    public final Calendar f37578c;
-    public final int d;
+import android.view.KeyEvent;
+import android.view.View;
+import org.telegram.messenger.voip.NativeInstance;
+public final class s20 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.Components.ol0, r0.n, NativeInstance.AudioLevelsCallback, org.telegram.ui.ActionBar.l1 {
+    public final int f40328a;
+    public final h60 f40329b;
 
-    public s20(long j3, Calendar calendar, int i10, int i11) {
-        this.f37576a = i11;
-        this.f37577b = j3;
-        this.f37578c = calendar;
-        this.d = i10;
+    public s20(h60 h60Var, int i10) {
+        this.f40328a = i10;
+        this.f40329b = h60Var;
     }
 
     @Override
-    public final String j(int i10) {
-        switch (this.f37576a) {
-            case 0:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        return h60.z(this.f40329b, l1Var);
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        switch (this.f40328a) {
+            case 1:
+                h60 h60Var = this.f40329b;
+                if (h60Var.F1(view)) {
+                    try {
+                        h60Var.Q.performHapticFeedback(0);
+                    } catch (Exception unused) {
+                    }
                 }
-                long j3 = (i10 * 86400000) + this.f37577b;
-                Calendar calendar = this.f37578c;
-                calendar.setTimeInMillis(j3);
-                if (calendar.get(1) == this.d) {
-                    return LocaleController.getInstance().getFormatterWeek().format(j3) + " " + LocaleController.getInstance().getFormatterScheduleDay().format(j3);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(j3);
+                return false;
             default:
-                if (i10 == 0) {
-                    return LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
+                h60 h60Var2 = this.f40329b;
+                if (!h60Var2.r1()) {
+                    if (view instanceof org.telegram.ui.Components.voip.l) {
+                        return h60Var2.F1(view);
+                    }
+                    if (view instanceof org.telegram.ui.Cells.e4) {
+                        h60Var2.I1();
+                        org.telegram.ui.Components.nj0 nj0Var = ((org.telegram.ui.Cells.e4) view).f22024f;
+                        if (nj0Var.isEnabled()) {
+                            nj0Var.callOnClick();
+                            return true;
+                        }
+                    }
                 }
-                long j10 = (i10 * 86400000) + this.f37577b;
-                Calendar calendar2 = this.f37578c;
-                calendar2.setTimeInMillis(j10);
-                if (calendar2.get(1) == this.d) {
-                    return LocaleController.getInstance().getFormatterScheduleDay().format(j10);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(j10);
+                return false;
         }
+    }
+
+    @Override
+    public void m(int i10) {
+        this.f40329b.O.getActionBarMenuOnItemClick().b(i10);
+    }
+
+    @Override
+    public void o(KeyEvent keyEvent) {
+        h60 h60Var;
+        i50 i50Var;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (i50Var = (h60Var = this.f40329b).f36898f3) != null && i50Var.isShowing()) {
+            h60Var.f36898f3.dismiss();
+        }
+    }
+
+    @Override
+    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
+        h60.B(this.f40329b, iArr, fArr);
     }
 }

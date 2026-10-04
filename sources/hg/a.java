@@ -9,135 +9,135 @@ import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.d5;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.wn;
-public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.z1 {
-    public final int f10189a;
-    public final d f10190b;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.yn;
+public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a2 {
+    public final int f11099a;
+    public final c f11100b;
 
-    public a(d dVar, int i10) {
-        this.f10189a = i10;
-        this.f10190b = dVar;
+    public a(c cVar, int i10) {
+        this.f11099a = i10;
+        this.f11100b = cVar;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f10189a) {
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f11099a) {
             case 1:
-                this.f10190b.X();
+                this.f11100b.W();
                 return;
             default:
-                this.f10190b.finishFragment();
+                this.f11100b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        x51 x51Var = (x51) obj;
+        g61 g61Var = (g61) obj;
         final View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        final d dVar = this.f10190b;
-        if (!dVar.d.h(x51Var)) {
-            int i10 = x51Var.d;
-            if (i10 != 2 && x51Var.f15716a != 17) {
+        final c cVar = this.f11100b;
+        if (!cVar.d.h(g61Var)) {
+            int i10 = g61Var.d;
+            if (i10 != 2 && g61Var.f17182a != 17) {
                 if (i10 == 1) {
-                    dVar.f10234s = !dVar.f10234s;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    cVar.f11141s = !cVar.f11141s;
+                    cVar.f11136c.f25244f3.N(true);
+                    cVar.T(true);
                     return;
                 } else if (i10 == 6) {
-                    c0 c0Var = dVar.d;
-                    dVar.v = true;
-                    c0Var.h = true;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    a0 a0Var = cVar.d;
+                    cVar.v = true;
+                    a0Var.h = true;
+                    cVar.f11136c.f25244f3.N(true);
+                    cVar.T(true);
                     return;
                 } else if (i10 == 7) {
-                    c0 c0Var2 = dVar.d;
-                    dVar.v = false;
-                    c0Var2.h = false;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    a0 a0Var2 = cVar.d;
+                    cVar.v = false;
+                    a0Var2.h = false;
+                    cVar.f11136c.f25244f3.N(true);
+                    cVar.T(true);
                     return;
                 } else if (i10 == 3) {
-                    dVar.f10236x = 0;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    cVar.f11143x = 0;
+                    cVar.f11136c.f25244f3.N(true);
+                    cVar.T(true);
                     return;
                 } else if (i10 == 4) {
-                    dVar.f10236x = 1;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    cVar.f11143x = 1;
+                    cVar.f11136c.f25244f3.N(true);
+                    cVar.T(true);
                     return;
                 } else if (i10 == 5) {
-                    dVar.f10236x = 2;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    cVar.f11143x = 2;
+                    cVar.f11136c.f25244f3.N(true);
+                    cVar.T(true);
                     return;
                 } else if (i10 == 8) {
-                    e5.y(dVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), dVar.F, new d5() {
+                    e5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.F, new d5() {
                         @Override
-                        public final void J(int i11, int i12, boolean z10) {
+                        public final void K(int i11, int i12, boolean z10) {
                             switch (r3) {
                                 case 0:
-                                    d dVar2 = dVar;
-                                    dVar2.getClass();
-                                    dVar2.F = i11;
+                                    c cVar2 = cVar;
+                                    cVar2.getClass();
+                                    cVar2.F = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    dVar2.V(true);
+                                    cVar2.T(true);
                                     return;
                                 default:
-                                    d dVar3 = dVar;
-                                    dVar3.getClass();
-                                    dVar3.G = i11;
+                                    c cVar3 = cVar;
+                                    cVar3.getClass();
+                                    cVar3.G = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    dVar3.V(true);
+                                    cVar3.T(true);
                                     return;
                             }
                         }
                     });
                     return;
                 } else if (i10 == 9) {
-                    e5.y(dVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), dVar.G, new d5() {
+                    e5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.G, new d5() {
                         @Override
-                        public final void J(int i11, int i12, boolean z10) {
+                        public final void K(int i11, int i12, boolean z10) {
                             switch (r3) {
                                 case 0:
-                                    d dVar2 = dVar;
-                                    dVar2.getClass();
-                                    dVar2.F = i11;
+                                    c cVar2 = cVar;
+                                    cVar2.getClass();
+                                    cVar2.F = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    dVar2.V(true);
+                                    cVar2.T(true);
                                     return;
                                 default:
-                                    d dVar3 = dVar;
-                                    dVar3.getClass();
-                                    dVar3.G = i11;
+                                    c cVar3 = cVar;
+                                    cVar3.getClass();
+                                    cVar3.G = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    dVar3.V(true);
+                                    cVar3.T(true);
                                     return;
                             }
                         }
                     });
                     return;
                 } else if (i10 == 10) {
-                    boolean z10 = !dVar.f10235w;
-                    dVar.f10235w = z10;
+                    boolean z10 = !cVar.f11142w;
+                    cVar.f11142w = z10;
                     ((w8) view).setChecked(z10);
-                    dVar.V(true);
+                    cVar.T(true);
                     return;
                 } else {
                     return;
                 }
             }
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", dVar.getUserConfig().getClientUserId());
+            bundle.putLong("user_id", cVar.getUserConfig().getClientUserId());
             bundle.putInt("chatMode", 5);
             bundle.putString("quick_reply", "away");
-            dVar.presentFragment(new wn(bundle));
+            cVar.presentFragment(new yn(bundle));
         }
     }
 }

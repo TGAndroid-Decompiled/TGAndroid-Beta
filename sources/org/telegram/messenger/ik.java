@@ -5,28 +5,28 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ik implements Runnable {
-    public final int f16681a;
-    public final Object f16682b;
-    public final Object f16683c;
+    public final int f18196a;
+    public final Object f18197b;
+    public final Object f18198c;
     public final Object d;
-    public final Object e;
-    public final Object f16684f;
+    public final Object f18199e;
+    public final Object f18200f;
     public final Object h;
-    public final Object f16685n;
-    public final boolean f16686r;
-    public final Object f16687s;
+    public final Object f18201n;
+    public final boolean f18202r;
+    public final Object f18203s;
 
-    public ik(Object obj, Object obj2, org.telegram.ui.ActionBar.e1 e1Var, org.telegram.ui.ActionBar.e1 e1Var2, org.telegram.ui.ActionBar.e1 e1Var3, org.telegram.ui.ActionBar.e1 e1Var4, boolean z10, org.telegram.ui.ActionBar.e1 e1Var5, org.telegram.ui.ActionBar.e1 e1Var6, int i10) {
-        this.f16681a = i10;
-        this.f16682b = obj;
-        this.f16683c = obj2;
-        this.d = e1Var;
-        this.e = e1Var2;
-        this.f16684f = e1Var3;
-        this.h = e1Var4;
-        this.f16686r = z10;
-        this.f16685n = e1Var5;
-        this.f16687s = e1Var6;
+    public ik(Object obj, Object obj2, org.telegram.ui.ActionBar.f1 f1Var, org.telegram.ui.ActionBar.f1 f1Var2, org.telegram.ui.ActionBar.f1 f1Var3, org.telegram.ui.ActionBar.f1 f1Var4, boolean z10, org.telegram.ui.ActionBar.f1 f1Var5, org.telegram.ui.ActionBar.f1 f1Var6, int i10) {
+        this.f18196a = i10;
+        this.f18197b = obj;
+        this.f18198c = obj2;
+        this.d = f1Var;
+        this.f18199e = f1Var2;
+        this.f18200f = f1Var3;
+        this.h = f1Var4;
+        this.f18202r = z10;
+        this.f18201n = f1Var5;
+        this.f18203s = f1Var6;
     }
 
     @Override
@@ -35,77 +35,77 @@ public final class ik implements Runnable {
         int i11;
         int i12;
         int i13;
-        switch (this.f16681a) {
+        switch (this.f18196a) {
             case 0:
-                ((SendMessagesHelper) this.f16682b).lambda$performSendMessageRequest$86((TLRPC.TL_error) this.f16683c, (TLRPC.Message) this.d, (TLObject) this.e, (MessageObject) this.f16684f, (String) this.h, (HashMap) this.f16685n, this.f16686r, (TLRPC.TL_messages_addPollAnswer) this.f16687s);
+                ((SendMessagesHelper) this.f18197b).lambda$performSendMessageRequest$86((TLRPC.TL_error) this.f18198c, (TLRPC.Message) this.d, (TLObject) this.f18199e, (MessageObject) this.f18200f, (String) this.h, (HashMap) this.f18201n, this.f18202r, (TLRPC.TL_messages_addPollAnswer) this.f18203s);
                 return;
             case 1:
-                ((SendMessagesHelper) this.f16682b).lambda$performSendMessageRequest$89((TLRPC.TL_error) this.f16683c, (TLRPC.Message) this.d, (TLObject) this.e, (MessageObject) this.f16684f, (String) this.h, (HashMap) this.f16685n, this.f16686r, (TLRPC.TL_messages_editMessage) this.f16687s);
+                ((SendMessagesHelper) this.f18197b).lambda$performSendMessageRequest$89((TLRPC.TL_error) this.f18198c, (TLRPC.Message) this.d, (TLObject) this.f18199e, (MessageObject) this.f18200f, (String) this.h, (HashMap) this.f18201n, this.f18202r, (TLRPC.TL_messages_editMessage) this.f18203s);
                 return;
             case 2:
-                ((SendMessagesHelper) this.f16682b).lambda$performSendMessageRequest$100(this.f16686r, (TLRPC.TL_error) this.f16683c, (TLRPC.Message) this.d, (TLObject) this.e, (MessageObject) this.f16684f, (HashMap) this.f16685n, (String) this.h, (TLObject) this.f16687s);
+                ((SendMessagesHelper) this.f18197b).lambda$performSendMessageRequest$100(this.f18202r, (TLRPC.TL_error) this.f18198c, (TLRPC.Message) this.d, (TLObject) this.f18199e, (MessageObject) this.f18200f, (HashMap) this.f18201n, (String) this.h, (TLObject) this.f18203s);
                 return;
             case 3:
-                org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.f16682b;
-                yh.k5 k5Var = (yh.k5) this.f16683c;
-                org.telegram.ui.ActionBar.e1 e1Var2 = (org.telegram.ui.ActionBar.e1) this.d;
-                org.telegram.ui.ActionBar.e1 e1Var3 = (org.telegram.ui.ActionBar.e1) this.e;
-                org.telegram.ui.ActionBar.e1 e1Var4 = (org.telegram.ui.ActionBar.e1) this.f16684f;
-                org.telegram.ui.ActionBar.e1 e1Var5 = (org.telegram.ui.ActionBar.e1) this.h;
-                org.telegram.ui.ActionBar.e1 e1Var6 = (org.telegram.ui.ActionBar.e1) this.f16685n;
-                org.telegram.ui.ActionBar.e1 e1Var7 = (org.telegram.ui.ActionBar.e1) this.f16687s;
-                if (e1Var != null) {
-                    if (k5Var.e) {
+                org.telegram.ui.ActionBar.f1 f1Var = (org.telegram.ui.ActionBar.f1) this.f18197b;
+                yh.k5 k5Var = (yh.k5) this.f18198c;
+                org.telegram.ui.ActionBar.f1 f1Var2 = (org.telegram.ui.ActionBar.f1) this.d;
+                org.telegram.ui.ActionBar.f1 f1Var3 = (org.telegram.ui.ActionBar.f1) this.f18199e;
+                org.telegram.ui.ActionBar.f1 f1Var4 = (org.telegram.ui.ActionBar.f1) this.f18200f;
+                org.telegram.ui.ActionBar.f1 f1Var5 = (org.telegram.ui.ActionBar.f1) this.h;
+                org.telegram.ui.ActionBar.f1 f1Var6 = (org.telegram.ui.ActionBar.f1) this.f18201n;
+                org.telegram.ui.ActionBar.f1 f1Var7 = (org.telegram.ui.ActionBar.f1) this.f18203s;
+                if (f1Var != null) {
+                    if (k5Var.f51521e) {
                         i10 = R.string.Gift2FilterSortByValue;
                     } else {
                         i10 = R.string.Gift2FilterSortByDate;
                     }
                     String string = LocaleController.getString(i10);
-                    if (k5Var.e) {
+                    if (k5Var.f51521e) {
                         i11 = R.drawable.menu_sort_value;
                     } else {
                         i11 = R.drawable.menu_sort_date;
                     }
-                    e1Var.g(string, i11, null);
+                    f1Var.g(string, i11, null);
                 }
-                e1Var2.setChecked(TLObject.hasFlag(k5Var.f47610g, 1));
-                e1Var3.setChecked(TLObject.hasFlag(k5Var.f47610g, 2));
-                e1Var4.setChecked(TLObject.hasFlag(k5Var.f47610g, 4));
-                e1Var5.setChecked(TLObject.hasFlag(k5Var.f47610g, 8));
-                if (this.f16686r) {
-                    e1Var6.setChecked(TLObject.hasFlag(k5Var.f47610g, 256));
-                    e1Var7.setChecked(TLObject.hasFlag(k5Var.f47610g, 512));
+                f1Var2.setChecked(TLObject.hasFlag(k5Var.f51523g, 1));
+                f1Var3.setChecked(TLObject.hasFlag(k5Var.f51523g, 2));
+                f1Var4.setChecked(TLObject.hasFlag(k5Var.f51523g, 4));
+                f1Var5.setChecked(TLObject.hasFlag(k5Var.f51523g, 8));
+                if (this.f18202r) {
+                    f1Var6.setChecked(TLObject.hasFlag(k5Var.f51523g, 256));
+                    f1Var7.setChecked(TLObject.hasFlag(k5Var.f51523g, 512));
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.e1 e1Var8 = (org.telegram.ui.ActionBar.e1) this.f16683c;
-                org.telegram.ui.ActionBar.e1 e1Var9 = (org.telegram.ui.ActionBar.e1) this.d;
-                org.telegram.ui.ActionBar.e1 e1Var10 = (org.telegram.ui.ActionBar.e1) this.e;
-                org.telegram.ui.ActionBar.e1 e1Var11 = (org.telegram.ui.ActionBar.e1) this.f16684f;
-                org.telegram.ui.ActionBar.e1 e1Var12 = (org.telegram.ui.ActionBar.e1) this.h;
-                org.telegram.ui.ActionBar.e1 e1Var13 = (org.telegram.ui.ActionBar.e1) this.f16685n;
-                org.telegram.ui.ActionBar.e1 e1Var14 = (org.telegram.ui.ActionBar.e1) this.f16687s;
-                yh.k5 k5Var2 = ((xh.j4) this.f16682b).f46229c.Y;
-                if (k5Var2.e) {
+                org.telegram.ui.ActionBar.f1 f1Var8 = (org.telegram.ui.ActionBar.f1) this.f18198c;
+                org.telegram.ui.ActionBar.f1 f1Var9 = (org.telegram.ui.ActionBar.f1) this.d;
+                org.telegram.ui.ActionBar.f1 f1Var10 = (org.telegram.ui.ActionBar.f1) this.f18199e;
+                org.telegram.ui.ActionBar.f1 f1Var11 = (org.telegram.ui.ActionBar.f1) this.f18200f;
+                org.telegram.ui.ActionBar.f1 f1Var12 = (org.telegram.ui.ActionBar.f1) this.h;
+                org.telegram.ui.ActionBar.f1 f1Var13 = (org.telegram.ui.ActionBar.f1) this.f18201n;
+                org.telegram.ui.ActionBar.f1 f1Var14 = (org.telegram.ui.ActionBar.f1) this.f18203s;
+                yh.k5 k5Var2 = ((xh.j4) this.f18197b).f50036c.Y;
+                if (k5Var2.f51521e) {
                     i12 = R.string.Gift2FilterSortByValue;
                 } else {
                     i12 = R.string.Gift2FilterSortByDate;
                 }
                 String string2 = LocaleController.getString(i12);
-                if (k5Var2.e) {
+                if (k5Var2.f51521e) {
                     i13 = R.drawable.menu_sort_value;
                 } else {
                     i13 = R.drawable.menu_sort_date;
                 }
-                e1Var8.g(string2, i13, null);
-                e1Var9.setChecked(TLObject.hasFlag(k5Var2.f47610g, 1));
-                e1Var10.setChecked(TLObject.hasFlag(k5Var2.f47610g, 2));
-                e1Var11.setChecked(TLObject.hasFlag(k5Var2.f47610g, 4));
-                e1Var12.setChecked(TLObject.hasFlag(k5Var2.f47610g, 8));
-                if (this.f16686r) {
-                    e1Var13.setChecked(TLObject.hasFlag(k5Var2.f47610g, 256));
-                    e1Var14.setChecked(TLObject.hasFlag(k5Var2.f47610g, 512));
+                f1Var8.g(string2, i13, null);
+                f1Var9.setChecked(TLObject.hasFlag(k5Var2.f51523g, 1));
+                f1Var10.setChecked(TLObject.hasFlag(k5Var2.f51523g, 2));
+                f1Var11.setChecked(TLObject.hasFlag(k5Var2.f51523g, 4));
+                f1Var12.setChecked(TLObject.hasFlag(k5Var2.f51523g, 8));
+                if (this.f18202r) {
+                    f1Var13.setChecked(TLObject.hasFlag(k5Var2.f51523g, 256));
+                    f1Var14.setChecked(TLObject.hasFlag(k5Var2.f51523g, 512));
                     return;
                 }
                 return;
@@ -113,28 +113,28 @@ public final class ik implements Runnable {
     }
 
     public ik(SendMessagesHelper sendMessagesHelper, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, String str, HashMap hashMap, boolean z10, TLMethod tLMethod, int i10) {
-        this.f16681a = i10;
-        this.f16682b = sendMessagesHelper;
-        this.f16683c = tL_error;
+        this.f18196a = i10;
+        this.f18197b = sendMessagesHelper;
+        this.f18198c = tL_error;
         this.d = message;
-        this.e = tLObject;
-        this.f16684f = messageObject;
+        this.f18199e = tLObject;
+        this.f18200f = messageObject;
         this.h = str;
-        this.f16685n = hashMap;
-        this.f16686r = z10;
-        this.f16687s = tLMethod;
+        this.f18201n = hashMap;
+        this.f18202r = z10;
+        this.f18203s = tLMethod;
     }
 
     public ik(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, HashMap hashMap, String str, TLObject tLObject2) {
-        this.f16681a = 2;
-        this.f16682b = sendMessagesHelper;
-        this.f16686r = z10;
-        this.f16683c = tL_error;
+        this.f18196a = 2;
+        this.f18197b = sendMessagesHelper;
+        this.f18202r = z10;
+        this.f18198c = tL_error;
         this.d = message;
-        this.e = tLObject;
-        this.f16684f = messageObject;
-        this.f16685n = hashMap;
+        this.f18199e = tLObject;
+        this.f18200f = messageObject;
+        this.f18201n = hashMap;
         this.h = str;
-        this.f16687s = tLObject2;
+        this.f18203s = tLObject2;
     }
 }

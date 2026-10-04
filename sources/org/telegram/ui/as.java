@@ -1,212 +1,81 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.ClipData;
-import android.content.ClipDescription;
-import android.content.ClipboardManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public abstract class as extends EditTextBoldCursor {
-    public static final org.telegram.ui.Components.vv0 I;
-    public static final org.telegram.ui.Components.vv0 J;
-    public static final org.telegram.ui.Components.vv0 K;
-    public static final org.telegram.ui.Components.vv0 L;
-    public Canvas E;
-    public ValueAnimator F;
-    public ValueAnimator G;
-    public boolean H;
-    public float f32222b;
-    public float f32223c;
-    public float d;
-    public float e;
-    public o1.k f32224f;
-    public o1.k h;
-    public o1.k f32225n;
-    public o1.k f32226r;
-    public boolean f32227s;
-    public float v;
-    public float f32228w;
-    public boolean f32229x;
-    public Bitmap f32230y;
+import android.content.Context;
+import android.view.KeyEvent;
+public final class as extends es {
+    public final int M;
+    public final int N;
+    public final cs O;
 
-    static {
-        org.telegram.ui.Components.vv0 vv0Var = new org.telegram.ui.Components.vv0(new u6(9), new u6(10));
-        vv0Var.f29745c = 100.0f;
-        I = vv0Var;
-        org.telegram.ui.Components.vv0 vv0Var2 = new org.telegram.ui.Components.vv0(new u6(11), new u6(12));
-        vv0Var2.f29745c = 100.0f;
-        J = vv0Var2;
-        org.telegram.ui.Components.vv0 vv0Var3 = new org.telegram.ui.Components.vv0(new u6(13), new u6(14));
-        vv0Var3.f29745c = 100.0f;
-        K = vv0Var3;
-        org.telegram.ui.Components.vv0 vv0Var4 = new org.telegram.ui.Components.vv0(new u6(15), new u6(16));
-        vv0Var4.f29745c = 100.0f;
-        L = vv0Var4;
-    }
-
-    public static void k(o1.k kVar, float f7) {
-        o1.l lVar = kVar.f15534u;
-        if (lVar != null && f7 == ((float) lVar.f15540i)) {
-            return;
-        }
-        kVar.c();
-        o1.l lVar2 = new o1.l(f7);
-        lVar2.b(400.0f);
-        lVar2.a(1.0f);
-        lVar2.f15540i = f7;
-        kVar.f15534u = lVar2;
-        kVar.f();
-    }
-
-    public float getErrorProgress() {
-        return this.f32223c;
-    }
-
-    public float getFocusedProgress() {
-        return this.f32222b;
-    }
-
-    public float getSuccessProgress() {
-        return this.d;
-    }
-
-    public float getSuccessScaleProgress() {
-        return this.e;
-    }
-
-    public final void i(float f7) {
-        k(this.h, f7 * 100.0f);
-    }
-
-    public final void j(float f7) {
-        k(this.f32224f, f7 * 100.0f);
-    }
-
-    public final void l(float f7) {
-        k(this.f32225n, f7 * 100.0f);
-        o1.k kVar = this.f32226r;
-        kVar.c();
-        if (f7 != 0.0f) {
-            o1.l l4 = org.telegram.ui.Cells.c1.l(1.0f, 500.0f, 0.75f);
-            l4.f15540i = 100.0f;
-            kVar.f15534u = l4;
-            kVar.f15525b = 100.0f;
-            kVar.f15526c = true;
-            kVar.f15524a = 4000.0f;
-            kVar.f();
-            return;
-        }
-        this.e = 1.0f;
-    }
-
-    public final void m() {
-        if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0 && getLayout() != null) {
-            Bitmap bitmap = this.f32230y;
-            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f32230y.getWidth() != getMeasuredWidth()) {
-                Bitmap bitmap2 = this.f32230y;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
-                }
-                this.f32230y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                this.E = new Canvas(this.f32230y);
-            }
-            this.f32230y.eraseColor(0);
-            CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
-            StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
-            this.E.save();
-            this.E.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
-            staticLayout.draw(this.E);
-            this.E.restore();
-            this.f32228w = 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.G = ofFloat;
-            ofFloat.addUpdateListener(new c3(this, 8));
-            this.G.setDuration(220L);
-            this.G.start();
-        }
+    public as(cs csVar, Context context, int i10, int i11) {
+        super(context);
+        this.O = csVar;
+        this.M = i10;
+        this.N = i11;
+        this.f36075e = 1.0f;
+        this.f36076f = new o1.k(this, es.I);
+        this.h = new o1.k(this, es.J);
+        this.f36077n = new o1.k(this, es.K);
+        this.f36078r = new o1.k(this, es.L);
+        this.f36079s = true;
+        this.v = 1.0f;
+        this.f36080w = 1.0f;
+        this.H = false;
+        setBackground(null);
+        setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
+        setMovementMethod(null);
+        addTextChangedListener(new m0(this, 5));
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f32224f.c();
-        this.h.c();
-    }
-
-    @Override
-    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
-        super.onFocusChanged(z10, i10, rect);
-        if (!isFocused()) {
-            hideActionMode();
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4) {
+            return false;
         }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        yr yrVar;
-        ClipDescription primaryClipDescription;
-        String str;
-        int i10;
-        if (motionEvent.getAction() == 0) {
-            this.H = true;
-            motionEvent.getX();
-            motionEvent.getY();
+        int keyCode = keyEvent.getKeyCode();
+        cs csVar = this.O;
+        int length = csVar.f35543f.length;
+        int i10 = this.M;
+        if (i10 >= length) {
+            return false;
         }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (getParent() instanceof yr) {
-                yrVar = (yr) getParent();
-            } else {
-                yrVar = null;
-            }
-            if (motionEvent.getAction() == 1 && this.H) {
-                if (isFocused() && yrVar != null) {
-                    ClipboardManager clipboardManager = (ClipboardManager) f0.e.f(getContext(), ClipboardManager.class);
-                    if (clipboardManager == null || clipboardManager.getPrimaryClipDescription() == null || (primaryClipDescription = clipboardManager.getPrimaryClipDescription()) == null) {
-                        return false;
-                    }
-                    primaryClipDescription.hasMimeType("text/plain");
-                    ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
-                    if (itemAt != null && itemAt.getText() != null) {
-                        str = itemAt.getText().toString();
+        if (keyEvent.getAction() == 1) {
+            if (keyCode == 67 && csVar.f35543f[i10].length() == 1) {
+                csVar.f35543f[i10].m();
+                csVar.f35543f[i10].setText("");
+                return true;
+            } else if (keyCode == 67 && csVar.f35543f[i10].length() == 0 && i10 > 0) {
+                es[] esVarArr = csVar.f35543f;
+                esVarArr[i10 - 1].setSelection(esVarArr[i10 - 1].length());
+                for (int i11 = 0; i11 < i10; i11++) {
+                    if (i11 == i10 - 1) {
+                        csVar.f35543f[i10 - 1].requestFocus();
                     } else {
-                        str = "";
+                        csVar.f35543f[i11].clearFocus();
                     }
-                    try {
-                        i10 = Integer.parseInt(str);
-                    } catch (Exception unused) {
-                        i10 = -1;
-                    }
-                    if (i10 > 0) {
-                        startActionMode(new zr(this));
-                    }
-                } else {
-                    requestFocus();
                 }
-                setSelection(0);
-                if (this.f32227s) {
-                    AndroidUtilities.showKeyboard(this);
+                csVar.f35543f[i10 - 1].m();
+                csVar.f35543f[i10 - 1].setText("");
+                return true;
+            } else {
+                if (keyCode >= 7 && keyCode <= 16) {
+                    String num = Integer.toString(keyCode - 7);
+                    if (csVar.f35543f[i10].getText() != null && num.equals(csVar.f35543f[i10].getText().toString())) {
+                        if (i10 >= this.N - 1) {
+                            csVar.a();
+                        } else {
+                            csVar.f35543f[i10 + 1].requestFocus();
+                        }
+                        return true;
+                    }
+                    if (csVar.f35543f[i10].length() > 0) {
+                        csVar.f35543f[i10].m();
+                    }
+                    csVar.f35543f[i10].setText(num);
                 }
+                return true;
             }
-            this.H = false;
         }
-        return this.H;
-    }
-
-    @Override
-    public final boolean requestFocus(int i10, Rect rect) {
-        ((ViewGroup) getParent()).invalidate();
-        return super.requestFocus(i10, rect);
-    }
-
-    public void setShowSoftInputOnFocusCompat(boolean z10) {
-        this.f32227s = z10;
-        setShowSoftInputOnFocus(z10);
+        return isFocused();
     }
 }

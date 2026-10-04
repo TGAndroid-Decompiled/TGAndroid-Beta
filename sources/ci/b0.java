@@ -4,36 +4,36 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.MessagesStorage;
 public final class b0 implements Runnable {
-    public final int f4364a;
-    public final int f4365b;
-    public final int f4366c;
+    public final int f4722a;
+    public final int f4723b;
+    public final int f4724c;
     public final int d;
-    public final Object e;
+    public final Object f4725e;
 
     public b0(Object obj, int i10, int i11, int i12, int i13) {
-        this.f4364a = i13;
-        this.e = obj;
-        this.f4365b = i10;
-        this.f4366c = i11;
+        this.f4722a = i13;
+        this.f4725e = obj;
+        this.f4723b = i10;
+        this.f4724c = i11;
         this.d = i12;
     }
 
     @Override
     public final void run() {
-        switch (this.f4364a) {
+        switch (this.f4722a) {
             case 0:
-                d0 d0Var = (d0) ((c0) this.e).f4429b;
-                l8 l8Var = d0Var.f4488n;
-                if (l8Var != null) {
-                    int i10 = l8Var.f4987k0;
-                    int i11 = this.f4365b;
-                    int i12 = this.f4366c;
+                d0 d0Var = (d0) ((c0) this.f4725e).f4796b;
+                k8 k8Var = d0Var.f4879n;
+                if (k8Var != null) {
+                    int i10 = k8Var.f5333k0;
+                    int i11 = this.f4723b;
+                    int i12 = this.f4724c;
                     int i13 = this.d;
-                    if (i10 != i11 || l8Var.f4989l0 != i12 || l8Var.Q != i13) {
-                        l8Var.f4987k0 = i11;
-                        l8Var.f4989l0 = i12;
-                        l8Var.Q = i13;
-                        TextureView textureView = d0Var.e;
+                    if (i10 != i11 || k8Var.f5335l0 != i12 || k8Var.Q != i13) {
+                        k8Var.f5333k0 = i11;
+                        k8Var.f5335l0 = i12;
+                        k8Var.Q = i13;
+                        TextureView textureView = d0Var.f4871e;
                         if (textureView != null) {
                             textureView.requestLayout();
                             return;
@@ -44,18 +44,18 @@ public final class b0 implements Runnable {
                 }
                 return;
             case 1:
-                ii.x3 x3Var = (ii.x3) this.e;
-                View A4 = x3Var.A4(this.f4365b);
-                if (A4 instanceof org.telegram.ui.Cells.p9) {
-                    x3Var.f11738n3.c0(this.f4366c, this.d, (org.telegram.ui.Cells.p9) A4);
+                ii.x3 x3Var = (ii.x3) this.f4725e;
+                View C4 = x3Var.C4(this.f4723b);
+                if (C4 instanceof org.telegram.ui.Cells.p9) {
+                    x3Var.f12781u3.c0(this.f4724c, this.d, (org.telegram.ui.Cells.p9) C4);
                     return;
                 }
                 return;
             case 2:
-                ii.x3.K1(((ii.m3) this.e).f11501b, this.f4365b, this.f4366c, this.d);
+                ii.x3.M1(((ii.m3) this.f4725e).f12523b, this.f4723b, this.f4724c, this.d);
                 return;
             default:
-                ((MessagesStorage) this.e).lambda$setMessageSeq$211(this.f4365b, this.f4366c, this.d);
+                ((MessagesStorage) this.f4725e).lambda$setMessageSeq$211(this.f4723b, this.f4724c, this.d);
                 return;
         }
     }

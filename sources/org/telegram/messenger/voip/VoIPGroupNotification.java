@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
-import ei.q2;
+import ei.r2;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
@@ -62,7 +62,7 @@ public class VoIPGroupNotification {
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                mi1 mi1Var = mi1.f35570n1;
+                mi1 mi1Var = mi1.f38602n1;
                 if (mi1Var != null) {
                     mi1Var.onStateChanged(getCallState());
                 }
@@ -161,8 +161,8 @@ public class VoIPGroupNotification {
         VoIPPreNotificationService.stopRinging();
         TL_phone.declineConferenceCallInvite declineconferencecallinvite = new TL_phone.declineConferenceCallInvite();
         declineconferencecallinvite.msg_id = i11;
-        ConnectionsManager.getInstance(i10).sendRequest(declineconferencecallinvite, new q2(i10, 1));
-        mi1 mi1Var = mi1.f35570n1;
+        ConnectionsManager.getInstance(i10).sendRequest(declineconferencecallinvite, new r2(i10, 1));
+        mi1 mi1Var = mi1.f38602n1;
         if (mi1Var != null) {
             mi1Var.n();
         }
@@ -187,7 +187,7 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            mi1 mi1Var = mi1.f35570n1;
+            mi1 mi1Var = mi1.f38602n1;
             if (mi1Var != null) {
                 mi1Var.n();
             }
@@ -278,7 +278,7 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            mi1 mi1Var = mi1.f35570n1;
+            mi1 mi1Var = mi1.f38602n1;
             if (mi1Var != null) {
                 mi1Var.n();
             }

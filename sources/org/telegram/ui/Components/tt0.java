@@ -1,32 +1,22 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class tt0 extends iv0 {
-    public final lv0 G;
+import android.view.View;
+public final class tt0 implements View.OnClickListener {
+    public final long f31162a;
+    public final org.telegram.ui.ActionBar.d6 f31163b;
+    public final Context f31164c;
+    public final pv0 d;
 
-    public tt0(lv0 lv0Var, Context context) {
-        super(lv0Var, context, 0, false);
-        this.G = lv0Var;
+    public tt0(pv0 pv0Var, long j3, org.telegram.ui.ActionBar.d6 d6Var, Context context) {
+        this.d = pv0Var;
+        this.f31162a = j3;
+        this.f31163b = d6Var;
+        this.f31164c = context;
     }
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        lv0 lv0Var = this.G;
-        eu0 W = lv0Var.W(8);
-        if (W != null && W.f24067r.getVisibility() == 0) {
-            lv0Var.f26115d0.l();
-        }
-        if (W != null) {
-            vs0 vs0Var = W.f24069w;
-            ai.d9 d9Var = this.f25192s;
-            if (d9Var != null && (d9Var.k() || (lv0Var.i0() && this.f25192s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            vs0Var.e(z10, true);
-        }
+    public final void onClick(android.view.View r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.tt0.onClick(android.view.View):void");
     }
 }

@@ -1,42 +1,28 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Paint;
-public final class of extends ei.y {
-    public boolean f27055s;
-    public final ChatActivityEnterView v;
+public final class of extends org.telegram.ui.zi0 {
+    public final int A0;
+    public final Object B0;
 
-    public of(ChatActivityEnterView chatActivityEnterView, Context context) {
-        super(context);
-        this.v = chatActivityEnterView;
-        this.f8720a = null;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f8723f = true;
-        this.f8721b = new Object();
-        ai.w0 w0Var = new ai.w0(this, context, 2);
-        this.f8722c = w0Var;
-        w0Var.setOverScrollMode(2);
-        w0Var.setClipToPadding(false);
-        w0Var.setClipToOutline(true);
-        w0Var.j(new ai.r(this, 3));
-        addView(w0Var);
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Ii, false));
-        ch.d dVar = this.f8725r;
-        if (dVar != null) {
-            dVar.v();
-        }
-        invalidate();
-        setClipChildren(false);
-        this.f27055s = false;
+    public of(Object obj, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
+        this.A0 = i10;
+        this.B0 = obj;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (!this.f27055s) {
-            this.f27055s = true;
-            this.v.C1();
+    public final void m(long j3) {
+        switch (this.A0) {
+            case 0:
+                ((ChatActivityEnterView) this.B0).setEffectId(j3);
+                return;
+            default:
+                xi xiVar = (xi) this.B0;
+                ei eiVar = xiVar.I0;
+                xiVar.N0 = j3;
+                eiVar.setEffect(j3);
+                return;
         }
     }
 }

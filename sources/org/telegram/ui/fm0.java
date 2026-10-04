@@ -1,97 +1,56 @@
 package org.telegram.ui;
 
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
+import android.text.Editable;
+import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SecureDocument;
-import org.telegram.tgnet.TLRPC;
-public final class fm0 extends lu0 {
-    public final gn0 f33700a;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class fm0 implements TextWatcher {
+    public boolean f36345a;
+    public final EditTextBoldCursor f36346b;
+    public final String f36347c;
+    public final kn0 d;
 
-    public fm0(gn0 gn0Var) {
-        this.f33700a = gn0Var;
+    public fm0(kn0 kn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = kn0Var;
+        this.f36346b = editTextBoldCursor;
+        this.f36347c = str;
     }
 
     @Override
-    public final void B(int i10) {
-        SecureDocument secureDocument;
-        gn0 gn0Var = this.f33700a;
-        int i11 = gn0Var.S0;
-        if (i11 == 1) {
-            secureDocument = gn0Var.f33995j1;
-        } else if (i11 == 4) {
-            secureDocument = (SecureDocument) gn0Var.f33997k1.get(i10);
-        } else if (i11 == 2) {
-            secureDocument = gn0Var.l1;
-        } else if (i11 == 3) {
-            secureDocument = gn0Var.f33999m1;
-        } else {
-            secureDocument = (SecureDocument) gn0Var.f33993i1.get(i10);
-        }
-        en0 en0Var = (en0) gn0Var.f34002n1.remove(secureDocument);
-        if (en0Var == null) {
+    public final void afterTextChanged(Editable editable) {
+        if (this.f36345a) {
             return;
         }
-        String n12 = gn0.n1(secureDocument);
-        int i12 = gn0Var.S0;
-        String str = null;
-        if (i12 == 1) {
-            gn0Var.f33995j1 = null;
-            str = v7.j.g("selfie", n12);
-        } else if (i12 == 4) {
-            str = v7.j.g("translation", n12);
-        } else if (i12 == 2) {
-            gn0Var.l1 = null;
-            str = v7.j.g("front", n12);
-        } else if (i12 == 3) {
-            gn0Var.f33999m1 = null;
-            str = v7.j.g("reverse", n12);
-        } else if (i12 == 0) {
-            str = v7.j.g("files", n12);
-        }
-        if (str != null) {
-            HashMap hashMap = gn0Var.f34026x1;
-            if (hashMap != null) {
-                hashMap.remove(str);
-            }
-            HashMap hashMap2 = gn0Var.f34029y1;
-            if (hashMap2 != null) {
-                hashMap2.remove(str);
+        boolean z10 = true;
+        this.f36345a = true;
+        int i10 = 0;
+        while (true) {
+            if (i10 < editable.length()) {
+                char charAt = editable.charAt(i10);
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
+                    break;
+                }
+                i10++;
+            } else {
+                z10 = false;
+                break;
             }
         }
-        gn0Var.S1(gn0Var.S0);
-        gn0Var.f33992i0.removeView(en0Var);
+        this.f36345a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f36346b;
+        if (z10) {
+            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+        } else {
+            kn0.J0(this.d, editTextBoldCursor, this.f36347c, editable, false);
+        }
     }
 
     @Override
-    public final vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        if (i10 >= 0) {
-            gn0 gn0Var = this.f33700a;
-            if (i10 < gn0Var.f33992i0.getChildCount()) {
-                en0 en0Var = (en0) gn0Var.f33992i0.getChildAt(i10);
-                int[] iArr = new int[2];
-                en0Var.f33447c.getLocationInWindow(iArr);
-                vu0 vu0Var = new vu0();
-                vu0Var.f38820b = iArr[0];
-                vu0Var.f38821c = iArr[1];
-                vu0Var.d = gn0Var.f33992i0;
-                ImageReceiver imageReceiver = en0Var.f33447c.getImageReceiver();
-                vu0Var.f38819a = imageReceiver;
-                vu0Var.e = imageReceiver.getBitmapSafe();
-                return vu0Var;
-            }
-            return null;
-        }
-        return null;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final String a0() {
-        if (this.f33700a.S0 == 1) {
-            return LocaleController.formatString("PassportDeleteSelfieAlert", R.string.PassportDeleteSelfieAlert, new Object[0]);
-        }
-        return LocaleController.formatString("PassportDeleteScanAlert", R.string.PassportDeleteScanAlert, new Object[0]);
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

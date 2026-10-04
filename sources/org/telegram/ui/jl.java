@@ -8,101 +8,101 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class jl implements km {
-    public final wn f34826a;
-    public final wn f34827b;
+    public final yn f37714a;
+    public final yn f37715b;
 
-    public jl(wn wnVar, wn wnVar2) {
-        this.f34827b = wnVar;
-        this.f34826a = wnVar2;
+    public jl(yn ynVar, yn ynVar2) {
+        this.f37715b = ynVar;
+        this.f37714a = ynVar2;
     }
 
     @Override
     public final void S0(int i10) {
-        this.f34827b.F(i10, 0, 0, 0, true, true);
+        this.f37715b.D(i10, 0, 0, 0, true, true);
     }
 
     @Override
-    public final void W(boolean z10, boolean z11) {
-        int G8;
+    public final void X(boolean z10, boolean z11) {
+        int H8;
         ArrayList arrayList;
-        org.telegram.ui.Components.yb ybVar;
+        org.telegram.ui.Components.zb zbVar;
         int i10;
-        wn wnVar = this.f34827b;
+        yn ynVar = this.f37715b;
         if (z10) {
-            ArrayList arrayList2 = new ArrayList(wnVar.H4);
-            ArrayList arrayList3 = new ArrayList(wnVar.J4.values());
-            org.telegram.ui.Components.qc qcVar = null;
+            ArrayList arrayList2 = new ArrayList(ynVar.F4);
+            ArrayList arrayList3 = new ArrayList(ynVar.H4.values());
+            org.telegram.ui.Components.rc rcVar = null;
             if (z11) {
-                i10 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
+                i10 = ((org.telegram.ui.ActionBar.n2) ynVar).currentAccount;
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
-                if (wnVar.H4.isEmpty()) {
+                if (ynVar.F4.isEmpty()) {
                     SharedPreferences.Editor edit = notificationsSettings.edit();
-                    edit.remove("pin_" + wnVar.T5).commit();
+                    edit.remove("pin_" + ynVar.R5).commit();
                 } else {
                     SharedPreferences.Editor edit2 = notificationsSettings.edit();
-                    edit2.putInt("pin_" + wnVar.T5, ((Integer) wnVar.H4.get(0)).intValue()).commit();
+                    edit2.putInt("pin_" + ynVar.R5, ((Integer) ynVar.F4.get(0)).intValue()).commit();
                 }
-                wnVar.yc(0, true);
+                ynVar.xc(0, true);
             } else {
-                wnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(wnVar.T5), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
+                ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(ynVar.R5), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
             }
-            org.telegram.ui.Components.qc qcVar2 = wnVar.A3;
-            if (qcVar2 != null) {
-                qcVar2.b();
+            org.telegram.ui.Components.rc rcVar2 = ynVar.y3;
+            if (rcVar2 != null) {
+                rcVar2.b();
             }
-            wnVar.B3 = true;
-            int i11 = wnVar.C3 + 1;
-            wnVar.C3 = i11;
-            boolean z12 = wnVar.f39499h4;
-            wn wnVar2 = this.f34826a;
+            ynVar.f43579z3 = true;
+            int i11 = ynVar.A3 + 1;
+            ynVar.A3 = i11;
+            boolean z12 = ynVar.f43331f4;
+            yn ynVar2 = this.f37714a;
             if (z12) {
-                G8 = wnVar2.G8();
+                H8 = ynVar2.H8();
             } else {
-                G8 = wnVar.G8();
+                H8 = ynVar.H8();
             }
-            int i12 = G8;
-            if (wnVar.f39499h4) {
-                arrayList = wnVar2.H4;
+            int i12 = H8;
+            if (ynVar.f43331f4) {
+                arrayList = ynVar2.F4;
             } else {
-                arrayList = wnVar.H4;
+                arrayList = ynVar.F4;
             }
             ArrayList arrayList4 = new ArrayList(arrayList);
             org.telegram.messenger.v7 v7Var = new org.telegram.messenger.v7(this, z11, arrayList2, arrayList3, i12, i11);
             org.telegram.messenger.voip.m0 m0Var = new org.telegram.messenger.voip.m0(this, z11, arrayList4, i11);
-            un unVar = wnVar.f39469ea;
-            if (wnVar.getParentActivity() == null) {
+            wn wnVar = ynVar.f43299ca;
+            if (ynVar.getParentActivity() == null) {
                 m0Var.run();
             } else {
                 if (z11) {
-                    ?? ncVar = new org.telegram.ui.Components.nc(wnVar.getParentActivity(), unVar);
-                    ncVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    ncVar.f26736b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
-                    ncVar.f26737c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
-                    ybVar = ncVar;
+                    ?? ocVar = new org.telegram.ui.Components.oc(ynVar.getParentActivity(), wnVar);
+                    ocVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
+                    ocVar.f29328b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+                    ocVar.f29329c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
+                    zbVar = ocVar;
                 } else {
-                    org.telegram.ui.Components.yb ybVar2 = new org.telegram.ui.Components.yb(wnVar.getParentActivity(), unVar);
-                    ybVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    ybVar2.f30634b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
-                    ybVar = ybVar2;
+                    org.telegram.ui.Components.zb zbVar2 = new org.telegram.ui.Components.zb(ynVar.getParentActivity(), wnVar);
+                    zbVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
+                    zbVar2.f33465b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
+                    zbVar = zbVar2;
                 }
-                org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(wnVar.getParentActivity(), unVar, true);
-                ocVar.f27019a = v7Var;
-                ocVar.f27020b = m0Var;
-                ybVar.setButton(ocVar);
-                qcVar = org.telegram.ui.Components.qc.g(wnVar, ybVar, 5000);
+                org.telegram.ui.Components.pc pcVar = new org.telegram.ui.Components.pc(ynVar.getParentActivity(), wnVar, true);
+                pcVar.f29594a = v7Var;
+                pcVar.f29595b = m0Var;
+                zbVar.setButton(pcVar);
+                rcVar = org.telegram.ui.Components.rc.g(ynVar, zbVar, 5000);
             }
-            wnVar.A3 = qcVar;
+            ynVar.y3 = rcVar;
             return;
         }
-        MessageObject messageObject = (MessageObject) wnVar.J4.get(Integer.valueOf(wnVar.L4));
+        MessageObject messageObject = (MessageObject) ynVar.H4.get(Integer.valueOf(ynVar.J4));
         if (messageObject == null) {
-            messageObject = (MessageObject) wnVar.f39586o6[0].get(wnVar.L4);
+            messageObject = (MessageObject) ynVar.f43417m6[0].get(ynVar.J4);
         }
-        wnVar.cc(messageObject);
+        ynVar.bc(messageObject);
     }
 
     @Override
-    public final void s0(String str) {
-        this.f34827b.da(str, false);
+    public final void u0(String str) {
+        this.f37715b.ca(str, false);
     }
 }

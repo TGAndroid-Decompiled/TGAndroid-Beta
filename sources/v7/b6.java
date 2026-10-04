@@ -1,12 +1,12 @@
 package v7;
-public abstract class b6 {
-    public abstract void a(com.google.android.gms.internal.play_billing.f4 f4Var, com.google.android.gms.internal.play_billing.f4 f4Var2);
+public final class b6 {
+    public final Long f47864a;
+    public final i6 f47865b;
+    public final Boolean f47866c;
 
-    public abstract void b(com.google.android.gms.internal.play_billing.f4 f4Var, Thread thread);
-
-    public abstract boolean c(com.google.android.gms.internal.play_billing.g4 g4Var, com.google.android.gms.internal.play_billing.v2 v2Var, com.google.android.gms.internal.play_billing.v2 v2Var2);
-
-    public abstract boolean d(com.google.android.gms.internal.play_billing.g4 g4Var, Object obj, Object obj2);
-
-    public abstract boolean e(com.google.android.gms.internal.play_billing.g4 g4Var, com.google.android.gms.internal.play_billing.f4 f4Var, com.google.android.gms.internal.play_billing.f4 f4Var2);
+    public b6(k kVar) {
+        this.f47864a = (Long) kVar.f47977b;
+        this.f47865b = (i6) kVar.f47978c;
+        this.f47866c = (Boolean) kVar.d;
+    }
 }

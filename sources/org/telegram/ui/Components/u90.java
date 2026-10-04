@@ -1,99 +1,210 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import android.view.View;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-public final class u90 extends ReplacementSpan {
-    public final int f28789a;
-    public View f28790b;
-    public final t90 f28791c;
-    public final int d;
-    public float e;
-    public float f28792f;
-    public float h;
-    public boolean f28793n;
+public final class u90 extends Drawable {
+    public final float[] A;
+    public final RectF B;
+    public boolean C;
+    public int D;
+    public Paint E;
+    public LinearGradient F;
+    public Matrix G;
+    public int H;
+    public Paint I;
+    public LinearGradient J;
+    public Matrix K;
+    public final org.telegram.ui.ActionBar.d6 f31326a;
+    public long f31327b;
+    public long f31328c;
+    public LinearGradient d;
+    public LinearGradient f31329e;
+    public final Matrix f31330f;
+    public final Matrix f31331g;
+    public int h;
+    public int f31332i;
+    public int f31333j;
+    public int f31334k;
+    public int f31335l;
+    public int f31336m;
+    public boolean f31337n;
+    public Integer f31338o;
+    public Integer f31339p;
+    public Integer f31340q;
+    public Integer f31341r;
+    public int f31342s;
+    public float f31343t;
+    public float f31344u;
+    public final Paint v;
+    public final Paint f31345w;
+    public Path f31346x;
+    public final Path f31347y;
+    public Rect f31348z;
 
-    public u90(int i10, View view) {
-        this(view, i10, AndroidUtilities.dp(2.0f), null);
+    public u90(org.telegram.ui.ActionBar.d6 d6Var) {
+        this();
+        this.f31326a = d6Var;
     }
 
-    public final void a(int i10, int i11) {
-        Integer valueOf = Integer.valueOf(i10);
-        t90 t90Var = this.f28791c;
-        t90Var.f28511o = valueOf;
-        t90Var.f28512p = Integer.valueOf(i11);
+    public final void a() {
+        if (!b() && !c()) {
+            this.f31328c = SystemClock.elapsedRealtime();
+        }
+    }
+
+    public final boolean b() {
+        if (this.f31328c > 0 && ((float) (SystemClock.elapsedRealtime() - this.f31328c)) >= 320.0f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean c() {
+        if (this.f31328c > 0 && ((float) (SystemClock.elapsedRealtime() - this.f31328c)) < 320.0f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d(RectF rectF) {
+        setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        this.f31348z = null;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int alpha;
-        View view;
-        boolean z10 = this.f28793n;
-        int i15 = this.f28789a;
-        if (z10 && (view = this.f28790b) != null && view.getMeasuredWidth() > 0) {
-            i15 = ((this.f28790b.getMeasuredWidth() - this.f28790b.getPaddingLeft()) - this.f28790b.getPaddingRight()) - i15;
+    public final void draw(android.graphics.Canvas r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u90.draw(android.graphics.Canvas):void");
+    }
+
+    public final void e(int i10, int i11) {
+        this.f31338o = Integer.valueOf(i10);
+        this.f31339p = Integer.valueOf(i11);
+        this.f31337n = false;
+    }
+
+    public final void f(int i10, int i11, int i12, int i13) {
+        this.f31338o = Integer.valueOf(i10);
+        this.f31339p = Integer.valueOf(i11);
+        this.f31337n = true;
+        this.f31340q = Integer.valueOf(i12);
+        this.f31341r = Integer.valueOf(i13);
+    }
+
+    public final void g() {
+        this.f31343t = 2.0f;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public final void h(float f7) {
+        boolean z10;
+        if (this.f31346x != null) {
+            this.v.setPathEffect(new CornerPathEffect(f7));
+            this.f31345w.setPathEffect(new CornerPathEffect(f7));
+            return;
         }
-        float f10 = this.f28792f;
-        t90 t90Var = this.f28791c;
-        if (f10 > 0.0f) {
-            float f11 = (i12 + i14) / 2.0f;
-            int i16 = (int) f7;
-            float f12 = f10 / 2.0f;
-            t90Var.setBounds(i16, (int) (f11 - f12), i15 + i16, (int) (f12 + f11));
+        float[] fArr = this.A;
+        if (fArr[0] == f7 && fArr[2] == f7 && fArr[4] == f7 && fArr[6] == f7) {
+            z10 = false;
         } else {
-            int i17 = (int) f7;
-            float z11 = com.google.android.gms.internal.vision.e2.z(1.0f, this.e, org.telegram.messenger.f0.B(2.0f, i14, i12) / 2.0f, i12);
-            float f13 = this.d;
-            t90Var.setBounds(i17, (int) (z11 + f13), i15 + i17, (int) (((i14 - AndroidUtilities.dp(2.0f)) - ((1.0f - this.e) * (org.telegram.messenger.f0.B(2.0f, i14, i12) / 2.0f))) + f13));
+            z10 = true;
         }
-        if (paint == null) {
-            alpha = 255;
-        } else {
-            alpha = paint.getAlpha();
+        fArr[1] = f7;
+        fArr[0] = f7;
+        fArr[3] = f7;
+        fArr[2] = f7;
+        fArr[5] = f7;
+        fArr[4] = f7;
+        fArr[7] = f7;
+        fArr[6] = f7;
+        if (this.f31348z != null && z10) {
+            Path path = this.f31347y;
+            path.rewind();
+            Rect rect = this.f31348z;
+            RectF rectF = this.B;
+            rectF.set(rect);
+            path.addRoundRect(rectF, fArr, Path.Direction.CW);
         }
-        t90Var.setAlpha((int) (alpha * this.h));
-        t90Var.draw(canvas);
-        View view2 = this.f28790b;
-        if (view2 != null) {
-            view2.invalidate();
+    }
+
+    public final void i(float[] fArr) {
+        if (fArr != null && fArr.length == 8) {
+            boolean z10 = false;
+            for (int i10 = 0; i10 < 8; i10++) {
+                float[] fArr2 = this.A;
+                float f7 = fArr2[i10];
+                float f10 = fArr[i10];
+                if (f7 != f10) {
+                    fArr2[i10] = f10;
+                    z10 = true;
+                }
+            }
+            if (this.f31348z != null && z10) {
+                Path path = this.f31347y;
+                path.rewind();
+                Rect rect = this.f31348z;
+                RectF rectF = this.B;
+                rectF.set(rect);
+                path.addRoundRect(rectF, fArr, Path.Direction.CW);
+            }
+        }
+    }
+
+    public final void j(float f7) {
+        h(AndroidUtilities.dp(f7));
+    }
+
+    public final void k() {
+        Path path = this.f31346x;
+        if (path != null) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            path.computeBounds(rectF, false);
+            d(rectF);
         }
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        View view;
-        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
-        if (fontMetricsInt != null) {
-            fontMetricsInt.ascent = (int) fontMetrics.ascent;
-            fontMetricsInt.bottom = (int) fontMetrics.bottom;
-            fontMetricsInt.descent = (int) fontMetrics.descent;
-            fontMetricsInt.leading = (int) fontMetrics.leading;
-            fontMetricsInt.top = (int) fontMetrics.top;
+    public final void setAlpha(int i10) {
+        this.v.setAlpha(i10);
+        this.f31345w.setAlpha(i10);
+        if (i10 > 0) {
+            invalidateSelf();
         }
-        t90 t90Var = this.f28791c;
-        if (t90Var.f28511o == null && t90Var.f28512p == null) {
-            t90Var.e(org.telegram.ui.ActionBar.h6.l1(0.1f, paint.getColor()), org.telegram.ui.ActionBar.h6.l1(0.25f, paint.getColor()));
-        }
-        boolean z10 = this.f28793n;
-        int i12 = this.f28789a;
-        if (z10 && (view = this.f28790b) != null && view.getMeasuredWidth() > 0) {
-            return ((this.f28790b.getMeasuredWidth() - this.f28790b.getPaddingLeft()) - this.f28790b.getPaddingRight()) - i12;
-        }
-        return i12;
     }
 
-    public u90(View view, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.e = 1.0f;
-        this.f28792f = -1.0f;
-        this.h = 1.0f;
-        this.f28793n = false;
-        this.f28790b = view;
-        this.f28789a = i10;
-        this.d = i11;
-        t90 t90Var = new t90(d6Var);
-        this.f28791c = t90Var;
-        t90Var.j(4.0f);
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.v.setColorFilter(colorFilter);
+    }
+
+    public u90() {
+        this.f31327b = -1L;
+        this.f31328c = -1L;
+        this.f31330f = new Matrix();
+        this.f31331g = new Matrix();
+        this.f31335l = org.telegram.ui.ActionBar.i6.f20889h5;
+        this.f31336m = org.telegram.ui.ActionBar.i6.f20907i5;
+        this.f31343t = 1.0f;
+        this.f31344u = 1.0f;
+        this.v = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f31345w = paint;
+        this.f31347y = new Path();
+        this.A = new float[8];
+        this.B = new RectF();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.density > 2.0f ? 2.0f : 1.0f);
     }
 }

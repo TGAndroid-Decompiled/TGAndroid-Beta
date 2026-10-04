@@ -1,37 +1,25 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.Switch;
 public final class v71 implements View.OnClickListener {
-    public final h81 f38659a;
-    public final TLRPC.TL_authorization f38660b;
-    public final SessionsActivity f38661c;
-    public final x71 d;
+    public final y71 f41587a;
+    public final TLRPC.TL_authorization f41588b;
+    public final z71 f41589c;
 
-    public v71(x71 x71Var, h81 h81Var, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
-        this.d = x71Var;
-        this.f38659a = h81Var;
-        this.f38660b = tL_authorization;
-        this.f38661c = sessionsActivity;
+    public v71(z71 z71Var, y71 y71Var, TLRPC.TL_authorization tL_authorization) {
+        this.f41589c = z71Var;
+        this.f41587a = y71Var;
+        this.f41588b = tL_authorization;
     }
 
     @Override
     public final void onClick(View view) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.f39857c.getParentActivity());
-        alertDialog$Builder.f18663a.T = LocaleController.getString(R.string.TerminateSessionText);
-        alertDialog$Builder.f18663a.R = LocaleController.getString(R.string.AreYouSureSessionTitle);
-        alertDialog$Builder.k(LocaleController.getString(R.string.Terminate), new b7(this, this.f38659a, this.f38660b, 21));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        SessionsActivity sessionsActivity = this.f38661c;
-        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18663a;
-        sessionsActivity.showDialog(a2Var);
-        TextView textView = (TextView) a2Var.d(-1);
-        if (textView != null) {
-            textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19300q7, false));
-        }
+        y71 y71Var = this.f41587a;
+        Switch r02 = y71Var.d;
+        r02.c(!r02.h, true);
+        this.f41588b.encrypted_requests_disabled = !y71Var.d.h;
+        z71.n(this.f41589c);
     }
 }

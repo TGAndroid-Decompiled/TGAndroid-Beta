@@ -154,7 +154,7 @@ public class DefaultTeXFontParser {
                             charFontArr[num.intValue()] = new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull2), Font_ID.indexOf(str));
                         }
                     } else {
-                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapRange", "code", a.q("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull3, "'!"));
+                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapRange", "code", a.p("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull3, "'!"));
                     }
                 }
                 hashMap.put(attrValueAndCheckIfNotNull, charFontArr);
@@ -218,10 +218,10 @@ public class DefaultTeXFontParser {
                             throw new XMLResourceParseException(c1.k("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
                         }
                     } else {
-                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "textStyle", a.q("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
+                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "textStyle", a.p("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
                     }
                 } else {
-                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "code", a.q("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull, "'!"));
+                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "code", a.p("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull, "'!"));
                 }
             }
         }
@@ -306,11 +306,11 @@ public class DefaultTeXFontParser {
                 this.parsedTextStyles = parseStyleMappings();
                 return (FontInfo[]) arrayList.toArray(fontInfoArr);
             }
-            throw new FontAlreadyLoadedException(a.q("Font ", attrValueAndCheckIfNotNull2, " is already loaded !"));
-        } catch (Exception e) {
-            StringBuilder w10 = a.w("Cannot find the file ", str, "!");
-            w10.append(e.toString());
-            throw new XMLResourceParseException(w10.toString());
+            throw new FontAlreadyLoadedException(a.p("Font ", attrValueAndCheckIfNotNull2, " is already loaded !"));
+        } catch (Exception e7) {
+            StringBuilder v = a.v("Cannot find the file ", str, "!");
+            v.append(e7.toString());
+            throw new XMLResourceParseException(v.toString());
         }
     }
 
@@ -374,7 +374,7 @@ public class DefaultTeXFontParser {
                         }
                     }
                 } catch (Exception unused2) {
-                    throw new XMLResourceParseException(a.q("Cannot find the file ", attrValueAndCheckIfNotNull, "!"));
+                    throw new XMLResourceParseException(a.p("Cannot find the file ", attrValueAndCheckIfNotNull, "!"));
                 }
             }
             return hashMap;
@@ -392,8 +392,8 @@ public class DefaultTeXFontParser {
         factory.setIgnoringComments(true);
         try {
             this.root = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e7) {
+            throw new XMLResourceParseException(str, e7);
         }
     }
 
@@ -403,8 +403,8 @@ public class DefaultTeXFontParser {
         factory.setIgnoringComments(true);
         try {
             this.root = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e7) {
+            throw new XMLResourceParseException(str, e7);
         }
     }
 

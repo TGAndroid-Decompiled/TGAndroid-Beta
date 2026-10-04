@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-public abstract class zk0 extends xl0 {
-    public boolean f30913c;
+public abstract class zk0 extends yl0 {
+    public boolean f33508c;
     public boolean d;
-    public ArrayList e;
-    public ArrayList f30914f;
+    public ArrayList f33509e;
+    public ArrayList f33510f;
 
     public final void E() {
-        this.f30913c = false;
-        if (!this.d && this.e.isEmpty() && this.f30914f.isEmpty()) {
+        this.f33508c = false;
+        if (!this.d && this.f33509e.isEmpty() && this.f33510f.isEmpty()) {
             return;
         }
         ((org.telegram.ui.jm) this).O(false);
@@ -17,7 +17,7 @@ public abstract class zk0 extends xl0 {
 
     @Override
     public void l() {
-        if (!this.f30913c) {
+        if (!this.f33508c) {
             super.l();
         } else {
             this.d = true;
@@ -26,15 +26,15 @@ public abstract class zk0 extends xl0 {
 
     @Override
     public void m(int i10) {
-        if (!this.f30913c) {
+        if (!this.f33508c) {
             super.m(i10);
         }
     }
 
     @Override
     public void o(int i10) {
-        ArrayList arrayList = this.e;
-        if (!this.f30913c) {
+        ArrayList arrayList = this.f33509e;
+        if (!this.f33508c) {
             super.o(i10);
             return;
         }
@@ -44,15 +44,15 @@ public abstract class zk0 extends xl0 {
 
     @Override
     public void q(int i10, int i11) {
-        if (!this.f30913c) {
+        if (!this.f33508c) {
             super.q(i10, i11);
         }
     }
 
     @Override
     public void s(int i10, int i11) {
-        ArrayList arrayList = this.e;
-        if (!this.f30913c) {
+        ArrayList arrayList = this.f33509e;
+        if (!this.f33508c) {
             super.s(i10, i11);
             return;
         }
@@ -62,8 +62,8 @@ public abstract class zk0 extends xl0 {
 
     @Override
     public void t(int i10, int i11) {
-        ArrayList arrayList = this.f30914f;
-        if (!this.f30913c) {
+        ArrayList arrayList = this.f33510f;
+        if (!this.f33508c) {
             super.t(i10, i11);
             return;
         }
@@ -73,8 +73,8 @@ public abstract class zk0 extends xl0 {
 
     @Override
     public void u(int i10) {
-        ArrayList arrayList = this.f30914f;
-        if (!this.f30913c) {
+        ArrayList arrayList = this.f33510f;
+        if (!this.f33508c) {
             super.u(i10);
             return;
         }

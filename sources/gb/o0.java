@@ -15,8 +15,8 @@ public class o0 extends db.u {
                 return null;
             }
             return new URI(v);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        } catch (URISyntaxException e7) {
+            throw new RuntimeException(e7);
         }
     }
 

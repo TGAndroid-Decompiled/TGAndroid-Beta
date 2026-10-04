@@ -8,35 +8,35 @@ import q9.d;
 import q9.r;
 import zd.y0;
 public final class a implements d {
-    public static final a f44561b = new a(0);
-    public static final a f44562c = new a(1);
+    public static final a f48243b = new a(0);
+    public static final a f48244c = new a(1);
     public static final a d = new a(2);
-    public static final a e = new a(3);
-    public final int f44563a;
+    public static final a f48245e = new a(3);
+    public final int f48246a;
 
     public a(int i10) {
-        this.f44563a = i10;
+        this.f48246a = i10;
     }
 
     @Override
-    public final Object G(c cVar) {
-        switch (this.f44563a) {
+    public final Object E(c cVar) {
+        switch (this.f48246a) {
             case 0:
-                Object i10 = cVar.i(new r(m9.a.class, Executor.class));
-                i.d(i10, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new y0((Executor) i10);
+                Object g10 = cVar.g(new r(m9.a.class, Executor.class));
+                i.d(g10, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new y0((Executor) g10);
             case 1:
-                Object i11 = cVar.i(new r(m9.c.class, Executor.class));
-                i.d(i11, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new y0((Executor) i11);
+                Object g11 = cVar.g(new r(m9.c.class, Executor.class));
+                i.d(g11, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new y0((Executor) g11);
             case 2:
-                Object i12 = cVar.i(new r(b.class, Executor.class));
-                i.d(i12, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new y0((Executor) i12);
+                Object g12 = cVar.g(new r(b.class, Executor.class));
+                i.d(g12, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new y0((Executor) g12);
             default:
-                Object i13 = cVar.i(new r(m9.d.class, Executor.class));
-                i.d(i13, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new y0((Executor) i13);
+                Object g13 = cVar.g(new r(m9.d.class, Executor.class));
+                i.d(g13, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new y0((Executor) g13);
         }
     }
 }

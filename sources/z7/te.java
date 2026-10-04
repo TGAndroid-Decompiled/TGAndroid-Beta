@@ -1,14 +1,14 @@
 package z7;
 public final class te {
-    public final Integer f48893a;
-    public final Integer f48894b;
-    public final Integer f48895c;
+    public final Integer f52919a;
+    public final Integer f52920b;
+    public final Integer f52921c;
     public final Integer d;
 
-    public te(com.google.firebase.messaging.t tVar) {
-        this.f48893a = (Integer) tVar.f7328b;
-        this.f48894b = (Integer) tVar.f7329c;
-        this.f48895c = (Integer) tVar.d;
-        this.d = (Integer) tVar.e;
+    public te(com.google.firebase.messaging.s sVar) {
+        this.f52919a = (Integer) sVar.f7921b;
+        this.f52920b = (Integer) sVar.f7922c;
+        this.f52921c = (Integer) sVar.d;
+        this.d = (Integer) sVar.f7923e;
     }
 }

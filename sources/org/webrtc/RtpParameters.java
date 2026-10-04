@@ -66,12 +66,12 @@ public class RtpParameters {
 
     public static class HeaderExtension {
         private final boolean encrypted;
-        private final int f40614id;
+        private final int f43924id;
         private final String uri;
 
         public HeaderExtension(String str, int i10, boolean z10) {
             this.uri = str;
-            this.f40614id = i10;
+            this.f43924id = i10;
             this.encrypted = z10;
         }
 
@@ -80,7 +80,7 @@ public class RtpParameters {
         }
 
         public int getId() {
-            return this.f40614id;
+            return this.f43924id;
         }
 
         public String getUri() {

@@ -1,42 +1,58 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class hp0 extends s4.s0 {
-    public final int f34273a;
-    public final np0 f34274b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class hp0 extends org.telegram.ui.Components.zl0 {
+    public final int f37154e3;
+    public final qp0 f37155f3;
 
-    public hp0(np0 np0Var, int i10) {
-        this.f34274b = np0Var;
-        this.f34273a = i10;
+    public hp0(qp0 qp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
+        this.f37155f3 = qp0Var;
+        this.f37154e3 = i10;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
+    public final Integer X0(int i10) {
+        qp0 qp0Var = this.f37155f3;
+        if ((i10 >= qp0Var.f39765b0 && i10 < qp0Var.f39767c0) || (i10 >= qp0Var.f39768d0 && i10 < qp0Var.f39770e0)) {
+            return 0;
+        }
+        return super.X0(i10);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        qp0 qp0Var = this.f37155f3;
+        if (qp0Var.G && qp0Var.E != null && qp0Var.F != null) {
+            int save = canvas.save();
+            canvas.translate(qp0Var.E.getLeft() + qp0Var.F.getLeft(), qp0Var.F.getTop());
+            qp0Var.E.draw(canvas);
+            canvas.restoreToCount(save);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         yh.k5 k5Var;
-        ah.h hVar;
-        np0 np0Var = this.f34274b;
-        tp0 tp0Var = np0Var.f35949p0;
-        if (i11 != 0) {
-            tp0Var.D0(1);
-        }
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = tp0Var.f38173f0) != null) {
-            hVar.f(i10, i11);
-        }
-        np0Var.h();
-        if (np0Var.K != null) {
-            if (np0Var.J != null && np0Var.c()) {
-                np0Var.J.g(false);
+        super.onLayout(z10, i10, i11, i12, i13);
+        qp0 qp0Var = this.f37155f3;
+        wp0 wp0Var = qp0Var.f39782p0;
+        qp0Var.h();
+        if (qp0Var.K != null) {
+            if (qp0Var.J != null && qp0Var.c()) {
+                qp0Var.J.g(false);
                 return;
             }
             return;
         }
-        if (this.f34273a == 1) {
-            k5Var = tp0Var.f38168c;
+        if (this.f37154e3 == 1) {
+            k5Var = wp0Var.f42575c;
         } else {
-            k5Var = tp0Var.f38166b;
+            k5Var = wp0Var.f42573b;
         }
-        if (k5Var != null && np0Var.c()) {
+        if (k5Var != null && qp0Var.c()) {
             k5Var.a();
         }
     }

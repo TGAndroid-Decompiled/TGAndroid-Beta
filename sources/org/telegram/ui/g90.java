@@ -1,48 +1,33 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-public final class g90 implements Runnable {
-    public final int f33864a = 1;
-    public final LaunchActivity f33865b;
-    public final byte[] f33866c;
-    public final int d;
-    public final Integer e;
-    public final String f33867f;
-    public final int h;
-    public final long f33868n;
-    public final Object f33869r;
-    public final Object f33870s;
-    public final Object v;
+import android.content.DialogInterface;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+public final class g90 implements DialogInterface.OnDismissListener {
+    public final int f36533a;
+    public final LaunchActivity f36534b;
 
-    public g90(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i10, Integer num, String str, int i11, long j3, j0 j0Var, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f33865b = launchActivity;
-        this.f33869r = bundle;
-        this.f33866c = bArr;
-        this.d = i10;
-        this.e = num;
-        this.f33867f = str;
-        this.h = i11;
-        this.f33868n = j3;
-        this.f33870s = j0Var;
-        this.v = m2Var;
+    public g90(LaunchActivity launchActivity, int i10) {
+        this.f36533a = i10;
+        this.f36534b = launchActivity;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.g90.run():void");
-    }
-
-    public g90(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j3, Runnable runnable, String str, int i10, int i11) {
-        this.f33865b = launchActivity;
-        this.f33869r = tLObject;
-        this.e = num;
-        this.f33870s = num2;
-        this.f33866c = bArr;
-        this.f33868n = j3;
-        this.v = runnable;
-        this.f33867f = str;
-        this.d = i10;
-        this.h = i11;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        int i10 = this.f36533a;
+        LaunchActivity launchActivity = this.f36534b;
+        switch (i10) {
+            case 0:
+                launchActivity.f33808v1 = false;
+                return;
+            case 1:
+                Pattern pattern = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new e90(launchActivity, 9), 30000L);
+                return;
+            default:
+                Pattern pattern2 = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new e90(launchActivity, 10), 30000L);
+                return;
+        }
     }
 }

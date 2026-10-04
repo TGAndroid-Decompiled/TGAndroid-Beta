@@ -1,5 +1,5 @@
 package gg;
 public final class a2 {
-    public String f9655a;
-    public int f9656b;
+    public String f10512a;
+    public int f10513b;
 }

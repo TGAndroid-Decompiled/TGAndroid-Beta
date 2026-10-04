@@ -3,43 +3,43 @@ package q4;
 import android.graphics.Color;
 import java.util.Arrays;
 public final class d {
-    public final int f41442a;
-    public final int f41443b;
-    public final int f41444c;
+    public final int f44810a;
+    public final int f44811b;
+    public final int f44812c;
     public final int d;
-    public final int e;
-    public boolean f41445f;
-    public int f41446g;
+    public final int f44813e;
+    public boolean f44814f;
+    public int f44815g;
     public int h;
-    public float[] f41447i;
+    public float[] f44816i;
 
     public d(int i10, int i11) {
-        this.f41442a = Color.red(i10);
-        this.f41443b = Color.green(i10);
-        this.f41444c = Color.blue(i10);
+        this.f44810a = Color.red(i10);
+        this.f44811b = Color.green(i10);
+        this.f44812c = Color.blue(i10);
         this.d = i10;
-        this.e = i11;
+        this.f44813e = i11;
     }
 
     public final void a() {
         int k10;
         int k11;
-        if (!this.f41445f) {
+        if (!this.f44814f) {
             int i10 = this.d;
             int g10 = i0.a.g(4.5f, -1, i10);
             int g11 = i0.a.g(3.0f, -1, i10);
             if (g10 != -1 && g11 != -1) {
                 this.h = i0.a.k(-1, g10);
-                this.f41446g = i0.a.k(-1, g11);
-                this.f41445f = true;
+                this.f44815g = i0.a.k(-1, g11);
+                this.f44814f = true;
                 return;
             }
             int g12 = i0.a.g(4.5f, -16777216, i10);
             int g13 = i0.a.g(3.0f, -16777216, i10);
             if (g12 != -1 && g13 != -1) {
                 this.h = i0.a.k(-16777216, g12);
-                this.f41446g = i0.a.k(-16777216, g13);
-                this.f41445f = true;
+                this.f44815g = i0.a.k(-16777216, g13);
+                this.f44814f = true;
                 return;
             }
             if (g10 != -1) {
@@ -53,17 +53,17 @@ public final class d {
             } else {
                 k11 = i0.a.k(-16777216, g13);
             }
-            this.f41446g = k11;
-            this.f41445f = true;
+            this.f44815g = k11;
+            this.f44814f = true;
         }
     }
 
     public final float[] b() {
-        if (this.f41447i == null) {
-            this.f41447i = new float[3];
+        if (this.f44816i == null) {
+            this.f44816i = new float[3];
         }
-        i0.a.b(this.f41447i, this.f41442a, this.f41443b, this.f41444c);
-        return this.f41447i;
+        i0.a.b(this.f44816i, this.f44810a, this.f44811b, this.f44812c);
+        return this.f44816i;
     }
 
     public final boolean equals(Object obj) {
@@ -72,7 +72,7 @@ public final class d {
         }
         if (obj != null && d.class == obj.getClass()) {
             d dVar = (d) obj;
-            if (this.e == dVar.e && this.d == dVar.d) {
+            if (this.f44813e == dVar.f44813e && this.d == dVar.d) {
                 return true;
             }
         }
@@ -80,7 +80,7 @@ public final class d {
     }
 
     public final int hashCode() {
-        return (this.d * 31) + this.e;
+        return (this.d * 31) + this.f44813e;
     }
 
     public final String toString() {
@@ -90,10 +90,10 @@ public final class d {
         sb2.append("] [HSL: ");
         sb2.append(Arrays.toString(b()));
         sb2.append("] [Population: ");
-        sb2.append(this.e);
+        sb2.append(this.f44813e);
         sb2.append("] [Title Text: #");
         a();
-        sb2.append(Integer.toHexString(this.f41446g));
+        sb2.append(Integer.toHexString(this.f44815g));
         sb2.append("] [Body Text: #");
         a();
         sb2.append(Integer.toHexString(this.h));

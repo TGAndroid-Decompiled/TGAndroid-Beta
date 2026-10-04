@@ -1,133 +1,500 @@
 package ei;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import ci.rc;
+import ai.q5;
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
+import android.text.SpannableStringBuilder;
+import android.util.Pair;
+import ci.hd;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
-public final class x0 implements SensorEventListener {
-    public final int f8701a;
-    public long f8702b;
-    public float[] f8703c;
-    public final a1 d;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.pe0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.wx0;
+public final class x0 {
+    public static final HashMap f9447g = new HashMap();
+    public final Context f9448a;
+    public final int f9449b;
+    public final long f9450c;
+    public boolean d;
+    public boolean f9451e;
+    public final HashSet f9452f;
 
-    public x0(a1 a1Var, int i10) {
-        this.f8701a = i10;
-        switch (i10) {
-            case 1:
-                this.d = a1Var;
-                this.f8703c = new float[3];
-                return;
-            default:
-                this.d = a1Var;
-                return;
+    public x0(Context context, int i10, long j3) {
+        HashSet hashSet = new HashSet();
+        this.f9452f = hashSet;
+        this.f9448a = context;
+        this.f9449b = i10;
+        this.f9450c = j3;
+        SharedPreferences sharedPreferences = context.getSharedPreferences("botlocation_" + i10, 0);
+        this.d = sharedPreferences.getBoolean(j3 + "_requested", false);
+        boolean z10 = sharedPreferences.getBoolean(j3 + "_granted", false);
+        this.f9451e = z10;
+        if (z10 && !a()) {
+            this.f9451e = false;
+            this.d = false;
+            l();
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                ((Runnable) it.next()).run();
+            }
         }
     }
 
-    public final void c() {
-        switch (this.f8701a) {
-            case 0:
-                a1 a1Var = this.d;
-                if (a1Var.f8206k != null && this.f8703c != null) {
-                    this.f8702b = System.currentTimeMillis();
+    public static void c() {
+        Context context = ApplicationLoader.applicationContext;
+        if (context == null) {
+            return;
+        }
+        for (int i10 = 0; i10 < 4; i10++) {
+            context.getSharedPreferences("botlocation_" + i10, 0).edit().clear().apply();
+        }
+        f9447g.clear();
+    }
+
+    public static x0 e(Context context, int i10, long j3) {
+        Pair pair = new Pair(Integer.valueOf(i10), Long.valueOf(j3));
+        HashMap hashMap = f9447g;
+        x0 x0Var = (x0) hashMap.get(pair);
+        if (x0Var == null) {
+            x0 x0Var2 = new x0(context, i10, j3);
+            hashMap.put(pair, x0Var2);
+            return x0Var2;
+        }
+        return x0Var;
+    }
+
+    public static JSONObject h(Location location) {
+        boolean z10;
+        JSONObject jSONObject = new JSONObject();
+        if (location != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        try {
+            jSONObject.put("available", z10);
+            if (location == null) {
+                return jSONObject;
+            }
+            jSONObject.put("latitude", location.getLatitude());
+            jSONObject.put("longitude", location.getLongitude());
+            int i10 = Build.VERSION.SDK_INT;
+            if (i10 >= 26) {
+                jSONObject.put("horizontal_accuracy", location.getAccuracy());
+            } else {
+                jSONObject.put("horizontal_accuracy", (Object) null);
+            }
+            jSONObject.put("altitude", location.getAltitude());
+            if (i10 >= 26) {
+                jSONObject.put("vertical_accuracy", location.getVerticalAccuracyMeters());
+            } else {
+                jSONObject.put("vertical_accuracy", (Object) null);
+            }
+            jSONObject.put("course", location.getBearing());
+            if (i10 >= 26) {
+                jSONObject.put("course_accuracy", location.getBearingAccuracyDegrees());
+            } else {
+                jSONObject.put("course_accuracy", (Object) null);
+            }
+            jSONObject.put("speed", location.getSpeed());
+            if (i10 >= 26) {
+                jSONObject.put("speed_accuracy", location.getSpeedAccuracyMetersPerSecond());
+                return jSONObject;
+            }
+            jSONObject.put("speed_accuracy", (Object) null);
+            return jSONObject;
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            return jSONObject;
+        }
+    }
+
+    public final boolean a() {
+        Activity f7 = f();
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (f7 != null) {
+                if (f7.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0 && f7.checkSelfPermission("android.permission.ACCESS_FINE_LOCATION") != 0) {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean b() {
+        return this.d;
+    }
+
+    public final boolean d() {
+        if (f() != null && f().getPackageManager().hasSystemFeature("android.hardware.location.gps")) {
+            return true;
+        }
+        return false;
+    }
+
+    public final Activity f() {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(this.f9448a);
+        }
+        if (activity == null) {
+            return AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        return activity;
+    }
+
+    public final boolean g() {
+        if (a() && this.f9451e) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean i() {
+        Activity f7;
+        if (Build.VERSION.SDK_INT < 23 || (f7 = f()) == null) {
+            return false;
+        }
+        if (f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION")) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void j(final org.telegram.ui.web.q qVar) {
+        Activity f7 = f();
+        if (f7 == null) {
+            return;
+        }
+        if (!d()) {
+            Boolean bool = Boolean.FALSE;
+            qVar.run(bool, bool);
+        } else if (a() && (this.d || this.f9451e)) {
+            qVar.run(Boolean.FALSE, Boolean.TRUE);
+        } else {
+            final boolean[] zArr = new boolean[1];
+            int i10 = this.f9449b;
+            TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f9450c));
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f7, 0, null);
+            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
+            b2Var.T = replaceTags;
+            w0 w0Var = new w0(this.f9448a, UserConfig.getInstance(i10).getCurrentUser(), user);
+            int w02 = i6.w0(null, i6.L5, false);
+            b2Var.f20413b0 = w0Var;
+            b2Var.f20416c0 = w02;
+            if (!a() && i()) {
+                alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new q5(f7, zArr, qVar, 7));
+            } else {
+                alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionAllow), new org.telegram.ui.ActionBar.a2(this) {
+                    public final x0 f9340b;
+
+                    {
+                        this.f9340b = this;
+                    }
+
+                    @Override
+                    public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i11) {
+                        switch (r4) {
+                            case 0:
+                                x0 x0Var = this.f9340b;
+                                x0Var.getClass();
+                                zArr[0] = true;
+                                boolean a2 = x0Var.a();
+                                org.telegram.ui.web.q qVar2 = qVar;
+                                if (!a2) {
+                                    pe0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(9, x0Var, qVar2));
+                                    return;
+                                }
+                                x0Var.d = true;
+                                x0Var.f9451e = true;
+                                x0Var.l();
+                                Iterator it = x0Var.f9452f.iterator();
+                                while (it.hasNext()) {
+                                    ((Runnable) it.next()).run();
+                                }
+                                Boolean bool2 = Boolean.TRUE;
+                                qVar2.run(bool2, bool2);
+                                return;
+                            default:
+                                x0 x0Var2 = this.f9340b;
+                                x0Var2.getClass();
+                                boolean[] zArr2 = zArr;
+                                if (!zArr2[0]) {
+                                    zArr2[0] = true;
+                                    x0Var2.d = true;
+                                    x0Var2.f9451e = false;
+                                    x0Var2.l();
+                                    Iterator it2 = x0Var2.f9452f.iterator();
+                                    while (it2.hasNext()) {
+                                        ((Runnable) it2.next()).run();
+                                    }
+                                    qVar.run(Boolean.TRUE, Boolean.FALSE);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+            }
+            alertDialog$Builder.h(LocaleController.getString(R.string.BotLocationPermissionDecline), new org.telegram.ui.ActionBar.a2(this) {
+                public final x0 f9340b;
+
+                {
+                    this.f9340b = this;
+                }
+
+                @Override
+                public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i11) {
+                    switch (r4) {
+                        case 0:
+                            x0 x0Var = this.f9340b;
+                            x0Var.getClass();
+                            zArr[0] = true;
+                            boolean a2 = x0Var.a();
+                            org.telegram.ui.web.q qVar2 = qVar;
+                            if (!a2) {
+                                pe0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(9, x0Var, qVar2));
+                                return;
+                            }
+                            x0Var.d = true;
+                            x0Var.f9451e = true;
+                            x0Var.l();
+                            Iterator it = x0Var.f9452f.iterator();
+                            while (it.hasNext()) {
+                                ((Runnable) it.next()).run();
+                            }
+                            Boolean bool2 = Boolean.TRUE;
+                            qVar2.run(bool2, bool2);
+                            return;
+                        default:
+                            x0 x0Var2 = this.f9340b;
+                            x0Var2.getClass();
+                            boolean[] zArr2 = zArr;
+                            if (!zArr2[0]) {
+                                zArr2[0] = true;
+                                x0Var2.d = true;
+                                x0Var2.f9451e = false;
+                                x0Var2.l();
+                                Iterator it2 = x0Var2.f9452f.iterator();
+                                while (it2.hasNext()) {
+                                    ((Runnable) it2.next()).run();
+                                }
+                                qVar.run(Boolean.TRUE, Boolean.FALSE);
+                                return;
+                            }
+                            return;
+                    }
+                }
+            });
+            alertDialog$Builder.j(new u0(this, zArr, qVar, 0));
+            alertDialog$Builder.o();
+        }
+    }
+
+    public final void k(Utilities.Callback callback) {
+        JSONObject jSONObject = new JSONObject();
+        if (this.f9451e && a() && d()) {
+            LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
+            List<String> providers = locationManager.getProviders(true);
+            Location location = null;
+            for (int size = providers.size() - 1; size >= 0; size--) {
+                location = locationManager.getLastKnownLocation(providers.get(size));
+                if (location != null) {
+                    break;
+                }
+            }
+            if (location == null && !locationManager.isProviderEnabled("gps")) {
+                Context context = LaunchActivity.G1;
+                if (context == null) {
+                    context = ApplicationLoader.applicationContext;
+                }
+                if (context != null) {
                     try {
-                        JSONObject jSONObject = new JSONObject();
-                        jSONObject.put("x", -this.f8703c[0]);
-                        jSONObject.put("y", -this.f8703c[1]);
-                        jSONObject.put("z", -this.f8703c[2]);
-                        org.telegram.ui.web.y0 y0Var = a1Var.f8206k;
-                        y0Var.d("window.Telegram.WebView.receiveEvent('accelerometer_changed', " + jSONObject + ");");
-                        return;
-                    } catch (Exception unused) {
-                        return;
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
+                        alertDialog$Builder.m(R.raw.permission_request_location, 72, i6.w0(null, i6.L5, false), null);
+                        alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
+                        alertDialog$Builder.k(LocaleController.getString(R.string.Enable), new hd(context, 1));
+                        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                        alertDialog$Builder.o();
+                    } catch (Exception e7) {
+                        FileLog.e(e7);
                     }
                 }
+                callback.run(h(null));
                 return;
-            default:
-                float[] fArr = this.f8703c;
-                a1 a1Var2 = this.d;
-                if (a1Var2.f8206k != null) {
-                    this.f8702b = System.currentTimeMillis();
-                    try {
-                        JSONObject jSONObject2 = new JSONObject();
-                        jSONObject2.put("x", fArr[0]);
-                        jSONObject2.put("y", fArr[1]);
-                        jSONObject2.put("z", fArr[2]);
-                        org.telegram.ui.web.y0 y0Var2 = a1Var2.f8206k;
-                        y0Var2.d("window.Telegram.WebView.receiveEvent('gyroscope_changed', " + jSONObject2 + ");");
-                    } catch (Exception unused2) {
-                    }
-                    fArr[0] = 0.0f;
-                    fArr[1] = 0.0f;
-                    fArr[2] = 0.0f;
+            } else if (location != null) {
+                callback.run(h(location));
+                return;
+            } else {
+                try {
+                    v0 v0Var = new v0(this, locationManager, r0, callback);
+                    LocationListener[] locationListenerArr = {v0Var};
+                    locationManager.requestLocationUpdates("gps", 1L, 0.0f, v0Var);
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    callback.run(h(null));
                     return;
                 }
-                return;
+            }
         }
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
-        int i11 = this.f8701a;
-    }
-
-    @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        switch (this.f8701a) {
-            case 0:
-                a1 a1Var = this.d;
-                rc rcVar = a1Var.f8208m;
-                if (rcVar != null) {
-                    AndroidUtilities.cancelRunOnUIThread(rcVar);
-                    a1Var.f8208m = null;
-                }
-                if (!a1Var.f8207l && a1Var.f8206k != null) {
-                    long currentTimeMillis = System.currentTimeMillis() - this.f8702b;
-                    this.f8703c = sensorEvent.values;
-                    long j3 = a1Var.f8201c;
-                    if (currentTimeMillis < j3) {
-                        rc rcVar2 = new rc(this, 9);
-                        a1Var.f8208m = rcVar2;
-                        AndroidUtilities.runOnUIThread(rcVar2, j3 - currentTimeMillis);
-                        return;
-                    }
-                    c();
-                    return;
-                }
-                return;
-            default:
-                a1 a1Var2 = this.d;
-                rc rcVar3 = a1Var2.f8210o;
-                if (rcVar3 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(rcVar3);
-                    a1Var2.f8210o = null;
-                }
-                if (!a1Var2.f8207l && a1Var2.f8206k != null) {
-                    float[] fArr = this.f8703c;
-                    float f7 = fArr[0];
-                    float[] fArr2 = sensorEvent.values;
-                    fArr[0] = f7 + fArr2[0];
-                    fArr[1] = fArr[1] + fArr2[1];
-                    fArr[2] = fArr[2] + fArr2[2];
-                    long currentTimeMillis2 = System.currentTimeMillis() - this.f8702b;
-                    long j10 = a1Var2.e;
-                    if (currentTimeMillis2 < j10) {
-                        rc rcVar4 = new rc(this, 10);
-                        a1Var2.f8210o = rcVar4;
-                        AndroidUtilities.runOnUIThread(rcVar4, j10 - currentTimeMillis2);
-                        return;
-                    }
-                    c();
-                    return;
-                }
-                return;
+        try {
+            jSONObject.put("available", false);
+        } catch (Exception e11) {
+            FileLog.e(e11);
         }
+        callback.run(jSONObject);
     }
 
-    private final void a(Sensor sensor, int i10) {
+    public final void l() {
+        SharedPreferences.Editor edit = this.f9448a.getSharedPreferences("botlocation_" + this.f9449b, 0).edit();
+        StringBuilder sb2 = new StringBuilder();
+        long j3 = this.f9450c;
+        edit.putBoolean(a4.a.r(sb2, j3, "_granted"), this.f9451e);
+        edit.putBoolean(j3 + "_requested", this.d);
+        edit.apply();
     }
 
-    private final void b(Sensor sensor, int i10) {
+    public final void m(boolean z10, final wx0 wx0Var) {
+        this.d = true;
+        if (z10 && !a()) {
+            Activity f7 = f();
+            if (f7 == null) {
+                return;
+            }
+            int i10 = this.f9449b;
+            TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f9450c));
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f(), 0, null);
+            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
+            b2Var.T = replaceTags;
+            w0 w0Var = new w0(this.f9448a, UserConfig.getInstance(i10).getCurrentUser(), user);
+            int w02 = i6.w0(null, i6.L5, false);
+            b2Var.f20413b0 = w0Var;
+            b2Var.f20416c0 = w02;
+            if (i()) {
+                alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new r0(f7, 0));
+            } else {
+                alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionAllow), new org.telegram.ui.ActionBar.a2(this) {
+                    public final x0 f9323b;
+
+                    {
+                        this.f9323b = this;
+                    }
+
+                    @Override
+                    public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i11) {
+                        switch (r3) {
+                            case 0:
+                                x0 x0Var = this.f9323b;
+                                if (!x0Var.a()) {
+                                    pe0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, x0Var, wx0Var));
+                                    return;
+                                }
+                                x0Var.d = true;
+                                x0Var.f9451e = true;
+                                x0Var.l();
+                                Iterator it = x0Var.f9452f.iterator();
+                                while (it.hasNext()) {
+                                    ((Runnable) it.next()).run();
+                                }
+                                return;
+                            default:
+                                x0 x0Var2 = this.f9323b;
+                                x0Var2.d = true;
+                                x0Var2.f9451e = false;
+                                x0Var2.l();
+                                Iterator it2 = x0Var2.f9452f.iterator();
+                                while (it2.hasNext()) {
+                                    ((Runnable) it2.next()).run();
+                                }
+                                Runnable runnable = wx0Var;
+                                if (runnable != null) {
+                                    runnable.run();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+            }
+            alertDialog$Builder.h(LocaleController.getString(R.string.BotLocationPermissionDecline), new org.telegram.ui.ActionBar.a2(this) {
+                public final x0 f9323b;
+
+                {
+                    this.f9323b = this;
+                }
+
+                @Override
+                public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i11) {
+                    switch (r3) {
+                        case 0:
+                            x0 x0Var = this.f9323b;
+                            if (!x0Var.a()) {
+                                pe0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, x0Var, wx0Var));
+                                return;
+                            }
+                            x0Var.d = true;
+                            x0Var.f9451e = true;
+                            x0Var.l();
+                            Iterator it = x0Var.f9452f.iterator();
+                            while (it.hasNext()) {
+                                ((Runnable) it.next()).run();
+                            }
+                            return;
+                        default:
+                            x0 x0Var2 = this.f9323b;
+                            x0Var2.d = true;
+                            x0Var2.f9451e = false;
+                            x0Var2.l();
+                            Iterator it2 = x0Var2.f9452f.iterator();
+                            while (it2.hasNext()) {
+                                ((Runnable) it2.next()).run();
+                            }
+                            Runnable runnable = wx0Var;
+                            if (runnable != null) {
+                                runnable.run();
+                                return;
+                            }
+                            return;
+                    }
+                }
+            });
+            alertDialog$Builder.o();
+        } else {
+            this.f9451e = z10;
+            Iterator it = this.f9452f.iterator();
+            while (it.hasNext()) {
+                ((Runnable) it.next()).run();
+            }
+            if (wx0Var != null) {
+                wx0Var.run();
+            }
+        }
+        l();
     }
 }

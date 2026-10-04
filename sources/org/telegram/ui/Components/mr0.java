@@ -1,79 +1,49 @@
 package org.telegram.ui.Components;
 
-import java.util.Collections;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class mr0 implements Runnable {
-    public final int f26485a;
-    public final lv0 f26486b;
-    public final TLRPC.TL_error f26487c;
-    public final int d;
-    public final int e;
-    public final TLObject f26488f;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.BirthdayController;
+public final class mr0 implements View.OnClickListener {
+    public final int f28684a;
+    public final boolean f28685b;
+    public final int f28686c;
+    public final FrameLayout d;
 
-    public mr0(lv0 lv0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
-        this.f26485a = i12;
-        this.f26486b = lv0Var;
-        this.f26487c = tL_error;
-        this.d = i10;
-        this.e = i11;
-        this.f26488f = tLObject;
+    public mr0(FrameLayout frameLayout, boolean z10, int i10, int i11) {
+        this.f28684a = i11;
+        this.d = frameLayout;
+        this.f28685b = z10;
+        this.f28686c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26485a) {
+    public final void onClick(View view) {
+        switch (this.f28684a) {
             case 0:
-                lv0 lv0Var = this.f26486b;
-                NotificationCenter.getInstance(lv0Var.f26154v1.getCurrentAccount()).doOnIdle(new mr0(lv0Var, this.f26487c, this.d, this.e, this.f26488f, 1));
-                return;
-            default:
-                lv0 lv0Var2 = this.f26486b;
-                av0[] av0VarArr = lv0Var2.f26150t1;
-                if (this.f26487c == null) {
-                    int i10 = this.e;
-                    av0 av0Var = av0VarArr[i10];
-                    if (this.d == av0Var.f22740p) {
-                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f26488f;
-                        av0Var.e.clear();
-                        int size = tL_messages_searchResultsPositions.positions.size();
-                        int i11 = 0;
-                        for (int i12 = 0; i12 < size; i12++) {
-                            TLRPC.TL_searchResultPosition tL_searchResultPosition = tL_messages_searchResultsPositions.positions.get(i12);
-                            int i13 = tL_searchResultPosition.date;
-                            if (i13 != 0) {
-                                ?? obj = new Object();
-                                obj.f25519c = i13;
-                                obj.d = tL_searchResultPosition.msg_id;
-                                obj.f25518b = tL_searchResultPosition.offset;
-                                obj.f25517a = LocaleController.formatYearMont(i13, true);
-                                av0VarArr[i10].e.add(obj);
-                            }
-                        }
-                        Collections.sort(av0VarArr[i10].e, new org.telegram.ui.cf(17));
-                        av0 av0Var2 = av0VarArr[i10];
-                        av0Var2.f22731f[0] = tL_messages_searchResultsPositions.count;
-                        av0Var2.h = true;
-                        if (!av0Var2.e.isEmpty()) {
-                            while (true) {
-                                eu0[] eu0VarArr = lv0Var2.f26130k0;
-                                if (i11 < eu0VarArr.length) {
-                                    eu0 eu0Var = eu0VarArr[i11];
-                                    if (eu0Var.F == i10) {
-                                        eu0Var.f24063b = true;
-                                        lv0Var2.o1(eu0Var, true);
-                                    }
-                                    i11++;
-                                }
-                            }
-                        }
-                        lv0Var2.H.l();
-                        return;
-                    }
+                pv0 pv0Var = (pv0) this.d;
+                org.telegram.ui.ActionBar.n2 n2Var = pv0Var.f29800v1;
+                if (this.f28685b) {
+                    pv0Var.O0(n2Var, pv0Var.f29775j1, this.f28686c);
                     return;
                 }
+                n2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
+                ci.kc.E(n2Var.getParentActivity(), n2Var.getCurrentAccount()).R(null);
+                return;
+            default:
+                fs0 fs0Var = (fs0) this.d;
+                if (fs0Var.f50219e.h() && fs0Var.h.getCurrentPosition() != 0) {
+                    fs0Var.a();
+                    return;
+                }
+                boolean z10 = this.f28685b;
+                int i10 = this.f28686c;
+                if (z10) {
+                    xh.q1 q1Var = new xh.q1(fs0Var.getContext(), i10, fs0Var.f50218c, null, null);
+                    q1Var.T(BirthdayController.getInstance(i10).isToday(fs0Var.f50218c));
+                    q1Var.show();
+                    return;
+                }
+                tg.m1.e0(2, BirthdayController.getInstance(i10).getState());
                 return;
         }
     }

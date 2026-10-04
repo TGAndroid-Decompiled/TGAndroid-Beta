@@ -1,37 +1,29 @@
 package ei;
 
-import ci.y8;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class h2 implements Utilities.Callback {
-    public final int f8359a;
-    public final k3 f8360b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.kw0;
+public final class h2 implements kw0 {
+    public final int f9081a;
+    public final NotificationCenter.NotificationCenterDelegate f9082b;
 
-    public h2(k3 k3Var, int i10) {
-        this.f8359a = i10;
-        this.f8360b = k3Var;
+    public h2(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f9081a = i10;
+        this.f9082b = notificationCenterDelegate;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f8359a) {
+    public final void F(int i10, boolean z10) {
+        switch (this.f9081a) {
             case 0:
-                Boolean bool = (Boolean) obj;
-                b3 b3Var = this.f8360b.f8438x;
-                if (b3Var != null) {
-                    if (bool.booleanValue()) {
-                        b3Var.P = System.currentTimeMillis();
-                        b3Var.z("main_button_pressed", null);
-                        return;
-                    }
-                    b3Var.P = System.currentTimeMillis();
-                    b3Var.z("secondary_button_pressed", null);
+                b3 b3Var = ((l3) this.f9082b).v;
+                if (i10 > AndroidUtilities.dp(20.0f)) {
+                    b3Var.e(b3Var.getTopActionBarOffsetY() + (-b3Var.getOffsetY()));
                     return;
                 }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new y8(16, this.f8360b, (TLRPC.UserFull) obj));
+                ((ii.e2) this.f9082b).getClass();
                 return;
         }
     }

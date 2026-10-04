@@ -1,191 +1,135 @@
 package ii;
 
-import android.graphics.Bitmap;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.drawable.Drawable;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.RadialProgress2;
-public final class y4 {
-    public static ColorMatrixColorFilter f11775f;
-    public final ImageReceiver f11776a;
-    public final ImageReceiver f11777b;
-    public Bitmap f11778c;
-    public final RadialProgress2 d;
-    public u e;
+import java.util.IdentityHashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.VideoEditedInfo;
+public final class y4 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f12811a;
+    public final i3 f12812b;
+    public MessageObject f12813c;
+    public VideoEditedInfo d;
+    public String f12814e;
+    public boolean f12815f;
+    public boolean h;
+    public boolean f12816n;
 
-    public y4(v4 v4Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f11776a = new ImageReceiver(v4Var);
-        this.f11777b = new ImageReceiver(v4Var);
-        RadialProgress2 radialProgress2 = new RadialProgress2(v4Var, d6Var);
-        this.d = radialProgress2;
-        radialProgress2.d = -1;
-        radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
-        radialProgress2.setIcon(3, false, false);
+    public y4(int i10, MediaController.PhotoEntry photoEntry, i3 i3Var) {
+        this.f12811a = i10;
+        this.f12812b = i3Var;
+    }
+
+    public static boolean c(MediaController.PhotoEntry photoEntry) {
+        ArrayList<VideoEditedInfo.MediaEntity> arrayList;
+        if (!photoEntry.isVideo) {
+            ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = photoEntry.croppedMediaEntities;
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                arrayList = photoEntry.croppedMediaEntities;
+            } else {
+                arrayList = photoEntry.mediaEntities;
+            }
+            if (arrayList != null) {
+                int size = arrayList.size();
+                for (int i10 = 0; i10 < size; i10++) {
+                    VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i10);
+                    if (mediaEntity != null) {
+                        if (mediaEntity.type == 0) {
+                            byte b10 = mediaEntity.subType;
+                            if ((b10 & 1) != 0 || (b10 & 4) != 0) {
+                                return true;
+                            }
+                        }
+                        ArrayList<VideoEditedInfo.EmojiEntity> arrayList3 = mediaEntity.entities;
+                        if (arrayList3 != null && !arrayList3.isEmpty()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public final void a() {
-        String str;
-        String sb2;
-        TLRPC.Photo photo;
-        TLRPC.Document document;
-        TLRPC.PhotoSize photoSize;
-        int abs;
-        u uVar = this.e;
-        TLRPC.PhotoSize photoSize2 = null;
-        ImageReceiver imageReceiver = this.f11776a;
-        if (uVar == null) {
-            imageReceiver.setImageBitmap((Drawable) null);
+        if (!this.f12816n && !this.h) {
+            this.h = true;
+            if (this.f12813c != null && this.d != null) {
+                try {
+                    MediaController.getInstance().cancelVideoConvert(this.f12813c);
+                } catch (Throwable unused) {
+                }
+            }
+            d();
+        }
+    }
+
+    public final void b() {
+        if (this.f12816n) {
             return;
         }
-        int i10 = AndroidUtilities.displaySize.x;
-        String l4 = a4.a.l(i10, i10, "_");
-        StringBuilder sb3 = new StringBuilder();
-        u uVar2 = this.e;
-        if (uVar2 == null) {
-            sb2 = "null";
-        } else {
-            if (uVar2.f11634b) {
-                str = "v";
-            } else if (uVar2.f11635c) {
-                str = "a";
-            } else {
-                str = "p";
-            }
-            if (uVar2.e != null) {
-                StringBuilder h = v7.j.h(str, ":local:");
-                h.append(this.e.e);
-                sb2 = h.toString();
-            } else {
-                long j3 = 0;
-                if (uVar2.b()) {
-                    u uVar3 = this.e;
-                    TLRPC.Document document2 = uVar3.h;
-                    if (document2 != null) {
-                        j3 = document2.f18343id;
-                    } else {
-                        TLRPC.Photo photo2 = uVar3.f11637g;
-                        if (photo2 != null) {
-                            j3 = photo2.f18361id;
-                        }
-                    }
-                }
-                StringBuilder h10 = v7.j.h(str, ":");
-                h10.append(this.e.f11633a);
-                h10.append(":");
-                h10.append(j3);
-                sb2 = h10.toString();
-            }
-        }
-        sb3.append(sb2);
-        sb3.append("@");
-        sb3.append(l4);
-        if (sb3.toString().equals(null)) {
-            return;
-        }
-        this.e.getClass();
-        u uVar4 = this.e;
-        if (uVar4.f11634b) {
-            if (uVar4.e != null) {
-                imageReceiver.setOrientation(0, 0, false);
-                imageReceiver.setImage(ImageLocation.getForVideoPath(this.e.e), "g", null, l4, null, l4, null, 0L, null, null, 0);
-            } else if (uVar4.b() && (document = this.e.h) != null) {
-                ArrayList<TLRPC.PhotoSize> arrayList = document.thumbs;
-                int photoSize3 = AndroidUtilities.getPhotoSize();
-                if (arrayList == null) {
-                    photoSize = null;
-                } else {
-                    int i11 = Integer.MAX_VALUE;
-                    photoSize = null;
-                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        TLRPC.PhotoSize photoSize4 = arrayList.get(i12);
-                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f18362w, photoSize4.h) - photoSize3)) < i11) {
-                            photoSize = photoSize4;
-                            i11 = abs;
-                        }
-                    }
-                }
-                ArrayList<TLRPC.PhotoSize> arrayList2 = this.e.h.thumbs;
-                if (arrayList2 != null) {
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 >= arrayList2.size()) {
-                            break;
-                        } else if (arrayList2.get(i13) instanceof TLRPC.TL_photoStrippedSize) {
-                            photoSize2 = arrayList2.get(i13);
-                            break;
-                        } else {
-                            i13++;
-                        }
-                    }
-                }
-                imageReceiver.setOrientation(0, 0, false);
-                imageReceiver.setImage(ImageLocation.getForDocument(this.e.h), "g", ImageLocation.getForDocument(photoSize, this.e.h), l4, ImageLocation.getForDocument(photoSize2, this.e.h), l4, null, 0L, null, this.e.h, 0);
-            } else {
-                imageReceiver.setImageBitmap((Drawable) null);
-            }
-        } else if (uVar4.e != null) {
-            imageReceiver.setOrientation(uVar4.f11641l, uVar4.f11642m, true);
-            imageReceiver.setImage(ImageLocation.getForPath(this.e.e), l4, null, null, null, 0);
-        } else if (uVar4.b() && (photo = this.e.f11637g) != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
-            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.e.f11637g.sizes, 100);
-            imageReceiver.setOrientation(0, 0, false);
-            imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, this.e.f11637g), l4, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, this.e.f11637g), l4, null, 0L, null, this.e.f11637g, 0);
-        } else {
-            imageReceiver.setImageBitmap((Drawable) null);
-        }
+        this.f12816n = true;
+        d();
+        i3 i3Var = this.f12812b;
+        x3 x3Var = i3Var.f12442c;
+        IdentityHashMap identityHashMap = x3Var.f12761h4;
+        u uVar = i3Var.f12440a;
+        identityHashMap.remove(uVar);
+        uVar.f12662a = 3;
+        x3Var.s4(i3Var.f12441b, uVar);
+        x3Var.f12769o3.onContentChanged();
     }
 
-    public final boolean b() {
-        ImageReceiver imageReceiver;
-        Bitmap bitmap;
-        if (c() && (bitmap = (imageReceiver = this.f11776a).getBitmap()) != null && !bitmap.isRecycled()) {
-            ImageReceiver imageReceiver2 = this.f11777b;
-            if ((imageReceiver2.getBitmap() == null || imageReceiver.getAnimation() == null) && (bitmap != this.f11778c || imageReceiver2.getBitmap() == null)) {
-                this.f11778c = bitmap;
-                imageReceiver2.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap, false));
-                if (f11775f == null) {
-                    ColorMatrix colorMatrix = new ColorMatrix();
-                    AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
-                    AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.6f);
-                    f11775f = new ColorMatrixColorFilter(colorMatrix);
+    public final void d() {
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f12811a);
+        notificationCenter.removeObserver(this, NotificationCenter.filePreparingStarted);
+        notificationCenter.removeObserver(this, NotificationCenter.fileNewChunkAvailable);
+        notificationCenter.removeObserver(this, NotificationCenter.filePreparingFailed);
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        i3 i3Var = this.f12812b;
+        a aVar = i3Var.f12441b;
+        u uVar = i3Var.f12440a;
+        x3 x3Var = i3Var.f12442c;
+        if (!this.h && !this.f12816n && i11 == this.f12811a && objArr.length != 0 && objArr[0] == this.f12813c) {
+            if (i10 == NotificationCenter.fileNewChunkAvailable) {
+                long longValue = ((Long) objArr[3]).longValue();
+                uVar.f12666f = ((Float) objArr[4]).floatValue();
+                View B1 = x3Var.B1(aVar);
+                if (B1 instanceof w4) {
+                    B1.requestLayout();
+                    B1.invalidate();
                 }
-                imageReceiver2.setColorFilter(f11775f);
-            }
-            if (imageReceiver2.getBitmap() != null) {
-                return true;
+                if (longValue > 0) {
+                    this.f12816n = true;
+                    d();
+                    String str = this.f12814e;
+                    VideoEditedInfo videoEditedInfo = this.d;
+                    int i12 = videoEditedInfo.resultWidth;
+                    int i13 = videoEditedInfo.resultHeight;
+                    int ceil = (int) Math.ceil(videoEditedInfo.estimatedDuration / 1000.0d);
+                    x3Var.f12761h4.remove(uVar);
+                    uVar.f12663b = true;
+                    uVar.f12665e = str;
+                    if (i12 > 0) {
+                        uVar.f12669j = i12;
+                    }
+                    if (i13 > 0) {
+                        uVar.f12670k = i13;
+                    }
+                    uVar.f12671l = 0;
+                    uVar.f12672m = 0;
+                    uVar.f12666f = 0.0f;
+                    x3Var.p4(aVar);
+                    x3Var.N4(i3Var.f12441b, uVar, str, true, uVar.f12669j, uVar.f12670k, ceil);
+                }
+            } else if (i10 == NotificationCenter.filePreparingFailed) {
+                b();
             }
         }
-        return false;
-    }
-
-    public final boolean c() {
-        u uVar = this.e;
-        if (uVar != null) {
-            if (uVar.e != null || uVar.b()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean d() {
-        u uVar = this.e;
-        if (uVar != null && !uVar.f11634b && !uVar.b()) {
-            int i10 = this.e.f11641l;
-            if (i10 == 90 || i10 == 270) {
-                return true;
-            }
-            return false;
-        }
-        return false;
     }
 }

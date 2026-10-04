@@ -2,15 +2,15 @@ package s4;
 
 import android.util.SparseArray;
 public final class u0 {
-    public final SparseArray f43089a = new SparseArray();
-    public int f43090b = 0;
+    public final SparseArray f46666a = new SparseArray();
+    public int f46667b = 0;
 
     public final void a() {
         int i10 = 0;
         while (true) {
-            SparseArray sparseArray = this.f43089a;
+            SparseArray sparseArray = this.f46666a;
             if (i10 < sparseArray.size()) {
-                ((t0) sparseArray.valueAt(i10)).f43076a.clear();
+                ((t0) sparseArray.valueAt(i10)).f46652a.clear();
                 i10++;
             } else {
                 return;
@@ -19,7 +19,7 @@ public final class u0 {
     }
 
     public final t0 b(int i10) {
-        SparseArray sparseArray = this.f43089a;
+        SparseArray sparseArray = this.f46666a;
         t0 t0Var = (t0) sparseArray.get(i10);
         if (t0Var == null) {
             t0 t0Var2 = new t0();

@@ -3,13 +3,13 @@ package r7;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 public abstract class p {
-    public static final StringBuilder f42374a;
+    public static final StringBuilder f45861a;
 
     static {
         Locale locale = Locale.ROOT;
         new SimpleDateFormat("MM-dd HH:mm:ss.SSS", locale);
         new SimpleDateFormat("MM-dd HH:mm:ss", locale);
-        f42374a = new StringBuilder(33);
+        f45861a = new StringBuilder(33);
     }
 
     public static void a(StringBuilder sb2, long j3) {

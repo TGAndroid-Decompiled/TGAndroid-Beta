@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class aj1 extends org.telegram.ui.Components.xl0 {
-    public final Context f32182c;
+public final class aj1 extends org.telegram.ui.Components.yl0 {
+    public final Context f34836c;
     public final WallpapersListActivity d;
 
     public aj1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f32182c = context;
+        this.f34836c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42965f == 0) {
+        if (c1Var.f46527f == 0) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class aj1 extends org.telegram.ui.Components.xl0 {
 
     @Override
     public final int h() {
-        return this.d.f31910a;
+        return this.d.f34597a;
     }
 
     @Override
@@ -30,14 +30,11 @@ public final class aj1 extends org.telegram.ui.Components.xl0 {
         int i11;
         WallpapersListActivity wallpapersListActivity = this.d;
         i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.f31925r && i10 != wallpapersListActivity.f31912b && i10 != wallpapersListActivity.h) {
-            if (i10 != wallpapersListActivity.f31914c && i10 != wallpapersListActivity.f31918f) {
-                if (i10 != wallpapersListActivity.f31924n && i10 != wallpapersListActivity.f31926s) {
-                    return 2;
-                }
-                return 3;
+        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f34599b && i10 != wallpapersListActivity.f34604e) {
+            if (i10 != wallpapersListActivity.f34606f && i10 != wallpapersListActivity.f34610n) {
+                return 2;
             }
-            return 1;
+            return 3;
         }
         return 0;
     }
@@ -50,16 +47,13 @@ public final class aj1 extends org.telegram.ui.Components.xl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View r8Var;
-        Context context = this.f32182c;
+        Context context = this.f34836c;
         if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 3) {
-                    r8Var = new org.telegram.ui.Components.kj(this, context, 1);
-                } else {
-                    r8Var = new org.telegram.ui.Cells.e9(context);
-                }
+            if (i10 != 3) {
+                r8Var = new org.telegram.ui.Components.lj(this, context, 1);
+                r8Var.setTag(-33024);
             } else {
-                r8Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
+                r8Var = new org.telegram.ui.Cells.e9(context);
             }
         } else {
             r8Var = new org.telegram.ui.Cells.r8(context);

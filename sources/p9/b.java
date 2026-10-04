@@ -4,24 +4,24 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import p7.j;
-import w7.f0;
+import w7.g0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(4);
-    public final String f41012a;
-    public final String f41013b;
-    public final String f41014c;
+    public final String f44353a;
+    public final String f44354b;
+    public final String f44355c;
     public final String d;
-    public final a e;
-    public final String f41015f;
+    public final a f44356e;
+    public final String f44357f;
     public final Bundle h;
 
     public b(String str, String str2, String str3, String str4, a aVar, String str5, Bundle bundle) {
-        this.f41012a = str;
-        this.f41013b = str2;
-        this.f41014c = str3;
+        this.f44353a = str;
+        this.f44354b = str2;
+        this.f44355c = str3;
         this.d = str4;
-        this.e = aVar;
-        this.f41015f = str5;
+        this.f44356e = aVar;
+        this.f44357f = str5;
         if (bundle != null) {
             this.h = bundle;
         } else {
@@ -39,11 +39,11 @@ public final class b extends o6.a {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ActionImpl { { actionType: '");
-        sb2.append(this.f41012a);
+        sb2.append(this.f44353a);
         sb2.append("' } { objectName: '");
-        sb2.append(this.f41013b);
+        sb2.append(this.f44354b);
         sb2.append("' } { objectUrl: '");
-        sb2.append(this.f41014c);
+        sb2.append(this.f44355c);
         sb2.append("' } ");
         String str = this.d;
         if (str != null) {
@@ -51,13 +51,13 @@ public final class b extends o6.a {
             sb2.append(str);
             sb2.append("' } ");
         }
-        a aVar = this.e;
+        a aVar = this.f44356e;
         if (aVar != null) {
             sb2.append("{ metadata: '");
             sb2.append(aVar.toString());
             sb2.append("' } ");
         }
-        String str2 = this.f41015f;
+        String str2 = this.f44357f;
         if (str2 != null) {
             sb2.append("{ actionStatus: '");
             sb2.append(str2);
@@ -75,14 +75,14 @@ public final class b extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 1, this.f41012a);
-        f0.l(parcel, 2, this.f41013b);
-        f0.l(parcel, 3, this.f41014c);
-        f0.l(parcel, 4, this.d);
-        f0.k(parcel, 5, this.e, i10);
-        f0.l(parcel, 6, this.f41015f);
-        f0.b(parcel, 7, this.h);
-        f0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.l(parcel, 1, this.f44353a);
+        g0.l(parcel, 2, this.f44354b);
+        g0.l(parcel, 3, this.f44355c);
+        g0.l(parcel, 4, this.d);
+        g0.k(parcel, 5, this.f44356e, i10);
+        g0.l(parcel, 6, this.f44357f);
+        g0.b(parcel, 7, this.h);
+        g0.r(parcel, q6);
     }
 }

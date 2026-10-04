@@ -4,17 +4,17 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class e2 extends ClickableSpan {
-    public final long f47329a;
-    public final x3 f47330b;
+    public final long f51221a;
+    public final x3 f51222b;
 
     public e2(x3 x3Var, long j3) {
-        this.f47330b = x3Var;
-        this.f47329a = j3;
+        this.f51222b = x3Var;
+        this.f51221a = j3;
     }
 
     @Override
     public final void onClick(View view) {
-        this.f47330b.X1(this.f47329a);
+        this.f51222b.X1(this.f51221a);
     }
 
     @Override

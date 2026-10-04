@@ -1,12 +1,22 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class u91 extends da1 {
+import android.content.Context;
+public final class u91 extends org.telegram.ui.Components.zl0 {
+    public int f41127e3;
+    public final va1 f41128f3;
+
+    public u91(va1 va1Var, Context context) {
+        super(context, null);
+        this.f41128f3 = va1Var;
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (getTranslationY() != 0.0f) {
-            canvas.drawColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19061d6, false));
+    public final void onMeasure(int i10, int i11) {
+        aa1 aa1Var;
+        super.onMeasure(i10, i11);
+        if (this.f41127e3 != getMeasuredHeight() && (aa1Var = this.f41128f3.W) != null) {
+            aa1Var.l();
         }
-        super.onDraw(canvas);
+        this.f41127e3 = getMeasuredHeight();
     }
 }

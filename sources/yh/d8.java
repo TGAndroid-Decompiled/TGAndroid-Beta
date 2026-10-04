@@ -1,55 +1,44 @@
 package yh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.v01;
-public final class d8 extends View {
-    public final LinearGradient f47311a;
-    public final Matrix f47312b;
-    public final Paint f47313c;
-    public final Paint d;
-    public final v01 e;
-    public final org.telegram.ui.ActionBar.d6 f47314f;
+public final class d8 extends m8 {
+    public final boolean m0;
+    public final int f51204n0;
+    public final p8 f51205o0;
 
-    public d8(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f47314f = d6Var;
-        this.f47311a = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f47312b = new Matrix();
-        this.f47313c = new Paint(1);
-        this.d = new Paint(1);
-        this.e = new v01(LocaleController.getString(R.string.StarsReactionTopSenders), 14.16f, AndroidUtilities.bold());
+    public d8(p8 p8Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, int i10) {
+        super(context, d6Var);
+        this.f51205o0 = p8Var;
+        this.m0 = z10;
+        this.f51204n0 = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Matrix matrix = this.f47312b;
-        matrix.reset();
-        matrix.postTranslate(AndroidUtilities.dp(14.0f), 0.0f);
-        matrix.postScale((getWidth() - AndroidUtilities.dp(28.0f)) / 255.0f, 1.0f);
-        LinearGradient linearGradient = this.f47311a;
-        linearGradient.setLocalMatrix(matrix);
-        Paint paint = this.f47313c;
-        paint.setShader(linearGradient);
-        v01 v01Var = this.e;
-        float dp = v01Var.f28922c + AndroidUtilities.dp(30.0f);
-        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19062d7, this.f47314f);
-        Paint paint2 = this.d;
-        paint2.setColor(v02);
-        canvas.drawRect(AndroidUtilities.dp(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - dp) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint2);
-        canvas.drawRect(AndroidUtilities.dp(8.0f) + ((getWidth() + dp) / 2.0f), (getHeight() / 2.0f) - 1.0f, getWidth() - AndroidUtilities.dp(24.0f), getHeight() / 2.0f, paint2);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getWidth() - dp) / 2.0f, 0.0f, (getWidth() + dp) / 2.0f, getHeight());
-        canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, paint);
-        this.e.c((getWidth() - v01Var.f28922c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
+    public final void e(int i10) {
+        long j3 = i10;
+        p8 p8Var = this.f51205o0;
+        p8Var.s(j3);
+        ci.d dVar = p8Var.f51837x;
+        if (dVar != null) {
+            dVar.g(x7.b1(false, LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j3, ',')), p8Var.Q), true, true);
+        }
+        if (this.m0) {
+            ai.m1 m1Var = p8Var.G;
+            m1Var.f1330g = j3;
+            p8Var.H.set(m1Var);
+            int i11 = this.f51204n0;
+            f(ai.g0.b(i11, i10, 3), ai.g0.b(i11, i10, 4), true);
+        }
+    }
+
+    @Override
+    public final void setValue(int i10) {
+        super.setValue(i10);
+        if (this.m0) {
+            int i11 = this.f51204n0;
+            f(ai.g0.b(i11, i10, 3), ai.g0.b(i11, i10, 4), true);
+        }
     }
 }

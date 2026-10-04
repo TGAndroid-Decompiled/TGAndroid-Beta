@@ -1,41 +1,41 @@
 package z7;
 public final class h extends i {
-    public final transient int f48610c;
+    public final transient int f52623c;
     public final transient int d;
-    public final i e;
+    public final i f52624e;
 
     public h(i iVar, int i10, int i11) {
-        this.e = iVar;
-        this.f48610c = i10;
+        this.f52624e = iVar;
+        this.f52623c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        w7.m9.a(i10, this.d);
-        return this.e.get(i10 + this.f48610c);
+        w7.p9.a(i10, this.d);
+        return this.f52624e.get(i10 + this.f52623c);
     }
 
     @Override
     public final int n() {
-        return this.e.o() + this.f48610c + this.d;
+        return this.f52624e.o() + this.f52623c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.e.o() + this.f48610c;
+        return this.f52624e.o() + this.f52623c;
     }
 
     @Override
     public final Object[] p() {
-        return this.e.p();
+        return this.f52624e.p();
     }
 
     @Override
     public final i subList(int i10, int i11) {
-        w7.m9.b(i10, i11, this.d);
-        int i12 = this.f48610c;
-        return this.e.subList(i10 + i12, i11 + i12);
+        w7.p9.b(i10, i11, this.d);
+        int i12 = this.f52623c;
+        return this.f52624e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

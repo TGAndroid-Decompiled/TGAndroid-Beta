@@ -3,20 +3,20 @@ package m4;
 import android.os.Bundle;
 import android.os.SystemClock;
 public final class k1 {
-    public static final String e;
-    public static final String f14867f;
-    public static final String f14868g;
+    public static final String f16222e;
+    public static final String f16223f;
+    public static final String f16224g;
     public static final String h;
-    public final int f14869a;
-    public final Bundle f14870b;
-    public final long f14871c;
+    public final int f16225a;
+    public final Bundle f16226b;
+    public final long f16227c;
     public final i1 d;
 
     static {
-        String str = e2.d0.f7870a;
-        e = Integer.toString(0, 36);
-        f14867f = Integer.toString(1, 36);
-        f14868g = Integer.toString(2, 36);
+        String str = e2.d0.f8537a;
+        f16222e = Integer.toString(0, 36);
+        f16223f = Integer.toString(1, 36);
+        f16224g = Integer.toString(2, 36);
         h = Integer.toString(3, 36);
     }
 
@@ -26,14 +26,14 @@ public final class k1 {
 
     public static k1 a(Bundle bundle) {
         i1 i1Var;
-        int i10 = bundle.getInt(e, -1);
-        Bundle bundle2 = bundle.getBundle(f14867f);
-        long j3 = bundle.getLong(f14868g, SystemClock.elapsedRealtime());
+        int i10 = bundle.getInt(f16222e, -1);
+        Bundle bundle2 = bundle.getBundle(f16223f);
+        long j3 = bundle.getLong(f16224g, SystemClock.elapsedRealtime());
         Bundle bundle3 = bundle.getBundle(h);
         if (bundle3 != null) {
             int i11 = bundle3.getInt(i1.d, 1000);
-            String string = bundle3.getString(i1.e, "");
-            Bundle bundle4 = bundle3.getBundle(i1.f14828f);
+            String string = bundle3.getString(i1.f16181e, "");
+            Bundle bundle4 = bundle3.getBundle(i1.f16182f);
             if (bundle4 == null) {
                 bundle4 = Bundle.EMPTY;
             }
@@ -52,9 +52,9 @@ public final class k1 {
 
     public k1(int i10, Bundle bundle, long j3, i1 i1Var) {
         e2.d.b(i1Var == null || i10 < 0);
-        this.f14869a = i10;
-        this.f14870b = new Bundle(bundle);
-        this.f14871c = j3;
+        this.f16225a = i10;
+        this.f16226b = new Bundle(bundle);
+        this.f16227c = j3;
         if (i1Var == null && i10 < 0) {
             i1Var = new i1(i10);
         }

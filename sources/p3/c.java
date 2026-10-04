@@ -5,14 +5,14 @@ import b2.o0;
 import b2.s;
 import java.util.Arrays;
 public final class c implements o0 {
-    public final byte[] f40810a;
-    public final String f40811b;
-    public final String f40812c;
+    public final byte[] f44135a;
+    public final String f44136b;
+    public final String f44137c;
 
     public c(String str, String str2, byte[] bArr) {
-        this.f40810a = bArr;
-        this.f40811b = str;
-        this.f40812c = str2;
+        this.f44135a = bArr;
+        this.f44136b = str;
+        this.f44137c = str2;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class c implements o0 {
 
     @Override
     public final void b(m0 m0Var) {
-        String str = this.f40811b;
+        String str = this.f44136b;
         if (str != null) {
-            m0Var.f3087a = str;
+            m0Var.f3341a = str;
         }
     }
 
@@ -38,16 +38,16 @@ public final class c implements o0 {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            return Arrays.equals(this.f40810a, ((c) obj).f40810a);
+            return Arrays.equals(this.f44135a, ((c) obj).f44135a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f40810a);
+        return Arrays.hashCode(this.f44135a);
     }
 
     public final String toString() {
-        return a4.a.o(this.f40810a.length, "\"", a4.a.x("ICY: title=\"", this.f40811b, "\", url=\"", this.f40812c, "\", rawMetadata.length=\""));
+        return a4.a.n(this.f44135a.length, "\"", a4.a.w("ICY: title=\"", this.f44136b, "\", url=\"", this.f44137c, "\", rawMetadata.length=\""));
     }
 }

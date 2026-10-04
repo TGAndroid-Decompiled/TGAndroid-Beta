@@ -11,34 +11,34 @@ import java.util.concurrent.Executor;
 import rd.l;
 import w0.i;
 public final class f implements l {
-    public final int f2889a;
-    public final Object f2890b;
-    public final Object f2891c;
+    public final int f3120a;
+    public final Object f3121b;
+    public final Object f3122c;
 
     public f(int i10, Object obj, Object obj2) {
-        this.f2889a = i10;
-        this.f2890b = obj;
-        this.f2891c = obj2;
+        this.f3120a = i10;
+        this.f3121b = obj;
+        this.f3122c = obj2;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f2889a) {
+        switch (this.f3120a) {
             case 0:
-                i e = (i) obj;
-                kotlin.jvm.internal.i.e(e, "e");
-                ((Executor) this.f2890b).execute(new h((v0.i) this.f2891c, e, 1));
-                return gd.i.f9602a;
+                i e7 = (i) obj;
+                kotlin.jvm.internal.i.e(e7, "e");
+                ((Executor) this.f3121b).execute(new h((v0.i) this.f3122c, e7, 1));
+                return gd.i.f10452a;
             case 1:
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f2890b;
-                c1.e eVar = (c1.e) this.f2891c;
-                Context context = eVar.e;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f3121b;
+                c1.e eVar = (c1.e) this.f3122c;
+                Context context = eVar.f3939e;
                 x5.f fVar = (x5.f) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
-                    d.a(eVar.f3647i, intent, "BEGIN_SIGN_IN");
-                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f45621a);
+                    d.a(eVar.f3942i, intent, "BEGIN_SIGN_IN");
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f49386a);
                     try {
                         context.startActivity(intent);
                     } catch (Exception unused) {
@@ -48,24 +48,24 @@ public final class f implements l {
                         }
                     }
                 }
-                return gd.i.f9602a;
+                return gd.i.f10452a;
             default:
-                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f2890b;
-                d1.e eVar2 = (d1.e) this.f2891c;
-                Context context2 = eVar2.e;
+                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f3121b;
+                d1.e eVar2 = (d1.e) this.f3122c;
+                Context context2 = eVar2.f7994e;
                 PendingIntent result = (PendingIntent) obj;
                 kotlin.jvm.internal.i.e(result, "result");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    d.a(eVar2.f7394i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    d.a(eVar2.f7997i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.g.a(cancellationSignal2)) {
-                            Executor executor = eVar2.f7393g;
+                            Executor executor = eVar2.f7996g;
                             if (executor != null) {
                                 executor.execute(new d1.d(eVar2, 0));
                             } else {
@@ -75,7 +75,7 @@ public final class f implements l {
                         }
                     }
                 }
-                return gd.i.f9602a;
+                return gd.i.f10452a;
         }
     }
 }

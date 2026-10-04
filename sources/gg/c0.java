@@ -11,19 +11,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.j2;
 import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Components.xl0;
-public class c0 extends xl0 {
-    public final Context f9667c;
+import org.telegram.ui.Components.yl0;
+public class c0 extends yl0 {
+    public final Context f10526c;
     public final int d;
-    public final boolean e;
-    public final boolean f9668f;
+    public final boolean f10527e;
+    public final boolean f10528f;
     public final d6 h;
 
     public c0(int i10, Context context, d6 d6Var, boolean z10, boolean z11) {
-        this.e = z10;
-        this.f9667c = context;
+        this.f10527e = z10;
+        this.f10526c = context;
         this.d = i10;
-        this.f9668f = z11;
+        this.f10528f = z11;
         this.h = d6Var;
     }
 
@@ -41,7 +41,7 @@ public class c0 extends xl0 {
     public void v(s4.c1 c1Var, int i10) {
         TLRPC.Chat chat;
         String str;
-        n4 n4Var = (n4) c1Var.f42962a;
+        n4 n4Var = (n4) c1Var.f46523a;
         int i11 = this.d;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         new TLRPC.TL_dialog();
@@ -84,10 +84,10 @@ public class c0 extends xl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        boolean z10 = this.e;
-        n4 n4Var = new n4(this.f9667c, this.h, z10);
-        if (this.f9668f && !n4Var.f20696x) {
-            n4Var.f20696x = true;
+        boolean z10 = this.f10527e;
+        n4 n4Var = new n4(this.f10526c, this.h, z10);
+        if (this.f10528f && !n4Var.f22526x) {
+            n4Var.f22526x = true;
             NotificationCenter.getInstance(n4Var.h).listen(n4Var, NotificationCenter.userIsPremiumBlockedUpadted, new j2(n4Var, 1));
         }
         n4Var.setLayoutParams(new s4.p0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));

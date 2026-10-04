@@ -11,71 +11,71 @@ import b2.s;
 import e2.d0;
 import e2.v;
 import java.util.List;
-public final class d implements w3.c {
-    public int f3376a;
-    public int f3377b;
-    public final Object f3378c;
+public final class d implements w3.b {
+    public int f3646a;
+    public int f3647b;
+    public final Object f3648c;
 
     public d(Context context) {
-        this.f3377b = 0;
-        this.f3378c = context;
+        this.f3647b = 0;
+        this.f3648c = context;
     }
 
     @Override
     public int a() {
-        return this.f3376a;
+        return this.f3646a;
     }
 
     @Override
     public int b() {
-        return this.f3377b;
+        return this.f3647b;
     }
 
     @Override
     public int c() {
-        int i10 = this.f3376a;
+        int i10 = this.f3646a;
         if (i10 == -1) {
-            return ((v) this.f3378c).B();
+            return ((v) this.f3648c).B();
         }
         return i10;
     }
 
     public int d() {
-        return ((((byte[]) this.f3378c).length - this.f3376a) * 8) - this.f3377b;
+        return ((((byte[]) this.f3648c).length - this.f3646a) * 8) - this.f3647b;
     }
 
     public int e(int i10) {
-        byte[] bArr = (byte[]) this.f3378c;
+        byte[] bArr = (byte[]) this.f3648c;
         if (i10 >= 1 && i10 <= 32 && i10 <= d()) {
-            int i11 = this.f3377b;
+            int i11 = this.f3647b;
             int i12 = 0;
             if (i11 > 0) {
                 int i13 = 8 - i11;
                 int min = Math.min(i10, i13);
                 int i14 = i13 - min;
-                int i15 = this.f3376a;
+                int i15 = this.f3646a;
                 int i16 = (((255 >> (8 - min)) << i14) & bArr[i15]) >> i14;
                 i10 -= min;
-                int i17 = this.f3377b + min;
-                this.f3377b = i17;
+                int i17 = this.f3647b + min;
+                this.f3647b = i17;
                 if (i17 == 8) {
-                    this.f3377b = 0;
-                    this.f3376a = i15 + 1;
+                    this.f3647b = 0;
+                    this.f3646a = i15 + 1;
                 }
                 i12 = i16;
             }
             if (i10 > 0) {
                 while (i10 >= 8) {
                     int i18 = i12 << 8;
-                    int i19 = this.f3376a;
-                    this.f3376a = i19 + 1;
+                    int i19 = this.f3646a;
+                    this.f3646a = i19 + 1;
                     i10 -= 8;
                     i12 = i18 | (bArr[i19] & 255);
                 }
                 if (i10 > 0) {
                     int i20 = 8 - i10;
-                    int i21 = ((bArr[this.f3376a] & ((255 >> i20) << i20)) >> i20) | (i12 << i10);
-                    this.f3377b += i10;
+                    int i21 = ((bArr[this.f3646a] & ((255 >> i20) << i20)) >> i20) | (i12 << i10);
+                    this.f3647b += i10;
                     return i21;
                 }
             }
@@ -86,28 +86,28 @@ public final class d implements w3.c {
 
     public synchronized int f() {
         PackageInfo packageInfo;
-        if (this.f3376a == 0) {
+        if (this.f3646a == 0) {
             try {
-                packageInfo = w6.b.a((Context) this.f3378c).e(0, "com.google.android.gms");
-            } catch (PackageManager.NameNotFoundException e) {
-                Log.w("Metadata", "Failed to find package ".concat(e.toString()));
+                packageInfo = w6.b.a((Context) this.f3648c).b(0, "com.google.android.gms");
+            } catch (PackageManager.NameNotFoundException e7) {
+                Log.w("Metadata", "Failed to find package ".concat(e7.toString()));
                 packageInfo = null;
             }
             if (packageInfo != null) {
-                this.f3376a = packageInfo.versionCode;
+                this.f3646a = packageInfo.versionCode;
             }
         }
-        return this.f3376a;
+        return this.f3646a;
     }
 
     public synchronized int g() {
-        int i10 = this.f3377b;
+        int i10 = this.f3647b;
         if (i10 != 0) {
             return i10;
         }
-        Context context = (Context) this.f3378c;
+        Context context = (Context) this.f3648c;
         PackageManager packageManager = context.getPackageManager();
-        if (w6.b.a(context).f13503a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
+        if (w6.b.a(context).f47746a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
             Log.e("Metadata", "Google Play services missing or without correct permission.");
             return 0;
         }
@@ -117,7 +117,7 @@ public final class d implements w3.c {
             intent.setPackage("com.google.android.gms");
             List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
             if (queryIntentServices != null && !queryIntentServices.isEmpty()) {
-                this.f3377b = i11;
+                this.f3647b = i11;
                 return i11;
             }
         }
@@ -126,40 +126,40 @@ public final class d implements w3.c {
         List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
         if (queryBroadcastReceivers != null && !queryBroadcastReceivers.isEmpty()) {
             i11 = 2;
-            this.f3377b = i11;
+            this.f3647b = i11;
             return i11;
         }
         Log.w("Metadata", "Failed to resolve IID implementation package, falling back");
         if (true == u6.b.d()) {
             i11 = 2;
         }
-        this.f3377b = i11;
+        this.f3647b = i11;
         return i11;
     }
 
     public d(byte[] bArr) {
-        this.f3378c = bArr;
+        this.f3648c = bArr;
     }
 
     public d(int i10, int i11, SparseArray sparseArray) {
-        this.f3376a = i10;
-        this.f3377b = i11;
-        this.f3378c = sparseArray;
+        this.f3646a = i10;
+        this.f3647b = i11;
+        this.f3648c = sparseArray;
     }
 
     public d(f2.d dVar, s sVar) {
-        v vVar = dVar.f8784c;
-        this.f3378c = vVar;
+        v vVar = dVar.f9553c;
+        this.f3648c = vVar;
         vVar.J(12);
         int B = vVar.B();
-        if ("audio/raw".equals(sVar.f3301r)) {
+        if ("audio/raw".equals(sVar.f3564r)) {
             int t10 = d0.t(sVar.L) * sVar.J;
             if (B == 0 || B % t10 != 0) {
                 e2.a.n("BoxParsers", "Audio sample size mismatch. stsd sample size: " + t10 + ", stsz sample size: " + B);
                 B = t10;
             }
         }
-        this.f3376a = B == 0 ? -1 : B;
-        this.f3377b = vVar.B();
+        this.f3646a = B == 0 ? -1 : B;
+        this.f3647b = vVar.B();
     }
 }

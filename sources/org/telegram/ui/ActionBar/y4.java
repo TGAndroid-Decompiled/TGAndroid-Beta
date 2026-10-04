@@ -1,16 +1,22 @@
 package org.telegram.ui.ActionBar;
-public interface y4 {
-    void a(float f7);
+public final class y4 {
+    public static final y4 f21715a;
+    public static final y4 f21716b;
+    public static final y4[] f21717c;
 
-    void b(ActionBarLayout actionBarLayout, boolean z10);
+    static {
+        ?? r02 = new Enum("BACK", 0);
+        f21715a = r02;
+        ?? r12 = new Enum("MENU", 1);
+        f21716b = r12;
+        f21717c = new y4[]{r02, r12};
+    }
 
-    void e(int[] iArr);
+    public static y4 valueOf(String str) {
+        return (y4) Enum.valueOf(y4.class, str);
+    }
 
-    boolean h(m2 m2Var, ActionBarLayout actionBarLayout);
-
-    boolean j();
-
-    boolean k(ActionBarLayout actionBarLayout);
-
-    boolean l(ActionBarLayout actionBarLayout, z4 z4Var);
+    public static y4[] values() {
+        return (y4[]) f21717c.clone();
+    }
 }

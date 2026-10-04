@@ -2,6 +2,6 @@ package u2;
 
 import android.os.Handler;
 public final class j0 {
-    public Handler f43683a;
-    public Object f43684b;
+    public Handler f47296a;
+    public Object f47297b;
 }

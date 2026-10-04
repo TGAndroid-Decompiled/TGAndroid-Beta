@@ -11,35 +11,35 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.n50;
+import org.telegram.ui.n20;
 public final class w implements Runnable {
-    public final int f42810a;
-    public final j0 f42811b;
+    public final int f46328a;
+    public final k0 f46329b;
 
-    public w(j0 j0Var, int i10) {
-        this.f42810a = i10;
-        this.f42811b = j0Var;
+    public w(k0 k0Var, int i10) {
+        this.f46328a = i10;
+        this.f46329b = k0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f42810a;
-        j0 j0Var = this.f42811b;
+        int i10 = this.f46328a;
+        k0 k0Var = this.f46329b;
         switch (i10) {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f19583a = true;
-                    j0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
+                    obj.f21349a = true;
+                    k0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 1:
-                j0Var.f42618x0.e(j0Var.f42597b0, false);
-                j0Var.z1();
+                k0Var.f46165x0.e(k0Var.f46144b0, false);
+                k0Var.z1();
                 return;
             case 2:
-                HashSet hashSet = j0Var.f42619y0;
+                HashSet hashSet = k0Var.f46166y0;
                 yc X = yc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {
@@ -52,20 +52,20 @@ public final class w implements Runnable {
                 }
                 return;
             case 3:
-                ci.d dVar = j0Var.S0;
-                TLRPC.ChatFull t12 = j0Var.t1();
+                ci.d dVar = k0Var.S0;
+                TLRPC.ChatFull t12 = k0Var.t1();
                 dVar.b(Math.max(t12.boosts_unrestrict - t12.boosts_applied, 0), false);
                 return;
             default:
-                if (ChatObject.hasAdminRights(j0Var.s1())) {
-                    if (j0Var.E0.getParent() != null) {
-                        ((ViewGroup) j0Var.E0.getParent()).removeView(j0Var.E0);
+                if (ChatObject.hasAdminRights(k0Var.s1())) {
+                    if (k0Var.E0.getParent() != null) {
+                        ((ViewGroup) k0Var.E0.getParent()).removeView(k0Var.E0);
                     }
-                    n50 n50Var = j0Var.L0;
-                    if (n50Var != null && n50Var.getParent() != null) {
-                        ((ViewGroup) j0Var.L0.getParent()).removeView(j0Var.L0);
+                    n20 n20Var = k0Var.L0;
+                    if (n20Var != null && n20Var.getParent() != null) {
+                        ((ViewGroup) k0Var.L0.getParent()).removeView(k0Var.L0);
                     }
-                    j0Var.d.setPadding(0, 0, 0, 0);
+                    k0Var.d.setPadding(0, 0, 0, 0);
                     return;
                 }
                 return;

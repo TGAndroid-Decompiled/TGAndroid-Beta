@@ -107,8 +107,8 @@ public class WebRtcAudioTrack {
                     if (nanoTime > 0) {
                         try {
                             Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
-                        } catch (InterruptedException e) {
-                            FileLog.e(e);
+                        } catch (InterruptedException e7) {
+                            FileLog.e(e7);
                         }
                     } else {
                         this.targetTimeNs = System.nanoTime();
@@ -122,8 +122,8 @@ public class WebRtcAudioTrack {
                 try {
                     WebRtcAudioTrack.this.audioTrack.stop();
                     Logging.d("WebRtcAudioTrack", "AudioTrack.stop is done.");
-                } catch (Exception e7) {
-                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e7.getMessage());
+                } catch (Exception e10) {
+                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e10.getMessage());
                 }
             }
         }
@@ -265,8 +265,8 @@ public class WebRtcAudioTrack {
                 reportWebRtcAudioTrackInitError("Initialization of audio track failed.");
                 releaseAudioResources();
                 return -1;
-            } catch (IllegalArgumentException e) {
-                reportWebRtcAudioTrackInitError(e.getMessage());
+            } catch (IllegalArgumentException e7) {
+                reportWebRtcAudioTrackInitError(e7.getMessage());
                 releaseAudioResources();
                 return -1;
             }
@@ -435,9 +435,9 @@ public class WebRtcAudioTrack {
             this.audioThread = audioTrackThread;
             audioTrackThread.start();
             return true;
-        } catch (IllegalStateException e) {
+        } catch (IllegalStateException e7) {
             AudioTrackStartErrorCode audioTrackStartErrorCode2 = AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION;
-            reportWebRtcAudioTrackStartError(audioTrackStartErrorCode2, "AudioTrack.play failed: " + e.getMessage());
+            reportWebRtcAudioTrackStartError(audioTrackStartErrorCode2, "AudioTrack.play failed: " + e7.getMessage());
             releaseAudioResources();
             return false;
         }

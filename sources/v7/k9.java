@@ -1,47 +1,28 @@
 package v7;
-public final class k9 extends i9 {
-    public static final k9 e = new k9(0, new Object[0]);
-    public final transient Object[] f44313c;
-    public final transient int d;
 
-    public k9(int i10, Object[] objArr) {
-        this.f44313c = objArr;
-        this.d = i10;
+import java.util.AbstractMap;
+public final class k9 extends h9 {
+    public final a f47993c;
+
+    public k9(a aVar) {
+        this.f47993c = aVar;
     }
 
     @Override
     public final Object get(int i10) {
-        w7.x7.a(i10, this.d);
-        Object obj = this.f44313c[i10];
+        a aVar = this.f47993c;
+        w7.y7.a(i10, aVar.f47850e);
+        int i11 = i10 + i10;
+        Object[] objArr = aVar.d;
+        Object obj = objArr[i11];
         obj.getClass();
-        return obj;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f44313c;
-        int i10 = this.d;
-        System.arraycopy(objArr2, 0, objArr, 0, i10);
-        return i10;
-    }
-
-    @Override
-    public final int n() {
-        return this.d;
-    }
-
-    @Override
-    public final int o() {
-        return 0;
-    }
-
-    @Override
-    public final Object[] p() {
-        return this.f44313c;
+        Object obj2 = objArr[i11 + 1];
+        obj2.getClass();
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
     }
 
     @Override
     public final int size() {
-        return this.d;
+        return this.f47993c.f47850e;
     }
 }

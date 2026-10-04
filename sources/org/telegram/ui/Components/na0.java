@@ -6,24 +6,24 @@ import android.animation.AnimatorSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class na0 extends AnimatorListenerAdapter {
-    public final int f26730a;
-    public final int f26731b;
-    public final boolean f26732c;
+    public final int f28920a;
+    public final int f28921b;
+    public final boolean f28922c;
     public final NotificationCenter.NotificationCenterDelegate d;
 
     public na0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, boolean z10, int i11) {
-        this.f26730a = i11;
+        this.f28920a = i11;
         this.d = notificationCenterDelegate;
-        this.f26731b = i10;
-        this.f26732c = z10;
+        this.f28921b = i10;
+        this.f28922c = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f26730a) {
+        switch (this.f28920a) {
             case 1:
-                AnimatorSet[] animatorSetArr = ((hy0) this.d).I;
-                int i10 = this.f26731b;
+                AnimatorSet[] animatorSetArr = ((qy0) this.d).I;
+                int i10 = this.f28921b;
                 AnimatorSet animatorSet = animatorSetArr[i10];
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     animatorSetArr[i10] = null;
@@ -41,41 +41,41 @@ public final class na0 extends AnimatorListenerAdapter {
         float f7;
         float f10;
         float dp;
-        switch (this.f26730a) {
+        switch (this.f28920a) {
             case 0:
                 pa0 pa0Var = (pa0) this.d;
-                p6[] p6VarArr = pa0Var.f27332x;
-                org.telegram.ui.ActionBar.h5[] h5VarArr = pa0Var.f27331w;
+                p6[] p6VarArr = pa0Var.f29592x;
+                org.telegram.ui.ActionBar.i5[] i5VarArr = pa0Var.f29591w;
                 float[] fArr = pa0Var.Z;
                 float f11 = 0.0f;
-                boolean z10 = this.f26732c;
+                boolean z10 = this.f28922c;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                int i10 = this.f26731b;
+                int i10 = this.f28921b;
                 fArr[i10] = f7;
-                org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[i10];
+                org.telegram.ui.ActionBar.i5 i5Var = i5VarArr[i10];
                 float f12 = 1.111f;
                 if (z10) {
                     f10 = 1.0f;
                 } else {
                     f10 = 1.111f;
                 }
-                h5Var.setScaleX(f10);
-                org.telegram.ui.ActionBar.h5 h5Var2 = h5VarArr[i10];
+                i5Var.setScaleX(f10);
+                org.telegram.ui.ActionBar.i5 i5Var2 = i5VarArr[i10];
                 if (z10) {
                     f12 = 1.0f;
                 }
-                h5Var2.setScaleY(f12);
-                org.telegram.ui.ActionBar.h5 h5Var3 = h5VarArr[i10];
+                i5Var2.setScaleY(f12);
+                org.telegram.ui.ActionBar.i5 i5Var3 = i5VarArr[i10];
                 if (z10) {
                     dp = 0.0f;
                 } else {
                     dp = AndroidUtilities.dp(8.0f);
                 }
-                h5Var3.setTranslationY(dp);
+                i5Var3.setTranslationY(dp);
                 p6 p6Var = p6VarArr[i10];
                 if (z10) {
                     f11 = 1.0f;
@@ -87,13 +87,13 @@ public final class na0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                hy0 hy0Var = (hy0) this.d;
-                AnimatorSet[] animatorSetArr = hy0Var.I;
-                int i11 = this.f26731b;
+                qy0 qy0Var = (qy0) this.d;
+                AnimatorSet[] animatorSetArr = qy0Var.I;
+                int i11 = this.f28921b;
                 AnimatorSet animatorSet = animatorSetArr[i11];
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f26732c) {
-                        hy0Var.J[i11].setVisibility(4);
+                    if (!this.f28922c) {
+                        qy0Var.J[i11].setVisibility(4);
                     }
                     animatorSetArr[i11] = null;
                     return;

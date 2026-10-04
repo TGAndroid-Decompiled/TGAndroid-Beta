@@ -8,35 +8,35 @@ import java.util.Collections;
 import java.util.List;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.wg0;
-import org.telegram.ui.wn;
+import org.telegram.ui.Components.xb0;
+import org.telegram.ui.yn;
 public final class t extends FrameLayout {
-    public final wn f49441a;
-    public s f49442b;
-    public List f49443c;
+    public final yn f53524a;
+    public s f53525b;
+    public List f53526c;
     public boolean d;
-    public MessageObject e;
-    public final int f49444f;
+    public MessageObject f53527e;
+    public final int f53528f;
     public final int h;
-    public float f49445n;
-    public float f49446r;
-    public float f49447s;
+    public float f53529n;
+    public float f53530r;
+    public float f53531s;
     public long v;
-    public boolean f49448w;
-    public boolean f49449x;
-    public final int[] f49450y;
+    public boolean f53532w;
+    public boolean f53533x;
+    public final int[] f53534y;
 
-    public t(wn wnVar, Context context) {
+    public t(yn ynVar, Context context) {
         super(context);
-        this.f49443c = Collections.EMPTY_LIST;
-        this.f49444f = 22;
+        this.f53526c = Collections.EMPTY_LIST;
+        this.f53528f = 22;
         this.h = 24;
-        this.f49450y = new int[2];
+        this.f53534y = new int[2];
         setVisibility(8);
-        this.f49441a = wnVar;
+        this.f53524a = ynVar;
         setClipToPadding(false);
         setClipChildren(false);
-        wnVar.f39695x0.j(new wg0(this, 21));
+        ynVar.f43525v0.j(new xb0(this, 24));
     }
 
     public final void a(boolean z10) {
@@ -45,7 +45,7 @@ public final class t extends FrameLayout {
             post(new r(this, 1));
             return;
         }
-        this.f49449x = false;
+        this.f53533x = false;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
         duration.addUpdateListener(new org.telegram.ui.Components.voip.r0(this, 27));
         duration.addListener(new pg.d0(this, 13));
@@ -53,14 +53,14 @@ public final class t extends FrameLayout {
     }
 
     public final MessageObject b() {
-        MessageObject.GroupedMessages y82;
+        MessageObject.GroupedMessages z82;
         ArrayList<MessageObject> arrayList;
         TLRPC.TL_messageReactions tL_messageReactions;
         ArrayList<TLRPC.ReactionCount> arrayList2;
-        if (this.d && !this.f49443c.isEmpty()) {
+        if (this.d && !this.f53526c.isEmpty()) {
             int i10 = 0;
-            MessageObject messageObject = (MessageObject) this.f49443c.get(0);
-            if (messageObject.getGroupId() != 0 && (y82 = this.f49441a.y8(messageObject.getGroupId())) != null && (arrayList = y82.messages) != null) {
+            MessageObject messageObject = (MessageObject) this.f53526c.get(0);
+            if (messageObject.getGroupId() != 0 && (z82 = this.f53524a.z8(messageObject.getGroupId())) != null && (arrayList = z82.messages) != null) {
                 int size = arrayList.size();
                 while (i10 < size) {
                     MessageObject messageObject2 = arrayList.get(i10);
@@ -82,14 +82,14 @@ public final class t extends FrameLayout {
     }
 
     public final boolean d() {
-        if (this.d && !this.f49448w) {
+        if (this.d && !this.f53532w) {
             return true;
         }
         return false;
     }
 
     public void setHiddenByScroll(boolean z10) {
-        this.f49448w = z10;
+        this.f53532w = z10;
         if (z10) {
             a(false);
         }

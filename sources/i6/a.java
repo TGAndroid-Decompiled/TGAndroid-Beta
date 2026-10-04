@@ -11,37 +11,37 @@ import com.google.android.gms.internal.clearcut.c2;
 import com.google.android.gms.internal.clearcut.q1;
 import com.google.android.gms.internal.clearcut.v0;
 public final class a {
-    public static final e f10986j = new e("ClearcutLogger.API", new d(5), new Object());
-    public final Context f10987a;
-    public final String f10988b;
-    public final int f10989c;
+    public static final e f11966j = new e("ClearcutLogger.API", new d(5), new Object());
+    public final Context f11967a;
+    public final String f11968b;
+    public final int f11969c;
     public final String d;
-    public final int e;
-    public final q1 f10990f;
-    public final v0 f10991g;
+    public final int f11970e;
+    public final q1 f11971f;
+    public final v0 f11972g;
     public final u6.a h;
-    public final c2 f10992i;
+    public final c2 f11973i;
 
     public a(Context context) {
-        ?? jVar = new j(context, f10986j, (com.google.android.gms.common.api.a) null, (t) new Object());
+        ?? jVar = new j(context, f11966j, (com.google.android.gms.common.api.a) null, (t) new Object());
         c2 c2Var = new c2(context);
-        this.e = -1;
+        this.f11970e = -1;
         q1 q1Var = q1.DEFAULT;
-        this.f10990f = q1Var;
-        this.f10987a = context;
-        this.f10988b = context.getPackageName();
+        this.f11971f = q1Var;
+        this.f11967a = context;
+        this.f11968b = context.getPackageName();
         int i10 = 0;
         try {
             i10 = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.wtf("ClearcutLogger", "This can't happen.", e);
+        } catch (PackageManager.NameNotFoundException e7) {
+            Log.wtf("ClearcutLogger", "This can't happen.", e7);
         }
-        this.f10989c = i10;
-        this.e = -1;
+        this.f11969c = i10;
+        this.f11970e = -1;
         this.d = "VISION";
-        this.f10991g = jVar;
-        this.h = u6.a.f43911a;
-        this.f10990f = q1Var;
-        this.f10992i = c2Var;
+        this.f11972g = jVar;
+        this.h = u6.a.f47541a;
+        this.f11971f = q1Var;
+        this.f11973i = c2Var;
     }
 }

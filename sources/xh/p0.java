@@ -3,77 +3,77 @@ package xh;
 import android.os.Bundle;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.cb;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.wn;
+import org.telegram.ui.yn;
 public final class p0 implements Runnable {
-    public final int f46345a;
-    public final long f46346b;
-    public final Object f46347c;
+    public final int f50160a;
+    public final long f50161b;
+    public final Object f50162c;
     public final Object d;
 
     public p0(Object obj, long j3, Object obj2, int i10) {
-        this.f46345a = i10;
-        this.f46347c = obj;
-        this.f46346b = j3;
+        this.f50160a = i10;
+        this.f50162c = obj;
+        this.f50161b = j3;
         this.d = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f46345a) {
+        switch (this.f50160a) {
             case 0:
-                r1 r1Var = (r1) this.f46347c;
+                q1 q1Var = (q1) this.f50162c;
                 Utilities.Callback callback = (Utilities.Callback) this.d;
-                r1Var.getClass();
-                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                q1Var.getClass();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    r1Var.dismiss();
+                    q1Var.dismiss();
                     if (callback != null) {
                         callback.run(Boolean.FALSE);
                     }
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", this.f46346b);
+                    bundle.putLong("user_id", this.f50161b);
                     bundle.putBoolean("open_gifts", true);
                     U.presentFragment(new ProfileActivity(bundle, null));
                     return;
                 }
                 return;
             case 1:
-                yh.x3 x3Var = (yh.x3) this.f46347c;
+                yh.x3 x3Var = (yh.x3) this.f50162c;
                 Runnable runnable = (Runnable) this.d;
-                x3Var.p2((int) this.f46346b, x3Var.getContext(), true);
+                x3Var.p2((int) this.f50161b, x3Var.getContext(), true);
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 2:
-                yh.x3 x3Var2 = (yh.x3) this.f46347c;
+                yh.x3 x3Var2 = (yh.x3) this.f50162c;
                 x3Var2.getClass();
                 ((nf.e) this.d).b();
-                x3Var2.p2((int) this.f46346b, x3Var2.getContext(), true);
+                x3Var2.p2((int) this.f50161b, x3Var2.getContext(), true);
                 return;
             default:
                 TL_stories.Boost boost = (TL_stories.Boost) this.d;
-                org.telegram.ui.ActionBar.e3 e3Var = ((org.telegram.ui.ActionBar.e3[]) this.f46347c)[0];
-                if (e3Var != null) {
-                    e3Var.dismiss();
+                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) this.f50162c)[0];
+                if (f3Var != null) {
+                    f3Var.dismiss();
                 }
-                org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
+                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    U2.presentFragment(wn.Q9(boost.giveaway_msg_id, this.f46346b));
+                    U2.presentFragment(yn.P9(boost.giveaway_msg_id, this.f50161b));
                     return;
                 }
                 return;
         }
     }
 
-    public p0(bb bbVar, Object obj, long j3, int i10) {
-        this.f46345a = i10;
-        this.f46347c = bbVar;
+    public p0(cb cbVar, Object obj, long j3, int i10) {
+        this.f50160a = i10;
+        this.f50162c = cbVar;
         this.d = obj;
-        this.f46346b = j3;
+        this.f50161b = j3;
     }
 }

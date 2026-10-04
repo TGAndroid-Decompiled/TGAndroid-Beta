@@ -11,65 +11,65 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.kj0;
 public final class b6 {
-    public final Paint f586a;
-    public final Paint f587b;
-    public final Paint f588c;
+    public final Paint f636a;
+    public final Paint f637b;
+    public final Paint f638c;
     public final Drawable d;
-    public final Drawable e;
-    public final ColorDrawable f589f;
-    public final com.google.firebase.messaging.n f590g = new com.google.firebase.messaging.n(5);
+    public final Drawable f639e;
+    public final ColorDrawable f640f;
+    public final com.google.firebase.messaging.n f641g = new com.google.firebase.messaging.n(5);
     public final RectF h = new RectF();
-    public final RectF f591i = new RectF();
-    public final RectF f592j = new RectF();
-    public final RectF f593k;
-    public final Paint f594l;
-    public final Drawable f595m;
-    public final Drawable f596n;
-    public final Drawable f597o;
-    public final Drawable f598p;
-    public final Drawable f599q;
-    public final Drawable f600r;
-    public final Drawable f601s;
-    public final kj0 f602t;
-    public final kj0 f603u;
+    public final RectF f642i = new RectF();
+    public final RectF f643j = new RectF();
+    public final RectF f644k;
+    public final Paint f645l;
+    public final Drawable f646m;
+    public final Drawable f647n;
+    public final Drawable f648o;
+    public final Drawable f649p;
+    public final Drawable f650q;
+    public final Drawable f651r;
+    public final Drawable f652s;
+    public final kj0 f653t;
+    public final kj0 f654u;
 
     public b6(Context context) {
         new RectF();
-        this.f593k = new RectF();
-        this.f594l = new Paint();
-        this.f595m = context.getDrawable(R.drawable.media_share);
-        this.f597o = context.getDrawable(R.drawable.media_like);
-        this.f596n = context.getDrawable(R.drawable.media_repost);
+        this.f644k = new RectF();
+        this.f645l = new Paint();
+        this.f646m = context.getDrawable(R.drawable.media_share);
+        this.f648o = context.getDrawable(R.drawable.media_like);
+        this.f647n = context.getDrawable(R.drawable.media_repost);
         Drawable drawable = context.getDrawable(R.drawable.media_like_active);
-        this.f598p = drawable;
+        this.f649p = drawable;
         drawable.setColorFilter(new PorterDuffColorFilter(-53704, PorterDuff.Mode.MULTIPLY));
-        this.f599q = context.getDrawable(R.drawable.media_more);
-        this.f600r = context.getDrawable(R.drawable.menu_stream_pip);
-        this.f601s = context.getDrawable(R.drawable.msg_delete);
-        this.f603u = new kj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        this.f650q = context.getDrawable(R.drawable.media_more);
+        this.f651r = context.getDrawable(R.drawable.menu_stream_pip);
+        this.f652s = context.getDrawable(R.drawable.msg_delete);
+        this.f654u = new kj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         kj0 kj0Var = new kj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.f602t = kj0Var;
+        this.f653t = kj0Var;
         kj0Var.N(20, false, true);
         kj0Var.stop();
         Paint paint = new Paint(1);
-        this.f586a = paint;
+        this.f636a = paint;
         paint.setColor(1442840575);
         Paint paint2 = new Paint(1);
-        this.f587b = paint2;
+        this.f637b = paint2;
         paint2.setColor(-1);
         int k10 = i0.a.k(-16777216, 102);
         this.d = context.getDrawable(R.drawable.shadow_story_top);
-        this.e = context.getDrawable(R.drawable.shadow_story_bottom);
+        this.f639e = context.getDrawable(R.drawable.shadow_story_bottom);
         Paint paint3 = new Paint();
-        this.f588c = paint3;
+        this.f638c = paint3;
         paint3.setColor(k10);
-        this.f589f = new ColorDrawable(i0.a.d(0.1f, -16777216, -1));
+        this.f640f = new ColorDrawable(i0.a.d(0.1f, -16777216, -1));
     }
 
     public final void a(boolean z10, boolean z11) {
         int i10;
         int i11 = 20;
-        kj0 kj0Var = this.f603u;
+        kj0 kj0Var = this.f654u;
         if (!z11) {
             if (z10) {
                 i10 = 20;
@@ -82,13 +82,13 @@ public final class b6 {
             }
             kj0Var.P(i11);
         } else if (z10) {
-            if (kj0Var.f25716a0 > 20) {
+            if (kj0Var.f28118a0 > 20) {
                 kj0Var.N(0, false, false);
             }
             kj0Var.P(20);
             kj0Var.start();
         } else {
-            int i12 = kj0Var.f25716a0;
+            int i12 = kj0Var.f28118a0;
             if (i12 != 0 && i12 < 43) {
                 kj0Var.P(43);
                 kj0Var.start();

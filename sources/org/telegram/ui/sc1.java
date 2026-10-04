@@ -1,63 +1,31 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-public final class sc1 extends AnimatorListenerAdapter {
-    public final int f37708a;
-    public final od1 f37709b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+public final class sc1 extends FrameLayout {
+    public final int f40454a;
+    public final Rect f40455b;
+    public final rd1 f40456c;
 
-    public sc1(od1 od1Var, int i10) {
-        this.f37708a = i10;
-        this.f37709b = od1Var;
+    public sc1(rd1 rd1Var, Context context, int i10, Rect rect) {
+        super(context);
+        this.f40456c = rd1Var;
+        this.f40454a = i10;
+        this.f40455b = rect;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f37708a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                od1 od1Var = this.f37709b;
-                od1Var.f36208x0.invalidate();
-                od1Var.f36205w0[1].setVisibility(8);
-                od1Var.f36156c2 = null;
-                return;
-            case 1:
-                this.f37709b.B0 = null;
-                return;
-            case 2:
-                od1 od1Var2 = this.f37709b;
-                if (od1Var2.D0.getTag() == null) {
-                    od1Var2.D0.setVisibility(4);
-                }
-                od1Var2.H0 = null;
-                return;
-            case 3:
-                od1 od1Var3 = this.f37709b;
-                if (od1Var3.E0.getTag() == null) {
-                    od1Var3.E0.setVisibility(4);
-                }
-                od1Var3.I0 = null;
-                return;
-            case 4:
-                od1 od1Var4 = this.f37709b;
-                kc kcVar = od1Var4.f36172h2;
-                if (kcVar != null) {
-                    if (kcVar.getParent() != null) {
-                        ((ViewGroup) od1Var4.f36172h2.getParent()).removeView(od1Var4.f36172h2);
-                    }
-                    od1Var4.f36172h2 = null;
-                }
-                od1Var4.f36178j2 = null;
-                super.onAnimationEnd(animator);
-                return;
-            default:
-                od1 od1Var5 = this.f37709b;
-                if (!od1Var5.f36189p1.a()) {
-                    od1Var5.R1.setVisibility(8);
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        int i10 = this.f40454a;
+        Rect rect = this.f40455b;
+        rd1 rd1Var = this.f40456c;
+        if (i10 == 0) {
+            rd1Var.f40078r.setBounds(rd1Var.V.getLeft() - rect.left, 0, rd1Var.V.getRight() + rect.right, getMeasuredHeight());
+        } else {
+            rd1Var.f40078r.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
         }
+        rd1Var.f40078r.draw(canvas);
     }
 }

@@ -1,36 +1,20 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.v01;
-public final class w6 extends ReplacementSpan {
-    public final Paint f48188a;
-    public final v01 f48189b;
-    public final int f48190c;
+import org.telegram.messenger.NotificationCenter;
+public final class w6 implements NotificationCenter.NotificationCenterDelegate {
+    public final boolean[] f52168a;
+    public final org.telegram.ui.ActionBar.f3[] f52169b;
 
-    public w6(int i10, String str) {
-        this.f48190c = i10;
-        Paint paint = new Paint(1);
-        this.f48188a = paint;
-        paint.setColor(org.telegram.ui.ActionBar.h6.l1(0.1f, i10));
-        this.f48189b = new v01(str, 13.0f, AndroidUtilities.bold());
+    public w6(boolean[] zArr, org.telegram.ui.ActionBar.f3[] f3VarArr) {
+        this.f52168a = zArr;
+        this.f52169b = f3VarArr;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        int i15 = i12 + i14;
-        rectF.set(f7, (i15 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f7 + this.f48189b.f28922c, (AndroidUtilities.dp(20.0f) + i15) / 2.0f);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f48188a);
-        int i16 = this.f48190c;
-        this.f48189b.c(f7 + AndroidUtilities.dp(6.0f), i15 / 2.0f, 1.0f, i16, canvas);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (AndroidUtilities.dp(12.0f) + this.f48189b.f28922c);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        org.telegram.ui.ActionBar.f3 f3Var;
+        if (i10 == NotificationCenter.starSubscriptionsLoaded && this.f52168a[0] && (f3Var = this.f52169b[0]) != null) {
+            f3Var.dismiss();
+        }
     }
 }

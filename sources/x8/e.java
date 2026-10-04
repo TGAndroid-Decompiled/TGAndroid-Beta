@@ -2,23 +2,24 @@ package x8;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.data.DataHolder;
+import hg.k0;
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Iterator;
 public final class e implements com.google.android.gms.common.api.q, Iterable, Closeable {
-    public final DataHolder f45968a;
-    public boolean f45969b = false;
-    public ArrayList f45970c;
+    public final DataHolder f49760a;
+    public boolean f49761b = false;
+    public ArrayList f49762c;
     public final Status d;
 
     public e(DataHolder dataHolder) {
-        this.f45968a = dataHolder;
-        this.d = new Status(dataHolder.e, null, null, null);
+        this.f49760a = dataHolder;
+        this.d = new Status(dataHolder.f6687e, null, null, null);
     }
 
     @Override
     public final void close() {
-        DataHolder dataHolder = this.f45968a;
+        DataHolder dataHolder = this.f49760a;
         if (dataHolder != null) {
             dataHolder.close();
         }
@@ -35,35 +36,35 @@ public final class e implements com.google.android.gms.common.api.q, Iterable, C
     }
 
     public final int n(int i10) {
-        if (i10 >= 0 && i10 < this.f45970c.size()) {
-            return ((Integer) this.f45970c.get(i10)).intValue();
+        if (i10 >= 0 && i10 < this.f49762c.size()) {
+            return ((Integer) this.f49762c.get(i10)).intValue();
         }
-        throw new IllegalArgumentException(hg.c.i(i10, "Position ", " is out of bounds for this buffer"));
+        throw new IllegalArgumentException(k0.i(i10, "Position ", " is out of bounds for this buffer"));
     }
 
     public final void o() {
         synchronized (this) {
             try {
-                if (!this.f45969b) {
-                    DataHolder dataHolder = this.f45968a;
+                if (!this.f49761b) {
+                    DataHolder dataHolder = this.f49760a;
                     n6.l.h(dataHolder);
-                    int i10 = dataHolder.f6208n;
+                    int i10 = dataHolder.f6689n;
                     ArrayList arrayList = new ArrayList();
-                    this.f45970c = arrayList;
+                    this.f49762c = arrayList;
                     if (i10 > 0) {
                         arrayList.add(0);
-                        int b10 = this.f45968a.b(0);
-                        DataHolder dataHolder2 = this.f45968a;
+                        int b10 = this.f49760a.b(0);
+                        DataHolder dataHolder2 = this.f49760a;
                         dataHolder2.c(0, "path");
-                        String string = dataHolder2.d[b10].getString(0, dataHolder2.f6206c.getInt("path"));
+                        String string = dataHolder2.d[b10].getString(0, dataHolder2.f6686c.getInt("path"));
                         for (int i11 = 1; i11 < i10; i11++) {
-                            int b11 = this.f45968a.b(i11);
-                            DataHolder dataHolder3 = this.f45968a;
+                            int b11 = this.f49760a.b(i11);
+                            DataHolder dataHolder3 = this.f49760a;
                             dataHolder3.c(i11, "path");
-                            String string2 = dataHolder3.d[b11].getString(i11, dataHolder3.f6206c.getInt("path"));
+                            String string2 = dataHolder3.d[b11].getString(i11, dataHolder3.f6686c.getInt("path"));
                             if (string2 != null) {
                                 if (!string2.equals(string)) {
-                                    this.f45970c.add(Integer.valueOf(i11));
+                                    this.f49762c.add(Integer.valueOf(i11));
                                     string = string2;
                                 }
                             } else {
@@ -71,7 +72,7 @@ public final class e implements com.google.android.gms.common.api.q, Iterable, C
                             }
                         }
                     }
-                    this.f45969b = true;
+                    this.f49761b = true;
                 }
             } catch (Throwable th2) {
                 throw th2;

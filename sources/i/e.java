@@ -2,18 +2,18 @@ package i;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import v7.g8;
-public final class e extends g implements j0.b {
+import v7.f8;
+public final class e extends f implements j0.b {
     public boolean E;
     public b F;
-    public g8 G;
+    public f8 G;
     public int H;
     public int I;
     public boolean J;
-    public b f10563y;
+    public b f11512y;
 
     public e(b bVar, Resources resources) {
-        this.e = 255;
+        this.f11517e = 255;
         this.h = -1;
         this.H = -1;
         this.I = -1;
@@ -34,24 +34,24 @@ public final class e extends g implements j0.b {
 
     @Override
     public final void d(b bVar) {
-        this.f10567a = bVar;
+        this.f11514a = bVar;
         int i10 = this.h;
         if (i10 >= 0) {
             Drawable d = bVar.d(i10);
-            this.f10569c = d;
+            this.f11516c = d;
             if (d != null) {
                 b(d);
             }
         }
         this.d = null;
-        this.f10563y = bVar;
+        this.f11512y = bVar;
         this.F = bVar;
     }
 
     public final Drawable f() {
         if (!this.E) {
             super.mutate();
-            b bVar = this.f10563y;
+            b bVar = this.f11512y;
             bVar.I = bVar.I.clone();
             bVar.J = bVar.J.clone();
             this.E = true;
@@ -67,9 +67,9 @@ public final class e extends g implements j0.b {
     @Override
     public final void jumpToCurrentState() {
         super.jumpToCurrentState();
-        g8 g8Var = this.G;
-        if (g8Var != null) {
-            g8Var.d();
+        f8 f8Var = this.G;
+        if (f8Var != null) {
+            f8Var.d();
             this.G = null;
             c(this.H);
             this.H = -1;
@@ -97,10 +97,10 @@ public final class e extends g implements j0.b {
     @Override
     public final boolean setVisible(boolean z10, boolean z11) {
         boolean visible = super.setVisible(z10, z11);
-        g8 g8Var = this.G;
-        if (g8Var != null && (visible || z11)) {
+        f8 f8Var = this.G;
+        if (f8Var != null && (visible || z11)) {
             if (z10) {
-                g8Var.c();
+                f8Var.c();
                 return visible;
             }
             jumpToCurrentState();

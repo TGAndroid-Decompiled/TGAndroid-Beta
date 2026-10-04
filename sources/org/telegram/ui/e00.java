@@ -1,26 +1,52 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class e00 implements RequestDelegate {
-    public final int f33228a;
-    public final b10 f33229b;
+public final class e00 implements org.telegram.ui.Components.ol0, org.telegram.ui.ActionBar.a2 {
+    public final int f35876a;
+    public final f10 f35877b;
 
-    public e00(b10 b10Var, int i10) {
-        this.f33228a = i10;
-        this.f33229b = b10Var;
+    public e00(f10 f10Var, int i10) {
+        this.f35876a = i10;
+        this.f35877b = f10Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f33228a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new tt(16, this.f33229b, tLObject));
+    public boolean d(int i10, View view) {
+        f10 f10Var = this.f35877b;
+        w00 w00Var = (w00) f10Var.P.get(i10);
+        if (w00Var != null && (view instanceof org.telegram.ui.Cells.za)) {
+            org.telegram.ui.Cells.za zaVar = (org.telegram.ui.Cells.za) view;
+            f10Var.v0(w00Var, zaVar.getName(), zaVar.getCurrentObject(), w00Var.f41875g);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f35876a) {
+            case 1:
+                f10 f10Var = this.f35877b;
+                org.telegram.ui.ActionBar.b2 b2Var2 = null;
+                if (f10Var.getParentActivity() != null) {
+                    org.telegram.ui.ActionBar.b2 b2Var3 = new org.telegram.ui.ActionBar.b2(f10Var.getParentActivity(), 3, null);
+                    b2Var3.f20422g0 = false;
+                    b2Var3.show();
+                    b2Var2 = b2Var3;
+                }
+                TLRPC.TL_messages_updateDialogFilter tL_messages_updateDialogFilter = new TLRPC.TL_messages_updateDialogFilter();
+                tL_messages_updateDialogFilter.f20160id = f10Var.f36139r.f17256id;
+                f10Var.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, new no(20, f10Var, b2Var2));
+                return;
+            case 2:
+                this.f35877b.q0();
+                return;
+            case 3:
+                this.f35877b.q0();
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new sq(this.f33229b, tL_error, tLObject, 6));
+                this.f35877b.finishFragment();
                 return;
         }
     }

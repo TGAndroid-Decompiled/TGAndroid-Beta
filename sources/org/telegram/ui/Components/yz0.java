@@ -1,91 +1,326 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.text.Layout;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class yz0 extends FrameLayout {
-    public final b01 f30773a;
-    public boolean f30774b;
-    public boolean f30775c;
-    public boolean d;
-    public boolean e;
+import org.telegram.tgnet.tl.TL_iv;
+public final class yz0 {
+    public a01 f33305a;
+    public xz0 f33306b;
+    public TL_iv.pageTableCell f33307c;
+    public final int d;
+    public int f33308e;
+    public int f33309f;
+    public int f33310g;
+    public int h;
+    public int f33311i;
+    public int f33312j;
+    public int f33313k;
+    public int f33314l;
+    public int f33315m;
+    public int f33316n;
+    public int f33317o;
+    public int f33318p;
+    public int f33319q;
+    public int f33320r = -1;
+    public final f01 f33321s;
 
-    public yz0(b01 b01Var, View view, boolean z10) {
-        super(b01Var.getContext());
-        this.d = false;
-        this.e = true;
-        this.f30773a = b01Var;
-        setWillNotDraw(false);
-        if (!z10) {
-            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-        }
-        addView(view, w7.y5.c(-1.0f, -1));
+    public yz0(f01 f01Var, int i10) {
+        this.f33321s = f01Var;
+        this.d = i10;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
+    public final void a(Canvas canvas, View view, boolean z10) {
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        int i10;
+        int i11;
+        int i12;
+        Paint paint;
+        int i13;
+        Paint paint2;
+        int i14;
         float f7;
         float f10;
         float f11;
         float f12;
-        boolean z10 = this.f30774b;
-        b01 b01Var = this.f30773a;
-        if (z10 || this.f30775c) {
-            canvas2 = canvas;
-            float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = b01Var.f22819c;
-            boolean z11 = this.f30774b;
-            if (z11 && this.d) {
-                f7 = dp;
+        RectF rectF;
+        int i15;
+        int i16;
+        int i17;
+        org.telegram.ui.Cells.q9 q9Var;
+        Canvas canvas2 = canvas;
+        if (this.f33307c != null) {
+            int i18 = this.f33318p + this.f33313k;
+            f01 f01Var = this.f33321s;
+            int i19 = f01Var.f26200y;
+            Path path = f01Var.L;
+            e01 e01Var = f01Var.O;
+            float[] fArr = f01Var.N;
+            RectF rectF2 = f01Var.M;
+            if (i18 == i19) {
+                z11 = true;
             } else {
-                f7 = 0.0f;
+                z11 = false;
             }
-            fArr[1] = f7;
-            fArr[0] = f7;
-            if (z11 && this.e) {
-                f10 = dp;
+            if (this.f33319q + this.f33314l == f01Var.E) {
+                z12 = true;
             } else {
-                f10 = 0.0f;
+                z12 = false;
             }
-            fArr[3] = f10;
-            fArr[2] = f10;
-            boolean z12 = this.f30775c;
-            if (z12 && this.e) {
-                f11 = dp;
-            } else {
-                f11 = 0.0f;
+            int dp = AndroidUtilities.dp(8.0f);
+            boolean z15 = this.f33307c.header;
+            if (z15 || (f01Var.H && this.f33305a.f24395a.f25154b.f33679a % 2 == 0)) {
+                int i20 = this.f33318p;
+                if (i20 == 0 && this.f33319q == 0) {
+                    float f13 = dp;
+                    fArr[1] = f13;
+                    fArr[0] = f13;
+                    z13 = true;
+                } else {
+                    fArr[1] = 0.0f;
+                    fArr[0] = 0.0f;
+                    z13 = false;
+                }
+                if (z11 && this.f33319q == 0) {
+                    float f14 = dp;
+                    fArr[3] = f14;
+                    fArr[2] = f14;
+                    z13 = true;
+                } else {
+                    fArr[3] = 0.0f;
+                    fArr[2] = 0.0f;
+                }
+                if (z11 && z12) {
+                    float f15 = dp;
+                    fArr[5] = f15;
+                    fArr[4] = f15;
+                    z13 = true;
+                } else {
+                    fArr[5] = 0.0f;
+                    fArr[4] = 0.0f;
+                }
+                if (i20 == 0 && z12) {
+                    float f16 = dp;
+                    fArr[7] = f16;
+                    fArr[6] = f16;
+                    z14 = true;
+                } else {
+                    fArr[7] = 0.0f;
+                    fArr[6] = 0.0f;
+                    z14 = z13;
+                }
+                if (z14) {
+                    rectF2.set(i20, this.f33319q, i20 + this.f33313k, i12 + this.f33314l);
+                    path.reset();
+                    path.addRoundRect(rectF2, fArr, Path.Direction.CW);
+                    if (this.f33307c.header) {
+                        canvas2.drawPath(path, e01Var.getHeaderPaint());
+                    } else {
+                        canvas2.drawPath(path, e01Var.getStripPaint());
+                    }
+                } else if (z15) {
+                    canvas2.drawRect(i20, this.f33319q, i20 + this.f33313k, i11 + this.f33314l, e01Var.getHeaderPaint());
+                    canvas2 = canvas;
+                } else {
+                    canvas2 = canvas;
+                    canvas2.drawRect(i20, this.f33319q, this.f33313k + i20, i10 + this.f33314l, e01Var.getStripPaint());
+                }
             }
-            fArr[5] = f11;
-            fArr[4] = f11;
-            dp = (z12 && this.d) ? 0.0f : 0.0f;
-            fArr[7] = dp;
-            fArr[6] = dp;
-            b01Var.f22818b.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = b01Var.h;
-            float width = getWidth() - b01Var.h;
-            float height = getHeight();
-            float f14 = b01Var.h;
-            if (this.f30775c) {
-                f12 = -1.0f;
-            } else {
-                f12 = 1.0f;
+            if (z10 && this.f33306b != null) {
+                canvas2.save();
+                canvas2.translate(b(), c());
+                if (this.f33320r >= 0 && (q9Var = f01Var.f26190a) != null) {
+                    q9Var.a0(canvas2, (org.telegram.ui.Cells.p9) f01Var.getParent().getParent(), this.f33320r);
+                }
+                this.f33306b.draw(canvas2, view);
+                canvas2.restore();
             }
-            rectF.set(f13, f13, width, (f14 * AndroidUtilities.dp(f12)) + height);
-            if (!this.e) {
-                rectF.right += b01Var.f22820f;
+            if (f01Var.G) {
+                Paint linePaint = e01Var.getLinePaint();
+                Paint linePaint2 = e01Var.getLinePaint();
+                float strokeWidth = linePaint.getStrokeWidth() / 2.0f;
+                float strokeWidth2 = linePaint2.getStrokeWidth() / 2.0f;
+                int i21 = this.f33318p;
+                if (i21 == 0) {
+                    int i22 = this.f33319q;
+                    float f17 = i22;
+                    float f18 = this.f33314l + i22;
+                    if (i22 == 0) {
+                        f17 += dp;
+                    }
+                    float f19 = f17;
+                    if (f18 == f01Var.E) {
+                        f18 -= dp;
+                    }
+                    float f20 = i21 + strokeWidth;
+                    canvas2.drawLine(f20, f19, f20, f18, linePaint);
+                    paint = linePaint;
+                    paint2 = linePaint2;
+                } else {
+                    paint = linePaint;
+                    float f21 = i21 - strokeWidth2;
+                    paint2 = linePaint2;
+                    canvas.drawLine(f21, this.f33319q, f21, i13 + this.f33314l, paint2);
+                }
+                int i23 = this.f33319q;
+                if (i23 == 0) {
+                    int i24 = this.f33318p;
+                    float f22 = i24;
+                    float f23 = this.f33313k + i24;
+                    if (i24 == 0) {
+                        f22 += dp;
+                    }
+                    float f24 = f22;
+                    if (f23 == f01Var.f26200y) {
+                        f23 -= dp;
+                    }
+                    float f25 = i23 + strokeWidth;
+                    canvas.drawLine(f24, f25, f23, f25, paint);
+                } else {
+                    float f26 = i23 - strokeWidth2;
+                    canvas.drawLine(this.f33318p, f26, i14 + this.f33313k, f26, paint2);
+                }
+                if (z11 && (i17 = this.f33319q) == 0) {
+                    f7 = i17 + dp;
+                } else {
+                    f7 = this.f33319q - strokeWidth;
+                }
+                float f27 = f7;
+                if (z11 && z12) {
+                    f10 = (this.f33319q + this.f33314l) - dp;
+                } else {
+                    f10 = (this.f33319q + this.f33314l) - strokeWidth;
+                }
+                float f28 = (this.f33318p + this.f33313k) - strokeWidth;
+                Paint paint3 = paint;
+                canvas.drawLine(f28, f27, f28, f10, paint3);
+                int i25 = this.f33318p;
+                if (i25 == 0 && z12) {
+                    f11 = i25 + dp;
+                } else {
+                    f11 = i25 - strokeWidth;
+                }
+                if (z11 && z12) {
+                    f12 = (i25 + this.f33313k) - dp;
+                } else {
+                    f12 = (i25 + this.f33313k) - strokeWidth;
+                }
+                float f29 = (this.f33319q + this.f33314l) - strokeWidth;
+                canvas.drawLine(f11, f29, f12, f29, paint3);
+                int i26 = this.f33318p;
+                if (i26 == 0 && (i16 = this.f33319q) == 0) {
+                    float f30 = i26 + strokeWidth;
+                    float f31 = i16 + strokeWidth;
+                    float f32 = dp * 2;
+                    rectF2.set(f30, f31, f30 + f32, f32 + f31);
+                    rectF = rectF2;
+                    canvas.drawArc(rectF, -180.0f, 90.0f, false, paint3);
+                } else {
+                    rectF = rectF2;
+                }
+                if (z11 && (i15 = this.f33319q) == 0) {
+                    float f33 = (this.f33318p + this.f33313k) - strokeWidth;
+                    float f34 = dp * 2;
+                    float f35 = i15 + strokeWidth;
+                    rectF.set(f33 - f34, f35, f33, f34 + f35);
+                    canvas.drawArc(rectF, 0.0f, -90.0f, false, paint3);
+                }
+                int i27 = this.f33318p;
+                if (i27 == 0 && z12) {
+                    float f36 = i27 + strokeWidth;
+                    float f37 = (this.f33319q + this.f33314l) - strokeWidth;
+                    float f38 = dp * 2;
+                    rectF.set(f36, f37 - f38, f38 + f36, f37);
+                    canvas.drawArc(rectF, 180.0f, -90.0f, false, paint3);
+                }
+                if (z11 && z12) {
+                    float f39 = (this.f33318p + this.f33313k) - strokeWidth;
+                    float f40 = dp * 2;
+                    float f41 = (this.f33319q + this.f33314l) - strokeWidth;
+                    rectF.set(f39 - f40, f41 - f40, f39, f41);
+                    canvas.drawArc(rectF, 0.0f, 90.0f, false, paint3);
+                }
             }
-            b01Var.f22818b.addRoundRect(rectF, b01Var.f22819c, Path.Direction.CW);
-            canvas2.drawPath(b01Var.f22818b, b01Var.e);
-        } else {
-            float f15 = b01Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f15, f15, getWidth() - b01Var.h, getHeight() + b01Var.h, b01Var.e);
         }
-        super.onDraw(canvas2);
+    }
+
+    public final int b() {
+        return this.f33318p + this.f33310g;
+    }
+
+    public final int c() {
+        return this.f33319q + this.h;
+    }
+
+    public final void d(int r3, int r4, boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yz0.d(int, int, boolean):void");
+    }
+
+    public final void e(xz0 xz0Var) {
+        Layout layout;
+        int min;
+        this.f33306b = xz0Var;
+        if (xz0Var != null) {
+            layout = xz0Var.getLayout();
+        } else {
+            layout = null;
+        }
+        if (layout != null) {
+            this.f33308e = 0;
+            this.f33311i = 0;
+            int lineCount = layout.getLineCount();
+            for (int i10 = 0; i10 < lineCount; i10++) {
+                float lineLeft = layout.getLineLeft(i10);
+                if (i10 == 0) {
+                    min = (int) Math.ceil(lineLeft);
+                } else {
+                    min = Math.min(this.f33311i, (int) Math.ceil(lineLeft));
+                }
+                this.f33311i = min;
+                this.f33308e = (int) Math.ceil(Math.max(layout.getLineWidth(i10), this.f33308e));
+            }
+            this.f33309f = layout.getHeight();
+            return;
+        }
+        this.f33311i = 0;
+        this.f33308e = 0;
+        this.f33309f = 0;
+    }
+
+    public final void f() {
+        int i10 = -this.f33311i;
+        this.f33310g = i10;
+        TL_iv.pageTableCell pagetablecell = this.f33307c;
+        boolean z10 = pagetablecell.align_right;
+        f01 f01Var = this.f33321s;
+        if (z10) {
+            this.f33310g = ((this.f33313k - this.f33308e) - f01Var.v) + i10;
+        } else if (pagetablecell.align_center) {
+            this.f33310g = Math.round((this.f33313k - this.f33308e) / 2.0f) + i10;
+        } else {
+            this.f33310g = i10 + f01Var.v;
+        }
+    }
+
+    public final void g() {
+        TL_iv.pageTableCell pagetablecell = this.f33307c;
+        if (pagetablecell.valign_middle) {
+            this.h = (this.f33314l - this.f33309f) / 2;
+            return;
+        }
+        boolean z10 = pagetablecell.valign_bottom;
+        f01 f01Var = this.f33321s;
+        if (z10) {
+            this.h = (this.f33314l - this.f33309f) - f01Var.f26197s;
+        } else {
+            this.h = f01Var.f26196r;
+        }
     }
 }

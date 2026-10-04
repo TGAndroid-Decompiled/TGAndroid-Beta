@@ -1,12 +1,12 @@
 package id;
 
 import rd.p;
-import v7.o8;
+import v7.n8;
 public abstract class a implements f {
-    public final g f11067a;
+    public final g f12054a;
 
     public a(g gVar) {
-        this.f11067a = gVar;
+        this.f12054a = gVar;
     }
 
     @Override
@@ -16,21 +16,21 @@ public abstract class a implements f {
 
     @Override
     public f get(g gVar) {
-        return o8.a(this, gVar);
+        return n8.a(this, gVar);
     }
 
     @Override
     public final g getKey() {
-        return this.f11067a;
+        return this.f12054a;
     }
 
     @Override
     public h minusKey(g gVar) {
-        return o8.b(this, gVar);
+        return n8.b(this, gVar);
     }
 
     @Override
     public final h plus(h hVar) {
-        return o8.c(this, hVar);
+        return n8.c(this, hVar);
     }
 }

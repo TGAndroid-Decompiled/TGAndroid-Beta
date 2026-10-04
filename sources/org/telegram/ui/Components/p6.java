@@ -14,91 +14,91 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 public class p6 extends View {
-    public boolean f27265a;
-    public Drawable f27266b;
-    public final o6 f27267c;
+    public boolean f29514a;
+    public Drawable f29515b;
+    public final o6 f29516c;
     public int d;
-    public int e;
-    public CharSequence f27268f;
+    public int f29517e;
+    public CharSequence f29518f;
     public boolean h;
-    public boolean f27269n;
-    public boolean f27270r;
+    public boolean f29519n;
+    public boolean f29520r;
 
     public p6(Context context, boolean z10, boolean z11, boolean z12) {
         super(context);
-        this.f27269n = true;
-        this.f27270r = true;
+        this.f29519n = true;
+        this.f29520r = true;
         o6 o6Var = new o6(z10, z11, z12, false);
-        this.f27267c = o6Var;
+        this.f29516c = o6Var;
         o6Var.setCallback(this);
-        o6Var.C = new pg(this, 8);
+        o6Var.C = new qg(this, 8);
     }
 
     public final void a() {
-        this.f27267c.b();
+        this.f29516c.b();
     }
 
     public final void b(float f7, long j3, TimeInterpolator timeInterpolator) {
-        this.f27267c.k(f7, j3, timeInterpolator);
+        this.f29516c.k(f7, j3, timeInterpolator);
     }
 
     public final void c(CharSequence charSequence, boolean z10, boolean z11) {
         boolean z12;
-        if (!this.f27270r && z10) {
+        if (!this.f29520r && z10) {
             z12 = true;
         } else {
             z12 = false;
         }
-        this.f27270r = false;
-        o6 o6Var = this.f27267c;
-        if (z12 && !TextUtils.equals(charSequence, o6Var.f26950g)) {
+        this.f29520r = false;
+        o6 o6Var = this.f29516c;
+        if (z12 && !TextUtils.equals(charSequence, o6Var.f29243g)) {
             if (o6Var.D) {
-                ValueAnimator valueAnimator = o6Var.f26957o;
+                ValueAnimator valueAnimator = o6Var.f29250o;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    o6Var.f26957o = null;
+                    o6Var.f29250o = null;
                 }
             } else if (o6Var.f()) {
-                this.f27268f = charSequence;
+                this.f29518f = charSequence;
                 this.h = z11;
                 return;
             }
         }
         o6Var.setBounds(getPaddingLeft(), getPaddingTop(), this.d - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         o6Var.q(charSequence, z12, z11);
-        float e = (int) o6Var.e();
-        if (e >= o6Var.e() && (z12 || e == o6Var.e())) {
+        float e7 = (int) o6Var.e();
+        if (e7 >= o6Var.e() && (z12 || e7 == o6Var.e())) {
             return;
         }
         requestLayout();
     }
 
     public final int d() {
-        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f27267c.d()));
+        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f29516c.d()));
     }
 
     public o6 getDrawable() {
-        return this.f27267c;
+        return this.f29516c;
     }
 
     public TextPaint getPaint() {
-        return this.f27267c.f26946a;
+        return this.f29516c.f29238a;
     }
 
     public float getRightPadding() {
-        return this.f27267c.H;
+        return this.f29516c.H;
     }
 
     public Drawable getSizeableBackground() {
-        return this.f27266b;
+        return this.f29515b;
     }
 
     public CharSequence getText() {
-        return this.f27267c.f26950g;
+        return this.f29516c.f29243g;
     }
 
     public int getTextColor() {
-        return this.f27267c.f26946a.getColor();
+        return this.f29516c.f29238a.getColor();
     }
 
     public int getTextHeight() {
@@ -113,16 +113,16 @@ public class p6 extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        Drawable drawable = this.f27266b;
-        o6 o6Var = this.f27267c;
-        if (drawable != null && (!this.f27265a || o6Var.g() > 0.0f)) {
+        Drawable drawable = this.f29515b;
+        o6 o6Var = this.f29516c;
+        if (drawable != null && (!this.f29514a || o6Var.g() > 0.0f)) {
             int d = (int) (o6Var.d() + getPaddingLeft() + getPaddingRight());
-            if ((o6Var.f26947b & 7) == 5) {
-                this.f27266b.setBounds(getWidth() - d, 0, getWidth(), getHeight());
+            if ((o6Var.f29239b & 7) == 5) {
+                this.f29515b.setBounds(getWidth() - d, 0, getWidth(), getHeight());
             } else {
-                this.f27266b.setBounds(0, 0, d, getHeight());
+                this.f29515b.setBounds(0, 0, d, getHeight());
             }
-            this.f27266b.draw(canvas);
+            this.f29515b.draw(canvas);
         }
         o6Var.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         o6Var.draw(canvas);
@@ -139,37 +139,37 @@ public class p6 extends View {
     public void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        int i12 = this.e;
+        int i12 = this.f29517e;
         if (i12 > 0) {
             size = Math.min(size, i12);
         }
         int i13 = this.d;
-        o6 o6Var = this.f27267c;
+        o6 o6Var = this.f29516c;
         if (i13 != size && getLayoutParams().width != 0) {
             o6Var.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
-            o6Var.q(o6Var.f26950g, false, true);
+            o6Var.q(o6Var.f29243g, false, true);
         }
         this.d = size;
-        if (this.f27269n && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+        if (this.f29519n && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
             size = getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(o6Var.e()));
         }
         setMeasuredDimension(size, size2);
     }
 
     public void setAllowCancel(boolean z10) {
-        this.f27267c.D = z10;
+        this.f29516c.D = z10;
     }
 
     public void setEllipsizeByGradient(boolean z10) {
-        this.f27267c.n(z10);
+        this.f29516c.n(z10);
     }
 
     public void setEmojiCacheType(int i10) {
-        this.f27267c.f26954l = i10;
+        this.f29516c.f29247l = i10;
     }
 
     public void setEmojiColor(int i10) {
-        o6 o6Var = this.f27267c;
+        o6 o6Var = this.f29516c;
         if (o6Var.T != i10) {
             o6Var.T = i10;
             o6Var.U = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
@@ -178,46 +178,46 @@ public class p6 extends View {
     }
 
     public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f27267c.U = colorFilter;
+        this.f29516c.U = colorFilter;
         invalidate();
     }
 
     public void setGravity(int i10) {
-        this.f27267c.f26947b = i10;
+        this.f29516c.f29239b = i10;
     }
 
     public void setHideBackgroundIfEmpty(boolean z10) {
-        this.f27265a = z10;
+        this.f29514a = z10;
     }
 
     public void setIgnoreRTL(boolean z10) {
-        this.f27267c.E = z10;
+        this.f29516c.E = z10;
     }
 
     public void setIncludeFontPadding(boolean z10) {
-        this.f27267c.M = z10;
+        this.f29516c.M = z10;
     }
 
     public void setMaxWidth(int i10) {
-        this.e = i10;
+        this.f29517e = i10;
     }
 
     public void setOnWidthUpdatedListener(Runnable runnable) {
-        this.f27267c.V = runnable;
+        this.f29516c.V = runnable;
     }
 
     public void setRightPadding(float f7) {
-        o6 o6Var = this.f27267c;
+        o6 o6Var = this.f29516c;
         o6Var.H = f7;
         o6Var.invalidateSelf();
     }
 
     public void setScaleProperty(float f7) {
-        this.f27267c.v = f7;
+        this.f29516c.v = f7;
     }
 
     public void setSizeableBackground(Drawable drawable) {
-        this.f27266b = drawable;
+        this.f29515b = drawable;
         invalidate();
     }
 
@@ -226,15 +226,15 @@ public class p6 extends View {
     }
 
     public void setTextColor(int i10) {
-        this.f27267c.r(i10);
+        this.f29516c.r(i10);
         invalidate();
     }
 
     public void setTextSize(float f7) {
-        this.f27267c.t(f7);
+        this.f29516c.t(f7);
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f27267c.u(typeface);
+        this.f29516c.u(typeface);
     }
 }

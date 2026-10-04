@@ -1,46 +1,33 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class n10 extends org.telegram.ui.Cells.j7 {
-    public final o10 f35727l0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class n10 extends AnimatorListenerAdapter {
+    public final int f38796a = 0;
+    public final yq f38797b;
 
-    public n10(o10 o10Var, Context context) {
-        super(context, 1, null);
-        this.f35727l0 = o10Var;
+    public n10(yq yqVar) {
+        this.f38797b = yqVar;
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        boolean isVoice = messageObject.isVoice();
-        o10 o10Var = this.f35727l0;
-        if (!isVoice && !messageObject.isRoundVideo()) {
-            if (!messageObject.isMusic()) {
-                return false;
-            }
-            t10 t10Var = o10Var.v;
-            String str = t10Var.Q;
-            long j3 = t10Var.E;
-            long j10 = t10Var.H;
-            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j3, j10, j10, t10Var.f37945y);
-            t10 t10Var2 = o10Var.v;
-            playlistGlobalSearchParams.endReached = t10Var2.N;
-            playlistGlobalSearchParams.nextSearchRate = t10Var2.v;
-            playlistGlobalSearchParams.totalCount = t10Var2.O;
-            playlistGlobalSearchParams.folderId = t10Var2.J ? 1 : 0;
-            return MediaController.getInstance().setPlaylist(o10Var.v.f37927f, messageObject, 0L, playlistGlobalSearchParams);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38796a) {
+            case 0:
+                ((x10) this.f38797b.d).f42696l0.unlock();
+                return;
+            default:
+                yq yqVar = this.f38797b;
+                View view = yqVar.f43598b;
+                view.setAlpha(1.0f);
+                s4.o0.x0(view);
+                ((x10) yqVar.d).f42682b.removeView(view);
+                return;
         }
-        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-        MediaController mediaController = MediaController.getInstance();
-        if (playMessage) {
-            arrayList = o10Var.v.f37927f;
-        } else {
-            arrayList = null;
-        }
-        mediaController.setVoiceMessagesPlaylist(arrayList, false);
-        return playMessage;
+    }
+
+    public n10(yq yqVar, s4.o0 o0Var) {
+        this.f38797b = yqVar;
     }
 }

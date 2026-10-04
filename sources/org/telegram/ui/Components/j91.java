@@ -1,70 +1,62 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.webkit.WebView;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-public final class j91 extends WebView {
-    public final int f25389a = 0;
-    public final Object f25390b;
+import org.telegram.ui.gc1;
+public final class j91 implements SensorEventListener {
+    public final float[] f27694a = new float[3];
+    public final float[] f27695b = new float[3];
+    public int f27696c;
+    public final WindowManager d;
+    public final SensorManager f27697e;
+    public final Sensor f27698f;
+    public boolean h;
+    public i91 f27699n;
 
-    public j91(org.telegram.ui.oo0 oo0Var, Context context) {
-        super(context);
-        this.f25390b = oo0Var;
+    public j91(Context context) {
+        this.d = (WindowManager) context.getSystemService("window");
+        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
+        this.f27697e = sensorManager;
+        this.f27698f = sensorManager.getDefaultSensor(1);
     }
 
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.f25389a) {
-            case 0:
-                AndroidUtilities.checkAndroidTheme((Context) this.f25390b, true);
-                super.onAttachedToWindow();
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
+    public static float a(int i10, int i11) {
+        float f7 = i10;
+        float dp = AndroidUtilities.dp(16.0f) * 2;
+        float f10 = (f7 + dp) / f7;
+        float f11 = i11;
+        return Math.max(f10, (dp + f11) / f11);
+    }
+
+    public final void b(gc1 gc1Var) {
+        this.f27699n = gc1Var;
+    }
+
+    public final void c(boolean z10) {
+        if (this.h != z10) {
+            this.h = z10;
+            Sensor sensor = this.f27698f;
+            if (sensor != null) {
+                SensorManager sensorManager = this.f27697e;
+                if (z10) {
+                    sensorManager.registerListener(this, sensor, 1);
+                } else {
+                    sensorManager.unregisterListener(this);
+                }
+            }
         }
     }
 
     @Override
-    public void onDetachedFromWindow() {
-        switch (this.f25389a) {
-            case 0:
-                AndroidUtilities.checkAndroidTheme((Context) this.f25390b, false);
-                super.onDetachedFromWindow();
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
+    public final void onSensorChanged(android.hardware.SensorEvent r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j91.onSensorChanged(android.hardware.SensorEvent):void");
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f25389a) {
-            case 1:
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f25389a) {
-            case 1:
-                ((ViewGroup) ((org.telegram.ui.oo0) this.f25390b).fragmentView).requestDisallowInterceptTouchEvent(true);
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    public j91(Context context, Context context2) {
-        super(context);
-        this.f25390b = context2;
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

@@ -1,9 +1,45 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface u60 {
-    void g(TLRPC.User user);
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class u60 implements View.OnClickListener {
+    public final int f41068a;
+    public final d70 f41069b;
 
-    void i(int i10, ArrayList arrayList);
+    public u60(d70 d70Var, int i10) {
+        this.f41068a = i10;
+        this.f41069b = d70Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        switch (this.f41068a) {
+            case 0:
+                d70 d70Var = this.f41069b;
+                d70Var.f35668f.f26246r.clearFocus();
+                d70Var.f35668f.f26246r.requestFocus();
+                AndroidUtilities.showKeyboard(d70Var.f35668f.f26246r);
+                return;
+            case 1:
+                this.f41069b.o0();
+                return;
+            case 2:
+                d70 d70Var2 = this.f41069b;
+                d70Var2.n0(d70Var2.l0());
+                return;
+            case 3:
+                d70 d70Var3 = this.f41069b;
+                d70Var3.n0(d70Var3.l0());
+                return;
+            default:
+                d70 d70Var4 = this.f41069b;
+                d70Var4.X = null;
+                d70Var4.Z.b();
+                d70Var4.h.b();
+                d70Var4.k0();
+                d70Var4.r0();
+                d70Var4.s0();
+                return;
+        }
+    }
 }

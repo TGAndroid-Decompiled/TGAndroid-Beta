@@ -5,35 +5,35 @@ import e9.i0;
 import java.util.ArrayList;
 import java.util.List;
 public final class l extends m {
-    public final j f14670n;
-    public final l.d f14671r;
+    public final j f16010n;
+    public final a4.m f16011r;
 
     public l(b2.s sVar, i0 i0Var, r rVar, ArrayList arrayList, List list, List list2) {
         super(sVar, i0Var, rVar, arrayList, list, list2);
         j jVar;
-        Uri.parse(((b) i0Var.get(0)).f14632a);
-        long j3 = rVar.e;
+        Uri.parse(((b) i0Var.get(0)).f15968a);
+        long j3 = rVar.f16027e;
         if (j3 <= 0) {
             jVar = null;
         } else {
             jVar = new j(rVar.d, j3, null);
         }
-        this.f14670n = jVar;
-        this.f14671r = jVar == null ? new l.d(new j(0L, -1L, null)) : null;
+        this.f16010n = jVar;
+        this.f16011r = jVar == null ? new a4.m(new j(0L, -1L, null), 29) : null;
     }
 
     @Override
-    public final String a() {
+    public final String b() {
         return null;
     }
 
     @Override
-    public final l2.h d() {
-        return this.f14671r;
+    public final l2.i c() {
+        return this.f16011r;
     }
 
     @Override
-    public final j e() {
-        return this.f14670n;
+    public final j d() {
+        return this.f16010n;
     }
 }

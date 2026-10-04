@@ -1,14 +1,33 @@
 package v7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import j$.util.Objects;
 public abstract class v {
-    public static void a(Parcel parcel, Parcelable parcelable) {
-        if (parcelable != null) {
-            parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, 0);
-            return;
+    public static boolean a(e0.p0 p0Var, e0.p0 p0Var2) {
+        if (p0Var == null && p0Var2 == null) {
+            return true;
         }
-        parcel.writeInt(0);
+        if (p0Var == null || p0Var2 == null) {
+            return false;
+        }
+        String str = p0Var.d;
+        String str2 = p0Var2.d;
+        if (str == null && str2 == null) {
+            if (Objects.equals(Objects.toString(p0Var.f8467a), Objects.toString(p0Var2.f8467a)) && Objects.equals(p0Var.f8469c, p0Var2.f8469c) && Boolean.valueOf(p0Var.f8470e).equals(Boolean.valueOf(p0Var2.f8470e)) && Boolean.valueOf(p0Var.f8471f).equals(Boolean.valueOf(p0Var2.f8471f))) {
+                return true;
+            }
+            return false;
+        }
+        return Objects.equals(str, str2);
+    }
+
+    public static int b(e0.p0 p0Var) {
+        if (p0Var == null) {
+            return 0;
+        }
+        String str = p0Var.d;
+        if (str != null) {
+            return str.hashCode();
+        }
+        return Objects.hash(p0Var.f8467a, p0Var.f8469c, Boolean.valueOf(p0Var.f8470e), Boolean.valueOf(p0Var.f8471f));
     }
 }

@@ -12,81 +12,76 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
-import v7.v7;
+import org.telegram.ui.ActionBar.i6;
+import v7.u7;
+import w7.e9;
 import w7.q;
-import yf.e0;
-public abstract class d extends Drawable {
-    public static final float[] E = new float[8];
-    public static Path F = new Path();
-    public final ah.a A;
-    public final Rect B;
-    public NinePatchDrawable C;
-    public long D;
-    public float f4274a;
-    public float f4275b;
-    public dh.a f4276c;
-    public int d;
-    public int e;
-    public int f4277f;
-    public int f4278g;
+public abstract class d extends li.e {
+    public static final float[] F = new float[8];
+    public static Path G = new Path();
+    public final RectF A;
+    public final ah.a B;
+    public final Rect C;
+    public NinePatchDrawable D;
+    public long E;
+    public dh.a f4626e;
+    public int f4627f;
+    public int f4628g;
     public int h;
-    public int f4279i;
-    public final c f4280j;
-    public b f4281k;
-    public int f4282l;
-    public boolean f4283m;
-    public float f4284n;
-    public float f4285o;
-    public float f4286p;
-    public final Paint f4287q;
-    public final Paint f4288r;
-    public final Paint f4289s;
-    public final Paint f4290t;
-    public final Paint f4291u;
-    public final Matrix v;
-    public final WeakReference f4292w;
-    public BitmapShader f4293x;
-    public final RectF f4294y;
-    public final RectF f4295z;
+    public int f4629i;
+    public int f4630j;
+    public int f4631k;
+    public final c f4632l;
+    public b f4633m;
+    public boolean f4634n;
+    public float f4635o;
+    public float f4636p;
+    public float f4637q;
+    public final Paint f4638r;
+    public final Paint f4639s;
+    public final Paint f4640t;
+    public final Paint f4641u;
+    public final Paint v;
+    public final Matrix f4642w;
+    public final WeakReference f4643x;
+    public BitmapShader f4644y;
+    public final RectF f4645z;
 
     public d() {
         c cVar = new c();
-        this.f4280j = cVar;
-        this.f4282l = 255;
-        this.f4286p = 1.0f;
-        this.f4287q = new Paint(1);
-        this.f4288r = new Paint(1);
+        this.f4632l = cVar;
+        this.f4637q = 1.0f;
+        this.f4638r = new Paint(1);
+        this.f4639s = new Paint(1);
         Paint paint = new Paint(1);
-        this.f4289s = paint;
-        this.f4290t = new Paint(1);
+        this.f4640t = paint;
+        this.f4641u = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f4291u = paint2;
-        this.v = new Matrix();
-        this.f4292w = new WeakReference(null);
+        this.v = paint2;
+        this.f4642w = new Matrix();
+        this.f4643x = new WeakReference(null);
         paint2.setColor(0);
         paint.setFilterBitmap(true);
-        this.f4294y = new RectF();
-        this.f4295z = new RectF();
-        this.A = new Object();
-        this.B = new Rect();
-        cVar.f4267i = AndroidUtilities.dpf2(1.0f);
-        cVar.f4268j = AndroidUtilities.dpf2(0.6666667f);
-        this.f4284n = AndroidUtilities.dpf2(1.0f);
-        this.f4285o = AndroidUtilities.dpf2(0.33333334f);
+        this.f4645z = new RectF();
+        this.A = new RectF();
+        this.B = new Object();
+        this.C = new Rect();
+        cVar.f4619i = AndroidUtilities.dpf2(1.0f);
+        cVar.f4620j = AndroidUtilities.dpf2(0.6666667f);
+        this.f4635o = AndroidUtilities.dpf2(1.0f);
+        this.f4636p = AndroidUtilities.dpf2(0.33333334f);
     }
 
-    public static void e(android.graphics.Canvas r17, float r18, float r19, float[] r20, float r21, boolean r22, android.graphics.Paint r23) {
-        throw new UnsupportedOperationException("Method not decompiled: ch.d.e(android.graphics.Canvas, float, float, float[], float, boolean, android.graphics.Paint):void");
+    public static void p(android.graphics.Canvas r17, float r18, float r19, float[] r20, float r21, boolean r22, android.graphics.Paint r23) {
+        throw new UnsupportedOperationException("Method not decompiled: ch.d.p(android.graphics.Canvas, float, float, float[], float, boolean, android.graphics.Paint):void");
     }
 
-    public static void f(Canvas canvas, RectF rectF, float f7, float f10, boolean z10, Paint paint) {
+    public static void q(Canvas canvas, RectF rectF, float f7, float f10, boolean z10, Paint paint) {
         float f11 = rectF.left;
         float f12 = rectF.top;
         float f13 = rectF.right;
@@ -109,297 +104,24 @@ public abstract class d extends Drawable {
         canvas.restore();
     }
 
-    public static void h(Outline outline, Rect rect, float[] fArr) {
-        if (e0.c(fArr)) {
+    public static void s(Outline outline, Rect rect, float[] fArr) {
+        if (e9.a(fArr)) {
             outline.setRoundRect(rect, Math.min(fArr[0], Math.min(rect.width(), rect.height()) / 2.0f));
             return;
         }
-        Path path = F;
+        Path path = G;
         if (path == null) {
-            F = new Path();
+            G = new Path();
         } else {
             path.rewind();
         }
-        F.addRoundRect(rect.left, rect.top, rect.right, rect.bottom, fArr, Path.Direction.CW);
-        outline.setConvexPath(F);
+        G.addRoundRect(rect.left, rect.top, rect.right, rect.bottom, fArr, Path.Direction.CW);
+        outline.setConvexPath(G);
     }
 
-    public final NinePatchDrawable a(int i10, boolean z10) {
-        long j3;
-        int i11;
-        ah.a aVar = this.A;
-        aVar.f418b = 0L;
-        aVar.f417a = false;
-        aVar.a(i10);
-        aVar.a(this.d);
-        c cVar = this.f4280j;
-        for (float f7 : cVar.f4263b) {
-            aVar.c(f7);
-        }
-        aVar.c(this.f4284n);
-        aVar.c(0.0f);
-        aVar.c(this.f4285o);
-        aVar.b(z10);
-        if (z10) {
-            aVar.a(this.f4277f);
-            aVar.a(this.f4278g);
-            aVar.c(cVar.f4267i);
-            aVar.c(cVar.f4268j);
-        }
-        if (aVar.f417a) {
-            j3 = -1;
-        } else {
-            j3 = aVar.f418b;
-        }
-        if (this.C == null || this.D != j3) {
-            this.D = j3;
-            if (Color.alpha(i10) == 255) {
-                i11 = i10;
-            } else {
-                i11 = 1;
-            }
-            NinePatchDrawable b10 = v7.b(null, cVar.f4263b, this.f4284n, this.f4285o, i11, new a(i10, this, z10));
-            this.C = b10;
-            b10.getPadding(this.B);
-        }
-        return this.C;
-    }
-
-    public final void b() {
-        Rect rect = this.f4280j.f4271m;
-        RectF rectF = this.f4294y;
-        rectF.set(rect);
-        rectF.offset(this.f4274a, this.f4275b);
-        RectF rectF2 = this.f4295z;
-        if (!rectF.equals(rectF2)) {
-            rectF2.set(rectF);
-            m();
-        }
-    }
-
-    public final void c(Canvas canvas, fh.a aVar) {
-        int i10;
-        boolean z10;
-        c cVar = this.f4280j;
-        Rect rect = cVar.f4271m;
-        Rect rect2 = cVar.f4271m;
-        if (!rect.isEmpty()) {
-            if (Color.alpha(this.e) == 255) {
-                d(canvas, 0);
-            } else if (aVar instanceof fh.c) {
-                d(canvas, ((fh.c) aVar).f9055a.getColor());
-            } else if (aVar instanceof fh.b) {
-                fh.b bVar = (fh.b) aVar;
-                Bitmap bitmap = bVar.d;
-                Bitmap bitmap2 = (Bitmap) this.f4292w.get();
-                Paint paint = this.f4289s;
-                if (bitmap != bitmap2) {
-                    if (bitmap != null && !bitmap.isRecycled()) {
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                        this.f4293x = bitmapShader;
-                        paint.setShader(bitmapShader);
-                    } else {
-                        this.f4293x = null;
-                        paint.setShader(null);
-                    }
-                }
-                if (Color.alpha(this.d) > 0) {
-                    NinePatchDrawable a2 = a(0, false);
-                    int i11 = rect2.left;
-                    Rect rect3 = this.B;
-                    a2.setBounds(i11 - rect3.left, rect2.top - rect3.top, rect2.right + rect3.right, rect2.bottom + rect3.bottom);
-                    a2.setAlpha(this.f4282l);
-                    a2.draw(canvas);
-                }
-                if (this.f4293x != null && bitmap != null && !bitmap.isRecycled() && this.f4282l > 0) {
-                    Matrix matrix = bVar.f9051b;
-                    Matrix matrix2 = this.v;
-                    matrix2.set(matrix);
-                    matrix2.postTranslate(-this.f4274a, -this.f4275b);
-                    this.f4293x.setLocalMatrix(matrix2);
-                    paint.setAlpha(this.f4282l);
-                    cVar.b(canvas, paint);
-                }
-                int l1 = h6.l1(this.f4282l / 255.0f, this.e);
-                if (Color.alpha(l1) > 0) {
-                    Paint paint2 = this.f4290t;
-                    paint2.setColor(l1);
-                    cVar.b(canvas, paint2);
-                }
-                g(canvas);
-            } else if (Build.VERSION.SDK_INT >= 29 && (aVar instanceof fh.d)) {
-                fh.d dVar = (fh.d) aVar;
-                if (!canvas.isHardwareAccelerated()) {
-                    c(canvas, dVar.f9056a);
-                }
-            } else if (aVar instanceof fh.e) {
-                c(canvas, ((fh.e) aVar).f9063a);
-            } else if (aVar != null && (i10 = this.f4282l) != 0) {
-                int l12 = h6.l1(i10 / 255.0f, this.e);
-                if (Color.alpha(this.d) > 0 && this.f4282l == 255) {
-                    float f7 = this.f4286p;
-                    if (f7 > 0.0f) {
-                        float f10 = this.f4284n;
-                        float f11 = this.f4285o;
-                        int l13 = h6.l1(f7, this.d);
-                        Paint paint3 = this.f4291u;
-                        paint3.setShadowLayer(f10, 0.0f, f11, l13);
-                        cVar.c(canvas, paint3, this.f4283m);
-                    }
-                }
-                float f12 = this.f4274a;
-                float f13 = this.f4275b;
-                float f14 = rect2.left;
-                float f15 = f14 + f12;
-                float f16 = rect2.top;
-                float f17 = f16 + f13;
-                float f18 = rect2.right;
-                float f19 = f18 + f12;
-                float f20 = rect2.bottom;
-                float f21 = f20 + f13;
-                int i12 = this.f4282l;
-                if (i12 != 255) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (z10) {
-                    canvas.saveLayerAlpha(f14, f16, f18, f20, i12);
-                }
-                canvas.save();
-                canvas.clipPath(cVar.f4269k);
-                canvas.translate(rect2.left, rect2.top);
-                canvas.translate(-f15, -f17);
-                aVar.y(canvas, f15, f17, f19, f21);
-                canvas.restore();
-                if (Color.alpha(l12) > 0) {
-                    Paint paint4 = this.f4287q;
-                    paint4.setColor(l12);
-                    cVar.b(canvas, paint4);
-                }
-                g(canvas);
-                if (z10) {
-                    canvas.restore();
-                }
-            }
-        }
-    }
-
-    public final void d(Canvas canvas, int i10) {
-        int h = i0.a.h(this.e, i10);
-        if (Color.alpha(h) == 0 && Color.alpha(this.d) == 0) {
-            return;
-        }
-        NinePatchDrawable a2 = a(h, true);
-        Rect rect = this.f4280j.f4271m;
-        int i11 = rect.left;
-        Rect rect2 = this.B;
-        a2.setBounds(i11 - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
-        a2.setAlpha(this.f4282l);
-        a2.draw(canvas);
-    }
-
-    public final void g(Canvas canvas) {
-        int l1 = h6.l1(this.f4282l / 255.0f, this.f4277f);
-        int l12 = h6.l1(this.f4282l / 255.0f, this.f4278g);
-        int alpha = Color.alpha(l1);
-        c cVar = this.f4280j;
-        Paint paint = this.f4288r;
-        if (alpha > 0) {
-            paint.setColor(l1);
-            canvas.drawPath(cVar.f4272n, paint);
-        }
-        if (Color.alpha(l12) > 0) {
-            paint.setColor(l12);
-            canvas.drawPath(cVar.f4273o, paint);
-        }
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.f4282l;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void getOutline(Outline outline) {
-        c cVar = this.f4280j;
-        h(outline, cVar.f4271m, cVar.f4263b);
-    }
-
-    @Override
-    public final boolean getPadding(Rect rect) {
-        c cVar = this.f4280j;
-        int i10 = cVar.d;
-        rect.set(i10, i10, i10, i10);
-        return cVar.e;
-    }
-
-    public abstract fh.a i();
-
-    public boolean j() {
-        return false;
-    }
-
-    public void k() {
-        b();
-    }
-
-    public void l() {
-        b();
-    }
-
-    public final void o(dh.a aVar) {
-        this.f4276c = aVar;
-        v();
-        if (aVar instanceof dh.e) {
-            dh.e eVar = (dh.e) aVar;
-            float f7 = eVar.f7724f;
-            float f10 = eVar.h;
-            c cVar = this.f4280j;
-            cVar.f4267i = f7;
-            cVar.f4268j = f10;
-            float f11 = eVar.f7725n;
-            float f12 = eVar.f7726r;
-            this.f4284n = f11;
-            this.f4285o = f12;
-        }
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        c cVar = this.f4280j;
-        cVar.f4262a.set(rect);
-        cVar.a();
-        k();
-    }
-
-    public final void p(int i10) {
-        c cVar = this.f4280j;
-        if (cVar.d != i10) {
-            cVar.d = i10;
-            cVar.a();
-            k();
-        }
-    }
-
-    public final void q(float f7) {
-        c cVar = this.f4280j;
-        Arrays.fill(cVar.f4263b, f7);
-        Arrays.fill(cVar.f4264c, f7);
-        cVar.a();
-        k();
-    }
-
-    public final void r(float f7, float f10, float f11, float f12) {
-        c cVar = this.f4280j;
-        float[] fArr = cVar.f4263b;
+    public final void A(float f7, float f10, float f11, float f12) {
+        c cVar = this.f4632l;
+        float[] fArr = cVar.f4614b;
         fArr[1] = f7;
         fArr[0] = f7;
         fArr[3] = f10;
@@ -409,12 +131,12 @@ public abstract class d extends Drawable {
         fArr[7] = f12;
         fArr[6] = f12;
         cVar.a();
-        k();
+        u();
     }
 
-    public final void s(float f7, float f10, float f11, float f12) {
-        c cVar = this.f4280j;
-        float[] fArr = cVar.f4263b;
+    public final void B(float f7, float f10, float f11, float f12) {
+        c cVar = this.f4632l;
+        float[] fArr = cVar.f4614b;
         fArr[1] = f7;
         fArr[0] = f7;
         fArr[3] = f10;
@@ -423,7 +145,7 @@ public abstract class d extends Drawable {
         fArr[4] = 0.0f;
         fArr[7] = 0.0f;
         fArr[6] = 0.0f;
-        float[] fArr2 = cVar.f4264c;
+        float[] fArr2 = cVar.f4615c;
         fArr2[1] = f7;
         fArr2[0] = f7;
         fArr2[3] = f10;
@@ -433,50 +155,330 @@ public abstract class d extends Drawable {
         fArr2[7] = f12;
         fArr2[6] = f12;
         cVar.a();
-        k();
+        u();
+    }
+
+    public final void C(int i10) {
+        this.f4632l.f4617f = i10;
+        u();
     }
 
     @Override
-    public void setAlpha(int i10) {
-        this.f4282l = i10;
+    public final void b(Rect rect) {
+        rect.set(this.f4632l.f4623m);
     }
 
-    public final void t(float f7, float f10) {
-        if (this.f4274a == f7 && this.f4275b == f10) {
-            return;
-        }
-        this.f4274a = f7;
-        this.f4275b = f10;
-        l();
+    @Override
+    public final int c() {
+        return this.f4630j;
     }
 
-    public final void u(int i10) {
-        this.f4280j.f4265f = i10;
-        k();
+    @Override
+    public final int d() {
+        return this.f4631k;
     }
 
-    public void v() {
-        dh.a aVar = this.f4276c;
+    @Override
+    public boolean e() {
+        return true;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void getOutline(Outline outline) {
+        c cVar = this.f4632l;
+        s(outline, cVar.f4623m, cVar.f4614b);
+    }
+
+    @Override
+    public final boolean getPadding(Rect rect) {
+        c cVar = this.f4632l;
+        int i10 = cVar.d;
+        rect.set(i10, i10, i10, i10);
+        return cVar.f4616e;
+    }
+
+    @Override
+    public void h() {
+        m();
+    }
+
+    @Override
+    public boolean j() {
+        return this instanceof e;
+    }
+
+    @Override
+    public void k() {
+        dh.a aVar = this.f4626e;
         if (aVar == null) {
             return;
         }
-        this.e = aVar.H();
-        this.d = this.f4276c.m();
-        this.f4277f = this.f4276c.a();
-        this.f4278g = this.f4276c.c();
+        this.f4628g = aVar.B();
+        this.f4627f = this.f4626e.i();
+        this.h = this.f4626e.a();
+        this.f4629i = this.f4626e.c();
     }
 
-    public void m() {
+    public final NinePatchDrawable l(int i10, boolean z10) {
+        long j3;
+        int i11;
+        ah.a aVar = this.B;
+        aVar.f451b = 0L;
+        aVar.f450a = false;
+        aVar.a(i10);
+        aVar.a(this.f4627f);
+        c cVar = this.f4632l;
+        for (float f7 : cVar.f4614b) {
+            aVar.c(f7);
+        }
+        aVar.c(this.f4635o);
+        aVar.c(0.0f);
+        aVar.c(this.f4636p);
+        aVar.b(z10);
+        if (z10) {
+            aVar.a(this.h);
+            aVar.a(this.f4629i);
+            aVar.c(cVar.f4619i);
+            aVar.c(cVar.f4620j);
+        }
+        if (aVar.f450a) {
+            j3 = -1;
+        } else {
+            j3 = aVar.f451b;
+        }
+        if (this.D == null || this.E != j3) {
+            this.E = j3;
+            if (Color.alpha(i10) == 255) {
+                i11 = i10;
+            } else {
+                i11 = 1;
+            }
+            NinePatchDrawable b10 = u7.b(null, cVar.f4614b, this.f4635o, this.f4636p, i11, new a(i10, this, z10));
+            this.D = b10;
+            b10.getPadding(this.C);
+        }
+        return this.D;
     }
 
-    public d n() {
-        return this;
+    public final void m() {
+        Rect rect = this.f4632l.f4623m;
+        RectF rectF = this.f4645z;
+        rectF.set(rect);
+        rectF.offset(this.f15649c, this.d);
+        RectF rectF2 = this.A;
+        if (!rectF.equals(rectF2)) {
+            rectF2.set(rectF);
+            v();
+        }
+    }
+
+    public final void n(Canvas canvas, fh.a aVar) {
+        int i10;
+        boolean z10;
+        c cVar = this.f4632l;
+        Rect rect = cVar.f4623m;
+        Rect rect2 = cVar.f4623m;
+        if (!rect.isEmpty()) {
+            if (Color.alpha(this.f4628g) == 255) {
+                o(canvas, 0);
+            } else if (aVar instanceof fh.c) {
+                o(canvas, ((fh.c) aVar).f9857b);
+            } else if (aVar instanceof fh.b) {
+                fh.b bVar = (fh.b) aVar;
+                int i11 = this.f15648b;
+                Bitmap bitmap = bVar.d;
+                Bitmap bitmap2 = (Bitmap) this.f4643x.get();
+                Paint paint = this.f4640t;
+                if (bitmap != bitmap2) {
+                    if (bitmap != null && !bitmap.isRecycled()) {
+                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                        this.f4644y = bitmapShader;
+                        paint.setShader(bitmapShader);
+                    } else {
+                        this.f4644y = null;
+                        paint.setShader(null);
+                    }
+                }
+                if (Color.alpha(this.f4627f) > 0) {
+                    NinePatchDrawable l4 = l(0, false);
+                    int i12 = rect2.left;
+                    Rect rect3 = this.C;
+                    l4.setBounds(i12 - rect3.left, rect2.top - rect3.top, rect2.right + rect3.right, rect2.bottom + rect3.bottom);
+                    l4.setAlpha(i11);
+                    l4.draw(canvas);
+                }
+                if (this.f4644y != null && bitmap != null && !bitmap.isRecycled() && i11 > 0) {
+                    Matrix matrix = bVar.f9851b;
+                    Matrix matrix2 = this.f4642w;
+                    matrix2.set(matrix);
+                    matrix2.postTranslate(-this.f15649c, -this.d);
+                    this.f4644y.setLocalMatrix(matrix2);
+                    paint.setAlpha(i11);
+                    cVar.b(canvas, paint);
+                }
+                int l1 = i6.l1(i11 / 255.0f, this.f4628g);
+                if (Color.alpha(l1) > 0) {
+                    Paint paint2 = this.f4641u;
+                    paint2.setColor(l1);
+                    cVar.b(canvas, paint2);
+                }
+                r(canvas);
+            } else if (Build.VERSION.SDK_INT >= 29 && (aVar instanceof fh.d)) {
+                fh.d dVar = (fh.d) aVar;
+                if (!canvas.isHardwareAccelerated()) {
+                    n(canvas, dVar.f9858a);
+                }
+            } else if (aVar instanceof fh.e) {
+                n(canvas, ((fh.e) aVar).f9866a);
+            } else if (aVar != null && (i10 = this.f15648b) != 0) {
+                int l12 = i6.l1(i10 / 255.0f, this.f4628g);
+                if (Color.alpha(this.f4627f) > 0 && i10 == 255) {
+                    float f7 = this.f4637q;
+                    if (f7 > 0.0f) {
+                        float f10 = this.f4635o;
+                        float f11 = this.f4636p;
+                        int l13 = i6.l1(f7, this.f4627f);
+                        Paint paint3 = this.v;
+                        paint3.setShadowLayer(f10, 0.0f, f11, l13);
+                        cVar.c(canvas, paint3, this.f4634n);
+                    }
+                }
+                float f12 = this.f15649c;
+                float f13 = this.d;
+                float f14 = rect2.left;
+                float f15 = f14 + f12;
+                float f16 = rect2.top;
+                float f17 = f16 + f13;
+                float f18 = rect2.right;
+                float f19 = f18 + f12;
+                float f20 = rect2.bottom;
+                float f21 = f20 + f13;
+                if (i10 != 255) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (z10) {
+                    canvas.saveLayerAlpha(f14, f16, f18, f20, i10);
+                }
+                canvas.save();
+                canvas.clipPath(cVar.f4621k);
+                canvas.translate(rect2.left, rect2.top);
+                canvas.translate(-f15, -f17);
+                aVar.y(canvas, f15, f17, f19, f21);
+                canvas.restore();
+                if (Color.alpha(l12) > 0) {
+                    Paint paint4 = this.f4638r;
+                    paint4.setColor(l12);
+                    cVar.b(canvas, paint4);
+                }
+                r(canvas);
+                if (z10) {
+                    canvas.restore();
+                }
+            }
+        }
+    }
+
+    public final void o(Canvas canvas, int i10) {
+        int i11 = this.f15648b;
+        int h = i0.a.h(this.f4628g, i10);
+        if (Color.alpha(h) == 0 && Color.alpha(this.f4627f) == 0) {
+            return;
+        }
+        NinePatchDrawable l4 = l(h, true);
+        Rect rect = this.f4632l.f4623m;
+        int i12 = rect.left;
+        Rect rect2 = this.C;
+        l4.setBounds(i12 - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
+        l4.setAlpha(i11);
+        l4.draw(canvas);
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        c cVar = this.f4632l;
+        cVar.f4613a.set(rect);
+        cVar.a();
+        u();
+    }
+
+    public final void r(Canvas canvas) {
+        float f7 = this.f15648b / 255.0f;
+        int l1 = i6.l1(f7, this.h);
+        int l12 = i6.l1(f7, this.f4629i);
+        int alpha = Color.alpha(l1);
+        c cVar = this.f4632l;
+        Paint paint = this.f4639s;
+        if (alpha > 0) {
+            paint.setColor(l1);
+            canvas.drawPath(cVar.f4624n, paint);
+        }
+        if (Color.alpha(l12) > 0) {
+            paint.setColor(l12);
+            canvas.drawPath(cVar.f4625o, paint);
+        }
+    }
+
+    public abstract fh.a t();
+
+    public void u() {
+        m();
+    }
+
+    public final void x(dh.a aVar) {
+        this.f4626e = aVar;
+        k();
+        if (aVar instanceof dh.e) {
+            dh.e eVar = (dh.e) aVar;
+            float f7 = eVar.f8354f;
+            float f10 = eVar.h;
+            c cVar = this.f4632l;
+            cVar.f4619i = f7;
+            cVar.f4620j = f10;
+            float f11 = eVar.f8355n;
+            float f12 = eVar.f8356r;
+            this.f4635o = f11;
+            this.f4636p = f12;
+        }
+    }
+
+    public final void y(int i10) {
+        c cVar = this.f4632l;
+        if (cVar.d != i10) {
+            cVar.d = i10;
+            cVar.a();
+            u();
+        }
+    }
+
+    public final void z(float f7) {
+        c cVar = this.f4632l;
+        Arrays.fill(cVar.f4614b, f7);
+        Arrays.fill(cVar.f4615c, f7);
+        cVar.a();
+        u();
+    }
+
+    @Override
+    public void a() {
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
     }
 
-    public void w() {
+    public void v() {
+    }
+
+    public d w() {
+        return this;
     }
 }

@@ -1,28 +1,41 @@
 package k2;
 
-import android.os.Handler;
-import java.util.concurrent.Executor;
-public final class b0 implements Executor {
-    public final int f13221a;
-    public final Object f13222b;
+import android.os.SystemClock;
+public final class b0 {
+    public Exception f14377a;
+    public long f14378b = -9223372036854775807L;
+    public long f14379c = -9223372036854775807L;
 
-    public b0(Object obj, int i10) {
-        this.f13221a = i10;
-        this.f13222b = obj;
-    }
-
-    @Override
-    public final void execute(Runnable runnable) {
-        switch (this.f13221a) {
-            case 0:
-                ((Handler) this.f13222b).post(runnable);
-                return;
-            case 1:
-                e2.d0.U(((m4.a0) this.f13222b).f14700l, runnable);
-                return;
-            default:
-                ((p4.b) this.f13222b).post(runnable);
-                return;
+    public final void a(Exception exc) {
+        boolean z10;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (this.f14377a == null) {
+            this.f14377a = exc;
         }
+        if (this.f14378b == -9223372036854775807L) {
+            synchronized (f0.f14395o0) {
+                if (f0.f14397q0 > 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+            }
+            if (!z10) {
+                this.f14378b = 200 + elapsedRealtime;
+            }
+        }
+        long j3 = this.f14378b;
+        if (j3 != -9223372036854775807L && elapsedRealtime >= j3) {
+            Exception exc2 = this.f14377a;
+            if (exc2 != exc) {
+                exc2.addSuppressed(exc);
+            }
+            Exception exc3 = this.f14377a;
+            this.f14377a = null;
+            this.f14378b = -9223372036854775807L;
+            this.f14379c = -9223372036854775807L;
+            throw exc3;
+        }
+        this.f14379c = elapsedRealtime + 50;
     }
 }

@@ -8,22 +8,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class v0 extends o6.a {
     public static final Parcelable.Creator<v0> CREATOR = new r0(14);
-    public final boolean f4156a;
-    public final n7.s0 f4157b;
+    public final boolean f4495a;
+    public final n7.s0 f4496b;
 
     public v0(boolean z10, n7.s0 s0Var) {
-        this.f4156a = z10;
-        this.f4157b = s0Var;
+        this.f4495a = z10;
+        this.f4496b = s0Var;
     }
 
     public final JSONObject b() {
         byte[] u10;
         try {
             JSONObject jSONObject = new JSONObject();
-            if (this.f4156a) {
+            if (this.f4495a) {
                 jSONObject.put("enabled", true);
             }
-            n7.s0 s0Var = this.f4157b;
+            n7.s0 s0Var = this.f4496b;
             if (s0Var == null) {
                 u10 = null;
             } else {
@@ -38,8 +38,8 @@ public final class v0 extends o6.a {
                 jSONObject.put("results", jSONObject2);
             }
             return jSONObject;
-        } catch (JSONException e) {
-            throw new RuntimeException("Error encoding AuthenticationExtensionsPrfOutputs to JSON object", e);
+        } catch (JSONException e7) {
+            throw new RuntimeException("Error encoding AuthenticationExtensionsPrfOutputs to JSON object", e7);
         }
     }
 
@@ -48,33 +48,33 @@ public final class v0 extends o6.a {
             return false;
         }
         v0 v0Var = (v0) obj;
-        if (this.f4156a != v0Var.f4156a || !n6.l.l(this.f4157b, v0Var.f4157b)) {
+        if (this.f4495a != v0Var.f4495a || !n6.l.l(this.f4496b, v0Var.f4496b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4156a), this.f4157b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4495a), this.f4496b});
     }
 
     public final String toString() {
-        return a4.a.q("AuthenticationExtensionsPrfOutputs{", b().toString(), "}");
+        return a4.a.p("AuthenticationExtensionsPrfOutputs{", b().toString(), "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] u10;
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f4156a ? 1 : 0);
-        n7.s0 s0Var = this.f4157b;
+        int q6 = w7.g0.q(parcel, 20293);
+        w7.g0.s(parcel, 1, 4);
+        parcel.writeInt(this.f4495a ? 1 : 0);
+        n7.s0 s0Var = this.f4496b;
         if (s0Var == null) {
             u10 = null;
         } else {
             u10 = s0Var.u();
         }
-        w7.f0.c(parcel, 2, u10);
-        w7.f0.r(parcel, q6);
+        w7.g0.c(parcel, 2, u10);
+        w7.g0.r(parcel, q6);
     }
 }

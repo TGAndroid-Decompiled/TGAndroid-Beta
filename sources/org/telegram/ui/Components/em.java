@@ -1,131 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.VideoEditedInfo;
-public abstract class em extends org.telegram.ui.lu0 {
-    public final ChatAttachAlertPhotoLayout f24026a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class em extends TextView {
+    public float f26082a;
+    public boolean f26083b;
+    public final Paint f26084c;
 
-    public em(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f24026a = chatAttachAlertPhotoLayout;
+    public em(Context context, Paint paint) {
+        super(context);
+        this.f26084c = paint;
+        this.f26082a = 0.0f;
     }
 
     @Override
-    public final int H() {
-        return ChatAttachAlertPhotoLayout.f22124s1.size();
-    }
-
-    @Override
-    public final boolean N() {
-        wi wiVar = this.f24026a.f27075b;
-        if (wiVar != null && wiVar.f29943i0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int R(int i10) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f22122q1;
-        MediaController.PhotoEntry b02 = this.f24026a.b0(i10);
-        if (b02 == null) {
-            return -1;
-        }
-        return ChatAttachAlertPhotoLayout.f22125t1.indexOf(Integer.valueOf(b02.imageId));
-    }
-
-    @Override
-    public final ArrayList c() {
-        return ChatAttachAlertPhotoLayout.f22125t1;
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        boolean z10;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24026a;
-        vl vlVar = chatAttachAlertPhotoLayout.f22159r;
-        vl vlVar2 = chatAttachAlertPhotoLayout.E;
-        wi wiVar = chatAttachAlertPhotoLayout.f27075b;
-        if (wiVar.S1 < 0 || ChatAttachAlertPhotoLayout.f22124s1.size() < wiVar.S1 || x(i10)) {
-            boolean z11 = ChatAttachAlertPhotoLayout.f22122q1;
-            MediaController.PhotoEntry b02 = chatAttachAlertPhotoLayout.b0(i10);
-            if (b02 != null && !chatAttachAlertPhotoLayout.X(b02)) {
-                int i11 = 1;
-                if (ChatAttachAlertPhotoLayout.f22124s1.size() + 1 <= ChatAttachAlertPhotoLayout.N(chatAttachAlertPhotoLayout)) {
-                    int Q = chatAttachAlertPhotoLayout.Q(b02, -1);
-                    if (Q == -1) {
-                        Q = ChatAttachAlertPhotoLayout.f22125t1.indexOf(Integer.valueOf(b02.imageId));
-                        z10 = true;
-                    } else {
-                        b02.editedInfo = null;
-                        z10 = false;
-                    }
-                    b02.editedInfo = videoEditedInfo;
-                    int childCount = vlVar2.getChildCount();
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 >= childCount) {
-                            break;
-                        }
-                        View childAt = vlVar2.getChildAt(i12);
-                        if ((childAt instanceof org.telegram.ui.Cells.t5) && ((Integer) childAt.getTag()).intValue() == i10) {
-                            if ((wiVar.f29934f0 instanceof org.telegram.ui.wn) && wiVar.T1) {
-                                ((org.telegram.ui.Cells.t5) childAt).b(Q, z10, false);
-                            } else {
-                                ((org.telegram.ui.Cells.t5) childAt).b(-1, z10, false);
-                            }
-                        } else {
-                            i12++;
-                        }
-                    }
-                    int childCount2 = vlVar.getChildCount();
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 >= childCount2) {
-                            break;
-                        }
-                        View childAt2 = vlVar.getChildAt(i13);
-                        if ((childAt2 instanceof org.telegram.ui.Cells.t5) && ((Integer) childAt2.getTag()).intValue() == i10) {
-                            if ((wiVar.f29934f0 instanceof org.telegram.ui.wn) && wiVar.T1) {
-                                ((org.telegram.ui.Cells.t5) childAt2).b(Q, z10, false);
-                            } else {
-                                ((org.telegram.ui.Cells.t5) childAt2).b(-1, z10, false);
-                            }
-                        } else {
-                            i13++;
-                        }
-                    }
-                    if (!z10) {
-                        i11 = 2;
-                    }
-                    wiVar.V1(i11);
-                    return Q;
-                }
+    public final void onDraw(Canvas canvas) {
+        int i10 = (int) ((this.f26082a * 130.0f) + 125.0f);
+        Paint paint = this.f26084c;
+        paint.setAlpha(i10);
+        if (!this.f26083b) {
+            float f7 = this.f26082a - 0.026666667f;
+            this.f26082a = f7;
+            if (f7 <= 0.0f) {
+                this.f26082a = 0.0f;
+                this.f26083b = true;
+            }
+        } else {
+            float f10 = this.f26082a + 0.026666667f;
+            this.f26082a = f10;
+            if (f10 >= 1.0f) {
+                this.f26082a = 1.0f;
+                this.f26083b = false;
             }
         }
-        return -1;
-    }
-
-    @Override
-    public final void m() {
-        boolean z10 = ChatAttachAlertPhotoLayout.f22122q1;
-        this.f24026a.v0();
-    }
-
-    @Override
-    public final HashMap v() {
-        return ChatAttachAlertPhotoLayout.f22124s1;
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f22122q1;
-        MediaController.PhotoEntry b02 = this.f24026a.b0(i10);
-        if (b02 != null && ChatAttachAlertPhotoLayout.f22124s1.containsKey(Integer.valueOf(b02.imageId))) {
-            return true;
-        }
-        return false;
+        super.onDraw(canvas);
+        canvas.drawCircle(AndroidUtilities.dp(14.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(4.0f), paint);
+        invalidate();
     }
 }

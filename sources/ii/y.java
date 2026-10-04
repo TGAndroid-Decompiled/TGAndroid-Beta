@@ -2,27 +2,27 @@ package ii;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.yl0;
-public final class y extends w51 {
-    public static final int f11760a = 0;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.zl0;
+public final class y extends f61 {
+    public static final int f12795a = 0;
 
     static {
-        w51.setup(new w51());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
-        ((z) view).i((a) x51Var.G, (r3) x51Var.H);
+    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
+        ((z) view).i((a) g61Var.G, (r3) g61Var.H);
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         z zVar = new z(context, i10, d6Var);
-        zVar.setBackground(new b2(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19061d6, d6Var)));
+        zVar.setBackground(new b2(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20817d6, d6Var)));
         return zVar;
     }
 

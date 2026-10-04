@@ -3,14 +3,14 @@ package dh;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 public class b implements a {
-    public final d6 f7714a;
-    public final int f7715b;
-    public final float f7716c;
+    public final d6 f8342a;
+    public final int f8343b;
+    public final float f8344c;
     public int d;
-    public int e;
-    public int f7717f;
+    public int f8345e;
+    public int f8346f;
     public int h;
 
     public b(int i10, d6 d6Var) {
@@ -18,17 +18,17 @@ public class b implements a {
     }
 
     @Override
-    public int H() {
+    public int B() {
         return this.d;
     }
 
     @Override
     public int a() {
-        return this.f7717f;
+        return this.f8346f;
     }
 
     public boolean b() {
-        if (AndroidUtilities.computePerceivedBrightness(h6.v0(this.f7715b, this.f7714a)) < 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(i6.v0(this.f8343b, this.f8342a)) < 0.721f) {
             return true;
         }
         return false;
@@ -40,27 +40,27 @@ public class b implements a {
     }
 
     public final void d() {
-        this.d = h6.l1(this.f7716c, h6.v0(this.f7715b, this.f7714a));
+        this.d = i6.l1(this.f8344c, i6.v0(this.f8343b, this.f8342a));
         if (b()) {
-            this.f7717f = 687865855;
+            this.f8346f = 687865855;
             this.h = 352321535;
-            this.e = 0;
+            this.f8345e = 0;
             return;
         }
-        this.f7717f = -1;
+        this.f8346f = -1;
         this.h = -1;
-        this.e = 536870912;
+        this.f8345e = 536870912;
     }
 
     @Override
-    public int m() {
-        return this.e;
+    public int i() {
+        return this.f8345e;
     }
 
     public b(d6 d6Var, int i10, float f7) {
-        this.f7714a = d6Var;
-        this.f7715b = i10;
-        this.f7716c = f7;
+        this.f8342a = d6Var;
+        this.f8343b = i10;
+        this.f8344c = f7;
         d();
     }
 }

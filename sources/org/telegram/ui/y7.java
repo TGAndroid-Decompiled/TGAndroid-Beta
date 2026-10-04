@@ -1,58 +1,40 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class y7 implements View.OnClickListener {
-    public final int f40067a;
-    public final Object f40068b;
+import java.util.List;
+import org.telegram.messenger.MessagesStorage;
+public final class y7 implements MessagesStorage.BooleanCallback {
+    public final k8 f43079a;
 
-    public y7(Object obj, int i10) {
-        this.f40067a = i10;
-        this.f40068b = obj;
+    public y7(k8 k8Var) {
+        this.f43079a = k8Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40067a) {
-            case 0:
-                e8 e8Var = (e8) this.f40068b;
-                h8 h8Var = e8Var.f33284x;
-                if (e8Var.f33280n != null && h8Var.G) {
-                    int i10 = -1;
-                    int i11 = -1;
-                    for (int i12 = 0; i12 < e8Var.d; i12++) {
-                        f8 f8Var = (f8) e8Var.f33280n.get(i12, null);
-                        if (f8Var != null) {
-                            if (i10 == -1) {
-                                i10 = f8Var.h;
-                            }
-                            i11 = f8Var.h;
-                        }
-                    }
-                    if (i10 >= 0 && i11 >= 0) {
-                        h8Var.P = i10;
-                        h8Var.Q = i11;
-                        h8Var.t0();
-                        h8Var.o0();
-                        return;
-                    }
+    public final void run(boolean z10) {
+        org.telegram.ui.ActionBar.c5 c5Var;
+        org.telegram.ui.ActionBar.c5 c5Var2;
+        org.telegram.ui.ActionBar.c5 c5Var3;
+        org.telegram.ui.ActionBar.c5 c5Var4;
+        k8 k8Var = this.f43079a;
+        k8Var.finishFragment();
+        c5Var = ((org.telegram.ui.ActionBar.n2) k8Var).parentLayout;
+        if (c5Var != null) {
+            c5Var2 = ((org.telegram.ui.ActionBar.n2) k8Var).parentLayout;
+            if (c5Var2.getFragmentStack().size() >= 2) {
+                c5Var3 = ((org.telegram.ui.ActionBar.n2) k8Var).parentLayout;
+                List fragmentStack = c5Var3.getFragmentStack();
+                c5Var4 = ((org.telegram.ui.ActionBar.n2) k8Var).parentLayout;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) fragmentStack.get(c5Var4.getFragmentStack().size() - 2);
+                if (n2Var instanceof yn) {
+                    ((yn) n2Var).S7(k8Var.P, k8Var.Q + 86400, z10);
                     return;
                 }
                 return;
-            case 1:
-                org.telegram.ui.Components.qc.e();
-                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f40068b).getSwipeBack().b(true);
-                return;
-            case 2:
-                if (((l81) this.f40068b).f35224a.getImageReceiver().getLottieAnimation() != null && !((l81) this.f40068b).f35224a.getImageReceiver().getLottieAnimation().f25729k0) {
-                    ((l81) this.f40068b).f35224a.getImageReceiver().getLottieAnimation().N(0, false, false);
-                    ((l81) this.f40068b).f35224a.getImageReceiver().getLottieAnimation().H(false);
-                    return;
-                }
-                return;
-            default:
-                ((wf1) this.f40068b).H0(true);
-                return;
+            }
+        }
+        yn ynVar = k8Var.N;
+        if (ynVar != null) {
+            ynVar.S7(k8Var.P, k8Var.Q + 86400, z10);
         }
     }
 }

@@ -1,12 +1,28 @@
 package w7;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 public abstract class m8 {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj == obj2) {
-            return true;
+    public static boolean a(e9.l1 l1Var, Collection collection) {
+        collection.getClass();
+        if (collection instanceof x7.r) {
+            collection = ((x7.r) collection).zza();
         }
-        if (obj != null && obj.equals(obj2)) {
-            return true;
+        boolean z10 = false;
+        if ((collection instanceof Set) && collection.size() > l1Var.size()) {
+            Iterator<E> it = l1Var.iterator();
+            while (it.hasNext()) {
+                if (collection.contains(it.next())) {
+                    it.remove();
+                    z10 = true;
+                }
+            }
+            return z10;
         }
-        return false;
+        for (Object obj : collection) {
+            z10 |= l1Var.remove(obj);
+        }
+        return z10;
     }
 }

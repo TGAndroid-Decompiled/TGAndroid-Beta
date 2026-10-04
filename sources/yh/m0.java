@@ -24,7 +24,7 @@ public final class m0 extends u3 {
     @Override
     public final void d(f4.d dVar) {
         super.d(dVar);
-        this.D0.T(true);
+        this.D0.R(true);
     }
 
     @Override
@@ -50,17 +50,17 @@ public final class m0 extends u3 {
         ai.w7[] w7VarArr;
         s0 s0Var = this.D0;
         ImageView imageView = s0Var.m0;
-        if (imageView != null && org.telegram.ui.ActionBar.h6.B1(imageView.getBackground(), i10, false)) {
+        if (imageView != null && org.telegram.ui.ActionBar.i6.B1(imageView.getBackground(), i10, false)) {
             s0Var.m0.invalidate();
         }
-        ImageView imageView2 = s0Var.f47979n0;
-        if (imageView2 != null && org.telegram.ui.ActionBar.h6.B1(imageView2.getBackground(), i10, false)) {
-            s0Var.f47979n0.invalidate();
+        ImageView imageView2 = s0Var.f51939n0;
+        if (imageView2 != null && org.telegram.ui.ActionBar.i6.B1(imageView2.getBackground(), i10, false)) {
+            s0Var.f51939n0.invalidate();
         }
         for (ai.w7 w7Var : s0Var.Z) {
             Drawable background = w7Var.getBackground();
             org.telegram.ui.Components.p6 p6Var = (org.telegram.ui.Components.p6) w7Var.d;
-            if (org.telegram.ui.ActionBar.h6.B1(background, i10, false)) {
+            if (org.telegram.ui.ActionBar.i6.B1(background, i10, false)) {
                 w7Var.invalidate();
             }
             int d = i0.a.d(0.33f, i10, -1);
@@ -70,9 +70,9 @@ public final class m0 extends u3 {
             fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
             int HSVToColor = Color.HSVToColor(fArr);
             if (p6Var.getSizeableBackground() instanceof k3) {
-                ((k3) p6Var.getSizeableBackground()).f47602b.setColor(HSVToColor);
+                ((k3) p6Var.getSizeableBackground()).f51513b.setColor(HSVToColor);
                 p6Var.invalidate();
-            } else if (org.telegram.ui.ActionBar.h6.B1(p6Var.getSizeableBackground(), HSVToColor, false)) {
+            } else if (org.telegram.ui.ActionBar.i6.B1(p6Var.getSizeableBackground(), HSVToColor, false)) {
                 p6Var.invalidate();
             }
         }

@@ -5,18 +5,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.Iterator;
 public final class c {
-    public final fh.a f422a;
-    public int f423b;
-    public int f424c;
+    public final fh.a f455a;
+    public int f456b;
+    public int f457c;
     public pe.b d;
-    public pe.b e;
-    public hh.k f425f;
-    public ViewGroup f426g;
-    public li.e h;
-    public boolean f427i;
+    public pe.b f458e;
+    public hh.k f459f;
+    public ViewGroup f460g;
+    public li.m h;
+    public boolean f461i;
 
     public c(fh.a aVar) {
-        this.f422a = aVar;
+        this.f455a = aVar;
     }
 
     public final ch.d a(View view) {
@@ -29,37 +29,37 @@ public final class c {
 
     public final ch.d c(View view, dh.a aVar, boolean z10) {
         ViewGroup viewGroup;
-        ch.d d = this.f422a.d();
-        if (this.f427i && Build.VERSION.SDK_INT >= 33 && (d instanceof ch.e)) {
-            ch.e eVar = (ch.e) d;
-            eVar.P = new i(eVar.K);
+        ch.d f7 = this.f455a.f();
+        if (this.f461i && Build.VERSION.SDK_INT >= 33 && (f7 instanceof ch.e)) {
+            ch.e eVar = (ch.e) f7;
+            eVar.Q = new j(eVar.L);
         }
-        d.o(aVar);
-        int i10 = this.f423b;
-        int i11 = this.f424c;
-        d.h = i10;
-        d.f4279i = i11;
-        pe.b bVar = this.e;
+        f7.x(aVar);
+        int i10 = this.f456b;
+        int i11 = this.f457c;
+        f7.f4630j = i10;
+        f7.f4631k = i11;
+        pe.b bVar = this.f458e;
         if (bVar != null && view != null) {
             bVar.add(view);
         }
-        li.e eVar2 = this.h;
-        if (eVar2 != null && view != null) {
-            eVar2.d.add(new li.d(view, d));
+        li.m mVar = this.h;
+        if (mVar != null && view != null) {
+            mVar.f15663c.add(new li.l(view, f7));
         }
-        hh.k kVar = this.f425f;
-        if (kVar != null && (viewGroup = this.f426g) != null && view != null) {
-            kVar.d(view, viewGroup, new b(0, d, view), z10);
+        hh.k kVar = this.f459f;
+        if (kVar != null && (viewGroup = this.f460g) != null && view != null) {
+            kVar.d(view, viewGroup, new b(0, f7, view), z10);
         }
         pe.b bVar2 = this.d;
         if (bVar2 != null) {
-            bVar2.add(d);
+            bVar2.add(f7);
         }
-        return d;
+        return f7;
     }
 
     public final void d() {
-        pe.b bVar = this.e;
+        pe.b bVar = this.f458e;
         if (bVar != null) {
             Iterator it = bVar.iterator();
             while (it.hasNext()) {
@@ -68,12 +68,16 @@ public final class c {
         }
     }
 
-    public final void e(pe.b bVar) {
-        this.e = bVar;
+    public final void e(li.m mVar) {
+        this.h = mVar;
     }
 
-    public final void f(hh.k kVar, ViewGroup viewGroup) {
-        this.f425f = kVar;
-        this.f426g = viewGroup;
+    public final void f(pe.b bVar) {
+        this.f458e = bVar;
+    }
+
+    public final void g(hh.k kVar, ViewGroup viewGroup) {
+        this.f459f = kVar;
+        this.f460g = viewGroup;
     }
 }

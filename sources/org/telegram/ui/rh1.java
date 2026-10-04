@@ -1,13 +1,13 @@
 package org.telegram.ui;
 public final class rh1 {
-    public final org.telegram.ui.ActionBar.m2 f37338a;
-    public boolean f37339b;
-    public boolean f37340c;
+    public final org.telegram.ui.ActionBar.n2 f40128a;
+    public boolean f40129b;
+    public boolean f40130c;
     public boolean d;
-    public boolean e;
-    public float f37341f;
+    public boolean f40131e;
+    public float f40132f;
 
-    public rh1(org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f37338a = m2Var;
+    public rh1(org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f40128a = n2Var;
     }
 }

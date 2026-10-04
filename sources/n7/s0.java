@@ -5,17 +5,17 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Locale;
 public class s0 implements Iterable, Serializable {
-    public static final s0 f15390c = new s0(t0.f15395a);
-    public int f15391a = 0;
-    public final byte[] f15392b;
+    public static final s0 f16823c = new s0(t0.f16828a);
+    public int f16824a = 0;
+    public final byte[] f16825b;
 
     static {
-        int i10 = q0.f15387a;
+        int i10 = q0.f16817a;
     }
 
     public s0(byte[] bArr) {
         bArr.getClass();
-        this.f15392b = bArr;
+        this.f16825b = bArr;
     }
 
     public static int s(int i10, int i11, int i12) {
@@ -23,11 +23,11 @@ public class s0 implements Iterable, Serializable {
         if ((i10 | i11 | i13 | (i12 - i11)) < 0) {
             if (i10 >= 0) {
                 if (i11 < i10) {
-                    throw new IndexOutOfBoundsException(a4.a.m(i10, i11, "Beginning index larger than ending index: ", ", "));
+                    throw new IndexOutOfBoundsException(a4.a.l(i10, i11, "Beginning index larger than ending index: ", ", "));
                 }
-                throw new IndexOutOfBoundsException(a4.a.m(i11, i12, "End index: ", " >= "));
+                throw new IndexOutOfBoundsException(a4.a.l(i11, i12, "End index: ", " >= "));
             }
-            throw new IndexOutOfBoundsException(hg.c.i(i10, "Beginning index: ", " < 0"));
+            throw new IndexOutOfBoundsException(hg.k0.i(i10, "Beginning index: ", " < 0"));
         }
         return i13;
     }
@@ -45,18 +45,18 @@ public class s0 implements Iterable, Serializable {
                 if (p() != 0) {
                     if (obj instanceof s0) {
                         s0 s0Var = (s0) obj;
-                        int i10 = this.f15391a;
-                        int i11 = s0Var.f15391a;
+                        int i10 = this.f16824a;
+                        int i11 = s0Var.f16824a;
                         if (i10 == 0 || i11 == 0 || i10 == i11) {
                             int p5 = p();
                             if (p5 <= s0Var.p()) {
                                 if (p5 <= s0Var.p()) {
-                                    byte[] bArr = s0Var.f15392b;
+                                    byte[] bArr = s0Var.f16825b;
                                     int o9 = o() + p5;
                                     int o10 = o();
                                     int o11 = s0Var.o();
                                     while (o10 < o9) {
-                                        if (this.f15392b[o10] != bArr[o11]) {
+                                        if (this.f16825b[o10] != bArr[o11]) {
                                             return false;
                                         }
                                         o10++;
@@ -64,7 +64,7 @@ public class s0 implements Iterable, Serializable {
                                     }
                                     return true;
                                 }
-                                throw new IllegalArgumentException(a4.a.m(p5, s0Var.p(), "Ran off end of other: 0, ", ", "));
+                                throw new IllegalArgumentException(a4.a.l(p5, s0Var.p(), "Ran off end of other: 0, ", ", "));
                             }
                             int p10 = p();
                             throw new IllegalArgumentException("Length too large: " + p5 + p10);
@@ -81,26 +81,26 @@ public class s0 implements Iterable, Serializable {
     }
 
     public final int hashCode() {
-        int i10 = this.f15391a;
+        int i10 = this.f16824a;
         if (i10 == 0) {
             int p5 = p();
             int o9 = o();
-            byte[] bArr = t0.f15395a;
+            byte[] bArr = t0.f16828a;
             int i11 = p5;
             for (int i12 = o9; i12 < o9 + p5; i12++) {
-                i11 = (i11 * 31) + this.f15392b[i12];
+                i11 = (i11 * 31) + this.f16825b[i12];
             }
             if (i11 == 0) {
                 i11 = 1;
             }
-            this.f15391a = i11;
+            this.f16824a = i11;
             return i11;
         }
         return i10;
     }
 
     public byte i(int i10) {
-        return this.f15392b[i10];
+        return this.f16825b[i10];
     }
 
     @Override
@@ -109,7 +109,7 @@ public class s0 implements Iterable, Serializable {
     }
 
     public byte n(int i10) {
-        return this.f15392b[i10];
+        return this.f16825b[i10];
     }
 
     public int o() {
@@ -117,15 +117,15 @@ public class s0 implements Iterable, Serializable {
     }
 
     public int p() {
-        return this.f15392b.length;
+        return this.f16825b.length;
     }
 
     public void q(int i10, byte[] bArr) {
-        System.arraycopy(this.f15392b, 0, bArr, 0, i10);
+        System.arraycopy(this.f16825b, 0, bArr, 0, i10);
     }
 
     public final ByteArrayInputStream r() {
-        return new ByteArrayInputStream(this.f15392b, o(), p());
+        return new ByteArrayInputStream(this.f16825b, o(), p());
     }
 
     public final String toString() {
@@ -139,9 +139,9 @@ public class s0 implements Iterable, Serializable {
         } else {
             int s10 = s(0, 47, p());
             if (s10 == 0) {
-                r0Var = f15390c;
+                r0Var = f16823c;
             } else {
-                r0Var = new r0(this.f15392b, o(), s10);
+                r0Var = new r0(this.f16825b, o(), s10);
             }
             concat = a.d(r0Var).concat("...");
         }
@@ -150,13 +150,13 @@ public class s0 implements Iterable, Serializable {
         sb2.append(" size=");
         sb2.append(p5);
         sb2.append(" contents=\"");
-        return a4.a.t(sb2, concat, "\">");
+        return a4.a.s(sb2, concat, "\">");
     }
 
     public final byte[] u() {
         int p5 = p();
         if (p5 == 0) {
-            return t0.f15395a;
+            return t0.f16828a;
         }
         byte[] bArr = new byte[p5];
         q(p5, bArr);

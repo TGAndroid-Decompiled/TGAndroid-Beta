@@ -1,18 +1,40 @@
 package org.telegram.ui.Components;
-public final class tn0 {
-    public zg.o0 f28596a;
-    public int f28597b;
-    public String f28598c;
-    public int d;
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof tn0)) {
+import android.view.View;
+public final class tn0 extends s4.j {
+    @Override
+    public final boolean r(s4.c1 c1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13) {
+        zn0 zn0Var;
+        yn0 yn0Var;
+        View view = c1Var.f46523a;
+        if ((view instanceof zn0) && (yn0Var = (zn0Var = (zn0) view).f33574a) != null) {
+            yn0Var.f53456i = yn0Var.N;
+            yn0Var.f53454g = yn0Var.O;
+            yn0Var.h = yn0Var.P;
+            zn0Var.f33575b.d(0.0f, true);
+            zn0Var.invalidate();
+        }
+        int translationX = i10 + ((int) view.getTranslationX());
+        int translationY = i11 + ((int) view.getTranslationY());
+        R(c1Var);
+        int i14 = i12 - translationX;
+        int i15 = i13 - translationY;
+        if (i14 == 0 && i15 == 0) {
+            v(c1Var);
             return false;
         }
-        tn0 tn0Var = (tn0) obj;
-        if (this.f28597b != tn0Var.f28597b || this.f28596a.h != tn0Var.f28596a.h || this.d != tn0Var.d) {
-            return false;
+        if (i14 != 0) {
+            view.setTranslationX(-i14);
         }
+        if (i15 != 0) {
+            view.setTranslationY(-i15);
+        }
+        this.f46591r.add(new s4.i(c1Var, translationX, translationY, i12, i13));
+        return true;
+    }
+
+    @Override
+    public final boolean t(s4.c1 c1Var) {
         return true;
     }
 }

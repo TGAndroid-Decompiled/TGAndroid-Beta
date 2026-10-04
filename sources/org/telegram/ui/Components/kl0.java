@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class kl0 extends s4.n0 implements bh.a {
-    public final Utilities.CallbackReturn f25758a;
-    public final yl0 f25759b;
-    public final int f25760c;
+    public final Utilities.CallbackReturn f28160a;
+    public final zl0 f28161b;
+    public final int f28162c;
     public final boolean d;
 
-    public kl0(yl0 yl0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
-        this.f25759b = yl0Var;
-        this.f25758a = callbackReturn;
-        this.f25760c = i10;
+    public kl0(zl0 zl0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
+        this.f28161b = zl0Var;
+        this.f28160a = callbackReturn;
+        this.f28162c = i10;
         this.d = z10;
     }
 
@@ -25,8 +25,8 @@ public final class kl0 extends s4.n0 implements bh.a {
         int b10;
         boolean z10;
         int dp;
-        if (((Boolean) this.f25758a.run(view)).booleanValue()) {
-            int i10 = this.f25760c;
+        if (((Boolean) this.f28160a.run(view)).booleanValue()) {
+            int i10 = this.f28162c;
             rect.right = i10;
             rect.left = i10;
             s4.c1 T = recyclerView.T(view);
@@ -58,13 +58,13 @@ public final class kl0 extends s4.n0 implements bh.a {
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        aVar.f417a = true;
+        aVar.f450a = true;
     }
 
     @Override
     public final void c(Canvas canvas, RecyclerView recyclerView) {
-        if (recyclerView instanceof yl0) {
-            ((yl0) recyclerView).Q0(canvas);
+        if (recyclerView instanceof zl0) {
+            ((zl0) recyclerView).R0(canvas);
         }
     }
 
@@ -72,7 +72,7 @@ public final class kl0 extends s4.n0 implements bh.a {
     public final void f(Canvas canvas, RectF rectF) {
         canvas.save();
         canvas.clipRect(rectF);
-        this.f25759b.Q0(canvas);
+        this.f28161b.R0(canvas);
         canvas.restore();
     }
 }

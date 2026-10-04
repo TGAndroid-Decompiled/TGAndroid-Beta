@@ -1,24 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
-public interface n91 {
-    TextureView a(View view, boolean z10, float f7, int i10, boolean z11);
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import java.io.File;
+import org.telegram.ui.WallpapersListActivity;
+public final class n91 {
+    public String f28909a;
+    public final Activity f28910b;
+    public final org.telegram.ui.ActionBar.n2 f28911c;
+    public final m91 d;
+    public File f28912e;
 
-    void b();
+    public n91(Activity activity, WallpapersListActivity wallpapersListActivity, m91 m91Var) {
+        this.f28910b = activity;
+        this.f28911c = wallpapersListActivity;
+        this.d = m91Var;
+    }
 
-    void c(float f7);
+    public final void a(int r9, int r10, android.content.Intent r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n91.a(int, int, android.content.Intent):void");
+    }
 
-    void d();
-
-    void e(q91 q91Var, boolean z10);
-
-    TextureView f(View view, boolean z10, int i10, int i11, boolean z11);
-
-    ViewGroup g();
-
-    boolean h();
-
-    void i(boolean z10, i91 i91Var, float f7, boolean z11);
+    public final void b() {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f28911c;
+        if (n2Var != null) {
+            Activity parentActivity = n2Var.getParentActivity();
+            if (parentActivity != null) {
+                int i10 = Build.VERSION.SDK_INT;
+                if (i10 >= 33) {
+                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
+                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES"}, 4);
+                        return;
+                    }
+                } else if (i10 >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
+                    parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                    return;
+                }
+            }
+            org.telegram.ui.fq0 fq0Var = new org.telegram.ui.fq0(2, false, false, null);
+            fq0Var.f36369x = false;
+            fq0Var.V = new l91(this);
+            n2Var.presentFragment(fq0Var);
+            return;
+        }
+        Intent intent = new Intent("android.intent.action.PICK");
+        intent.setType("image/*");
+        this.f28910b.startActivityForResult(intent, 11);
+    }
 }

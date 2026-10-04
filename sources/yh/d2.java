@@ -8,29 +8,29 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.wq0;
+import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.yc;
-public final class d2 extends wq0 {
-    public final x3 f47289b1;
+import org.telegram.ui.Components.zq0;
+public final class d2 extends zq0 {
+    public final x3 X0;
 
     public d2(x3 x3Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, null, str, null, false, str2, null, false, false, true, null, d6Var);
-        this.f47289b1 = x3Var;
-        this.f30118a0 = true;
+        this.X0 = x3Var;
+        this.f33595a0 = true;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+    public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         yc bulletinFactory;
         String str;
         if (z10 && (bulletinFactory = getBulletinFactory()) != null) {
             if (iVar.m() == 1) {
                 long j3 = iVar.j(0);
                 if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    qc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f27649r = false;
-                    G.f27651t = true;
+                    rc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
+                    G.f30346r = false;
+                    G.f30348t = true;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
@@ -41,20 +41,20 @@ public final class d2 extends wq0 {
                     } else {
                         str = chat.title;
                     }
-                    qc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f27649r = false;
-                    G2.f27651t = true;
+                    rc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f30346r = false;
+                    G2.f30348t = true;
                     G2.j();
                 } else {
-                    qc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f27649r = false;
-                    G3.f27651t = true;
+                    rc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
+                    G3.f30346r = false;
+                    G3.f30348t = true;
                     G3.j();
                 }
             } else {
-                qc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f27649r = false;
-                Q.f27651t = true;
+                rc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
+                Q.f30346r = false;
+                Q.f30348t = true;
                 Q.j();
             }
             try {
@@ -65,7 +65,7 @@ public final class d2 extends wq0 {
     }
 
     @Override
-    public final void S0(View view) {
-        x3.k1(this.f47289b1, view);
+    public final void P0(View view) {
+        x3.k1(this.X0, view);
     }
 }

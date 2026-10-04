@@ -1,150 +1,171 @@
 package rg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.view.View;
+import android.graphics.RectF;
+import com.google.android.gms.internal.vision.e2;
+import java.util.ArrayList;
+import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.SharedConfig;
-public class w1 extends View {
-    public v1 f42817a;
-    public int f42818b;
-    public ii.q1 f42819c;
-    public boolean d;
-    public Paint e;
-    public LinearGradient f42820f;
-    public Matrix h;
+import org.telegram.messenger.Utilities;
+public final class w1 {
+    public long f46332a;
+    public final int f46333b;
+    public float d;
+    public float f46335e;
+    public float f46336f;
+    public float f46337g;
+    public float h;
+    public float f46338i;
+    public float f46339j;
+    public float f46340k;
+    public int f46341l;
+    public int f46342m;
+    public float f46343n;
+    public float f46344o;
+    public float f46345p;
+    public final x1 f46347r;
+    public float f46334c = 1.0f;
+    public boolean f46346q = true;
 
-    public w1(Context context) {
-        super(context);
+    public w1(x1 x1Var) {
+        this.f46347r = x1Var;
+        int i10 = x1Var.S;
+        x1Var.S = i10 + 1;
+        this.f46333b = i10;
+    }
+
+    public final void a(android.graphics.Canvas r11, long r12, float r14) {
+        throw new UnsupportedOperationException("Method not decompiled: rg.w1.a(android.graphics.Canvas, long, float):void");
+    }
+
+    public final void b(long j3) {
         int i10;
-        if (SharedConfig.getDevicePerformanceClass() == 2) {
-            i10 = 200;
-        } else if (SharedConfig.getDevicePerformanceClass() == 1) {
-            i10 = 100;
-        } else {
-            i10 = 50;
-        }
-        this.d = true;
-        this.f42817a = new v1(i10);
-        a();
-    }
-
-    public void a() {
-        v1 v1Var = this.f42817a;
-        v1Var.N = 100;
-        v1Var.M = true;
-        v1Var.G = true;
-        v1Var.K = true;
-        v1Var.H = true;
-        v1Var.f42802r = 4;
-        v1Var.f42806w = 0.98f;
-        v1Var.v = 0.98f;
-        v1Var.f42805u = 0.98f;
-        v1Var.c();
-    }
-
-    public final void b() {
-        Paint paint = new Paint(1);
-        this.e = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f42820f = linearGradient;
-        this.e.setShader(linearGradient);
-        this.h = new Matrix();
-    }
-
-    public int getStarsRectWidth() {
-        return AndroidUtilities.dp(140.0f);
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ii.q1 q1Var = new ii.q1(this, 12);
-        this.f42819c = q1Var;
-        LiteMode.addOnPowerSaverAppliedListener(q1Var);
-        boolean isEnabled = LiteMode.isEnabled(131072);
-        if (this.d != isEnabled) {
-            this.d = isEnabled;
-            invalidate();
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ii.q1 q1Var = this.f42819c;
-        if (q1Var != null) {
-            LiteMode.removeOnPowerSaverAppliedListener(q1Var);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        super.onDraw(canvas);
-        if (this.d) {
-            if (this.e != null) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                canvas2 = canvas;
+        float f7;
+        float f10;
+        float f11;
+        double atan2;
+        int i11;
+        float f12;
+        float f13;
+        float nextFloat;
+        x1 x1Var = this.f46347r;
+        int i12 = x1Var.N;
+        ArrayList arrayList = x1Var.f46368n;
+        RectF rectF = x1Var.f46357a;
+        int i13 = 0;
+        if (i12 == 28) {
+            if (Utilities.fastRandom.nextFloat() < 0.13f) {
+                this.f46341l = 0;
             } else {
-                canvas2 = canvas;
+                this.f46341l = (int) Math.floor((nextFloat * (x1Var.d.length - 2)) + 1.0f);
             }
-            this.f42817a.d(canvas2);
-            if (this.e != null) {
-                canvas2.save();
-                this.h.reset();
-                this.h.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
-                this.f42820f.setLocalMatrix(this.h);
-                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.e);
-                this.h.reset();
-                this.h.postRotate(180.0f);
-                this.h.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
-                this.f42820f.setLocalMatrix(this.h);
-                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.e);
-                canvas2.restore();
-                canvas2.restore();
+        } else {
+            this.f46341l = Math.abs(Utilities.fastRandom.nextInt() % x1Var.d.length);
+        }
+        long j10 = j3 + x1Var.f46377x;
+        Random random = Utilities.fastRandom;
+        int i14 = x1Var.f46378y;
+        if (x1Var.f46361f[this.f46341l]) {
+            i10 = 3;
+        } else {
+            i10 = 1;
+        }
+        this.f46332a = j10 + random.nextInt(i14 * i10);
+        this.f46343n = 0.0f;
+        if (x1Var.f46367m) {
+            this.f46334c = (Utilities.fastRandom.nextFloat() * 0.6f) + 0.4f;
+        }
+        if (x1Var.B) {
+            float abs = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+            float abs2 = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
+            int i15 = 0;
+            float f14 = 0.0f;
+            while (i15 < 10) {
+                float abs3 = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+                float abs4 = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
+                float f15 = 2.1474836E9f;
+                while (i13 < arrayList.size()) {
+                    if (x1Var.h) {
+                        f12 = ((w1) arrayList.get(i13)).f46336f - abs3;
+                        f13 = ((w1) arrayList.get(i13)).f46337g;
+                    } else {
+                        f12 = ((w1) arrayList.get(i13)).d - abs3;
+                        f13 = ((w1) arrayList.get(i13)).f46335e;
+                    }
+                    float f16 = f13 - abs4;
+                    float f17 = (f16 * f16) + (f12 * f12);
+                    if (f17 < f15) {
+                        f15 = f17;
+                    }
+                    i13++;
+                }
+                if (f15 > f14) {
+                    abs2 = abs4;
+                    f14 = f15;
+                    abs = abs3;
+                }
+                i15++;
+                i13 = 0;
             }
-            if (!this.f42817a.f42792g) {
-                invalidate();
+            f7 = 0.6f;
+            f10 = 0.0f;
+            this.d = abs;
+            this.f46335e = abs2;
+        } else {
+            f7 = 0.6f;
+            f10 = 0.0f;
+            if (x1Var.J) {
+                float width = rectF.width();
+                float f18 = x1Var.f46364j;
+                float z10 = e2.z(width, f18, org.telegram.ui.Cells.c1.f(Utilities.fastRandom, 1000) / 1000.0f, f18);
+                float f19 = org.telegram.ui.Cells.c1.f(Utilities.fastRandom, 360);
+                if (x1Var.f46361f[this.f46341l] && !this.f46346q) {
+                    z10 = Math.min(z10, AndroidUtilities.dp(10.0f));
+                    f11 = AndroidUtilities.dp(30.0f) + 0.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                double d = z10;
+                double d10 = f19;
+                this.d = rectF.centerX() + 0.0f + ((float) (Math.sin(Math.toRadians(d10)) * d));
+                this.f46335e = rectF.centerY() + f11 + x1Var.f46365k + ((float) (Math.cos(Math.toRadians(d10)) * d));
+            } else {
+                this.d = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+                this.f46335e = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
             }
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        this.f42817a.f42788a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
-        this.f42817a.f42788a.offset((getMeasuredWidth() - this.f42817a.f42788a.width()) / 2.0f, (getMeasuredHeight() - this.f42817a.f42788a.height()) / 2.0f);
-        this.f42817a.f42789b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
-        if (this.f42818b != measuredHeight) {
-            this.f42818b = measuredHeight;
-            this.f42817a.f();
+        if (x1Var.f46361f[this.f46341l]) {
+            this.f46345p = Math.abs(Utilities.fastRandom.nextFloat() * 2.0f);
         }
-    }
-
-    public void setPaused(boolean z10) {
-        v1 v1Var = this.f42817a;
-        if (z10 == v1Var.f42792g) {
-            return;
+        if (x1Var.f46361f[this.f46341l]) {
+            atan2 = Math.toRadians(280.0f - (Utilities.fastRandom.nextFloat() * 200.0f));
+        } else if (x1Var.h) {
+            atan2 = Utilities.fastRandom.nextDouble() * 3.141592653589793d * 2.0d;
+        } else {
+            atan2 = Math.atan2(this.f46335e - (rectF.centerY() + x1Var.f46365k), this.d - (rectF.centerX() + f10));
         }
-        v1Var.f42792g = z10;
-        if (z10) {
-            v1Var.Q = System.currentTimeMillis();
-            return;
+        this.f46339j = (float) Math.cos(atan2);
+        this.f46340k = (float) Math.sin(atan2);
+        if (x1Var.f46360e[this.f46341l]) {
+            this.f46342m = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 120.0f);
+        } else {
+            this.f46342m = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
         }
-        for (int i10 = 0; i10 < this.f42817a.f42798n.size(); i10++) {
-            u1 u1Var = (u1) this.f42817a.f42798n.get(i10);
-            u1Var.f42769a = (System.currentTimeMillis() - this.f42817a.Q) + u1Var.f42769a;
+        int i16 = x1Var.N;
+        if ((i16 == 6 && ((i11 = this.f46341l) == 1 || i11 == 2)) || i16 == 9 || i16 == 3 || i16 == 7 || i16 == 24 || i16 == 11 || i16 == 22 || i16 == 4) {
+            this.f46343n = (int) (((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 45.0f);
         }
-        invalidate();
+        if (x1Var.N != 101) {
+            this.f46344o = 0.0f;
+        }
+        if (x1Var.h) {
+            float min = (Math.min(rectF.width(), rectF.height()) * ((Utilities.fastRandom.nextFloat() * 1.2f) + f7)) / 2.0f;
+            float cos = (((float) Math.cos(atan2)) * min) + rectF.centerX() + 0.0f;
+            this.d = cos;
+            this.f46336f = cos;
+            float sin = (((float) Math.sin(atan2)) * min) + rectF.centerY() + x1Var.f46365k;
+            this.f46335e = sin;
+            this.f46337g = sin;
+        }
+        this.f46346q = false;
     }
 }

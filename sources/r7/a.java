@@ -6,9 +6,9 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class a implements Continuation, com.google.android.gms.common.api.internal.s {
-    public static final a f42345a = new Object();
-    public static final a f42346b = new Object();
-    public static final a f42347c = new Object();
+    public static final a f45829a = new Object();
+    public static final a f45830b = new Object();
+    public static final a f45831c = new Object();
 
     public void a(k kVar, com.google.android.gms.common.api.internal.n nVar, boolean z10, TaskCompletionSource taskCompletionSource) {
         k6.c cVar;
@@ -19,9 +19,9 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     taskCompletionSource.setResult(Boolean.FALSE);
                     return;
                 }
-                com.google.android.gms.common.api.internal.p e = iVar.f42358b.e();
-                e.f6127b = null;
-                e.f6128c = null;
+                com.google.android.gms.common.api.internal.p e7 = iVar.f45842b.e();
+                e7.f6601b = null;
+                e7.f6602c = null;
                 if (z10) {
                     k6.c[] m10 = kVar.m();
                     if (m10 != null) {
@@ -30,7 +30,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                         while (true) {
                             if (i10 < length) {
                                 cVar = m10[i10];
-                                if ("location_updates_with_callback".equals(cVar.f13492a)) {
+                                if ("location_updates_with_callback".equals(cVar.f14669a)) {
                                     break;
                                 }
                                 i10++;
@@ -76,7 +76,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
             while (true) {
                 if (i10 < length) {
                     cVar = m10[i10];
-                    if ("get_last_location_with_request".equals(cVar.f13492a)) {
+                    if ("get_last_location_with_request".equals(cVar.f14669a)) {
                         break;
                     }
                     i10++;
@@ -100,14 +100,14 @@ public final class a implements Continuation, com.google.android.gms.common.api.
         Parcel obtain = Parcel.obtain();
         try {
             try {
-                zVar2.f315b.transact(7, O02, obtain, 0);
+                zVar2.f338b.transact(7, O02, obtain, 0);
                 obtain.readException();
                 O02.recycle();
                 obtain.recycle();
                 taskCompletionSource.setResult((Location) d.a(obtain, Location.CREATOR));
-            } catch (RuntimeException e) {
+            } catch (RuntimeException e7) {
                 obtain.recycle();
-                throw e;
+                throw e7;
             }
         } catch (Throwable th2) {
             O02.recycle();

@@ -1,17 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class k01 extends org.telegram.ui.Cells.c9 {
-    public final q01 f34907r;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class k01 extends URLSpan {
+    public final String f37795a;
+    public final s01 f37796b;
 
-    public k01(q01 q01Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
-        super(18, context, d6Var, z10, z11);
-        this.f34907r = q01Var;
+    public k01(s01 s01Var, String str, String str2) {
+        super(str);
+        this.f37796b = s01Var;
+        this.f37795a = str2;
     }
 
     @Override
-    public final int a(int i10) {
-        this.f34907r.e.getClass();
-        return i10;
+    public final void onClick(View view) {
+        nf.f.s(this.f37796b.f40317e.getParentActivity(), this.f37795a);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(true);
     }
 }

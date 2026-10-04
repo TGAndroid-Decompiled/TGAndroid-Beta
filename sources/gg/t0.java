@@ -27,9 +27,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.w5;
+import org.telegram.ui.ActionBar.i5;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.x5;
 import org.telegram.ui.Cells.b7;
 import org.telegram.ui.Cells.m4;
 import org.telegram.ui.Cells.u4;
@@ -38,12 +38,12 @@ import org.telegram.ui.Cells.w4;
 import org.telegram.ui.Cells.w7;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sq;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.sc0;
+import org.telegram.ui.ad0;
 import org.telegram.ui.wc0;
-import w7.a6;
-import w7.y5;
+import w7.b6;
+import w7.z5;
 public class t0 extends c implements LocationController.LocationFetchCallback {
     public final int K;
     public final Context L;
@@ -61,38 +61,38 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
     public TLRPC.TL_channelLocation X;
     public ArrayList Y;
     public boolean Z;
-    public final boolean f9911a0;
-    public final d6 f9912b0;
-    public boolean f9913c0;
-    public TLRPC.TL_messageMediaVenue f9914d0;
-    public TLRPC.TL_messageMediaVenue f9915e0;
-    public boolean f9916f0;
-    public final boolean f9917g0;
-    public sc0 f9918h0;
-    public boolean f9919i0;
-    public boolean f9920j0;
-    public boolean f9921k0;
-    public FrameLayout f9922l0;
+    public final boolean f10793a0;
+    public final d6 f10794b0;
+    public boolean f10795c0;
+    public TLRPC.TL_messageMediaVenue f10796d0;
+    public TLRPC.TL_messageMediaVenue f10797e0;
+    public boolean f10798f0;
+    public final boolean f10799g0;
+    public wc0 f10800h0;
+    public boolean f10801i0;
+    public boolean f10802j0;
+    public boolean f10803k0;
+    public FrameLayout f10804l0;
 
     public t0(Context context, int i10, long j3, boolean z10, d6 d6Var, boolean z11, boolean z12, boolean z13) {
         super(z11, z13);
         this.K = UserConfig.selectedAccount;
         this.V = -1;
         this.Y = new ArrayList();
-        this.f9913c0 = true;
-        this.f9920j0 = false;
-        this.f9921k0 = false;
-        this.f9917g0 = z12;
+        this.f10795c0 = true;
+        this.f10802j0 = false;
+        this.f10803k0 = false;
+        this.f10799g0 = z12;
         this.L = context;
         this.T = i10;
         this.U = j3;
-        this.f9911a0 = z10;
-        this.f9912b0 = d6Var;
+        this.f10793a0 = z10;
+        this.f10794b0 = d6Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42965f;
+        int i10 = c1Var.f46527f;
         if (i10 == 6) {
             if (LocationController.getInstance(this.K).getSharingLocationInfo(this.U) == null && this.O == null) {
                 return false;
@@ -111,7 +111,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
             if (location != null || (location = this.O) != null) {
                 this.Z = true;
                 Q();
-                LocationController.fetchLocationAddress(location, this.e ? 1 : 0, this);
+                LocationController.fetchLocationAddress(location, this.f10518e ? 1 : 0, this);
             }
         } else if (i11 == 4) {
             Location location2 = this.P;
@@ -168,7 +168,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
             return tL_messageMediaVenue;
         }
         MessageObject messageObject = this.W;
-        ArrayList arrayList = this.f9663s;
+        ArrayList arrayList = this.f10522s;
         if (messageObject != null) {
             if (i10 == 1) {
                 return messageObject;
@@ -192,10 +192,10 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                     return arrayList.get(i10 - 5);
                 }
             } else if (i11 == 7) {
-                if (this.f9915e0 == null) {
+                if (this.f10797e0 == null) {
                     i12 = 3;
                 }
-                ArrayList arrayList2 = this.f9662r;
+                ArrayList arrayList2 = this.f10521r;
                 if (i10 > i12) {
                     int i14 = i12 + 1;
                     if (i10 < arrayList2.size() + i14) {
@@ -253,7 +253,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         this.Y = new ArrayList(arrayList);
         long clientUserId = UserConfig.getInstance(this.K).getClientUserId();
         for (int i10 = 0; i10 < this.Y.size(); i10++) {
-            if (((wc0) this.Y.get(i10)).f38955a == clientUserId || ((wc0) this.Y.get(i10)).f38956b.out) {
+            if (((ad0) this.Y.get(i10)).f34788a == clientUserId || ((ad0) this.Y.get(i10)).f34789b.out) {
                 this.Y.remove(i10);
                 break;
             }
@@ -262,21 +262,21 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
     }
 
     public final void O(boolean z10, boolean z11) {
-        if (this.f9920j0 == z10 && this.f9921k0 == z11) {
+        if (this.f10802j0 == z10 && this.f10803k0 == z11) {
             return;
         }
-        this.f9920j0 = z10;
-        this.f9921k0 = z11;
+        this.f10802j0 = z10;
+        this.f10803k0 = z11;
         if (z11) {
-            this.f9914d0 = null;
-            this.f9915e0 = null;
+            this.f10796d0 = null;
+            this.f10797e0 = null;
         }
         l();
     }
 
     public final void P(int i10) {
         this.M = i10;
-        FrameLayout frameLayout = this.f9922l0;
+        FrameLayout frameLayout = this.f10804l0;
         if (frameLayout != null) {
             s4.p0 p0Var = (s4.p0) frameLayout.getLayoutParams();
             if (p0Var == null) {
@@ -284,8 +284,8 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
             } else {
                 ((ViewGroup.MarginLayoutParams) p0Var).height = this.M;
             }
-            this.f9922l0.setLayoutParams(p0Var);
-            this.f9922l0.forceLayout();
+            this.f10804l0.setLayoutParams(p0Var);
+            this.f10804l0.forceLayout();
         }
     }
 
@@ -316,11 +316,11 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                     return;
                 }
                 String string2 = LocaleController.getString(R.string.SendLocation);
-                if (!this.f9920j0) {
+                if (!this.f10802j0) {
                     str = LocaleController.getString(R.string.Loading);
                 }
                 u6Var.b(string2, str);
-                this.N.setHasLocation(!this.f9920j0);
+                this.N.setHasLocation(!this.f10802j0);
                 return;
             }
             if (!TextUtils.isEmpty(this.Q)) {
@@ -337,12 +337,12 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                     Location location2 = this.O;
                     if (location2 != null) {
                         str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location2.getLatitude()), Double.valueOf(this.O.getLongitude()));
-                    } else if (!this.f9920j0) {
+                    } else if (!this.f10802j0) {
                         str = LocaleController.getString(R.string.Loading);
                     }
                 }
             }
-            if (this.f9916f0) {
+            if (this.f10798f0) {
                 this.N.b(LocaleController.getString(R.string.AttachSelectedLocation), str);
             } else if (i10 == 4) {
                 this.N.b(LocaleController.getString(R.string.ChatSetThisLocation), str);
@@ -360,11 +360,11 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         int i12 = 2;
         int i13 = this.T;
         int i14 = 6;
-        if (i13 != 6 && i13 != 5 && i13 != 4 && !this.e) {
+        if (i13 != 6 && i13 != 5 && i13 != 4 && !this.f10518e) {
             int i15 = 0;
             if (this.W != null) {
                 if (this.Y.isEmpty()) {
-                    if (!this.f9917g0) {
+                    if (!this.f10799g0) {
                         i15 = 1;
                     }
                 } else {
@@ -380,28 +380,28 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 i12 = size + i15;
             } else {
                 boolean z10 = this.h;
-                boolean z11 = this.f9911a0;
-                if (!z10 && this.f9660f) {
-                    ArrayList arrayList = this.f9663s;
+                boolean z11 = this.f10793a0;
+                if (!z10 && this.f10519f) {
+                    ArrayList arrayList = this.f10522s;
                     if (!arrayList.isEmpty()) {
                         if (i13 != 1) {
                             i14 = 5;
                         }
-                        i12 = arrayList.size() + this.f9662r.size() + (z11 ? 1 : 0) + i14;
+                        i12 = arrayList.size() + this.f10521r.size() + (z11 ? 1 : 0) + i14;
                     }
                 }
                 if (i13 == 0) {
                     i14 = 5;
                 } else if (i13 == 7) {
-                    if (this.f9915e0 != null) {
+                    if (this.f10797e0 != null) {
                         i10 = 1;
                     } else {
                         i10 = 0;
                     }
                     i14 = i10 + 5;
                 }
-                boolean z12 = this.f9920j0;
-                if (!z12 && (this.h || !this.f9660f)) {
+                boolean z12 = this.f10802j0;
+                if (!z12 && (this.h || !this.f10519f)) {
                     i11 = 2;
                 } else {
                     i11 = 0;
@@ -413,7 +413,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 i12 = (i16 - i12) + i14;
             }
         }
-        if (this.f9918h0 != null && this.f9919i0) {
+        if (this.f10800h0 != null && this.f10801i0) {
             return i12 + 1;
         }
         return i12;
@@ -436,24 +436,24 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         } else {
             this.R = str;
         }
-        if (i10 == 7 && this.f9921k0) {
-            this.f9914d0 = null;
-            this.f9915e0 = null;
+        if (i10 == 7 && this.f10803k0) {
+            this.f10796d0 = null;
+            this.f10797e0 = null;
         }
-        if (this.f9915e0 != null) {
+        if (this.f10797e0 != null) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (i10 == 7) {
-            this.f9914d0 = tL_messageMediaVenue;
-            this.f9915e0 = tL_messageMediaVenue2;
+            this.f10796d0 = tL_messageMediaVenue;
+            this.f10797e0 = tL_messageMediaVenue2;
             if (tL_messageMediaVenue2 == null) {
                 z11 = true;
             }
             if (z10 == z11) {
                 m(1);
-                if (this.f9915e0 == null) {
+                if (this.f10797e0 == null) {
                     u(2);
                     return;
                 } else {
@@ -473,8 +473,8 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         boolean z10;
         long j3;
         int i12;
-        int i13 = c1Var.f42965f;
-        View view = c1Var.f42962a;
+        int i13 = c1Var.f46527f;
+        View view = c1Var.f46523a;
         int i14 = this.T;
         int i15 = 2;
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue = null;
@@ -510,14 +510,14 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 } else {
                     if (i14 == 7 || i14 == 8) {
                         int i16 = i10 - 4;
-                        if (this.f9915e0 == null) {
+                        if (this.f10797e0 == null) {
                             i11 = i16;
                         }
                     }
                     i11 = i10 - 5;
                 }
-                if (this.f9660f && (i14 != 7 || !this.h)) {
-                    ArrayList arrayList = this.f9662r;
+                if (this.f10519f && (i14 != 7 || !this.h)) {
+                    ArrayList arrayList = this.f10521r;
                     if (i11 >= 0 && i11 < arrayList.size()) {
                         tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList.get(i11);
                         u4Var.b(tL_messageMediaVenue, i15, true, false);
@@ -525,7 +525,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                     }
                     int size = i11 - arrayList.size();
                     if (size >= 0) {
-                        ArrayList arrayList2 = this.f9663s;
+                        ArrayList arrayList2 = this.f10522s;
                         if (size < arrayList2.size()) {
                             tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
                         }
@@ -554,7 +554,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 if (i17 < h() && j(i17) == 7) {
                     z11 = true;
                 }
-                u6Var.f21654s = z11;
+                u6Var.f23518s = z11;
                 u6Var.invalidate();
                 return;
             case 7:
@@ -567,7 +567,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
             case 8:
                 w7 w7Var = (w7) view;
                 if (i14 == 6) {
-                    w7Var.b(this.W, this.O, this.f9920j0);
+                    w7Var.b(this.W, this.O, this.f10802j0);
                     return;
                 }
                 TLRPC.TL_channelLocation tL_channelLocation = this.X;
@@ -575,38 +575,38 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 if (tL_channelLocation != null) {
                     TextView textView = w7Var.d;
                     Location location = w7Var.v;
-                    w9 w9Var = w7Var.f21804a;
-                    w7Var.f21812x = UserConfig.selectedAccount;
+                    w9 w9Var = w7Var.f23677a;
+                    w7Var.f23686x = UserConfig.selectedAccount;
                     String str = tL_channelLocation.address;
-                    w7Var.f21807f = null;
+                    w7Var.f23681f = null;
                     String str2 = "";
                     if (DialogObject.isUserDialog(j10)) {
-                        TLRPC.User user = MessagesController.getInstance(w7Var.f21812x).getUser(Long.valueOf(j10));
+                        TLRPC.User user = MessagesController.getInstance(w7Var.f23686x).getUser(Long.valueOf(j10));
                         if (user != null) {
-                            w7Var.f21807f = new h9(0, user);
+                            w7Var.f23681f = new h9(0, user);
                             str2 = UserObject.getUserName(user);
-                            w9Var.e(user, w7Var.f21807f);
+                            w9Var.e(user, w7Var.f23681f);
                         }
                     } else {
-                        TLRPC.Chat chat = MessagesController.getInstance(w7Var.f21812x).getChat(Long.valueOf(-j10));
+                        TLRPC.Chat chat = MessagesController.getInstance(w7Var.f23686x).getChat(Long.valueOf(-j10));
                         if (chat != null) {
                             h9 h9Var = new h9(chat);
-                            w7Var.f21807f = h9Var;
+                            w7Var.f23681f = h9Var;
                             str2 = chat.title;
                             w9Var.e(chat, h9Var);
                         }
                     }
-                    w7Var.f21805b.l(str2, false);
+                    w7Var.f23678b.l(str2, false);
                     location.setLatitude(tL_channelLocation.geo_point.lat);
                     location.setLongitude(tL_channelLocation.geo_point._long);
-                    w7Var.e = true;
+                    w7Var.f23680e = true;
                     textView.setSingleLine(true);
                     textView.setText(str);
                     return;
                 }
                 MessageObject messageObject = this.W;
                 if (messageObject != null && i10 == 1) {
-                    w7Var.b(messageObject, this.O, this.f9920j0);
+                    w7Var.b(messageObject, this.O, this.f10802j0);
                     return;
                 }
                 if (messageObject != null) {
@@ -618,32 +618,32 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                     i18--;
                 }
                 if (i18 >= 0 && i18 < this.Y.size()) {
-                    wc0 wc0Var = (wc0) this.Y.get(i18);
+                    ad0 ad0Var = (ad0) this.Y.get(i18);
                     Location location2 = this.O;
                     TextView textView2 = w7Var.d;
-                    w9 w9Var2 = w7Var.f21804a;
-                    h5 h5Var = w7Var.f21805b;
+                    w9 w9Var2 = w7Var.f23677a;
+                    i5 i5Var = w7Var.f23678b;
                     Location location3 = w7Var.v;
-                    w7Var.f21810s = wc0Var;
-                    if (DialogObject.isUserDialog(wc0Var.f38955a)) {
-                        TLRPC.User user2 = MessagesController.getInstance(w7Var.f21812x).getUser(Long.valueOf(wc0Var.f38955a));
+                    w7Var.f23684s = ad0Var;
+                    if (DialogObject.isUserDialog(ad0Var.f34788a)) {
+                        TLRPC.User user2 = MessagesController.getInstance(w7Var.f23686x).getUser(Long.valueOf(ad0Var.f34788a));
                         if (user2 != null) {
-                            w7Var.f21807f.m(w7Var.f21812x, user2);
-                            h5Var.l(ContactsController.formatName(user2.first_name, user2.last_name), false);
-                            w9Var2.e(user2, w7Var.f21807f);
+                            w7Var.f23681f.m(w7Var.f23686x, user2);
+                            i5Var.l(ContactsController.formatName(user2.first_name, user2.last_name), false);
+                            w9Var2.e(user2, w7Var.f23681f);
                         }
                     } else {
-                        TLRPC.Chat chat2 = MessagesController.getInstance(w7Var.f21812x).getChat(Long.valueOf(-wc0Var.f38955a));
+                        TLRPC.Chat chat2 = MessagesController.getInstance(w7Var.f23686x).getChat(Long.valueOf(-ad0Var.f34788a));
                         if (chat2 != null) {
-                            w7Var.f21807f.k(w7Var.f21812x, chat2);
-                            h5Var.l(chat2.title, false);
-                            w9Var2.e(chat2, w7Var.f21807f);
+                            w7Var.f23681f.k(w7Var.f23686x, chat2);
+                            i5Var.l(chat2.title, false);
+                            w9Var2.e(chat2, w7Var.f23681f);
                         }
                     }
-                    IMapsProvider.LatLng position = wc0Var.e.getPosition();
+                    IMapsProvider.LatLng position = ad0Var.f34791e.getPosition();
                     location3.setLatitude(position.latitude);
                     location3.setLongitude(position.longitude);
-                    TLRPC.Message message = wc0Var.f38956b;
+                    TLRPC.Message message = ad0Var.f34789b;
                     int i19 = message.edit_date;
                     if (i19 != 0) {
                         j3 = i19;
@@ -660,27 +660,27 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 }
                 return;
             case 11:
-                if (this.f9920j0) {
-                    i12 = h6.f19149i5;
+                if (this.f10802j0) {
+                    i12 = i6.f20907i5;
                 } else {
-                    i12 = h6.f19131h5;
+                    i12 = i6.f20889h5;
                 }
-                view.setBackgroundColor(h6.v0(i12, this.f9912b0));
+                view.setBackgroundColor(i6.v0(i12, this.f10794b0));
                 return;
             case 12:
                 u4 u4Var2 = (u4) view;
-                if (this.f9921k0) {
-                    u4Var2.b(null, 2, (i10 != 1 || this.f9915e0 == null) ? false : false, false);
+                if (this.f10803k0) {
+                    u4Var2.b(null, 2, (i10 != 1 || this.f10797e0 == null) ? false : false, false);
                     return;
                 } else if (i10 == 1) {
-                    TLRPC.TL_messageMediaVenue tL_messageMediaVenue2 = this.f9914d0;
-                    if (this.f9915e0 != null) {
+                    TLRPC.TL_messageMediaVenue tL_messageMediaVenue2 = this.f10796d0;
+                    if (this.f10797e0 != null) {
                         z11 = true;
                     }
-                    u4Var2.b(tL_messageMediaVenue2, 2, z11, this.f9913c0);
+                    u4Var2.b(tL_messageMediaVenue2, 2, z11, this.f10795c0);
                     return;
                 } else {
-                    u4Var2.b(this.f9915e0, 2, false, this.f9913c0);
+                    u4Var2.b(this.f10797e0, 2, false, this.f10795c0);
                     return;
                 }
         }
@@ -692,14 +692,14 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         View view2;
         int i11;
         long j3 = this.U;
-        d6 d6Var = this.f9912b0;
+        d6 d6Var = this.f10794b0;
         Context context = this.L;
         switch (i10) {
             case 0:
                 FrameLayout frameLayout = new FrameLayout(context);
-                this.f9922l0 = frameLayout;
+                this.f10804l0 = frameLayout;
                 frameLayout.setTag(-33024);
-                this.f9922l0.setLayoutParams(new s4.p0(-1, this.M));
+                this.f10804l0.setLayoutParams(new s4.p0(-1, this.M));
                 view2 = frameLayout;
                 break;
             case 1:
@@ -714,43 +714,43 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
             case 4:
                 ?? frameLayout2 = new FrameLayout(context);
                 RadialProgressView radialProgressView = new RadialProgressView(context, d6Var);
-                frameLayout2.f21797a = radialProgressView;
-                frameLayout2.addView(radialProgressView, y5.e(-2, -2, 17));
+                frameLayout2.f23669a = radialProgressView;
+                frameLayout2.addView(radialProgressView, z5.e(-2, -2, 17));
                 ImageView imageView = new ImageView(context);
-                frameLayout2.f21799c = imageView;
+                frameLayout2.f23671c = imageView;
                 imageView.setImageResource(R.drawable.location_empty);
-                imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.W5, d6Var), PorterDuff.Mode.MULTIPLY));
-                frameLayout2.addView(imageView, y5.d(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 24.0f));
+                imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.W5, d6Var), PorterDuff.Mode.MULTIPLY));
+                frameLayout2.addView(imageView, z5.d(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 24.0f));
                 TextView textView = new TextView(context);
-                frameLayout2.f21798b = textView;
-                textView.setTextColor(h6.v0(h6.X5, d6Var));
+                frameLayout2.f23670b = textView;
+                textView.setTextColor(i6.v0(i6.X5, d6Var));
                 textView.setGravity(17);
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextSize(1, 17.0f);
                 textView.setText(LocaleController.getString(R.string.NoPlacesFound));
-                frameLayout2.addView(textView, y5.d(-2, -2.0f, 17, 0.0f, 34.0f, 0.0f, 0.0f));
+                frameLayout2.addView(textView, z5.d(-2, -2.0f, 17, 0.0f, 34.0f, 0.0f, 0.0f));
                 view = frameLayout2;
                 view2 = view;
                 break;
             case 5:
                 FrameLayout frameLayout3 = new FrameLayout(context);
                 LinearLayout linearLayout = new LinearLayout(context);
-                frameLayout3.addView(linearLayout, y5.e(-2, -2, 17));
+                frameLayout3.addView(linearLayout, z5.e(-2, -2, 17));
                 TextView f7 = org.telegram.messenger.f0.f(context, 1, 16.0f);
-                int i12 = h6.A6;
-                f7.setTextColor(h6.v0(i12, d6Var));
+                int i12 = i6.A6;
+                f7.setTextColor(i6.v0(i12, d6Var));
                 f7.setText("Powered by");
-                linearLayout.addView(f7, y5.n(-2, -2));
+                linearLayout.addView(f7, z5.n(-2, -2));
                 ImageView imageView2 = new ImageView(context);
                 imageView2.setImageResource(R.drawable.foursquare);
-                imageView2.setColorFilter(new PorterDuffColorFilter(h6.v0(i12, d6Var), PorterDuff.Mode.MULTIPLY));
+                imageView2.setColorFilter(new PorterDuffColorFilter(i6.v0(i12, d6Var), PorterDuff.Mode.MULTIPLY));
                 imageView2.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
-                linearLayout.addView(imageView2, y5.n(35, -2));
+                linearLayout.addView(imageView2, z5.n(35, -2));
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 16.0f);
-                textView2.setTextColor(h6.v0(i12, d6Var));
+                textView2.setTextColor(i6.v0(i12, d6Var));
                 textView2.setText("Foursquare");
-                linearLayout.addView(textView2, y5.n(-2, -2));
+                linearLayout.addView(textView2, z5.n(-2, -2));
                 view = frameLayout3;
                 view2 = view;
                 break;
@@ -776,28 +776,28 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
             case 9:
                 ?? frameLayout4 = new FrameLayout(context);
                 FrameLayout frameLayout5 = new FrameLayout(context);
-                frameLayout4.f21684a = frameLayout5;
-                frameLayout5.setBackground(w5.e(new float[]{8.0f}, h6.v0(h6.Oh, d6Var)));
-                frameLayout4.addView(frameLayout5, y5.d(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
-                h5 h5Var = new h5(context);
-                h5Var.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-                h5Var.setGravity(17);
-                h5Var.setDrawablePadding(AndroidUtilities.dp(8.0f));
-                h5Var.setTextColor(h6.v0(h6.Sh, d6Var));
-                h5Var.setTextSize(14);
-                h5Var.l(LocaleController.getString(R.string.Directions), false);
-                h5Var.setLeftDrawable(R.drawable.filled_directions);
-                h5Var.setTypeface(AndroidUtilities.bold());
-                frameLayout5.addView(h5Var, y5.c(-1.0f, -1));
-                frameLayout5.setOutlineProvider(yf.i0.f47114b);
+                frameLayout4.f23551a = frameLayout5;
+                frameLayout5.setBackground(x5.e(new float[]{8.0f}, i6.v0(i6.Oh, d6Var)));
+                frameLayout4.addView(frameLayout5, z5.d(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
+                i5 i5Var = new i5(context);
+                i5Var.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+                i5Var.setGravity(17);
+                i5Var.setDrawablePadding(AndroidUtilities.dp(8.0f));
+                i5Var.setTextColor(i6.v0(i6.Sh, d6Var));
+                i5Var.setTextSize(14);
+                i5Var.l(LocaleController.getString(R.string.Directions), false);
+                i5Var.setLeftDrawable(R.drawable.filled_directions);
+                i5Var.setTypeface(AndroidUtilities.bold());
+                frameLayout5.addView(i5Var, z5.c(-1.0f, -1));
+                frameLayout5.setOutlineProvider(yf.f0.f50980b);
                 frameLayout5.setClipToOutline(true);
-                a6.b(frameLayout5, 0.02f, 1.2f);
+                b6.b(frameLayout5, 0.02f, 1.2f);
                 frameLayout4.setOnButtonClick(new ai.v0(this, 22));
                 view2 = frameLayout4;
                 break;
             case 10:
                 View b7Var = new b7(context, (org.telegram.ui.Cells.c1) null);
-                new rq(new ColorDrawable(h6.v0(h6.f19005a7, d6Var)), h6.V0(context, R.drawable.greydivider_bottom, h6.f19025b7)).f28033w = true;
+                new sq(new ColorDrawable(i6.v0(i6.f20761a7, d6Var)), i6.V0(context, R.drawable.greydivider_bottom, i6.f20781b7)).f30856w = true;
                 view2 = b7Var;
                 break;
             case 11:
@@ -810,7 +810,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 view2 = u4Var;
                 break;
             case 13:
-                view2 = this.f9918h0;
+                view2 = this.f10800h0;
                 break;
         }
         return new s4.c1(view2);

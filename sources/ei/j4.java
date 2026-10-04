@@ -1,30 +1,36 @@
 package ei;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.ui.ActionBar.d6;
-public final class j4 extends org.telegram.ui.web.b1 {
-    public final q4 S0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.GenericProvider;
+public final class j4 implements org.telegram.ui.ActionBar.a2, p4, GenericProvider {
+    public final r4 f9121a;
 
-    public j4(q4 q4Var, Context context, d6 d6Var, int i10) {
-        super(i10, context, d6Var, true);
-        this.S0 = q4Var;
+    public j4(r4 r4Var) {
+        this.f9121a = r4Var;
     }
 
     @Override
-    public final void K(org.telegram.ui.web.y0 y0Var) {
-        this.S0.J.setWebView(y0Var);
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f9121a.f29642b.dismiss();
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            q4 q4Var = this.S0;
-            if (!q4Var.P) {
-                q4Var.P = true;
-                q4Var.f8552n.R();
-            }
+    public void o(boolean z10) {
+        r4 r4Var = this.f9121a;
+        if (!r4Var.I()) {
+            r4Var.J.e(0.0f);
         }
-        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        boolean z10;
+        Void r22 = (Void) obj;
+        if (this.f9121a.f29642b.f32849r1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        return Boolean.valueOf(z10);
     }
 }

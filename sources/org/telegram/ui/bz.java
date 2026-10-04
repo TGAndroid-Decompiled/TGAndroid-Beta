@@ -1,32 +1,83 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class bz {
-    public float f32514a;
-    public float f32515b;
-    public boolean f32516c;
-    public float d;
-    public float e;
-    public float f32517f;
-    public float f32518g;
-    public boolean h;
-    public boolean f32519i;
-    public zg.d f32520j;
-    public long f32521k;
-    public boolean f32522l;
-    public boolean f32523m;
-    public boolean f32524n;
-    public float f32525o;
-    public int f32526p;
-    public TLRPC.Document f32527q;
-    public final ImageReceiver f32528r;
-    public String f32529s;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class bz extends s4.v {
+    public boolean d;
+    public final dz f35215e;
 
-    public bz() {
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.f32528r = imageReceiver;
-        imageReceiver.setAllowLoadingOnAttachedOnly(true);
-        imageReceiver.setAllowDrawWhileCacheGenerating(true);
+    public bz(dz dzVar) {
+        this.f35215e = dzVar;
+    }
+
+    @Override
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        c1Var.f46523a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        if (c1Var.f46527f != 3) {
+            return s4.v.l(0, 0);
+        }
+        return s4.v.l(3, 0);
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        boolean z10;
+        boolean z11 = false;
+        if (c1Var.f46527f != c1Var2.f46527f) {
+            return false;
+        }
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        dz dzVar = this.f35215e;
+        az azVar = dzVar.f35861a;
+        dz dzVar2 = azVar.d;
+        int i10 = dzVar2.f35866n;
+        ArrayList arrayList = dzVar2.f35864e;
+        int i11 = b10 - i10;
+        int i12 = b11 - i10;
+        int i13 = dzVar2.f35867r - i10;
+        if (i11 >= 0 && i12 >= 0 && i11 < i13 && i12 < i13) {
+            arrayList.set(i11, (Long) arrayList.get(i12));
+            arrayList.set(i12, (Long) arrayList.get(i11));
+            azVar.p(b10, b11);
+            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) c1Var.f46523a;
+            if (b11 != dzVar.f35867r - 1) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            g4Var.setDrawDivider(z10);
+            org.telegram.ui.Cells.g4 g4Var2 = (org.telegram.ui.Cells.g4) c1Var2.f46523a;
+            if (b10 != dzVar.f35867r - 1) {
+                z11 = true;
+            }
+            g4Var2.setDrawDivider(z11);
+            this.d = true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        dz dzVar = this.f35215e;
+        if (i10 != 0) {
+            dzVar.f35862b.J0(false);
+            c1Var.f46523a.setPressed(true);
+        } else if (this.d) {
+            cz czVar = dzVar.f35865f;
+            if (czVar != null) {
+                czVar.a();
+            }
+            this.d = false;
+        }
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

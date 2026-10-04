@@ -1,99 +1,74 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.UndoView;
+import android.content.Context;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 public final class ew implements Runnable {
-    public final int f33473a;
-    public final qy f33474b;
+    public final int f36097a = 1;
+    public final TLObject f36098b;
+    public final long f36099c;
+    public final Object d;
+    public final Object f36100e;
+    public final Object f36101f;
+    public final Object h;
+    public final Object f36102n;
+    public final Object f36103r;
 
-    public ew(qy qyVar, int i10) {
-        this.f33473a = i10;
-        this.f33474b = qyVar;
+    public ew(TLObject tLObject, Context context, ai.a1 a1Var, long j3, byte[] bArr, org.telegram.messenger.video.a aVar, org.telegram.ui.Components.yc ycVar, org.telegram.messenger.video.d dVar) {
+        this.f36098b = tLObject;
+        this.d = context;
+        this.f36100e = a1Var;
+        this.f36099c = j3;
+        this.f36101f = bArr;
+        this.h = aVar;
+        this.f36102n = ycVar;
+        this.f36103r = dVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f33473a) {
+        switch (this.f36097a) {
             case 0:
-                qy qyVar = this.f33474b;
-                if (qyVar.R0 != 10) {
-                    qyVar.c4(false);
-                }
-                if (qyVar.L && qyVar.X3().G()) {
-                    qyVar.E0.h();
-                    return;
-                } else {
-                    qyVar.x4(true, true);
-                    return;
-                }
+                uy.n0((uy) this.d, (org.telegram.ui.ActionBar.b2) this.f36100e, this.f36098b, (TLRPC.User) this.f36101f, (TLRPC.Chat) this.h, this.f36099c, (TLRPC.TL_error) this.f36102n, (TLRPC.TL_messages_checkHistoryImportPeer) this.f36103r);
+                return;
             case 1:
-                qy qyVar2 = this.f33474b;
-                hh.g gVar = qyVar2.f37136y1;
-                if (gVar != null) {
-                    gVar.d();
-                }
-                qyVar2.s3();
-                qyVar2.m3();
-                qyVar2.t3();
-                ii.z1 z1Var = qyVar2.C1;
-                if (z1Var != null) {
-                    z1Var.setTranslationY(-qyVar2.v.c());
-                    return;
-                }
-                return;
-            case 2:
-                this.f33474b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
-                return;
-            case 3:
-                this.f33474b.M3();
-                return;
-            case 4:
-                this.f33474b.U4();
-                return;
-            case 5:
-                qy.F0(this.f33474b);
-                return;
-            case 6:
-                this.f33474b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
-                return;
-            case 7:
-                qy qyVar3 = this.f33474b;
-                ci.e4 e4Var = qyVar3.f37092q0;
-                if (e4Var != null) {
-                    e4Var.e(true);
-                }
-                qyVar3.presentFragment(new PremiumPreviewFragment(0, "stories"));
-                return;
-            case 8:
-                this.f33474b.f37034e0[0].d.l();
-                return;
-            case 9:
-                qy qyVar4 = this.f33474b;
-                UndoView Y3 = qyVar4.Y3();
-                if (Y3 != null) {
-                    Y3.l(0L, 15, null, new lv(qyVar4, 25));
-                    return;
-                }
-                return;
-            case 10:
-                qy qyVar5 = this.f33474b;
-                qyVar5.getClass();
-                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                long j3 = globalMainSettings.getLong("cache_hint_period", 604800000L);
-                if (j3 <= 604800000) {
-                    j3 = 2592000000L;
-                }
-                globalMainSettings.edit().putLong("cache_hint_showafter", System.currentTimeMillis() + j3).putLong("cache_hint_period", j3).apply();
-                qyVar5.U4();
-                return;
-            case 11:
-                MessagesController.getInstance(this.f33474b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                Context context = (Context) this.d;
+                ai.a1 a1Var = (ai.a1) this.f36100e;
+                byte[] bArr = (byte[]) this.f36101f;
+                org.telegram.ui.Components.yc ycVar = (org.telegram.ui.Components.yc) this.f36102n;
+                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f36103r;
+                TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) this.f36098b;
+                v31 v31Var = new v31(context, a1Var, this.f36099c, bArr);
+                v31Var.M(tL_channels_sponsoredMessageReportResultChooseOption);
+                v31Var.f41547s = new o31((org.telegram.messenger.video.a) this.h, ycVar, context, a1Var, dVar);
+                v31Var.show();
                 return;
             default:
-                this.f33474b.a5();
+                yh.x3.C0((yh.x3) this.d, (nf.e) this.f36101f, (org.telegram.ui.ActionBar.b2) this.f36100e, this.f36098b, (TL_stars.TL_starGiftUnique) this.h, (TLRPC.TL_error) this.f36102n, this.f36099c, (CharSequence) this.f36103r);
                 return;
         }
+    }
+
+    public ew(uy uyVar, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, TLRPC.User user, TLRPC.Chat chat, long j3, TLRPC.TL_error tL_error, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
+        this.d = uyVar;
+        this.f36100e = b2Var;
+        this.f36098b = tLObject;
+        this.f36101f = user;
+        this.h = chat;
+        this.f36099c = j3;
+        this.f36102n = tL_error;
+        this.f36103r = tL_messages_checkHistoryImportPeer;
+    }
+
+    public ew(yh.x3 x3Var, nf.e eVar, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.TL_error tL_error, long j3, CharSequence charSequence) {
+        this.d = x3Var;
+        this.f36101f = eVar;
+        this.f36100e = b2Var;
+        this.f36098b = tLObject;
+        this.h = tL_starGiftUnique;
+        this.f36102n = tL_error;
+        this.f36099c = j3;
+        this.f36103r = charSequence;
     }
 }

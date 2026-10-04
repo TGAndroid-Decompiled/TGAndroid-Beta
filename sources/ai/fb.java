@@ -12,7 +12,7 @@ public abstract class fb {
             new eb(storyItem).readParams(nativeByteBuffer, true);
             return;
         }
-        throw new RuntimeException(hg.c.h(readInt32, "(story) can't read params version = "));
+        throw new RuntimeException(hg.k0.h(readInt32, "(story) can't read params version = "));
     }
 
     public static NativeByteBuffer b(TL_stories.StoryItem storyItem) {
@@ -24,8 +24,8 @@ public abstract class fb {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(ebVar.getObjectSize());
             ebVar.serializeToStream(nativeByteBuffer);
             return nativeByteBuffer;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e7) {
+            e7.printStackTrace();
             return null;
         }
     }

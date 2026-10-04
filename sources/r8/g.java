@@ -2,21 +2,21 @@ package r8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import w7.f0;
+import w7.g0;
 public final class g extends o6.a {
     public static final Parcelable.Creator<g> CREATOR = new p7.j(17);
-    public double f42410a;
-    public double f42411b;
+    public double f45903a;
+    public double f45904b;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        double d = this.f42410a;
-        f0.s(parcel, 2, 8);
+        int q6 = g0.q(parcel, 20293);
+        double d = this.f45903a;
+        g0.s(parcel, 2, 8);
         parcel.writeDouble(d);
-        double d10 = this.f42411b;
-        f0.s(parcel, 3, 8);
+        double d10 = this.f45904b;
+        g0.s(parcel, 3, 8);
         parcel.writeDouble(d10);
-        f0.r(parcel, q6);
+        g0.r(parcel, q6);
     }
 }

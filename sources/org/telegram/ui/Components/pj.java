@@ -1,23 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class pj extends s4.d0 {
-    public final hg.g0 f27356r;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class pj implements TextWatcher {
+    public final bk f29646a;
 
-    public pj(hg.g0 g0Var, Context context) {
-        super(context);
-        this.f27356r = g0Var;
+    public pj(bk bkVar) {
+        this.f29646a = bkVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        return org.telegram.messenger.f0.A(8.0f, ((ak) this.f27356r.V).f22678s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+    public final void afterTextChanged(Editable editable) {
+        int currentTop;
+        String obj = editable.toString();
+        if (!obj.isEmpty()) {
+            pz pzVar = this.f29646a.G;
+            if (pzVar != null) {
+                pzVar.setText(LocaleController.getString(R.string.NoResult));
+            }
+        } else {
+            s4.h0 adapter = this.f29646a.f24988s.getAdapter();
+            bk bkVar = this.f29646a;
+            if (adapter != bkVar.E) {
+                currentTop = bkVar.getCurrentTop();
+                this.f29646a.G.setText(LocaleController.getString(R.string.NoContacts));
+                this.f29646a.G.c();
+                bk bkVar2 = this.f29646a;
+                bkVar2.f24988s.setAdapter(bkVar2.E);
+                this.f29646a.E.l();
+                if (currentTop > 0) {
+                    this.f29646a.v.h1(0, -currentTop);
+                }
+            }
+        }
+        xj xjVar = this.f29646a.F;
+        if (xjVar != null) {
+            if (xjVar.f32887f != null) {
+                Utilities.searchQueue.cancelRunnable(xjVar.f32887f);
+                xjVar.f32887f = null;
+            }
+            int i10 = xjVar.h + 1;
+            xjVar.h = i10;
+            DispatchQueue dispatchQueue = Utilities.searchQueue;
+            wj wjVar = new wj(xjVar, obj, i10, 0);
+            xjVar.f32887f = wjVar;
+            dispatchQueue.postRunnable(wjVar, 300L);
+        }
     }
 
     @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

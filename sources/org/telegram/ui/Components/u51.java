@@ -1,53 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class u51 extends MetricAffectingSpan {
-    public Typeface f28748a;
-    public int f28749b;
-    public int f28750c;
+import android.util.SparseArray;
+import org.telegram.tgnet.TLRPC;
+public final class u51 extends g.p {
+    public final c61 f31298c;
 
-    public u51(Typeface typeface) {
-        this.f28750c = -1;
-        this.f28748a = typeface;
+    public u51(c61 c61Var) {
+        this.f31298c = c61Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10 = this.f28750c;
-        if (i10 >= 0) {
-            this.f28749b = org.telegram.ui.ActionBar.h6.w0(null, i10, false);
+    public final int i(int i10) {
+        c61 c61Var = this.f31298c;
+        s4.h0 adapter = c61Var.f25231n.getAdapter();
+        b61 b61Var = c61Var.f25233s;
+        if (adapter == b61Var) {
+            if ((b61Var.d.get(i10) instanceof Integer) || i10 >= b61Var.f24806w) {
+                return b61Var.v;
+            }
+            return 1;
         }
-        Typeface typeface = this.f28748a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
+        gg.g2 g2Var = c61Var.v;
+        SparseArray sparseArray = g2Var.f10596s;
+        if (i10 != g2Var.f10599y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
+            return 1;
         }
-        int i11 = this.f28749b;
-        if (i11 != 0) {
-            textPaint.setColor(i11);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.f28748a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
-    }
-
-    public u51() {
-        Typeface typeface = Typeface.DEFAULT;
-        this.f28750c = -1;
-        this.f28748a = typeface;
-    }
-
-    public u51(Typeface typeface, int i10) {
-        this.f28750c = -1;
-        this.f28748a = typeface;
-        this.f28749b = i10;
+        return g2Var.f10592e.a();
     }
 }

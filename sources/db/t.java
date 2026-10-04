@@ -2,16 +2,16 @@ package db;
 
 import java.io.IOException;
 public abstract class t {
-    public static final p f7594a;
-    public static final q f7595b;
-    public static final t[] f7596c;
+    public static final p f8213a;
+    public static final q f8214b;
+    public static final t[] f8215c;
 
     static {
         p pVar = new p();
-        f7594a = pVar;
+        f8213a = pVar;
         q qVar = new q();
-        f7595b = qVar;
-        f7596c = new t[]{pVar, qVar, new t() {
+        f8214b = qVar;
+        f8215c = new t[]{pVar, qVar, new t() {
             public static Double b(String str, lb.a aVar) {
                 try {
                     Double valueOf = Double.valueOf(str);
@@ -19,10 +19,10 @@ public abstract class t {
                         return valueOf;
                     }
                     throw new IOException("JSON forbids NaN and infinities: " + valueOf + "; at path " + aVar.j());
-                } catch (NumberFormatException e) {
-                    StringBuilder w10 = a4.a.w("Cannot parse ", str, "; at path ");
-                    w10.append(aVar.j());
-                    throw new RuntimeException(w10.toString(), e);
+                } catch (NumberFormatException e7) {
+                    StringBuilder v = a4.a.v("Cannot parse ", str, "; at path ");
+                    v.append(aVar.j());
+                    throw new RuntimeException(v.toString(), e7);
                 }
             }
 
@@ -44,10 +44,10 @@ public abstract class t {
                 String v = aVar.v();
                 try {
                     return fb.d.i(v);
-                } catch (NumberFormatException e) {
-                    StringBuilder w10 = a4.a.w("Cannot parse ", v, "; at path ");
-                    w10.append(aVar.j());
-                    throw new RuntimeException(w10.toString(), e);
+                } catch (NumberFormatException e7) {
+                    StringBuilder v9 = a4.a.v("Cannot parse ", v, "; at path ");
+                    v9.append(aVar.j());
+                    throw new RuntimeException(v9.toString(), e7);
                 }
             }
         }};
@@ -58,7 +58,7 @@ public abstract class t {
     }
 
     public static t[] values() {
-        return (t[]) f7596c.clone();
+        return (t[]) f8215c.clone();
     }
 
     public abstract Number a(lb.a aVar);

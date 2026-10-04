@@ -206,8 +206,12 @@ public class LiteMode {
             SvgHelper.SvgDrawable.updateLiteValues();
         }
         if (i13 > 0) {
-            org.telegram.ui.ActionBar.h6.o1(true);
+            org.telegram.ui.ActionBar.i6.o1(true);
         }
+        if (!w7.e0.a(i12, 256) && !w7.e0.a(i12, 262144)) {
+            return;
+        }
+        li.m.f();
     }
 
     private static void onPowerSaverApplied(boolean z10) {
@@ -292,8 +296,8 @@ public class LiteMode {
                         PRESET_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList.get(0)).value;
                         PRESET_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList.get(1)).value;
                         PRESET_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList.get(2)).value;
-                    } catch (Exception e) {
-                        FileLog.e(e);
+                    } catch (Exception e7) {
+                        FileLog.e(e7);
                     }
                 }
             }
@@ -305,8 +309,8 @@ public class LiteMode {
                         BATTERY_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(0)).value;
                         BATTERY_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
                         BATTERY_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
                     }
                 }
             }

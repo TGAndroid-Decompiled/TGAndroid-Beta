@@ -1,36 +1,60 @@
 package org.telegram.ui;
 
-import android.os.AsyncTask;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class eo0 extends AsyncTask {
-    public final uc.a f33453a;
-    public final oo0 f33454b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class eo0 implements qo0 {
+    public final Runnable f36060a;
+    public final so0 f36061b;
 
-    public eo0(oo0 oo0Var, uc.a aVar) {
-        this.f33454b = oo0Var;
-        this.f33453a = aVar;
+    public eo0(so0 so0Var, Runnable runnable) {
+        this.f36061b = so0Var;
+        this.f36060a = runnable;
     }
 
     @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.eo0.doInBackground(java.lang.Object[]):java.lang.Object");
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        String str3;
+        so0 so0Var = this.f36061b;
+        so0Var.f40579y0 = tL_paymentSavedCredentialsCard;
+        so0Var.f40575w0 = str;
+        so0Var.U0 = z10;
+        so0Var.f40577x0 = str2;
+        so0Var.J0 = tL_inputPaymentCredentialsGooglePay;
+        org.telegram.ui.Cells.d9[] d9VarArr = so0Var.Y;
+        org.telegram.ui.Cells.d9 d9Var = d9VarArr[0];
+        if (d9Var != null) {
+            d9Var.setVisibility(0);
+            org.telegram.ui.Cells.d9 d9Var2 = d9VarArr[0];
+            String str4 = so0Var.f40577x0;
+            if (str4 != null && str4.length() > 1) {
+                str3 = so0Var.f40577x0.substring(0, 1).toUpperCase() + so0Var.f40577x0.substring(1);
+            } else {
+                str3 = so0Var.f40577x0;
+            }
+            d9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
+            org.telegram.ui.Cells.d9 d9Var3 = d9VarArr[1];
+            if (d9Var3 != null) {
+                d9Var3.setVisibility(0);
+            }
+        }
+        Runnable runnable = this.f36060a;
+        if (runnable != null) {
+            runnable.run();
+        }
+        return false;
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        oo0 oo0Var = this.f33454b;
-        if (oo0Var.Q0) {
-            return;
-        }
-        if (str == null) {
-            org.telegram.ui.Components.e5.w0(oo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
-        } else {
-            oo0Var.f36314w0 = str;
-            oo0Var.t0();
-        }
-        oo0Var.H0(true, false);
-        oo0Var.D0(false);
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

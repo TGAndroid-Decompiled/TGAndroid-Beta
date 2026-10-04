@@ -10,14 +10,14 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class m5 {
-    public HashMap f26295a;
-    public HashMap f26296b;
-    public HashSet f26297c;
-    public pg d;
-    public final int e;
+    public HashMap f28527a;
+    public HashMap f28528b;
+    public HashSet f28529c;
+    public qg d;
+    public final int f28530e;
 
     public m5(int i10) {
-        this.e = i10;
+        this.f28530e = i10;
     }
 
     public static boolean a() {
@@ -36,33 +36,33 @@ public final class m5 {
         if (j3 != 0) {
             synchronized (this) {
                 try {
-                    HashMap hashMap = this.f26295a;
+                    HashMap hashMap = this.f28527a;
                     if (hashMap != null && (document = (TLRPC.Document) hashMap.get(Long.valueOf(j3))) != null) {
                         if (n5Var != null) {
                             n5Var.a(document);
                         }
                     } else if (a()) {
-                        if (this.f26296b == null) {
-                            this.f26296b = new HashMap();
+                        if (this.f28528b == null) {
+                            this.f28528b = new HashMap();
                         }
-                        ArrayList arrayList = (ArrayList) this.f26296b.get(Long.valueOf(j3));
+                        ArrayList arrayList = (ArrayList) this.f28528b.get(Long.valueOf(j3));
                         if (arrayList != null) {
                             arrayList.add(n5Var);
                             return;
                         }
                         ArrayList arrayList2 = new ArrayList(1);
                         arrayList2.add(n5Var);
-                        this.f26296b.put(Long.valueOf(j3), arrayList2);
-                        if (this.f26297c == null) {
-                            this.f26297c = new HashSet();
+                        this.f28528b.put(Long.valueOf(j3), arrayList2);
+                        if (this.f28529c == null) {
+                            this.f28529c = new HashSet();
                         }
-                        this.f26297c.add(Long.valueOf(j3));
+                        this.f28529c.add(Long.valueOf(j3));
                         if (this.d != null) {
                             return;
                         }
-                        pg pgVar = new pg(this, 5);
-                        this.d = pgVar;
-                        AndroidUtilities.runOnUIThread(pgVar);
+                        qg qgVar = new qg(this, 5);
+                        this.d = qgVar;
+                        AndroidUtilities.runOnUIThread(qgVar);
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -74,7 +74,7 @@ public final class m5 {
     public final TLRPC.InputStickerSet c(long j3) {
         synchronized (this) {
             try {
-                HashMap hashMap = this.f26295a;
+                HashMap hashMap = this.f28527a;
                 if (hashMap == null) {
                     return null;
                 }
@@ -97,8 +97,8 @@ public final class m5 {
                 if (arrayList.get(i10) instanceof TLRPC.Document) {
                     TLRPC.Document document = (TLRPC.Document) arrayList.get(i10);
                     e(document);
-                    HashMap hashMap = this.f26296b;
-                    if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.f18343id))) != null) {
+                    HashMap hashMap = this.f28528b;
+                    if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.f20043id))) != null) {
                         for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                             n5 n5Var = (n5) arrayList2.get(i11);
                             if (n5Var != null) {
@@ -118,10 +118,10 @@ public final class m5 {
         }
         synchronized (this) {
             try {
-                if (this.f26295a == null) {
-                    this.f26295a = new HashMap();
+                if (this.f28527a == null) {
+                    this.f28527a = new HashMap();
                 }
-                this.f26295a.put(Long.valueOf(document.f18343id), document);
+                this.f28527a.put(Long.valueOf(document.f20043id), document);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -134,8 +134,8 @@ public final class m5 {
         }
         synchronized (this) {
             try {
-                if (this.f26295a == null) {
-                    this.f26295a = new HashMap();
+                if (this.f28527a == null) {
+                    this.f28527a = new HashMap();
                 }
                 int size = arrayList.size();
                 int i10 = 0;
@@ -143,7 +143,7 @@ public final class m5 {
                     Object obj = arrayList.get(i10);
                     i10++;
                     TLRPC.Document document = (TLRPC.Document) obj;
-                    this.f26295a.put(Long.valueOf(document.f18343id), document);
+                    this.f28527a.put(Long.valueOf(document.f20043id), document);
                 }
             } catch (Throwable th2) {
                 throw th2;

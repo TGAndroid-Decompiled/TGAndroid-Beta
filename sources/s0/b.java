@@ -5,43 +5,33 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Base64;
 import android.util.Log;
 import c3.o;
-import e9.i0;
-import e9.q;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.Components.cd0;
-import u2.d0;
-import u2.o1;
-import u2.y0;
-public final class b implements s5.f, pa.a, q9.d, z1, cd0, d9.e, e2.h {
-    public final int f42904a;
+public final class b implements s5.e, pa.a, q9.d, a2, cd0, d9.e {
+    public final int f46462a;
 
     public b(int i10) {
-        this.f42904a = i10;
+        this.f46462a = i10;
     }
 
     @Override
-    public java.lang.Object G(cf.c r45) {
-        throw new UnsupportedOperationException("Method not decompiled: s0.b.G(cf.c):java.lang.Object");
-    }
-
-    @Override
-    public void accept(Object obj) {
-        ((y0) obj).f43824b.release();
+    public java.lang.Object E(cf.c r45) {
+        throw new UnsupportedOperationException("Method not decompiled: s0.b.E(cf.c):java.lang.Object");
     }
 
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f42904a) {
-            case 16:
+        switch (this.f46462a) {
+            case 18:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
                     ArrayList arrayList = new ArrayList();
                     while (rawQuery.moveToNext()) {
                         aa.a a2 = l5.i.a();
-                        a2.t(rawQuery.getString(1));
+                        a2.s(rawQuery.getString(1));
                         a2.d = v5.a.b(rawQuery.getInt(2));
                         String string = rawQuery.getString(3);
                         if (string == null) {
@@ -49,38 +39,32 @@ public final class b implements s5.f, pa.a, q9.d, z1, cd0, d9.e, e2.h {
                         } else {
                             decode = Base64.decode(string, 0);
                         }
-                        a2.f360c = decode;
+                        a2.f387c = decode;
                         arrayList.add(a2.e());
                     }
                     return arrayList;
                 } finally {
                     rawQuery.close();
                 }
-            case 27:
+            default:
                 return ((o) obj).c().getClass().getSimpleName();
-            default:
-                return i0.v(q.w(((d0) obj).r().f43753b, new o1(0)));
         }
     }
 
     @Override
-    public void f(a2 a2Var, int i10) {
-        switch (this.f42904a) {
-            case 22:
-                return;
+    public String e(int i10) {
+        switch (this.f46462a) {
             case 25:
-                a2Var.dismiss();
-                return;
+                return String.valueOf(i10);
             default:
-                a2Var.dismiss();
-                return;
+                return String.format("%02d", Integer.valueOf(i10 * 5));
         }
     }
 
     @Override
-    public void g(pa.b bVar) {
-        switch (this.f42904a) {
-            case 17:
+    public void f(pa.b bVar) {
+        switch (this.f46462a) {
+            case 19:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
                 }
@@ -93,19 +77,23 @@ public final class b implements s5.f, pa.a, q9.d, z1, cd0, d9.e, e2.h {
     }
 
     @Override
-    public String j(int i10) {
-        switch (this.f42904a) {
-            case 23:
-                return String.valueOf(i10);
+    public void g(b2 b2Var, int i10) {
+        switch (this.f46462a) {
+            case 24:
+                return;
+            case 27:
+                b2Var.dismiss();
+                return;
             default:
-                return String.format("%02d", Integer.valueOf(i10 * 5));
+                b2Var.dismiss();
+                return;
         }
     }
 
     public b(Object obj, int i10) {
-        this.f42904a = i10;
+        this.f46462a = i10;
     }
 
-    private final void a(a2 a2Var, int i10) {
+    private final void a(b2 b2Var, int i10) {
     }
 }

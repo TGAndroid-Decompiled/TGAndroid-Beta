@@ -1,13 +1,76 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class o30 extends View {
-    public o30(LaunchActivity launchActivity) {
+import android.view.MotionEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.voip.VoIPService;
+public final class o30 extends org.telegram.ui.Components.nj0 {
+    public final h60 f39098r;
+
+    public o30(h60 h60Var, LaunchActivity launchActivity) {
         super(launchActivity);
+        this.f39098r = h60Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName(Button.class.getName());
+        h60 h60Var = this.f39098r;
+        int i10 = h60Var.F1;
+        if (i10 != 0 && i10 != 1) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        accessibilityNodeInfo.setEnabled(z10);
+        if (h60Var.F1 == 1) {
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.VoipMute)));
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        h60 h60Var = this.f39098r;
+        v20 v20Var = h60Var.f36976y2;
+        ArrayList arrayList = h60Var.Z1;
+        if (h60Var.r1()) {
+            return super.onTouchEvent(motionEvent);
+        }
+        if (motionEvent.getAction() == 0 && h60Var.F1 == 0 && h60Var.f36873a1 != null) {
+            AndroidUtilities.runOnUIThread(v20Var, 300L);
+            h60Var.R1 = true;
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (h60Var.R1) {
+                AndroidUtilities.cancelRunOnUIThread(v20Var);
+                h60Var.R1 = false;
+            } else if (h60Var.S1) {
+                AndroidUtilities.cancelRunOnUIThread(h60Var.f36971x2);
+                h60Var.J1(0, true);
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().setMicMute(true, true, false);
+                    try {
+                        h60Var.f36963w.performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                }
+                arrayList.clear();
+                arrayList.addAll(h60Var.Y1);
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    ((org.telegram.ui.Components.voip.u) arrayList.get(i10)).j(true);
+                }
+                h60Var.S1 = false;
+                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                super.onTouchEvent(obtain);
+                obtain.recycle();
+                return true;
+            }
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

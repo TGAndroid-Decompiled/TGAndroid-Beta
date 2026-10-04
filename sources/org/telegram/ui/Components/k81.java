@@ -2,465 +2,267 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.media.MediaMetadataRetriever;
-import android.os.AsyncTask;
-import android.view.MotionEvent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.text.TextPaint;
 import android.view.View;
+import j$.util.Comparator$CC;
+import java.io.File;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimatedFileDrawableStream;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.VideoEditedInfo;
-public final class k81 extends View {
-    public static final Object T = new Object();
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public abstract class k81 extends View implements NotificationCenter.NotificationCenterDelegate {
     public int E;
-    public int F;
-    public float G;
-    public float H;
-    public boolean I;
-    public Rect J;
-    public Rect K;
-    public int L;
-    public Bitmap M;
-    public final ArrayList N;
-    public boolean O;
-    public i81 P;
-    public Path Q;
-    public final Paint R;
-    public boolean S;
-    public long f25641a;
-    public float f25642b;
-    public float f25643c;
-    public final Paint d;
-    public final Paint e;
-    public boolean f25644f;
-    public boolean h;
-    public float f25645n;
-    public MediaMetadataRetriever f25646r;
-    public j81 f25647s;
-    public final ArrayList v;
-    public h81 f25648w;
-    public long f25649x;
-    public int f25650y;
+    public final TextPaint F;
+    public BitmapShader G;
+    public final RectF H;
+    public final Paint I;
+    public final Paint J;
+    public final RectF K;
+    public final Matrix L;
+    public final org.telegram.ui.lr0 M;
+    public org.telegram.ui.du0 N;
+    public double O;
+    public boolean P;
+    public final ImageReceiver Q;
+    public int R;
+    public int S;
+    public int T;
+    public int U;
+    public final Path V;
+    public long W;
+    public boolean f28007a;
+    public long f28008a0;
+    public d6 f28009b;
+    public int f28010b0;
+    public long f28011c;
+    public int f28012c0;
+    public Uri d;
+    public ArrayList f28013d0;
+    public Runnable f28014e;
+    public TLRPC.Document f28015e0;
+    public i81 f28016f;
+    public String f28017f0;
+    public int f28018g0;
+    public float h;
+    public int f28019n;
+    public int f28020r;
+    public boolean f28021s;
+    public Bitmap v;
+    public Bitmap f28022w;
+    public final Drawable f28023x;
+    public String f28024y;
 
-    public k81(Context context) {
+    public k81(Context context, org.telegram.ui.lr0 lr0Var) {
         super(context);
-        this.f25643c = 1.0f;
-        Paint paint = new Paint();
-        this.d = paint;
-        Paint paint2 = new Paint();
-        this.e = paint2;
-        this.v = new ArrayList();
-        this.G = 1.0f;
-        this.H = 0.0f;
-        this.N = new ArrayList();
-        Paint paint3 = new Paint(1);
-        this.R = paint3;
-        paint.setColor(2130706432);
-        paint3.setColor(-1);
-        paint3.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        paint3.setStyle(Paint.Style.STROKE);
-        paint3.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19005a7, false));
-        this.L = 0;
-        i81 i81Var = this.P;
-        if (i81Var != null) {
-            i81Var.b();
-        }
+        this.f28019n = -1;
+        TextPaint textPaint = new TextPaint(1);
+        this.F = textPaint;
+        this.H = new RectF();
+        this.I = new Paint(2);
+        this.J = new Paint(2);
+        this.K = new RectF();
+        this.L = new Matrix();
+        this.V = new Path();
+        this.f28018g0 = -1;
+        setVisibility(4);
+        this.f28023x = context.getResources().getDrawable(R.drawable.videopreview);
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint.setColor(-1);
+        this.M = lr0Var;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.Q = imageReceiver;
+        imageReceiver.setParentView(this);
+        imageReceiver.setDelegate(new pv(this, 29));
     }
 
-    public final void a(boolean z10) {
-        synchronized (T) {
-            try {
-                MediaMetadataRetriever mediaMetadataRetriever = this.f25646r;
-                if (mediaMetadataRetriever != null) {
-                    mediaMetadataRetriever.release();
-                    this.f25646r = null;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
+    public final void a() {
+        if (this.f28014e != null) {
+            Utilities.globalQueue.cancelRunnable(this.f28014e);
+            this.f28014e = null;
+        }
+        if (this.f28016f != null) {
+            Utilities.globalQueue.cancelRunnable(this.f28016f);
+            this.f28016f = null;
+        }
+        d6 d6Var = this.f28009b;
+        if (d6Var != null) {
+            AnimatedFileDrawableStream animatedFileDrawableStream = d6Var.f25593u0;
+            if (animatedFileDrawableStream != null) {
+                animatedFileDrawableStream.cancel(true);
+            }
+            if (d6Var.f25572d0 != null) {
+                d6Var.f25572d0.h();
             }
         }
-        if (z10) {
-            int i10 = 0;
-            if (!this.N.isEmpty()) {
-                while (i10 < this.N.size()) {
-                    Bitmap bitmap = (Bitmap) this.N.get(i10);
-                    if (bitmap != null) {
-                        bitmap.recycle();
-                    }
-                    i10++;
-                }
-            } else {
-                while (i10 < this.v.size()) {
-                    Bitmap bitmap2 = (Bitmap) this.v.get(i10);
-                    if (bitmap2 != null) {
-                        bitmap2.recycle();
-                    }
-                    i10++;
-                }
-            }
-        }
-        this.N.clear();
-        this.v.clear();
-        h81 h81Var = this.f25648w;
-        if (h81Var != null) {
-            h81Var.cancel(true);
-            this.f25648w = null;
+        Utilities.globalQueue.postRunnable(new g81(this, 0));
+        setVisibility(4);
+        this.f28022w = null;
+        this.G = null;
+        invalidate();
+        this.f28019n = -1;
+        this.d = null;
+        this.f28021s = false;
+        this.f28007a = false;
+        if (this.W != 0) {
+            this.W = 0L;
+            this.f28017f0 = null;
+            this.f28015e0 = null;
+            this.f28013d0 = null;
+            b(-1);
         }
     }
 
     public final void b(int i10) {
-        if (this.f25646r != null) {
-            if (i10 == 0) {
-                if (this.I) {
-                    int dp = AndroidUtilities.dp(56.0f);
-                    this.f25650y = dp;
-                    this.E = dp;
-                    this.F = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / (this.E / 2.0f)));
-                } else {
-                    this.E = AndroidUtilities.dp(40.0f);
-                    this.F = Math.max(1, (getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / this.E);
-                    this.f25650y = (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / this.F);
-                }
-                this.f25649x = this.f25641a / this.F;
-                ArrayList arrayList = this.N;
-                if (!arrayList.isEmpty()) {
-                    float size = arrayList.size() / this.F;
-                    float f7 = 0.0f;
-                    for (int i11 = 0; i11 < this.F; i11++) {
-                        this.v.add((Bitmap) arrayList.get((int) f7));
-                        f7 += size;
+        int i11 = this.f28018g0;
+        if (i11 == i10) {
+            return;
+        }
+        if (i10 == -1) {
+            NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.f28018g0).removeObserver(this, NotificationCenter.fileLoadFailed);
+        } else {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoadFailed);
+        }
+        this.f28018g0 = i10;
+    }
+
+    public final void c(org.telegram.ui.Components.d81 r12, org.telegram.messenger.MessageObject r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k81.c(org.telegram.ui.Components.d81, org.telegram.messenger.MessageObject):void");
+    }
+
+    public final void d(File file) {
+        try {
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+            ArrayList arrayList = new ArrayList();
+            long j3 = 0;
+            int i10 = 0;
+            int i11 = 0;
+            while (true) {
+                String readLine = randomAccessFile.readLine();
+                if (readLine != null) {
+                    if (readLine.startsWith("file=mtproto:")) {
+                        j3 = Long.parseLong(readLine.substring(13));
+                    } else if (readLine.startsWith("frame_width=")) {
+                        i10 = Integer.parseInt(readLine.substring(12));
+                    } else if (readLine.startsWith("frame_height=")) {
+                        i11 = Integer.parseInt(readLine.substring(13));
+                    } else {
+                        String[] split = readLine.split(",");
+                        if (split.length == 3) {
+                            arrayList.add(new j81(Integer.parseInt(split[1]), Integer.parseInt(split[2]), Double.parseDouble(split[0])));
+                        }
                     }
+                } else {
+                    Collections.sort(arrayList, Comparator$CC.comparingDouble(new h81(0)));
+                    this.f28008a0 = j3;
+                    this.f28010b0 = i10;
+                    this.f28012c0 = i11;
+                    this.f28013d0 = arrayList;
                     return;
                 }
             }
-            this.O = false;
-            h81 h81Var = new h81(this);
-            this.f25648w = h81Var;
-            h81Var.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, Integer.valueOf(i10), null, null);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            this.f28013d0 = null;
         }
     }
 
-    public float getLeftProgress() {
-        return this.f25642b;
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.fileLoaded) {
+            if (((String) objArr[0]).equals(this.f28017f0)) {
+                File pathToAttach = FileLoader.getInstance(i11).getPathToAttach(this.f28015e0);
+                if (pathToAttach != null && pathToAttach.exists()) {
+                    d(pathToAttach);
+                }
+                this.f28017f0 = null;
+                this.f28015e0 = null;
+                b(-1);
+            }
+        } else if (i10 == NotificationCenter.fileLoadFailed && ((String) objArr[0]).equals(this.f28017f0)) {
+            this.f28017f0 = null;
+            this.f28015e0 = null;
+            b(-1);
+        }
     }
 
-    public float getRightProgress() {
-        return this.f25643c;
+    public final void e(org.telegram.messenger.MessageObject r18, final float r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k81.e(org.telegram.messenger.MessageObject, float, int):void");
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.Q.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.Q.onDetachedFromWindow();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int i10;
-        if (this.S) {
-            canvas.save();
-            Path path = this.Q;
-            if (path != null) {
-                canvas.clipPath(path);
-            }
+        Bitmap bitmap = this.v;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.v = null;
         }
-        float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
-        int dp = AndroidUtilities.dp(12.0f) + ((int) (this.f25642b * measuredWidth));
-        int dp2 = AndroidUtilities.dp(12.0f) + ((int) (measuredWidth * this.f25643c));
-        float f7 = 32.0f;
-        int measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(32.0f)) >> 1;
-        ArrayList arrayList = this.v;
-        if (arrayList.isEmpty() && this.f25648w == null) {
-            b(0);
-        }
-        if (!arrayList.isEmpty()) {
-            if (!this.O) {
-                canvas.drawRect(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight() - measuredHeight, this.e);
-            }
-            int i11 = 0;
-            int i12 = 0;
-            while (i11 < arrayList.size()) {
-                Bitmap bitmap = (Bitmap) arrayList.get(i11);
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    boolean z10 = this.I;
-                    int i13 = this.f25650y;
-                    if (z10) {
-                        i13 /= 2;
-                    }
-                    int i14 = i13 * i12;
-                    if (z10) {
-                        this.K.set(i14, measuredHeight, AndroidUtilities.dp(28.0f) + i14, AndroidUtilities.dp(f7) + measuredHeight);
-                        canvas.drawBitmap(bitmap, this.J, this.K, (Paint) null);
-                    } else {
-                        canvas.drawBitmap(bitmap, i14, measuredHeight, (Paint) null);
-                    }
-                }
-                i12++;
-                i11++;
-                f7 = 32.0f;
-            }
-            float f10 = measuredHeight;
-            Paint paint = this.d;
-            canvas.drawRect(0.0f, f10, dp, getMeasuredHeight() - measuredHeight, paint);
-            canvas.drawRect(dp2, f10, getMeasuredWidth(), getMeasuredHeight() - measuredHeight, paint);
-            Paint paint2 = this.R;
-            canvas.drawLine(dp - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f) + measuredHeight, dp - AndroidUtilities.dp(4.0f), org.telegram.messenger.f0.B(10.0f, getMeasuredHeight(), measuredHeight), paint2);
-            canvas.drawLine(AndroidUtilities.dp(4.0f) + dp2, AndroidUtilities.dp(10.0f) + measuredHeight, AndroidUtilities.dp(4.0f) + dp2, org.telegram.messenger.f0.B(10.0f, getMeasuredHeight(), measuredHeight), paint2);
-            if (this.S) {
-                canvas.restore();
-                return;
-            }
-            int measuredHeight2 = getMeasuredHeight() - (measuredHeight * 2);
-            int measuredWidth2 = getMeasuredWidth();
-            if (AndroidUtilities.dp(6.0f) != this.L) {
-                this.L = AndroidUtilities.dp(6.0f);
-                this.M = Bitmap.createBitmap(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Bitmap.Config.ARGB_8888);
-                Canvas canvas2 = new Canvas(this.M);
-                Paint paint3 = new Paint(1);
-                paint3.setColor(0);
-                paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                canvas2.drawColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sd, false));
-                float f11 = this.L;
-                canvas2.drawCircle(f11, f11, f11, paint3);
-            }
-            int i15 = this.L >> 1;
+        boolean z10 = this.P;
+        TextPaint textPaint = this.F;
+        Drawable drawable = this.f28023x;
+        if (z10) {
             canvas.save();
-            float f12 = 0;
-            canvas.drawBitmap(this.M, f12, f10, (Paint) null);
-            float f13 = (measuredHeight2 + measuredHeight) - i15;
-            canvas.rotate(-90.0f, i15, f13);
-            canvas.drawBitmap(this.M, f12, i10 - this.L, (Paint) null);
+            Path path = this.V;
+            path.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+            canvas.clipPath(path);
+            canvas.scale(getWidth() / this.T, getHeight() / this.U);
+            canvas.translate(-this.R, -this.S);
+            ImageReceiver imageReceiver = this.Q;
+            imageReceiver.setImageCoords(0.0f, 0.0f, imageReceiver.getBitmapWidth(), imageReceiver.getBitmapHeight());
+            imageReceiver.draw(canvas);
             canvas.restore();
-            canvas.save();
-            float f14 = measuredWidth2 - i15;
-            canvas.rotate(180.0f, f14, f13);
-            Bitmap bitmap2 = this.M;
-            int i16 = this.L;
-            canvas.drawBitmap(bitmap2, measuredWidth2 - i16, i10 - i16, (Paint) null);
-            canvas.restore();
-            canvas.save();
-            canvas.rotate(90.0f, f14, measuredHeight + i15);
-            canvas.drawBitmap(this.M, measuredWidth2 - this.L, f10, (Paint) null);
-            canvas.restore();
-        } else if (this.S) {
-            canvas.restore();
+            drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            drawable.draw(canvas);
+            canvas.drawText(this.f28024y, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), textPaint);
+        } else if (this.f28022w != null && this.G != null) {
+            Matrix matrix = this.L;
+            matrix.reset();
+            float measuredWidth = getMeasuredWidth() / this.f28022w.getWidth();
+            matrix.preScale(measuredWidth, measuredWidth);
+            RectF rectF2 = this.K;
+            rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.J);
+            drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            drawable.draw(canvas);
+            canvas.drawText(this.f28024y, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), textPaint);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        if (this.S) {
-            if (this.Q == null) {
-                this.Q = new Path();
-            }
-            this.Q.rewind();
-            int measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(32.0f)) >> 1;
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight() - measuredHeight);
-            this.Q.addRoundRect(rectF, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), Path.Direction.CCW);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent != null) {
-            float x10 = motionEvent.getX();
-            float y3 = motionEvent.getY();
-            int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
-            float f7 = measuredWidth;
-            int dp = AndroidUtilities.dp(12.0f) + ((int) (this.f25642b * f7));
-            int dp2 = AndroidUtilities.dp(12.0f) + ((int) (this.f25643c * f7));
-            if (motionEvent.getAction() == 0) {
-                getParent().requestDisallowInterceptTouchEvent(true);
-                if (this.f25646r != null) {
-                    int dp3 = AndroidUtilities.dp(24.0f);
-                    if (dp - dp3 <= x10 && x10 <= dp + dp3 && y3 >= 0.0f && y3 <= getMeasuredHeight()) {
-                        j81 j81Var = this.f25647s;
-                        if (j81Var != null) {
-                            ((ef) j81Var).f24000a.Z2.K(0.0f, 1);
-                        }
-                        this.f25644f = true;
-                        this.f25645n = (int) (x10 - dp);
-                        this.P.setTime((int) ((((float) this.f25641a) / 1000.0f) * this.f25642b));
-                        this.P.setCx(AndroidUtilities.dp(4.0f) + getLeft() + dp);
-                        this.P.a(true);
-                        invalidate();
-                        return true;
-                    } else if (dp2 - dp3 <= x10 && x10 <= dp3 + dp2 && y3 >= 0.0f && y3 <= getMeasuredHeight()) {
-                        j81 j81Var2 = this.f25647s;
-                        if (j81Var2 != null) {
-                            ((ef) j81Var2).f24000a.Z2.K(0.0f, 1);
-                        }
-                        this.h = true;
-                        this.f25645n = (int) (x10 - dp2);
-                        this.P.setTime((int) ((((float) this.f25641a) / 1000.0f) * this.f25643c));
-                        this.P.setCx((getLeft() + dp2) - AndroidUtilities.dp(4.0f));
-                        this.P.a(true);
-                        invalidate();
-                        return true;
-                    } else {
-                        this.P.a(false);
-                        return false;
-                    }
-                }
-            } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                if (motionEvent.getAction() == 2) {
-                    if (this.f25644f) {
-                        int i10 = (int) (x10 - this.f25645n);
-                        if (i10 < AndroidUtilities.dp(16.0f)) {
-                            dp2 = AndroidUtilities.dp(16.0f);
-                        } else if (i10 <= dp2) {
-                            dp2 = i10;
-                        }
-                        float dp4 = (dp2 - AndroidUtilities.dp(16.0f)) / f7;
-                        this.f25642b = dp4;
-                        float f10 = this.f25643c;
-                        float f11 = f10 - dp4;
-                        float f12 = this.G;
-                        if (f11 > f12) {
-                            this.f25643c = dp4 + f12;
-                        } else {
-                            float f13 = this.H;
-                            if (f13 != 0.0f && f11 < f13) {
-                                float f14 = f10 - f13;
-                                this.f25642b = f14;
-                                if (f14 < 0.0f) {
-                                    this.f25642b = 0.0f;
-                                }
-                            }
-                        }
-                        this.P.setCx(((AndroidUtilities.dpf2(12.0f) + (f7 * this.f25642b)) + getLeft()) - AndroidUtilities.dp(4.0f));
-                        this.P.setTime((int) ((((float) this.f25641a) / 1000.0f) * this.f25642b));
-                        this.P.a(true);
-                        j81 j81Var3 = this.f25647s;
-                        if (j81Var3 != null) {
-                            float f15 = this.f25642b;
-                            ChatActivityEnterView chatActivityEnterView = ((ef) j81Var3).f24000a;
-                            VideoEditedInfo videoEditedInfo = chatActivityEnterView.f21984e3;
-                            if (videoEditedInfo != null) {
-                                videoEditedInfo.startTime = ((float) videoEditedInfo.estimatedDuration) * f15;
-                                chatActivityEnterView.Z2.K(f15, 2);
-                            }
-                        }
-                        invalidate();
-                        return true;
-                    } else if (this.h) {
-                        int i11 = (int) (x10 - this.f25645n);
-                        if (i11 >= dp) {
-                            if (i11 > AndroidUtilities.dp(16.0f) + measuredWidth) {
-                                dp = AndroidUtilities.dp(16.0f) + measuredWidth;
-                            } else {
-                                dp = i11;
-                            }
-                        }
-                        float dp5 = (dp - AndroidUtilities.dp(16.0f)) / f7;
-                        this.f25643c = dp5;
-                        float f16 = this.f25642b;
-                        float f17 = dp5 - f16;
-                        float f18 = this.G;
-                        if (f17 > f18) {
-                            this.f25642b = dp5 - f18;
-                        } else {
-                            float f19 = this.H;
-                            if (f19 != 0.0f && f17 < f19) {
-                                float f20 = f16 + f19;
-                                this.f25643c = f20;
-                                if (f20 > 1.0f) {
-                                    this.f25643c = 1.0f;
-                                }
-                            }
-                        }
-                        this.P.setCx(AndroidUtilities.dpf2(12.0f) + (f7 * this.f25643c) + getLeft() + AndroidUtilities.dp(4.0f));
-                        this.P.a(true);
-                        this.P.setTime((int) ((((float) this.f25641a) / 1000.0f) * this.f25643c));
-                        j81 j81Var4 = this.f25647s;
-                        if (j81Var4 != null) {
-                            float f21 = this.f25643c;
-                            ChatActivityEnterView chatActivityEnterView2 = ((ef) j81Var4).f24000a;
-                            VideoEditedInfo videoEditedInfo2 = chatActivityEnterView2.f21984e3;
-                            if (videoEditedInfo2 != null) {
-                                videoEditedInfo2.endTime = ((float) videoEditedInfo2.estimatedDuration) * f21;
-                                chatActivityEnterView2.Z2.K(f21, 2);
-                            }
-                        }
-                        invalidate();
-                        return true;
-                    }
-                }
-            } else if (this.f25644f) {
-                j81 j81Var5 = this.f25647s;
-                if (j81Var5 != null) {
-                    ((ef) j81Var5).f24000a.Z2.K(0.0f, 0);
-                }
-                this.f25644f = false;
-                invalidate();
-                this.P.a(false);
-                return true;
-            } else if (this.h) {
-                j81 j81Var6 = this.f25647s;
-                if (j81Var6 != null) {
-                    ((ef) j81Var6).f24000a.Z2.K(0.0f, 0);
-                }
-                this.h = false;
-                invalidate();
-                this.P.a(false);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void setDelegate(j81 j81Var) {
-        this.f25647s = j81Var;
-    }
-
-    public void setKeyframes(ArrayList<Bitmap> arrayList) {
-        ArrayList arrayList2 = this.N;
-        arrayList2.clear();
-        arrayList2.addAll(arrayList);
-    }
-
-    public void setMaxProgressDiff(float f7) {
-        this.G = f7;
-        float f10 = this.f25643c;
-        float f11 = this.f25642b;
-        if (f10 - f11 > f7) {
-            this.f25643c = f11 + f7;
-            invalidate();
-        }
-    }
-
-    public void setMinProgressDiff(float f7) {
-        this.H = f7;
-    }
-
-    public void setRoundFrames(boolean z10) {
-        this.I = z10;
-        if (z10) {
-            this.J = new Rect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
-            this.K = new Rect();
-        }
-    }
-
-    public void setTimeHintView(i81 i81Var) {
-        this.P = i81Var;
-    }
-
-    public void setVideoPath(String str) {
-        a(false);
-        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        this.f25646r = mediaMetadataRetriever;
-        this.f25642b = 0.0f;
-        this.f25643c = 1.0f;
-        try {
-            mediaMetadataRetriever.setDataSource(str);
-            this.f25641a = Long.parseLong(this.f25646r.extractMetadata(9));
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        invalidate();
+        setPivotY(getMeasuredHeight());
     }
 }

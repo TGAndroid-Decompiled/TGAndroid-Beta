@@ -1,82 +1,17 @@
 package v7;
-public abstract class k0 {
-    public abstract void a(bf.b bVar);
+public final class k0 implements ia.d {
+    public static final k0 f47979a = new Object();
 
-    public abstract void b(bf.c cVar);
-
-    public void c(bf.d dVar) {
-        v(dVar);
+    static {
+        t8.b.t(t8.b.l(h.class, t8.b.p(7, t8.b.l(h.class, t8.b.p(6, t8.b.l(h.class, t8.b.p(5, t8.b.l(h.class, t8.b.p(4, t8.b.l(h.class, t8.b.p(3, t8.b.l(h.class, t8.b.p(2, t8.b.l(h.class, new e(1)))))))))))))));
     }
 
-    public void d(bf.e eVar) {
-        v(eVar);
-    }
-
-    public void e(bf.g gVar) {
-        v(gVar);
-    }
-
-    public void f(bf.h hVar) {
-        v(hVar);
-    }
-
-    public void g(bf.i iVar) {
-        v(iVar);
-    }
-
-    public void h(bf.j jVar) {
-        v(jVar);
-    }
-
-    public void i(bf.k kVar) {
-        v(kVar);
-    }
-
-    public void j(bf.l lVar) {
-        v(lVar);
-    }
-
-    public abstract void k(bf.n nVar);
-
-    public void l(bf.o oVar) {
-        v(oVar);
-    }
-
-    public abstract void m(bf.q qVar);
-
-    public abstract void n(bf.r rVar);
-
-    public void o(bf.s sVar) {
-        v(sVar);
-    }
-
-    public void p(bf.t tVar) {
-        v(tVar);
-    }
-
-    public void q(bf.d dVar) {
-        v(dVar);
-    }
-
-    public void r(bf.g gVar) {
-        v(gVar);
-    }
-
-    public void s(bf.k kVar) {
-        v(kVar);
-    }
-
-    public void t(bf.g gVar) {
-        v(gVar);
-    }
-
-    public void u(bf.g gVar) {
-        v(gVar);
-    }
-
-    public void v(bf.p pVar) {
-        for (bf.p pVar2 = (bf.p) pVar.f3545c; pVar2 != null; pVar2 = (bf.p) pVar2.f3546f) {
-            pVar2.a(this);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ia.e eVar = (ia.e) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

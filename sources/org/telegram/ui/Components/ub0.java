@@ -6,12 +6,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class ub0 extends yl0 {
-    public final bc0 X2;
+public final class ub0 extends zl0 {
+    public final cc0 f31352e3;
 
-    public ub0(bc0 bc0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public ub0(cc0 cc0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
-        this.X2 = bc0Var;
+        this.f31352e3 = cc0Var;
     }
 
     @Override
@@ -19,17 +19,17 @@ public final class ub0 extends yl0 {
         boolean z10;
         boolean z11;
         Canvas canvas2;
-        bc0 bc0Var;
+        cc0 cc0Var;
         float f7;
         MessageObject.GroupedMessages currentMessagesGroup;
         MessageObject.GroupedMessages currentMessagesGroup2;
-        bc0 bc0Var2 = this.X2;
-        org.telegram.ui.w8 w8Var = bc0Var2.f22935b;
+        cc0 cc0Var2 = this.f31352e3;
+        org.telegram.ui.y8 y8Var = cc0Var2.f25317b;
         boolean z12 = false;
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             View childAt = getChildAt(i10);
             if (childAt instanceof org.telegram.ui.Cells.u1) {
-                ((org.telegram.ui.Cells.u1) childAt).Z3(w8Var.getMeasuredWidth(), w8Var.getBackgroundSizeY());
+                ((org.telegram.ui.Cells.u1) childAt).Z3(y8Var.getMeasuredWidth(), y8Var.getBackgroundSizeY());
             }
         }
         int childCount = getChildCount();
@@ -42,10 +42,10 @@ public final class ub0 extends yl0 {
         }
         int i12 = 0;
         while (i12 < 3) {
-            hc0 hc0Var = bc0Var2.f22938c0;
-            ArrayList arrayList = hc0Var.E;
-            ub0 ub0Var = bc0Var2.f22939f;
-            hc0Var.E.clear();
+            ic0 ic0Var = cc0Var2.f25320c0;
+            ArrayList arrayList = ic0Var.E;
+            ub0 ub0Var = cc0Var2.f25322f;
+            ic0Var.E.clear();
             if (i12 != 2 || ub0Var.X1) {
                 int i13 = 0;
                 ?? r32 = z12;
@@ -57,7 +57,7 @@ public final class ub0 extends yl0 {
                     View childAt3 = ub0Var.getChildAt(i13);
                     if (childAt3 instanceof org.telegram.ui.Cells.u1) {
                         org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt3;
-                        if (childAt3.getY() <= ub0Var.getHeight() && childAt3.getY() + childAt3.getHeight() >= 0.0f && (currentMessagesGroup = u1Var.getCurrentMessagesGroup()) != null && ((i12 != 0 || currentMessagesGroup.messages.size() != 1) && ((i12 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i12 != 0 || !u1Var.getMessageObject().deleted) && ((i12 != 1 || u1Var.getMessageObject().deleted) && ((i12 != 2 || u1Var.f21466oc) && (i12 == 2 || !u1Var.f21466oc))))))) {
+                        if (childAt3.getY() <= ub0Var.getHeight() && childAt3.getY() + childAt3.getHeight() >= 0.0f && (currentMessagesGroup = u1Var.getCurrentMessagesGroup()) != null && ((i12 != 0 || currentMessagesGroup.messages.size() != 1) && ((i12 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i12 != 0 || !u1Var.getMessageObject().deleted) && ((i12 != 1 || u1Var.getMessageObject().deleted) && ((i12 != 2 || u1Var.f23326oc) && (i12 == 2 || !u1Var.f23326oc))))))) {
                             if (!arrayList.contains(currentMessagesGroup)) {
                                 MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
                                 transitionParams.left = r32;
@@ -81,7 +81,7 @@ public final class ub0 extends yl0 {
                             if ((u1Var.getCurrentPosition().flags & 8) == 0) {
                                 backgroundDrawableBottom += AndroidUtilities.dp(10.0f);
                             }
-                            if (u1Var.f21466oc) {
+                            if (u1Var.f23326oc) {
                                 currentMessagesGroup.transitionParams.cell = u1Var;
                             }
                             MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
@@ -110,7 +110,7 @@ public final class ub0 extends yl0 {
                 while (i18 < arrayList.size()) {
                     MessageObject.GroupedMessages groupedMessages2 = (MessageObject.GroupedMessages) arrayList.get(i18);
                     if (groupedMessages2 == null) {
-                        bc0Var = bc0Var2;
+                        cc0Var = cc0Var2;
                     } else {
                         float E2 = groupedMessages2.transitionParams.cell.E2(z10);
                         MessageObject.GroupedMessages.TransitionParams transitionParams3 = groupedMessages2.transitionParams;
@@ -135,13 +135,13 @@ public final class ub0 extends yl0 {
                         }
                         if (z11) {
                             canvas.save();
-                            bc0Var = bc0Var2;
+                            cc0Var = cc0Var2;
                             canvas2 = canvas;
                             f7 = 2.0f;
                             canvas2.scale(groupedMessages2.transitionParams.cell.getScaleX(), groupedMessages2.transitionParams.cell.getScaleY(), com.google.android.gms.internal.vision.e2.A(f12, f10, 2.0f, f10), com.google.android.gms.internal.vision.e2.A(f13, f11, 2.0f, f11));
                         } else {
                             canvas2 = canvas;
-                            bc0Var = bc0Var2;
+                            cc0Var = cc0Var2;
                             f7 = 2.0f;
                         }
                         MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages2.transitionParams;
@@ -167,12 +167,12 @@ public final class ub0 extends yl0 {
                     }
                     i18++;
                     z10 = true;
-                    bc0Var2 = bc0Var;
+                    cc0Var2 = cc0Var;
                 }
             }
             i12++;
             z12 = false;
-            bc0Var2 = bc0Var2;
+            cc0Var2 = cc0Var2;
         }
         super.dispatchDraw(canvas);
     }
@@ -190,15 +190,15 @@ public final class ub0 extends yl0 {
             u1Var.P1(canvas, true);
             u1Var.u3(true);
             u1Var.V1(canvas);
-            if (u1Var.getCurrentMessagesGroup() == null || ((u1Var.getCurrentPosition() != null && (((u1Var.getCurrentPosition().flags & u1Var.t0()) != 0 && (u1Var.getCurrentPosition().flags & 1) != 0) || (u1Var.getCurrentMessagesGroup() != null && u1Var.getCurrentMessagesGroup().isDocuments))) || u1Var.getTransitionParams().f21172w0)) {
+            if (u1Var.getCurrentMessagesGroup() == null || ((u1Var.getCurrentPosition() != null && (((u1Var.getCurrentPosition().flags & u1Var.t0()) != 0 && (u1Var.getCurrentPosition().flags & 1) != 0) || (u1Var.getCurrentMessagesGroup() != null && u1Var.getCurrentMessagesGroup().isDocuments))) || u1Var.getTransitionParams().f23025w0)) {
                 u1Var.I1(u1Var.getAlpha(), canvas, false);
                 u1Var.d2(canvas, u1Var.getAlpha(), null);
                 u1Var.N1(canvas, u1Var.getAlpha());
             }
-            if (u1Var.getCurrentMessagesGroup() != null || u1Var.getTransitionParams().f21172w0) {
+            if (u1Var.getCurrentMessagesGroup() != null || u1Var.getTransitionParams().f23025w0) {
                 u1Var.W1(canvas, u1Var.getAlpha());
             }
-            if ((u1Var.getCurrentPosition() != null && u1Var.getCurrentPosition().last) || u1Var.getTransitionParams().f21172w0) {
+            if ((u1Var.getCurrentPosition() != null && u1Var.getCurrentPosition().last) || u1Var.getTransitionParams().f23025w0) {
                 u1Var.m2(u1Var.getAlpha(), canvas, true);
             }
             u1Var.Y1(canvas);
@@ -211,40 +211,40 @@ public final class ub0 extends yl0 {
     }
 
     @Override
-    public final void j0(int i10) {
+    public final void k0(int i10) {
         if (i10 == 0) {
-            this.X2.e.W();
+            this.f31352e3.f25321e.W();
         }
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        this.X2.e.H();
+    public final void l0(int i10) {
+        this.f31352e3.f25321e.H();
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        bc0 bc0Var = this.X2;
-        int i14 = bc0Var.f22933a;
-        if (bc0Var.K) {
+        cc0 cc0Var = this.f31352e3;
+        int i14 = cc0Var.f25315a;
+        if (cc0Var.K) {
             if (i14 != 0) {
-                u0(0);
+                v0(0);
             }
-            bc0Var.K = false;
+            cc0Var.K = false;
         }
         super.onLayout(z10, i10, i11, i12, i13);
-        bc0Var.i();
-        ub0 ub0Var = bc0Var.f22939f;
-        if (bc0Var.U) {
+        cc0Var.i();
+        ub0 ub0Var = cc0Var.f25322f;
+        if (cc0Var.U) {
             if (ub0Var.computeVerticalScrollRange() > ub0Var.computeVerticalScrollExtent()) {
-                bc0Var.postDelayed(new nb0(bc0Var, 0), 0L);
+                cc0Var.postDelayed(new nb0(cc0Var, 0), 0L);
             }
-            bc0Var.U = false;
+            cc0Var.U = false;
         }
-        if (bc0Var.N && i14 == 0) {
-            int i15 = bc0Var.L;
-            int i16 = bc0Var.M;
-            bc0Var.N = false;
+        if (cc0Var.N && i14 == 0) {
+            int i15 = cc0Var.L;
+            int i16 = cc0Var.M;
+            cc0Var.N = false;
             post(new gg.n(this, i15, i16, 10));
         }
     }

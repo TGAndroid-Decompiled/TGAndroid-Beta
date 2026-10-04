@@ -41,36 +41,36 @@ public final class qh0 extends View {
     public int U;
     public PorterDuffColorFilter V;
     public nh0 W;
-    public final ArrayList f27708a;
-    public float f27709a0;
-    public final Paint f27710b;
-    public float f27711b0;
-    public final Paint f27712c;
-    public long f27713c0;
+    public final ArrayList f30027a;
+    public float f30028a0;
+    public final Paint f30029b;
+    public float f30030b0;
+    public final Paint f30031c;
+    public long f30032c0;
     public float d;
-    public mh0 f27714d0;
-    public boolean e;
-    public float f27715f;
+    public mh0 f30033d0;
+    public boolean f30034e;
+    public float f30035f;
     public final Path h;
-    public final Path f27716n;
-    public org.telegram.ui.d01 f27717r;
-    public float f27718s;
+    public final Path f30036n;
+    public org.telegram.ui.f01 f30037r;
+    public float f30038s;
     public float v;
-    public RenderNode f27719w;
-    public int f27720x;
-    public final int f27721y;
+    public RenderNode f30039w;
+    public int f30040x;
+    public final int f30041y;
 
     public qh0(Context context, int i10) {
         super(context);
-        this.f27708a = new ArrayList();
+        this.f30027a = new ArrayList();
         Paint paint = new Paint();
-        this.f27710b = paint;
-        this.f27712c = new Paint();
-        this.e = true;
-        this.f27715f = -1.0f;
+        this.f30029b = paint;
+        this.f30031c = new Paint();
+        this.f30034e = true;
+        this.f30035f = -1.0f;
         this.h = new Path();
-        this.f27716n = new Path();
-        this.f27720x = 0;
+        this.f30036n = new Path();
+        this.f30040x = 0;
         this.E = 0.0f;
         this.F = null;
         this.G = new HashSet();
@@ -87,7 +87,7 @@ public final class qh0 extends View {
         float dpf22 = AndroidUtilities.dpf2(8.0f);
         this.P = dpf22;
         AndroidUtilities.dpf2(4.0f);
-        this.f27721y = (int) ((i10 - dpf2) - dpf22);
+        this.f30041y = (int) ((i10 - dpf2) - dpf22);
         setBackgroundColor(0);
         setImportantForAccessibility(1);
     }
@@ -95,7 +95,7 @@ public final class qh0 extends View {
     private float getItemWidth() {
         int measuredWidth = getMeasuredWidth();
         float f7 = this.N;
-        int i10 = this.f27720x;
+        int i10 = this.f30040x;
         return ((measuredWidth - ((f7 / 2.0f) * (i10 - 1))) - (f7 * 2.0f)) / i10;
     }
 
@@ -103,7 +103,7 @@ public final class qh0 extends View {
         int size = list.size();
         for (int i11 = 0; i11 < size; i11++) {
             nh0 nh0Var = (nh0) list.get(i11);
-            if (!nh0Var.f26775o && nh0Var.f26764a == i10) {
+            if (!nh0Var.f28977o && nh0Var.f28965a == i10) {
                 return nh0Var;
             }
         }
@@ -112,20 +112,20 @@ public final class qh0 extends View {
 
     public final void a() {
         nh0 nh0Var = new nh0(this, oh0.I);
-        nh0Var.f26764a = 14;
-        this.f27708a.add(nh0Var);
+        nh0Var.f28965a = 14;
+        this.f30027a.add(nh0Var);
     }
 
     public final void b() {
         nh0 nh0Var = new nh0(this, oh0.J);
-        nh0Var.f26764a = 16;
-        this.f27708a.add(nh0Var);
+        nh0Var.f28965a = 16;
+        this.f30027a.add(nh0Var);
     }
 
     public final void c() {
         nh0 nh0Var = new nh0(this, oh0.K);
-        nh0Var.f26764a = 17;
-        this.f27708a.add(nh0Var);
+        nh0Var.f28965a = 17;
+        this.f30027a.add(nh0Var);
     }
 
     public final void d() {
@@ -134,7 +134,7 @@ public final class qh0 extends View {
             return;
         }
         if (this.H == 6) {
-            this.f27720x = this.f27708a.size();
+            this.f30040x = this.f30027a.size();
             invalidate();
             return;
         }
@@ -205,7 +205,7 @@ public final class qh0 extends View {
             m(6, arrayList);
             n(3, 6, arrayList);
         }
-        AndroidUtilities.runOnUIThread(new dv(25, this, arrayList));
+        AndroidUtilities.runOnUIThread(new yw(23, this, arrayList));
     }
 
     public final void e() {
@@ -225,7 +225,7 @@ public final class qh0 extends View {
         int i10 = this.Q;
         if (i10 != 0) {
             if (!this.R) {
-                this.f27710b.setColor(i10);
+                this.f30029b.setColor(i10);
                 return;
             }
             int measuredWidth = getMeasuredWidth();
@@ -233,26 +233,26 @@ public final class qh0 extends View {
                 return;
             }
             float f10 = this.N;
-            float max = ((measuredWidth - ((f10 / 2.0f) * Math.max(0, this.f27720x - 1))) - (f10 * 2.0f)) / Math.max(1, this.f27720x);
+            float max = ((measuredWidth - ((f10 / 2.0f) * Math.max(0, this.f30040x - 1))) - (f10 * 2.0f)) / Math.max(1, this.f30040x);
             float f11 = max / 2.0f;
-            float f12 = this.f27721y / 2.0f;
+            float f12 = this.f30041y / 2.0f;
             if (this.R) {
                 f7 = max * 0.65f;
             } else {
                 f7 = 1.0f;
             }
-            RadialGradient radialGradient = new RadialGradient(f11, f12, f7, org.telegram.ui.ActionBar.h6.l1(0.8f, this.Q), this.Q, Shader.TileMode.CLAMP);
+            RadialGradient radialGradient = new RadialGradient(f11, f12, f7, org.telegram.ui.ActionBar.i6.l1(0.8f, this.Q), this.Q, Shader.TileMode.CLAMP);
             this.S = radialGradient;
-            this.f27712c.setShader(radialGradient);
+            this.f30031c.setShader(radialGradient);
         }
     }
 
     @Override
     public AccessibilityNodeProvider getAccessibilityNodeProvider() {
-        if (this.f27714d0 == null) {
-            this.f27714d0 = new mh0(this);
+        if (this.f30033d0 == null) {
+            this.f30033d0 = new mh0(this);
         }
-        return this.f27714d0;
+        return this.f30033d0;
     }
 
     public float getRoundRadius() {
@@ -269,15 +269,15 @@ public final class qh0 extends View {
     }
 
     public final void i() {
-        if (this.f27719w != null) {
-            this.f27719w = null;
-            this.f27717r = null;
+        if (this.f30039w != null) {
+            this.f30039w = null;
+            this.f30037r = null;
             invalidate();
         }
     }
 
     public final nh0 k(int i10) {
-        nh0 j3 = j(i10, this.f27708a);
+        nh0 j3 = j(i10, this.f30027a);
         if (j3 != null) {
             if (i10 == 1) {
                 p(j3, false);
@@ -296,63 +296,63 @@ public final class qh0 extends View {
                 j3 = new nh0(this, oh0.h);
                 break;
             case 3:
-                j3 = new nh0(this, oh0.f27065n);
-                j3.f26780t = true;
-                j3.f26783x = 200;
+                j3 = new nh0(this, oh0.f29352n);
+                j3.f28982t = true;
+                j3.f28985x = 200;
                 break;
             case 4:
-                j3 = new nh0(this, oh0.f27066r);
+                j3 = new nh0(this, oh0.f29353r);
                 break;
             case 5:
-                j3 = new nh0(this, oh0.f27067s);
+                j3 = new nh0(this, oh0.f29354s);
                 this.K = j3;
-                j3.f26780t = true;
-                j3.f26783x = 500;
+                j3.f28982t = true;
+                j3.f28985x = 500;
                 break;
             case 6:
                 j3 = new nh0(this, oh0.v);
-                j3.f26780t = true;
-                j3.f26783x = 500;
+                j3.f28982t = true;
+                j3.f28985x = 500;
                 break;
             case 7:
-                j3 = new nh0(this, oh0.f27068w);
-                j3.f26780t = true;
+                j3 = new nh0(this, oh0.f29355w);
+                j3.f28982t = true;
                 j3.v = 300;
                 break;
             case 8:
-                j3 = new nh0(this, oh0.f27069x);
-                j3.f26780t = true;
-                j3.f26783x = 500;
+                j3 = new nh0(this, oh0.f29356x);
+                j3.f28982t = true;
+                j3.f28985x = 500;
                 break;
             case 9:
-                j3 = new nh0(this, oh0.f27070y);
-                j3.f26780t = true;
-                j3.f26781u = R.raw.profile_leave;
-                j3.f26783x = 300;
+                j3 = new nh0(this, oh0.f29357y);
+                j3.f28982t = true;
+                j3.f28983u = R.raw.profile_leave;
+                j3.f28985x = 300;
                 break;
             case 10:
                 j3 = new nh0(this, oh0.E);
-                j3.f26780t = true;
-                j3.f26781u = R.raw.profile_voicechat;
-                j3.f26783x = 500;
+                j3.f28982t = true;
+                j3.f28983u = R.raw.profile_voicechat;
+                j3.f28985x = 500;
                 break;
             case 11:
                 j3 = new nh0(this, oh0.F);
-                j3.f26780t = true;
-                j3.f26781u = R.raw.profile_voicechat;
-                j3.f26783x = 500;
+                j3.f28982t = true;
+                j3.f28983u = R.raw.profile_voicechat;
+                j3.f28985x = 500;
                 break;
             case 12:
                 j3 = new nh0(this, oh0.G);
                 break;
             case 13:
                 j3 = new nh0(this, oh0.H);
-                j3.f26780t = true;
-                j3.f26783x = 300;
+                j3.f28982t = true;
+                j3.f28985x = 300;
                 break;
         }
         if (j3 != null) {
-            j3.f26764a = i10;
+            j3.f28965a = i10;
         }
         return j3;
     }
@@ -392,13 +392,13 @@ public final class qh0 extends View {
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r37) {
+    public final void onDraw(android.graphics.Canvas r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qh0.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.makeMeasureSpec((int) (this.f27721y + this.P + this.O), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.makeMeasureSpec((int) (this.f30041y + this.P + this.O), 1073741824));
     }
 
     @Override
@@ -410,7 +410,7 @@ public final class qh0 extends View {
             int action = motionEvent.getAction();
             if (action == 0) {
                 this.W = null;
-                ArrayList arrayList = this.f27708a;
+                ArrayList arrayList = this.f30027a;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -418,51 +418,51 @@ public final class qh0 extends View {
                         break;
                     }
                     nh0 nh0Var2 = (nh0) arrayList.get(i10);
-                    if (!nh0Var2.f26775o && nh0Var2.d.contains(x10, y3)) {
+                    if (!nh0Var2.f28977o && nh0Var2.d.contains(x10, y3)) {
                         this.W = nh0Var2;
-                        this.f27709a0 = x10;
-                        this.f27711b0 = y3;
-                        this.f27713c0 = System.currentTimeMillis();
-                        this.W.f26765b.c(true);
+                        this.f30028a0 = x10;
+                        this.f30030b0 = y3;
+                        this.f30032c0 = System.currentTimeMillis();
+                        this.W.f28966b.c(true);
                         break;
                     }
                     i10++;
                 }
             } else if (action == 2) {
-                if (this.W != null && (Math.abs(x10 - this.f27709a0) > 20.0f || Math.abs(y3 - this.f27711b0) > 20.0f)) {
-                    this.W.f26765b.c(false);
+                if (this.W != null && (Math.abs(x10 - this.f30028a0) > 20.0f || Math.abs(y3 - this.f30030b0) > 20.0f)) {
+                    this.W.f28966b.c(false);
                     this.W = null;
                 }
             } else if ((action == 1 || action == 3) && (nh0Var = this.W) != null) {
-                nh0Var.f26765b.c(false);
+                nh0Var.f28966b.c(false);
                 if (action == 1 && this.W.d.contains(x10, y3)) {
-                    if (System.currentTimeMillis() - this.f27713c0 > 250) {
+                    if (System.currentTimeMillis() - this.f30032c0 > 250) {
                         try {
                             performHapticFeedback(0, 1);
                         } catch (Exception unused) {
                         }
                     }
                     nh0 nh0Var3 = this.W;
-                    if (nh0Var3.f26780t && !nh0Var3.f26779s) {
-                        nh0Var3.f26779s = true;
+                    if (nh0Var3.f28982t && !nh0Var3.f28981s) {
+                        nh0Var3.f28981s = true;
                         invalidate();
                     }
                     nh0 nh0Var4 = this.W;
-                    int i11 = nh0Var4.f26781u;
+                    int i11 = nh0Var4.f28983u;
                     if (i11 != 0) {
                         nh0Var4.d(i11, 0, 0);
                     }
-                    this.W.f26782w = System.currentTimeMillis();
+                    this.W.f28984w = System.currentTimeMillis();
                     nh0 nh0Var5 = this.W;
                     ph0 ph0Var = this.F;
                     if (ph0Var != null) {
                         int i12 = nh0Var5.v;
                         if (i12 == 0) {
-                            int i13 = nh0Var5.f26764a;
+                            int i13 = nh0Var5.f28965a;
                             RectF rectF = nh0Var5.d;
-                            ProfileActivity.Y(((org.telegram.ui.by0) ph0Var).f32513b, i13, rectF.left, rectF.top);
+                            ProfileActivity.X(((org.telegram.ui.ey0) ph0Var).f36113b, i13, rectF.left, rectF.top);
                         } else {
-                            postDelayed(new dv(26, this, nh0Var5), i12);
+                            postDelayed(new yw(24, this, nh0Var5), i12);
                         }
                     }
                 }
@@ -480,23 +480,23 @@ public final class qh0 extends View {
         oh0 oh0Var;
         if (z10) {
             if (this.J) {
-                oh0 oh0Var2 = oh0.e;
-                nh0Var.c(LocaleController.getString(oh0Var2.f27071a));
-                nh0Var.d(R.raw.profile_unmuting, oh0Var2.f27072b, oh0Var2.f27073c);
+                oh0 oh0Var2 = oh0.f29350e;
+                nh0Var.c(LocaleController.getString(oh0Var2.f29358a));
+                nh0Var.d(R.raw.profile_unmuting, oh0Var2.f29359b, oh0Var2.f29360c);
                 return;
             }
-            oh0 oh0Var3 = oh0.f27064f;
-            nh0Var.c(LocaleController.getString(oh0Var3.f27071a));
-            nh0Var.d(R.raw.profile_muting, oh0Var3.f27072b, oh0Var3.f27073c);
+            oh0 oh0Var3 = oh0.f29351f;
+            nh0Var.c(LocaleController.getString(oh0Var3.f29358a));
+            nh0Var.d(R.raw.profile_muting, oh0Var3.f29359b, oh0Var3.f29360c);
             return;
         }
         if (this.J) {
-            oh0Var = oh0.e;
+            oh0Var = oh0.f29350e;
         } else {
-            oh0Var = oh0.f27064f;
+            oh0Var = oh0.f29351f;
         }
-        nh0Var.d(0, oh0Var.f27072b, oh0Var.f27073c);
-        nh0Var.c(LocaleController.getString(oh0Var.f27071a));
+        nh0Var.d(0, oh0Var.f29359b, oh0Var.f29360c);
+        nh0Var.c(LocaleController.getString(oh0Var.f29358a));
     }
 
     public void setNotifications(boolean z10) {
@@ -507,7 +507,7 @@ public final class qh0 extends View {
             z11 = false;
         }
         this.J = z10;
-        nh0 j3 = j(1, this.f27708a);
+        nh0 j3 = j(1, this.f30027a);
         if (j3 != null) {
             p(j3, z11);
             invalidate();
@@ -530,7 +530,7 @@ public final class qh0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && !(drawable instanceof t90)) {
+        if (!super.verifyDrawable(drawable) && !(drawable instanceof u90)) {
             return false;
         }
         return true;

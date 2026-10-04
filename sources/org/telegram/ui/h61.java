@@ -1,35 +1,88 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class h61 extends AnimatorListenerAdapter {
-    public final int f34134a;
-    public final j61 f34135b;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class h61 extends FrameLayout {
+    public final TextView f36981a;
+    public final org.telegram.ui.Components.nj0 f36982b;
+    public final ImageView f36983c;
+    public float d;
+    public ValueAnimator f36984e;
+    public final c71 f36985f;
 
-    public h61(j61 j61Var, int i10) {
-        this.f34134a = i10;
-        this.f34135b = j61Var;
+    public h61(c71 c71Var, Context context, boolean z10) {
+        super(context);
+        int i10;
+        this.f36985f = c71Var;
+        LinearLayout f7 = org.telegram.messenger.ok.f(context, 0);
+        if (z10) {
+            i10 = 3;
+        } else {
+            i10 = 17;
+        }
+        addView(f7, w7.z5.e(-2, -2, i10));
+        ?? imageView = new ImageView(context);
+        this.f36982b = imageView;
+        imageView.f(R.raw.unlock_icon, 20, 20, null);
+        int i11 = org.telegram.ui.ActionBar.i6.Te;
+        org.telegram.ui.ActionBar.d6 d6Var = c71Var.Z0;
+        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
+        f7.addView((View) imageView, w7.z5.n(20, 20));
+        TextView textView = new TextView(context);
+        this.f36981a = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 14.0f);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setLines(1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        f7.addView(textView, w7.z5.q(-2, -2, 17));
+        ImageView imageView2 = new ImageView(context);
+        this.f36983c = imageView2;
+        imageView2.setImageResource(R.drawable.msg_close);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Ve, d6Var), PorterDuff.Mode.MULTIPLY));
+        addView(imageView2, w7.z5.e(24, 24, 21));
+    }
+
+    public final void a(String str, boolean z10) {
+        this.f36981a.setText(str);
+        b(z10);
+    }
+
+    public final void b(boolean z10) {
+        float f7;
+        ValueAnimator valueAnimator = this.f36984e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f36984e = null;
+        }
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        this.d = f7;
+        float dp = (1.0f - this.d) * AndroidUtilities.dp(-8.0f);
+        org.telegram.ui.Components.nj0 nj0Var = this.f36982b;
+        nj0Var.setTranslationX(dp);
+        this.f36981a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
+        nj0Var.setAlpha(this.d);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34134a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f34135b.I = null;
-                return;
-            case 1:
-                super.onAnimationEnd(animator);
-                this.f34135b.I = null;
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                j61 j61Var = this.f34135b;
-                j61Var.N = 0.0f;
-                j61Var.I = null;
-                j61Var.M = false;
-                j61Var.d(true, false);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
     }
 }

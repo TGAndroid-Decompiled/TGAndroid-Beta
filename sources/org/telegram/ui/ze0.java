@@ -1,44 +1,50 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class ze0 implements Runnable {
-    public final int f40453a;
-    public final af0 f40454b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ze0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f43761a;
+    public final ff0 f43762b;
 
-    public ze0(af0 af0Var, int i10) {
-        this.f40453a = i10;
-        this.f40454b = af0Var;
+    public ze0(ff0 ff0Var, int i10) {
+        this.f43761a = i10;
+        this.f43762b = ff0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40453a) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f43761a) {
             case 0:
-                af0 af0Var = this.f40454b;
-                bf0 bf0Var = af0Var.d;
-                if (af0Var.f32154b) {
-                    boolean z10 = bf0Var.K;
-                    org.telegram.ui.Components.kj0 kj0Var = bf0Var.J;
-                    id idVar = bf0Var.f32412n;
-                    if (z10 && System.currentTimeMillis() - af0Var.f32153a >= 10000) {
-                        idVar.setAnimation(kj0Var);
-                        kj0Var.N(0, false, false);
-                        kj0Var.f25740t0 = new ze0(af0Var, 1);
-                        idVar.d();
-                        af0Var.f32153a = System.currentTimeMillis();
-                    }
-                    idVar.postDelayed(af0Var.f32155c, 1000L);
-                    return;
-                }
+                ff0 ff0Var = this.f43762b;
+                ff0Var.c(true);
+                ff0Var.O.u1(0, true, null, true);
+                ff0Var.o();
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new ze0(this.f40454b, 2));
+                ff0 ff0Var2 = this.f43762b;
+                ff0Var2.O.f41212p0.popup = false;
+                ff0Var2.h(null);
+                return;
+            case 2:
+                ff0 ff0Var3 = this.f43762b;
+                ug0 ug0Var = ff0Var3.O;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ug0Var.getParentActivity());
+                alertDialog$Builder.f20367a.R = LocaleController.getString("TermsOfService", R.string.TermsOfService);
+                alertDialog$Builder.f20367a.T = LocaleController.getString("TosDecline", R.string.TosDecline);
+                alertDialog$Builder.k(LocaleController.getString("SignUp", R.string.SignUp), new ze0(ff0Var3, 3));
+                alertDialog$Builder.h(LocaleController.getString("Decline", R.string.Decline), new ze0(ff0Var3, 4));
+                ug0Var.showDialog(alertDialog$Builder.f20367a);
+                return;
+            case 3:
+                ff0 ff0Var4 = this.f43762b;
+                ff0Var4.O.f41212p0.popup = false;
+                ff0Var4.h(null);
                 return;
             default:
-                bf0 bf0Var2 = this.f40454b.d;
-                org.telegram.ui.Components.kj0 kj0Var2 = bf0Var2.I;
-                kj0Var2.N(0, false, false);
-                bf0Var2.f32412n.setAnimation(kj0Var2);
+                ff0 ff0Var5 = this.f43762b;
+                ff0Var5.c(true);
+                ff0Var5.O.u1(0, true, null, true);
                 return;
         }
     }

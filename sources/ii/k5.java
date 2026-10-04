@@ -1,63 +1,115 @@
 package ii;
 
-import android.graphics.Rect;
-import android.text.Layout;
+import android.text.Editable;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.ba;
-public final class k5 implements ba {
-    public final Layout f11469a;
-    public final int f11470b;
-    public final int f11471c;
-    public final p5 d;
+import org.telegram.ui.Cells.q9;
+public final class k5 implements h1 {
+    public final t5 f12489a;
+    public final q5 f12490b;
 
-    public k5(p5 p5Var, Layout layout, int i10, int i11) {
-        this.d = p5Var;
-        this.f11469a = layout;
-        this.f11470b = i10;
-        this.f11471c = i11;
+    public k5(q5 q5Var, t5 t5Var) {
+        this.f12490b = q5Var;
+        this.f12489a = t5Var;
     }
 
     @Override
-    public final Layout getLayout() {
-        return this.f11469a;
-    }
-
-    @Override
-    public final CharSequence getPrefix() {
-        return null;
-    }
-
-    @Override
-    public final int getRow() {
-        return 0;
-    }
-
-    @Override
-    public final Rect getSelectionBounds() {
-        return null;
-    }
-
-    @Override
-    public final CharSequence getText() {
-        TL_iv.RichText richText;
-        a aVar = this.d.f11207a;
-        if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f11191b;
-            if ((pageBlock instanceof TL_iv.pageBlockTable) && (richText = ((TL_iv.pageBlockTable) pageBlock).title) != null) {
-                return g6.r(richText, null, true);
-            }
-            return "";
+    public final void B(Editable editable) {
+        TL_iv.pageTableCell pagetablecell = this.f12489a.f12661b;
+        if (pagetablecell != null) {
+            j6.d(pagetablecell, editable);
         }
-        return "";
+        q5 q5Var = this.f12490b;
+        q5Var.v.requestLayout();
+        d3 d3Var = q5Var.E;
+        if (d3Var != null && q5Var.f12203a != null) {
+            d3Var.a();
+        }
     }
 
     @Override
-    public final int getX() {
-        return this.f11470b;
+    public final boolean G(boolean z10) {
+        return this.f12490b.s(this.f12489a, z10);
     }
 
     @Override
-    public final int getY() {
-        return this.f11471c;
+    public final void b(i1 i1Var) {
+        d3 d3Var = this.f12490b.E;
+        if (d3Var != null) {
+            x3 x3Var = d3Var.f12298a;
+            x3.O1(x3Var, i1Var);
+            x3Var.f12769o3.P(i1Var, true);
+        }
+    }
+
+    @Override
+    public final boolean e() {
+        q5 q5Var = this.f12490b;
+        d3 d3Var = q5Var.E;
+        if (d3Var != null && q5Var.f12203a != null) {
+            return d3Var.f12298a.U4();
+        }
+        return false;
+    }
+
+    @Override
+    public final void f(int i10, int i11) {
+        i2 i2Var;
+        q5 q5Var = this.f12490b;
+        d3 d3Var = q5Var.E;
+        if (d3Var != null && q5Var.f12203a != null && (i2Var = d3Var.f12298a.Q3) != null) {
+            i2Var.f(i10, i11);
+        }
+    }
+
+    @Override
+    public final boolean n(i1 i1Var) {
+        return false;
+    }
+
+    @Override
+    public final boolean p(i1 i1Var) {
+        return false;
+    }
+
+    @Override
+    public final void t(final i1 i1Var, final int i10, final int i11) {
+        d3 d3Var;
+        final q9 textSelectionHelper;
+        final int k10;
+        q5 q5Var = this.f12490b;
+        if (!q5Var.G && i10 != i11 && (d3Var = q5Var.E) != null && (textSelectionHelper = d3Var.f12298a.getTextSelectionHelper()) != null) {
+            if ((!textSelectionHelper.y() || textSelectionHelper.W != q5Var) && (k10 = q5Var.k(this.f12489a.f12661b)) >= 0) {
+                q5Var.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        q5 q5Var2 = k5.this.f12490b;
+                        i1 i1Var2 = i1Var;
+                        int length = i1Var2.length();
+                        int i12 = i11;
+                        if (length >= i12 && i1Var2.getSelectionStart() != i1Var2.getSelectionEnd() && textSelectionHelper.k0(q5Var2, k10, i10, i12)) {
+                            q5Var2.G = true;
+                            i1Var2.setSelection(i12);
+                            q5Var2.G = false;
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    @Override
+    public final void x(CharSequence charSequence) {
+        d3 d3Var = this.f12490b.E;
+        if (d3Var != null && charSequence != null && charSequence.length() > 0) {
+            d3Var.f12298a.v4(charSequence.toString());
+        }
+    }
+
+    @Override
+    public final void l(i1 i1Var) {
+    }
+
+    @Override
+    public final void r() {
     }
 }

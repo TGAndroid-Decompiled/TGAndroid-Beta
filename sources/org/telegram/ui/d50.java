@@ -1,37 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class d50 extends org.telegram.ui.ActionBar.m1 {
-    public final d60 f32927o;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class d50 extends org.telegram.ui.Components.zq0 {
+    public final h60 X0;
 
-    public d50(d60 d60Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f32927o = d60Var;
+    public d50(h60 h60Var, Context context, String str, String str2, String str3, String str4) {
+        super(context, null, str, str2, false, str3, str4, true);
+        this.X0 = h60Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        d60 d60Var = this.f32927o;
-        if (d60Var.f32959f3 != this) {
+    public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
             return;
         }
-        d60Var.f32959f3 = null;
-        AnimatorSet animatorSet = d60Var.f32954e3;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            d60Var.f32954e3 = null;
+        int m10 = iVar.m();
+        h60 h60Var = this.X0;
+        if (m10 == 1) {
+            h60Var.k1().m(((TLRPC.Dialog) iVar.n(0)).f20041id, Integer.valueOf(i10), 41);
+        } else {
+            h60Var.k1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
         }
-        d60Var.Y.X = true;
-        d60Var.f32954e3 = new AnimatorSet();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(d60Var.W2, org.telegram.ui.Components.s6.f28135b, 0));
-        d60Var.f32954e3.playTogether(arrayList);
-        d60Var.f32954e3.setDuration(220L);
-        d60Var.f32954e3.addListener(new org.telegram.ui.Components.s81(this, 22));
-        d60Var.f32954e3.start();
     }
 }

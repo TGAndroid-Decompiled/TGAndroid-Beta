@@ -1,40 +1,57 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class kd implements TextWatcher {
-    public final int f35036a;
+import android.content.Context;
+public final class kd extends org.telegram.ui.Components.nj0 {
+    public final int f37937r;
+    public final Object f37938s;
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f35036a;
+    public kd(Object obj, Context context, int i10) {
+        super(context);
+        this.f37937r = i10;
+        this.f37938s = obj;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f35036a;
+    public void invalidate(int i10, int i11, int i12, int i13) {
+        switch (this.f37937r) {
+            case 0:
+                super.invalidate(i10, i11, i12, i13);
+                ((nd) this.f37938s).f38912f.invalidate();
+                return;
+            case 1:
+            default:
+                super.invalidate(i10, i11, i12, i13);
+                return;
+            case 2:
+                super.invalidate(i10, i11, i12, i13);
+                ((k70) this.f37938s).f37842e.invalidate();
+                return;
+            case 3:
+                super.invalidate(i10, i11, i12, i13);
+                ((ff0) this.f37938s).h.invalidate();
+                return;
+        }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f35036a;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void invalidate() {
+        switch (this.f37937r) {
+            case 0:
+                super.invalidate();
+                ((nd) this.f37938s).f38912f.invalidate();
+                return;
+            case 1:
+                super.invalidate();
+                ((org.telegram.ui.Components.v20) this.f37938s).invalidate();
+                return;
+            case 2:
+                super.invalidate();
+                ((k70) this.f37938s).f37842e.invalidate();
+                return;
+            default:
+                super.invalidate();
+                ((ff0) this.f37938s).h.invalidate();
+                return;
+        }
     }
 }

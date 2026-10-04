@@ -19,64 +19,64 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import u2.i0;
 public final class c {
-    public static volatile long f43980g;
+    public static volatile long f47618g;
     public static volatile long h;
-    public static final HashSet f43981i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
-    public final long f43982a;
-    public final int f43984c;
+    public static final HashSet f47619i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
+    public final long f47620a;
+    public final int f47622c;
     public int d;
-    public boolean f43985f;
-    public String f43983b = null;
-    public final ArrayList e = new ArrayList();
+    public boolean f47624f;
+    public String f47621b = null;
+    public final ArrayList f47623e = new ArrayList();
 
     public c(int i10) {
-        this.f43984c = i10;
-        this.f43982a = UserConfig.getInstance(i10).clientUserId;
+        this.f47622c = i10;
+        this.f47620a = UserConfig.getInstance(i10).clientUserId;
         SharedPreferences d = d();
         try {
-            f43980g = d.getLong("hash", 0L);
+            f47618g = d.getLong("hash", 0L);
             h = d.getLong("lastReload", 0L);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         AndroidUtilities.runOnUIThread(new a(this, 0));
     }
 
     public final void a(TLRPC.Document document) {
-        if (document == null || c(document.f18343id) != null) {
+        if (document == null || c(document.f20043id) != null) {
             return;
         }
         ?? obj = new Object();
-        obj.f43977a = document;
+        obj.f47615a = document;
         int i10 = this.d;
         this.d = i10 + 1;
-        obj.f43979c = i10;
+        obj.f47617c = i10;
         obj.d = false;
-        this.e.add(obj);
+        this.f47623e.add(obj);
         h();
     }
 
     public final void b() {
-        if (!this.f43985f) {
+        if (!this.f47624f) {
             f(true);
-            this.f43985f = true;
+            this.f47624f = true;
         }
-        Utilities.globalQueue.postRunnable(new i0(3, this, new ArrayList(this.e)));
+        Utilities.globalQueue.postRunnable(new i0(3, this, new ArrayList(this.f47623e)));
     }
 
     public final TLRPC.Document c(long j3) {
-        ArrayList arrayList = this.e;
-        if (!this.f43985f) {
+        ArrayList arrayList = this.f47623e;
+        if (!this.f47624f) {
             f(true);
-            this.f43985f = true;
+            this.f47624f = true;
         }
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             try {
-                if (arrayList.get(i10) != null && ((b) arrayList.get(i10)).f43977a != null && ((b) arrayList.get(i10)).f43977a.f18343id == j3) {
-                    return ((b) arrayList.get(i10)).f43977a;
+                if (arrayList.get(i10) != null && ((b) arrayList.get(i10)).f47615a != null && ((b) arrayList.get(i10)).f47615a.f20043id == j3) {
+                    return ((b) arrayList.get(i10)).f47615a;
                 }
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
                 return null;
             }
         }
@@ -84,26 +84,26 @@ public final class c {
     }
 
     public final SharedPreferences d() {
-        if (this.f43983b == null) {
-            this.f43983b = "ringtones_pref_" + this.f43982a;
+        if (this.f47621b == null) {
+            this.f47621b = "ringtones_pref_" + this.f47620a;
         }
-        return ApplicationLoader.applicationContext.getSharedPreferences(this.f43983b, 0);
+        return ApplicationLoader.applicationContext.getSharedPreferences(this.f47621b, 0);
     }
 
     public final String e(long j3) {
-        if (!this.f43985f) {
+        if (!this.f47624f) {
             f(true);
-            this.f43985f = true;
+            this.f47624f = true;
         }
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.e;
+            ArrayList arrayList = this.f47623e;
             if (i10 < arrayList.size()) {
-                if (((b) arrayList.get(i10)).f43977a != null && ((b) arrayList.get(i10)).f43977a.f18343id == j3) {
-                    if (!TextUtils.isEmpty(((b) arrayList.get(i10)).f43978b)) {
-                        return ((b) arrayList.get(i10)).f43978b;
+                if (((b) arrayList.get(i10)).f47615a != null && ((b) arrayList.get(i10)).f47615a.f20043id == j3) {
+                    if (!TextUtils.isEmpty(((b) arrayList.get(i10)).f47616b)) {
+                        return ((b) arrayList.get(i10)).f47616b;
                     }
-                    return FileLoader.getInstance(this.f43984c).getPathToAttach(((b) arrayList.get(i10)).f43977a).toString();
+                    return FileLoader.getInstance(this.f47622c).getPathToAttach(((b) arrayList.get(i10)).f47615a).toString();
                 }
                 i10++;
             } else {
@@ -116,7 +116,7 @@ public final class c {
         boolean z11;
         SharedPreferences d = d();
         int i10 = d.getInt("count", 0);
-        ArrayList arrayList = this.e;
+        ArrayList arrayList = this.f47623e;
         arrayList.clear();
         for (int i11 = 0; i11 < i10; i11++) {
             String string = d.getString("tone_document" + i11, "");
@@ -125,11 +125,11 @@ public final class c {
             try {
                 TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 ?? obj = new Object();
-                obj.f43977a = TLdeserialize;
-                obj.f43978b = string2;
+                obj.f47615a = TLdeserialize;
+                obj.f47616b = string2;
                 int i12 = this.d;
                 this.d = i12 + 1;
-                obj.f43979c = i12;
+                obj.f47617c = i12;
                 arrayList.add(obj);
             } finally {
                 if (!z11) {
@@ -149,14 +149,14 @@ public final class c {
             z11 = true;
         }
         TL_account.getSavedRingtones getsavedringtones = new TL_account.getSavedRingtones();
-        getsavedringtones.hash = f43980g;
+        getsavedringtones.hash = f47618g;
         if (z11) {
-            ConnectionsManager.getInstance(this.f43984c).sendRequest(getsavedringtones, new n8(this, 22));
+            ConnectionsManager.getInstance(this.f47622c).sendRequest(getsavedringtones, new n8(this, 22));
             return;
         }
-        if (!this.f43985f) {
+        if (!this.f47624f) {
             f(true);
-            this.f43985f = true;
+            this.f47624f = true;
         }
         b();
     }
@@ -168,12 +168,12 @@ public final class c {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.e;
+            ArrayList arrayList = this.f47623e;
             if (i10 < arrayList.size()) {
                 if (!((b) arrayList.get(i10)).d) {
                     i11++;
-                    TLRPC.Document document = ((b) arrayList.get(i10)).f43977a;
-                    String str = ((b) arrayList.get(i10)).f43978b;
+                    TLRPC.Document document = ((b) arrayList.get(i10)).f47615a;
+                    String str = ((b) arrayList.get(i10)).f47616b;
                     SerializedData serializedData = new SerializedData(document.getObjectSize());
                     document.serializeToStream(serializedData);
                     edit.putString("tone_document" + i10, Utilities.bytesToHex(serializedData.toByteArray()));
@@ -185,7 +185,7 @@ public final class c {
             } else {
                 edit.putInt("count", i11);
                 edit.apply();
-                NotificationCenter.getInstance(this.f43984c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                NotificationCenter.getInstance(this.f47622c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                 return;
             }
         }

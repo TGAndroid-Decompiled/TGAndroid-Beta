@@ -1,4 +1,102 @@
 package ei;
-public interface o4 {
-    void j(boolean z10);
+
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.hh0;
+import org.telegram.ui.Components.ur;
+import org.telegram.ui.Components.xr;
+public final class o4 extends GestureDetector.SimpleOnGestureListener {
+    public final int f9241a;
+    public final int f9242b;
+    public final ViewGroup f9243c;
+
+    public o4(ViewGroup viewGroup, int i10, int i11) {
+        this.f9241a = i11;
+        this.f9243c = viewGroup;
+        this.f9242b = i10;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        switch (this.f9241a) {
+            case 1:
+                xr xrVar = (xr) this.f9243c;
+                ur urVar = xrVar.f32973r;
+                if (xrVar.f32972n) {
+                    xrVar.removeCallbacks(urVar);
+                }
+                xrVar.f32972n = true;
+                xrVar.postDelayed(urVar, 200L);
+                xrVar.h.run();
+                return true;
+            case 2:
+                return true;
+            default:
+                return super.onDown(motionEvent);
+        }
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        org.telegram.ui.web.z0 z0Var;
+        switch (this.f9241a) {
+            case 0:
+                q4 q4Var = (q4) this.f9243c;
+                if (q4Var.d || !q4Var.M) {
+                    return false;
+                }
+                if (q4Var.J && !q4Var.L) {
+                    return false;
+                }
+                if (q4Var.N && !q4Var.b(false)) {
+                    return false;
+                }
+                float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), motionEvent2.getX(), motionEvent2.getY());
+                float eventTime = (float) (motionEvent2.getEventTime() - motionEvent.getEventTime());
+                if (f10 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && ((z0Var = q4Var.f9291x) == null || z0Var.getScrollY() == 0))) {
+                    q4Var.f9290w = true;
+                    float f11 = q4Var.f9288r;
+                    int i10 = q4Var.H;
+                    if (f11 < i10 && !q4Var.J) {
+                        q4Var.e(0.0f);
+                    } else if (q4Var.J && q4Var.L && (q4Var.Q == (-q4Var.f9286f) + q4Var.f9285e || (f11 <= (-i10) && f10 < AndroidUtilities.dp(1200.0f)))) {
+                        q4Var.e((-q4Var.f9286f) + q4Var.f9285e);
+                    } else {
+                        p4 p4Var = q4Var.F;
+                        if (p4Var != null) {
+                            p4Var.o(false);
+                        }
+                    }
+                } else if (f10 > -700.0f) {
+                    return false;
+                } else {
+                    float f12 = q4Var.f9288r;
+                    float f13 = (-q4Var.f9286f) + q4Var.f9285e;
+                    if (f12 <= f13) {
+                        return false;
+                    }
+                    q4Var.f9290w = true;
+                    q4Var.e(f13);
+                }
+                return true;
+            case 1:
+            default:
+                return super.onFling(motionEvent, motionEvent2, f7, f10);
+            case 2:
+                hh0 hh0Var = (hh0) this.f9243c;
+                if (!hh0Var.f27135f && !hh0Var.h && f7 >= 600.0f) {
+                    hh0Var.f27134e = false;
+                    hh0Var.h = false;
+                    hh0Var.a(0.0f, f7 / 6000.0f);
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public final boolean onScroll(android.view.MotionEvent r18, android.view.MotionEvent r19, float r20, float r21) {
+        throw new UnsupportedOperationException("Method not decompiled: ei.o4.onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float):boolean");
+    }
 }

@@ -1,131 +1,138 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class oi0 extends org.telegram.ui.Components.yl0 {
-    public final ArrayList X2;
-    public final org.telegram.ui.Components.e6 Y2;
-    public final org.telegram.ui.Components.e6 Z2;
-    public final g20 f36245a3;
-    public final vi0 f36246b3;
+public final class oi0 implements Runnable {
+    public final int f39198a;
+    public final org.telegram.ui.ActionBar.n2 f39199b;
 
-    public oi0(vi0 vi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.f36246b3 = vi0Var;
-        this.X2 = new ArrayList(10);
-        org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.h;
-        this.Y2 = new org.telegram.ui.Components.e6(this, 0L, 360L, srVar);
-        this.Z2 = new org.telegram.ui.Components.e6(this, 0L, 360L, srVar);
-        this.f36245a3 = new g20();
+    public oi0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f39198a = i10;
+        this.f39199b = n2Var;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.oi0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        org.telegram.ui.Cells.u1 u1Var;
-        vi0 vi0Var = this.f36246b3;
-        if (vi0Var.f38754w && ((view == (u1Var = vi0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == vi0Var.X)) {
-            return false;
+    public final void run() {
+        switch (this.f39198a) {
+            case 0:
+                ?? obj = new Object();
+                obj.f21349a = true;
+                this.f39199b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.n2 n2Var = this.f39199b;
+                if (n2Var instanceof PremiumPreviewFragment) {
+                    PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) n2Var;
+                    premiumPreviewFragment.f34135p0 = true;
+                    premiumPreviewFragment.getMediaDataController().loadPremiumPromo(false);
+                    premiumPreviewFragment.f34115a.y0(0);
+                } else {
+                    PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, null);
+                    premiumPreviewFragment2.f34135p0 = true;
+                    if (n2Var != null) {
+                        n2Var.presentFragment(premiumPreviewFragment2);
+                    } else {
+                        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                        if (U != null) {
+                            U.presentFragment(premiumPreviewFragment2);
+                        }
+                    }
+                }
+                if (n2Var != null && (n2Var.getParentActivity() instanceof LaunchActivity)) {
+                    try {
+                        n2Var.getFragmentView().performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                    ((LaunchActivity) n2Var.getParentActivity()).f33811x0.c(false);
+                    return;
+                }
+                return;
+            case 2:
+                this.f39199b.presentFragment(new DataSettingsActivity());
+                return;
+            case 3:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 4:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 5:
+                this.f39199b.presentFragment(new WallpapersListActivity(0));
+                return;
+            case 6:
+                this.f39199b.presentFragment(new WallpapersListActivity(1));
+                return;
+            case 7:
+                this.f39199b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
+                return;
+            case 8:
+                this.f39199b.presentFragment(new WallpapersListActivity(0));
+                return;
+            case 9:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 10:
+                org.telegram.messenger.ok.m(3, this.f39199b);
+                return;
+            case 11:
+                org.telegram.messenger.ok.m(3, this.f39199b);
+                return;
+            case 12:
+                org.telegram.ui.ActionBar.n2 n2Var2 = this.f39199b;
+                rg.y0 y0Var = new rg.y0(n2Var2, 5, false);
+                y0Var.B();
+                n2Var2.showDialog(y0Var);
+                return;
+            case 13:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 14:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 15:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 16:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 17:
+                org.telegram.messenger.ok.m(1, this.f39199b);
+                return;
+            case 18:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 19:
+                this.f39199b.presentFragment(new NotificationsSettingsActivity());
+                return;
+            case 20:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 21:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 22:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 23:
+                this.f39199b.presentFragment(new NotificationsSettingsActivity());
+                return;
+            case 24:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 25:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 26:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 27:
+                org.telegram.messenger.ok.m(0, this.f39199b);
+                return;
+            case 28:
+                this.f39199b.presentFragment(new StickersActivity(0, null));
+                return;
+            default:
+                this.f39199b.presentFragment(new StickersActivity(0, null));
+                return;
         }
-        if (!(view instanceof org.telegram.ui.Cells.u1)) {
-            return true;
-        }
-        org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
-        u1Var2.setInvalidatesParent(true);
-        u1Var2.K1(canvas);
-        canvas.save();
-        canvas.translate(u1Var2.getX(), u1Var2.getY());
-        canvas.scale(u1Var2.getScaleX(), u1Var2.getScaleY(), u1Var2.getPivotX(), u1Var2.getPivotY());
-        if (u1Var2.C1() && u1Var2.getCurrentPosition() == null) {
-            canvas.save();
-            canvas.translate(0.0f, u1Var2.getPaddingTop());
-            u1Var2.D1(canvas, true, false);
-            canvas.restore();
-        }
-        canvas.restore();
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.save();
-        canvas.translate(u1Var2.getX(), u1Var2.getY() + u1Var2.getPaddingTop());
-        canvas.scale(u1Var2.getScaleX(), u1Var2.getScaleY(), u1Var2.getPivotX(), u1Var2.getPivotY());
-        if (u1Var2.getCurrentPosition() != null && (((u1Var2.getCurrentPosition().flags & u1Var2.t0()) != 0 && (u1Var2.getCurrentPosition().flags & 1) != 0) || (u1Var2.getCurrentMessagesGroup() != null && u1Var2.getCurrentMessagesGroup().isDocuments))) {
-            u1Var2.I1(u1Var2.getAlpha(), canvas, false);
-        }
-        if (u1Var2.getCurrentPosition() != null && (((u1Var2.getCurrentPosition().flags & 8) != 0 && (u1Var2.getCurrentPosition().flags & 1) != 0) || (u1Var2.getCurrentMessagesGroup() != null && u1Var2.getCurrentMessagesGroup().isDocuments))) {
-            u1Var2.d2(canvas, u1Var2.getAlpha(), null);
-            u1Var2.N1(canvas, u1Var2.getAlpha());
-        }
-        if (u1Var2.getCurrentPosition() != null) {
-            u1Var2.W1(canvas, u1Var2.getAlpha());
-        }
-        if (u1Var2.getCurrentPosition() == null || u1Var2.getCurrentPosition().last) {
-            u1Var2.m2(u1Var2.getAlpha(), canvas, true);
-        }
-        u1Var2.X1(canvas);
-        u1Var2.getTransitionParams().i();
-        canvas.restore();
-        u1Var2.setInvalidatesParent(false);
-        return drawChild;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        for (int i14 = 0; i14 < getChildCount(); i14++) {
-            View childAt = getChildAt(i14);
-            if (childAt.getTop() != 0 && (childAt instanceof ui0)) {
-                ui0 ui0Var = (ui0) childAt;
-                ui0Var.Ge = childAt.getTop();
-                ui0Var.He = childAt.getBottom();
-                ui0Var.Ie = ui0Var.getMessageObject().getId();
-            }
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        int measuredHeight;
-        int l4;
-        int i12;
-        vi0 vi0Var = this.f36246b3;
-        if (vi0Var.N.isEmpty()) {
-            f7 = -6.0f;
-        } else {
-            f7 = 48.0f;
-        }
-        int dp = AndroidUtilities.dp(f7);
-        ViewGroup viewGroup = vi0Var.Z;
-        if (viewGroup == null) {
-            measuredHeight = 0;
-        } else {
-            measuredHeight = viewGroup.getMeasuredHeight();
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - vi0Var.e.f10577b), Integer.MIN_VALUE));
-        if (vi0Var.m0) {
-            l4 = vi0Var.Y;
-        } else {
-            l4 = vi0Var.W.l();
-        }
-        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + vi0Var.f38744o0[0]) - getMeasuredWidth()));
-        int i13 = vi0Var.O;
-        int measuredWidth = getMeasuredWidth() - max;
-        if (vi0Var.P.i()) {
-            i12 = 0;
-        } else {
-            i12 = 40;
-        }
-        float max2 = Math.max(1, getMeasuredWidth() - max) / Math.max(1, ((getMeasuredWidth() - max) - AndroidUtilities.dp(8.0f)) + Math.max(0, i13 - (measuredWidth - AndroidUtilities.dp(i12 + 8))));
-        setPivotX(getMeasuredWidth());
-        setPivotY(getMeasuredHeight());
-        setScaleX(max2);
-        setScaleY(max2);
     }
 }

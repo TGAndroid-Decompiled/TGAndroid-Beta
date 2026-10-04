@@ -1,33 +1,80 @@
 package org.telegram.ui;
 
 import android.view.View;
-import java.util.Iterator;
-public final class p50 implements org.telegram.ui.Components.w5 {
-    public final int f36403a;
-    public final Object f36404b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class p50 implements org.telegram.ui.Components.x40 {
+    public float f39341a;
+    public TLRPC.FileLocation f39342b;
+    public TLRPC.FileLocation f39343c;
+    public ImageLocation d;
+    public final long f39344e;
+    public final h60 f39345f;
 
-    public p50(Object obj, int i10) {
-        this.f36403a = i10;
-        this.f36404b = obj;
+    public p50(h60 h60Var, long j3) {
+        this.f39345f = h60Var;
+        this.f39344e = j3;
     }
 
     @Override
-    public final void invalidate() {
-        switch (this.f36403a) {
-            case 0:
-                Iterator it = ((q50) this.f36404b).f36795i.iterator();
-                while (it.hasNext()) {
-                    ((View) it.next()).invalidate();
+    public final void B(float f7) {
+        this.f39345f.f36875b.O(this.d, f7);
+        a(f7);
+    }
+
+    @Override
+    public final void O(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
+        AndroidUtilities.runOnUIThread(new fi.k(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 3));
+    }
+
+    public final void a(float f7) {
+        this.f39341a = f7;
+        o50 o50Var = this.f39345f.Q;
+        if (o50Var != null) {
+            for (int i10 = 0; i10 < o50Var.getChildCount(); i10++) {
+                View childAt = o50Var.getChildAt(i10);
+                if (childAt instanceof org.telegram.ui.Cells.e4) {
+                    org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) childAt;
+                    if (e4Var.c()) {
+                        org.telegram.ui.Cells.z3 z3Var = e4Var.f22029x;
+                        z3Var.setProgress(f7);
+                        if (f7 < 1.0f) {
+                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, true, 1.0f, true);
+                        } else {
+                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, false, 1.0f, true);
+                        }
+                    }
                 }
-                return;
-            default:
-                j61 j61Var = (j61) this.f36404b;
-                j61Var.getClass();
-                if (!zg.e0.f49293b && j61Var.getParent() != null) {
-                    ((View) j61Var.getParent()).invalidate();
-                    return;
-                }
-                return;
+            }
         }
+    }
+
+    @Override
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final yu0 getCloseIntoObject() {
+        return null;
+    }
+
+    @Override
+    public final String getInitialSearchString() {
+        return null;
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final void N() {
+    }
+
+    @Override
+    public final void I(boolean z10, boolean z11) {
     }
 }

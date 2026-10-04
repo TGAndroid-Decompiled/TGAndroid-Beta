@@ -1,30 +1,37 @@
 package ei;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.bw0;
-public final class g2 implements bw0 {
-    public final int f8346a;
-    public final NotificationCenter.NotificationCenterDelegate f8347b;
+import org.telegram.messenger.GenericProvider;
+public final class g2 implements p4, GenericProvider, org.telegram.ui.ActionBar.a2 {
+    public final l3 f9062a;
 
-    public g2(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f8346a = i10;
-        this.f8347b = notificationCenterDelegate;
+    public g2(l3 l3Var) {
+        this.f9062a = l3Var;
     }
 
     @Override
-    public final void H(int i10, boolean z10) {
-        switch (this.f8346a) {
-            case 0:
-                a3 a3Var = ((k3) this.f8347b).v;
-                if (i10 > AndroidUtilities.dp(20.0f)) {
-                    a3Var.e(a3Var.getTopActionBarOffsetY() + (-a3Var.getOffsetY()));
-                    return;
-                }
-                return;
-            default:
-                ((ii.e2) this.f8347b).getClass();
-                return;
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f9062a.k(false);
+    }
+
+    @Override
+    public void o(boolean z10) {
+        l3 l3Var = this.f9062a;
+        if (l3Var.f9155d0 && z10) {
+            return;
         }
+        l3Var.k(true);
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        boolean z10;
+        Void r22 = (Void) obj;
+        if (this.f9062a.f9156e.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        return Boolean.valueOf(z10);
     }
 }

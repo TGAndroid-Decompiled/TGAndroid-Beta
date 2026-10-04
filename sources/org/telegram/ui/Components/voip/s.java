@@ -3,33 +3,33 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class s extends AnimatorListenerAdapter {
-    public final int f29507a;
-    public final u f29508b;
+    public final int f32118a;
+    public final u f32119b;
 
     public s(u uVar, int i10) {
-        this.f29507a = i10;
-        this.f29508b = uVar;
+        this.f32118a = i10;
+        this.f32119b = uVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         int i10;
-        switch (this.f29507a) {
+        switch (this.f32118a) {
             case 0:
-                u uVar = this.f29508b;
+                u uVar = this.f32119b;
                 uVar.E = false;
                 uVar.invalidate();
                 return;
             case 1:
-                u uVar2 = this.f29508b;
-                t tVar = uVar2.f29557b0;
+                u uVar2 = this.f32119b;
+                t tVar = uVar2.f32173b0;
                 if (uVar2.W) {
                     f7 = 0.0f;
                 } else {
                     f7 = 1.0f;
                 }
-                uVar2.f29555a0 = f7;
+                uVar2.f32171a0 = f7;
                 tVar.setAlpha(f7);
                 if (uVar2.W) {
                     i10 = 8;
@@ -37,13 +37,13 @@ public final class s extends AnimatorListenerAdapter {
                     i10 = 0;
                 }
                 tVar.setVisibility(i10);
-                uVar2.f29554a.invalidate();
+                uVar2.f32170a.invalidate();
                 return;
             default:
                 super.onAnimationEnd(animator);
-                u uVar3 = this.f29508b;
+                u uVar3 = this.f32119b;
                 uVar3.J0 = null;
-                p pVar = uVar3.f29554a;
+                p pVar = uVar3.f32170a;
                 pVar.setRotationY(0.0f);
                 if (!uVar3.K0) {
                     pVar.d.clearImage();

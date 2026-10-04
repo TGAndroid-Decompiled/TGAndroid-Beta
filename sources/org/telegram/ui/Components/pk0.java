@@ -32,20 +32,20 @@ public final class pk0 extends w9 {
         switch (this.G) {
             case 0:
                 qk0 qk0Var = this.H;
-                pk0 pk0Var = qk0Var.f27746b;
+                pk0 pk0Var = qk0Var.f30058b;
                 super.dispatchDraw(canvas);
-                if (this.f29872a.getLottieAnimation() != null && !qk0Var.E) {
-                    this.f29872a.getLottieAnimation().start();
+                if (this.f32486a.getLottieAnimation() != null && !qk0Var.E) {
+                    this.f32486a.getLottieAnimation().start();
                 }
-                if (qk0Var.f27751s && !qk0Var.v && this.f29872a.getLottieAnimation() != null && this.f29872a.getLottieAnimation().A() && pk0Var.f29872a.getLottieAnimation() != null && pk0Var.f29872a.getLottieAnimation().u()) {
+                if (qk0Var.f30064s && !qk0Var.v && this.f32486a.getLottieAnimation() != null && this.f32486a.getLottieAnimation().A() && pk0Var.f32486a.getLottieAnimation() != null && pk0Var.f32486a.getLottieAnimation().u()) {
                     qk0Var.v = true;
-                    pk0Var.f29872a.getLottieAnimation().N(0, false, true);
+                    pk0Var.f32486a.getLottieAnimation().N(0, false, true);
                     pk0Var.setVisibility(0);
                     Runnable runnable = qk0Var.P.P0;
                     if (runnable != null) {
                         runnable.run();
                     }
-                    AndroidUtilities.runOnUIThread(new kc0(this, 18));
+                    AndroidUtilities.runOnUIThread(new lc0(this, 18));
                 }
                 invalidate();
                 return;
@@ -81,11 +81,11 @@ public final class pk0 extends w9 {
                 super.onDraw(canvas);
                 return;
             case 2:
-                q5 q5Var = this.e;
+                q5 q5Var = this.f32489e;
                 if (q5Var != null) {
-                    imageReceiver = q5Var.f27544k;
+                    imageReceiver = q5Var.f29908k;
                 } else {
-                    imageReceiver = this.f29872a;
+                    imageReceiver = this.f32486a;
                 }
                 if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
                     imageReceiver.getLottieAnimation().start();

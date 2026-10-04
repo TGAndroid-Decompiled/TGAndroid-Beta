@@ -6,42 +6,42 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 public final class j {
-    public final r f45211a;
-    public final i f45212b;
+    public final s f48938a;
+    public final i f48939b;
 
-    public j(r rVar, ba.c cVar) {
-        this.f45211a = rVar;
-        this.f45212b = new i(cVar);
+    public j(s sVar, ba.c cVar) {
+        this.f48938a = sVar;
+        this.f48939b = new i(cVar);
     }
 
     public final String a(String str) {
         String substring;
-        i iVar = this.f45212b;
+        i iVar = this.f48939b;
         synchronized (iVar) {
-            if (Objects.equals(iVar.f45209b, str)) {
-                return iVar.f45210c;
+            if (Objects.equals(iVar.f48936b, str)) {
+                return iVar.f48937c;
             }
-            ba.c cVar = iVar.f45208a;
+            ba.c cVar = iVar.f48935a;
             ba.a aVar = i.d;
-            File file = new File(cVar.f3445c, str);
+            File file = new File(cVar.f3722c, str);
             file.mkdirs();
-            List e = ba.c.e(file.listFiles(aVar));
-            if (e.isEmpty()) {
+            List e7 = ba.c.e(file.listFiles(aVar));
+            if (e7.isEmpty()) {
                 substring = null;
                 Log.w("FirebaseCrashlytics", "Unable to read App Quality Sessions session id.", null);
             } else {
-                substring = ((File) Collections.min(e, i.e)).getName().substring(4);
+                substring = ((File) Collections.min(e7, i.f48934e)).getName().substring(4);
             }
             return substring;
         }
     }
 
     public final void b(String str) {
-        i iVar = this.f45212b;
+        i iVar = this.f48939b;
         synchronized (iVar) {
-            if (!Objects.equals(iVar.f45209b, str)) {
-                i.a(iVar.f45208a, str, iVar.f45210c);
-                iVar.f45209b = str;
+            if (!Objects.equals(iVar.f48936b, str)) {
+                i.a(iVar.f48935a, str, iVar.f48937c);
+                iVar.f48936b = str;
             }
         }
     }

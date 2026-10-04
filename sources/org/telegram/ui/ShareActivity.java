@@ -18,8 +18,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
-    public static final int f31794b = 0;
-    public org.telegram.ui.Components.wq0 f31795a;
+    public static final int f34474b = 0;
+    public org.telegram.ui.Components.zq0 f34475a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -55,14 +55,14 @@ public class ShareActivity extends Activity {
                 MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, TLdeserialize, false, true);
                 messageObject.messageOwner.with_my_score = true;
                 try {
-                    org.telegram.ui.Components.wq0 N0 = org.telegram.ui.Components.wq0.N0(this, messageObject, null, false, string2);
-                    this.f31795a = N0;
-                    N0.setCanceledOnTouchOutside(true);
-                    this.f31795a.setOnDismissListener(new r5(this, 16));
-                    this.f31795a.show();
+                    org.telegram.ui.Components.zq0 K0 = org.telegram.ui.Components.zq0.K0(this, messageObject, null, false, string2);
+                    this.f34475a = K0;
+                    K0.setCanceledOnTouchOutside(true);
+                    this.f34475a.setOnDismissListener(new s5(this, 16));
+                    this.f34475a.show();
                     return;
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     finish();
                     return;
                 }
@@ -77,13 +77,13 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.wq0 wq0Var = this.f31795a;
-            if (wq0Var != null && wq0Var.isShowing()) {
-                this.f31795a.dismiss();
-                this.f31795a = null;
+            org.telegram.ui.Components.zq0 zq0Var = this.f34475a;
+            if (zq0Var != null && zq0Var.isShowing()) {
+                this.f34475a.dismiss();
+                this.f34475a = null;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 }

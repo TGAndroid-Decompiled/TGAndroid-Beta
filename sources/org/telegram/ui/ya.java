@@ -1,14 +1,84 @@
 package org.telegram.ui;
-public final class ya implements org.telegram.ui.Components.al0, li.c {
-    public final ub f40105a;
 
-    @Override
-    public void a() {
-        this.f40105a.c1();
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class ya implements RequestDelegate {
+    public final int f43102a;
+    public final wb f43103b;
+
+    public ya(wb wbVar, int i10) {
+        this.f43102a = i10;
+        this.f43103b = wbVar;
     }
 
     @Override
-    public void b(int i10) {
-        ub.X(this.f40105a, i10);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f43102a) {
+            case 0:
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final wb wbVar = this.f43103b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    wb.S(wbVar, tL_channels_adminLogResults);
+                                    return;
+                                default:
+                                    wb.X(wbVar, tL_channels_adminLogResults);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                return;
+            case 1:
+                wb wbVar2 = this.f43103b;
+                wbVar2.getClass();
+                if (tLObject instanceof Vector) {
+                    ArrayList<T> arrayList = ((Vector) tLObject).objects;
+                    ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
+                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                        if (arrayList.get(i10) instanceof TLRPC.User) {
+                            arrayList2.add((TLRPC.User) arrayList.get(i10));
+                        }
+                    }
+                    wbVar2.getMessagesController().putUsers(arrayList2, false);
+                    return;
+                }
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.g6(15, this.f43103b, tLObject));
+                return;
+            case 3:
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final wb wbVar3 = this.f43103b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    wb.S(wbVar3, tL_channels_adminLogResults2);
+                                    return;
+                                default:
+                                    wb.X(wbVar3, tL_channels_adminLogResults2);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new r1(this.f43103b, tL_error, tLObject, 9));
+                return;
+        }
     }
 }

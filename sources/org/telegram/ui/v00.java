@@ -1,7 +1,13 @@
 package org.telegram.ui;
-public final class v00 extends org.telegram.ui.Cells.g3 {
+
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class v00 extends FrameLayout {
+    public org.telegram.ui.Components.nj0 f41507a;
+
     @Override
-    public final int a() {
-        return 25;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(156.0f), 1073741824));
     }
 }

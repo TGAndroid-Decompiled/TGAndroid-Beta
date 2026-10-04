@@ -1,39 +1,54 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.OrientationEventListener;
-public final class ft0 extends OrientationEventListener {
-    public final PhotoViewer f33758a;
+import android.view.MotionEvent;
+import org.telegram.messenger.video.VideoFramesRewinder;
+import org.telegram.messenger.video.VideoPlayerRewinder;
+public final class ft0 extends VideoPlayerRewinder {
+    public final PhotoViewer f36387a;
 
-    public ft0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.f33758a = photoViewer;
+    public ft0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
+        super(videoFramesRewinder);
+        this.f36387a = photoViewer;
     }
 
     @Override
-    public final void onOrientationChanged(int i10) {
-        kt0 kt0Var;
-        Activity activity;
-        int i11;
-        PhotoViewer photoViewer = this.f33758a;
-        if (photoViewer.W3 != null && (kt0Var = photoViewer.f31406y2) != null && kt0Var.getVisibility() == 0 && (activity = photoViewer.f31403y) != null && (i11 = photoViewer.Y3) != 0) {
-            if (i11 == 1) {
-                if (i10 >= 240 && i10 <= 300) {
-                    photoViewer.Z3 = true;
-                } else if (photoViewer.Z3 && i10 > 0) {
-                    if (i10 >= 330 || i10 <= 30) {
-                        activity.setRequestedOrientation(photoViewer.X3);
-                        photoViewer.Y3 = 0;
-                        photoViewer.Z3 = false;
-                    }
-                }
-            } else if (i10 > 0 && (i10 >= 330 || i10 <= 30)) {
-                photoViewer.Z3 = true;
-            } else if (photoViewer.Z3 && i10 >= 240 && i10 <= 300) {
-                activity.setRequestedOrientation(photoViewer.X3);
-                photoViewer.Y3 = 0;
-                photoViewer.Z3 = false;
+    public final void onRewindCanceled() {
+        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+        PhotoViewer photoViewer = this.f36387a;
+        PhotoViewer.k(photoViewer, obtain);
+        photoViewer.f34082z1.f(false);
+        org.telegram.ui.Components.rg0.f30377p0.Q.f(false);
+    }
+
+    @Override
+    public final void onRewindStart(boolean z10) {
+        PhotoViewer photoViewer = this.f36387a;
+        photoViewer.f34082z1.e(false);
+        photoViewer.f34082z1.d(!z10);
+        photoViewer.f34082z1.f(true);
+        photoViewer.f33894e0.invalidate();
+        org.telegram.ui.Components.rg0.v(z10);
+    }
+
+    @Override
+    public final void updateRewindProgressUi(long j3, float f7, boolean z10) {
+        PhotoViewer photoViewer = this.f36387a;
+        photoViewer.f34082z1.g(Math.abs(j3));
+        if (z10) {
+            photoViewer.f34000q3.h(f7, false);
+            photoViewer.f34009r3.invalidate();
+        }
+        org.telegram.ui.Components.rg0 rg0Var = org.telegram.ui.Components.rg0.f30377p0;
+        rg0Var.Q.g(0L);
+        if (z10) {
+            rg0Var.Z = f7;
+            ai.n4 n4Var = rg0Var.f30381b0;
+            if (n4Var != null) {
+                n4Var.invalidate();
+            }
+            org.telegram.ui.Components.qg0 qg0Var = rg0Var.h;
+            if (qg0Var != null) {
+                qg0Var.invalidate();
             }
         }
     }

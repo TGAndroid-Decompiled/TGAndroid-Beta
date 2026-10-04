@@ -8,21 +8,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class sh1 extends org.telegram.ui.Components.y81 {
-    public boolean T;
-    public final Path U;
-    public final th1 V;
+public final class sh1 extends org.telegram.ui.Components.g91 {
+    public boolean U;
+    public final Path V;
+    public final th1 W;
 
     public sh1(th1 th1Var, Context context) {
         super(context, null);
-        this.V = th1Var;
-        this.U = new Path();
+        this.W = th1Var;
+        this.V = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.T) {
-            Path path = this.U;
+        if (this.U) {
+            Path path = this.V;
             path.rewind();
             float dpf2 = AndroidUtilities.dpf2(24.0f);
             RectF rectF = AndroidUtilities.rectTmp;
@@ -32,7 +32,7 @@ public final class sh1 extends org.telegram.ui.Components.y81 {
             canvas.clipPath(path);
         }
         super.dispatchDraw(canvas);
-        if (this.T) {
+        if (this.U) {
             canvas.restore();
         }
     }
@@ -49,18 +49,18 @@ public final class sh1 extends org.telegram.ui.Components.y81 {
 
     @Override
     public final boolean j(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.m2 X = ((yg0) this.V).X();
-        if (!(X instanceof xg0)) {
+        org.telegram.ui.ActionBar.n2 W = ((ch0) this.W).W();
+        if (!(W instanceof bh0)) {
             return false;
         }
-        return ((xg0) X).S(motionEvent, false);
+        return ((bh0) W).Q(motionEvent, false);
     }
 
     @Override
     public final boolean k(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.m2 X = ((yg0) this.V).X();
-        if (X instanceof xg0) {
-            return ((xg0) X).S(motionEvent, true);
+        org.telegram.ui.ActionBar.n2 W = ((ch0) this.W).W();
+        if (W instanceof bh0) {
+            return ((bh0) W).Q(motionEvent, true);
         }
         return false;
     }
@@ -76,63 +76,63 @@ public final class sh1 extends org.telegram.ui.Components.y81 {
     }
 
     public void setTabletLayout(boolean z10) {
-        if (this.T == z10) {
+        if (this.U == z10) {
             return;
         }
-        this.T = z10;
+        this.U = z10;
         invalidate();
     }
 
     @Override
     public final void t(View view, View view2, int i10, int i11) {
-        this.V.U();
+        this.W.S();
     }
 
     @Override
     public final void u() {
-        qy qyVar;
-        th1 th1Var = this.V;
-        yg0 yg0Var = (yg0) th1Var;
-        if (yg0Var.F != null) {
-            yg0Var.m0(yg0Var.f38126c.getCurrentPosition(), true);
-            yg0Var.n0(0.0f, false);
+        uy uyVar;
+        th1 th1Var = this.W;
+        ch0 ch0Var = (ch0) th1Var;
+        if (ch0Var.F != null) {
+            ch0Var.m0(ch0Var.f40848c.getCurrentPosition(), true);
+            ch0Var.n0(0.0f, false);
         }
-        yg0Var.d0();
-        sh1 sh1Var = yg0Var.f38126c;
+        ch0Var.d0();
+        sh1 sh1Var = ch0Var.f40848c;
         if (sh1Var != null) {
             int currentPosition = sh1Var.getCurrentPosition();
-            if (currentPosition != 2 && yg0Var.f40148x) {
-                yg0Var.W(2);
-                yg0Var.f40148x = false;
+            if (currentPosition != 2 && ch0Var.f35469x) {
+                ch0Var.U(2);
+                ch0Var.f35469x = false;
             }
             if (currentPosition != 3) {
-                yg0Var.W(3);
+                ch0Var.U(3);
             }
-            Integer num = yg0Var.I;
-            if (num != null && currentPosition == 0 && (qyVar = yg0Var.J) != null) {
-                qyVar.w4(num.intValue());
-                yg0Var.I = null;
+            Integer num = ch0Var.I;
+            if (num != null && currentPosition == 0 && (uyVar = ch0Var.J) != null) {
+                uyVar.F4(num.intValue());
+                ch0Var.I = null;
             }
         }
-        th1Var.U();
+        th1Var.S();
     }
 
     @Override
     public final void w(boolean z10) {
-        th1 th1Var = this.V;
-        yg0 yg0Var = (yg0) th1Var;
+        th1 th1Var = this.W;
+        ch0 ch0Var = (ch0) th1Var;
         boolean z11 = !z10;
-        if (yg0Var.F != null) {
-            float positionAnimated = yg0Var.f38126c.getPositionAnimated();
-            yg0Var.n0(positionAnimated, z11);
+        if (ch0Var.F != null) {
+            float positionAnimated = ch0Var.f40848c.getPositionAnimated();
+            ch0Var.n0(positionAnimated, z11);
             if (!z10) {
-                yg0Var.m0(Math.round(positionAnimated), true);
+                ch0Var.m0(Math.round(positionAnimated), true);
             }
         }
-        yg0Var.h0();
-        yg0Var.d0();
-        yg0Var.f38125b.invalidate();
-        th1Var.U();
+        ch0Var.h0();
+        ch0Var.d0();
+        ch0Var.f40847b.invalidate();
+        th1Var.S();
         th1Var.checkSystemBarColors();
     }
 }

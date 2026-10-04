@@ -4,29 +4,29 @@ import android.graphics.Canvas;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import s4.n0;
 import yf.y;
 public final class d extends n0 {
-    public final y f43540a = new y(2);
-    public final d6 f43541b;
-    public final f f43542c;
+    public final y f47146a = new y(2);
+    public final d6 f47147b;
+    public final f f47148c;
 
     public d(f fVar, d6 d6Var) {
-        this.f43542c = fVar;
-        this.f43541b = d6Var;
+        this.f47148c = fVar;
+        this.f47147b = d6Var;
     }
 
     @Override
     public final void d(Canvas canvas, RecyclerView recyclerView) {
-        f fVar = this.f43542c;
-        int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f43551g0.getTranslationY()) + ((int) fVar.X.e));
-        int v02 = h6.v0(h6.f19131h5, this.f43541b);
-        y yVar = this.f43540a;
+        f fVar = this.f47148c;
+        int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f47157g0.getTranslationY()) + ((int) fVar.X.f15442e));
+        int v02 = i6.v0(i6.f20889h5, this.f47147b);
+        y yVar = this.f47146a;
         yVar.b(v02);
         yVar.setBounds(0, max, recyclerView.getWidth(), AndroidUtilities.dp(8.0f) + max);
         yVar.draw(canvas);
-        fVar.Q();
-        fVar.R();
+        fVar.O();
+        fVar.P();
     }
 }

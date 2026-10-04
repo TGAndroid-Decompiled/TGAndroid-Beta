@@ -3,28 +3,28 @@ package org.telegram.messenger;
 import android.content.DialogInterface;
 import org.telegram.messenger.MediaController;
 public final class w5 implements DialogInterface.OnCancelListener {
-    public final int f18004a;
-    public final Object f18005b;
+    public final int f19665a;
+    public final Object f19666b;
 
     public w5(Object obj, int i10) {
-        this.f18004a = i10;
-        this.f18005b = obj;
+        this.f19665a = i10;
+        this.f19666b = obj;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f18004a) {
+        switch (this.f19665a) {
             case 0:
-                MediaController.lambda$saveFile$44((boolean[]) this.f18005b, dialogInterface);
+                MediaController.lambda$saveFile$44((boolean[]) this.f19666b, dialogInterface);
                 return;
             case 1:
-                MediaController.lambda$saveFile$51((boolean[]) this.f18005b, dialogInterface);
+                MediaController.lambda$saveFile$51((boolean[]) this.f19666b, dialogInterface);
                 return;
             case 2:
-                MessagesController.lambda$openByUserName$457((boolean[]) this.f18005b, dialogInterface);
+                MessagesController.lambda$openByUserName$457((boolean[]) this.f19666b, dialogInterface);
                 return;
             default:
-                ((MediaController.MediaLoader) this.f18005b).lambda$new$0(dialogInterface);
+                ((MediaController.MediaLoader) this.f19666b).lambda$new$0(dialogInterface);
                 return;
         }
     }

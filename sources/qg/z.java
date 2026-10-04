@@ -1,75 +1,34 @@
 package qg;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MediaController;
+import android.content.Context;
+import android.graphics.PointF;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hh;
-import org.telegram.ui.Components.ui;
-import org.telegram.ui.Components.wi;
-public final class z implements ui {
-    public final wi f42017a;
-    public final n0 f42018b;
+import org.telegram.ui.Components.d81;
+import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.kj0;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.vt0;
+public final class z extends o2 {
+    public final m0 f45432y0;
 
-    public z(n0 n0Var, wi wiVar) {
-        this.f42018b = n0Var;
-        this.f42017a = wiVar;
+    public z(m0 m0Var, Context context, PointF pointF, float f7, float f10, fw0 fw0Var, TLRPC.Document document, Object obj) {
+        super(context, pointF, f7, f10, fw0Var, document, obj);
+        this.f45432y0 = m0Var;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        wi wiVar = this.f42017a;
-        try {
-            HashMap<Object, Object> selectedPhotos = wiVar.f29946j0.getSelectedPhotos();
-            if (!selectedPhotos.isEmpty()) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
-                String str = photoEntry.imagePath;
-                if (str == null) {
-                    str = photoEntry.path;
-                }
-                n0 n0Var = this.f42018b;
-                n0Var.f0(n0Var.h0(str, true));
-                wiVar.dismiss();
-            }
-        } catch (Throwable th2) {
-            FileLog.e(th2);
+    public final void q(kj0 kj0Var) {
+        PhotoViewer photoViewer = ((vt0) this.f45432y0).f41814o2;
+        d81 d81Var = photoViewer.F2;
+        if (d81Var == null) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean S1() {
-        System.currentTimeMillis();
-        return true;
-    }
-
-    @Override
-    public final boolean c0() {
-        return false;
-    }
-
-    @Override
-    public final void x0(hh hhVar) {
-        hhVar.run();
-    }
-
-    @Override
-    public final void K0() {
-    }
-
-    @Override
-    public final void U0(Object obj) {
-    }
-
-    @Override
-    public final void j1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void u0() {
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+        long n10 = d81Var.n();
+        long j3 = photoViewer.f33969m8;
+        long j10 = 0;
+        if (j3 > 0) {
+            j10 = j3 / 1000;
+        }
+        kj0Var.U(n10 - j10);
     }
 }

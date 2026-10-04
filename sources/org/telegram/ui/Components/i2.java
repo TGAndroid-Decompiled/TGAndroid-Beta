@@ -4,37 +4,37 @@ import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class i2 implements Utilities.Callback {
-    public final int f24952a = 0;
-    public final int f24953b;
-    public final int f24954c;
+    public final int f27277a = 0;
+    public final int f27278b;
+    public final int f27279c;
     public final int d;
-    public final KeyEvent.Callback e;
-    public final Object f24955f;
-    public final Object f24956g;
+    public final KeyEvent.Callback f27280e;
+    public final Object f27281f;
+    public final Object f27282g;
 
     public i2(int i10, int i11, q3 q3Var, s3 s3Var, int i12, r3 r3Var) {
-        this.f24953b = i10;
-        this.f24954c = i11;
-        this.e = q3Var;
-        this.f24955f = s3Var;
+        this.f27278b = i10;
+        this.f27279c = i11;
+        this.f27280e = q3Var;
+        this.f27281f = s3Var;
         this.d = i12;
-        this.f24956g = r3Var;
+        this.f27282g = r3Var;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
         int i11;
-        switch (this.f24952a) {
+        switch (this.f27277a) {
             case 0:
-                q3 q3Var = (q3) this.e;
-                s3 s3Var = (s3) this.f24955f;
-                r3 r3Var = (r3) this.f24956g;
+                q3 q3Var = (q3) this.f27280e;
+                s3 s3Var = (s3) this.f27281f;
+                r3 r3Var = (r3) this.f27282g;
                 Boolean bool = (Boolean) obj;
-                int i12 = this.f24953b;
+                int i12 = this.f27278b;
                 int i13 = i12 % 60;
                 int i14 = (i12 - i13) / 60;
-                int i15 = this.f24954c;
+                int i15 = this.f27279c;
                 int i16 = i15 % 60;
                 int i17 = (i15 - i16) / 60;
                 int i18 = 59;
@@ -96,17 +96,17 @@ public final class i2 implements Utilities.Callback {
                 r3Var.invalidate();
                 return;
             default:
-                yh.x3.E0((yh.x3) this.e, this.f24953b, this.f24954c, this.d, (TL_stars.TL_starGiftUnique) this.f24955f, (tg.m1[]) this.f24956g, (Long) obj);
+                yh.x3.E0((yh.x3) this.f27280e, this.f27278b, this.f27279c, this.d, (TL_stars.TL_starGiftUnique) this.f27281f, (tg.m1[]) this.f27282g, (Long) obj);
                 return;
         }
     }
 
     public i2(yh.x3 x3Var, int i10, int i11, int i12, TL_stars.TL_starGiftUnique tL_starGiftUnique, tg.m1[] m1VarArr) {
-        this.e = x3Var;
-        this.f24953b = i10;
-        this.f24954c = i11;
+        this.f27280e = x3Var;
+        this.f27278b = i10;
+        this.f27279c = i11;
         this.d = i12;
-        this.f24955f = tL_starGiftUnique;
-        this.f24956g = m1VarArr;
+        this.f27281f = tL_starGiftUnique;
+        this.f27282g = m1VarArr;
     }
 }

@@ -8,31 +8,31 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class l2 {
-    public String f41738a;
-    public String f41739b;
-    public String f41740c;
+    public String f45134a;
+    public String f45135b;
+    public String f45136c;
     public CharSequence d;
-    public TLRPC.TL_inputStickerSetItem e;
-    public TLRPC.TL_messageMediaDocument f41741f;
-    public TLRPC.InputFile f41742g;
+    public TLRPC.TL_inputStickerSetItem f45137e;
+    public TLRPC.TL_messageMediaDocument f45138f;
+    public TLRPC.InputFile f45139g;
     public boolean h;
-    public long f41743i;
-    public TLRPC.StickerSet f41744j;
-    public TLRPC.Document f41745k;
-    public String f41746l;
-    public Utilities.Callback2 f41747m;
-    public Utilities.Callback f41748n;
-    public boolean f41749o;
-    public ArrayList f41750p;
-    public ArrayList f41751q;
-    public MessageObject f41752r;
-    public VideoEditedInfo f41753s;
-    public float f41754t;
-    public float f41755u;
+    public long f45140i;
+    public TLRPC.StickerSet f45141j;
+    public TLRPC.Document f45142k;
+    public String f45143l;
+    public Utilities.Callback2 f45144m;
+    public Utilities.Callback f45145n;
+    public boolean f45146o;
+    public ArrayList f45147p;
+    public ArrayList f45148q;
+    public MessageObject f45149r;
+    public VideoEditedInfo f45150s;
+    public float f45151t;
+    public float f45152u;
 
     public final void a() {
-        ArrayList arrayList = this.f41751q;
-        ArrayList arrayList2 = this.f41750p;
+        ArrayList arrayList = this.f45148q;
+        ArrayList arrayList2 = this.f45147p;
         int size = arrayList2.size();
         int i10 = 0;
         int i11 = 0;
@@ -41,8 +41,8 @@ public final class l2 {
             i11++;
             try {
                 ((File) obj).delete();
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
         }
         arrayList2.clear();
@@ -52,8 +52,8 @@ public final class l2 {
             i10++;
             try {
                 ((File) obj2).delete();
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e10) {
+                FileLog.e(e10);
             }
         }
         arrayList.clear();
@@ -61,14 +61,14 @@ public final class l2 {
 
     public final float b() {
         float f7;
-        if (this.f41747m == null) {
+        if (this.f45144m == null) {
             f7 = 0.9f;
         } else {
             f7 = 1.0f;
         }
-        if (this.f41753s == null) {
-            return f7 * this.f41755u;
+        if (this.f45150s == null) {
+            return f7 * this.f45152u;
         }
-        return com.google.android.gms.internal.vision.e2.B(this.f41755u, 0.5f, this.f41754t * 0.5f, f7);
+        return com.google.android.gms.internal.vision.e2.B(this.f45152u, 0.5f, this.f45151t * 0.5f, f7);
     }
 }

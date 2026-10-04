@@ -6,15 +6,15 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.wn;
-public final class z5 extends wn {
-    public final Utilities.Callback2 Pc;
-    public final q6 Qc;
+import org.telegram.ui.yn;
+public final class z5 extends yn {
+    public final Utilities.Callback2 Kc;
+    public final q6 Lc;
 
     public z5(q6 q6Var, Utilities.Callback2 callback2) {
         super(null);
-        this.Qc = q6Var;
-        this.Pc = callback2;
+        this.Lc = q6Var;
+        this.Kc = callback2;
     }
 
     @Override
@@ -52,17 +52,17 @@ public final class z5 extends wn {
         } else {
             return;
         }
-        this.Pc.run(messageMedia, tL_mediaAreaGeoPoint2);
+        this.Kc.run(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.Qc.getContext());
+        return AndroidUtilities.findActivity(this.Lc.getContext());
     }
 
     @Override
     public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
-        return this.Qc.G1;
+        return this.Lc.G1;
     }
 
     @Override
@@ -76,7 +76,7 @@ public final class z5 extends wn {
     }
 
     @Override
-    public final boolean x9() {
+    public final boolean w9() {
         return false;
     }
 }

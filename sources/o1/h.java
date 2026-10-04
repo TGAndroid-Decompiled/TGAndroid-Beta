@@ -4,52 +4,52 @@ import android.os.Looper;
 import android.util.AndroidRuntimeException;
 import java.util.ArrayList;
 public abstract class h {
-    public static final c f15516m = new c(1);
-    public static final c f15517n = new c(2);
-    public static final c f15518o = new c(3);
-    public static final c f15519p = new c(4);
-    public static final c f15520q = new c(5);
-    public static final c f15521r = new c(6);
-    public static final c f15522s = new c(7);
-    public static final c f15523t = new c(0);
-    public float f15524a;
-    public float f15525b;
-    public boolean f15526c;
+    public static final c f16964m = new c(1);
+    public static final c f16965n = new c(2);
+    public static final c f16966o = new c(3);
+    public static final c f16967p = new c(4);
+    public static final c f16968q = new c(5);
+    public static final c f16969r = new c(6);
+    public static final c f16970s = new c(7);
+    public static final c f16971t = new c(0);
+    public float f16972a;
+    public float f16973b;
+    public boolean f16974c;
     public final Object d;
-    public final i e;
-    public boolean f15527f;
-    public float f15528g;
+    public final i f16975e;
+    public boolean f16976f;
+    public float f16977g;
     public float h;
-    public long f15529i;
-    public float f15530j;
-    public final ArrayList f15531k;
-    public final ArrayList f15532l;
+    public long f16978i;
+    public float f16979j;
+    public final ArrayList f16980k;
+    public final ArrayList f16981l;
 
     public h(j jVar) {
-        this.f15524a = 0.0f;
-        this.f15525b = Float.MAX_VALUE;
-        this.f15526c = false;
-        this.f15527f = false;
-        this.f15528g = Float.MAX_VALUE;
+        this.f16972a = 0.0f;
+        this.f16973b = Float.MAX_VALUE;
+        this.f16974c = false;
+        this.f16976f = false;
+        this.f16977g = Float.MAX_VALUE;
         this.h = -3.4028235E38f;
-        this.f15529i = 0L;
-        this.f15531k = new ArrayList();
-        this.f15532l = new ArrayList();
+        this.f16978i = 0L;
+        this.f16980k = new ArrayList();
+        this.f16981l = new ArrayList();
         this.d = null;
-        this.e = new d(jVar, 0);
-        this.f15530j = 1.0f;
+        this.f16975e = new d(jVar, 0);
+        this.f16979j = 1.0f;
     }
 
     public final void a(f fVar) {
-        ArrayList arrayList = this.f15531k;
+        ArrayList arrayList = this.f16980k;
         if (!arrayList.contains(fVar)) {
             arrayList.add(fVar);
         }
     }
 
     public final void b(g gVar) {
-        if (!this.f15527f) {
-            ArrayList arrayList = this.f15532l;
+        if (!this.f16976f) {
+            ArrayList arrayList = this.f16981l;
             if (!arrayList.contains(gVar)) {
                 arrayList.add(gVar);
                 return;
@@ -61,7 +61,7 @@ public abstract class h {
 
     public final void c() {
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            if (this.f15527f) {
+            if (this.f16976f) {
                 d(true);
                 return;
             }
@@ -73,28 +73,28 @@ public abstract class h {
     public final void d(boolean z10) {
         ArrayList arrayList;
         int i10 = 0;
-        this.f15527f = false;
-        ThreadLocal threadLocal = b.f15507f;
+        this.f16976f = false;
+        ThreadLocal threadLocal = b.f16954f;
         if (threadLocal.get() == null) {
             threadLocal.set(new b());
         }
         b bVar = (b) threadLocal.get();
-        bVar.f15508a.remove(this);
-        ArrayList arrayList2 = bVar.f15509b;
+        bVar.f16955a.remove(this);
+        ArrayList arrayList2 = bVar.f16956b;
         int indexOf = arrayList2.indexOf(this);
         if (indexOf >= 0) {
             arrayList2.set(indexOf, null);
-            bVar.e = true;
+            bVar.f16958e = true;
         }
-        this.f15529i = 0L;
-        this.f15526c = false;
+        this.f16978i = 0L;
+        this.f16974c = false;
         while (true) {
-            arrayList = this.f15531k;
+            arrayList = this.f16980k;
             if (i10 >= arrayList.size()) {
                 break;
             }
             if (arrayList.get(i10) != null) {
-                ((f) arrayList.get(i10)).a(this, z10, this.f15525b, this.f15524a);
+                ((f) arrayList.get(i10)).a(this, z10, this.f16973b, this.f16972a);
             }
             i10++;
         }
@@ -107,15 +107,15 @@ public abstract class h {
 
     public final void e(float f7) {
         ArrayList arrayList;
-        this.e.b(this.d, f7);
+        this.f16975e.b(this.d, f7);
         int i10 = 0;
         while (true) {
-            arrayList = this.f15532l;
+            arrayList = this.f16981l;
             if (i10 >= arrayList.size()) {
                 break;
             }
             if (arrayList.get(i10) != null) {
-                ((g) arrayList.get(i10)).a(this, this.f15525b, this.f15524a);
+                ((g) arrayList.get(i10)).a(this, this.f16973b, this.f16972a);
             }
             i10++;
         }
@@ -127,29 +127,29 @@ public abstract class h {
     }
 
     public h(Object obj, i iVar) {
-        this.f15524a = 0.0f;
-        this.f15525b = Float.MAX_VALUE;
-        this.f15526c = false;
-        this.f15527f = false;
-        this.f15528g = Float.MAX_VALUE;
+        this.f16972a = 0.0f;
+        this.f16973b = Float.MAX_VALUE;
+        this.f16974c = false;
+        this.f16976f = false;
+        this.f16977g = Float.MAX_VALUE;
         this.h = -3.4028235E38f;
-        this.f15529i = 0L;
-        this.f15531k = new ArrayList();
-        this.f15532l = new ArrayList();
+        this.f16978i = 0L;
+        this.f16980k = new ArrayList();
+        this.f16981l = new ArrayList();
         this.d = obj;
-        this.e = iVar;
-        if (iVar != f15520q && iVar != f15521r && iVar != f15522s) {
-            if (iVar == f15523t) {
-                this.f15530j = 0.00390625f;
+        this.f16975e = iVar;
+        if (iVar != f16968q && iVar != f16969r && iVar != f16970s) {
+            if (iVar == f16971t) {
+                this.f16979j = 0.00390625f;
                 return;
-            } else if (iVar != f15518o && iVar != f15519p) {
-                this.f15530j = 1.0f;
+            } else if (iVar != f16966o && iVar != f16967p) {
+                this.f16979j = 1.0f;
                 return;
             } else {
-                this.f15530j = 0.00390625f;
+                this.f16979j = 0.00390625f;
                 return;
             }
         }
-        this.f15530j = 0.1f;
+        this.f16979j = 0.1f;
     }
 }

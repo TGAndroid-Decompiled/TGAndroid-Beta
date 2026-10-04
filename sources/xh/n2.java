@@ -5,20 +5,20 @@ import android.view.View;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.yc;
 public final class n2 extends yh.x3 {
-    public final int f46313r1;
-    public final Object f46314s1;
+    public final int f50131r1;
+    public final Object f50132s1;
 
     public n2(o2 o2Var, Context context, int i10, long j3, d6 d6Var, int i11) {
         super(context, i10, j3, d6Var, null);
-        this.f46313r1 = i11;
-        this.f46314s1 = o2Var;
+        this.f50131r1 = i11;
+        this.f50132s1 = o2Var;
     }
 
     @Override
     public int getBottomInset() {
-        switch (this.f46313r1) {
+        switch (this.f50131r1) {
             case 3:
-                return ((yh.x3) this.f46314s1).getBottomInset();
+                return ((yh.x3) this.f50132s1).getBottomInset();
             default:
                 return super.getBottomInset();
         }
@@ -26,13 +26,13 @@ public final class n2 extends yh.x3 {
 
     @Override
     public yc getBulletinFactory() {
-        switch (this.f46313r1) {
+        switch (this.f50131r1) {
             case 0:
-                return yc.a0(((o2) this.f46314s1).f46329a.f46398a);
+                return yc.a0(((o2) this.f50132s1).f50143a.f50216a);
             case 1:
-                return yc.a0(((o2) this.f46314s1).f46329a.f46398a);
+                return yc.a0(((o2) this.f50132s1).f50143a.f50216a);
             case 2:
-                return yc.a0(((o2) this.f46314s1).f46329a.f46398a);
+                return yc.a0(((o2) this.f50132s1).f50143a.f50216a);
             default:
                 return super.getBulletinFactory();
         }
@@ -40,7 +40,7 @@ public final class n2 extends yh.x3 {
 
     public n2(yh.x3 x3Var, Context context, int i10, long j3, d6 d6Var, View view) {
         super(context, i10, j3, d6Var, view);
-        this.f46313r1 = 3;
-        this.f46314s1 = x3Var;
+        this.f50131r1 = 3;
+        this.f50132s1 = x3Var;
     }
 }

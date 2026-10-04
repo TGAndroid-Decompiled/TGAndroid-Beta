@@ -1,265 +1,226 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class kw0 extends org.telegram.ui.ActionBar.m2 {
-    public final long f35166a;
-    public org.telegram.ui.Cells.z7 f35167b;
-    public org.telegram.ui.Components.i90 f35168c;
-    public org.telegram.ui.Components.t61 d;
-    public org.telegram.ui.Components.rr e;
-    public org.telegram.ui.ActionBar.u0 f35169f;
-    public final boolean h;
-    public final long f35170n;
-    public boolean f35171r;
-    public long f35172s;
-    public io v;
-    public boolean f35173w;
+import org.telegram.tgnet.tl.TL_stories;
+public final class kw0 implements org.telegram.ui.Components.pg {
+    public final PopupNotificationActivity f38121a;
 
-    public kw0(long j3) {
-        super(null);
-        TLRPC.Chat chat = null;
-        boolean z10 = true;
-        this.f35173w = true;
-        this.f35166a = j3;
-        TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(j3));
-        if (chat2 != null && chat2.linked_monoforum_id != 0) {
-            chat = getMessagesController().getChat(Long.valueOf(chat2.linked_monoforum_id));
-        }
-        long j10 = chat != null ? chat.send_paid_messages_stars : 0L;
-        z10 = (chat2 == null || !chat2.broadcast_messages_allowed) ? false : false;
-        this.h = z10;
-        long clamp = Utilities.clamp(z10 ? j10 : getMessagesController().config.starsPaidMessagesChannelAmountDefault.get(), getMessagesController().starsPaidMessageAmountMax, 0L);
-        this.f35170n = clamp;
-        this.f35171r = z10;
-        this.f35172s = clamp;
+    public kw0(PopupNotificationActivity popupNotificationActivity) {
+        this.f38121a = popupNotificationActivity;
     }
 
-    public static void U(kw0 kw0Var, TLRPC.TL_error tL_error, TLObject tLObject, TL_stars.updatePaidMessagesPrice updatepaidmessagesprice) {
-        long j3;
-        if (tL_error != null) {
-            kw0Var.e.a(0.0f);
-            org.telegram.ui.Components.yc.b0(tL_error);
-            return;
-        }
-        TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-        kw0Var.getMessagesController().putChats(updates.chats, false);
-        kw0Var.getMessagesController().processUpdates(updates, false);
-        if (!kw0Var.isFinished && !kw0Var.finishing) {
-            io ioVar = kw0Var.v;
-            if (ioVar != null) {
-                if (updatepaidmessagesprice.suggestions_allowed) {
-                    j3 = updatepaidmessagesprice.send_paid_messages_stars;
-                } else {
-                    j3 = -1;
-                }
-                ioVar.run(j3);
-            }
-            kw0Var.finishFragment();
-        }
-    }
-
-    public final void V(boolean z10) {
-        boolean X;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        if (this.f35169f == null || this.f35173w == (X = X())) {
-            return;
-        }
-        this.f35173w = X;
-        this.f35169f.setEnabled(X);
-        float f13 = 0.0f;
-        if (z10) {
-            ViewPropertyAnimator animate = this.f35169f.animate();
-            if (X) {
-                f11 = 1.0f;
-            } else {
-                f11 = 0.0f;
-            }
-            ViewPropertyAnimator alpha = animate.alpha(f11);
-            if (X) {
-                f12 = 1.0f;
-            } else {
-                f12 = 0.0f;
-            }
-            ViewPropertyAnimator scaleX = alpha.scaleX(f12);
-            if (X) {
-                f13 = 1.0f;
-            }
-            scaleX.scaleY(f13).setDuration(180L).start();
-            return;
-        }
-        org.telegram.ui.ActionBar.u0 u0Var = this.f35169f;
-        if (X) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        u0Var.setAlpha(f7);
-        org.telegram.ui.ActionBar.u0 u0Var2 = this.f35169f;
-        if (X) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        u0Var2.setScaleX(f10);
-        org.telegram.ui.ActionBar.u0 u0Var3 = this.f35169f;
-        if (X) {
-            f13 = 1.0f;
-        }
-        u0Var3.setScaleY(f13);
-    }
-
-    public final String W() {
-        int i10 = getMessagesController().starsPaidMessageCommissionPermille;
-        return LocaleController.formatString(R.string.PostSuggestionsPriceInfo2, ei.l.G0(i10), String.valueOf(((int) (((((float) this.f35172s) * (i10 / 1000.0f)) / 1000.0d) * getMessagesController().starsUsdWithdrawRate1000)) / 100.0d));
-    }
-
-    public final boolean X() {
-        if (this.f35172s == this.f35170n && this.f35171r == this.h) {
-            return false;
-        }
+    @Override
+    public final boolean C0() {
         return true;
     }
 
-    public final void Y() {
-        long j3;
-        long j10;
-        if (this.e.f28038c <= 0.0f) {
-            if (!X()) {
-                finishFragment();
-                return;
-            }
-            this.e.a(1.0f);
-            TL_stars.updatePaidMessagesPrice updatepaidmessagesprice = new TL_stars.updatePaidMessagesPrice();
-            MessagesController messagesController = getMessagesController();
-            long j11 = this.f35166a;
-            updatepaidmessagesprice.channel = messagesController.getInputChannel(j11);
-            boolean z10 = this.f35171r;
-            if (z10) {
-                j3 = this.f35172s;
-            } else {
-                j3 = 0;
-            }
-            updatepaidmessagesprice.send_paid_messages_stars = j3;
-            updatepaidmessagesprice.suggestions_allowed = z10;
-            getConnectionsManager().sendRequest(updatepaidmessagesprice, new vb0(12, this, updatepaidmessagesprice));
-            TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(j11));
-            if (chat != null) {
-                if (this.f35171r) {
-                    chat.flags2 |= 65536;
-                    chat.broadcast_messages_allowed = true;
-                } else {
-                    chat.flags2 &= -65537;
-                    chat.broadcast_messages_allowed = false;
-                }
-                getMessagesController().putChat(chat, true);
-                TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(chat.linked_monoforum_id));
-                if (chat2 != null) {
-                    if (this.f35171r) {
-                        chat2.flags2 |= 16384;
-                        chat2.send_paid_messages_stars = this.f35172s;
-                    } else {
-                        chat2.flags2 &= -16385;
-                        chat2.send_paid_messages_stars = 0L;
-                    }
-                    getMessagesController().putChat(chat2, true);
-                }
-            }
-            io ioVar = this.v;
-            if (ioVar != null) {
-                if (this.f35171r) {
-                    j10 = this.f35172s;
-                } else {
-                    j10 = -1;
-                }
-                ioVar.run(j10);
-            }
+    @Override
+    public final void E1() {
+        PopupNotificationActivity popupNotificationActivity = this.f38121a;
+        MessageObject messageObject = popupNotificationActivity.Q;
+        if (messageObject != null) {
+            MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);
         }
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.PostSuggestions));
-        this.actionBar.setActionBarMenuOnItemClick(new q70(this, 18));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = org.telegram.ui.ActionBar.h6.f19394v8;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.e = new org.telegram.ui.Components.rr(mutate, new org.telegram.ui.Components.vp(org.telegram.ui.ActionBar.h6.w0(null, i10, false)));
-        this.f35169f = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.e);
-        V(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19005a7, false));
-        FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
-        org.telegram.ui.Cells.z7 z7Var = new org.telegram.ui.Cells.z7(context, this.resourceProvider);
-        this.f35167b = z7Var;
-        int i11 = org.telegram.ui.ActionBar.h6.f19061d6;
-        z7Var.setBackgroundColor(getThemedColor(i11));
-        org.telegram.ui.Components.i90 i90Var = new org.telegram.ui.Components.i90(context, this, null, true, true);
-        this.f35168c = i90Var;
-        i90Var.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), 0);
-        this.f35168c.setBackgroundColor(getThemedColor(i11));
-        this.f35168c.b(true);
-        this.f35168c.d(0, null, false);
-        org.telegram.ui.Components.t61 t61Var = new org.telegram.ui.Components.t61(context, this.currentAccount, this.classGuid, false, new b5(this, 16), new jw0(this, 2), null, this.resourceProvider);
-        this.d = t61Var;
-        t61Var.p1();
-        frameLayout2.addView(this.d, w7.y5.e(-1, -1, 51));
-        this.actionBar.setAdaptiveBackground(this.d);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return !X();
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z10) {
-        if (X()) {
-            if (z10) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f18663a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f18663a.T = LocaleController.getString(R.string.MessageSuggestionsUnsavedChanges);
-                alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new jw0(this, 0));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Discard), new jw0(this, 1));
-                showDialog(alertDialog$Builder.f18663a);
-                return false;
-            }
-            return false;
+    public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
+        PopupNotificationActivity popupNotificationActivity = this.f38121a;
+        if (popupNotificationActivity.Q == null) {
+            return;
         }
-        return super.onBackPressed(z10);
+        int i12 = popupNotificationActivity.S;
+        if (i12 >= 0 && i12 < popupNotificationActivity.f34104a0.size()) {
+            popupNotificationActivity.f34104a0.remove(popupNotificationActivity.S);
+        }
+        MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
+        popupNotificationActivity.Q = null;
+        popupNotificationActivity.f();
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        org.telegram.ui.Components.l61 l61Var;
-        super.onFragmentCreate();
-        org.telegram.ui.Components.t61 t61Var = this.d;
-        if (t61Var != null && (l61Var = t61Var.Y2) != null) {
-            l61Var.N(false);
-            return true;
-        }
-        return true;
+    public final TLRPC.TL_channels_sendAsPeers I() {
+        return null;
+    }
+
+    @Override
+    public final int b1() {
+        return 0;
+    }
+
+    @Override
+    public final TL_stories.StoryItem d1() {
+        return null;
+    }
+
+    @Override
+    public final boolean f1(long j3) {
+        return false;
+    }
+
+    @Override
+    public final boolean i1() {
+        return false;
+    }
+
+    @Override
+    public final boolean m() {
+        return false;
+    }
+
+    @Override
+    public final boolean o1() {
+        return false;
+    }
+
+    @Override
+    public final on p0() {
+        return null;
+    }
+
+    @Override
+    public final int q() {
+        return 0;
+    }
+
+    @Override
+    public final TLRPC.Peer v() {
+        return null;
+    }
+
+    @Override
+    public final boolean w1() {
+        return false;
+    }
+
+    @Override
+    public final void A2() {
+    }
+
+    @Override
+    public final void B(boolean z10) {
+    }
+
+    @Override
+    public final void D() {
+    }
+
+    @Override
+    public final void G0() {
+    }
+
+    @Override
+    public final void J0() {
+    }
+
+    @Override
+    public final void T0() {
+    }
+
+    @Override
+    public final void V() {
+    }
+
+    @Override
+    public final void X(boolean z10) {
+    }
+
+    @Override
+    public final void a1(int i10) {
+    }
+
+    @Override
+    public final void d2() {
+    }
+
+    @Override
+    public final void f() {
+    }
+
+    @Override
+    public final void f2(int i10) {
+    }
+
+    @Override
+    public final void i() {
+    }
+
+    @Override
+    public final void i2() {
+    }
+
+    @Override
+    public final void j2(boolean z10) {
+    }
+
+    @Override
+    public final void m0() {
+    }
+
+    @Override
+    public final void n1() {
+    }
+
+    @Override
+    public final void o2() {
+    }
+
+    @Override
+    public final void q1() {
+    }
+
+    @Override
+    public final void r1() {
+    }
+
+    @Override
+    public final void s0() {
+    }
+
+    @Override
+    public final void s1() {
+    }
+
+    @Override
+    public final void v1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void w2() {
+    }
+
+    @Override
+    public final void x() {
+    }
+
+    @Override
+    public final void y(float f7) {
+    }
+
+    @Override
+    public final void z1() {
+    }
+
+    @Override
+    public final void E0(int i10, int i11) {
+    }
+
+    @Override
+    public final void K(float f7, int i10) {
+    }
+
+    @Override
+    public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
+    }
+
+    @Override
+    public final void t1(View view, CharSequence charSequence, boolean z10) {
+    }
+
+    @Override
+    public final void k2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
     }
 }

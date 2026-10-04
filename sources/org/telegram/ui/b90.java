@@ -1,121 +1,82 @@
 package org.telegram.ui;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class b90 implements Runnable {
-    public final int f32359a;
-    public final LaunchActivity f32360b;
+import org.telegram.tgnet.tl.TL_account;
+public final class b90 implements RequestDelegate {
+    public final int f35030a;
+    public final LaunchActivity f35031b;
+    public final int f35032c;
+    public final h90 d;
+    public final Object f35033e;
+    public final Object f35034f;
+    public final Object f35035g;
+    public final Object h;
+    public final Object f35036i;
 
-    public b90(LaunchActivity launchActivity, int i10) {
-        this.f32359a = i10;
-        this.f32360b = launchActivity;
+    public b90(LaunchActivity launchActivity, h90 h90Var, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
+        this.f35030a = 0;
+        this.f35031b = launchActivity;
+        this.d = h90Var;
+        this.f35032c = i10;
+        this.f35036i = authorizationform;
+        this.f35033e = getauthorizationform;
+        this.f35034f = str;
+        this.f35035g = str2;
+        this.h = str3;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f32359a;
-        org.telegram.ui.ActionBar.m2 m2Var = null;
-        LaunchActivity launchActivity = this.f32360b;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f35030a;
+        Object obj = this.h;
+        Object obj2 = this.f35035g;
+        Object obj3 = this.f35034f;
+        Object obj4 = this.f35033e;
+        Object obj5 = this.f35036i;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
-                org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(launchActivity, null);
-                ybVar.d(R.raw.email_check_inbox, new String[0]);
-                ybVar.f30634b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                if (R != null) {
-                    org.telegram.ui.Components.qc.g(R, ybVar, 1500).j();
-                    try {
-                        R.fragmentView.performHapticFeedback(3, 2);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f35031b, this.d, tLObject, this.f35032c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 1));
                 return;
             case 1:
-                if (launchActivity.W0) {
-                    launchActivity.W0 = false;
-                    launchActivity.H(false, false, true);
-                    return;
-                }
-                return;
-            case 2:
+                int[] iArr = (int[]) obj5;
+                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
+                String str = (String) obj3;
+                String str2 = (String) obj2;
+                String str3 = (String) obj;
                 Pattern pattern2 = LaunchActivity.B1;
-                launchActivity.H(false, true, false);
-                if (LaunchActivity.R() != null && LaunchActivity.R().getLastStoryViewer() != null) {
-                    LaunchActivity.R().getLastStoryViewer().P();
+                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
+                LaunchActivity launchActivity = this.f35031b;
+                h90 h90Var = this.d;
+                if (authorizationform != null) {
+                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                    int i11 = this.f35032c;
+                    iArr[0] = ConnectionsManager.getInstance(i11).sendRequest(getpassword, new b90(launchActivity, h90Var, i11, authorizationform, getauthorizationform, str, str2, str3));
                     return;
                 }
-                return;
-            case 3:
-                if (!launchActivity.f31132q0.getFragmentStack().isEmpty()) {
-                    launchActivity.f31132q0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.hy0(launchActivity, launchActivity.f31120j0, launchActivity.f31116h0, launchActivity.f31118i0));
-                    return;
-                }
-                return;
-            case 4:
-                Pattern pattern3 = LaunchActivity.B1;
-                launchActivity.getClass();
-                org.telegram.ui.Components.c30.f23160e0 = false;
-                org.telegram.ui.Components.c30.j(launchActivity);
-                return;
-            case 5:
-                ArrayList arrayList = launchActivity.f31108d0;
-                ArrayList arrayList2 = launchActivity.f31110e0;
-                if (AndroidUtilities.isTablet()) {
-                    if (!arrayList2.isEmpty()) {
-                        m2Var = (org.telegram.ui.ActionBar.m2) hg.c.g(1, arrayList2);
-                    }
-                } else if (!arrayList.isEmpty()) {
-                    m2Var = (org.telegram.ui.ActionBar.m2) hg.c.g(1, arrayList);
-                }
-                if (!(m2Var instanceof ProxyListActivity) && !(m2Var instanceof f21)) {
-                    launchActivity.p0(new ProxyListActivity());
-                    return;
-                }
-                return;
-            case 6:
-                if (!launchActivity.f31143v1) {
-                    try {
-                        org.telegram.ui.ActionBar.a2 C = org.telegram.ui.Components.e5.C(launchActivity);
-                        C.setOnDismissListener(new d90(launchActivity, 0));
-                        launchActivity.f31143v1 = true;
-                        C.show();
-                    } catch (Throwable unused2) {
-                        return;
-                    }
-                }
-                return;
-            case 7:
-                if (launchActivity.T0 != null) {
-                    File file = new File(ApplicationLoader.getFilesDirFixed(), a4.a.s(new StringBuilder("remote"), launchActivity.T0.f18474id, ".attheme"));
-                    TLRPC.TL_theme tL_theme = launchActivity.T0;
-                    org.telegram.ui.ActionBar.g6 u10 = org.telegram.ui.ActionBar.h6.u(file, tL_theme.title, tL_theme, true);
-                    if (u10 != null) {
-                        launchActivity.p0(new od1(u10, true, 0, false, false));
-                    }
-                    launchActivity.h0();
-                    return;
-                }
-                return;
-            case 8:
-                Pattern pattern4 = LaunchActivity.B1;
-                launchActivity.getClass();
-                launchActivity.p0(new hc0());
-                return;
-            case 9:
-                launchActivity.f31139t1 = null;
+                AndroidUtilities.runOnUIThread(new uq(launchActivity, h90Var, tL_error, 14));
                 return;
             default:
-                launchActivity.f31141u1 = null;
+                Pattern pattern3 = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f35031b, tLObject, (int[]) obj5, this.f35032c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 2));
                 return;
         }
+    }
+
+    public b90(LaunchActivity launchActivity, int[] iArr, int i10, h90 h90Var, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
+        this.f35030a = i11;
+        this.f35031b = launchActivity;
+        this.f35036i = iArr;
+        this.f35032c = i10;
+        this.d = h90Var;
+        this.f35033e = obj;
+        this.f35034f = obj2;
+        this.f35035g = obj3;
+        this.h = obj4;
     }
 }

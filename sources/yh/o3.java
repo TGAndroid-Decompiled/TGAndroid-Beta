@@ -7,46 +7,46 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.g20;
+import org.telegram.ui.k20;
 public final class o3 extends FrameLayout {
-    public final x0 f47811a;
-    public final n3 f47812b;
-    public final n3 f47813c;
+    public final x0 f51742a;
+    public final n3 f51743b;
+    public final n3 f51744c;
     public final n3 d;
-    public boolean e;
-    public final g20 f47814f;
+    public boolean f51745e;
+    public final k20 f51746f;
     public final RectF h;
 
     public o3(Context context, org.telegram.ui.ActionBar.d6 d6Var, x0 x0Var) {
         super(context);
-        this.f47814f = new g20();
+        this.f51746f = new k20();
         this.h = new RectF();
-        this.f47811a = x0Var;
+        this.f51742a = x0Var;
         n3 n3Var = new n3(context, d6Var);
-        this.f47812b = n3Var;
+        this.f51743b = n3Var;
         n3 n3Var2 = new n3(context, d6Var);
-        this.f47813c = n3Var2;
+        this.f51744c = n3Var2;
         n3 n3Var3 = new n3(context, d6Var);
         this.d = n3Var3;
-        addView(n3Var, w7.y5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
-        addView(n3Var2, w7.y5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
-        addView(n3Var3, w7.y5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
+        addView(n3Var, w7.z5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
+        addView(n3Var2, w7.z5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
+        addView(n3Var3, w7.z5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
     }
 
     public final void a(e3 e3Var, float f7, boolean z10, e3 e3Var2, float f10, boolean z11, e3 e3Var3, float f11, boolean z12) {
-        x0 x0Var = this.f47811a;
-        n3 n3Var = this.f47812b;
+        x0 x0Var = this.f51742a;
+        n3 n3Var = this.f51743b;
         if (e3Var != null) {
             if (z10) {
                 f7 = Math.max(0.5f, f7);
             }
             n3Var.setVisibility(0);
-            n3Var.e(e3Var.f47331a, e3Var.f47332b, x0Var);
+            n3Var.e(e3Var.f51223a, e3Var.f51224b, x0Var);
             n3Var.setTranslationY(AndroidUtilities.dp(36.0f) * ((f7 - 0.5f) / 1.5f));
         } else {
             n3Var.setVisibility(4);
         }
-        n3 n3Var2 = this.f47813c;
+        n3 n3Var2 = this.f51744c;
         if (e3Var2 != null) {
             float f12 = f10;
             if (z11) {
@@ -54,10 +54,10 @@ public final class o3 extends FrameLayout {
             }
             float f13 = (f12 - 0.5f) / 1.5f;
             n3Var2.setVisibility(0);
-            n3Var2.e(e3Var2.f47331a, e3Var2.f47332b, x0Var);
+            n3Var2.e(e3Var2.f51223a, e3Var2.f51224b, x0Var);
             n3Var2.setTranslationY(AndroidUtilities.dp(36.0f) * f13);
-            if (z11 && f13 <= 0.0f && !this.e) {
-                this.e = true;
+            if (z11 && f13 <= 0.0f && !this.f51745e) {
+                this.f51745e = true;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(n3Var2, 23));
                 ofFloat.setDuration(180L);
@@ -73,7 +73,7 @@ public final class o3 extends FrameLayout {
                 f14 = Math.max(0.5f, f14);
             }
             n3Var3.setVisibility(0);
-            n3Var3.e(e3Var3.f47331a, e3Var3.f47332b, x0Var);
+            n3Var3.e(e3Var3.f51223a, e3Var3.f51224b, x0Var);
             n3Var3.setTranslationY(AndroidUtilities.dp(36.0f) * ((f14 - 0.5f) / 1.5f));
             return;
         }
@@ -87,10 +87,10 @@ public final class o3 extends FrameLayout {
         canvas.save();
         RectF rectF = this.h;
         rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f));
-        g20 g20Var = this.f47814f;
-        g20Var.b(canvas, rectF, 1, 1.0f);
+        k20 k20Var = this.f51746f;
+        k20Var.b(canvas, rectF, 1, 1.0f);
         rectF.set(0.0f, getHeight() - AndroidUtilities.dp(8.0f), getWidth(), getHeight());
-        g20Var.b(canvas, rectF, 3, 1.0f);
+        k20Var.b(canvas, rectF, 3, 1.0f);
         canvas.restore();
         canvas.restore();
     }

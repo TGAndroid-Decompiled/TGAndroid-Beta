@@ -1,17 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import java.util.ArrayList;
-public final class gv extends vv {
-    public final vv W;
+public final class gv extends tv {
+    public final wv h;
 
-    public gv(vv vvVar, org.telegram.ui.ActionBar.m2 m2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
-        super(m2Var, context, d6Var, arrayList);
-        this.W = vvVar;
-    }
-
-    @Override
-    public final void Y() {
-        this.W.dismiss();
+    public gv(int i10, ArrayList arrayList, wv wvVar) {
+        super(i10, arrayList, wvVar);
+        this.h = wvVar;
     }
 }

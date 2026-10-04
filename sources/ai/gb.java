@@ -13,45 +13,45 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class gb extends FrameLayout {
-    public final Paint f910a;
-    public final Paint f911b;
-    public final TextView f912c;
+    public final Paint f985a;
+    public final Paint f986b;
+    public final TextView f987c;
     public final TextView d;
-    public final TextView e;
+    public final TextView f988e;
 
     public gb(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f910a = paint;
+        this.f985a = paint;
         Paint paint2 = new Paint(1);
-        this.f911b = paint2;
-        paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19300q7, d6Var));
+        this.f986b = paint2;
+        paint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21058q7, d6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f912c = textView;
+        this.f987c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setText(LocaleController.getString(R.string.StoryError));
         textView.setTextColor(-1);
-        addView(textView, w7.y5.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
+        addView(textView, w7.z5.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 8.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.l1(0.5f, -1));
+        textView2.setTextColor(org.telegram.ui.ActionBar.i6.l1(0.5f, -1));
         textView2.setVisibility(8);
         textView2.setTranslationY(AndroidUtilities.dp(9.0f));
-        addView(textView2, w7.y5.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
+        addView(textView2, w7.z5.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
         TextView textView3 = new TextView(context);
-        this.e = textView3;
+        this.f988e = textView3;
         textView3.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
         int dp = AndroidUtilities.dp(16.0f);
-        textView3.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, 536870911, 956301311, 956301311));
+        textView3.setBackground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, 536870911, 956301311, 956301311));
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString(R.string.TryAgain));
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(-1);
         textView3.setGravity(17);
-        addView(textView3, w7.y5.d(-2, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        addView(textView3, w7.z5.d(-2, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
     }
 
     @Override
@@ -59,17 +59,17 @@ public final class gb extends FrameLayout {
         super.onDraw(canvas);
         float dp = AndroidUtilities.dp(23.0f);
         float height = getHeight() / 2.0f;
-        canvas.drawCircle(dp, height, AndroidUtilities.dp(10.0f), this.f910a);
+        canvas.drawCircle(dp, height, AndroidUtilities.dp(10.0f), this.f985a);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(dp - AndroidUtilities.dp(1.0f), height - AndroidUtilities.dpf2(4.6f), AndroidUtilities.dp(1.0f) + dp, AndroidUtilities.dpf2(1.6f) + height);
-        Paint paint = this.f911b;
+        Paint paint = this.f986b;
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
         rectF.set(dp - AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(2.6f) + height, dp + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(4.6f) + height);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
     }
 
     public void set(TLRPC.TL_error tL_error) {
-        TextView textView = this.f912c;
+        TextView textView = this.f987c;
         TextView textView2 = this.d;
         if (tL_error != null && !TextUtils.isEmpty(tL_error.text)) {
             textView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
@@ -83,6 +83,6 @@ public final class gb extends FrameLayout {
 
     @Override
     public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.e.setOnClickListener(onClickListener);
+        this.f988e.setOnClickListener(onClickListener);
     }
 }

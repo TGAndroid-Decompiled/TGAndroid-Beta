@@ -3,17 +3,20 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p90;
-import org.telegram.ui.Components.v00;
+import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.q90;
+import org.telegram.ui.Components.w00;
 import org.telegram.ui.Components.yc;
 public abstract class c1 {
     public static boolean a(MessageObject messageObject) {
@@ -23,40 +26,55 @@ public abstract class c1 {
         return false;
     }
 
-    public static float b(float f7, float f10, float f11, float f12) {
-        return (f7 * f10) + f11 + f12;
+    public static void b(RecyclerView recyclerView) {
+        recyclerView.C0();
+        s4.o0 layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof s4.c0) {
+            ((s4.c0) layoutManager).h1(0, 0);
+        } else {
+            recyclerView.v0(0);
+        }
     }
 
-    public static int c(float f7, int i10, TextView textView) {
+    public static float c(RecyclerView recyclerView) {
+        int i10 = aw0.f24684o1;
+        s4.o0 layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
+            return 0.0f;
+        }
+        View m10 = layoutManager.m(0);
+        if (m10 == null) {
+            return Float.POSITIVE_INFINITY;
+        }
+        return Math.max(0.0f, (recyclerView.getPaddingTop() - s4.o0.z(m10)) + ((ViewGroup.MarginLayoutParams) ((s4.p0) m10.getLayoutParams())).topMargin);
+    }
+
+    public static int d(float f7, int i10, TextView textView) {
         textView.setText(LocaleController.getString(i10));
         return AndroidUtilities.dp(f7);
     }
 
-    public static int d(int i10, int i11, Drawable drawable) {
-        return (drawable.getIntrinsicHeight() / i10) + i11;
+    public static int e(int i10, int i11, Drawable drawable) {
+        return i11 - (drawable.getIntrinsicWidth() / i10);
     }
 
-    public static int e(Random random, int i10) {
+    public static int f(Random random, int i10) {
         return Math.abs(random.nextInt() % i10);
     }
 
-    public static int f(v00 v00Var, int i10) {
-        return v00Var.c(v00Var.getMeasuredWidth()) + i10;
+    public static int g(w00 w00Var, int i10) {
+        return w00Var.c(w00Var.getMeasuredWidth()) + i10;
     }
 
-    public static Bundle g(int i10, String str) {
+    public static Bundle h(int i10, String str) {
         Bundle bundle = new Bundle();
         bundle.putInt(str, i10);
         return bundle;
     }
 
-    public static TextView h(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
+    public static TextView i(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
         frameLayout.addView(textView, layoutParams);
         return new TextView(context);
-    }
-
-    public static Object i(int i10, List list) {
-        return list.get(list.size() - i10);
     }
 
     public static String j(long j3, String str, String str2) {
@@ -90,13 +108,13 @@ public abstract class c1 {
     }
 
     public static void p(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11, float f7) {
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
         textView.setTextSize(i11, f7);
         textView.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void q(int i10, p90 p90Var) {
-        p90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void q(int i10, q90 q90Var) {
+        q90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
     public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {
@@ -108,7 +126,7 @@ public abstract class c1 {
     }
 
     public static int t(int i10, int i11, Drawable drawable) {
-        return (drawable.getIntrinsicWidth() / i10) + i11;
+        return (drawable.getIntrinsicHeight() / i10) + i11;
     }
 
     public static void u(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
@@ -121,7 +139,11 @@ public abstract class c1 {
         arrayList2.add(num);
     }
 
-    public static String w(int i10) {
+    public static int w(int i10, int i11, Drawable drawable) {
+        return (drawable.getIntrinsicWidth() / i10) + i11;
+    }
+
+    public static String x(int i10) {
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {

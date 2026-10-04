@@ -1,25 +1,115 @@
 package xh;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.NinePatchDrawable;
-import java.util.Arrays;
-import org.telegram.messenger.AndroidUtilities;
-public final class n1 {
-    public NinePatchDrawable f46306b;
-    public NinePatchDrawable d;
-    public NinePatchDrawable f46308f;
-    public final float[] f46309g;
-    public int h;
-    public int f46310i;
-    public int f46311j;
-    public int f46312k;
-    public final Bitmap[] f46305a = new Bitmap[1];
-    public final Bitmap[] f46307c = new Bitmap[1];
-    public final Bitmap[] e = new Bitmap[1];
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import org.telegram.messenger.LiteMode;
+import yh.j8;
+public final class n1 extends Drawable {
+    public final int f50124a;
+    public final RectF f50125b;
+    public final Path f50126c;
+    public final Paint d;
+    public final j8 f50127e;
+    public boolean f50128f;
+    public rg.s1 f50129g;
+    public ii.q1 h;
+    public boolean f50130i;
 
-    public n1() {
-        float[] fArr = new float[8];
-        this.f46309g = fArr;
-        Arrays.fill(fArr, AndroidUtilities.dp(11.0f));
+    public n1(int i10) {
+        this(i0.a.k(i10, 128), i10);
+    }
+
+    public final void a() {
+        boolean z10;
+        if (this.f50127e != null && this.f50130i && LiteMode.isEnabled(131072)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (this.f50128f == z10) {
+            return;
+        }
+        this.f50128f = z10;
+        if (z10) {
+            yf.h d = yf.h.d();
+            rg.s1 s1Var = new rg.s1(this, 17);
+            this.f50129g = s1Var;
+            d.a(15, s1Var);
+        } else {
+            yf.h.d().f(this.f50129g);
+        }
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Paint paint = this.d;
+        Path path = this.f50126c;
+        canvas.drawPath(path, paint);
+        j8 j8Var = this.f50127e;
+        if (j8Var != null) {
+            if (this.f50128f || !this.f50130i) {
+                canvas.save();
+                canvas.clipPath(path);
+                if (this.f50129g == null) {
+                    j8Var.d();
+                }
+                j8Var.a(canvas, this.f50124a);
+                canvas.restore();
+                if (this.f50129g == null) {
+                    invalidateSelf();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        float min = Math.min(rect.width(), rect.height()) / 2.0f;
+        RectF rectF = this.f50125b;
+        rectF.set(rect);
+        Path path = this.f50126c;
+        path.rewind();
+        path.addRoundRect(rectF, min, min, Path.Direction.CW);
+        j8 j8Var = this.f50127e;
+        if (j8Var != null) {
+            j8Var.g(rectF);
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.d.setColorFilter(colorFilter);
+    }
+
+    public n1(int i10, int i11) {
+        this.f50125b = new RectF();
+        this.f50126c = new Path();
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f50124a = i10;
+        paint.setColor(i11);
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f50127e = new j8(1, 25);
+        } else {
+            this.f50127e = null;
+        }
     }
 }

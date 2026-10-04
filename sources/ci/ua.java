@@ -1,44 +1,96 @@
 package ci;
 
+import android.graphics.Point;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.uy;
 public final class ua implements Runnable {
-    public final int f5633a = 0;
-    public final boolean f5634b;
-    public final boolean f5635c;
-    public final long d;
-    public final Object e;
-    public final Object f5636f;
+    public final int f6078a = 0;
+    public final long f6079b;
+    public final boolean f6080c;
+    public final boolean d;
+    public final NotificationCenter.NotificationCenterDelegate f6081e;
+    public final TLObject f6082f;
     public final TLObject h;
-    public final TLObject f5637n;
-    public final Object f5638r;
 
-    public ua(lc lcVar, TLObject tLObject, TL_stories.TL_startLive tL_startLive, boolean z10, long j3, boolean z11, TLRPC.TL_error tL_error, androidx.fragment.app.a0 a0Var) {
-        this.e = lcVar;
-        this.f5636f = tLObject;
-        this.h = tL_startLive;
-        this.f5634b = z10;
-        this.d = j3;
-        this.f5635c = z11;
-        this.f5637n = tL_error;
-        this.f5638r = a0Var;
+    public ua(kc kcVar, boolean z10, TL_stories.StoryItem storyItem, long j3, TLRPC.InputGroupCall inputGroupCall, boolean z11) {
+        this.f6081e = kcVar;
+        this.f6080c = z10;
+        this.f6082f = storyItem;
+        this.f6079b = j3;
+        this.h = inputGroupCall;
+        this.d = z11;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ci.ua.run():void");
+        int i10 = this.f6078a;
+        TLObject tLObject = this.h;
+        TLObject tLObject2 = this.f6082f;
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f6081e;
+        switch (i10) {
+            case 0:
+                kc kcVar = (kc) notificationCenterDelegate;
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
+                TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
+                boolean z10 = this.f6080c;
+                long j3 = this.f6079b;
+                if (!z10) {
+                    ai.d2.W = new ai.d2(kcVar.f5376b, kcVar.f5380c, storyItem, j3, storyItem.f20274id, z10, inputGroupCall, true, this.d);
+                }
+                fc fcVar = kcVar.F;
+                if (fcVar != null) {
+                    fcVar.f(false);
+                }
+                kcVar.F = null;
+                kcVar.J = 0;
+                RectF rectF = kcVar.H;
+                Point point = AndroidUtilities.displaySize;
+                rectF.set(0.0f, 0.0f, point.x, point.y);
+                kcVar.G = AndroidUtilities.dp(8.0f);
+                kcVar.q(true);
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                storyItem.dialogId = j3;
+                storyItem.justUploaded = true;
+                U.getOrCreateStoryViewer().F(kcVar.f5376b, storyItem, null);
+                NotificationCenter.getInstance(kcVar.f5380c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20054id));
+                return;
+            default:
+                uy uyVar = (uy) notificationCenterDelegate;
+                TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
+                TLRPC.User user = (TLRPC.User) tLObject;
+                long j10 = this.f6079b;
+                boolean z11 = this.f6080c;
+                if (chat != null) {
+                    uyVar.getClass();
+                    if (ChatObject.isNotInChat(chat)) {
+                        uyVar.getMessagesController().deleteDialog(j10, 0, z11);
+                    } else {
+                        uyVar.getMessagesController().deleteParticipantFromChat(-j10, uyVar.getMessagesController().getUser(Long.valueOf(uyVar.getUserConfig().getClientUserId())), (TLRPC.Chat) null, z11, z11);
+                    }
+                } else {
+                    uyVar.getMessagesController().deleteDialog(j10, 0, z11);
+                    if (user != null && user.bot && this.d) {
+                        uyVar.getMessagesController().blockPeer(user.f20184id);
+                    }
+                }
+                uyVar.getMessagesController().checkIfFolderEmpty(uyVar.V2);
+                return;
+        }
     }
 
-    public ua(yh.t5 t5Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, xh.n4 n4Var) {
-        this.e = t5Var;
-        this.f5636f = zArr;
-        this.h = starGift;
-        this.f5634b = z10;
-        this.f5635c = z11;
-        this.d = j3;
-        this.f5637n = tL_textWithEntities;
-        this.f5638r = n4Var;
+    public ua(uy uyVar, TLRPC.Chat chat, long j3, boolean z10, TLRPC.User user, boolean z11) {
+        this.f6081e = uyVar;
+        this.f6082f = chat;
+        this.f6079b = j3;
+        this.f6080c = z10;
+        this.h = user;
+        this.d = z11;
     }
 }

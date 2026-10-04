@@ -5,14 +5,14 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 public final class b extends FrameLayout {
-    public static final int f46081c = 0;
-    public final d6 f46082a;
-    public final int f46083b;
+    public static final int f49882c = 0;
+    public final d6 f49883a;
+    public final int f49884b;
 
     public b(Context context, int i10, d6 d6Var) {
         super(context);
-        this.f46083b = i10;
-        this.f46082a = d6Var;
+        this.f49884b = i10;
+        this.f49883a = d6Var;
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
     }
 }

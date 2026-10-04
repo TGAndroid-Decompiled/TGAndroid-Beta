@@ -1,210 +1,74 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextUtils;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.rq;
-import org.telegram.ui.Components.sr;
-import org.telegram.ui.Components.w9;
-public class t0 extends FrameLayout implements le.e {
-    public final le.c f19748a;
-    public rq f19749b;
-    public final w9 f19750c;
-    public final ImageView d;
-    public final TextView e;
-    public gg.q0 f19751f;
-    public final p h;
-    public final d6 f19752n;
-    public boolean f19753r;
-    public boolean f19754s;
-    public int v;
-    public int f19755w;
+import org.telegram.ui.vh;
+public final class t0 {
+    public final int f21504a;
+    public int f21505b;
+    public int f21506c;
+    public Drawable d;
+    public CharSequence f21507e;
+    public boolean f21508f;
+    public View f21509g;
+    public int h;
+    public View f21510i;
+    public vh f21511j;
+    public int f21512k = 0;
+    public int f21513l = 0;
+    public Integer f21514m;
+    public Integer f21515n;
 
-    public t0(Context context, d6 d6Var) {
-        super(context);
-        this.f19748a = new le.c(0, this, sr.h, 380L, false);
-        this.h = new p(this, 2);
-        this.f19752n = d6Var;
-        w9 w9Var = new w9(context);
-        this.f19750c = w9Var;
-        addView(w9Var, w7.y5.c(32.0f, 32));
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setImageResource(R.drawable.ic_close_white);
-        addView(imageView, w7.y5.d(24, 24.0f, 16, 8.0f, 0.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setSingleLine();
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTextSize(1, 14.0f);
-        addView(textView, w7.y5.d(-2, -2.0f, 16, 38.0f, 0.0f, 12.0f, 0.0f));
-        this.f19755w = AndroidUtilities.dp(28.0f);
-        a();
+    public t0(int i10) {
+        this.f21504a = i10;
     }
 
-    @Override
-    public final void D(int i10, float f7, float f10, le.f fVar) {
-        if (i10 == 0) {
-            a();
-            invalidate();
-        }
-    }
-
-    public final void a() {
-        int v02;
-        float f7 = this.f19748a.e;
-        boolean z10 = this.f19753r;
-        d6 d6Var = this.f19752n;
-        if (z10) {
-            v02 = h6.l1(0.075f, h6.v0(h6.G6, d6Var));
-        } else {
-            v02 = h6.v0(h6.f19054ci, d6Var);
-        }
-        int i10 = h6.Oh;
-        int v03 = h6.v0(i10, d6Var);
-        int v04 = h6.v0(h6.G6, d6Var);
-        int i11 = h6.Sh;
-        int v05 = h6.v0(i11, d6Var);
-        this.v = i0.a.d(f7, v02, v03);
-        this.e.setTextColor(i0.a.d(f7, v04, v05));
-        ImageView imageView = this.d;
-        imageView.setColorFilter(v05);
-        imageView.setAlpha(f7);
-        float f10 = 0.82f * f7;
-        imageView.setScaleX(f10);
-        imageView.setScaleY(f10);
-        rq rqVar = this.f19749b;
-        if (rqVar != null) {
-            h6.v1(rqVar, h6.v0(i10, d6Var), false);
-            h6.v1(this.f19749b, h6.v0(i11, d6Var), true);
-        }
-        this.f19750c.setAlpha(1.0f - f7);
-        gg.q0 q0Var = this.f19751f;
-        if (q0Var != null && q0Var.d == 7) {
-            setData(q0Var);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float width = getWidth();
-        float height = getHeight();
-        int i10 = this.f19755w;
-        canvas.drawRoundRect(0.0f, 0.0f, width, height, i10, i10, h6.l0(this.v));
-        super.dispatchDraw(canvas);
-    }
-
-    public gg.q0 getFilter() {
-        return this.f19751f;
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        if (this.f19754s) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(135.0f), Integer.MIN_VALUE), i11);
-        } else {
-            super.onMeasure(i10, i11);
-        }
-    }
-
-    public void setData(gg.q0 q0Var) {
-        this.f19751f = q0Var;
-        this.f19754s = false;
-        String str = q0Var.f9880c;
-        if (str == null) {
-            str = LocaleController.getString(q0Var.f9879b);
-        }
-        this.e.setText(str);
-        rq L = h6.L(AndroidUtilities.dp(32.0f), q0Var.f9878a);
-        this.f19749b = L;
-        int i10 = h6.Oh;
-        d6 d6Var = this.f19752n;
-        h6.v1(L, h6.v0(i10, d6Var), false);
-        rq rqVar = this.f19749b;
-        int i11 = h6.Sh;
-        h6.v1(rqVar, h6.v0(i11, d6Var), true);
-        int i12 = q0Var.d;
-        float f7 = 16.0f;
-        w9 w9Var = this.f19750c;
-        if (i12 == 4) {
-            TLObject tLObject = q0Var.f9881f;
-            if (tLObject instanceof TLRPC.User) {
-                TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f18484id == user.f18484id) {
-                    rq L2 = h6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
-                    int dp = AndroidUtilities.dp(16.0f);
-                    int dp2 = AndroidUtilities.dp(16.0f);
-                    L2.e = dp;
-                    L2.f28029f = dp2;
-                    h6.v1(L2, h6.v0(i10, d6Var), false);
-                    h6.v1(L2, h6.v0(i11, d6Var), true);
-                    w9Var.setImageDrawable(L2);
-                    return;
-                }
-                w9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                w9Var.getImageReceiver().setForUserOrChat(user, this.f19749b);
-            } else if (tLObject instanceof TLRPC.Chat) {
-                TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                this.f19754s = ChatObject.isCommunity(chat);
-                ImageReceiver imageReceiver = w9Var.getImageReceiver();
-                if (this.f19754s) {
-                    f7 = 10.0f;
-                }
-                int dp3 = AndroidUtilities.dp(f7);
-                this.f19755w = dp3;
-                imageReceiver.setRoundRadius(dp3);
-                w9Var.getImageReceiver().setForUserOrChat(chat, this.f19749b);
-            }
-        } else if (i12 == 7) {
-            rq L3 = h6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
-            int dp4 = AndroidUtilities.dp(16.0f);
-            int dp5 = AndroidUtilities.dp(16.0f);
-            L3.e = dp4;
-            L3.f28029f = dp5;
-            h6.v1(L3, h6.v0(i10, d6Var), false);
-            h6.v1(L3, h6.v0(i11, d6Var), true);
-            w9Var.setImageDrawable(L3);
-        } else {
-            w9Var.setImageDrawable(this.f19749b);
-        }
-    }
-
-    public void setExpanded(boolean z10) {
-        TextView textView = this.e;
-        if (z10) {
-            textView.setVisibility(0);
-            return;
-        }
-        textView.setVisibility(8);
-        setSelectedForDelete(false);
-    }
-
-    public void setSelectedForDelete(boolean z10) {
-        le.c cVar = this.f19748a;
-        if (cVar.f14202f != z10) {
-            p pVar = this.h;
-            AndroidUtilities.cancelRunOnUIThread(pVar);
-            cVar.a(z10, true);
-            if (z10) {
-                AndroidUtilities.runOnUIThread(pVar, 2000L);
+    public final void a(int i10, int i11) {
+        Integer num = this.f21514m;
+        if (num == null || this.f21515n == null || num.intValue() != i10 || this.f21515n.intValue() != i11) {
+            this.f21514m = Integer.valueOf(i10);
+            this.f21515n = Integer.valueOf(i11);
+            View view = this.f21510i;
+            if (view instanceof f1) {
+                ((f1) view).c(i10, i11);
             }
         }
     }
 
-    @Override
-    public final void C(float f7, int i10) {
+    public final void b(int i10) {
+        if (i10 != this.f21506c) {
+            this.f21506c = i10;
+            View view = this.f21510i;
+            if (view instanceof f1) {
+                ((f1) view).setIcon(i10);
+            }
+        }
+    }
+
+    public final void c(vh vhVar) {
+        this.f21511j = vhVar;
+        View view = this.f21510i;
+        if (view != null) {
+            view.setOnClickListener(vhVar);
+        }
+    }
+
+    public final void d(CharSequence charSequence) {
+        this.f21507e = charSequence;
+        View view = this.f21510i;
+        if (view instanceof f1) {
+            ((f1) view).setText(charSequence);
+        } else if (view instanceof TextView) {
+            ((TextView) view).setText(charSequence);
+        }
+    }
+
+    public final void e(int i10) {
+        this.f21512k = i10;
+        View view = this.f21510i;
+        if (view != null) {
+            view.setVisibility(i10);
+        }
     }
 }

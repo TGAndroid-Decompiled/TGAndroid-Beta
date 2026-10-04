@@ -1,65 +1,96 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class mj extends org.telegram.ui.Components.go {
-    public final wn f35618v0;
+import android.graphics.Rect;
+import android.os.Build;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class mj implements View.OnTouchListener {
+    public View f38651a;
+    public org.telegram.ui.ActionBar.n1 f38652b;
+    public final Rect f38653c = new Rect();
+    public boolean d;
+    public boolean f38654e;
+    public final org.telegram.ui.Components.n20 f38655f;
+    public final int[] h;
+    public View f38656n;
+    public float f38657r;
+    public float f38658s;
+    public final View v;
+    public final yn f38659w;
 
-    public mj(wn wnVar, Context context, wn wnVar2, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, wnVar2, z10, d6Var);
-        this.f35618v0 = wnVar;
+    public mj(yn ynVar, ImageView imageView) {
+        this.f38659w = ynVar;
+        this.v = imageView;
+        org.telegram.ui.Components.n20 n20Var = new org.telegram.ui.Components.n20((Context) null, new g(this, 24));
+        this.f38655f = n20Var;
+        this.h = new int[2];
+        n20Var.v = true;
     }
 
     @Override
-    public final boolean a() {
-        boolean z10;
-        wn wnVar = this.f35618v0;
-        if (!wnVar.Oa && !wnVar.isInPreviewMode()) {
-            z10 = ((org.telegram.ui.ActionBar.m2) wnVar).inBubbleMode;
-            if (!z10 && wnVar.f39520j0 != null && !wnVar.f39634s3) {
-                if (!wnVar.F9() || wnVar.f39499h4) {
-                    return true;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        View view2;
+        this.f38651a = view;
+        if (motionEvent.getAction() == 0) {
+            this.f38657r = motionEvent.getX();
+            this.f38658s = motionEvent.getY();
+            this.f38654e = false;
+        }
+        this.f38655f.a(motionEvent);
+        if (this.f38652b != null && !this.d && motionEvent.getAction() == 2) {
+            View view3 = this.f38651a;
+            int[] iArr = this.h;
+            view3.getLocationOnScreen(iArr);
+            float x10 = motionEvent.getX() + iArr[0];
+            float y3 = motionEvent.getY() + iArr[1];
+            this.f38652b.getContentView().getLocationOnScreen(iArr);
+            float f7 = x10 - iArr[0];
+            float f10 = y3 - iArr[1];
+            this.f38656n = null;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f38652b.getContentView();
+            for (int i10 = 0; i10 < actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount(); i10++) {
+                View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i10);
+                Rect rect = this.f38653c;
+                childAt.getHitRect(rect);
+                childAt.getTag();
+                if (childAt.getVisibility() == 0 && childAt.isClickable()) {
+                    if (!rect.contains((int) f7, (int) f10)) {
+                        childAt.setPressed(false);
+                        childAt.setSelected(false);
+                        if (Build.VERSION.SDK_INT == 21 && childAt.getBackground() != null) {
+                            childAt.getBackground().setVisible(false, false);
+                        }
+                    } else {
+                        childAt.setPressed(true);
+                        childAt.setSelected(true);
+                        if (Build.VERSION.SDK_INT == 21 && childAt.getBackground() != null) {
+                            childAt.getBackground().setVisible(true, false);
+                        }
+                        childAt.drawableHotspotChanged(f7, f10 - childAt.getTop());
+                        this.f38656n = childAt;
+                    }
                 }
-                return false;
             }
-            return false;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean d() {
-        wn wnVar = this.f35618v0;
-        TLRPC.User user = wnVar.f39471f;
-        if (user != null && user.linked_community_id != 0) {
-            wnVar.showDialog(new fi.k0(wnVar, wnVar.f39471f.linked_community_id, null, null));
-            return true;
+        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f38657r) > AndroidUtilities.touchSlop * 2.0f) || Math.abs(motionEvent.getY() - this.f38658s) > AndroidUtilities.touchSlop * 2.0f) {
+            this.f38654e = true;
+            this.f38651a.setPressed(false);
+            this.f38651a.setSelected(false);
         }
-        TLRPC.Chat chat = wnVar.e;
-        if (chat != null && chat.linked_community_id != 0) {
-            wnVar.showDialog(new fi.k0(wnVar, wnVar.e.linked_community_id, null, null));
-            return true;
+        if (motionEvent.getAction() == 1 && !this.d && !this.f38654e) {
+            View view4 = this.f38656n;
+            if (view4 != null) {
+                view4.callOnClick();
+                this.d = true;
+                return true;
+            } else if (this.f38652b == null && (view2 = this.f38651a) != null) {
+                view2.callOnClick();
+            }
         }
-        return false;
-    }
-
-    @Override
-    public final void f() {
-        String str;
-        wn wnVar = this.f35618v0;
-        if (wnVar.E9()) {
-            str = "";
-        } else {
-            str = null;
-        }
-        wnVar.la(str);
-    }
-
-    @Override
-    public final boolean o() {
-        if (this.f35618v0.R3 == 3) {
-            return true;
-        }
-        return false;
+        return true;
     }
 }

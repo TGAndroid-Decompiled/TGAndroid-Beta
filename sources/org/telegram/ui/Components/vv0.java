@@ -1,21 +1,22 @@
 package org.telegram.ui.Components;
-public final class vv0 extends o1.i {
-    public final tv0 f29743a;
-    public final uv0 f29744b;
-    public float f29745c = 1.0f;
+public final class vv0 {
+    public static final vv0 f32354a;
+    public static final vv0 f32355b;
+    public static final vv0[] f32356c;
 
-    public vv0(tv0 tv0Var, uv0 uv0Var) {
-        this.f29743a = tv0Var;
-        this.f29744b = uv0Var;
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f32354a = r02;
+        ?? r12 = new Enum("RECORDING", 1);
+        f32355b = r12;
+        f32356c = new vv0[]{r02, r12};
     }
 
-    @Override
-    public final float a(Object obj) {
-        return this.f29743a.get(obj) * this.f29745c;
+    public static vv0 valueOf(String str) {
+        return (vv0) Enum.valueOf(vv0.class, str);
     }
 
-    @Override
-    public final void b(Object obj, float f7) {
-        this.f29744b.b(obj, f7 / this.f29745c);
+    public static vv0[] values() {
+        return (vv0[]) f32356c.clone();
     }
 }

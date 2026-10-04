@@ -1,38 +1,17 @@
 package v7;
 public final class w4 implements ia.d {
-    public static final w4 f44403a = new Object();
-    public static final ia.c f44404b = new ia.c("appId", hg.c.m(j.j(h.class, new e(1))));
-    public static final ia.c f44405c = new ia.c("appVersion", hg.c.m(j.j(h.class, new e(2))));
-    public static final ia.c d = new ia.c("firebaseProjectId", hg.c.m(j.j(h.class, new e(3))));
-    public static final ia.c e = new ia.c("mlSdkVersion", hg.c.m(j.j(h.class, new e(4))));
-    public static final ia.c f44406f = new ia.c("tfliteSchemaVersion", hg.c.m(j.j(h.class, new e(5))));
-    public static final ia.c f44407g = new ia.c("gcmSenderId", hg.c.m(j.j(h.class, new e(6))));
-    public static final ia.c h = new ia.c("apiKey", hg.c.m(j.j(h.class, new e(7))));
-    public static final ia.c f44408i = new ia.c("languages", hg.c.m(j.j(h.class, new e(8))));
-    public static final ia.c f44409j = new ia.c("mlSdkInstanceId", hg.c.m(j.j(h.class, new e(9))));
-    public static final ia.c f44410k = new ia.c("isClearcutClient", hg.c.m(j.j(h.class, new e(10))));
-    public static final ia.c f44411l = new ia.c("isStandaloneMlkit", hg.c.m(j.j(h.class, new e(11))));
-    public static final ia.c f44412m = new ia.c("isJsonLogging", hg.c.m(j.j(h.class, new e(12))));
-    public static final ia.c f44413n = new ia.c("buildLevel", hg.c.m(j.j(h.class, new e(13))));
-    public static final ia.c f44414o = new ia.c("optionalModuleVersion", hg.c.m(j.j(h.class, new e(14))));
+    public static final w4 f48132a = new Object();
+
+    static {
+        t8.b.t(t8.b.l(h.class, t8.b.p(2, t8.b.l(h.class, new e(1)))));
+    }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        f8 f8Var = (f8) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.a(f44404b, f8Var.f44253a);
-        eVar.a(f44405c, f8Var.f44254b);
-        eVar.a(d, null);
-        eVar.a(e, f8Var.f44255c);
-        eVar.a(f44406f, f8Var.d);
-        eVar.a(f44407g, null);
-        eVar.a(h, null);
-        eVar.a(f44408i, f8Var.e);
-        eVar.a(f44409j, f8Var.f44256f);
-        eVar.a(f44410k, f8Var.f44257g);
-        eVar.a(f44411l, f8Var.h);
-        eVar.a(f44412m, f8Var.f44258i);
-        eVar.a(f44413n, f8Var.f44259j);
-        eVar.a(f44414o, f8Var.f44260k);
+        if (obj == null) {
+            ia.e eVar = (ia.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

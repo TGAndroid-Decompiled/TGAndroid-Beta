@@ -1,17 +1,12 @@
 package v7;
-public final class d5 implements ia.d {
-    public static final d5 f44227a = new Object();
+public abstract class d5 {
+    public abstract boolean a(c0.h hVar, c0.d dVar, c0.d dVar2);
 
-    static {
-        j.r(j.j(h.class, j.n(3, j.j(h.class, j.n(2, j.j(h.class, new e(1)))))));
-    }
+    public abstract boolean b(c0.h hVar, Object obj, Object obj2);
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ia.e eVar = (ia.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    public abstract boolean c(c0.h hVar, c0.g gVar, c0.g gVar2);
+
+    public abstract void d(c0.g gVar, c0.g gVar2);
+
+    public abstract void e(c0.g gVar, Thread thread);
 }

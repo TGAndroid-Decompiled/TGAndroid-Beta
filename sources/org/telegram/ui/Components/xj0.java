@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class xj0 extends v00 {
+public final class xj0 extends w00 {
     public final ck0 U;
 
     public xj0(ck0 ck0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {

@@ -5,15 +5,16 @@ import b2.o0;
 import b2.p0;
 import e2.b0;
 import e2.v;
+import ii.n4;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import w7.m;
 public final class c extends m {
-    public final v f42919a = new v();
-    public final h f42920b = new h();
-    public b0 f42921c;
+    public final v f46478a = new v();
+    public final h f46479b = new h();
+    public b0 f46480c;
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
@@ -28,17 +29,17 @@ public final class c extends m {
         boolean z16;
         long j10;
         long j11;
-        b0 b0Var = this.f42921c;
-        if (b0Var == null || aVar.f14097r != b0Var.e()) {
-            b0 b0Var2 = new b0(aVar.e);
-            this.f42921c = b0Var2;
-            b0Var2.a(aVar.e - aVar.f14097r);
+        b0 b0Var = this.f46480c;
+        if (b0Var == null || aVar.f15320r != b0Var.e()) {
+            b0 b0Var2 = new b0(aVar.f10980e);
+            this.f46480c = b0Var2;
+            b0Var2.a(aVar.f10980e - aVar.f15320r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        v vVar = this.f42919a;
+        v vVar = this.f46478a;
         vVar.H(limit, array);
-        h hVar = this.f42920b;
+        h hVar = this.f46479b;
         hVar.o(limit, array);
         hVar.t(39);
         long i10 = (hVar.i(1) << 32) | hVar.i(32);
@@ -53,12 +54,12 @@ public final class c extends m {
                         if (i12 != 6) {
                             obj = null;
                         } else {
-                            b0 b0Var3 = this.f42921c;
+                            b0 b0Var3 = this.f46480c;
                             long d = a.d(i10, vVar);
                             obj = new a(d, b0Var3.b(d), 1);
                         }
                     } else {
-                        b0 b0Var4 = this.f42921c;
+                        b0 b0Var4 = this.f46480c;
                         vVar.z();
                         if ((vVar.x() & 128) != 0) {
                             z13 = true;
@@ -160,7 +161,7 @@ public final class c extends m {
                             vVar.x();
                             vVar.x();
                         }
-                        arrayList2.add(new ka.c(arrayList3));
+                        arrayList2.add(new n4(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }

@@ -3,16 +3,16 @@ package a3;
 import android.content.Context;
 import android.os.Handler;
 public final class k {
-    public final Context f134a;
-    public boolean f135b;
-    public r2.k f136c;
+    public final Context f146a;
+    public boolean f147b;
+    public r2.k f148c;
     public long d;
-    public Handler e;
-    public i2.c0 f137f;
-    public int f138g;
+    public Handler f149e;
+    public i2.c0 f150f;
+    public int f151g;
 
     public k(Context context) {
-        this.f134a = context;
-        this.f136c = new ka.c(context, 17);
+        this.f146a = context;
+        this.f148c = new l5.j(context);
     }
 }

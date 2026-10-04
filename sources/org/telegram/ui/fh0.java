@@ -1,33 +1,26 @@
 package org.telegram.ui;
 
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class fh0 implements Runnable {
-    public final int f33680a;
-    public final sh0 f33681b;
-    public final TLRPC.TL_chatInviteExported f33682c;
-    public final TLRPC.TL_error d;
-    public final TLObject e;
-    public final boolean f33683f;
+public final class fh0 implements RequestDelegate {
+    public final int f36313a;
+    public final wh0 f36314b;
 
-    public fh0(sh0 sh0Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10, int i10) {
-        this.f33680a = i10;
-        this.f33681b = sh0Var;
-        this.f33682c = tL_chatInviteExported;
-        this.d = tL_error;
-        this.e = tLObject;
-        this.f33683f = z10;
+    public fh0(wh0 wh0Var, int i10) {
+        this.f36313a = i10;
+        this.f36314b = wh0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33680a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f36313a) {
             case 0:
-                sh0 sh0Var = this.f33681b;
-                sh0Var.getNotificationCenter().doOnIdle(new fh0(sh0Var, this.f33682c, this.d, this.e, this.f33683f, 1));
+                AndroidUtilities.runOnUIThread(new kh0(this.f36314b, tL_error, tLObject, 0));
                 return;
             default:
-                sh0.U(this.f33681b, this.f33682c, this.d, this.e, this.f33683f);
+                AndroidUtilities.runOnUIThread(new h90(25, this.f36314b, tL_error));
                 return;
         }
     }

@@ -1,20 +1,20 @@
 package y9;
 public final class m implements ia.d {
-    public static final m f46858a = new Object();
-    public static final ia.c f46859b = ia.c.c("threads");
-    public static final ia.c f46860c = ia.c.c("exception");
+    public static final m f50705a = new Object();
+    public static final ia.c f50706b = ia.c.c("threads");
+    public static final ia.c f50707c = ia.c.c("exception");
     public static final ia.c d = ia.c.c("appExitInfo");
-    public static final ia.c e = ia.c.c("signal");
-    public static final ia.c f46861f = ia.c.c("binaries");
+    public static final ia.c f50708e = ia.c.c("signal");
+    public static final ia.c f50709f = ia.c.c("binaries");
 
     @Override
     public final void a(Object obj, Object obj2) {
         ia.e eVar = (ia.e) obj2;
         n0 n0Var = (n0) ((s1) obj);
-        eVar.a(f46859b, n0Var.f46871a);
-        eVar.a(f46860c, n0Var.f46872b);
-        eVar.a(d, n0Var.f46873c);
-        eVar.a(e, n0Var.d);
-        eVar.a(f46861f, n0Var.e);
+        eVar.a(f50706b, n0Var.f50721a);
+        eVar.a(f50707c, n0Var.f50722b);
+        eVar.a(d, n0Var.f50723c);
+        eVar.a(f50708e, n0Var.d);
+        eVar.a(f50709f, n0Var.f50724e);
     }
 }

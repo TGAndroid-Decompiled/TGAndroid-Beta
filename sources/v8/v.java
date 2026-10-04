@@ -11,19 +11,19 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 public final class v extends Fragment {
     public static final int d = 0;
-    public int f44558a;
-    public u f44559b;
-    public boolean f44560c;
+    public int f48240a;
+    public u f48241b;
+    public boolean f48242c;
 
     public final void a(Task task) {
-        if (!this.f44560c) {
+        if (!this.f48242c) {
             int i10 = 1;
-            this.f44560c = true;
+            this.f48242c = true;
             Activity activity = getActivity();
             activity.getFragmentManager().beginTransaction().remove(this).commit();
             if (task != null) {
-                int i11 = this.f44558a;
-                int i12 = a.f44489c;
+                int i11 = this.f48240a;
+                int i12 = a.f48164c;
                 if (activity.isFinishing()) {
                     if (Log.isLoggable("AutoResolveHelper", 3)) {
                         Log.d("AutoResolveHelper", "Ignoring task result for, Activity is finishing.");
@@ -36,9 +36,9 @@ public final class v extends Fragment {
                     try {
                         ((com.google.android.gms.common.api.p) exception).getStatus().c(activity, i11);
                         return;
-                    } catch (IntentSender.SendIntentException e) {
+                    } catch (IntentSender.SendIntentException e7) {
                         if (Log.isLoggable("AutoResolveHelper", 6)) {
-                            Log.e("AutoResolveHelper", "Error starting pending intent!", e);
+                            Log.e("AutoResolveHelper", "Error starting pending intent!", e7);
                             return;
                         }
                         return;
@@ -66,41 +66,41 @@ public final class v extends Fragment {
                 a.b(activity, i11, i10, intent);
                 return;
             }
-            a.b(activity, this.f44558a, 0, new Intent());
+            a.b(activity, this.f48240a, 0, new Intent());
         }
     }
 
     @Override
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        this.f44558a = getArguments().getInt("requestCode");
-        if (a.f44488b != getArguments().getLong("initializationElapsedRealtime")) {
-            this.f44559b = null;
+        this.f48240a = getArguments().getInt("requestCode");
+        if (a.f48163b != getArguments().getLong("initializationElapsedRealtime")) {
+            this.f48241b = null;
         } else {
-            this.f44559b = (u) u.e.get(getArguments().getInt("resolveCallId"));
+            this.f48241b = (u) u.f48235e.get(getArguments().getInt("resolveCallId"));
         }
         boolean z10 = false;
         if (bundle != null && bundle.getBoolean("delivered")) {
             z10 = true;
         }
-        this.f44560c = z10;
+        this.f48242c = z10;
     }
 
     @Override
     public final void onPause() {
         super.onPause();
-        u uVar = this.f44559b;
-        if (uVar != null && uVar.f44556b == this) {
-            uVar.f44556b = null;
+        u uVar = this.f48241b;
+        if (uVar != null && uVar.f48238b == this) {
+            uVar.f48238b = null;
         }
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        u uVar = this.f44559b;
+        u uVar = this.f48241b;
         if (uVar != null) {
-            uVar.f44556b = this;
+            uVar.f48238b = this;
             uVar.a();
             return;
         }
@@ -113,10 +113,10 @@ public final class v extends Fragment {
     @Override
     public final void onSaveInstanceState(Bundle bundle) {
         super.onSaveInstanceState(bundle);
-        bundle.putBoolean("delivered", this.f44560c);
-        u uVar = this.f44559b;
-        if (uVar != null && uVar.f44556b == this) {
-            uVar.f44556b = null;
+        bundle.putBoolean("delivered", this.f48242c);
+        u uVar = this.f48241b;
+        if (uVar != null && uVar.f48238b == this) {
+            uVar.f48238b = null;
         }
     }
 }

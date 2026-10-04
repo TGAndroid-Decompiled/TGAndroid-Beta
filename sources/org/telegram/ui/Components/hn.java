@@ -1,138 +1,127 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class hn implements ny {
-    public final Utilities.Callback f24838a;
-    public final en f24839b;
+public final class hn implements vi {
+    public final org.telegram.ui.ActionBar.n2 f27167a;
+    public final Utilities.Callback f27168b;
+    public final fn f27169c;
 
-    public hn(Utilities.Callback callback, en enVar) {
-        this.f24838a = callback;
-        this.f24839b = enVar;
+    public hn(Utilities.Callback callback, org.telegram.ui.ActionBar.n2 n2Var, fn fnVar) {
+        this.f27167a = n2Var;
+        this.f27168b = callback;
+        this.f27169c = fnVar;
     }
 
     @Override
-    public final boolean A() {
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        fn fnVar = this.f27169c;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = fnVar.f32824j0;
+        Utilities.Callback callback = this.f27168b;
+        if (i10 == 15) {
+            org.telegram.ui.ActionBar.n2 n2Var = this.f27167a;
+            e5.g0(n2Var.getContext(), n2Var.getResourceProvider(), null, null, new gn(0, callback), null);
+        } else if (i10 == 7 || i10 == 8) {
+            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+            if (selectedPhotosOrder.size() > 0) {
+                Object obj = selectedPhotos.get(selectedPhotosOrder.get(0));
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                String str = null;
+                if (obj instanceof MediaController.PhotoEntry) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                    String str2 = photoEntry.imagePath;
+                    if (str2 != null) {
+                        sendingMediaInfo.path = str2;
+                    } else {
+                        sendingMediaInfo.path = photoEntry.path;
+                    }
+                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                    sendingMediaInfo.coverPath = photoEntry.coverPath;
+                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
+                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+                    sendingMediaInfo.discardLivePhoto = true;
+                    sendingMediaInfo.isVideo = photoEntry.isVideo;
+                    CharSequence charSequence = photoEntry.caption;
+                    if (charSequence != null) {
+                        str = charSequence.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = photoEntry.entities;
+                    sendingMediaInfo.masks = photoEntry.stickers;
+                    sendingMediaInfo.ttl = photoEntry.ttl;
+                    sendingMediaInfo.emojiMarkup = photoEntry.emojiMarkup;
+                    sendingMediaInfo.originalPhotoEntry = photoEntry;
+                } else if (obj instanceof MediaController.SearchImage) {
+                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                    String str3 = searchImage.imagePath;
+                    if (str3 != null) {
+                        sendingMediaInfo.path = str3;
+                    } else {
+                        sendingMediaInfo.searchImage = searchImage;
+                    }
+                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                    sendingMediaInfo.coverPath = searchImage.coverPath;
+                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                    CharSequence charSequence2 = searchImage.caption;
+                    if (charSequence2 != null) {
+                        str = charSequence2.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = searchImage.entities;
+                    sendingMediaInfo.masks = searchImage.stickers;
+                    sendingMediaInfo.ttl = searchImage.ttl;
+                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                    if (botInlineResult != null && searchImage.type == 1) {
+                        sendingMediaInfo.inlineResult = botInlineResult;
+                        sendingMediaInfo.params = searchImage.params;
+                    }
+                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
+                }
+                callback.run(new rh.d(sendingMediaInfo));
+            }
+        }
+        fnVar.dismiss(true);
+    }
+
+    @Override
+    public final boolean S1() {
         return false;
     }
 
     @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
+    public final boolean a0() {
         return false;
     }
 
     @Override
-    public final boolean c() {
-        return false;
+    public final void x0(ih ihVar) {
+        NotificationCenter.getInstance(this.f27167a.getCurrentAccount()).doOnIdle(ihVar);
     }
 
     @Override
-    public final int f() {
-        return 0;
+    public final void K0() {
     }
 
     @Override
-    public final boolean g() {
-        return false;
+    public final void U0(Object obj) {
     }
 
     @Override
-    public final boolean j() {
-        return false;
+    public final void j1(TLRPC.User user) {
     }
 
     @Override
-    public final boolean k() {
-        return false;
+    public final void u0() {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f24838a.run(new rh.h(document, obj));
-        this.f24839b.dismiss(true);
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f24838a.run(new rh.h(document, null));
-        this.f24839b.dismiss(true);
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void i(int i10) {
-    }
-
-    @Override
-    public final void l(String str) {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void o(t51 t51Var) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void y(long j3) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11) {
+    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

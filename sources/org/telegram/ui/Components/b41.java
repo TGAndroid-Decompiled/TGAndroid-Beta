@@ -1,44 +1,55 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class b41 extends ClickableSpan {
-    public final URLSpan f22849a;
-    public final k41 f22850b;
+import org.telegram.messenger.R;
+public final class b41 extends Drawable {
+    public final kj0 f24786a;
+    public int f24787b;
+    public final TextPaint f24788c;
 
-    public b41(k41 k41Var, URLSpan uRLSpan) {
-        this.f22850b = k41Var;
-        this.f22849a = uRLSpan;
+    public b41(TextPaint textPaint) {
+        ah.d dVar = new ah.d(this, 6);
+        this.f24788c = textPaint;
+        float textSize = textPaint.getTextSize() * 0.89f;
+        kj0 kj0Var = new kj0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
+        this.f24786a = kj0Var;
+        kj0Var.setCallback(dVar);
+        kj0Var.K(1);
+        kj0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+        kj0Var.J(true);
+        kj0Var.start();
     }
 
     @Override
-    public final void onClick(View view) {
-        k41 k41Var = this.f22850b;
-        Utilities.CallbackReturn callbackReturn = k41Var.N;
-        URLSpan uRLSpan = this.f22849a;
-        if (callbackReturn != null) {
-            if (((Boolean) callbackReturn.run(uRLSpan)).booleanValue()) {
-                k41Var.dismiss();
-                return;
-            }
-            return;
+    public final void draw(Canvas canvas) {
+        int color = this.f24788c.getColor();
+        int i10 = this.f24787b;
+        kj0 kj0Var = this.f24786a;
+        if (color != i10) {
+            kj0Var.Z = true;
+            kj0Var.Q(color, "Comp 1");
+            kj0Var.o();
+            kj0Var.J(true);
+            kj0Var.V(0L);
+            this.f24787b = color;
         }
-        org.telegram.ui.ActionBar.m2 m2Var = k41Var.M;
-        if (m2Var != null) {
-            e5.q0(m2Var, uRLSpan.getURL(), false, false);
-        }
+        kj0Var.draw(canvas);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
-        if (!(this.f22849a instanceof b61)) {
-            textPaint.setUnderlineText(true);
-        }
-        textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19187k5, false));
-        textPaint.setAlpha(min);
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

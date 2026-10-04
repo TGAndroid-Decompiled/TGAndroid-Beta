@@ -1,29 +1,17 @@
 package org.telegram.ui.Components;
+public abstract class yp extends z4.a {
+    public abstract int j();
 
-import android.content.Context;
-public abstract class yp extends z4.g {
-    public xp f30732w0;
-
-    public yp(Context context) {
-        super(context);
-        b(new wp((bi0) this));
-    }
-
-    @Override
-    @Deprecated
-    public void setAdapter(z4.a aVar) {
-        if (aVar instanceof xp) {
-            setAdapter((xp) aVar);
-            return;
+    public final int k(int i10) {
+        int size = ((ai0) this).f24535c.size();
+        int j3 = j();
+        if (i10 < j3) {
+            return ((size - (j3 * 2)) - ((j3 - i10) - 1)) - 1;
         }
-        throw new IllegalArgumentException();
-    }
-
-    public void setAdapter(xp xpVar) {
-        this.f30732w0 = xpVar;
-        super.setAdapter((z4.a) xpVar);
-        if (xpVar != null) {
-            x(xpVar.j(), false);
+        int i11 = size - j3;
+        if (i10 >= i11) {
+            return i10 - i11;
         }
+        return i10 - j3;
     }
 }

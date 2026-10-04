@@ -1,21 +1,21 @@
 package x9;
 public final class b extends l {
-    public final String f45986b;
-    public final String f45987c;
+    public final String f49779b;
+    public final String f49780c;
     public final String d;
-    public final String e;
-    public final long f45988f;
+    public final String f49781e;
+    public final long f49782f;
 
     public b(String str, String str2, String str3, String str4, long j3) {
         if (str != null) {
-            this.f45986b = str;
+            this.f49779b = str;
             if (str2 != null) {
-                this.f45987c = str2;
+                this.f49780c = str2;
                 if (str3 != null) {
                     this.d = str3;
                     if (str4 != null) {
-                        this.e = str4;
-                        this.f45988f = j3;
+                        this.f49781e = str4;
+                        this.f49782f = j3;
                         return;
                     }
                     throw new NullPointerException("Null variantId");
@@ -33,7 +33,7 @@ public final class b extends l {
         }
         if (obj instanceof l) {
             b bVar = (b) ((l) obj);
-            if (this.f45986b.equals(bVar.f45986b) && this.f45987c.equals(bVar.f45987c) && this.d.equals(bVar.d) && this.e.equals(bVar.e) && this.f45988f == bVar.f45988f) {
+            if (this.f49779b.equals(bVar.f49779b) && this.f49780c.equals(bVar.f49780c) && this.d.equals(bVar.d) && this.f49781e.equals(bVar.f49781e) && this.f49782f == bVar.f49782f) {
                 return true;
             }
         }
@@ -41,20 +41,20 @@ public final class b extends l {
     }
 
     public final int hashCode() {
-        long j3 = this.f45988f;
-        return ((((((((this.f45986b.hashCode() ^ 1000003) * 1000003) ^ this.f45987c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e.hashCode()) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
+        long j3 = this.f49782f;
+        return ((((((((this.f49779b.hashCode() ^ 1000003) * 1000003) ^ this.f49780c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.f49781e.hashCode()) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("RolloutAssignment{rolloutId=");
-        sb2.append(this.f45986b);
+        sb2.append(this.f49779b);
         sb2.append(", parameterKey=");
-        sb2.append(this.f45987c);
+        sb2.append(this.f49780c);
         sb2.append(", parameterValue=");
         sb2.append(this.d);
         sb2.append(", variantId=");
-        sb2.append(this.e);
+        sb2.append(this.f49781e);
         sb2.append(", templateVersion=");
-        return a4.a.s(sb2, this.f45988f, "}");
+        return a4.a.r(sb2, this.f49782f, "}");
     }
 }

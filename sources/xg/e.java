@@ -9,9 +9,9 @@ import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.Components.a80;
-import org.telegram.ui.Components.bs0;
+import org.telegram.ui.ActionBar.f3;
+import org.telegram.ui.Components.b80;
+import org.telegram.ui.Components.fs0;
 import xh.g2;
 import xh.m;
 import xh.o2;
@@ -19,27 +19,27 @@ import xh.s2;
 import xh.v;
 import yh.a0;
 import yh.f5;
-import yh.m7;
+import yh.n7;
 import yh.w4;
 public final class e implements View.OnClickListener {
-    public final int f46042a;
-    public final Object f46043b;
-    public final Object f46044c;
+    public final int f49840a;
+    public final Object f49841b;
+    public final Object f49842c;
     public final Object d;
 
     public e(Object obj, Object obj2, Object obj3, int i10) {
-        this.f46042a = i10;
-        this.f46043b = obj;
-        this.f46044c = obj2;
+        this.f49840a = i10;
+        this.f49841b = obj;
+        this.f49842c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f46042a;
+        int i10 = this.f49840a;
         Object obj = this.d;
-        Object obj2 = this.f46044c;
-        Object obj3 = this.f46043b;
+        Object obj2 = this.f49842c;
+        Object obj3 = this.f49841b;
         switch (i10) {
             case 0:
                 ((i) obj3).a(view, (HashSet) obj2, (Runnable) obj);
@@ -49,34 +49,34 @@ public final class e implements View.OnClickListener {
                 ((xh.e) obj3).dismiss();
                 return;
             case 2:
-                m.R((m) obj3, (boolean[]) obj2, (d6) obj);
+                m.P((m) obj3, (boolean[]) obj2, (d6) obj);
                 return;
             case 3:
-                v.R((v) obj3, (Context) obj2, (d6) obj);
+                v.P((v) obj3, (Context) obj2, (d6) obj);
                 return;
             case 4:
-                v.P((v) obj3, (boolean[]) obj2, (d6) obj);
+                v.N((v) obj3, (boolean[]) obj2, (d6) obj);
                 return;
             case 5:
                 o2 o2Var = (o2) obj3;
-                ((a80) obj2).u();
-                bs0 bs0Var = o2Var.f46329a;
+                ((b80) obj2).u();
+                fs0 fs0Var = o2Var.f50143a;
                 g2 g2Var = new g2(o2Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = s2.T;
-                bs0Var.h(null, g2Var);
+                fs0Var.h(null, g2Var);
                 return;
             case 6:
                 Context context = (Context) obj2;
                 d6 d6Var = (d6) obj;
-                if (((a0) obj3).m0.f49227a == zf.b.f49229a) {
-                    new m7(context, d6Var).show();
+                if (((a0) obj3).m0.f53294a == zf.b.f53296a) {
+                    new n7(context, d6Var).show();
                     return;
                 }
                 return;
             case 7:
-                final e3 e3Var = (e3) obj2;
+                final f3 f3Var = (f3) obj2;
                 final ci.d dVar = (ci.d) obj;
-                e3Var.setCanDismissWithSwipe(false);
+                f3Var.setCanDismissWithSwipe(false);
                 dVar.setLoading(true);
                 ((w4) obj3).run(new Utilities.Callback() {
                     @Override
@@ -85,9 +85,9 @@ public final class e implements View.OnClickListener {
                         switch (r3) {
                             case 0:
                                 boolean booleanValue = bool.booleanValue();
-                                final org.telegram.ui.ActionBar.e3 e3Var2 = e3Var;
+                                final org.telegram.ui.ActionBar.f3 f3Var2 = f3Var;
                                 if (booleanValue) {
-                                    e3Var2.dismiss();
+                                    f3Var2.dismiss();
                                     return;
                                 }
                                 final ci.d dVar2 = dVar;
@@ -96,11 +96,11 @@ public final class e implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                e3Var2.setCanDismissWithSwipe(false);
+                                                f3Var2.setCanDismissWithSwipe(false);
                                                 dVar2.setLoading(false);
                                                 return;
                                             default:
-                                                e3Var2.setCanDismissWithSwipe(false);
+                                                f3Var2.setCanDismissWithSwipe(false);
                                                 dVar2.setLoading(false);
                                                 return;
                                         }
@@ -109,9 +109,9 @@ public final class e implements View.OnClickListener {
                                 return;
                             default:
                                 boolean booleanValue2 = bool.booleanValue();
-                                final org.telegram.ui.ActionBar.e3 e3Var3 = e3Var;
+                                final org.telegram.ui.ActionBar.f3 f3Var3 = f3Var;
                                 if (booleanValue2) {
-                                    e3Var3.dismiss();
+                                    f3Var3.dismiss();
                                     return;
                                 }
                                 final ci.d dVar3 = dVar;
@@ -120,11 +120,11 @@ public final class e implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                e3Var3.setCanDismissWithSwipe(false);
+                                                f3Var3.setCanDismissWithSwipe(false);
                                                 dVar3.setLoading(false);
                                                 return;
                                             default:
-                                                e3Var3.setCanDismissWithSwipe(false);
+                                                f3Var3.setCanDismissWithSwipe(false);
                                                 dVar3.setLoading(false);
                                                 return;
                                         }
@@ -136,9 +136,9 @@ public final class e implements View.OnClickListener {
                 });
                 return;
             default:
-                final e3 e3Var2 = (e3) obj2;
+                final f3 f3Var2 = (f3) obj2;
                 final ci.d dVar2 = (ci.d) obj;
-                e3Var2.setCanDismissWithSwipe(false);
+                f3Var2.setCanDismissWithSwipe(false);
                 dVar2.setLoading(true);
                 ((f5) obj3).run(new Utilities.Callback() {
                     @Override
@@ -147,9 +147,9 @@ public final class e implements View.OnClickListener {
                         switch (r3) {
                             case 0:
                                 boolean booleanValue = bool.booleanValue();
-                                final org.telegram.ui.ActionBar.e3 e3Var22 = e3Var2;
+                                final org.telegram.ui.ActionBar.f3 f3Var22 = f3Var2;
                                 if (booleanValue) {
-                                    e3Var22.dismiss();
+                                    f3Var22.dismiss();
                                     return;
                                 }
                                 final ci.d dVar22 = dVar2;
@@ -158,11 +158,11 @@ public final class e implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                e3Var22.setCanDismissWithSwipe(false);
+                                                f3Var22.setCanDismissWithSwipe(false);
                                                 dVar22.setLoading(false);
                                                 return;
                                             default:
-                                                e3Var22.setCanDismissWithSwipe(false);
+                                                f3Var22.setCanDismissWithSwipe(false);
                                                 dVar22.setLoading(false);
                                                 return;
                                         }
@@ -171,9 +171,9 @@ public final class e implements View.OnClickListener {
                                 return;
                             default:
                                 boolean booleanValue2 = bool.booleanValue();
-                                final org.telegram.ui.ActionBar.e3 e3Var3 = e3Var2;
+                                final org.telegram.ui.ActionBar.f3 f3Var3 = f3Var2;
                                 if (booleanValue2) {
-                                    e3Var3.dismiss();
+                                    f3Var3.dismiss();
                                     return;
                                 }
                                 final ci.d dVar3 = dVar2;
@@ -182,11 +182,11 @@ public final class e implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                e3Var3.setCanDismissWithSwipe(false);
+                                                f3Var3.setCanDismissWithSwipe(false);
                                                 dVar3.setLoading(false);
                                                 return;
                                             default:
-                                                e3Var3.setCanDismissWithSwipe(false);
+                                                f3Var3.setCanDismissWithSwipe(false);
                                                 dVar3.setLoading(false);
                                                 return;
                                         }

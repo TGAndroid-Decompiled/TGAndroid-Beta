@@ -1,29 +1,19 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class n30 extends org.telegram.ui.Components.d8 {
-    public final d60 E;
-    public final Activity f35747y;
+import android.view.animation.OvershootInterpolator;
+public final class n30 extends kh.b {
+    public final OvershootInterpolator d;
+    public int f38806e;
+    public final h60 f38807f;
 
-    public n30(d60 d60Var, LaunchActivity launchActivity, Activity activity) {
+    public n30(h60 h60Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.E = d60Var;
-        this.f35747y = activity;
+        this.f38807f = h60Var;
+        this.d = new OvershootInterpolator(1.5f);
     }
 
     @Override
-    public final TextView a() {
-        TextView textView = new TextView(this.f35747y);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19140hg, false));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(51);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(new ov(9, this, textView));
-        return textView;
+    public final void dispatchDraw(android.graphics.Canvas r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n30.dispatchDraw(android.graphics.Canvas):void");
     }
 }

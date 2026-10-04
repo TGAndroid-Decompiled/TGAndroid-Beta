@@ -1,24 +1,24 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class w40 implements ViewTreeObserver.OnPreDrawListener {
-    public final d60 f38891a;
+public final class w40 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.voip.u f41900a;
+    public final h60 f41901b;
 
-    public w40(d60 d60Var) {
-        this.f38891a = d60Var;
+    public w40(h60 h60Var, org.telegram.ui.Components.voip.u uVar) {
+        this.f41901b = h60Var;
+        this.f41900a = uVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
+    public final void onAnimationEnd(Animator animator) {
         ViewGroup viewGroup;
-        d60 d60Var = this.f38891a;
-        d60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
-        d60Var.a2.j(null);
-        AndroidUtilities.updateVisibleRows(d60Var.f32983m2);
-        viewGroup = ((org.telegram.ui.ActionBar.e3) d60Var).containerView;
-        viewGroup.requestLayout();
-        return false;
+        org.telegram.ui.Components.voip.u uVar = this.f41900a;
+        if (uVar.getParent() != null) {
+            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f41901b).containerView;
+            viewGroup.removeView(uVar);
+        }
     }
 }

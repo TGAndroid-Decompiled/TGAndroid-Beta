@@ -6,18 +6,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class v extends o6.a {
     public static final Parcelable.Creator<v> CREATOR = new m8.h(16);
-    public final int f15323a;
-    public final IBinder f15324b;
-    public final k6.a f15325c;
+    public final int f16747a;
+    public final IBinder f16748b;
+    public final k6.a f16749c;
     public final boolean d;
-    public final boolean e;
+    public final boolean f16750e;
 
     public v(int i10, IBinder iBinder, k6.a aVar, boolean z10, boolean z11) {
-        this.f15323a = i10;
-        this.f15324b = iBinder;
-        this.f15325c = aVar;
+        this.f16747a = i10;
+        this.f16748b = iBinder;
+        this.f16749c = aVar;
         this.d = z10;
-        this.e = z11;
+        this.f16750e = z11;
     }
 
     public final boolean equals(Object obj) {
@@ -26,13 +26,13 @@ public final class v extends o6.a {
             if (this != obj) {
                 if (obj instanceof v) {
                     v vVar = (v) obj;
-                    if (this.f15325c.equals(vVar.f15325c)) {
+                    if (this.f16749c.equals(vVar.f16749c)) {
                         Object obj2 = null;
-                        IBinder iBinder = this.f15324b;
+                        IBinder iBinder = this.f16748b;
                         if (iBinder == null) {
                             aVar = null;
                         } else {
-                            int i10 = a.f15231b;
+                            int i10 = a.f16647b;
                             IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
                             if (queryLocalInterface instanceof h) {
                                 aVar = (h) queryLocalInterface;
@@ -40,9 +40,9 @@ public final class v extends o6.a {
                                 aVar = new a9.a(iBinder, "com.google.android.gms.common.internal.IAccountAccessor", 7);
                             }
                         }
-                        IBinder iBinder2 = vVar.f15324b;
+                        IBinder iBinder2 = vVar.f16748b;
                         if (iBinder2 != null) {
-                            int i11 = a.f15231b;
+                            int i11 = a.f16647b;
                             IInterface queryLocalInterface2 = iBinder2.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
                             if (queryLocalInterface2 instanceof h) {
                                 obj2 = (h) queryLocalInterface2;
@@ -66,15 +66,15 @@ public final class v extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f15323a);
-        w7.f0.f(parcel, 2, this.f15324b);
-        w7.f0.k(parcel, 3, this.f15325c, i10);
-        w7.f0.s(parcel, 4, 4);
+        int q6 = w7.g0.q(parcel, 20293);
+        w7.g0.s(parcel, 1, 4);
+        parcel.writeInt(this.f16747a);
+        w7.g0.f(parcel, 2, this.f16748b);
+        w7.g0.k(parcel, 3, this.f16749c, i10);
+        w7.g0.s(parcel, 4, 4);
         parcel.writeInt(this.d ? 1 : 0);
-        w7.f0.s(parcel, 5, 4);
-        parcel.writeInt(this.e ? 1 : 0);
-        w7.f0.r(parcel, q6);
+        w7.g0.s(parcel, 5, 4);
+        parcel.writeInt(this.f16750e ? 1 : 0);
+        w7.g0.r(parcel, q6);
     }
 }

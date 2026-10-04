@@ -4,12 +4,12 @@ import android.os.Bundle;
 import androidx.core.graphics.drawable.IconCompat;
 import j$.util.Objects;
 public final class p0 {
-    public CharSequence f7806a;
-    public IconCompat f7807b;
-    public String f7808c;
+    public CharSequence f8467a;
+    public IconCompat f8468b;
+    public String f8469c;
     public String d;
-    public boolean e;
-    public boolean f7809f;
+    public boolean f8470e;
+    public boolean f8471f;
 
     public static p0 a(Bundle bundle) {
         IconCompat iconCompat;
@@ -25,34 +25,34 @@ public final class p0 {
         boolean z10 = bundle.getBoolean("isBot");
         boolean z11 = bundle.getBoolean("isImportant");
         ?? obj = new Object();
-        obj.f7806a = charSequence;
-        obj.f7807b = iconCompat;
-        obj.f7808c = string;
+        obj.f8467a = charSequence;
+        obj.f8468b = iconCompat;
+        obj.f8469c = string;
         obj.d = string2;
-        obj.e = z10;
-        obj.f7809f = z11;
+        obj.f8470e = z10;
+        obj.f8471f = z11;
         return obj;
     }
 
     public final CharSequence b() {
-        return this.f7806a;
+        return this.f8467a;
     }
 
     public final Bundle c() {
         Bundle bundle;
         Bundle bundle2 = new Bundle();
-        bundle2.putCharSequence("name", this.f7806a);
-        IconCompat iconCompat = this.f7807b;
+        bundle2.putCharSequence("name", this.f8467a);
+        IconCompat iconCompat = this.f8468b;
         if (iconCompat != null) {
             bundle = iconCompat.l();
         } else {
             bundle = null;
         }
         bundle2.putBundle("icon", bundle);
-        bundle2.putString("uri", this.f7808c);
+        bundle2.putString("uri", this.f8469c);
         bundle2.putString("key", this.d);
-        bundle2.putBoolean("isBot", this.e);
-        bundle2.putBoolean("isImportant", this.f7809f);
+        bundle2.putBoolean("isBot", this.f8470e);
+        bundle2.putBoolean("isImportant", this.f8471f);
         return bundle2;
     }
 
@@ -64,7 +64,7 @@ public final class p0 {
         String str = this.d;
         String str2 = p0Var.d;
         if (str == null && str2 == null) {
-            if (!Objects.equals(Objects.toString(this.f7806a), Objects.toString(p0Var.f7806a)) || !Objects.equals(this.f7808c, p0Var.f7808c) || !Boolean.valueOf(this.e).equals(Boolean.valueOf(p0Var.e)) || !Boolean.valueOf(this.f7809f).equals(Boolean.valueOf(p0Var.f7809f))) {
+            if (!Objects.equals(Objects.toString(this.f8467a), Objects.toString(p0Var.f8467a)) || !Objects.equals(this.f8469c, p0Var.f8469c) || !Boolean.valueOf(this.f8470e).equals(Boolean.valueOf(p0Var.f8470e)) || !Boolean.valueOf(this.f8471f).equals(Boolean.valueOf(p0Var.f8471f))) {
                 return false;
             }
             return true;
@@ -77,6 +77,6 @@ public final class p0 {
         if (str != null) {
             return str.hashCode();
         }
-        return Objects.hash(this.f7806a, this.f7808c, Boolean.valueOf(this.e), Boolean.valueOf(this.f7809f));
+        return Objects.hash(this.f8467a, this.f8469c, Boolean.valueOf(this.f8470e), Boolean.valueOf(this.f8471f));
     }
 }

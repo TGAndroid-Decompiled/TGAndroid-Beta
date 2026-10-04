@@ -3,31 +3,31 @@ package org.telegram.ui;
 import android.animation.AnimatorSet;
 import android.widget.FrameLayout;
 public final class kk implements Runnable {
-    public final int f35081a;
-    public final wn f35082b;
+    public final int f37994a;
+    public final yn f37995b;
 
-    public kk(wn wnVar, int i10) {
-        this.f35081a = i10;
-        this.f35082b = wnVar;
+    public kk(yn ynVar, int i10) {
+        this.f37994a = i10;
+        this.f37995b = ynVar;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.dh dhVar;
+        org.telegram.ui.Components.eh ehVar;
         FrameLayout frameLayout;
-        switch (this.f35081a) {
+        switch (this.f37994a) {
             case 0:
-                wn wnVar = this.f35082b;
-                AnimatorSet animatorSet = wnVar.V9;
+                yn ynVar = this.f37995b;
+                AnimatorSet animatorSet = ynVar.T9;
                 if (animatorSet != null && !animatorSet.isRunning()) {
-                    wnVar.V9.start();
+                    ynVar.T9.start();
                     return;
                 }
                 return;
             default:
-                wn wnVar2 = this.f35082b;
-                if (wnVar2.O2 == this && (dhVar = wnVar2.M0) != null && (frameLayout = wnVar2.N2) != null) {
-                    dhVar.i(frameLayout, false, true);
+                yn ynVar2 = this.f37995b;
+                if (ynVar2.M2 == this && (ehVar = ynVar2.K0) != null && (frameLayout = ynVar2.L2) != null) {
+                    ehVar.i(frameLayout, false, true);
                     return;
                 }
                 return;

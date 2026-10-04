@@ -1,175 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class oi extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f27074a;
-    public final wi f27075b;
-    public yl0 f27076c;
-    public yl0 d;
-    public int e;
-    public boolean f27077f;
-    public boolean h;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+public final class oi extends org.telegram.ui.ou0 {
+    public final MediaController.PhotoEntry f29361a;
+    public final xi f29362b;
 
-    public oi(Context context, org.telegram.ui.ActionBar.d6 d6Var, wi wiVar) {
-        super(context);
-        this.f27074a = d6Var;
-        this.f27075b = wiVar;
+    public oi(xi xiVar, MediaController.PhotoEntry photoEntry) {
+        this.f29362b = xiVar;
+        this.f29361a = photoEntry;
     }
 
-    public boolean B(int i10) {
-        return false;
-    }
-
-    public boolean I(int i10, boolean z10, int i11, boolean z11, long j3) {
-        return false;
-    }
-
-    public boolean J() {
-        return !(this instanceof ei.q4);
-    }
-
-    public boolean b() {
-        return true;
-    }
-
-    public boolean c() {
-        return true;
-    }
-
-    public boolean e() {
-        return false;
-    }
-
-    public boolean f() {
-        return false;
-    }
-
-    public boolean g() {
-        return false;
-    }
-
-    public int getButtonsHideOffset() {
-        float f7;
-        if (h() != 0) {
-            f7 = 12.0f;
-        } else {
-            f7 = 17.0f;
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, final boolean z10, final int i11, int i12, final boolean z11) {
+        xi xiVar = this.f29362b;
+        xiVar.f32854s2 = true;
+        if (xiVar.Z1 == null) {
+            return;
         }
-        return AndroidUtilities.dp(f7);
-    }
-
-    public int getCurrentItemTop() {
-        return 0;
-    }
-
-    public int getCustomActionBarBackground() {
-        return 0;
-    }
-
-    public int getCustomBackground() {
-        return 0;
-    }
-
-    public int getFirstOffset() {
-        return 0;
-    }
-
-    public bh.a getIBlur3Capture() {
-        return null;
-    }
-
-    public int getListTopPadding() {
-        return 0;
-    }
-
-    public int getSelectedItemsCount() {
-        return 0;
-    }
-
-    public ArrayList<org.telegram.ui.ActionBar.j6> getThemeDescriptions() {
-        return null;
-    }
-
-    public int h() {
-        return 0;
-    }
-
-    public boolean i() {
-        return false;
-    }
-
-    public boolean l(MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean n() {
-        return false;
-    }
-
-    public boolean p() {
-        return true;
-    }
-
-    public abstract void y(int i10, int i11);
-
-    public void A(int i10) {
-    }
-
-    public void E(oi oiVar) {
-    }
-
-    public void F() {
-    }
-
-    public void G() {
-    }
-
-    public void a(CharSequence charSequence) {
-    }
-
-    public void d() {
-    }
-
-    public void j() {
-    }
-
-    public void k(float f7) {
-    }
-
-    public void m() {
-    }
-
-    public void o(int i10) {
-    }
-
-    public void q() {
-    }
-
-    public void r() {
-    }
-
-    public void s(float f7) {
-    }
-
-    public void t(int i10) {
-    }
-
-    public void u() {
-    }
-
-    public void v() {
-    }
-
-    public void x() {
-    }
-
-    public void z() {
-    }
-
-    public void w(int i10, boolean z10) {
+        final MediaController.PhotoEntry photoEntry = this.f29361a;
+        photoEntry.editedInfo = videoEditedInfo;
+        e5.a0(xiVar.J1, xiVar.h1() + 1, 0L, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ArrayList arrayList = ChatAttachAlertPhotoLayout.f24020t1;
+                arrayList.clear();
+                HashMap hashMap = ChatAttachAlertPhotoLayout.f24019s1;
+                hashMap.clear();
+                arrayList.add(0);
+                hashMap.put(0, photoEntry);
+                oi.this.f29362b.Z1.B1(7, true, z10, i11, 0, 0L, false, z11, ((Long) obj).longValue());
+            }
+        });
     }
 }

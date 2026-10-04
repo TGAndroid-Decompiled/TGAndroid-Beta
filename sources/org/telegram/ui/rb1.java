@@ -1,113 +1,68 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.text.TextPaint;
 import android.view.View;
-import android.view.animation.Interpolator;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.ThemeActivity;
-public final class rb1 implements org.telegram.ui.Components.ml0 {
-    public final int f37292a;
-    public final Object f37293b;
-    public final Object f37294c;
-    public final Object d;
+import org.telegram.messenger.SharedConfig;
+public final class rb1 extends FrameLayout {
+    public final org.telegram.ui.Components.yo0 f40008a;
+    public final int f40009b;
+    public final TextPaint f40010c;
+    public final ThemeActivity d;
 
-    public rb1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f37292a = i10;
-        this.f37293b = obj;
-        this.f37294c = obj2;
-        this.d = obj3;
+    public rb1(ThemeActivity themeActivity, Context context) {
+        super(context);
+        this.d = themeActivity;
+        this.f40009b = 17;
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.f40010c = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        org.telegram.ui.Components.yo0 yo0Var = new org.telegram.ui.Components.yo0(context);
+        this.f40008a = yo0Var;
+        yo0Var.setReportChanges(true);
+        yo0Var.setSeparatorsCount(18);
+        yo0Var.setDelegate(new dw0(this, 3));
+        yo0Var.setImportantForAccessibility(2);
+        addView(yo0Var, w7.z5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
     }
 
     @Override
-    public final void d(int i10, View view) {
-        org.telegram.ui.ActionBar.g6 A0;
-        Interpolator interpolator;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        int i11 = this.f37292a;
-        Object obj = this.d;
-        Object obj2 = this.f37294c;
-        Object obj3 = this.f37293b;
-        switch (i11) {
-            case 0:
-                ac1 ac1Var = (ac1) obj2;
-                wb1 wb1Var = (wb1) obj;
-                ThemeActivity themeActivity = ((yb1) obj3).e;
-                int i12 = themeActivity.f31845f;
-                if (i12 == 1) {
-                    A0 = org.telegram.ui.ActionBar.h6.J;
-                } else {
-                    A0 = org.telegram.ui.ActionBar.h6.A0();
-                }
-                org.telegram.ui.ActionBar.g6 g6Var = A0;
-                if (i10 == ac1Var.h() - 1) {
-                    interpolator = null;
-                    if (i12 == 1) {
-                        z13 = true;
-                    } else {
-                        z13 = false;
-                    }
-                    themeActivity.presentFragment(new od1(g6Var, false, 1, false, z13));
-                } else {
-                    interpolator = null;
-                    org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) ac1Var.e.get(i10);
-                    if (!TextUtils.isEmpty(f6Var.f18898o) && f6Var.f18887a != org.telegram.ui.ActionBar.h6.f19238n) {
-                        org.telegram.ui.ActionBar.c6.a(false);
-                    }
-                    int i13 = g6Var.Y;
-                    int i14 = f6Var.f18887a;
-                    if (i13 != i14) {
-                        NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-                        int i15 = NotificationCenter.needSetDayNightTheme;
-                        if (i12 == 1) {
-                            z12 = true;
-                        } else {
-                            z12 = false;
-                        }
-                        globalInstance.lambda$postNotificationNameOnUIThread$1(i15, g6Var, Boolean.valueOf(z12), null, Integer.valueOf(f6Var.f18887a));
-                        org.telegram.ui.ActionBar.b4.q(g6Var, f6Var.f18887a);
-                        org.telegram.ui.ActionBar.h6.F1(themeActivity);
-                    } else {
-                        if (i14 >= 100) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        if (i12 == 1) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        themeActivity.presentFragment(new od1(g6Var, false, 1, z10, z11));
-                    }
-                }
-                int left = view.getLeft();
-                int right = view.getRight();
-                int dp = AndroidUtilities.dp(52.0f);
-                int i16 = left - dp;
-                if (i16 < 0) {
-                    wb1Var.v0(i16, 0, interpolator);
-                } else {
-                    int i17 = right + dp;
-                    if (i17 > wb1Var.getMeasuredWidth()) {
-                        wb1Var.v0(i17 - wb1Var.getMeasuredWidth(), 0, interpolator);
-                    }
-                }
-                int childCount = wb1Var.getChildCount();
-                for (int i18 = 0; i18 < childCount; i18++) {
-                    View childAt = wb1Var.getChildAt(i18);
-                    if (childAt instanceof ThemeActivity.InnerAccentView) {
-                        ((ThemeActivity.InnerAccentView) childAt).a(true);
-                    }
-                }
-                return;
-            default:
-                n11.V((n11) obj3, (Context) obj2, (String) obj, view, i10);
-                return;
+    public final void invalidate() {
+        super.invalidate();
+        this.f40008a.invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.I6, false);
+        TextPaint textPaint = this.f40010c;
+        textPaint.setColor(w02);
+        canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f40008a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+        this.f40008a.setProgress(SharedConfig.bubbleRadius / this.f40009b);
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f40008a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+            return false;
         }
+        return true;
     }
 }

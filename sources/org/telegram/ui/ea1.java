@@ -1,36 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 public final class ea1 {
-    public boolean f33333a;
-    public String f33334b;
-    public long f33335c;
-    public jg.b d;
-    public jg.b e;
-    public String f33336f;
-    public String f33337g;
-    public boolean h;
-    public final int f33338i;
-    public final String f33339j;
-    public boolean f33340k;
-    public boolean f33341l;
-    public boolean f33342m;
-    public boolean f33343n;
-    public boolean f33344o;
+    public final org.telegram.ui.Components.v00 f35969a;
+    public kg.f f35970b;
+    public final int f35971c;
+    public final fa1 d;
 
-    public ea1(String str, int i10) {
-        this.f33339j = str;
-        this.f33338i = i10;
-    }
-
-    public final void a(int i10, int i11, int i12, Utilities.Callback0Return callback0Return) {
-        if (!this.f33340k) {
-            this.f33340k = true;
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f33336f;
-            ConnectionsManager.getInstance(i10).bindRequestToGuid(ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new vb0(24, this, callback0Return), null, null, 0, i12, 1, true), i11);
-        }
+    public ea1(fa1 fa1Var, int i10) {
+        this.d = fa1Var;
+        this.f35971c = i10;
+        ?? view = new View(fa1Var.getContext());
+        view.f31479c = true;
+        TextPaint textPaint = new TextPaint(1);
+        view.f31480e = textPaint;
+        view.f31481f = new Paint(1);
+        Paint paint = new Paint(1);
+        view.h = paint;
+        Paint paint2 = new Paint(1);
+        view.f31482n = paint2;
+        view.f31485w = AndroidUtilities.dp(35.0f);
+        view.f31486x = AndroidUtilities.dp(22.0f);
+        view.f31487y = AndroidUtilities.dp(8.0f);
+        view.E = AndroidUtilities.dp(3.5f);
+        view.F = new RectF();
+        view.G = 0.0f;
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint2.setStyle(style);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        this.f35969a = view;
+        view.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        fa1Var.h.addView(view);
+        fa1Var.f36234n.add(this);
     }
 }

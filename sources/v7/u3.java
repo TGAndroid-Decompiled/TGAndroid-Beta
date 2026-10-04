@@ -1,10 +1,17 @@
 package v7;
 public final class u3 implements ia.d {
-    public static final u3 f44389a = new Object();
-    public static final ia.c f44390b = new ia.c("identifiedLanguage", hg.c.m(j.j(h.class, new e(1))));
+    public static final u3 f48062a = new Object();
+
+    static {
+        t8.b.t(t8.b.l(h.class, new e(1)));
+    }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((ia.e) obj2).a(f44390b, ((f7) obj).f44252a);
+        if (obj == null) {
+            ia.e eVar = (ia.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

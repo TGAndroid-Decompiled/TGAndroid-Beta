@@ -1,41 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
+import android.graphics.Typeface;
 import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class d61 extends URLSpan {
-    public final d11 f23561a;
-    public boolean f23562b;
+import android.text.style.MetricAffectingSpan;
+public final class d61 extends MetricAffectingSpan {
+    public Typeface f25606a;
+    public int f25607b;
+    public int f25608c;
 
-    public d61(String str, d11 d11Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f23561a = d11Var;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        if (this.f23562b && (view.getContext() instanceof LaunchActivity)) {
-            ((LaunchActivity) view.getContext()).X0 = true;
-        }
-        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
+    public d61(Typeface typeface) {
+        this.f25608c = -1;
+        this.f25606a = typeface;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        d11 d11Var = this.f23561a;
-        if (d11Var != null) {
-            d11Var.a(textPaint);
-            if (textPaint.linkColor == color) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            textPaint.setUnderlineText(z10);
+        int i10 = this.f25608c;
+        if (i10 >= 0) {
+            this.f25607b = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
         }
+        Typeface typeface = this.f25606a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        int i11 = this.f25607b;
+        if (i11 != 0) {
+            textPaint.setColor(i11);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        Typeface typeface = this.f25606a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    public d61() {
+        Typeface typeface = Typeface.DEFAULT;
+        this.f25608c = -1;
+        this.f25606a = typeface;
+    }
+
+    public d61(Typeface typeface, int i10) {
+        this.f25608c = -1;
+        this.f25606a = typeface;
+        this.f25607b = i10;
     }
 }

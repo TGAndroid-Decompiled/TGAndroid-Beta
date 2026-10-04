@@ -1,40 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-public final class rs0 implements pl0 {
-    public final hs0 f28047a;
-    public final lv0 f28048b;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class rs0 extends s4.n0 {
+    public final ls0 f30498a;
 
-    public rs0(lv0 lv0Var, hs0 hs0Var) {
-        this.f28048b = lv0Var;
-        this.f28047a = hs0Var;
+    public rs0(ls0 ls0Var) {
+        this.f30498a = ls0Var;
     }
 
     @Override
-    public final boolean mo18c(float r18, float r19, int r20, android.view.View r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.rs0.mo18c(float, float, int, android.view.View):boolean");
-    }
-
-    @Override
-    public final void g() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f28048b.f26154v1;
-        if (m2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                m2Var.finishPreviewFragment();
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        boolean z10;
+        boolean z11;
+        if (view instanceof org.telegram.ui.Cells.t7) {
+            org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
+            ls0 ls0Var = this.f30498a;
+            ls0Var.f27501r.getClass();
+            int R = RecyclerView.R(t7Var);
+            int i10 = ls0Var.f27502s.J;
+            boolean z12 = true;
+            if (R < i10) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-        }
-    }
-
-    @Override
-    public final void q(float f7) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f28048b.f26154v1;
-        if (m2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                m2Var.movePreviewFragment(f7);
+            t7Var.f23068a0 = z10;
+            int i11 = R % i10;
+            if (i11 == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
             }
+            t7Var.V = z11;
+            if (i11 != i10 - 1) {
+                z12 = false;
+            }
+            t7Var.W = z12;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
+            return;
         }
+        rect.left = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        rect.right = 0;
     }
 }

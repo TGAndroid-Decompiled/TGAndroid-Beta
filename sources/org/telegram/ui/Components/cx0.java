@@ -1,34 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class cx0 extends AnimatorListenerAdapter {
-    public final int f23437a;
-    public final dx0 f23438b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class cx0 {
+    public MessagesController.PeerColor f25468a;
+    public org.telegram.ui.ActionBar.d6 f25469b;
+    public int f25470c;
+    public int d;
+    public float f25471e;
 
-    public cx0(dx0 dx0Var, int i10) {
-        this.f23437a = i10;
-        this.f23438b = dx0Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f23437a) {
-            case 0:
-                dx0 dx0Var = this.f23438b;
-                dx0Var.f23737y = 1.0f;
-                dx0Var.invalidate();
-                dx0Var.G = null;
-                return;
-            case 1:
-                dx0 dx0Var2 = this.f23438b;
-                dx0Var2.m(((Float) dx0Var2.v.getAnimatedValue()).floatValue());
-                dx0Var2.v = null;
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                this.f23438b.F = null;
-                return;
+    public final void a(MessagesController.PeerColor peerColor) {
+        int b10;
+        int i10;
+        this.f25468a = peerColor;
+        if (peerColor == null) {
+            this.f25470c = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.A8, this.f25469b);
+            this.d = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21099s8, this.f25469b);
+            this.f25470c = i0.a.d(this.f25471e, this.f25470c, 603979776);
+            this.d = i0.a.d(this.f25471e, this.d, -1);
+            return;
         }
+        int bgColor1 = peerColor.getBgColor1(org.telegram.ui.ActionBar.i6.I.q());
+        int bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.i6.I.q());
+        org.telegram.ui.ActionBar.d6 d6Var = this.f25469b;
+        int d = i0.a.d(0.75f, bgColor2, bgColor1);
+        if (AndroidUtilities.computePerceivedBrightness(d) > 0.721f) {
+            b10 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21152v6, d6Var);
+        } else {
+            b10 = org.telegram.ui.ActionBar.i6.b(0.08f, -0.08f, d);
+        }
+        this.f25470c = b10;
+        if (AndroidUtilities.computePerceivedBrightness(b10) > 0.721f) {
+            i10 = -16777216;
+        } else {
+            i10 = -1;
+        }
+        this.d = i10;
+        this.f25470c = i0.a.d(this.f25471e, this.f25470c, 603979776);
+        this.d = i0.a.d(this.f25471e, this.d, -1);
     }
 }

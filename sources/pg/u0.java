@@ -9,61 +9,61 @@ import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 public final class u0 {
-    public static final List f41270m;
-    public static final List f41271n;
-    public static final int f41272o;
-    public static final int f41273p;
-    public static final int f41274q;
-    public static final u0[] f41275r;
-    public final SharedPreferences f41276a;
-    public final ArrayList f41277b;
-    public final HashMap f41278c;
+    public static final List f44633m;
+    public static final List f44634n;
+    public static final int f44635o;
+    public static final int f44636p;
+    public static final int f44637q;
+    public static final u0[] f44638r;
+    public final SharedPreferences f44639a;
+    public final ArrayList f44640b;
+    public final HashMap f44641c;
     public List d;
-    public boolean e;
-    public int f41279f;
-    public int f41280g;
+    public boolean f44642e;
+    public int f44643f;
+    public int f44644g;
     public int h;
-    public float f41281i;
-    public String f41282j;
-    public boolean f41283k;
-    public boolean f41284l;
+    public float f44645i;
+    public String f44646j;
+    public boolean f44647k;
+    public boolean f44648l;
 
     static {
         List asList = Arrays.asList(-2645892, -8409090, -5926949, -2386514, -4531041);
-        f41270m = asList;
+        f44633m = asList;
         List asList2 = Arrays.asList(-47814, -30208, -10742, -13318311, -10230046, -16087809, -4236558, -16777216, -1);
-        f41271n = asList2;
+        f44634n = asList2;
         int size = asList.size();
-        f41272o = size;
+        f44635o = size;
         int size2 = asList2.size();
-        f41273p = size2;
-        f41274q = size + size2;
-        f41275r = new u0[4];
+        f44636p = size2;
+        f44637q = size + size2;
+        f44638r = new u0[4];
     }
 
     public u0(int i10) {
         List list;
-        int i11 = f41274q;
-        this.f41277b = new ArrayList(i11);
-        HashMap hashMap = new HashMap(m.f41171a.size());
-        this.f41278c = hashMap;
+        int i11 = f44637q;
+        this.f44640b = new ArrayList(i11);
+        HashMap hashMap = new HashMap(m.f44526a.size());
+        this.f44641c = hashMap;
         this.d = new ArrayList(i11);
         int i12 = 0;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("photo_color_palette_" + i10, 0);
-        this.f41276a = sharedPreferences;
-        this.f41279f = sharedPreferences.getInt("brush", 0);
-        this.f41281i = sharedPreferences.getFloat("weight", 0.5f);
-        this.f41282j = sharedPreferences.getString("typeface", "roboto");
-        this.f41280g = sharedPreferences.getInt("text_alignment", 0);
+        this.f44639a = sharedPreferences;
+        this.f44643f = sharedPreferences.getInt("brush", 0);
+        this.f44645i = sharedPreferences.getFloat("weight", 0.5f);
+        this.f44646j = sharedPreferences.getString("typeface", "roboto");
+        this.f44644g = sharedPreferences.getInt("text_alignment", 0);
         this.h = sharedPreferences.getInt("text_type", 0);
-        this.f41283k = sharedPreferences.getBoolean("fill_shapes", false);
+        this.f44647k = sharedPreferences.getBoolean("fill_shapes", false);
         int i13 = 0;
-        while (i13 < f41272o) {
-            i13 = e2.e((int) sharedPreferences.getLong(hg.c.h(i13, "color_"), ((Integer) f41270m.get(i13)).intValue()), i13, 1, this.f41277b);
+        while (i13 < f44635o) {
+            i13 = e2.e((int) sharedPreferences.getLong(hg.k0.h(i13, "color_"), ((Integer) f44633m.get(i13)).intValue()), i13, 1, this.f44640b);
         }
         while (true) {
-            if (i12 < m.f41171a.size()) {
-                hashMap.put(Integer.valueOf(i12), Integer.valueOf((int) sharedPreferences.getLong(hg.c.h(i12, "brush_color_"), ((m) list.get(i12)).c())));
+            if (i12 < m.f44526a.size()) {
+                hashMap.put(Integer.valueOf(i12), Integer.valueOf((int) sharedPreferences.getLong(hg.k0.h(i12, "brush_color_"), ((m) list.get(i12)).c())));
                 i12++;
             } else {
                 hashMap.put(-1, Integer.valueOf((int) sharedPreferences.getLong("brush_color_-1", -1L)));
@@ -73,7 +73,7 @@ public final class u0 {
     }
 
     public static u0 e(int i10) {
-        u0[] u0VarArr = f41275r;
+        u0[] u0VarArr = f44638r;
         if (u0VarArr[i10] == null) {
             u0VarArr[i10] = new u0(i10);
         }
@@ -82,58 +82,58 @@ public final class u0 {
 
     public final void a() {
         this.d.clear();
-        this.d.addAll(f41270m);
-        SharedPreferences.Editor edit = this.f41276a.edit();
-        for (int i10 = 0; i10 < m.f41171a.size(); i10++) {
+        this.d.addAll(f44633m);
+        SharedPreferences.Editor edit = this.f44639a.edit();
+        for (int i10 = 0; i10 < m.f44526a.size(); i10++) {
             edit.remove("brush_color_" + i10);
         }
         edit.remove("brush_color_-1");
-        this.f41278c.clear();
+        this.f44641c.clear();
         edit.apply();
         g();
     }
 
     public final int b(int i10) {
-        int i11 = f41274q;
+        int i11 = f44637q;
         if (i10 >= 0 && i10 < i11) {
-            List list = f41271n;
+            List list = f44634n;
             ArrayList arrayList = new ArrayList(list);
-            arrayList.addAll(this.f41277b);
+            arrayList.addAll(this.f44640b);
             if (i10 >= arrayList.size()) {
-                int i12 = f41273p;
+                int i12 = f44636p;
                 if (i10 < i12) {
                     return ((Integer) list.get(i10)).intValue();
                 }
-                return ((Integer) f41270m.get(i10 - i12)).intValue();
+                return ((Integer) f44633m.get(i10 - i12)).intValue();
             }
             return ((Integer) arrayList.get(i10)).intValue();
         }
-        throw new IndexOutOfBoundsException(hg.c.h(i11, "Color palette index should be in range 0 ... "));
+        throw new IndexOutOfBoundsException(hg.k0.h(i11, "Color palette index should be in range 0 ... "));
     }
 
     public final int c() {
         long c10;
-        Integer valueOf = Integer.valueOf(this.f41279f);
-        HashMap hashMap = this.f41278c;
+        Integer valueOf = Integer.valueOf(this.f44643f);
+        HashMap hashMap = this.f44641c;
         Integer num = (Integer) hashMap.get(valueOf);
         if (num == null) {
-            String str = "brush_color_" + this.f41279f;
-            int i10 = this.f41279f;
+            String str = "brush_color_" + this.f44643f;
+            int i10 = this.f44643f;
             if (i10 == -1) {
                 c10 = -1;
             } else {
-                c10 = ((m) m.f41171a.get(i10)).c();
+                c10 = ((m) m.f44526a.get(i10)).c();
             }
-            num = Integer.valueOf((int) this.f41276a.getLong(str, c10));
-            hashMap.put(Integer.valueOf(this.f41279f), num);
+            num = Integer.valueOf((int) this.f44639a.getLong(str, c10));
+            hashMap.put(Integer.valueOf(this.f44643f), num);
         }
         return num.intValue();
     }
 
     public final int d() {
         int c10 = c();
-        ArrayList arrayList = new ArrayList(f41271n);
-        arrayList.addAll(this.f41277b);
+        ArrayList arrayList = new ArrayList(f44634n);
+        arrayList.addAll(this.f44640b);
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             if (((Integer) arrayList.get(i10)).intValue() == c10) {
                 return i10;
@@ -143,50 +143,50 @@ public final class u0 {
     }
 
     public final float f(String str, float f7) {
-        return this.f41276a.getFloat("weight_" + str, f7);
+        return this.f44639a.getFloat("weight_" + str, f7);
     }
 
     public final void g() {
         List list;
-        if (this.d.isEmpty() && !this.e) {
+        if (this.d.isEmpty() && !this.f44642e) {
             return;
         }
-        SharedPreferences.Editor edit = this.f41276a.edit();
+        SharedPreferences.Editor edit = this.f44639a.edit();
         if (!this.d.isEmpty()) {
-            for (int i10 = 0; i10 < f41272o; i10++) {
-                String h = hg.c.h(i10, "color_");
+            for (int i10 = 0; i10 < f44635o; i10++) {
+                String h = hg.k0.h(i10, "color_");
                 if (i10 < this.d.size()) {
                     list = this.d;
                 } else {
-                    list = f41270m;
+                    list = f44633m;
                 }
                 edit.putLong(h, ((Integer) list.get(i10)).intValue());
             }
-            ArrayList arrayList = this.f41277b;
+            ArrayList arrayList = this.f44640b;
             arrayList.clear();
             arrayList.addAll(this.d);
             this.d.clear();
         }
-        if (this.e) {
-            Integer num = (Integer) this.f41278c.get(Integer.valueOf(this.f41279f));
+        if (this.f44642e) {
+            Integer num = (Integer) this.f44641c.get(Integer.valueOf(this.f44643f));
             if (num != null) {
-                edit.putLong("brush_color_" + this.f41279f, num.intValue());
+                edit.putLong("brush_color_" + this.f44643f, num.intValue());
             }
-            this.e = false;
+            this.f44642e = false;
         }
         edit.apply();
     }
 
     public final void h(int i10, boolean z10) {
-        ArrayList arrayList = new ArrayList(f41271n);
-        Collection collection = this.f41277b;
+        ArrayList arrayList = new ArrayList(f44634n);
+        Collection collection = this.f44640b;
         arrayList.addAll(collection);
         int indexOf = arrayList.indexOf(Integer.valueOf(i10));
-        HashMap hashMap = this.f41278c;
+        HashMap hashMap = this.f44641c;
         if (indexOf != -1) {
             if (z10) {
-                hashMap.put(Integer.valueOf(this.f41279f), Integer.valueOf(b(indexOf)));
-                this.e = true;
+                hashMap.put(Integer.valueOf(this.f44643f), Integer.valueOf(b(indexOf)));
+                this.f44642e = true;
                 return;
             }
             return;
@@ -201,7 +201,7 @@ public final class u0 {
             this.d.add((Integer) arrayList2.get(i11));
         }
         int size = this.d.size();
-        List list = f41270m;
+        List list = f44633m;
         if (size < list.size()) {
             for (int size2 = this.d.size(); size2 < list.size(); size2++) {
                 this.d.add((Integer) list.get(size2));
@@ -210,17 +210,17 @@ public final class u0 {
             this.d = this.d.subList(0, list.size());
         }
         if (z10) {
-            hashMap.put(Integer.valueOf(this.f41279f), Integer.valueOf(i10));
-            this.e = true;
+            hashMap.put(Integer.valueOf(this.f44643f), Integer.valueOf(i10));
+            this.f44642e = true;
         }
     }
 
     public final void i(int i10, boolean z10) {
-        this.f41279f = i10;
+        this.f44643f = i10;
         if (z10) {
-            this.f41276a.edit().putInt("brush", i10).apply();
+            this.f44639a.edit().putInt("brush", i10).apply();
         }
-        Integer num = (Integer) this.f41278c.get(Integer.valueOf(i10));
+        Integer num = (Integer) this.f44641c.get(Integer.valueOf(i10));
         if (num != null) {
             h(num.intValue(), false);
             g();
@@ -228,12 +228,12 @@ public final class u0 {
     }
 
     public final void j(float f7) {
-        this.f41281i = f7;
-        this.f41276a.edit().putFloat("weight", f7).apply();
+        this.f44645i = f7;
+        this.f44639a.edit().putFloat("weight", f7).apply();
     }
 
     public final void k(String str, float f7) {
-        SharedPreferences.Editor edit = this.f41276a.edit();
+        SharedPreferences.Editor edit = this.f44639a.edit();
         edit.putFloat("weight_" + str, f7).apply();
     }
 }

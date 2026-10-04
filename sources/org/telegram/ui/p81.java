@@ -1,29 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class p81 implements RequestDelegate {
-    public final int f36437a;
-    public final z81 f36438b;
+import android.view.View;
+public final class p81 implements View.OnClickListener {
+    public final int f39368a;
+    public final a91 f39369b;
 
-    public p81(z81 z81Var, int i10) {
-        this.f36437a = i10;
-        this.f36438b = z81Var;
+    public p81(a91 a91Var, int i10) {
+        this.f39368a = i10;
+        this.f39369b = a91Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36437a) {
+    public final void onClick(View view) {
+        switch (this.f39368a) {
             case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                z81 z81Var = this.f36438b;
-                z81Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new p81(z81Var, 1));
+                a91 a91Var = this.f39369b;
+                nf.f.s(a91Var.getParentActivity(), a91Var.getMessagesController().premiumManageSubscriptionUrl);
+                a91Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
+                return;
+            case 1:
+                a91 a91Var2 = this.f39369b;
+                a91Var2.getClass();
+                a91Var2.presentFragment(new h(3));
+                return;
+            case 2:
+                this.f39369b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
+                return;
+            case 3:
+                a91 a91Var3 = this.f39369b;
+                a91Var3.getClass();
+                a91Var3.presentFragment(new bh1(8, null));
+                return;
+            case 4:
+                this.f39369b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                return;
+            case 5:
+                a91.Y(this.f39369b);
                 return;
             default:
-                this.f36438b.getMessagesController().loadAppConfig();
+                a91.b0(this.f39369b);
                 return;
         }
     }

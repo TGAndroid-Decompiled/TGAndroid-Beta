@@ -1,56 +1,30 @@
 package org.telegram.ui;
+public final class sr implements Runnable {
+    public final int f40605a;
+    public final tr f40606b;
 
-import android.graphics.drawable.Drawable;
-public final class sr implements Drawable.Callback {
-    public final int f37851a;
-    public final Drawable f37852b;
-
-    public sr(int i10, Drawable drawable) {
-        this.f37851a = i10;
-        this.f37852b = drawable;
+    public sr(tr trVar, int i10) {
+        this.f40605a = i10;
+        this.f40606b = trVar;
     }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f37851a) {
+    public final void run() {
+        switch (this.f40605a) {
             case 0:
-                ((tr) this.f37852b).invalidateSelf();
+                org.telegram.ui.Components.w61 w61Var = this.f40606b.f32724a;
+                if (w61Var != null) {
+                    w61Var.f25244f3.N(true);
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.Cells.w0 w0Var = ((b11) this.f37852b).h;
-                if (w0Var != null) {
-                    w0Var.invalidate();
+                org.telegram.ui.Components.w61 w61Var2 = this.f40606b.f32724a;
+                if (w61Var2 != null) {
+                    w61Var2.f25244f3.N(true);
                     return;
                 }
                 return;
         }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        switch (this.f37851a) {
-            case 0:
-                ((tr) this.f37852b).scheduleSelf(runnable, j3);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f37851a) {
-            case 0:
-                ((tr) this.f37852b).unscheduleSelf(runnable);
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void b(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void a(Drawable drawable, Runnable runnable, long j3) {
     }
 }

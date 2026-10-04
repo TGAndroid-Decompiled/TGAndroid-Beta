@@ -1,42 +1,34 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class fg1 implements Runnable {
-    public final int f33675a;
-    public final TwoStepVerificationActivity f33676b;
+import org.telegram.tgnet.tl.TL_account;
+public final class fg1 implements org.telegram.ui.ActionBar.a2 {
+    public final int f36304a;
+    public final TwoStepVerificationActivity f36305b;
 
     public fg1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f33675a = i10;
-        this.f33676b = twoStepVerificationActivity;
+        this.f36304a = i10;
+        this.f36305b = twoStepVerificationActivity;
     }
 
     @Override
-    public final void run() {
-        EditTextBoldCursor editTextBoldCursor;
-        switch (this.f33675a) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f36304a) {
             case 0:
-                TwoStepVerificationActivity twoStepVerificationActivity = this.f33676b;
-                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.H && (editTextBoldCursor = twoStepVerificationActivity.f31885s) != null) {
-                    editTextBoldCursor.requestFocus();
-                    AndroidUtilities.showKeyboard(twoStepVerificationActivity.f31885s);
-                    return;
-                }
+                this.f36305b.finishFragment();
                 return;
             case 1:
-                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f33676b;
-                twoStepVerificationActivity2.U = false;
-                twoStepVerificationActivity2.v.a(0.0f);
+                TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f36305b;
+                twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new gg1(twoStepVerificationActivity, 2));
                 return;
             case 2:
-                this.f33676b.y0();
+                this.f36305b.k0();
+                return;
+            case 3:
+                this.f36305b.u0();
                 return;
             default:
-                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f33676b;
-                fg1 fg1Var = twoStepVerificationActivity3.V;
-                AndroidUtilities.cancelRunOnUIThread(fg1Var);
-                AndroidUtilities.runOnUIThread(fg1Var, 1500L);
-                twoStepVerificationActivity3.U = true;
+                this.f36305b.u0();
                 return;
         }
     }

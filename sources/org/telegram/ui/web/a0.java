@@ -1,65 +1,60 @@
 package org.telegram.ui.web;
 
 import ai.da;
-import android.webkit.WebView;
-import java.io.Serializable;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class a0 implements Runnable {
-    public final int f38983a;
-    public final Object f38984b;
-    public final Object f38985c;
-    public final Serializable d;
-    public final Object e;
-    public final Object f38986f;
+import ai.z8;
+import java.io.File;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class a0 implements Utilities.Callback {
+    public final int f42088a = 0;
+    public final c1 f42089b;
+    public final String f42090c;
+    public final String d;
+    public final Object f42091e;
+    public final Object f42092f;
 
-    public a0(Object obj, WebView webView, Object obj2, String str, Object obj3, int i10) {
-        this.f38983a = i10;
-        this.f38984b = obj;
-        this.e = webView;
-        this.f38986f = obj2;
-        this.d = str;
-        this.f38985c = obj3;
+    public a0(c1 c1Var, da daVar, String str, ei.u1 u1Var, String str2) {
+        this.f42089b = c1Var;
+        this.f42091e = daVar;
+        this.f42090c = str;
+        this.f42092f = u1Var;
+        this.d = str2;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.a0.run():void");
+    public final void run(Object obj) {
+        switch (this.f42088a) {
+            case 0:
+                da daVar = (da) this.f42091e;
+                ei.u1 u1Var = (ei.u1) this.f42092f;
+                String str = this.d;
+                String str2 = (String) obj;
+                c1 c1Var = this.f42089b;
+                String str3 = this.f42090c;
+                if (str2 == null) {
+                    c1Var.y(daVar, "secure_storage_failed", c1.C("req_id", str3, "error", "RESTORE_CANCELLED"));
+                    return;
+                }
+                try {
+                    u1Var.j(str2);
+                    c1Var.y(daVar, "secure_storage_key_restored", c1.C("req_id", str3, "value", (String) u1Var.f(str).first));
+                    return;
+                } catch (Exception e7) {
+                    c1Var.y(daVar, "secure_storage_failed", c1.C("req_id", str3, "error", e7.getMessage()));
+                    return;
+                }
+            default:
+                c1 c1Var2 = this.f42089b;
+                AndroidUtilities.runOnUIThread(new z8(c1Var2, (File) obj, (org.telegram.ui.ActionBar.b2) this.f42091e, this.f42090c, this.d, (String) this.f42092f, 14));
+                return;
+        }
     }
 
-    public a0(Object obj, String str, Serializable serializable, String str2, String str3, int i10) {
-        this.f38983a = i10;
-        this.f38984b = obj;
-        this.d = str;
-        this.e = serializable;
-        this.f38986f = str2;
-        this.f38985c = str3;
-    }
-
-    public a0(b1 b1Var, TLObject tLObject, da daVar, String str, String str2) {
-        this.f38983a = 1;
-        this.f38984b = b1Var;
-        this.f38985c = tLObject;
-        this.e = daVar;
-        this.d = str;
-        this.f38986f = str2;
-    }
-
-    public a0(b1 b1Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.a2 a2Var) {
-        this.f38983a = 3;
-        this.f38984b = b1Var;
-        this.f38985c = tLObject;
-        this.d = strArr;
-        this.e = tL_error;
-        this.f38986f = a2Var;
-    }
-
-    public a0(b1 b1Var, TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
-        this.f38983a = 0;
-        this.f38984b = b1Var;
-        this.e = tL_error;
-        this.d = str;
-        this.f38986f = tL_inputInvoiceSlug;
-        this.f38985c = tLObject;
+    public a0(c1 c1Var, org.telegram.ui.ActionBar.b2 b2Var, String str, String str2, String str3) {
+        this.f42089b = c1Var;
+        this.f42091e = b2Var;
+        this.f42090c = str;
+        this.d = str2;
+        this.f42092f = str3;
     }
 }

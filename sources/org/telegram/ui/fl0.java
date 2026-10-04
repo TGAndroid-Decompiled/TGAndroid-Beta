@@ -1,22 +1,32 @@
 package org.telegram.ui;
-public final class fl0 implements Runnable {
-    public final int f33697a;
-    public final as f33698b;
 
-    public fl0(as asVar, int i10) {
-        this.f33697a = i10;
-        this.f33698b = asVar;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+public final class fl0 extends Drawable {
+    public final org.telegram.ui.Components.e11 f36342a;
+    public final org.telegram.ui.ActionBar.d6 f36343b;
+
+    public fl0(org.telegram.ui.Components.e11 e11Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f36342a = e11Var;
+        this.f36343b = d6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33697a) {
-            case 0:
-                this.f33698b.l(1.0f);
-                return;
-            default:
-                this.f33698b.l(1.0f);
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        this.f36342a.c(getBounds().centerX() - (this.f36342a.f25878c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, this.f36343b), canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

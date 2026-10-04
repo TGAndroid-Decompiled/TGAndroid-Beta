@@ -1,25 +1,25 @@
 package u2;
 public final class f0 {
-    public final Object f43643a;
-    public final int f43644b;
-    public final int f43645c;
+    public final Object f47254a;
+    public final int f47255b;
+    public final int f47256c;
     public final long d;
-    public final int e;
+    public final int f47257e;
 
     public f0(Object obj) {
         this(obj, -1L);
     }
 
     public final f0 a(Object obj) {
-        if (this.f43643a.equals(obj)) {
+        if (this.f47254a.equals(obj)) {
             return this;
         }
         long j3 = this.d;
-        return new f0(this.f43644b, this.f43645c, this.e, j3, obj);
+        return new f0(this.f47255b, this.f47256c, this.f47257e, j3, obj);
     }
 
     public final boolean b() {
-        if (this.f43644b != -1) {
+        if (this.f47255b != -1) {
             return true;
         }
         return false;
@@ -33,14 +33,14 @@ public final class f0 {
             return false;
         }
         f0 f0Var = (f0) obj;
-        if (this.f43643a.equals(f0Var.f43643a) && this.f43644b == f0Var.f43644b && this.f43645c == f0Var.f43645c && this.d == f0Var.d && this.e == f0Var.e) {
+        if (this.f47254a.equals(f0Var.f47254a) && this.f47255b == f0Var.f47255b && this.f47256c == f0Var.f47256c && this.d == f0Var.d && this.f47257e == f0Var.f47257e) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return ((((((((this.f43643a.hashCode() + 527) * 31) + this.f43644b) * 31) + this.f43645c) * 31) + ((int) this.d)) * 31) + this.e;
+        return ((((((((this.f47254a.hashCode() + 527) * 31) + this.f47255b) * 31) + this.f47256c) * 31) + ((int) this.d)) * 31) + this.f47257e;
     }
 
     public f0(Object obj, long j3) {
@@ -52,10 +52,10 @@ public final class f0 {
     }
 
     public f0(int i10, int i11, int i12, long j3, Object obj) {
-        this.f43643a = obj;
-        this.f43644b = i10;
-        this.f43645c = i11;
+        this.f47254a = obj;
+        this.f47255b = i10;
+        this.f47256c = i11;
         this.d = j3;
-        this.e = i12;
+        this.f47257e = i12;
     }
 }

@@ -1,56 +1,64 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class rz extends FrameLayout {
-    public FrameLayout f37541a;
-    public org.telegram.ui.ActionBar.h5 f37542b;
-    public org.telegram.ui.ActionBar.h5 f37543c;
-    public ImageView d;
-    public ci.g9 e;
-    public ai.p4 f37544f;
-    public ai.p4 h;
-    public TextView f37545n;
-    public org.telegram.ui.ActionBar.m2 f37546r;
-    public String f37547s;
-    public float v;
-    public ValueAnimator f37548w;
-    public org.telegram.ui.ActionBar.m1 f37549x;
-    public float[] f37550y;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rz implements RequestDelegate {
+    public final int f40305a;
+    public final c00 f40306b;
 
-    public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
-        float f7 = 0.0f;
-        float f10 = 0.0f;
-        FrameLayout frameLayout3 = frameLayout;
-        while (frameLayout3 != frameLayout2) {
-            float y3 = frameLayout3.getY() + f7;
-            f10 += frameLayout3.getX();
-            if (frameLayout3 instanceof ScrollView) {
-                y3 -= frameLayout3.getScrollY();
-            }
-            f7 = y3;
-            if (!(frameLayout3.getParent() instanceof View)) {
-                break;
-            }
-            ?? r32 = (View) frameLayout3.getParent();
-            boolean z10 = r32 instanceof ViewGroup;
-            frameLayout3 = r32;
-            if (!z10) {
-                return;
-            }
-        }
-        fArr[0] = f10 - frameLayout2.getPaddingLeft();
-        fArr[1] = f7 - frameLayout2.getPaddingTop();
+    public rz(c00 c00Var, int i10) {
+        this.f40305a = i10;
+        this.f40306b = c00Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(127.0f), 1073741824));
+    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f40305a) {
+            case 0:
+                final c00 c00Var = this.f40306b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                c00 c00Var2 = c00Var;
+                                c00Var2.F = 0;
+                                if (tL_error == null) {
+                                    org.telegram.messenger.f0.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.yc.a0(c00Var2), R.raw.contact_check, 36);
+                                    return;
+                                }
+                                return;
+                            default:
+                                c00.S(c00Var, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final c00 c00Var2 = this.f40306b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                c00 c00Var22 = c00Var2;
+                                c00Var22.F = 0;
+                                if (tL_error == null) {
+                                    org.telegram.messenger.f0.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.yc.a0(c00Var22), R.raw.contact_check, 36);
+                                    return;
+                                }
+                                return;
+                            default:
+                                c00.S(c00Var2, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
+        }
     }
 }

@@ -1,17 +1,8 @@
 package org.telegram.ui;
+public final class g40 implements lh.g {
+    public final h60 f36494a;
 
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class g40 extends FrameLayout {
-    public g40(LaunchActivity launchActivity) {
-        super(launchActivity);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() <= 0.95f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public g40(h60 h60Var) {
+        this.f36494a = h60Var;
     }
 }

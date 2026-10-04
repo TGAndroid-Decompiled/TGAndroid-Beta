@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class xk extends ro {
+public final class xk extends to {
     public boolean T0;
 
     @Override

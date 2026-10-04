@@ -7,7 +7,6 @@ import i9.s;
 import id.h;
 import java.util.concurrent.CancellationException;
 import kotlin.jvm.internal.i;
-import v7.j;
 import zd.a0;
 import zd.e0;
 import zd.e2;
@@ -17,20 +16,20 @@ import zd.m0;
 import zd.o0;
 import zd.w1;
 public final class e extends a0 implements j0 {
-    public final Handler f402c;
+    public final Handler f433c;
     public final boolean d;
-    public final e e;
+    public final e f434e;
 
     public e(Handler handler, boolean z10) {
         e eVar;
-        this.f402c = handler;
+        this.f433c = handler;
         this.d = z10;
         if (z10) {
             eVar = this;
         } else {
             eVar = new e(handler, true);
         }
-        this.e = eVar;
+        this.f434e = eVar;
     }
 
     @Override
@@ -38,16 +37,16 @@ public final class e extends a0 implements j0 {
         if (j3 > 4611686018427387903L) {
             j3 = 4611686018427387903L;
         }
-        if (this.f402c.postDelayed(e2Var, j3)) {
+        if (this.f433c.postDelayed(e2Var, j3)) {
             return new o0() {
                 @Override
                 public final void dispose() {
-                    e.this.f402c.removeCallbacks(e2Var);
+                    e.this.f433c.removeCallbacks(e2Var);
                 }
             };
         }
         f(hVar, e2Var);
-        return w1.f49218a;
+        return w1.f53285a;
     }
 
     @Override
@@ -56,23 +55,23 @@ public final class e extends a0 implements j0 {
         if (j3 > 4611686018427387903L) {
             j3 = 4611686018427387903L;
         }
-        if (this.f402c.postDelayed(sVar, j3)) {
+        if (this.f433c.postDelayed(sVar, j3)) {
             mVar.u(new d(0, this, sVar));
         } else {
-            f(mVar.e, sVar);
+            f(mVar.f53241e, sVar);
         }
     }
 
     @Override
     public final void c(h hVar, Runnable runnable) {
-        if (!this.f402c.post(runnable)) {
+        if (!this.f433c.post(runnable)) {
             f(hVar, runnable);
         }
     }
 
     @Override
     public final boolean e() {
-        if (this.d && i.a(Looper.myLooper(), this.f402c.getLooper())) {
+        if (this.d && i.a(Looper.myLooper(), this.f433c.getLooper())) {
             return false;
         }
         return true;
@@ -81,7 +80,7 @@ public final class e extends a0 implements j0 {
     public final boolean equals(Object obj) {
         if (obj instanceof e) {
             e eVar = (e) obj;
-            if (eVar.f402c == this.f402c && eVar.d == this.d) {
+            if (eVar.f433c == this.f433c && eVar.d == this.d) {
                 return true;
             }
             return false;
@@ -91,12 +90,12 @@ public final class e extends a0 implements j0 {
 
     public final void f(h hVar, Runnable runnable) {
         e0.e(hVar, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        m0.f49184b.c(hVar, runnable);
+        m0.f53243b.c(hVar, runnable);
     }
 
     public final int hashCode() {
         int i10;
-        int identityHashCode = System.identityHashCode(this.f402c);
+        int identityHashCode = System.identityHashCode(this.f433c);
         if (this.d) {
             i10 = 1231;
         } else {
@@ -109,13 +108,13 @@ public final class e extends a0 implements j0 {
     public final String toString() {
         e eVar;
         String str;
-        ge.e eVar2 = m0.f49183a;
-        e eVar3 = o.f8179a;
+        ge.e eVar2 = m0.f53242a;
+        e eVar3 = o.f8890a;
         if (this == eVar3) {
             str = "Dispatchers.Main";
         } else {
             try {
-                eVar = eVar3.e;
+                eVar = eVar3.f434e;
             } catch (UnsupportedOperationException unused) {
                 eVar = null;
             }
@@ -126,9 +125,9 @@ public final class e extends a0 implements j0 {
             }
         }
         if (str == null) {
-            String handler = this.f402c.toString();
+            String handler = this.f433c.toString();
             if (this.d) {
-                return j.t(handler, ".immediate");
+                return t8.b.v(handler, ".immediate");
             }
             return handler;
         }

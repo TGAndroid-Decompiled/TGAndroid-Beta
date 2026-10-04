@@ -1,16 +1,16 @@
 package x7;
 public final class s1 implements ia.d {
-    public static final s1 f45858a = new Object();
-    public static final ia.c f45859b = new ia.c("logEventKey", hg.c.m(v7.j.l(c0.class, new z(1))));
-    public static final ia.c f45860c = new ia.c("eventCount", hg.c.m(v7.j.l(c0.class, new z(2))));
-    public static final ia.c d = new ia.c("inferenceDurationStats", hg.c.m(v7.j.l(c0.class, new z(3))));
+    public static final s1 f49643a = new Object();
+    public static final ia.c f49644b = new ia.c("logEventKey", hg.k0.m(t8.b.n(c0.class, new z(1))));
+    public static final ia.c f49645c = new ia.c("eventCount", hg.k0.m(t8.b.n(c0.class, new z(2))));
+    public static final ia.c d = new ia.c("inferenceDurationStats", hg.k0.m(t8.b.n(c0.class, new z(3))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         s0 s0Var = (s0) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f45859b, s0Var.f45855a);
-        eVar.a(f45860c, s0Var.f45856b);
-        eVar.a(d, s0Var.f45857c);
+        eVar.a(f49644b, s0Var.f49640a);
+        eVar.a(f49645c, s0Var.f49641b);
+        eVar.a(d, s0Var.f49642c);
     }
 }

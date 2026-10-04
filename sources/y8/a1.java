@@ -6,14 +6,14 @@ import java.util.Arrays;
 import java.util.Locale;
 public final class a1 extends o6.a {
     public static final Parcelable.Creator<a1> CREATOR = new c(26);
-    public final String f46616a;
-    public final int f46617b;
-    public final int f46618c;
+    public final String f50443a;
+    public final int f50444b;
+    public final int f50445c;
 
     public a1(String str, int i10, int i11) {
-        this.f46616a = str;
-        this.f46617b = i10;
-        this.f46618c = i11;
+        this.f50443a = str;
+        this.f50444b = i10;
+        this.f50445c = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class a1 extends o6.a {
         }
         if (obj != null && a1.class == obj.getClass()) {
             a1 a1Var = (a1) obj;
-            if (this.f46617b == a1Var.f46617b && this.f46618c == a1Var.f46618c && ((str2 = this.f46616a) == (str = a1Var.f46616a) || (str2 != null && str2.equals(str)))) {
+            if (this.f50444b == a1Var.f50444b && this.f50445c == a1Var.f50445c && ((str2 = this.f50443a) == (str = a1Var.f50443a) || (str2 != null && str2.equals(str)))) {
                 return true;
             }
         }
@@ -32,22 +32,22 @@ public final class a1 extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f46616a, Integer.valueOf(this.f46617b), Integer.valueOf(this.f46618c)});
+        return Arrays.hashCode(new Object[]{this.f50443a, Integer.valueOf(this.f50444b), Integer.valueOf(this.f50445c)});
     }
 
     public final String toString() {
         Locale locale = Locale.US;
-        return a4.a.t(hg.c.k("WebIconParcelable{", this.f46617b, "x", this.f46618c, " - "), this.f46616a, "}");
+        return a4.a.s(hg.k0.k("WebIconParcelable{", this.f50444b, "x", this.f50445c, " - "), this.f50443a, "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.l(parcel, 1, this.f46616a);
-        w7.f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f46617b);
-        w7.f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f46618c);
-        w7.f0.r(parcel, q6);
+        int q6 = w7.g0.q(parcel, 20293);
+        w7.g0.l(parcel, 1, this.f50443a);
+        w7.g0.s(parcel, 2, 4);
+        parcel.writeInt(this.f50444b);
+        w7.g0.s(parcel, 3, 4);
+        parcel.writeInt(this.f50445c);
+        w7.g0.r(parcel, q6);
     }
 }

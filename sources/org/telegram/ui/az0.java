@@ -1,37 +1,49 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.SharedConfig;
-public final class az0 implements DialogInterface.OnClickListener {
-    public final int f32264a;
-    public final int f32265b;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class az0 extends s4.c0 {
+    public final ProfileActivity I;
 
-    public az0(int i10, int i11) {
-        this.f32264a = i11;
-        this.f32265b = i10;
+    public az0(ProfileActivity profileActivity) {
+        this.I = profileActivity;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f32264a) {
-            case 0:
-                int i11 = 2 - i10;
-                if (i11 == this.f32265b) {
-                    SharedConfig.overrideDevicePerformanceClass(-1);
-                    return;
-                } else {
-                    SharedConfig.overrideDevicePerformanceClass(i11);
-                    return;
+    public final int o0(int i10, of.e eVar, s4.z0 z0Var) {
+        ProfileActivity profileActivity = this.I;
+        View m10 = profileActivity.f34216c.m(0);
+        if (m10 != null && !profileActivity.F0) {
+            int top = m10.getTop() - profileActivity.T3();
+            boolean z10 = profileActivity.f34302o2;
+            boolean z11 = true;
+            if (!z10 && top > i10) {
+                if (!profileActivity.f34293n0.X0.isEmpty() && profileActivity.f34232e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f34295n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
+                    if (profileActivity.J2 != null) {
+                        z11 = false;
+                    }
+                    profileActivity.f34302o2 = z11;
                 }
-            default:
-                int i12 = 2 - i10;
-                if (i12 == this.f32265b) {
-                    SharedConfig.overrideDevicePerformanceClass(-1);
-                    return;
-                } else {
-                    SharedConfig.overrideDevicePerformanceClass(i12);
-                    return;
+            } else if (z10) {
+                if (i10 >= top) {
+                    profileActivity.f34302o2 = false;
+                } else if (profileActivity.f34201a.getScrollState() == 1 && !profileActivity.f34309p2) {
+                    i10 /= 2;
                 }
+            }
+            i10 = top;
         }
+        if (profileActivity.O1 && !profileActivity.f34201a.O0) {
+            return 0;
+        }
+        return super.o0(i10, eVar, z0Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        if (this.I.f34313q0 != null) {
+            return true;
+        }
+        return false;
     }
 }

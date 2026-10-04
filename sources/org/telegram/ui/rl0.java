@@ -1,103 +1,69 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class rl0 implements View.OnClickListener {
-    public final int f37377a;
-    public final gn0 f37378b;
+import org.telegram.tgnet.tl.TL_account;
+public final class rl0 extends org.telegram.ui.Components.f61 {
+    public static final int f40160a = 0;
 
-    public rl0(gn0 gn0Var, int i10) {
-        this.f37377a = i10;
-        this.f37378b = gn0Var;
+    static {
+        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37377a) {
-            case 0:
-                gn0 gn0Var = this.f37378b;
-                gn0Var.S0 = 2;
-                gn0Var.D1();
-                return;
-            case 1:
-                this.f37378b.d1();
-                return;
-            case 2:
-                gn0 gn0Var2 = this.f37378b;
-                gn0Var2.S0 = 3;
-                gn0Var2.D1();
-                return;
-            case 3:
-                gn0 gn0Var3 = this.f37378b;
-                gn0Var3.S0 = 1;
-                gn0Var3.D1();
-                return;
-            case 4:
-                gn0 gn0Var4 = this.f37378b;
-                gn0Var4.S0 = 4;
-                gn0Var4.D1();
-                return;
-            case 5:
-                gn0.e0(this.f37378b);
-                return;
-            case 6:
-                gn0 gn0Var5 = this.f37378b;
-                gn0Var5.f33985f = true;
-                gn0Var5.L.callOnClick();
-                gn0Var5.f33985f = false;
-                return;
-            case 7:
-                gn0 gn0Var6 = this.f37378b;
-                gn0Var6.S0 = 0;
-                gn0Var6.D1();
-                return;
-            case 8:
-                gn0 gn0Var7 = this.f37378b;
-                gn0Var7.S0 = 4;
-                gn0Var7.D1();
-                return;
-            case 9:
-                this.f37378b.d1();
-                return;
-            case 10:
-                gn0.b0(this.f37378b);
-                return;
-            case 11:
-                gn0.c0(this.f37378b);
-                return;
-            case 12:
-                this.f37378b.C1();
-                return;
-            case 13:
-                gn0 gn0Var8 = this.f37378b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(gn0Var8.getParentActivity());
-                alertDialog$Builder.f18663a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
-                alertDialog$Builder.f18663a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new tl0(gn0Var8, 5));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18663a;
-                gn0Var8.showDialog(a2Var);
-                TextView textView = (TextView) a2Var.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19300q7, false));
-                    return;
-                }
-                return;
-            case 14:
-                this.f37378b.C1();
-                return;
-            case 15:
-                gn0.V(this.f37378b);
-                return;
-            default:
-                gn0 gn0Var9 = this.f37378b;
-                gn0Var9.f33985f = true;
-                gn0Var9.L.callOnClick();
-                gn0Var9.f33985f = false;
-                return;
+    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
+        sl0 sl0Var = (sl0) view;
+        TL_account.Passkey passkey = (TL_account.Passkey) g61Var.G;
+        View.OnClickListener onClickListener = g61Var.D;
+        TextView textView = sl0Var.f40525f;
+        TextView textView2 = sl0Var.f40524e;
+        org.telegram.ui.ActionBar.d6 d6Var = sl0Var.f40522b;
+        FrameLayout frameLayout = sl0Var.f40523c;
+        org.telegram.ui.Components.w9 w9Var = sl0Var.d;
+        sl0Var.f40527r = passkey.f20242id;
+        long j3 = passkey.software_emoji_id;
+        if (j3 != 0) {
+            w9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.q5.n(sl0Var.f40521a, j3, null, 3));
+            frameLayout.setBackground(null);
+            w9Var.setColorFilter(null);
+            w9Var.setScaleX(1.0f);
+            w9Var.setScaleY(1.0f);
+        } else {
+            int dp = AndroidUtilities.dp(4.0f);
+            int i10 = org.telegram.ui.ActionBar.i6.G6;
+            frameLayout.setBackground(org.telegram.ui.ActionBar.i6.b0(dp, org.telegram.ui.ActionBar.i6.l1(0.04f, org.telegram.ui.ActionBar.i6.v0(i10, d6Var))));
+            w9Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.l1(0.3f, org.telegram.ui.ActionBar.i6.v0(i10, d6Var)), PorterDuff.Mode.SRC_IN));
+            w9Var.setImageResource(R.drawable.msg2_permissions);
+            w9Var.setScaleX(0.666f);
+            w9Var.setScaleY(0.666f);
+            w9Var.setAnimatedEmojiDrawable(null);
         }
+        if (TextUtils.isEmpty(passkey.name)) {
+            textView2.setText(LocaleController.getString(R.string.PasskeyUnknown));
+        } else {
+            textView2.setText(passkey.name);
+        }
+        int i11 = passkey.last_usage_date;
+        if (i11 != 0) {
+            textView.setText(LocaleController.formatString(R.string.PasskeyLastUsedOn, LocaleController.formatDateTime(i11, false)));
+        } else {
+            textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
+        }
+        sl0Var.h.setOnClickListener(onClickListener);
+        sl0Var.f40526n = z10;
+        sl0Var.setWillNotDraw(!z10);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new sl0(context, i10, d6Var);
     }
 }

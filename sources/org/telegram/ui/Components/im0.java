@@ -1,105 +1,20 @@
 package org.telegram.ui.Components;
+public final class im0 {
+    public final float f27437a;
+    public final float f27438b;
+    public final float f27439c;
+    public final float d;
+    public final boolean f27440e;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class im0 extends yw0 {
-    public float d;
-    public final Paint f25159f;
-    public boolean f25156a = false;
-    public long f25157b = 0;
-    public boolean f25158c = false;
-    public int e = 1;
-
-    public im0(boolean z10) {
-        if (z10) {
-            this.f25159f = new Paint(1);
-        }
+    public im0(float f7, float f10, float f11, float f12, int i10) {
+        this(f7, f10, f11, f12);
+        this.f27440e = true;
     }
 
-    @Override
-    public final void b(int i10) {
-        Paint paint = this.f25159f;
-        if (paint != null) {
-            paint.setColor(i10);
-        }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        this.f25156a = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f25157b = System.currentTimeMillis();
-        this.f25158c = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f25159f;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f19039c2;
-        }
-        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
-        float dp = AndroidUtilities.dp(6.0f);
-        if (this.f25156a) {
-            f7 = 8.0f;
-        } else {
-            f7 = 9.0f;
-        }
-        canvas.drawCircle(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(4.0f), paint);
-        if (this.f25158c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f25157b;
-            this.f25157b = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            float f10 = this.d;
-            int i10 = this.e;
-            float f11 = (((float) (i10 * j3)) / 400.0f) + f10;
-            this.d = f11;
-            if (i10 > 0 && f11 >= 1.0f) {
-                this.e = -1;
-                this.d = 1.0f;
-            } else if (i10 < 0 && f11 <= 0.0f) {
-                this.e = 1;
-                this.d = 0.0f;
-            }
-            a();
-        }
-    }
-
-    @Override
-    public final void e() {
-        this.f25158c = false;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(10.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(12.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public im0(float f7, float f10, float f11, float f12) {
+        this.f27437a = f7;
+        this.f27438b = f10;
+        this.f27439c = f11;
+        this.d = f12;
     }
 }

@@ -1,66 +1,50 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class m8 implements View.OnClickListener {
-    public final int f35499a;
-    public final boolean[] f35500b;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class m8 implements Function {
+    public final int f38463a;
 
-    public m8(int i10, boolean[] zArr) {
-        this.f35499a = i10;
-        this.f35500b = zArr;
+    public m8(int i10) {
+        this.f38463a = i10;
+    }
+
+    public Function andThen(Function function) {
+        int i10 = this.f38463a;
+        return Function$CC.$default$andThen(this, function);
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f35499a) {
+    public final Object apply(Object obj) {
+        switch (this.f38463a) {
             case 0:
-                boolean[] zArr = this.f35500b;
-                boolean z10 = !zArr[0];
-                zArr[0] = z10;
-                ((org.telegram.ui.Cells.a2) view).c(z10, true);
-                return;
+                return Long.valueOf(DialogObject.getPeerDialogId((TLRPC.Peer) obj));
             case 1:
-                boolean[] zArr2 = this.f35500b;
-                boolean z11 = !zArr2[1];
-                zArr2[1] = z11;
-                ((org.telegram.ui.Cells.a2) view).c(z11, true);
-                return;
+                return Long.valueOf(((MessageObject) obj).getFromChatId());
             case 2:
-                boolean[] zArr3 = this.f35500b;
-                boolean z12 = !zArr3[0];
-                zArr3[0] = z12;
-                ((org.telegram.ui.Cells.a2) view).c(z12, true);
-                return;
+                return Integer.valueOf(((MessageObject) obj).getId());
             case 3:
-                boolean[] zArr4 = this.f35500b;
-                boolean z13 = !zArr4[0];
-                zArr4[0] = z13;
-                ((org.telegram.ui.Cells.a2) view).c(z13, true);
-                return;
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj;
+                if (channelParticipant == null) {
+                    return null;
+                }
+                return channelParticipant.banned_rights;
             case 4:
-                if (view.isEnabled()) {
-                    boolean[] zArr5 = this.f35500b;
-                    boolean z14 = !zArr5[0];
-                    zArr5[0] = z14;
-                    ((org.telegram.ui.Cells.a2) view).c(z14, true);
-                    return;
-                }
-                return;
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
             case 5:
-                boolean[] zArr6 = this.f35500b;
-                boolean z15 = !zArr6[0];
-                zArr6[0] = z15;
-                ((org.telegram.ui.Cells.a2) view).c(z15, true);
-                return;
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
+            case 6:
+                return ((ut) obj).f41297a;
             default:
-                if (view.isEnabled()) {
-                    boolean[] zArr7 = this.f35500b;
-                    boolean z16 = !zArr7[0];
-                    zArr7[0] = z16;
-                    ((org.telegram.ui.Cells.a2) view).c(z16, true);
-                    return;
-                }
-                return;
+                return ((ut) obj).f41297a;
         }
+    }
+
+    public Function compose(Function function) {
+        int i10 = this.f38463a;
+        return Function$CC.$default$compose(this, function);
     }
 }

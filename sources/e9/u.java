@@ -1,46 +1,46 @@
 package e9;
 
 import java.util.Map;
-import v7.t6;
+import v7.s6;
 public final class u extends m {
-    public final Object f8112a;
-    public int f8113b;
-    public final v f8114c;
+    public final Object f8807a;
+    public int f8808b;
+    public final v f8809c;
 
     public u(v vVar, int i10) {
-        this.f8114c = vVar;
-        Object obj = v.f8116s;
-        this.f8112a = vVar.i()[i10];
-        this.f8113b = i10;
+        this.f8809c = vVar;
+        Object obj = v.f8811s;
+        this.f8807a = vVar.i()[i10];
+        this.f8808b = i10;
     }
 
     public final void a() {
-        int i10 = this.f8113b;
-        Object obj = this.f8112a;
-        v vVar = this.f8114c;
+        int i10 = this.f8808b;
+        Object obj = this.f8807a;
+        v vVar = this.f8809c;
         if (i10 != -1 && i10 < vVar.size()) {
-            if (t6.a(obj, vVar.i()[this.f8113b])) {
+            if (s6.a(obj, vVar.i()[this.f8808b])) {
                 return;
             }
         }
-        Object obj2 = v.f8116s;
-        this.f8113b = vVar.d(obj);
+        Object obj2 = v.f8811s;
+        this.f8808b = vVar.d(obj);
     }
 
     @Override
     public final Object getKey() {
-        return this.f8112a;
+        return this.f8807a;
     }
 
     @Override
     public final Object getValue() {
-        v vVar = this.f8114c;
+        v vVar = this.f8809c;
         Map b10 = vVar.b();
         if (b10 != null) {
-            return b10.get(this.f8112a);
+            return b10.get(this.f8807a);
         }
         a();
-        int i10 = this.f8113b;
+        int i10 = this.f8808b;
         if (i10 == -1) {
             return null;
         }
@@ -49,20 +49,20 @@ public final class u extends m {
 
     @Override
     public final Object setValue(Object obj) {
-        v vVar = this.f8114c;
+        v vVar = this.f8809c;
         Map b10 = vVar.b();
-        Object obj2 = this.f8112a;
+        Object obj2 = this.f8807a;
         if (b10 != null) {
             return b10.put(obj2, obj);
         }
         a();
-        int i10 = this.f8113b;
+        int i10 = this.f8808b;
         if (i10 == -1) {
             vVar.put(obj2, obj);
             return null;
         }
         Object obj3 = vVar.j()[i10];
-        vVar.j()[this.f8113b] = obj;
+        vVar.j()[this.f8808b] = obj;
         return obj3;
     }
 }

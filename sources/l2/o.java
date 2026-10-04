@@ -1,46 +1,102 @@
 package l2;
 
 import android.os.Handler;
-import android.os.Message;
+import b2.p0;
+import b2.s;
+import b2.s0;
+import c3.g0;
+import c3.h0;
 import e2.d0;
-import java.util.TreeMap;
-import k2.u;
-public final class o implements Handler.Callback {
-    public final y2.d f14091a;
-    public final u f14092b;
-    public m2.c f14094f;
-    public boolean h;
-    public boolean f14095n;
-    public boolean f14096r;
-    public final TreeMap e = new TreeMap();
-    public final Handler d = d0.o(this);
-    public final m3.b f14093c = new m3.b(1);
+import e2.v;
+import n4.y;
+import org.telegram.ui.Components.ap0;
+import u2.b1;
+public final class o implements h0 {
+    public final b1 f15309a;
+    public final y f15310b = new y(17);
+    public final l3.a f15311c = new l3.a();
+    public long d = -9223372036854775807L;
+    public final p f15312e;
 
-    public o(m2.c cVar, u uVar, y2.d dVar) {
-        this.f14094f = cVar;
-        this.f14092b = uVar;
-        this.f14091a = dVar;
+    public o(p pVar, y2.d dVar) {
+        this.f15312e = pVar;
+        this.f15309a = new b1(dVar, null, null);
     }
 
     @Override
-    public final boolean handleMessage(Message message) {
-        if (!this.f14096r) {
-            if (message.what != 1) {
-                return false;
+    public final int a(b2.k kVar, int i10, boolean z10) {
+        return e(kVar, i10, z10);
+    }
+
+    @Override
+    public final void b(s sVar) {
+        this.f15309a.b(sVar);
+    }
+
+    @Override
+    public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
+        long i13;
+        long j10;
+        this.f15309a.c(j3, i10, i11, i12, g0Var);
+        while (this.f15309a.x(false)) {
+            l3.a aVar = this.f15311c;
+            aVar.clear();
+            if (this.f15309a.C(this.f15310b, aVar, 0, false) == -4) {
+                aVar.d();
+            } else {
+                aVar = null;
             }
-            m mVar = (m) message.obj;
-            long j3 = mVar.f14086a;
-            long j10 = mVar.f14087b;
-            Long valueOf = Long.valueOf(j10);
-            TreeMap treeMap = this.e;
-            Long l4 = (Long) treeMap.get(valueOf);
-            if (l4 == null) {
-                treeMap.put(Long.valueOf(j10), Long.valueOf(j3));
-                return true;
-            } else if (l4.longValue() > j3) {
-                treeMap.put(Long.valueOf(j10), Long.valueOf(j3));
+            if (aVar != null) {
+                long j11 = aVar.f10980e;
+                p0 a2 = this.f15312e.f15315c.a(aVar);
+                if (a2 != null) {
+                    n3.a aVar2 = (n3.a) a2.f3428a[0];
+                    String str = aVar2.f16562a;
+                    String str2 = aVar2.f16563b;
+                    if ("urn:mpeg:dash:event:2012".equals(str) && ("1".equals(str2) || "2".equals(str2) || "3".equals(str2))) {
+                        try {
+                            j10 = d0.T(d0.p(aVar2.f16565e));
+                        } catch (s0 unused) {
+                            j10 = -9223372036854775807L;
+                        }
+                        if (j10 != -9223372036854775807L) {
+                            n nVar = new n(j11, j10);
+                            Handler handler = this.f15312e.d;
+                            handler.sendMessage(handler.obtainMessage(1, nVar));
+                        }
+                    }
+                }
             }
         }
-        return true;
+        b1 b1Var = this.f15309a;
+        ap0 ap0Var = b1Var.f47214a;
+        synchronized (b1Var) {
+            int i14 = b1Var.f47230s;
+            if (i14 == 0) {
+                i13 = -1;
+            } else {
+                i13 = b1Var.i(i14);
+            }
+        }
+        ap0Var.b(i13);
+    }
+
+    @Override
+    public final void d(int i10, v vVar) {
+        f(vVar, i10, 0);
+    }
+
+    @Override
+    public final int e(b2.k kVar, int i10, boolean z10) {
+        b1 b1Var = this.f15309a;
+        b1Var.getClass();
+        return b1Var.e(kVar, i10, z10);
+    }
+
+    @Override
+    public final void f(v vVar, int i10, int i11) {
+        b1 b1Var = this.f15309a;
+        b1Var.getClass();
+        b1Var.f(vVar, i10, 0);
     }
 }

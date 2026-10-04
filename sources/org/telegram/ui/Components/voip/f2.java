@@ -4,37 +4,37 @@ import android.app.Activity;
 import android.content.Context;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.m80;
-public final class f2 extends m80 {
-    public final TLRPC.User f29257c;
+import org.telegram.ui.Components.n80;
+public final class f2 extends n80 {
+    public final TLRPC.User f31850c;
     public final TLRPC.Chat d;
-    public final String e;
-    public final TLRPC.InputPeer f29258f;
+    public final String f31851e;
+    public final TLRPC.InputPeer f31852f;
     public final boolean h;
-    public final boolean f29259n;
-    public final boolean f29260r;
-    public final Activity f29261s;
-    public final org.telegram.ui.ActionBar.m2 v;
-    public final AccountInstance f29262w;
-    public final boolean f29263x;
+    public final boolean f31853n;
+    public final boolean f31854r;
+    public final Activity f31855s;
+    public final org.telegram.ui.ActionBar.n2 v;
+    public final AccountInstance f31856w;
+    public final boolean f31857x;
 
-    public f2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12, Activity activity, org.telegram.ui.ActionBar.m2 m2Var, AccountInstance accountInstance, boolean z13) {
+    public f2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12, Activity activity, org.telegram.ui.ActionBar.n2 n2Var, AccountInstance accountInstance, boolean z13) {
         super(context, chat);
-        this.f29257c = user;
+        this.f31850c = user;
         this.d = chat2;
-        this.e = str;
-        this.f29258f = inputPeer;
+        this.f31851e = str;
+        this.f31852f = inputPeer;
         this.h = z10;
-        this.f29259n = z11;
-        this.f29260r = z12;
-        this.f29261s = activity;
-        this.v = m2Var;
-        this.f29262w = accountInstance;
-        this.f29263x = z13;
+        this.f31853n = z11;
+        this.f31854r = z12;
+        this.f31855s = activity;
+        this.v = n2Var;
+        this.f31856w = accountInstance;
+        this.f31857x = z13;
     }
 
     @Override
     public final void m() {
-        g2.b(this.f29257c, this.d, this.e, this.f29258f, false, this.h, this.f29259n, this.f29260r, this.f29261s, this.v, this.f29262w, false, true, this.f29263x);
+        g2.b(this.f31850c, this.d, this.f31851e, this.f31852f, false, this.h, this.f31853n, this.f31854r, this.f31855s, this.v, this.f31856w, false, true, this.f31857x);
     }
 }

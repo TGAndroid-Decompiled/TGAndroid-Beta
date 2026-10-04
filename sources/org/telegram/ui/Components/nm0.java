@@ -1,83 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.StaticLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class nm0 extends Drawable {
-    public int f26803a = 255;
-    public final j90 f26804b;
-    public final int[] f26805c;
-    public final org.telegram.ui.Cells.u1 d;
-    public final int[] e;
-    public final Bitmap f26806f;
-    public final RectF f26807g;
-    public final Paint h;
-    public final Paint f26808i;
-    public final StaticLayout f26809j;
+    public long f29012a;
+    public boolean f29013b;
+    public Paint f29014c;
+    public float d;
+    public float f29015e;
+    public float f29016f;
+    public int f29017g;
+    public int h;
+    public int f29018i;
+    public org.telegram.ui.Cells.u1 f29019j;
+    public float f29020k;
+    public int f29021l;
+    public int f29022m;
+    public org.telegram.ui.ActionBar.d6 f29023n;
 
-    public nm0(j90 j90Var, int[] iArr, org.telegram.ui.Cells.u1 u1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
-        this.f26804b = j90Var;
-        this.f26805c = iArr;
-        this.d = u1Var;
-        this.e = iArr2;
-        this.f26806f = bitmap;
-        this.f26807g = rectF;
-        this.h = paint;
-        this.f26808i = paint2;
-        this.f26809j = staticLayout;
+    public final void a() {
+        if (this.f29013b) {
+            return;
+        }
+        this.f29012a = System.currentTimeMillis();
+        this.f29013b = true;
+        this.f29019j.invalidate();
+    }
+
+    public final void b() {
+        if (!this.f29013b) {
+            return;
+        }
+        this.f29013b = false;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f26803a <= 0) {
-            return;
+        Paint paint = this.f29014c;
+        paint.setColor(i0.a.d(this.f29020k, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20914ic, this.f29023n), this.f29021l));
+        int i10 = this.f29022m;
+        if (i10 != 255) {
+            paint.setAlpha((int) ((paint.getAlpha() / 255.0f) * i10));
         }
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getBounds());
-        float f7 = rectF.left;
-        CornerPathEffect cornerPathEffect = j90.f25374w;
-        rectF.left = f7 - (AndroidUtilities.dp(5.0f) / 2.0f);
-        canvas.save();
-        canvas.saveLayerAlpha(rectF, this.f26803a, 31);
-        int[] iArr = this.f26805c;
-        canvas.translate(iArr[0], iArr[1]);
-        j90 j90Var = this.f26804b;
-        org.telegram.ui.Cells.u1 u1Var = this.d;
-        if (u1Var != null && u1Var.C1()) {
-            org.telegram.ui.ActionBar.d5 d5Var = u1Var.f21537t8;
-            if (d5Var != null && d5Var.f18811c != null) {
-                canvas.save();
-                u1Var.setBackgroundTopY(true);
-                canvas.translate(0.0f, -u1Var.f21537t8.f18823r);
-                canvas.drawPaint(u1Var.f21537t8.f18811c);
-                canvas.restore();
-            } else {
-                canvas.translate(-iArr[0], -iArr[1]);
-                int[] iArr2 = this.e;
-                canvas.translate(iArr2[0], u1Var.getPaddingTop() + iArr2[1]);
-                u1Var.D1(canvas, true, false);
-                canvas.translate(-iArr2[0], (-iArr2[1]) - u1Var.getPaddingTop());
-                canvas.translate(iArr[0], iArr[1]);
-            }
-            Bitmap bitmap = this.f26806f;
-            if (bitmap != null) {
-                canvas.save();
-                RectF rectF2 = this.f26807g;
-                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
-                canvas.restore();
-            }
-        } else {
-            canvas.drawPath(j90Var, this.f26808i);
+        int i11 = getBounds().left;
+        int i12 = getBounds().top;
+        int i13 = 0;
+        while (i13 < 3) {
+            Canvas canvas2 = canvas;
+            canvas2.drawRect(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp((this.d * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(4.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            canvas2.drawRect(AndroidUtilities.dp(5.0f) + i11, AndroidUtilities.dp((this.f29015e * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(7.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            canvas2.drawRect(AndroidUtilities.dp(8.0f) + i11, AndroidUtilities.dp((this.f29016f * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(10.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            i13++;
+            canvas = canvas2;
         }
-        canvas.clipPath(j90Var);
-        this.f26809j.draw(canvas);
-        canvas.restore();
+        if (this.f29013b) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f29012a;
+            this.f29012a = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            float f7 = (float) j3;
+            float f10 = ((f7 / 300.0f) * this.f29017g) + this.d;
+            this.d = f10;
+            if (f10 > 1.0f) {
+                this.f29017g = -1;
+                this.d = 1.0f;
+            } else if (f10 < 0.0f) {
+                this.f29017g = 1;
+                this.d = 0.0f;
+            }
+            float f11 = ((f7 / 310.0f) * this.h) + this.f29015e;
+            this.f29015e = f11;
+            if (f11 > 1.0f) {
+                this.h = -1;
+                this.f29015e = 1.0f;
+            } else if (f11 < 0.0f) {
+                this.h = 1;
+                this.f29015e = 0.0f;
+            }
+            float f12 = ((f7 / 320.0f) * this.f29018i) + this.f29016f;
+            this.f29016f = f12;
+            if (f12 > 1.0f) {
+                this.f29018i = -1;
+                this.f29016f = 1.0f;
+            } else if (f12 < 0.0f) {
+                this.f29018i = 1;
+                this.f29016f = 0.0f;
+            }
+            this.f29019j.invalidate();
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(12.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(12.0f);
     }
 
     @Override
@@ -87,7 +112,7 @@ public final class nm0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f26803a = i10;
+        this.f29022m = i10;
     }
 
     @Override

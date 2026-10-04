@@ -2,37 +2,37 @@ package v8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import w7.f0;
+import w7.g0;
 public final class q extends o6.a {
     public static final Parcelable.Creator<q> CREATOR = new r(6);
-    public String f44541a;
-    public String f44542b;
-    public String f44543c;
+    public String f48221a;
+    public String f48222b;
+    public String f48223c;
     public String d;
-    public String e;
-    public String f44544f;
+    public String f48224e;
+    public String f48225f;
     public String h;
-    public String f44545n;
-    public String f44546r;
-    public boolean f44547s;
+    public String f48226n;
+    public String f48227r;
+    public boolean f48228s;
     public String v;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 2, this.f44541a);
-        f0.l(parcel, 3, this.f44542b);
-        f0.l(parcel, 4, this.f44543c);
-        f0.l(parcel, 5, this.d);
-        f0.l(parcel, 6, this.e);
-        f0.l(parcel, 7, this.f44544f);
-        f0.l(parcel, 8, this.h);
-        f0.l(parcel, 9, this.f44545n);
-        f0.l(parcel, 10, this.f44546r);
-        boolean z10 = this.f44547s;
-        f0.s(parcel, 11, 4);
+        int q6 = g0.q(parcel, 20293);
+        g0.l(parcel, 2, this.f48221a);
+        g0.l(parcel, 3, this.f48222b);
+        g0.l(parcel, 4, this.f48223c);
+        g0.l(parcel, 5, this.d);
+        g0.l(parcel, 6, this.f48224e);
+        g0.l(parcel, 7, this.f48225f);
+        g0.l(parcel, 8, this.h);
+        g0.l(parcel, 9, this.f48226n);
+        g0.l(parcel, 10, this.f48227r);
+        boolean z10 = this.f48228s;
+        g0.s(parcel, 11, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        f0.l(parcel, 12, this.v);
-        f0.r(parcel, q6);
+        g0.l(parcel, 12, this.v);
+        g0.r(parcel, q6);
     }
 }

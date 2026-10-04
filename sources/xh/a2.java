@@ -5,27 +5,27 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.du;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.eu;
 import org.telegram.ui.Components.h5;
 import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.sr;
-public final class a2 extends du {
-    public final h5 f46072c;
+import org.telegram.ui.Components.tr;
+public final class a2 extends eu {
+    public final h5 f49871c;
     public int d;
-    public final o6 e;
-    public final s2 f46073f;
+    public final o6 f49872e;
+    public final s2 f49873f;
 
     public a2(s2 s2Var, Context context, d6 d6Var) {
         super(context, d6Var);
-        this.f46073f = s2Var;
-        this.f46072c = new h5(this);
+        this.f49873f = s2Var;
+        this.f49871c = new h5(this);
         o6 o6Var = new o6(false, true, true, false);
-        this.e = o6Var;
-        o6Var.k(0.2f, 160L, sr.h);
+        this.f49872e = o6Var;
+        o6Var.k(0.2f, 160L, tr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
         o6Var.setCallback(this);
-        o6Var.f26947b = 5;
+        o6Var.f29239b = 5;
     }
 
     @Override
@@ -33,12 +33,12 @@ public final class a2 extends du {
         int i10;
         super.dispatchDraw(canvas);
         if (this.d < 0) {
-            i10 = h6.f19281p7;
+            i10 = i6.f21039p7;
         } else {
-            i10 = h6.P5;
+            i10 = i6.P5;
         }
-        int a2 = this.f46072c.a(h6.v0(i10, this.f46073f.f46401f), false);
-        o6 o6Var = this.e;
+        int a2 = this.f49871c.a(i6.v0(i10, this.f49873f.f50220f), false);
+        o6 o6Var = this.f49872e;
         o6Var.r(a2);
         o6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
         o6Var.draw(canvas);
@@ -47,7 +47,7 @@ public final class a2 extends du {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        o6 o6Var = this.e;
+        o6 o6Var = this.f49872e;
         if (o6Var != null) {
             this.d = 12 - charSequence.length();
             o6Var.b();
@@ -61,7 +61,7 @@ public final class a2 extends du {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.e && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f49872e && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

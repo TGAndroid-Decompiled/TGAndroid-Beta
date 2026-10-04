@@ -2,39 +2,39 @@ package vf;
 
 import android.os.Bundle;
 public final class a implements Runnable {
-    public final int f44574a;
-    public final b f44575b;
+    public final int f48258a;
+    public final b f48259b;
 
     public a(b bVar, String str, Bundle bundle, int i10) {
-        this.f44574a = i10;
-        this.f44575b = bVar;
+        this.f48258a = i10;
+        this.f48259b = bVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f44574a) {
+        switch (this.f48258a) {
             case 0:
-                this.f44575b.f44577b.getClass();
+                this.f48259b.f48261b.getClass();
                 return;
             case 1:
-                this.f44575b.f44577b.getClass();
+                this.f48259b.f48261b.getClass();
                 return;
             case 2:
-                this.f44575b.f44577b.getClass();
+                this.f48259b.f48261b.getClass();
                 return;
             default:
-                this.f44575b.f44577b.getClass();
+                this.f48259b.f48261b.getClass();
                 return;
         }
     }
 
     public a(b bVar, int i10, Bundle bundle) {
-        this.f44574a = 0;
-        this.f44575b = bVar;
+        this.f48258a = 0;
+        this.f48259b = bVar;
     }
 
     public a(b bVar, Bundle bundle) {
-        this.f44574a = 2;
-        this.f44575b = bVar;
+        this.f48258a = 2;
+        this.f48259b = bVar;
     }
 }

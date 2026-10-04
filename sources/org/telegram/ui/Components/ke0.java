@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
 public final class ke0 {
-    public float f25680a;
-    public float f25681b;
+    public float f28079a;
+    public float f28080b;
 }

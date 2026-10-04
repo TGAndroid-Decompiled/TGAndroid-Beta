@@ -1,46 +1,63 @@
 package ei;
 
+import android.content.Context;
+import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class c3 implements Runnable {
-    public final int f8267a;
-    public final f3 f8268b;
+import org.telegram.messenger.UserObject;
+import org.telegram.ui.ActionBar.d6;
+public final class c3 extends org.telegram.ui.web.c1 {
+    public final l3 S0;
 
-    public c3(f3 f3Var, int i10) {
-        this.f8267a = i10;
-        this.f8268b = f3Var;
+    public c3(l3 l3Var, Context context, d6 d6Var, int i10) {
+        super(i10, context, d6Var, true);
+        this.S0 = l3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f8267a) {
-            case 0:
-                TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
-                f3 f3Var = this.f8268b;
-                k3 k3Var = f3Var.d;
-                toggleuseremojistatuspermission.bot = MessagesController.getInstance(k3Var.G).getInputUser(k3Var.H);
-                toggleuseremojistatuspermission.enabled = false;
-                ConnectionsManager.getInstance(k3Var.G).sendRequest(toggleuseremojistatuspermission, new d3(f3Var, 1));
-                return;
-            case 1:
-                k3 k3Var2 = this.f8268b.d;
-                w0.e(k3Var2.getContext(), k3Var2.G, k3Var2.H).m(false, null);
-                return;
-            default:
-                k3 k3Var3 = this.f8268b.d;
-                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                if (U != null && U.getParentLayout() != null) {
-                    org.telegram.ui.ActionBar.b5 parentLayout = U.getParentLayout();
-                    U.presentFragment(ProfileActivity.m4(k3Var3.H));
-                    AndroidUtilities.scrollToFragmentRow(parentLayout, "botPermissionLocation");
-                    k3Var3.k(true);
-                    return;
-                }
-                return;
+    public final void E(String str, boolean z10) {
+        boolean z11;
+        l3 l3Var = this.S0;
+        Paint paint = l3Var.P;
+        if (z10) {
+            l3Var.i();
+            l3Var.U0.a(UserObject.getUserName(MessagesController.getInstance(l3Var.G).getUser(Long.valueOf(l3Var.H))), str);
+            org.telegram.ui.d3 d3Var = l3Var.U0;
+            if (AndroidUtilities.computePerceivedBrightness(paint.getColor()) <= 0.721f) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            d3Var.b(z11, false);
+            l3Var.U0.setBackgroundColor(paint.getColor());
+            l3Var.T0 = str;
         }
+        org.telegram.ui.d3 d3Var2 = l3Var.U0;
+        l3Var.S0 = z10;
+        AndroidUtilities.updateViewVisibilityAnimated(d3Var2, z10, 1.0f, false);
+        invalidate();
+    }
+
+    @Override
+    public final void K(org.telegram.ui.web.z0 z0Var) {
+        l3 l3Var = this.S0;
+        l3Var.v.setWebView(z0Var);
+        b1 b1Var = l3Var.B0;
+        if (b1Var != null) {
+            b1Var.f8931k = z0Var;
+        }
+        l3Var.m0.setWebView(z0Var);
+        l3Var.F();
+    }
+
+    @Override
+    public final void L(org.telegram.ui.web.z0 z0Var) {
+        l3 l3Var = this.S0;
+        b1 b1Var = l3Var.B0;
+        if (b1Var != null && b1Var.f8931k == z0Var) {
+            b1Var.f8931k = null;
+            b1Var.b();
+        }
+        l3Var.m0.setWebView(null);
     }
 }

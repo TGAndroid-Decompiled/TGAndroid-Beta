@@ -4,18 +4,18 @@ import ee.t;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import k1.k;
 public final class h extends t {
-    public final b e;
-    public final AtomicReferenceArray f3527f;
+    public final b f3813e;
+    public final AtomicReferenceArray f3814f;
 
     public h(long j3, h hVar, b bVar, int i10) {
         super(j3, hVar, i10);
-        this.e = bVar;
-        this.f3527f = new AtomicReferenceArray(d.f3511b * 2);
+        this.f3813e = bVar;
+        this.f3814f = new AtomicReferenceArray(d.f3796b * 2);
     }
 
     @Override
     public final int g() {
-        return d.f3511b;
+        return d.f3796b;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class h extends t {
         AtomicReferenceArray atomicReferenceArray;
         int i11 = (i10 * 2) + 1;
         do {
-            atomicReferenceArray = this.f3527f;
+            atomicReferenceArray = this.f3814f;
             if (atomicReferenceArray.compareAndSet(i11, obj, obj2)) {
                 return true;
             }
@@ -36,23 +36,23 @@ public final class h extends t {
     }
 
     public final Object l(int i10) {
-        return this.f3527f.get((i10 * 2) + 1);
+        return this.f3814f.get((i10 * 2) + 1);
     }
 
     public final void m(int i10, boolean z10) {
         if (z10) {
-            b bVar = this.e;
+            b bVar = this.f3813e;
             kotlin.jvm.internal.i.b(bVar);
-            bVar.q((this.f8181c * d.f3511b) + i10);
+            bVar.q((this.f8892c * d.f3796b) + i10);
         }
         i();
     }
 
     public final void n(int i10, k kVar) {
-        this.f3527f.set(i10 * 2, kVar);
+        this.f3814f.set(i10 * 2, kVar);
     }
 
     public final void o(int i10, Object obj) {
-        this.f3527f.set((i10 * 2) + 1, obj);
+        this.f3814f.set((i10 * 2) + 1, obj);
     }
 }

@@ -1,50 +1,67 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.app.Activity;
+import android.webkit.WebView;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class ln0 implements Runnable {
-    public final int f35392a;
-    public final oo0 f35393b;
+    public final int f38306a;
+    public final so0 f38307b;
+    public final TLObject f38308c;
 
-    public ln0(oo0 oo0Var, int i10) {
-        this.f35392a = i10;
-        this.f35393b = oo0Var;
+    public ln0(so0 so0Var, TLObject tLObject, int i10) {
+        this.f38306a = i10;
+        this.f38307b = so0Var;
+        this.f38308c = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f35392a) {
+        switch (this.f38306a) {
             case 0:
-                oo0 oo0Var = this.f35393b;
-                oo0Var.f36292f[0].requestFocus();
-                AndroidUtilities.showKeyboard(oo0Var.f36292f[0]);
+                so0.e0(this.f38307b, this.f38308c);
                 return;
             case 1:
-                this.f35393b.t0();
+                so0 so0Var = this.f38307b;
+                Utilities.Callback callback = so0Var.f40549d1;
+                TLObject tLObject = this.f38308c;
+                if (callback != null) {
+                    callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
+                }
+                so0Var.D0(false);
+                so0Var.f40580z0 = true;
+                so0Var.H0(true, true);
+                org.telegram.ui.Components.wq wqVar = so0Var.f40567r;
+                if (wqVar != null) {
+                    wqVar.setVisibility(0);
+                }
+                org.telegram.ui.ActionBar.v0 v0Var = so0Var.f40562n;
+                if (v0Var != null) {
+                    v0Var.setEnabled(false);
+                    so0Var.f40562n.getContentView().setVisibility(4);
+                }
+                org.telegram.ui.ActionBar.c5 parentLayout = so0Var.getParentLayout();
+                Activity parentActivity = so0Var.getParentActivity();
+                so0Var.getMessagesController().newMessageCallback = new c7(so0Var, parentLayout, parentActivity, 17);
+                WebView webView = so0Var.f40574w;
+                if (webView != null) {
+                    webView.setVisibility(0);
+                    WebView webView2 = so0Var.f40574w;
+                    String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
+                    so0Var.f40576x = str;
+                    webView2.loadUrl(str);
+                }
+                so0Var.f40541a1 = true;
+                so0Var.f40555f1 = 3;
+                ro0 ro0Var = so0Var.Z0;
+                if (ro0Var != null) {
+                    ro0Var.a(3);
+                    return;
+                }
                 return;
-            case 2:
-                oo0 oo0Var2 = this.f35393b;
-                oo0Var2.getMessagesController().newMessageCallback = null;
-                if (oo0Var2.f36294f1 == 3 && !oo0Var2.isFinishing()) {
-                    oo0Var2.f36294f1 = 4;
-                    no0 no0Var = oo0Var2.Z0;
-                    if (no0Var != null) {
-                        no0Var.a(4);
-                    }
-                    oo0Var2.finishFragment();
-                    return;
-                } else if (oo0Var2.f36294f1 == 1 && !oo0Var2.isFinishing()) {
-                    oo0Var2.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
             default:
-                oo0 oo0Var3 = this.f35393b;
-                if (oo0Var3.f36288d0 != null) {
-                    oo0Var3.w0();
-                    oo0Var3.f36288d0 = null;
-                    return;
-                }
+                so0.c0(this.f38307b, this.f38308c);
                 return;
         }
     }

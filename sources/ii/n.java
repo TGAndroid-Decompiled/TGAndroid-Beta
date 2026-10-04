@@ -6,28 +6,28 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.hh;
-import org.telegram.ui.Components.ui;
-import org.telegram.ui.Components.wi;
-public final class n implements ui {
-    public final wi f11502a;
-    public final r f11503b;
+import org.telegram.ui.Components.ih;
+import org.telegram.ui.Components.vi;
+import org.telegram.ui.Components.xi;
+public final class n implements vi {
+    public final xi f12528a;
+    public final r f12529b;
 
-    public n(r rVar, wi wiVar) {
-        this.f11503b = rVar;
-        this.f11502a = wiVar;
+    public n(r rVar, xi xiVar) {
+        this.f12529b = rVar;
+        this.f12528a = xiVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        wi wiVar = this.f11502a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29946j0;
-        x3 x3Var = this.f11503b.f11572r;
+        xi xiVar = this.f12528a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f32824j0;
+        x3 x3Var = this.f12529b.f12602r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = x3Var.f11720b4;
-            x3Var.f11720b4 = null;
+            a aVar = x3Var.f12762i4;
+            x3Var.f12762i4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -36,17 +36,17 @@ public final class n implements ui {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
                 if (obj instanceof MediaController.PhotoEntry) {
                     if (aVar != null) {
-                        x3Var.T1(aVar, (MediaController.PhotoEntry) obj);
+                        x3Var.V1(aVar, (MediaController.PhotoEntry) obj);
                     } else {
-                        x3Var.f2((MediaController.PhotoEntry) obj);
+                        x3Var.h2((MediaController.PhotoEntry) obj);
                     }
                 } else {
                     i13++;
                 }
             }
         }
-        x3Var.f11720b4 = null;
-        wiVar.dismiss(true);
+        x3Var.f12762i4 = null;
+        xiVar.dismiss(true);
     }
 
     @Override
@@ -55,13 +55,13 @@ public final class n implements ui {
     }
 
     @Override
-    public final boolean c0() {
+    public final boolean a0() {
         return false;
     }
 
     @Override
-    public final void x0(hh hhVar) {
-        NotificationCenter.getInstance(this.f11503b.f11571n).doOnIdle(hhVar);
+    public final void x0(ih ihVar) {
+        NotificationCenter.getInstance(this.f12529b.f12601n).doOnIdle(ihVar);
     }
 
     @Override

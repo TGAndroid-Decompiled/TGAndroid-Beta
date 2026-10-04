@@ -1,35 +1,47 @@
 package org.telegram.ui.Components;
+public final class rz0 {
+    public final int f30547a;
 
-import android.view.ViewGroup;
-public final class rz0 extends ViewGroup.MarginLayoutParams {
-    public tz0 f28083a;
-    public tz0 f28084b;
-
-    public rz0() {
-        super(-2, -2);
-        tz0 tz0Var = tz0.e;
-        this.f28083a = tz0Var;
-        this.f28084b = tz0Var;
-        setMargins(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
-        this.f28083a = tz0Var;
-        this.f28084b = tz0Var;
+    public rz0(int i10) {
+        this.f30547a = i10;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final int a(yz0 yz0Var, int i10) {
+        switch (this.f30547a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
-        if (obj == null || rz0.class != obj.getClass()) {
-            return false;
-        }
-        rz0 rz0Var = (rz0) obj;
-        if (this.f28084b.equals(rz0Var.f28084b) && this.f28083a.equals(rz0Var.f28083a)) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return this.f28084b.hashCode() + (this.f28083a.hashCode() * 31);
+    public final int b(yz0 yz0Var, int i10) {
+        switch (this.f30547a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public int c(int i10, int i11) {
+        switch (this.f30547a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

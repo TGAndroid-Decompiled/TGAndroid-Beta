@@ -1,70 +1,24 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class t6 extends og.a {
-    public final int f37973c;
-    public CharSequence d;
-    public String e;
-    public int f37974f;
-    public long f37975g;
-    public int h;
-    public boolean f37976i;
-    public boolean f37977j;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class t6 extends FrameLayout {
+    public org.telegram.ui.Components.p6 f40691a;
+    public s6 f40692b;
 
-    public t6(int i10, String str) {
-        super(i10, true);
-        this.f37973c = -1;
-        this.d = str;
+    public final void a(float f7) {
+        org.telegram.ui.Components.p6 p6Var = this.f40691a;
+        p6Var.a();
+        p6Var.c(String.format("%d%%", Integer.valueOf((int) Math.ceil(w7.q.a(f7, 0.0f, 1.0f) * 100.0f))), !LocaleController.isRTL, true);
+        s6 s6Var = this.f40692b;
+        s6Var.d = f7;
+        s6Var.invalidate();
     }
 
-    public static t6 b(int i10, long j3, String str, int i11) {
-        t6 t6Var = new t6(11);
-        t6Var.f37974f = i10;
-        t6Var.d = str;
-        t6Var.f37975g = j3;
-        t6Var.h = i11;
-        t6Var.f37977j = false;
-        return t6Var;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && t6.class == obj.getClass()) {
-                t6 t6Var = (t6) obj;
-                int i10 = this.f15716a;
-                if (i10 == t6Var.f15716a) {
-                    if (i10 != 9 && i10 != 10 && i10 != 8 && i10 != 4 && i10 != 2 && i10 != 0 && i10 != 13) {
-                        if (i10 == 3) {
-                            return Objects.equals(this.d, t6Var.d);
-                        }
-                        if (i10 == 1) {
-                            return Objects.equals(this.e, t6Var.e);
-                        }
-                        if (i10 == 11) {
-                            if (this.f37974f != t6Var.f37974f || this.f37975g != t6Var.f37975g) {
-                                return false;
-                            }
-                        } else if (i10 != 7 || this.f37973c != t6Var.f37973c) {
-                            return false;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public t6(int i10, int i11) {
-        super(7, true);
-        this.f37973c = i10;
-    }
-
-    public t6(int i10) {
-        super(i10, true);
-        this.f37973c = -1;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(350.0f), 1073741824));
     }
 }

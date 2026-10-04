@@ -1,9 +1,9 @@
 package z7;
 public final class f4 implements ia.d {
-    public static final f4 f48513a = new Object();
+    public static final f4 f52524a = new Object();
 
     static {
-        v7.j.r(v7.j.m(w.class, new s(1)));
+        t8.b.t(t8.b.o(w.class, new s(1)));
     }
 
     @Override

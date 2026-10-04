@@ -2,19 +2,19 @@ package q3;
 
 import java.util.Arrays;
 public final class m extends j {
-    public final int f41421b;
-    public final int f41422c;
+    public final int f44786b;
+    public final int f44787c;
     public final int d;
-    public final int[] e;
-    public final int[] f41423f;
+    public final int[] f44788e;
+    public final int[] f44789f;
 
     public m(int i10, int i11, int i12, int[] iArr, int[] iArr2) {
         super("MLLT");
-        this.f41421b = i10;
-        this.f41422c = i11;
+        this.f44786b = i10;
+        this.f44787c = i11;
         this.d = i12;
-        this.e = iArr;
-        this.f41423f = iArr2;
+        this.f44788e = iArr;
+        this.f44789f = iArr2;
     }
 
     public final boolean equals(Object obj) {
@@ -23,7 +23,7 @@ public final class m extends j {
         }
         if (obj != null && m.class == obj.getClass()) {
             m mVar = (m) obj;
-            if (this.f41421b == mVar.f41421b && this.f41422c == mVar.f41422c && this.d == mVar.d && Arrays.equals(this.e, mVar.e) && Arrays.equals(this.f41423f, mVar.f41423f)) {
+            if (this.f44786b == mVar.f44786b && this.f44787c == mVar.f44787c && this.d == mVar.d && Arrays.equals(this.f44788e, mVar.f44788e) && Arrays.equals(this.f44789f, mVar.f44789f)) {
                 return true;
             }
         }
@@ -31,7 +31,7 @@ public final class m extends j {
     }
 
     public final int hashCode() {
-        int hashCode = Arrays.hashCode(this.e);
-        return Arrays.hashCode(this.f41423f) + ((hashCode + ((((((527 + this.f41421b) * 31) + this.f41422c) * 31) + this.d) * 31)) * 31);
+        int hashCode = Arrays.hashCode(this.f44788e);
+        return Arrays.hashCode(this.f44789f) + ((hashCode + ((((((527 + this.f44786b) * 31) + this.f44787c) * 31) + this.d) * 31)) * 31);
     }
 }

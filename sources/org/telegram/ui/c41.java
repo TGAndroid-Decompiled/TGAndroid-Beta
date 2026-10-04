@@ -1,46 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class c41 extends AnimatorListenerAdapter {
-    public final int f32560a;
-    public final d41 f32561b;
+import android.animation.ValueAnimator;
+public final class c41 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35275a;
+    public final f41 f35276b;
 
-    public c41(d41 d41Var, int i10) {
-        this.f32560a = i10;
-        this.f32561b = d41Var;
+    public c41(f41 f41Var, int i10) {
+        this.f35275a = i10;
+        this.f35276b = f41Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32560a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35275a) {
             case 0:
-                d41 d41Var = this.f32561b;
-                if (d41Var.h != null) {
-                    d41Var.h = null;
-                    d41Var.e = 0.0f;
-                    d41Var.g();
-                    d41Var.f32914n.unlock();
-                    rx rxVar = d41Var.f32910a;
-                    if (rxVar != null) {
-                        rxVar.onPause();
-                        d41Var.f32910a.onFragmentDestroy();
-                        d41Var.removeAllViews();
-                        d41Var.f32910a = null;
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-                    }
-                    d41Var.d(false);
-                    return;
-                }
+                f41 f41Var = this.f35276b;
+                f41Var.getClass();
+                f41Var.f36180e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f41Var.g();
+                return;
+            case 1:
+                f41 f41Var2 = this.f35276b;
+                f41Var2.getClass();
+                f41Var2.f36180e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f41Var2.g();
                 return;
             default:
-                d41 d41Var2 = this.f32561b;
-                if (d41Var2.h != null) {
-                    d41Var2.h = null;
-                    d41Var2.d(true);
-                    return;
-                }
+                f41 f41Var3 = this.f35276b;
+                f41Var3.getClass();
+                f41Var3.f36180e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f41Var3.g();
                 return;
         }
     }

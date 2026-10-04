@@ -1,19 +1,36 @@
 package k2;
 
 import android.media.AudioTrack;
-import android.os.Handler;
-import android.os.Looper;
-public final class d0 {
-    public final Handler f13228a = new Handler(Looper.myLooper());
-    public final c0 f13229b = new c0(this);
-    public final e0 f13230c;
+public final class d0 extends AudioTrack.StreamEventCallback {
+    public final e0 f14386a;
 
     public d0(e0 e0Var) {
-        this.f13230c = e0Var;
+        this.f14386a = e0Var;
     }
 
-    public final void a(AudioTrack audioTrack) {
-        audioTrack.unregisterStreamEventCallback(this.f13229b);
-        this.f13228a.removeCallbacksAndMessages(null);
+    @Override
+    public final void onDataRequest(AudioTrack audioTrack, int i10) {
+        f0 f0Var;
+        o oVar;
+        if (audioTrack.equals(this.f14386a.f14391c.f14431x) && (oVar = (f0Var = this.f14386a.f14391c).f14428t) != null && f0Var.X) {
+            oVar.H();
+        }
+    }
+
+    @Override
+    public final void onPresentationEnded(AudioTrack audioTrack) {
+        if (!audioTrack.equals(this.f14386a.f14391c.f14431x)) {
+            return;
+        }
+        this.f14386a.f14391c.W = true;
+    }
+
+    @Override
+    public final void onTearDown(AudioTrack audioTrack) {
+        f0 f0Var;
+        o oVar;
+        if (audioTrack.equals(this.f14386a.f14391c.f14431x) && (oVar = (f0Var = this.f14386a.f14391c).f14428t) != null && f0Var.X) {
+            oVar.H();
+        }
     }
 }

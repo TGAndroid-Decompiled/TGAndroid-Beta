@@ -1,98 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class is0 extends pz {
-    public final wv0 X;
-    public final hs0 Y;
-    public final lv0 Z;
+public final class is0 extends Drawable {
+    public final int f27490a;
+    public final ShapeDrawable f27491b;
+    public final Rect f27492c;
 
-    public is0(lv0 lv0Var, hs0 hs0Var) {
-        super(100, false);
-        this.Z = lv0Var;
-        this.Y = hs0Var;
-        this.X = new Object();
+    public is0(fs0 fs0Var) {
+        this.f27490a = 1;
+        this.f27491b = org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), 0);
+        this.f27492c = new Rect();
     }
 
     @Override
-    public final int A() {
-        if (this.Y.h.getAdapter() != this.Z.O) {
-            return 0;
-        }
-        return B();
-    }
-
-    @Override
-    public final wv0 D1(int i10) {
-        TLRPC.Document document;
-        int i11;
-        int i12;
-        s4.h0 adapter = this.Y.h.getAdapter();
-        lv0 lv0Var = this.Z;
-        av0[] av0VarArr = lv0Var.f26150t1;
-        if (adapter == lv0Var.O && !av0VarArr[5].f22728a.isEmpty()) {
-            document = ((MessageObject) av0VarArr[5].f22728a.get(i10)).getDocument();
-        } else {
-            document = null;
-        }
-        wv0 wv0Var = this.X;
-        wv0Var.f30183b = 100.0f;
-        wv0Var.f30182a = 100.0f;
-        if (document != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f18362w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                wv0Var.f30182a = i11;
-                wv0Var.f30183b = i12;
-            }
-            ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
-            for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    wv0Var.f30182a = documentAttribute.f18344w;
-                    wv0Var.f30183b = documentAttribute.h;
-                    break;
-                }
-            }
-        }
-        return wv0Var;
-    }
-
-    @Override
-    public final void U(of.e eVar, s4.z0 z0Var, View view, s0.d dVar) {
-        he.c cVar;
-        super.U(eVar, z0Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42911a;
-        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-        if (collectionItemInfo != null) {
-            cVar = new he.c(collectionItemInfo);
-        } else {
-            cVar = null;
-        }
-        if (cVar != null) {
-            Object obj = cVar.f10188a;
-            if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
-            }
-        }
-    }
-
-    @Override
-    public final void z0(s4.z0 z0Var, int[] iArr) {
-        super.z0(z0Var, iArr);
-        hs0 hs0Var = this.Y;
-        int i10 = hs0Var.F;
-        if (i10 != 0 && !lv0.p0(i10)) {
-            if (hs0Var.F == 1) {
-                iArr[1] = Math.max(iArr[1], AndroidUtilities.dp(56.0f) * 2);
+    public final void draw(Canvas canvas) {
+        switch (this.f27490a) {
+            case 0:
+                Rect bounds = getBounds();
+                Rect rect = this.f27492c;
+                rect.set(bounds);
+                rect.inset(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.0f));
+                ShapeDrawable shapeDrawable = this.f27491b;
+                shapeDrawable.setBounds(rect);
+                shapeDrawable.draw(canvas);
                 return;
-            }
-            return;
+            default:
+                Rect bounds2 = getBounds();
+                Rect rect2 = this.f27492c;
+                rect2.set(bounds2);
+                rect2.inset(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.0f));
+                ShapeDrawable shapeDrawable2 = this.f27491b;
+                shapeDrawable2.setBounds(rect2);
+                shapeDrawable2.draw(canvas);
+                return;
         }
-        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.u7.a(1) * 2);
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f27490a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f27490a) {
+            case 0:
+                this.f27491b.setAlpha(i10);
+                return;
+            default:
+                this.f27491b.setAlpha(i10);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i10 = this.f27490a;
+    }
+
+    public is0(js0 js0Var) {
+        this.f27490a = 0;
+        int dp = AndroidUtilities.dp(16.0f);
+        int dp2 = AndroidUtilities.dp(16.0f);
+        int i10 = org.telegram.ui.ActionBar.i6.f20817d6;
+        org.telegram.ui.ActionBar.d6 d6Var = js0Var.f27890c;
+        this.f27491b = org.telegram.ui.ActionBar.i6.c0(dp, dp2, org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.v0(i10, d6Var), org.telegram.ui.ActionBar.i6.l1(0.04f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var))));
+        this.f27492c = new Rect();
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
     }
 }

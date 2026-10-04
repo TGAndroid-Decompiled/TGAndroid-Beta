@@ -1,51 +1,73 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.messenger.SendMessagesHelper;
 public final class ue implements Runnable {
-    public final int f38440a = 0;
-    public final wn f38441b;
-    public final MessagesController f38442c;
-    public final CharSequence d;
-    public final boolean e;
+    public final int f41150a;
+    public final yn f41151b;
+    public final String f41152c;
 
-    public ue(wn wnVar, CharSequence charSequence, MessagesController messagesController, boolean z10) {
-        this.f38441b = wnVar;
-        this.d = charSequence;
-        this.f38442c = messagesController;
-        this.e = z10;
+    public ue(yn ynVar, String str, int i10) {
+        this.f41150a = i10;
+        this.f41151b = ynVar;
+        this.f41152c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f38440a) {
+        switch (this.f41150a) {
             case 0:
-                wn.g1(this.f38441b, this.d, this.f38442c, this.e);
+                yn.V0(this.f41151b, this.f41152c);
+                return;
+            case 1:
+                yn.h1(this.f41151b, this.f41152c);
+                return;
+            case 2:
+                i4.f(this.f41152c, r1.currentAccount, r1.V0, null, this.f41151b.f43299ca);
+                return;
+            case 3:
+                yn ynVar = this.f41151b;
+                String str = this.f41152c;
+                if (str != null) {
+                    ynVar.getClass();
+                    if (str.length() != 0) {
+                        ynVar.getMessagesController().sendBotStart(ynVar.f43326f, str);
+                        return;
+                    }
+                }
+                ynVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", ynVar.R5, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 4:
+                this.f41151b.ka(this.f41152c);
+                return;
+            case 5:
+                this.f41151b.ca(this.f41152c, false);
+                return;
+            case 6:
+                Activity parentActivity = this.f41151b.getParentActivity();
+                nf.f.s(parentActivity, "tel:" + this.f41152c);
+                return;
+            case 7:
+                AndroidUtilities.addToClipboard(this.f41152c);
+                org.telegram.messenger.ok.o(R.string.PhoneCopied, org.telegram.ui.Components.yc.a0(this.f41151b));
+                return;
+            case 8:
+                yn.v1(this.f41151b, this.f41152c);
+                return;
+            case 9:
+                Activity parentActivity2 = this.f41151b.getParentActivity();
+                nf.f.s(parentActivity2, "tel:" + this.f41152c);
+                return;
+            case 10:
+                AndroidUtilities.addToClipboard(this.f41152c);
+                org.telegram.messenger.ok.o(R.string.PhoneCopied, org.telegram.ui.Components.yc.a0(this.f41151b));
                 return;
             default:
-                wn wnVar = this.f38441b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar.getParentActivity(), 0, wnVar.f39469ea);
-                alertDialog$Builder.f18663a.R = LocaleController.getString(R.string.AppName);
-                String string = LocaleController.getString(R.string.OK);
-                MessagesController messagesController = this.f38442c;
-                alertDialog$Builder.k(string, new ca.b(wnVar, messagesController, this.d, this.e, 3));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                String string2 = LocaleController.getString(R.string.SecretLinkPreviewAlert);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18663a;
-                a2Var.T = string2;
-                wnVar.showDialog(a2Var);
-                messagesController.secretWebpagePreview = 0;
-                MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", messagesController.secretWebpagePreview).commit();
+                Activity parentActivity3 = this.f41151b.getParentActivity();
+                nf.f.s(parentActivity3, "https://fragment.com/username/" + this.f41152c);
                 return;
         }
-    }
-
-    public ue(wn wnVar, MessagesController messagesController, CharSequence charSequence, boolean z10) {
-        this.f38441b = wnVar;
-        this.f38442c = messagesController;
-        this.d = charSequence;
-        this.e = z10;
     }
 }

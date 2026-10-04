@@ -1,55 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-import org.telegram.messenger.R;
-public final class s31 extends Drawable {
-    public final kj0 f28116a;
-    public int f28117b;
-    public final TextPaint f28118c;
+import android.animation.ValueAnimator;
+public final class s31 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f30612a;
+    public final u31 f30613b;
 
-    public s31(TextPaint textPaint) {
-        i.f fVar = new i.f(this, 5);
-        this.f28118c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        kj0 kj0Var = new kj0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f28116a = kj0Var;
-        kj0Var.setCallback(fVar);
-        kj0Var.K(1);
-        kj0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        kj0Var.J(true);
-        kj0Var.start();
+    public s31(u31 u31Var, int i10) {
+        this.f30612a = i10;
+        this.f30613b = u31Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f28118c.getColor();
-        int i10 = this.f28117b;
-        kj0 kj0Var = this.f28116a;
-        if (color != i10) {
-            kj0Var.Z = true;
-            kj0Var.Q(color, "Comp 1");
-            kj0Var.o();
-            kj0Var.J(true);
-            kj0Var.V(0L);
-            this.f28117b = color;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f30612a) {
+            case 0:
+                u31 u31Var = this.f30613b;
+                u31Var.getClass();
+                u31Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u31Var.h();
+                u31Var.g();
+                return;
+            default:
+                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                u31 u31Var2 = this.f30613b;
+                u31Var2.K = max;
+                u31Var2.h.invalidate();
+                return;
         }
-        kj0Var.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

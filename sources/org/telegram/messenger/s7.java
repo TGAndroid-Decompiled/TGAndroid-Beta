@@ -7,59 +7,59 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class s7 implements RequestDelegate {
-    public final int f17520a;
-    public final BaseController f17521b;
-    public final Object f17522c;
+    public final int f19131a;
+    public final BaseController f19132b;
+    public final Object f19133c;
     public final Object d;
 
     public s7(BaseController baseController, Object obj, Object obj2, int i10) {
-        this.f17520a = i10;
-        this.f17521b = baseController;
-        this.f17522c = obj;
+        this.f19131a = i10;
+        this.f19132b = baseController;
+        this.f19133c = obj;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17520a) {
+        switch (this.f19131a) {
             case 0:
-                ((MediaDataController) this.f17521b).lambda$addRecentSticker$21(this.f17522c, (TLRPC.TL_messages_faveSticker) this.d, tLObject, tL_error);
+                ((MediaDataController) this.f19132b).lambda$addRecentSticker$21(this.f19133c, (TLRPC.TL_messages_faveSticker) this.d, tLObject, tL_error);
                 return;
             case 1:
-                ((MediaDataController) this.f17521b).lambda$addRecentSticker$22(this.f17522c, (TLRPC.TL_messages_saveRecentSticker) this.d, tLObject, tL_error);
+                ((MediaDataController) this.f19132b).lambda$addRecentSticker$22(this.f19133c, (TLRPC.TL_messages_saveRecentSticker) this.d, tLObject, tL_error);
                 return;
             case 2:
-                ((MessagesController) this.f17521b).lambda$createChat$258((org.telegram.ui.ActionBar.m2) this.f17522c, (TLRPC.TL_messages_createChat) this.d, tLObject, tL_error);
+                ((MessagesController) this.f19132b).lambda$createChat$258((org.telegram.ui.ActionBar.n2) this.f19133c, (TLRPC.TL_messages_createChat) this.d, tLObject, tL_error);
                 return;
             case 3:
-                ((MessagesController) this.f17521b).lambda$createChat$261((org.telegram.ui.ActionBar.m2) this.f17522c, (TLRPC.TL_channels_createChannel) this.d, tLObject, tL_error);
+                ((MessagesController) this.f19132b).lambda$createChat$261((org.telegram.ui.ActionBar.n2) this.f19133c, (TLRPC.TL_channels_createChannel) this.d, tLObject, tL_error);
                 return;
             case 4:
-                ((MessagesController) this.f17521b).lambda$saveGif$146(this.f17522c, (TLRPC.TL_messages_saveGif) this.d, tLObject, tL_error);
+                ((MessagesController) this.f19132b).lambda$saveGif$146(this.f19133c, (TLRPC.TL_messages_saveGif) this.d, tLObject, tL_error);
                 return;
             case 5:
-                ((MessagesController) this.f17521b).lambda$unpinAllMessages$129((TLRPC.Chat) this.f17522c, (TLRPC.User) this.d, tLObject, tL_error);
+                ((MessagesController) this.f19132b).lambda$unpinAllMessages$129((TLRPC.Chat) this.f19133c, (TLRPC.User) this.d, tLObject, tL_error);
                 return;
             case 6:
-                ((MessagesController) this.f17521b).lambda$saveRecentSticker$147(this.f17522c, (TLRPC.TL_messages_saveRecentSticker) this.d, tLObject, tL_error);
+                ((MessagesController) this.f19132b).lambda$saveRecentSticker$147(this.f19133c, (TLRPC.TL_messages_saveRecentSticker) this.d, tLObject, tL_error);
                 return;
             case 7:
-                ((MessagesController) this.f17521b).lambda$toggleChatJoinToSend$280((Runnable) this.f17522c, (Runnable) this.d, tLObject, tL_error);
+                ((MessagesController) this.f19132b).lambda$toggleChatJoinToSend$280((Runnable) this.f19133c, (Runnable) this.d, tLObject, tL_error);
                 return;
             case 8:
-                ((MessagesController) this.f17521b).lambda$loadChannelParticipants$149((Long) this.f17522c, (Utilities.Callback) this.d, tLObject, tL_error);
+                ((MessagesController) this.f19132b).lambda$loadChannelParticipants$149((Long) this.f19133c, (Utilities.Callback) this.d, tLObject, tL_error);
                 return;
             case 9:
-                ((MessagesController) this.f17521b).lambda$updateChatAbout$290((TLRPC.ChatFull) this.f17522c, (String) this.d, tLObject, tL_error);
+                ((MessagesController) this.f19132b).lambda$updateChatAbout$290((TLRPC.ChatFull) this.f19133c, (String) this.d, tLObject, tL_error);
                 return;
             case 10:
-                ((SendMessagesHelper) this.f17521b).lambda$performSendDelayedMessage$58((SendMessagesHelper.DelayedMessage) this.f17522c, (String) this.d, tLObject, tL_error);
+                ((SendMessagesHelper) this.f19132b).lambda$performSendDelayedMessage$58((SendMessagesHelper.DelayedMessage) this.f19133c, (String) this.d, tLObject, tL_error);
                 return;
             case 11:
-                ((SendMessagesHelper) this.f17521b).lambda$sendNotificationCallback$29((String) this.f17522c, (List) this.d, tLObject, tL_error);
+                ((SendMessagesHelper) this.f19132b).lambda$sendNotificationCallback$29((String) this.f19133c, (List) this.d, tLObject, tL_error);
                 return;
             default:
-                ((SendMessagesHelper) this.f17521b).lambda$editMessage$21((org.telegram.ui.ActionBar.m2) this.f17522c, (TLRPC.TL_messages_editMessage) this.d, tLObject, tL_error);
+                ((SendMessagesHelper) this.f19132b).lambda$editMessage$21((org.telegram.ui.ActionBar.n2) this.f19133c, (TLRPC.TL_messages_editMessage) this.d, tLObject, tL_error);
                 return;
         }
     }

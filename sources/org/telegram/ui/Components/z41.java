@@ -1,184 +1,134 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import java.io.Serializable;
-import java.util.ArrayList;
-import org.telegram.messenger.TranslateController;
-import org.telegram.ui.NotificationsCustomSettingsActivity;
-public final class z41 implements Runnable {
-    public final int f30815a = 1;
-    public final ArrayList f30816b;
-    public final ArrayList f30817c;
-    public final Object d;
-    public final Object e;
-    public final Serializable f30818f;
-    public final Serializable h;
-    public final Object f30819n;
-    public final Object f30820r;
-    public final Object f30821s;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class z41 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
+    public final org.telegram.ui.ActionBar.d6 f33379a;
+    public final LinearLayout f33380b;
+    public final TextView f33381c;
+    public final TextView d;
+    public final TextView f33382e;
+    public final ImageView f33383f;
+    public final LinearLayout h;
+    public final qp f33384n;
+    public final LinearLayout f33385r;
+    public final ImageView f33386s;
+    public final TextView v;
 
-    public z41(org.telegram.ui.wk wkVar, boolean[] zArr, String str, LinearLayout linearLayout, ArrayList arrayList, String str2, TranslateController translateController, org.telegram.ui.ActionBar.m1 m1Var, ArrayList arrayList2) {
-        this.d = wkVar;
-        this.e = zArr;
-        this.f30818f = str;
-        this.f30819n = linearLayout;
-        this.f30816b = arrayList;
-        this.h = str2;
-        this.f30820r = translateController;
-        this.f30821s = m1Var;
-        this.f30817c = arrayList2;
+    public z41(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f33379a = d6Var;
+        setClipToPadding(false);
+        setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(6.0f));
+        LinearLayout f7 = org.telegram.messenger.ok.f(context, 0);
+        addView(f7, w7.z5.e(-2, -2, 19));
+        TextView textView = new TextView(context);
+        this.f33381c = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rextrabold.ttf"));
+        f7.addView(textView, w7.z5.t(-2, -2, 19, 0, 0, 0, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f33380b = linearLayout;
+        linearLayout.setOrientation(0);
+        linearLayout.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
+        w7.b6.a(linearLayout);
+        f7.addView(linearLayout, w7.z5.d(-2, -2.0f, 19, -6.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rextrabold.ttf"));
+        linearLayout.addView(textView2, w7.z5.t(-2, -2, 19, 0, 0, 0, 0));
+        ImageView imageView = new ImageView(context);
+        this.f33383f = imageView;
+        imageView.setImageResource(R.drawable.arrows_select);
+        linearLayout.addView(imageView, w7.z5.t(16, 16, 19, 1, 0, 0, 0));
+        imageView.setTranslationY(AndroidUtilities.dp(1.0f));
+        TextView textView3 = new TextView(context);
+        this.f33382e = textView3;
+        textView3.setTextSize(1, 14.0f);
+        textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rextrabold.ttf"));
+        f7.addView(textView3, w7.z5.t(-2, -2, 19, -6, 0, 0, 0));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        this.h = linearLayout2;
+        linearLayout2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.0f));
+        linearLayout2.setClipToPadding(false);
+        linearLayout2.setOrientation(0);
+        qp qpVar = new qp(context, 20, d6Var);
+        this.f33384n = qpVar;
+        qpVar.b(org.telegram.ui.ActionBar.i6.f20891h7, org.telegram.ui.ActionBar.i6.f20927j7, org.telegram.ui.ActionBar.i6.f20947k7);
+        qpVar.setDrawUnchecked(true);
+        qpVar.a(false, false);
+        qpVar.setDrawBackgroundAsArc(10);
+        linearLayout2.addView(qpVar, w7.z5.t(22, 22, 16, 0, 0, 0, 0));
+        TextView textView4 = new TextView(context);
+        org.telegram.ui.Cells.c1.p(org.telegram.ui.ActionBar.i6.f20925j5, d6Var, textView4, 1, 14.0f);
+        textView4.setText(LocaleController.getString(R.string.AIEditorEmojify));
+        linearLayout2.addView(textView4, w7.z5.t(-2, -2, 16, 3, -1, 2, 0));
+        addView(linearLayout2, w7.z5.d(-2, -2.0f, 21, 0.0f, -3.0f, -6.0f, -3.0f));
+        w7.b6.b(linearLayout2, 0.025f, 1.5f);
+        LinearLayout linearLayout3 = new LinearLayout(context);
+        this.f33385r = linearLayout3;
+        linearLayout3.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
+        linearLayout3.setOrientation(0);
+        linearLayout3.setVisibility(8);
+        addView(linearLayout3, w7.z5.d(-2, -2.0f, 53, 0.0f, 0.0f, -6.0f, 0.0f));
+        w7.b6.b(linearLayout3, 0.025f, 1.5f);
+        ImageView imageView2 = new ImageView(context);
+        this.f33386s = imageView2;
+        imageView2.setImageResource(R.drawable.mini_replace2);
+        linearLayout3.addView(imageView2, w7.z5.t(-2, -2, 16, 0, 0, 4, 0));
+        TextView textView5 = new TextView(context);
+        this.v = textView5;
+        com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView5);
+        textView5.setText(LocaleController.getString(R.string.AIEditorAnotherExample));
+        linearLayout3.addView(textView5, w7.z5.q(-2, -2, 16));
+        e();
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        org.telegram.ui.ActionBar.e1 e1Var;
-        String y3;
-        switch (this.f30815a) {
-            case 0:
-                final org.telegram.ui.wk wkVar = (org.telegram.ui.wk) this.d;
-                boolean[] zArr = (boolean[]) this.e;
-                String str = (String) this.f30818f;
-                LinearLayout linearLayout = (LinearLayout) this.f30819n;
-                String str2 = (String) this.h;
-                final TranslateController translateController = (TranslateController) this.f30820r;
-                final org.telegram.ui.ActionBar.m1 m1Var = (org.telegram.ui.ActionBar.m1) this.f30821s;
-                boolean z11 = false;
-                if (!zArr[0]) {
-                    if (str != null && (y3 = k41.y(k41.E(str, null, null))) != null) {
-                        org.telegram.ui.ActionBar.e1 e1Var2 = new org.telegram.ui.ActionBar.e1(2, wkVar.getContext(), wkVar.d, false, false);
-                        e1Var2.setChecked(true);
-                        e1Var2.setText(y3);
-                        linearLayout.addView(e1Var2);
-                    }
-                    ArrayList arrayList = this.f30816b;
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        int i11 = i10 + 1;
-                        TranslateController.Language language = (TranslateController.Language) arrayList.get(i10);
-                        final String str3 = language.code;
-                        if (TextUtils.equals(str3, str2)) {
-                            i10 = i11;
-                        } else {
-                            org.telegram.ui.ActionBar.e1 e1Var3 = new org.telegram.ui.ActionBar.e1(2, wkVar.getContext(), wkVar.d, false, false);
-                            if (str != null && str.equals(str3)) {
-                                z11 = true;
-                            }
-                            e1Var3.setChecked(z11);
-                            e1Var3.setText(language.displayName);
-                            if (!z11) {
-                                e1Var = e1Var3;
-                                e1Var.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public final void onClick(View view) {
-                                        switch (r5) {
-                                            case 0:
-                                                org.telegram.ui.wk wkVar2 = wkVar;
-                                                translateController.setDialogTranslateTo(wkVar2.f22853b, str3);
-                                                m1Var.d(true);
-                                                wkVar2.b();
-                                                return;
-                                            default:
-                                                org.telegram.ui.wk wkVar3 = wkVar;
-                                                translateController.setDialogTranslateTo(wkVar3.f22853b, str3);
-                                                m1Var.d(true);
-                                                wkVar3.b();
-                                                return;
-                                        }
-                                    }
-                                });
-                            } else {
-                                e1Var = e1Var3;
-                            }
-                            linearLayout.addView(e1Var);
-                            i10 = i11;
-                            z11 = false;
-                        }
-                    }
-                    linearLayout.addView(new org.telegram.ui.ActionBar.j1(wkVar.getContext(), wkVar.d), w7.y5.n(-1, 8));
-                    ArrayList arrayList2 = this.f30817c;
-                    int size2 = arrayList2.size();
-                    int i12 = 0;
-                    while (i12 < size2) {
-                        int i13 = i12 + 1;
-                        TranslateController.Language language2 = (TranslateController.Language) arrayList2.get(i12);
-                        final String str4 = language2.code;
-                        if (!TextUtils.equals(str4, str2)) {
-                            if (str != null && str.equals(str4)) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            org.telegram.ui.ActionBar.e1 e1Var4 = new org.telegram.ui.ActionBar.e1(2, wkVar.getContext(), wkVar.d, false, false);
-                            e1Var4.setChecked(z10);
-                            e1Var4.setText(language2.displayName);
-                            if (!z10) {
-                                e1Var4.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public final void onClick(View view) {
-                                        switch (r5) {
-                                            case 0:
-                                                org.telegram.ui.wk wkVar2 = wkVar;
-                                                translateController.setDialogTranslateTo(wkVar2.f22853b, str4);
-                                                m1Var.d(true);
-                                                wkVar2.b();
-                                                return;
-                                            default:
-                                                org.telegram.ui.wk wkVar3 = wkVar;
-                                                translateController.setDialogTranslateTo(wkVar3.f22853b, str4);
-                                                m1Var.d(true);
-                                                wkVar3.b();
-                                                return;
-                                        }
-                                    }
-                                });
-                            }
-                            linearLayout.addView(e1Var4);
-                        }
-                        i12 = i13;
-                    }
-                    zArr[0] = true;
-                    return;
-                }
-                return;
-            default:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) this.d;
-                ArrayList arrayList3 = (ArrayList) this.f30818f;
-                ArrayList arrayList4 = (ArrayList) this.h;
-                ArrayList arrayList5 = (ArrayList) this.f30819n;
-                ArrayList arrayList6 = (ArrayList) this.f30820r;
-                ArrayList arrayList7 = (ArrayList) this.f30821s;
-                notificationsCustomSettingsActivity.getMessagesController().putUsers(this.f30816b, true);
-                notificationsCustomSettingsActivity.getMessagesController().putChats(this.f30817c, true);
-                notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats((ArrayList) this.e, true);
-                int i14 = notificationsCustomSettingsActivity.f31158s;
-                if (i14 == 1) {
-                    notificationsCustomSettingsActivity.f31159w = arrayList3;
-                } else if (i14 == 0) {
-                    notificationsCustomSettingsActivity.f31159w = arrayList4;
-                } else if (i14 == 3) {
-                    notificationsCustomSettingsActivity.f31159w = arrayList5;
-                    notificationsCustomSettingsActivity.v = arrayList6;
-                } else {
-                    notificationsCustomSettingsActivity.f31159w = arrayList7;
-                }
-                notificationsCustomSettingsActivity.l0(true);
-                return;
+    public final void e() {
+        org.telegram.ui.Cells.z zVar;
+        int i10 = org.telegram.ui.ActionBar.i6.G6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f33379a;
+        this.f33381c.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
+        int i11 = org.telegram.ui.ActionBar.i6.L6;
+        this.d.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
+        this.f33382e.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
+        this.f33383f.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
+        LinearLayout linearLayout = this.f33380b;
+        if (linearLayout.isClickable()) {
+            zVar = org.telegram.ui.ActionBar.i6.Y(org.telegram.ui.ActionBar.i6.l1(0.1f, org.telegram.ui.ActionBar.i6.w0(null, i11, false)), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+        } else {
+            zVar = null;
         }
+        linearLayout.setBackground(zVar);
+        if (linearLayout.isClickable()) {
+            w7.b6.a(linearLayout);
+        } else {
+            linearLayout.setStateListAnimator(null);
+        }
+        this.h.setBackground(org.telegram.ui.ActionBar.i6.Y(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20908i6, d6Var), 24, 24));
+        int i12 = org.telegram.ui.ActionBar.i6.Oh;
+        this.f33386s.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(i12, d6Var), PorterDuff.Mode.SRC_IN));
+        this.v.setTextColor(org.telegram.ui.ActionBar.i6.v0(i12, d6Var));
+        this.f33385r.setBackground(org.telegram.ui.ActionBar.i6.Y(org.telegram.ui.ActionBar.i6.l1(0.1f, org.telegram.ui.ActionBar.i6.v0(i12, d6Var)), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f)));
     }
 
-    public z41(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
-        this.d = notificationsCustomSettingsActivity;
-        this.f30816b = arrayList;
-        this.f30817c = arrayList2;
-        this.e = arrayList3;
-        this.f30818f = arrayList4;
-        this.h = arrayList5;
-        this.f30819n = arrayList6;
-        this.f30820r = arrayList7;
-        this.f30821s = arrayList8;
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

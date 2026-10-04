@@ -1,44 +1,75 @@
 package u2;
+public final class j1 implements c1 {
+    public int f47298a;
+    public boolean f47299b;
+    public final l1 f47300c;
 
-import java.util.Arrays;
-import v7.n7;
-public final class j1 implements y2.i {
-    public final g2.m f43685a;
-    public final g2.b0 f43686b;
-    public byte[] f43687c;
-
-    public j1(g2.h hVar, g2.m mVar) {
-        t.f43771b.getAndIncrement();
-        this.f43685a = mVar;
-        this.f43686b = new g2.b0(hVar);
+    public j1(l1 l1Var) {
+        this.f47300c = l1Var;
     }
 
     @Override
     public final void a() {
-        g2.b0 b0Var = this.f43686b;
-        b0Var.f9333b = 0L;
-        try {
-            b0Var.open(this.f43685a);
-            int i10 = 0;
-            while (i10 != -1) {
-                int i11 = (int) b0Var.f9333b;
-                byte[] bArr = this.f43687c;
-                if (bArr == null) {
-                    this.f43687c = new byte[1024];
-                } else if (i11 == bArr.length) {
-                    this.f43687c = Arrays.copyOf(bArr, bArr.length * 2);
-                }
-                byte[] bArr2 = this.f43687c;
-                i10 = b0Var.read(bArr2, i11, bArr2.length - i11);
-            }
-            n7.a(b0Var);
-        } catch (Throwable th2) {
-            n7.a(b0Var);
-            throw th2;
+        l1 l1Var = this.f47300c;
+        if (!l1Var.v) {
+            l1Var.f47316r.a();
+        }
+    }
+
+    public final void b() {
+        if (!this.f47299b) {
+            l1 l1Var = this.f47300c;
+            l1Var.f47313e.k(b2.r0.h(l1Var.f47317s.f3564r), l1Var.f47317s, 0, null, 0L);
+            this.f47299b = true;
         }
     }
 
     @Override
-    public final void D() {
+    public final boolean e() {
+        return this.f47300c.f47318w;
+    }
+
+    @Override
+    public final int f(n4.y yVar, h2.h hVar, int i10) {
+        b();
+        l1 l1Var = this.f47300c;
+        boolean z10 = l1Var.f47318w;
+        if (z10 && l1Var.f47319x == null) {
+            this.f47298a = 2;
+        }
+        int i11 = this.f47298a;
+        if (i11 == 2) {
+            hVar.addFlag(4);
+            return -4;
+        } else if ((i10 & 2) == 0 && i11 != 0) {
+            if (!z10) {
+                return -3;
+            }
+            l1Var.f47319x.getClass();
+            hVar.addFlag(1);
+            hVar.f10980e = 0L;
+            if ((i10 & 4) == 0) {
+                hVar.b(l1Var.f47320y);
+                hVar.f10979c.put(l1Var.f47319x, 0, l1Var.f47320y);
+            }
+            if ((i10 & 1) == 0) {
+                this.f47298a = 2;
+            }
+            return -4;
+        } else {
+            yVar.f16640c = l1Var.f47317s;
+            this.f47298a = 1;
+            return -5;
+        }
+    }
+
+    @Override
+    public final int j(long j3) {
+        b();
+        if (j3 > 0 && this.f47298a != 2) {
+            this.f47298a = 2;
+            return 1;
+        }
+        return 0;
     }
 }

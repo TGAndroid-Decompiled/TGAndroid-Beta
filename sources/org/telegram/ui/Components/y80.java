@@ -1,132 +1,294 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class y80 extends Drawable {
-    public static final Paint f30602j = new Paint();
-    public static TextPaint f30603k;
-    public static TextPaint f30604l;
-    public static TextPaint f30605m;
-    public StaticLayout f30607b;
-    public float f30608c;
-    public float d;
-    public float e;
-    public final int f30610g;
-    public final TextPaint h;
-    public final RectF f30606a = new RectF();
-    public final StringBuilder f30609f = new StringBuilder(5);
-    public float f30611i = 1.0f;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public abstract class y80 extends LinearLayout {
+    public final org.telegram.ui.Cells.m4 f33103a;
+    public final org.telegram.ui.Cells.w8 f33104b;
+    public final org.telegram.ui.Cells.w8 f33105c;
+    public final org.telegram.ui.Cells.e9 d;
+    public final org.telegram.ui.Cells.e9 f33106e;
+    public boolean f33107f;
+    public boolean h;
+    public TLRPC.Chat f33108n;
+    public ValueAnimator f33109r;
+    public float f33110s;
+    public final int v;
 
-    public y80(int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f30610g = i10;
-        if (i10 == 0) {
-            if (f30603k == null) {
-                f30603k = new TextPaint(1);
-            }
-            f30603k.setTextSize(AndroidUtilities.dp(28.0f));
-            f30602j.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Jh, d6Var));
-            f30603k.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Kh, d6Var));
-            this.h = f30603k;
-        } else if (i10 == 1) {
-            if (f30604l == null) {
-                f30604l = new TextPaint(1);
-            }
-            f30604l.setColor(-1);
-            f30604l.setTextSize(AndroidUtilities.dp(13.0f));
-            f30604l.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.h = f30604l;
+    public y80(Context context, TLRPC.Chat chat) {
+        super(context);
+        boolean z10;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights2;
+        this.v = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
+        this.f33108n = chat;
+        this.f33107f = chat.join_to_send;
+        this.h = chat.join_request;
+        boolean z11 = true;
+        setOrientation(1);
+        org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(context, 20);
+        this.f33103a = m4Var;
+        m4Var.setText(LocaleController.getString(R.string.ChannelSettingsJoinTitle));
+        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20817d6, false));
+        addView(m4Var);
+        org.telegram.ui.Cells.w8 w8Var = new org.telegram.ui.Cells.w8(context, 20);
+        this.f33104b = w8Var;
+        String string = LocaleController.getString(R.string.ChannelSettingsJoinToSend);
+        boolean z12 = this.f33107f;
+        w8Var.f(string, z12, z12);
+        if (!chat.creator && ((tL_chatAdminRights2 = chat.admin_rights) == null || !tL_chatAdminRights2.ban_users)) {
+            z10 = false;
         } else {
-            if (f30605m == null) {
-                f30605m = new TextPaint(1);
-            }
-            f30605m.setColor(-1);
-            f30605m.setTextSize(org.telegram.ui.ActionBar.h6.f19058d3.getTextSize() * 0.75f);
-            f30605m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.h = f30605m;
+            z10 = true;
         }
-    }
+        w8Var.setEnabled(z10);
+        w8Var.setOnClickListener(new View.OnClickListener(this) {
+            public final y80 f31600b;
 
-    public final void a(String str) {
-        StringBuilder sb2 = this.f30609f;
-        sb2.setLength(0);
-        if (str != null && str.length() > 0) {
-            sb2.append(str.substring(0, 1));
-        }
-        if (sb2.length() > 0) {
-            try {
-                StaticLayout staticLayout = new StaticLayout(sb2.toString().toUpperCase(), this.h, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f30607b = staticLayout;
-                if (staticLayout.getLineCount() > 0) {
-                    this.e = this.f30607b.getLineLeft(0);
-                    this.f30608c = this.f30607b.getLineWidth(0);
-                    this.d = this.f30607b.getLineBottom(0);
-                    return;
+            {
+                this.f31600b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        y80 y80Var = this.f31600b;
+                        boolean z13 = y80Var.f33107f;
+                        boolean z14 = !z13;
+                        if (y80Var.b(z14, new x80(y80Var, y80Var.h, z13, 0))) {
+                            y80Var.setJoinRequest(false);
+                            y80Var.setJoinToSend(z14);
+                            return;
+                        }
+                        return;
+                    default:
+                        y80 y80Var2 = this.f31600b;
+                        boolean z15 = y80Var2.h;
+                        boolean z16 = !z15;
+                        if (y80Var2.a(z16, new w80(y80Var2, z15, 0))) {
+                            y80Var2.setJoinRequest(z16);
+                            return;
+                        }
+                        return;
                 }
-                return;
-            } catch (Exception e) {
-                FileLog.e(e);
-                return;
             }
+        });
+        addView(w8Var);
+        org.telegram.ui.Cells.w8 w8Var2 = new org.telegram.ui.Cells.w8(context, 20);
+        this.f33105c = w8Var2;
+        w8Var2.f(LocaleController.getString(R.string.ChannelSettingsJoinRequest), this.h, false);
+        w8Var2.setPivotY(0.0f);
+        if (!chat.creator && ((tL_chatAdminRights = chat.admin_rights) == null || !tL_chatAdminRights.ban_users)) {
+            z11 = false;
         }
-        this.f30607b = null;
+        w8Var2.setEnabled(z11);
+        w8Var2.setOnClickListener(new View.OnClickListener(this) {
+            public final y80 f31600b;
+
+            {
+                this.f31600b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        y80 y80Var = this.f31600b;
+                        boolean z13 = y80Var.f33107f;
+                        boolean z14 = !z13;
+                        if (y80Var.b(z14, new x80(y80Var, y80Var.h, z13, 0))) {
+                            y80Var.setJoinRequest(false);
+                            y80Var.setJoinToSend(z14);
+                            return;
+                        }
+                        return;
+                    default:
+                        y80 y80Var2 = this.f31600b;
+                        boolean z15 = y80Var2.h;
+                        boolean z16 = !z15;
+                        if (y80Var2.a(z16, new w80(y80Var2, z15, 0))) {
+                            y80Var2.setJoinRequest(z16);
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        addView(w8Var2);
+        org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context, 12, null);
+        this.d = e9Var;
+        e9Var.setText(LocaleController.getString(R.string.ChannelSettingsJoinToSendInfo));
+        addView(e9Var);
+        org.telegram.ui.Cells.e9 e9Var2 = new org.telegram.ui.Cells.e9(context, 12, null);
+        this.f33106e = e9Var2;
+        e9Var2.setText(LocaleController.getString(R.string.ChannelSettingsJoinRequestInfo));
+        addView(e9Var2);
+        boolean z13 = this.f33107f;
+        this.f33110s = z13 ? 1.0f : 0.0f;
+        w8Var2.setVisibility(z13 ? 0 : 8);
+        d(this.f33110s);
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        if (bounds == null) {
-            return;
+    public abstract boolean a(boolean z10, w80 w80Var);
+
+    public boolean b(boolean z10, x80 x80Var) {
+        return true;
+    }
+
+    public final void c(boolean z10) {
+        int i10;
+        int i11 = 8;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 8;
         }
-        if (this.f30610g == 0) {
-            RectF rectF = this.f30606a;
-            rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), f30602j);
+        this.f33103a.setVisibility(i10);
+        if (z10) {
+            i11 = 0;
         }
-        canvas.save();
-        float f7 = this.f30611i;
-        if (f7 != 1.0f) {
-            canvas.scale(f7, f7, bounds.centerX(), bounds.centerY());
+        this.f33104b.setVisibility(i11);
+        if (!z10) {
+            this.f33107f = true;
+            this.f33105c.setVisibility(0);
+            d(1.0f);
         }
-        if (this.f30607b != null) {
-            float width = bounds.width();
-            canvas.translate(com.google.android.gms.internal.vision.e2.A(width, this.f30608c, 2.0f, bounds.left) - this.e, com.google.android.gms.internal.vision.e2.A(width, this.d, 2.0f, bounds.top));
-            this.f30607b.draw(canvas);
+        requestLayout();
+    }
+
+    public final void d(float f7) {
+        int measuredHeight;
+        this.f33110s = f7;
+        org.telegram.ui.Cells.w8 w8Var = this.f33105c;
+        w8Var.setAlpha(f7);
+        float f10 = 1.0f - f7;
+        w8Var.setTranslationY((-AndroidUtilities.dp(16.0f)) * f10);
+        w8Var.setScaleY(1.0f - (0.1f * f10));
+        if (w8Var.getMeasuredHeight() <= 0) {
+            measuredHeight = AndroidUtilities.dp(50.0f);
+        } else {
+            measuredHeight = w8Var.getMeasuredHeight();
         }
-        canvas.restore();
+        org.telegram.ui.Cells.e9 e9Var = this.d;
+        e9Var.setAlpha(f10);
+        float f11 = (-measuredHeight) * f10;
+        e9Var.setTranslationY(((-AndroidUtilities.dp(4.0f)) * f7) + f11);
+        org.telegram.ui.Cells.e9 e9Var2 = this.f33106e;
+        e9Var2.setAlpha(f7);
+        e9Var2.setTranslationY((AndroidUtilities.dp(4.0f) * f10) + f11);
+        requestLayout();
+    }
+
+    public float getBottomInfoMargin() {
+        org.telegram.ui.Cells.e9 e9Var = this.d;
+        float alpha = e9Var.getAlpha() * e9Var.getHeight();
+        org.telegram.ui.Cells.e9 e9Var2 = this.f33106e;
+        return (e9Var2.getAlpha() * e9Var2.getHeight()) + alpha;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return 0;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        org.telegram.ui.Cells.w8 w8Var = this.f33104b;
+        if (w8Var.getVisibility() == 0) {
+            int i15 = i12 - i10;
+            org.telegram.ui.Cells.m4 m4Var = this.f33103a;
+            int measuredHeight = m4Var.getMeasuredHeight();
+            m4Var.layout(0, 0, i15, measuredHeight);
+            i14 = w8Var.getMeasuredHeight() + measuredHeight;
+            w8Var.layout(0, measuredHeight, i15, i14);
+        } else {
+            i14 = 0;
+        }
+        int i16 = i12 - i10;
+        org.telegram.ui.Cells.w8 w8Var2 = this.f33105c;
+        int measuredHeight2 = w8Var2.getMeasuredHeight() + i14;
+        w8Var2.layout(0, i14, i16, measuredHeight2);
+        org.telegram.ui.Cells.e9 e9Var = this.d;
+        e9Var.layout(0, measuredHeight2, i16, e9Var.getMeasuredHeight() + measuredHeight2);
+        org.telegram.ui.Cells.e9 e9Var2 = this.f33106e;
+        e9Var2.layout(0, measuredHeight2, i16, e9Var2.getMeasuredHeight() + measuredHeight2);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return 0;
+    public final void onMeasure(int i10, int i11) {
+        org.telegram.ui.Cells.e9 e9Var;
+        org.telegram.ui.Cells.e9 e9Var2;
+        float measuredHeight;
+        org.telegram.ui.Cells.m4 m4Var = this.f33103a;
+        int i12 = this.v;
+        m4Var.measure(i10, i12);
+        org.telegram.ui.Cells.w8 w8Var = this.f33104b;
+        w8Var.measure(i10, i12);
+        org.telegram.ui.Cells.w8 w8Var2 = this.f33105c;
+        w8Var2.measure(i10, i12);
+        this.d.measure(i10, i12);
+        this.f33106e.measure(i10, i12);
+        if (w8Var.getVisibility() == 0) {
+            measuredHeight = (w8Var2.getMeasuredHeight() * this.f33110s) + w8Var.getMeasuredHeight() + m4Var.getMeasuredHeight();
+        } else {
+            measuredHeight = w8Var2.getMeasuredHeight();
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (measuredHeight + AndroidUtilities.lerp(e9Var.getMeasuredHeight(), e9Var2.getMeasuredHeight(), this.f33110s)), 1073741824));
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
+    public void setChat(TLRPC.Chat chat) {
+        boolean z10;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights2;
+        this.f33108n = chat;
+        boolean z11 = true;
+        if (!chat.creator && ((tL_chatAdminRights2 = chat.admin_rights) == null || !tL_chatAdminRights2.ban_users)) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        this.f33104b.setEnabled(z10);
+        TLRPC.Chat chat2 = this.f33108n;
+        if (!chat2.creator && ((tL_chatAdminRights = chat2.admin_rights) == null || !tL_chatAdminRights.ban_users)) {
+            z11 = false;
+        }
+        this.f33105c.setEnabled(z11);
     }
 
-    @Override
-    public final void setAlpha(int i10) {
-        this.h.setAlpha(i10);
-        f30602j.setAlpha(i10);
+    public void setJoinRequest(boolean z10) {
+        this.h = z10;
+        this.f33105c.setChecked(z10);
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setJoinToSend(boolean z10) {
+        float f7;
+        this.f33107f = z10;
+        org.telegram.ui.Cells.w8 w8Var = this.f33104b;
+        w8Var.setChecked(z10);
+        w8Var.setDivider(this.f33107f);
+        boolean z11 = this.h;
+        org.telegram.ui.Cells.w8 w8Var2 = this.f33105c;
+        w8Var2.setChecked(z11);
+        ValueAnimator valueAnimator = this.f33109r;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float f10 = this.f33110s;
+        if (this.f33107f) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+        this.f33109r = ofFloat;
+        ofFloat.setDuration(200L);
+        this.f33109r.setInterpolator(tr.f31140f);
+        this.f33109r.addUpdateListener(new v70(this, 1));
+        this.f33109r.addListener(new r8(this, 27));
+        w8Var2.setVisibility(0);
+        this.f33109r.start();
     }
 }

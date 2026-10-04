@@ -4,10 +4,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.a80;
-import org.telegram.ui.bt;
-import org.telegram.ui.lt;
-public final class s1 implements lt {
+import org.telegram.ui.Components.b80;
+import org.telegram.ui.ft;
+import org.telegram.ui.pt;
+public final class s1 implements pt {
     @Override
     public final MessageObject A() {
         return null;
@@ -99,7 +99,7 @@ public final class s1 implements lt {
     }
 
     @Override
-    public final a80 j(m6 m6Var) {
+    public final b80 j(m6 m6Var) {
         return null;
     }
 
@@ -192,7 +192,7 @@ public final class s1 implements lt {
     }
 
     @Override
-    public final void f(CharSequence charSequence, String str, bt btVar) {
+    public final void f(CharSequence charSequence, String str, ft ftVar) {
     }
 
     @Override

@@ -1,67 +1,156 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.StatsController;
-public final class nu implements org.telegram.ui.Components.jl0, org.telegram.ui.ActionBar.z1 {
-    public final ru f35995a;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.SharedConfig;
+public final class nu extends org.telegram.ui.Components.yl0 {
+    public final Context f39037c;
+    public final DataSettingsActivity d;
 
-    public nu(ru ruVar) {
-        this.f35995a = ruVar;
+    public nu(DataSettingsActivity dataSettingsActivity, Context context) {
+        this.d = dataSettingsActivity;
+        this.f39037c = context;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+    public final boolean D(s4.c1 c1Var) {
+        int i10;
         int i11;
         int i12;
         int i13;
-        ru ruVar = this.f35995a;
-        vu vuVar = ruVar.f37477o3;
-        ArrayList arrayList = ruVar.f37469f3;
-        arrayList.clear();
-        int i14 = 0;
-        while (true) {
-            qu[] quVarArr = ruVar.f37470g3;
-            if (i14 >= quVarArr.length) {
-                i11 = ((org.telegram.ui.ActionBar.m2) vuVar).currentAccount;
-                StatsController.getInstance(i11).resetStats(0);
-                i12 = ((org.telegram.ui.ActionBar.m2) vuVar).currentAccount;
-                StatsController.getInstance(i12).resetStats(1);
-                i13 = ((org.telegram.ui.ActionBar.m2) vuVar).currentAccount;
-                StatsController.getInstance(i13).resetStats(2);
-                ruVar.X2 = true;
-                ruVar.z1();
-                ruVar.A1(true);
-                return;
+        int i14;
+        int i15;
+        int i16;
+        int b10 = c1Var.b();
+        DataSettingsActivity dataSettingsActivity = this.d;
+        if (b10 != dataSettingsActivity.f33731e && b10 != dataSettingsActivity.f33732f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f33735s) {
+            i10 = dataSettingsActivity.useLessDataForCallsRow;
+            if (b10 != i10 && b10 != dataSettingsActivity.v) {
+                i11 = dataSettingsActivity.proxyRow;
+                if (b10 != i11) {
+                    i12 = dataSettingsActivity.clearDraftsRow;
+                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f33738y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f33733n) {
+                        i13 = dataSettingsActivity.saveToGalleryGroupsRow;
+                        if (b10 != i13) {
+                            i14 = dataSettingsActivity.saveToGalleryPeerRow;
+                            if (b10 != i14) {
+                                i15 = dataSettingsActivity.saveToGalleryChannelsRow;
+                                if (b10 != i15) {
+                                    i16 = dataSettingsActivity.resetDownloadRow;
+                                    if (b10 != i16) {
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            qu quVar = quVarArr[i14];
-            if (quVar.f23631c > 0) {
-                arrayList.add(Integer.valueOf(quVar.d));
-            }
-            i14++;
         }
+        return true;
     }
 
     @Override
-    public int run() {
-        ru ruVar = this.f35995a;
-        ArrayList arrayList = ruVar.f37466c3;
-        int i10 = 0;
-        while (true) {
-            if (i10 < arrayList.size()) {
-                if (((mu) arrayList.get(i10)).f15716a == 5) {
-                    break;
+    public final int h() {
+        return this.d.U;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        DataSettingsActivity dataSettingsActivity = this.d;
+        if (i10 != dataSettingsActivity.f33734r && i10 != dataSettingsActivity.f33736w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
+            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f33737x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
+                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f33738y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
+                    if (i10 == dataSettingsActivity.H) {
+                        return 4;
+                    }
+                    if (i10 != dataSettingsActivity.f33731e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f33732f) {
+                        i11 = dataSettingsActivity.saveToGalleryGroupsRow;
+                        if (i10 != i11) {
+                            i12 = dataSettingsActivity.saveToGalleryPeerRow;
+                            if (i10 != i12) {
+                                i13 = dataSettingsActivity.saveToGalleryChannelsRow;
+                                if (i10 != i13) {
+                                    if (i10 != dataSettingsActivity.f33735s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f33733n) {
+                                        return 1;
+                                    }
+                                    return 6;
+                                }
+                                return 5;
+                            }
+                            return 5;
+                        }
+                        return 5;
+                    }
+                    return 5;
                 }
-                i10++;
+                return 3;
+            }
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 r28, int r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nu.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View b7Var;
+        Context context = this.f39037c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            if (i10 != 5) {
+                                b7Var = new org.telegram.ui.Cells.r8(context);
+                            } else {
+                                b7Var = new org.telegram.ui.Cells.j5(context);
+                            }
+                        } else {
+                            b7Var = new org.telegram.ui.Cells.e9(context);
+                        }
+                    } else {
+                        b7Var = new org.telegram.ui.Cells.w8(context);
+                    }
+                } else {
+                    b7Var = new org.telegram.ui.Cells.m4(context, 22);
+                }
             } else {
-                i10 = -1;
-                break;
+                b7Var = new org.telegram.ui.Cells.ea(context);
+            }
+        } else {
+            b7Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
+        }
+        return com.google.android.gms.internal.vision.e2.k(b7Var, b7Var, -1, -2);
+    }
+
+    @Override
+    public final void y(s4.c1 c1Var) {
+        if (c1Var.f46527f == 3) {
+            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) c1Var.f46523a;
+            int b10 = c1Var.b();
+            DataSettingsActivity dataSettingsActivity = this.d;
+            if (b10 == dataSettingsActivity.E) {
+                w8Var.setChecked(SharedConfig.saveStreamMedia);
+            } else if (b10 == dataSettingsActivity.f33738y) {
+                w8Var.setChecked(SharedConfig.streamMedia);
+            } else if (b10 == dataSettingsActivity.F) {
+                w8Var.setChecked(SharedConfig.streamAllVideo);
+            } else if (b10 == dataSettingsActivity.G) {
+                w8Var.setChecked(SharedConfig.streamMkv);
+            } else if (b10 == dataSettingsActivity.J) {
+                w8Var.setChecked(SharedConfig.isAutoplayGifs());
+            } else if (b10 == dataSettingsActivity.K) {
+                w8Var.setChecked(SharedConfig.isAutoplayVideo());
             }
         }
-        if (i10 < 0) {
-            return -1;
-        }
-        ruVar.Z2.h1(i10, AndroidUtilities.dp(60.0f));
-        return i10;
     }
 }

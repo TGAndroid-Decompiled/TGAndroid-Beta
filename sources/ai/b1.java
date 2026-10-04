@@ -2,6 +2,6 @@ package ai;
 public final class b1 extends d {
     @Override
     public final void b() {
-        this.f685b.append(org.telegram.ui.ActionBar.h6.f19131h5, -14671840);
+        this.f743b.append(org.telegram.ui.ActionBar.i6.f20889h5, -14671840);
     }
 }

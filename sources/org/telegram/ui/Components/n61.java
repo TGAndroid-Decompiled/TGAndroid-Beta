@@ -1,15 +1,34 @@
 package org.telegram.ui.Components;
-public final class n61 extends t61 {
-    public final o61 f26696f3;
 
-    public n61(o61 o61Var, o61 o61Var2, d dVar, m61 m61Var, m61 m61Var2) {
-        super(o61Var2, dVar, m61Var, m61Var2);
-        this.f26696f3 = o61Var;
+import android.text.TextPaint;
+public final class n61 extends k61 {
+    public final int f28880e;
+    public final m11 f28881f;
+
+    public n61(String str, int i10, m11 m11Var) {
+        super(str, (m11) null);
+        this.f28880e = i10;
+        this.f28881f = m11Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f26696f3.f26973b = -1;
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        int i10 = this.f28880e;
+        if (i10 == 3) {
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.J6, false));
+        } else if (i10 == 2) {
+            textPaint.setColor(-1);
+        } else if (i10 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20895hc, false));
+        } else {
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.gc, false));
+        }
+        m11 m11Var = this.f28881f;
+        if (m11Var != null) {
+            m11Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
+        }
     }
 }

@@ -1,22 +1,16 @@
 package org.telegram.ui.ActionBar;
-public final class x4 {
-    public static final x4 f19926a;
-    public static final x4 f19927b;
-    public static final x4[] f19928c;
 
-    static {
-        ?? r02 = new Enum("BACK", 0);
-        f19926a = r02;
-        ?? r12 = new Enum("MENU", 1);
-        f19927b = r12;
-        f19928c = new x4[]{r02, r12};
+import android.app.Activity;
+public final class x4 extends ActionBarLayout {
+    public final p f21688s1;
+
+    public x4(Activity activity, p pVar) {
+        super(activity, false);
+        this.f21688s1 = pVar;
     }
 
-    public static x4 valueOf(String str) {
-        return (x4) Enum.valueOf(x4.class, str);
-    }
-
-    public static x4[] values() {
-        return (x4[]) f19928c.clone();
+    @Override
+    public final f3 getBottomSheet() {
+        return ((f3[]) this.f21688s1.f21440b)[0];
     }
 }

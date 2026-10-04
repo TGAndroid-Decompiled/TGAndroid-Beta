@@ -9,30 +9,29 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import v7.j;
-import z3.m;
-public final class a implements m {
+import z3.n;
+public final class a implements n {
     public static final Pattern h = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
-    public final boolean f7467a;
-    public final b4.b f7468b;
+    public final boolean f8076a;
+    public final b4.b f8077b;
     public LinkedHashMap d;
-    public float e = -3.4028235E38f;
-    public float f7470f = -3.4028235E38f;
-    public final v f7469c = new v();
+    public float f8079e = -3.4028235E38f;
+    public float f8080f = -3.4028235E38f;
+    public final v f8078c = new v();
 
     public a(List list) {
         if (list != null && !list.isEmpty()) {
-            this.f7467a = true;
+            this.f8076a = true;
             String p5 = d0.p((byte[]) list.get(0));
             e2.d.b(p5.startsWith("Format:"));
             b4.b a2 = b4.b.a(p5);
             a2.getClass();
-            this.f7468b = a2;
+            this.f8077b = a2;
             b(new v((byte[]) list.get(1)), StandardCharsets.UTF_8);
             return;
         }
-        this.f7467a = false;
-        this.f7468b = null;
+        this.f8076a = false;
+        this.f8077b = null;
     }
 
     public static int a(long j3, ArrayList arrayList, ArrayList arrayList2) {
@@ -70,7 +69,7 @@ public final class a implements m {
             return -9223372036854775807L;
         }
         String group = matcher.group(1);
-        String str2 = d0.f7870a;
+        String str2 = d0.f8537a;
         return (Long.parseLong(matcher.group(4)) * 10000) + (Long.parseLong(matcher.group(3)) * 1000000) + (Long.parseLong(matcher.group(2)) * 60000000) + (Long.parseLong(group) * 3600000000L);
     }
 
@@ -80,8 +79,8 @@ public final class a implements m {
     }
 
     @Override
-    public final void C(byte[] r44, int r45, int r46, z3.l r47, e2.h r48) {
-        throw new UnsupportedOperationException("Method not decompiled: d4.a.C(byte[], int, int, z3.l, e2.h):void");
+    public final void F(byte[] r44, int r45, int r46, z3.m r47, e2.h r48) {
+        throw new UnsupportedOperationException("Method not decompiled: d4.a.F(byte[], int, int, z3.m, e2.h):void");
     }
 
     public final void b(e2.v r39, java.nio.charset.Charset r40) {
@@ -89,8 +88,8 @@ public final class a implements m {
     }
 
     @Override
-    public final z3.d r(int i10, int i11, byte[] bArr) {
-        return j.a(this, bArr, i11);
+    public final z3.d h(int i10, int i11, byte[] bArr) {
+        return t8.b.a(this, bArr, i11);
     }
 
     @Override

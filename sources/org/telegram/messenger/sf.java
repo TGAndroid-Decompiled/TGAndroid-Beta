@@ -2,27 +2,27 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class sf implements Runnable {
-    public final int f17542a;
-    public final MessagesStorage f17543b;
-    public final TLRPC.EncryptedChat f17544c;
+    public final int f19155a;
+    public final MessagesStorage f19156b;
+    public final TLRPC.EncryptedChat f19157c;
 
     public sf(MessagesStorage messagesStorage, TLRPC.EncryptedChat encryptedChat, int i10) {
-        this.f17542a = i10;
-        this.f17543b = messagesStorage;
-        this.f17544c = encryptedChat;
+        this.f19155a = i10;
+        this.f19156b = messagesStorage;
+        this.f19157c = encryptedChat;
     }
 
     @Override
     public final void run() {
-        switch (this.f17542a) {
+        switch (this.f19155a) {
             case 0:
-                this.f17543b.lambda$updateEncryptedChat$174(this.f17544c);
+                this.f19156b.lambda$updateEncryptedChat$174(this.f19157c);
                 return;
             case 1:
-                this.f17543b.lambda$updateEncryptedChatLayer$173(this.f17544c);
+                this.f19156b.lambda$updateEncryptedChatLayer$173(this.f19157c);
                 return;
             default:
-                this.f17543b.lambda$updateEncryptedChatTTL$172(this.f17544c);
+                this.f19156b.lambda$updateEncryptedChatTTL$172(this.f19157c);
                 return;
         }
     }

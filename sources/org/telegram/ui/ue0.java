@@ -1,177 +1,19 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.widget.TextView;
+import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class ue0 extends org.telegram.ui.Components.hw0 {
-    public final xd0 f38443a;
-    public final TextView f38444b;
-    public final TextView f38445c;
-    public final vh.n d;
-    public final org.telegram.ui.Components.nj0 e;
-    public Bundle f38446f;
-    public String h;
-    public boolean f38447n;
-    public String f38448r;
-    public String f38449s;
-    public String v;
-    public boolean f38450w;
-    public final se0 f38451x;
-    public final qg0 f38452y;
+public final class ue0 extends TimerTask {
+    public final ve0 f41153a;
 
-    public ue0(org.telegram.ui.qg0 r20, android.content.Context r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ue0.<init>(org.telegram.ui.qg0, android.content.Context):void");
+    public ue0(ve0 ve0Var) {
+        this.f41153a = ve0Var;
     }
 
     @Override
-    public final boolean a() {
-        return true;
-    }
-
-    @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final boolean c(boolean z10) {
-        this.f38452y.k1(true, true);
-        this.f38446f = null;
-        this.f38447n = false;
-        return true;
-    }
-
-    @Override
-    public final void d() {
-        this.f38447n = false;
-    }
-
-    @Override
-    public String getHeaderName() {
-        return LocaleController.getString("LoginPassword", R.string.LoginPassword);
-    }
-
-    @Override
-    public final void h(String str) {
-        int i10;
-        if (this.f38447n) {
+    public final void run() {
+        if (this.f41153a.N == null) {
             return;
         }
-        xd0 xd0Var = this.f38443a;
-        xd0Var.e = true;
-        for (as asVar : xd0Var.f40237f) {
-            asVar.j(0.0f);
-        }
-        String code = xd0Var.getCode();
-        if (code.length() == 0) {
-            o(false);
-            return;
-        }
-        this.f38447n = true;
-        qg0 qg0Var = this.f38452y;
-        qg0Var.n1(0, true);
-        TLRPC.TL_auth_checkRecoveryPassword tL_auth_checkRecoveryPassword = new TLRPC.TL_auth_checkRecoveryPassword();
-        tL_auth_checkRecoveryPassword.code = code;
-        i10 = ((org.telegram.ui.ActionBar.m2) qg0Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_auth_checkRecoveryPassword, new vb0(2, this, code), 10);
-    }
-
-    @Override
-    public final void j() {
-        AndroidUtilities.runOnUIThread(new se0(this, 0), qg0.f36885t0);
-    }
-
-    @Override
-    public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("recoveryview_params");
-        this.f38446f = bundle2;
-        if (bundle2 != null) {
-            m(bundle2, true);
-        }
-        String string = bundle.getString("recoveryview_code");
-        if (string != null) {
-            this.f38443a.setText(string);
-        }
-    }
-
-    @Override
-    public final void l(Bundle bundle) {
-        String code = this.f38443a.getCode();
-        if (code != null && code.length() != 0) {
-            bundle.putString("recoveryview_code", code);
-        }
-        Bundle bundle2 = this.f38446f;
-        if (bundle2 != null) {
-            bundle.putBundle("recoveryview_params", bundle2);
-        }
-    }
-
-    @Override
-    public final void m(Bundle bundle, boolean z10) {
-        if (bundle == null) {
-            return;
-        }
-        xd0 xd0Var = this.f38443a;
-        xd0Var.setText("");
-        this.f38446f = bundle;
-        this.h = bundle.getString("password");
-        this.f38448r = this.f38446f.getString("requestPhone");
-        this.f38449s = this.f38446f.getString("phoneHash");
-        this.v = this.f38446f.getString("phoneCode");
-        String string = this.f38446f.getString("email_unconfirmed_pattern");
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
-        int indexOf = string.indexOf(42);
-        int lastIndexOf = string.lastIndexOf(42);
-        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-            ?? obj = new Object();
-            obj.f23467a |= 256;
-            obj.f23468b = indexOf;
-            int i10 = lastIndexOf + 1;
-            obj.f23469c = i10;
-            valueOf.setSpan(new org.telegram.ui.Components.e11(obj, 0), indexOf, i10, 0);
-        }
-        this.d.setText(AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailNoAccess), valueOf));
-        qg0.T0(this.f38452y, xd0Var);
-        xd0Var.requestFocus();
-    }
-
-    @Override
-    public final void n() {
-        this.f38444b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        this.f38445c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.D6, false));
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.q6, false));
-        this.f38443a.invalidate();
-    }
-
-    public final void o(boolean z10) {
-        xd0 xd0Var = this.f38443a;
-        if (this.f38452y.getParentActivity() == null) {
-            return;
-        }
-        try {
-            xd0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        if (z10) {
-            for (as asVar : xd0Var.f40237f) {
-                asVar.setText("");
-            }
-        }
-        for (as asVar2 : xd0Var.f40237f) {
-            asVar2.i(1.0f);
-        }
-        xd0Var.f40237f[0].requestFocus();
-        AndroidUtilities.shakeViewSpring(xd0Var, new se0(this, 2));
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        removeCallbacks(this.f38451x);
+        AndroidUtilities.runOnUIThread(new g10(this, 22));
     }
 }

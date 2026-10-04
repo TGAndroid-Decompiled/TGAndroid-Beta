@@ -1,46 +1,35 @@
 package org.telegram.ui;
-
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class eh1 implements Utilities.Callback {
-    public final int f33400a;
-    public final UserInfoActivity f33401b;
+public final class eh1 implements Runnable {
+    public final int f36029a;
+    public final UserInfoActivity f36030b;
 
     public eh1(UserInfoActivity userInfoActivity, int i10) {
-        this.f33400a = i10;
-        this.f33401b = userInfoActivity;
+        this.f36029a = i10;
+        this.f36030b = userInfoActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f33400a) {
+    public final void run() {
+        switch (this.f36029a) {
             case 0:
-                UserInfoActivity userInfoActivity = this.f33401b;
-                userInfoActivity.J = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.n61 n61Var = userInfoActivity.f31894x;
-                if (n61Var != null) {
-                    n61Var.Y2.N(true);
-                }
-                userInfoActivity.b0(true);
+                this.f36030b.presentFragment(new PrivacyControlActivity(9, true));
                 return;
-            default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f33401b;
-                if (userInfoActivity2.K != chat) {
-                    userInfoActivity2.K = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.f0.p(R.string.EditProfileChannelSet, org.telegram.ui.Components.yc.a0(userInfoActivity2), R.raw.contact_check, 36);
-                    }
-                    userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.n61 n61Var2 = userInfoActivity2.f31894x;
-                    if (n61Var2 != null) {
-                        n61Var2.Y2.N(true);
-                        return;
-                    }
+            case 1:
+                org.telegram.ui.Components.w61 w61Var = this.f36030b.f34581y;
+                if (w61Var != null) {
+                    w61Var.f25244f3.N(true);
                     return;
                 }
+                return;
+            case 2:
+                UserInfoActivity userInfoActivity = this.f36030b;
+                userInfoActivity.getClass();
+                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
+                return;
+            default:
+                UserInfoActivity userInfoActivity2 = this.f36030b;
+                userInfoActivity2.getClass();
+                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
                 return;
         }
     }

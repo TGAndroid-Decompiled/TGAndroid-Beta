@@ -1,26 +1,54 @@
 package v7;
+
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.jm0;
 public abstract class o8 {
-    public static id.f a(id.f fVar, id.g key) {
-        kotlin.jvm.internal.i.e(key, "key");
-        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
-            return fVar;
+    public static void a(jm0 jm0Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        boolean q6;
+        if (d6Var != null) {
+            q6 = d6Var.a();
+        } else {
+            q6 = org.telegram.ui.ActionBar.i6.I.q();
         }
-        return null;
+        jm0Var.q(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, d6Var), q6);
     }
 
-    public static id.h b(id.f fVar, id.g key) {
-        kotlin.jvm.internal.i.e(key, "key");
-        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
-            return id.i.f11071a;
+    public static int b(ii.a aVar) {
+        int i10 = 0;
+        if (aVar == null) {
+            return 0;
         }
-        return fVar;
+        int c10 = c(aVar);
+        int max = Math.max(0, aVar.f12187c);
+        if (max > 0) {
+            i10 = AndroidUtilities.dp(hg.k0.f(max, 1, 24, 28));
+        }
+        return c10 + i10;
     }
 
-    public static id.h c(id.f fVar, id.h context) {
-        kotlin.jvm.internal.i.e(context, "context");
-        if (context == id.i.f11071a) {
-            return fVar;
+    public static int c(ii.a aVar) {
+        int size;
+        if (aVar == null) {
+            size = 0;
+        } else {
+            size = aVar.f12193k.size();
         }
-        return (id.h) context.fold(fVar, new b1.e(5));
+        if (size <= 0) {
+            return 0;
+        }
+        return AndroidUtilities.dp(hg.k0.f(size, 1, 16, 12));
+    }
+
+    public static int d(ii.a aVar) {
+        int size;
+        if (aVar == null) {
+            size = 0;
+        } else {
+            size = aVar.f12193k.size();
+        }
+        if (size <= 0) {
+            return 0;
+        }
+        return AndroidUtilities.dp(hg.k0.f(size, 1, 16, 8));
     }
 }

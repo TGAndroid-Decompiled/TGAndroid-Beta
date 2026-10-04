@@ -1,37 +1,38 @@
 package ci;
 
-import java.io.File;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.tl;
-public final class ed implements Utilities.Callback {
-    public final int f4663a;
-    public final boolean f4664b;
-    public final Object f4665c;
-    public final Object d;
+import android.content.DialogInterface;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.web.HttpGetFileTask;
+public final class ed implements DialogInterface.OnCancelListener {
+    public final int f5063a;
+    public final Object f5064b;
 
-    public ed(Object obj, boolean z10, Object obj2, int i10) {
-        this.f4663a = i10;
-        this.f4665c = obj;
-        this.f4664b = z10;
-        this.d = obj2;
+    public ed(Object obj, int i10) {
+        this.f5063a = i10;
+        this.f5064b = obj;
     }
 
     @Override
-    public final void run(java.lang.Object r23) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.ed.run(java.lang.Object):void");
-    }
-
-    public ed(tl tlVar, File file, boolean z10) {
-        this.f4663a = 1;
-        this.f4665c = tlVar;
-        this.d = file;
-        this.f4664b = z10;
-    }
-
-    public ed(boolean z10, Object obj, Object obj2, int i10) {
-        this.f4663a = i10;
-        this.f4664b = z10;
-        this.f4665c = obj;
-        this.d = obj2;
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f5063a) {
+            case 0:
+                ((x8) this.f5064b).run();
+                return;
+            case 1:
+                ((ai.s1) this.f5064b).run();
+                return;
+            case 2:
+                ((HttpGetFileTask) this.f5064b).cancel(true);
+                return;
+            case 3:
+                fi.t0 t0Var = (fi.t0) this.f5064b;
+                ConnectionsManager.getInstance(t0Var.d).cancelRequest(t0Var.f9989r, true);
+                t0Var.f9988q = null;
+                t0Var.f9989r = 0;
+                return;
+            default:
+                ((lg.p) this.f5064b).I = false;
+                return;
+        }
     }
 }

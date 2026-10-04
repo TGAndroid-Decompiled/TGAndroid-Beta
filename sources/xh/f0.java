@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.ui.Components.cw0;
-import org.telegram.ui.Components.oc0;
-public final class f0 extends cw0 {
-    public final j0 f46125w0;
+import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.pc0;
+public final class f0 extends lw0 {
+    public final j0 f49927w0;
 
     public f0(j0 j0Var, Context context) {
         super(context, null);
-        this.f46125w0 = j0Var;
+        this.f49927w0 = j0Var;
     }
 
     @Override
@@ -26,18 +26,18 @@ public final class f0 extends cw0 {
 
     @Override
     public final void U(Drawable drawable) {
-        if (drawable instanceof oc0) {
-            ((oc0) drawable).p();
+        if (drawable instanceof pc0) {
+            ((pc0) drawable).p();
         }
-        j0 j0Var = this.f46125w0;
-        j0Var.d.f9063a = j0Var.f46196c.c(drawable);
+        j0 j0Var = this.f49927w0;
+        j0Var.d.f9866a = j0Var.f50022c.c(drawable);
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view == this.L) {
-            j0 j0Var = this.f46125w0;
-            fh.a aVar = j0Var.d.f9063a;
+            j0 j0Var = this.f49927w0;
+            fh.a aVar = j0Var.d.f9866a;
             if (aVar instanceof fh.b) {
                 ((fh.b) aVar).c(getWidth(), getHeight());
             }
@@ -49,7 +49,7 @@ public final class f0 extends cw0 {
 
     @Override
     public final Drawable getNewDrawable() {
-        Drawable drawable = this.f46125w0.f46203y;
+        Drawable drawable = this.f49927w0.f50030y;
         if (drawable != null) {
             return drawable;
         }
@@ -59,6 +59,6 @@ public final class f0 extends cw0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f46125w0.o();
+        this.f49927w0.o();
     }
 }

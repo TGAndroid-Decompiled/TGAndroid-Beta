@@ -15,7 +15,7 @@ public interface o0 {
 
     Drawable e();
 
-    void g(CharSequence charSequence);
+    void h(CharSequence charSequence);
 
     void i(Drawable drawable);
 

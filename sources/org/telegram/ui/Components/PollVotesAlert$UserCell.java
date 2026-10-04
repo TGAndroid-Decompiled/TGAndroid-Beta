@@ -13,58 +13,58 @@ import org.telegram.tgnet.TLRPC;
 public class PollVotesAlert$UserCell extends LinearLayout {
     public ArrayList E;
     public final ch0 F;
-    public final w9 f22314a;
-    public final org.telegram.ui.ActionBar.h5 f22315b;
-    public final TextView f22316c;
+    public final w9 f24219a;
+    public final org.telegram.ui.ActionBar.i5 f24220b;
+    public final TextView f24221c;
     public final TextView d;
-    public final h9 e;
-    public final xw0 f22317f;
+    public final h9 f24222e;
+    public final gx0 f24223f;
     public TLRPC.User h;
-    public TLRPC.Chat f22318n;
-    public CharSequence f22319r;
-    public final int f22320s;
+    public TLRPC.Chat f24224n;
+    public CharSequence f24225r;
+    public final int f24226s;
     public boolean v;
-    public int f22321w;
-    public boolean f22322x;
-    public float f22323y;
+    public int f24227w;
+    public boolean f24228x;
+    public float f24229y;
 
     public PollVotesAlert$UserCell(ch0 ch0Var, Context context) {
         super(context);
         this.F = ch0Var;
-        this.f22320s = UserConfig.selectedAccount;
-        this.f22323y = 1.0f;
+        this.f24226s = UserConfig.selectedAccount;
+        this.f24229y = 1.0f;
         setOrientation(0);
         setLayoutDirection(3);
         setWillNotDraw(false);
         setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        this.e = new h9((org.telegram.ui.ActionBar.d6) null);
+        this.f24222e = new h9((org.telegram.ui.ActionBar.d6) null);
         w9 w9Var = new w9(context);
-        this.f22314a = w9Var;
+        this.f24219a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(18.0f));
-        addView(w9Var, w7.y5.t(34, 34, 16, 0, 0, 11, 0));
-        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
-        this.f22315b = h5Var;
-        int i10 = org.telegram.ui.ActionBar.h6.f19167j5;
-        h5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
-        h5Var.setTypeface(AndroidUtilities.bold());
-        h5Var.setTextSize(16);
-        h5Var.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        addView(h5Var, w7.y5.p(0, 24, 1.0f, 16, 0, 0, 0, 0));
+        addView(w9Var, w7.z5.t(34, 34, 16, 0, 0, 11, 0));
+        org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
+        this.f24220b = i5Var;
+        int i10 = org.telegram.ui.ActionBar.i6.f20925j5;
+        i5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+        i5Var.setTypeface(AndroidUtilities.bold());
+        i5Var.setTextSize(16);
+        i5Var.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        addView(i5Var, w7.z5.p(0, 24, 1.0f, 16, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        this.f22316c = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19317r5, false));
+        this.f24221c = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21076r5, false));
         textView.setTextSize(1, 13.0f);
-        addView(textView, w7.y5.p(-2, -2, 0.0f, 21, 4, 0, 2, 0));
+        addView(textView, w7.z5.p(-2, -2, 0.0f, 21, 4, 0, 2, 0));
         TextView textView2 = new TextView(context);
         this.d = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
         textView2.setTextSize(1, 13.0f);
-        addView(textView2, w7.y5.p(-2, -2, 0.0f, 21, 2, 0, 4, 0));
-        this.f22317f = new xw0(20, h5Var);
+        addView(textView2, w7.z5.p(-2, -2, 0.0f, 21, 2, 0, 4, 0));
+        this.f24223f = new gx0(20, i5Var);
     }
 
     public float getPlaceholderAlpha() {
-        return this.f22323y;
+        return this.f24229y;
     }
 
     @Override
@@ -75,12 +75,12 @@ public class PollVotesAlert$UserCell extends LinearLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f22317f.f30495a.a();
+        this.f24223f.f26942a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f22317f.f30495a.b();
+        this.f24223f.f26942a.b();
         super.onDetachedFromWindow();
     }
 
@@ -93,12 +93,12 @@ public class PollVotesAlert$UserCell extends LinearLayout {
         int dp4;
         float dp5;
         int i10;
-        if (this.f22322x || this.f22323y != 0.0f) {
+        if (this.f24228x || this.f24229y != 0.0f) {
             ch0 ch0Var = this.F;
-            ch0Var.G.setAlpha((int) (this.f22323y * 255.0f));
-            w9 w9Var = this.f22314a;
+            ch0Var.G.setAlpha((int) (this.f24229y * 255.0f));
+            w9 w9Var = this.f24219a;
             canvas.drawCircle((w9Var.getMeasuredWidth() / 2) + w9Var.getLeft(), (w9Var.getMeasuredHeight() / 2) + w9Var.getTop(), w9Var.getMeasuredWidth() / 2, ch0Var.G);
-            if (this.f22321w % 2 == 0) {
+            if (this.f24227w % 2 == 0) {
                 dp = AndroidUtilities.dp(65.0f);
                 dp2 = AndroidUtilities.dp(48.0f);
             } else {
@@ -110,7 +110,7 @@ public class PollVotesAlert$UserCell extends LinearLayout {
             }
             ch0Var.M.set(dp, measuredHeight - AndroidUtilities.dp(4.0f), dp + dp2, AndroidUtilities.dp(4.0f) + measuredHeight);
             canvas.drawRoundRect(ch0Var.M, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), ch0Var.G);
-            if (this.f22321w % 2 == 0) {
+            if (this.f24227w % 2 == 0) {
                 dp3 = AndroidUtilities.dp(119.0f);
                 dp4 = AndroidUtilities.dp(60.0f);
             } else {
@@ -136,7 +136,7 @@ public class PollVotesAlert$UserCell extends LinearLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp5, measuredHeight2, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19182k0);
+            canvas.drawLine(dp5, measuredHeight2, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20940k0);
         }
     }
 
@@ -146,7 +146,7 @@ public class PollVotesAlert$UserCell extends LinearLayout {
     }
 
     public void setPlaceholderAlpha(float f7) {
-        this.f22323y = f7;
+        this.f24229y = f7;
         invalidate();
     }
 }

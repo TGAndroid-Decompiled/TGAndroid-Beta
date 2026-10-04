@@ -1,70 +1,55 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.Locale;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class h41 implements org.telegram.ui.Components.to0 {
-    public final org.telegram.ui.Components.uo0 f34124a;
-    public final k41 f34125b;
-    public final k41 f34126c;
-    public final k41 d;
-    public final i41 e;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class h41 extends org.telegram.ui.ActionBar.n2 {
+    public static final int[] f36856c = {750000, 1000000, 1200000, 2000000};
+    public org.telegram.ui.Components.zl0 f36857a;
+    public g41 f36858b;
 
-    public h41(i41 i41Var, org.telegram.ui.Components.uo0 uo0Var, k41 k41Var, k41 k41Var2, k41 k41Var3) {
-        this.e = i41Var;
-        this.f34124a = uo0Var;
-        this.f34125b = k41Var;
-        this.f34126c = k41Var2;
-        this.d = k41Var3;
-    }
-
-    @Override
-    public final void X(float f7, boolean z10) {
-        long j3;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.e.d;
-        boolean isAttachedToWindow = this.f34124a.isAttachedToWindow();
-        if (f7 > 0.7f) {
-            j3 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
+    public static String S(int i10) {
+        if (i10 % 1000000 == 0) {
+            return (i10 / 1000000) + " Mbps";
+        } else if (i10 > 1000000) {
+            return String.format(Locale.US, "%.1f Mbps", Float.valueOf(i10 / 1000000.0f));
         } else {
-            j3 = (((float) 104333312) * (f7 / 0.7f)) + 524288.0f;
-        }
-        k41 k41Var = this.d;
-        k41 k41Var2 = this.f34125b;
-        k41 k41Var3 = this.f34126c;
-        if (f7 >= 1.0f) {
-            k41Var2.e(false, isAttachedToWindow);
-            k41Var3.e(false, isAttachedToWindow);
-            k41Var.e(true, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(k41Var3, false, 0.8f, isAttachedToWindow);
-        } else if (f7 == 0.0f) {
-            k41Var2.e(true, isAttachedToWindow);
-            k41Var3.e(false, isAttachedToWindow);
-            k41Var.e(false, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(k41Var3, false, 0.8f, isAttachedToWindow);
-        } else {
-            k41Var3.c(LocaleController.formatString("UpToFileSize", R.string.UpToFileSize, AndroidUtilities.formatFileSize(j3, true, false)), false, true);
-            k41Var2.e(false, isAttachedToWindow);
-            k41Var3.e(true, isAttachedToWindow);
-            k41Var.e(false, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(k41Var3, true, 0.8f, isAttachedToWindow);
-        }
-        if (z10) {
-            saveToGallerySettingsActivity.X().limitVideo = j3;
-            saveToGallerySettingsActivity.Y();
+            return (i10 / 1000) + " kbps";
         }
     }
 
-    @Override
-    public final CharSequence getContentDescription() {
-        return null;
+    public final void T(int i10, CharSequence[] charSequenceArr, org.telegram.ui.Components.voip.e1 e1Var) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+        alertDialog$Builder.f20367a.R = LocaleController.getString(i10);
+        alertDialog$Builder.f(charSequenceArr, new lg.j(11, this, e1Var));
+        showDialog(alertDialog$Builder.f20367a);
     }
 
     @Override
-    public final int m0() {
-        return 0;
-    }
-
-    @Override
-    public final void B() {
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.RoundVideoSettings));
+        this.actionBar.setActionBarMenuOnItemClick(new u70(this, 27));
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20761a7, false));
+        this.fragmentView = frameLayout;
+        org.telegram.ui.Components.zl0 zl0Var = new org.telegram.ui.Components.zl0(context, null);
+        this.f36857a = zl0Var;
+        zl0Var.s1();
+        this.actionBar.setAdaptiveBackground(this.f36857a);
+        this.f36857a.setLayoutManager(new s4.c0());
+        this.f36857a.setVerticalScrollBarEnabled(false);
+        org.telegram.ui.Components.zl0 zl0Var2 = this.f36857a;
+        g41 g41Var = new g41(context);
+        this.f36858b = g41Var;
+        zl0Var2.setAdapter(g41Var);
+        this.f36857a.setOnItemClickListener(new t21(this, 3));
+        frameLayout.addView(this.f36857a, w7.z5.c(-1.0f, -1));
+        return this.fragmentView;
     }
 }

@@ -2,19 +2,19 @@ package ch;
 
 import android.graphics.Canvas;
 public final class f extends d {
-    public final fh.a G;
+    public final fh.a H;
 
     public f(fh.a aVar) {
-        this.G = aVar;
+        this.H = aVar;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        c(canvas, this.G);
+        n(canvas, this.H);
     }
 
     @Override
-    public final fh.a i() {
-        return this.G;
+    public final fh.a t() {
+        return this.H;
     }
 }

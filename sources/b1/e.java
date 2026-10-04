@@ -4,25 +4,25 @@ import android.os.CancellationSignal;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import gd.i;
 import rd.p;
-import v7.h0;
+import v7.g0;
 public final class e implements p {
-    public final int f2888a;
+    public final int f3119a;
 
     public e(int i10) {
-        this.f2888a = i10;
+        this.f3119a = i10;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
         id.b bVar;
-        int i10 = this.f2888a;
-        i iVar = i.f9602a;
+        int i10 = this.f3119a;
+        i iVar = i.f10452a;
         switch (i10) {
             case 0:
                 rd.a f7 = (rd.a) obj2;
                 kotlin.jvm.internal.i.e(f7, "f");
                 int i11 = d.d;
-                h0.a((CancellationSignal) obj, f7);
+                g0.a((CancellationSignal) obj, f7);
                 return iVar;
             case 1:
                 rd.a f10 = (rd.a) obj2;
@@ -63,9 +63,9 @@ public final class e implements p {
                 kotlin.jvm.internal.i.e(acc2, "acc");
                 kotlin.jvm.internal.i.e(element2, "element");
                 id.h minusKey = acc2.minusKey(element2.getKey());
-                id.i iVar2 = id.i.f11071a;
+                id.i iVar2 = id.i.f12058a;
                 if (minusKey != iVar2) {
-                    id.d dVar = id.d.f11070a;
+                    id.d dVar = id.d.f12057a;
                     id.e eVar = (id.e) minusKey.get(dVar);
                     if (eVar == null) {
                         bVar = new id.b(element2, minusKey);

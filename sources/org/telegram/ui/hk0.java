@@ -1,63 +1,54 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class hk0 extends og.a {
-    public int f34246c;
-    public int d;
-    public CharSequence e;
-    public CharSequence f34247f;
-    public nk0 f34248g;
-    public int h;
-    public boolean f34249i;
+import android.widget.EditText;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class hk0 extends org.telegram.ui.ActionBar.f5 {
+    public final NotificationsCustomSettingsActivity f37112f;
 
-    public static hk0 b(int i10, String str, boolean z10) {
-        ?? aVar = new og.a(1, true);
-        aVar.f34246c = i10;
-        aVar.e = str;
-        aVar.f34249i = z10;
-        return aVar;
-    }
-
-    public static hk0 c(int i10, String str, String str2) {
-        ?? aVar = new og.a(5, true);
-        aVar.f34246c = i10;
-        aVar.e = str;
-        aVar.f34247f = str2;
-        return aVar;
-    }
-
-    public static hk0 d(int i10, String str) {
-        ?? aVar = new og.a(4, true);
-        aVar.f34246c = i10;
-        aVar.e = str;
-        return aVar;
+    public hk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
+        this.f37112f = notificationsCustomSettingsActivity;
     }
 
     @Override
-    public final boolean a(og.a aVar) {
-        if (this != aVar) {
-            if (hk0.class == aVar.getClass()) {
-                hk0 hk0Var = (hk0) aVar;
-                if (this.f34246c == hk0Var.f34246c && this.d == hk0Var.d && this.h == hk0Var.h && this.f34249i == hk0Var.f34249i && Objects.equals(this.e, hk0Var.e) && Objects.equals(this.f34247f, hk0Var.f34247f) && this.f34248g == hk0Var.f34248g) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    public final void m() {
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37112f;
+        notificationsCustomSettingsActivity.d.F(null);
+        notificationsCustomSettingsActivity.f33821f = false;
+        notificationsCustomSettingsActivity.getClass();
+        notificationsCustomSettingsActivity.f33819c.setText(LocaleController.getString("NoExceptions", R.string.NoExceptions));
+        notificationsCustomSettingsActivity.f33817a.setAdapter(notificationsCustomSettingsActivity.f33818b);
+        notificationsCustomSettingsActivity.f33818b.l();
+        notificationsCustomSettingsActivity.f33817a.setFastScrollVisible(true);
+        notificationsCustomSettingsActivity.f33817a.setVerticalScrollBarEnabled(false);
+        notificationsCustomSettingsActivity.f33819c.setShowAtCenter(false);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void n() {
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37112f;
+        notificationsCustomSettingsActivity.f33821f = true;
+        notificationsCustomSettingsActivity.f33819c.setShowAtCenter(true);
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37112f;
+        if (notificationsCustomSettingsActivity.d == null) {
+            return;
         }
-        if (obj != null && hk0.class == obj.getClass()) {
-            hk0 hk0Var = (hk0) obj;
-            if (this.f34246c == hk0Var.f34246c && this.h == hk0Var.h && ((this.f15716a == 8 || (this.d == hk0Var.d && Objects.equals(this.e, hk0Var.e) && (this.f15716a == 6 || Objects.equals(this.f34247f, hk0Var.f34247f)))) && this.f34248g == hk0Var.f34248g)) {
-                return true;
+        String obj = editText.getText().toString();
+        if (obj.length() != 0) {
+            notificationsCustomSettingsActivity.getClass();
+            if (notificationsCustomSettingsActivity.f33817a != null) {
+                notificationsCustomSettingsActivity.f33819c.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                notificationsCustomSettingsActivity.f33819c.b();
+                notificationsCustomSettingsActivity.f33817a.setAdapter(notificationsCustomSettingsActivity.d);
+                notificationsCustomSettingsActivity.d.l();
+                notificationsCustomSettingsActivity.f33817a.setFastScrollVisible(false);
+                notificationsCustomSettingsActivity.f33817a.setVerticalScrollBarEnabled(true);
             }
         }
-        return false;
+        notificationsCustomSettingsActivity.d.F(obj);
     }
 }

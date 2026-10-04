@@ -1,42 +1,260 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
+import java.lang.ref.WeakReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class tw0 {
-    public MessagesController.PeerColor f28629a;
-    public org.telegram.ui.ActionBar.d6 f28630b;
-    public int f28631c;
-    public int d;
-    public float e;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+public final class tw0 extends ij0 {
+    public int f31181b1;
+    public int f31182c1;
+    public int f31183d1;
+    public Bitmap f31184e1;
+    public final RLottieNative[] f31185f1;
+    public final int[] f31186g1;
+    public final int[] f31187h1;
+    public final RLottieNative[] f31188i1;
+    public final int[] f31189j1;
+    public final int[] f31190k1;
+    public boolean l1;
 
-    public final void a(MessagesController.PeerColor peerColor) {
-        int b10;
-        int i10;
-        this.f28629a = peerColor;
-        if (peerColor == null) {
-            this.f28631c = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.A8, this.f28630b);
-            this.d = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19339s8, this.f28630b);
-            this.f28631c = i0.a.d(this.e, this.f28631c, 603979776);
-            this.d = i0.a.d(this.e, this.d, -1);
+    public tw0(String str, int i10, int i11) {
+        super(str, i10, i11);
+        this.f31185f1 = new RLottieNative[5];
+        this.f31186g1 = new int[5];
+        this.f31187h1 = new int[5];
+        this.f31188i1 = new RLottieNative[3];
+        this.f31189j1 = new int[3];
+        this.f31190k1 = new int[3];
+    }
+
+    public static int X(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        if (i10 == 1) {
+            return 2;
+        }
+        if (i10 != 2) {
+            return 4;
+        }
+        return 3;
+    }
+
+    @Override
+    public final int B(Bitmap bitmap, boolean z10) {
+        Runnable runnable;
+        boolean z11;
+        if (this.f31184e1 == null) {
+            try {
+                this.f31184e1 = Bitmap.createBitmap(this.f28119b, this.f28121c, Bitmap.Config.ARGB_8888);
+            } catch (Throwable th2) {
+                FileLog.e(th2);
+                return 2;
+            }
+        }
+        int i10 = -1;
+        if (this.J == 1) {
+            int i11 = 0;
+            while (true) {
+                RLottieNative[] rLottieNativeArr = this.f31185f1;
+                if (i11 >= rLottieNativeArr.length) {
+                    break;
+                }
+                RLottieNative rLottieNative = rLottieNativeArr[i11];
+                int i12 = this.f31187h1[i11];
+                Bitmap bitmap2 = this.f31184e1;
+                if (i11 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                i10 = rLottieNative.c(i12, bitmap2, z11);
+                if (i11 != 0) {
+                    int[] iArr = this.f31187h1;
+                    int i13 = iArr[i11] + 1;
+                    if (i13 < this.f31186g1[i11]) {
+                        iArr[i11] = i13;
+                    } else if (i11 != 4) {
+                        iArr[i11] = 0;
+                        this.N = false;
+                        if (this.U0 != null) {
+                            this.J = 2;
+                        }
+                    }
+                }
+                i11++;
+            }
+        } else {
+            if (this.X0) {
+                int i14 = 0;
+                while (true) {
+                    int[] iArr2 = this.f31190k1;
+                    if (i14 >= iArr2.length) {
+                        break;
+                    }
+                    iArr2[i14] = this.f31189j1[i14] - 1;
+                    i14++;
+                }
+            }
+            if (this.l1) {
+                int[] iArr3 = this.f31187h1;
+                int i15 = iArr3[0] + 1;
+                if (i15 < this.f31186g1[0]) {
+                    iArr3[0] = i15;
+                } else {
+                    iArr3[0] = -1;
+                }
+            }
+            this.f31185f1[0].c(Math.max(this.f31187h1[0], 0), this.f31184e1, true);
+            int i16 = 0;
+            while (true) {
+                RLottieNative[] rLottieNativeArr2 = this.f31188i1;
+                if (i16 >= rLottieNativeArr2.length) {
+                    break;
+                }
+                RLottieNative rLottieNative2 = rLottieNativeArr2[i16];
+                int i17 = this.f31190k1[i16];
+                if (i17 < 0) {
+                    i17 = this.f31189j1[i16] - 1;
+                }
+                rLottieNative2.c(i17, this.f31184e1, false);
+                if (!this.N) {
+                    int[] iArr4 = this.f31190k1;
+                    int i18 = iArr4[i16] + 1;
+                    if (i18 < this.f31189j1[i16]) {
+                        iArr4[i16] = i18;
+                    } else {
+                        iArr4[i16] = -1;
+                    }
+                }
+                i16++;
+            }
+            int c10 = this.f31185f1[4].c(this.f31187h1[4], this.f31184e1, false);
+            int[] iArr5 = this.f31187h1;
+            int i19 = iArr5[4] + 1;
+            if (i19 < this.f31186g1[4]) {
+                iArr5[4] = i19;
+            }
+            int[] iArr6 = this.f31190k1;
+            if (iArr6[0] == -1 && iArr6[1] == -1 && iArr6[2] == -1) {
+                this.N = true;
+                this.M++;
+            }
+            int i20 = this.f31181b1;
+            int i21 = this.f31183d1;
+            if (i20 == i21 && i21 == this.f31182c1) {
+                if (this.f31190k1[0] == this.f31189j1[0] - 100) {
+                    this.l1 = true;
+                    if (i20 == 5) {
+                        WeakReference weakReference = this.H;
+                        if (weakReference == null) {
+                            runnable = null;
+                        } else {
+                            runnable = (Runnable) weakReference.get();
+                        }
+                        if (runnable != null) {
+                            AndroidUtilities.runOnUIThread(runnable);
+                        }
+                    }
+                }
+            } else {
+                this.f31187h1[0] = -1;
+            }
+            i10 = c10;
+        }
+        if (i10 < 0) {
+            return 2;
+        }
+        Utilities.copyBitmaps(this.f31184e1, bitmap);
+        return 1;
+    }
+
+    @Override
+    public final void C(boolean z10) {
+        this.f28132k0 = false;
+        this.f28133l0 = true;
+        n();
+        l();
+        if (!this.Y0 && !this.V0) {
+            if (this.P == null) {
+                W(true);
+                E();
+                return;
+            }
+            this.V = true;
             return;
         }
-        int bgColor1 = peerColor.getBgColor1(org.telegram.ui.ActionBar.h6.I.q());
-        int bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.h6.I.q());
-        org.telegram.ui.ActionBar.d6 d6Var = this.f28630b;
-        int d = i0.a.d(0.75f, bgColor2, bgColor1);
-        if (AndroidUtilities.computePerceivedBrightness(d) > 0.721f) {
-            b10 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19392v6, d6Var);
-        } else {
-            b10 = org.telegram.ui.ActionBar.h6.b(0.08f, -0.08f, d);
+        this.W0 = true;
+    }
+
+    public final void W(boolean z10) {
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            RLottieNative[] rLottieNativeArr = this.f31185f1;
+            if (i11 >= rLottieNativeArr.length) {
+                break;
+            }
+            RLottieNative rLottieNative = rLottieNativeArr[i11];
+            if (rLottieNative != null) {
+                if (z10 && rLottieNative == this.m0) {
+                    this.m0 = null;
+                }
+                this.f31185f1[i11].d();
+                this.f31185f1[i11] = null;
+            }
+            i11++;
         }
-        this.f28631c = b10;
-        if (AndroidUtilities.computePerceivedBrightness(b10) > 0.721f) {
-            i10 = -16777216;
-        } else {
-            i10 = -1;
+        while (true) {
+            RLottieNative[] rLottieNativeArr2 = this.f31188i1;
+            if (i10 < rLottieNativeArr2.length) {
+                RLottieNative rLottieNative2 = rLottieNativeArr2[i10];
+                if (rLottieNative2 != null) {
+                    if (z10 && rLottieNative2 == this.U0) {
+                        this.U0 = null;
+                    }
+                    this.f31188i1[i10].d();
+                    this.f31188i1[i10] = null;
+                }
+                i10++;
+            } else {
+                return;
+            }
         }
-        this.d = i10;
-        this.f28631c = i0.a.d(this.e, this.f28631c, 603979776);
-        this.d = i0.a.d(this.e, this.d, -1);
+    }
+
+    @Override
+    public final int j() {
+        if (this.f28133l0) {
+            return 3;
+        }
+        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void p() {
+        if (this.V) {
+            n();
+            if (this.P == null) {
+                W(false);
+            }
+        }
+        if (this.m0 == null && this.U0 == null) {
+            E();
+            return;
+        }
+        this.T = true;
+        if (!v()) {
+            stop();
+        }
+        I();
+    }
+
+    @Override
+    public final void i() {
     }
 }

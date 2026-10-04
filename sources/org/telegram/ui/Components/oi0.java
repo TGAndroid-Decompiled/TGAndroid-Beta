@@ -6,22 +6,22 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class oi0 extends LinearLayout {
-    public boolean f27078a;
-    public final ri0 f27079b;
+    public boolean f29363a;
+    public final ri0 f29364b;
 
     public oi0(ri0 ri0Var, Activity activity) {
         super(activity);
-        this.f27079b = ri0Var;
-        this.f27078a = false;
+        this.f29364b = ri0Var;
+        this.f29363a = false;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        ri0 ri0Var = this.f27079b;
+        ri0 ri0Var = this.f29364b;
         gd0 gd0Var = ri0Var.H;
         gd0 gd0Var2 = ri0Var.G;
-        this.f27078a = true;
+        this.f29363a = true;
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             i12 = 3;
@@ -32,7 +32,7 @@ public final class oi0 extends LinearLayout {
         gd0Var.setItemCount(i12);
         gd0Var2.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i12;
         gd0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i12;
-        this.f27078a = false;
+        this.f29363a = false;
         int size = View.MeasureSpec.getSize(i10);
         ri0Var.N = size;
         if (size != 0) {
@@ -43,7 +43,7 @@ public final class oi0 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f27078a) {
+        if (this.f29363a) {
             return;
         }
         super.requestLayout();

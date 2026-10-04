@@ -1,15 +1,29 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-public final class xb0 extends w21 {
-    public xb0(Bundle bundle) {
-        super(bundle);
+import org.telegram.tgnet.ConnectionsManager;
+public final class xb0 implements Runnable {
+    public final int f42823a;
+    public final dc0 f42824b;
+
+    public xb0(dc0 dc0Var, int i10) {
+        this.f42823a = i10;
+        this.f42824b = dc0Var;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        AndroidUtilities.runOnUIThread(new c10(this, 16));
+    public final void run() {
+        switch (this.f42823a) {
+            case 0:
+                dc0 dc0Var = this.f42824b;
+                if (dc0Var.h >= 0) {
+                    ConnectionsManager.getInstance(dc0Var.f35735b).cancelRequest(dc0Var.h, true);
+                    dc0Var.h = -1;
+                    return;
+                }
+                return;
+            default:
+                this.f42824b.a();
+                return;
+        }
     }
 }

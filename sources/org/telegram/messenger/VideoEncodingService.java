@@ -54,8 +54,8 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         if (instance == null) {
             try {
                 ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, VideoEncodingService.class));
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
         } else if (z10) {
             MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
@@ -99,9 +99,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             this.builder.f(LocaleController.getString(R.string.SendingVideo));
         }
         e0.t tVar = this.builder;
-        tVar.f7827n = 100;
-        tVar.f7828o = 0;
-        tVar.f7829p = true;
+        tVar.f8490n = 100;
+        tVar.f8491o = 0;
+        tVar.f8492p = true;
     }
 
     public void updateNotification() {
@@ -130,9 +130,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 if (i12 == 0) {
                     z10 = true;
                 }
-                tVar.f7827n = 100;
-                tVar.f7828o = i12;
-                tVar.f7829p = z10;
+                tVar.f8490n = 100;
+                tVar.f8491o = i12;
+                tVar.f8492p = z10;
                 updateNotification();
             }
         } else if (i10 == NotificationCenter.fileUploaded || i10 == NotificationCenter.fileUploadFailed) {
@@ -180,7 +180,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             tVar.E.icon = 17301640;
             tVar.E.when = System.currentTimeMillis();
             e0.t tVar2 = this.builder;
-            tVar2.f7837y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            tVar2.f8500y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             tVar2.g(LocaleController.getString(R.string.AppName));
         }
         setCurrentMessage(currentForegroundConverMessage);

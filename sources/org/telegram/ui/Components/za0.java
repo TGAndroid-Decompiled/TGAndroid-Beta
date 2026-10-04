@@ -5,10 +5,10 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class za0 extends s4.n0 {
-    public final ab0 f30860a;
+    public final ab0 f33463a;
 
     public za0(ab0 ab0Var) {
-        this.f30860a = ab0Var;
+        this.f33463a = ab0Var;
     }
 
     @Override
@@ -20,9 +20,9 @@ public final class za0 extends s4.n0 {
         rect.top = 0;
         rect.bottom = 0;
         s4.o0 layoutManager = recyclerView.getLayoutManager();
-        bb0 bb0Var = this.f30860a.f22633b3;
-        if (layoutManager == bb0Var.d && (R = RecyclerView.R(view)) != 0 && !bb0Var.f22924f.N()) {
-            if (bb0Var.f22924f.I() == null && bb0Var.f22924f.U == null) {
+        bb0 bb0Var = this.f33463a.f24512i3;
+        if (layoutManager == bb0Var.d && (R = RecyclerView.R(view)) != 0 && !bb0Var.f24909f.N()) {
+            if (bb0Var.f24909f.I() == null && bb0Var.f24909f.U == null) {
                 rect.top = AndroidUtilities.dp(2.0f);
             } else if (R != 0) {
                 R--;

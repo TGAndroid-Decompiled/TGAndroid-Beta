@@ -1,147 +1,93 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
-import android.widget.TextView;
+import android.text.TextWatcher;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class je0 extends org.telegram.ui.Components.hw0 {
-    public final EditTextBoldCursor f34780a;
-    public final TextView f34781b;
-    public final TextView f34782c;
-    public final TextView d;
-    public final org.telegram.ui.Components.nj0 e;
-    public Bundle f34783f;
-    public boolean h;
-    public TL_account.Password f34784n;
-    public String f34785r;
-    public String f34786s;
-    public String v;
-    public String f34787w;
-    public final org.telegram.ui.Components.ld0 f34788x;
-    public final qg0 f34789y;
+public final class je0 implements TextWatcher {
+    public final int f37664a = 0;
+    public boolean f37665b;
+    public final ViewGroup f37666c;
 
-    public je0(org.telegram.ui.qg0 r20, android.content.Context r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.je0.<init>(org.telegram.ui.qg0, android.content.Context):void");
+    public je0(qg.v2 v2Var) {
+        this.f37666c = v2Var;
     }
 
     @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final boolean c(boolean z10) {
-        this.h = false;
-        this.f34789y.k1(true, true);
-        this.f34783f = null;
-        return true;
-    }
-
-    @Override
-    public final void d() {
-        this.h = false;
-    }
-
-    @Override
-    public String getHeaderName() {
-        return LocaleController.getString("LoginPassword", R.string.LoginPassword);
-    }
-
-    @Override
-    public final void h(String str) {
-        if (!this.h && this.f34784n != null) {
-            String obj = this.f34780a.getText().toString();
-            if (obj.length() == 0) {
-                qg0 qg0Var = this.f34789y;
-                if (qg0Var.getParentActivity() == null) {
-                    return;
+    public final void afterTextChanged(Editable editable) {
+        int clamp;
+        switch (this.f37664a) {
+            case 0:
+                ke0 ke0Var = (ke0) this.f37666c;
+                if (this.f37665b) {
+                    if (ke0Var.f37951f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
+                        if (ke0Var.f37957y) {
+                            ke0Var.f37951f.callOnClick();
+                        }
+                        AndroidUtilities.updateViewVisibilityAnimated(ke0Var.f37951f, true, 0.1f, true);
+                        return;
+                    } else if (ke0Var.f37951f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
+                        AndroidUtilities.updateViewVisibilityAnimated(ke0Var.f37951f, false, 0.1f, true);
+                        return;
+                    } else {
+                        return;
+                    }
                 }
-                qg0.U0(qg0Var, this.f34788x, true);
                 return;
-            }
-            this.h = true;
-            this.f34789y.n1(0, true);
-            Utilities.globalQueue.postRunnable(new m80(19, this, obj));
+            default:
+                qg.v2 v2Var = (qg.v2) this.f37666c;
+                qg.u2 u2Var = v2Var.f45365q0;
+                if (this.f37665b && v2Var.f45371w0 > 0 && v2Var.f45372x0 > 0 && !v2Var.f45374z0 && u2Var.getLayout() != null) {
+                    float f7 = AndroidUtilities.displaySize.y / 3.0f;
+                    float height = u2Var.getLayout().getHeight();
+                    if (height > f7 && (clamp = Utilities.clamp((int) ((f7 / height) * v2Var.getBaseFontSize()), v2Var.f45372x0, v2Var.f45371w0)) != v2Var.getBaseFontSize()) {
+                        v2Var.setBaseFontSize(clamp);
+                        Runnable runnable = v2Var.f45373y0;
+                        if (runnable != null) {
+                            runnable.run();
+                        }
+                    }
+                }
+                v2Var.s();
+                return;
         }
     }
 
     @Override
-    public final void j() {
-        AndroidUtilities.runOnUIThread(new c10(this, 19), qg0.f36885t0);
-    }
-
-    @Override
-    public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("passview_params");
-        this.f34783f = bundle2;
-        if (bundle2 != null) {
-            m(bundle2, true);
-        }
-        String string = bundle.getString("passview_code");
-        if (string != null) {
-            this.f34780a.setText(string);
-        }
-    }
-
-    @Override
-    public final void l(Bundle bundle) {
-        String obj = this.f34780a.getText().toString();
-        if (obj.length() != 0) {
-            bundle.putString("passview_code", obj);
-        }
-        Bundle bundle2 = this.f34783f;
-        if (bundle2 != null) {
-            bundle.putBundle("passview_params", bundle2);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        boolean z10;
+        switch (this.f37664a) {
+            case 0:
+                return;
+            default:
+                if (i12 > 3) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                this.f37665b = z10;
+                return;
         }
     }
 
     @Override
-    public final void m(Bundle bundle, boolean z10) {
-        if (bundle == null) {
-            return;
-        }
-        boolean isEmpty = bundle.isEmpty();
-        EditTextBoldCursor editTextBoldCursor = this.f34780a;
-        if (isEmpty) {
-            AndroidUtilities.hideKeyboard(editTextBoldCursor);
-            return;
-        }
-        editTextBoldCursor.setText("");
-        this.f34783f = bundle;
-        String string = bundle.getString("password");
-        this.f34785r = string;
-        if (string != null) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-            this.f34784n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-        }
-        this.f34786s = bundle.getString("phoneFormated");
-        this.v = bundle.getString("phoneHash");
-        this.f34787w = bundle.getString("code");
-        TL_account.Password password = this.f34784n;
-        if (password != null && !TextUtils.isEmpty(password.hint)) {
-            editTextBoldCursor.setHint(this.f34784n.hint);
-        } else {
-            editTextBoldCursor.setHint((CharSequence) null);
-        }
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f37664a;
     }
 
-    @Override
-    public final void n() {
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
-        this.f34781b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.D6, false));
-        int w02 = org.telegram.ui.ActionBar.h6.w0(null, i10, false);
-        EditTextBoldCursor editTextBoldCursor = this.f34780a;
-        editTextBoldCursor.setTextColor(w02);
-        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
-        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.H6, false));
-        this.f34782c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.q6, false));
-        this.f34788x.f();
+    public je0(ke0 ke0Var, boolean z10) {
+        this.f37666c = ke0Var;
+        this.f37665b = z10;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

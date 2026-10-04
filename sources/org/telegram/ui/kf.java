@@ -1,78 +1,26 @@
 package org.telegram.ui;
+public final class kf implements Runnable {
+    public final int f37963a;
+    public final yn f37964b;
+    public final long f37965c;
+    public final long d;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class kf implements org.telegram.ui.ActionBar.z1, MessagesController.ErrorDelegate, no0 {
-    public final int f35050a;
-    public final Runnable f35051b;
-
-    public kf(int i10, Runnable runnable) {
-        this.f35050a = i10;
-        this.f35051b = runnable;
+    public kf(yn ynVar, long j3, long j10, int i10) {
+        this.f37963a = i10;
+        this.f37964b = ynVar;
+        this.f37965c = j3;
+        this.d = j10;
     }
 
     @Override
-    public void a(int i10) {
-        int i11 = this.f35050a;
-        Runnable runnable = this.f35051b;
-        switch (i11) {
-            case 9:
-                Pattern pattern = LaunchActivity.B1;
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f35050a) {
+    public final void run() {
+        switch (this.f37963a) {
             case 0:
-                this.f35051b.run();
-                return;
-            case 1:
-                this.f35051b.run();
+                yn.q0(this.f37964b, this.f37965c, this.d);
                 return;
             default:
-                Runnable runnable = this.f35051b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                yn.k1(this.f37964b, this.f37965c, this.d);
                 return;
-        }
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f35050a) {
-            case 3:
-                this.f35051b.run();
-                return true;
-            case 4:
-                this.f35051b.run();
-                return true;
-            case 5:
-                this.f35051b.run();
-                return true;
-            case 6:
-                this.f35051b.run();
-                return true;
-            case 7:
-                this.f35051b.run();
-                return true;
-            default:
-                this.f35051b.run();
-                return true;
         }
     }
 }

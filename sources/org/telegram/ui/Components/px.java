@@ -1,45 +1,22 @@
 package org.telegram.ui.Components;
+public final class px extends w7.a6 {
+    public final nz f29824a;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-import org.telegram.messenger.AndroidUtilities;
-public final class px extends lz {
-    public final mz d;
-
-    public px(mz mzVar) {
-        super(mzVar, 1);
-        this.d = mzVar;
+    public px(nz nzVar) {
+        this.f29824a = nzVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 0) {
-            this.d.f26540f0 = false;
-        }
-        super.a(recyclerView, i10);
+    public final void a() {
+        nz nzVar = this.f29824a;
+        nzVar.f29101f0 = false;
+        nzVar.P.A1();
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ah.h hVar;
-        mz mzVar = this.d;
-        my myVar = mzVar.S;
-        mx mxVar = mzVar.Q;
-        mzVar.U(mxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = mzVar.f26554j2) != null) {
-            hVar.f(i10, i11);
-        }
-        super.b(recyclerView, i10, i11);
-        if (myVar != null && mzVar.P.getAdapter() == myVar) {
-            my myVar2 = myVar.f26518x.f26174a;
-            if (!myVar2.F.V.F && !myVar2.E) {
-                if (mxVar.N0() + 20 > myVar.h()) {
-                    ly lyVar = myVar.f26518x;
-                    Objects.requireNonNull(lyVar);
-                    AndroidUtilities.runOnUIThread(new uw(lyVar, 1));
-                }
-            }
-        }
+    public final void b() {
+        nz nzVar = this.f29824a;
+        nzVar.P.A1();
+        nzVar.f29101f0 = true;
     }
 }

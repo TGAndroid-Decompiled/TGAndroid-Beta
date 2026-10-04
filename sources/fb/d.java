@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 public abstract class d {
-    public static final Type[] f9002a = new Type[0];
+    public static final Type[] f9797a = new Type[0];
 
     public static Type a(Type type) {
         if (type instanceof Class) {
@@ -110,7 +110,8 @@ public abstract class d {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        it.next().getClass();
+        throw new ClassCastException();
     }
 
     public static Type g(Type type, Class cls, Class cls2) {
@@ -193,7 +194,7 @@ public abstract class d {
     }
 
     public static void l(db.i iVar, lb.b bVar) {
-        h1.f9554z.getClass();
+        h1.f10402z.getClass();
         u0.b(iVar, bVar);
     }
 }

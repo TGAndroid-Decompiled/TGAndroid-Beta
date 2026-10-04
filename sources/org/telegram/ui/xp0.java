@@ -1,81 +1,38 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class xp0 extends org.telegram.ui.Components.cw0 {
-    public int f39960w0;
-    public boolean f39961x0;
-    public final cq0 f39962y0;
+import android.view.KeyEvent;
+public final class xp0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.l1 {
+    public final int f42920a;
+    public final fq0 f42921b;
 
-    public xp0(cq0 cq0Var, Context context) {
-        super(context, null);
-        this.f39962y0 = cq0Var;
+    public xp0(fq0 fq0Var, int i10) {
+        this.f42920a = i10;
+        this.f42921b = fq0Var;
     }
 
     @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xp0.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        float f7;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        int dp = AndroidUtilities.dp(20.0f);
-        int i13 = 0;
-        cq0 cq0Var = this.f39962y0;
-        if (dp >= 0) {
-            if (!AndroidUtilities.isInMultiwindow) {
-                size2 -= cq0Var.M.getEmojiPadding();
-                i11 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
-            }
-        } else {
-            this.f39961x0 = true;
-            cq0Var.M.j();
-            this.f39961x0 = false;
-        }
-        int i14 = i11;
-        int childCount = getChildCount();
-        while (i13 < childCount) {
-            View childAt = getChildAt(i13);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                org.telegram.ui.Components.lu luVar = cq0Var.M;
-                if (luVar != null && luVar.l(childAt)) {
-                    if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                    } else if (AndroidUtilities.isTablet()) {
-                        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-                        if (AndroidUtilities.isTablet()) {
-                            f7 = 200.0f;
-                        } else {
-                            f7 = 320.0f;
-                        }
-                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f7), getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight)), 1073741824));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight), 1073741824));
-                    }
-                } else {
-                    i12 = i10;
-                    measureChildWithMargins(childAt, i12, 0, i14, 0);
-                    i13++;
-                    i10 = i12;
-                }
-            }
-            i12 = i10;
-            i13++;
-            i10 = i12;
+    public void K(int i10, int i11, boolean z10) {
+        switch (this.f42920a) {
+            case 0:
+                fq0 fq0Var = this.f42921b;
+                fq0Var.T(fq0Var.f36361b, fq0Var.f36362c, z10, i10);
+                fq0Var.finishFragment();
+                return;
+            default:
+                fq0 fq0Var2 = this.f42921b;
+                fq0Var2.T(fq0Var2.f36361b, fq0Var2.f36362c, z10, i10);
+                fq0Var2.finishFragment();
+                return;
         }
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f39961x0) {
-            return;
+    public void o(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.n1 n1Var;
+        fq0 fq0Var = this.f42921b;
+        fq0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = fq0Var.I) != null && n1Var.isShowing()) {
+            fq0Var.I.d(true);
         }
-        super.requestLayout();
     }
 }

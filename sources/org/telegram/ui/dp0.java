@@ -1,35 +1,39 @@
 package org.telegram.ui;
-public final class dp0 implements Runnable {
-    public final int f33157a;
-    public final np0 f33158b;
 
-    public dp0(np0 np0Var, int i10) {
-        this.f33157a = i10;
-        this.f33158b = np0Var;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_stars;
+public final class dp0 extends org.telegram.ui.Components.f61 {
+    public static final int f35821a = 0;
+
+    static {
+        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f33157a;
-        np0 np0Var = this.f33158b;
-        switch (i10) {
-            case 0:
-                if (np0Var.G) {
-                    np0Var.f35932b.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                np0Var.h();
-                return;
-            case 2:
-                int i11 = np0.f35929q0;
-                np0Var.h();
-                return;
-            default:
-                int i12 = np0.f35929q0;
-                np0Var.h();
-                return;
+    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
+        ep0 ep0Var = (ep0) view;
+        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) g61Var.G;
+        xh.j1 j1Var = ep0Var.h;
+        xh.f1 f1Var = ep0Var.f36066e;
+        ep0Var.f36063a = savedStarGift.gift.f20264id;
+        ep0Var.setPadding(0, 0, 0, 0);
+        ep0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
+        ep0Var.f36064b = (TL_stars.starGiftAttributeBackdrop) yh.t5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        ep0Var.f36065c = (TL_stars.starGiftAttributePattern) yh.t5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+        f1Var.d(ep0Var.f36064b);
+        f1Var.e(ep0Var.f36065c);
+        if (j1Var != null) {
+            j1Var.setBackdrop(ep0Var.f36064b);
+            String h = org.telegram.messenger.f0.h(savedStarGift.gift.num, ',', new StringBuilder("#"));
+            j1Var.f50032b = h;
+            j1Var.f50031a.e(9, h, false);
         }
+        ep0Var.b(g61Var.f26662e, false);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new ep0(context, d6Var, true);
     }
 }

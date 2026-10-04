@@ -1,55 +1,28 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class sg implements View.OnKeyListener {
-    public final int f37754a;
-    public final Object f37755b;
+import org.telegram.tgnet.TLRPC;
+public final class sg implements Runnable {
+    public final int f40475a;
+    public final yn f40476b;
+    public final TLRPC.User f40477c;
 
-    public sg(Object obj, int i10) {
-        this.f37754a = i10;
-        this.f37755b = obj;
+    public sg(yn ynVar, TLRPC.User user, int i10) {
+        this.f40475a = i10;
+        this.f40476b = ynVar;
+        this.f40477c = user;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f37754a) {
+    public final void run() {
+        switch (this.f40475a) {
             case 0:
-                wn wnVar = (wn) this.f37755b;
-                wnVar.getClass();
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    wnVar.ta();
-                    return true;
-                }
-                return false;
-            case 1:
-                gn0 gn0Var = (gn0) this.f37755b;
-                if (i10 == 67) {
-                    if (gn0Var.Y[2].length() == 0) {
-                        gn0Var.Y[1].requestFocus();
-                        EditTextBoldCursor editTextBoldCursor2 = gn0Var.Y[1];
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                        gn0Var.Y[1].dispatchKeyEvent(keyEvent);
-                        return true;
-                    }
-                } else {
-                    gn0Var.getClass();
-                }
-                return false;
+                yn ynVar = this.f40476b;
+                ynVar.getClass();
+                ynVar.presentFragment(yn.Q9(this.f40477c.f20184id));
+                return;
             default:
-                ov0 ov0Var = (ov0) this.f37755b;
-                EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = ov0Var.f20139f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
+                this.f40476b.la(this.f40477c);
+                return;
         }
     }
 }

@@ -2,7 +2,10 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.telegram.tgnet.TLRPC;
 public class AppGlobalConfig {
@@ -11,6 +14,7 @@ public class AppGlobalConfig {
     public final ConfigInt aicomposeToneSavedLimitDefault;
     public final ConfigInt aicomposeToneSavedLimitPremium;
     public final ConfigInt aicomposeToneTitleLengthMax;
+    public final ConfigStringSet botAllowedSuffixes;
     public final ConfigInt botsCreateLimitDefault;
     public final ConfigInt botsCreateLimitPremium;
     public final ConfigInt communityBotPeersLimit;
@@ -291,6 +295,62 @@ public class AppGlobalConfig {
         }
     }
 
+    public static class ConfigStringSet {
+        private final Internal handler;
+
+        public static class Internal implements ConfigInternal {
+            private final Set<String> defaultValue;
+            private final String name;
+            private Set<String> value;
+
+            @Override
+            public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+                if (jSONValue instanceof TLRPC.TL_jsonArray) {
+                    TLRPC.TL_jsonArray tL_jsonArray = (TLRPC.TL_jsonArray) jSONValue;
+                    HashSet hashSet = new HashSet();
+                    int size = tL_jsonArray.value.size();
+                    for (int i10 = 0; i10 < size; i10++) {
+                        TLRPC.JSONValue jSONValue2 = tL_jsonArray.value.get(i10);
+                        if (jSONValue2 instanceof TLRPC.TL_jsonString) {
+                            hashSet.add(((TLRPC.TL_jsonString) jSONValue2).value);
+                        }
+                    }
+                    if (!hashSet.equals(this.value)) {
+                        this.value = hashSet;
+                        editor.putStringSet(this.name, new HashSet(this.value));
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public void load(SharedPreferences sharedPreferences) {
+                HashSet hashSet;
+                Set<String> stringSet = sharedPreferences.getStringSet(this.name, this.defaultValue);
+                if (stringSet == null) {
+                    hashSet = null;
+                } else {
+                    hashSet = new HashSet(stringSet);
+                }
+                this.value = hashSet;
+            }
+
+            private Internal(String str, Set<String> set) {
+                this.name = str;
+                this.defaultValue = set == null ? null : new HashSet(set);
+            }
+        }
+
+        public Set<String> get() {
+            return this.handler.value;
+        }
+
+        private ConfigStringSet(String str, Set<String> set) {
+            this.handler = new Internal(str, set);
+        }
+    }
+
     public static class ConfigTime {
         private final ConfigLong.Internal handler;
         private final TimeUnit timeUnit;
@@ -363,6 +423,7 @@ public class AppGlobalConfig {
         this.quickReplyMessagesLimit = ofInt("quick_reply_messages_limit", 20);
         this.ephemeralWelcomeMessagesMax = ofInt("ephemeral_welcome_messages_max", 5);
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
+        this.botAllowedSuffixes = ofStringSet("bot_allowed_suffixes", Collections.singleton("bot"));
     }
 
     public static AppGlobalConfig getInstance(int i10) {
@@ -399,6 +460,12 @@ public class AppGlobalConfig {
         return configString;
     }
 
+    private ConfigStringSet ofStringSet(String str, Set<String> set) {
+        ConfigStringSet configStringSet = new ConfigStringSet(str, set);
+        this.map.put(str, configStringSet.handler);
+        return configStringSet;
+    }
+
     private ConfigTime ofTime(String str, long j3, TimeUnit timeUnit) {
         ConfigTime configTime = new ConfigTime(str, timeUnit, j3);
         this.map.put(str, configTime.handler);
@@ -422,8 +489,8 @@ public class AppGlobalConfig {
         for (ConfigInternal configInternal : this.map.values()) {
             try {
                 configInternal.load(sharedPreferences);
-            } catch (ClassCastException e) {
-                FileLog.e(e);
+            } catch (ClassCastException e7) {
+                FileLog.e(e7);
             }
         }
     }

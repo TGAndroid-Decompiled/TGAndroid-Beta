@@ -4,52 +4,52 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.o6;
 import org.telegram.ui.Components.oj0;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 import yf.p;
 public final class d extends c {
     public final o6 d;
-    public final oj0 e;
-    public final le.c f43279f;
+    public final oj0 f46868e;
+    public final le.b f46869f;
     public float h;
 
     public d(u1 u1Var, d6 d6Var) {
         super(d6Var);
         oj0 oj0Var = new oj0(u1Var);
-        this.e = oj0Var;
+        this.f46868e = oj0Var;
         oj0Var.d(null, true, false);
         oj0Var.v = 650.0f;
         oj0Var.e(0.69f, false);
-        oj0Var.f27093p.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        this.f43279f = new le.c(u1Var, sr.h, 260L);
+        oj0Var.f29383p.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        this.f46869f = new le.b(u1Var, tr.h, 260L);
         o6 o6Var = new o6(true, false, false, false);
         this.d = o6Var;
         o6Var.u(AndroidUtilities.bold());
         o6Var.t(AndroidUtilities.dp(13.0f));
-        o6Var.f26947b = 17;
-        int v02 = h6.v0(h6.f19150i6, d6Var);
-        if (this.f43277b != v02) {
-            h6.B1(this.f43276a, v02, false);
-            this.f43277b = v02;
+        o6Var.f29239b = 17;
+        int v02 = i6.v0(i6.f20908i6, d6Var);
+        if (this.f46866b != v02) {
+            i6.B1(this.f46865a, v02, false);
+            this.f46866b = v02;
         }
     }
 
     @Override
     public final void a(int i10) {
-        this.f43276a.setAlpha(i10);
-        this.d.f26964w = i10;
+        this.f46865a.setAlpha(i10);
+        this.d.f29257w = i10;
     }
 
     public final float b() {
-        return this.f43279f.e;
+        return this.f46869f.f15434e;
     }
 
     public final void c(int i10) {
         this.d.r(i10);
-        this.e.f27092o = i10;
+        this.f46868e.f29382o = i10;
     }
 
     public final void d(float f7) {
@@ -63,7 +63,7 @@ public final class d extends c {
 
     @Override
     public final void draw(Canvas canvas) {
-        float f7 = this.f43279f.e;
+        float f7 = this.f46869f.f15434e;
         if (f7 < 1.0f) {
             p.b(canvas, this.d, 1.0f - f7);
         }
@@ -72,7 +72,7 @@ public final class d extends c {
             float exactCenterY = getBounds().exactCenterY();
             canvas.save();
             canvas.scale(f7, f7, exactCenterX, exactCenterY);
-            this.e.a(canvas);
+            this.f46868e.a(canvas);
             canvas.restore();
         }
     }
@@ -86,6 +86,6 @@ public final class d extends c {
         int dp = AndroidUtilities.dp(11.0f);
         int centerX = rect.centerX();
         int centerY = rect.centerY();
-        this.e.f(centerX - dp, centerY - dp, centerX + dp, centerY + dp);
+        this.f46868e.f(centerX - dp, centerY - dp, centerX + dp, centerY + dp);
     }
 }

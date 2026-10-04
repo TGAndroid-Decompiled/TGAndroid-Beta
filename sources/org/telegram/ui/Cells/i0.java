@@ -5,10 +5,10 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class i0 extends FrameLayout {
-    public TextView f20418a;
+    public TextView f22227a;
 
     public TextView getTextView() {
-        return this.f20418a;
+        return this.f22227a;
     }
 
     @Override
@@ -17,6 +17,6 @@ public final class i0 extends FrameLayout {
     }
 
     public void setText(String str) {
-        this.f20418a.setText(str);
+        this.f22227a.setText(str);
     }
 }

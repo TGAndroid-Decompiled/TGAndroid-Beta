@@ -1,45 +1,23 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class o60 implements org.telegram.ui.Components.f20, org.telegram.ui.ActionBar.z1, r0.n {
-    public final int f36054a;
-    public final z60 f36055b;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+public final class o60 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final FrameLayout f39110a;
+    public final r60 f39111b;
 
-    public o60(z60 z60Var, int i10) {
-        this.f36054a = i10;
-        this.f36055b = z60Var;
+    public o60(r60 r60Var, FrameLayout frameLayout) {
+        this.f39111b = r60Var;
+        this.f39110a = frameLayout;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        int i10 = AndroidUtilities.getDefaultWindowInsets(l1Var, false).d;
-        z60 z60Var = this.f36055b;
-        z60Var.m0 = i10;
-        ai.w7 w7Var = z60Var.F;
-        if (w7Var != null) {
-            w7Var.setPadding(0, 0, 0, i10);
+    public final void onGlobalLayout() {
+        this.f39110a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        r60 r60Var = this.f39111b;
+        if (r60Var.f39925z0 == null) {
+            r60Var.f39925z0 = (vc) r60Var.y0(r60Var.Z);
         }
-        z60Var.j0();
-        z60Var.h0();
-        return r0.l1.f42141b;
-    }
-
-    @Override
-    public void a(int i10) {
-        z60 z60Var = this.f36055b;
-        z60Var.f40368b.a(Math.min(i10, z60Var.f40371c0));
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f36054a) {
-            case 1:
-                this.f36055b.o0();
-                return;
-            default:
-                this.f36055b.finishFragment();
-                return;
-        }
+        r60Var.f39925z0.f41696f.setOnClickListener(new j60(this, 1));
     }
 }

@@ -1,24 +1,22 @@
 package l;
 
-import android.view.CollapsibleActionView;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class p extends FrameLayout implements k.b {
-    public final CollapsibleActionView f14006a;
+import android.view.MenuItem;
+public final class p implements MenuItem.OnActionExpandListener {
+    public final MenuItem.OnActionExpandListener f15219a;
+    public final r f15220b;
 
-    public p(View view) {
-        super(view.getContext());
-        this.f14006a = (CollapsibleActionView) view;
-        addView(view);
+    public p(r rVar, MenuItem.OnActionExpandListener onActionExpandListener) {
+        this.f15220b = rVar;
+        this.f15219a = onActionExpandListener;
     }
 
     @Override
-    public final void onActionViewCollapsed() {
-        this.f14006a.onActionViewCollapsed();
+    public final boolean onMenuItemActionCollapse(MenuItem menuItem) {
+        return this.f15219a.onMenuItemActionCollapse(this.f15220b.f(menuItem));
     }
 
     @Override
-    public final void onActionViewExpanded() {
-        this.f14006a.onActionViewExpanded();
+    public final boolean onMenuItemActionExpand(MenuItem menuItem) {
+        return this.f15219a.onMenuItemActionExpand(this.f15220b.f(menuItem));
     }
 }

@@ -127,13 +127,13 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (z10) {
             return null;
         }
-        org.telegram.ui.ActionBar.h6.R(this);
+        org.telegram.ui.ActionBar.i6.R(this);
         if (tLObject instanceof TLRPC.User) {
             h9Var = new org.telegram.ui.Components.h9(0, (TLRPC.User) tLObject);
         } else {
             h9Var = new org.telegram.ui.Components.h9((TLRPC.Chat) tLObject);
         }
-        h9Var.f24742r = 1;
+        h9Var.f27058r = 1;
         float f11 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(f11), AndroidUtilities.dp(f11), Bitmap.Config.ARGB_8888);
         h9Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -202,7 +202,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (MediaController.getInstance().isDownloadingCurrentMessage()) {
             android.support.v4.media.session.e0 e0Var = this.playbackState;
             e0Var.c(6, 0L, 1.0f);
-            e0Var.e = 0L;
+            e0Var.f2002e = 0L;
         } else {
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null && playingMessageObject.isMusic()) {
@@ -237,7 +237,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 i10 = 2;
             }
             e0Var3.c(i10, j3, getPlaybackSpeed(z10, playingMessageObject));
-            e0Var3.e = j10;
+            e0Var3.f2002e = j10;
             if (playingMessageObject != null && playingMessageObject.isMusic()) {
                 int i13 = SharedConfig.repeatMode;
                 if (i13 != 1) {
@@ -507,8 +507,8 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                     MediaController.getInstance().cleanupPlayer(true, true);
                     return 2;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception e7) {
+                e7.printStackTrace();
             }
         }
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
@@ -528,8 +528,8 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                     this.audioManager.registerRemoteControlClient(remoteControlClient);
                 }
                 this.remoteControlClient.setTransportControlFlags(189);
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e10) {
+                FileLog.e(e10);
             }
         }
         createNotification(playingMessageObject, false);

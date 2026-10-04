@@ -7,25 +7,25 @@ import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class g3 extends e3 {
-    public final Paint f47434c;
+    public final Paint f51339c;
     public final Matrix d;
-    public final RadialGradient e;
-    public final int f47435f;
-    public final int f47436g;
+    public final RadialGradient f51340e;
+    public final int f51341f;
+    public final int f51342g;
     public final int h;
 
     public g3(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f47331a = stargiftattributebackdrop.name;
-        this.f47332b = stargiftattributebackdrop.getRarityPermille();
+        this.f51223a = stargiftattributebackdrop.name;
+        this.f51224b = stargiftattributebackdrop.getRarityPermille();
         Paint paint = new Paint(1);
-        this.f47434c = paint;
+        this.f51339c = paint;
         this.d = new Matrix();
         RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(200.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.e = radialGradient;
+        this.f51340e = radialGradient;
         paint.setShader(radialGradient);
-        this.f47436g = stargiftattributebackdrop.text_color | (-16777216);
+        this.f51342g = stargiftattributebackdrop.text_color | (-16777216);
         int i10 = stargiftattributebackdrop.pattern_color;
         this.h = i10 | (-16777216);
-        this.f47435f = i0.a.d(0.25f, stargiftattributebackdrop.edge_color | (-16777216), i10 | (-16777216));
+        this.f51341f = i0.a.d(0.25f, stargiftattributebackdrop.edge_color | (-16777216), i10 | (-16777216));
     }
 }

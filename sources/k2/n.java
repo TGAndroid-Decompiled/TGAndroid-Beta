@@ -1,26 +1,10 @@
 package k2;
-public interface n {
-    void G();
+public final class n extends Exception {
+    public final int f14485a;
+    public final boolean f14486b;
+    public final b2.s f14487c;
 
-    void P(Exception exc);
-
-    void S();
-
-    void V(k kVar);
-
-    void b(long j3);
-
-    void f0();
-
-    void j0(k kVar);
-
-    void o();
-
-    void onAudioSessionIdChanged(int i10);
-
-    void onSkipSilenceEnabledChanged(boolean z10);
-
-    void q();
-
-    void y(int i10, long j3, long j10);
+    public n(int r4, int r5, int r6, int r7, int r8, b2.s r9, boolean r10, java.lang.RuntimeException r11) {
+        throw new UnsupportedOperationException("Method not decompiled: k2.n.<init>(int, int, int, int, int, b2.s, boolean, java.lang.RuntimeException):void");
+    }
 }

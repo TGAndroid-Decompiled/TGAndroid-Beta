@@ -1,61 +1,20 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ze1 extends s4.s0 {
-    public final int f40455a;
-    public final wf1 f40456b;
-
-    public ze1(wf1 wf1Var, int i10) {
-        this.f40455a = i10;
-        this.f40456b = wf1Var;
-    }
+import android.view.MotionEvent;
+import android.view.View;
+import java.util.HashSet;
+public final class ze1 implements View.OnTouchListener {
+    public final int f43763a;
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        boolean z10;
-        wf1 wf1Var;
-        ah.h hVar;
-        switch (this.f40455a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.f43763a) {
             case 0:
-                wf1 wf1Var2 = this.f40456b;
-                int L0 = wf1Var2.F.L0();
-                if (L0 != -1) {
-                    s4.c1 K = recyclerView.K(L0);
-                    boolean z11 = false;
-                    if (K != null) {
-                        i12 = K.f42962a.getTop();
-                    } else {
-                        i12 = 0;
-                    }
-                    if (L0 == 0) {
-                        int i13 = 0 - i12;
-                        if (i12 < 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        Math.abs(i13);
-                    } else if (L0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    wf1Var2.G0((z10 || !wf1Var2.K) ? true : true, true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f40456b.y0();
-                return;
+                HashSet hashSet = yf1.f43161n1;
+                return true;
             default:
-                if (Build.VERSION.SDK_INT >= 31 && (hVar = (wf1Var = this.f40456b).f39323f1) != null) {
-                    hVar.f(i10, i11);
-                    wf1Var.x0();
-                    return;
-                }
-                return;
+                int[][] iArr = WallpapersListActivity.f34593i0;
+                return true;
         }
     }
 }

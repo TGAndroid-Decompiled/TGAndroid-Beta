@@ -8,33 +8,33 @@ import android.graphics.Path;
 import android.text.TextPaint;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-public final class nl extends org.telegram.ui.Components.c11 {
-    public final wn K;
+public final class nl extends org.telegram.ui.Components.l11 {
+    public final yn K;
 
-    public nl(Activity activity, org.telegram.ui.ActionBar.d6 d6Var, wn wnVar) {
+    public nl(Activity activity, org.telegram.ui.ActionBar.d6 d6Var, yn ynVar) {
         super(activity);
-        this.K = wnVar;
+        this.K = ynVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f23142b = textPaint;
+        this.f28254b = textPaint;
         Paint paint = new Paint(1);
-        this.f23143c = paint;
+        this.f28255c = paint;
         this.d = AndroidUtilities.dp(24.0f);
-        this.e = new OvershootInterpolator();
-        this.H = new org.telegram.ui.Components.yq0(this, 15);
+        this.f28256e = new OvershootInterpolator();
+        this.H = new org.telegram.ui.Components.br0(this, 16);
         this.J = new Path();
-        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Hi, d6Var);
+        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Hi, d6Var);
         int alpha = Color.alpha(v02);
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint.setColor(v02);
         paint.setColor(v02);
         paint.setAlpha((int) (alpha * 0.14d));
-        setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Fi, d6Var)));
+        setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Fi, d6Var)));
     }
 
     public final void d() {
         int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
-        wn wnVar = this.K;
-        int top = wnVar.Y.getTop() - wnVar.X0.getMeasuredHeight();
+        yn ynVar = this.K;
+        int top = ynVar.W.getTop() - ynVar.V0.getMeasuredHeight();
         setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
     }
 

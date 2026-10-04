@@ -6,14 +6,14 @@ import q3.h;
 import we.c;
 import ye.d;
 public final class b extends df.a {
-    public final ArrayList f46030c;
+    public final ArrayList f49826c;
     public final ArrayList d;
-    public final we.a f46028a = new p();
-    public final ArrayList f46029b = new ArrayList();
-    public boolean e = true;
+    public final we.a f49824a = new p();
+    public final ArrayList f49825b = new ArrayList();
+    public boolean f49827e = true;
 
     public b(ArrayList arrayList, ArrayList arrayList2) {
-        this.f46030c = arrayList;
+        this.f49826c = arrayList;
         this.d = arrayList2;
     }
 
@@ -53,16 +53,16 @@ public final class b extends df.a {
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.e) {
-            this.e = false;
+        if (this.f49827e) {
+            this.f49827e = false;
         } else {
-            this.f46029b.add(charSequence);
+            this.f49825b.add(charSequence);
         }
     }
 
     @Override
     public final bf.a e() {
-        return this.f46028a;
+        return this.f49824a;
     }
 
     @Override
@@ -72,13 +72,13 @@ public final class b extends df.a {
         ArrayList arrayList2 = this.d;
         int size = arrayList2.size();
         ?? pVar = new p();
-        ?? r32 = this.f46028a;
+        ?? r32 = this.f49824a;
         r32.b(pVar);
         ?? pVar2 = new p();
         pVar.b(pVar2);
         int i10 = 0;
         while (true) {
-            arrayList = this.f46030c;
+            arrayList = this.f49826c;
             if (i10 >= size) {
                 break;
             }
@@ -88,11 +88,11 @@ public final class b extends df.a {
                 pVar3.h = (c) arrayList.get(i10);
             }
             aVar.a(str2.trim(), pVar3);
-            pVar3.f45303g = true;
+            pVar3.f49039g = true;
             pVar2.b(pVar3);
             i10++;
         }
-        ArrayList arrayList3 = this.f46029b;
+        ArrayList arrayList3 = this.f49825b;
         int size2 = arrayList3.size();
         ?? r52 = 0;
         int i11 = 0;
@@ -125,8 +125,8 @@ public final class b extends df.a {
 
     @Override
     public final h h(d dVar) {
-        if (dVar.f47000a.toString().contains("|")) {
-            return h.a(dVar.f47001b);
+        if (dVar.f50866a.toString().contains("|")) {
+            return h.a(dVar.f50867b);
         }
         return null;
     }

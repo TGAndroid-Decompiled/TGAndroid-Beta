@@ -1,38 +1,15 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-public final class r6 {
-    public long f37187a;
-    public int f37188b;
-    public long f37189c;
-    public final SparseArray d = new SparseArray();
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class r6 extends n6 {
+    public final a7 d;
 
-    public r6(long j3) {
-        this.f37187a = j3;
-    }
-
-    public final void a(zh.a aVar, int i10) {
-        SparseArray sparseArray = this.d;
-        s6 s6Var = (s6) sparseArray.get(i10, null);
-        if (s6Var == null) {
-            s6Var = new s6();
-            sparseArray.put(i10, s6Var);
-        }
-        long j3 = aVar.f49468c;
-        s6Var.f37599a += j3;
-        this.f37189c += j3;
-        this.f37188b++;
-        s6Var.f37600b.add(aVar);
-    }
-
-    public final void b(zh.a aVar) {
-        s6 s6Var = (s6) this.d.get(aVar.d, null);
-        if (s6Var != null && s6Var.f37600b.remove(aVar)) {
-            long j3 = s6Var.f37599a;
-            long j10 = aVar.f49468c;
-            s6Var.f37599a = j3 - j10;
-            this.f37189c -= j10;
-            this.f37188b--;
-        }
+    public r6(a7 a7Var, Context context) {
+        super(context);
+        this.d = a7Var;
+        ((ViewGroup.MarginLayoutParams) this.f38823a.getLayoutParams()).topMargin = AndroidUtilities.dp(5.0f);
+        this.f38823a.setOnClickListener(new a(this, 6));
     }
 }

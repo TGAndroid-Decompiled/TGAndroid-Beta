@@ -11,7 +11,7 @@ public final class a0 extends s2 {
     }
 
     @Override
-    public final boolean Q() {
+    public final boolean O() {
         switch (this.W4) {
             case 0:
                 return false;

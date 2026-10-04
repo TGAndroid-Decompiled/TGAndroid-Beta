@@ -10,11 +10,11 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class ll implements org.telegram.ui.Components.ui {
-    public final wn f35383a;
+public final class ll implements org.telegram.ui.Components.vi {
+    public final yn f38284a;
 
-    public ll(wn wnVar) {
-        this.f35383a = wnVar;
+    public ll(yn ynVar) {
+        this.f38284a = ynVar;
     }
 
     @Override
@@ -33,28 +33,28 @@ public final class ll implements org.telegram.ui.Components.ui {
         boolean z18;
         String str2;
         TLRPC.Message message;
-        wn wnVar = this.f35383a;
-        if (wnVar.getParentActivity() != null && (g4Var = wnVar.J1) != null) {
+        yn ynVar = this.f38284a;
+        if (ynVar.getParentActivity() != null && (g4Var = ynVar.H1) != null) {
             boolean z19 = g4Var.G;
             MessageObject messageObject = g4Var.H1;
-            wnVar.p5 = messageObject;
+            ynVar.f43430n5 = messageObject;
             if (messageObject != null && (message = messageObject.messageOwner) != null) {
                 message.invert_media = z12;
             }
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || g4Var.f29946j0.getSelectedPhotos().isEmpty())) {
-                ai.g4 g4Var2 = wnVar.J1;
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || g4Var.f32824j0.getSelectedPhotos().isEmpty())) {
+                ai.g4 g4Var2 = ynVar.H1;
                 if (g4Var2 != null) {
                     g4Var2.dismissWithButtonClick(i10);
                 }
-                wnVar.Aa(i10);
+                ynVar.za(i10);
                 return;
             }
-            ai.g4 g4Var3 = wnVar.J1;
+            ai.g4 g4Var3 = ynVar.H1;
             if (g4Var3 != null && i10 != 8) {
                 g4Var3.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = wnVar.J1.f29946j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = wnVar.J1.f29946j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = ynVar.H1.f32824j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = ynVar.H1.f32824j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
                 int i15 = 0;
@@ -130,25 +130,25 @@ public final class ll implements org.telegram.ui.Components.ui {
                     HashMap<Object, Object> hashMap3 = selectedPhotos;
                     boolean z21 = z19;
                     if (i15 == 0) {
-                        wnVar.l8(((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).caption, ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).entities);
+                        ynVar.l8(((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).caption, ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).entities);
                         z14 = ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).updateStickersOrder;
                     } else {
                         z14 = false;
                     }
-                    MessageObject messageObject2 = wnVar.p5;
+                    MessageObject messageObject2 = ynVar.f43430n5;
                     if (messageObject2 != null && messageObject2.needResendWhenEdit()) {
-                        MessageSuggestionParams messageSuggestionParams = wnVar.f39489g5;
+                        MessageSuggestionParams messageSuggestionParams = ynVar.f43320e5;
                         if (messageSuggestionParams == null) {
-                            messageSuggestionParams = MessageSuggestionParams.of(wnVar.p5.messageOwner.suggested_post);
+                            messageSuggestionParams = MessageSuggestionParams.of(ynVar.f43430n5.messageOwner.suggested_post);
                         }
                         MessageSuggestionParams messageSuggestionParams2 = messageSuggestionParams;
-                        AccountInstance accountInstance = wnVar.getAccountInstance();
+                        AccountInstance accountInstance = ynVar.getAccountInstance();
                         int i19 = ceil;
-                        long j11 = wnVar.T5;
-                        MessageObject messageObject3 = wnVar.p5;
+                        long j11 = ynVar.R5;
+                        MessageObject messageObject3 = ynVar.f43430n5;
                         int i20 = i15;
-                        MessageObject messageObject4 = wnVar.X3;
-                        mn mnVar = wnVar.f39548l5;
+                        MessageObject messageObject4 = ynVar.V3;
+                        on onVar = ynVar.f43380j5;
                         if (i10 != 4 && !z13) {
                             arrayList = arrayList2;
                             z16 = false;
@@ -158,21 +158,21 @@ public final class ll implements org.telegram.ui.Components.ui {
                         }
                         i14 = i20;
                         i13 = i19;
-                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, messageObject3, messageObject4, null, mnVar, z16, z10, null, z11, i11, i12, wnVar.R3, z14, null, wnVar.C8(), j3, z12, j10, wnVar.N8(), messageSuggestionParams2);
+                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, messageObject3, messageObject4, null, onVar, z16, z10, null, z11, i11, i12, ynVar.P3, z14, null, ynVar.D8(), j3, z12, j10, ynVar.O8(), messageSuggestionParams2);
                     } else {
                         i13 = ceil;
                         i14 = i15;
-                        AccountInstance accountInstance2 = wnVar.getAccountInstance();
-                        long j12 = wnVar.T5;
-                        MessageObject messageObject5 = wnVar.f39574n5;
-                        MessageObject messageObject6 = wnVar.X3;
-                        mn mnVar2 = wnVar.f39548l5;
+                        AccountInstance accountInstance2 = ynVar.getAccountInstance();
+                        long j12 = ynVar.R5;
+                        MessageObject messageObject5 = ynVar.f43404l5;
+                        MessageObject messageObject6 = ynVar.V3;
+                        on onVar2 = ynVar.f43380j5;
                         if (i10 != 4 && !z13) {
                             z15 = false;
                         } else {
                             z15 = true;
                         }
-                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j12, messageObject5, messageObject6, null, mnVar2, z15, z10, wnVar.p5, z11, i11, i12, wnVar.R3, z14, null, wnVar.C8(), j3, z12, j10, wnVar.N8(), wnVar.f39489g5);
+                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j12, messageObject5, messageObject6, null, onVar2, z15, z10, ynVar.f43430n5, z11, i11, i12, ynVar.P3, z14, null, ynVar.D8(), j3, z12, j10, ynVar.O8(), ynVar.f43320e5);
                     }
                     i15 = i14 + 1;
                     ceil = i13;
@@ -180,24 +180,24 @@ public final class ll implements org.telegram.ui.Components.ui {
                     z19 = z21;
                 }
                 hashMap = selectedPhotos;
-                wnVar.y6();
-                wnVar.Y.setFieldText("");
+                ynVar.y6();
+                ynVar.W.setFieldText("");
             } else {
                 hashMap = selectedPhotos;
             }
             if (i11 != 0) {
-                if (wnVar.S3 == -1) {
-                    wnVar.S3 = 0;
+                if (ynVar.Q3 == -1) {
+                    ynVar.Q3 = 0;
                 }
-                wnVar.S3 += hashMap.size();
-                wnVar.Ec(true);
+                ynVar.Q3 += hashMap.size();
+                ynVar.Dc(true);
             }
         }
     }
 
     @Override
     public final void K0() {
-        this.f35383a.Y.P();
+        this.f38284a.W.N();
     }
 
     @Override
@@ -206,24 +206,24 @@ public final class ll implements org.telegram.ui.Components.ui {
     }
 
     @Override
-    public final boolean c0() {
-        return this.f35383a.P9();
+    public final boolean a0() {
+        return this.f38284a.O9();
     }
 
     @Override
     public final void j1(TLRPC.User user) {
         String publicUsername = UserObject.getPublicUsername(user);
-        wn wnVar = this.f35383a;
-        if (wnVar.Y != null && user != null && !TextUtils.isEmpty(publicUsername)) {
-            jk jkVar = wnVar.Y;
+        yn ynVar = this.f38284a;
+        if (ynVar.W != null && user != null && !TextUtils.isEmpty(publicUsername)) {
+            jk jkVar = ynVar.W;
             jkVar.setFieldText("@" + publicUsername + " ");
-            wnVar.Y.H0();
+            ynVar.W.H0();
         }
     }
 
     @Override
-    public final void x0(org.telegram.ui.Components.hh hhVar) {
-        this.f35383a.h8(hhVar);
+    public final void x0(org.telegram.ui.Components.ih ihVar) {
+        this.f38284a.h8(ihVar);
     }
 
     @Override

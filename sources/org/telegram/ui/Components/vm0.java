@@ -1,22 +1,15 @@
 package org.telegram.ui.Components;
-public final class vm0 {
-    public static final vm0 f29147a;
-    public static final vm0 f29148b;
-    public static final vm0[] f29149c;
+public final class vm0 implements Runnable {
+    public final int f31734a;
+    public final an0 f31735b;
 
-    static {
-        ?? r02 = new Enum("LINE", 0);
-        f29147a = r02;
-        ?? r12 = new Enum("TAB", 1);
-        f29148b = r12;
-        f29149c = new vm0[]{r02, r12};
+    public vm0(an0 an0Var, int i10) {
+        this.f31734a = i10;
+        this.f31735b = an0Var;
     }
 
-    public static vm0 valueOf(String str) {
-        return (vm0) Enum.valueOf(vm0.class, str);
-    }
-
-    public static vm0[] values() {
-        return (vm0[]) f29149c.clone();
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vm0.run():void");
     }
 }

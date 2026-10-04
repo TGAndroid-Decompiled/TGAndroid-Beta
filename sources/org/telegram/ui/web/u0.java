@@ -1,83 +1,222 @@
 package org.telegram.ui.web;
 
-import ai.f5;
-import android.content.Context;
-import android.net.Uri;
-import android.os.Build;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.graphics.RectF;
+import android.view.View;
+import ci.b6;
+import java.io.File;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d6;
-public final class u0 extends WebViewClient {
-    public final WebView f39212a;
-    public final v0 f39213b;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Cells.c6;
+import org.telegram.ui.Components.bl0;
+import org.telegram.ui.Components.in0;
+import org.telegram.ui.Components.nj0;
+import org.telegram.ui.oo;
+import org.telegram.ui.va1;
+import qg.v2;
+public final class u0 implements Runnable {
+    public final int f42349a;
+    public final Object f42350b;
 
-    public u0(v0 v0Var, WebView webView) {
-        this.f39213b = v0Var;
-        this.f39212a = webView;
+    public u0(Object obj, int i10) {
+        this.f42349a = i10;
+        this.f42350b = obj;
     }
 
     @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        d6 d6Var;
-        Integer valueOf;
-        Boolean valueOf2;
-        y0 y0Var = this.f39213b.e;
-        if (Build.VERSION.SDK_INT >= 26) {
-            StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
-            if (renderProcessGoneDetail == null) {
-                valueOf = null;
-            } else {
-                valueOf = Integer.valueOf(renderProcessGoneDetail.rendererPriorityAtExit());
-            }
-            sb2.append(valueOf);
-            sb2.append(" didCrash=");
-            if (renderProcessGoneDetail == null) {
-                valueOf2 = null;
-            } else {
-                valueOf2 = Boolean.valueOf(renderProcessGoneDetail.didCrash());
-            }
-            sb2.append(valueOf2);
-            y0Var.c(sb2.toString());
-        } else {
-            y0Var.c("newWebView.onRenderProcessGone");
+    public final void run() {
+        long j3;
+        switch (this.f42349a) {
+            case 0:
+                nf.f.s(((v0) this.f42350b).f42363b.f42404e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                return;
+            case 1:
+                g1 g1Var = (g1) this.f42350b;
+                Utilities.searchQueue.postRunnable(new in0(g1Var, new ArrayList(g1Var.h.f42198f), g1Var.h.f42200r, 22));
+                return;
+            case 2:
+                HttpGetFileTask.a((HttpGetFileTask) this.f42350b);
+                return;
+            case 3:
+                ((org.telegram.ui.Cells.o1) this.f42350b).invalidateSelf();
+                return;
+            case 4:
+                a2 a2Var = (a2) this.f42350b;
+                File databasePath = ApplicationLoader.applicationContext.getDatabasePath("webview.db");
+                long j10 = 0;
+                if (databasePath != null && databasePath.exists()) {
+                    j3 = databasePath.length();
+                } else {
+                    j3 = 0;
+                }
+                File databasePath2 = ApplicationLoader.applicationContext.getDatabasePath("webviewCache.db");
+                if (databasePath2 != null && databasePath2.exists()) {
+                    j3 += databasePath2.length();
+                }
+                File file = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
+                if (file.exists()) {
+                    j3 += a2.Y(file, Boolean.FALSE);
+                }
+                File file2 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "cache/WebView");
+                if (file2.exists()) {
+                    j3 += a2.Y(file2, null);
+                }
+                File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
+                if (file3.exists()) {
+                    j10 = a2.Y(file3, Boolean.TRUE);
+                }
+                AndroidUtilities.runOnUIThread(new oo(a2Var, j3, j10, 1));
+                return;
+            case 5:
+                ((boolean[]) this.f42350b)[0] = true;
+                return;
+            case 6:
+                ((p4.e) this.f42350b).k();
+                return;
+            case 7:
+                ((p4.g) this.f42350b).f44179n = -1;
+                return;
+            case 8:
+                ((bl0) this.f42350b).b();
+                return;
+            case 9:
+                l2.g gVar = ((pg.r0) this.f42350b).f44571b.f44582a;
+                if (gVar != null) {
+                    gVar.m();
+                    return;
+                }
+                return;
+            case 10:
+                pg.s0 s0Var = ((pg.r0) this.f42350b).f44571b;
+                if (s0Var.d == null) {
+                    s0Var.L = null;
+                    return;
+                }
+                int currentColor = s0Var.f44586f.getCurrentColor();
+                s0Var.l(s0Var.f44583b, false, false);
+                a5.a d = s0Var.d(s0Var.f44583b, currentColor, new RectF(s0Var.h));
+                s0Var.b();
+                pg.i1 i1Var = s0Var.d;
+                RectF rectF = new RectF();
+                s0Var.h = rectF;
+                i1Var.a(rectF);
+                s0Var.p(s0Var.e(i1Var, currentColor, new RectF(s0Var.h)), false);
+                s0Var.p(d, false);
+                s0Var.e(i1Var, currentColor, null);
+                s0Var.d = null;
+                s0Var.J = 0.0f;
+                s0Var.L = null;
+                return;
+            case 11:
+                ((pg.d1) ((pg.c1) this.f42350b).f44437b).f44450y.f44476a.a();
+                return;
+            case 12:
+                pg.v1 v1Var = ((pg.w1) this.f42350b).f44670a;
+                if (v1Var != null) {
+                    v1Var.j();
+                    return;
+                }
+                return;
+            case 13:
+                ph.c cVar = (ph.c) this.f42350b;
+                ph.b bVar = cVar.f44706c;
+                if (bVar == ph.b.f44701b) {
+                    cVar.a(ph.b.f44700a, true);
+                    return;
+                } else if (bVar == ph.b.f44702c) {
+                    cVar.a(ph.b.d, true);
+                    return;
+                } else {
+                    return;
+                }
+            case 14:
+                b6 b6Var = (b6) this.f42350b;
+                b6Var.f45012x0 = true;
+                b6Var.s();
+                return;
+            case 15:
+                ((View) this.f42350b).performClick();
+                return;
+            case 16:
+                MediaDataController.getInstance(UserConfig.selectedAccount).addRecentSticker(2, null, ((qg.l2) this.f42350b).f45138f.document, (int) (System.currentTimeMillis() / 1000), false);
+                return;
+            case 17:
+                AndroidUtilities.showKeyboard(((v2) this.f42350b).f45365q0);
+                return;
+            case 18:
+                AndroidUtilities.showKeyboard(((qh.c) this.f42350b).f45444a);
+                return;
+            case 19:
+                qh.c cVar2 = (qh.c) ((c6) this.f42350b).d;
+                org.telegram.ui.Cells.u1 u1Var = cVar2.f45449n;
+                if (u1Var != null && u1Var.getDelegate() != null) {
+                    cVar2.f45449n.getDelegate().D1(cVar2.f45449n, false);
+                    return;
+                }
+                return;
+            case 20:
+                ((qh.q) this.f42350b).f45501c.f25244f3.N(true);
+                return;
+            case 21:
+                ((qh.p) this.f42350b).a();
+                return;
+            case 22:
+                qi.d dVar = (qi.d) this.f42350b;
+                AndroidUtilities.runOnUIThread(new qi.c(dVar.f45520a, dVar.f45521b, 1), 500L);
+                return;
+            case 23:
+                r2.f fVar = (r2.f) this.f42350b;
+                synchronized (fVar.f45707a) {
+                    try {
+                        if (!fVar.f45717m) {
+                            long j11 = fVar.f45716l - 1;
+                            fVar.f45716l = j11;
+                            int i10 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
+                            if (i10 <= 0) {
+                                if (i10 < 0) {
+                                    fVar.c(new IllegalStateException());
+                                    return;
+                                } else {
+                                    fVar.a();
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                        return;
+                    } finally {
+                    }
+                }
+            case 24:
+                com.google.firebase.messaging.s sVar = (com.google.firebase.messaging.s) this.f42350b;
+                ((s5.g) ((t5.c) sVar.f7923e)).f(new r2.s(sVar, 4));
+                return;
+            case 25:
+                ((cf.c) this.f42350b).x();
+                return;
+            case 26:
+                rg.k0 k0Var = ((rg.d0) this.f42350b).f46091c;
+                k0Var.f25303n.presentFragment(va1.b0(k0Var.s1(), true));
+                return;
+            case 27:
+                nj0 nj0Var = ((rg.q0) this.f42350b).f46255y;
+                nj0Var.getAnimatedDrawable().N(0, true, false);
+                nj0Var.d();
+                return;
+            case 28:
+                ((rg.w0) this.f42350b).f46331b.y();
+                return;
+            default:
+                rg.q1 q1Var = (rg.q1) this.f42350b;
+                int size = 1073741823 - (1073741823 % q1Var.f46256e3.size());
+                s4.c0 c0Var = q1Var.f46257f3;
+                q1Var.f46269s3 = size;
+                c0Var.h1(size, (q1Var.getMeasuredHeight() - q1Var.getChildAt(0).getMeasuredHeight()) >> 1);
+                q1Var.y1(null, false);
+                return;
         }
-        try {
-            if (!AndroidUtilities.isSafeToShow(y0Var.getContext())) {
-                return true;
-            }
-            Context context = y0Var.getContext();
-            b1 b1Var = y0Var.Q;
-            if (b1Var == null) {
-                d6Var = null;
-            } else {
-                d6Var = b1Var.e;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
-            alertDialog$Builder.f18663a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f18663a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new q0(this, 1));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.f18663a.setOnDismissListener(new f5(this, 8));
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
-        }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        b1 b1Var = this.f39213b.e.Q;
-        if (b1Var != null) {
-            b1Var.H(Uri.parse(str), null, !b1Var.f39015o0, false, false);
-            this.f39212a.destroy();
-        }
-        return true;
     }
 }

@@ -1,72 +1,56 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class vz implements TextWatcher {
-    public final int f38850a;
-    public boolean f38851b;
-    public final EditTextBoldCursor f38852c;
+public abstract class vz extends FrameLayout {
+    public FrameLayout f41856a;
+    public org.telegram.ui.ActionBar.i5 f41857b;
+    public org.telegram.ui.ActionBar.i5 f41858c;
+    public ImageView d;
+    public ci.f9 f41859e;
+    public ai.p4 f41860f;
+    public ai.p4 h;
+    public TextView f41861n;
+    public org.telegram.ui.ActionBar.n2 f41862r;
+    public String f41863s;
+    public float v;
+    public ValueAnimator f41864w;
+    public org.telegram.ui.ActionBar.n1 f41865x;
+    public float[] f41866y;
 
-    public vz(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f38850a = i10;
-        this.f38852c = editTextBoldCursor;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f38850a) {
-            case 0:
-                if (!this.f38851b && editable.length() > 32) {
-                    this.f38851b = true;
-                    editable.delete(32, editable.length());
-                    EditTextBoldCursor editTextBoldCursor = this.f38852c;
-                    AndroidUtilities.shakeView(editTextBoldCursor);
-                    try {
-                        editTextBoldCursor.performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
-                    }
-                    this.f38851b = false;
-                    return;
-                }
+    public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
+        float f7 = 0.0f;
+        float f10 = 0.0f;
+        FrameLayout frameLayout3 = frameLayout;
+        while (frameLayout3 != frameLayout2) {
+            float y3 = frameLayout3.getY() + f7;
+            f10 += frameLayout3.getX();
+            if (frameLayout3 instanceof ScrollView) {
+                y3 -= frameLayout3.getScrollY();
+            }
+            f7 = y3;
+            if (!(frameLayout3.getParent() instanceof View)) {
+                break;
+            }
+            ?? r32 = (View) frameLayout3.getParent();
+            boolean z10 = r32 instanceof ViewGroup;
+            frameLayout3 = r32;
+            if (!z10) {
                 return;
-            default:
-                if (!this.f38851b && editable.length() > 40) {
-                    this.f38851b = true;
-                    editable.delete(40, editable.length());
-                    EditTextBoldCursor editTextBoldCursor2 = this.f38852c;
-                    AndroidUtilities.shakeView(editTextBoldCursor2);
-                    try {
-                        editTextBoldCursor2.performHapticFeedback(3, 2);
-                    } catch (Exception unused2) {
-                    }
-                    this.f38851b = false;
-                    return;
-                }
-                return;
+            }
         }
+        fArr[0] = f10 - frameLayout2.getPaddingLeft();
+        fArr[1] = f7 - frameLayout2.getPaddingTop();
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f38850a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f38850a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(127.0f), 1073741824));
     }
 }

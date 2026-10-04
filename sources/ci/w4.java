@@ -1,29 +1,29 @@
 package ci;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.Components.dw0;
-import org.telegram.ui.Components.gt0;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.kt0;
+import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.zl0;
 public final class w4 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5723a;
-    public final int f5724b;
-    public final Object f5725c;
+    public final int f6227a;
+    public final int f6228b;
+    public final Object f6229c;
     public final Object d;
 
-    public w4(gt0 gt0Var, int i10, yl0 yl0Var) {
-        this.f5723a = 1;
-        this.f5725c = gt0Var;
-        this.f5724b = i10;
-        this.d = yl0Var;
+    public w4(kt0 kt0Var, int i10, zl0 zl0Var) {
+        this.f6227a = 1;
+        this.f6229c = kt0Var;
+        this.f6228b = i10;
+        this.d = zl0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f5723a) {
+        switch (this.f6227a) {
             case 0:
-                q6 q6Var = (q6) this.f5725c;
+                q6 q6Var = (q6) this.f6229c;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q6Var.A1.f41267a = i0.a.d(floatValue, ((Integer) this.d).intValue(), this.f5724b);
+                q6Var.A1.f44630a = i0.a.d(floatValue, ((Integer) this.d).intValue(), this.f6228b);
                 l6 l6Var = q6Var.T0;
                 if (l6Var != null) {
                     l6Var.invalidate();
@@ -31,26 +31,26 @@ public final class w4 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                ((gt0) this.f5725c).e.O1.put(this.f5724b, (Float) valueAnimator.getAnimatedValue());
-                ((yl0) this.d).invalidate();
+                ((kt0) this.f6229c).f28197e.O1.put(this.f6228b, (Float) valueAnimator.getAnimatedValue());
+                ((zl0) this.d).invalidate();
                 return;
             default:
-                qg.n0 n0Var = (qg.n0) this.f5725c;
+                qg.m0 m0Var = (qg.m0) this.f6229c;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n0Var.K1.f41267a = i0.a.d(floatValue2, ((Integer) this.d).intValue(), this.f5724b);
-                qg.l0 l0Var = n0Var.f41775c1;
-                if (l0Var != null) {
-                    l0Var.invalidate();
+                m0Var.K1.f44630a = i0.a.d(floatValue2, ((Integer) this.d).intValue(), this.f6228b);
+                qg.k0 k0Var = m0Var.f45158c1;
+                if (k0Var != null) {
+                    k0Var.invalidate();
                     return;
                 }
                 return;
         }
     }
 
-    public w4(dw0 dw0Var, Integer num, int i10, int i11) {
-        this.f5723a = i11;
-        this.f5725c = dw0Var;
+    public w4(mw0 mw0Var, Integer num, int i10, int i11) {
+        this.f6227a = i11;
+        this.f6229c = mw0Var;
         this.d = num;
-        this.f5724b = i10;
+        this.f6228b = i10;
     }
 }

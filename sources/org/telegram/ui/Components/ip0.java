@@ -1,28 +1,26 @@
 package org.telegram.ui.Components;
-public final class ip0 implements rb {
-    public final qc f25169a;
-    public final ff f25170b;
 
-    public ip0(ff ffVar, qc qcVar) {
-        this.f25170b = ffVar;
-        this.f25169a = qcVar;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ip0 extends LinearLayout {
+    public final int f27452a;
+    public final int f27453b;
+
+    public ip0(Context context, int i10, int i11) {
+        super(context);
+        this.f27452a = i10;
+        this.f27453b = i11;
     }
 
     @Override
-    public final void c() {
-        this.f25170b.G.remove(this.f25169a);
+    public final int getSuggestedMinimumWidth() {
+        return AndroidUtilities.dp(260.0f);
     }
 
     @Override
-    public final void d() {
-        this.f25170b.G.add(this.f25169a);
-    }
-
-    @Override
-    public final void a(qc qcVar) {
-    }
-
-    @Override
-    public final void b() {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f27452a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), this.f27453b), View.MeasureSpec.getMode(i11)));
     }
 }

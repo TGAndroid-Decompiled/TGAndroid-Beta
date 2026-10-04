@@ -1,17 +1,17 @@
 package za;
 public final class g implements ia.d {
-    public static final g f49048a = new Object();
-    public static final ia.c f49049b = ia.c.c("eventType");
-    public static final ia.c f49050c = ia.c.c("sessionData");
+    public static final g f53093a = new Object();
+    public static final ia.c f53094b = ia.c.c("eventType");
+    public static final ia.c f53095c = ia.c.c("sessionData");
     public static final ia.c d = ia.c.c("applicationInfo");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        c0 c0Var = (c0) obj;
+        a0 a0Var = (a0) obj;
         ia.e eVar = (ia.e) obj2;
-        c0Var.getClass();
-        eVar.a(f49049b, l.SESSION_START);
-        eVar.a(f49050c, c0Var.f49030a);
-        eVar.a(d, c0Var.f49031b);
+        a0Var.getClass();
+        eVar.a(f53094b, k.SESSION_START);
+        eVar.a(f53095c, a0Var.f53054a);
+        eVar.a(d, a0Var.f53055b);
     }
 }

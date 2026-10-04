@@ -13,52 +13,52 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.qq;
-import w7.y5;
-import yh.w7;
+import org.telegram.ui.Components.rq;
+import w7.z5;
+import yh.x7;
 public final class d extends FrameLayout {
-    public final ci.d f46108a;
-    public final p6 f46109b;
-    public final p6 f46110c;
+    public final ci.d f49909a;
+    public final p6 f49910b;
+    public final p6 f49911c;
     public final GiftAuctionController.Auction d;
-    public final Paint e;
-    public final yf.n f46111f;
-    public final qq h;
-    public final qq[] f46112n;
+    public final Paint f49912e;
+    public final yf.n f49913f;
+    public final rq h;
+    public final rq[] f49914n;
 
     public d(Context context, GiftAuctionController.Auction auction) {
         super(context);
         Paint paint = new Paint(1);
-        this.e = paint;
-        this.f46111f = new yf.n(new r5.d(this, 14));
-        this.h = new qq(R.drawable.filled_gift_sell_24, 0);
-        this.f46112n = new qq[1];
+        this.f49912e = paint;
+        this.f49913f = new yf.n(new r2.s(this, 16));
+        this.h = new rq(R.drawable.filled_gift_sell_24, 0);
+        this.f49914n = new rq[1];
         this.d = auction;
         setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f));
         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, 0.0f, 536870912);
-        paint.setColor(h6.w0(null, h6.f19061d6, false));
+        paint.setColor(i6.w0(null, i6.f20817d6, false));
         ci.d dVar = new ci.d(context, null, true);
-        this.f46108a = dVar;
+        this.f49909a = dVar;
         dVar.d.o(false, true, true);
         ?? imageView = new ImageView(context);
         p6 p6Var = new p6(context, false, false, false);
-        this.f46109b = p6Var;
+        this.f49910b = p6Var;
         p6Var.setTextSize(AndroidUtilities.dp(14.0f));
         p6Var.setTypeface(AndroidUtilities.bold());
-        p6Var.setTextColor(h6.w0(null, h6.G6, false));
+        p6Var.setTextColor(i6.w0(null, i6.G6, false));
         p6 p6Var2 = new p6(context, false, false, false);
-        this.f46110c = p6Var2;
+        this.f49911c = p6Var2;
         p6Var2.setTextSize(AndroidUtilities.dp(12.0f));
         TLRPC.Document document = auction.gift.sticker;
         if (document != null) {
             imageView.g(44, 44, document);
         }
-        addView(p6Var, y5.d(-1, 18.0f, 51, 64.0f, 15.0f, 15.0f, 0.0f));
-        addView(p6Var2, y5.d(-1, 17.0f, 51, 64.0f, 34.0f, 15.0f, 0.0f));
-        addView((View) imageView, y5.d(44, 44.0f, 51, 14.0f, 11.0f, 0.0f, 0.0f));
-        addView(dVar, y5.d(-1, 44.0f, 80, 15.0f, 0.0f, 15.0f, 15.0f));
+        addView(p6Var, z5.d(-1, 18.0f, 51, 64.0f, 15.0f, 15.0f, 0.0f));
+        addView(p6Var2, z5.d(-1, 17.0f, 51, 64.0f, 34.0f, 15.0f, 0.0f));
+        addView((View) imageView, z5.d(44, 44.0f, 51, 14.0f, 11.0f, 0.0f, 0.0f));
+        addView(dVar, z5.d(-1, 44.0f, 80, 15.0f, 0.0f, 15.0f, 15.0f));
         b(false);
     }
 
@@ -70,38 +70,38 @@ public final class d extends FrameLayout {
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActiveAuctionsActiveRaiseBid));
         spannableStringBuilder.append((CharSequence) "  ");
         spannableStringBuilder.append((CharSequence) formatDurationNoHours);
-        this.f46108a.g(spannableStringBuilder, z10, true);
+        this.f49909a.g(spannableStringBuilder, z10, true);
     }
 
     public final void b(boolean z10) {
         GiftAuctionController.Auction auction = this.d;
         TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
         if (tL_starGiftAuctionState != null) {
-            this.f46109b.c(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z10, true);
+            this.f49910b.c(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z10, true);
         }
         String h = org.telegram.messenger.f0.h(auction.auctionUserState.bid_amount, ',', new StringBuilder("⭐️"));
         boolean isOutbid = auction.getBidStatus().isOutbid();
-        qq[] qqVarArr = this.f46112n;
-        p6 p6Var = this.f46110c;
+        rq[] rqVarArr = this.f49914n;
+        p6 p6Var = this.f49911c;
         if (isOutbid) {
-            p6Var.c(w7.X0(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, h)), 0.66f, qqVarArr), z10, true);
-            p6Var.setTextColor(h6.w0(null, h6.f19300q7, false));
+            p6Var.c(x7.d1(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, h)), 0.66f, rqVarArr), z10, true);
+            p6Var.setTextColor(i6.w0(null, i6.f21058q7, false));
             return;
         }
-        p6Var.c(w7.X0(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, h, Integer.valueOf(auction.getApproximatedMyPlace()))), 0.66f, qqVarArr), z10, true);
-        p6Var.setTextColor(h6.w0(null, h6.G6, false));
+        p6Var.c(x7.d1(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, h, Integer.valueOf(auction.getApproximatedMyPlace()))), 0.66f, rqVarArr), z10, true);
+        p6Var.setTextColor(i6.w0(null, i6.G6, false));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.drawRoundRect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), getMeasuredWidth() - AndroidUtilities.dp(14.0f), getMeasuredHeight() - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.e);
+        canvas.drawRoundRect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), getMeasuredWidth() - AndroidUtilities.dp(14.0f), getMeasuredHeight() - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f49912e);
         super.dispatchDraw(canvas);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f46111f.b();
+        this.f49913f.b();
     }
 
     @Override

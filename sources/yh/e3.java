@@ -1,7 +1,7 @@
 package yh;
 public abstract class e3 {
-    public String f47331a;
-    public int f47332b;
+    public String f51223a;
+    public int f51224b;
 
     public boolean b() {
         return true;

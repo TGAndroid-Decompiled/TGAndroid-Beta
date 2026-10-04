@@ -3,29 +3,29 @@ package v3;
 import c3.k;
 public final class a extends k implements f {
     public final long h;
-    public final int f44149i;
-    public final int f44150j;
-    public final boolean f44151k;
-    public final long f44152l;
+    public final int f47803i;
+    public final int f47804j;
+    public final boolean f47805k;
+    public final long f47806l;
 
     public a(long j3, int i10, int i11, boolean z10, long j10) {
         super(j3, i10, i11, z10, j10);
         long j11 = j3;
         this.h = j10;
-        this.f44149i = i10;
-        this.f44150j = i11;
-        this.f44151k = z10;
-        this.f44152l = j11 == -1 ? -1L : j11;
+        this.f47803i = i10;
+        this.f47804j = i11;
+        this.f47805k = z10;
+        this.f47806l = j11 == -1 ? -1L : j11;
     }
 
     @Override
-    public final long b(long j3) {
-        return (Math.max(0L, j3 - this.f3774b) * 8000000) / this.e;
+    public final long a(long j3) {
+        return (Math.max(0L, j3 - this.f4083b) * 8000000) / this.f4085e;
     }
 
     @Override
     public final long d() {
-        return this.f44152l;
+        return this.f47806l;
     }
 
     @Override
@@ -35,6 +35,6 @@ public final class a extends k implements f {
 
     @Override
     public final int k() {
-        return this.f44149i;
+        return this.f47803i;
     }
 }

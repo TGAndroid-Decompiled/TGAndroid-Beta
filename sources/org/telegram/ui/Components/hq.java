@@ -1,39 +1,94 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class hq extends Drawable {
-    public final Paint f24845a;
-    public long f24846b;
-    public final RectF f24847c;
-    public float d;
-    public boolean e;
-    public int f24848f;
-    public int f24849g;
+public final class hq extends Drawable {
+    public final Drawable f27211a;
+    public Path f27212b;
+    public final RectF f27213c;
+    public final RectF d;
+    public boolean f27214e;
+    public final float[] f27215f;
 
-    public hq() {
-        this(2.0f);
+    public hq(Drawable drawable) {
+        ah.d dVar = new ah.d(this, 3);
+        this.f27213c = new RectF();
+        this.d = new RectF();
+        this.f27214e = false;
+        this.f27215f = new float[8];
+        Drawable drawable2 = this.f27211a;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f27211a = drawable;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            this.f27211a.setCallback(dVar);
+        }
     }
 
-    public abstract int a();
+    public final void a() {
+        if (!this.f27214e) {
+            return;
+        }
+        Path path = this.f27212b;
+        if (path == null) {
+            this.f27212b = new Path();
+        } else {
+            path.rewind();
+        }
+        Rect bounds = getBounds();
+        RectF rectF = this.f27213c;
+        rectF.set(bounds);
+        float f7 = rectF.left;
+        RectF rectF2 = this.d;
+        rectF.left = f7 + rectF2.left;
+        rectF.top += rectF2.top;
+        rectF.right -= rectF2.right;
+        rectF.bottom -= rectF2.bottom;
+        this.f27212b.addRoundRect(rectF, this.f27215f, Path.Direction.CW);
+    }
 
     @Override
-    public final void draw(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hq.draw(android.graphics.Canvas):void");
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.f27211a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            if (!this.f27214e) {
+                canvas.save();
+                canvas.clipRect(getBounds());
+                this.f27211a.draw(canvas);
+                canvas.restore();
+                return;
+            }
+            canvas.save();
+            a();
+            canvas.clipPath(this.f27212b);
+            this.f27211a.draw(canvas);
+            canvas.restore();
+        }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+        Drawable drawable = this.f27211a;
+        if (drawable != null) {
+            return drawable.getIntrinsicHeight();
+        }
+        return super.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+        Drawable drawable = this.f27211a;
+        if (drawable != null) {
+            return drawable.getIntrinsicWidth();
+        }
+        return super.getIntrinsicWidth();
     }
 
     @Override
@@ -41,24 +96,19 @@ public abstract class hq extends Drawable {
         return -2;
     }
 
-    public hq(float f7) {
-        Paint paint = new Paint(1);
-        this.f24845a = paint;
-        new DecelerateInterpolator();
-        this.f24847c = new RectF();
-        this.f24849g = 255;
-        paint.setColor(-1);
-        paint.setStrokeWidth(AndroidUtilities.dp(f7));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-        this.f24848f = AndroidUtilities.dp(8.0f);
-    }
-
     @Override
     public final void setAlpha(int i10) {
+        Drawable drawable = this.f27211a;
+        if (drawable != null) {
+            drawable.setAlpha(i10);
+        }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = this.f27211a;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
     }
 }

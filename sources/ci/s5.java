@@ -1,17 +1,17 @@
 package ci;
 public final class s5 extends i4 {
-    public final nb f5493m;
+    public final mb f5913m;
 
-    public s5(nb nbVar, kc kcVar, ai.g3 g3Var) {
-        super(kcVar, false, g3Var);
-        this.f5493m = nbVar;
+    public s5(mb mbVar, jc jcVar, ai.g3 g3Var) {
+        super(jcVar, false, g3Var);
+        this.f5913m = mbVar;
     }
 
     @Override
     public final void b(boolean z10) {
         super.b(z10);
         if (z10) {
-            this.f5493m.P0(false);
+            this.f5913m.P0(false);
         }
     }
 }

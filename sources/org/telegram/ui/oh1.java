@@ -1,17 +1,17 @@
 package org.telegram.ui;
 public final class oh1 implements Runnable {
-    public final int f36240a;
-    public final ph1 f36241b;
-    public final String f36242c;
+    public final int f39191a;
+    public final ph1 f39192b;
+    public final String f39193c;
     public final boolean d;
-    public final boolean e;
+    public final boolean f39194e;
 
     public oh1(ph1 ph1Var, String str, boolean z10, boolean z11, int i10) {
-        this.f36240a = i10;
-        this.f36241b = ph1Var;
-        this.f36242c = str;
+        this.f39191a = i10;
+        this.f39192b = ph1Var;
+        this.f39193c = str;
         this.d = z10;
-        this.e = z11;
+        this.f39194e = z11;
     }
 
     @Override

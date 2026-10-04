@@ -1,58 +1,59 @@
 package f5;
 
 import com.google.android.gms.internal.vision.e2;
+import ii.n4;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 public final class i extends com.googlecode.mp4parser.a {
-    public static final ka.c d;
-    public static final ka.c e;
-    public String f8895a;
-    public long f8896b;
-    public LinkedList f8897c;
+    public static final n4 d;
+    public static final n4 f9676e;
+    public String f9677a;
+    public long f9678b;
+    public LinkedList f9679c;
 
     static {
         re.a aVar = new re.a(i.class, "FileTypeBox.java");
         d = aVar.e(aVar.d("getMajorBrand", "com.coremedia.iso.boxes.FileTypeBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("setMajorBrand", "com.coremedia.iso.boxes.FileTypeBox", "java.lang.String", "majorBrand", "void"));
         aVar.e(aVar.d("setMinorVersion", "com.coremedia.iso.boxes.FileTypeBox", "long", "minorVersion", "void"));
-        e = aVar.e(aVar.d("getMinorVersion", "com.coremedia.iso.boxes.FileTypeBox", "", "", "long"));
+        f9676e = aVar.e(aVar.d("getMinorVersion", "com.coremedia.iso.boxes.FileTypeBox", "", "", "long"));
         aVar.e(aVar.d("getCompatibleBrands", "com.coremedia.iso.boxes.FileTypeBox", "", "", "java.util.List"));
         aVar.e(aVar.d("setCompatibleBrands", "com.coremedia.iso.boxes.FileTypeBox", "java.util.List", "compatibleBrands", "void"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        this.f8895a = e5.b.d(byteBuffer);
-        this.f8896b = e5.b.i(byteBuffer);
+        this.f9677a = e5.b.d(byteBuffer);
+        this.f9678b = e5.b.i(byteBuffer);
         int remaining = byteBuffer.remaining() / 4;
-        this.f8897c = new LinkedList();
+        this.f9679c = new LinkedList();
         for (int i10 = 0; i10 < remaining; i10++) {
-            this.f8897c.add(e5.b.d(byteBuffer));
+            this.f9679c.add(e5.b.d(byteBuffer));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
-        byteBuffer.put(e5.c.d(this.f8895a));
-        byteBuffer.putInt((int) this.f8896b);
-        for (String str : this.f8897c) {
+        byteBuffer.put(e5.c.d(this.f9677a));
+        byteBuffer.putInt((int) this.f9678b);
+        for (String str : this.f9679c) {
             byteBuffer.put(e5.c.d(str));
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f8897c.size() * 4) + 8;
+        return (this.f9679c.size() * 4) + 8;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("FileTypeBox[majorBrand=");
         e2.q(re.a.b(d, this, this));
-        sb2.append(this.f8895a);
+        sb2.append(this.f9677a);
         sb2.append(";minorVersion=");
-        e2.q(re.a.b(e, this, this));
-        sb2.append(this.f8896b);
-        for (String str : this.f8897c) {
+        e2.q(re.a.b(f9676e, this, this));
+        sb2.append(this.f9678b);
+        for (String str : this.f9679c) {
             sb2.append(";compatibleBrand=");
             sb2.append(str);
         }

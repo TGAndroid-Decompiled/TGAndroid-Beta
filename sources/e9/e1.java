@@ -1,22 +1,22 @@
 package e9;
 
 import j$.util.Objects;
-import v7.u6;
+import v7.t6;
 public final class e1 extends i0 {
-    public final transient Object[] f8053c;
+    public final transient Object[] f8739c;
     public final transient int d;
-    public final transient int e;
+    public final transient int f8740e;
 
     public e1(int i10, int i11, Object[] objArr) {
-        this.f8053c = objArr;
+        this.f8739c = objArr;
         this.d = i10;
-        this.e = i11;
+        this.f8740e = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        u6.c(i10, this.e);
-        Object obj = this.f8053c[(i10 * 2) + this.d];
+        t6.c(i10, this.f8740e);
+        Object obj = this.f8739c[(i10 * 2) + this.d];
         Objects.requireNonNull(obj);
         return obj;
     }
@@ -28,6 +28,6 @@ public final class e1 extends i0 {
 
     @Override
     public final int size() {
-        return this.e;
+        return this.f8740e;
     }
 }

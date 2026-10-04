@@ -1,77 +1,38 @@
 package ei;
 
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class j1 implements org.telegram.ui.Cells.t0 {
-    @Override
-    public final org.telegram.ui.ActionBar.m2 O0() {
-        return null;
+public final class j1 implements NotificationCenter.NotificationCenterDelegate {
+    public final long f9115a;
+    public final NotificationCenter.NotificationCenterDelegate[] f9116b;
+    public final int f9117c;
+    public final g1 d;
+
+    public j1(long j3, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr, int i10, g1 g1Var) {
+        this.f9115a = j3;
+        this.f9116b = notificationCenterDelegateArr;
+        this.f9117c = i10;
+        this.d = g1Var;
     }
 
     @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final long d() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final boolean r2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
-        return false;
-    }
-
-    @Override
-    public final void Q0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-    }
-
-    @Override
-    public final void Z(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void k0(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void r0(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void x1(long j3) {
-    }
-
-    @Override
-    public final void y1(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void U(org.telegram.ui.Cells.w0 w0Var, int i10) {
-    }
-
-    @Override
-    public final void h2(org.telegram.ui.Cells.w0 w0Var, String str) {
-    }
-
-    @Override
-    public final void J1(org.telegram.ui.Cells.w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
-    }
-
-    @Override
-    public final void g0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
-    }
-
-    @Override
-    public final void g1(org.telegram.ui.Cells.w0 w0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
-    }
-
-    @Override
-    public final void u2(org.telegram.ui.Cells.w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        a0.i iVar;
+        int i12 = NotificationCenter.didReceivedWebpagesInUpdates;
+        if (i10 == i12 && (iVar = (a0.i) objArr[0]) != null) {
+            long j3 = this.f9115a;
+            if (iVar.d(j3)) {
+                TLRPC.WebPage webPage = (TLRPC.WebPage) iVar.f(j3);
+                NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = this.f9116b;
+                if (notificationCenterDelegateArr[0] != null) {
+                    NotificationCenter.getInstance(this.f9117c).addObserver(notificationCenterDelegateArr[0], i12);
+                    notificationCenterDelegateArr[0] = null;
+                }
+                if (!(webPage instanceof TLRPC.TL_webPage)) {
+                    webPage = null;
+                }
+                this.d.run(webPage);
+            }
+        }
     }
 }

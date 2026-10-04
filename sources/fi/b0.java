@@ -1,31 +1,31 @@
 package fi;
 
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.wn;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.yn;
 public final class b0 implements s0 {
-    public final m2 f9070a;
-    public final k0 f9071b;
+    public final n2 f9873a;
+    public final k0 f9874b;
 
-    public b0(k0 k0Var, m2 m2Var) {
-        this.f9071b = k0Var;
-        this.f9070a = m2Var;
+    public b0(k0 k0Var, n2 n2Var) {
+        this.f9874b = k0Var;
+        this.f9873a = n2Var;
     }
 
     @Override
     public final void close() {
-        this.f9071b.d.D(0);
+        this.f9874b.d.E(0);
     }
 
     @Override
-    public final void e(long j3) {
-        this.f9070a.presentFragment(wn.R9(j3));
-        this.f9071b.dismiss();
+    public final void k(long j3) {
+        this.f9873a.presentFragment(yn.Q9(j3));
+        this.f9874b.dismiss();
     }
 
     @Override
-    public final void f() {
-        k0 k0Var = this.f9071b;
-        k0Var.f9113w.d.Y2.N(true);
-        k0Var.v.d.Y2.N(true);
+    public final void l() {
+        k0 k0Var = this.f9874b;
+        k0Var.f9921w.d.f25244f3.N(true);
+        k0Var.v.d.f25244f3.N(true);
     }
 }

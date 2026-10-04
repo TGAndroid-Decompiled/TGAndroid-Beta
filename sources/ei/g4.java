@@ -1,69 +1,78 @@
 package ei;
 
-import ai.n8;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class g4 implements Runnable {
-    public final int f8349a;
-    public final q4 f8350b;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.i6;
+public final class g4 extends FrameLayout {
+    public Path f9066a;
+    public float f9067b;
+    public int f9068c;
+    public int d;
+    public int f9069e;
+    public d0 f9070f;
 
-    public g4(q4 q4Var, int i10) {
-        this.f8349a = i10;
-        this.f8350b = q4Var;
+    @Override
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        float height = (getHeight() - AndroidUtilities.dp(32.0f)) / 2.0f;
+        float max = Math.max((getWidth() - this.f9069e) - AndroidUtilities.dp(4.0f), getHeight()) * this.f9067b;
+        float dp = AndroidUtilities.dp(16.0f) + max;
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(AndroidUtilities.dp(14.0f) - max, (AndroidUtilities.dp(4.0f) + height) - max, AndroidUtilities.dp(6.0f) + this.f9069e + max, (getHeight() - AndroidUtilities.dp(12.0f)) + max);
+        Path path = this.f9066a;
+        path.rewind();
+        path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+        canvas.clipPath(path);
+        canvas.drawColor(this.d);
+        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f9067b) / 0.5f)) * 255.0f), 31);
+        canvas.translate(AndroidUtilities.dp(10.0f), height);
+        d0 d0Var = this.f9070f;
+        if (d0Var != null) {
+            d0Var.setDrawBackgroundDrawable(false);
+            this.f9070f.draw(canvas);
+            this.f9070f.setDrawBackgroundDrawable(true);
+        }
+        canvas.restore();
+        canvas.translate((1.0f - this.f9067b) * (-AndroidUtilities.dp(8.0f)), 0.0f);
+        super.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void run() {
-        TLRPC.ChatFull chatFull;
-        TLRPC.Peer peer;
-        switch (this.f8349a) {
-            case 0:
-                this.f8350b.f8552n.R();
-                return;
-            case 1:
-                this.f8350b.L();
-                return;
-            case 2:
-                q4 q4Var = this.f8350b;
-                if (!q4Var.T) {
-                    TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
-                    tL_messages_prolongWebView.bot = MessagesController.getInstance(q4Var.F).getInputUser(q4Var.v);
-                    tL_messages_prolongWebView.peer = MessagesController.getInstance(q4Var.F).getInputPeer(q4Var.f8555w);
-                    tL_messages_prolongWebView.query_id = q4Var.f8556x;
-                    tL_messages_prolongWebView.silent = false;
-                    if (q4Var.f8557y != 0) {
-                        TLRPC.InputReplyTo createReplyInput = SendMessagesHelper.getInstance(q4Var.F).createReplyInput(q4Var.f8557y);
-                        tL_messages_prolongWebView.reply_to = createReplyInput;
-                        if (q4Var.E != 0) {
-                            createReplyInput.monoforum_peer_id = MessagesController.getInstance(q4Var.F).getInputPeer(q4Var.E);
-                            tL_messages_prolongWebView.reply_to.flags |= 32;
-                        }
-                        tL_messages_prolongWebView.flags |= 1;
-                    } else if (q4Var.E != 0) {
-                        TLRPC.TL_inputReplyToMonoForum tL_inputReplyToMonoForum = new TLRPC.TL_inputReplyToMonoForum();
-                        tL_messages_prolongWebView.reply_to = tL_inputReplyToMonoForum;
-                        tL_inputReplyToMonoForum.monoforum_peer_id = MessagesController.getInstance(q4Var.F).getInputPeer(q4Var.E);
-                        tL_messages_prolongWebView.flags |= 1;
-                    }
-                    if (q4Var.f8555w < 0 && (chatFull = MessagesController.getInstance(q4Var.F).getChatFull(-q4Var.f8555w)) != null && (peer = chatFull.default_send_as) != null) {
-                        tL_messages_prolongWebView.send_as = MessagesController.getInstance(q4Var.F).getInputPeer(peer);
-                        tL_messages_prolongWebView.flags |= 8192;
-                    }
-                    ConnectionsManager.getInstance(q4Var.F).sendRequest(tL_messages_prolongWebView, new n8(q4Var, 7));
-                    return;
-                }
-                return;
-            case 3:
-                q4 q4Var2 = this.f8350b;
-                q4Var2.f27075b.X1(q4Var2, 0);
-                q4Var2.f8552n.o(false, false);
-                System.currentTimeMillis();
-                return;
-            default:
-                this.f8350b.f8552n.o(true, false);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int size = View.MeasureSpec.getSize(i11);
+        if (getParent() instanceof View) {
+            i12 = ((View) getParent()).getHeight();
+        } else {
+            i12 = 0;
         }
+        if (i12 > 0) {
+            size = Math.min(size, i12);
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.getMode(i11)));
+    }
+
+    public void setBotMenuButton(d0 d0Var) {
+        this.f9070f = d0Var;
+        invalidate();
+    }
+
+    public void setMeasuredButtonWidth(int i10) {
+        this.f9069e = i10;
+        invalidate();
+    }
+
+    public void setProgress(float f7) {
+        this.f9067b = f7;
+        this.d = i0.a.d(f7, i6.w0(null, i6.f20807cf, false), this.f9068c);
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            getChildAt(i10).setAlpha(f7);
+        }
+        invalidate();
     }
 }

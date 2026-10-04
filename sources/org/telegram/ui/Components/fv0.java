@@ -1,252 +1,89 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.SparseArray;
 import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public class fv0 extends gl0 {
-    public final Context f24333c;
-    public boolean d;
-    public org.telegram.ui.Cells.s7 e;
-    public final lv0 f24334f;
+import java.util.HashSet;
+public abstract class fv0 extends hu0 {
+    public final HashSet f26570m3;
+    public final ArrayList f26571n3;
+    public final ArrayList f26572o3;
+    public final ArrayList f26573p3;
+    public TextPaint f26574q3;
+    public StaticLayout f26575r3;
+    public float f26576s3;
+    public float f26577t3;
+    public ai.rc f26578u3;
+    public int f26579v3;
+    public final ArrayList f26580w3;
 
-    public fv0(lv0 lv0Var, Context context) {
-        this.f24334f = lv0Var;
-        this.f24333c = context;
+    public fv0(Context context) {
+        super(context, null);
+        this.f26570m3 = new HashSet();
+        this.f26571n3 = new ArrayList();
+        this.f26572o3 = new ArrayList();
+        this.f26573p3 = new ArrayList();
+        this.f26580w3 = new ArrayList();
+    }
+
+    public abstract boolean B1();
+
+    public abstract boolean C1();
+
+    public boolean D1() {
+        return true;
     }
 
     @Override
-    public boolean D(s4.c1 c1Var) {
-        return false;
+    public void dispatchDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fv0.dispatchDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final boolean E(yl0 yl0Var) {
-        int i10;
-        lv0 lv0Var = this.f24334f;
-        if (!lv0Var.t0()) {
-            if (this != lv0Var.H && lv0.u(lv0Var, this) == -1) {
-                i10 = lv0Var.f26142q1;
-            } else {
-                i10 = lv0Var.f26133m1[0];
-            }
-            int ceil = (int) Math.ceil(k() / i10);
-            if (yl0Var.getChildCount() != 0 && yl0Var.getChildAt(0).getMeasuredHeight() * ceil > yl0Var.getMeasuredHeight()) {
-                return true;
-            }
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        gl0 movingAdapter = getMovingAdapter();
+        if (D1() && getAdapter() == movingAdapter && B1() && (view instanceof org.telegram.ui.Cells.t7)) {
+            return true;
         }
-        return false;
+        return super.drawChild(canvas, view, j3);
     }
 
-    @Override
-    public String F(int i10) {
-        ArrayList arrayList = this.f24334f.f26150t1[0].e;
-        if (arrayList == null || arrayList.isEmpty()) {
-            return "";
-        }
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (i10 <= ((ju0) arrayList.get(i11)).f25518b) {
-                return ((ju0) arrayList.get(i11)).f25517a;
-            }
-        }
-        return ((ju0) hg.c.g(1, arrayList)).f25517a;
+    public int getAnimateToColumnsCount() {
+        return 3;
     }
 
-    @Override
-    public final void G(yl0 yl0Var, float f7, int[] iArr) {
-        int i10;
-        int measuredHeight = yl0Var.getChildAt(0).getMeasuredHeight();
-        lv0 lv0Var = this.f24334f;
-        int[] iArr2 = lv0Var.f26133m1;
-        if (lv0.v(lv0Var, this) == -1 && this != lv0Var.I) {
-            if (lv0.u(lv0Var, this) != -1) {
-                i10 = iArr2[1];
-            } else {
-                i10 = iArr2[0];
-            }
-        } else {
-            i10 = lv0Var.f26142q1;
-        }
-        int ceil = (int) (Math.ceil(k() / i10) * measuredHeight);
-        int measuredHeight2 = yl0Var.getMeasuredHeight() - yl0Var.getPaddingTop();
-        if (measuredHeight == 0) {
-            iArr[1] = 0;
-            iArr[0] = 0;
-            return;
-        }
-        float f10 = f7 * (ceil - measuredHeight2);
-        iArr[0] = ((int) (f10 / measuredHeight)) * i10;
-        iArr[1] = ((int) f10) % measuredHeight;
-    }
-
-    @Override
-    public final float H(yl0 yl0Var) {
-        int i10;
-        lv0 lv0Var = this.f24334f;
-        int[] iArr = lv0Var.f26133m1;
-        if (this != lv0Var.I && lv0.v(lv0Var, this) == -1) {
-            if (lv0.u(lv0Var, this) != -1) {
-                i10 = iArr[1];
-            } else {
-                i10 = iArr[0];
-            }
-        } else {
-            i10 = lv0Var.f26142q1;
-        }
-        int ceil = (int) Math.ceil(k() / i10);
-        if (yl0Var.getChildCount() != 0) {
-            int measuredHeight = yl0Var.getChildAt(0).getMeasuredHeight();
-            View childAt = yl0Var.getChildAt(0);
-            int R = RecyclerView.R(childAt);
-            if (R < 0) {
-                return 0.0f;
-            }
-            return (((R / i10) * measuredHeight) - (childAt.getTop() - yl0Var.getPaddingTop())) / ((ceil * measuredHeight) - (yl0Var.getMeasuredHeight() - yl0Var.getPaddingTop()));
-        }
+    public float getChangeColumnsProgress() {
         return 0.0f;
     }
 
-    @Override
-    public void I() {
-        this.f24334f.c1(0, true);
+    public int getColumnsCount() {
+        return 3;
     }
 
-    @Override
-    public final void J(yl0 yl0Var) {
-        if (this.d) {
-            this.d = false;
-            int i10 = 0;
-            for (int i11 = 0; i11 < yl0Var.getChildCount(); i11++) {
-                View childAt = yl0Var.getChildAt(i11);
-                if (childAt instanceof org.telegram.ui.Cells.t7) {
-                    i10 = ((org.telegram.ui.Cells.t7) childAt).getMessageId();
-                }
-                if (i10 != 0) {
-                    break;
-                }
-            }
-            if (i10 == 0) {
-                this.f24334f.S(0, yl0Var, true);
-            }
-        }
+    public SparseArray<Float> getMessageAlphaEnter() {
+        return null;
     }
 
-    @Override
-    public final void K() {
-        this.d = true;
-        eu0 W = this.f24334f.W(0);
-        if (W != null) {
-            lv0.q(W, null, false);
-        }
+    public gl0 getMovingAdapter() {
+        return null;
     }
 
-    public int L(int i10) {
-        return this.f24334f.f26150t1[0].f22737m + i10;
-    }
-
-    @Override
-    public int h() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fv0.h():int");
-    }
-
-    @Override
-    public int j(int i10) {
-        av0[] av0VarArr = this.f24334f.f26150t1;
-        if (!this.d && av0VarArr[0].c().size() == 0) {
-            av0 av0Var = av0VarArr[0];
-            if (!av0Var.f22732g && av0Var.f22736l) {
-                return 2;
-            }
-        }
-        av0VarArr[0].getClass();
-        av0VarArr[0].c().size();
-        av0VarArr[0].getClass();
+    public int getPinchCenterPosition() {
         return 0;
     }
 
-    @Override
-    public int k() {
-        return this.f24334f.f26150t1[0].e();
+    public gl0 getSupportingAdapter() {
+        return null;
     }
 
-    @Override
-    public void v(s4.c1 c1Var, int i10) {
-        int i11;
-        boolean z10;
-        char c10;
-        lv0 lv0Var = this.f24334f;
-        int[] iArr = lv0Var.f26133m1;
-        av0[] av0VarArr = lv0Var.f26150t1;
-        if (c1Var.f42965f == 0) {
-            ArrayList c11 = av0VarArr[0].c();
-            int d = i10 - av0VarArr[0].d();
-            View view = c1Var.f42962a;
-            if (view instanceof org.telegram.ui.Cells.t7) {
-                org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-                int messageId = t7Var.getMessageId();
-                boolean z11 = true;
-                if (this == lv0Var.H) {
-                    i11 = iArr[0];
-                } else if (lv0.u(lv0Var, this) != -1) {
-                    i11 = iArr[1];
-                } else {
-                    i11 = lv0Var.f26142q1;
-                }
-                if (d >= 0 && d < c11.size()) {
-                    MessageObject messageObject = (MessageObject) c11.get(d);
-                    if (messageObject.getId() == messageId) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (lv0Var.C1) {
-                        SparseArray[] sparseArrayArr = lv0Var.Z0;
-                        if (messageObject.getDialogId() == lv0Var.f26129j1) {
-                            c10 = 0;
-                        } else {
-                            c10 = 1;
-                        }
-                        if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) < 0) {
-                            z11 = false;
-                        }
-                        t7Var.i(z11, z10);
-                    } else {
-                        t7Var.i(false, z10);
-                    }
-                    t7Var.k(messageObject, i11, false);
-                    return;
-                }
-                t7Var.k(null, i11, false);
-                t7Var.i(false, false);
-            }
-        }
+    public hu0 getSupportingListView() {
+        return null;
     }
 
-    @Override
-    public s4.c1 x(ViewGroup viewGroup, int i10) {
-        lv0 lv0Var = this.f24334f;
-        org.telegram.ui.ActionBar.d6 d6Var = lv0Var.F1;
-        Context context = this.f24333c;
-        if (i10 != 0 && i10 != 19) {
-            yt0 M = lv0.M(0, lv0Var.f26129j1, context, d6Var);
-            M.setLayoutParams(new s4.p0(-1, -1));
-            return new s4.c1(M);
-        }
-        if (this.e == null) {
-            this.e = new org.telegram.ui.Cells.s7(viewGroup.getContext(), d6Var);
-        }
-        org.telegram.ui.Cells.t7 t7Var = new org.telegram.ui.Cells.t7(context, this.e, lv0Var.f26154v1.getCurrentAccount());
-        if (i10 == 19) {
-            t7Var.f21241w0 = true;
-        }
-        t7Var.setGradientView(lv0Var.f26161y);
-        if (lv0.u(lv0Var, this) != -1) {
-            t7Var.f21218d0 = true;
-        }
-        t7Var.setLayoutParams(new s4.p0(-1, -2));
-        return new s4.c1(t7Var);
+    public void A1(org.telegram.ui.Cells.t7 t7Var) {
     }
 }

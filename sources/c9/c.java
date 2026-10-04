@@ -11,7 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import e0.t;
-import v7.f5;
+import v7.e5;
 public abstract class c extends IntentService {
     private static final int CONNECTION_TIMEOUT_IN_MS = 1000;
     public static final String EXTRA_INTENT = "SearchActionVerificationClientExtraIntent";
@@ -62,8 +62,8 @@ public abstract class c extends IntentService {
                 }
             }
             return false;
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.w("SAVerificationClientS", "Couldn't find package name ".concat(str), e);
+        } catch (PackageManager.NameNotFoundException e7) {
+            Log.w("SAVerificationClientS", "Couldn't find package name ".concat(str), e7);
             return false;
         }
     }
@@ -87,11 +87,11 @@ public abstract class c extends IntentService {
         }
         super.onCreate();
         this.searchActionVerificationServiceConnection = new b(this);
-        if (b("com.google.android.googlequicksearchbox") && (a() || f5.a(this, "com.google.android.googlequicksearchbox"))) {
+        if (b("com.google.android.googlequicksearchbox") && (a() || e5.a(this, "com.google.android.googlequicksearchbox"))) {
             bindService(this.gsaServiceIntent, this.searchActionVerificationServiceConnection, 1);
         }
         this.assistantGoVerificationServiceConnection = new b(this);
-        if (b("com.google.android.apps.assistant") && (a() || f5.a(this, "com.google.android.apps.assistant"))) {
+        if (b("com.google.android.apps.assistant") && (a() || e5.a(this, "com.google.android.apps.assistant"))) {
             bindService(this.assistantGoServiceIntent, this.assistantGoVerificationServiceConnection, 1);
         }
         if (Build.VERSION.SDK_INT >= 26) {
@@ -150,9 +150,9 @@ public abstract class c extends IntentService {
             if ((!z10 || !z11) && System.nanoTime() - nanoTime < this.connectionTimeout * 1000000) {
                 try {
                     Thread.sleep(50L);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException e7) {
                     if (this.dbg) {
-                        String valueOf = String.valueOf(e);
+                        String valueOf = String.valueOf(e7);
                         StringBuilder sb2 = new StringBuilder(valueOf.length() + 33);
                         sb2.append("Unexpected InterruptedException: ");
                         sb2.append(valueOf);
@@ -182,11 +182,11 @@ public abstract class c extends IntentService {
         notificationChannel.setShowBadge(false);
         ((NotificationManager) getApplicationContext().getSystemService(NotificationManager.class)).createNotificationChannel(notificationChannel);
         t tVar = new t(getApplicationContext(), "Assistant_verifier");
-        tVar.f7830q = "Assistant_verifier";
-        tVar.e = t.d(getApplicationContext().getResources().getString(2131230721));
+        tVar.f8493q = "Assistant_verifier";
+        tVar.f8482e = t.d(getApplicationContext().getResources().getString(2131230721));
         tVar.E.icon = 17301545;
-        tVar.f7823j = -2;
-        tVar.f7836x = 1;
+        tVar.f8486j = -2;
+        tVar.f8499x = 1;
         startForeground(10000, tVar.b());
     }
 }

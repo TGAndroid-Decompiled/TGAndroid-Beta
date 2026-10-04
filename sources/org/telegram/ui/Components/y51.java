@@ -1,45 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-public final class y51 extends b61 {
-    public static boolean h = true;
-    public final int e;
-    public final d11 f30583f;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class y51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33091a;
+    public int f33092b;
+    public final int f33093c;
+    public final Object d;
 
-    public y51(String str, int i10, d11 d11Var) {
-        super(str, (d11) null);
-        this.e = i10;
-        this.f30583f = d11Var;
+    public y51(org.telegram.ui.dv dvVar, int i10, int i11) {
+        this.f33091a = 1;
+        this.d = dvVar;
+        this.f33092b = i10;
+        this.f33093c = i11;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10;
-        int i11;
-        super.updateDrawState(textPaint);
-        int i12 = this.e;
-        if (i12 == 2) {
-            textPaint.setColor(-1);
-        } else if (i12 == 1) {
-            if (h) {
-                i11 = org.telegram.ui.ActionBar.h6.f19137hc;
-            } else {
-                i11 = org.telegram.ui.ActionBar.h6.f19102fc;
-            }
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
-        } else {
-            if (h) {
-                i10 = org.telegram.ui.ActionBar.h6.gc;
-            } else {
-                i10 = org.telegram.ui.ActionBar.h6.ec;
-            }
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33091a) {
+            case 0:
+                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f33093c);
+                c61 c61Var = (c61) this.d;
+                c61Var.N = true;
+                c61Var.f25231n.scrollBy(0, floatValue - this.f33092b);
+                c61Var.N = false;
+                this.f33092b = floatValue;
+                return;
+            default:
+                ((org.telegram.ui.dv) this.d).f35841c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f33092b, this.f33093c), PorterDuff.Mode.SRC_IN));
+                return;
         }
-        d11 d11Var = this.f30583f;
-        if (d11Var != null) {
-            d11Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
-        }
+    }
+
+    public y51(c61 c61Var, int i10) {
+        this.f33091a = 0;
+        this.d = c61Var;
+        this.f33093c = i10;
+        this.f33092b = 0;
     }
 }

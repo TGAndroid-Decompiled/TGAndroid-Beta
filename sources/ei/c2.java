@@ -1,67 +1,67 @@
 package ei;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.util.SparseIntArray;
-import android.widget.ImageView;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-public final class c2 {
-    public final SparseIntArray f8264a = new SparseIntArray();
-    public final SparseIntArray f8265b = new SparseIntArray();
-    public final int[] f8266c = {h6.G6, h6.f19376u8, h6.G8, h6.E8, h6.F8, h6.I5, h6.Ii};
-    public float d;
+import android.os.Bundle;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PrivacyControlActivity;
+import org.telegram.ui.nw0;
+import org.telegram.ui.rr;
+import org.telegram.ui.yn;
+public final class c2 implements Runnable {
+    public final int f8955a;
+    public final long f8956b;
+    public final int f8957c;
 
-    public final int a(int i10) {
-        return i0.a.d(this.d, this.f8264a.get(i10), this.f8265b.get(i10));
+    public c2(int i10, long j3) {
+        this.f8955a = 0;
+        this.f8957c = i10;
+        this.f8956b = j3;
     }
 
-    public final void b(org.telegram.ui.ActionBar.k kVar, float f7) {
-        this.d = f7;
-        int i10 = h6.G6;
-        kVar.setTitleColor(a(i10));
-        kVar.setSubtitleColor(h6.l1(0.45f, a(i10)));
-        kVar.B(a(i10), false);
-        ImageView imageView = kVar.e;
-        if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(a(i10), PorterDuff.Mode.SRC_IN));
-        }
-        kVar.A(a(h6.f19376u8), false);
-    }
-
-    public final void c(SparseIntArray sparseIntArray, int i10, d6 d6Var) {
-        int i11;
-        int i12;
-        int[] iArr = this.f8266c;
-        int i13 = 0;
-        if (i10 == 0) {
-            while (i13 < iArr.length) {
-                int i14 = iArr[i13];
-                sparseIntArray.put(i14, h6.v0(i14, d6Var));
-                i13++;
-            }
-            return;
-        }
-        if (i0.a.f(i10) < 0.5d) {
-            i11 = -1;
-        } else {
-            i11 = -16777216;
-        }
-        int k10 = i0.a.k(i11, 60);
-        while (i13 < iArr.length) {
-            int i15 = iArr[i13];
-            if (i15 != h6.G8 && i15 != h6.E8 && i15 != h6.F8 && i15 != (i12 = h6.I5)) {
-                if (i15 == h6.Ii) {
-                    sparseIntArray.put(i15, i0.a.d(0.5f, i10, i11));
-                } else if (i15 != h6.f19376u8 && i15 != i12) {
-                    sparseIntArray.put(i15, i11);
-                } else {
-                    sparseIntArray.put(i15, k10);
+    @Override
+    public final void run() {
+        switch (this.f8955a) {
+            case 0:
+                SendMessagesHelper.getInstance(this.f8957c).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f8956b, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    U.presentFragment(yn.P9(this.f8957c, this.f8956b));
+                    return;
                 }
-            } else {
-                sparseIntArray.put(i15, h6.v0(i15, d6Var));
-            }
-            i13++;
+                return;
+            default:
+                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
+                if (U2 != null) {
+                    long j3 = this.f8956b;
+                    if (j3 >= 0) {
+                        U2.presentFragment(new PrivacyControlActivity(10, false));
+                        return;
+                    }
+                    int i10 = this.f8957c;
+                    long j10 = -j3;
+                    if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i10).getChat(Long.valueOf(j10)))) {
+                        U2.presentFragment(new nw0(j10));
+                        return;
+                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", j10);
+                    bundle.putInt("type", 3);
+                    rr rrVar = new rr(bundle);
+                    rrVar.x0(MessagesController.getInstance(i10).getChatFull(j10));
+                    U2.presentFragment(rrVar);
+                    return;
+                }
+                return;
         }
+    }
+
+    public c2(long j3, int i10, int i11) {
+        this.f8955a = i11;
+        this.f8956b = j3;
+        this.f8957c = i10;
     }
 }

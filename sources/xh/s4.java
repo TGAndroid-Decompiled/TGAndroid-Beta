@@ -3,7 +3,7 @@ package xh;
 import org.telegram.tgnet.TLRPC;
 public final class s4 implements org.telegram.ui.Cells.t0 {
     @Override
-    public final org.telegram.ui.ActionBar.m2 O0() {
+    public final org.telegram.ui.ActionBar.n2 O0() {
         return null;
     }
 
@@ -18,7 +18,7 @@ public final class s4 implements org.telegram.ui.Cells.t0 {
     }
 
     @Override
-    public final boolean f() {
+    public final boolean g() {
         return true;
     }
 
@@ -32,7 +32,7 @@ public final class s4 implements org.telegram.ui.Cells.t0 {
     }
 
     @Override
-    public final void Z(org.telegram.ui.Cells.w0 w0Var) {
+    public final void Y(org.telegram.ui.Cells.w0 w0Var) {
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class s4 implements org.telegram.ui.Cells.t0 {
     }
 
     @Override
-    public final void U(org.telegram.ui.Cells.w0 w0Var, int i10) {
+    public final void L(org.telegram.ui.Cells.w0 w0Var, int i10) {
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class s4 implements org.telegram.ui.Cells.t0 {
     }
 
     @Override
-    public final void g0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
+    public final void d0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
     }
 
     @Override

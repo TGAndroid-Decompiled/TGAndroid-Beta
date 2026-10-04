@@ -1,153 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
-public final class v51 extends yw0 {
-    public final int f28982a = UserConfig.selectedAccount;
-    public boolean f28983b = false;
-    public final float[] f28984c = new float[3];
-    public final float[] d = {0.0f, 150.0f, 300.0f};
-    public final float[] e = {0.0f, 0.0f, 0.0f};
-    public long f28985f = 0;
-    public boolean f28986g = false;
-    public final DecelerateInterpolator h = new DecelerateInterpolator();
-    public boolean f28987i;
-    public final Paint f28988j;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class v51 extends s4.s0 {
+    public final c61 f31569a;
 
-    public v51(boolean z10) {
-        if (z10) {
-            this.f28988j = new Paint(1);
+    public v51(c61 c61Var) {
+        this.f31569a = c61Var;
+    }
+
+    @Override
+    public final void a(RecyclerView recyclerView, int i10) {
+        s4.s0 s0Var = this.f31569a.f25236y;
+        if (s0Var != null) {
+            s0Var.a(recyclerView, i10);
         }
     }
 
     @Override
-    public final void b(int i10) {
-        Paint paint = this.f28988j;
-        if (paint != null) {
-            paint.setColor(i10);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        c61 c61Var = this.f31569a;
+        b61 b61Var = c61Var.f25233s;
+        s51 s51Var = c61Var.f25231n;
+        s4.s0 s0Var = c61Var.f25236y;
+        if (s0Var != null) {
+            s0Var.b(s51Var, i10, i11);
         }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        this.f28983b = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f28985f = System.currentTimeMillis();
-        this.f28986g = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int dp;
-        int i10;
-        int i11 = getBounds().left;
-        if (this.f28983b) {
-            dp = AndroidUtilities.dp(8.5f);
-            i10 = getBounds().top;
-        } else {
-            dp = AndroidUtilities.dp(9.3f);
-            i10 = getBounds().top;
-        }
-        int i12 = dp + i10;
-        Paint paint = this.f28988j;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f19039c2;
-            paint.setAlpha(255);
-        }
-        float f7 = i12;
-        float[] fArr = this.f28984c;
-        canvas.drawCircle(AndroidUtilities.dp(3.0f) + i11, f7, fArr[0] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(9.0f) + i11, f7, fArr[1] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(15.0f) + i11, f7, fArr[2] * AndroidUtilities.density, paint);
-        f();
-    }
-
-    @Override
-    public final void e() {
-        for (int i10 = 0; i10 < 3; i10++) {
-            this.e[i10] = 0.0f;
-            this.f28984c[i10] = 1.33f;
-        }
-        float[] fArr = this.d;
-        fArr[0] = 0.0f;
-        fArr[1] = 150.0f;
-        fArr[2] = 300.0f;
-        this.f28986g = false;
-    }
-
-    public final void f() {
-        if (this.f28986g) {
-            if (NotificationCenter.getInstance(this.f28982a).isAnimationInProgress() && !this.f28987i) {
-                AndroidUtilities.runOnUIThread(new yq0(this, 27), 100L);
-                return;
-            }
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f28985f;
-            this.f28985f = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            for (int i10 = 0; i10 < 3; i10++) {
-                float[] fArr = this.e;
-                float f7 = fArr[i10] + ((float) j3);
-                fArr[i10] = f7;
-                float[] fArr2 = this.d;
-                float f10 = f7 - fArr2[i10];
-                float[] fArr3 = this.f28984c;
-                if (f10 > 0.0f) {
-                    DecelerateInterpolator decelerateInterpolator = this.h;
-                    if (f10 <= 320.0f) {
-                        fArr3[i10] = decelerateInterpolator.getInterpolation(f10 / 320.0f) + 1.33f;
-                    } else if (f10 <= 640.0f) {
-                        fArr3[i10] = (1.0f - decelerateInterpolator.getInterpolation((f10 - 320.0f) / 320.0f)) + 1.33f;
-                    } else if (f10 >= 800.0f) {
-                        fArr[i10] = 0.0f;
-                        fArr2[i10] = 0.0f;
-                        fArr3[i10] = 1.33f;
-                    } else {
-                        fArr3[i10] = 1.33f;
-                    }
-                } else {
-                    fArr3[i10] = 1.33f;
+        if (i11 > 0 && s51Var.getAdapter() == b61Var && c61Var.J && !b61Var.f24804r && !b61Var.f24805s) {
+            if (c61Var.f25232r.N0() >= ((b61Var.f24806w + 1) - ((b61Var.v + 1) * 10)) - 1) {
+                c61 c61Var2 = b61Var.f24807x;
+                if (c61Var2.J && !b61Var.f24804r && !b61Var.f24805s) {
+                    b61Var.f24804r = true;
+                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
+                    tL_messages_getOldFeaturedStickers.offset = b61Var.f24803n.size();
+                    tL_messages_getOldFeaturedStickers.limit = 40;
+                    ConnectionsManager.getInstance(c61Var2.f25226a).sendRequest(tL_messages_getOldFeaturedStickers, new y1(b61Var, 17));
                 }
             }
-            a();
         }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Paint paint = this.f28988j;
-        if (paint != null) {
-            paint.setColorFilter(colorFilter);
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
     }
 }

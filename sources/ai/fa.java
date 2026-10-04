@@ -10,51 +10,51 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.wn;
+import org.telegram.ui.yn;
 public final class fa implements RequestDelegate {
-    public final int f883a = 0;
-    public final long f884b;
-    public final Object f885c;
+    public final int f954a = 0;
+    public final long f955b;
+    public final Object f956c;
     public final Object d;
-    public final Object e;
-    public final Object f886f;
+    public final Object f957e;
+    public final Object f958f;
 
     public fa(ha haVar, long j3, View view, ca caVar, MessagesController messagesController) {
-        this.f885c = haVar;
-        this.f884b = j3;
+        this.f956c = haVar;
+        this.f955b = j3;
         this.d = view;
-        this.e = caVar;
-        this.f886f = messagesController;
+        this.f957e = caVar;
+        this.f958f = messagesController;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f883a) {
+        switch (this.f954a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ga((ha) this.f885c, tLObject, this.f884b, (View) this.d, (ca) this.e, (MessagesController) this.f886f, 0));
+                AndroidUtilities.runOnUIThread(new ga((ha) this.f956c, tLObject, this.f955b, (View) this.d, (ca) this.f957e, (MessagesController) this.f958f, 0));
                 return;
             case 1:
-                ((ConferenceCall) this.f885c).lambda$poll$8((TL_phone.getGroupCallChainBlocks) this.d, this.f884b, (AtomicBoolean) this.e, (AtomicInteger) this.f886f, tLObject, tL_error);
+                ((ConferenceCall) this.f956c).lambda$poll$8((TL_phone.getGroupCallChainBlocks) this.d, this.f955b, (AtomicBoolean) this.f957e, (AtomicInteger) this.f958f, tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tL_error, (wn) this.f885c, tLObject, (TLRPC.FileLocation[]) this.d, (String) this.e, (TLRPC.FileLocation[]) this.f886f, this.f884b));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tL_error, (yn) this.f956c, tLObject, (TLRPC.FileLocation[]) this.d, (String) this.f957e, (TLRPC.FileLocation[]) this.f958f, this.f955b));
                 return;
         }
     }
 
     public fa(ConferenceCall conferenceCall, TL_phone.getGroupCallChainBlocks getgroupcallchainblocks, long j3, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger) {
-        this.f885c = conferenceCall;
+        this.f956c = conferenceCall;
         this.d = getgroupcallchainblocks;
-        this.f884b = j3;
-        this.e = atomicBoolean;
-        this.f886f = atomicInteger;
+        this.f955b = j3;
+        this.f957e = atomicBoolean;
+        this.f958f = atomicInteger;
     }
 
-    public fa(wn wnVar, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j3) {
-        this.f885c = wnVar;
+    public fa(yn ynVar, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j3) {
+        this.f956c = ynVar;
         this.d = fileLocationArr;
-        this.e = str;
-        this.f886f = fileLocationArr2;
-        this.f884b = j3;
+        this.f957e = str;
+        this.f958f = fileLocationArr2;
+        this.f955b = j3;
     }
 }

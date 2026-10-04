@@ -3,21 +3,21 @@ package dc;
 import java.util.ArrayList;
 import java.util.List;
 public final class d {
-    public final String f7606a;
-    public final List f7607b;
-    public final String f7608c;
+    public final String f8226a;
+    public final List f8227b;
+    public final String f8228c;
     public Integer d;
-    public na.d e;
-    public final int f7609f;
-    public final int f7610g;
+    public na.d f8229e;
+    public final int f8230f;
+    public final int f8231g;
     public final int h;
 
     public d(byte[] bArr, String str, ArrayList arrayList, String str2, int i10, int i11, int i12) {
-        this.f7606a = str;
-        this.f7607b = arrayList;
-        this.f7608c = str2;
-        this.f7609f = i11;
-        this.f7610g = i10;
+        this.f8226a = str;
+        this.f8227b = arrayList;
+        this.f8228c = str2;
+        this.f8230f = i11;
+        this.f8231g = i10;
         this.h = i12;
     }
 }

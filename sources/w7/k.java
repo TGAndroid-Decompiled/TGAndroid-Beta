@@ -9,9 +9,9 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 public abstract class k {
     public static a3.z a(File file, ki.t tVar, long j3, long j10, boolean z10) {
-        long e = e(file);
+        long e7 = e(file);
         long max = Math.max(0L, j3 * 1000);
-        long min = Math.min(e, Math.max(max, j10 * 1000));
+        long min = Math.min(e7, Math.max(max, j10 * 1000));
         MediaExtractor mediaExtractor = new MediaExtractor();
         try {
             mediaExtractor.setDataSource(file.getAbsolutePath());

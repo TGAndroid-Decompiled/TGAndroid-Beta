@@ -1,31 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class gi extends vg {
-    public final wi f24556l0;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class gi implements sj {
+    public final xi f26868a;
 
-    public gi(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, wi wiVar) {
-        super(i10, context, d6Var, false);
-        this.f24556l0 = wiVar;
+    public gi(xi xiVar) {
+        this.f26868a = xiVar;
     }
 
     @Override
-    public final boolean d() {
-        return false;
+    public final void a(TLRPC.User user, boolean z10, int i10, long j3) {
+        org.telegram.ui.yn ynVar = (org.telegram.ui.yn) this.f26868a.f32812f0;
+        if (ynVar.f7()) {
+            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, ynVar.R5, ynVar.f43404l5, ynVar.V3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
+            of2.sendMessageChatArguments = ynVar.D8();
+            of2.effect_id = 0L;
+            of2.invert_media = false;
+            of2.payStars = j3;
+            of2.monoForumPeer = ynVar.O8();
+            of2.suggestionParams = ynVar.f43320e5;
+            ynVar.getSendMessagesHelper().sendMessage(of2);
+            ynVar.y6();
+        }
     }
 
     @Override
-    public final boolean e() {
-        return !this.f24556l0.U0;
-    }
-
-    @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return this.f24556l0.getThemedColor(org.telegram.ui.ActionBar.h6.S5);
+    public final void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
+        ((org.telegram.ui.yn) this.f26868a.f32812f0).cb(arrayList, str, z10, i10, j3, z11);
     }
 }

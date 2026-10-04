@@ -1,120 +1,79 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class yj0 extends View {
-    public final Paint f40180a;
-    public final Paint f40181b;
-    public final org.telegram.ui.Components.e6 f40182c;
-    public final org.telegram.ui.Components.o6 d;
-    public int e;
-    public float f40183f;
-    public ValueAnimator h;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class yj0 extends AnimatedPhoneNumberEditText {
+    public final int G;
+    public final Object H;
 
-    public yj0(Context context) {
+    public yj0(Object obj, Context context, int i10) {
         super(context);
-        Paint paint = new Paint(1);
-        this.f40180a = paint;
-        Paint paint2 = new Paint(1);
-        this.f40181b = paint2;
-        org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.h;
-        this.f40182c = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
-        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
-        this.d = o6Var;
-        this.f40183f = 1.0f;
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false));
-        paint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19131h5, false));
-        paint2.setStyle(Paint.Style.STROKE);
-        paint2.setStrokeWidth(AndroidUtilities.dp(4.0f));
-        o6Var.setCallback(this);
-        o6Var.k(0.35f, 200L, srVar);
-        Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = o6Var.f26946a;
-        textPaint.setStyle(style);
-        textPaint.setStrokeWidth(AndroidUtilities.dp(0.24f));
-        textPaint.setStrokeJoin(Paint.Join.ROUND);
-        o6Var.t(AndroidUtilities.dp(13.3f));
-        o6Var.r(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-        o6Var.G = AndroidUtilities.dp(64.0f);
-        o6Var.f26947b = 1;
-    }
-
-    public final boolean a(int i10) {
-        int i11 = this.e;
-        boolean z10 = false;
-        if (i11 != i10) {
-            if (i11 < i10) {
-                z10 = true;
-            }
-            this.e = i10;
-            String str = "";
-            if (i10 > 0) {
-                str = "" + this.e;
-            }
-            this.d.q(str, true, true);
-            if (z10) {
-                ValueAnimator valueAnimator = this.h;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.h = null;
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.h = ofFloat;
-                ofFloat.addUpdateListener(new c3(this, 18));
-                this.h.addListener(new org.telegram.ui.Components.s81(this, 28));
-                this.h.setInterpolator(new OvershootInterpolator(2.0f));
-                this.h.setDuration(200L);
-                this.h.start();
-            }
-        }
-        return z10;
+        this.G = i10;
+        this.H = obj;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
         float f7;
-        if (this.e > 0) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+        float f10;
+        float f11;
+        switch (this.G) {
+            case 0:
+                super.onFocusChanged(z10, i10, rect);
+                ak0 ak0Var = (ak0) this.H;
+                org.telegram.ui.Components.ld0 ld0Var = ak0Var.f34848s;
+                if (!z10 && !ak0Var.Q.isFocused()) {
+                    f7 = 0.0f;
+                } else {
+                    f7 = 1.0f;
+                }
+                ld0Var.b(f7, f7, true);
+                return;
+            case 1:
+                super.onFocusChanged(z10, i10, rect);
+                ak0 ak0Var2 = (ak0) this.H;
+                org.telegram.ui.Components.ld0 ld0Var2 = ak0Var2.f34848s;
+                if (!z10 && !ak0Var2.O.isFocused()) {
+                    f10 = 0.0f;
+                } else {
+                    f10 = 1.0f;
+                }
+                ld0Var2.b(f10, f10, true);
+                return;
+            default:
+                super.onFocusChanged(z10, i10, rect);
+                tg0 tg0Var = (tg0) this.H;
+                org.telegram.ui.Components.ld0 ld0Var3 = tg0Var.f40820f;
+                if (!z10 && !tg0Var.f40817b.isFocused()) {
+                    f11 = 0.0f;
+                } else {
+                    f11 = 1.0f;
+                }
+                ld0Var3.b(f11, f11, true);
+                if (z10) {
+                    tg0Var.V.f41196c.setEditText(this);
+                    return;
+                }
+                return;
         }
-        float d = this.f40182c.d(f7, false);
-        canvas.save();
-        float f10 = this.f40183f;
-        canvas.scale(f10 * d, f10 * d, getWidth() / 2.0f, getHeight() / 2.0f);
-        org.telegram.ui.Components.o6 o6Var = this.d;
-        float dpf2 = AndroidUtilities.dpf2(12.66f) + o6Var.d();
-        float dpf22 = AndroidUtilities.dpf2(20.3f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getWidth() - dpf2) / 2.0f, (getHeight() - dpf22) / 2.0f, (getWidth() + dpf2) / 2.0f, (getHeight() + dpf22) / 2.0f);
-        int i10 = (int) (d * 255.0f);
-        Paint paint = this.f40181b;
-        paint.setAlpha(i10);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint);
-        Paint paint2 = this.f40180a;
-        paint2.setAlpha(i10);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint2);
-        canvas.save();
-        canvas.translate(0.0f, -AndroidUtilities.dp(1.0f));
-        o6Var.setBounds(0, 0, getWidth(), getHeight());
-        o6Var.draw(canvas);
-        canvas.restore();
-        canvas.restore();
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
+    public boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        switch (this.G) {
+            case 1:
+                ak0 ak0Var = (ak0) this.H;
+                if (i10 == 67 && ak0Var.Q.length() == 0) {
+                    ak0Var.O.requestFocus();
+                    yj0 yj0Var = ak0Var.O;
+                    yj0Var.setSelection(yj0Var.length());
+                    ak0Var.O.dispatchKeyEvent(keyEvent);
+                }
+                return super.onKeyDown(i10, keyEvent);
+            default:
+                return super.onKeyDown(i10, keyEvent);
         }
-        return true;
     }
 }

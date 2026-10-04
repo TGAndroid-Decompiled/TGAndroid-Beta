@@ -1,39 +1,28 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import org.telegram.messenger.AndroidUtilities;
-public final class z40 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.tp f40335t1;
-    public final d60 f40336u1;
+import org.telegram.messenger.ChatObject;
+public final class z40 implements ViewTreeObserver.OnPreDrawListener {
+    public final ChatObject.VideoParticipant f43697a;
+    public final h60 f43698b;
 
-    public z40(d60 d60Var, LaunchActivity launchActivity, org.telegram.ui.Components.tp tpVar) {
-        super(launchActivity, null);
-        this.f40336u1 = d60Var;
-        this.f40335t1 = tpVar;
+    public z40(h60 h60Var, ChatObject.VideoParticipant videoParticipant) {
+        this.f43698b = h60Var;
+        this.f43697a = videoParticipant;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            org.telegram.ui.Components.tp tpVar = this.f40335t1;
-            tpVar.f28603f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            tpVar.draw(canvas);
-            canvas.restore();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
+    public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        if (getAlpha() != f7) {
-            super.setAlpha(f7);
-            viewGroup = ((org.telegram.ui.ActionBar.e3) this.f40336u1).containerView;
-            viewGroup.invalidate();
-        }
+        h60 h60Var = this.f43698b;
+        h60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        h60Var.f36939q2 = null;
+        h60Var.a2.j(this.f43697a);
+        AndroidUtilities.updateVisibleRows(h60Var.f36922m2);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) h60Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

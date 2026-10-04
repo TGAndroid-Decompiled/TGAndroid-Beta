@@ -1,53 +1,138 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class yt0 extends LinearLayout {
-    public final TextView f30743a;
-    public final ImageView f30744b;
-    public boolean f30745c;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class yt0 extends yl0 {
+    public final Context f33248c;
+    public final ArrayList d = new ArrayList();
+    public int f33249e;
+    public final pv0 f33250f;
 
-    public yt0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        TextView textView = new TextView(context);
-        this.f30743a = textView;
-        ImageView imageView = new ImageView(context);
-        this.f30744b = imageView;
-        setOrientation(1);
-        setGravity(17);
-        addView(imageView, w7.y5.n(-2, -2));
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19463z6, d6Var));
-        textView.setGravity(17);
-        textView.setTextSize(1, 17.0f);
-        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        addView(textView, w7.y5.t(-2, -2, 17, 0, 24, 0, 0));
+    public yt0(pv0 pv0Var, Context context) {
+        this.f33250f = pv0Var;
+        this.f33248c = context;
+        E(false);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        this.f30745c = true;
-        if (AndroidUtilities.isTablet()) {
-            this.f30743a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else if (rotation != 3 && rotation != 1) {
-            this.f30743a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    public final void E(boolean z10) {
+        pv0 pv0Var = this.f33250f;
+        long j3 = pv0Var.f29775j1;
+        org.telegram.ui.ActionBar.n2 n2Var = pv0Var.f29800v1;
+        if (n2Var != null) {
+            if (DialogObject.isChatDialog(j3)) {
+                TLRPC.Chat chat = MessagesController.getInstance(n2Var.getCurrentAccount()).getChat(Long.valueOf(-j3));
+                if (chat == null || !ChatObject.isChannelAndNotMegaGroup(chat)) {
+                    return;
+                }
+            } else if (MessagesController.getInstance(n2Var.getCurrentAccount()).getUser(Long.valueOf(j3)) == null) {
+                return;
+            }
+            MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(n2Var.getCurrentAccount()).getChannelRecommendations(j3);
+            ArrayList arrayList = this.d;
+            arrayList.clear();
+            int i10 = 0;
+            if (channelRecommendations != null) {
+                for (int i11 = 0; i11 < channelRecommendations.chats.size(); i11++) {
+                    TLObject tLObject = channelRecommendations.chats.get(i11);
+                    if ((tLObject instanceof TLRPC.Chat) && ChatObject.isNotInChat((TLRPC.Chat) tLObject)) {
+                        arrayList.add(tLObject);
+                    } else {
+                        arrayList.add(tLObject);
+                    }
+                }
+            }
+            if (!arrayList.isEmpty() && !UserConfig.getInstance(n2Var.getCurrentAccount()).isPremium()) {
+                i10 = channelRecommendations.more;
+            }
+            this.f33249e = i10;
+            if (z10) {
+                l();
+            }
+        }
+    }
+
+    @Override
+    public final int h() {
+        return this.d.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (this.f33249e > 0 && i10 == this.d.size() - 1) {
+            return 18;
+        }
+        return 17;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        org.telegram.ui.Cells.i6 i6Var;
+        int i11 = c1Var.f46527f;
+        View view = c1Var.f46523a;
+        if (i11 == 17) {
+            if (view instanceof org.telegram.ui.Cells.i6) {
+                i6Var = (org.telegram.ui.Cells.i6) view;
+            } else {
+                return;
+            }
+        } else if (i11 == 18) {
+            if (view instanceof mu0) {
+                i6Var = ((mu0) view).f28715a;
+            } else {
+                return;
+            }
         } else {
-            this.f30743a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
+            i6Var = null;
         }
-        this.f30745c = false;
-        super.onMeasure(i10, i11);
+        org.telegram.ui.Cells.i6 i6Var2 = i6Var;
+        if (i6Var2 != null) {
+            ArrayList arrayList = this.d;
+            i6Var2.t(arrayList.get(i10), null, null, null, false, false);
+            boolean z10 = true;
+            if (i10 == arrayList.size() - 1) {
+                z10 = false;
+            }
+            i6Var2.M = z10;
+        }
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f30745c) {
-            return;
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View i6Var;
+        int currentAccount;
+        boolean z10;
+        pv0 pv0Var = this.f33250f;
+        if (i10 == 18) {
+            org.telegram.ui.ActionBar.n2 n2Var = pv0Var.f29800v1;
+            if (n2Var == null) {
+                currentAccount = UserConfig.selectedAccount;
+            } else {
+                currentAccount = n2Var.getCurrentAccount();
+            }
+            int i11 = currentAccount;
+            if (pv0Var.f29775j1 > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            i6Var = new mu0(i11, this.f33248c, z10, pv0Var.F1, new br0(this, 4));
+        } else {
+            i6Var = new org.telegram.ui.Cells.i6(this.f33248c, pv0Var.F1);
         }
-        super.requestLayout();
+        i6Var.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(i6Var);
     }
 }

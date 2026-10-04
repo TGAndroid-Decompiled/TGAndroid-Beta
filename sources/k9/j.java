@@ -6,39 +6,39 @@ import java.util.Arrays;
 import n4.y;
 import n6.l;
 public final class j {
-    public final String f13544a;
-    public final String f13545b;
-    public final String f13546c;
+    public final String f14726a;
+    public final String f14727b;
+    public final String f14728c;
     public final String d;
-    public final String e;
-    public final String f13547f;
-    public final String f13548g;
+    public final String f14729e;
+    public final String f14730f;
+    public final String f14731g;
 
     public j(String str, String str2, String str3, String str4, String str5, String str6, String str7) {
         boolean z10;
-        int i10 = u6.e.f43918a;
+        int i10 = u6.e.f47549a;
         if (str != null && !str.trim().isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
         }
         l.j("ApplicationId must be set.", true ^ z10);
-        this.f13545b = str;
-        this.f13544a = str2;
-        this.f13546c = str3;
+        this.f14727b = str;
+        this.f14726a = str2;
+        this.f14728c = str3;
         this.d = str4;
-        this.e = str5;
-        this.f13547f = str6;
-        this.f13548g = str7;
+        this.f14729e = str5;
+        this.f14730f = str6;
+        this.f14731g = str7;
     }
 
     public static j a(Context context) {
         of.b bVar = new of.b(context, 29);
-        String N = bVar.N("google_app_id");
-        if (TextUtils.isEmpty(N)) {
+        String G = bVar.G("google_app_id");
+        if (TextUtils.isEmpty(G)) {
             return null;
         }
-        return new j(N, bVar.N("google_api_key"), bVar.N("firebase_database_url"), bVar.N("ga_trackingId"), bVar.N("gcm_defaultSenderId"), bVar.N("google_storage_bucket"), bVar.N("project_id"));
+        return new j(G, bVar.G("google_api_key"), bVar.G("firebase_database_url"), bVar.G("ga_trackingId"), bVar.G("gcm_defaultSenderId"), bVar.G("google_storage_bucket"), bVar.G("project_id"));
     }
 
     public final boolean equals(Object obj) {
@@ -46,24 +46,24 @@ public final class j {
             return false;
         }
         j jVar = (j) obj;
-        if (!l.l(this.f13545b, jVar.f13545b) || !l.l(this.f13544a, jVar.f13544a) || !l.l(this.f13546c, jVar.f13546c) || !l.l(this.d, jVar.d) || !l.l(this.e, jVar.e) || !l.l(this.f13547f, jVar.f13547f) || !l.l(this.f13548g, jVar.f13548g)) {
+        if (!l.l(this.f14727b, jVar.f14727b) || !l.l(this.f14726a, jVar.f14726a) || !l.l(this.f14728c, jVar.f14728c) || !l.l(this.d, jVar.d) || !l.l(this.f14729e, jVar.f14729e) || !l.l(this.f14730f, jVar.f14730f) || !l.l(this.f14731g, jVar.f14731g)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f13545b, this.f13544a, this.f13546c, this.d, this.e, this.f13547f, this.f13548g});
+        return Arrays.hashCode(new Object[]{this.f14727b, this.f14726a, this.f14728c, this.d, this.f14729e, this.f14730f, this.f14731g});
     }
 
     public final String toString() {
         y yVar = new y(this);
-        yVar.k(this.f13545b, "applicationId");
-        yVar.k(this.f13544a, "apiKey");
-        yVar.k(this.f13546c, "databaseUrl");
-        yVar.k(this.e, "gcmSenderId");
-        yVar.k(this.f13547f, "storageBucket");
-        yVar.k(this.f13548g, "projectId");
+        yVar.m(this.f14727b, "applicationId");
+        yVar.m(this.f14726a, "apiKey");
+        yVar.m(this.f14728c, "databaseUrl");
+        yVar.m(this.f14729e, "gcmSenderId");
+        yVar.m(this.f14730f, "storageBucket");
+        yVar.m(this.f14731g, "projectId");
         return yVar.toString();
     }
 }

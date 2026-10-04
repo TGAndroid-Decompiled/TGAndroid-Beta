@@ -29,8 +29,8 @@ public abstract class g0 {
         if (str != null && str.length() != 0) {
             try {
                 return DesugarArrays.stream(str.split(",")).mapToInt(new org.telegram.messenger.c4(1)).toArray();
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
                 return a();
             }
         }

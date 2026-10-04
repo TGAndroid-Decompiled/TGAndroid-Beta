@@ -1,23 +1,31 @@
 package org.telegram.ui;
-public final class ta1 implements Runnable {
-    public final int f38035a;
-    public final StickersActivity f38036b;
 
-    public ta1(StickersActivity stickersActivity, int i10) {
-        this.f38035a = i10;
-        this.f38036b = stickersActivity;
+import android.content.Context;
+public final class ta1 extends fa1 {
+    public final int v;
+    public final int f40773w;
+    public int f40774x;
+    public org.telegram.ui.Components.q61 f40775y;
+
+    public ta1(Context context, int i10, int i11, ig.f fVar, int i12) {
+        super(context, i11, fVar, null);
+        this.v = i10;
+        this.f40773w = i12;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38035a) {
-            case 0:
-                this.f38036b.m0();
-                return;
-            default:
-                StickersActivity stickersActivity = this.f38036b;
-                stickersActivity.f31801r--;
-                return;
+    public final void b(ha1 ha1Var) {
+        int i10;
+        if (ha1Var != null && (i10 = this.f40774x) >= 0) {
+            ha1Var.a(this.v, this.f40773w, i10, this.f40775y);
         }
+    }
+
+    @Override
+    public final void c() {
+    }
+
+    @Override
+    public final void f() {
     }
 }

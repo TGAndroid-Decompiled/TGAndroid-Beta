@@ -2,50 +2,50 @@ package w3;
 
 import e2.v;
 public final class a {
-    public final int f44762a;
-    public int f44763b;
-    public int f44764c;
+    public final int f48462a;
+    public int f48463b;
+    public int f48464c;
     public long d;
-    public final boolean e;
-    public final v f44765f;
-    public final v f44766g;
+    public final boolean f48465e;
+    public final v f48466f;
+    public final v f48467g;
     public int h;
-    public int f44767i;
+    public int f48468i;
 
     public a(v vVar, v vVar2, boolean z10) {
-        this.f44766g = vVar;
-        this.f44765f = vVar2;
-        this.e = z10;
+        this.f48467g = vVar;
+        this.f48466f = vVar2;
+        this.f48465e = z10;
         vVar2.J(12);
-        this.f44762a = vVar2.B();
+        this.f48462a = vVar2.B();
         vVar.J(12);
-        this.f44767i = vVar.B();
+        this.f48468i = vVar.B();
         c3.b.c("first_chunk must be 1", vVar.j() == 1);
-        this.f44763b = -1;
+        this.f48463b = -1;
     }
 
     public final boolean a() {
         long z10;
         int i10;
-        int i11 = this.f44763b + 1;
-        this.f44763b = i11;
-        if (i11 == this.f44762a) {
+        int i11 = this.f48463b + 1;
+        this.f48463b = i11;
+        if (i11 == this.f48462a) {
             return false;
         }
-        boolean z11 = this.e;
-        v vVar = this.f44765f;
+        boolean z11 = this.f48465e;
+        v vVar = this.f48466f;
         if (z11) {
             z10 = vVar.C();
         } else {
             z10 = vVar.z();
         }
         this.d = z10;
-        if (this.f44763b == this.h) {
-            v vVar2 = this.f44766g;
-            this.f44764c = vVar2.B();
+        if (this.f48463b == this.h) {
+            v vVar2 = this.f48467g;
+            this.f48464c = vVar2.B();
             vVar2.K(4);
-            int i12 = this.f44767i - 1;
-            this.f44767i = i12;
+            int i12 = this.f48468i - 1;
+            this.f48468i = i12;
             if (i12 > 0) {
                 i10 = vVar2.B() - 1;
             } else {

@@ -1,12 +1,12 @@
 package x3;
 
+import a4.m;
 import b2.p0;
 import b2.r;
 import b2.r0;
 import b2.s;
 import b2.s0;
 import c3.j0;
-import c3.k0;
 import c3.z;
 import e0.i0;
 import e2.v;
@@ -14,68 +14,68 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import n7.z0;
 public final class j extends i {
-    public i0 f45536n;
-    public int f45537o;
-    public boolean f45538p;
-    public z f45539q;
-    public j0 f45540r;
+    public i0 f49293n;
+    public int f49294o;
+    public boolean f49295p;
+    public z f49296q;
+    public m f49297r;
 
     @Override
     public final void a(long j3) {
         boolean z10;
-        this.f45530g = j3;
+        this.f49287g = j3;
         int i10 = 0;
         if (j3 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f45538p = z10;
-        z zVar = this.f45539q;
+        this.f49295p = z10;
+        z zVar = this.f49296q;
         if (zVar != null) {
-            i10 = zVar.e;
+            i10 = zVar.f4137e;
         }
-        this.f45537o = i10;
+        this.f49294o = i10;
     }
 
     @Override
     public final long b(v vVar) {
         int i10;
         int i11 = 0;
-        byte b10 = vVar.f7916a[0];
+        byte b10 = vVar.f8589a[0];
         if ((b10 & 1) == 1) {
             return -1L;
         }
-        i0 i0Var = this.f45536n;
+        i0 i0Var = this.f49293n;
         e2.d.h(i0Var);
-        int i12 = i0Var.f7771a;
-        z zVar = (z) i0Var.f7772b;
-        if (!((k0[]) i0Var.e)[(b10 >> 1) & (255 >>> (8 - i12))].f3779b) {
-            i10 = zVar.e;
+        int i12 = i0Var.f8425a;
+        z zVar = (z) i0Var.f8426b;
+        if (!((j0[]) i0Var.f8428e)[(b10 >> 1) & (255 >>> (8 - i12))].f4081b) {
+            i10 = zVar.f4137e;
         } else {
-            i10 = zVar.f3825f;
+            i10 = zVar.f4138f;
         }
-        if (this.f45538p) {
-            i11 = (this.f45537o + i10) / 4;
+        if (this.f49295p) {
+            i11 = (this.f49294o + i10) / 4;
         }
         long j3 = i11;
-        byte[] bArr = vVar.f7916a;
+        byte[] bArr = vVar.f8589a;
         int length = bArr.length;
-        int i13 = vVar.f7918c + 4;
+        int i13 = vVar.f8591c + 4;
         if (length < i13) {
             byte[] copyOf = Arrays.copyOf(bArr, i13);
             vVar.H(copyOf.length, copyOf);
         } else {
             vVar.I(i13);
         }
-        byte[] bArr2 = vVar.f7916a;
-        int i14 = vVar.f7918c;
+        byte[] bArr2 = vVar.f8589a;
+        int i14 = vVar.f8591c;
         bArr2[i14 - 4] = (byte) (j3 & 255);
         bArr2[i14 - 3] = (byte) ((j3 >>> 8) & 255);
         bArr2[i14 - 2] = (byte) ((j3 >>> 16) & 255);
         bArr2[i14 - 1] = (byte) ((j3 >>> 24) & 255);
-        this.f45538p = true;
-        this.f45537o = i10;
+        this.f49295p = true;
+        this.f49294o = i10;
         return j3;
     }
 
@@ -85,11 +85,11 @@ public final class j extends i {
         int i10;
         int i11;
         long j10;
-        if (this.f45536n != null) {
-            ((s) z0Var.f15411b).getClass();
+        if (this.f49293n != null) {
+            ((s) z0Var.f16846b).getClass();
             return false;
         }
-        z zVar = this.f45539q;
+        z zVar = this.f49296q;
         int i12 = 4;
         int i13 = -1;
         if (zVar == null) {
@@ -109,30 +109,30 @@ public final class j extends i {
             int x11 = vVar.x();
             int pow = (int) Math.pow(2.0d, (x11 & 240) >> 4);
             vVar.x();
-            ?? copyOf = Arrays.copyOf(vVar.f7916a, vVar.f7918c);
+            ?? copyOf = Arrays.copyOf(vVar.f8589a, vVar.f8591c);
             ?? obj = new Object();
-            obj.f3822a = x10;
-            obj.f3823b = p5;
-            obj.f3824c = l4;
+            obj.f4134a = x10;
+            obj.f4135b = p5;
+            obj.f4136c = l4;
             obj.d = i13;
-            obj.e = (int) Math.pow(2.0d, x11 & 15);
-            obj.f3825f = pow;
-            obj.f3826g = copyOf;
-            this.f45539q = obj;
+            obj.f4137e = (int) Math.pow(2.0d, x11 & 15);
+            obj.f4138f = pow;
+            obj.f4139g = copyOf;
+            this.f49296q = obj;
         } else {
-            j0 j0Var = this.f45540r;
-            if (j0Var == null) {
-                this.f45540r = c3.b.v(vVar, true, true);
+            m mVar = this.f49297r;
+            if (mVar == null) {
+                this.f49297r = c3.b.v(vVar, true, true);
             } else {
-                int i14 = vVar.f7918c;
+                int i14 = vVar.f8591c;
                 byte[] bArr = new byte[i14];
-                System.arraycopy(vVar.f7916a, 0, bArr, 0, i14);
-                int i15 = zVar.f3822a;
+                System.arraycopy(vVar.f8589a, 0, bArr, 0, i14);
+                int i15 = zVar.f4134a;
                 int i16 = 5;
                 c3.b.x(5, vVar, false);
                 int x12 = vVar.x() + 1;
-                a4.h hVar = new a4.h(vVar.f7916a);
-                hVar.t(vVar.f7917b * 8);
+                a4.h hVar = new a4.h(vVar.f8589a);
+                hVar.t(vVar.f8590b * 8);
                 int i17 = 0;
                 while (true) {
                     int i18 = 16;
@@ -186,7 +186,7 @@ public final class j extends i {
                                 throw s0.a(null, "lookup type greater than 2 not decodable: " + i25);
                             }
                         } else {
-                            throw s0.a(null, "expected code book to start with [0x56, 0x43, 0x42] at " + ((hVar.d * 8) + hVar.e));
+                            throw s0.a(null, "expected code book to start with [0x56, 0x43, 0x42] at " + ((hVar.d * 8) + hVar.f278e));
                         }
                     } else {
                         int i27 = 6;
@@ -357,13 +357,13 @@ public final class j extends i {
                                 }
                                 int i71 = hVar.i(6);
                                 int i72 = i71 + 1;
-                                k0[] k0VarArr = new k0[i72];
+                                j0[] j0VarArr = new j0[i72];
                                 for (int i73 = 0; i73 < i72; i73++) {
                                     boolean h10 = hVar.h();
                                     hVar.i(16);
                                     hVar.i(16);
                                     hVar.i(8);
-                                    k0VarArr[i73] = new k0(h10);
+                                    j0VarArr[i73] = new j0(h10);
                                 }
                                 if (hVar.h()) {
                                     int i74 = 0;
@@ -371,7 +371,7 @@ public final class j extends i {
                                         i74++;
                                         i71 >>>= 1;
                                     }
-                                    i0Var = new i0(zVar, j0Var, bArr, k0VarArr, i74);
+                                    i0Var = new i0(zVar, mVar, bArr, j0VarArr, i74);
                                 } else {
                                     throw s0.a(null, "framing bit after modes not set as expected");
                                 }
@@ -382,25 +382,25 @@ public final class j extends i {
             }
         }
         i0Var = null;
-        this.f45536n = i0Var;
+        this.f49293n = i0Var;
         if (i0Var == null) {
             return true;
         }
-        z zVar2 = (z) i0Var.f7772b;
+        z zVar2 = (z) i0Var.f8426b;
         ArrayList arrayList = new ArrayList();
-        arrayList.add((byte[]) zVar2.f3826g);
+        arrayList.add((byte[]) zVar2.f4139g);
         arrayList.add((byte[]) i0Var.d);
-        p0 r10 = c3.b.r(e9.i0.w(((j0) i0Var.f7773c).f3772a));
+        p0 r10 = c3.b.r(e9.i0.w((String[]) ((m) i0Var.f8427c).f297b));
         r rVar = new r();
-        rVar.f3244p = r0.n("audio/ogg");
-        rVar.f3245q = r0.n("audio/vorbis");
+        rVar.f3505p = r0.n("audio/ogg");
+        rVar.f3506q = r0.n("audio/vorbis");
         rVar.h = zVar2.d;
-        rVar.f3237i = zVar2.f3824c;
-        rVar.I = zVar2.f3822a;
-        rVar.J = zVar2.f3823b;
-        rVar.f3248t = arrayList;
-        rVar.f3239k = r10;
-        z0Var.f15411b = new s(rVar);
+        rVar.f3498i = zVar2.f4136c;
+        rVar.I = zVar2.f4134a;
+        rVar.J = zVar2.f4135b;
+        rVar.f3509t = arrayList;
+        rVar.f3500k = r10;
+        z0Var.f16846b = new s(rVar);
         return true;
     }
 
@@ -408,11 +408,11 @@ public final class j extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f45536n = null;
-            this.f45539q = null;
-            this.f45540r = null;
+            this.f49293n = null;
+            this.f49296q = null;
+            this.f49297r = null;
         }
-        this.f45537o = 0;
-        this.f45538p = false;
+        this.f49294o = 0;
+        this.f49295p = false;
     }
 }

@@ -1,73 +1,125 @@
 package org.telegram.ui.Components;
 
-import android.location.Location;
+import android.content.Context;
 import android.view.View;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class sk implements Runnable {
-    public final int f28259a;
-    public final il f28260b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class sk extends pi {
+    public final nz f30748n;
+    public final zl0 f30749r;
+    public final s4.c0 f30750s;
+    public final HorizontalScrollView v;
+    public final boolean f30751w;
 
-    public sk(il ilVar, int i10) {
-        this.f28259a = i10;
-        this.f28260b = ilVar;
+    public sk(xi xiVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        super(context, d6Var, xiVar);
+        this.f30751w = z10;
+        this.f29645f = true;
+        org.telegram.ui.ActionBar.n2 n2Var = xiVar.f32812f0;
+        boolean z11 = !z10 ? 1 : 0;
+        nz nzVar = new nz(n2Var, z11, z10, false, getContext(), true, null, null, false, d6Var, false, true);
+        this.f30748n = nzVar;
+        nzVar.f29154w0 = false;
+        nzVar.G(z11, z10, false, false);
+        nzVar.f29126n2 = true;
+        dx dxVar = nzVar.f29157x;
+        if (dxVar != null) {
+            dxVar.setVisibility(8);
+        }
+        nzVar.f29129o2 = true;
+        ImageView imageView = nzVar.f29161y;
+        if (imageView != null) {
+            imageView.setVisibility(8);
+        }
+        nzVar.K2 = true;
+        addView(nzVar, w7.z5.c(-1.0f, -1));
+        HorizontalScrollView y3 = nzVar.y(z11 ? 1 : 0);
+        this.v = y3;
+        zl0 x10 = nzVar.x(z11 ? 1 : 0);
+        this.f30749r = x10;
+        x10.j(new ai.r(this, 21));
+        this.f30750s = (s4.c0) x10.getLayoutManager();
+        y3.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
     @Override
-    public final void run() {
-        Location location;
-        switch (this.f28259a) {
-            case 0:
-                il ilVar = this.f28260b;
-                double[] dArr = ilVar.f27075b.f29993x2;
-                ilVar.b0(dArr[0], dArr[1]);
-                return;
-            case 1:
-                il.M(this.f28260b);
-                return;
-            case 2:
-                this.f28260b.Y();
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new sk(this.f28260b, 4));
-                return;
-            case 4:
-                View view = this.f28260b.M;
-                view.setTag(1);
-                view.animate().alpha(0.0f).setDuration(180L).start();
-                return;
-            case 5:
-                il ilVar2 = this.f28260b;
-                gg.t0 t0Var = ilVar2.O;
-                if (ilVar2.f25146t0) {
-                    ilVar2.f25146t0 = false;
-                    return;
-                }
-                IMapsProvider.IMap iMap = ilVar2.H;
-                if (iMap != null && (location = ilVar2.f25143r0) != null) {
-                    location.setLatitude(iMap.getCameraPosition().target.latitude);
-                    ilVar2.f25143r0.setLongitude(ilVar2.H.getCameraPosition().target.longitude);
-                }
-                t0Var.L(ilVar2.f25143r0);
-                t0Var.I();
-                return;
-            case 6:
-                fl flVar = this.f28260b.F;
-                if (flVar != null) {
-                    flVar.a();
-                    return;
-                }
-                return;
-            case 7:
-                View view2 = this.f28260b.M;
-                if (view2.getTag() == null) {
-                    view2.animate().alpha(0.0f).setDuration(180L).start();
-                    return;
-                }
-                return;
-            default:
-                this.f28260b.b0(0.0d, 0.0d);
-                return;
+    public final void C(pi piVar) {
+        int i10;
+        xi xiVar = this.f29642b;
+        try {
+            xiVar.X0.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
         }
+        y7 y7Var = xiVar.X0;
+        if (this.f30751w) {
+            i10 = R.string.SelectSticker;
+        } else {
+            i10 = R.string.SelectEmoji;
+        }
+        y7Var.setTitle(LocaleController.getString(i10));
+        this.f30750s.h1(0, 0);
+    }
+
+    @Override
+    public final void E() {
+        this.f30749r.y0(0);
+    }
+
+    @Override
+    public int getCurrentItemTop() {
+        zl0 zl0Var = this.f30749r;
+        if (zl0Var.getChildCount() <= 0) {
+            zl0Var.setTopGlowOffset(zl0Var.getPaddingTop());
+            return Integer.MAX_VALUE;
+        }
+        View childAt = zl0Var.getChildAt(0);
+        il0 il0Var = (il0) zl0Var.G(childAt);
+        int top = childAt.getTop() - AndroidUtilities.dp(36.0f);
+        int dp = AndroidUtilities.dp(7.0f);
+        if (top < AndroidUtilities.dp(7.0f) || il0Var == null || il0Var.b() != 0) {
+            top = dp;
+        }
+        zl0Var.setTopGlowOffset(top);
+        return top;
+    }
+
+    @Override
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(56.0f) + getListTopPadding();
+    }
+
+    @Override
+    public int getListTopPadding() {
+        return this.f30749r.getPaddingTop();
+    }
+
+    @Override
+    public final int h() {
+        return 1;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.v.setTranslationY(Math.max(0, getCurrentItemTop()));
+    }
+
+    public void setDelegate(oy oyVar) {
+        this.f30748n.setDelegate(oyVar);
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        this.f29642b.getSheetContainer().invalidate();
+        invalidate();
+    }
+
+    @Override
+    public final void y(int r4, int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sk.y(int, int):void");
     }
 }

@@ -12,26 +12,26 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.cb;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.yl0;
-import w7.y5;
-public final class e extends bb implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final x51 X;
+import org.telegram.ui.Components.zl0;
+import w7.z5;
+public final class e extends cb implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
+    public final g61 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f46117a0;
-    public l61 f46118b0;
+    public boolean f49919a0;
+    public u61 f49920b0;
 
     public e(Context context) {
         super(context, null, false, false, 2, null);
         int i10 = 0;
         this.Y = new LongSparseArray();
         this.Z = new ArrayList();
-        setBackgroundColor(h6.w0(null, h6.f19005a7, false));
+        setBackgroundColor(i6.w0(null, i6.f20761a7, false));
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
@@ -41,10 +41,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.X = x51.j(-1, linearLayout);
+        this.X = g61.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f46118b0.N(false);
+        this.f49920b0.N(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -52,8 +52,8 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             d dVar = new d(context, auction2);
-            dVar.f46108a.setOnClickListener(new xg.e(this, context, auction2, 1));
-            linearLayout.addView(dVar, y5.n(-1, -2));
+            dVar.f49909a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            linearLayout.addView(dVar, z5.n(-1, -2));
             this.Y.put(auction2.giftId, dVar);
         }
         onActiveAuctionsUpdate(activeAuctions);
@@ -69,7 +69,7 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
     public final void onActiveAuctionsUpdate(List list) {
         int i10;
         this.Z = new ArrayList(list);
-        this.e.setTitle(y());
+        this.f25301e.setTitle(y());
         Iterator it = list.iterator();
         while (it.hasNext()) {
             GiftAuctionController.Auction auction = (GiftAuctionController.Auction) it.next();
@@ -81,10 +81,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             }
             d dVar = (d) this.Y.get(auction.giftId);
             if (dVar != null) {
-                dVar.b(this.f46117a0);
+                dVar.b(this.f49919a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                dVar.a(max, this.f46117a0);
-                dVar.f46111f.a(max);
+                dVar.a(max, this.f49919a0);
+                dVar.f49913f.a(max);
             }
         }
     }
@@ -92,15 +92,15 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f46117a0 = true;
+        this.f49919a0 = true;
     }
 
     @Override
-    public final xl0 v(yl0 yl0Var) {
-        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f46118b0 = l61Var;
-        l61Var.f25924r = false;
-        return l61Var;
+    public final yl0 v(zl0 zl0Var) {
+        u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
+        this.f49920b0 = u61Var;
+        u61Var.f31306r = false;
+        return u61Var;
     }
 
     @Override

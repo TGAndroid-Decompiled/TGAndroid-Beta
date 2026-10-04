@@ -1,190 +1,96 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class mn {
-    public MessageObject f35628a;
-    public int f35629b;
-    public int f35630c;
-    public byte[] e;
-    public boolean f35631f;
-    public boolean h;
-    public String f35633i;
-    public ArrayList f35634j;
-    public TLRPC.TodoItem f35635k;
-    public TLRPC.PollAnswer f35636l;
-    public boolean f35632g = false;
-    public int d = -1;
+import java.util.Collections;
+public final class mn extends View {
+    public final ArrayList f38684a;
+    public final ArrayList f38685b;
+    public final yn f38686c;
 
-    public mn(int i10, int i11, MessageObject messageObject) {
-        this.f35628a = messageObject;
-        this.f35629b = i10;
-        this.f35630c = i11;
-        e();
+    public mn(yn ynVar, Context context) {
+        super(context);
+        this.f38686c = ynVar;
+        this.f38684a = new ArrayList();
+        this.f38685b = new ArrayList();
     }
 
-    public static mn b(int i10, int i11, MessageObject messageObject) {
-        if (messageObject == null) {
-            return null;
-        }
-        messageObject.getDialogId();
-        return new mn(i10, i11, messageObject);
+    public final void a() {
+        ArrayList arrayList = this.f38684a;
+        arrayList.clear();
+        yn ynVar = this.f38686c;
+        arrayList.add(ynVar.I1);
+        arrayList.add(ynVar.f43525v0);
+        arrayList.add(ynVar.V);
+        arrayList.add(ynVar.I3);
+        arrayList.add(ynVar.G1);
+        arrayList.add(ynVar.V2);
+        arrayList.add(ynVar.W);
+        arrayList.add(ynVar.f43352h1);
+        arrayList.add(ynVar.Q);
+        arrayList.add(ynVar.P1);
+        arrayList.removeAll(Collections.singleton(null));
     }
 
-    public static mn c(MessageObject messageObject) {
-        TLRPC.Message message = messageObject.messageOwner;
-        if (message != null && message.message != null) {
-            return b(0, Math.min(MessagesController.getInstance(messageObject.currentAccount).quoteLengthMax, messageObject.messageOwner.message.length()), messageObject);
-        }
-        return null;
-    }
-
-    public final void a(MessageObject messageObject) {
-        String str;
-        int i10;
-        int i11;
-        TLRPC.Message message = messageObject.messageOwner;
-        if (message != null && (str = message.message) != null) {
-            int i12 = this.f35630c;
-            if (i12 >= this.f35629b && i12 <= str.length() && this.f35629b <= messageObject.messageOwner.message.length() && (i10 = this.f35629b) >= 0 && (i11 = this.f35630c) >= 0) {
-                if (TextUtils.equals(this.f35633i, messageObject.messageOwner.message.substring(i10, i11))) {
-                    this.f35628a = messageObject;
-                    e();
-                    this.f35631f = false;
-                    return;
-                }
-                int indexOf = messageObject.messageOwner.message.indexOf(this.f35633i);
-                if (indexOf >= 0) {
-                    this.f35628a = messageObject;
-                    this.f35630c = (this.f35630c - this.f35629b) + indexOf;
-                    this.f35629b = indexOf;
-                    e();
-                    this.f35631f = false;
-                    return;
-                }
-                this.f35628a = messageObject;
-                this.f35629b = 0;
-                this.f35630c = messageObject.messageOwner.message.length();
-                e();
-                this.f35631f = true;
-                return;
-            }
-            FileLog.e("ReplyQuote.checkEdit: start/end are invalid (" + this.f35629b + ", " + this.f35630c + ", len=" + messageObject.messageOwner.message.length() + ")");
-            this.f35631f = false;
-            return;
-        }
-        FileLog.e("ReplyQuote.checkEdit: message is null");
-        this.f35631f = false;
-    }
-
-    public final boolean d() {
-        if (this.f35632g) {
-            if (this.f35635k == null) {
-                return false;
-            }
-        } else if (this.h) {
-            if (this.f35636l == null) {
-                return false;
-            }
-        } else {
-            return !TextUtils.isEmpty(this.f35633i);
-        }
-        return true;
-    }
-
-    public final boolean e() {
-        TLRPC.Message message;
-        String str;
-        int i10;
-        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji;
-        MessageObject messageObject = this.f35628a;
-        if (messageObject != null && (message = messageObject.messageOwner) != null && (str = message.message) != null) {
-            if (this.f35632g) {
-                TLRPC.TodoItem findTodoItem = MessageObject.findTodoItem(messageObject, this.d);
-                if (findTodoItem == null) {
-                    FileLog.e("ReplyQuote: todo task is not found");
-                    return false;
-                }
-                this.f35635k = findTodoItem;
-                return true;
-            } else if (this.h) {
-                TLRPC.PollAnswer findPollItem = MessageObject.findPollItem(messageObject, this.e);
-                if (findPollItem == null) {
-                    FileLog.e("ReplyQuote: poll item is not found");
-                    return false;
-                }
-                this.f35636l = findPollItem;
-                return true;
-            } else {
-                int i11 = this.f35630c;
-                if (i11 >= this.f35629b && i11 <= str.length() && this.f35629b <= this.f35628a.messageOwner.message.length() && (i10 = this.f35629b) >= 0 && this.f35630c >= 0) {
-                    String str2 = this.f35628a.messageOwner.message;
-                    int max = Math.max(0, i10);
-                    while (max < this.f35630c && Character.isWhitespace(str2.charAt(max))) {
-                        max++;
-                    }
-                    int min = Math.min(this.f35630c, str2.length());
-                    while (min > max && Character.isWhitespace(str2.charAt(min - 1))) {
-                        min--;
-                    }
-                    if (max == min) {
-                        FileLog.e("ReplyQuote: message is full of whitespace");
-                        return false;
-                    }
-                    this.f35633i = this.f35628a.messageOwner.message.substring(max, min);
-                    ArrayList arrayList = this.f35634j;
-                    if (arrayList != null) {
-                        arrayList.clear();
-                    }
-                    ArrayList<TLRPC.MessageEntity> arrayList2 = this.f35628a.messageOwner.entities;
-                    if (arrayList2 != null && !arrayList2.isEmpty()) {
-                        for (int i12 = 0; i12 < this.f35628a.messageOwner.entities.size(); i12++) {
-                            TLRPC.MessageEntity messageEntity = this.f35628a.messageOwner.entities.get(i12);
-                            int i13 = messageEntity.offset;
-                            if (AndroidUtilities.intersect1dInclusive(max, min, i13, messageEntity.length + i13)) {
-                                if (messageEntity instanceof TLRPC.TL_messageEntityBold) {
-                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityBold();
-                                } else if (messageEntity instanceof TLRPC.TL_messageEntityItalic) {
-                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityItalic();
-                                } else if (messageEntity instanceof TLRPC.TL_messageEntityUnderline) {
-                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityUnderline();
-                                } else if (messageEntity instanceof TLRPC.TL_messageEntityStrike) {
-                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityStrike();
-                                } else if (messageEntity instanceof TLRPC.TL_messageEntitySpoiler) {
-                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntitySpoiler();
-                                } else if (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji) {
-                                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji2 = new TLRPC.TL_messageEntityCustomEmoji();
-                                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji3 = (TLRPC.TL_messageEntityCustomEmoji) messageEntity;
-                                    tL_messageEntityCustomEmoji2.document_id = tL_messageEntityCustomEmoji3.document_id;
-                                    tL_messageEntityCustomEmoji2.document = tL_messageEntityCustomEmoji3.document;
-                                    tL_messageEntityCustomEmoji = tL_messageEntityCustomEmoji2;
-                                }
-                                int i14 = messageEntity.offset;
-                                int i15 = i14 - max;
-                                int i16 = (i14 + messageEntity.length) - max;
-                                if ((i15 >= 0 || i16 >= 0) && (i15 <= min || i16 <= min)) {
-                                    tL_messageEntityCustomEmoji.offset = Math.max(0, i15);
-                                    tL_messageEntityCustomEmoji.length = Math.min(i16, min - max) - tL_messageEntityCustomEmoji.offset;
-                                    if (this.f35634j == null) {
-                                        this.f35634j = new ArrayList();
-                                    }
-                                    this.f35634j.add(tL_messageEntityCustomEmoji);
-                                }
-                            }
-                        }
-                    }
-                    return true;
-                }
-                FileLog.e("ReplyQuote: start/end are invalid (" + this.f35629b + ", " + this.f35630c + ", len=" + this.f35628a.messageOwner.message.length() + ")");
-                return false;
-            }
-        }
-        FileLog.e("ReplyQuote: message is null");
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         return false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        yn ynVar = this.f38686c;
+        ynVar.f43447oc = true;
+        ArrayList arrayList = this.f38685b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((View) obj).setVisibility(0);
+        }
+        arrayList.clear();
+        ynVar.f43447oc = false;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        a();
+        yn ynVar = this.f38686c;
+        ynVar.f43447oc = true;
+        ArrayList arrayList = this.f38684a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            View view = (View) obj;
+            if (view.getVisibility() == 0) {
+                view.setVisibility(8);
+                this.f38685b.add(view);
+            }
+        }
+        ynVar.f43447oc = false;
+    }
+
+    @Override
+    public void setTranslationX(float f7) {
+        super.setTranslationX(f7);
+        a();
+        ArrayList arrayList = this.f38684a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            View view = (View) obj;
+            if (view != null) {
+                view.setTranslationX(f7);
+            }
+        }
     }
 }

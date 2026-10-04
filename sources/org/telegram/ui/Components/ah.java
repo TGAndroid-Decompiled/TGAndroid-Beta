@@ -1,39 +1,27 @@
 package org.telegram.ui.Components;
-
-import org.telegram.messenger.R;
 public final class ah {
+    public static final ah f24524a;
+    public static final ah f24525b;
+    public static final ah f24526c;
     public static final ah d;
-    public static final ah e;
-    public static final ah[] f22649f;
-    public final zg f22650a;
-    public final zg f22651b;
-    public final int f22652c;
+    public static final ah f24527e;
+    public static final ah f24528f;
+    public static final ah[] h;
 
     static {
-        int i10 = R.raw.voice_and_video;
-        zg zgVar = zg.f30883a;
-        zg zgVar2 = zg.f30884b;
-        ah ahVar = new ah("VOICE_TO_VIDEO", 0, zgVar, zgVar2, i10);
-        d = ahVar;
-        int i11 = R.raw.sticker_to_keyboard;
-        zg zgVar3 = zg.f30885c;
-        zg zgVar4 = zg.d;
-        ah ahVar2 = new ah("STICKER_TO_KEYBOARD", 1, zgVar3, zgVar4, i11);
-        int i12 = R.raw.smile_to_keyboard;
-        zg zgVar5 = zg.e;
-        ah ahVar3 = new ah("SMILE_TO_KEYBOARD", 2, zgVar5, zgVar4, i12);
-        ah ahVar4 = new ah("VIDEO_TO_VOICE", 3, zgVar2, zgVar, i10);
-        e = ahVar4;
-        ah ahVar5 = new ah("KEYBOARD_TO_STICKER", 4, zgVar4, zgVar3, R.raw.keyboard_to_sticker);
-        int i13 = R.raw.keyboard_to_gif;
-        zg zgVar6 = zg.f30886f;
-        f22649f = new ah[]{ahVar, ahVar2, ahVar3, ahVar4, ahVar5, new ah("KEYBOARD_TO_GIF", 5, zgVar4, zgVar6, i13), new ah("KEYBOARD_TO_SMILE", 6, zgVar4, zgVar5, R.raw.keyboard_to_smile), new ah("GIF_TO_KEYBOARD", 7, zgVar6, zgVar4, R.raw.gif_to_keyboard), new ah("GIF_TO_SMILE", 8, zgVar6, zgVar5, R.raw.gif_to_smile), new ah("SMILE_TO_GIF", 9, zgVar5, zgVar6, R.raw.smile_to_gif), new ah("SMILE_TO_STICKER", 10, zgVar5, zgVar3, R.raw.smile_to_sticker), new ah("STICKER_TO_SMILE", 11, zgVar3, zgVar5, R.raw.sticker_to_smile)};
-    }
-
-    public ah(String str, int i10, zg zgVar, zg zgVar2, int i11) {
-        this.f22650a = zgVar;
-        this.f22651b = zgVar2;
-        this.f22652c = i11;
+        ?? r02 = new Enum("VOICE", 0);
+        f24524a = r02;
+        ?? r12 = new Enum("VIDEO", 1);
+        f24525b = r12;
+        ?? r32 = new Enum("STICKER", 2);
+        f24526c = r32;
+        ?? r52 = new Enum("KEYBOARD", 3);
+        d = r52;
+        ?? r72 = new Enum("SMILE", 4);
+        f24527e = r72;
+        ?? r92 = new Enum("GIF", 5);
+        f24528f = r92;
+        h = new ah[]{r02, r12, r32, r52, r72, r92};
     }
 
     public static ah valueOf(String str) {
@@ -41,6 +29,6 @@ public final class ah {
     }
 
     public static ah[] values() {
-        return (ah[]) f22649f.clone();
+        return (ah[]) h.clone();
     }
 }

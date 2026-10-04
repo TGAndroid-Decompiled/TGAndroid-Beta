@@ -1,7 +1,24 @@
 package org.telegram.ui.Components;
-public final class ip extends s4.d0 {
+
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ip extends nj0 {
+    public final pp f27451r;
+
+    public ip(pp ppVar, Context context) {
+        super(context);
+        this.f27451r = ppVar;
+    }
+
     @Override
-    public final int n(int i10) {
-        return super.n(i10) * 6;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f27451r.N) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
+        } else {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
+        }
     }
 }

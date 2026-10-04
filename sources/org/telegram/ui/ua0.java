@@ -1,77 +1,91 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ua0 implements MessagesController.MessagesLoadedCallback {
-    public final m80 f38380a;
-    public final String f38381b;
-    public final org.telegram.ui.ActionBar.m2 f38382c;
-    public final long d;
-    public final Integer e;
-    public final Bundle f38383f;
-    public final LaunchActivity f38384g;
+public final class ua0 extends RelativeLayout {
+    public i0.b f41134a;
+    public boolean f41135b;
+    public final LaunchActivity f41136c;
 
-    public ua0(LaunchActivity launchActivity, m80 m80Var, String str, org.telegram.ui.ActionBar.m2 m2Var, long j3, Integer num, Bundle bundle) {
-        this.f38384g = launchActivity;
-        this.f38380a = m80Var;
-        this.f38381b = str;
-        this.f38382c = m2Var;
-        this.d = j3;
-        this.e = num;
-        this.f38383f = bundle;
+    public ua0(LaunchActivity launchActivity, LaunchActivity launchActivity2) {
+        super(launchActivity2);
+        this.f41136c = launchActivity;
+        this.f41134a = i0.b.f11524e;
+        bu buVar = new bu(this, 16);
+        WeakHashMap weakHashMap = r0.i0.f45595a;
+        r0.a0.j(this, buVar);
     }
 
     @Override
-    public final void onError() {
-        LaunchActivity launchActivity = this.f38384g;
-        if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.e5.u0((org.telegram.ui.ActionBar.m2) hg.c.g(1, launchActivity.f31108d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
+    public final void dispatchDraw(Canvas canvas) {
+        ActionBarLayout actionBarLayout = this.f41136c.f33799r0;
+        if (actionBarLayout != null) {
+            actionBarLayout.N(canvas, this);
         }
-        try {
-            this.f38380a.run();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final void onMessagesLoaded(boolean z10) {
-        try {
-            this.f38380a.run();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int measuredWidth = getMeasuredWidth();
+        getMeasuredHeight();
+        boolean z11 = AndroidUtilities.isInMultiwindow;
+        LaunchActivity launchActivity = this.f41136c;
+        if (!z11 && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
+            i0.b bVar = this.f41134a;
+            int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(measuredWidth, bVar.f11525a, bVar.f11527c);
+            launchActivity.f33797q0.getView().layout(0, 0, launchActivity.f33797q0.getView().getMeasuredWidth(), launchActivity.f33797q0.getView().getMeasuredHeight());
+            launchActivity.f33801s0.getView().layout(tabletLeftFragmentSize, 0, launchActivity.f33801s0.getView().getMeasuredWidth() + tabletLeftFragmentSize, launchActivity.f33801s0.getView().getMeasuredHeight());
+        } else {
+            launchActivity.f33797q0.getView().layout(0, 0, launchActivity.f33797q0.getView().getMeasuredWidth(), launchActivity.f33797q0.getView().getMeasuredHeight());
         }
-        LaunchActivity launchActivity = this.f38384g;
-        if (!launchActivity.isFinishing()) {
-            String str = this.f38381b;
-            long j3 = this.d;
-            org.telegram.ui.ActionBar.m2 m2Var = this.f38382c;
-            if (str == null || !(m2Var instanceof wn) || ((wn) m2Var).a() != j3) {
-                if (m2Var instanceof wn) {
-                    wn wnVar = (wn) m2Var;
-                    if (wnVar.a() == j3 && this.e == null) {
-                        AndroidUtilities.shakeViewSpring(wnVar.f39695x0, 5.0f);
-                        BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                        jk jkVar = wnVar.Y;
-                        for (int i10 = 0; i10 < jkVar.getChildCount(); i10++) {
-                            AndroidUtilities.shakeViewSpring(jkVar.getChildAt(i10), 5.0f);
-                        }
-                        org.telegram.ui.ActionBar.k actionBar = wnVar.getActionBar();
-                        for (int i11 = 0; i11 < actionBar.getChildCount(); i11++) {
-                            AndroidUtilities.shakeViewSpring(actionBar.getChildAt(i11), 5.0f);
-                        }
-                    }
-                }
-                m2Var = new wn(this.f38383f);
-                ((ActionBarLayout) launchActivity.O()).P(m2Var);
-            }
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.y21(this, this.f38381b, this.d, m2Var, 4), 150L);
+        int measuredWidth2 = (measuredWidth - launchActivity.f33799r0.getView().getMeasuredWidth()) / 2;
+        int dp = AndroidUtilities.dp(8.0f) + this.f41134a.f11526b;
+        launchActivity.f33799r0.getView().layout(measuredWidth2, dp, launchActivity.f33799r0.getView().getMeasuredWidth() + measuredWidth2, launchActivity.f33799r0.getView().getMeasuredHeight() + dp);
+        hg.q1 q1Var = launchActivity.f33807v0;
+        q1Var.layout(0, 0, q1Var.getMeasuredWidth(), launchActivity.f33807v0.getMeasuredHeight());
+        FrameLayout frameLayout = launchActivity.f33805u0;
+        frameLayout.layout(0, 0, frameLayout.getMeasuredWidth(), launchActivity.f33805u0.getMeasuredHeight());
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        this.f41135b = true;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        boolean z10 = AndroidUtilities.isInMultiwindow;
+        LaunchActivity launchActivity = this.f41136c;
+        if (!z10 && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
+            launchActivity.O0 = false;
+            i0.b bVar = this.f41134a;
+            int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(size, bVar.f11525a, bVar.f11527c);
+            launchActivity.f33797q0.getView().measure(View.MeasureSpec.makeMeasureSpec(tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            launchActivity.f33801s0.getView().measure(View.MeasureSpec.makeMeasureSpec(size - tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        } else {
+            launchActivity.O0 = true;
+            launchActivity.f33797q0.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
+        launchActivity.f33807v0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        launchActivity.f33805u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        ViewGroup view = launchActivity.f33799r0.getView();
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(500.0f), size - AndroidUtilities.dp(16.0f)), 1073741824);
+        i0.b bVar2 = this.f41134a;
+        view.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(((size2 - bVar2.f11526b) - bVar2.d) - AndroidUtilities.dp(16.0f), 1073741824));
+        this.f41135b = false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f41135b) {
+            return;
+        }
+        super.requestLayout();
     }
 }

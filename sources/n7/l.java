@@ -1,41 +1,41 @@
 package n7;
 public final class l extends m {
-    public final transient int f15370c;
+    public final transient int f16799c;
     public final transient int d;
-    public final m e;
+    public final m f16800e;
 
     public l(m mVar, int i10, int i11) {
-        this.e = mVar;
-        this.f15370c = i10;
+        this.f16800e = mVar;
+        this.f16799c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
         a.e(i10, this.d);
-        return this.e.get(i10 + this.f15370c);
+        return this.f16800e.get(i10 + this.f16799c);
     }
 
     @Override
     public final int n() {
-        return this.e.o() + this.f15370c + this.d;
+        return this.f16800e.o() + this.f16799c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.e.o() + this.f15370c;
+        return this.f16800e.o() + this.f16799c;
     }
 
     @Override
     public final Object[] q() {
-        return this.e.q();
+        return this.f16800e.q();
     }
 
     @Override
     public final m subList(int i10, int i11) {
         a.m(i10, i11, this.d);
-        int i12 = this.f15370c;
-        return this.e.subList(i10 + i12, i11 + i12);
+        int i12 = this.f16799c;
+        return this.f16800e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

@@ -4,54 +4,54 @@ import android.content.Context;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.PhotoViewer;
 public final class t7 extends nd {
-    public final int f28483b;
-    public final NotificationCenter.NotificationCenterDelegate f28484c;
+    public final int f30977b;
+    public final NotificationCenter.NotificationCenterDelegate f30978c;
 
     public t7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
         super(context);
-        this.f28483b = i10;
-        this.f28484c = notificationCenterDelegate;
+        this.f30977b = i10;
+        this.f30978c = notificationCenterDelegate;
     }
 
     @Override
     public final void c(boolean z10) {
         boolean z11;
         int i10;
-        switch (this.f28483b) {
+        switch (this.f30977b) {
             case 0:
-                j8 j8Var = (j8) this.f28484c;
+                j8 j8Var = (j8) this.f30978c;
                 j8Var.D0();
-                org.telegram.ui.tr trVar = j8Var.O;
-                if (trVar != null) {
-                    trVar.a(b5.d.u());
+                org.telegram.ui.xr xrVar = j8Var.O;
+                if (xrVar != null) {
+                    xrVar.a(b5.d.u());
                     return;
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f28484c;
-                org.telegram.ui.ActionBar.e1 e1Var = photoViewer.F0;
-                if (e1Var != null) {
-                    e1Var.d(z10);
-                    org.telegram.ui.ActionBar.e1 e1Var2 = photoViewer.F0;
+                PhotoViewer photoViewer = (PhotoViewer) this.f30978c;
+                org.telegram.ui.ActionBar.f1 f1Var = photoViewer.F0;
+                if (f1Var != null) {
+                    f1Var.d(z10);
+                    org.telegram.ui.ActionBar.f1 f1Var2 = photoViewer.F0;
                     if (z10) {
                         i10 = 259241196;
                     } else {
                         i10 = 268435455;
                     }
-                    e1Var2.setSelectorColor(i10);
+                    f1Var2.setSelectorColor(i10);
                 }
-                u71 u71Var = photoViewer.F2;
-                if (u71Var != null) {
-                    if (!b5.d.u() && !photoViewer.f31336r) {
+                d81 d81Var = photoViewer.F2;
+                if (d81Var != null) {
+                    if (!b5.d.u() && !photoViewer.f34005r) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
-                    u71Var.O(z11);
+                    d81Var.O(z11);
                 }
-                org.telegram.ui.tr trVar2 = photoViewer.f31384w0;
-                if (trVar2 != null) {
-                    trVar2.a(b5.d.u());
+                org.telegram.ui.xr xrVar2 = photoViewer.f34053w0;
+                if (xrVar2 != null) {
+                    xrVar2.a(b5.d.u());
                     return;
                 }
                 return;

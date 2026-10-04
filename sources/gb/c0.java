@@ -8,8 +8,8 @@ public class c0 extends db.u {
         }
         try {
             return Long.valueOf(aVar.q());
-        } catch (NumberFormatException e) {
-            throw new RuntimeException(e);
+        } catch (NumberFormatException e7) {
+            throw new RuntimeException(e7);
         }
     }
 

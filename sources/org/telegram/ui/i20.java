@@ -1,19 +1,89 @@
 package org.telegram.ui;
-public final class i20 extends rg.z0 {
-    public final int f34356r;
+public final class i20 implements org.telegram.ui.Components.xo0 {
+    public final int f37222a;
+    public final sg.a f37223b;
 
-    public i20(int i10, int i11, int i12, int i13, org.telegram.ui.ActionBar.d6 d6Var, int i14) {
-        super(i10, i11, i12, i13, d6Var);
-        this.f34356r = i14;
+    public i20(sg.a aVar, int i10) {
+        this.f37222a = i10;
+        this.f37223b = aVar;
     }
 
     @Override
-    public final int c(int i10) {
-        switch (this.f34356r) {
+    public final void B() {
+        int i10 = this.f37222a;
+    }
+
+    @Override
+    public final void Y(float f7, boolean z10) {
+        switch (this.f37222a) {
             case 0:
-                return org.telegram.ui.ActionBar.h6.C0(i10);
+                sg.f fVar = this.f37223b.f46783c;
+                if (fVar != null) {
+                    fVar.v = f7 * 2.0f;
+                    return;
+                }
+                return;
+            case 1:
+                sg.f fVar2 = this.f37223b.f46783c;
+                if (fVar2 != null) {
+                    fVar2.f46845w = f7 * 2.0f;
+                    return;
+                }
+                return;
+            case 2:
+                sg.f fVar3 = this.f37223b.f46783c;
+                if (fVar3 != null) {
+                    fVar3.f46846x = f7;
+                    return;
+                }
+                return;
             default:
-                return org.telegram.ui.ActionBar.h6.C0(i10);
+                sg.f fVar4 = this.f37223b.f46783c;
+                if (fVar4 != null) {
+                    fVar4.A = f7 * 2.0f;
+                    return;
+                }
+                return;
         }
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        switch (this.f37222a) {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            case 2:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public final int p0() {
+        switch (this.f37222a) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
+    }
+
+    private final void d() {
     }
 }

@@ -1,59 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.tgnet.TLRPC;
-public final class xw0 {
-    public final o5 f30495a;
-    public Drawable f30496b;
+public final class xw0 extends CharacterStyle {
+    public final Paint f32988a;
+    public final Path f32989b;
 
-    public xw0(FrameLayout frameLayout) {
-        this(18, frameLayout);
+    public xw0() {
+        Paint paint = new Paint(1);
+        this.f32988a = paint;
+        this.f32989b = new Path();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
     }
 
-    public final o5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
-        o5 o5Var = this.f30495a;
-        if (chat != null && chat.verified) {
-            Drawable drawable = this.f30496b;
-            if (drawable == null) {
-                drawable = new rq(org.telegram.ui.ActionBar.h6.f19092f1, org.telegram.ui.ActionBar.h6.f19145i1);
+    public static void a(Canvas canvas, Layout layout) {
+        CharSequence text;
+        int lineStart;
+        int lineEnd;
+        Layout layout2 = layout;
+        if (layout2 != null && (text = layout2.getText()) != null && (text instanceof Spanned)) {
+            Spanned spanned = (Spanned) text;
+            xw0[] xw0VarArr = (xw0[]) spanned.getSpans(0, spanned.length(), xw0.class);
+            if (xw0VarArr != null && xw0VarArr.length != 0) {
+                int i10 = 0;
+                while (i10 < xw0VarArr.length) {
+                    xw0 xw0Var = xw0VarArr[i10];
+                    int spanStart = spanned.getSpanStart(xw0Var);
+                    int spanEnd = spanned.getSpanEnd(xw0Var);
+                    int lineForOffset = layout2.getLineForOffset(spanStart);
+                    int lineForOffset2 = layout2.getLineForOffset(spanEnd);
+                    int i11 = lineForOffset;
+                    while (i11 <= lineForOffset2) {
+                        float lineBottom = layout2.getLineBottom(i11) - AndroidUtilities.dp(1.0f);
+                        if (i11 == lineForOffset) {
+                            lineStart = spanStart;
+                        } else {
+                            lineStart = layout2.getLineStart(i11);
+                        }
+                        float primaryHorizontal = layout2.getPrimaryHorizontal(lineStart);
+                        if (i11 == lineForOffset2) {
+                            lineEnd = spanEnd;
+                        } else {
+                            lineEnd = layout2.getLineEnd(i11) - 1;
+                        }
+                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(lineEnd);
+                        xw0Var.getClass();
+                        float dp = AndroidUtilities.dp(1.33f);
+                        float dp2 = AndroidUtilities.dp(10.0f);
+                        float dp3 = AndroidUtilities.dp(2.0f);
+                        Paint paint = xw0Var.f32988a;
+                        Spanned spanned2 = spanned;
+                        xw0[] xw0VarArr2 = xw0VarArr;
+                        int i12 = i10;
+                        paint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false));
+                        paint.setStrokeWidth(dp);
+                        Path path = xw0Var.f32989b;
+                        path.rewind();
+                        path.moveTo(primaryHorizontal, lineBottom);
+                        float f7 = primaryHorizontal;
+                        while (f7 < primaryHorizontal2) {
+                            float f10 = f7;
+                            float f11 = dp2;
+                            path.quadTo((dp2 / 4.0f) + f7, lineBottom - dp3, (dp2 / 2.0f) + f10, lineBottom);
+                            float f12 = f10 + f11;
+                            path.quadTo(((f11 * 3.0f) / 4.0f) + f10, lineBottom + dp3, f12, lineBottom);
+                            f7 = f12;
+                            dp2 = f11;
+                        }
+                        if (f7 > primaryHorizontal2) {
+                            canvas.save();
+                            float f13 = dp / 2.0f;
+                            canvas.clipRect(primaryHorizontal - f13, (lineBottom - dp3) - f13, primaryHorizontal2 + f13, lineBottom + dp3 + f13);
+                            canvas.drawPath(path, paint);
+                            canvas.restore();
+                        } else {
+                            canvas.drawPath(path, paint);
+                        }
+                        i11++;
+                        layout2 = layout;
+                        spanned = spanned2;
+                        xw0VarArr = xw0VarArr2;
+                        i10 = i12;
+                    }
+                    i10++;
+                    layout2 = layout;
+                }
             }
-            this.f30496b = drawable;
-            o5Var.g(drawable, z10);
-            o5Var.k(null);
-            return o5Var;
-        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
-            o5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f30496b;
-            if (drawable2 == null) {
-                drawable2 = new rq(org.telegram.ui.ActionBar.h6.f19092f1, org.telegram.ui.ActionBar.h6.f19145i1);
-            }
-            this.f30496b = drawable2;
-            o5Var.g(drawable2, z10);
-            o5Var.k(null);
-            return o5Var;
-        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
-            o5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else if (user != null && user.premium) {
-            o5Var.g(rg.a1.d().e, z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else {
-            o5Var.g(null, z10);
-            o5Var.k(null);
-            return o5Var;
         }
     }
 
-    public xw0(int i10, View view) {
-        this.f30495a = new o5(AndroidUtilities.dp(i10), view);
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
     }
 }

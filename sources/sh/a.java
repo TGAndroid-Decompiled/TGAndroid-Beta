@@ -10,60 +10,59 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import le.e;
-import le.f;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.tr;
 import yf.p;
-public final class a extends c implements e {
-    public final le.c d;
-    public final int[] e;
-    public final Drawable f43262f;
+public final class a extends c implements le.d {
+    public final le.b d;
+    public final int[] f46849e;
+    public final Drawable f46850f;
     public final TextPaint h;
-    public StaticLayout f43263n;
-    public int f43264r;
-    public int f43265s;
+    public StaticLayout f46851n;
+    public int f46852r;
+    public int f46853s;
 
     public a(Context context, d6 d6Var) {
         super(d6Var);
-        this.d = new le.c(0, this, sr.h, 320L, false);
-        this.e = new int[]{16842910, 16842919};
-        this.f43262f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
-        this.h = new TextPaint(h6.P2);
-        int v02 = h6.v0(h6.f19150i6, d6Var);
-        if (this.f43277b != v02) {
-            h6.B1(this.f43276a, v02, false);
-            this.f43277b = v02;
+        this.d = new le.b(0, this, tr.h, 320L, false);
+        this.f46849e = new int[]{16842910, 16842919};
+        this.f46850f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+        this.h = new TextPaint(i6.P2);
+        int v02 = i6.v0(i6.f20908i6, d6Var);
+        if (this.f46866b != v02) {
+            i6.B1(this.f46865a, v02, false);
+            this.f46866b = v02;
         }
         b();
         c();
     }
 
     @Override
-    public final void D(int i10, float f7, float f10, f fVar) {
+    public final void a(int i10) {
+        this.f46865a.setAlpha(i10);
+        b();
+        c();
+    }
+
+    @Override
+    public final void a0(int i10, float f7, float f10, e eVar) {
         b();
         c();
         invalidateSelf();
     }
 
-    @Override
-    public final void a(int i10) {
-        this.f43276a.setAlpha(i10);
-        b();
-        c();
-    }
-
     public final void b() {
-        Drawable drawable = this.f43262f;
-        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f43278c));
+        Drawable drawable = this.f46850f;
+        drawable.setAlpha((int) ((1.0f - this.d.f15434e) * this.f46867c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f43278c));
+        textPaint.setAlpha((int) ((1.0f - this.d.f15434e) * this.f46867c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -73,21 +72,21 @@ public final class a extends c implements e {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f43276a.draw(canvas);
-        p.b(canvas, this.f43262f, 1.0f - this.d.e);
-        if (this.f43263n != null) {
+        this.f46865a.draw(canvas);
+        p.b(canvas, this.f46850f, 1.0f - this.d.f15434e);
+        if (this.f46851n != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);
-            this.f43263n.draw(canvas);
+            this.f46851n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i10) {
-        if (this.f43265s != i10) {
-            this.f43265s = i10;
+        if (this.f46853s != i10) {
+            this.f46853s = i10;
             this.h.setColor(i10);
-            this.f43262f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            this.f46850f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             c();
         }
     }
@@ -99,16 +98,16 @@ public final class a extends c implements e {
         float dp = AndroidUtilities.dp(22.33f) + rect.left;
         AndroidUtilities.dp(27.0f);
         AndroidUtilities.dp(44.0f);
-        p.d(this.f43262f, dp, exactCenterY, 17);
+        p.d(this.f46850f, dp, exactCenterY, 17);
         int width = rect.width() - AndroidUtilities.dp(56.0f);
-        if (this.f43263n != null && this.f43264r == width) {
+        if (this.f46851n != null && this.f46852r == width) {
             return;
         }
-        this.f43264r = width;
-        this.f43263n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f46852r = width;
+        this.f46851n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override
-    public final void C(float f7, int i10) {
+    public final void V(float f7, int i10) {
     }
 }

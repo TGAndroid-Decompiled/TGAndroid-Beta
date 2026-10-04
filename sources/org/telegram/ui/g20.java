@@ -1,63 +1,95 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.Shader;
-public final class g20 {
-    public LinearGradient f33805b;
-    public final Paint[] f33804a = new Paint[4];
-    public final Matrix f33806c = new Matrix();
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class g20 extends s4.v {
+    public final FiltersSetupActivity d;
 
-    public final void a(Canvas canvas, RectF rectF, float f7) {
-        Paint[] paintArr = this.f33804a;
-        if (paintArr[0] == null) {
-            Paint paint = new Paint(1);
-            paintArr[0] = paint;
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        }
-        paintArr[0].setShader(this.f33805b);
-        paintArr[0].setAlpha((int) (f7 * 255.0f));
-        canvas.drawRect(rectF, paintArr[0]);
+    public g20(FiltersSetupActivity filtersSetupActivity) {
+        this.d = filtersSetupActivity;
     }
 
-    public final void b(Canvas canvas, RectF rectF, int i10, float f7) {
-        if (f7 <= 0.0f) {
-            return;
+    @Override
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        View view = c1Var.f46523a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        if (c1Var.f46527f != 2) {
+            return s4.v.l(0, 0);
         }
-        if (this.f33805b == null) {
-            this.f33805b = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        return s4.v.l(3, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        MessagesController.DialogFilter dialogFilter;
+        MessagesController.DialogFilter dialogFilter2;
+        if (c1Var.f46527f != c1Var2.f46527f) {
+            return false;
         }
-        Paint[] paintArr = this.f33804a;
-        if (paintArr[i10] == null) {
-            paintArr[i10] = new Paint(1);
-            paintArr[i10].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        d20 d20Var = this.d.f33751b;
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        FiltersSetupActivity filtersSetupActivity = d20Var.f35621e;
+        int i10 = filtersSetupActivity.f33756r;
+        ArrayList arrayList = filtersSetupActivity.f33755n;
+        if (b10 >= i10 && b11 >= i10) {
+            b20 b20Var = (b20) arrayList.get(b10);
+            b20 b20Var2 = (b20) arrayList.get(b11);
+            if (b20Var != null && b20Var2 != null && (dialogFilter = b20Var.d) != null && (dialogFilter2 = b20Var2.d) != null) {
+                int i11 = dialogFilter.order;
+                dialogFilter.order = dialogFilter2.order;
+                dialogFilter2.order = i11;
+                ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
+                try {
+                    arrayList2.set(b10 - filtersSetupActivity.f33756r, b20Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f33756r, b20Var.d);
+                } catch (Exception unused) {
+                }
+                filtersSetupActivity.f33753e = true;
+                filtersSetupActivity.Y(true);
+            }
         }
-        paintArr[i10].setShader(this.f33805b);
-        Matrix matrix = this.f33806c;
-        matrix.reset();
-        if (i10 == 0) {
-            matrix.postScale(1.0f, rectF.width() / 16.0f);
-            matrix.postRotate(-90.0f);
-            matrix.postTranslate(rectF.left, rectF.top);
-        } else if (i10 == 1) {
-            matrix.postScale(1.0f, rectF.height() / 16.0f);
-            matrix.postTranslate(rectF.left, rectF.top);
-        } else if (i10 == 2) {
-            matrix.postScale(1.0f, rectF.width() / 16.0f);
-            matrix.postRotate(90.0f);
-            matrix.postTranslate(rectF.right, rectF.top);
-        } else if (i10 == 3) {
-            matrix.postScale(1.0f, rectF.height() / 16.0f);
-            matrix.postScale(1.0f, -1.0f);
-            matrix.postTranslate(rectF.left, rectF.bottom);
+        return true;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        Boolean bool;
+        if (i10 != 0) {
+            this.d.f33750a.J0(false);
+            c1Var.f46523a.setPressed(true);
+        } else {
+            AndroidUtilities.cancelRunOnUIThread(new g10(this, 4));
+            AndroidUtilities.runOnUIThread(new g10(this, 4), 320L);
         }
-        this.f33805b.setLocalMatrix(matrix);
-        paintArr[i10].setAlpha((int) (f7 * 255.0f));
-        canvas.drawRect(rectF, paintArr[i10]);
+        if (c1Var != null) {
+            View view = c1Var.f46523a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
+        }
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

@@ -11,40 +11,40 @@ import java.util.RandomAccess;
 import z7.ed;
 import z7.lg;
 public class c implements Iterator {
-    public final int f8041a;
-    public final Iterator f8042b;
-    public Object f8043c;
+    public final int f8724a;
+    public final Iterator f8725b;
+    public Object f8726c;
     public final Object d;
 
     public c(l lVar, ListIterator listIterator, byte b10) {
-        this.f8041a = 3;
+        this.f8724a = 3;
         this.d = lVar;
-        this.f8043c = lVar.f8079c;
-        this.f8042b = listIterator;
+        this.f8726c = lVar.f8771c;
+        this.f8725b = listIterator;
     }
 
     public void a() {
         l lVar = (l) this.d;
         lVar.n();
-        if (lVar.f8079c == ((Collection) this.f8043c)) {
+        if (lVar.f8771c == ((Collection) this.f8726c)) {
             return;
         }
         throw new ConcurrentModificationException();
     }
 
     public void b() {
-        switch (this.f8041a) {
+        switch (this.f8724a) {
             case 3:
                 l lVar = (l) this.d;
                 lVar.zzb();
-                if (lVar.f8079c == ((Collection) this.f8043c)) {
+                if (lVar.f8771c == ((Collection) this.f8726c)) {
                     return;
                 }
                 throw new ConcurrentModificationException();
             default:
                 l lVar2 = (l) this.d;
                 lVar2.zzb();
-                if (lVar2.f8079c == ((Collection) this.f8043c)) {
+                if (lVar2.f8771c == ((Collection) this.f8726c)) {
                     return;
                 }
                 throw new ConcurrentModificationException();
@@ -53,28 +53,28 @@ public class c implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        switch (this.f8041a) {
+        switch (this.f8724a) {
             case 0:
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
             case 1:
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
             case 2:
                 a();
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
             case 3:
                 b();
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
             case 4:
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
             case 5:
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
             case 6:
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
             case 7:
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
             default:
                 b();
-                return this.f8042b.hasNext();
+                return this.f8725b.hasNext();
         }
     }
 
@@ -82,26 +82,26 @@ public class c implements Iterator {
     public final Object next() {
         l lVar;
         l lVar2;
-        switch (this.f8041a) {
+        switch (this.f8724a) {
             case 0:
-                Map.Entry entry = (Map.Entry) this.f8042b.next();
-                this.f8043c = (Collection) entry.getValue();
+                Map.Entry entry = (Map.Entry) this.f8725b.next();
+                this.f8726c = (Collection) entry.getValue();
                 return ((d) this.d).a(entry);
             case 1:
-                Map.Entry entry2 = (Map.Entry) this.f8042b.next();
-                this.f8043c = entry2;
+                Map.Entry entry2 = (Map.Entry) this.f8725b.next();
+                this.f8726c = entry2;
                 return entry2.getKey();
             case 2:
                 a();
-                return this.f8042b.next();
+                return this.f8725b.next();
             case 3:
                 b();
-                return this.f8042b.next();
+                return this.f8725b.next();
             case 4:
-                Map.Entry entry3 = (Map.Entry) this.f8042b.next();
-                this.f8043c = (Collection) entry3.getValue();
+                Map.Entry entry3 = (Map.Entry) this.f8725b.next();
+                this.f8726c = (Collection) entry3.getValue();
                 Object key = entry3.getKey();
-                x7.f fVar = (x7.f) ((d) this.d).e;
+                x7.f fVar = (x7.f) ((d) this.d).f8732e;
                 fVar.getClass();
                 List list = (List) ((Collection) entry3.getValue());
                 if (list instanceof RandomAccess) {
@@ -111,14 +111,14 @@ public class c implements Iterator {
                 }
                 return new x7.l(key, lVar);
             case 5:
-                Map.Entry entry4 = (Map.Entry) this.f8042b.next();
-                this.f8043c = entry4;
+                Map.Entry entry4 = (Map.Entry) this.f8725b.next();
+                this.f8726c = entry4;
                 return entry4.getKey();
             case 6:
-                Map.Entry entry5 = (Map.Entry) this.f8042b.next();
-                this.f8043c = (Collection) entry5.getValue();
+                Map.Entry entry5 = (Map.Entry) this.f8725b.next();
+                this.f8726c = (Collection) entry5.getValue();
                 Object key2 = entry5.getKey();
-                lg lgVar = (lg) ((d) this.d).e;
+                lg lgVar = (lg) ((d) this.d).f8732e;
                 lgVar.getClass();
                 List list2 = (List) ((Collection) entry5.getValue());
                 if (list2 instanceof RandomAccess) {
@@ -128,12 +128,12 @@ public class c implements Iterator {
                 }
                 return new z7.f(key2, lVar2);
             case 7:
-                Map.Entry entry6 = (Map.Entry) this.f8042b.next();
-                this.f8043c = entry6;
+                Map.Entry entry6 = (Map.Entry) this.f8725b.next();
+                this.f8726c = entry6;
                 return entry6.getKey();
             default:
                 b();
-                return this.f8042b.next();
+                return this.f8725b.next();
         }
     }
 
@@ -145,23 +145,23 @@ public class c implements Iterator {
         boolean z13;
         boolean z14;
         boolean z15;
-        switch (this.f8041a) {
+        switch (this.f8724a) {
             case 0:
-                if (((Collection) this.f8043c) != null) {
+                if (((Collection) this.f8726c) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (z10) {
-                    this.f8042b.remove();
-                    ((v0) ((d) this.d).e).e -= ((Collection) this.f8043c).size();
-                    ((Collection) this.f8043c).clear();
-                    this.f8043c = null;
+                    this.f8725b.remove();
+                    ((v0) ((d) this.d).f8732e).f8819e -= ((Collection) this.f8726c).size();
+                    ((Collection) this.f8726c).clear();
+                    this.f8726c = null;
                     return;
                 }
                 throw new IllegalStateException("no calls to next() since the last call to remove()");
             case 1:
-                Map.Entry entry = (Map.Entry) this.f8043c;
+                Map.Entry entry = (Map.Entry) this.f8726c;
                 if (entry != null) {
                     z11 = true;
                 } else {
@@ -169,43 +169,43 @@ public class c implements Iterator {
                 }
                 if (z11) {
                     Collection collection = (Collection) entry.getValue();
-                    this.f8042b.remove();
-                    ((e) this.d).f8050c.e -= collection.size();
+                    this.f8725b.remove();
+                    ((e) this.d).f8736c.f8819e -= collection.size();
                     collection.clear();
-                    this.f8043c = null;
+                    this.f8726c = null;
                     return;
                 }
                 throw new IllegalStateException("no calls to next() since the last call to remove()");
             case 2:
-                this.f8042b.remove();
+                this.f8725b.remove();
                 l lVar = (l) this.d;
-                v0 v0Var = (v0) lVar.f8080f;
-                v0Var.e--;
+                v0 v0Var = (v0) lVar.f8773f;
+                v0Var.f8819e--;
                 lVar.o();
                 return;
             case 3:
-                this.f8042b.remove();
+                this.f8725b.remove();
                 l lVar2 = (l) this.d;
-                x7.f fVar = (x7.f) lVar2.f8080f;
+                x7.f fVar = (x7.f) lVar2.f8773f;
                 fVar.d--;
                 lVar2.q();
                 return;
             case 4:
-                if (((Collection) this.f8043c) != null) {
+                if (((Collection) this.f8726c) != null) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 if (z12) {
-                    this.f8042b.remove();
-                    ((x7.f) ((d) this.d).e).d -= ((Collection) this.f8043c).size();
-                    ((Collection) this.f8043c).clear();
-                    this.f8043c = null;
+                    this.f8725b.remove();
+                    ((x7.f) ((d) this.d).f8732e).d -= ((Collection) this.f8726c).size();
+                    ((Collection) this.f8726c).clear();
+                    this.f8726c = null;
                     return;
                 }
                 throw new IllegalStateException("no calls to next() since the last call to remove()");
             case 5:
-                Map.Entry entry2 = (Map.Entry) this.f8043c;
+                Map.Entry entry2 = (Map.Entry) this.f8726c;
                 if (entry2 != null) {
                     z13 = true;
                 } else {
@@ -213,30 +213,30 @@ public class c implements Iterator {
                 }
                 if (z13) {
                     Collection collection2 = (Collection) entry2.getValue();
-                    this.f8042b.remove();
-                    ((x7.a) this.d).f45635c.d -= collection2.size();
+                    this.f8725b.remove();
+                    ((x7.a) this.d).f49401c.d -= collection2.size();
                     collection2.clear();
-                    this.f8043c = null;
+                    this.f8726c = null;
                     return;
                 }
                 throw new IllegalStateException("no calls to next() since the last call to remove()");
             case 6:
-                if (((Collection) this.f8043c) != null) {
+                if (((Collection) this.f8726c) != null) {
                     z14 = true;
                 } else {
                     z14 = false;
                 }
                 if (z14) {
-                    this.f8042b.remove();
-                    ((lg) ((d) this.d).e).getClass();
-                    ((Collection) this.f8043c).size();
-                    ((Collection) this.f8043c).clear();
-                    this.f8043c = null;
+                    this.f8725b.remove();
+                    ((lg) ((d) this.d).f8732e).getClass();
+                    ((Collection) this.f8726c).size();
+                    ((Collection) this.f8726c).clear();
+                    this.f8726c = null;
                     return;
                 }
                 throw new IllegalStateException("no calls to next() since the last call to remove()");
             case 7:
-                Map.Entry entry3 = (Map.Entry) this.f8043c;
+                Map.Entry entry3 = (Map.Entry) this.f8726c;
                 if (entry3 != null) {
                     z15 = true;
                 } else {
@@ -244,98 +244,98 @@ public class c implements Iterator {
                 }
                 if (z15) {
                     Collection collection3 = (Collection) entry3.getValue();
-                    this.f8042b.remove();
-                    ((ed) this.d).f48505c.getClass();
+                    this.f8725b.remove();
+                    ((ed) this.d).f52515c.getClass();
                     collection3.size();
                     collection3.clear();
-                    this.f8043c = null;
+                    this.f8726c = null;
                     return;
                 }
                 throw new IllegalStateException("no calls to next() since the last call to remove()");
             default:
-                this.f8042b.remove();
+                this.f8725b.remove();
                 ((l) this.d).q();
                 return;
         }
     }
 
     public c(l lVar, ListIterator listIterator, char c10) {
-        this.f8041a = 8;
+        this.f8724a = 8;
         this.d = lVar;
-        this.f8043c = lVar.f8079c;
-        this.f8042b = listIterator;
+        this.f8726c = lVar.f8771c;
+        this.f8725b = listIterator;
     }
 
     public c(AbstractSet abstractSet, Iterator it, int i10) {
-        this.f8041a = i10;
-        this.f8042b = it;
+        this.f8724a = i10;
+        this.f8725b = it;
         this.d = abstractSet;
     }
 
     public c(d dVar, byte b10) {
-        this.f8041a = 4;
+        this.f8724a = 4;
         this.d = dVar;
-        this.f8042b = dVar.f8046b.entrySet().iterator();
+        this.f8725b = dVar.f8730b.entrySet().iterator();
     }
 
     public c(d dVar, char c10) {
-        this.f8041a = 6;
+        this.f8724a = 6;
         this.d = dVar;
-        this.f8042b = dVar.f8046b.entrySet().iterator();
+        this.f8725b = dVar.f8730b.entrySet().iterator();
     }
 
     public c(l lVar, byte b10) {
         Iterator it;
-        this.f8041a = 3;
+        this.f8724a = 3;
         this.d = lVar;
-        Collection collection = lVar.f8079c;
-        this.f8043c = collection;
+        Collection collection = lVar.f8771c;
+        this.f8726c = collection;
         if (collection instanceof List) {
             it = ((List) collection).listIterator();
         } else {
             it = collection.iterator();
         }
-        this.f8042b = it;
+        this.f8725b = it;
     }
 
     public c(l lVar, char c10) {
         Iterator it;
-        this.f8041a = 8;
+        this.f8724a = 8;
         this.d = lVar;
-        Collection collection = lVar.f8079c;
-        this.f8043c = collection;
+        Collection collection = lVar.f8771c;
+        this.f8726c = collection;
         if (collection instanceof List) {
             it = ((List) collection).listIterator();
         } else {
             it = collection.iterator();
         }
-        this.f8042b = it;
+        this.f8725b = it;
     }
 
     public c(l lVar) {
         Iterator it;
-        this.f8041a = 2;
+        this.f8724a = 2;
         this.d = lVar;
-        Collection collection = lVar.f8079c;
-        this.f8043c = collection;
+        Collection collection = lVar.f8771c;
+        this.f8726c = collection;
         if (collection instanceof List) {
             it = ((List) collection).listIterator();
         } else {
             it = collection.iterator();
         }
-        this.f8042b = it;
+        this.f8725b = it;
     }
 
     public c(l lVar, ListIterator listIterator) {
-        this.f8041a = 2;
+        this.f8724a = 2;
         this.d = lVar;
-        this.f8043c = lVar.f8079c;
-        this.f8042b = listIterator;
+        this.f8726c = lVar.f8771c;
+        this.f8725b = listIterator;
     }
 
     public c(d dVar) {
-        this.f8041a = 0;
+        this.f8724a = 0;
         this.d = dVar;
-        this.f8042b = dVar.f8046b.entrySet().iterator();
+        this.f8725b = dVar.f8730b.entrySet().iterator();
     }
 }

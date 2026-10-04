@@ -16,13 +16,13 @@ public final class g9 extends d9 {
 
     public final void F(ArrayList arrayList) {
         int i10;
-        ArrayList arrayList2 = this.f725i;
+        ArrayList arrayList2 = this.f789i;
         arrayList2.size();
         int i11 = 0;
         int i12 = 0;
         while (true) {
             int size = arrayList.size();
-            i10 = this.f722c;
+            i10 = this.f785c;
             if (i11 >= size) {
                 break;
             }
@@ -47,7 +47,7 @@ public final class g9 extends d9 {
     @Override
     public final MessageObject f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f725i;
+            ArrayList arrayList = this.f789i;
             if (i10 < arrayList.size()) {
                 return (MessageObject) arrayList.get(i10);
             }
@@ -58,7 +58,7 @@ public final class g9 extends d9 {
 
     @Override
     public final int g() {
-        return this.f725i.size();
+        return this.f789i.size();
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class g9 extends d9 {
 
     @Override
     public final int i() {
-        return this.f725i.size();
+        return this.f789i.size();
     }
 
     @Override

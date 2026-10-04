@@ -2,16 +2,16 @@ package i7;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import v7.h5;
+import v7.g5;
 public final class a extends com.google.android.gms.common.api.internal.i {
-    public final TaskCompletionSource f11002b;
+    public final TaskCompletionSource f11984b;
 
     public a(TaskCompletionSource taskCompletionSource) {
-        this.f11002b = taskCompletionSource;
+        this.f11984b = taskCompletionSource;
     }
 
     @Override
     public final void H(Status status) {
-        h5.a(status, null, this.f11002b);
+        g5.a(status, null, this.f11984b);
     }
 }

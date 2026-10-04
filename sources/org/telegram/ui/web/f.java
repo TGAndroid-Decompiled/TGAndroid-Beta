@@ -4,41 +4,41 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.v01;
+import org.telegram.ui.Components.e11;
 public final class f extends Drawable {
-    public final int f39055a;
-    public final v01 f39056b;
-    public final h f39057c;
+    public final int f42179a;
+    public final e11 f42180b;
+    public final h f42181c;
 
     public f(h hVar, String str, int i10) {
-        this.f39055a = i10;
+        this.f42179a = i10;
         switch (i10) {
             case 1:
-                this.f39057c = hVar;
-                this.f39056b = new v01(str, 14.0f, AndroidUtilities.bold());
+                this.f42181c = hVar;
+                this.f42180b = new e11(str, 14.0f, AndroidUtilities.bold());
                 return;
             default:
-                this.f39057c = hVar;
-                this.f39056b = new v01(str, 14.0f, AndroidUtilities.bold());
+                this.f42181c = hVar;
+                this.f42180b = new e11(str, 14.0f, AndroidUtilities.bold());
                 return;
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f39055a) {
+        switch (this.f42179a) {
             case 0:
-                this.f39056b.c(getBounds().centerX() - (this.f39056b.f28922c / 2.0f), getBounds().centerY(), 1.0f, this.f39057c.f39081s, canvas);
+                this.f42180b.c(getBounds().centerX() - (this.f42180b.f25878c / 2.0f), getBounds().centerY(), 1.0f, this.f42181c.f42195s, canvas);
                 return;
             default:
-                this.f39056b.c(getBounds().centerX() - (this.f39056b.f28922c / 2.0f), getBounds().centerY(), 1.0f, this.f39057c.f39081s, canvas);
+                this.f42180b.c(getBounds().centerX() - (this.f42180b.f25878c / 2.0f), getBounds().centerY(), 1.0f, this.f42181c.f42195s, canvas);
                 return;
         }
     }
 
     @Override
     public final int getOpacity() {
-        switch (this.f39055a) {
+        switch (this.f42179a) {
             case 0:
                 return -2;
             default:
@@ -48,12 +48,12 @@ public final class f extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f39055a;
+        int i11 = this.f42179a;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f39055a;
+        int i10 = this.f42179a;
     }
 
     private final void a(int i10) {

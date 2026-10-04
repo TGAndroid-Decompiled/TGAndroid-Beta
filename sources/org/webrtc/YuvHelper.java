@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import hg.k0;
 import java.nio.ByteBuffer;
 public class YuvHelper {
     public static void ABGRToI420(ByteBuffer byteBuffer, int i10, ByteBuffer byteBuffer2, int i11, ByteBuffer byteBuffer3, int i12, ByteBuffer byteBuffer4, int i13, int i14, int i15) {
@@ -25,7 +26,7 @@ public class YuvHelper {
             I420Copy(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i15, slice2, i17, byteBuffer4.slice(), i17, i13, i14);
             return;
         }
-        StringBuilder j3 = hg.c.j(i24, "Expected destination buffer capacity to be at least ", " was ");
+        StringBuilder j3 = k0.j(i24, "Expected destination buffer capacity to be at least ", " was ");
         j3.append(byteBuffer4.capacity());
         throw new IllegalArgumentException(j3.toString());
     }
@@ -51,7 +52,7 @@ public class YuvHelper {
             nativeI420Rotate(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i17, slice2, i19, byteBuffer4.slice(), i19, i13, i14, i15);
             return;
         }
-        StringBuilder j3 = hg.c.j(i22, "Expected destination buffer capacity to be at least ", " was ");
+        StringBuilder j3 = k0.j(i22, "Expected destination buffer capacity to be at least ", " was ");
         j3.append(byteBuffer4.capacity());
         throw new IllegalArgumentException(j3.toString());
     }
@@ -70,7 +71,7 @@ public class YuvHelper {
             I420ToNV12(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i15, byteBuffer4.slice(), i17 * 2, i13, i14);
             return;
         }
-        StringBuilder j3 = hg.c.j(i20, "Expected destination buffer capacity to be at least ", " was ");
+        StringBuilder j3 = k0.j(i20, "Expected destination buffer capacity to be at least ", " was ");
         j3.append(byteBuffer4.capacity());
         throw new IllegalArgumentException(j3.toString());
     }
@@ -79,7 +80,7 @@ public class YuvHelper {
         if (t10 != null) {
             return t10;
         }
-        throw new NullPointerException(v7.j.t(str, " should not be null"));
+        throw new NullPointerException(t8.b.v(str, " should not be null"));
     }
 
     public static void copyPlane(ByteBuffer byteBuffer, int i10, ByteBuffer byteBuffer2, int i11, int i12, int i13) {

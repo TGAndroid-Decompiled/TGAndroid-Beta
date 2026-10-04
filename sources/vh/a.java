@@ -9,40 +9,40 @@ import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bj0;
-import org.telegram.ui.Components.mt;
+import org.telegram.ui.Components.nt;
 import w7.q;
 public final class a extends Path {
-    public final View f44652a;
-    public final Layout f44653b;
-    public final Stack f44654c;
+    public final View f48344a;
+    public final Layout f48345b;
+    public final Stack f48346c;
     public final List d;
-    public final int e;
-    public final int f44655f;
-    public final ArrayList f44656g;
+    public final int f48347e;
+    public final int f48348f;
+    public final ArrayList f48349g;
 
     public a(View view, Layout layout, Stack stack, List list, int i10, int i11, ArrayList arrayList) {
-        this.f44652a = view;
-        this.f44653b = layout;
-        this.f44654c = stack;
+        this.f48344a = view;
+        this.f48345b = layout;
+        this.f48346c = stack;
         this.d = list;
-        this.e = i10;
-        this.f44655f = i11;
-        this.f44656g = arrayList;
+        this.f48347e = i10;
+        this.f48348f = i11;
+        this.f48349g = arrayList;
     }
 
     @Override
     public final void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
         g gVar;
         float f13;
-        Stack stack = this.f44654c;
+        Stack stack = this.f48346c;
         int i10 = 0;
         if (stack != null && !stack.isEmpty()) {
             gVar = (g) stack.remove(0);
         } else {
             gVar = new g();
         }
-        gVar.f44706y = false;
-        ArrayList arrayList = this.f44656g;
+        gVar.f48403y = false;
+        ArrayList arrayList = this.f48349g;
         if (arrayList != null) {
             float f14 = (f10 + f12) / 2.0f;
             while (true) {
@@ -50,41 +50,41 @@ public final class a extends Path {
                     break;
                 }
                 bj0 bj0Var = (bj0) arrayList.get(i10);
-                if (f14 >= bj0Var.f23004b && f14 <= bj0Var.f23005c) {
-                    gVar.f44706y = true;
+                if (f14 >= bj0Var.f24981b && f14 <= bj0Var.f24982c) {
+                    gVar.f48403y = true;
                     break;
                 }
                 i10++;
             }
         }
-        gVar.f44696n = -1.0f;
-        ValueAnimator valueAnimator = gVar.f44700r;
+        gVar.f48393n = -1.0f;
+        ValueAnimator valueAnimator = gVar.f48397r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        gVar.f44698p = true;
-        int max = (int) Math.max(f7, this.e);
+        gVar.f48395p = true;
+        int max = (int) Math.max(f7, this.f48347e);
         int i11 = (int) f10;
-        int i12 = this.f44655f;
+        int i12 = this.f48348f;
         if (i12 <= 0) {
             f13 = 2.1474836E9f;
         } else {
             f13 = i12;
         }
         gVar.setBounds(max, i11, (int) Math.min(f11, f13), (int) f12);
-        gVar.h(this.f44653b.getPaint().getColor());
-        gVar.f44702t = mt.f26495c;
+        gVar.h(this.f48345b.getPaint().getColor());
+        gVar.f48399t = nt.f29060c;
         int width = gVar.getBounds().width() / AndroidUtilities.dp(6.0f);
         int i13 = g.B;
         int b10 = q.b(width * i13, i13, g.A);
-        Stack stack2 = gVar.f44688c;
+        Stack stack2 = gVar.f48384c;
         gVar.d = b10;
         while (gVar.h.size() + stack2.size() < b10) {
             stack2.push(new Object());
         }
-        View view = this.f44652a;
+        View view = this.f48344a;
         if (view != null) {
-            gVar.f44691i = view;
+            gVar.f48388i = view;
         }
         this.d.add(gVar);
     }

@@ -1,435 +1,46 @@
 package org.telegram.ui;
 
-import android.text.style.CharacterStyle;
-import java.util.ArrayList;
-import org.telegram.messenger.BotInlineKeyboard;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class ce1 implements org.telegram.ui.Cells.l1 {
-    public final de1 f32699a;
+public final class ce1 implements org.telegram.ui.Components.rk0 {
+    public final yn f35447a;
+    public final MessageObject f35448b;
+    public final org.telegram.ui.Components.sk0 f35449c;
+    public final ge1 d;
 
-    public ce1(de1 de1Var) {
-        this.f32699a = de1Var;
+    public ce1(ge1 ge1Var, yn ynVar, MessageObject messageObject, org.telegram.ui.Components.sk0 sk0Var) {
+        this.d = ge1Var;
+        this.f35447a = ynVar;
+        this.f35448b = messageObject;
+        this.f35449c = sk0Var;
     }
 
     @Override
-    public final boolean A1() {
-        return false;
+    public final void h(android.view.View r13, zg.o0 r14, boolean r15, boolean r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ce1.h(android.view.View, zg.o0, boolean, boolean):void");
     }
 
     @Override
-    public final boolean G1(org.telegram.ui.Cells.u1 u1Var, TLRPC.Chat chat) {
-        return false;
-    }
-
-    @Override
-    public final boolean I1() {
-        return false;
-    }
-
-    @Override
-    public final boolean M0(long j3) {
-        return false;
-    }
-
-    @Override
-    public final void N1(org.telegram.ui.Cells.u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        nf.f.s(u1Var.getContext(), str);
-    }
-
-    @Override
-    public final boolean O(org.telegram.ui.Cells.u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        de1 de1Var = this.f32699a;
-        if (de1Var.K.getDelegate() != null) {
-            return de1Var.K.getDelegate().O(de1Var.K, todoItem, z10);
-        }
-        return false;
-    }
-
-    @Override
-    public final CharacterStyle O1(org.telegram.ui.Cells.u1 u1Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final boolean Q(org.telegram.ui.Cells.u1 u1Var) {
-        return false;
-    }
-
-    @Override
-    public final boolean Q1(org.telegram.ui.Cells.u1 u1Var, MessageObject messageObject) {
-        return false;
-    }
-
-    @Override
-    public final boolean R() {
-        return false;
-    }
-
-    @Override
-    public final int V() {
-        return 0;
-    }
-
-    @Override
-    public final boolean V1(org.telegram.ui.Cells.u1 u1Var, TLRPC.PollAnswer pollAnswer) {
-        return false;
-    }
-
-    @Override
-    public final boolean W0(org.telegram.ui.Cells.u1 u1Var, boolean z10) {
-        return false;
-    }
-
-    @Override
-    public final hh.a Y() {
-        return null;
-    }
-
-    @Override
-    public final hv0 Y1() {
-        return null;
-    }
-
-    @Override
-    public final boolean a0(org.telegram.ui.Cells.u1 u1Var) {
-        return false;
-    }
-
-    @Override
-    public final boolean a2(long j3) {
-        return false;
-    }
-
-    @Override
-    public final boolean b0(org.telegram.ui.Cells.u1 u1Var, TLRPC.User user) {
-        return false;
-    }
-
-    @Override
-    public final boolean c1(int i10, org.telegram.ui.Cells.u1 u1Var) {
-        return false;
-    }
-
-    @Override
-    public final boolean c2(org.telegram.ui.Cells.u1 u1Var, TLRPC.TodoItem todoItem) {
-        return false;
-    }
-
-    @Override
-    public final boolean e() {
-        return false;
-    }
-
-    @Override
-    public final boolean e0() {
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
+    public final boolean j() {
         return true;
     }
 
     @Override
-    public final String h(org.telegram.ui.Cells.u1 u1Var) {
-        return null;
-    }
-
-    @Override
-    public final int h0(org.telegram.ui.Cells.u1 u1Var) {
-        return 0;
-    }
-
-    @Override
-    public final boolean h1(MessageObject messageObject) {
-        return org.telegram.ui.Cells.c1.a(messageObject);
-    }
-
-    @Override
-    public final boolean l0() {
+    public final boolean k() {
         return false;
     }
 
     @Override
-    public final boolean l2(org.telegram.ui.Cells.u1 u1Var, TL_iv.PageBlock pageBlock) {
+    public final boolean p() {
         return false;
     }
 
     @Override
-    public final boolean o0(org.telegram.ui.Components.z5 z5Var) {
-        return false;
+    public final void o() {
     }
 
     @Override
-    public final boolean v2(int i10) {
-        return false;
-    }
-
-    @Override
-    public final String w(long j3) {
-        return null;
-    }
-
-    @Override
-    public final boolean w0(MessageObject messageObject) {
-        return true;
-    }
-
-    @Override
-    public final org.telegram.ui.Cells.r9 z2() {
-        return null;
-    }
-
-    @Override
-    public final void A(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void C1(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void D0(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void F(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void F0(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void I(MessageObject.TextLayoutBlock textLayoutBlock) {
-    }
-
-    @Override
-    public final void I0(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void K1(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void L(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void M1(MessageObject messageObject) {
-    }
-
-    @Override
-    public final void N(MessageObject messageObject) {
-    }
-
-    @Override
-    public final void N0(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void R1() {
-    }
-
-    @Override
-    public final void T(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void X0(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void Z0(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void d0(int i10) {
-    }
-
-    @Override
-    public final void e2(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void i0(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void k() {
-    }
-
-    @Override
-    public final void k1() {
-    }
-
-    @Override
-    public final void m2(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void n0(String str) {
-    }
-
-    @Override
-    public final void o(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void p() {
-    }
-
-    @Override
-    public final void q2() {
-    }
-
-    @Override
-    public final void r(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void t(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void u(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void x2() {
-    }
-
-    @Override
-    public final void y0(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void z(org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void z0() {
-    }
-
-    @Override
-    public final void D1(org.telegram.ui.Cells.u1 u1Var, boolean z10) {
-    }
-
-    @Override
-    public final void E(org.telegram.ui.Cells.u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
-    }
-
-    @Override
-    public final void H1(org.telegram.ui.Cells.u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-    }
-
-    @Override
-    public final void M(int i10, org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void P0(int i10, org.telegram.ui.Cells.u1 u1Var) {
-    }
-
-    @Override
-    public final void R0(org.telegram.ui.Cells.u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-    }
-
-    @Override
-    public final void T1(org.telegram.ui.Cells.u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
-    }
-
-    @Override
-    public final void g2(org.telegram.ui.Cells.u1 u1Var, long j3) {
-    }
-
-    @Override
-    public final void i(org.telegram.ui.Cells.u1 u1Var, bi.f fVar) {
-    }
-
-    @Override
-    public final void m1(org.telegram.ui.Cells.u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-    }
-
-    @Override
-    public final void p1(org.telegram.ui.Cells.u1 u1Var, TLRPC.Document document) {
-    }
-
-    @Override
-    public final void A0(org.telegram.ui.Cells.u1 u1Var, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void B0(org.telegram.ui.Cells.u1 u1Var, float f7, float f10) {
-    }
-
-    @Override
-    public final void V0(org.telegram.ui.Cells.u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-    }
-
-    @Override
-    public final void f0(org.telegram.ui.Cells.u1 u1Var, float f7, float f10) {
-    }
-
-    @Override
-    public final void q0(org.telegram.ui.Cells.u1 u1Var, float f7, float f10) {
-    }
-
-    @Override
-    public final void u1(org.telegram.ui.Cells.u1 u1Var, float f7, float f10) {
-    }
-
-    @Override
-    public final void y2(org.telegram.ui.Cells.u1 u1Var, int i10, int i11) {
-    }
-
-    @Override
-    public final void U1(org.telegram.ui.Cells.u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
-    }
-
-    @Override
-    public final void n(org.telegram.ui.Cells.u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
-    }
-
-    @Override
-    public final void t0(org.telegram.ui.Cells.u1 u1Var, TLRPC.User user, float f7, float f10) {
-    }
-
-    @Override
-    public final void v0(org.telegram.ui.Cells.u1 u1Var, float f7, float f10, boolean z10) {
-    }
-
-    @Override
-    public final void b2(org.telegram.ui.Cells.u1 u1Var, int i10, float f7, float f10, boolean z10) {
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void t2(org.telegram.ui.Cells.u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
-    }
-
-    @Override
-    public final void S(org.telegram.ui.Cells.u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
-    }
-
-    @Override
-    public final void P1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

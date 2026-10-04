@@ -1,8 +1,4 @@
 package za;
-public final class p0 implements o0 {
-    public final k9.h f49096a;
-
-    public p0(k9.h hVar) {
-        this.f49096a = hVar;
-    }
+public final class p0 {
+    public static final p0 f53144a = new Object();
 }

@@ -1,23 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class m61 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final o61 f26308a;
+import org.telegram.ui.LaunchActivity;
+public final class m61 extends URLSpan {
+    public final m11 f28536a;
+    public boolean f28537b;
 
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(this.f26308a.X((x51) obj, (View) obj2));
+    public m61(String str, m11 m11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f28536a = m11Var;
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f26308a.W((x51) obj, (View) obj2);
+    public final void onClick(View view) {
+        if (this.f28537b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
+        }
+        nf.f.p(view.getContext(), Uri.parse(getURL()));
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        m11 m11Var = this.f28536a;
+        if (m11Var != null) {
+            m11Var.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            textPaint.setUnderlineText(z10);
+        }
     }
 }

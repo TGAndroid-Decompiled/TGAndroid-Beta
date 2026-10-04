@@ -1,27 +1,27 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class eh implements View.OnClickListener {
-    public final int f33397a;
-    public final org.telegram.ui.Components.a80 f33398b;
+import android.content.DialogInterface;
+import java.util.regex.Pattern;
+public final class eh implements DialogInterface.OnCancelListener {
+    public final int f36023a;
+    public final boolean[] f36024b;
 
-    public eh(org.telegram.ui.Components.a80 a80Var, int i10) {
-        this.f33397a = i10;
-        this.f33398b = a80Var;
+    public eh(int i10, boolean[] zArr) {
+        this.f36023a = i10;
+        this.f36024b = zArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f33397a;
-        org.telegram.ui.Components.a80 a80Var = this.f33398b;
+    public final void onCancel(DialogInterface dialogInterface) {
+        int i10 = this.f36023a;
+        boolean[] zArr = this.f36024b;
         switch (i10) {
             case 0:
-                a80Var.s();
+                zArr[0] = true;
                 return;
             default:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                a80Var.s();
+                Pattern pattern = LaunchActivity.B1;
+                zArr[0] = true;
                 return;
         }
     }

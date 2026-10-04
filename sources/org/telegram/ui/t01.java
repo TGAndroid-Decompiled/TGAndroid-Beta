@@ -1,147 +1,121 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-public final class t01 extends View {
-    public final RectF f37904a;
-    public final TextPaint f37905b;
-    public final Paint f37906c;
-    public final ValueAnimator d;
-    public final float[] e;
-    public final z4.a f37907f;
-    public boolean h;
-    public final ProfileActivity f37908n;
+public final class t01 extends View implements org.telegram.ui.Components.wh0 {
+    public boolean E;
+    public float F;
+    public float G;
+    public float[] H;
+    public long I;
+    public float J;
+    public int K;
+    public float L;
+    public int M;
+    public float N;
+    public int O;
+    public final ProfileActivity P;
+    public final int f40645a;
+    public final Rect f40646b;
+    public final Rect f40647c;
+    public final RectF d;
+    public final GradientDrawable f40648e;
+    public final GradientDrawable f40649f;
+    public final ValueAnimator h;
+    public final float[] f40650n;
+    public final Paint f40651r;
+    public final Paint f40652s;
+    public final Paint v;
+    public final GradientDrawable[] f40653w;
+    public final boolean[] f40654x;
+    public final float[] f40655y;
 
-    public t01(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.f37908n = profileActivity;
-        this.f37904a = new RectF();
-        this.e = new float[]{0.0f, 1.0f};
-        z4.a adapter = profileActivity.f31617n0.getAdapter();
-        this.f37907f = adapter;
-        setVisibility(8);
-        TextPaint textPaint = new TextPaint(1);
-        this.f37905b = textPaint;
-        textPaint.setColor(-1);
-        textPaint.setTypeface(Typeface.SANS_SERIF);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTextSize(AndroidUtilities.dpf2(15.0f));
-        Paint paint = new Paint(1);
-        this.f37906c = paint;
-        paint.setColor(637534208);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.d = ofFloat;
-        ofFloat.setInterpolator(org.telegram.ui.Components.sr.f28349j);
-        ofFloat.addUpdateListener(new c3(this, 29));
-        ofFloat.addListener(new c70(5, this, profileActivity.f31618n1));
-        profileActivity.f31617n0.b(new s01(this));
-        adapter.f48384a.registerObserver(new h1.a(this, 2));
+    public t01(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t01.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
     }
 
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.k kVar;
-        int i10;
-        org.telegram.ui.ActionBar.k kVar2;
-        ProfileActivity profileActivity = this.f37908n;
-        if (z10) {
-            r01 r01Var = profileActivity.N;
-            r01Var.J = r01Var.L;
-            r01Var.K = r01Var.M;
-            r01Var.N = 0.0f;
-            r01Var.O = 1;
-        }
-        profileActivity.N.invalidate();
-        float measureText = this.f37905b.measureText(((String) this.f37907f.d(profileActivity.f31617n0.getCurrentItem())).toString());
-        float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(54.0f);
-        RectF rectF = this.f37904a;
-        rectF.right = measuredWidth;
-        rectF.left = measuredWidth - (AndroidUtilities.dpf2(16.0f) + measureText);
-        kVar = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
-        if (kVar != null) {
-            kVar2 = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
-            if (kVar2.getOccupyStatusBar()) {
-                i10 = AndroidUtilities.statusBarHeight;
-                float dp = AndroidUtilities.dp(15.0f) + i10;
-                rectF.top = dp;
-                rectF.bottom = dp + AndroidUtilities.dp(26.0f);
-                setPivotX(rectF.centerX());
-                setPivotY(rectF.centerY());
-                invalidate();
-            }
-        }
-        i10 = 0;
-        float dp2 = AndroidUtilities.dp(15.0f) + i10;
-        rectF.top = dp2;
-        rectF.bottom = dp2 + AndroidUtilities.dp(26.0f);
-        setPivotX(rectF.centerX());
-        setPivotY(rectF.centerY());
+    @Override
+    public final void a() {
+        Arrays.fill(this.f40654x, false);
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void b(boolean z10) {
+        this.f40654x[!z10 ? 1 : 0] = true;
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void c() {
+        this.P.i5(false);
+    }
+
+    @Override
+    public final void d() {
         invalidate();
     }
 
-    public final void b(float f7) {
-        boolean z10;
-        ProfileActivity profileActivity = this.f37908n;
-        if (profileActivity.f31633p2 && profileActivity.f31617n0.getRealCount() > 20) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void e(float f7, boolean z10) {
+        int i10 = (int) (255.0f * f7);
+        this.f40648e.setAlpha(i10);
+        this.f40649f.setAlpha(i10);
+        this.f40651r.setAlpha((int) (66.0f * f7));
+        this.f40652s.setAlpha((int) (85.0f * f7));
+        this.v.setAlpha(i10);
+        this.G = f7;
+        if (!z10) {
+            this.F = f7;
         }
-        if (z10 != this.h) {
-            this.h = z10;
-            ValueAnimator valueAnimator = this.d;
+        invalidate();
+    }
+
+    public final void f(float f7, boolean z10) {
+        if (z10 != this.E) {
+            this.E = z10;
+            ValueAnimator valueAnimator = this.h;
             valueAnimator.cancel();
-            float animatedFraction = valueAnimator.getAnimatedFraction();
-            float[] fArr = this.e;
-            float lerp = AndroidUtilities.lerp(fArr, animatedFraction);
-            float f10 = 1.0f;
-            if (f7 <= 0.0f) {
-                valueAnimator.setDuration(0L);
-            } else if (z10) {
+            float f10 = this.F;
+            float[] fArr = this.f40650n;
+            float lerp = AndroidUtilities.lerp(fArr, f10);
+            float f11 = 1.0f;
+            if (z10) {
                 valueAnimator.setDuration(((1.0f - lerp) * 250.0f) / f7);
             } else {
                 valueAnimator.setDuration((250.0f * lerp) / f7);
             }
             fArr[0] = lerp;
             if (!z10) {
-                f10 = 0.0f;
+                f11 = 0.0f;
             }
-            fArr[1] = f10;
+            fArr[1] = f11;
             valueAnimator.start();
         }
     }
 
-    public final void c() {
-        gz0 gz0Var;
-        ProfileActivity profileActivity = this.f37908n;
-        if (profileActivity.T0 != null && (gz0Var = profileActivity.f31617n0) != null && profileActivity.f31633p2) {
-            if (gz0Var.getRealPosition() == 0) {
-                profileActivity.T0.r(33);
-                profileActivity.T0.K(36);
-                return;
-            }
-            profileActivity.T0.K(33);
-            profileActivity.T0.r(36);
-        }
-    }
-
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dpf2 = AndroidUtilities.dpf2(12.0f);
-        Paint paint = this.f37906c;
-        RectF rectF = this.f37904a;
-        canvas.drawRoundRect(rectF, dpf2, dpf2, paint);
-        canvas.drawText(((String) this.f37907f.d(this.f37908n.f31617n0.getCurrentItem())).toString(), rectF.centerX(), AndroidUtilities.dpf2(18.5f) + rectF.top, this.f37905b);
+    public final void onDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t01.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        a(false);
+        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f40645a;
+        Rect rect = this.f40646b;
+        rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
+        Rect rect2 = this.f40647c;
+        rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
+        this.f40648e.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
+        this.f40649f.setBounds(0, ((i11 - this.P.O3()) - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.f40653w;
+        int i14 = i10 / 5;
+        gradientDrawableArr[0].setBounds(0, 0, i14, i11);
+        gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);
     }
 }

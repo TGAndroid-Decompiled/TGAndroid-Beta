@@ -4,33 +4,33 @@ import android.app.Activity;
 import android.content.Context;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.m80;
-public final class e2 extends m80 {
-    public final TLRPC.User f29248c;
+import org.telegram.ui.Components.n80;
+public final class e2 extends n80 {
+    public final TLRPC.User f31840c;
     public final TLRPC.Chat d;
-    public final String e;
-    public final TLRPC.InputPeer f29249f;
+    public final String f31841e;
+    public final TLRPC.InputPeer f31842f;
     public final boolean h;
-    public final boolean f29250n;
-    public final Activity f29251r;
-    public final org.telegram.ui.ActionBar.m2 f29252s;
+    public final boolean f31843n;
+    public final Activity f31844r;
+    public final org.telegram.ui.ActionBar.n2 f31845s;
     public final AccountInstance v;
 
-    public e2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.m2 m2Var, AccountInstance accountInstance) {
+    public e2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.n2 n2Var, AccountInstance accountInstance) {
         super(context, chat);
-        this.f29248c = user;
+        this.f31840c = user;
         this.d = chat2;
-        this.e = str;
-        this.f29249f = inputPeer;
+        this.f31841e = str;
+        this.f31842f = inputPeer;
         this.h = z10;
-        this.f29250n = z11;
-        this.f29251r = activity;
-        this.f29252s = m2Var;
+        this.f31843n = z11;
+        this.f31844r = activity;
+        this.f31845s = n2Var;
         this.v = accountInstance;
     }
 
     @Override
     public final void m() {
-        g2.b(this.f29248c, this.d, this.e, this.f29249f, true, this.h, this.f29250n, false, this.f29251r, this.f29252s, this.v, false, false, false);
+        g2.b(this.f31840c, this.d, this.f31841e, this.f31842f, true, this.h, this.f31843n, false, this.f31844r, this.f31845s, this.v, false, false, false);
     }
 }

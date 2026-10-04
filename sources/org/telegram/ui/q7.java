@@ -1,116 +1,87 @@
 package org.telegram.ui;
 
+import android.graphics.drawable.ColorDrawable;
 import android.view.ViewGroup;
+import java.io.File;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class q7 extends g7 {
-    public final s7 f36809n;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
+public final class q7 extends i7 {
+    public org.telegram.ui.Cells.s7 f39630n;
+    public final ArrayList f39631r;
+    public org.telegram.ui.Components.sq f39632s;
+    public final v7 v;
 
-    public q7(s7 s7Var) {
-        super(s7Var, 3);
-        this.f36809n = s7Var;
+    public q7(v7 v7Var) {
+        super(v7Var, 1);
+        this.v = v7Var;
+        this.f39631r = new ArrayList();
+    }
+
+    @Override
+    public final void F() {
+        boolean z10;
+        super.F();
+        ArrayList arrayList = this.f39631r;
+        arrayList.clear();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.f36986e;
+            if (i10 < arrayList2.size()) {
+                String path = ((o7) arrayList2.get(i10)).d.f53550a.getPath();
+                if (((o7) arrayList2.get(i10)).d.d == 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
+                i10++;
+            } else {
+                return;
+            }
+        }
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
-        boolean z11;
-        float f7;
-        k7 k7Var = (k7) c1Var.f42962a;
-        org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) k7Var.f34959b.getChildAt(0);
-        zh.a aVar = ((m7) this.e.get(i10)).d;
-        if (aVar == k7Var.getTag()) {
+        if (this.f39632s == null) {
+            org.telegram.ui.Components.sq sqVar = new org.telegram.ui.Components.sq(new ColorDrawable(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.X9, false)), org.telegram.ui.ActionBar.i6.R4);
+            this.f39632s = sqVar;
+            sqVar.f30856w = true;
+        }
+        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) c1Var.f46523a;
+        zh.a aVar = ((o7) this.f36986e.get(i10)).d;
+        Object tag = t7Var.getTag();
+        ImageReceiver imageReceiver = t7Var.f23071c;
+        if (aVar == tag) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (i10 != this.e.size() - 1) {
-            z11 = true;
+        t7Var.setTag(aVar);
+        int max = (int) Math.max(100.0f, AndroidUtilities.getRealScreenSize().x / AndroidUtilities.density);
+        int i11 = aVar.d;
+        File file = aVar.f53550a;
+        if (i11 == 1) {
+            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a4.a.k(max, max, "_"), this.f39632s, null, null, 0);
+            t7Var.m(AndroidUtilities.formatFileSize(aVar.f53552c), true);
         } else {
-            z11 = false;
+            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a4.a.k(max, max, "_"), this.f39632s, null, null, 0);
+            t7Var.m(AndroidUtilities.formatFileSize(aVar.f53552c), false);
         }
-        k7Var.setTag(aVar);
-        s7 s7Var = this.f36809n;
-        if (aVar.f49469f == null) {
-            TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.out = true;
-            tL_message.f18358id = i10;
-            tL_message.peer_id = new TLRPC.TL_peerUser();
-            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-            tL_message.from_id = tL_peerUser;
-            TLRPC.Peer peer = tL_message.peer_id;
-            long clientUserId = UserConfig.getInstance(s7Var.d.getCurrentAccount()).getClientUserId();
-            tL_peerUser.user_id = clientUserId;
-            peer.user_id = clientUserId;
-            tL_message.date = (int) (System.currentTimeMillis() / 1000);
-            tL_message.message = "";
-            tL_message.attachPath = aVar.f49466a.getPath();
-            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-            tL_message.media = tL_messageMediaDocument;
-            tL_messageMediaDocument.flags |= 3;
-            tL_messageMediaDocument.document = new TLRPC.TL_document();
-            tL_message.flags |= 768;
-            tL_message.dialog_id = aVar.f49467b;
-            String fileExtension = FileLoader.getFileExtension(aVar.f49466a);
-            TLRPC.Document document = tL_message.media.document;
-            document.f18343id = 0L;
-            document.access_hash = 0L;
-            document.file_reference = new byte[0];
-            document.date = tL_message.date;
-            if (fileExtension.length() <= 0) {
-                fileExtension = "mp3";
-            }
-            document.mime_type = "audio/".concat(fileExtension);
-            TLRPC.Document document2 = tL_message.media.document;
-            document2.size = aVar.f49468c;
-            document2.dc_id = 0;
-            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-            if (aVar.e == null) {
-                c3.k0 k0Var = new c3.k0();
-                aVar.e = k0Var;
-                k0Var.f3779b = true;
-                Utilities.globalQueue.postRunnable(new r1(s7Var, aVar, tL_documentAttributeAudio, 4));
-            }
-            tL_documentAttributeAudio.flags |= 3;
-            tL_message.media.document.attributes.add(tL_documentAttributeAudio);
-            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-            tL_documentAttributeFilename.file_name = aVar.f49466a.getName();
-            tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-            MessageObject messageObject = new MessageObject(s7Var.d.getCurrentAccount(), tL_message, false, false);
-            aVar.f49469f = messageObject;
-            messageObject.mediaExists = true;
-        }
-        j7Var.f(aVar.f49469f, z11);
-        boolean z12 = aVar.e.f3779b;
-        boolean z13 = !z12;
-        if (!z10) {
-            if (!z12) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            j7Var.f20530g0 = f7;
-        }
-        if (j7Var.f20529f0 != z13) {
-            j7Var.f20529f0 = z13;
-            j7Var.invalidate();
-        }
-        k7Var.d = z11;
-        k7Var.f34960c.setText(AndroidUtilities.formatFileSize(aVar.f49468c));
-        k7Var.f34958a.a(this.f36809n.f37610f.f49477j.contains(aVar), z10);
+        t7Var.i(this.v.f41573f.f53563j.contains(aVar), z10);
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        k7 k7Var = new k7(this, viewGroup.getContext(), 1);
-        k7Var.e = 3;
-        p7 p7Var = new p7(this, viewGroup.getContext(), k7Var);
-        p7Var.setCheckForButtonPress(true);
-        k7Var.f34959b.addView(p7Var);
-        return new s4.c1(k7Var);
+        if (this.f39630n == null) {
+            this.f39630n = new org.telegram.ui.Cells.s7(viewGroup.getContext(), null);
+        }
+        p7 p7Var = new p7(this, viewGroup.getContext(), this.f39630n, this.v.d.getCurrentAccount());
+        p7Var.setStyle(1);
+        return new s4.c1(p7Var);
     }
 }

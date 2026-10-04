@@ -1,33 +1,68 @@
 package org.telegram.ui;
 
+import android.window.BackEvent;
+import android.window.OnBackAnimationCallback;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class gb0 implements Runnable {
-    public final int f33883a;
-    public final rb0 f33884b;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class gb0 implements OnBackAnimationCallback {
+    public boolean f36548b;
+    public boolean f36550e;
+    public final LaunchActivity f36551f;
+    public final AnimationNotificationsLocker f36547a = new AnimationNotificationsLocker();
+    public boolean f36549c = false;
+    public boolean d = false;
 
-    public gb0(rb0 rb0Var, int i10) {
-        this.f33883a = i10;
-        this.f33884b = rb0Var;
+    public gb0(LaunchActivity launchActivity) {
+        this.f36551f = launchActivity;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f33883a) {
-            case 0:
-                rb0 rb0Var = this.f33884b;
-                rb0Var.f37287r.f20493b.requestFocus();
-                AndroidUtilities.showKeyboard(rb0Var.f37287r.f20493b);
-                return;
-            case 1:
-                rb0 rb0Var2 = this.f33884b;
-                rb0Var2.f37287r.f20493b.clearFocus();
-                AndroidUtilities.hideKeyboard(rb0Var2.f37287r.f20493b);
-                return;
-            default:
-                nf.f.s(this.f33884b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
-                return;
+    public final void onBackCancelled() {
+        ActionBarLayout actionBarLayout;
+        this.f36549c = false;
+        this.d = false;
+        if (this.f36548b) {
+            this.f36547a.unlock();
+            this.f36548b = false;
         }
+        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f36551f.f33797q0) != null && actionBarLayout.f20314c1) {
+            actionBarLayout.f20314c1 = false;
+            actionBarLayout.e(true);
+        }
+    }
+
+    public final void onBackInvoked() {
+        this.d = true;
+        if (this.f36548b) {
+            this.f36547a.unlock();
+            this.f36548b = false;
+        }
+        if (AndroidUtilities.isTablet()) {
+            this.f36551f.onBackPressed();
+        } else if (!this.f36551f.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f36551f;
+            ActionBarLayout actionBarLayout = launchActivity.f33797q0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f20314c1) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.f20314c1 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
+        }
+    }
+
+    public final void onBackProgressed(android.window.BackEvent r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gb0.onBackProgressed(android.window.BackEvent):void");
+    }
+
+    public final void onBackStarted(BackEvent backEvent) {
+        this.f36549c = true;
+        this.d = false;
+        this.f36550e = false;
     }
 }

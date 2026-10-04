@@ -1,17 +1,52 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class uc0 extends org.telegram.ui.ActionBar.m1 {
-    public final cd0 f38429o;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserObject;
+public final class uc0 extends gg.t0 {
+    public boolean m0;
+    public final gd0 f41142n0;
 
-    public uc0(cd0 cd0Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f38429o = cd0Var;
+    public uc0(gd0 gd0Var, Context context, int i10, long j3, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
+        super(context, i10, j3, false, d6Var, false, z10, z11);
+        this.f41142n0 = gd0Var;
+        this.m0 = true;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        this.f38429o.I0 = null;
+    public final void K() {
+        this.f41142n0.r0(null);
+    }
+
+    @Override
+    public final void N(ArrayList arrayList) {
+        int i10;
+        gd0 gd0Var = this.f41142n0;
+        MessageObject messageObject = gd0Var.B0;
+        if (messageObject != null && messageObject.isLiveLocation()) {
+            int i11 = 0;
+            if (arrayList != null) {
+                i10 = 0;
+                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                    ad0 ad0Var = (ad0) arrayList.get(i12);
+                    if (ad0Var != null && !UserObject.isUserSelf(ad0Var.f34790c)) {
+                        i10++;
+                    }
+                }
+            } else {
+                i10 = 0;
+            }
+            if (this.m0 && i10 == 1) {
+                gd0Var.f36574i0 = ((ad0) arrayList.get(0)).f34788a;
+            }
+            this.m0 = false;
+            org.telegram.ui.ActionBar.v0 v0Var = gd0Var.Z;
+            if (i10 != 1) {
+                i11 = 8;
+            }
+            v0Var.setVisibility(i11);
+        }
+        super.N(arrayList);
     }
 }

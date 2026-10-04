@@ -8,10 +8,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.il0;
 public final class t extends s4.n0 {
-    public final int f1539a;
+    public final int f1675a;
 
     public t(int i10) {
-        this.f1539a = i10;
+        this.f1675a = i10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class t extends s4.n0 {
         int dp;
         int dp2;
         int dp3;
-        switch (this.f1539a) {
+        switch (this.f1675a) {
             case 0:
                 recyclerView.getClass();
                 int S = RecyclerView.S(view);
@@ -78,8 +78,13 @@ public final class t extends s4.n0 {
             case 6:
                 il0 il0Var2 = (il0) recyclerView.T(view);
                 if (il0Var2 != null) {
-                    int b11 = il0Var2.b() % 4;
                     int i11 = 0;
+                    if (il0Var2.f46527f != 5) {
+                        rect.right = 0;
+                        rect.left = 0;
+                        return;
+                    }
+                    int b11 = il0Var2.b() % 4;
                     if (b11 == 0) {
                         dp2 = 0;
                     } else {
@@ -98,13 +103,8 @@ public final class t extends s4.n0 {
             case 7:
                 il0 il0Var3 = (il0) recyclerView.T(view);
                 if (il0Var3 != null) {
-                    int i12 = 0;
-                    if (il0Var3.f42965f != 5) {
-                        rect.right = 0;
-                        rect.left = 0;
-                        return;
-                    }
                     int b12 = il0Var3.b() % 4;
+                    int i12 = 0;
                     if (b12 == 0) {
                         dp3 = 0;
                     } else {
@@ -149,7 +149,7 @@ public final class t extends s4.n0 {
         View view;
         float dp;
         int i10;
-        switch (this.f1539a) {
+        switch (this.f1675a) {
             case 10:
                 int width = recyclerView.getWidth();
                 int childCount = recyclerView.getChildCount();
@@ -174,7 +174,7 @@ public final class t extends s4.n0 {
                         } else {
                             i10 = 0;
                         }
-                        canvas.drawLine(dp, f7, width - i10, f7, org.telegram.ui.ActionBar.h6.f19182k0);
+                        canvas.drawLine(dp, f7, width - i10, f7, org.telegram.ui.ActionBar.i6.f20940k0);
                     }
                 }
                 return;

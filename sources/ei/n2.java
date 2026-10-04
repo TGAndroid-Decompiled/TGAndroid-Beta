@@ -1,27 +1,61 @@
 package ei;
 
-import android.view.View;
-public final class n2 implements View.OnClickListener {
-    public final int f8487a;
-    public final k3 f8488b;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.b80;
+import org.telegram.ui.PhotoViewer;
+public final class n2 implements Runnable {
+    public final int f9212a;
+    public final b80 f9213b;
+    public final b80 f9214c;
 
-    public n2(k3 k3Var, int i10) {
-        this.f8487a = i10;
-        this.f8488b = k3Var;
+    public n2(b80 b80Var, b80 b80Var2, int i10) {
+        this.f9212a = i10;
+        this.f9213b = b80Var;
+        this.f9214c = b80Var2;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f8487a) {
+    public final void run() {
+        int i10 = this.f9212a;
+        b80 b80Var = this.f9214c;
+        b80 b80Var2 = this.f9213b;
+        switch (i10) {
             case 0:
-                org.telegram.ui.web.y0 webView = this.f8488b.f8438x.getWebView();
-                if (webView != null) {
-                    webView.reload();
-                    return;
-                }
+                b80Var2.K(b80Var);
+                return;
+            case 1:
+                b80Var2.K(b80Var);
+                return;
+            case 2:
+                b80Var2.K(b80Var);
+                return;
+            case 3:
+                b80Var2.K(b80Var);
+                return;
+            case 4:
+                b80Var2.K(b80Var);
+                return;
+            case 5:
+                b80Var2.K(b80Var);
+                return;
+            case 6:
+                b80Var2.K(b80Var);
+                return;
+            case 7:
+                b80Var2.K(b80Var);
+                return;
+            case 8:
+                b80Var2.K(b80Var);
+                return;
+            case 9:
+                b80Var2.K(b80Var);
+                return;
+            case 10:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                b80Var2.K(b80Var);
                 return;
             default:
-                this.f8488b.r();
+                b80Var2.K(b80Var);
                 return;
         }
     }

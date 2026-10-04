@@ -4,24 +4,24 @@ import java.util.Arrays;
 import n6.l;
 import z7.ve;
 public final class e {
-    public final boolean f385a;
-    public final boolean f386b;
-    public final boolean f387c;
+    public final boolean f414a;
+    public final boolean f415b;
+    public final boolean f416c;
 
     public e(d dVar) {
-        this.f385a = dVar.f382a;
-        this.f386b = dVar.f383b;
-        this.f387c = dVar.f384c;
+        this.f414a = dVar.f411a;
+        this.f415b = dVar.f412b;
+        this.f416c = dVar.f413c;
     }
 
     public final ve a() {
         ?? obj = new Object();
         Boolean bool = Boolean.FALSE;
-        obj.f4252a = bool;
-        obj.f4253b = Boolean.valueOf(this.f385a);
-        obj.f4254c = Boolean.valueOf(this.f386b);
+        obj.f4602a = bool;
+        obj.f4603b = Boolean.valueOf(this.f414a);
+        obj.f4604c = Boolean.valueOf(this.f415b);
         obj.d = bool;
-        obj.e = Boolean.valueOf(this.f387c);
+        obj.f4605e = Boolean.valueOf(this.f416c);
         return new ve(obj);
     }
 
@@ -29,7 +29,7 @@ public final class e {
         if (obj != this) {
             if (obj instanceof e) {
                 e eVar = (e) obj;
-                if (this.f385a == eVar.f385a && this.f386b == eVar.f386b && this.f387c == eVar.f387c && l.l(null, null)) {
+                if (this.f414a == eVar.f414a && this.f415b == eVar.f415b && this.f416c == eVar.f416c && l.l(null, null)) {
                     return true;
                 }
                 return false;
@@ -40,9 +40,9 @@ public final class e {
     }
 
     public final int hashCode() {
-        Boolean valueOf = Boolean.valueOf(this.f385a);
-        Boolean valueOf2 = Boolean.valueOf(this.f386b);
-        Boolean valueOf3 = Boolean.valueOf(this.f387c);
+        Boolean valueOf = Boolean.valueOf(this.f414a);
+        Boolean valueOf2 = Boolean.valueOf(this.f415b);
+        Boolean valueOf3 = Boolean.valueOf(this.f416c);
         Boolean bool = Boolean.FALSE;
         return Arrays.hashCode(new Object[]{bool, valueOf, valueOf2, bool, valueOf3, null});
     }

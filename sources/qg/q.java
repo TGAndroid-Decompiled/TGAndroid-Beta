@@ -3,26 +3,26 @@ package qg;
 import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class q implements org.telegram.ui.ActionBar.k1, Utilities.Callback3Return {
-    public final n0 f41896a;
+public final class q implements org.telegram.ui.ActionBar.l1, Utilities.Callback3Return {
+    public final m0 f45294a;
 
-    public q(n0 n0Var) {
-        this.f41896a = n0Var;
+    public q(m0 m0Var) {
+        this.f45294a = m0Var;
     }
 
     @Override
-    public void p(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.m1 m1Var;
-        n0 n0Var = this.f41896a;
-        n0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var = n0Var.R1) != null && m1Var.isShowing()) {
-            n0Var.R1.d(true);
+    public void o(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.n1 n1Var;
+        m0 m0Var = this.f45294a;
+        m0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = m0Var.R1) != null && n1Var.isShowing()) {
+            m0Var.R1.d(true);
         }
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3) {
-        a0 i02 = this.f41896a.i0(obj, (TLRPC.Document) obj2, true);
+        z i02 = this.f45294a.i0(obj, (TLRPC.Document) obj2, true);
         if (((Boolean) obj3).booleanValue()) {
             i02.setScale(1.5f);
         }

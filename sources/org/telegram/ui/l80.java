@@ -1,25 +1,19 @@
 package org.telegram.ui;
-public final class l80 implements Runnable {
-    public final int f35222a;
-    public final LanguageSelectActivity f35223b;
 
-    public l80(LanguageSelectActivity languageSelectActivity, int i10) {
-        this.f35222a = i10;
-        this.f35223b = languageSelectActivity;
+import android.os.Bundle;
+public final class l80 extends b6 {
+    public final uy f38194f;
+
+    public l80(Bundle bundle, uy uyVar) {
+        super(bundle);
+        this.f38194f = uyVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35222a) {
-            case 0:
-                LanguageSelectActivity.Y(this.f35223b);
-                return;
-            case 1:
-                LanguageSelectActivity.W(this.f35223b);
-                return;
-            default:
-                this.f35223b.f31096a.l();
-                return;
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        super.onTransitionAnimationEnd(z10, z11);
+        if (z10 && !z11) {
+            this.f38194f.removeSelfFromStack();
         }
     }
 }

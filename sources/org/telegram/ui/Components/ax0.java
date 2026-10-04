@@ -1,35 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class ax0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f22750a;
-    public final dx0 f22751b;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class ax0 extends cb {
+    public us X;
 
-    public ax0(dx0 dx0Var, int i10) {
-        this.f22750a = i10;
-        this.f22751b = dx0Var;
+    public ax0(Context context) {
+        super(context, null, true, false, null);
+        fixNavigationBar();
+        this.E = true;
+        this.f25308y = true;
+        I();
+        zl0 zl0Var = this.d;
+        int i10 = this.backgroundPaddingLeft;
+        zl0Var.setPadding(i10, 0, i10, 0);
+        this.d.j(new xb0(this, 7));
+        this.d.setOnItemClickListener(new j(this, 14));
+    }
+
+    public static void N(ax0 ax0Var, int i10) {
+        Object obj;
+        g61 G = ax0Var.X.G(i10 - 1);
+        if (G != null) {
+            obj = G.G;
+        } else {
+            obj = null;
+        }
+        if (obj instanceof TLRPC.User) {
+            MessagesController.getInstance(ax0Var.currentAccount).openApp(ax0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
+        }
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f22750a) {
-            case 0:
-                dx0 dx0Var = this.f22751b;
-                dx0Var.getClass();
-                dx0Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dx0Var.invalidate();
-                return;
-            case 1:
-                dx0 dx0Var2 = this.f22751b;
-                dx0Var2.getClass();
-                dx0Var2.m(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                dx0 dx0Var3 = this.f22751b;
-                dx0Var3.getClass();
-                dx0Var3.f23737y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dx0Var3.invalidate();
-                return;
-        }
+    public final yl0 v(zl0 zl0Var) {
+        us usVar = new us(zl0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
+        this.X = usVar;
+        usVar.f31306r = false;
+        return usVar;
+    }
+
+    @Override
+    public final CharSequence y() {
+        return LocaleController.getString(R.string.SearchAppsExamples);
     }
 }

@@ -1,8 +1,38 @@
 package org.telegram.ui;
-public final class e30 {
-    public final d60 f33254a;
 
-    public e30(d60 d60Var) {
-        this.f33254a = d60Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class e30 implements Utilities.Callback2 {
+    public final int f35890a;
+    public final h60 f35891b;
+
+    public e30(h60 h60Var, int i10) {
+        this.f35890a = i10;
+        this.f35891b = h60Var;
+    }
+
+    @Override
+    public final void run(Object obj, Object obj2) {
+        TLRPC.Updates updates = (TLRPC.Updates) obj;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+        switch (this.f35890a) {
+            case 0:
+                h60 h60Var = this.f35891b;
+                if (updates != null) {
+                    h60Var.d.getMessagesController().processUpdates(updates, false);
+                }
+                AndroidUtilities.runOnUIThread(new v20(h60Var, 10));
+                return;
+            default:
+                h60 h60Var2 = this.f35891b;
+                if (updates != null) {
+                    h60Var2.d.getMessagesController().processUpdates(updates, false);
+                    return;
+                } else {
+                    h60Var2.getClass();
+                    return;
+                }
+        }
     }
 }

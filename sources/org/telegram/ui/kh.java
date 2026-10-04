@@ -2,53 +2,26 @@ package org.telegram.ui;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-public final class kh implements Runnable {
-    public final int f35064a;
-    public final View f35065b;
+public final class kh implements View.OnClickListener {
+    public final int f37977a;
+    public final org.telegram.ui.Components.b80 f37978b;
 
-    public kh(int i10, View view) {
-        this.f35064a = i10;
-        this.f35065b = view;
+    public kh(org.telegram.ui.Components.b80 b80Var, int i10) {
+        this.f37977a = i10;
+        this.f37978b = b80Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f35064a;
-        View view = this.f35065b;
+    public final void onClick(View view) {
+        int i10 = this.f37977a;
+        org.telegram.ui.Components.b80 b80Var = this.f37978b;
         switch (i10) {
             case 0:
-                try {
-                    view.performHapticFeedback(3, 2);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            case 1:
-                view.setBackgroundDrawable(null);
-                return;
-            case 2:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                AndroidUtilities.removeFromParent(view);
-                return;
-            case 3:
-                Drawable[] drawableArr2 = PhotoViewer.U8;
-                view.setVisibility(8);
-                return;
-            case 4:
-                SharedConfig.setSuggestStickers(0);
-                ((org.telegram.ui.Cells.ea) view).f20259c.c(LocaleController.getString(R.string.SuggestStickersAll), true, true);
-                return;
-            case 5:
-                SharedConfig.setSuggestStickers(1);
-                ((org.telegram.ui.Cells.ea) view).f20259c.c(LocaleController.getString(R.string.SuggestStickersInstalled), true, true);
+                b80Var.s();
                 return;
             default:
-                SharedConfig.setSuggestStickers(2);
-                ((org.telegram.ui.Cells.ea) view).f20259c.c(LocaleController.getString(R.string.SuggestStickersNone), true, true);
+                Drawable[] drawableArr = PhotoViewer.U8;
+                b80Var.s();
                 return;
         }
     }

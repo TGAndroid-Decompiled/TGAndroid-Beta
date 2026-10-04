@@ -2,34 +2,34 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class kb0 extends p81 {
-    public final Context f25668a;
-    public final hc0 f25669b;
+public final class kb0 extends x81 {
+    public final Context f28060a;
+    public final ic0 f28061b;
 
-    public kb0(hc0 hc0Var, Context context) {
-        this.f25669b = hc0Var;
-        this.f25668a = context;
+    public kb0(ic0 ic0Var, Context context) {
+        this.f28061b = ic0Var;
+        this.f28060a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        bc0 bc0Var = (bc0) view;
-        bc0Var.h();
-        bc0Var.k(false);
+        cc0 cc0Var = (cc0) view;
+        cc0Var.h();
+        cc0Var.k(false);
     }
 
     @Override
     public final View d(int i10) {
-        return new bc0(this.f25669b, this.f25668a, i10);
+        return new cc0(this.f28061b, this.f28060a, i10);
     }
 
     @Override
     public final int e() {
-        return this.f25669b.e.f24202a.size();
+        return this.f28061b.f27358e.f26790a.size();
     }
 
     @Override
     public final int h(int i10) {
-        return ((ec0) this.f25669b.e.f24202a.get(i10)).f23969a;
+        return ((fc0) this.f28061b.f27358e.f26790a.get(i10)).f26435a;
     }
 }

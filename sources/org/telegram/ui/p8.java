@@ -1,25 +1,54 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class p8 implements DialogInterface.OnCancelListener {
-    public final int f36433a;
-    public final k9 f36434b;
-    public final int f36435c;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class p8 implements View.OnClickListener {
+    public final int f39364a;
+    public final m9 f39365b;
 
-    public p8(k9 k9Var, int i10, int i11) {
-        this.f36433a = i11;
-        this.f36434b = k9Var;
-        this.f36435c = i10;
+    public p8(m9 m9Var, int i10) {
+        this.f39364a = i10;
+        this.f39365b = m9Var;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f36433a) {
+    public final void onClick(View view) {
+        switch (this.f39364a) {
             case 0:
-                this.f36434b.getConnectionsManager().cancelRequest(this.f36435c, true);
+                Long l4 = (Long) view.getTag();
+                m9 m9Var = this.f39365b;
+                ChatObject.Call groupCall = m9Var.getMessagesController().getGroupCall(l4.longValue(), false);
+                TLRPC.Chat chat = m9Var.getMessagesController().getChat(l4);
+                m9Var.P = chat;
+                if (groupCall != null) {
+                    org.telegram.ui.Components.voip.g2.l(chat, null, false, null, m9Var.getParentActivity(), m9Var, m9Var.getAccountInstance());
+                    return;
+                }
+                m9Var.Q = l4;
+                m9Var.getMessagesController().loadFullChat(l4.longValue(), 0, true);
+                return;
+            case 1:
+                this.f39365b.e0(true);
+                return;
+            case 2:
+                m9 m9Var2 = this.f39365b;
+                org.telegram.ui.Components.b80 H = org.telegram.ui.Components.b80.H(m9Var2, m9Var2.E);
+                H.f24844s = 8;
+                if (m9Var2.getUserConfig().showCallsTab) {
+                    H.c(R.drawable.msg_archive_hide, LocaleController.getString(R.string.HideCallTab), new n8(m9Var2, 0), false);
+                }
+                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteAllCalls), new n8(m9Var2, 1), true);
+                H.Z();
+                H.X(-AndroidUtilities.dp(64.0f));
                 return;
             default:
-                this.f36434b.getConnectionsManager().cancelRequest(this.f36435c, true);
+                m9 m9Var3 = this.f39365b;
+                m9Var3.getClass();
+                m9.g0(m9Var3);
                 return;
         }
     }

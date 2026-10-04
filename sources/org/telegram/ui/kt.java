@@ -1,70 +1,34 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.TLRPC;
-public final class kt extends org.telegram.ui.Components.xl0 {
-    public final ArrayList f35151c;
-    public final nt d;
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class kt extends org.telegram.ui.ActionBar.n1 {
+    public final nt f38084o;
 
-    public kt(nt ntVar, ArrayList arrayList) {
-        this.d = ntVar;
-        this.f35151c = arrayList;
+    public kt(nt ntVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f38084o = ntVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.f35151c.size();
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        mt mtVar = (mt) c1Var.f42962a;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f35151c.get(i10);
-        org.telegram.ui.ActionBar.h5 h5Var = mtVar.f35668b;
-        org.telegram.ui.Components.w9 w9Var = mtVar.f35667a;
-        mtVar.d = stickerSetCovered;
-        if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            h5Var.l(LocaleController.getString(R.string.NewStickerPack), false);
-            w9Var.setImageResource(R.drawable.msg_addbot);
-            return;
+    public final void dismiss() {
+        d(true);
+        rt rtVar = this.f38084o.f39036a;
+        rtVar.f40270k = null;
+        rtVar.K = false;
+        if (rtVar.R) {
+            rtVar.n();
         }
-        h5Var.l(stickerSetCovered.set.title, false);
-        TLRPC.Document document = stickerSetCovered.cover;
-        if (document != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.cover, org.telegram.ui.ActionBar.h6.f19005a7, 1.0f, 1.0f, mtVar.f35669c);
-            if (svgThumb != null) {
-                if (closestPhotoSizeWithSize != null) {
-                    w9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, stickerSetCovered.cover), null, "webp", svgThumb, stickerSetCovered);
-                    return;
-                } else {
-                    w9Var.i(ImageLocation.getForDocument(stickerSetCovered.cover), null, "webp", svgThumb, stickerSetCovered);
-                    return;
-                }
+        View view = rtVar.h;
+        if (view != null) {
+            if (view instanceof org.telegram.ui.Cells.f8) {
+                ((org.telegram.ui.Cells.f8) view).setScaled(false);
+            } else if (view instanceof org.telegram.ui.Cells.d8) {
+                ((org.telegram.ui.Cells.d8) view).setScaled(false);
+            } else if (view instanceof org.telegram.ui.Cells.f2) {
+                ((org.telegram.ui.Cells.f2) view).setScaled(false);
             }
-            w9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, stickerSetCovered.cover), null, "webp", null, stickerSetCovered);
-            return;
+            rtVar.h = null;
         }
-        w9Var.l(null, null, null, null, null, 0);
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        mt mtVar = new mt(viewGroup.getContext(), this.d.f35971c0);
-        mtVar.setLayoutParams(new s4.p0(-2, AndroidUtilities.dp(48.0f)));
-        return new s4.c1(mtVar);
     }
 }

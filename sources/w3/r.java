@@ -1,22 +1,53 @@
 package w3;
 
-import e2.v;
+import e2.d0;
 public final class r {
-    public e f44855a;
-    public long f44856b;
-    public long f44857c;
-    public int d;
-    public int e;
-    public boolean f44862k;
-    public q f44864m;
-    public boolean f44866o;
-    public long f44867p;
-    public boolean f44868q;
-    public long[] f44858f = new long[0];
-    public int[] f44859g = new int[0];
-    public int[] h = new int[0];
-    public long[] f44860i = new long[0];
-    public boolean[] f44861j = new boolean[0];
-    public boolean[] f44863l = new boolean[0];
-    public final v f44865n = new v();
+    public final o f48577a;
+    public final int f48578b;
+    public final long[] f48579c;
+    public final int[] d;
+    public final int f48580e;
+    public final long[] f48581f;
+    public final int[] f48582g;
+    public final long h;
+
+    public r(o oVar, long[] jArr, int[] iArr, int i10, long[] jArr2, int[] iArr2, long j3) {
+        boolean z10;
+        boolean z11;
+        if (iArr.length == jArr2.length) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.b(z10);
+        if (jArr.length == jArr2.length) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        e2.d.b(z11);
+        e2.d.b(iArr2.length == jArr2.length);
+        this.f48577a = oVar;
+        this.f48579c = jArr;
+        this.d = iArr;
+        this.f48580e = i10;
+        this.f48581f = jArr2;
+        this.f48582g = iArr2;
+        this.h = j3;
+        this.f48578b = jArr.length;
+        if (iArr2.length > 0) {
+            int length = iArr2.length - 1;
+            iArr2[length] = iArr2[length] | 536870912;
+        }
+    }
+
+    public final int a(long j3) {
+        long[] jArr = this.f48581f;
+        for (int a2 = d0.a(jArr, j3, true); a2 < jArr.length; a2++) {
+            if ((this.f48582g[a2] & 1) != 0) {
+                return a2;
+            }
+        }
+        return -1;
+    }
 }

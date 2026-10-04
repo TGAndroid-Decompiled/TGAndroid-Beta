@@ -2,5 +2,5 @@ package c5;
 
 import java.util.List;
 public interface p {
-    void a(h hVar, List list);
+    void b(h hVar, List list);
 }

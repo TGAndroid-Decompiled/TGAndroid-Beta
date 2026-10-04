@@ -9,34 +9,34 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.cj1;
 import org.telegram.ui.dj1;
-import org.telegram.ui.ds0;
+import org.telegram.ui.fs0;
 public final class jh implements Utilities.Callback2 {
-    public final int f16751a = 1;
-    public final int f16752b;
-    public final Object f16753c;
+    public final int f18276a = 1;
+    public final int f18277b;
+    public final Object f18278c;
     public final Object d;
-    public final Object e;
-    public final Object f16754f;
+    public final Object f18279e;
+    public final Object f18280f;
 
-    public jh(ci.d dVar, org.telegram.ui.ActionBar.e3 e3Var, int i10, View view, cf.c cVar) {
-        this.f16753c = dVar;
-        this.d = e3Var;
-        this.f16752b = i10;
-        this.e = view;
-        this.f16754f = cVar;
+    public jh(ci.d dVar, org.telegram.ui.ActionBar.f3 f3Var, int i10, View view, cf.c cVar) {
+        this.f18278c = dVar;
+        this.d = f3Var;
+        this.f18277b = i10;
+        this.f18279e = view;
+        this.f18280f = cVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f16751a) {
+        switch (this.f18276a) {
             case 0:
-                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.a2) this.f16753c, (Utilities.Callback2) this.d, (q2.b) this.e, (Context) this.f16754f, this.f16752b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.b2) this.f18278c, (Utilities.Callback2) this.d, (k0.b) this.f18279e, (Context) this.f18280f, this.f18277b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ci.d dVar = (ci.d) this.f16753c;
-                org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.d;
-                View view = (View) this.e;
-                cf.c cVar = (cf.c) this.f16754f;
+                ci.d dVar = (ci.d) this.f18278c;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.d;
+                View view = (View) this.f18279e;
+                cf.c cVar = (cf.c) this.f18280f;
                 TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 dVar.setLoading(false);
@@ -44,44 +44,44 @@ public final class jh implements Utilities.Callback2 {
                     Uri parse = Uri.parse(((TLRPC.TL_urlAuthResultAccepted) urlAuthResult).url);
                     String queryParameter = Uri.parse("?" + parse.getFragment()).getQueryParameter("tgWebAuthToken");
                     if (queryParameter == null) {
-                        new org.telegram.ui.Components.yc(e3Var.topBulletinContainer, e3Var.getResourcesProvider()).c0("NO_TOKEN", false);
+                        new org.telegram.ui.Components.yc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0("NO_TOKEN", false);
                         return;
                     }
-                    int i10 = this.f16752b;
+                    int i10 = this.f18277b;
                     int currentDatacenterId = ConnectionsManager.getInstance(i10).getCurrentDatacenterId();
                     boolean isTestBackend = ConnectionsManager.getInstance(i10).isTestBackend();
-                    StringBuilder k10 = hg.c.k("wear-auth: sending /token account=", i10, " dcId=", currentDatacenterId, " isTest=");
+                    StringBuilder k10 = hg.k0.k("wear-auth: sending /token account=", i10, " dcId=", currentDatacenterId, " isTest=");
                     k10.append(isTestBackend);
                     FileLog.d(k10.toString());
                     Context applicationContext = view.getContext().getApplicationContext();
                     try {
                         byte[] c10 = dj1.c(cVar, queryParameter, currentDatacenterId, isTestBackend);
-                        com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6017c).h;
+                        com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6484c).h;
                         b8.e eVar = new b8.e(t0Var, (String) cVar.d, "/tg-wear-auth/token", c10);
-                        t0Var.f6160b.d(0, eVar);
-                        n6.l.n(eVar, y8.j0.f46661a).addOnSuccessListener(new ds0(21, cVar, dVar)).addOnFailureListener(new cj1(dVar, 1));
-                        e3Var.dismiss();
+                        t0Var.f6637b.d(0, eVar);
+                        n6.l.n(eVar, y8.j0.f50491a).addOnSuccessListener(new fs0(22, cVar, dVar)).addOnFailureListener(new cj1(dVar, 1));
+                        f3Var.dismiss();
                         return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        new org.telegram.ui.Components.yc(e3Var.topBulletinContainer, e3Var.getResourcesProvider()).c0(e.getMessage(), false);
+                    } catch (Exception e7) {
+                        FileLog.e(e7);
+                        new org.telegram.ui.Components.yc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0(e7.getMessage(), false);
                         return;
                     }
                 } else if (tL_error != null) {
-                    org.telegram.ui.Cells.c1.r(e3Var.topBulletinContainer, e3Var.getResourcesProvider(), tL_error, false);
+                    org.telegram.ui.Cells.c1.r(f3Var.topBulletinContainer, f3Var.getResourcesProvider(), tL_error, false);
                     return;
                 } else {
-                    new org.telegram.ui.Components.yc(e3Var.topBulletinContainer, e3Var.getResourcesProvider()).c0("NO_TOKEN", false);
+                    new org.telegram.ui.Components.yc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0("NO_TOKEN", false);
                     return;
                 }
         }
     }
 
-    public jh(org.telegram.ui.ActionBar.a2 a2Var, Utilities.Callback2 callback2, q2.b bVar, Context context, int i10) {
-        this.f16753c = a2Var;
+    public jh(org.telegram.ui.ActionBar.b2 b2Var, Utilities.Callback2 callback2, k0.b bVar, Context context, int i10) {
+        this.f18278c = b2Var;
         this.d = callback2;
-        this.e = bVar;
-        this.f16754f = context;
-        this.f16752b = i10;
+        this.f18279e = bVar;
+        this.f18280f = context;
+        this.f18277b = i10;
     }
 }

@@ -1,180 +1,595 @@
 package i;
 
+import ai.q4;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Outline;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import ii.u0;
-import org.telegram.ui.Components.fd;
-import org.telegram.ui.Components.gq;
-import org.telegram.ui.Components.s31;
-import org.telegram.ui.Components.zo0;
-import yh.l3;
-import zg.m0;
-public final class f implements Drawable.Callback {
-    public final int f10564a;
-    public Object f10565b;
+import android.os.Build;
+import v7.r8;
+public abstract class f extends Drawable implements Drawable.Callback {
+    public static final int f11513x = 0;
+    public b f11514a;
+    public Rect f11515b;
+    public Drawable f11516c;
+    public Drawable d;
+    public int f11517e;
+    public boolean f11518f;
+    public int h;
+    public boolean f11519n;
+    public q4 f11520r;
+    public long f11521s;
+    public long v;
+    public ah.d f11522w;
+
+    public final void a(boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: i.f.a(boolean):void");
+    }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f10564a) {
-            case 0:
-                return;
-            case 1:
-                ((u0) this.f10565b).f11645b.invalidate();
-                return;
-            case 2:
-                ((gq) this.f10565b).invalidateSelf();
-                return;
-            case 3:
-                ((zo0) this.f10565b).f30923b.run();
-                return;
-            case 4:
-                ((fd) this.f10565b).invalidateSelf();
-                return;
-            case 5:
-                ((s31) this.f10565b).invalidateSelf();
-                return;
-            case 6:
-                ((wg.a) this.f10565b).f45306c.invalidate();
-                return;
-            case 7:
-                ((wg.c) this.f10565b).f45331c.invalidate();
-                return;
-            case 8:
-                ((x4.d) this.f10565b).invalidateSelf();
-                return;
-            case 9:
-                ((l3) this.f10565b).f47647f.invalidate();
-                return;
-            default:
-                m0 m0Var = (m0) this.f10565b;
-                View view = m0Var.W;
-                if (view != null) {
-                    view.invalidate();
-                    if (m0Var.R && m0Var.W.getParent() != null && (m0Var.W.getParent().getParent() instanceof View)) {
-                        ((View) m0Var.W.getParent().getParent()).invalidate();
-                        return;
-                    }
+    public void applyTheme(Resources.Theme theme) {
+        b bVar = this.f11514a;
+        if (theme != null) {
+            bVar.c();
+            int i10 = bVar.h;
+            Drawable[] drawableArr = bVar.f11489g;
+            for (int i11 = 0; i11 < i10; i11++) {
+                Drawable drawable = drawableArr[i11];
+                if (drawable != null && drawable.canApplyTheme()) {
+                    drawableArr[i11].applyTheme(theme);
+                    bVar.f11487e |= drawableArr[i11].getChangingConfigurations();
+                }
+            }
+            Resources resources = theme.getResources();
+            if (resources != null) {
+                bVar.f11485b = resources;
+                int i12 = resources.getDisplayMetrics().densityDpi;
+                if (i12 == 0) {
+                    i12 = 160;
+                }
+                int i13 = bVar.f11486c;
+                bVar.f11486c = i12;
+                if (i13 != i12) {
+                    bVar.f11494m = false;
+                    bVar.f11491j = false;
                     return;
                 }
                 return;
+            }
+            return;
         }
+        bVar.getClass();
+    }
+
+    public final void b(Drawable drawable) {
+        if (this.f11522w == null) {
+            this.f11522w = new ah.d();
+        }
+        ah.d dVar = this.f11522w;
+        dVar.f463b = drawable.getCallback();
+        drawable.setCallback(dVar);
+        try {
+            if (this.f11514a.f11505y <= 0 && this.f11518f) {
+                drawable.setAlpha(this.f11517e);
+            }
+            b bVar = this.f11514a;
+            if (bVar.C) {
+                drawable.setColorFilter(bVar.B);
+            } else {
+                if (bVar.F) {
+                    drawable.setTintList(bVar.D);
+                }
+                b bVar2 = this.f11514a;
+                if (bVar2.G) {
+                    drawable.setTintMode(bVar2.E);
+                }
+            }
+            drawable.setVisible(isVisible(), true);
+            drawable.setDither(this.f11514a.f11503w);
+            drawable.setState(getState());
+            drawable.setLevel(getLevel());
+            drawable.setBounds(getBounds());
+            if (Build.VERSION.SDK_INT >= 23) {
+                r8.b(r8.a(this), drawable);
+            }
+            drawable.setAutoMirrored(this.f11514a.A);
+            Rect rect = this.f11515b;
+            if (rect != null) {
+                drawable.setHotspotBounds(rect.left, rect.top, rect.right, rect.bottom);
+            }
+            ah.d dVar2 = this.f11522w;
+            dVar2.f463b = null;
+            drawable.setCallback((Drawable.Callback) dVar2.f463b);
+        } catch (Throwable th2) {
+            ah.d dVar3 = this.f11522w;
+            dVar3.f463b = null;
+            drawable.setCallback((Drawable.Callback) dVar3.f463b);
+            throw th2;
+        }
+    }
+
+    public final boolean c(int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: i.f.c(int):boolean");
+    }
+
+    @Override
+    public final boolean canApplyTheme() {
+        return this.f11514a.canApplyTheme();
+    }
+
+    public abstract void d(b bVar);
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.f11516c;
+        if (drawable != null) {
+            drawable.draw(canvas);
+        }
+        Drawable drawable2 = this.d;
+        if (drawable2 != null) {
+            drawable2.draw(canvas);
+        }
+    }
+
+    @Override
+    public final int getAlpha() {
+        return this.f11517e;
+    }
+
+    @Override
+    public final int getChangingConfigurations() {
+        return super.getChangingConfigurations() | this.f11514a.getChangingConfigurations();
+    }
+
+    @Override
+    public final Drawable.ConstantState getConstantState() {
+        boolean z10;
+        b bVar = this.f11514a;
+        if (bVar.f11502u) {
+            z10 = bVar.v;
+        } else {
+            bVar.c();
+            bVar.f11502u = true;
+            int i10 = bVar.h;
+            Drawable[] drawableArr = bVar.f11489g;
+            int i11 = 0;
+            while (true) {
+                if (i11 < i10) {
+                    if (drawableArr[i11].getConstantState() == null) {
+                        bVar.v = false;
+                        z10 = false;
+                        break;
+                    }
+                    i11++;
+                } else {
+                    bVar.v = true;
+                    z10 = true;
+                    break;
+                }
+            }
+        }
+        if (z10) {
+            this.f11514a.d = getChangingConfigurations();
+            return this.f11514a;
+        }
+        return null;
+    }
+
+    @Override
+    public final Drawable getCurrent() {
+        return this.f11516c;
+    }
+
+    @Override
+    public final void getHotspotBounds(Rect rect) {
+        Rect rect2 = this.f11515b;
+        if (rect2 != null) {
+            rect.set(rect2);
+        } else {
+            super.getHotspotBounds(rect);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        b bVar = this.f11514a;
+        if (bVar.f11493l) {
+            if (!bVar.f11494m) {
+                bVar.b();
+            }
+            return bVar.f11496o;
+        }
+        Drawable drawable = this.f11516c;
+        if (drawable != null) {
+            return drawable.getIntrinsicHeight();
+        }
+        return -1;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        b bVar = this.f11514a;
+        if (bVar.f11493l) {
+            if (!bVar.f11494m) {
+                bVar.b();
+            }
+            return bVar.f11495n;
+        }
+        Drawable drawable = this.f11516c;
+        if (drawable != null) {
+            return drawable.getIntrinsicWidth();
+        }
+        return -1;
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        b bVar = this.f11514a;
+        if (bVar.f11493l) {
+            if (!bVar.f11494m) {
+                bVar.b();
+            }
+            return bVar.f11498q;
+        }
+        Drawable drawable = this.f11516c;
+        if (drawable != null) {
+            return drawable.getMinimumHeight();
+        }
+        return 0;
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        b bVar = this.f11514a;
+        if (bVar.f11493l) {
+            if (!bVar.f11494m) {
+                bVar.b();
+            }
+            return bVar.f11497p;
+        }
+        Drawable drawable = this.f11516c;
+        if (drawable != null) {
+            return drawable.getMinimumWidth();
+        }
+        return 0;
+    }
+
+    @Override
+    public final int getOpacity() {
+        Drawable drawable = this.f11516c;
+        int i10 = -2;
+        if (drawable != null && drawable.isVisible()) {
+            b bVar = this.f11514a;
+            if (bVar.f11499r) {
+                return bVar.f11500s;
+            }
+            bVar.c();
+            int i11 = bVar.h;
+            Drawable[] drawableArr = bVar.f11489g;
+            if (i11 > 0) {
+                i10 = drawableArr[0].getOpacity();
+            }
+            for (int i12 = 1; i12 < i11; i12++) {
+                i10 = Drawable.resolveOpacity(i10, drawableArr[i12].getOpacity());
+            }
+            bVar.f11500s = i10;
+            bVar.f11499r = true;
+        }
+        return i10;
+    }
+
+    @Override
+    public final void getOutline(Outline outline) {
+        Drawable drawable = this.f11516c;
+        if (drawable != null) {
+            drawable.getOutline(outline);
+        }
+    }
+
+    @Override
+    public final boolean getPadding(Rect rect) {
+        b bVar = this.f11514a;
+        Rect rect2 = null;
+        boolean z10 = false;
+        if (!bVar.f11490i) {
+            Rect rect3 = bVar.f11492k;
+            if (rect3 == null && !bVar.f11491j) {
+                bVar.c();
+                Rect rect4 = new Rect();
+                int i10 = bVar.h;
+                Drawable[] drawableArr = bVar.f11489g;
+                for (int i11 = 0; i11 < i10; i11++) {
+                    if (drawableArr[i11].getPadding(rect4)) {
+                        if (rect2 == null) {
+                            rect2 = new Rect(0, 0, 0, 0);
+                        }
+                        int i12 = rect4.left;
+                        if (i12 > rect2.left) {
+                            rect2.left = i12;
+                        }
+                        int i13 = rect4.top;
+                        if (i13 > rect2.top) {
+                            rect2.top = i13;
+                        }
+                        int i14 = rect4.right;
+                        if (i14 > rect2.right) {
+                            rect2.right = i14;
+                        }
+                        int i15 = rect4.bottom;
+                        if (i15 > rect2.bottom) {
+                            rect2.bottom = i15;
+                        }
+                    }
+                }
+                bVar.f11491j = true;
+                bVar.f11492k = rect2;
+            } else {
+                rect2 = rect3;
+            }
+        }
+        if (rect2 != null) {
+            rect.set(rect2);
+            if ((rect2.left | rect2.top | rect2.bottom | rect2.right) != 0) {
+                z10 = true;
+            }
+        } else {
+            Drawable drawable = this.f11516c;
+            if (drawable != null) {
+                z10 = drawable.getPadding(rect);
+            } else {
+                z10 = super.getPadding(rect);
+            }
+        }
+        if (this.f11514a.A && r8.a(this) == 1) {
+            int i16 = rect.left;
+            rect.left = rect.right;
+            rect.right = i16;
+        }
+        return z10;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        b bVar = this.f11514a;
+        if (bVar != null) {
+            bVar.f11499r = false;
+            bVar.f11501t = false;
+        }
+        if (drawable == this.f11516c && getCallback() != null) {
+            getCallback().invalidateDrawable(this);
+        }
+    }
+
+    @Override
+    public final boolean isAutoMirrored() {
+        return this.f11514a.A;
+    }
+
+    @Override
+    public void jumpToCurrentState() {
+        boolean z10;
+        Drawable drawable = this.d;
+        boolean z11 = true;
+        if (drawable != null) {
+            drawable.jumpToCurrentState();
+            this.d = null;
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        Drawable drawable2 = this.f11516c;
+        if (drawable2 != null) {
+            drawable2.jumpToCurrentState();
+            if (this.f11518f) {
+                this.f11516c.setAlpha(this.f11517e);
+            }
+        }
+        if (this.v != 0) {
+            this.v = 0L;
+            z10 = true;
+        }
+        if (this.f11521s != 0) {
+            this.f11521s = 0L;
+        } else {
+            z11 = z10;
+        }
+        if (z11) {
+            invalidateSelf();
+        }
+    }
+
+    @Override
+    public Drawable mutate() {
+        if (!this.f11519n && super.mutate() == this) {
+            e eVar = (e) this;
+            b bVar = new b(eVar.F, eVar, null);
+            bVar.I = bVar.I.clone();
+            bVar.J = bVar.J.clone();
+            d(bVar);
+            this.f11519n = true;
+        }
+        return this;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setBounds(rect);
+        }
+        Drawable drawable2 = this.f11516c;
+        if (drawable2 != null) {
+            drawable2.setBounds(rect);
+        }
+    }
+
+    @Override
+    public final boolean onLayoutDirectionChanged(int i10) {
+        boolean z10;
+        b bVar = this.f11514a;
+        int i11 = this.h;
+        int i12 = bVar.h;
+        Drawable[] drawableArr = bVar.f11489g;
+        boolean z11 = false;
+        for (int i13 = 0; i13 < i12; i13++) {
+            Drawable drawable = drawableArr[i13];
+            if (drawable != null) {
+                if (Build.VERSION.SDK_INT >= 23) {
+                    z10 = r8.b(i10, drawable);
+                } else {
+                    z10 = false;
+                }
+                if (i13 == i11) {
+                    z11 = z10;
+                }
+            }
+        }
+        bVar.f11504x = i10;
+        return z11;
+    }
+
+    @Override
+    public final boolean onLevelChange(int i10) {
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            return drawable.setLevel(i10);
+        }
+        Drawable drawable2 = this.f11516c;
+        if (drawable2 != null) {
+            return drawable2.setLevel(i10);
+        }
+        return false;
     }
 
     @Override
     public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        switch (this.f10564a) {
-            case 0:
-                Drawable.Callback callback = (Drawable.Callback) this.f10565b;
-                if (callback != null) {
-                    callback.scheduleDrawable(drawable, runnable, j3);
-                    return;
-                }
-                return;
-            case 1:
-                return;
-            case 2:
-                ((gq) this.f10565b).scheduleSelf(runnable, j3);
-                return;
-            case 3:
-                return;
-            case 4:
-                ((fd) this.f10565b).scheduleSelf(runnable, j3);
-                return;
-            case 5:
-                return;
-            case 6:
-                ((wg.a) this.f10565b).f45306c.invalidate();
-                return;
-            case 7:
-                ((wg.c) this.f10565b).f45331c.invalidate();
-                return;
-            case 8:
-                ((x4.d) this.f10565b).scheduleSelf(runnable, j3);
-                return;
-            case 9:
-                return;
-            default:
-                View view = ((m0) this.f10565b).W;
-                if (view != null) {
-                    view.scheduleDrawable(drawable, runnable, j3);
-                    return;
-                }
-                return;
+        if (drawable == this.f11516c && getCallback() != null) {
+            getCallback().scheduleDrawable(this, runnable, j3);
         }
     }
 
     @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f10564a) {
-            case 0:
-                Drawable.Callback callback = (Drawable.Callback) this.f10565b;
-                if (callback != null) {
-                    callback.unscheduleDrawable(drawable, runnable);
-                    return;
+    public final void setAlpha(int i10) {
+        if (!this.f11518f || this.f11517e != i10) {
+            this.f11518f = true;
+            this.f11517e = i10;
+            Drawable drawable = this.f11516c;
+            if (drawable != null) {
+                if (this.f11521s == 0) {
+                    drawable.setAlpha(i10);
+                } else {
+                    a(false);
                 }
-                return;
-            case 1:
-                return;
-            case 2:
-                ((gq) this.f10565b).unscheduleSelf(runnable);
-                return;
-            case 3:
-                return;
-            case 4:
-                ((fd) this.f10565b).unscheduleSelf(runnable);
-                return;
-            case 5:
-                return;
-            case 6:
-                ((wg.a) this.f10565b).f45306c.invalidate();
-                return;
-            case 7:
-                ((wg.c) this.f10565b).f45331c.invalidate();
-                return;
-            case 8:
-                ((x4.d) this.f10565b).unscheduleSelf(runnable);
-                return;
-            case 9:
-                return;
-            default:
-                View view = ((m0) this.f10565b).W;
-                if (view != null) {
-                    view.unscheduleDrawable(drawable, runnable);
-                    return;
-                }
-                return;
+            }
         }
     }
 
-    public f(Object obj, int i10) {
-        this.f10564a = i10;
-        this.f10565b = obj;
+    @Override
+    public final void setAutoMirrored(boolean z10) {
+        b bVar = this.f11514a;
+        if (bVar.A != z10) {
+            bVar.A = z10;
+            Drawable drawable = this.f11516c;
+            if (drawable != null) {
+                drawable.setAutoMirrored(z10);
+            }
+        }
     }
 
-    private final void a(Drawable drawable) {
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        b bVar = this.f11514a;
+        bVar.C = true;
+        if (bVar.B != colorFilter) {
+            bVar.B = colorFilter;
+            Drawable drawable = this.f11516c;
+            if (drawable != null) {
+                drawable.setColorFilter(colorFilter);
+            }
+        }
     }
 
-    private final void f(Drawable drawable, Runnable runnable) {
+    @Override
+    public final void setDither(boolean z10) {
+        b bVar = this.f11514a;
+        if (bVar.f11503w != z10) {
+            bVar.f11503w = z10;
+            Drawable drawable = this.f11516c;
+            if (drawable != null) {
+                drawable.setDither(z10);
+            }
+        }
     }
 
-    private final void g(Drawable drawable, Runnable runnable) {
+    @Override
+    public final void setHotspot(float f7, float f10) {
+        Drawable drawable = this.f11516c;
+        if (drawable != null) {
+            drawable.setHotspot(f7, f10);
+        }
     }
 
-    private final void h(Drawable drawable, Runnable runnable) {
+    @Override
+    public final void setHotspotBounds(int i10, int i11, int i12, int i13) {
+        Rect rect = this.f11515b;
+        if (rect == null) {
+            this.f11515b = new Rect(i10, i11, i12, i13);
+        } else {
+            rect.set(i10, i11, i12, i13);
+        }
+        Drawable drawable = this.f11516c;
+        if (drawable != null) {
+            drawable.setHotspotBounds(i10, i11, i12, i13);
+        }
     }
 
-    private final void i(Drawable drawable, Runnable runnable) {
+    @Override
+    public final void setTint(int i10) {
+        setTintList(ColorStateList.valueOf(i10));
     }
 
-    private final void b(Drawable drawable, Runnable runnable, long j3) {
+    @Override
+    public final void setTintList(ColorStateList colorStateList) {
+        b bVar = this.f11514a;
+        bVar.F = true;
+        if (bVar.D != colorStateList) {
+            bVar.D = colorStateList;
+            this.f11516c.setTintList(colorStateList);
+        }
     }
 
-    private final void c(Drawable drawable, Runnable runnable, long j3) {
+    @Override
+    public final void setTintMode(PorterDuff.Mode mode) {
+        b bVar = this.f11514a;
+        bVar.G = true;
+        if (bVar.E != mode) {
+            bVar.E = mode;
+            this.f11516c.setTintMode(mode);
+        }
     }
 
-    private final void d(Drawable drawable, Runnable runnable, long j3) {
+    @Override
+    public boolean setVisible(boolean z10, boolean z11) {
+        boolean visible = super.setVisible(z10, z11);
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setVisible(z10, z11);
+        }
+        Drawable drawable2 = this.f11516c;
+        if (drawable2 != null) {
+            drawable2.setVisible(z10, z11);
+        }
+        return visible;
     }
 
-    private final void e(Drawable drawable, Runnable runnable, long j3) {
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        if (drawable == this.f11516c && getCallback() != null) {
+            getCallback().unscheduleDrawable(this, runnable);
+        }
     }
 }

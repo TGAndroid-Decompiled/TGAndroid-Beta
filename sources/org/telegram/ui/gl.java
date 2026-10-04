@@ -8,27 +8,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class gl extends FrameLayout {
-    public float f33960a;
-    public float f33961b;
-    public final wn f33962c;
+    public float f36667a;
+    public float f36668b;
+    public final yn f36669c;
 
-    public gl(wn wnVar, Activity activity) {
+    public gl(yn ynVar, Activity activity) {
         super(activity);
-        this.f33962c = wnVar;
+        this.f36669c = ynVar;
         setOnLongClickListener(new v(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        wn wnVar = this.f33962c;
-        if (view == wnVar.f39722z2) {
+        yn ynVar = this.f36669c;
+        if (view == ynVar.f43553x2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
-        org.telegram.ui.ActionBar.h5[] h5VarArr = wnVar.D2;
-        if (view != h5VarArr[0] && view != h5VarArr[1]) {
+        org.telegram.ui.ActionBar.i5[] i5VarArr = ynVar.B2;
+        if (view != i5VarArr[0] && view != i5VarArr[1]) {
             boolean drawChild = super.drawChild(canvas, view, j3);
-            if (view == wnVar.f39722z2) {
+            if (view == ynVar.f43553x2) {
                 canvas.restore();
             }
             return drawChild;
@@ -43,11 +43,11 @@ public final class gl extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        wn wnVar = this.f33962c;
-        if (wnVar.A2) {
+        yn ynVar = this.f36669c;
+        if (ynVar.f43566y2) {
             int i12 = 0;
             while (true) {
-                AnimatorSet[] animatorSetArr = wnVar.H2;
+                AnimatorSet[] animatorSetArr = ynVar.F2;
                 if (i12 < animatorSetArr.length) {
                     AnimatorSet animatorSet = animatorSetArr[i12];
                     if (animatorSet != null) {
@@ -55,7 +55,7 @@ public final class gl extends FrameLayout {
                     }
                     i12++;
                 } else {
-                    wnVar.A2 = false;
+                    ynVar.f43566y2 = false;
                     return;
                 }
             }
@@ -64,16 +64,16 @@ public final class gl extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f33960a = motionEvent.getY();
+        this.f36667a = motionEvent.getY();
         int action = motionEvent.getAction();
-        wn wnVar = this.f33962c;
+        yn ynVar = this.f36669c;
         if (action == 1) {
-            wnVar.finishPreviewFragment();
+            ynVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f33961b - this.f33960a;
-            wnVar.movePreviewFragment(f7);
+            float f7 = this.f36668b - this.f36667a;
+            ynVar.movePreviewFragment(f7);
             if (f7 < 0.0f) {
-                this.f33961b = this.f33960a;
+                this.f36668b = this.f36667a;
             }
         }
         return super.onTouchEvent(motionEvent);

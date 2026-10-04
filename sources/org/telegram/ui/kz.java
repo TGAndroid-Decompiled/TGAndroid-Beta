@@ -1,34 +1,24 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
-public final class kz implements DialogInterface.OnCancelListener {
-    public final int f35180a;
-    public final int f35181b;
-    public final int[] f35182c;
+import android.content.Context;
+import android.view.View;
+public final class kz extends org.telegram.ui.Components.f61 {
+    public static final int f38127a = 0;
 
-    public kz(int i10, int i11, int[] iArr) {
-        this.f35180a = i11;
-        this.f35181b = i10;
-        this.f35182c = iArr;
+    static {
+        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f35180a;
-        int[] iArr = this.f35182c;
-        int i11 = this.f35181b;
-        switch (i10) {
-            case 0:
-                ArrayList arrayList = ExternalActionActivity.f31077x;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                return;
-            default:
-                Pattern pattern = LaunchActivity.B1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                return;
-        }
+    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
+        lz lzVar = (lz) view;
+        lzVar.f38364b.setOnClickListener((View.OnClickListener) g61Var.G);
+        lzVar.f38366e.setOnClickListener((View.OnClickListener) g61Var.H);
+        lzVar.a(g61Var.f26662e, false);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new lz(context, d6Var);
     }
 }

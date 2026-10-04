@@ -1,54 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class jq0 implements TextWatcher {
-    public final wq0 f25502a;
+import org.telegram.messenger.AndroidUtilities;
+public final class jq0 extends org.telegram.ui.ActionBar.p1 {
+    public final kq0 f27875x;
 
-    public jq0(wq0 wq0Var) {
-        this.f25502a = wq0Var;
+    public jq0(kq0 kq0Var, kq0 kq0Var2) {
+        super(kq0Var2);
+        this.f27875x = kq0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        wq0 wq0Var = this.f25502a;
-        oq0 oq0Var = wq0Var.K;
-        kx0 kx0Var = wq0Var.Q;
-        e20 e20Var = wq0Var.f30150y0;
-        if (!TextUtils.isEmpty(e20Var.f23822r.getText())) {
-            wq0Var.K0(false);
+    public final boolean b() {
+        zq0 zq0Var = this.f27875x.H0;
+        if (!zq0Var.isDismissed() && zq0Var.Y) {
+            return !zq0Var.d.m();
         }
-        if (wq0Var.A0) {
-            String obj = e20Var.f23822r.getText().toString();
-            if (obj.length() != 0) {
-                if (kx0Var != null) {
-                    kx0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                }
-            } else if (wq0Var.F.getAdapter() != oq0Var) {
-                int F0 = wq0.F0(wq0Var);
-                kx0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                kx0Var.e(false, true);
-                wq0Var.K0(false);
-                oq0Var.l();
-                if (F0 > 0) {
-                    wq0Var.H.h1(0, -F0);
-                }
-            }
-            sq0 sq0Var = wq0Var.M;
-            if (sq0Var != null) {
-                sq0Var.E(obj);
-            }
+        return false;
+    }
+
+    @Override
+    public final void e(float r9, float r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.jq0.e(float, float, boolean):void");
+    }
+
+    @Override
+    public final void f() {
+        zq0 zq0Var = this.f27875x.H0;
+        eq0 eq0Var = zq0Var.d;
+        if (eq0Var == null || !eq0Var.m()) {
+            int i10 = zq0Var.N0;
+            AndroidUtilities.dp(20.0f);
         }
+        zq0Var.f33617r0 = false;
+        int i11 = zq0Var.f33614p0;
+        zq0Var.f33615q0 = i11;
+        zq0Var.F.setTopGlowOffset(i11);
+        zq0Var.f33596b.setTranslationY(zq0Var.f33614p0);
+        zq0Var.Q.setTranslationY(zq0Var.f33614p0);
+        zq0Var.F.setTranslationY(0.0f);
+        zq0Var.G.setTranslationY(0.0f);
+        zq0Var.V0();
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void g(int i10, boolean z10) {
+        int i11;
+        kq0 kq0Var = this.f27875x;
+        zq0 zq0Var = kq0Var.H0;
+        int i12 = zq0Var.f33615q0;
+        int i13 = zq0Var.f33614p0;
+        if (i12 != i13) {
+            kq0Var.B0 = i12;
+            kq0Var.C0 = i13;
+            zq0Var.f33617r0 = true;
+            zq0Var.f33614p0 = i12;
+        } else {
+            kq0Var.B0 = -1;
+        }
+        int i14 = kq0Var.f28183z0;
+        int i15 = kq0Var.A0;
+        if (i14 != i15) {
+            kq0Var.D0 = 0;
+            kq0Var.E0 = 0;
+            zq0Var.f33617r0 = true;
+            if (!z10) {
+                kq0Var.E0 = 0 - (i14 - i15);
+            } else {
+                kq0Var.E0 = i14 - i15;
+            }
+            if (z10) {
+                i11 = kq0Var.B0;
+            } else {
+                i11 = kq0Var.C0;
+            }
+            zq0Var.f33614p0 = i11;
+        } else {
+            kq0Var.D0 = -1;
+        }
+        zq0Var.F.setTopGlowOffset((int) (zq0Var.f33620t0 + zq0Var.f33614p0));
+        zq0Var.f33596b.setTranslationY(zq0Var.f33620t0 + zq0Var.f33614p0);
+        zq0Var.Q.setTranslationY(zq0Var.f33620t0 + zq0Var.f33614p0);
+        kq0Var.invalidate();
     }
 }

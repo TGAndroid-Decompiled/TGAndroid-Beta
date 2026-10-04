@@ -1,15 +1,34 @@
 package org.telegram.ui;
-public final class rw0 extends r61 {
-    public final PremiumPreviewFragment e;
 
-    public rw0(PremiumPreviewFragment premiumPreviewFragment, qw0 qw0Var) {
-        super(qw0Var);
-        this.e = premiumPreviewFragment;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
+public final class rw0 implements Comparator {
+    public final int f40294a;
+    public final MessagesController f40295b;
+
+    public rw0(MessagesController messagesController, int i10) {
+        this.f40294a = i10;
+        this.f40295b = messagesController;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.e.f31467s0 = null;
+    public final int compare(Object obj, Object obj2) {
+        int i10;
+        int i11;
+        ex0 ex0Var = (ex0) obj;
+        ex0 ex0Var2 = (ex0) obj2;
+        switch (this.f40294a) {
+            case 0:
+                MessagesController messagesController = this.f40295b;
+                i10 = messagesController.businessFeaturesTypesToPosition.get(ex0Var.f36106a, Integer.MAX_VALUE);
+                i11 = messagesController.businessFeaturesTypesToPosition.get(ex0Var2.f36106a, Integer.MAX_VALUE);
+                break;
+            default:
+                MessagesController messagesController2 = this.f40295b;
+                i10 = messagesController2.premiumFeaturesTypesToPosition.get(ex0Var.f36106a, Integer.MAX_VALUE);
+                i11 = messagesController2.premiumFeaturesTypesToPosition.get(ex0Var2.f36106a, Integer.MAX_VALUE);
+                break;
+        }
+        return i10 - i11;
     }
 }

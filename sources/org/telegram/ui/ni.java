@@ -1,41 +1,20 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-import org.telegram.messenger.MessageObject;
-public final class ni {
-    public boolean f35894a;
-    public final boolean f35895b;
-    public final SparseArray f35896c;
-    public final wn d;
+import android.app.Activity;
+import java.util.ArrayList;
+public final class ni extends org.telegram.ui.Components.wv {
+    public final yn W;
 
-    public ni(wn wnVar, boolean z10, SparseArray sparseArray) {
-        this.d = wnVar;
-        this.f35895b = z10;
-        this.f35896c = sparseArray;
+    public ni(yn ynVar, org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
+        super(n2Var, activity, d6Var, arrayList);
+        this.W = ynVar;
     }
 
-    public final boolean a(int i10) {
-        wn wnVar = this.d;
-        int i11 = i10 - wnVar.A0.J;
-        if (i11 >= 0 && i11 < wnVar.f39662u6.size()) {
-            MessageObject messageObject = (MessageObject) wnVar.f39662u6.get(i11);
-            if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f35896c;
-                boolean z10 = this.f35895b;
-                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
-                    return true;
-                }
-                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final void b(int r8, boolean r9, float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ni.b(int, boolean, float, float):void");
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        yn ynVar = this.W;
+        ynVar.getClass();
+        ynVar.g8(false, true, 0.0f);
     }
 }

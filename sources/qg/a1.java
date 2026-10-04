@@ -1,126 +1,90 @@
 package qg;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.TextureView;
+import android.view.View;
+import android.view.ViewGroup;
 import ci.a7;
 import ci.b6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.na;
-public final class a1 extends org.telegram.ui.Cells.u1 {
-    public final na Ge;
-    public final float[] He;
-    public final Path Ie;
-    public final Paint Je;
-    public final Rect Ke;
-    public final RectF Le;
-    public final b1 Me;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.ka;
+import org.telegram.ui.Components.yl0;
+public final class a1 extends yl0 {
+    public final Context f44952c;
+    public final ka d;
+    public final a7 f44953e;
+    public final boolean f44954f;
+    public final b6 h;
 
-    public a1(b1 b1Var, Context context, int i10, com.google.firebase.messaging.n nVar) {
-        super(context, i10, false, null, nVar);
-        this.Me = b1Var;
-        this.Ge = new na(b1Var.d, this, 10, false);
-        this.He = new float[8];
-        this.Ie = new Path();
-        Paint paint = new Paint();
-        this.Je = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.Ke = new Rect();
-        this.Le = new RectF();
+    public a1(b6 b6Var, Context context, ka kaVar, a7 a7Var, boolean z10) {
+        this.h = b6Var;
+        this.f44952c = context;
+        this.d = kaVar;
+        this.f44953e = a7Var;
+        this.f44954f = z10;
     }
 
     @Override
-    public final Paint M2(String str) {
-        if ("paintChatActionBackground".equals(str)) {
-            this.Me.h.f41636v0 = true;
-            Paint c10 = this.Ge.c(1.0f);
-            if (c10 != null) {
-                return c10;
-            }
-        }
-        return super.M2(str);
+    public final boolean D(s4.c1 c1Var) {
+        return true;
     }
 
     @Override
-    public final boolean a2(Canvas canvas) {
-        a7 a7Var;
-        float[] fArr;
-        ImageReceiver photoImage = getPhotoImage();
-        b1 b1Var = this.Me;
-        b6 b6Var = b1Var.h;
-        if (b1Var.f41589f && photoImage != null && (((a7Var = b1Var.e) != null && a7Var.f4349g && a7Var.d && b6Var.f41638x0) || b6Var.f41635u0 || (b6Var.f41637w0 != null && b6Var.M0.I0))) {
-            int i10 = 0;
-            while (true) {
-                int length = photoImage.getRoundRadius().length;
-                fArr = this.He;
-                if (i10 >= length) {
-                    break;
+    public final int h() {
+        return this.h.f45007s0.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        ArrayList arrayList = this.h.f45007s0;
+        return ((MessageObject) arrayList.get((arrayList.size() - 1) - i10)).contentType;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        boolean z11;
+        MessageObject.GroupedMessagePosition position;
+        boolean z12;
+        b6 b6Var = this.h;
+        ArrayList arrayList = b6Var.f45007s0;
+        MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
+        View view = c1Var.f46523a;
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+            MessageObject.GroupedMessages groupedMessages = b6Var.f45008t0;
+            if (groupedMessages != null && (position = groupedMessages.getPosition(messageObject)) != null) {
+                if (position.minY != 0) {
+                    z12 = true;
+                } else {
+                    z12 = false;
                 }
-                int i11 = i10 * 2;
-                fArr[i11] = photoImage.getRoundRadius()[i10];
-                fArr[i11 + 1] = photoImage.getRoundRadius()[i10];
-                i10++;
+                z10 = z12;
+            } else {
+                z10 = false;
             }
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(photoImage.getImageX(), photoImage.getImageY(), photoImage.getImageX2(), photoImage.getImageY2());
-            Path path = this.Ie;
-            path.rewind();
-            path.addRoundRect(rectF, fArr, Path.Direction.CW);
-            TextureView textureView = b6Var.f41637w0;
-            if (textureView != null && b6Var.M0.I0) {
-                Bitmap bitmap = textureView.getBitmap();
-                if (bitmap != null) {
-                    canvas.save();
-                    canvas.clipPath(path);
-                    canvas.translate(-getX(), -getY());
-                    float max = Math.max(photoImage.getImageWidth() / b6Var.f41639y0, photoImage.getImageHeight() / b6Var.f41640z0);
-                    canvas.translate(photoImage.getCenterX() - ((b6Var.f41639y0 * max) / 2.0f), photoImage.getCenterY() - ((b6Var.f41640z0 * max) / 2.0f));
-                    canvas.scale((b6Var.f41639y0 / b6Var.f41637w0.getWidth()) * max, (b6Var.f41640z0 / b6Var.f41637w0.getHeight()) * max);
-                    int width = bitmap.getWidth();
-                    int height = bitmap.getHeight();
-                    Rect rect = this.Ke;
-                    rect.set(0, 0, width, height);
-                    RectF rectF2 = this.Le;
-                    rectF2.set(0.0f, 0.0f, b6Var.f41637w0.getWidth(), b6Var.f41637w0.getHeight());
-                    canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
-                    canvas.restore();
-                    return true;
-                }
-                return super.a2(canvas);
+            MessageObject.GroupedMessages groupedMessages2 = b6Var.f45008t0;
+            if (groupedMessages2 != null) {
+                z11 = true;
+            } else {
+                z11 = false;
             }
-            canvas.drawPath(path, this.Je);
-            return true;
+            u1Var.X3(messageObject, groupedMessages2, z11, z10, false, false);
+        } else if (view instanceof org.telegram.ui.Cells.w0) {
+            ((org.telegram.ui.Cells.w0) view).setMessageObject(messageObject);
         }
-        return super.a2(canvas);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        b1 b1Var = this.Me;
-        a7 a7Var = b1Var.e;
-        if ((a7Var != null && a7Var.f4349g && a7Var.d) || b1Var.h.f41635u0) {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        } else {
-            canvas2 = canvas;
-            canvas2.save();
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        com.google.firebase.messaging.n nVar = this.h.D0;
+        Context context = this.f44952c;
+        if (i10 == 1) {
+            return new s4.c1(new y0(this, context, nVar));
         }
-        S1(canvas2);
-        canvas2.restore();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
+        z0 z0Var = new z0(this, context, UserConfig.selectedAccount, nVar);
+        z0Var.N7 = true;
+        return new s4.c1(z0Var);
     }
 }

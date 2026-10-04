@@ -13,19 +13,19 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.m7;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import w7.y5;
-public final class c extends bb {
-    public static final int f46095a0 = 0;
+import w7.z5;
+public final class c extends cb {
+    public static final int f49896a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public l61 Z;
+    public u61 Z;
 
     public c(Context context, d6 d6Var, GiftAuctionController.Auction auction, List list) {
         super(context, null, false, false, 2, d6Var);
@@ -34,7 +34,7 @@ public final class c extends bb {
         this.v = 0.2f;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.e.setTitle(y());
+        this.f25301e.setTitle(y());
         fixNavigationBar();
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new m7(3));
@@ -42,7 +42,7 @@ public final class c extends bb {
         ci.d dVar = new ci.d(context, d6Var, true);
         dVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 15));
         dVar.g(LocaleController.getString(R.string.OK), false, true);
-        FrameLayout.LayoutParams d = y5.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        FrameLayout.LayoutParams d = z5.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i10 = d.leftMargin;
         int i11 = this.backgroundPaddingLeft;
         d.leftMargin = i10 + i11;
@@ -51,10 +51,10 @@ public final class c extends bb {
         this.Z.N(false);
     }
 
-    public static void P(c cVar, TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift) {
+    public static void N(c cVar, TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift) {
         long peerDialogId = DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer);
         cVar.dismiss();
-        org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
         if (U != null && !UserObject.isService(peerDialogId)) {
             Bundle bundle = new Bundle();
             if (peerDialogId > 0) {
@@ -71,11 +71,11 @@ public final class c extends bb {
     }
 
     @Override
-    public final xl0 v(yl0 yl0Var) {
-        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
-        this.Z = l61Var;
-        l61Var.f25924r = false;
-        return l61Var;
+    public final yl0 v(zl0 zl0Var) {
+        u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
+        this.Z = u61Var;
+        u61Var.f31306r = false;
+        return u61Var;
     }
 
     @Override

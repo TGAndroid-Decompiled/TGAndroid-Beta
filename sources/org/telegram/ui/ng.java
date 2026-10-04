@@ -1,54 +1,45 @@
 package org.telegram.ui;
-public final class ng implements q0.a {
-    public final int f35878a;
-    public final wn f35879b;
 
-    public ng(wn wnVar, int i10) {
-        this.f35878a = i10;
-        this.f35879b = wnVar;
+import org.telegram.messenger.Utilities;
+public final class ng implements Utilities.Callback2 {
+    public final int f38971a;
+    public final yn f38972b;
+    public final String f38973c;
+
+    public ng(yn ynVar, String str, int i10) {
+        this.f38971a = i10;
+        this.f38972b = ynVar;
+        this.f38973c = str;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f35878a) {
+    public final void run(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        Boolean bool2 = (Boolean) obj2;
+        switch (this.f38971a) {
             case 0:
-                Integer num = (Integer) obj;
-                wn wnVar = this.f35879b;
-                wnVar.getClass();
-                if (num.intValue() == 0) {
-                    wnVar.l1 = 0;
-                    wnVar.Bc(true);
-                    wnVar.getMessagesController().markReactionsAsRead(wnVar.T5, wnVar.d());
+                if (bool.booleanValue()) {
+                    boolean booleanValue = bool2.booleanValue();
+                    yn ynVar = this.f38972b;
+                    String str = this.f38973c;
+                    if (booleanValue) {
+                        ynVar.getMessagesController().addWebBrowserException(str, false);
+                    }
+                    ynVar.getParentActivity();
+                    nf.f.n(str);
                     return;
                 }
-                wnVar.Bc(true);
-                wnVar.F(num.intValue(), 0, 0, 0, false, true);
-                return;
-            case 1:
-                Integer num2 = (Integer) obj;
-                wn wnVar2 = this.f35879b;
-                wnVar2.getClass();
-                if (num2.intValue() == 0) {
-                    wnVar2.f39556m1 = 0;
-                    wnVar2.Ac(true);
-                    wnVar2.getMessagesController().markPollVotesAsRead(wnVar2.T5, wnVar2.d());
-                    return;
-                }
-                int i10 = wnVar2.f39556m1 - 1;
-                wnVar2.f39556m1 = i10;
-                if (i10 <= 0) {
-                    wnVar2.getMessagesController().markPollVotesAsRead(wnVar2.T5, wnVar2.d());
-                }
-                wnVar2.Ac(true);
-                wnVar2.F(num2.intValue(), 0, 0, 0, false, true);
                 return;
             default:
-                wn wnVar3 = this.f35879b;
-                wnVar3.getClass();
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                wnVar3.f7 = booleanValue;
-                if (!booleanValue) {
-                    wnVar3.r8();
+                yn ynVar2 = this.f38972b;
+                ynVar2.getClass();
+                if (bool.booleanValue()) {
+                    boolean booleanValue2 = bool2.booleanValue();
+                    String str2 = this.f38973c;
+                    if (booleanValue2) {
+                        ynVar2.getMessagesController().addWebBrowserException(str2, true);
+                    }
+                    nf.f.m(ynVar2.getParentActivity(), str2, false, null);
                     return;
                 }
                 return;

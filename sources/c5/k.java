@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class k {
-    public final String f3896a;
-    public final long f3897b;
-    public final String f3898c;
+    public final String f4214a;
+    public final long f4215b;
+    public final String f4216c;
     public final String d;
-    public final ArrayList e;
-    public final String f3899f;
-    public final t7.u f3900g;
+    public final ArrayList f4217e;
+    public final String f4218f;
+    public final t7.u f4219g;
 
     public k(JSONObject jSONObject) {
-        this.f3896a = jSONObject.optString("formattedPrice");
-        this.f3897b = jSONObject.optLong("priceAmountMicros");
-        this.f3898c = jSONObject.optString("priceCurrencyCode");
+        this.f4214a = jSONObject.optString("formattedPrice");
+        this.f4215b = jSONObject.optLong("priceAmountMicros");
+        this.f4216c = jSONObject.optString("priceCurrencyCode");
         String optString = jSONObject.optString("offerIdToken");
         t7.u uVar = null;
         this.d = true == optString.isEmpty() ? null : optString;
@@ -23,10 +23,10 @@ public final class k {
         jSONObject.optString("purchaseOptionId").getClass();
         jSONObject.optInt("offerType");
         JSONArray optJSONArray = jSONObject.optJSONArray("offerTags");
-        this.e = new ArrayList();
+        this.f4217e = new ArrayList();
         if (optJSONArray != null) {
             for (int i10 = 0; i10 < optJSONArray.length(); i10++) {
-                this.e.add(optJSONArray.getString(i10));
+                this.f4217e.add(optJSONArray.getString(i10));
             }
         }
         if (jSONObject.has("fullPriceMicros")) {
@@ -58,7 +58,7 @@ public final class k {
             optJSONObject4.getInt("maximumQuantity");
             optJSONObject4.getInt("remainingQuantity");
         }
-        this.f3899f = jSONObject.optString("serializedDocid");
+        this.f4218f = jSONObject.optString("serializedDocid");
         JSONObject optJSONObject5 = jSONObject.optJSONObject("preorderDetails");
         if (optJSONObject5 != null) {
             optJSONObject5.getLong("preorderReleaseTimeMillis");
@@ -75,7 +75,7 @@ public final class k {
             optJSONObject7.getString("type");
             uVar = obj;
         }
-        this.f3900g = uVar;
+        this.f4219g = uVar;
         JSONArray optJSONArray2 = jSONObject.optJSONArray("pricingPhases");
         if (optJSONArray2 != null) {
             ArrayList arrayList = new ArrayList();

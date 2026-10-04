@@ -10,12 +10,12 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 public final class h3 implements q0.a {
-    public final int f34115a;
-    public final Object f34116b;
+    public final int f36846a;
+    public final Object f36847b;
 
     public h3(Object obj, int i10) {
-        this.f34115a = i10;
-        this.f34116b = obj;
+        this.f36846a = i10;
+        this.f36847b = obj;
     }
 
     @Override
@@ -23,101 +23,101 @@ public final class h3 implements q0.a {
         ArrayList arrayList;
         String responseCodeString;
         boolean z10;
-        switch (this.f34115a) {
+        switch (this.f36846a) {
             case 0:
-                m3 m3Var = (m3) this.f34116b;
+                m3 m3Var = (m3) this.f36847b;
                 Float f7 = (Float) obj;
                 i4 i4Var = m3Var.K;
-                if (m3Var == i4Var.f34410u0[0]) {
-                    if (i4Var.f34398h0.f39232d0.getCurrentProgress() > f7.floatValue()) {
-                        i4Var.f34398h0.f39232d0.a(0.0f, false);
+                if (m3Var == i4Var.f37274u0[0]) {
+                    if (i4Var.f37262h0.f42370d0.getCurrentProgress() > f7.floatValue()) {
+                        i4Var.f37262h0.f42370d0.a(0.0f, false);
                     }
-                    i4Var.f34398h0.f39232d0.a(f7.floatValue(), true);
+                    i4Var.f37262h0.f42370d0.a(f7.floatValue(), true);
                     return;
                 }
                 return;
             case 1:
-                ((org.telegram.ui.Components.ck0) this.f34116b).h((List) obj);
+                ((org.telegram.ui.Components.ck0) this.f36847b).h((List) obj);
                 return;
             case 2:
                 TLRPC.User user = (TLRPC.User) obj;
-                pr prVar = ((gr) this.f34116b).f34043b;
-                jr w02 = prVar.w0();
-                ArrayList arrayList2 = prVar.F;
-                a0.i iVar = prVar.M;
+                rr rrVar = ((ir) this.f36847b).f37488b;
+                lr w02 = rrVar.w0();
+                ArrayList arrayList2 = rrVar.F;
+                a0.i iVar = rrVar.M;
                 if (iVar != null && iVar.m() != 0) {
-                    arrayList = prVar.H;
+                    arrayList = rrVar.H;
                 } else {
                     arrayList = arrayList2;
                 }
                 if (iVar == null || iVar.m() == 0) {
-                    iVar = prVar.K;
+                    iVar = rrVar.K;
                 }
-                if (iVar.f(user.f18484id) == null) {
-                    if (ChatObject.isChannel(prVar.f36647r)) {
+                if (iVar.f(user.f20184id) == null) {
+                    if (ChatObject.isChannel(rrVar.f40221r)) {
                         TLRPC.TL_channelParticipant tL_channelParticipant = new TLRPC.TL_channelParticipant();
-                        tL_channelParticipant.inviter_id = prVar.getUserConfig().getClientUserId();
+                        tL_channelParticipant.inviter_id = rrVar.getUserConfig().getClientUserId();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         tL_channelParticipant.peer = tL_peerUser;
-                        tL_peerUser.user_id = user.f18484id;
-                        tL_channelParticipant.date = prVar.getConnectionsManager().getCurrentTime();
+                        tL_peerUser.user_id = user.f20184id;
+                        tL_channelParticipant.date = rrVar.getConnectionsManager().getCurrentTime();
                         arrayList.add(0, tL_channelParticipant);
-                        iVar.k(tL_channelParticipant, user.f18484id);
+                        iVar.k(tL_channelParticipant, user.f20184id);
                     } else {
                         TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                        tL_chatParticipant.user_id = user.f18484id;
-                        tL_chatParticipant.inviter_id = prVar.getUserConfig().getClientUserId();
+                        tL_chatParticipant.user_id = user.f20184id;
+                        tL_chatParticipant.inviter_id = rrVar.getUserConfig().getClientUserId();
                         arrayList.add(0, tL_chatParticipant);
-                        iVar.k(tL_chatParticipant, user.f18484id);
+                        iVar.k(tL_chatParticipant, user.f20184id);
                     }
                 }
                 if (arrayList == arrayList2) {
-                    Collections.sort(arrayList2, new cf(4));
+                    Collections.sort(arrayList2, new ff(4));
                 }
-                prVar.A0(w02);
+                rrVar.A0(w02);
                 return;
             case 3:
-                t3 t3Var = (t3) this.f34116b;
-                int i10 = ((c5.h) obj).f3886a;
+                t3 t3Var = (t3) this.f36847b;
+                int i10 = ((c5.h) obj).f4203a;
                 if (i10 == 0) {
                     responseCodeString = null;
                 } else {
                     responseCodeString = BillingController.getResponseCodeString(i10);
                 }
-                AndroidUtilities.runOnUIThread(new m80(27, t3Var, responseCodeString));
+                AndroidUtilities.runOnUIThread(new h90(24, t3Var, responseCodeString));
                 return;
             case 4:
-                ki0 ki0Var = (ki0) this.f34116b;
-                if (((c5.h) obj).f3886a == 0) {
-                    AndroidUtilities.runOnUIThread(ki0Var);
+                oi0 oi0Var = (oi0) this.f36847b;
+                if (((c5.h) obj).f4203a == 0) {
+                    AndroidUtilities.runOnUIThread(oi0Var);
                     return;
                 }
                 return;
             case 5:
-                ((ArrayList) this.f34116b).add((TLRPC.User) obj);
+                ((ArrayList) this.f36847b).add((TLRPC.User) obj);
                 return;
             case 6:
-                ProfileActivity profileActivity = (ProfileActivity) this.f34116b;
+                ProfileActivity profileActivity = (ProfileActivity) this.f36847b;
                 TLRPC.User user2 = (TLRPC.User) obj;
-                for (int i11 = 0; i11 < profileActivity.f31668u2.participants.participants.size(); i11++) {
-                    if (profileActivity.f31668u2.participants.participants.get(i11).user_id == user2.f18484id) {
-                        profileActivity.f31668u2.participants.participants.remove(i11);
+                for (int i11 = 0; i11 < profileActivity.f34344u2.participants.participants.size(); i11++) {
+                    if (profileActivity.f34344u2.participants.participants.get(i11).user_id == user2.f20184id) {
+                        profileActivity.f34344u2.participants.participants.remove(i11);
                         profileActivity.e5(true, false);
                         return;
                     }
                 }
                 return;
             default:
-                View view = ((ProxyListActivity) this.f34116b).f31707b.T((View) obj).f42962a;
-                if (view instanceof x11) {
-                    x11 x11Var = (x11) view;
-                    if (x11Var.d == SharedConfig.currentProxy) {
+                View view = ((ProxyListActivity) this.f36847b).f34383b.T((View) obj).f46523a;
+                if (view instanceof y11) {
+                    y11 y11Var = (y11) view;
+                    if (y11Var.d == SharedConfig.currentProxy) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    x11Var.setChecked(z10);
-                    x11Var.b();
+                    y11Var.setChecked(z10);
+                    y11Var.b();
                     return;
                 }
                 return;

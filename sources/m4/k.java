@@ -6,10 +6,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 public abstract class k {
-    public static final int f14850a = 0;
+    public static final int f16205a = 0;
 
     static {
-        int i10 = e9.m0.f8082c;
+        int i10 = e9.m0.f8775c;
         Object[] objArr = new Object[32];
         objArr[0] = "android.media.metadata.TITLE";
         objArr[1] = "android.media.metadata.ARTIST";
@@ -38,63 +38,63 @@ public abstract class k {
             case 6:
                 return 6L;
             default:
-                throw new IllegalArgumentException(hg.c.h(i10, "Unrecognized FolderType: "));
+                throw new IllegalArgumentException(hg.k0.h(i10, "Unrecognized FolderType: "));
         }
     }
 
     public static n4.m b(b2.n0 n0Var, String str, Uri uri, long j3, Bitmap bitmap) {
         Long l4;
-        com.google.firebase.messaging.q qVar = new com.google.firebase.messaging.q();
-        qVar.k("android.media.metadata.MEDIA_ID", str);
-        CharSequence charSequence = n0Var.f3134a;
+        android.support.v4.media.c cVar = new android.support.v4.media.c(1);
+        cVar.e("android.media.metadata.MEDIA_ID", str);
+        CharSequence charSequence = n0Var.f3390a;
         Bundle bundle = n0Var.I;
-        Integer num = n0Var.f3146p;
-        Uri uri2 = n0Var.f3143m;
+        Integer num = n0Var.f3403p;
+        Uri uri2 = n0Var.f3400m;
         if (charSequence != null) {
-            qVar.l(charSequence, "android.media.metadata.TITLE");
+            cVar.f(charSequence, "android.media.metadata.TITLE");
         }
-        CharSequence charSequence2 = n0Var.e;
+        CharSequence charSequence2 = n0Var.f3393e;
         if (charSequence2 != null) {
-            qVar.l(charSequence2, "android.media.metadata.DISPLAY_TITLE");
+            cVar.f(charSequence2, "android.media.metadata.DISPLAY_TITLE");
         }
-        CharSequence charSequence3 = n0Var.f3137f;
+        CharSequence charSequence3 = n0Var.f3394f;
         if (charSequence3 != null) {
-            qVar.l(charSequence3, "android.media.metadata.DISPLAY_SUBTITLE");
+            cVar.f(charSequence3, "android.media.metadata.DISPLAY_SUBTITLE");
         }
-        CharSequence charSequence4 = n0Var.f3138g;
+        CharSequence charSequence4 = n0Var.f3395g;
         if (charSequence4 != null) {
-            qVar.l(charSequence4, "android.media.metadata.DISPLAY_DESCRIPTION");
+            cVar.f(charSequence4, "android.media.metadata.DISPLAY_DESCRIPTION");
         }
-        CharSequence charSequence5 = n0Var.f3135b;
+        CharSequence charSequence5 = n0Var.f3391b;
         if (charSequence5 != null) {
-            qVar.l(charSequence5, "android.media.metadata.ARTIST");
+            cVar.f(charSequence5, "android.media.metadata.ARTIST");
         }
-        CharSequence charSequence6 = n0Var.f3136c;
+        CharSequence charSequence6 = n0Var.f3392c;
         if (charSequence6 != null) {
-            qVar.l(charSequence6, "android.media.metadata.ALBUM");
+            cVar.f(charSequence6, "android.media.metadata.ALBUM");
         }
         CharSequence charSequence7 = n0Var.d;
         if (charSequence7 != null) {
-            qVar.l(charSequence7, "android.media.metadata.ALBUM_ARTIST");
+            cVar.f(charSequence7, "android.media.metadata.ALBUM_ARTIST");
         }
-        Integer num2 = n0Var.f3150t;
+        Integer num2 = n0Var.f3407t;
         if (num2 != null) {
-            qVar.i(num2.intValue(), "android.media.metadata.YEAR");
+            cVar.c(num2.intValue(), "android.media.metadata.YEAR");
         }
         if (uri != null) {
-            qVar.k("android.media.metadata.MEDIA_URI", uri.toString());
+            cVar.e("android.media.metadata.MEDIA_URI", uri.toString());
         }
         if (uri2 != null) {
-            qVar.k("android.media.metadata.DISPLAY_ICON_URI", uri2.toString());
-            qVar.k("android.media.metadata.ALBUM_ART_URI", uri2.toString());
-            qVar.k("android.media.metadata.ART_URI", uri2.toString());
+            cVar.e("android.media.metadata.DISPLAY_ICON_URI", uri2.toString());
+            cVar.e("android.media.metadata.ALBUM_ART_URI", uri2.toString());
+            cVar.e("android.media.metadata.ART_URI", uri2.toString());
         }
         if (bitmap != null) {
-            qVar.h("android.media.metadata.DISPLAY_ICON", bitmap);
-            qVar.h("android.media.metadata.ALBUM_ART", bitmap);
+            cVar.a("android.media.metadata.DISPLAY_ICON", bitmap);
+            cVar.a("android.media.metadata.ALBUM_ART", bitmap);
         }
         if (num != null && num.intValue() != -1) {
-            qVar.i(a(num.intValue()), "android.media.metadata.BT_FOLDER_TYPE");
+            cVar.c(a(num.intValue()), "android.media.metadata.BT_FOLDER_TYPE");
         }
         if (j3 == -9223372036854775807L && (l4 = n0Var.h) != null) {
             j3 = l4.longValue();
@@ -102,38 +102,38 @@ public abstract class k {
         if (j3 == -9223372036854775807L) {
             j3 = -1;
         }
-        qVar.i(j3, "android.media.metadata.DURATION");
-        n4.i0 d = d(n0Var.f3139i);
+        cVar.c(j3, "android.media.metadata.DURATION");
+        n4.i0 d = d(n0Var.f3396i);
         if (d != null) {
-            qVar.j("android.media.metadata.USER_RATING", d);
+            cVar.d("android.media.metadata.USER_RATING", d);
         }
-        n4.i0 d10 = d(n0Var.f3140j);
+        n4.i0 d10 = d(n0Var.f3397j);
         if (d10 != null) {
-            qVar.j("android.media.metadata.RATING", d10);
+            cVar.d("android.media.metadata.RATING", d10);
         }
         Integer num3 = n0Var.H;
         if (num3 != null) {
-            qVar.i(num3.intValue(), "androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
+            cVar.c(num3.intValue(), "androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
         }
         if (bundle != null) {
             for (String str2 : bundle.keySet()) {
                 Object obj = bundle.get(str2);
                 if (obj != null && !(obj instanceof CharSequence)) {
                     if ((obj instanceof Byte) || (obj instanceof Short) || (obj instanceof Integer) || (obj instanceof Long)) {
-                        qVar.i(((Number) obj).longValue(), str2);
+                        cVar.c(((Number) obj).longValue(), str2);
                     }
                 } else {
-                    qVar.l((CharSequence) obj, str2);
+                    cVar.f((CharSequence) obj, str2);
                 }
             }
         }
-        return new n4.m(qVar.f7322a);
+        return new n4.m(cVar.f1966b);
     }
 
     public static b2.c1 c(n4.i0 i0Var) {
         if (i0Var != null) {
-            float f7 = i0Var.f15184b;
-            int i10 = i0Var.f15183a;
+            float f7 = i0Var.f16596b;
+            int i10 = i0Var.f16595a;
             boolean z10 = true;
             switch (i10) {
                 case 1:
@@ -198,38 +198,38 @@ public abstract class k {
             float f10 = 0.0f;
             switch (f7) {
                 case 1:
-                    if (((b2.u) c1Var).f3320c) {
+                    if (((b2.u) c1Var).f3584c) {
                         f10 = 1.0f;
                     }
                     return new n4.i0(1, f10);
                 case 2:
-                    if (((b2.f1) c1Var).f2991c) {
+                    if (((b2.f1) c1Var).f3234c) {
                         f10 = 1.0f;
                     }
                     return new n4.i0(2, f10);
                 case 3:
                 case 4:
                 case 5:
-                    return n4.i0.d(((b2.d1) c1Var).f2953c, f7);
+                    return n4.i0.d(((b2.d1) c1Var).f3191c, f7);
                 case 6:
-                    return n4.i0.c(((b2.t0) c1Var).f3317b);
+                    return n4.i0.c(((b2.t0) c1Var).f3580b);
             }
         }
         return null;
     }
 
     public static int e(b2.e eVar) {
-        ka.c cVar;
+        k2.e eVar2;
         if (Build.VERSION.SDK_INT >= 26) {
-            cVar = new ka.c(4);
+            eVar2 = new k2.e(5);
         } else {
-            cVar = new ka.c(4);
+            eVar2 = new k2.e(5);
         }
-        AudioAttributes.Builder builder = (AudioAttributes.Builder) cVar.f13552b;
-        builder.setContentType(eVar.f2960a);
-        builder.setFlags(eVar.f2961b);
-        cVar.p0(eVar.f2962c);
-        AudioAttributes audioAttributes = cVar.G().f15157a;
+        AudioAttributes.Builder builder = (AudioAttributes.Builder) eVar2.f14388b;
+        builder.setContentType(eVar.f3198a);
+        builder.setFlags(eVar.f3199b);
+        eVar2.m(eVar.f3200c);
+        AudioAttributes audioAttributes = eVar2.a().f16567a;
         audioAttributes.getClass();
         int flags = audioAttributes.getFlags();
         int usage = audioAttributes.getUsage();
@@ -272,7 +272,7 @@ public abstract class k {
             return 2;
         }
         if (c1Var instanceof b2.d1) {
-            int i10 = ((b2.d1) c1Var).f2952b;
+            int i10 = ((b2.d1) c1Var).f3190b;
             int i11 = 3;
             if (i10 != 3) {
                 i11 = 4;

@@ -31,23 +31,23 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import androidx.car.app.IOnDoneCallback;
-import ci.cb;
+import ci.bb;
+import ci.ca;
 import ci.d2;
-import ci.da;
 import ci.e2;
-import ci.fa;
-import ci.l8;
-import ci.lc;
+import ci.ea;
+import ci.k8;
+import ci.kc;
 import ci.p1;
 import ci.r3;
 import ci.v3;
-import ci.y9;
+import ci.x9;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import ei.b3;
-import ei.e4;
-import ei.f3;
-import ei.k3;
-import ei.v1;
+import ei.c3;
+import ei.f4;
+import ei.g3;
+import ei.l3;
+import ei.w1;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -81,26 +81,26 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.a2;
+import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.yc;
-import org.telegram.ui.web.b1;
-import v7.m8;
-import w7.y5;
+import org.telegram.ui.web.c1;
+import v7.l8;
+import w7.z5;
 import zg.q0;
 public final class k0 implements Runnable {
-    public final int f139a;
-    public final Object f140b;
-    public final Object f141c;
+    public final int f152a;
+    public final Object f153b;
+    public final Object f154c;
     public final Object d;
 
     public k0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f139a = i10;
-        this.f140b = obj;
-        this.f141c = obj2;
+        this.f152a = i10;
+        this.f153b = obj;
+        this.f154c = obj2;
         this.d = obj3;
     }
 
@@ -129,53 +129,53 @@ public final class k0 implements Runnable {
         int[] iArr2 = null;
         boolean z11 = true;
         int i12 = 0;
-        switch (this.f139a) {
+        switch (this.f152a) {
             case 0:
-                b2.s sVar = (b2.s) this.f141c;
-                String str = e2.d0.f7870a;
-                i2.f0 f0Var = ((i2.c0) ((l0) ((of.b) this.f140b).f15695c)).f10616a;
+                b2.s sVar = (b2.s) this.f154c;
+                String str = e2.d0.f8537a;
+                i2.f0 f0Var = ((i2.c0) ((l0) ((of.b) this.f153b).f17158c)).f11569a;
                 f0Var.Q = sVar;
-                j2.f fVar = f0Var.f10675s;
+                j2.f fVar = f0Var.f11632s;
                 j2.a p5 = fVar.p();
-                fVar.q(p5, 1017, new j2.c(p5, sVar, (i2.h) this.d, 16));
+                fVar.q(p5, 1017, new j2.c(p5, sVar, (i2.h) this.d, 17));
                 return;
             case 1:
-                z4 z4Var = (z4) this.f140b;
-                zg.o0 o0Var = (zg.o0) this.f141c;
+                z4 z4Var = (z4) this.f153b;
+                zg.o0 o0Var = (zg.o0) this.f154c;
                 View view = (View) this.d;
-                e6 e6Var = z4Var.f1778a;
-                e6Var.f832u3 = true;
+                e6 e6Var = z4Var.f1933a;
+                e6Var.f900u3 = true;
                 c6 c6Var = e6Var.O1;
-                ImageReceiver imageReceiver = e6Var.f805l3;
+                ImageReceiver imageReceiver = e6Var.f873l3;
                 boolean[] zArr = {false};
                 q9 q9Var = e6Var.E0;
                 q9Var.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setListener(new w3(1, q9Var)).setDuration(150L).start();
                 int dp = AndroidUtilities.dp(8.0f);
-                q9 q9Var2 = new q9(e6Var.getContext(), e6Var.f841x1);
+                q9 q9Var2 = new q9(e6Var.getContext(), e6Var.f909x1);
                 e6Var.E0 = q9Var2;
                 q9Var2.setPadding(dp, dp, dp, dp);
-                e6Var.D0.addView(e6Var.E0, y5.e(40, 40, 3));
-                q5 q5Var2 = e6Var.f814o3;
+                e6Var.D0.addView(e6Var.E0, z5.e(40, 40, 3));
+                q5 q5Var2 = e6Var.f882o3;
                 if (q5Var2 != null) {
                     q5Var2.o(e6Var);
                     dVar = null;
-                    e6Var.f814o3 = null;
+                    e6Var.f882o3 = null;
                 } else {
                     dVar = null;
                 }
-                zg.d dVar2 = e6Var.f808m3;
+                zg.d dVar2 = e6Var.f876m3;
                 if (dVar2 != null) {
                     dVar2.d(e6Var);
-                    e6Var.f808m3 = dVar;
+                    e6Var.f876m3 = dVar;
                 }
-                e6Var.f817p3 = false;
-                if (o0Var.f49399g != 0) {
-                    e6Var.f817p3 = true;
-                    q5 q5Var3 = new q5(2, e6Var.C2, o0Var.f49399g);
-                    e6Var.f814o3 = q5Var3;
+                e6Var.f885p3 = false;
+                if (o0Var.f53480g != 0) {
+                    e6Var.f885p3 = true;
+                    q5 q5Var3 = new q5(2, e6Var.C2, o0Var.f53480g);
+                    e6Var.f882o3 = q5Var3;
                     q5Var3.a(e6Var);
-                } else if (o0Var.f49398f != null && (tL_availableReaction = MediaDataController.getInstance(e6Var.C2).getReactionsMap().get(o0Var.f49398f)) != null) {
-                    e6Var.f811n3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
+                } else if (o0Var.f53479f != null && (tL_availableReaction = MediaDataController.getInstance(e6Var.C2).getReactionsMap().get(o0Var.f53479f)) != null) {
+                    e6Var.f879n3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
                     imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), zg.k0.a(), null, null, null, 0);
                     if (imageReceiver.getLottieAnimation() != null) {
                         imageReceiver.getLottieAnimation().N(0, false, true);
@@ -183,38 +183,38 @@ public final class k0 implements Runnable {
                 }
                 e6Var.E0.setReaction(o0Var);
                 if (e6Var.D1) {
-                    TL_stories.StoryItem storyItem3 = c6Var.f642a;
+                    TL_stories.StoryItem storyItem3 = c6Var.f696a;
                     if (storyItem3.sent_reaction == null) {
                         if (storyItem3.views == null) {
                             storyItem3.views = new TL_stories.TL_storyViews();
                         }
-                        TL_stories.StoryItem storyItem4 = c6Var.f642a;
+                        TL_stories.StoryItem storyItem4 = c6Var.f696a;
                         TL_stories.StoryViews storyViews = storyItem4.views;
                         storyViews.reactions_count++;
                         q0.b(null, storyItem4.sent_reaction, storyViews);
                         e6Var.k1(true);
                     }
                 }
-                if (o0Var.f49399g != 0 && (q5Var = e6Var.E0.f1436f) != null) {
+                if (o0Var.f53480g != 0 && (q5Var = e6Var.E0.f1562f) != null) {
                     zg.d a2 = zg.d.a(q5Var, false, true);
-                    e6Var.f808m3 = a2;
+                    e6Var.f876m3 = a2;
                     a2.f(e6Var);
                 }
-                e6Var.S1.g0(e6Var.B1, c6Var.f642a, o0Var);
+                e6Var.S1.g0(e6Var.B1, c6Var.f696a, o0Var);
                 int[] iArr3 = new int[2];
                 view.getLocationInWindow(iArr3);
                 int[] iArr4 = new int[2];
                 e6Var.getLocationInWindow(iArr4);
-                e6Var.f839w3 = iArr3[0] - iArr4[0];
-                e6Var.f843x3 = iArr3[1] - iArr4[1];
+                e6Var.f907w3 = iArr3[0] - iArr4[0];
+                e6Var.f911x3 = iArr3[1] - iArr4[1];
                 e6Var.y3 = view.getMeasuredHeight();
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                e6Var.f835v3 = 0.0f;
+                e6Var.f903v3 = 0.0f;
                 e6Var.invalidate();
                 q9 q9Var3 = e6Var.E0;
                 q9Var3.setAllowDrawReaction(false);
-                ImageReceiver imageReceiver2 = q9Var3.e;
-                if (o0Var.f49399g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49398f)) != null) {
+                ImageReceiver imageReceiver2 = q9Var3.f1561e;
+                if (o0Var.f53480g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f53479f)) != null) {
                     imageReceiver2.setImage(ImageLocation.getForDocument(tL_availableReaction2.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction2, 1);
                     imageReceiver2.setAutoRepeat(0);
                 }
@@ -225,23 +225,23 @@ public final class k0 implements Runnable {
                 e6Var.b1(false);
                 return;
             case 2:
-                v5 v5Var = (v5) this.f140b;
-                d6 d6Var = (d6) this.f141c;
-                e6 e6Var2 = v5Var.f1612l;
+                v5 v5Var = (v5) this.f153b;
+                d6 d6Var = (d6) this.f154c;
+                e6 e6Var2 = v5Var.f1756l;
                 e5.S(e6Var2.getContext(), null, d6Var, new ai.q5(v5Var, (TL_stories.StoryItem) this.d, d6Var, 0));
-                v5 v5Var2 = e6Var2.f827t1;
+                v5 v5Var2 = e6Var2.f895t1;
                 if (v5Var2 != null) {
                     v5Var2.a();
                     return;
                 }
                 return;
             case 3:
-                u8 u8Var = (u8) this.f140b;
-                TL_stories.StoryItem storyItem5 = (TL_stories.StoryItem) this.f141c;
+                u8 u8Var = (u8) this.f153b;
+                TL_stories.StoryItem storyItem5 = (TL_stories.StoryItem) this.f154c;
                 Utilities.Callback callback = (Utilities.Callback) this.d;
-                while (i12 < u8Var.f725i.size()) {
-                    MessageObject messageObject2 = (MessageObject) u8Var.f725i.get(i12);
-                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f18343id == document.f18343id) {
+                while (i12 < u8Var.f789i.size()) {
+                    MessageObject messageObject2 = (MessageObject) u8Var.f789i.get(i12);
+                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20043id == document.f20043id) {
                         callback.run(document2);
                         return;
                     }
@@ -250,10 +250,10 @@ public final class k0 implements Runnable {
                 callback.run(null);
                 return;
             case 4:
-                l9 l9Var = (l9) this.f140b;
-                TLObject tLObject = (TLObject) this.f141c;
+                l9 l9Var = (l9) this.f153b;
+                TLObject tLObject = (TLObject) this.f154c;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-                int i13 = l9Var.f1192a;
+                int i13 = l9Var.f1290a;
                 l9Var.R = true;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
                     l9Var.S = null;
@@ -268,9 +268,9 @@ public final class k0 implements Runnable {
                     return;
                 }
             case 5:
-                t8 t8Var = (t8) this.f141c;
+                t8 t8Var = (t8) this.f154c;
                 g2 g2Var = (g2) this.d;
-                ArrayList arrayList = ((u8) this.f140b).f725i;
+                ArrayList arrayList = ((u8) this.f153b).f789i;
                 while (i12 < arrayList.size()) {
                     MessageObject messageObject3 = (MessageObject) arrayList.get(i12);
                     if (messageObject3 != null && (storyItem2 = messageObject3.storyItem) != null && (messageMedia2 = storyItem2.media) != null) {
@@ -280,13 +280,13 @@ public final class k0 implements Runnable {
                             TLRPC.Document document4 = messageMedia2.document;
                             if (document4 == null) {
                                 continue;
-                            } else if (document4.f18343id == document3.f18343id) {
+                            } else if (document4.f20043id == document3.f20043id) {
                                 g2Var.run((t8) storyItem2);
                                 return;
                             }
                         }
                         TLRPC.Photo photo2 = messageMedia3.photo;
-                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f18361id == photo2.f18361id) {
+                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20061id == photo2.f20061id) {
                             g2Var.run((t8) storyItem2);
                             return;
                         }
@@ -296,17 +296,17 @@ public final class k0 implements Runnable {
                 g2Var.run(null);
                 return;
             case 6:
-                u8 u8Var2 = (u8) this.f140b;
-                TLObject tLObject2 = (TLObject) this.f141c;
+                u8 u8Var2 = (u8) this.f153b;
+                TLObject tLObject2 = (TLObject) this.f154c;
                 Runnable runnable = (Runnable) this.d;
-                y8 y8Var = u8Var2.f733q;
+                y8 y8Var = u8Var2.f797q;
                 ArrayList arrayList2 = u8Var2.G;
-                ArrayList arrayList3 = u8Var2.f725i;
+                ArrayList arrayList3 = u8Var2.f789i;
                 ArrayList arrayList4 = u8Var2.H;
                 u8Var2.F = 0;
                 u8Var2.C = false;
                 u8Var2.D = true;
-                u8Var2.f734r = true;
+                u8Var2.f798r = true;
                 ArrayList arrayList5 = new ArrayList();
                 if (tLObject2 instanceof Vector) {
                     ArrayList arrayList6 = ((Vector) tLObject2).objects;
@@ -335,7 +335,7 @@ public final class k0 implements Runnable {
                     i15++;
                     TL_bots.botPreviewMedia botpreviewmedia = (TL_bots.botPreviewMedia) obj2;
                     ArrayList arrayList8 = arrayList5;
-                    MessageObject messageObject4 = new MessageObject(u8Var2.f722c, new t8(u8Var2, u8Var2.d, botpreviewmedia));
+                    MessageObject messageObject4 = new MessageObject(u8Var2.f785c, new t8(u8Var2, u8Var2.d, botpreviewmedia));
                     int i16 = 0;
                     while (true) {
                         if (i16 < arrayList7.size()) {
@@ -356,8 +356,8 @@ public final class k0 implements Runnable {
                     } else {
                         id2 = messageObject.getId();
                     }
-                    message.f18358id = id2;
-                    storyItem6.f18572id = id2;
+                    message.f20058id = id2;
+                    storyItem6.f20274id = id2;
                     messageObject4.parentStoriesList = u8Var2;
                     messageObject4.generateThumbs(false);
                     if (arrayList4.isEmpty()) {
@@ -375,117 +375,117 @@ public final class k0 implements Runnable {
                 }
                 return;
             case 7:
-                jc jcVar = ((ac) this.f140b).d;
-                jcVar.f1087n0.D(jcVar.h, ((d9) this.f141c).d, (ArrayList) this.d);
+                jc jcVar = ((ac) this.f153b).d;
+                jcVar.f1174n0.D(jcVar.h, ((d9) this.f154c).d, (ArrayList) this.d);
                 return;
             case 8:
-                sc scVar = (sc) this.f140b;
-                TLObject tLObject3 = (TLObject) this.f141c;
+                sc scVar = (sc) this.f153b;
+                TLObject tLObject3 = (TLObject) this.f154c;
                 TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews = (TL_stories.TL_stories_getStoriesViews) this.d;
-                d dVar3 = scVar.f1538f;
-                int i17 = scVar.f1536b;
-                sc.f1534g = System.currentTimeMillis();
+                d dVar3 = scVar.f1674f;
+                int i17 = scVar.f1671b;
+                sc.f1669g = System.currentTimeMillis();
                 if (tLObject3 != null) {
                     TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject3;
                     MessagesController.getInstance(i17).putUsers(tL_stories_storyViews.users, false);
-                    if (!scVar.d(tL_stories_getStoriesViews.f18580id, tL_stories_storyViews)) {
+                    if (!scVar.d(tL_stories_getStoriesViews.f20282id, tL_stories_storyViews)) {
                         scVar.d = 0;
-                        scVar.e = false;
+                        scVar.f1673e = false;
                         return;
                     }
                     NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                 }
                 scVar.d = 0;
-                if (scVar.e) {
+                if (scVar.f1673e) {
                     AndroidUtilities.cancelRunOnUIThread(dVar3);
                     AndroidUtilities.runOnUIThread(dVar3, 10000L);
                     return;
                 }
                 return;
             case 9:
-                androidx.lifecycle.o oVar = (androidx.lifecycle.o) this.f140b;
-                androidx.car.app.utils.a aVar = (androidx.car.app.utils.a) this.f141c;
+                androidx.lifecycle.o oVar = (androidx.lifecycle.o) this.f153b;
+                androidx.car.app.utils.a aVar = (androidx.car.app.utils.a) this.f154c;
                 String str2 = (String) this.d;
                 if (oVar != null) {
                     try {
-                        if (((androidx.lifecycle.v) oVar).f2600c.compareTo(androidx.lifecycle.n.f2581c) < 0) {
+                        if (((androidx.lifecycle.v) oVar).f2817c.compareTo(androidx.lifecycle.n.f2795c) < 0) {
                             z11 = false;
                         }
                         if (z11) {
                             aVar.a();
                             return;
                         }
-                    } catch (w.f e) {
-                        Log.e("CarApp.Dispatch", "Serialization failure in ".concat(str2), e);
+                    } catch (w.f e7) {
+                        Log.e("CarApp.Dispatch", "Serialization failure in ".concat(str2), e7);
                         return;
                     }
                 }
                 Log.w("CarApp.Dispatch", "Lifecycle is not at least created when dispatching " + aVar);
                 return;
             case 10:
-                IOnDoneCallback iOnDoneCallback = (IOnDoneCallback) this.f140b;
-                String str3 = (String) this.f141c;
+                IOnDoneCallback iOnDoneCallback = (IOnDoneCallback) this.f153b;
+                String str3 = (String) this.f154c;
                 try {
                     androidx.car.app.utils.g.d(str3.concat(" onSuccess"), new ai.q5(iOnDoneCallback, ((androidx.car.app.utils.a) this.d).a(), str3, 2));
                     return;
-                } catch (RuntimeException e7) {
-                    androidx.car.app.utils.g.f(iOnDoneCallback, str3, e7);
-                    throw new RuntimeException(e7);
-                } catch (w.f e10) {
+                } catch (RuntimeException e10) {
                     androidx.car.app.utils.g.f(iOnDoneCallback, str3, e10);
+                    throw new RuntimeException(e10);
+                } catch (w.f e11) {
+                    androidx.car.app.utils.g.f(iOnDoneCallback, str3, e11);
                     return;
                 }
             case 11:
-                k6.h hVar = (k6.h) this.f140b;
-                v7.y yVar = (v7.y) this.f141c;
+                k6.h hVar = (k6.h) this.f153b;
+                v7.x xVar = (v7.x) this.f154c;
                 ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) this.d;
                 try {
-                    androidx.emoji2.text.q a10 = v7.x.a(hVar.f13503a);
+                    androidx.emoji2.text.q a10 = v7.w.a(hVar.f14681a);
                     if (a10 != null) {
-                        androidx.emoji2.text.p pVar = (androidx.emoji2.text.p) ((androidx.emoji2.text.k) a10.f2323b);
+                        androidx.emoji2.text.p pVar = (androidx.emoji2.text.p) ((androidx.emoji2.text.k) a10.f2519b);
                         synchronized (pVar.d) {
-                            pVar.f2347f = threadPoolExecutor;
+                            pVar.f2546f = threadPoolExecutor;
                         }
-                        ((androidx.emoji2.text.k) a10.f2323b).a(new androidx.emoji2.text.m(yVar, threadPoolExecutor));
+                        ((androidx.emoji2.text.k) a10.f2519b).a(new androidx.emoji2.text.m(xVar, threadPoolExecutor));
                         return;
                     }
                     throw new RuntimeException("EmojiCompat font provider not available on this device.");
                 } catch (Throwable th2) {
-                    yVar.a(th2);
+                    xVar.a(th2);
                     threadPoolExecutor.shutdown();
                     return;
                 }
             case 12:
-                d2 d2Var = (d2) this.f140b;
+                d2 d2Var = (d2) this.f153b;
                 TLObject tLObject4 = (TLObject) this.d;
                 ArrayList arrayList9 = d2Var.v;
                 e2 e2Var = d2Var.N;
-                ArrayList arrayList10 = d2Var.f4506s;
-                if (TextUtils.equals((String) this.f141c, d2Var.H)) {
-                    d2Var.f4508x = 0;
+                ArrayList arrayList10 = d2Var.f4899s;
+                if (TextUtils.equals((String) this.f154c, d2Var.H)) {
+                    d2Var.f4901x = 0;
                     arrayList10.clear();
                     arrayList9.clear();
-                    d2Var.f4509y.clear();
-                    d2Var.f4504n.clear();
-                    d2Var.f4508x++;
+                    d2Var.f4902y.clear();
+                    d2Var.f4897n.clear();
+                    d2Var.f4901x++;
                     arrayList10.add(null);
                     arrayList9.add(0L);
                     if (tLObject4 instanceof TLRPC.TL_messages_stickers) {
                         TLRPC.TL_messages_stickers tL_messages_stickers = (TLRPC.TL_messages_stickers) tLObject4;
                         arrayList10.addAll(tL_messages_stickers.stickers);
-                        d2Var.f4508x = tL_messages_stickers.stickers.size() + d2Var.f4508x;
+                        d2Var.f4901x = tL_messages_stickers.stickers.size() + d2Var.f4901x;
                     }
                     d2Var.I = d2Var.H;
                     d2Var.l();
-                    p1.w1(e2Var.f4594b, 0, 0);
-                    e2Var.f4596f.c(false);
-                    e2Var.e.n(false);
+                    p1.y1(e2Var.f4973b, 0, 0);
+                    e2Var.f4976f.c(false);
+                    e2Var.f4975e.n(false);
                     return;
                 }
                 return;
             case 13:
-                r3 r3Var = (r3) this.f140b;
-                Object obj3 = this.f141c;
+                r3 r3Var = (r3) this.f153b;
+                Object obj3 = this.f154c;
                 String str4 = (String) this.d;
                 float f7 = r3Var.K;
                 if (obj3 != null) {
@@ -495,7 +495,7 @@ public final class k0 implements Runnable {
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inJustDecodeBounds = true;
                         r3Var.c(photoEntry, options);
-                        l8.C(options, min);
+                        k8.C(options, min);
                         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                         options.inDither = true;
                         options.inJustDecodeBounds = false;
@@ -514,11 +514,11 @@ public final class k0 implements Runnable {
                         }
                         iArr = iArr2;
                         iArr2 = c10;
-                    } else if ((obj3 instanceof l8) && (file = ((l8) obj3).O0) != null) {
+                    } else if ((obj3 instanceof k8) && (file = ((k8) obj3).O0) != null) {
                         BitmapFactory.Options options2 = new BitmapFactory.Options();
                         options2.inJustDecodeBounds = true;
                         BitmapFactory.decodeFile(file.getPath(), options2);
-                        l8.C(options2, min);
+                        k8.C(options2, min);
                         options2.inPreferredConfig = Bitmap.Config.ARGB_8888;
                         options2.inDither = true;
                         options2.inJustDecodeBounds = false;
@@ -532,16 +532,16 @@ public final class k0 implements Runnable {
                 AndroidUtilities.runOnUIThread(new k0(r3Var, str4, iArr2, 14));
                 return;
             case 14:
-                r3 r3Var2 = (r3) this.f140b;
-                String str5 = (String) this.f141c;
+                r3 r3Var2 = (r3) this.f153b;
+                String str5 = (String) this.f154c;
                 Pair pair = (Pair) this.d;
                 Bitmap bitmap = (Bitmap) pair.first;
                 int[] iArr5 = (int[]) pair.second;
                 Paint paint = r3Var2.d;
                 if (bitmap != null) {
                     if (str5 != null) {
-                        r3.f5439f0.put(str5, bitmap);
-                        HashMap hashMap = r3.f5438e0;
+                        r3.f5848f0.put(str5, bitmap);
+                        HashMap hashMap = r3.f5847e0;
                         Integer num = (Integer) hashMap.get(str5);
                         if (num != null) {
                             hashMap.put(str5, Integer.valueOf(num.intValue() + 1));
@@ -553,13 +553,13 @@ public final class k0 implements Runnable {
                         r3.d(str5);
                         return;
                     }
-                    r3Var2.f5440a = bitmap;
+                    r3Var2.f5849a = bitmap;
                     if (iArr5 == null) {
                         paint.setShader(null);
-                        r3Var2.e = null;
+                        r3Var2.f5854e = null;
                     } else {
                         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, iArr5, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                        r3Var2.e = linearGradient;
+                        r3Var2.f5854e = linearGradient;
                         paint.setShader(linearGradient);
                     }
                     r3Var2.h();
@@ -568,23 +568,23 @@ public final class k0 implements Runnable {
                 }
                 return;
             case 15:
-                v3 v3Var = (v3) this.f140b;
-                TLObject tLObject5 = (TLObject) this.f141c;
+                v3 v3Var = (v3) this.f153b;
+                TLObject tLObject5 = (TLObject) this.f154c;
                 MessagesController messagesController = (MessagesController) this.d;
-                v3Var.f5665r = true;
+                v3Var.f6109r = true;
                 v3Var.d = false;
                 if (tLObject5 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject5;
                     messagesController.putUsers(tL_contacts_resolvedPeer.users, false);
                     messagesController.putChats(tL_contacts_resolvedPeer.chats, false);
-                    MessagesStorage.getInstance(v3Var.f5667w.f5704a).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
+                    MessagesStorage.getInstance(v3Var.f6111w.f6207a).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                     v3Var.E();
                     return;
                 }
                 return;
             case 16:
-                String[] strArr = (String[]) this.f140b;
-                int[][] iArr6 = (int[][]) this.f141c;
+                String[] strArr = (String[]) this.f153b;
+                int[][] iArr6 = (int[][]) this.f154c;
                 h5 h5Var = (h5) this.d;
                 while (i12 < strArr.length) {
                     String str6 = strArr[i12];
@@ -596,21 +596,21 @@ public final class k0 implements Runnable {
                 AndroidUtilities.runOnUIThread(h5Var);
                 return;
             case 17:
-                AnimatedFileNative.d((String) this.f140b, ((int[][]) this.f141c)[0], 0L);
+                AnimatedFileNative.d((String) this.f153b, ((int[][]) this.f154c)[0], 0L);
                 AndroidUtilities.runOnUIThread((h5) this.d);
                 return;
             case 18:
-                y9 y9Var = (y9) this.f140b;
-                TLObject tLObject6 = (TLObject) this.f141c;
+                x9 x9Var = (x9) this.f153b;
+                TLObject tLObject6 = (TLObject) this.f154c;
                 MessagesController messagesController2 = (MessagesController) this.d;
-                fa faVar = y9Var.W;
-                y9Var.v.setLoading(false);
+                ea eaVar = x9Var.W;
+                x9Var.v.setLoading(false);
                 if (tLObject6 != null) {
-                    int i19 = fa.f4695d0;
-                    ArrayList h12 = faVar.h1();
+                    int i19 = ea.f5045d0;
+                    ArrayList h12 = eaVar.h1();
                     for (int i20 = 0; i20 < h12.size(); i20++) {
                         TLRPC.User user = (TLRPC.User) h12.get(i20);
-                        if (user != null && (contains = y9Var.f5882c.contains(Long.valueOf(user.f18484id))) != user.close_friend) {
+                        if (user != null && (contains = x9Var.f6304c.contains(Long.valueOf(user.f20184id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i11 = user.flags2 | 4;
@@ -622,29 +622,29 @@ public final class k0 implements Runnable {
                         }
                     }
                 }
-                faVar.f1();
-                if (faVar.Z) {
-                    faVar.g1(new da(1, fa.G(faVar), (ArrayList) null), new r5(faVar, 1), false);
+                eaVar.f1();
+                if (eaVar.Z) {
+                    eaVar.g1(new ca(1, ea.E(eaVar), (ArrayList) null), new r5(eaVar, 1), false);
                     return;
                 }
-                faVar.f1();
-                faVar.f4697b.D(0);
+                eaVar.f1();
+                eaVar.f5047b.E(0);
                 return;
             case 19:
-                ((l8) this.f141c).O0 = (File) this.d;
-                cb cbVar = ((lc) this.f140b).f5038d1;
-                if (cbVar != null) {
-                    cbVar.f5535b.Y2.N(false);
+                ((k8) this.f154c).O0 = (File) this.d;
+                bb bbVar = ((kc) this.f153b).f5385d1;
+                if (bbVar != null) {
+                    bbVar.f5963b.f25244f3.N(false);
                     return;
                 }
                 return;
             case 20:
-                lc lcVar = (lc) this.f140b;
-                Bitmap bitmap2 = (Bitmap) this.f141c;
+                kc kcVar = (kc) this.f153b;
+                Bitmap bitmap2 = (Bitmap) this.f154c;
                 Runnable runnable2 = (Runnable) this.d;
                 if (bitmap2 != null) {
                     try {
-                        Bitmap createBitmap = Bitmap.createBitmap(bitmap2, 0, 0, bitmap2.getWidth(), bitmap2.getHeight(), lcVar.B0.getMatrix(), true);
+                        Bitmap createBitmap = Bitmap.createBitmap(bitmap2, 0, 0, bitmap2.getWidth(), bitmap2.getHeight(), kcVar.B0.getMatrix(), true);
                         bitmap2.recycle();
                         Bitmap createScaledBitmap = Bitmap.createScaledBitmap(createBitmap, 80, (int) (createBitmap.getHeight() / (createBitmap.getWidth() / 80.0f)), true);
                         if (createScaledBitmap != null) {
@@ -663,8 +663,8 @@ public final class k0 implements Runnable {
                 AndroidUtilities.runOnUIThread(runnable2);
                 return;
             case 21:
-                com.google.firebase.messaging.g gVar = (com.google.firebase.messaging.g) this.f140b;
-                Intent intent = (Intent) this.f141c;
+                com.google.firebase.messaging.g gVar = (com.google.firebase.messaging.g) this.f153b;
+                Intent intent = (Intent) this.f154c;
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.d;
                 gVar.getClass();
                 try {
@@ -674,29 +674,29 @@ public final class k0 implements Runnable {
                     taskCompletionSource.setResult(null);
                 }
             case 22:
-                i9.w wVar = (i9.w) this.f140b;
-                i9.c0 c0Var = (i9.c0) this.f141c;
+                i9.w wVar = (i9.w) this.f153b;
+                i9.c0 c0Var = (i9.c0) this.f154c;
                 try {
                     try {
-                        c0Var.o(((i9.p) this.d).apply(m8.a(wVar)));
+                        c0Var.o(((i9.p) this.d).apply(l8.a(wVar)));
                         return;
                     } catch (Throwable th3) {
                         c0Var.n(th3);
                         return;
                     }
-                } catch (Error e11) {
-                    e = e11;
+                } catch (Error e12) {
+                    e = e12;
                     c0Var.n(e);
                     return;
                 } catch (CancellationException unused2) {
                     c0Var.cancel(false);
                     return;
-                } catch (RuntimeException e12) {
-                    e = e12;
+                } catch (RuntimeException e13) {
+                    e = e13;
                     c0Var.n(e);
                     return;
-                } catch (ExecutionException e13) {
-                    e = e13;
+                } catch (ExecutionException e14) {
+                    e = e14;
                     Throwable cause = e.getCause();
                     if (cause != null) {
                         e = cause;
@@ -705,11 +705,11 @@ public final class k0 implements Runnable {
                     return;
                 }
             case 23:
-                i9.c0 c0Var2 = (i9.c0) this.f140b;
-                ki.h0 h0Var = (ki.h0) this.f141c;
+                i9.c0 c0Var2 = (i9.c0) this.f153b;
+                ki.h0 h0Var = (ki.h0) this.f154c;
                 k1 k1Var = (k1) this.d;
                 try {
-                    if (!(c0Var2.f11036a instanceof i9.a)) {
+                    if (!(c0Var2.f12021a instanceof i9.a)) {
                         h0Var.run();
                         c0Var2.m(k1Var);
                         return;
@@ -720,57 +720,57 @@ public final class k0 implements Runnable {
                     return;
                 }
             case 24:
-                ArrayList arrayList11 = (ArrayList) this.f140b;
-                HashMap hashMap2 = (HashMap) this.f141c;
+                ArrayList arrayList11 = (ArrayList) this.f153b;
+                HashMap hashMap2 = (HashMap) this.f154c;
                 Utilities.Callback callback2 = (Utilities.Callback) this.d;
                 ArrayList arrayList12 = new ArrayList();
                 for (int i21 = 0; i21 < arrayList11.size(); i21++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList11.get(i21);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f18484id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20184id));
                     if (bool != null && bool.booleanValue()) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
                     ?? obj4 = new Object();
-                    obj4.f8540a = user2;
-                    obj4.f8541b = z10;
+                    obj4.f9293a = user2;
+                    obj4.f9294b = z10;
                     arrayList12.add(obj4);
                 }
                 callback2.run(arrayList12);
                 return;
             case 25:
-                v1 v1Var = (v1) this.d;
-                ((boolean[]) this.f140b)[0] = false;
-                if (((TLObject) this.f141c) instanceof TLRPC.TL_boolTrue) {
-                    v1Var.run(Boolean.TRUE);
+                w1 w1Var = (w1) this.d;
+                ((boolean[]) this.f153b)[0] = false;
+                if (((TLObject) this.f154c) instanceof TLRPC.TL_boolTrue) {
+                    w1Var.run(Boolean.TRUE);
                     return;
                 }
                 return;
             case 26:
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.d;
-                k3 k3Var = ((f3) this.f140b).d;
-                if (((TLObject) this.f141c) instanceof TLRPC.TL_boolTrue) {
-                    b3 b3Var = k3Var.f8438x;
-                    b3Var.getClass();
-                    b3Var.z("emoji_status_access_requested", b1.B("cancelled", "status"));
+                l3 l3Var = ((g3) this.f153b).d;
+                if (((TLObject) this.f154c) instanceof TLRPC.TL_boolTrue) {
+                    c3 c3Var = l3Var.f9180x;
+                    c3Var.getClass();
+                    c3Var.z("emoji_status_access_requested", c1.B("cancelled", "status"));
                     return;
                 }
-                new yc(k3Var.f8427p0, k3Var.E).Y(tL_error2).k(true);
+                new yc(l3Var.f9169p0, l3Var.E).Y(tL_error2).k(true);
                 return;
             case 27:
-                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) this.f141c;
+                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) this.f154c;
                 AndroidUtilities.addToClipboard(connectedbotstarref.url);
-                yc.a0((e4) this.f140b).M(LocaleController.getString(R.string.AffiliateProgramLinkCopiedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AffiliateProgramLinkCopiedText, ei.l.G0(connectedbotstarref.commission_permille), UserObject.getUserName((TLRPC.User) this.d))), R.raw.copy).j();
+                yc.a0((f4) this.f153b).M(LocaleController.getString(R.string.AffiliateProgramLinkCopiedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AffiliateProgramLinkCopiedText, ei.m.L0(connectedbotstarref.commission_permille), UserObject.getUserName((TLRPC.User) this.d))), R.raw.copy).j();
                 return;
             case 28:
-                e4.A0((e4) this.f140b, (TLObject) this.f141c, (a2) this.d);
+                f4.F0((f4) this.f153b, (TLObject) this.f154c, (b2) this.d);
                 return;
             default:
                 gg.s sVar2 = (gg.s) this.d;
-                int i22 = ((gg.i0) this.f140b).f9765s0;
+                int i22 = ((gg.i0) this.f153b).f10632s0;
                 MessagesController messagesController3 = MessagesController.getInstance(i22);
-                Iterator it = ((HashSet) this.f141c).iterator();
+                Iterator it = ((HashSet) this.f154c).iterator();
                 while (it.hasNext()) {
                     Pair pair2 = (Pair) it.next();
                     boolean booleanValue = ((Boolean) pair2.first).booleanValue();

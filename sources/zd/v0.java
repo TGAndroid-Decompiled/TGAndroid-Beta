@@ -5,14 +5,14 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 public abstract class v0 extends w0 implements j0 {
     public static final AtomicReferenceFieldUpdater h = AtomicReferenceFieldUpdater.newUpdater(v0.class, Object.class, "_queue$volatile");
-    public static final AtomicReferenceFieldUpdater f49214n = AtomicReferenceFieldUpdater.newUpdater(v0.class, Object.class, "_delayed$volatile");
-    public static final AtomicIntegerFieldUpdater f49215r = AtomicIntegerFieldUpdater.newUpdater(v0.class, "_isCompleted$volatile");
+    public static final AtomicReferenceFieldUpdater f53280n = AtomicReferenceFieldUpdater.newUpdater(v0.class, Object.class, "_delayed$volatile");
+    public static final AtomicIntegerFieldUpdater f53281r = AtomicIntegerFieldUpdater.newUpdater(v0.class, "_isCompleted$volatile");
     private volatile Object _delayed$volatile;
     private volatile int _isCompleted$volatile = 0;
     private volatile Object _queue$volatile;
 
     public o0 a(long j3, e2 e2Var, id.h hVar) {
-        return g0.f49172a.a(j3, e2Var, hVar);
+        return g0.f53227a.a(j3, e2Var, hVar);
     }
 
     @Override
@@ -52,7 +52,7 @@ public abstract class v0 extends w0 implements j0 {
             }
             return;
         }
-        f0.f49167s.l(runnable);
+        f0.f53222s.l(runnable);
     }
 
     public final boolean m(java.lang.Runnable r7) {
@@ -66,16 +66,16 @@ public abstract class v0 extends w0 implements j0 {
     public final void o(long j3, t0 t0Var) {
         int c10;
         Thread g10;
-        int i10 = f49215r.get(this);
+        int i10 = f53281r.get(this);
         t0 t0Var2 = null;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f49214n;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f53280n;
         if (i10 != 0) {
             c10 = 1;
         } else {
             u0 u0Var = (u0) atomicReferenceFieldUpdater.get(this);
             if (u0Var == null) {
                 ?? obj = new Object();
-                obj.f49209c = j3;
+                obj.f53275c = j3;
                 while (!atomicReferenceFieldUpdater.compareAndSet(this, null, obj) && atomicReferenceFieldUpdater.get(this) == null) {
                 }
                 Object obj2 = atomicReferenceFieldUpdater.get(this);
@@ -106,14 +106,14 @@ public abstract class v0 extends w0 implements j0 {
     @Override
     public void shutdown() {
         t0 t0Var;
-        c2.f49149a.set(null);
-        f49215r.set(this, 1);
-        ee.v vVar = e0.f49158c;
+        c2.f53200a.set(null);
+        f53281r.set(this, 1);
+        com.google.android.gms.internal.clearcut.e eVar = e0.f53209c;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = h;
         loop0: while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
             if (obj == null) {
-                while (!atomicReferenceFieldUpdater.compareAndSet(this, null, vVar)) {
+                while (!atomicReferenceFieldUpdater.compareAndSet(this, null, eVar)) {
                     if (atomicReferenceFieldUpdater.get(this) != null) {
                         break;
                     }
@@ -122,7 +122,7 @@ public abstract class v0 extends w0 implements j0 {
             } else if (obj instanceof ee.n) {
                 ((ee.n) obj).b();
                 break;
-            } else if (obj != vVar) {
+            } else if (obj != eVar) {
                 ee.n nVar = new ee.n(8, true);
                 nVar.a((Runnable) obj);
                 while (!atomicReferenceFieldUpdater.compareAndSet(this, obj, nVar)) {
@@ -139,10 +139,10 @@ public abstract class v0 extends w0 implements j0 {
         } while (i() <= 0);
         long nanoTime = System.nanoTime();
         while (true) {
-            u0 u0Var = (u0) f49214n.get(this);
+            u0 u0Var = (u0) f53280n.get(this);
             if (u0Var != null) {
                 synchronized (u0Var) {
-                    if (ee.y.f8188b.get(u0Var) > 0) {
+                    if (ee.x.f8898b.get(u0Var) > 0) {
                         t0Var = u0Var.d(0);
                     } else {
                         t0Var = null;

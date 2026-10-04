@@ -1,66 +1,116 @@
 package w9;
 
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.android.gms.tasks.Tasks;
-import java.io.File;
-import java.io.IOException;
+import android.view.View;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicReference;
-public final class k implements Callable {
-    public final long f45213a;
-    public final Throwable f45214b;
-    public final Thread f45215c;
-    public final da.b d;
-    public final m e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.f0;
+import org.telegram.ui.Components.rk0;
+import org.telegram.ui.Components.xv0;
+import org.telegram.ui.q20;
+import yh.r2;
+import yh.x7;
+import zg.o0;
+public final class k implements Continuation, xv0, rk0 {
+    public Object f48940a;
 
-    public k(m mVar, long j3, Throwable th2, Thread thread, da.b bVar) {
-        this.e = mVar;
-        this.f45213a = j3;
-        this.f45214b = th2;
-        this.f45215c = thread;
-        this.d = bVar;
+    public k(Object obj) {
+        this.f48940a = obj;
     }
 
     @Override
-    public final Object call() {
-        ba.c cVar;
-        String str;
-        long j3 = this.f45213a;
-        long j10 = j3 / 1000;
-        m mVar = this.e;
-        String e = mVar.e();
-        if (e == null) {
-            Log.e("FirebaseCrashlytics", "Tried to write a fatal exception while no session was open.", null);
-            return Tasks.forResult(null);
+    public void E(boolean z10) {
+        x7 x7Var = (x7) this.f48940a;
+        le.b bVar = x7Var.W;
+        if (bVar != null) {
+            bVar.a(z10, true);
         }
-        mVar.f45221c.o();
-        com.google.firebase.messaging.n nVar = mVar.f45228m;
-        nVar.getClass();
-        String concat = "Persisting fatal event for session ".concat(e);
-        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-            Log.v("FirebaseCrashlytics", concat, null);
+        q20 q20Var = x7Var.f39888s;
+        if (q20Var != null) {
+            q20Var.invalidate();
         }
-        nVar.v(this.f45214b, this.f45215c, e, "crash", j10, true);
-        try {
-            cVar = mVar.f45223g;
-            str = ".ae" + j3;
-            cVar.getClass();
-        } catch (IOException e7) {
-            Log.w("FirebaseCrashlytics", "Could not create app exception marker file.", e7);
+    }
+
+    @Override
+    public float Y0() {
+        return f0.b(9.0f, ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2) * 2) + ((x7) this.f48940a).Z, 0);
+    }
+
+    public void a(IBinder iBinder) {
+        synchronized (((HashMap) this.f48940a)) {
+            if (iBinder != null) {
+                try {
+                    iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            new y8.a();
+            for (Map.Entry entry : ((HashMap) this.f48940a).entrySet()) {
+                if (entry.getValue() == null) {
+                    try {
+                        throw null;
+                        break;
+                    } catch (RemoteException unused) {
+                        String valueOf = String.valueOf(entry.getKey());
+                        Log.w("WearableClient", "onPostInitHandler: Didn't add: " + valueOf + "/null");
+                    }
+                } else {
+                    throw new ClassCastException();
+                }
+            }
         }
-        if (!new File(cVar.f3444b, str).createNewFile()) {
-            throw new IOException("Create new file failed.");
-        }
-        da.b bVar = this.d;
-        mVar.c(false, bVar);
-        new f(mVar.f45222f);
-        m.a(mVar, f.f45203b, Boolean.FALSE);
-        if (!mVar.f45220b.a()) {
-            return Tasks.forResult(null);
-        }
-        Executor executor = (Executor) mVar.e.f7328b;
-        return ((TaskCompletionSource) ((AtomicReference) bVar.f7568i).get()).getTask().onSuccessTask(executor, new o0.a(this, executor, e));
+    }
+
+    @Override
+    public int e1() {
+        return ((x7) this.f48940a).f52258a0;
+    }
+
+    @Override
+    public void h(View view, o0 o0Var, boolean z10, boolean z11) {
+        zg.t tVar = (zg.t) this.f48940a;
+        tVar.f53524a.Za(null, tVar.f53527e, tVar.f53525b, view, 0.0f, 0.0f, o0Var, false, z10, z11, false);
+        AndroidUtilities.runOnUIThread(new r2(this, 9));
+    }
+
+    @Override
+    public boolean j() {
+        return true;
+    }
+
+    @Override
+    public boolean k() {
+        return false;
+    }
+
+    @Override
+    public boolean p() {
+        return false;
+    }
+
+    @Override
+    public Object then(Task task) {
+        return ((Callable) this.f48940a).call();
+    }
+
+    public k() {
+        this.f48940a = new HashMap();
+    }
+
+    @Override
+    public void o() {
+    }
+
+    @Override
+    public void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

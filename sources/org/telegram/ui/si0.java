@@ -1,23 +1,131 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class si0 extends g.p {
-    public final vi0 f37802c;
+import org.telegram.messenger.AndroidUtilities;
+public final class si0 extends org.telegram.ui.Components.zl0 {
+    public final ArrayList f40490e3;
+    public final org.telegram.ui.Components.e6 f40491f3;
+    public final org.telegram.ui.Components.e6 f40492g3;
+    public final k20 f40493h3;
+    public final zi0 f40494i3;
 
-    public si0(vi0 vi0Var) {
-        this.f37802c = vi0Var;
+    public si0(zi0 zi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.f40494i3 = zi0Var;
+        this.f40490e3 = new ArrayList(10);
+        org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.h;
+        this.f40491f3 = new org.telegram.ui.Components.e6(this, 0L, 360L, trVar);
+        this.f40492g3 = new org.telegram.ui.Components.e6(this, 0L, 360L, trVar);
+        this.f40493h3 = new k20();
     }
 
     @Override
-    public final int i(int i10) {
-        vi0 vi0Var = this.f37802c;
-        ArrayList arrayList = vi0Var.N;
-        MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
-        MessageObject.GroupedMessages l4 = vi0Var.l(messageObject);
-        if (l4 != null) {
-            return l4.getPosition(messageObject).spanSize;
+    public final void dispatchDraw(android.graphics.Canvas r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.si0.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        org.telegram.ui.Cells.u1 u1Var;
+        zi0 zi0Var = this.f40494i3;
+        if (zi0Var.f43820w && ((view == (u1Var = zi0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == zi0Var.X)) {
+            return false;
         }
-        return 1000;
+        if (!(view instanceof org.telegram.ui.Cells.u1)) {
+            return true;
+        }
+        org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
+        u1Var2.setInvalidatesParent(true);
+        u1Var2.K1(canvas);
+        canvas.save();
+        canvas.translate(u1Var2.getX(), u1Var2.getY());
+        canvas.scale(u1Var2.getScaleX(), u1Var2.getScaleY(), u1Var2.getPivotX(), u1Var2.getPivotY());
+        if (u1Var2.C1() && u1Var2.getCurrentPosition() == null) {
+            canvas.save();
+            canvas.translate(0.0f, u1Var2.getPaddingTop());
+            u1Var2.D1(canvas, true, false);
+            canvas.restore();
+        }
+        canvas.restore();
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.save();
+        canvas.translate(u1Var2.getX(), u1Var2.getY() + u1Var2.getPaddingTop());
+        canvas.scale(u1Var2.getScaleX(), u1Var2.getScaleY(), u1Var2.getPivotX(), u1Var2.getPivotY());
+        if (u1Var2.getCurrentPosition() != null && (((u1Var2.getCurrentPosition().flags & u1Var2.t0()) != 0 && (u1Var2.getCurrentPosition().flags & 1) != 0) || (u1Var2.getCurrentMessagesGroup() != null && u1Var2.getCurrentMessagesGroup().isDocuments))) {
+            u1Var2.I1(u1Var2.getAlpha(), canvas, false);
+        }
+        if (u1Var2.getCurrentPosition() != null && (((u1Var2.getCurrentPosition().flags & 8) != 0 && (u1Var2.getCurrentPosition().flags & 1) != 0) || (u1Var2.getCurrentMessagesGroup() != null && u1Var2.getCurrentMessagesGroup().isDocuments))) {
+            u1Var2.d2(canvas, u1Var2.getAlpha(), null);
+            u1Var2.N1(canvas, u1Var2.getAlpha());
+        }
+        if (u1Var2.getCurrentPosition() != null) {
+            u1Var2.W1(canvas, u1Var2.getAlpha());
+        }
+        if (u1Var2.getCurrentPosition() == null || u1Var2.getCurrentPosition().last) {
+            u1Var2.m2(u1Var2.getAlpha(), canvas, true);
+        }
+        u1Var2.X1(canvas);
+        u1Var2.getTransitionParams().i();
+        canvas.restore();
+        u1Var2.setInvalidatesParent(false);
+        return drawChild;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getTop() != 0 && (childAt instanceof yi0)) {
+                yi0 yi0Var = (yi0) childAt;
+                yi0Var.Ge = childAt.getTop();
+                yi0Var.He = childAt.getBottom();
+                yi0Var.Ie = yi0Var.getMessageObject().getId();
+            }
+        }
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int measuredHeight;
+        int l4;
+        int i12;
+        zi0 zi0Var = this.f40494i3;
+        if (zi0Var.N.isEmpty()) {
+            f7 = -6.0f;
+        } else {
+            f7 = 48.0f;
+        }
+        int dp = AndroidUtilities.dp(f7);
+        ViewGroup viewGroup = zi0Var.Z;
+        if (viewGroup == null) {
+            measuredHeight = 0;
+        } else {
+            measuredHeight = viewGroup.getMeasuredHeight();
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - zi0Var.f43798e.f11526b), Integer.MIN_VALUE));
+        if (zi0Var.m0) {
+            l4 = zi0Var.Y;
+        } else {
+            l4 = zi0Var.W.l();
+        }
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + zi0Var.f43810o0[0]) - getMeasuredWidth()));
+        int i13 = zi0Var.O;
+        int measuredWidth = getMeasuredWidth() - max;
+        if (zi0Var.P.i()) {
+            i12 = 0;
+        } else {
+            i12 = 40;
+        }
+        float max2 = Math.max(1, getMeasuredWidth() - max) / Math.max(1, ((getMeasuredWidth() - max) - AndroidUtilities.dp(8.0f)) + Math.max(0, i13 - (measuredWidth - AndroidUtilities.dp(i12 + 8))));
+        setPivotX(getMeasuredWidth());
+        setPivotY(getMeasuredHeight());
+        setScaleX(max2);
+        setScaleY(max2);
     }
 }

@@ -10,17 +10,17 @@ import com.google.android.gms.internal.vision.g3;
 import com.google.android.gms.internal.vision.u2;
 import java.nio.ByteBuffer;
 public final class n extends b2.g {
-    public final u2 f42435b;
+    public final u2 f45930b;
 
     public n(u2 u2Var) {
         super(3);
-        this.f42435b = u2Var;
+        this.f45930b = u2Var;
     }
 
     @Override
     public final void U0() {
         super.U0();
-        this.f42435b.l();
+        this.f45930b.l();
     }
 
     public final SparseArray Z0(la.h hVar) {
@@ -28,7 +28,7 @@ public final class n extends b2.g {
         if (hVar != null) {
             g3 b10 = g3.b(hVar);
             Bitmap bitmap = (Bitmap) hVar.d;
-            u2 u2Var = this.f42435b;
+            u2 u2Var = this.f45930b;
             if (bitmap != null) {
                 if (!u2Var.k()) {
                     mVarArr = new m[0];
@@ -38,15 +38,15 @@ public final class n extends b2.g {
                         e3 e3Var = (e3) u2Var.m();
                         n6.l.h(e3Var);
                         Parcel G0 = e3Var.G0();
-                        int i10 = com.google.android.gms.internal.vision.a.f6898a;
+                        int i10 = com.google.android.gms.internal.vision.a.f7449a;
                         G0.writeStrongBinder(bVar);
                         com.google.android.gms.internal.vision.a.a(G0, b10);
                         Parcel P0 = e3Var.P0(G0, 2);
                         m[] mVarArr2 = (m[]) P0.createTypedArray(m.CREATOR);
                         P0.recycle();
                         mVarArr = mVarArr2;
-                    } catch (RemoteException e) {
-                        Log.e("BarcodeNativeHandle", "Error calling native barcode detector", e);
+                    } catch (RemoteException e7) {
+                        Log.e("BarcodeNativeHandle", "Error calling native barcode detector", e7);
                         mVarArr = new m[0];
                     }
                 }
@@ -64,22 +64,22 @@ public final class n extends b2.g {
                         e3 e3Var2 = (e3) u2Var.m();
                         n6.l.h(e3Var2);
                         Parcel G02 = e3Var2.G0();
-                        int i11 = com.google.android.gms.internal.vision.a.f6898a;
+                        int i11 = com.google.android.gms.internal.vision.a.f7449a;
                         G02.writeStrongBinder(bVar2);
                         com.google.android.gms.internal.vision.a.a(G02, b10);
                         Parcel P02 = e3Var2.P0(G02, 1);
                         m[] mVarArr3 = (m[]) P02.createTypedArray(m.CREATOR);
                         P02.recycle();
                         mVarArr = mVarArr3;
-                    } catch (RemoteException e7) {
-                        Log.e("BarcodeNativeHandle", "Error calling native barcode detector", e7);
+                    } catch (RemoteException e10) {
+                        Log.e("BarcodeNativeHandle", "Error calling native barcode detector", e10);
                         mVarArr = new m[0];
                     }
                 }
             }
             SparseArray sparseArray = new SparseArray(mVarArr.length);
             for (m mVar : mVarArr) {
-                sparseArray.append(mVar.f42426b.hashCode(), mVar);
+                sparseArray.append(mVar.f45920b.hashCode(), mVar);
             }
             return sparseArray;
         }

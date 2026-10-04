@@ -1,12 +1,12 @@
 package s4;
 public final class i1 {
     public static final c5.b0 d = new c5.b0(20, 6);
-    public int f43016a;
-    public b2.q0 f43017b;
-    public b2.q0 f43018c;
+    public int f46585a;
+    public b2.q0 f46586b;
+    public b2.q0 f46587c;
 
     public static i1 a() {
-        i1 i1Var = (i1) d.a();
+        i1 i1Var = (i1) d.b();
         if (i1Var == null) {
             return new Object();
         }

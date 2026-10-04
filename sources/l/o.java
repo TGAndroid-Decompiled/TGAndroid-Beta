@@ -1,26 +1,24 @@
 package l;
 
-import android.view.ActionProvider;
+import android.view.CollapsibleActionView;
 import android.view.View;
-public final class o implements ActionProvider.VisibilityListener {
-    public final ActionProvider f14004a;
-    public a4.m f14005b;
+import android.widget.FrameLayout;
+public final class o extends FrameLayout implements k.b {
+    public final CollapsibleActionView f15218a;
 
-    public o(s sVar, ActionProvider actionProvider) {
-        this.f14004a = actionProvider;
-    }
-
-    public final View a(n nVar) {
-        return this.f14004a.onCreateActionView(nVar);
+    public o(View view) {
+        super(view.getContext());
+        this.f15218a = (CollapsibleActionView) view;
+        addView(view);
     }
 
     @Override
-    public final void onActionProviderVisibilityChanged(boolean z10) {
-        a4.m mVar = this.f14005b;
-        if (mVar != null) {
-            l lVar = ((n) mVar.f275b).f13992n;
-            lVar.h = true;
-            lVar.p(true);
-        }
+    public final void onActionViewCollapsed() {
+        this.f15218a.onActionViewCollapsed();
+    }
+
+    @Override
+    public final void onActionViewExpanded() {
+        this.f15218a.onActionViewExpanded();
     }
 }

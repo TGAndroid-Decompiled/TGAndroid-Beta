@@ -15,7 +15,7 @@ import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
-import l.x;
+import l.w;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
@@ -26,14 +26,14 @@ import org.telegram.ui.Cells.c1;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.r9;
 import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.to0;
+import org.telegram.ui.Components.xo0;
 import org.telegram.ui.Components.z5;
-import org.telegram.ui.hv0;
-import org.telegram.ui.xd;
-import org.telegram.ui.z61;
-public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, x, n6.k, q9.d, to0, l1, p2.s, OnFailureListener, r4.c, u9.a, SuccessContinuation, x9.c, y6.d, y2.i, z61 {
-    public static u f43325a;
-    public static u f43326b;
+import org.telegram.ui.b71;
+import org.telegram.ui.kv0;
+import org.telegram.ui.zd;
+public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, w, n6.k, q9.d, xo0, l1, p2.s, OnFailureListener, r4.c, u9.a, SuccessContinuation, x9.c, y6.d, y2.i, b71 {
+    public static u f46920a;
+    public static u f46921b;
 
     public u(Object obj) {
     }
@@ -44,7 +44,16 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public StackTraceElement[] C(StackTraceElement[] stackTraceElementArr) {
+    public void C(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
+        if (i10 == i11) {
+            shortBuffer2.put(shortBuffer);
+            return;
+        }
+        throw new IllegalArgumentException("Illegal use of PassThroughAudioResampler");
+    }
+
+    @Override
+    public StackTraceElement[] D(StackTraceElement[] stackTraceElementArr) {
         int i10;
         HashMap hashMap = new HashMap();
         StackTraceElement[] stackTraceElementArr2 = new StackTraceElement[stackTraceElementArr.length];
@@ -89,8 +98,8 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public Object G(cf.c cVar) {
-        return new qb.d(cVar.c(qb.h.class));
+    public Object E(cf.c cVar) {
+        return new qb.d(cVar.d(qb.h.class));
     }
 
     @Override
@@ -99,8 +108,10 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public y2.n H() {
-        return new p2.r(p2.o.f40757n, null);
+    public void H(Bundle bundle) {
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", "Skipping logging Crashlytics event to Firebase, no Firebase Analytics", null);
+        }
     }
 
     @Override
@@ -109,28 +120,21 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void J(Bundle bundle) {
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Skipping logging Crashlytics event to Firebase, no Firebase Analytics", null);
-        }
-    }
-
-    @Override
-    public y2.n K(p2.o oVar, p2.l lVar) {
-        return new p2.r(oVar, lVar);
+    public y2.n K() {
+        return new p2.r(p2.o.f44079n, null);
     }
 
     @Override
     public int L1(int i10, int i11, int i12) {
         bg.a aVar;
         if (i11 == 6) {
-            aVar = bg.a.f3552l;
+            aVar = bg.a.f3840l;
         } else if (i11 > i12) {
-            aVar = bg.a.f3549i;
+            aVar = bg.a.f3837i;
         } else if (i11 < i12) {
-            aVar = bg.a.f3550j;
+            aVar = bg.a.f3838j;
         } else {
-            aVar = bg.a.f3551k;
+            aVar = bg.a.f3839k;
         }
         return aVar.L1(i10, i11, i12);
     }
@@ -146,22 +150,17 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public boolean O(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        return false;
-    }
-
-    @Override
     public CharacterStyle O1(u1 u1Var) {
         return null;
     }
 
     @Override
-    public boolean P() {
+    public boolean P(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
         return false;
     }
 
     @Override
-    public boolean Q(u1 u1Var) {
+    public boolean Q() {
         return false;
     }
 
@@ -171,7 +170,12 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public boolean R() {
+    public boolean R(u1 u1Var) {
+        return false;
+    }
+
+    @Override
+    public boolean S() {
         return false;
     }
 
@@ -179,20 +183,20 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     public void S0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
         bg.a aVar;
         if (i10 == 6) {
-            aVar = bg.a.f3552l;
+            aVar = bg.a.f3840l;
         } else if (i10 > i11) {
-            aVar = bg.a.f3549i;
+            aVar = bg.a.f3837i;
         } else if (i10 < i11) {
-            aVar = bg.a.f3550j;
+            aVar = bg.a.f3838j;
         } else {
-            aVar = bg.a.f3551k;
+            aVar = bg.a.f3839k;
         }
         aVar.S0(shortBuffer, i10, shortBuffer2, i11);
     }
 
     @Override
-    public int V() {
-        return 0;
+    public y2.n V(p2.o oVar, p2.l lVar) {
+        return new p2.r(oVar, lVar);
     }
 
     @Override
@@ -201,46 +205,46 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
+    public int W() {
+        return 0;
+    }
+
+    @Override
     public boolean W0(u1 u1Var, boolean z10) {
         return false;
     }
 
     @Override
-    public void X(float f7, boolean z10) {
-        xd.f39902b = f7 * 2.0f;
+    public void Y(float f7, boolean z10) {
+        zd.f43749b = f7 * 2.0f;
     }
 
     @Override
-    public hh.a Y() {
+    public kv0 Y1() {
         return null;
     }
 
     @Override
-    public hv0 Y1() {
+    public hh.a Z() {
         return null;
     }
 
     @Override
     public void a() {
-        synchronized (z2.c.f48353a) {
-            Object obj = z2.c.f48354b;
+        synchronized (z2.b.f52350a) {
+            Object obj = z2.b.f52351b;
             synchronized (obj) {
-                if (z2.c.f48355c) {
+                if (z2.b.f52352c) {
                     return;
                 }
-                long a2 = z2.c.a();
+                long a2 = z2.b.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
-                    z2.c.d = a2;
-                    z2.c.f48355c = true;
+                    z2.b.d = a2;
+                    z2.b.f52352c = true;
                 }
             }
         }
-    }
-
-    @Override
-    public boolean a0(u1 u1Var) {
-        return false;
     }
 
     @Override
@@ -254,11 +258,11 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
         b7.b bVar = new b7.b(1, (TaskCompletionSource) obj2);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService");
-        int i10 = j7.c.f12905a;
+        int i10 = j7.c.f14029a;
         obtain.writeStrongBinder(bVar);
         Parcel obtain2 = Parcel.obtain();
         try {
-            dVar.f12906a.transact(1, obtain, obtain2, 0);
+            dVar.f14030a.transact(1, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -267,13 +271,13 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public boolean b0(u1 u1Var, TLRPC.User user) {
+    public boolean b0(u1 u1Var) {
         return false;
     }
 
     @Override
-    public String c() {
-        return null;
+    public boolean c0(u1 u1Var, TLRPC.User user) {
+        return false;
     }
 
     @Override
@@ -294,16 +298,16 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     @Override
     public a3.l d(Context context, String str, y6.c cVar) {
         a3.l lVar = new a3.l();
-        int d = cVar.d(context, str, true);
-        lVar.f143b = d;
-        if (d != 0) {
-            lVar.f144c = 1;
+        int f7 = cVar.f(context, str, true);
+        lVar.f156b = f7;
+        if (f7 != 0) {
+            lVar.f157c = 1;
             return lVar;
         }
-        int l4 = cVar.l(context, str);
-        lVar.f142a = l4;
-        if (l4 != 0) {
-            lVar.f144c = -1;
+        int m10 = cVar.m(context, str);
+        lVar.f155a = m10;
+        if (m10 != 0) {
+            lVar.f157c = -1;
         }
         return lVar;
     }
@@ -314,12 +318,17 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public boolean e0() {
+    public String f() {
+        return null;
+    }
+
+    @Override
+    public boolean f0() {
         return false;
     }
 
     @Override
-    public boolean f() {
+    public boolean g() {
         return true;
     }
 
@@ -344,7 +353,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public Object l(com.google.android.gms.common.api.q qVar) {
+    public Object i(com.google.android.gms.common.api.q qVar) {
         return null;
     }
 
@@ -359,11 +368,6 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public int m0() {
-        return 0;
-    }
-
-    @Override
     public boolean o0(z5 z5Var) {
         return false;
     }
@@ -371,6 +375,11 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     @Override
     public void onFailure(Exception exc) {
         Log.e("OptionalModuleUtils", "Failed to check feature availability", exc);
+    }
+
+    @Override
+    public int p0() {
+        return 0;
     }
 
     @Override
@@ -385,7 +394,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public boolean v(l.l lVar) {
+    public boolean v(l.k kVar) {
         return false;
     }
 
@@ -405,25 +414,12 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void y(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
-        if (i10 == i11) {
-            shortBuffer2.put(shortBuffer);
-            return;
-        }
-        throw new IllegalArgumentException("Illegal use of PassThroughAudioResampler");
-    }
-
-    @Override
     public r9 z2() {
         return null;
     }
 
     @Override
     public void B() {
-    }
-
-    @Override
-    public void D() {
     }
 
     @Override
@@ -435,11 +431,11 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void k() {
+    public void k1() {
     }
 
     @Override
-    public void k1() {
+    public void l() {
     }
 
     @Override
@@ -456,6 +452,10 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
 
     @Override
     public void s() {
+    }
+
+    @Override
+    public void x() {
     }
 
     @Override
@@ -479,15 +479,11 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void F(u1 u1Var) {
-    }
-
-    @Override
     public void F0(u1 u1Var) {
     }
 
     @Override
-    public void I(MessageObject.TextLayoutBlock textLayoutBlock) {
+    public void G(u1 u1Var) {
     }
 
     @Override
@@ -495,11 +491,15 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
+    public void J(MessageObject.TextLayoutBlock textLayoutBlock) {
+    }
+
+    @Override
     public void K1(u1 u1Var) {
     }
 
     @Override
-    public void L(u1 u1Var) {
+    public void M(u1 u1Var) {
     }
 
     @Override
@@ -507,15 +507,15 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void N(MessageObject messageObject) {
-    }
-
-    @Override
     public void N0(u1 u1Var) {
     }
 
     @Override
-    public void T(u1 u1Var) {
+    public void O(MessageObject messageObject) {
+    }
+
+    @Override
+    public void U(u1 u1Var) {
     }
 
     @Override
@@ -527,7 +527,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void d0(int i10) {
+    public void e0(int i10) {
     }
 
     @Override
@@ -580,7 +580,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    public void F(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
     }
 
     @Override
@@ -588,7 +588,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void M(int i10, u1 u1Var) {
+    public void N(int i10, u1 u1Var) {
     }
 
     @Override
@@ -604,7 +604,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void g(l.l lVar, boolean z10) {
+    public void c(l.k kVar, boolean z10) {
     }
 
     @Override
@@ -612,7 +612,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void i(u1 u1Var, bi.f fVar) {
+    public void j(u1 u1Var, bi.f fVar) {
     }
 
     @Override
@@ -624,7 +624,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void x(int i10, Object obj) {
+    public void y(int i10, Object obj) {
     }
 
     @Override
@@ -640,7 +640,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void f0(u1 u1Var, float f7, float f10) {
+    public void g0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
@@ -676,7 +676,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    public void k(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
     }
 
     @Override
@@ -684,7 +684,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    public void T(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
     }
 
     @Override

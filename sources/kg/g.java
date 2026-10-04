@@ -1,7 +1,7 @@
 package kg;
 
 import android.widget.TextView;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 public final class g extends e {
     public TextView M;
     public TextView N;
@@ -13,7 +13,7 @@ public final class g extends e {
             return;
         }
         super.b();
-        textView.setTextColor(h6.w0(null, h6.f19167j5, false));
+        textView.setTextColor(i6.w0(null, i6.f20925j5, false));
     }
 
     @Override

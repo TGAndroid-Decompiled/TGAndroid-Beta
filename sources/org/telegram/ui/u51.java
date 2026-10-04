@@ -1,69 +1,36 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class u51 extends FrameLayout {
-    public final Path f38326a;
-    public final Paint f38327b;
-    public final boolean f38328c;
-    public final boolean d;
-    public final org.telegram.ui.ActionBar.d6 e;
-    public final Integer f38329f;
-    public final a71 h;
+import android.view.View;
+public final class u51 extends View {
+    public final int f41063a;
+    public final Integer f41064b;
 
-    public u51(a71 a71Var, Context context, boolean z10, boolean z11, org.telegram.ui.ActionBar.d6 d6Var, Integer num) {
+    public u51(Context context, Integer num, int i10) {
         super(context);
-        this.h = a71Var;
-        this.f38328c = z10;
-        this.d = z11;
-        this.e = d6Var;
-        this.f38329f = num;
-        this.f38326a = new Path();
-        this.f38327b = new Paint(1);
+        this.f41063a = i10;
+        this.f41064b = num;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float intValue;
-        a71 a71Var = this.h;
-        if (!a71Var.Q0) {
-            super.dispatchDraw(canvas);
-        } else if (this.f38328c) {
-            canvas.save();
-            boolean z10 = this.d;
-            Paint paint = this.f38327b;
-            if (z10) {
-                org.telegram.ui.ActionBar.h6.m(paint);
-            }
-            paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G8, this.e));
-            paint.setAlpha((int) (getAlpha() * 255.0f));
-            Integer num = this.f38329f;
-            if (num == null) {
-                intValue = getWidth() / 2.0f;
-            } else {
-                intValue = num.intValue();
-            }
-            float dp = intValue + AndroidUtilities.dp(20.0f);
-            float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
-            float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
-            if (a71Var.n()) {
-                AndroidUtilities.rectTmp.set((dp - (a71Var.f32013a1 * dp)) + getPaddingLeft(), com.google.android.gms.internal.vision.e2.z(1.0f, a71Var.f32016b1, height, getPaddingTop()), ((width - dp) * a71Var.f32013a1) + getPaddingLeft() + dp, getPaddingTop() + height);
-            } else {
-                AndroidUtilities.rectTmp.set((dp - (a71Var.f32013a1 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * a71Var.f32013a1) + getPaddingLeft() + dp, (height * a71Var.f32016b1) + getPaddingTop());
-            }
-            Path path = this.f38326a;
-            path.rewind();
-            path.addRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
-            canvas.drawPath(path, paint);
-            canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-        } else {
-            super.dispatchDraw(canvas);
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f41063a) {
+            case 0:
+                super.onMeasure(i10, i11);
+                Integer num = this.f41064b;
+                if (num != null) {
+                    setPivotX(num.intValue());
+                    return;
+                }
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                Integer num2 = this.f41064b;
+                if (num2 != null) {
+                    setPivotX(num2.intValue());
+                    return;
+                }
+                return;
         }
     }
 }

@@ -1,46 +1,45 @@
 package kh;
 
 import i2.h0;
-import le.c;
+import le.d;
 import le.e;
-import le.f;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.voip.w2;
-public final class a implements e {
-    public final f f13630a;
-    public final f f13631b;
-    public final c f13632c;
-    public final c d;
-    public final w2 e;
-    public final h0 f13633f;
+public final class a implements d {
+    public final e f14819a;
+    public final e f14820b;
+    public final le.b f14821c;
+    public final le.b d;
+    public final w2 f14822e;
+    public final h0 f14823f;
     public boolean h;
 
     public a(w2 w2Var, h0 h0Var) {
-        sr srVar = sr.h;
-        this.f13630a = new f(1, this, srVar, 350L);
-        this.f13631b = new f(2, this, srVar, 350L);
-        this.f13632c = new c(0, this, srVar, 350L, true);
-        this.d = new c(3, this, srVar, 350L, true);
+        tr trVar = tr.h;
+        this.f14819a = new e(1, this, trVar, 350L);
+        this.f14820b = new e(2, this, trVar, 350L);
+        this.f14821c = new le.b(0, this, trVar, 350L, true);
+        this.d = new le.b(3, this, trVar, 350L, true);
         this.h = true;
-        this.e = w2Var;
-        this.f13633f = h0Var;
+        this.f14822e = w2Var;
+        this.f14823f = h0Var;
     }
 
     @Override
-    public final void D(int i10, float f7, float f10, f fVar) {
+    public final void a0(int i10, float f7, float f10, e eVar) {
         int i11;
-        w2 w2Var = this.e;
+        w2 w2Var = this.f14822e;
         if (i10 == 1) {
-            w2Var.setTranslationX(this.f13630a.e);
+            w2Var.setTranslationX(this.f14819a.f15442e);
         }
         if (i10 == 2) {
-            w2Var.setTranslationY(this.f13631b.e);
+            w2Var.setTranslationY(this.f14820b.f15442e);
         }
-        c cVar = this.d;
-        c cVar2 = this.f13632c;
+        le.b bVar = this.d;
+        le.b bVar2 = this.f14821c;
         if (i10 == 0) {
-            w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, cVar.e) * cVar2.e);
+            w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.f15434e) * bVar2.f15434e);
             w2Var.setScaleX(AndroidUtilities.lerp(0.3f, 1.0f, f7));
             w2Var.setScaleY(AndroidUtilities.lerp(0.3f, 1.0f, f7));
             if (f7 > 0.0f) {
@@ -51,15 +50,15 @@ public final class a implements e {
             w2Var.setVisibility(i11);
         }
         if (i10 == 3) {
-            w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, cVar.e) * cVar2.e);
+            w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.f15434e) * bVar2.f15434e);
         }
-        h0 h0Var = this.f13633f;
+        h0 h0Var = this.f14823f;
         if (h0Var != null) {
             h0Var.run();
         }
     }
 
     @Override
-    public final void C(float f7, int i10) {
+    public final void V(float f7, int i10) {
     }
 }

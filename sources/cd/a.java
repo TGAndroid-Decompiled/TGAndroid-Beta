@@ -2,15 +2,15 @@ package cd;
 
 import java.util.Map;
 public final class a implements Map.Entry, Cloneable {
-    public String f4209a;
-    public String f4210b;
-    public c f4211c;
+    public String f4555a;
+    public String f4556b;
+    public c f4557c;
 
     public final Object clone() {
         try {
             return (a) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
+        } catch (CloneNotSupportedException e7) {
+            throw new RuntimeException(e7);
         }
     }
 
@@ -21,13 +21,13 @@ public final class a implements Map.Entry, Cloneable {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            String str = aVar.f4209a;
-            String str2 = this.f4209a;
+            String str = aVar.f4555a;
+            String str2 = this.f4555a;
             if (str2 == null ? str != null : !str2.equals(str)) {
                 return false;
             }
-            String str3 = this.f4210b;
-            String str4 = aVar.f4210b;
+            String str3 = this.f4556b;
+            String str4 = aVar.f4556b;
             if (str3 != null) {
                 return str3.equals(str4);
             }
@@ -40,18 +40,18 @@ public final class a implements Map.Entry, Cloneable {
 
     @Override
     public final Object getKey() {
-        return this.f4209a;
+        return this.f4555a;
     }
 
     @Override
     public final Object getValue() {
-        return this.f4210b;
+        return this.f4556b;
     }
 
     @Override
     public final int hashCode() {
         int i10;
-        String str = this.f4209a;
+        String str = this.f4555a;
         int i11 = 0;
         if (str != null) {
             i10 = str.hashCode();
@@ -59,7 +59,7 @@ public final class a implements Map.Entry, Cloneable {
             i10 = 0;
         }
         int i12 = i10 * 31;
-        String str2 = this.f4210b;
+        String str2 = this.f4556b;
         if (str2 != null) {
             i11 = str2.hashCode();
         }
@@ -70,18 +70,18 @@ public final class a implements Map.Entry, Cloneable {
     public final Object setValue(Object obj) {
         String str;
         String str2 = (String) obj;
-        c cVar = this.f4211c;
-        String str3 = this.f4209a;
+        c cVar = this.f4557c;
+        String str3 = this.f4555a;
         int i10 = cVar.i(str3);
         String str4 = "";
-        if (i10 != -1 && (str = cVar.f4217c[i10]) != null) {
+        if (i10 != -1 && (str = cVar.f4563c[i10]) != null) {
             str4 = str;
         }
         int i11 = cVar.i(str3);
         if (i11 != -1) {
-            cVar.f4217c[i11] = str2;
+            cVar.f4563c[i11] = str2;
         }
-        this.f4210b = str2;
+        this.f4556b = str2;
         return str4;
     }
 }

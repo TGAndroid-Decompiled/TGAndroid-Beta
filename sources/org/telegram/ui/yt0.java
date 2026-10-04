@@ -2,29 +2,58 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+import org.telegram.messenger.FileLog;
 public final class yt0 extends AnimatorListenerAdapter {
-    public final zt0 f40250a;
+    public final int f43616a;
+    public final org.telegram.ui.Components.wm0 f43617b;
 
-    public yt0(zt0 zt0Var) {
-        this.f40250a = zt0Var;
+    public yt0(org.telegram.ui.Components.wm0 wm0Var, int i10) {
+        this.f43616a = i10;
+        this.f43617b = wm0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        zt0 zt0Var = this.f40250a;
-        PhotoViewer photoViewer = zt0Var.f40580c;
-        photoViewer.f31306n4 = 0;
-        photoViewer.G1();
-        photoViewer.L0.setAlpha(255);
-        photoViewer.f31225e0.invalidate();
-        photoViewer.P0.setTranslationY(0.0f);
-        if (photoViewer.f31360t4) {
-            PhotoViewer.a0(photoViewer, zt0Var.f40579b.intValue());
+        switch (this.f43616a) {
+            case 0:
+                PhotoViewer photoViewer = (PhotoViewer) this.f43617b.f32582b;
+                photoViewer.Q1.getNextView().setText((CharSequence) null);
+                wt0 wt0Var = photoViewer.T1;
+                wt0Var.f37764l0 = false;
+                if (wt0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) wt0Var.f37766o0.getLayoutParams()).topMargin = wt0Var.m0;
+                    wt0Var.m0 = -1;
+                    wt0Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                ((PhotoViewer) this.f43617b.f32582b).Q1.setTranslationY(0.0f);
+                return;
         }
-        tu0 tu0Var = zt0Var.f40578a;
-        if (tu0Var != null) {
-            tu0Var.d();
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f43616a) {
+            case 0:
+                wt0 wt0Var = ((PhotoViewer) this.f43617b.f32582b).T1;
+                Method method = wt0Var.f37758f0;
+                if (method != null) {
+                    try {
+                        method.invoke(wt0Var, null);
+                        return;
+                    } catch (Exception e7) {
+                        FileLog.e(e7);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

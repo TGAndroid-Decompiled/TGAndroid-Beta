@@ -1,85 +1,115 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class tl0 implements org.telegram.ui.ActionBar.z1, vt, um0 {
-    public final int f38149a;
-    public final gn0 f38150b;
+public final class tl0 implements TextView.OnEditorActionListener {
+    public final int f40870a;
+    public final kn0 f40871b;
 
-    public tl0(gn0 gn0Var, int i10) {
-        this.f38149a = i10;
-        this.f38150b = gn0Var;
+    public tl0(kn0 kn0Var, int i10) {
+        this.f40870a = i10;
+        this.f40871b = kn0Var;
     }
 
     @Override
-    public void a1(qt qtVar) {
-        String str;
-        switch (this.f38149a) {
-            case 2:
-                gn0 gn0Var = this.f38150b;
-                gn0Var.Y[5].setText(qtVar.f36982a);
-                gn0Var.f34012s = qtVar.d;
-                return;
-            default:
-                gn0 gn0Var2 = this.f38150b;
-                gn0Var2.Y[0].setText(qtVar.f36982a);
-                if (gn0Var2.U0.indexOf(qtVar.f36982a) != -1) {
-                    gn0Var2.Z0 = true;
-                    String str2 = (String) gn0Var2.V0.get(qtVar.f36982a);
-                    gn0Var2.Y[1].setText(str2);
-                    String str3 = (String) gn0Var2.X0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = gn0Var2.Y[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
-                    }
-                    editTextBoldCursor.setHintText(str);
-                    gn0Var2.Z0 = false;
-                }
-                AndroidUtilities.runOnUIThread(new ql0(gn0Var2, 3), 300L);
-                gn0Var2.Y[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = gn0Var2.Y[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
-        }
-    }
-
-    @Override
-    public void c(String str, String str2) {
-        this.f38150b.x1();
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f38149a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f40870a) {
             case 0:
-                gn0 gn0Var = this.f38150b;
-                gn0Var.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    gn0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
+                kn0 kn0Var = this.f40871b;
+                if (i10 == 5) {
+                    kn0Var.Y[2].requestFocus();
+                    return true;
+                } else if (i10 == 6) {
+                    kn0Var.L.callOnClick();
+                    return true;
+                } else {
+                    kn0Var.getClass();
+                    return false;
                 }
             case 1:
-                this.f38150b.finishFragment();
-                return;
+                kn0 kn0Var2 = this.f40871b;
+                kn0Var2.getClass();
+                if (i10 == 5) {
+                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr = kn0Var2.Y;
+                    if (intValue >= editTextBoldCursorArr.length) {
+                        return true;
+                    }
+                    if (editTextBoldCursorArr[intValue].isFocusable()) {
+                        kn0Var2.Y[intValue].requestFocus();
+                        return true;
+                    }
+                    kn0Var2.Y[intValue].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
             case 2:
+                kn0 kn0Var3 = this.f40871b;
+                kn0Var3.getClass();
+                if (i10 == 5) {
+                    int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr2 = kn0Var3.f38004a0;
+                    if (intValue2 >= editTextBoldCursorArr2.length) {
+                        return true;
+                    }
+                    if (editTextBoldCursorArr2[intValue2].isFocusable()) {
+                        kn0Var3.f38004a0[intValue2].requestFocus();
+                        return true;
+                    }
+                    kn0Var3.f38004a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
             case 3:
-            default:
-                gn0.a0(this.f38150b);
-                return;
+                kn0 kn0Var4 = this.f40871b;
+                kn0Var4.getClass();
+                if (i10 != 6 && i10 != 5) {
+                    return false;
+                }
+                kn0Var4.L.callOnClick();
+                return true;
             case 4:
-                gn0.d0(this.f38150b);
-                return;
+                kn0 kn0Var5 = this.f40871b;
+                kn0Var5.getClass();
+                if (i10 == 5) {
+                    int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr3 = kn0Var5.Y;
+                    if (intValue3 >= editTextBoldCursorArr3.length) {
+                        return true;
+                    }
+                    if (editTextBoldCursorArr3[intValue3].isFocusable()) {
+                        kn0Var5.Y[intValue3].requestFocus();
+                        return true;
+                    }
+                    kn0Var5.Y[intValue3].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
+            case 5:
+                kn0 kn0Var6 = this.f40871b;
+                kn0Var6.getClass();
+                if (i10 != 5 && i10 != 6) {
+                    return false;
+                }
+                kn0Var6.L.callOnClick();
+                return true;
+            default:
+                kn0 kn0Var7 = this.f40871b;
+                kn0Var7.getClass();
+                if (i10 != 6 && i10 != 5) {
+                    return false;
+                }
+                kn0Var7.L.callOnClick();
+                return true;
         }
     }
 }

@@ -4,37 +4,37 @@ import android.net.Uri;
 import java.util.Arrays;
 public final class a {
     public static final String h;
-    public static final String f2898i;
-    public static final String f2899j;
-    public static final String f2900k;
-    public static final String f2901l;
-    public static final String f2902m;
-    public static final String f2903n;
-    public static final String f2904o;
-    public static final String f2905p;
-    public static final String f2906q;
-    public static final String f2907r;
-    public final int f2908a;
-    public final int f2909b;
-    public final Uri[] f2910c;
+    public static final String f3129i;
+    public static final String f3130j;
+    public static final String f3131k;
+    public static final String f3132l;
+    public static final String f3133m;
+    public static final String f3134n;
+    public static final String f3135o;
+    public static final String f3136p;
+    public static final String f3137q;
+    public static final String f3138r;
+    public final int f3139a;
+    public final int f3140b;
+    public final Uri[] f3141c;
     public final k0[] d;
-    public final int[] e;
-    public final long[] f2911f;
-    public final String[] f2912g;
+    public final int[] f3142e;
+    public final long[] f3143f;
+    public final String[] f3144g;
 
     static {
-        String str = e2.d0.f7870a;
+        String str = e2.d0.f8537a;
         h = Integer.toString(0, 36);
-        f2898i = Integer.toString(1, 36);
-        f2899j = Integer.toString(2, 36);
-        f2900k = Integer.toString(3, 36);
-        f2901l = Integer.toString(4, 36);
-        f2902m = Integer.toString(5, 36);
-        f2903n = Integer.toString(6, 36);
-        f2904o = Integer.toString(7, 36);
-        f2905p = Integer.toString(8, 36);
-        f2906q = Integer.toString(9, 36);
-        f2907r = Integer.toString(10, 36);
+        f3129i = Integer.toString(1, 36);
+        f3130j = Integer.toString(2, 36);
+        f3131k = Integer.toString(3, 36);
+        f3132l = Integer.toString(4, 36);
+        f3133m = Integer.toString(5, 36);
+        f3134n = Integer.toString(6, 36);
+        f3135o = Integer.toString(7, 36);
+        f3136p = Integer.toString(8, 36);
+        f3137q = Integer.toString(9, 36);
+        f3138r = Integer.toString(10, 36);
     }
 
     public a(int i10, int i11, int[] iArr, k0[] k0VarArr, long[] jArr, String[] strArr) {
@@ -47,27 +47,27 @@ public final class a {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f2908a = i10;
-        this.f2909b = i11;
-        this.e = iArr;
+        this.f3139a = i10;
+        this.f3140b = i11;
+        this.f3142e = iArr;
         this.d = k0VarArr;
-        this.f2911f = jArr;
-        this.f2910c = new Uri[k0VarArr.length];
+        this.f3143f = jArr;
+        this.f3141c = new Uri[k0VarArr.length];
         while (true) {
-            Uri[] uriArr = this.f2910c;
+            Uri[] uriArr = this.f3141c;
             if (i12 < uriArr.length) {
                 k0 k0Var = k0VarArr[i12];
                 if (k0Var == null) {
                     uri = null;
                 } else {
-                    f0 f0Var = k0Var.f3070b;
+                    f0 f0Var = k0Var.f3321b;
                     f0Var.getClass();
-                    uri = f0Var.f2985a;
+                    uri = f0Var.f3226a;
                 }
                 uriArr[i12] = uri;
                 i12++;
             } else {
-                this.f2912g = strArr;
+                this.f3144g = strArr;
                 return;
             }
         }
@@ -77,7 +77,7 @@ public final class a {
         int i11;
         int i12 = i10 + 1;
         while (true) {
-            int[] iArr = this.e;
+            int[] iArr = this.f3142e;
             if (i12 >= iArr.length || (i11 = iArr[i12]) == 0 || i11 == 1) {
                 break;
             }
@@ -92,7 +92,7 @@ public final class a {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f2908a == aVar.f2908a && this.f2909b == aVar.f2909b && Arrays.equals(this.d, aVar.d) && Arrays.equals(this.e, aVar.e) && Arrays.equals(this.f2911f, aVar.f2911f) && Arrays.equals(this.f2912g, aVar.f2912g)) {
+            if (this.f3139a == aVar.f3139a && this.f3140b == aVar.f3140b && Arrays.equals(this.d, aVar.d) && Arrays.equals(this.f3142e, aVar.f3142e) && Arrays.equals(this.f3143f, aVar.f3143f) && Arrays.equals(this.f3144g, aVar.f3144g)) {
                 return true;
             }
             return false;
@@ -103,7 +103,7 @@ public final class a {
     public final int hashCode() {
         int i10 = (int) 0;
         int hashCode = Arrays.hashCode(this.d);
-        int hashCode2 = Arrays.hashCode(this.e);
-        return (((((Arrays.hashCode(this.f2911f) + ((hashCode2 + ((hashCode + (((((this.f2908a * 31) + this.f2909b) * 31) + i10) * 31)) * 31)) * 31)) * 31) + i10) * 961) + Arrays.hashCode(this.f2912g)) * 31;
+        int hashCode2 = Arrays.hashCode(this.f3142e);
+        return (((((Arrays.hashCode(this.f3143f) + ((hashCode2 + ((hashCode + (((((this.f3139a * 31) + this.f3140b) * 31) + i10) * 31)) * 31)) * 31)) * 31) + i10) * 961) + Arrays.hashCode(this.f3144g)) * 31;
     }
 }

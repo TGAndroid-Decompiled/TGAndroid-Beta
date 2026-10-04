@@ -1,82 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.app.Activity;
+import android.content.Context;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class ry0 extends FrameLayout {
-    public float E;
-    public float F;
-    public ValueAnimator G;
-    public ValueAnimator H;
-    public com.google.firebase.messaging.m I;
-    public float J;
-    public boolean K;
-    public org.telegram.ui.Components.voip.h L;
-    public Paint f28073a;
-    public Paint f28074b;
-    public Paint f28075c;
-    public Paint d;
-    public boolean e;
-    public ci.bb f28076f;
-    public TextView h;
-    public TextView f28077n;
-    public TextView f28078r;
-    public TextView f28079s;
-    public TextView v;
-    public View f28080w;
-    public int f28081x;
-    public org.telegram.ui.Cells.ea f28082y;
+import org.telegram.tgnet.TLRPC;
+public final class ry0 extends yl0 {
+    public final Context f30546c;
+    public final sy0 d;
 
-    @Override
-    public final void invalidate() {
-        TextView textView = this.f28079s;
-        TextView textView2 = this.f28078r;
-        TextView textView3 = this.f28077n;
-        TextView textView4 = this.h;
-        super.invalidate();
-        this.f28076f.invalidate();
-        int i10 = this.f28081x;
-        int i11 = org.telegram.ui.ActionBar.h6.Vi;
-        if (i10 != org.telegram.ui.ActionBar.h6.w0(null, i11, false)) {
-            this.f28081x = org.telegram.ui.ActionBar.h6.w0(null, i11, false);
-            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f28081x), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f28081x), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f28081x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f28081x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        }
-        this.f28082y.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        this.f28080w.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19062d7, false));
+    public ry0(sy0 sy0Var, Activity activity) {
+        this.d = sy0Var;
+        this.f30546c = activity;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        com.google.firebase.messaging.m mVar = this.I;
-        if (mVar != null) {
-            mVar.f7309a = true;
-            AnimatorSet animatorSet = (AnimatorSet) mVar.f7311c;
-            if (!animatorSet.isRunning()) {
-                animatorSet.start();
-            }
-        }
+    public final boolean D(s4.c1 c1Var) {
+        return false;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        com.google.firebase.messaging.m mVar = this.I;
-        if (mVar != null) {
-            mVar.f7309a = false;
-            ((AnimatorSet) mVar.f7311c).cancel();
+    public final int h() {
+        return this.d.f30898c.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) c1Var.f46523a;
+        ArrayList arrayList = this.d.f30898c;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
+        boolean z10 = true;
+        if (i10 == arrayList.size() - 1) {
+            z10 = false;
         }
+        wVar.b(stickerSetCovered, z10);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.w wVar = new org.telegram.ui.Cells.w(this.f30546c, false);
+        wVar.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(82.0f)));
+        return new s4.c1(wVar);
     }
 }

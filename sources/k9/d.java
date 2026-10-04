@@ -11,14 +11,14 @@ import java.util.HashSet;
 import java.util.Set;
 import q9.r;
 public final class d implements pa.b {
-    public final int f13525a;
-    public final Object f13526b;
-    public final Object f13527c;
+    public final int f14705a;
+    public final Object f14706b;
+    public final Object f14707c;
 
     public d(int i10, Object obj, Object obj2) {
-        this.f13525a = i10;
-        this.f13527c = obj;
-        this.f13526b = obj2;
+        this.f14705a = i10;
+        this.f14707c = obj;
+        this.f14706b = obj2;
     }
 
     @Override
@@ -26,10 +26,10 @@ public final class d implements pa.b {
         ApplicationInfo applicationInfo;
         Bundle bundle;
         boolean z10;
-        switch (this.f13525a) {
+        switch (this.f14705a) {
             case 0:
-                h hVar = (h) this.f13527c;
-                Context context = (Context) this.f13526b;
+                h hVar = (h) this.f14707c;
+                Context context = (Context) this.f14706b;
                 String d = hVar.d();
                 ma.a aVar = (ma.a) hVar.d.a(ma.a.class);
                 ?? obj = new Object();
@@ -54,31 +54,31 @@ public final class d implements pa.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj.f43935a = z11;
+                obj.f47570a = z11;
                 return obj;
             case 1:
-                return new na.g((Context) this.f13526b, (String) this.f13527c);
+                return new na.g((Context) this.f14706b, (String) this.f14707c);
             default:
-                q9.g gVar = (q9.g) this.f13527c;
-                q9.a aVar2 = (q9.a) this.f13526b;
-                q9.d dVar = aVar2.f41468f;
+                q9.g gVar = (q9.g) this.f14707c;
+                q9.a aVar2 = (q9.a) this.f14706b;
+                q9.d dVar = aVar2.f44840f;
                 ?? obj2 = new Object();
                 HashSet hashSet = new HashSet();
                 HashSet hashSet2 = new HashSet();
                 HashSet hashSet3 = new HashSet();
                 HashSet hashSet4 = new HashSet();
                 HashSet hashSet5 = new HashSet();
-                Set<q9.j> set = aVar2.f41467c;
-                Set set2 = aVar2.f41469g;
+                Set<q9.j> set = aVar2.f44838c;
+                Set set2 = aVar2.f44841g;
                 for (q9.j jVar : set) {
-                    int i11 = jVar.f41485c;
-                    int i12 = jVar.f41484b;
+                    int i11 = jVar.f44858c;
+                    int i12 = jVar.f44857b;
                     if (i11 == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    r rVar = jVar.f41483a;
+                    r rVar = jVar.f44856a;
                     if (z10) {
                         if (i12 == 2) {
                             hashSet4.add(rVar);
@@ -96,19 +96,19 @@ public final class d implements pa.b {
                 if (!set2.isEmpty()) {
                     hashSet.add(r.a(ma.a.class));
                 }
-                obj2.f4252a = DesugarCollections.unmodifiableSet(hashSet);
-                obj2.f4253b = DesugarCollections.unmodifiableSet(hashSet2);
-                obj2.f4254c = DesugarCollections.unmodifiableSet(hashSet3);
+                obj2.f4602a = DesugarCollections.unmodifiableSet(hashSet);
+                obj2.f4603b = DesugarCollections.unmodifiableSet(hashSet2);
+                obj2.f4604c = DesugarCollections.unmodifiableSet(hashSet3);
                 obj2.d = DesugarCollections.unmodifiableSet(hashSet4);
                 DesugarCollections.unmodifiableSet(hashSet5);
-                obj2.e = gVar;
-                return dVar.G(obj2);
+                obj2.f4605e = gVar;
+                return dVar.E(obj2);
         }
     }
 
     public d(Context context, String str) {
-        this.f13525a = 1;
-        this.f13526b = context;
-        this.f13527c = str;
+        this.f14705a = 1;
+        this.f14706b = context;
+        this.f14707c = str;
     }
 }

@@ -11,24 +11,24 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.qg0;
-import org.telegram.ui.Components.wr;
-import org.telegram.ui.Components.xu;
+import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.rg0;
+import org.telegram.ui.Components.xr;
+import org.telegram.ui.Components.zu;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class e2 implements View.OnClickListener {
-    public final int f760a;
+    public final int f826a;
 
     public e2(int i10) {
-        this.f760a = i10;
+        this.f826a = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f760a) {
+        switch (this.f826a) {
             case 0:
                 m2.j();
                 return;
@@ -39,18 +39,18 @@ public final class e2 implements View.OnClickListener {
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 3:
-                int i11 = ei.n.f8477n;
+                int i11 = ei.o.f9223n;
                 return;
             case 4:
                 return;
             case 5:
-                int i12 = jh.c.e;
+                int i12 = jh.c.f14136e;
                 return;
             case 6:
                 int i13 = org.telegram.ui.Cells.x.L;
                 return;
             case 7:
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != null) {
                     R.presentFragment(new PremiumPreviewFragment(0, "contact"));
                     return;
@@ -68,28 +68,28 @@ public final class e2 implements View.OnClickListener {
                 }
                 return;
             case 9:
-                int i14 = oq.f27156e0;
+                int i14 = pq.f29707e0;
                 return;
             case 10:
-                int i15 = wr.f30152s;
+                int i15 = xr.f32966s;
                 return;
             case 11:
                 float[] fArr = FragmentContextView.P0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 12:
-                qg0 qg0Var = qg0.f27682p0;
-                xu xuVar = qg0Var.U;
-                if (xuVar != null) {
-                    xuVar.H();
+                rg0 rg0Var = rg0.f30377p0;
+                zu zuVar = rg0Var.U;
+                if (zuVar != null) {
+                    zuVar.F();
                 } else {
-                    PhotoViewer photoViewer = qg0Var.V;
+                    PhotoViewer photoViewer = rg0Var.V;
                     if (photoViewer != null) {
                         photoViewer.P0();
                         MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                qg0.j(false);
+                rg0.j(false);
                 return;
             case 13:
                 org.telegram.ui.Components.voip.k1.j();
@@ -111,7 +111,7 @@ public final class e2 implements View.OnClickListener {
                 tg.m1.e0(0, null);
                 return;
             case 17:
-                ArrayList arrayList = ExternalActionActivity.f31077x;
+                ArrayList arrayList = ExternalActionActivity.f33739x;
                 return;
             case 18:
                 return;
@@ -124,8 +124,8 @@ public final class e2 implements View.OnClickListener {
                 try {
                     view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://fragment.com")));
                     return;
-                } catch (ActivityNotFoundException e) {
-                    FileLog.e(e);
+                } catch (ActivityNotFoundException e7) {
+                    FileLog.e(e7);
                     return;
                 }
             case 22:
@@ -135,30 +135,30 @@ public final class e2 implements View.OnClickListener {
                 try {
                     view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=org.telegram.messenger")));
                     return;
-                } catch (ActivityNotFoundException e7) {
-                    FileLog.e(e7);
+                } catch (ActivityNotFoundException e10) {
+                    FileLog.e(e10);
                     return;
                 }
             case 24:
                 int i16 = xh.m.A0;
                 return;
             case 25:
-                ad[] adVarArr = xh.v.f46430p0;
+                ad[] adVarArr = xh.v.f50250p0;
                 return;
             case 26:
-                int i17 = xh.c0.f46096f0;
+                int i17 = xh.c0.f49897f0;
                 return;
             case 27:
                 int i18 = yh.s0.D0;
                 return;
             default:
-                int i19 = zg.f.e;
+                int i19 = zg.f.f53371e;
                 return;
         }
     }
 
     public e2(Object obj, int i10) {
-        this.f760a = i10;
+        this.f826a = i10;
     }
 
     private final void a(View view) {

@@ -1,20 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class kv0 {
-    public final int f25827a;
-    public final int f25828b;
-    public final jv0 f25829c;
-    public final iv0 d;
-    public final lv0 e;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.tl.TL_stories;
+public final class kv0 extends ai.sc {
+    public final mv0 h;
 
-    public kv0(lv0 lv0Var, Context context, int i10) {
-        this.e = lv0Var;
-        this.f25828b = i10;
-        int i11 = lv0Var.a2;
-        lv0Var.a2 = i11 + 1;
-        this.f25827a = (i11 & 65535) | 65536;
-        this.f25829c = new jv0(this, context, i10);
-        this.d = new iv0(lv0Var, context, i10, false);
+    public kv0(mv0 mv0Var, ai.l9 l9Var, long j3, int i10) {
+        super(i10, j3, l9Var);
+        this.h = mv0Var;
+    }
+
+    @Override
+    public final void a(ArrayList arrayList) {
+        os0 os0Var;
+        MessageObject messageObject;
+        mv0 mv0Var = this.h;
+        pv0 pv0Var = mv0Var.F;
+        int i10 = 0;
+        while (true) {
+            iu0[] iu0VarArr = pv0Var.f29776k0;
+            if (i10 < iu0VarArr.length) {
+                os0 os0Var2 = iu0VarArr[i10].h;
+                if (os0Var2 != null && os0Var2.getAdapter() == mv0Var) {
+                    os0Var = pv0Var.f29776k0[i10].h;
+                    break;
+                }
+                i10++;
+            } else {
+                os0Var = null;
+                break;
+            }
+        }
+        if (os0Var != null) {
+            for (int i11 = 0; i11 < os0Var.getChildCount(); i11++) {
+                View childAt = os0Var.getChildAt(i11);
+                if ((childAt instanceof org.telegram.ui.Cells.t7) && (messageObject = ((org.telegram.ui.Cells.t7) childAt).getMessageObject()) != null && messageObject.isStory()) {
+                    arrayList.add(Integer.valueOf(messageObject.storyItem.f20274id));
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
+        TL_stories.StoryItem storyItem;
+        ai.d9 d9Var = this.h.f28729s;
+        ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
+        d9Var.getClass();
+        if (arrayList != null && arrayList2 != null) {
+            boolean z10 = false;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                Integer num = (Integer) arrayList.get(i10);
+                num.intValue();
+                if (i10 >= arrayList2.size()) {
+                    break;
+                }
+                TL_stories.StoryViews storyViews = arrayList2.get(i10);
+                MessageObject messageObject = (MessageObject) d9Var.f790j.get(num);
+                if (messageObject != null && (storyItem = messageObject.storyItem) != null) {
+                    storyItem.views = storyViews;
+                    z10 = true;
+                }
+            }
+            if (z10) {
+                d9Var.x();
+            }
+        }
+        return true;
     }
 }

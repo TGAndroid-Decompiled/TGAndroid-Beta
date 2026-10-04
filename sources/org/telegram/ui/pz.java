@@ -1,16 +1,21 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class pz extends FrameLayout {
-    public vh.n f36708a;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class pz implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final ExternalActionActivity f39558a;
 
-    public vh.n getSubtitleTextView() {
-        return this.f36708a;
+    public pz(ExternalActionActivity externalActionActivity) {
+        this.f39558a = externalActionActivity;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void onGlobalLayout() {
+        ExternalActionActivity externalActionActivity = this.f39558a;
+        externalActionActivity.f();
+        ActionBarLayout actionBarLayout = externalActionActivity.f33743c;
+        if (actionBarLayout != null) {
+            actionBarLayout.getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        }
     }
 }

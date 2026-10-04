@@ -1,127 +1,50 @@
 package xh;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.p90;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.yl0;
-import org.telegram.ui.ub1;
-import w7.a6;
-import w7.y5;
-public final class p1 extends w51 {
-    public static final int f46348a = 0;
+import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.tr;
+import org.telegram.ui.xb1;
+import w7.z5;
+public final class p1 extends FrameLayout {
+    public final xb1 f50163a;
+    public int f50164b;
+    public final e6 f50165c;
+    public final ArrayList d;
+    public final RectF f50166e;
+    public final RectF f50167f;
+    public final RectF h;
+    public final Paint f50168n;
+    public int f50169r;
 
-    static {
-        w51.setup(new w51());
+    public p1(Context context) {
+        super(context);
+        this.d = new ArrayList();
+        this.f50166e = new RectF();
+        this.f50167f = new RectF();
+        this.h = new RectF();
+        this.f50168n = new Paint(1);
+        this.f50169r = Integer.MIN_VALUE;
+        xb1 xb1Var = new xb1(this, context, 18);
+        this.f50163a = xb1Var;
+        xb1Var.setClipToPadding(false);
+        xb1Var.setClipChildren(false);
+        xb1Var.setOrientation(0);
+        xb1Var.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f));
+        addView(xb1Var, z5.e(-2, -1, 1));
+        setHorizontalScrollBarEnabled(false);
+        setClipToPadding(false);
+        setClipChildren(false);
+        this.f50165c = new e6(xb1Var, 0L, 320L, tr.h);
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
-        boolean z11;
-        q1 q1Var = (q1) view;
-        int i10 = x51Var.d;
-        ArrayList arrayList = (ArrayList) x51Var.G;
-        int i11 = x51Var.f30291z;
-        Utilities.Callback callback = (Utilities.Callback) x51Var.H;
-        ub1 ub1Var = q1Var.f46357a;
-        ArrayList arrayList2 = q1Var.d;
-        if (q1Var.f46362r == i10) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        q1Var.f46362r = i10;
-        if (arrayList2.size() != arrayList.size()) {
-            int i12 = 0;
-            int i13 = 0;
-            while (true) {
-                CharSequence charSequence = null;
-                if (i12 >= arrayList2.size()) {
-                    break;
-                }
-                if (i13 < arrayList.size()) {
-                    charSequence = (CharSequence) arrayList.get(i13);
-                }
-                if (charSequence == null) {
-                    ub1Var.removeView((View) arrayList2.remove(i12));
-                    i12--;
-                } else {
-                    ((TextView) arrayList2.get(i12)).setText(charSequence);
-                }
-                i13++;
-                i12++;
-            }
-            while (i13 < arrayList.size()) {
-                p90 p90Var = new p90(q1Var.getContext(), null);
-                p90Var.setGravity(17);
-                p90Var.setText((CharSequence) arrayList.get(i13));
-                p90Var.setTypeface(AndroidUtilities.bold());
-                p90Var.setTextColor(h6.v(h6.w0(null, h6.f19024b6, false), h6.w0(null, h6.f19043c6, false)));
-                p90Var.setTextSize(1, 14.0f);
-                p90Var.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                p90Var.setEllipsize(TextUtils.TruncateAt.END);
-                p90Var.setSingleLine();
-                p90Var.setMaxLines(1);
-                a6.b(p90Var, 0.075f, 1.4f);
-                ub1Var.addView(p90Var, y5.n(-2, 26));
-                arrayList2.add(p90Var);
-                i13++;
-            }
-        }
-        q1Var.f46358b = i11;
-        if (!z11) {
-            q1Var.f46359c.d(i11, true);
-        }
-        ub1Var.invalidate();
-        for (int i14 = 0; i14 < arrayList2.size(); i14++) {
-            ((TextView) arrayList2.get(i14)).setOnClickListener(new org.telegram.ui.Components.a0(i14, 1, callback));
-        }
-    }
-
-    @Override
-    public final boolean contentsEquals(x51 x51Var, x51 x51Var2) {
-        if (x51Var.f30291z == x51Var2.f30291z && x51Var.H == x51Var2.H && equals(x51Var, x51Var2)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, d6 d6Var) {
-        return new q1(context);
-    }
-
-    @Override
-    public final boolean equals(x51 x51Var, x51 x51Var2) {
-        if (x51Var.d == x51Var2.d) {
-            ArrayList arrayList = (ArrayList) x51Var.G;
-            ArrayList arrayList2 = (ArrayList) x51Var2.G;
-            if (arrayList != arrayList2) {
-                if (arrayList != null || arrayList2 != null) {
-                    if (arrayList != null && arrayList2 != null && arrayList.size() == arrayList2.size()) {
-                        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                            if (TextUtils.equals((CharSequence) arrayList.get(i10), (CharSequence) arrayList2.get(i10))) {
-                            }
-                        }
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        }
-        return false;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

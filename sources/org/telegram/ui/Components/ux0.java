@@ -1,33 +1,52 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class ux0 extends wq0 {
-    public final hy0 f28894b1;
+import org.telegram.messenger.NotificationCenter;
+public final class ux0 extends w9 implements NotificationCenter.NotificationCenterDelegate {
+    public final int G;
+    public int H;
+    public String I;
 
-    public ux0(hy0 hy0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null, str, false, str2, false, d6Var);
-        this.f28894b1 = hy0Var;
+    public ux0(Context context, int i10) {
+        super(context);
+        this.I = "tg_placeholders_android";
+        this.G = i10;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new ym(this, iVar, i10, 20), 100L);
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        org.telegram.ui.ActionBar.m2 m2Var = this.f28894b1.L;
-        if (m2Var instanceof org.telegram.ui.wn) {
-            AndroidUtilities.requestAdjustResize(m2Var.getParentActivity(), m2Var.getClassGuid());
-            if (((org.telegram.ui.wn) m2Var).Y.getVisibility() == 0) {
-                m2Var.getFragmentView().requestLayout();
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.diceStickersDidLoad) {
+            if (this.I.equals((String) objArr[0])) {
+                t();
             }
         }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        t();
+        NotificationCenter.getInstance(this.G).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    public void setStickerNum(int i10) {
+        if (this.H != i10) {
+            this.H = i10;
+            t();
+        }
+    }
+
+    public void setStickerPackName(String str) {
+        this.I = str;
+    }
+
+    public final void t() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ux0.t():void");
     }
 }

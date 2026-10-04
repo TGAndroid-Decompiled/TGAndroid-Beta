@@ -9,29 +9,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.l21;
+import org.telegram.ui.n21;
 public final class k0 {
-    public static final k0 e;
-    public static final List f41156f;
-    public static final List f41157g;
+    public static final k0 f44509e;
+    public static final List f44510f;
+    public static final List f44511g;
     public static ArrayList h;
-    public static boolean f41158i;
-    public final String f41159a;
-    public final String f41160b;
-    public final String f41161c;
+    public static boolean f44512i;
+    public final String f44513a;
+    public final String f44514b;
+    public final String f44515c;
     public final o0.a d;
 
     static {
-        k0 k0Var = new k0("roboto", "PhotoEditorTypefaceRoboto", new o0.a(new org.webrtc.audio.b(3)));
-        e = k0Var;
-        f41156f = Arrays.asList(k0Var, new k0("italic", "PhotoEditorTypefaceItalic", new o0.a(new org.webrtc.audio.b(4))), new k0("serif", "PhotoEditorTypefaceSerif", new o0.a(new org.webrtc.audio.b(5))), new k0("condensed", "PhotoEditorTypefaceCondensed", new o0.a(new org.webrtc.audio.b(6))), new k0("mono", "PhotoEditorTypefaceMono", new o0.a(new org.webrtc.audio.b(7))), new k0("mw_bold", "PhotoEditorTypefaceMerriweather", new o0.a(new org.webrtc.audio.b(8))));
-        f41157g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
+        k0 k0Var = new k0("roboto", "PhotoEditorTypefaceRoboto", new o0.a(new org.telegram.ui.web.w(5)));
+        f44509e = k0Var;
+        f44510f = Arrays.asList(k0Var, new k0("italic", "PhotoEditorTypefaceItalic", new o0.a(new org.telegram.ui.web.w(6))), new k0("serif", "PhotoEditorTypefaceSerif", new o0.a(new org.telegram.ui.web.w(7))), new k0("condensed", "PhotoEditorTypefaceCondensed", new o0.a(new org.telegram.ui.web.w(8))), new k0("mono", "PhotoEditorTypefaceMono", new o0.a(new org.telegram.ui.web.w(9))), new k0("mw_bold", "PhotoEditorTypefaceMerriweather", new o0.a(new org.telegram.ui.web.w(10))));
+        f44511g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
     public k0(String str, String str2, o0.a aVar) {
-        this.f41159a = str;
-        this.f41160b = str2;
-        this.f41161c = null;
+        this.f44513a = str;
+        this.f44514b = str2;
+        this.f44515c = null;
         this.d = aVar;
     }
 
@@ -42,11 +42,11 @@ public final class k0 {
     public static List c() {
         ArrayList arrayList = h;
         if (arrayList == null) {
-            if (arrayList == null && !f41158i) {
-                f41158i = true;
-                Utilities.themeQueue.postRunnable(new l21(10));
+            if (arrayList == null && !f44512i) {
+                f44512i = true;
+                Utilities.themeQueue.postRunnable(new n21(10));
             }
-            return f41156f;
+            return f44510f;
         }
         return arrayList;
     }
@@ -57,9 +57,9 @@ public final class k0 {
             return null;
         }
         randomAccessFile.seek(i10 + j0Var.d);
-        byte[] bArr = new byte[j0Var.f41153c];
+        byte[] bArr = new byte[j0Var.f44506c];
         randomAccessFile.read(bArr);
-        if (j0Var.f41151a == 1) {
+        if (j0Var.f44504a == 1) {
             charset = StandardCharsets.UTF_16BE;
         } else {
             charset = StandardCharsets.UTF_8;
@@ -69,16 +69,16 @@ public final class k0 {
 
     public final Typeface d() {
         o0.a aVar = this.d;
-        if (((Typeface) aVar.f15484c) == null) {
-            aVar.f15484c = ((i0) aVar.f15483b).a();
+        if (((Typeface) aVar.f16928c) == null) {
+            aVar.f16928c = ((i0) aVar.f16927b).a();
         }
-        return (Typeface) aVar.f15484c;
+        return (Typeface) aVar.f16928c;
     }
 
     public k0(Font font, String str) {
-        this.f41159a = str;
-        this.f41161c = str;
-        this.f41160b = null;
-        this.d = new o0.a(new le.b(font, 17));
+        this.f44513a = str;
+        this.f44515c = str;
+        this.f44514b = null;
+        this.d = new o0.a(new k2.v(font, 18));
     }
 }

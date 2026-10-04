@@ -1,44 +1,44 @@
 package org.telegram.messenger;
 public final class m0 implements Runnable {
-    public final int f16974a;
-    public final long f16975b;
-    public final long f16976c;
+    public final int f18528a;
+    public final long f18529b;
+    public final long f18530c;
     public final long d;
-    public final Object e;
+    public final Object f18531e;
 
-    public m0(long j3, long j10, long j11, org.telegram.ui.b5 b5Var) {
-        this.f16974a = 2;
-        this.f16975b = j3;
-        this.f16976c = j10;
+    public m0(long j3, long j10, long j11, org.telegram.ui.c5 c5Var) {
+        this.f18528a = 2;
+        this.f18529b = j3;
+        this.f18530c = j10;
         this.d = j11;
-        this.e = b5Var;
+        this.f18531e = c5Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f16974a) {
+        switch (this.f18528a) {
             case 0:
-                ((BotGuardHelper) this.e).lambda$openGuardBotWebApp$0(this.f16975b, this.f16976c, this.d);
+                ((BotGuardHelper) this.f18531e).lambda$openGuardBotWebApp$0(this.f18529b, this.f18530c, this.d);
                 return;
             case 1:
-                ((MediaDataController) this.e).lambda$loadMusic$142(this.f16975b, this.f16976c, this.d);
+                ((MediaDataController) this.f18531e).lambda$loadMusic$142(this.f18529b, this.f18530c, this.d);
                 return;
             default:
-                long j3 = this.f16975b;
-                long j10 = this.f16976c;
-                org.telegram.ui.z6.f40344n0 = Long.valueOf(j3 * j10);
+                long j3 = this.f18529b;
+                long j10 = this.f18530c;
+                org.telegram.ui.a7.f34675p0 = Long.valueOf(j3 * j10);
                 Long valueOf = Long.valueOf(this.d * j10);
-                org.telegram.ui.z6.f40345o0 = valueOf;
-                ((org.telegram.ui.b5) this.e).run(org.telegram.ui.z6.f40344n0, valueOf);
+                org.telegram.ui.a7.f34676q0 = valueOf;
+                ((org.telegram.ui.c5) this.f18531e).run(org.telegram.ui.a7.f34675p0, valueOf);
                 return;
         }
     }
 
     public m0(BaseController baseController, long j3, long j10, long j11, int i10) {
-        this.f16974a = i10;
-        this.e = baseController;
-        this.f16975b = j3;
-        this.f16976c = j10;
+        this.f18528a = i10;
+        this.f18531e = baseController;
+        this.f18529b = j3;
+        this.f18530c = j10;
         this.d = j11;
     }
 }

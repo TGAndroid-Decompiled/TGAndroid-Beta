@@ -5,20 +5,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.sk0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsSettingsActivity;
-import org.telegram.ui.wn;
+import org.telegram.ui.yn;
 public final class qj implements Runnable {
-    public final int f17409a = 0;
-    public final int f17410b;
-    public final int f17411c;
+    public final int f19008a = 0;
+    public final int f19009b;
+    public final int f19010c;
     public final boolean d;
-    public final Object e;
-    public final Object f17412f;
+    public final Object f19011e;
+    public final Object f19012f;
 
     public qj(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, int i10, int i11, boolean z10) {
-        this.e = sendMessagesHelper;
-        this.f17412f = message;
-        this.f17410b = i10;
-        this.f17411c = i11;
+        this.f19011e = sendMessagesHelper;
+        this.f19012f = message;
+        this.f19009b = i10;
+        this.f19010c = i11;
         this.d = z10;
     }
 
@@ -27,30 +27,30 @@ public final class qj implements Runnable {
         TLRPC.Document f7;
         gg.n nVar;
         int i10;
-        switch (this.f17409a) {
+        switch (this.f19008a) {
             case 0:
-                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$98((TLRPC.Message) this.f17412f, this.f17410b, this.f17411c, this.d);
+                ((SendMessagesHelper) this.f19011e).lambda$performSendMessageRequest$98((TLRPC.Message) this.f19012f, this.f19009b, this.f19010c, this.d);
                 return;
             case 1:
-                wn wnVar = (wn) this.e;
-                sk0 sk0Var = (sk0) this.f17412f;
-                org.telegram.ui.ActionBar.m1 m1Var = wnVar.Q8;
-                if (m1Var != null && wnVar.fragmentView != null && !m1Var.isShowing() && AndroidUtilities.isActivityRunning(wnVar.getParentActivity())) {
-                    wnVar.Q8.showAtLocation(wnVar.f39695x0, 51, this.f17410b, this.f17411c);
+                yn ynVar = (yn) this.f19011e;
+                sk0 sk0Var = (sk0) this.f19012f;
+                org.telegram.ui.ActionBar.n1 n1Var = ynVar.O8;
+                if (n1Var != null && ynVar.fragmentView != null && !n1Var.isShowing() && AndroidUtilities.isActivityRunning(ynVar.getParentActivity())) {
+                    ynVar.O8.showAtLocation(ynVar.f43525v0, 51, this.f19009b, this.f19010c);
                     if (this.d && sk0Var != null) {
                         sk0Var.r(true);
                     }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.of(wnVar, 26), 420L);
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.yf(ynVar, 23), 420L);
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Components.ac acVar = (org.telegram.ui.Components.ac) this.e;
-                zg.o0 o0Var = (zg.o0) this.f17412f;
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                long j3 = o0Var.f49399g;
+                org.telegram.ui.Components.bc bcVar = (org.telegram.ui.Components.bc) this.f19011e;
+                zg.o0 o0Var = (zg.o0) this.f19012f;
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                long j3 = o0Var.f53480g;
                 if (j3 == 0) {
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49398f);
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f53479f);
                     if (tL_availableReaction != null) {
                         f7 = tL_availableReaction.activate_animation;
                     } else {
@@ -61,9 +61,9 @@ public final class qj implements Runnable {
                 }
                 if (f7 != null && R != null) {
                     org.telegram.ui.Components.yc a02 = org.telegram.ui.Components.yc.a0(R);
-                    int i11 = acVar.f22634a.h;
+                    int i11 = bcVar.f24916a.h;
                     if (this.d) {
-                        nVar = new gg.n(this.f17410b, this.f17411c, R, 7);
+                        nVar = new gg.n(this.f19009b, this.f19010c, R, 7);
                     } else {
                         nVar = null;
                     }
@@ -72,9 +72,9 @@ public final class qj implements Runnable {
                 }
                 return;
             default:
-                NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) this.e;
-                org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) this.f17412f;
-                int i12 = this.f17410b;
+                NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) this.f19011e;
+                org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) this.f19012f;
+                int i12 = this.f19009b;
                 boolean z10 = this.d;
                 if (i12 == 3) {
                     SharedPreferences.Editor edit = notificationsSettingsActivity.getNotificationsSettings().edit();
@@ -106,33 +106,33 @@ public final class qj implements Runnable {
                     notificationsSettingsActivity.getNotificationsController().updateServerNotificationsSettings(i12);
                     notificationsSettingsActivity.getNotificationsController().deleteNotificationChannelGlobal(i12);
                 }
-                j5Var.e.b(0, !z10, true);
-                notificationsSettingsActivity.f31164c.m(this.f17411c);
+                j5Var.f22328e.b(0, !z10, true);
+                notificationsSettingsActivity.f33830c.m(this.f19010c);
                 return;
         }
     }
 
-    public qj(wn wnVar, int i10, int i11, boolean z10, sk0 sk0Var) {
-        this.e = wnVar;
-        this.f17410b = i10;
-        this.f17411c = i11;
+    public qj(yn ynVar, int i10, int i11, boolean z10, sk0 sk0Var) {
+        this.f19011e = ynVar;
+        this.f19009b = i10;
+        this.f19010c = i11;
         this.d = z10;
-        this.f17412f = sk0Var;
+        this.f19012f = sk0Var;
     }
 
-    public qj(org.telegram.ui.Components.ac acVar, zg.o0 o0Var, boolean z10, int i10, int i11) {
-        this.e = acVar;
-        this.f17412f = o0Var;
+    public qj(org.telegram.ui.Components.bc bcVar, zg.o0 o0Var, boolean z10, int i10, int i11) {
+        this.f19011e = bcVar;
+        this.f19012f = o0Var;
         this.d = z10;
-        this.f17410b = i10;
-        this.f17411c = i11;
+        this.f19009b = i10;
+        this.f19010c = i11;
     }
 
     public qj(NotificationsSettingsActivity notificationsSettingsActivity, int i10, boolean z10, org.telegram.ui.Cells.j5 j5Var, int i11) {
-        this.e = notificationsSettingsActivity;
-        this.f17410b = i10;
+        this.f19011e = notificationsSettingsActivity;
+        this.f19009b = i10;
         this.d = z10;
-        this.f17412f = j5Var;
-        this.f17411c = i11;
+        this.f19012f = j5Var;
+        this.f19010c = i11;
     }
 }

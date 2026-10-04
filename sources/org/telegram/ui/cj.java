@@ -1,32 +1,118 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.KeyEvent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class cj extends FrameLayout {
-    public final wn f32736a;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
+public final class cj extends AnimatorListenerAdapter {
+    public final int f35485a = 1;
+    public final boolean f35486b;
+    public int f35487c;
+    public final Object d;
+    public final NotificationCenter.NotificationCenterDelegate f35488e;
 
-    public cj(wn wnVar, Activity activity) {
-        super(activity);
-        this.f32736a = wnVar;
+    public cj(org.telegram.ui.Components.pv0 pv0Var, boolean z10, int i10, org.telegram.ui.Components.iu0 iu0Var) {
+        this.f35488e = pv0Var;
+        this.f35486b = z10;
+        this.f35487c = i10;
+        this.d = iu0Var;
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            this.f32736a.A7(true);
+    public final void onAnimationEnd(Animator animator) {
+        org.telegram.ui.ActionBar.k kVar;
+        View m10;
+        int i10;
+        s4.h0 adapter;
+        switch (this.f35485a) {
+            case 0:
+                yn ynVar = (yn) this.f35488e;
+                ynVar.M5 = true;
+                ((org.telegram.ui.ActionBar.n2) ynVar).fragmentBeginToShow = true;
+                ynVar.T9 = null;
+                if (this.f35486b) {
+                    ynVar.f43373ia = false;
+                }
+                kVar = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
+                kVar.invalidate();
+                ynVar.V0.invalidate();
+                AndroidUtilities.runOnUIThread(new bj(this, 0), 32L);
+                ((Runnable) this.d).run();
+                return;
+            default:
+                int i11 = this.f35487c;
+                org.telegram.ui.Components.pv0 pv0Var = (org.telegram.ui.Components.pv0) this.f35488e;
+                int[] iArr = pv0Var.f29779m1;
+                org.telegram.ui.Components.iu0[] iu0VarArr = pv0Var.f29776k0;
+                pv0Var.f29784o1 = false;
+                boolean z10 = this.f35486b;
+                if (z10) {
+                    int i12 = pv0Var.f29788q1;
+                    iArr[i11] = i12;
+                    if (i11 == 0) {
+                        SharedConfig.setMediaColumnsCount(i12);
+                    } else if (pv0Var.c0(((org.telegram.ui.Components.iu0) this.d).F) >= 5) {
+                        SharedConfig.setStoriesColumnsCount(pv0Var.f29788q1);
+                    }
+                }
+                for (int i13 = 0; i13 < iu0VarArr.length; i13++) {
+                    org.telegram.ui.Components.iu0 iu0Var = iu0VarArr[i13];
+                    if (iu0Var != null && iu0Var.h != null && (((i10 = iu0Var.F) == 0 || org.telegram.ui.Components.pv0.p0(i10)) && (adapter = iu0VarArr[i13].h.getAdapter()) != null)) {
+                        int h = adapter.h();
+                        if (i13 == 0) {
+                            pv0Var.f29796t1[0].g(false);
+                        }
+                        if (z10) {
+                            iu0VarArr[i13].f27504x.y1(iArr[i11]);
+                            iu0VarArr[i13].h.a0();
+                            if (adapter.h() == h) {
+                                AndroidUtilities.updateVisibleRows(iu0VarArr[i13].h);
+                            } else {
+                                adapter.l();
+                            }
+                        }
+                        iu0VarArr[i13].f27501r.setVisibility(8);
+                    }
+                }
+                if (pv0Var.f29792s >= 0) {
+                    for (int i14 = 0; i14 < iu0VarArr.length; i14++) {
+                        org.telegram.ui.Components.iu0 iu0Var2 = iu0VarArr[i14];
+                        if (iu0Var2.F == pv0Var.f29786p1) {
+                            if (z10 && (m10 = iu0Var2.f27502s.m(pv0Var.f29792s)) != null) {
+                                pv0Var.v = m10.getTop();
+                            }
+                            org.telegram.ui.Components.iu0 iu0Var3 = iu0VarArr[i14];
+                            iu0Var3.f27504x.h1(pv0Var.f29792s, (-iu0Var3.h.getPaddingTop()) + pv0Var.v);
+                        }
+                    }
+                } else {
+                    pv0Var.X0();
+                }
+                super.onAnimationEnd(animator);
+                return;
         }
-        return super.dispatchKeyEvent(keyEvent);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int min = Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(300.0f));
-        if (min == 0) {
-            min = AndroidUtilities.dp(300.0f);
+    public void onAnimationStart(Animator animator) {
+        int i10;
+        switch (this.f35485a) {
+            case 0:
+                super.onAnimationStart(animator);
+                i10 = ((org.telegram.ui.ActionBar.n2) ((yn) this.f35488e)).currentAccount;
+                this.f35487c = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f35487c, null);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
+    }
+
+    public cj(yn ynVar, boolean z10, Runnable runnable) {
+        this.f35488e = ynVar;
+        this.f35486b = z10;
+        this.d = runnable;
     }
 }

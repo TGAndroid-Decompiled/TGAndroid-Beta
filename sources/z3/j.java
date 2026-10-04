@@ -1,41 +1,8 @@
 package z3;
+public class j extends h2.h {
+    public long f52372r;
 
-import java.util.List;
-public abstract class j extends h2.j implements d {
-    public d f48373a;
-    public long f48374b;
-
-    @Override
-    public final void clear() {
-        super.clear();
-        this.f48373a = null;
-    }
-
-    @Override
-    public final int d(long j3) {
-        d dVar = this.f48373a;
-        dVar.getClass();
-        return dVar.d(j3 - this.f48374b);
-    }
-
-    @Override
-    public final long g(int i10) {
-        d dVar = this.f48373a;
-        dVar.getClass();
-        return dVar.g(i10) + this.f48374b;
-    }
-
-    @Override
-    public final List s(long j3) {
-        d dVar = this.f48373a;
-        dVar.getClass();
-        return dVar.s(j3 - this.f48374b);
-    }
-
-    @Override
-    public final int v() {
-        d dVar = this.f48373a;
-        dVar.getClass();
-        return dVar.v();
+    public j() {
+        super(1, 0);
     }
 }

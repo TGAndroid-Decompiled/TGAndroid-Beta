@@ -1,17 +1,16 @@
 package v7;
 public abstract class p5 {
-    public static int a(int i10, int i11) {
-        if (i11 >= 0) {
-            int i12 = i10 + (i10 >> 1) + 1;
-            if (i12 < i11) {
-                int highestOneBit = Integer.highestOneBit(i11 - 1);
-                i12 = highestOneBit + highestOneBit;
-            }
-            if (i12 < 0) {
-                return Integer.MAX_VALUE;
-            }
-            return i12;
-        }
-        throw new AssertionError("cannot store more than MAX_VALUE elements");
-    }
+    public abstract com.google.android.gms.internal.cast.b4 a(com.google.android.gms.internal.cast.h4 h4Var);
+
+    public abstract com.google.android.gms.internal.cast.g4 b(com.google.android.gms.internal.cast.h4 h4Var);
+
+    public abstract void c(com.google.android.gms.internal.cast.g4 g4Var, com.google.android.gms.internal.cast.g4 g4Var2);
+
+    public abstract void d(com.google.android.gms.internal.cast.g4 g4Var, Thread thread);
+
+    public abstract boolean e(com.google.android.gms.internal.cast.h4 h4Var, com.google.android.gms.internal.cast.b4 b4Var, com.google.android.gms.internal.cast.b4 b4Var2);
+
+    public abstract boolean f(com.google.android.gms.internal.cast.h4 h4Var, Object obj, Object obj2);
+
+    public abstract boolean g(com.google.android.gms.internal.cast.h4 h4Var, com.google.android.gms.internal.cast.g4 g4Var, com.google.android.gms.internal.cast.g4 g4Var2);
 }

@@ -1,69 +1,23 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class fn0 extends FrameLayout {
-    public TextView f33701a;
-    public TextView f33702b;
-    public ImageView f33703c;
-    public boolean d;
+public final class fn0 extends TimerTask {
+    public final gn0 f36351a;
 
-    public final void a(String str, boolean z10) {
-        this.f33701a.setText(str);
-        this.f33702b.setText("");
-        this.d = z10;
-        setWillNotDraw(!z10);
+    public fn0(gn0 gn0Var) {
+        this.f36351a = gn0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.d) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(20.0f);
-            }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19182k0);
+    public final void run() {
+        gn0 gn0Var = this.f36351a;
+        if (gn0Var.v == null) {
+            return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
-    }
-
-    public void setChecked(boolean z10) {
-        int i10;
-        ImageView imageView = this.f33703c;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
-    }
-
-    public void setNeedDivider(boolean z10) {
-        this.d = z10;
-        setWillNotDraw(!z10);
-        invalidate();
-    }
-
-    public void setValue(CharSequence charSequence) {
-        this.f33702b.setText(charSequence);
+        double currentTimeMillis = System.currentTimeMillis();
+        gn0Var.f36686y = (int) (gn0Var.f36686y - (currentTimeMillis - gn0Var.F));
+        gn0Var.F = currentTimeMillis;
+        AndroidUtilities.runOnUIThread(new nl0(this, 6));
     }
 }

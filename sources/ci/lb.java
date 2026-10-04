@@ -1,93 +1,24 @@
 package ci;
-public final class lb implements pc {
-    public final bi.v f5025a;
 
-    public lb(bi.v vVar) {
-        this.f5025a = vVar;
+import android.animation.ValueAnimator;
+public final class lb implements ValueAnimator.AnimatorUpdateListener {
+    public final int f5504a;
+    public final kc f5505b;
+
+    public lb(kc kcVar, int i10) {
+        this.f5504a = i10;
+        this.f5505b = kcVar;
     }
 
     @Override
-    public final void F(float f7, boolean z10) {
-        this.f5025a.run(Boolean.FALSE, Float.valueOf(f7));
-    }
-
-    @Override
-    public final void D(float f7) {
-    }
-
-    @Override
-    public final void J(long j3) {
-    }
-
-    @Override
-    public final void O(boolean z10) {
-    }
-
-    @Override
-    public final void T(float f7) {
-    }
-
-    @Override
-    public final void Y(float f7) {
-    }
-
-    @Override
-    public final void a0(float f7) {
-    }
-
-    @Override
-    public final void e(int i10) {
-    }
-
-    @Override
-    public final void h0(float f7) {
-    }
-
-    @Override
-    public final void i(float f7) {
-    }
-
-    @Override
-    public final void l(float f7) {
-    }
-
-    @Override
-    public final void l0(long j3) {
-    }
-
-    @Override
-    public final void u(float f7) {
-    }
-
-    @Override
-    public final void w(boolean z10) {
-    }
-
-    @Override
-    public final void b0() {
-    }
-
-    @Override
-    public final void r() {
-    }
-
-    @Override
-    public final void A(float f7, int i10) {
-    }
-
-    @Override
-    public final void R(float f7, int i10) {
-    }
-
-    @Override
-    public final void Z(float f7, int i10) {
-    }
-
-    @Override
-    public final void i0(int i10, long j3) {
-    }
-
-    @Override
-    public final void n(long j3, boolean z10) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f5504a) {
+            case 0:
+                this.f5505b.f5382c1.m();
+                return;
+            default:
+                this.f5505b.n0();
+                return;
+        }
     }
 }

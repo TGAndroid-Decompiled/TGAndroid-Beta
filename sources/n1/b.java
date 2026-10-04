@@ -6,24 +6,24 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import kotlin.jvm.internal.i;
 public final class b {
-    public final LinkedHashMap f15082a;
-    public final AtomicBoolean f15083b;
+    public final LinkedHashMap f16489a;
+    public final AtomicBoolean f16490b;
 
     public b(LinkedHashMap linkedHashMap, boolean z10) {
-        this.f15082a = linkedHashMap;
-        this.f15083b = new AtomicBoolean(z10);
+        this.f16489a = linkedHashMap;
+        this.f16490b = new AtomicBoolean(z10);
     }
 
     public final Object a(d key) {
         i.e(key, "key");
-        return this.f15082a.get(key);
+        return this.f16489a.get(key);
     }
 
     public final void b(d key, Object obj) {
         i.e(key, "key");
-        AtomicBoolean atomicBoolean = this.f15083b;
+        AtomicBoolean atomicBoolean = this.f16490b;
         if (!atomicBoolean.get()) {
-            LinkedHashMap linkedHashMap = this.f15082a;
+            LinkedHashMap linkedHashMap = this.f16489a;
             if (obj == null) {
                 if (!atomicBoolean.get()) {
                     linkedHashMap.remove(key);
@@ -45,17 +45,17 @@ public final class b {
 
     public final boolean equals(Object obj) {
         if (obj instanceof b) {
-            return i.a(this.f15082a, ((b) obj).f15082a);
+            return i.a(this.f16489a, ((b) obj).f16489a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f15082a.hashCode();
+        return this.f16489a.hashCode();
     }
 
     public final String toString() {
-        return hd.g.h(this.f15082a.entrySet(), ",\n", "{\n", "\n}", a.f15081b, 24);
+        return hd.g.h(this.f16489a.entrySet(), ",\n", "{\n", "\n}", a.f16488b, 24);
     }
 
     public b(boolean z10) {

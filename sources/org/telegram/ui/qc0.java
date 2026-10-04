@@ -1,52 +1,66 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserObject;
-public final class qc0 extends gg.t0 {
-    public boolean m0;
-    public final cd0 f36861n0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.IMapsProvider;
+public final class qc0 implements Runnable {
+    public final int f39691a;
+    public final gd0 f39692b;
 
-    public qc0(cd0 cd0Var, Context context, int i10, long j3, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
-        super(context, i10, j3, false, d6Var, false, z10, z11);
-        this.f36861n0 = cd0Var;
-        this.m0 = true;
+    public qc0(gd0 gd0Var, int i10) {
+        this.f39691a = i10;
+        this.f39692b = gd0Var;
     }
 
     @Override
-    public final void K() {
-        this.f36861n0.r0(null);
-    }
-
-    @Override
-    public final void N(ArrayList arrayList) {
-        int i10;
-        cd0 cd0Var = this.f36861n0;
-        MessageObject messageObject = cd0Var.B0;
-        if (messageObject != null && messageObject.isLiveLocation()) {
-            int i11 = 0;
-            if (arrayList != null) {
-                i10 = 0;
-                for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    wc0 wc0Var = (wc0) arrayList.get(i12);
-                    if (wc0Var != null && !UserObject.isUserSelf(wc0Var.f38957c)) {
-                        i10++;
+    public final void run() {
+        switch (this.f39691a) {
+            case 0:
+                gd0 gd0Var = this.f39692b;
+                IMapsProvider.ICameraUpdate iCameraUpdate = gd0Var.J;
+                if (iCameraUpdate != null) {
+                    gd0Var.I.moveCamera(iCameraUpdate);
+                    gd0Var.J = null;
+                    return;
+                }
+                return;
+            case 1:
+                gd0 gd0Var2 = this.f39692b;
+                gd0Var2.getLocationController().setProximityLocation(gd0Var2.f36569e0, 0, true);
+                gd0Var2.G = false;
+                return;
+            case 2:
+                gd0 gd0Var3 = this.f39692b;
+                IMapsProvider.IMap iMap = gd0Var3.I;
+                if (iMap != null) {
+                    iMap.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
+                }
+                if (!gd0Var3.R.getRadiusSet()) {
+                    double d = gd0Var3.P;
+                    if (d > 0.0d) {
+                        gd0Var3.O.setRadius(d);
+                    } else {
+                        IMapsProvider.ICircle iCircle = gd0Var3.O;
+                        if (iCircle != null) {
+                            iCircle.remove();
+                            gd0Var3.O = null;
+                        }
                     }
                 }
-            } else {
-                i10 = 0;
-            }
-            if (this.m0 && i10 == 1) {
-                cd0Var.f32669i0 = ((wc0) arrayList.get(0)).f38955a;
-            }
-            this.m0 = false;
-            org.telegram.ui.ActionBar.u0 u0Var = cd0Var.Z;
-            if (i10 != 1) {
-                i11 = 8;
-            }
-            u0Var.setVisibility(i11);
+                gd0Var3.R = null;
+                return;
+            case 3:
+                dd0 dd0Var = this.f39692b.f36592x;
+                if (dd0Var != null) {
+                    dd0Var.a();
+                    return;
+                }
+                return;
+            case 4:
+                gd0.U(this.f39692b);
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new qc0(this.f39692b, 0));
+                return;
         }
-        super.N(arrayList);
     }
 }

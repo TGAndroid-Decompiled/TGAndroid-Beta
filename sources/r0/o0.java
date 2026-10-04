@@ -6,31 +6,31 @@ import android.view.View;
 import android.view.animation.PathInterpolator;
 import java.util.Collections;
 public final class o0 implements ValueAnimator.AnimatorUpdateListener {
-    public final v0 f42143a;
-    public final l1 f42144b;
-    public final l1 f42145c;
+    public final v0 f45610a;
+    public final l1 f45611b;
+    public final l1 f45612c;
     public final int d;
-    public final View e;
+    public final View f45613e;
 
     public o0(v0 v0Var, l1 l1Var, l1 l1Var2, int i10, View view) {
-        this.f42143a = v0Var;
-        this.f42144b = l1Var;
-        this.f42145c = l1Var2;
+        this.f45610a = v0Var;
+        this.f45611b = l1Var;
+        this.f45612c = l1Var2;
         this.d = i10;
-        this.e = view;
+        this.f45613e = view;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         b1 x0Var;
         float animatedFraction = valueAnimator.getAnimatedFraction();
-        v0 v0Var = this.f42143a;
-        u0 u0Var = v0Var.f42165a;
+        v0 v0Var = this.f45610a;
+        u0 u0Var = v0Var.f45636a;
         u0Var.d(animatedFraction);
-        l1 l1Var = this.f42144b;
-        i1 i1Var = l1Var.f42142a;
+        l1 l1Var = this.f45611b;
+        i1 i1Var = l1Var.f45609a;
         float b10 = u0Var.b();
-        PathInterpolator pathInterpolator = q0.e;
+        PathInterpolator pathInterpolator = q0.f45620e;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 34) {
             x0Var = new a1(l1Var);
@@ -46,11 +46,11 @@ public final class o0 implements ValueAnimator.AnimatorUpdateListener {
                 x0Var.c(i11, i1Var.f(i11));
             } else {
                 i0.b f7 = i1Var.f(i11);
-                i0.b f10 = this.f42145c.f42142a.f(i11);
+                i0.b f10 = this.f45612c.f45609a.f(i11);
                 float f11 = 1.0f - b10;
-                x0Var.c(i11, l1.e(f7, (int) (((f7.f10576a - f10.f10576a) * f11) + 0.5d), (int) (((f7.f10577b - f10.f10577b) * f11) + 0.5d), (int) (((f7.f10578c - f10.f10578c) * f11) + 0.5d), (int) (((f7.d - f10.d) * f11) + 0.5d)));
+                x0Var.c(i11, l1.e(f7, (int) (((f7.f11525a - f10.f11525a) * f11) + 0.5d), (int) (((f7.f11526b - f10.f11526b) * f11) + 0.5d), (int) (((f7.f11527c - f10.f11527c) * f11) + 0.5d), (int) (((f7.d - f10.d) * f11) + 0.5d)));
             }
         }
-        q0.g(this.e, x0Var.b(), Collections.singletonList(v0Var));
+        q0.g(this.f45613e, x0Var.b(), Collections.singletonList(v0Var));
     }
 }

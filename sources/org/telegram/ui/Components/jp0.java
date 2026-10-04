@@ -1,44 +1,116 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.text.SpannableString;
 import android.text.TextUtils;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 import android.widget.TextView;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-public final class jp0 extends LinearLayout {
-    public final sv0 f25497a;
-    public final TextView f25498b;
-    public final TextView f25499c;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class jp0 extends yl0 {
+    public final org.telegram.ui.ActionBar.d6 f27871c;
+    public final List d;
+    public final MessagesController f27872e;
+    public final int f27873f;
+    public final TLRPC.Peer h;
 
-    public jp0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        setLayoutParams(new s4.p0(-1, -2));
-        setOrientation(0);
-        setGravity(16);
-        int dp = AndroidUtilities.dp(14.0f);
-        int i10 = dp / 2;
-        setPadding(dp, i10, dp, i10);
-        sv0 sv0Var = new sv0(context);
-        this.f25497a = sv0Var;
-        addView(sv0Var, w7.y5.c(40.0f, 40));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.y5.m(1.0f, 0, -1, 12, 0, 0));
-        TextView textView = new TextView(context);
-        this.f25498b = textView;
-        int i11 = org.telegram.ui.ActionBar.h6.E8;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
-        textView.setTextSize(1, 16.0f);
-        textView.setTag(textView);
-        textView.setMaxLines(1);
-        linearLayout.addView(textView);
-        TextView textView2 = new TextView(context);
-        this.f25499c = textView2;
-        textView2.setTextColor(i0.a.k(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), 102));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTag(textView2);
-        textView2.setMaxLines(1);
-        textView2.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(textView2);
+    public jp0(org.telegram.ui.ActionBar.d6 d6Var, List list, MessagesController messagesController, int i10, TLRPC.Peer peer) {
+        this.f27871c = d6Var;
+        this.d = list;
+        this.f27872e = messagesController;
+        this.f27873f = i10;
+        this.h = peer;
+    }
+
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        long j3;
+        String str;
+        np0 np0Var = (np0) c1Var.f46523a;
+        TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i10);
+        TLRPC.Peer peer = tL_sendAsPeer.peer;
+        long j10 = peer.channel_id;
+        if (j10 != 0) {
+            j3 = -j10;
+        } else {
+            j3 = 0;
+        }
+        if (j3 == 0) {
+            long j11 = peer.user_id;
+            if (j11 != 0) {
+                j3 = j11;
+            }
+        }
+        TLRPC.Peer peer2 = this.h;
+        MessagesController messagesController = this.f27872e;
+        boolean z10 = true;
+        if (j3 < 0) {
+            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j3));
+            if (chat != null) {
+                if (tL_sendAsPeer.premium_required) {
+                    StringBuilder sb2 = new StringBuilder();
+                    String str2 = chat.title;
+                    TextView textView = np0Var.f29040b;
+                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f27873f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
+                    sb2.append(" d");
+                    SpannableString spannableString = new SpannableString(sb2.toString());
+                    rq rqVar = new rq(R.drawable.msg_mini_premiumlock, 0);
+                    rqVar.setTopOffset(1);
+                    rqVar.setSize(AndroidUtilities.dp(14.0f));
+                    rqVar.setColorKey(org.telegram.ui.ActionBar.i6.C6);
+                    spannableString.setSpan(rqVar, spannableString.length() - 1, spannableString.length(), 33);
+                    textView.setEllipsize(null);
+                    textView.setText(spannableString);
+                } else {
+                    np0Var.f29040b.setEllipsize(TextUtils.TruncateAt.END);
+                    np0Var.f29040b.setText(chat.title);
+                }
+                TextView textView2 = np0Var.f29041c;
+                if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                    str = "Subscribers";
+                } else {
+                    str = "Members";
+                }
+                textView2.setText(LocaleController.formatPluralString(str, chat.participants_count, new Object[0]));
+                np0Var.f29039a.setAvatar(chat);
+            }
+            bw0 bw0Var = np0Var.f29039a;
+            if (peer2 == null ? i10 != 0 : peer2.channel_id != peer.channel_id) {
+                z10 = false;
+            }
+            bw0Var.a(z10, false);
+            return;
+        }
+        TLRPC.User user = messagesController.getUser(Long.valueOf(j3));
+        if (user != null) {
+            np0Var.f29040b.setText(UserObject.getUserName(user));
+            np0Var.f29041c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
+            np0Var.f29039a.setAvatar(user);
+        }
+        bw0 bw0Var2 = np0Var.f29039a;
+        if (peer2 == null ? i10 != 0 : peer2.user_id != peer.user_id) {
+            z10 = false;
+        }
+        bw0Var2.a(z10, false);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new np0(viewGroup.getContext(), this.f27871c));
     }
 }

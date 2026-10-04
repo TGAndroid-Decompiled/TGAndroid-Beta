@@ -1,10 +1,10 @@
 package y2;
 public final class a {
-    public final byte[] f46540a;
-    public final int f46541b;
+    public final byte[] f50359a;
+    public final int f50360b;
 
     public a(byte[] bArr, int i10) {
-        this.f46540a = bArr;
-        this.f46541b = i10;
+        this.f50359a = bArr;
+        this.f50360b = i10;
     }
 }

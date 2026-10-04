@@ -1,8 +1,9 @@
 package org.telegram.ui;
-public final class ld1 {
-    public final md1 f35316a;
 
-    public ld1(md1 md1Var) {
-        this.f35316a = md1Var;
+import org.telegram.messenger.MessageObject;
+public final class ld1 extends MessageObject {
+    @Override
+    public final boolean needDrawAvatar() {
+        return false;
     }
 }

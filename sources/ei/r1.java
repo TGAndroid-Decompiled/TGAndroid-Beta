@@ -1,44 +1,72 @@
 package ei;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.Date;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.RadioButton;
-import w7.c6;
-import w7.y5;
-public final class r1 extends FrameLayout {
-    public final String f8570a;
-    public final RadioButton f8571b;
-    public final boolean f8572c;
+import j$.util.function.Predicate$CC;
+import java.util.HashSet;
+import java.util.function.Predicate;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class r1 implements Predicate {
+    public final int f9297a;
+    public final Object f9298b;
 
-    public r1(s1 s1Var, boolean z10, Context context) {
-        super(context);
-        this.f8570a = s1Var.f8586a;
-        RadioButton radioButton = new RadioButton(context);
-        this.f8571b = radioButton;
-        radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(h6.w0(null, h6.D5, false), h6.w0(null, h6.E5, false));
-        addView(radioButton, y5.d(22, 22.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
-        TextView b10 = c6.b(context, 16.0f, h6.G6, true, null);
-        b10.setText(s1Var.f8588c);
-        addView(b10, y5.t(-1, -2, 7, 62, 9, 8, 0));
-        TextView b11 = c6.b(context, 14.0f, h6.f19444y6, false, null);
-        b11.setText(LocaleController.formatString(R.string.BotRestoreStorageCreatedAt, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.formatSmallDateChat(s1Var.d / 1000), LocaleController.getInstance().getFormatterDay().format(new Date(s1Var.d / 1000)))));
-        addView(b11, y5.t(-1, -2, 7, 62, 32, 8, 0));
-        this.f8572c = z10;
-        setWillNotDraw(!z10);
+    public r1(Object obj, int i10) {
+        this.f9297a = i10;
+        this.f9298b = obj;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f9297a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f9297a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f9297a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f8572c) {
-            canvas.drawLine(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, h6.f19182k0);
+    public final boolean test(Object obj) {
+        boolean contains;
+        boolean z10;
+        switch (this.f9297a) {
+            case 0:
+                contains = ((HashSet) this.f9298b).contains(Long.valueOf(((t1) obj).f9343b));
+                break;
+            case 1:
+                contains = ((HashSet) this.f9298b).contains(Long.valueOf(((t1) obj).f9343b));
+                break;
+            default:
+                xh.q1 q1Var = (xh.q1) this.f9298b;
+                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
+                if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                    z10 = q1Var.f50180b0.disallow_unique_stargifts;
+                } else {
+                    q1Var.getClass();
+                    if (starGift.limited) {
+                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = q1Var.f50180b0;
+                        if (!disallowedGiftsSettings.disallow_limited_stargifts) {
+                            return true;
+                        }
+                        if (starGift.can_upgrade && !disallowedGiftsSettings.disallow_unique_stargifts) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    z10 = q1Var.f50180b0.disallow_unlimited_stargifts;
+                }
+                return true ^ z10;
         }
+        return !contains;
     }
 }

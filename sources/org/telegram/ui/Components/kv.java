@@ -1,141 +1,177 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
+import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.SharedConfig;
-public final class kv extends kt {
-    public int M;
-    public ArrayList N;
-    public final ArrayList O = new ArrayList();
-    public final lv P;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class kv extends yl0 {
+    public final wv f28200c;
 
-    public kv(lv lvVar) {
-        this.P = lvVar;
+    public kv(wv wvVar) {
+        this.f28200c = wvVar;
     }
 
     @Override
-    public final void a(Canvas canvas, long j3, int i10, int i11, float f7) {
-        boolean z10;
-        ArrayList arrayList = this.N;
-        if (arrayList == null) {
-            return;
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f46527f == 1) {
+            return true;
         }
-        boolean z11 = true;
-        if (arrayList.size() > 3 && SharedConfig.getDevicePerformanceClass() != 0) {
-            z10 = false;
+        return false;
+    }
+
+    public final int E(int i10) {
+        int i11;
+        wv wvVar = this.f28200c;
+        gv gvVar = wvVar.f32630e;
+        if (wvVar.I) {
+            i11 = 2;
         } else {
-            z10 = true;
+            i11 = 1;
         }
-        if (!z10) {
-            for (int i12 = 0; i12 < this.N.size(); i12++) {
-                mv mvVar = (mv) this.N.get(i12);
-                if (mvVar.e != 0.0f || mvVar.d != null || mvVar.getTranslationX() != 0.0f || mvVar.getTranslationY() != 0.0f || mvVar.getAlpha() != 1.0f) {
+        int i12 = 0;
+        while (true) {
+            ArrayList[] arrayListArr = gvVar.f31171c;
+            if (i12 >= arrayListArr.length || i12 == i10) {
+                break;
+            }
+            int size = arrayListArr[i12].size();
+            if (gvVar.f31171c.length > 1) {
+                size = Math.min(wvVar.f32637y.J * 2, size);
+            }
+            i11 += size + 2;
+            i12++;
+        }
+        return i11;
+    }
+
+    @Override
+    public final int h() {
+        int i10;
+        ?? r22;
+        int i11;
+        int min;
+        ArrayList arrayList;
+        wv wvVar = this.f28200c;
+        gv gvVar = wvVar.f32630e;
+        i10 = ((org.telegram.ui.ActionBar.f3) wvVar).currentAccount;
+        if (!UserConfig.getInstance(i10).isPremium() && (arrayList = gvVar.f31170b) != null && arrayList.size() == 1 && MessageObject.isPremiumEmojiPack((TLRPC.TL_messages_stickerSet) gvVar.f31170b.get(0))) {
+            r22 = 1;
+        } else {
+            r22 = 0;
+        }
+        wvVar.I = r22;
+        int i12 = r22 + 1;
+        if (gvVar.f31171c == null) {
+            i11 = 0;
+        } else {
+            int i13 = 0;
+            i11 = 0;
+            while (true) {
+                ArrayList[] arrayListArr = gvVar.f31171c;
+                if (i13 >= arrayListArr.length) {
                     break;
                 }
-            }
-        }
-        z11 = z10;
-        if (z11) {
-            i(System.currentTimeMillis());
-            d(canvas, 1.0f);
-            k();
-            return;
-        }
-        super.a(canvas, j3, i10, i11, 1.0f);
-    }
-
-    @Override
-    public final void c(Canvas canvas) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.O;
-            if (i10 < arrayList.size()) {
-                mv mvVar = (mv) arrayList.get(i10);
-                mvVar.f26500b.draw(canvas, mvVar.f26499a[this.K]);
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void d(Canvas canvas, float f7) {
-        q5 q5Var;
-        if (this.N != null) {
-            for (int i10 = 0; i10 < this.N.size(); i10++) {
-                mv mvVar = (mv) this.N.get(i10);
-                z5 z5Var = mvVar.f26501c;
-                if (z5Var != null && (q5Var = (q5) this.P.f26101y.f29734b.get(z5Var.getDocumentId())) != null && q5Var.f27544k != null && mvVar.f26500b != null) {
-                    q5Var.setAlpha((int) (mvVar.getAlpha() * 255.0f * f7));
-                    float width = ((mvVar.getWidth() - mvVar.getPaddingLeft()) - mvVar.getPaddingRight()) / 2.0f;
-                    float height = ((mvVar.getHeight() - mvVar.getPaddingTop()) - mvVar.getPaddingBottom()) / 2.0f;
-                    float right = (mvVar.getRight() + mvVar.getLeft()) / 2.0f;
-                    float paddingTop = mvVar.getPaddingTop() + height;
-                    float f10 = mvVar.e;
-                    float f11 = 1.0f;
-                    if (f10 != 0.0f) {
-                        f11 = 1.0f * (((1.0f - f10) * 0.2f) + 0.8f);
+                ArrayList arrayList2 = arrayListArr[i13];
+                if (arrayList2 != null) {
+                    if (arrayListArr.length == 1) {
+                        min = arrayList2.size();
+                    } else {
+                        min = Math.min(gvVar.f31173f.f32637y.J * 2, arrayList2.size());
                     }
-                    q5Var.setBounds((int) (right - ((mvVar.getScaleX() * width) * f11)), (int) (paddingTop - ((mvVar.getScaleY() * height) * f11)), (int) ((mvVar.getScaleX() * width * f11) + right), (int) ((mvVar.getScaleY() * height * f11) + paddingTop));
-                    q5Var.draw(canvas);
+                    i11 = min + i11 + 1;
                 }
+                i13++;
             }
         }
+        return Math.max(0, gvVar.f31171c.length - 1) + i12 + i11;
     }
 
     @Override
-    public final void g() {
-        ViewGroup viewGroup;
-        int i10 = 0;
+    public final int j(int i10) {
+        wv wvVar = this.f28200c;
+        gv gvVar = wvVar.f32630e;
+        int i11 = 0;
+        if (i10 == 0) {
+            return 0;
+        }
+        int i12 = i10 - 1;
+        if (wvVar.I) {
+            if (i12 == 1) {
+                return 3;
+            }
+            if (i12 > 0) {
+                i12 = i10 - 2;
+            }
+        }
+        int i13 = 0;
         while (true) {
-            ArrayList arrayList = this.O;
-            if (i10 >= arrayList.size()) {
-                viewGroup = ((org.telegram.ui.ActionBar.e3) this.P.f26101y).containerView;
-                viewGroup.invalidate();
-                return;
+            ArrayList[] arrayListArr = gvVar.f31171c;
+            if (i11 >= arrayListArr.length) {
+                return 1;
             }
-            ((mv) arrayList.get(i10)).f26499a[this.K].release();
-            i10++;
+            if (i12 == i13) {
+                return 2;
+            }
+            int size = arrayListArr[i11].size();
+            if (gvVar.f31171c.length > 1) {
+                size = Math.min(wvVar.f32637y.J * 2, size);
+            }
+            int i14 = size + 1 + i13;
+            if (i12 == i14) {
+                return 4;
+            }
+            i13 = i14 + 1;
+            i11++;
         }
     }
 
     @Override
-    public final void i(long j3) {
-        q5 q5Var;
-        vv vvVar = this.P.f26101y;
-        ArrayList arrayList = this.O;
-        arrayList.clear();
-        for (int i10 = 0; i10 < this.N.size(); i10++) {
-            mv mvVar = (mv) this.N.get(i10);
-            z5 z5Var = mvVar.f26501c;
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = mvVar.f26499a;
-            if (z5Var != null && (q5Var = (q5) vvVar.f29734b.get(z5Var.getDocumentId())) != null && q5Var.f27544k != null) {
-                q5Var.t(j3);
-                ai.l4 l4Var = q5Var.f27544k;
-                int i11 = this.K;
-                ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = l4Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
-                backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
-                drawInBackgroundThread.time = j3;
-                q5Var.setAlpha(255);
-                Rect rect = AndroidUtilities.rectTmp2;
-                rect.set(mvVar.getPaddingLeft() + mvVar.getLeft(), mvVar.getPaddingTop(), mvVar.getRight() - mvVar.getPaddingRight(), mvVar.getMeasuredHeight() - mvVar.getPaddingBottom());
-                backgroundThreadDrawHolderArr[i11].setBounds(rect);
-                int themedColor = vvVar.getThemedColor(org.telegram.ui.ActionBar.h6.G6);
-                if (themedColor != vvVar.U || vvVar.T == null) {
-                    vvVar.U = themedColor;
-                    vvVar.T = new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN);
+    public final void v(s4.c1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kv.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        View view2;
+        wv wvVar = this.f28200c;
+        if (i10 == 0) {
+            view = wvVar.d;
+        } else {
+            boolean z10 = true;
+            if (i10 == 1) {
+                ?? view3 = new View(wvVar.getContext());
+                view3.f29066a = new ImageReceiver.BackgroundThreadDrawHolder[2];
+                view2 = view3;
+            } else if (i10 == 2) {
+                Context context = wvVar.getContext();
+                if (wvVar.f32630e.f31171c.length > 1) {
+                    z10 = false;
                 }
-                q5Var.setColorFilter(vvVar.T);
-                mvVar.f26500b = q5Var.f27544k;
-                arrayList.add(mvVar);
+                view2 = new rv(wvVar, context, z10);
+            } else if (i10 == 3) {
+                view2 = new TextView(wvVar.getContext());
+            } else if (i10 == 4) {
+                View view4 = new View(wvVar.getContext());
+                int i11 = org.telegram.ui.ActionBar.i6.Ke;
+                Pattern pattern = wv.V;
+                view4.setBackgroundColor(wvVar.getThemedColor(i11));
+                s4.p0 p0Var = new s4.p0(-1, AndroidUtilities.getShadowHeight());
+                ((ViewGroup.MarginLayoutParams) p0Var).topMargin = AndroidUtilities.dp(14.0f);
+                view4.setLayoutParams(p0Var);
+                view2 = view4;
+            } else {
+                view = null;
             }
+            view = view2;
         }
+        return new s4.c1(view);
     }
 }

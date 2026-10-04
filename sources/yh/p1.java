@@ -4,48 +4,48 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class p1 implements Runnable {
-    public final int f47856a = 1;
-    public final x3 f47857b;
-    public final TLObject f47858c;
+    public final int f51785a = 1;
+    public final x3 f51786b;
+    public final TLObject f51787c;
     public final long d;
-    public final long e;
-    public final TLRPC.TL_error f47859f;
+    public final long f51788e;
+    public final TLRPC.TL_error f51789f;
     public final long h;
-    public final Object f47860n;
+    public final Object f51790n;
 
     public p1(x3 x3Var, TLObject tLObject, long j3, long j10, Utilities.Callback callback, TLRPC.TL_error tL_error, long j11) {
-        this.f47857b = x3Var;
-        this.f47858c = tLObject;
+        this.f51786b = x3Var;
+        this.f51787c = tLObject;
         this.d = j3;
-        this.e = j10;
-        this.f47860n = callback;
-        this.f47859f = tL_error;
+        this.f51788e = j10;
+        this.f51790n = callback;
+        this.f51789f = tL_error;
         this.h = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f47856a) {
+        switch (this.f51785a) {
             case 0:
                 long j3 = this.h;
-                TLRPC.TL_error tL_error = this.f47859f;
-                x3.H0(this.f47857b, (org.telegram.ui.ActionBar.a2) this.f47860n, this.f47858c, this.d, this.e, j3, tL_error);
+                TLRPC.TL_error tL_error = this.f51789f;
+                x3.H0(this.f51786b, (org.telegram.ui.ActionBar.b2) this.f51790n, this.f51787c, this.d, this.f51788e, j3, tL_error);
                 return;
             default:
-                TLRPC.TL_error tL_error2 = this.f47859f;
+                TLRPC.TL_error tL_error2 = this.f51789f;
                 long j10 = this.h;
-                x3.f0(this.f47857b, this.f47858c, this.d, this.e, (Utilities.Callback) this.f47860n, tL_error2, j10);
+                x3.f0(this.f51786b, this.f51787c, this.d, this.f51788e, (Utilities.Callback) this.f51790n, tL_error2, j10);
                 return;
         }
     }
 
-    public p1(x3 x3Var, org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, long j3, long j10, long j11, TLRPC.TL_error tL_error) {
-        this.f47857b = x3Var;
-        this.f47860n = a2Var;
-        this.f47858c = tLObject;
+    public p1(x3 x3Var, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, long j3, long j10, long j11, TLRPC.TL_error tL_error) {
+        this.f51786b = x3Var;
+        this.f51790n = b2Var;
+        this.f51787c = tLObject;
         this.d = j3;
-        this.e = j10;
+        this.f51788e = j10;
         this.h = j11;
-        this.f47859f = tL_error;
+        this.f51789f = tL_error;
     }
 }

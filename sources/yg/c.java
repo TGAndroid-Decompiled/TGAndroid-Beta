@@ -5,17 +5,17 @@ import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.za;
 import org.telegram.ui.Components.h9;
 import tg.s;
 public final class c extends za {
-    public final a f47168a0;
-    public TL_stories.PrepaidGiveaway f47169b0;
+    public final a f51048a0;
+    public TL_stories.PrepaidGiveaway f51049b0;
 
     public c(Context context) {
         super(context, 0, 0, false);
-        this.f47168a0 = new a(context);
+        this.f51048a0 = new a(context);
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class c extends za {
     }
 
     public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
-        return this.f47169b0;
+        return this.f51049b0;
     }
 
     @Override
@@ -44,20 +44,20 @@ public final class c extends za {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f19182k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, i6.f20940k0);
         }
     }
 
     public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f47169b0 = prepaidGiveaway;
+        this.f51049b0 = prepaidGiveaway;
         boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         h9 h9Var = this.E;
         if (z10) {
             h9Var.g(26);
             String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
-            a aVar = this.f47168a0;
-            aVar.f47161f = valueOf;
-            aVar.e = aVar.f47158a.measureText(valueOf);
+            a aVar = this.f51048a0;
+            aVar.f51041f = valueOf;
+            aVar.f51040e = aVar.f51037a.measureText(valueOf);
             aVar.invalidateSelf();
         } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
             h9Var.g(16);
@@ -70,11 +70,11 @@ public final class c extends za {
                 h9Var.i(-6631068, -11945404);
             }
             String valueOf2 = String.valueOf(s.g() * prepaidGiveaway.quantity);
-            a aVar2 = this.f47168a0;
-            aVar2.f47161f = valueOf2;
-            aVar2.e = aVar2.f47158a.measureText(valueOf2);
+            a aVar2 = this.f51048a0;
+            aVar2.f51041f = valueOf2;
+            aVar2.f51040e = aVar2.f51037a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f21929b.i(this.f47168a0);
+        this.f23818b.i(this.f51048a0);
     }
 }

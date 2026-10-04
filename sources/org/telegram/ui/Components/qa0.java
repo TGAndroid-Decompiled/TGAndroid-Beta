@@ -5,9 +5,9 @@ public final class qa0 extends wh.n {
     public final int E = 1;
     public final Object F;
 
-    public qa0(org.telegram.ui.th0 th0Var, org.telegram.ui.th0 th0Var2, FrameLayout frameLayout, long j3) {
-        super(th0Var2, frameLayout, j3, true);
-        this.F = th0Var;
+    public qa0(org.telegram.ui.xh0 xh0Var, org.telegram.ui.xh0 xh0Var2, FrameLayout frameLayout, long j3) {
+        super(xh0Var2, frameLayout, j3, true);
+        this.F = xh0Var;
     }
 
     @Override
@@ -15,15 +15,15 @@ public final class qa0 extends wh.n {
         switch (this.E) {
             case 0:
                 wh.b bVar = (wh.b) this.F;
-                kx0 kx0Var = bVar.W;
-                if (this.e.isEmpty()) {
-                    if (kx0Var.getVisibility() != 4) {
-                        kx0Var.setVisibility(4);
+                tx0 tx0Var = bVar.W;
+                if (this.f49137e.isEmpty()) {
+                    if (tx0Var.getVisibility() != 4) {
+                        tx0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z11) {
-                    bVar.f23574w.J.setText("");
+                    bVar.f28894w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);
@@ -31,7 +31,7 @@ public final class qa0 extends wh.n {
                 }
             default:
                 if (z11) {
-                    org.telegram.ui.th0.U((org.telegram.ui.th0) this.F).setSearchFieldText("");
+                    org.telegram.ui.xh0.S((org.telegram.ui.xh0) this.F).setSearchFieldText("");
                     return;
                 } else {
                     super.f(str, z10, z11);
@@ -40,8 +40,8 @@ public final class qa0 extends wh.n {
         }
     }
 
-    public qa0(wh.b bVar, org.telegram.ui.ActionBar.m2 m2Var, FrameLayout frameLayout, long j3) {
-        super(m2Var, frameLayout, j3, false);
+    public qa0(wh.b bVar, org.telegram.ui.ActionBar.n2 n2Var, FrameLayout frameLayout, long j3) {
+        super(n2Var, frameLayout, j3, false);
         this.F = bVar;
     }
 }

@@ -4,28 +4,28 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-public final class o7 implements to0 {
-    public final j8 f26975a;
+public final class o7 implements xo0 {
+    public final j8 f29268a;
 
     public o7(j8 j8Var) {
-        this.f26975a = j8Var;
+        this.f29268a = j8Var;
     }
 
     @Override
-    public final void X(float f7, boolean z10) {
+    public final void Y(float f7, boolean z10) {
         if (z10) {
             MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f7);
         }
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isMusic()) {
-            this.f26975a.G0(playingMessageObject, false);
+            this.f29268a.G0(playingMessageObject, false);
         }
     }
 
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        j8 j8Var = this.f26975a;
+        j8 j8Var = this.f29268a;
         sb2.append(LocaleController.formatPluralString("Minutes", j8Var.D0 / 60, new Object[0]));
         sb2.append(' ');
         sb2.append(LocaleController.formatPluralString("Seconds", j8Var.D0 % 60, new Object[0]));
@@ -34,7 +34,7 @@ public final class o7 implements to0 {
     }
 
     @Override
-    public final int m0() {
+    public final int p0() {
         return 0;
     }
 

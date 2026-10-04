@@ -1,323 +1,121 @@
 package ci;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.util.Property;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ok;
-import org.telegram.ui.Components.ae0;
-import org.telegram.ui.Components.ee0;
-import org.telegram.ui.Components.jf;
-public final class j9 extends FrameLayout {
-    public final int f4863a = 0;
-    public final Object f4864b;
-    public final Object f4865c;
-    public final Object d;
-    public Object e;
-    public Object f4866f;
-    public Object h;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import org.telegram.tgnet.TLRPC;
+public final class j9 extends og.a {
+    public int f5253c;
+    public Drawable d;
+    public CharSequence f5254e;
+    public CharSequence f5255f;
+    public TLRPC.User f5256g;
+    public TLRPC.Chat h;
+    public int f5257i;
+    public int f5258j;
+    public boolean f5259k;
+    public boolean f5260l;
+    public boolean f5261m;
+    public boolean f5262n;
+    public int f5263o;
+    public int f5264p;
+    public int f5265q;
 
-    public j9(ee0 ee0Var, Context context) {
-        super(context);
-        this.h = ee0Var;
-        this.f4864b = new ArrayList(4);
-        this.f4865c = new ArrayList(4);
-        this.d = new StringBuilder(4);
-        for (int i10 = 0; i10 < 4; i10++) {
-            TextView textView = new TextView(context);
-            textView.setTextColor(-1);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setTextSize(1, 36.0f);
-            textView.setGravity(17);
-            textView.setAlpha(0.0f);
-            textView.setPivotX(AndroidUtilities.dp(25.0f));
-            textView.setPivotY(AndroidUtilities.dp(25.0f));
-            addView(textView, w7.y5.e(50, 50, 51));
-            ((ArrayList) this.f4864b).add(textView);
-            TextView textView2 = new TextView(context);
-            textView2.setTextColor(-1);
-            textView2.setTypeface(AndroidUtilities.bold());
-            textView2.setTextSize(1, 36.0f);
-            textView2.setGravity(17);
-            textView2.setAlpha(0.0f);
-            textView2.setText("•");
-            textView2.setPivotX(AndroidUtilities.dp(25.0f));
-            textView2.setPivotY(AndroidUtilities.dp(25.0f));
-            addView(textView2, w7.y5.e(50, 50, 51));
-            ((ArrayList) this.f4865c).add(textView2);
-        }
+    public j9(int i10, boolean z10) {
+        super(i10, z10);
+        this.f5264p = -1;
     }
 
-    public static void a(j9 j9Var, boolean z10) {
-        ArrayList arrayList = (ArrayList) j9Var.f4865c;
-        ArrayList arrayList2 = (ArrayList) j9Var.f4864b;
-        StringBuilder sb2 = (StringBuilder) j9Var.d;
-        if (sb2.length() == 0) {
-            return;
-        }
-        jf jfVar = (jf) j9Var.f4866f;
-        if (jfVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(jfVar);
-            j9Var.f4866f = null;
-        }
-        AnimatorSet animatorSet = (AnimatorSet) j9Var.e;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            j9Var.e = null;
-        }
-        sb2.delete(0, sb2.length());
-        if (z10) {
-            ArrayList arrayList3 = new ArrayList();
-            for (int i10 = 0; i10 < 4; i10++) {
-                TextView textView = (TextView) arrayList2.get(i10);
-                float alpha = textView.getAlpha();
-                Property property = View.ALPHA;
-                Property property2 = View.SCALE_Y;
-                Property property3 = View.SCALE_X;
-                if (alpha != 0.0f) {
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property3, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property2, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property, 0.0f));
-                }
-                TextView textView2 = (TextView) arrayList.get(i10);
-                if (textView2.getAlpha() != 0.0f) {
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property3, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f));
-                }
-            }
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            j9Var.e = animatorSet2;
-            animatorSet2.setDuration(150L);
-            ((AnimatorSet) j9Var.e).playTogether(arrayList3);
-            ((AnimatorSet) j9Var.e).addListener(new ae0(j9Var, 2));
-            ((AnimatorSet) j9Var.e).start();
-        } else {
-            for (int i11 = 0; i11 < 4; i11++) {
-                ((TextView) arrayList2.get(i11)).setAlpha(0.0f);
-                ((TextView) arrayList.get(i11)).setAlpha(0.0f);
-            }
-        }
-        ee0.a((ee0) j9Var.h);
+    public static j9 b(String str, CharSequence charSequence, int i10) {
+        j9 j9Var = new j9(9, false);
+        j9Var.f5254e = str;
+        j9Var.f5255f = charSequence;
+        j9Var.f5265q = i10;
+        return j9Var;
     }
 
-    public void b(String str) {
-        ArrayList arrayList = (ArrayList) this.f4865c;
-        ArrayList arrayList2 = (ArrayList) this.f4864b;
-        StringBuilder sb2 = (StringBuilder) this.d;
-        if (sb2.length() == 4) {
-            return;
-        }
-        try {
-            performHapticFeedback(3);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        ArrayList arrayList3 = new ArrayList();
-        int length = sb2.length();
-        sb2.append(str);
-        TextView textView = (TextView) arrayList2.get(length);
-        textView.setText(str);
-        textView.setTranslationX(c(length));
-        Property property = View.SCALE_X;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property, 0.0f, 1.0f));
-        Property property2 = View.SCALE_Y;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property2, 0.0f, 1.0f));
-        Property property3 = View.ALPHA;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property3, 0.0f, 1.0f));
-        float[] fArr = {AndroidUtilities.dp(20.0f), 0.0f};
-        Property property4 = View.TRANSLATION_Y;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property4, fArr));
-        TextView textView2 = (TextView) arrayList.get(length);
-        textView2.setTranslationX(c(length));
-        textView2.setAlpha(0.0f);
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f, 1.0f));
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f, 1.0f));
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property4, AndroidUtilities.dp(20.0f), 0.0f));
-        for (int i10 = length + 1; i10 < 4; i10++) {
-            TextView textView3 = (TextView) arrayList2.get(i10);
-            if (textView3.getAlpha() != 0.0f) {
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property2, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property3, 0.0f));
-            }
-            TextView textView4 = (TextView) arrayList.get(i10);
-            if (textView4.getAlpha() != 0.0f) {
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property2, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property3, 0.0f));
-            }
-        }
-        jf jfVar = (jf) this.f4866f;
-        if (jfVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(jfVar);
-        }
-        jf jfVar2 = new jf(this, length, 2);
-        this.f4866f = jfVar2;
-        AndroidUtilities.runOnUIThread(jfVar2, 1500L);
-        for (int i11 = 0; i11 < length; i11++) {
-            TextView textView5 = (TextView) arrayList2.get(i11);
-            float[] fArr2 = {c(i11)};
-            Property property5 = View.TRANSLATION_X;
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property5, fArr2));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property2, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property3, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property4, 0.0f));
-            TextView textView6 = (TextView) arrayList.get(i11);
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property5, c(i11)));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property2, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property3, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property4, 0.0f));
-        }
-        AnimatorSet animatorSet = (AnimatorSet) this.e;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.e = animatorSet2;
-        animatorSet2.setDuration(150L);
-        ((AnimatorSet) this.e).playTogether(arrayList3);
-        ((AnimatorSet) this.e).addListener(new ae0(this, 0));
-        ((AnimatorSet) this.e).start();
-        ee0.a((ee0) this.h);
+    public static j9 c() {
+        return new j9(0, false);
     }
 
-    public int c(int i10) {
-        return org.telegram.messenger.f0.D(30.0f, i10, (getMeasuredWidth() - (AndroidUtilities.dp(30.0f) * ((StringBuilder) this.d).length())) / 2) - AndroidUtilities.dp(10.0f);
+    public static j9 d() {
+        j9 j9Var = new j9(-1, false);
+        j9Var.f5263o = -1;
+        return j9Var;
     }
 
-    public void d(boolean z10) {
-        int i10;
-        float f7;
-        float f10;
-        ImageView imageView = (ImageView) this.f4865c;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 8;
-        }
-        imageView.setVisibility(i10);
-        TextView textView = (TextView) this.d;
-        boolean z11 = LocaleController.isRTL;
-        if (!z11 && z10) {
-            f7 = 53.0f;
-        } else {
-            f7 = 22.0f;
-        }
-        if (z11 && z10) {
-            f10 = 53.0f;
-        } else {
-            f10 = 22.0f;
-        }
-        textView.setLayoutParams(w7.y5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
+    public static j9 e() {
+        return new j9(1, false);
     }
 
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f4863a) {
-            case 0:
-                super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.f4866f;
-                paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19062d7, (org.telegram.ui.ActionBar.d6) this.f4864b));
-                canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
+    public static j9 f() {
+        return new j9(2, false);
     }
 
-    public void e(String str) {
-        ((TextView) this.d).setText(str);
+    public static j9 g(CharSequence charSequence) {
+        j9 j9Var = new j9(6, false);
+        j9Var.f5254e = charSequence;
+        return j9Var;
     }
 
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f4863a) {
-            case 1:
-                ArrayList arrayList = (ArrayList) this.f4865c;
-                ArrayList arrayList2 = (ArrayList) this.f4864b;
-                jf jfVar = (jf) this.f4866f;
-                if (jfVar != null) {
-                    AndroidUtilities.cancelRunOnUIThread(jfVar);
-                    this.f4866f = null;
-                }
-                AnimatorSet animatorSet = (AnimatorSet) this.e;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    this.e = null;
-                }
-                for (int i14 = 0; i14 < 4; i14++) {
-                    if (i14 < ((StringBuilder) this.d).length()) {
-                        TextView textView = (TextView) arrayList2.get(i14);
-                        textView.setAlpha(0.0f);
-                        textView.setScaleX(1.0f);
-                        textView.setScaleY(1.0f);
-                        textView.setTranslationY(0.0f);
-                        textView.setTranslationX(c(i14));
-                        TextView textView2 = (TextView) arrayList.get(i14);
-                        textView2.setAlpha(1.0f);
-                        textView2.setScaleX(1.0f);
-                        textView2.setScaleY(1.0f);
-                        textView2.setTranslationY(0.0f);
-                        textView2.setTranslationX(c(i14));
-                    } else {
-                        ((TextView) arrayList2.get(i14)).setAlpha(0.0f);
-                        ((TextView) arrayList.get(i14)).setAlpha(0.0f);
+    public static j9 h(int i10, int i11, boolean z10) {
+        j9 j9Var = new j9(3, false);
+        j9Var.f5257i = i10;
+        j9Var.f5259k = z10;
+        j9Var.f5258j = i11;
+        return j9Var;
+    }
+
+    public static j9 i(TLRPC.User user, boolean z10, boolean z11) {
+        j9 j9Var = new j9(3, true);
+        j9Var.f5256g = user;
+        j9Var.f5259k = z10;
+        j9Var.f5260l = z11;
+        return j9Var;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && j9.class == obj.getClass()) {
+                j9 j9Var = (j9) obj;
+                int i10 = this.f17182a;
+                if (i10 == j9Var.f17182a) {
+                    if (i10 != -1 || (this.f5263o == j9Var.f5263o && this.f5264p == j9Var.f5264p)) {
+                        if (i10 != 3 || (this.f5256g == j9Var.f5256g && this.h == j9Var.h && this.f5257i == j9Var.f5257i && this.f5258j == j9Var.f5258j && this.f5259k == j9Var.f5259k && this.f5261m == j9Var.f5261m && this.f5262n == j9Var.f5262n)) {
+                            if (i10 != 0 || this.f5253c == j9Var.f5253c) {
+                                if (i10 != 2 || TextUtils.equals(this.f5254e, j9Var.f5254e)) {
+                                    if (this.f17182a != 8 || TextUtils.equals(this.f5254e, j9Var.f5254e)) {
+                                        int i11 = this.f17182a;
+                                        if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.f5254e, j9Var.f5254e) && TextUtils.equals(this.f5255f, j9Var.f5255f))) {
+                                            if (this.f17182a != 6 || (TextUtils.equals(this.f5254e, j9Var.f5254e) && this.f5253c == j9Var.f5253c)) {
+                                                if (this.f17182a != 7 || (this.f5253c == j9Var.f5253c && TextUtils.equals(this.f5254e, j9Var.f5254e) && this.f5259k == j9Var.f5259k)) {
+                                                    if (this.f17182a != 9 || (this.f5265q == j9Var.f5265q && this.d == j9Var.d && TextUtils.equals(this.f5254e, j9Var.f5254e) && TextUtils.equals(this.f5255f, j9Var.f5255f))) {
+                                                        if (this.f17182a != 10 || this.f5265q == j9Var.f5265q) {
+                                                            return true;
+                                                        }
+                                                        return false;
+                                                    }
+                                                    return false;
+                                                }
+                                                return false;
+                                            }
+                                            return false;
+                                        }
+                                        return false;
+                                    }
+                                    return false;
+                                }
+                                return false;
+                            }
+                            return false;
+                        }
+                        return false;
                     }
+                    return false;
                 }
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
+                return false;
+            }
+            return false;
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f4863a) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    public j9(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f4866f = new Paint(1);
-        this.f4864b = d6Var;
-        TextView textView = new TextView(context);
-        this.d = textView;
-        ok.k(20.0f, 1, textView);
-        textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19167j5, d6Var));
-        boolean z10 = LocaleController.isRTL;
-        addView(textView, w7.y5.d(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f4865c = imageView;
-        org.telegram.ui.ActionBar.f2 f2Var = new org.telegram.ui.ActionBar.f2(false);
-        this.e = f2Var;
-        imageView.setImageDrawable(f2Var);
-        f2Var.a(-1);
-        f2Var.b(-1);
-        f2Var.f18877k = 220.0f;
-        addView(imageView, w7.y5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        imageView.setOnClickListener(new ai.v0(this, 12));
+        return true;
     }
 }

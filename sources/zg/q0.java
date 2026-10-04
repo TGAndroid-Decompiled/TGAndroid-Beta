@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.LaunchActivity;
@@ -17,12 +17,12 @@ import yh.l1;
 public abstract class q0 {
     public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, p pVar, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j3 = document.f18343id;
-        z5 e = e(document, Long.valueOf(j3), fontMetricsInt);
-        linkedHashMap.put(Long.valueOf(j3), e);
+        long j3 = document.f20043id;
+        z5 e7 = e(document, Long.valueOf(j3), fontMetricsInt);
+        linkedHashMap.put(Long.valueOf(j3), e7);
         arrayList.add(Long.valueOf(j3));
         SpannableString spannableString = new SpannableString(tL_availableReaction.reaction);
-        spannableString.setSpan(e, 0, spannableString.length(), 33);
+        spannableString.setSpan(e7, 0, spannableString.length(), 33);
         spannableStringBuilder.append((CharSequence) spannableString);
         if (pVar != null) {
             pVar.x(Long.valueOf(j3), false);
@@ -70,11 +70,11 @@ public abstract class q0 {
     }
 
     public static boolean d(TLRPC.Reaction reaction, o0 o0Var) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && o0Var.f49399g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, o0Var.f49398f)) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && o0Var.f53480g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, o0Var.f53479f)) {
             return true;
         }
         if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            long j3 = o0Var.f49399g;
+            long j3 = o0Var.f53480g;
             if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                 return true;
             }
@@ -86,7 +86,7 @@ public abstract class q0 {
     public static z5 e(TLRPC.Document document, Long l4, Paint.FontMetricsInt fontMetricsInt) {
         z5 z5Var;
         if (document != null) {
-            z5Var = new z5(document.f18343id, 1.0f, fontMetricsInt);
+            z5Var = new z5(document.f20043id, 1.0f, fontMetricsInt);
             z5Var.document = document;
         } else {
             z5Var = new z5(l4.longValue(), 1.0f, fontMetricsInt);
@@ -96,14 +96,14 @@ public abstract class q0 {
     }
 
     public static void f(long j3, int i10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        m2 R = LaunchActivity.R();
+        n2 R = LaunchActivity.R();
         if (R != null && tL_premium_boostsStatus != null) {
-            rg.j0 j0Var = new rg.j0(21, UserConfig.selectedAccount, R.getContext(), R, R.getResourceProvider());
-            j0Var.R0 = i10;
-            j0Var.F1(tL_premium_boostsStatus, true);
-            j0Var.H1(j3);
-            j0Var.Q0 = new l1(R, j3);
-            j0Var.show();
+            rg.k0 k0Var = new rg.k0(21, UserConfig.selectedAccount, R.getContext(), R, R.getResourceProvider());
+            k0Var.R0 = i10;
+            k0Var.F1(tL_premium_boostsStatus, true);
+            k0Var.H1(j3);
+            k0Var.Q0 = new l1(R, j3);
+            k0Var.show();
         }
     }
 }

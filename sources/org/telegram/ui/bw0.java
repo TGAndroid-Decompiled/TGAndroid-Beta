@@ -2,79 +2,148 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class bw0 extends org.telegram.ui.Cells.u1 {
-    public final Path Ge;
-    public final Paint He;
-    public final byte[] Ie;
-    public final int Je;
-    public final int Ke;
-    public final dw0 Le;
+public final class bw0 extends FrameLayout {
+    public final int f35200a;
+    public final gw0 f35201b;
 
-    public bw0(dw0 dw0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, byte[] bArr, int i11, int i12) {
-        super(context, i10, false, null, d6Var);
-        this.Le = dw0Var;
-        this.Ie = bArr;
-        this.Je = i11;
-        this.Ke = i12;
-        this.Ge = new Path();
-        this.He = new Paint(1);
+    public bw0(gw0 gw0Var, Context context, int i10) {
+        super(context);
+        this.f35200a = i10;
+        this.f35201b = gw0Var;
     }
 
     @Override
-    public final void Y1(Canvas canvas) {
-        this.f21377i6 = 0;
-        this.f21391j6 = this.Y5.size() - 1;
-        this.f21406k6 = (-AndroidUtilities.dp(7.0f)) * this.Le.f33207y;
-        super.Y1(canvas);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        canvas.save();
-        int I2 = I2(this.Ie);
-        float H2 = H2(I2);
-        float G2 = G2(I2);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getPollButtonsLeft(), H2, getPollButtonsRight(), G2);
-        float f10 = rectF.top;
-        float dp = AndroidUtilities.dp(3.0f);
-        dw0 dw0Var = this.Le;
-        if (dw0Var.V) {
-            f7 = -AndroidUtilities.dp(3.0f);
-        } else {
-            f7 = 0.0f;
+    public void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        org.telegram.ui.Cells.u1 u1Var;
+        switch (this.f35200a) {
+            case 0:
+                gw0 gw0Var = this.f35201b;
+                if (gw0Var.f36758y > 0.0f && gw0Var.f36756w != null) {
+                    gw0Var.f36757x.reset();
+                    float width = getWidth() / gw0Var.f36755s.getWidth();
+                    gw0Var.f36757x.postScale(width, width);
+                    gw0Var.v.setLocalMatrix(gw0Var.f36757x);
+                    gw0Var.f36756w.setAlpha((int) (gw0Var.f36758y * 255.0f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), gw0Var.f36756w);
+                } else {
+                    canvas2 = canvas;
+                }
+                if (gw0Var.O && (u1Var = gw0Var.L) != null) {
+                    u1Var.L7 = gw0Var.P;
+                    u1Var.invalidate();
+                    gw0Var.O = false;
+                }
+                super.dispatchDraw(canvas2);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        rectF.top = AndroidUtilities.lerp(dp, f7, dw0Var.f33207y) + f10;
-        float f11 = rectF.bottom;
-        boolean z10 = dw0Var.V;
-        float dp2 = AndroidUtilities.dp(3.0f);
-        if (!z10) {
-            dp2 = AndroidUtilities.lerp(dp2, 0.0f, dw0Var.f33207y);
+    }
+
+    @Override
+    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
+        switch (this.f35200a) {
+            case 0:
+                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                    this.f35201b.c(true);
+                    return true;
+                }
+                return super.dispatchKeyEventPreIme(keyEvent);
+            default:
+                return super.dispatchKeyEventPreIme(keyEvent);
         }
-        rectF.bottom = f11 + dp2;
-        Path path = this.Ge;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
-        Paint paint = this.He;
-        paint.setColor(0);
-        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.l1(dw0Var.f33207y * 0.2f, -16777216));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        canvas.clipPath(path);
-        S1(canvas);
-        canvas.restore();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(this.Je, this.Ke);
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        switch (this.f35200a) {
+            case 1:
+                gw0 gw0Var = this.f35201b;
+                if (view != gw0Var.K && view != gw0Var.J) {
+                    return super.drawChild(canvas, view, j3);
+                }
+                canvas.save();
+                canvas.clipRect(0.0f, AndroidUtilities.lerp(gw0Var.M, 0.0f, gw0Var.f36758y), getWidth(), AndroidUtilities.lerp(gw0Var.N, getHeight(), gw0Var.f36758y));
+                boolean drawChild = super.drawChild(canvas, view, j3);
+                canvas.restore();
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
     }
 
     @Override
-    public final void setPressed(boolean z10) {
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f35200a) {
+            case 0:
+                super.onLayout(z10, i10, i11, i12, i13);
+                this.f35201b.d();
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f35200a) {
+            case 2:
+                int size = View.MeasureSpec.getSize(i10);
+                int size2 = View.MeasureSpec.getSize(i11);
+                gw0 gw0Var = this.f35201b;
+                gw0Var.e();
+                for (int i12 = 0; i12 < getChildCount(); i12++) {
+                    View childAt = getChildAt(i12);
+                    ViewGroup viewGroup = gw0Var.T;
+                    if (childAt == viewGroup) {
+                        float f7 = gw0Var.U;
+                        if (f7 > 0.0f) {
+                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f7), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
+                    }
+                    ViewGroup viewGroup2 = gw0Var.R;
+                    if (childAt == viewGroup2) {
+                        float f10 = gw0Var.S;
+                        if (f10 > 0.0f) {
+                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
+                    }
+                    org.telegram.ui.Components.sk0 sk0Var = gw0Var.Q;
+                    if (childAt == sk0Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(sk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    }
+                }
+                setMeasuredDimension(size, size2);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f35200a) {
+            case 0:
+                super.onSizeChanged(i10, i11, i12, i13);
+                gw0 gw0Var = this.f35201b;
+                gh.d.c(gw0Var.F, gw0Var.f36745c);
+                gw0Var.G.d();
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+        }
     }
 }

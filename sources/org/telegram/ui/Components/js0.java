@@ -1,15 +1,16 @@
 package org.telegram.ui.Components;
-public final class js0 extends g.p {
-    public final hs0 f25512c;
-    public final lv0 d;
 
-    public js0(lv0 lv0Var, hs0 hs0Var) {
-        this.d = lv0Var;
-        this.f25512c = hs0Var;
-    }
+import android.content.Context;
+public final class js0 {
+    public final Context f27888a;
+    public final org.telegram.ui.ActionBar.n2 f27889b;
+    public final org.telegram.ui.ActionBar.d6 f27890c;
+    public final pv0 d;
 
-    @Override
-    public final int i(int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.js0.i(int):int");
+    public js0(pv0 pv0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.d = pv0Var;
+        this.f27888a = context;
+        this.f27889b = n2Var;
+        this.f27890c = d6Var;
     }
 }

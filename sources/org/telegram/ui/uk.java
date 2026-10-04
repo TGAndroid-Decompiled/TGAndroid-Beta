@@ -1,16 +1,16 @@
 package org.telegram.ui;
 
 import android.widget.FrameLayout;
-public final class uk extends cz {
-    public final wn N;
+public final class uk extends gz {
+    public final yn N;
 
-    public uk(wn wnVar, wn wnVar2, FrameLayout frameLayout, rj rjVar, int i10, long j3, long j10) {
-        super(wnVar2, frameLayout, rjVar, i10, j3, j10);
-        this.N = wnVar;
+    public uk(yn ynVar, yn ynVar2, FrameLayout frameLayout, sj sjVar, int i10, long j3, long j10) {
+        super(ynVar2, frameLayout, sjVar, i10, j3, j10);
+        this.N = ynVar;
     }
 
     @Override
     public final void i() {
-        this.N.uc();
+        this.N.tc();
     }
 }

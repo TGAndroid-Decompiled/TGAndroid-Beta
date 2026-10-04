@@ -1,33 +1,31 @@
 package k2;
-public final class f implements Runnable {
-    public final int f13272a;
-    public final n4.y f13273b;
-    public final Exception f13274c;
+public final class f {
+    public static final f d = new Object().a();
+    public final boolean f14392a;
+    public final boolean f14393b;
+    public final boolean f14394c;
 
-    public f(n4.y yVar, Exception exc, int i10) {
-        this.f13272a = i10;
-        this.f13273b = yVar;
-        this.f13274c = exc;
+    public f(ac.d dVar) {
+        this.f14392a = dVar.f411a;
+        this.f14393b = dVar.f412b;
+        this.f14394c = dVar.f413c;
     }
 
-    @Override
-    public final void run() {
-        int i10 = this.f13272a;
-        Exception exc = this.f13274c;
-        n4.y yVar = this.f13273b;
-        switch (i10) {
-            case 0:
-                String str = e2.d0.f7870a;
-                j2.f fVar = ((i2.c0) ((j) yVar.f15224c)).f10616a.f10675s;
-                j2.a p5 = fVar.p();
-                fVar.q(p5, 1029, new j2.c(p5, exc, 0));
-                return;
-            default:
-                String str2 = e2.d0.f7870a;
-                j2.f fVar2 = ((i2.c0) ((j) yVar.f15224c)).f10616a.f10675s;
-                j2.a p10 = fVar2.p();
-                fVar2.q(p10, 1014, new j2.c(p10, exc, 24));
-                return;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && f.class == obj.getClass()) {
+                f fVar = (f) obj;
+                if (this.f14392a == fVar.f14392a && this.f14393b == fVar.f14393b && this.f14394c == fVar.f14394c) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((this.f14392a ? 1 : 0) << 2) + ((this.f14393b ? 1 : 0) << 1) + (this.f14394c ? 1 : 0);
     }
 }

@@ -1,32 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class i11 implements Runnable {
-    public final int f24949a;
-    public final Runnable f24950b;
-    public final Runnable f24951c;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public class i11 extends MetricAffectingSpan {
+    public final TextPaint f27275a;
+    public final String f27276b;
 
-    public i11(Runnable runnable, Runnable runnable2, int i10) {
-        this.f24949a = i10;
-        this.f24950b = runnable;
-        this.f24951c = runnable2;
+    public i11(TextPaint textPaint, String str) {
+        this.f27275a = textPaint;
+        this.f27276b = str;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24949a) {
-            case 0:
-                m11.b(this.f24950b);
-                Runnable runnable = this.f24951c;
-                if (runnable != null) {
-                    AndroidUtilities.runOnUIThread(runnable);
-                    return;
-                }
-                return;
-            default:
-                this.f24950b.run();
-                this.f24951c.run();
-                return;
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f27275a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f27275a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
         }
     }
 }

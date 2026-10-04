@@ -1,75 +1,42 @@
 package org.telegram.ui.Components;
+public final class rg implements Runnable {
+    public final int f30372a;
+    public final tg f30373b;
+    public final ci.e4 f30374c;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class rg extends j1.b {
-    public final sg f27956o;
-
-    public rg(sg sgVar, sg sgVar2) {
-        super(sgVar2);
-        this.f27956o = sgVar;
+    public rg(tg tgVar, ci.e4 e4Var, int i10) {
+        this.f30372a = i10;
+        this.f30373b = tgVar;
+        this.f30374c = e4Var;
     }
 
     @Override
-    public final int g(float f7, float f10) {
-        sg sgVar = this.f27956o;
-        ChatActivityEnterView chatActivityEnterView = sgVar.V;
-        if (chatActivityEnterView.f22064s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f7, f10)) {
-            return 2;
-        }
-        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f22037n4 > 0.1f && sgVar.J.contains(f7, f10)) {
-            return 4;
-        }
-        return -1;
-    }
-
-    @Override
-    public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f27956o.V;
-        if (chatActivityEnterView.f22064s4) {
-            arrayList.add(2);
-        }
-        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f22037n4 > 0.1f) {
-            arrayList.add(4);
-        }
-    }
-
-    @Override
-    public final boolean k(int i10, int i11) {
-        return true;
-    }
-
-    @Override
-    public final void l(int i10, s0.d dVar) {
-        int i11;
-        int i12;
-        sg sgVar = this.f27956o;
-        ChatActivityEnterView chatActivityEnterView = sgVar.V;
-        if (i10 == 2) {
-            Rect rect = chatActivityEnterView.U3;
-            RectF rectF = chatActivityEnterView.S3;
-            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            dVar.h(chatActivityEnterView.U3);
-            if (chatActivityEnterView.f22047p4 > 0.5f) {
-                i12 = R.string.AccActionResume;
-            } else {
-                i12 = R.string.AccActionPause;
-            }
-            dVar.o(LocaleController.getString(i12));
-        } else if (i10 == 4) {
-            Rect rect2 = chatActivityEnterView.U3;
-            RectF rectF2 = sgVar.J;
-            rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
-            dVar.h(chatActivityEnterView.U3);
-            if (chatActivityEnterView.O) {
-                i11 = R.string.AccActionOnceDeactivate;
-            } else {
-                i11 = R.string.AccActionOnceActivate;
-            }
-            dVar.o(LocaleController.getString(i11));
+    public final void run() {
+        switch (this.f30372a) {
+            case 0:
+                tg tgVar = this.f30373b;
+                ci.e4 e4Var = this.f30374c;
+                tgVar.removeView(e4Var);
+                if (tgVar.f31044b == e4Var) {
+                    tgVar.f31044b = null;
+                    return;
+                }
+                return;
+            case 1:
+                this.f30373b.removeView(this.f30374c);
+                return;
+            case 2:
+                this.f30373b.removeView(this.f30374c);
+                return;
+            default:
+                tg tgVar2 = this.f30373b;
+                ci.e4 e4Var2 = this.f30374c;
+                tgVar2.removeView(e4Var2);
+                if (tgVar2.f31043a == e4Var2) {
+                    tgVar2.f31043a = null;
+                    return;
+                }
+                return;
         }
     }
 }

@@ -60,7 +60,7 @@ public class VoIPDebugToSend {
             FileLog.d("Sent debug logs, response = " + tLObject);
         }
         if ((tLObject instanceof TLRPC.TL_boolFalse) && !TextUtils.isEmpty(data.logPath)) {
-            Utilities.searchQueue.postRunnable(new m(this, data, new File(a4.a.t(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
+            Utilities.searchQueue.postRunnable(new m(this, data, new File(a4.a.s(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
         }
     }
 
@@ -74,7 +74,7 @@ public class VoIPDebugToSend {
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             savecalldebug.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.access_hash = remove.access_hash;
-            tL_inputPhoneCall.f18402id = remove.callId;
+            tL_inputPhoneCall.f20102id = remove.callId;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new o(this, remove, savecalldebug, 0));
         }
     }
@@ -83,8 +83,8 @@ public class VoIPDebugToSend {
         if (TextUtils.isEmpty(finalState.debugLog)) {
             try {
                 finalState.debugLog = VoIPService.getStringFromFile(g2.e("" + j3, true));
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception e7) {
+                e7.printStackTrace();
             }
         }
         Data data = new Data();

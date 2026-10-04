@@ -5,37 +5,37 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 public final class oh implements Utilities.Callback2 {
-    public final int f17226a;
-    public final long f17227b;
-    public final Object f17228c;
+    public final int f18807a;
+    public final long f18808b;
+    public final Object f18809c;
     public final Object d;
 
     public oh(Object obj, Object obj2, long j3, int i10) {
-        this.f17226a = i10;
-        this.f17228c = obj;
+        this.f18807a = i10;
+        this.f18809c = obj;
         this.d = obj2;
-        this.f17227b = j3;
+        this.f18808b = j3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f17226a) {
+        switch (this.f18807a) {
             case 0:
-                PasskeysController.AnonymousClass1.lambda$onResult$0((org.telegram.ui.ActionBar.a2) this.f17228c, (Utilities.Callback3) this.d, this.f17227b, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.AnonymousClass1.lambda$onResult$0((org.telegram.ui.ActionBar.b2) this.f18809c, (Utilities.Callback3) this.d, this.f18808b, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                ((BotForumHelper) this.f17228c).lambda$performSendBotTopicCreate$5(this.f17227b, (String) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ((BotForumHelper) this.f18809c).lambda$performSendBotTopicCreate$5(this.f18808b, (String) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ((GiftAuctionController) this.f17228c).lambda$getOrRequestAuction$12((Utilities.Callback2) this.d, this.f17227b, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+                ((GiftAuctionController) this.f18809c).lambda$getOrRequestAuction$12((Utilities.Callback2) this.d, this.f18808b, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }
 
     public oh(BotForumHelper botForumHelper, long j3, String str) {
-        this.f17226a = 1;
-        this.f17228c = botForumHelper;
-        this.f17227b = j3;
+        this.f18807a = 1;
+        this.f18809c = botForumHelper;
+        this.f18808b = j3;
         this.d = str;
     }
 }

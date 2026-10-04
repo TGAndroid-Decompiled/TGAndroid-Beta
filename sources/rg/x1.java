@@ -1,40 +1,128 @@
 package rg;
 
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Path;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.l4;
-public final class x1 extends l4 {
-    public final Path h;
-    public final z1 f42832n;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.i6;
+public class x1 {
+    public boolean B;
+    public Matrix[] C;
+    public float[][] D;
+    public int[] E;
+    public float[] F;
+    public boolean G;
+    public d6 O;
+    public long Q;
+    public long R;
+    public boolean f46362g;
+    public boolean h;
+    public Utilities.CallbackReturn f46366l;
+    public boolean f46367m;
+    public final int f46370p;
+    public boolean f46371q;
+    public int f46379z;
+    public final RectF f46357a = new RectF();
+    public final RectF f46358b = new RectF();
+    public final RectF f46359c = new RectF();
+    public Bitmap[] d = new Bitmap[3];
+    public boolean[] f46360e = new boolean[3];
+    public boolean[] f46361f = new boolean[3];
+    public final Paint f46363i = new Paint();
+    public float f46364j = 0.0f;
+    public float f46365k = 0.0f;
+    public final ArrayList f46368n = new ArrayList();
+    public float f46369o = 1.0f;
+    public int f46372r = 14;
+    public int f46373s = 12;
+    public int f46374t = 10;
+    public float f46375u = 0.85f;
+    public float v = 0.85f;
+    public float f46376w = 0.9f;
+    public long f46377x = 2000;
+    public int f46378y = 1000;
+    public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
+    public boolean H = false;
+    public boolean I = true;
+    public boolean J = true;
+    public boolean K = false;
+    public boolean L = false;
+    public boolean M = true;
+    public int N = -1;
+    public int P = i6.Uj;
+    public int S = 0;
 
-    public x1(z1 z1Var, Context context) {
-        super(context);
-        this.f42832n = z1Var;
-        this.h = new Path();
+    public x1(int i10) {
+        this.f46370p = i10;
+        this.B = i10 < 50;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.h);
-        super.dispatchDraw(canvas);
-        canvas.restore();
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: rg.x1.a():void");
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        Path path = this.h;
-        path.reset();
-        z1 z1Var = this.f42832n;
-        if (z1Var.d) {
-            AndroidUtilities.rectTmp.set(0.0f, -z1Var.M, getMeasuredWidth(), getMeasuredHeight());
-        } else {
-            AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), (int) (getMeasuredHeight() + z1Var.M));
+    public int b() {
+        if (this.N == 100) {
+            return i0.a.k(i6.v0(this.P, this.O), 200);
         }
-        float dp = z1Var.M - AndroidUtilities.dp(3.0f);
-        path.addRoundRect(AndroidUtilities.rectTmp, dp, dp, Path.Direction.CW);
+        return i6.v0(this.P, this.O);
+    }
+
+    public final void c() {
+        a();
+        boolean z10 = this.G;
+        int i10 = this.f46370p;
+        if (z10) {
+            int length = this.d.length;
+            this.C = new Matrix[length];
+            this.D = new float[length];
+            this.E = new int[length];
+            this.F = new float[length];
+            for (int i11 = 0; i11 < length; i11++) {
+                this.C[i11] = new Matrix();
+                this.D[i11] = new float[i10 * 2];
+            }
+        }
+        ArrayList arrayList = this.f46368n;
+        if (arrayList.isEmpty()) {
+            for (int i12 = 0; i12 < i10; i12++) {
+                arrayList.add(new w1(this));
+            }
+        }
+    }
+
+    public final void d(Canvas canvas) {
+        e(canvas, 1.0f);
+    }
+
+    public final void e(android.graphics.Canvas r19, float r20) {
+        throw new UnsupportedOperationException("Method not decompiled: rg.x1.e(android.graphics.Canvas, float):void");
+    }
+
+    public final void f() {
+        long currentTimeMillis = System.currentTimeMillis();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.f46368n;
+            if (i10 < arrayList.size()) {
+                ((w1) arrayList.get(i10)).b(currentTimeMillis);
+                i10++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void g() {
+        int v02 = i6.v0(this.P, this.O);
+        if (this.f46379z != v02) {
+            this.f46379z = v02;
+            a();
+        }
     }
 }

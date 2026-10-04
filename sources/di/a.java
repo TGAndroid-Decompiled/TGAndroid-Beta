@@ -1,79 +1,46 @@
 package di;
 
-import android.content.Context;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import androidx.profileinstaller.ProfileInstallerInitializer;
-import java.util.Random;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import yh.s;
-public final class a implements Runnable {
-    public final int f7727a;
-    public final Context f7728b;
+import org.telegram.ui.Components.wv0;
+public final class a implements le.d, wv0 {
+    public final int f8357a;
+    public final k f8358b;
 
-    public a(Context context, int i10) {
-        this.f7727a = i10;
-        this.f7728b = context;
+    public a(k kVar, int i10) {
+        this.f8357a = i10;
+        this.f8358b = kVar;
     }
 
     @Override
-    public final void run() {
-        Handler handler;
-        switch (this.f7727a) {
+    public void V(float f7, int i10) {
+        int i11 = this.f8357a;
+    }
+
+    @Override
+    public void a0(int i10, float f7, float f10, le.e eVar) {
+        switch (this.f8357a) {
             case 0:
-                new s(this.f7728b).show();
+                this.f8358b.L0();
                 return;
             case 1:
-                nf.f.s(this.f7728b, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
-                return;
-            case 2:
-                if (Build.VERSION.SDK_INT >= 28) {
-                    handler = r4.f.a(Looper.getMainLooper());
-                } else {
-                    handler = new Handler(Looper.getMainLooper());
-                }
-                handler.postDelayed(new a(this.f7728b, 3), new Random().nextInt(Math.max(1000, 1)) + 5000);
-                return;
-            case 3:
-                new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new a(this.f7728b, 4));
-                return;
-            case 4:
-                r4.d.s(this.f7728b, new a3.b(2), r4.d.f42311a, false);
-                return;
-            case 5:
-                new s(this.f7728b).show();
-                return;
-            case 6:
-                nf.f.s(this.f7728b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 7:
-                new s(this.f7728b).show();
-                return;
-            case 8:
-                nf.f.s(this.f7728b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 9:
-                nf.f.s(this.f7728b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 10:
-                nf.f.s(this.f7728b, LocaleController.getString(R.string.PaidContentInfoLink));
-                return;
-            case 11:
-                nf.f.s(this.f7728b, LocaleController.getString(R.string.StarsSubscribeInfoLink));
+                this.f8358b.L0();
                 return;
             default:
-                nf.f.s(this.f7728b, LocaleController.getString(R.string.StarsReactionTermsLink));
+                this.f8358b.U.setAlpha(f7);
                 return;
         }
     }
 
-    public a(ProfileInstallerInitializer profileInstallerInitializer, Context context) {
-        this.f7727a = 2;
-        this.f7728b = context;
+    @Override
+    public int b() {
+        return this.f8358b.Y;
+    }
+
+    private final void a(float f7, int i10) {
+    }
+
+    private final void c(float f7, int i10) {
+    }
+
+    private final void d(float f7, int i10) {
     }
 }

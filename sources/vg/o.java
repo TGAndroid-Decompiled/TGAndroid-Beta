@@ -2,30 +2,30 @@ package vg;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import rg.w1;
-public final class o extends w1 {
-    public final r f44624n;
+import rg.y1;
+public final class o extends y1 {
+    public final r f48312n;
 
     public o(r rVar, Context context) {
         super(context);
-        this.f44624n = rVar;
+        this.f48312n = rVar;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f44624n.f44629b.setPaused(false);
+        this.f48312n.f48318b.setPaused(false);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f44624n.f44629b.setPaused(true);
+        this.f48312n.f48318b.setPaused(true);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f42817a.f42789b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+        this.f46392a.f46358b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
     }
 }

@@ -5,9 +5,9 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class m extends o6.a {
     public static final Parcelable.Creator<m> CREATOR = new r0(18);
-    public final c f4112a;
-    public final Boolean f4113b;
-    public final j0 f4114c;
+    public final c f4448a;
+    public final Boolean f4449b;
+    public final j0 f4450c;
     public final e0 d;
 
     public m(String str, Boolean bool, String str2, String str3) {
@@ -19,18 +19,18 @@ public final class m extends o6.a {
         } else {
             try {
                 a2 = c.a(str);
-            } catch (b | d0 | t0 e) {
-                throw new IllegalArgumentException(e);
+            } catch (b | d0 | t0 e7) {
+                throw new IllegalArgumentException(e7);
             }
         }
-        this.f4112a = a2;
-        this.f4113b = bool;
+        this.f4448a = a2;
+        this.f4449b = bool;
         if (str2 == null) {
             a10 = null;
         } else {
             a10 = j0.a(str2);
         }
-        this.f4114c = a10;
+        this.f4450c = a10;
         if (str3 != null) {
             e0Var = e0.a(str3);
         }
@@ -40,7 +40,7 @@ public final class m extends o6.a {
     public final e0 b() {
         e0 e0Var = this.d;
         if (e0Var == null) {
-            Boolean bool = this.f4113b;
+            Boolean bool = this.f4449b;
             if (bool == null || !bool.booleanValue()) {
                 return null;
             }
@@ -54,54 +54,54 @@ public final class m extends o6.a {
             return false;
         }
         m mVar = (m) obj;
-        if (!n6.l.l(this.f4112a, mVar.f4112a) || !n6.l.l(this.f4113b, mVar.f4113b) || !n6.l.l(this.f4114c, mVar.f4114c) || !n6.l.l(b(), mVar.b())) {
+        if (!n6.l.l(this.f4448a, mVar.f4448a) || !n6.l.l(this.f4449b, mVar.f4449b) || !n6.l.l(this.f4450c, mVar.f4450c) || !n6.l.l(b(), mVar.b())) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4112a, this.f4113b, this.f4114c, b()});
+        return Arrays.hashCode(new Object[]{this.f4448a, this.f4449b, this.f4450c, b()});
     }
 
     public final String toString() {
-        String valueOf = String.valueOf(this.f4112a);
-        String valueOf2 = String.valueOf(this.f4114c);
+        String valueOf = String.valueOf(this.f4448a);
+        String valueOf2 = String.valueOf(this.f4450c);
         String valueOf3 = String.valueOf(this.d);
-        StringBuilder w10 = a4.a.w("AuthenticatorSelectionCriteria{\n attachment=", valueOf, ", \n requireResidentKey=");
-        w10.append(this.f4113b);
-        w10.append(", \n requireUserVerification=");
-        w10.append(valueOf2);
-        w10.append(", \n residentKeyRequirement=");
-        return a4.a.t(w10, valueOf3, "\n }");
+        StringBuilder v = a4.a.v("AuthenticatorSelectionCriteria{\n attachment=", valueOf, ", \n requireResidentKey=");
+        v.append(this.f4449b);
+        v.append(", \n requireUserVerification=");
+        v.append(valueOf2);
+        v.append(", \n residentKeyRequirement=");
+        return a4.a.s(v, valueOf3, "\n }");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         String str;
         String str2;
-        int q6 = w7.f0.q(parcel, 20293);
+        int q6 = w7.g0.q(parcel, 20293);
         String str3 = null;
-        c cVar = this.f4112a;
+        c cVar = this.f4448a;
         if (cVar == null) {
             str = null;
         } else {
-            str = cVar.f4070a;
+            str = cVar.f4403a;
         }
-        w7.f0.l(parcel, 2, str);
-        w7.f0.a(parcel, 3, this.f4113b);
-        j0 j0Var = this.f4114c;
+        w7.g0.l(parcel, 2, str);
+        w7.g0.a(parcel, 3, this.f4449b);
+        j0 j0Var = this.f4450c;
         if (j0Var == null) {
             str2 = null;
         } else {
-            str2 = j0Var.f4104a;
+            str2 = j0Var.f4440a;
         }
-        w7.f0.l(parcel, 4, str2);
+        w7.g0.l(parcel, 4, str2);
         e0 b10 = b();
         if (b10 != null) {
-            str3 = b10.f4079a;
+            str3 = b10.f4412a;
         }
-        w7.f0.l(parcel, 5, str3);
-        w7.f0.r(parcel, q6);
+        w7.g0.l(parcel, 5, str3);
+        w7.g0.r(parcel, q6);
     }
 }

@@ -1,161 +1,36 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class io0 implements TextWatcher {
-    public final String[] f34564a = {"34", "37"};
-    public final String[] f34565b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
-    public final String[] f34566c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
-    public int d = -1;
-    public int e;
-    public final oo0 f34567f;
+import android.os.AsyncTask;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class io0 extends AsyncTask {
+    public final uc.a f37474a;
+    public final so0 f37475b;
 
-    public io0(oo0 oo0Var) {
-        this.f34567f = oo0Var;
+    public io0(so0 so0Var, uc.a aVar) {
+        this.f37475b = so0Var;
+        this.f37474a = aVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        char c10;
-        boolean z10;
-        int i10;
-        int i11;
-        String[] strArr;
-        int i12;
-        String str;
-        oo0 oo0Var = this.f34567f;
-        if (oo0Var.f36303o0) {
+    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.io0.doInBackground(java.lang.Object[]):java.lang.Object");
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        String str = (String) obj;
+        so0 so0Var = this.f37475b;
+        if (so0Var.Q0) {
             return;
         }
-        EditTextBoldCursor editTextBoldCursor = oo0Var.f36292f[0];
-        int selectionStart = editTextBoldCursor.getSelectionStart();
-        String obj = editTextBoldCursor.getText().toString();
-        int i13 = 3;
-        int i14 = 1;
-        if (this.d == 3) {
-            obj = obj.substring(0, this.e) + obj.substring(this.e + 1);
-            selectionStart--;
-        }
-        StringBuilder sb2 = new StringBuilder(obj.length());
-        int i15 = 0;
-        while (i15 < obj.length()) {
-            int i16 = i15 + 1;
-            String substring = obj.substring(i15, i16);
-            if ("0123456789".contains(substring)) {
-                sb2.append(substring);
-            }
-            i15 = i16;
-        }
-        oo0Var.f36303o0 = true;
-        String str2 = null;
-        int i17 = 100;
-        if (sb2.length() > 0) {
-            String sb3 = sb2.toString();
-            int i18 = 0;
-            while (true) {
-                if (i18 < i13) {
-                    if (i18 != 0) {
-                        if (i18 != i14) {
-                            strArr = this.f34565b;
-                            i12 = 14;
-                            str = "xxxx xxxx xxxx xx";
-                        } else {
-                            strArr = this.f34564a;
-                            i12 = 15;
-                            str = "xxxx xxxx xxxx xxx";
-                        }
-                    } else {
-                        strArr = this.f34566c;
-                        i12 = 16;
-                        str = "xxxx xxxx xxxx xxxx";
-                    }
-                    c10 = 1;
-                    for (String str3 : strArr) {
-                        if (sb3.length() <= str3.length()) {
-                            if (str3.startsWith(sb3)) {
-                                i17 = i12;
-                                str2 = str;
-                                break;
-                            }
-                        } else if (sb3.startsWith(str3)) {
-                            i17 = i12;
-                            str2 = str;
-                            break;
-                        }
-                    }
-                    if (str2 != null) {
-                        break;
-                    }
-                    i18++;
-                    i13 = 3;
-                    i14 = 1;
-                } else {
-                    c10 = 1;
-                    break;
-                }
-            }
-            if (sb2.length() > i17) {
-                sb2.setLength(i17);
-            }
+        if (str == null) {
+            org.telegram.ui.Components.e5.w0(so0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
         } else {
-            c10 = 1;
+            so0Var.f40575w0 = str;
+            so0Var.t0();
         }
-        if (str2 != null) {
-            if (sb2.length() == i17) {
-                oo0Var.f36292f[c10].requestFocus();
-            }
-            editTextBoldCursor.setTextColor(oo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
-            int i19 = 0;
-            while (true) {
-                if (i19 >= sb2.length()) {
-                    break;
-                } else if (i19 < str2.length()) {
-                    if (str2.charAt(i19) == ' ') {
-                        sb2.insert(i19, ' ');
-                        i19++;
-                        if (selectionStart == i19 && (i11 = this.d) != 2 && i11 != 3) {
-                            selectionStart++;
-                        }
-                    }
-                    i19++;
-                } else {
-                    sb2.insert(i19, ' ');
-                    if (selectionStart == i19 + 1 && (i10 = this.d) != 2 && i10 != 3) {
-                        selectionStart++;
-                    }
-                }
-            }
-        }
-        if (!sb2.toString().equals(editable.toString())) {
-            z10 = false;
-            editable.replace(0, editable.length(), sb2);
-        } else {
-            z10 = false;
-        }
-        if (selectionStart >= 0) {
-            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
-        }
-        oo0Var.f36303o0 = z10;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (i11 == 0 && i12 == 1) {
-            this.d = 1;
-        } else if (i11 == 1 && i12 == 0) {
-            if (charSequence.charAt(i10) == ' ' && i10 > 0) {
-                this.d = 3;
-                this.e = i10 - 1;
-                return;
-            }
-            this.d = 2;
-        } else {
-            this.d = -1;
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        so0Var.H0(true, false);
+        so0Var.D0(false);
     }
 }

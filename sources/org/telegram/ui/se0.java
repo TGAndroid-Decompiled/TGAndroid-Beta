@@ -1,62 +1,55 @@
 package org.telegram.ui;
-public final class se0 implements Runnable {
-    public final int f37720a;
-    public final ue0 f37721b;
 
-    public se0(ue0 ue0Var, int i10) {
-        this.f37720a = i10;
-        this.f37721b = ue0Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class se0 implements Runnable {
+    public final int f40465a;
+    public final ve0 f40466b;
+
+    public se0(ve0 ve0Var, int i10) {
+        this.f40465a = i10;
+        this.f40466b = ve0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37720a) {
+        switch (this.f40465a) {
             case 0:
-                ue0 ue0Var = this.f37721b;
-                org.telegram.ui.Components.nj0 nj0Var = ue0Var.e;
-                nj0Var.getAnimatedDrawable().N(0, false, false);
-                nj0Var.d();
-                xd0 xd0Var = ue0Var.f38443a;
-                if (xd0Var != null) {
-                    xd0Var.f40237f[0].requestFocus();
+                ve0 ve0Var = this.f40466b;
+                ci.h2 h2Var = ve0Var.f41713c;
+                h2Var.requestFocus();
+                String str = ve0Var.K;
+                if (str != null) {
+                    int i10 = 1;
+                    if (str.length() > 1) {
+                        String obj = h2Var.getText().toString();
+                        int length = obj.length();
+                        int i11 = 0;
+                        while (i11 < length && obj.charAt(i11) <= ' ') {
+                            i11++;
+                        }
+                        int length2 = ve0Var.K.length() + i11;
+                        h2Var.setSelection(Utilities.clamp(length2 + ((length2 < 0 || length2 >= obj.length() || obj.charAt(length2) != ' ') ? 0 : 0), obj.length(), 0), h2Var.getText().length());
+                        return;
+                    }
+                }
+                h2Var.setSelection(0, h2Var.getText().length());
+                return;
+            case 1:
+                this.f40466b.q(true);
+                return;
+            case 2:
+                this.f40466b.o(false);
+                return;
+            default:
+                ci.h2 h2Var2 = this.f40466b.f41713c;
+                if (h2Var2 != null) {
+                    h2Var2.requestFocus();
+                    h2Var2.setSelection(h2Var2.length());
+                    AndroidUtilities.showKeyboard(h2Var2);
                     return;
                 }
                 return;
-            case 1:
-                ue0 ue0Var2 = this.f37721b;
-                int i10 = 0;
-                ue0Var2.f38450w = false;
-                while (true) {
-                    as[] asVarArr = ue0Var2.f38443a.f40237f;
-                    if (i10 < asVarArr.length) {
-                        asVarArr[i10].i(0.0f);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 2:
-                ue0 ue0Var3 = this.f37721b;
-                ue0Var3.postDelayed(new se0(ue0Var3, 3), 150L);
-                se0 se0Var = ue0Var3.f38451x;
-                ue0Var3.removeCallbacks(se0Var);
-                ue0Var3.postDelayed(se0Var, 3000L);
-                ue0Var3.f38450w = true;
-                return;
-            default:
-                xd0 xd0Var2 = this.f37721b.f38443a;
-                int i11 = 0;
-                xd0Var2.e = false;
-                xd0Var2.f40237f[0].requestFocus();
-                while (true) {
-                    as[] asVarArr2 = xd0Var2.f40237f;
-                    if (i11 < asVarArr2.length) {
-                        asVarArr2[i11].i(0.0f);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
         }
     }
 }

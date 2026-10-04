@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 public abstract class i {
     public static final Logger d;
-    public volatile ServerSocket f46978a;
-    public Thread f46979b;
-    public n f46980c;
+    public volatile ServerSocket f50842a;
+    public Thread f50843b;
+    public n f50844c;
 
     static {
         Pattern.compile("([ |\t]*Content-Disposition[ |\t]*:)(.*)", 2);
@@ -28,8 +28,8 @@ public abstract class i {
     public static String b(String str) {
         try {
             return URLDecoder.decode(str, "UTF8");
-        } catch (UnsupportedEncodingException e) {
-            d.log(Level.WARNING, "Encoding not supported, ignored", (Throwable) e);
+        } catch (UnsupportedEncodingException e7) {
+            d.log(Level.WARNING, "Encoding not supported, ignored", (Throwable) e7);
             return null;
         }
     }
@@ -42,7 +42,7 @@ public abstract class i {
             return new g(fVar, str, new ByteArrayInputStream(new byte[0]), 0L);
         }
         String str4 = "US-ASCII";
-        String str5 = bVar.f46951c;
+        String str5 = bVar.f50812c;
         if (str5 == null) {
             str3 = "US-ASCII";
         } else {
@@ -52,16 +52,16 @@ public abstract class i {
             if (!Charset.forName(str3).newEncoder().canEncode(str2) && str5 == null) {
                 bVar = new b(str + "; charset=UTF-8");
             }
-            String str6 = bVar.f46951c;
+            String str6 = bVar.f50812c;
             if (str6 != null) {
                 str4 = str6;
             }
             bArr = str2.getBytes(str4);
-        } catch (UnsupportedEncodingException e) {
-            d.log(Level.SEVERE, "encoding problem, responding nothing", (Throwable) e);
+        } catch (UnsupportedEncodingException e7) {
+            d.log(Level.SEVERE, "encoding problem, responding nothing", (Throwable) e7);
             bArr = new byte[0];
         }
-        return new g(fVar, bVar.f46949a, new ByteArrayInputStream(bArr), bArr.length);
+        return new g(fVar, bVar.f50810a, new ByteArrayInputStream(bArr), bArr.length);
     }
 
     public static final void d(Object obj) {
@@ -76,14 +76,14 @@ public abstract class i {
                 } else {
                     throw new IllegalArgumentException("Unknown object to close");
                 }
-            } catch (IOException e) {
-                d.log(Level.SEVERE, "Could not close", (Throwable) e);
+            } catch (IOException e7) {
+                d.log(Level.SEVERE, "Could not close", (Throwable) e7);
             }
         }
     }
 
     public static boolean g(g gVar) {
-        String str = gVar.f46971b;
+        String str = gVar.f50834b;
         if (str != null) {
             if (str.toLowerCase().contains("text/") || str.toLowerCase().contains("/json")) {
                 return true;
@@ -96,21 +96,21 @@ public abstract class i {
     public abstract g e(d dVar);
 
     public final void f() {
-        this.f46978a = new ServerSocket();
-        this.f46978a.setReuseAddress(true);
+        this.f50842a = new ServerSocket();
+        this.f50842a.setReuseAddress(true);
         ji.g gVar = new ji.g(this);
         Thread thread = new Thread(gVar);
-        this.f46979b = thread;
+        this.f50843b = thread;
         thread.setDaemon(true);
-        this.f46979b.setName("NanoHttpd Main Listener");
-        this.f46979b.start();
-        while (!gVar.f13057b && ((IOException) gVar.f13058c) == null) {
+        this.f50843b.setName("NanoHttpd Main Listener");
+        this.f50843b.start();
+        while (!gVar.f14197b && ((IOException) gVar.f14198c) == null) {
             try {
                 Thread.sleep(10L);
             } catch (Throwable unused) {
             }
         }
-        IOException iOException = (IOException) gVar.f13058c;
+        IOException iOException = (IOException) gVar.f14198c;
         if (iOException == null) {
             return;
         }

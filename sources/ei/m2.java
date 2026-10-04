@@ -1,61 +1,48 @@
 package ei;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.a80;
-import org.telegram.ui.PhotoViewer;
-public final class m2 implements Runnable {
-    public final int f8467a;
-    public final a80 f8468b;
-    public final a80 f8469c;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+public final class m2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f9197a;
+    public final l3 f9198b;
+    public final int f9199c;
+    public final int d;
 
-    public m2(a80 a80Var, a80 a80Var2, int i10) {
-        this.f8467a = i10;
-        this.f8468b = a80Var;
-        this.f8469c = a80Var2;
+    public m2(l3 l3Var, int i10, int i11, int i12) {
+        this.f9197a = i12;
+        this.f9198b = l3Var;
+        this.f9199c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f8467a;
-        a80 a80Var = this.f8469c;
-        a80 a80Var2 = this.f8468b;
-        switch (i10) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        boolean z10;
+        switch (this.f9197a) {
             case 0:
-                a80Var2.K(a80Var);
-                return;
-            case 1:
-                a80Var2.K(a80Var);
-                return;
-            case 2:
-                a80Var2.K(a80Var);
-                return;
-            case 3:
-                a80Var2.K(a80Var);
-                return;
-            case 4:
-                a80Var2.K(a80Var);
-                return;
-            case 5:
-                a80Var2.K(a80Var);
-                return;
-            case 6:
-                a80Var2.K(a80Var);
-                return;
-            case 7:
-                a80Var2.K(a80Var);
-                return;
-            case 8:
-                a80Var2.K(a80Var);
-                return;
-            case 9:
-                a80Var2.K(a80Var);
-                return;
-            case 10:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                a80Var2.K(a80Var);
+                l3 l3Var = this.f9198b;
+                Paint paint = l3Var.P;
+                paint.setColor(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f9199c, this.d));
+                l3Var.A();
+                l3Var.f9156e.invalidate();
+                org.telegram.ui.d3 d3Var = l3Var.U0;
+                if (d3Var != null) {
+                    if (AndroidUtilities.computePerceivedBrightness(paint.getColor()) <= 0.721f) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    d3Var.b(z10, false);
+                    l3Var.U0.setBackgroundColor(paint.getColor());
+                }
+                l3Var.F();
                 return;
             default:
-                a80Var2.K(a80Var);
+                l3 l3Var2 = this.f9198b;
+                l3Var2.getClass();
+                l3Var2.R = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f9199c, this.d);
+                l3Var2.h();
                 return;
         }
     }

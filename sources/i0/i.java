@@ -8,11 +8,11 @@ public final class i extends h {
     @Override
     public final Typeface j(Object obj) {
         try {
-            Object newInstance = Array.newInstance(this.f10590f, 1);
+            Object newInstance = Array.newInstance(this.f11540f, 1);
             Array.set(newInstance, 0, obj);
-            return (Typeface) this.f10595l.invoke(null, newInstance, "sans-serif", -1, -1);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+            return (Typeface) this.f11545l.invoke(null, newInstance, "sans-serif", -1, -1);
+        } catch (IllegalAccessException | InvocationTargetException e7) {
+            throw new RuntimeException(e7);
         }
     }
 

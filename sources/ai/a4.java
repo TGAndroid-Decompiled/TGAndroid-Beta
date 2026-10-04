@@ -16,42 +16,42 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.NumberTextView;
-import org.telegram.ui.wn;
+import org.telegram.ui.yn;
 public final class a4 extends ChatActivityEnterView {
-    public ValueAnimator f510o5;
+    public ValueAnimator f557o5;
     public int p5;
-    public int f511q5;
-    public int f512r5;
-    public final e6 f513s5;
+    public int f558q5;
+    public int f559r5;
+    public final e6 f560s5;
 
     public a4(e6 e6Var, Activity activity, e6 e6Var2, x3 x3Var) {
         super(activity, e6Var2, null, true, x3Var);
-        this.f513s5 = e6Var;
+        this.f560s5 = e6Var;
     }
 
     @Override
     public final void C0(int i10, int i11) {
-        e6 e6Var = this.f513s5;
-        if (e6Var.f773b2 != null) {
-            this.f22036n3 = true;
-            this.f511q5 = this.E0.getMeasuredHeight();
-            this.f512r5 = this.E0.getScrollY();
+        e6 e6Var = this.f560s5;
+        if (e6Var.f841b2 != null) {
+            this.f23929n3 = true;
+            this.f558q5 = this.E0.getMeasuredHeight();
+            this.f559r5 = this.E0.getScrollY();
             invalidate();
             e6Var.invalidate();
-            this.p5 = e6Var.f773b2.getBackgroundTop();
+            this.p5 = e6Var.f841b2.getBackgroundTop();
         }
     }
 
     @Override
-    public final void L1(int i10, boolean z10) {
-        super.L1(i10, z10);
+    public final void K1(int i10, boolean z10) {
+        super.K1(i10, z10);
         T1();
     }
 
     @Override
     public final void P1(boolean z10) {
         boolean z11;
-        e6 e6Var = this.f513s5;
+        e6 e6Var = this.f560s5;
         if (!e6Var.F1 && !e6Var.G1) {
             z11 = false;
         } else {
@@ -69,8 +69,8 @@ public final class a4 extends ChatActivityEnterView {
             H0();
             return false;
         }
-        e6 e6Var = this.f513s5;
-        if (e6Var.O1.f645f) {
+        e6 e6Var = this.f560s5;
+        if (e6Var.O1.f700f) {
             long j3 = e6Var.L3;
             messageMinPrice = e6Var.getMessageMinPrice();
             long max = Math.max(j3, messageMinPrice);
@@ -84,11 +84,11 @@ public final class a4 extends ChatActivityEnterView {
                 i10 = 400;
             }
             if (length > i10) {
-                NumberTextView numberTextView = this.f21962b0;
+                NumberTextView numberTextView = this.f23854b0;
                 if (numberTextView != null) {
                     AndroidUtilities.shakeViewSpring(numberTextView, 3.5f);
                     try {
-                        this.f21962b0.performHapticFeedback(3, 2);
+                        this.f23854b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }
@@ -112,7 +112,7 @@ public final class a4 extends ChatActivityEnterView {
             AndroidUtilities.hideKeyboard(this);
             e6Var.L3 = 0L;
             e6Var.r0(true);
-            K(true);
+            I(true);
             return true;
         }
         return super.S0();
@@ -120,7 +120,7 @@ public final class a4 extends ChatActivityEnterView {
 
     @Override
     public final boolean T0(int i10, boolean z10, int i11, boolean z11, long j3) {
-        e6 e6Var = this.f513s5;
+        e6 e6Var = this.f560s5;
         if (MessagesController.getInstance(e6Var.C2).isFrozen()) {
             org.telegram.ui.b.b(e6Var.C2);
             return false;
@@ -140,30 +140,30 @@ public final class a4 extends ChatActivityEnterView {
         if (!isEnabled()) {
             RectF rectF = AndroidUtilities.rectTmp;
             float width = getWidth();
-            e6 e6Var = this.f513s5;
-            if (e6Var.f797i2 != null) {
-                f7 = this.f22092y * 1.5f;
+            e6 e6Var = this.f560s5;
+            if (e6Var.f865i2 != null) {
+                f7 = this.f23985y * 1.5f;
             } else {
                 f7 = 0.0f;
             }
             rectF.set(0.0f, 0.0f, width + f7, getHeight());
             boolean contains = rectF.contains(motionEvent.getX(), motionEvent.getY());
             if (motionEvent.getAction() == 0) {
-                if (contains && (textView2 = e6Var.f797i2) != null) {
+                if (contains && (textView2 = e6Var.f865i2) != null) {
                     textView2.setPressed(true);
                 }
             } else if (motionEvent.getAction() == 1) {
-                TextView textView3 = e6Var.f797i2;
+                TextView textView3 = e6Var.f865i2;
                 if (textView3 != null) {
                     if (contains && textView3.isPressed()) {
                         e6.h0(e6Var);
                     }
-                    e6Var.f797i2.setPressed(false);
+                    e6Var.f865i2.setPressed(false);
                 }
-            } else if (motionEvent.getAction() == 3 && (textView = e6Var.f797i2) != null) {
+            } else if (motionEvent.getAction() == 3 && (textView = e6Var.f865i2) != null) {
                 textView.setPressed(false);
             }
-            TextView textView4 = e6Var.f797i2;
+            TextView textView4 = e6Var.f865i2;
             if (textView4 == null || !textView4.isPressed()) {
                 return false;
             }
@@ -173,8 +173,17 @@ public final class a4 extends ChatActivityEnterView {
     }
 
     @Override
+    public final void g1(float f7, float f10, float f11, boolean z10) {
+        LinearLayout linearLayout = this.f560s5.f859g2;
+        if (linearLayout != null) {
+            linearLayout.setTranslationX((1.0f - f11) * f7);
+        }
+        super.g1(f7, f10, f11, z10);
+    }
+
+    @Override
     public final int getMessagesCount() {
-        if (this.f513s5.O1.f645f) {
+        if (this.f560s5.O1.f700f) {
             return 1;
         }
         return super.getMessagesCount();
@@ -183,8 +192,8 @@ public final class a4 extends ChatActivityEnterView {
     @Override
     public final long getStarsPrice() {
         long messageMinPrice;
-        e6 e6Var = this.f513s5;
-        if (e6Var.O1.f645f) {
+        e6 e6Var = this.f560s5;
+        if (e6Var.O1.f700f) {
             messageMinPrice = e6Var.getMessageMinPrice();
             return Math.max(messageMinPrice, e6Var.L3);
         }
@@ -193,27 +202,18 @@ public final class a4 extends ChatActivityEnterView {
 
     @Override
     public final void h0(Menu menu) {
-        wn.k8(menu, null, false, !this.f513s5.O1.f645f, true, true);
+        yn.k8(menu, null, false, !this.f560s5.O1.f700f, true, true);
     }
 
     @Override
-    public final void h1(float f7, float f10, float f11, boolean z10) {
-        LinearLayout linearLayout = this.f513s5.f791g2;
-        if (linearLayout != null) {
-            linearLayout.setTranslationX((1.0f - f11) * f7);
-        }
-        super.h1(f7, f10, f11, z10);
-    }
-
-    @Override
-    public final boolean r1(Runnable runnable) {
-        this.f513s5.n0(runnable);
+    public final boolean q1(Runnable runnable) {
+        this.f560s5.n0(runnable);
         return true;
     }
 
     @Override
     public final boolean t() {
-        return this.f513s5.D0(true);
+        return this.f560s5.D0(true);
     }
 
     @Override

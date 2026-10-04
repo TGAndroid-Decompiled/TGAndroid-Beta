@@ -1,63 +1,35 @@
 package org.telegram.ui.Components;
-public final class hb implements o1.f {
-    public final int f24757a;
-    public final Object f24758b;
+public final class hb implements q0.a {
+    public final int f27085a;
+    public final Object f27086b;
 
     public hb(Object obj, int i10) {
-        this.f24757a = i10;
-        this.f24758b = obj;
+        this.f27085a = i10;
+        this.f27086b = obj;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f24757a) {
+    public final void accept(Object obj) {
+        switch (this.f27085a) {
             case 0:
-                qc qcVar = (qc) this.f24758b;
-                if (qcVar.d == hVar) {
-                    qcVar.d = null;
+                rc rcVar = (rc) this.f27086b;
+                Float f7 = (Float) obj;
+                pb pbVar = rcVar.f30344p;
+                if (pbVar != null) {
+                    vb vbVar = rcVar.f30334e;
+                    if (!vbVar.top) {
+                        pbVar.c(vbVar.getHeight() - f7.floatValue());
+                        return;
+                    }
                     return;
                 }
-                return;
-            case 1:
-                db dbVar = (db) this.f24758b;
-                if (!z10) {
-                    dbVar.run();
-                    return;
-                }
-                return;
-            case 2:
-                kp0 kp0Var = (kp0) this.f24758b;
-                kp0Var.f25783q = false;
-                kp0Var.dismiss();
-                return;
-            case 3:
-                lp0 lp0Var = (lp0) this.f24758b;
-                lp0Var.f26052s = false;
-                lp0Var.f26051r = false;
-                if (!z10) {
-                    hVar.c();
-                }
-                if (hVar == lp0Var.f26049f) {
-                    lp0Var.f26049f = null;
-                    return;
-                }
-                return;
-            case 4:
-                wq0 wq0Var = (wq0) this.f24758b;
-                wq0Var.E.setVisibility(8);
-                wq0Var.f30151z0.setVisibility(8);
-                tq0 tq0Var = wq0Var.L;
-                tq0Var.f28609f = null;
-                tq0Var.l();
-                wq0Var.B0 = null;
-                wq0Var.M0 = false;
                 return;
             default:
-                wq0 wq0Var2 = ((dq0) this.f24758b).d;
-                wq0Var2.F.setVisibility(8);
-                wq0Var2.G.setVisibility(8);
-                wq0Var2.f30150y0.setVisibility(8);
-                wq0Var2.B0 = null;
+                vi viVar = ((xi) this.f27086b).Z1;
+                if (viVar != null) {
+                    viVar.U0(obj);
+                    return;
+                }
                 return;
         }
     }

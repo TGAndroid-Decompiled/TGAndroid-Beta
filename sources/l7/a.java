@@ -2,7 +2,7 @@ package l7;
 
 import android.os.Build;
 public abstract class a {
-    public static final int f14147a;
+    public static final int f15376a;
 
     static {
         int i10;
@@ -11,6 +11,6 @@ public abstract class a {
         } else {
             i10 = 0;
         }
-        f14147a = i10;
+        f15376a = i10;
     }
 }

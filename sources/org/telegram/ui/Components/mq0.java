@@ -1,21 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class mq0 extends org.telegram.ui.Cells.g7 {
-    public final oq0 N;
+public final class mq0 implements TextWatcher {
+    public final zq0 f28679a;
 
-    public mq0(oq0 oq0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 0, d6Var);
-        this.N = oq0Var;
+    public mq0(zq0 zq0Var) {
+        this.f28679a = zq0Var;
     }
 
     @Override
-    public final String a() {
-        if (this.N.f27172f.f30118a0) {
-            return LocaleController.getString(R.string.RepostToStory);
+    public final void afterTextChanged(Editable editable) {
+        zq0 zq0Var = this.f28679a;
+        rq0 rq0Var = zq0Var.K;
+        tx0 tx0Var = zq0Var.Q;
+        f20 f20Var = zq0Var.f33628y0;
+        if (!TextUtils.isEmpty(f20Var.f26246r.getText())) {
+            zq0Var.H0(false);
         }
-        return LocaleController.getString(R.string.FwdMyStory);
+        if (zq0Var.A0) {
+            String obj = f20Var.f26246r.getText().toString();
+            if (obj.length() != 0) {
+                if (tx0Var != null) {
+                    tx0Var.d.setText(LocaleController.getString(R.string.NoResult));
+                }
+            } else if (zq0Var.F.getAdapter() != rq0Var) {
+                int s02 = zq0.s0(zq0Var);
+                tx0Var.d.setText(LocaleController.getString(R.string.NoResult));
+                tx0Var.e(false, true);
+                zq0Var.H0(false);
+                rq0Var.l();
+                if (s02 > 0) {
+                    zq0Var.H.h1(0, -s02);
+                }
+            }
+            vq0 vq0Var = zq0Var.M;
+            if (vq0Var != null) {
+                vq0Var.E(obj);
+            }
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

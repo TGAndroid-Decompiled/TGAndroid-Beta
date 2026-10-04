@@ -1,53 +1,181 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public abstract class g7 extends f7 {
-    public final ArrayList f33835f;
-    public final s7 h;
+import android.graphics.Bitmap;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+public final class g7 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f36516a;
+    public final Object f36517b;
 
-    public g7(s7 s7Var, int i10) {
-        super(i10);
-        this.h = s7Var;
-        this.f33835f = new ArrayList();
+    public g7(Object obj, int i10) {
+        this.f36516a = i10;
+        this.f36517b = obj;
     }
 
     @Override
-    public boolean D(s4.c1 c1Var) {
-        return !(this instanceof o7);
-    }
-
-    @Override
-    public void F() {
-        ArrayList arrayList;
-        ArrayList arrayList2 = this.f33835f;
-        arrayList2.clear();
-        ArrayList arrayList3 = this.e;
-        arrayList2.addAll(arrayList3);
-        arrayList3.clear();
-        zh.b bVar = this.h.f37610f;
-        if (bVar != null) {
-            int i10 = this.d;
-            if (i10 == 1) {
-                arrayList = bVar.d;
-            } else if (i10 == 2) {
-                arrayList = bVar.e;
-            } else if (i10 == 3) {
-                arrayList = bVar.f49474f;
-            } else if (i10 == 5) {
-                arrayList = bVar.f49475g;
-            } else if (i10 == 4) {
-                arrayList = bVar.h;
-            } else {
-                arrayList = null;
-            }
-            if (arrayList != null) {
-                for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    ?? aVar = new og.a(2, true);
-                    aVar.d = (zh.a) arrayList.get(i11);
-                    arrayList3.add(aVar);
+    public final boolean onPreDraw() {
+        switch (this.f36516a) {
+            case 0:
+                v7 v7Var = (v7) this.f36517b;
+                FrameLayout frameLayout = v7Var.f41570b;
+                if (!v7Var.f41578x) {
+                    float max = Math.max(0.0f, v7Var.f41577w - v7Var.getY());
+                    if (frameLayout.getTranslationY() != max) {
+                        frameLayout.setTranslationY(max);
+                    }
                 }
-            }
+                return true;
+            case 1:
+                yn ynVar = (yn) this.f36517b;
+                nj njVar = ynVar.Y0;
+                if (njVar != null) {
+                    njVar.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                return ynVar.s8();
+            case 2:
+                ((ci.r6) this.f36517b).invalidate();
+                return true;
+            case 3:
+                View view = ((v70) this.f36517b).fragmentView;
+                if (view != null) {
+                    view.getViewTreeObserver().removeOnPreDrawListener(this);
+                    int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                    if (rotation != 3 && rotation != 1) {
+                        ((v70) this.f36517b).f41584f.setOrientation(1);
+                    } else {
+                        ((v70) this.f36517b).f41584f.setOrientation(0);
+                    }
+                    View view2 = ((v70) this.f36517b).fragmentView;
+                    view2.setPadding(view2.getPaddingLeft(), 0, ((v70) this.f36517b).fragmentView.getPaddingRight(), ((v70) this.f36517b).fragmentView.getPaddingBottom());
+                }
+                return true;
+            case 4:
+                fq0 fq0Var = (fq0) this.f36517b;
+                if (fq0Var.getParentActivity() != null) {
+                    int rotation2 = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                    fq0Var.f36364f = 2;
+                    if (!AndroidUtilities.isTablet() && (rotation2 == 3 || rotation2 == 1)) {
+                        fq0Var.f36364f = 4;
+                    }
+                    fq0Var.f36365n.l();
+                }
+                org.telegram.ui.Components.zl0 zl0Var = ((fq0) this.f36517b).h;
+                if (zl0Var != null) {
+                    zl0Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                return true;
+            case 5:
+                PhotoViewer photoViewer = (PhotoViewer) this.f36517b;
+                photoViewer.f34056w3.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = photoViewer.f34066x3;
+                if (imageView != null) {
+                    if (photoViewer.J3) {
+                        AndroidUtilities.runOnUIThread(new Runnable(this) {
+                            public final g7 f36395b;
+
+                            {
+                                this.f36395b = this;
+                            }
+
+                            @Override
+                            public final void run() {
+                                switch (r2) {
+                                    case 0:
+                                        PhotoViewer photoViewer2 = (PhotoViewer) this.f36395b.f36517b;
+                                        photoViewer2.f34066x3.setVisibility(4);
+                                        photoViewer2.f34066x3.setImageDrawable(null);
+                                        Bitmap bitmap = photoViewer2.C3;
+                                        if (bitmap != null) {
+                                            bitmap.recycle();
+                                            photoViewer2.C3 = null;
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        PhotoViewer photoViewer3 = (PhotoViewer) this.f36395b.f36517b;
+                                        if (photoViewer3.J3) {
+                                            photoViewer3.S0();
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        }, 300L);
+                    } else {
+                        imageView.setVisibility(4);
+                        photoViewer.f34066x3.setImageDrawable(null);
+                        Bitmap bitmap = photoViewer.C3;
+                        if (bitmap != null) {
+                            bitmap.recycle();
+                            photoViewer.C3 = null;
+                        }
+                    }
+                }
+                AndroidUtilities.runOnUIThread(new Runnable(this) {
+                    public final g7 f36395b;
+
+                    {
+                        this.f36395b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                PhotoViewer photoViewer2 = (PhotoViewer) this.f36395b.f36517b;
+                                photoViewer2.f34066x3.setVisibility(4);
+                                photoViewer2.f34066x3.setImageDrawable(null);
+                                Bitmap bitmap2 = photoViewer2.C3;
+                                if (bitmap2 != null) {
+                                    bitmap2.recycle();
+                                    photoViewer2.C3 = null;
+                                    return;
+                                }
+                                return;
+                            default:
+                                PhotoViewer photoViewer3 = (PhotoViewer) this.f36395b.f36517b;
+                                if (photoViewer3.J3) {
+                                    photoViewer3.S0();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                photoViewer.G3 = 0;
+                return true;
+            case 6:
+                ProfileActivity profileActivity = (ProfileActivity) this.f36517b;
+                if (profileActivity.fragmentView != null) {
+                    profileActivity.A3();
+                    profileActivity.k4(true);
+                    profileActivity.fragmentView.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                return true;
+            default:
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f36517b;
+                int[][] iArr = WallpapersListActivity.f34593i0;
+                if (wallpapersListActivity.getParentActivity() != null) {
+                    int rotation3 = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                    if (AndroidUtilities.isTablet()) {
+                        wallpapersListActivity.P = 3;
+                    } else if (rotation3 != 3 && rotation3 != 1) {
+                        wallpapersListActivity.P = 3;
+                    } else {
+                        wallpapersListActivity.P = 5;
+                    }
+                    wallpapersListActivity.C0();
+                }
+                org.telegram.ui.Components.zl0 zl0Var2 = ((WallpapersListActivity) this.f36517b).F;
+                if (zl0Var2 != null) {
+                    zl0Var2.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                return true;
         }
-        E(arrayList2, arrayList3);
     }
 }

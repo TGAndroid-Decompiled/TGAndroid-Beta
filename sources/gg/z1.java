@@ -8,46 +8,46 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesStorage;
 public final class z1 implements Runnable {
-    public final int f9983a;
-    public final c2 f9984b;
+    public final int f10873a;
+    public final c2 f10874b;
 
     public z1(c2 c2Var, int i10) {
-        this.f9983a = i10;
-        this.f9984b = c2Var;
+        this.f10873a = i10;
+        this.f10874b = c2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f9983a) {
+        switch (this.f10873a) {
             case 0:
-                c2 c2Var = this.f9984b;
+                c2 c2Var = this.f10874b;
                 c2Var.getClass();
                 try {
-                    MessagesStorage.getInstance(c2Var.f9680m).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
+                    MessagesStorage.getInstance(c2Var.f10541m).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
                     return;
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     return;
                 }
             default:
-                c2 c2Var2 = this.f9984b;
+                c2 c2Var2 = this.f10874b;
                 try {
-                    SQLiteCursor queryFinalized = MessagesStorage.getInstance(c2Var2.f9680m).getDatabase().queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = MessagesStorage.getInstance(c2Var2.f10541m).getDatabase().queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     HashMap hashMap = new HashMap();
                     while (queryFinalized.next()) {
                         ?? obj = new Object();
-                        obj.f9655a = queryFinalized.stringValue(0);
-                        obj.f9656b = queryFinalized.intValue(1);
+                        obj.f10512a = queryFinalized.stringValue(0);
+                        obj.f10513b = queryFinalized.intValue(1);
                         arrayList.add(obj);
-                        hashMap.put(obj.f9655a, obj);
+                        hashMap.put(obj.f10512a, obj);
                     }
                     queryFinalized.dispose();
                     Collections.sort(arrayList, new a4.e(14));
                     AndroidUtilities.runOnUIThread(new t(c2Var2, arrayList, hashMap, 3));
                     return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                     return;
                 }
         }

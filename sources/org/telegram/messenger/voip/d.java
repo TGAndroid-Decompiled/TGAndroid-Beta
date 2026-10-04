@@ -4,27 +4,27 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class d implements RequestDelegate {
-    public final int f17882a;
-    public final ConferenceCall f17883b;
-    public final long f17884c;
+    public final int f19530a;
+    public final ConferenceCall f19531b;
+    public final long f19532c;
 
     public d(ConferenceCall conferenceCall, long j3, int i10) {
-        this.f17882a = i10;
-        this.f17883b = conferenceCall;
-        this.f17884c = j3;
+        this.f19530a = i10;
+        this.f19531b = conferenceCall;
+        this.f19532c = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17882a) {
+        switch (this.f19530a) {
             case 0:
-                this.f17883b.lambda$updateParticipants$11(this.f17884c, tLObject, tL_error);
+                this.f19531b.lambda$updateParticipants$11(this.f19532c, tLObject, tL_error);
                 return;
             case 1:
-                this.f17883b.lambda$pull_outbound$6(this.f17884c, tLObject, tL_error);
+                this.f19531b.lambda$pull_outbound$6(this.f19532c, tLObject, tL_error);
                 return;
             default:
-                this.f17883b.lambda$kick$13(this.f17884c, tLObject, tL_error);
+                this.f19531b.lambda$kick$13(this.f19532c, tLObject, tL_error);
                 return;
         }
     }

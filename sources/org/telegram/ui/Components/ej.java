@@ -1,41 +1,26 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class ej extends t61 {
-    public final ij f24010f3;
+import android.widget.FrameLayout;
+public final class ej extends FragmentContextView {
+    public final FrameLayout Q0;
+    public final jj R0;
 
-    public ej(ij ijVar, Context context, int i10, d dVar, aj ajVar, aj ajVar2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, 0, false, dVar, ajVar, ajVar2, d6Var);
-        this.f24010f3 = ijVar;
+    public ej(jj jjVar, Context context, org.telegram.ui.ActionBar.n2 n2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, FrameLayout frameLayout2) {
+        super(context, n2Var, frameLayout, false, d6Var);
+        this.R0 = jjVar;
+        this.Q0 = frameLayout2;
     }
 
     @Override
-    public final void C1() {
-        ij ijVar = this.f24010f3;
-        ijVar.f27075b.X1(ijVar, 0);
-    }
-
-    @Override
-    public final boolean E0(float f7) {
-        int i10;
-        wi wiVar = this.f24010f3.f27075b;
-        int dp = AndroidUtilities.dp(30.0f) + wiVar.f29922b2[0];
-        if (!wiVar.f29937g0) {
-            i10 = AndroidUtilities.statusBarHeight;
+    public final void setVisibility(int i10) {
+        boolean z10;
+        ns nsVar = this.R0.f27796x;
+        if (i10 == 0) {
+            z10 = true;
         } else {
-            i10 = 0;
+            z10 = false;
         }
-        if (f7 < dp + i10) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ij ijVar = this.f24010f3;
-        ijVar.f27075b.X1(ijVar, 0);
+        nsVar.i(this.Q0, z10, true);
     }
 }

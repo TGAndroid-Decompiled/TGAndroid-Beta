@@ -1,54 +1,46 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class mu extends og.a {
-    public final int f35672c;
-    public final int d;
-    public final int e;
-    public final CharSequence f35673f;
-    public final CharSequence f35674g;
-    public final int h;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+public final class mu implements DialogInterface.OnClickListener {
+    public final DataSettingsActivity f38754a;
+    public final SharedPreferences f38755b;
+    public final int f38756c;
 
-    public mu(int i10, String str) {
-        super(i10, false);
-        this.f35673f = str;
+    public mu(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i10) {
+        this.f38754a = dataSettingsActivity;
+        this.f38755b = sharedPreferences;
+        this.f38756c = i10;
     }
 
-    public static mu b(CharSequence charSequence, String str) {
-        return new mu(-1, 0, 0, 0, charSequence, str);
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof mu)) {
-            return false;
-        }
-        mu muVar = (mu) obj;
-        CharSequence charSequence = muVar.f35673f;
-        int i10 = muVar.f15716a;
-        int i11 = this.f15716a;
-        if (i10 != i11) {
-            return false;
-        }
-        CharSequence charSequence2 = this.f35673f;
-        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
-            if (i11 != 2) {
-                return true;
+    @Override
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        int i11;
+        DataSettingsActivity dataSettingsActivity = this.f38754a;
+        dataSettingsActivity.getClass();
+        if (i10 != 0) {
+            i11 = 3;
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        i11 = -1;
+                    } else {
+                        i11 = 2;
+                    }
+                } else {
+                    i11 = 1;
+                }
             }
-            if (muVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || muVar.d != this.d || muVar.e != this.e || muVar.f35672c != this.f35672c) {
-                return false;
-            }
-            return true;
+        } else {
+            i11 = 0;
         }
-        return TextUtils.equals(charSequence2, charSequence);
-    }
-
-    public mu(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
-        super(2, false);
-        this.h = i10;
-        this.f35672c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f35673f = charSequence;
-        this.f35674g = charSequence2;
+        if (i11 != -1) {
+            this.f38755b.edit().putInt("VoipDataSaving", i11).commit();
+            dataSettingsActivity.V = true;
+        }
+        nu nuVar = dataSettingsActivity.f33728a;
+        if (nuVar != null) {
+            nuVar.m(this.f38756c);
+        }
     }
 }

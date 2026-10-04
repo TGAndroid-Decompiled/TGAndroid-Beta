@@ -1,21 +1,29 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class s30 extends s4.j {
-    public final d60 F;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class s30 extends org.telegram.ui.Components.d8 {
+    public final h60 E;
+    public final Activity f40343y;
 
-    public s30(d60 d60Var) {
-        this.F = d60Var;
+    public s30(h60 h60Var, LaunchActivity launchActivity, Activity activity) {
+        super(launchActivity);
+        this.E = h60Var;
+        this.f40343y = activity;
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        ViewGroup viewGroup;
-        d60 d60Var = this.F;
-        d60Var.Q.invalidate();
-        d60Var.a2.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.e3) d60Var).containerView;
-        viewGroup.invalidate();
-        d60.J0(d60Var);
+    public final TextView a() {
+        TextView textView = new TextView(this.f40343y);
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20898hg, false));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(51);
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setOnClickListener(new tv(9, this, textView));
+        return textView;
     }
 }

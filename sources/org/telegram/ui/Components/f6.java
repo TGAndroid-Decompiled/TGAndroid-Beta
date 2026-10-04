@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class f6 implements le.i, oe.a {
-    public final View f24126a;
-    public boolean f24127b;
-    public boolean f24128c;
+public final class f6 implements le.h, oe.a {
+    public final View f26289a;
+    public boolean f26290b;
+    public boolean f26291c;
     public int d;
-    public int e;
+    public int f26292e;
 
     public f6(View view) {
-        this.f24126a = view;
+        this.f26289a = view;
     }
 
     @Override
     public final void a() {
-        if (!this.f24127b) {
-            this.f24126a.setVisibility(8);
+        if (!this.f26290b) {
+            this.f26289a.setVisibility(8);
         }
-        this.f24128c = false;
+        this.f26291c = false;
     }
 
     @Override
@@ -27,22 +27,22 @@ public final class f6 implements le.i, oe.a {
 
     public final boolean equals(Object obj) {
         if (obj instanceof f6) {
-            return this.f24126a.equals(((f6) obj).f24126a);
+            return this.f26289a.equals(((f6) obj).f26289a);
         }
         return false;
     }
 
     @Override
     public final int getHeight() {
-        return this.f24126a.getMeasuredHeight();
+        return this.f26289a.getMeasuredHeight();
     }
 
     @Override
     public final int getWidth() {
-        return this.f24126a.getMeasuredWidth();
+        return this.f26289a.getMeasuredWidth();
     }
 
     public final int hashCode() {
-        return this.f24126a.hashCode();
+        return this.f26289a.hashCode();
     }
 }

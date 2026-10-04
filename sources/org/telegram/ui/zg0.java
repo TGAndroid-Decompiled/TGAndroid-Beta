@@ -1,3 +1,4 @@
 package org.telegram.ui;
-public interface zg0 {
+public final class zg0 {
+    public final ch0 f43773a;
 }

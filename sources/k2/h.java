@@ -1,32 +1,35 @@
 package k2;
 public final class h implements Runnable {
-    public final int f13279a;
-    public final n4.y f13280b;
-    public final k f13281c;
+    public final int f14438a;
+    public final n4.y f14439b;
+    public final i2.g f14440c;
 
-    public h(n4.y yVar, k kVar, int i10) {
-        this.f13279a = i10;
-        this.f13280b = yVar;
-        this.f13281c = kVar;
+    public h(n4.y yVar, i2.g gVar, int i10) {
+        this.f14438a = i10;
+        this.f14439b = yVar;
+        this.f14440c = gVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f13279a;
-        k kVar = this.f13281c;
-        n4.y yVar = this.f13280b;
-        switch (i10) {
+        switch (this.f14438a) {
             case 0:
-                String str = e2.d0.f7870a;
-                j2.f fVar = ((i2.c0) ((j) yVar.f15224c)).f10616a.f10675s;
-                j2.a p5 = fVar.p();
-                fVar.q(p5, 1032, new j2.e(p5, kVar, 1));
+                n4.y yVar = this.f14439b;
+                i2.g gVar = this.f14440c;
+                synchronized (gVar) {
+                }
+                String str = e2.d0.f8537a;
+                j2.f fVar = ((i2.c0) ((k) yVar.f16640c)).f11569a.f11632s;
+                j2.a n10 = fVar.n((u2.f0) fVar.d.f7907e);
+                fVar.q(n10, 1013, new j2.c(n10, gVar, 13));
                 return;
             default:
-                String str2 = e2.d0.f7870a;
-                j2.f fVar2 = ((i2.c0) ((j) yVar.f15224c)).f10616a.f10675s;
-                j2.a p10 = fVar2.p();
-                fVar2.q(p10, 1031, new j2.c(p10, kVar, 18));
+                n4.y yVar2 = this.f14439b;
+                i2.g gVar2 = this.f14440c;
+                String str2 = e2.d0.f8537a;
+                j2.f fVar2 = ((i2.c0) ((k) yVar2.f16640c)).f11569a.f11632s;
+                j2.a p5 = fVar2.p();
+                fVar2.q(p5, 1007, new j2.c(p5, gVar2, 6));
                 return;
         }
     }

@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 public final class u0 extends d1 {
-    public final m f15396a;
-    public final int f15397b;
+    public final m f16829a;
+    public final int f16830b;
 
     public u0(x xVar) {
         xVar.getClass();
-        this.f15396a = xVar;
+        this.f16829a = xVar;
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            m mVar = this.f15396a;
+            m mVar = this.f16829a;
             if (i10 >= mVar.size()) {
                 break;
             }
@@ -25,7 +25,7 @@ public final class u0 extends d1 {
             i10++;
         }
         int i12 = i11 + 1;
-        this.f15397b = i12;
+        this.f16830b = i12;
         if (i12 <= 8) {
             return;
         }
@@ -34,7 +34,7 @@ public final class u0 extends d1 {
 
     @Override
     public final int a() {
-        return this.f15397b;
+        return this.f16830b;
     }
 
     @Override
@@ -45,8 +45,8 @@ public final class u0 extends d1 {
         if (c10 != zza) {
             return c10 - d1Var.zza();
         }
-        m mVar = ((u0) d1Var).f15396a;
-        m mVar2 = this.f15396a;
+        m mVar = ((u0) d1Var).f16829a;
+        m mVar2 = this.f16829a;
         if (mVar2.size() != mVar.size()) {
             return mVar2.size() - mVar.size();
         }
@@ -66,15 +66,15 @@ public final class u0 extends d1 {
         if (obj == null || u0.class != obj.getClass()) {
             return false;
         }
-        return this.f15396a.equals(((u0) obj).f15396a);
+        return this.f16829a.equals(((u0) obj).f16829a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c(Byte.MIN_VALUE)), this.f15396a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c(Byte.MIN_VALUE)), this.f16829a});
     }
 
     public final String toString() {
-        m mVar = this.f15396a;
+        m mVar = this.f16829a;
         if (mVar.isEmpty()) {
             return "[]";
         }
@@ -95,8 +95,8 @@ public final class u0 extends d1 {
             }
             sb2.append("\n]");
             return sb2.toString();
-        } catch (IOException e) {
-            throw new AssertionError(e);
+        } catch (IOException e7) {
+            throw new AssertionError(e7);
         }
     }
 

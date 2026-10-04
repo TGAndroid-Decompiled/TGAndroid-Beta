@@ -1,43 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class vy0 extends yl0 {
-    public boolean X2;
-    public boolean Y2;
-    public final zy0 Z2;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class vy0 implements TextWatcher {
+    public final NumberTextView f32373a;
+    public final uy0 f32374b;
 
-    public vy0(zy0 zy0Var, Context context) {
-        super(context, null);
-        this.Z2 = zy0Var;
+    public vy0(NumberTextView numberTextView, uy0 uy0Var) {
+        this.f32373a = numberTextView;
+        this.f32374b = uy0Var;
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        boolean canScrollHorizontally = canScrollHorizontally(-1);
-        boolean canScrollHorizontally2 = canScrollHorizontally(1);
-        if (this.X2 == canScrollHorizontally && this.Y2 == canScrollHorizontally2) {
-            return;
-        }
-        ai.f0 f0Var = this.Z2.d;
-        if (f0Var != null) {
-            f0Var.invalidate();
-        }
-        this.X2 = canScrollHorizontally;
-        this.Y2 = canScrollHorizontally2;
+    public final void afterTextChanged(Editable editable) {
+        this.f32373a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
+        this.f32374b.setErrorText(null);
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.lt previewDelegate;
-        org.telegram.ui.nt q6 = org.telegram.ui.nt.q();
-        zy0 zy0Var = this.Z2;
-        vy0 vy0Var = zy0Var.e;
-        previewDelegate = zy0Var.getPreviewDelegate();
-        boolean r10 = q6.r(motionEvent, vy0Var, previewDelegate, this.f30700p2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-            return false;
-        }
-        return true;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

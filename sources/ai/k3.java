@@ -2,14 +2,14 @@ package ai;
 
 import org.telegram.messenger.Utilities;
 public final class k3 implements Utilities.Callback4 {
-    public final int f1120a;
-    public final Object f1121b;
-    public final Object f1122c;
+    public final int f1207a;
+    public final Object f1208b;
+    public final Object f1209c;
 
     public k3(int i10, Object obj, Object obj2) {
-        this.f1120a = i10;
-        this.f1121b = obj;
-        this.f1122c = obj2;
+        this.f1207a = i10;
+        this.f1208b = obj;
+        this.f1209c = obj2;
     }
 
     @Override

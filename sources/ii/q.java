@@ -3,18 +3,18 @@ package ii;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class q implements TextWatcher {
-    public final String[] f11561a;
-    public final k f11562b;
+    public final String[] f12580a;
+    public final k f12581b;
 
     public q(String[] strArr, k kVar) {
-        this.f11561a = strArr;
-        this.f11562b = kVar;
+        this.f12580a = strArr;
+        this.f12581b = kVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f11561a[0] = editable.toString();
-        this.f11562b.run();
+        this.f12580a[0] = editable.toString();
+        this.f12581b.run();
     }
 
     @Override

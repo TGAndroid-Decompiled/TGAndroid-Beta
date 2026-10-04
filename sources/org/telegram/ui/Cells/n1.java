@@ -1,7 +1,7 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.ui.Components.t90;
+import org.telegram.ui.Components.u90;
 public final class n1 {
-    public t90 f20677a;
-    public int f20678b;
+    public u90 f22505a;
+    public int f22506b;
 }

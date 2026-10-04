@@ -1,24 +1,42 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-public final class r40 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.voip.u f37181a;
-    public final d60 f37182b;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class r40 extends LinearLayout {
+    public boolean f39911a;
+    public final org.telegram.ui.Components.gd0 f39912b;
+    public final n40 f39913c;
+    public final o40 d;
 
-    public r40(d60 d60Var, org.telegram.ui.Components.voip.u uVar) {
-        this.f37182b = d60Var;
-        this.f37181a = uVar;
+    public r40(LaunchActivity launchActivity, org.telegram.ui.Components.gd0 gd0Var, n40 n40Var, o40 o40Var) {
+        super(launchActivity);
+        this.f39912b = gd0Var;
+        this.f39913c = n40Var;
+        this.d = o40Var;
+        this.f39911a = false;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ViewGroup viewGroup;
-        org.telegram.ui.Components.voip.u uVar = this.f37181a;
-        if (uVar.getParent() != null) {
-            viewGroup = ((org.telegram.ui.ActionBar.e3) this.f37182b).containerView;
-            viewGroup.removeView(uVar);
+    public final void onMeasure(int i10, int i11) {
+        this.f39911a = true;
+        org.telegram.ui.Components.gd0 gd0Var = this.f39912b;
+        gd0Var.setItemCount(5);
+        n40 n40Var = this.f39913c;
+        n40Var.setItemCount(5);
+        o40 o40Var = this.d;
+        o40Var.setItemCount(5);
+        gd0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        n40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        o40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        this.f39911a = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f39911a) {
+            return;
         }
+        super.requestLayout();
     }
 }

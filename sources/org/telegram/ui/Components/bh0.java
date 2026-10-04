@@ -3,34 +3,34 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class bh0 {
-    public int f22971a;
-    public ArrayList f22972b;
-    public String f22973c;
+    public int f24954a;
+    public ArrayList f24955b;
+    public String f24956c;
     public final byte[] d;
-    public boolean e;
-    public int f22974f = 10;
+    public boolean f24957e;
+    public int f24958f = 10;
 
     public bh0(TLRPC.TL_messages_votesList tL_messages_votesList, byte[] bArr) {
-        this.f22971a = tL_messages_votesList.count;
-        this.f22972b = tL_messages_votesList.votes;
-        this.f22973c = tL_messages_votesList.next_offset;
+        this.f24954a = tL_messages_votesList.count;
+        this.f24955b = tL_messages_votesList.votes;
+        this.f24956c = tL_messages_votesList.next_offset;
         this.d = bArr;
     }
 
     public final int a() {
-        if (this.f22972b.size() <= 15) {
+        if (this.f24955b.size() <= 15) {
             return 0;
         }
-        if (this.e) {
+        if (this.f24957e) {
             return 1;
         }
         return 2;
     }
 
     public final int b() {
-        if (this.e) {
-            return Math.min(this.f22974f, this.f22972b.size());
+        if (this.f24957e) {
+            return Math.min(this.f24958f, this.f24955b.size());
         }
-        return this.f22972b.size();
+        return this.f24955b.size();
     }
 }

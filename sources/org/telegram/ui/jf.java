@@ -1,30 +1,25 @@
 package org.telegram.ui;
-public final class jf implements Runnable {
-    public final int f34793a;
-    public final wn f34794b;
-    public final boolean f34795c;
 
-    public jf(wn wnVar, boolean z10, int i10) {
-        this.f34793a = i10;
-        this.f34794b = wnVar;
-        this.f34795c = z10;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.function.ToIntFunction;
+public final class jf implements ToIntFunction {
+    public final int f37669a;
+    public final Object f37670b;
+
+    public jf(Object obj, int i10) {
+        this.f37669a = i10;
+        this.f37670b = obj;
     }
 
     @Override
-    public final void run() {
-        String str;
-        switch (this.f34793a) {
+    public final int applyAsInt(Object obj) {
+        switch (this.f37669a) {
             case 0:
-                if (this.f34795c) {
-                    str = "upload_speed";
-                } else {
-                    str = "download_speed";
-                }
-                this.f34794b.presentFragment(new PremiumPreviewFragment(0, str));
-                return;
+                return ((Integer) ((HashMap) this.f37670b).get((View) obj)).intValue();
             default:
-                this.f34794b.yc(0, this.f34795c);
-                return;
+                return ((Integer) ((ArrayList) this.f37670b).get(((Integer) obj).intValue())).intValue();
         }
     }
 }

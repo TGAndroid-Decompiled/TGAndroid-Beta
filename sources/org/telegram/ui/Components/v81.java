@@ -1,64 +1,61 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
-public final class v81 extends View {
-    public u81 f29009a;
-    public int f29010b;
-    public final RectF f29011c;
-    public CharSequence d;
-    public v01 e;
-    public boolean f29012f;
-    public np0 h;
-    public final e6 f29013n;
-    public final x81 f29014r;
+import android.util.SparseIntArray;
+public final class v81 extends f91 {
+    public final g91 f31601t0;
 
-    public v81(x81 x81Var, Context context) {
-        super(context);
-        this.f29014r = x81Var;
-        this.f29011c = new RectF();
-        this.f29013n = new e6(this, 360L, sr.h);
+    public v81(g91 g91Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(i10, context, d6Var, z10);
+        this.f31601t0 = g91Var;
     }
 
     @Override
-    public int getId() {
-        return this.f29009a.f28786a;
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.v81.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public final void e(float f7, int i10, int i11) {
+        float f10;
+        int i12;
         boolean z10;
-        int i10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        u81 u81Var = this.f29009a;
-        if (u81Var != null && (i10 = this.f29014r.G) != -1 && u81Var.f28786a == i10) {
+        if (f7 < 0.0f) {
+            f10 = 0.0f;
+        } else if (f7 > 1.0f) {
+            f10 = 1.0f;
+        } else {
+            f10 = f7;
+        }
+        this.F = i10;
+        SparseIntArray sparseIntArray = this.f26395b0;
+        this.G = sparseIntArray.get(i10);
+        if (f10 > 0.0f) {
+            this.L = i11;
+            this.M = sparseIntArray.get(i11);
+        } else {
+            this.L = -1;
+            this.M = -1;
+        }
+        this.K = f10;
+        this.v.h1();
+        invalidate();
+        c(i10);
+        if (f10 >= 1.0f) {
+            this.L = -1;
+            this.M = -1;
+            this.F = i11;
+            this.G = sparseIntArray.get(i11);
+        }
+        e91 e91Var = this.f26419y;
+        if (e91Var != null) {
+            ((g91) ((n2.c) e91Var).f16522b).s();
+        }
+        if (f7 <= 0.5f) {
+            i12 = i10;
+        } else {
+            i12 = i11;
+        }
+        if (i10 < i11) {
             z10 = true;
         } else {
             z10 = false;
         }
-        accessibilityNodeInfo.setSelected(z10);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        u81 u81Var = this.f29009a;
-        x81 x81Var = this.f29014r;
-        setMeasuredDimension(AndroidUtilities.dp(x81Var.f30329r * 2) + u81Var.a(x81Var.f30312c) + x81Var.I, View.MeasureSpec.getSize(i11));
-    }
-
-    public void setReordering(boolean z10) {
-        if (this.f29012f == z10) {
-            return;
-        }
-        this.f29012f = z10;
-        invalidate();
+        this.f31601t0.z(i12, z10);
     }
 }

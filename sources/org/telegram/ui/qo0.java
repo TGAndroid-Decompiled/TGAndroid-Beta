@@ -1,37 +1,13 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class qo0 implements Utilities.Callback {
-    public final int f36956a;
-    public final tp0 f36957b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public interface qo0 {
+    void a(TL_account.Password password);
 
-    public qo0(tp0 tp0Var, int i10) {
-        this.f36956a = i10;
-        this.f36957b = tp0Var;
-    }
+    void b();
 
-    @Override
-    public final void run(Object obj) {
-        switch (this.f36956a) {
-            case 0:
-                tp0 tp0Var = this.f36957b;
-                tp0Var.f38180r = false;
-                tp0Var.Q.setLoading(false);
-                if (((Boolean) obj).booleanValue()) {
-                    tp0Var.x0();
-                    tp0Var.finishFragment();
-                    tp0Var.E0();
-                    return;
-                }
-                return;
-            default:
-                Integer num = (Integer) obj;
-                ci.i1 i1Var = this.f36957b.I;
-                if (i1Var != null) {
-                    i1Var.D(num.intValue());
-                    return;
-                }
-                return;
-        }
-    }
+    boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard);
+
+    void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo);
 }

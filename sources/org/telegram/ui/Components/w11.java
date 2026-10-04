@@ -1,26 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class w11 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f29789a;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class w11 extends FrameLayout {
+    public static final int f32435e = 0;
+    public float f32436a;
+    public float f32437b;
+    public boolean f32438c;
+    public final ThemeEditorView d;
 
-    public w11(ThemeEditorView.EditorAlert editorAlert) {
-        this.f29789a = editorAlert;
+    public w11(ThemeEditorView themeEditorView, Activity activity) {
+        super(activity);
+        this.d = themeEditorView;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f29789a;
-        if (editorAlert.f22444c.getAdapter() == editorAlert.f22447r) {
-            c21 c21Var = editorAlert.f22445f.f23828b;
-            c21Var.requestFocus();
-            AndroidUtilities.showKeyboard(c21Var);
-        }
-        editorAlert.f22443b.setVisibility(8);
-        editorAlert.v.setVisibility(8);
-        editorAlert.H = false;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w11.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

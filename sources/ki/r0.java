@@ -1,18 +1,18 @@
 package ki;
 public final class r0 {
-    public final int f13836a;
-    public final long f13837b;
-    public final long f13838c;
+    public final int f15035a;
+    public final long f15036b;
+    public final long f15037c;
     public final long d;
-    public final boolean e;
-    public final boolean f13839f;
+    public final boolean f15038e;
+    public final boolean f15039f;
 
     public r0(int i10, long j3, long j10, long j11, boolean z10, boolean z11) {
-        this.f13836a = i10;
-        this.f13837b = j3;
-        this.f13838c = j10;
+        this.f15035a = i10;
+        this.f15036b = j3;
+        this.f15037c = j10;
         this.d = j11;
-        this.e = z10;
-        this.f13839f = z11;
+        this.f15038e = z10;
+        this.f15039f = z11;
     }
 }

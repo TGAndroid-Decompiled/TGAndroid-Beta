@@ -2,19 +2,19 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.ui.Components.uo0;
-import org.telegram.ui.oc1;
-public final class j0 extends uo0 {
-    public final int f20489l0;
+import org.telegram.ui.Components.yo0;
+import org.telegram.ui.rc1;
+public final class j0 extends yo0 {
+    public final int f22302l0;
 
     public j0(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context, d6Var, z10);
-        this.f20489l0 = i10;
+        this.f22302l0 = i10;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f20489l0) {
+        switch (this.f22302l0) {
             case 0:
                 if (motionEvent.getAction() == 0) {
                     getParent().requestDisallowInterceptTouchEvent(true);
@@ -40,11 +40,11 @@ public final class j0 extends uo0 {
 
     public j0(Context context) {
         super(context);
-        this.f20489l0 = 1;
+        this.f22302l0 = 1;
     }
 
-    public j0(Context context, oc1 oc1Var) {
-        super(context, oc1Var, false);
-        this.f20489l0 = 3;
+    public j0(Context context, rc1 rc1Var) {
+        super(context, rc1Var, false);
+        this.f22302l0 = 3;
     }
 }

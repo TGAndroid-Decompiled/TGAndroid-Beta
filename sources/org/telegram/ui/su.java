@@ -1,57 +1,63 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class su extends org.telegram.ui.Components.p81 {
-    public final vu f37864a;
+import android.content.Context;
+public final class su extends org.telegram.ui.Components.ed {
+    public final tu f40617e0;
 
-    public su(vu vuVar) {
-        this.f37864a = vuVar;
+    public su(tu tuVar, Context context, int i10, int[] iArr, int[] iArr2) {
+        super(context, i10, iArr, 1, iArr2);
+        this.f40617e0 = tuVar;
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        boolean z10;
-        ru ruVar = (ru) view;
-        ruVar.Y2 = i10;
-        ruVar.f37469f3.clear();
-        if (ruVar.w1(6) + ruVar.y1(6) <= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final int c() {
+        return 216;
+    }
+
+    @Override
+    public final void d(int i10, boolean z10) {
+        int i11;
+        vu vuVar = (vu) this.f40617e0.f40962e;
+        if (!z10) {
+            vuVar.m1();
+        } else if (i10 >= 0 && i10 < vuVar.f41824n3.length) {
+            int i12 = 0;
+            while (true) {
+                uu[] uuVarArr = vuVar.f41824n3;
+                i11 = -1;
+                if (i12 < uuVarArr.length) {
+                    if (uuVarArr[i12].d == i10) {
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i12 = -1;
+                    break;
+                }
+            }
+            int i13 = 0;
+            while (true) {
+                if (i13 < vuVar.j3.size()) {
+                    qu quVar = (qu) vuVar.j3.get(i13);
+                    if (quVar != null && quVar.f17182a == 2 && quVar.h == i12) {
+                        i11 = i13;
+                        break;
+                    }
+                    i13++;
+                } else {
+                    break;
+                }
+            }
+            if (i11 >= 0) {
+                vuVar.f1(new i2.w(i11, 7), 0, true);
+            } else {
+                vuVar.m1();
+            }
         }
-        ruVar.f37475m3 = z10;
-        ruVar.z1();
-        ruVar.A1(false);
-        ruVar.u0(0);
-    }
-
-    @Override
-    public final View d(int i10) {
-        vu vuVar = this.f37864a;
-        return new ru(vuVar, vuVar.getParentActivity());
     }
 
     @Override
     public final int e() {
-        return 4;
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        return "";
-                    }
-                    return LocaleController.getString(R.string.NetworkUsageRoamingTab);
-                }
-                return LocaleController.getString(R.string.NetworkUsageWiFiTab);
-            }
-            return LocaleController.getString(R.string.NetworkUsageMobileTab);
-        }
-        return LocaleController.getString(R.string.NetworkUsageAllTab);
+        return 10;
     }
 }

@@ -1,14 +1,14 @@
 package kg;
 public final class j {
-    public float f13622a;
-    public float f13623b;
-    public float f13624c;
+    public float f14810a;
+    public float f14811b;
+    public float f14812c;
     public float d;
-    public float e;
-    public float f13625f;
-    public float[] f13626g;
+    public float f14813e;
+    public float f14814f;
+    public float[] f14815g;
     public float[] h;
-    public float[] f13627i;
-    public float[] f13628j;
-    public float[] f13629k;
+    public float[] f14816i;
+    public float[] f14817j;
+    public float[] f14818k;
 }

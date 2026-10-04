@@ -8,11 +8,12 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
+import hg.k0;
 import java.util.ArrayList;
 import n6.l;
 import qb.j;
-import w7.d8;
-import w7.f0;
+import w7.e8;
+import w7.g0;
 import x7.ja;
 import x7.ka;
 import x7.la;
@@ -21,44 +22,44 @@ import x7.na;
 import x7.oa;
 import x7.y;
 public final class a implements b {
-    public final Context f49120a;
-    public final yb.a f49121b;
-    public boolean f49122c;
+    public final Context f53166a;
+    public final yb.a f53167b;
+    public boolean f53168c;
     public boolean d;
-    public ja e;
+    public ja f53169e;
 
     public a(Context context, yb.a aVar) {
-        this.f49120a = context;
-        this.f49121b = aVar;
+        this.f53166a = context;
+        this.f53167b = aVar;
     }
 
     @Override
     public final ArrayList a(vb.a aVar) {
         x6.b bVar;
-        if (this.e == null) {
+        if (this.f53169e == null) {
             zzb();
         }
-        ja jaVar = this.e;
+        ja jaVar = this.f53169e;
         l.h(jaVar);
-        if (!this.f49122c) {
+        if (!this.f53168c) {
             try {
                 jaVar.S0(jaVar.O0(), 1);
-                this.f49122c = true;
-            } catch (RemoteException e) {
-                throw new mb.a("Failed to init thin image labeler.", e);
+                this.f53168c = true;
+            } catch (RemoteException e7) {
+                throw new mb.a("Failed to init thin image labeler.", e7);
             }
         }
-        int i10 = aVar.e;
-        int i11 = aVar.f44565b;
-        int i12 = aVar.f44566c;
-        int a2 = d8.a(aVar.d);
+        int i10 = aVar.f48250e;
+        int i11 = aVar.f48248b;
+        int i12 = aVar.f48249c;
+        int a2 = e8.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i13 = aVar.e;
+        int i13 = aVar.f48250e;
         if (i13 != -1) {
             if (i13 != 17) {
                 if (i13 != 35) {
                     if (i13 != 842094169) {
-                        throw new mb.a(hg.c.h(aVar.e, "Unsupported image format: "), 3);
+                        throw new mb.a(k0.h(aVar.f48250e, "Unsupported image format: "), 3);
                     }
                 } else {
                     bVar = new x6.b(null);
@@ -67,26 +68,26 @@ public final class a implements b {
             l.h(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f44564a;
+        Bitmap bitmap = aVar.f48247a;
         l.h(bitmap);
         bVar = new x6.b(bitmap);
         try {
             Parcel O0 = jaVar.O0();
-            int i14 = y.f45952a;
+            int i14 = y.f49743a;
             O0.writeStrongBinder(bVar);
             O0.writeInt(1);
-            int q6 = f0.q(O0, 20293);
-            f0.s(O0, 1, 4);
+            int q6 = g0.q(O0, 20293);
+            g0.s(O0, 1, 4);
             O0.writeInt(i10);
-            f0.s(O0, 2, 4);
+            g0.s(O0, 2, 4);
             O0.writeInt(i11);
-            f0.s(O0, 3, 4);
+            g0.s(O0, 3, 4);
             O0.writeInt(i12);
-            f0.s(O0, 4, 4);
+            g0.s(O0, 4, 4);
             O0.writeInt(a2);
-            f0.s(O0, 5, 8);
+            g0.s(O0, 5, 8);
             O0.writeLong(elapsedRealtime);
-            f0.r(O0, q6);
+            g0.r(O0, q6);
             Parcel Q0 = jaVar.Q0(O0, 3);
             ArrayList createTypedArrayList = Q0.createTypedArrayList(na.CREATOR);
             Q0.recycle();
@@ -97,24 +98,24 @@ public final class a implements b {
                 Object obj = createTypedArrayList.get(i15);
                 i15++;
                 na naVar = (na) obj;
-                arrayList.add(new xb.a(naVar.f45810b, naVar.d, naVar.f45809a, naVar.f45811c));
+                arrayList.add(new xb.a(naVar.f49591b, naVar.d, naVar.f49590a, naVar.f49592c));
             }
             return arrayList;
-        } catch (RemoteException e7) {
-            throw new mb.a("Failed to run thin image labeler.", e7);
+        } catch (RemoteException e10) {
+            throw new mb.a("Failed to run thin image labeler.", e10);
         }
     }
 
     @Override
     public final void zzb() {
         IInterface aVar;
-        Context context = this.f49120a;
-        if (this.e != null) {
+        Context context = this.f53166a;
+        if (this.f53169e != null) {
             return;
         }
         try {
-            IBinder b10 = y6.e.c(context, y6.e.f46600b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
-            int i10 = la.f45774b;
+            IBinder b10 = y6.e.c(context, y6.e.f50426b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            int i10 = la.f49551b;
             if (b10 == null) {
                 aVar = null;
             } else {
@@ -125,9 +126,9 @@ public final class a implements b {
                     aVar = new a9.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 10);
                 }
             }
-            this.e = ((ka) aVar).W0(new x6.b(context), new oa(this.f49121b.f46021a, -1));
-        } catch (RemoteException e) {
-            throw new mb.a("Failed to create thin image labeler.", e);
+            this.f53169e = ((ka) aVar).W0(new x6.b(context), new oa(this.f53167b.f49816a, -1));
+        } catch (RemoteException e7) {
+            throw new mb.a("Failed to create thin image labeler.", e7);
         } catch (y6.b unused) {
             if (!this.d) {
                 j.b(context);
@@ -139,15 +140,15 @@ public final class a implements b {
 
     @Override
     public final void zzc() {
-        ja jaVar = this.e;
+        ja jaVar = this.f53169e;
         if (jaVar != null) {
             try {
                 jaVar.S0(jaVar.O0(), 2);
             } catch (RemoteException unused) {
                 Log.e("DecoupledImageLabeler", "Failed to release thin image labeler.");
             }
-            this.e = null;
-            this.f49122c = false;
+            this.f53169e = null;
+            this.f53168c = false;
         }
     }
 }

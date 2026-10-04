@@ -1,63 +1,32 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-public final class hb0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.fw0 {
-    public final int f34183a;
-    public final rb0 f34184b;
+import android.window.OnBackInvokedCallback;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class hb0 implements OnBackInvokedCallback {
+    public final LaunchActivity f37028a;
 
-    public hb0(rb0 rb0Var, int i10) {
-        this.f34183a = i10;
-        this.f34184b = rb0Var;
+    public hb0(LaunchActivity launchActivity) {
+        this.f37028a = launchActivity;
     }
 
-    @Override
-    public void J(int i10, int i11, boolean z10) {
-        this.f34184b.V(i10);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        rb0 rb0Var = this.f34184b;
-        rb0Var.T.a(rb0Var.e);
-        rb0Var.finishFragment();
-    }
-
-    @Override
-    public void h(int i10) {
-        switch (this.f34183a) {
-            case 2:
-                rb0 rb0Var = this.f34184b;
-                ArrayList arrayList = rb0Var.P;
-                if (i10 < arrayList.size()) {
-                    rb0Var.f37289w.setText(LocaleController.formatDateAudio(rb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+    public final void onBackInvoked() {
+        if (AndroidUtilities.isTablet()) {
+            this.f37028a.onBackPressed();
+        } else if (!this.f37028a.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f37028a;
+            ActionBarLayout actionBarLayout = launchActivity.f33797q0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f20314c1) {
+                    actionBarLayout.G();
                     return;
                 }
-                rb0Var.f37289w.setText("");
+                actionBarLayout.f20314c1 = false;
+                actionBarLayout.e(false);
                 return;
-            default:
-                rb0 rb0Var2 = this.f34184b;
-                rb0Var2.F.clearFocus();
-                rb0Var2.O = true;
-                ArrayList arrayList2 = rb0Var2.R;
-                if (i10 < arrayList2.size()) {
-                    rb0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
-                } else {
-                    rb0Var2.F.setText("");
-                }
-                rb0Var2.O = false;
-                return;
+            }
+            launchActivity.onBackPressed();
         }
-    }
-
-    @Override
-    public void n() {
-        int i10 = this.f34183a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
     }
 }

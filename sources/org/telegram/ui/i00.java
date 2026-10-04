@@ -1,119 +1,27 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class i00 extends FrameLayout {
-    public final TextView f34338a;
-    public final ImageView f34339b;
-    public boolean f34340c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class i00 implements RequestDelegate {
+    public final int f37196a;
+    public final f10 f37197b;
 
-    public i00(Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        TextView textView = new TextView(context);
-        this.f34338a = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.q6, false));
-        textView.setTextSize(1, 16.0f);
-        textView.setText(LocaleController.getString(R.string.CreateNewLink));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        textView.setGravity(i10);
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i11 = 16;
-        } else {
-            i11 = 0;
-        }
-        if (z10) {
-            i12 = 0;
-        } else {
-            i12 = 16;
-        }
-        textView.setPadding(i11, 0, i12, 0);
-        boolean z11 = LocaleController.isRTL;
-        if (z11) {
-            f7 = 0.0f;
-        } else {
-            f7 = 64.0f;
-        }
-        if (z11) {
-            f10 = 64.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        addView(textView, w7.y5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f34339b = imageView;
-        Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
-        Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
-        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        drawable.setColorFilter(new PorterDuffColorFilter(w02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19189k7, false), mode));
-        imageView.setImageDrawable(new org.telegram.ui.Components.rq(drawable, drawable2));
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        boolean z12 = LocaleController.isRTL;
-        int i13 = (z12 ? 5 : 3) | 16;
-        if (z12) {
-            f11 = 0.0f;
-        } else {
-            f11 = 16.0f;
-        }
-        if (z12) {
-            f12 = 16.0f;
-        } else {
-            f12 = 0.0f;
-        }
-        addView(imageView, w7.y5.d(32, 32.0f, i13, f11, 0.0f, f12, 0.0f));
+    public i00(f10 f10Var, int i10) {
+        this.f37196a = i10;
+        this.f37197b = f10Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.f34340c) {
-            TextView textView = this.f34338a;
-            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f19182k0);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f37196a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new cu(13, this.f37197b, tLObject));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new uq(this.f37197b, tL_error, tLObject, 6));
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
-    }
-
-    @Override
-    public final void setEnabled(boolean z10) {
-        float f7;
-        super.setEnabled(z10);
-        float f10 = 0.5f;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.5f;
-        }
-        this.f34338a.setAlpha(f7);
-        if (z10) {
-            f10 = 1.0f;
-        }
-        this.f34339b.setAlpha(f10);
     }
 }

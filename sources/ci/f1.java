@@ -3,23 +3,23 @@ package ci;
 import android.content.DialogInterface;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.n11;
-import org.telegram.ui.d60;
+import org.telegram.ui.Components.w11;
+import org.telegram.ui.h60;
 public final class f1 implements DialogInterface.OnDismissListener {
-    public final int f4669a;
+    public final int f5068a;
 
     public f1(int i10) {
-        this.f4669a = i10;
+        this.f5068a = i10;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f4669a) {
+        switch (this.f5068a) {
             case 0:
                 int i10 = s2.G;
                 return;
             case 1:
-                org.telegram.ui.b.f32266a = false;
+                org.telegram.ui.b.f34940a = false;
                 return;
             case 2:
                 return;
@@ -27,10 +27,10 @@ public final class f1 implements DialogInterface.OnDismissListener {
                 SharedConfig.BackgroundActivityPrefs.increaseDismissedCount();
                 return;
             case 4:
-                int i11 = n11.e;
+                int i11 = w11.f32435e;
                 return;
             case 5:
-                d60 d60Var = d60.D3;
+                h60 h60Var = h60.D3;
                 return;
             case 6:
                 return;
@@ -41,7 +41,7 @@ public final class f1 implements DialogInterface.OnDismissListener {
     }
 
     public f1(boolean[] zArr) {
-        this.f4669a = 2;
+        this.f5068a = 2;
     }
 
     private final void a(DialogInterface dialogInterface) {

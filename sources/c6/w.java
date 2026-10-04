@@ -3,16 +3,17 @@ package c6;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
+import w7.g0;
 public final class w extends o6.a {
     public static final Parcelable.Creator<w> CREATOR = new v(2);
-    public final float f4054a;
-    public final float f4055b;
-    public final float f4056c;
+    public final float f4386a;
+    public final float f4387b;
+    public final float f4388c;
 
     public w(float f7, float f10, float f11) {
-        this.f4054a = f7;
-        this.f4055b = f10;
-        this.f4056c = f11;
+        this.f4386a = f7;
+        this.f4387b = f10;
+        this.f4388c = f11;
     }
 
     public final boolean equals(Object obj) {
@@ -23,25 +24,25 @@ public final class w extends o6.a {
             return false;
         }
         w wVar = (w) obj;
-        if (this.f4054a == wVar.f4054a && this.f4055b == wVar.f4055b && this.f4056c == wVar.f4056c) {
+        if (this.f4386a == wVar.f4386a && this.f4387b == wVar.f4387b && this.f4388c == wVar.f4388c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Float.valueOf(this.f4054a), Float.valueOf(this.f4055b), Float.valueOf(this.f4056c)});
+        return Arrays.hashCode(new Object[]{Float.valueOf(this.f4386a), Float.valueOf(this.f4387b), Float.valueOf(this.f4388c)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.s(parcel, 2, 4);
-        parcel.writeFloat(this.f4054a);
-        w7.f0.s(parcel, 3, 4);
-        parcel.writeFloat(this.f4055b);
-        w7.f0.s(parcel, 4, 4);
-        parcel.writeFloat(this.f4056c);
-        w7.f0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.s(parcel, 2, 4);
+        parcel.writeFloat(this.f4386a);
+        g0.s(parcel, 3, 4);
+        parcel.writeFloat(this.f4387b);
+        g0.s(parcel, 4, 4);
+        parcel.writeFloat(this.f4388c);
+        g0.r(parcel, q6);
     }
 }

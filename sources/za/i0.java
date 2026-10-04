@@ -1,26 +1,36 @@
 package za;
-public final class i0 implements e0 {
-    public static final double f49069f = Math.random();
-    public static final int f49070g = 0;
-    public final k9.h f49071a;
-    public final qa.d f49072b;
-    public final bb.h f49073c;
-    public final w3.b d;
-    public final id.h e;
 
-    public i0(k9.h hVar, qa.d dVar, bb.h hVar2, w3.b bVar, id.h hVar3) {
-        this.f49071a = hVar;
-        this.f49072b = dVar;
-        this.f49073c = hVar2;
-        this.d = bVar;
-        this.e = hVar3;
+import java.util.Locale;
+import java.util.UUID;
+public final class i0 {
+    public final p0 f53113a;
+    public final rd.a f53114b;
+    public final String f53115c;
+    public int d;
+    public z f53116e;
+
+    public i0() {
+        h0 h0Var = h0.f53108a;
+        this.f53113a = p0.f53144a;
+        this.f53114b = h0Var;
+        this.f53115c = a();
+        this.d = -1;
     }
 
-    public static final java.lang.Object a(za.i0 r4, kd.c r5) {
-        throw new UnsupportedOperationException("Method not decompiled: za.i0.a(za.i0, kd.c):java.lang.Object");
+    public final String a() {
+        String uuid = ((UUID) this.f53114b.invoke()).toString();
+        kotlin.jvm.internal.i.d(uuid, "uuidGenerator().toString()");
+        String lowerCase = xd.j.g(uuid, "-", "").toLowerCase(Locale.ROOT);
+        kotlin.jvm.internal.i.d(lowerCase, "this as java.lang.String).toLowerCase(Locale.ROOT)");
+        return lowerCase;
     }
 
-    public static final java.lang.Object b(za.i0 r5, kd.c r6) {
-        throw new UnsupportedOperationException("Method not decompiled: za.i0.b(za.i0, kd.c):java.lang.Object");
+    public final z b() {
+        z zVar = this.f53116e;
+        if (zVar != null) {
+            return zVar;
+        }
+        kotlin.jvm.internal.i.h("currentSession");
+        throw null;
     }
 }

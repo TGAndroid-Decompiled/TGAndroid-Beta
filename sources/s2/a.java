@@ -3,13 +3,12 @@ package s2;
 import b2.s;
 import q3.i;
 import s3.c;
-import v7.j;
 import w7.m;
 public final class a {
-    public static final a f42915a = new Object();
+    public static final a f46474a = new Object();
 
     public final m a(s sVar) {
-        String str = sVar.f3301r;
+        String str = sVar.f3564r;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -57,11 +56,11 @@ public final class a {
                     return new c();
             }
         }
-        throw new IllegalArgumentException(j.g("Attempted to create decoder for unsupported MIME type: ", str));
+        throw new IllegalArgumentException(t8.b.i("Attempted to create decoder for unsupported MIME type: ", str));
     }
 
     public final boolean b(s sVar) {
-        String str = sVar.f3301r;
+        String str = sVar.f3564r;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

@@ -1,9 +1,9 @@
 package y8;
 public final class d implements x8.c {
-    public final w3.b f46638a;
+    public final n2.c f50467a;
 
-    public d(w3.b bVar) {
-        this.f46638a = bVar;
+    public d(n2.c cVar) {
+        this.f50467a = cVar;
     }
 
     public final boolean equals(Object obj) {
@@ -11,36 +11,36 @@ public final class d implements x8.c {
             return true;
         }
         if (obj != null && d.class == obj.getClass()) {
-            return this.f46638a.equals(((d) obj).f46638a);
+            return this.f50467a.equals(((d) obj).f50467a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f46638a.hashCode();
+        return this.f50467a.hashCode();
     }
 
     @Override
     public final void onChannelClosed(x8.b bVar, int i10, int i11) {
         n6.l.i(bVar, "channel must not be null");
-        ((x8.k) this.f46638a.f44768a).onChannelClosed((x8.d) ((f) bVar), i10, i11);
+        ((x8.k) this.f50467a.f16522b).onChannelClosed((x8.d) ((f) bVar), i10, i11);
     }
 
     @Override
     public final void onChannelOpened(x8.b bVar) {
         n6.l.i(bVar, "channel must not be null");
-        ((x8.k) this.f46638a.f44768a).onChannelOpened((x8.d) ((f) bVar));
+        ((x8.k) this.f50467a.f16522b).onChannelOpened((x8.d) ((f) bVar));
     }
 
     @Override
     public final void onInputClosed(x8.b bVar, int i10, int i11) {
         n6.l.i(bVar, "channel must not be null");
-        ((x8.k) this.f46638a.f44768a).onInputClosed((x8.d) ((f) bVar), i10, i11);
+        ((x8.k) this.f50467a.f16522b).onInputClosed((x8.d) ((f) bVar), i10, i11);
     }
 
     @Override
     public final void onOutputClosed(x8.b bVar, int i10, int i11) {
         n6.l.i(bVar, "channel must not be null");
-        ((x8.k) this.f46638a.f44768a).onOutputClosed((x8.d) ((f) bVar), i10, i11);
+        ((x8.k) this.f50467a.f16522b).onOutputClosed((x8.d) ((f) bVar), i10, i11);
     }
 }

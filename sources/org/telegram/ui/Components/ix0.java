@@ -1,386 +1,128 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.HashSet;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CacheFetcher;
-import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public abstract class ix0 extends yl0 {
-    public static final gx0 f25204x3 = new CacheFetcher();
-    public static final hx0 y3 = new CacheFetcher();
-    public float X2;
-    public ex0[] Y2;
-    public final zw0 Z2;
-    public final e6 f25205a3;
-    public Drawable f25206b3;
-    public Drawable f25207c3;
-    public Paint f25208d3;
-    public final Paint f25209e3;
-    public int f25210f3;
-    public int f25211g3;
-    public Utilities.Callback f25212h3;
-    public Utilities.Callback f25213i3;
-    public boolean j3;
-    public boolean f25214k3;
-    public ci.bb f25215l3;
-    public int f25216m3;
-    public Utilities.Callback f25217n3;
-    public float f25218o3;
-    public ValueAnimator f25219p3;
-    public boolean f25220q3;
-    public final e6 f25221r3;
-    public final e6 f25222s3;
-    public final RectF f25223t3;
-    public final RectF f25224u3;
-    public final RectF f25225v3;
-    public boolean f25226w3;
+public final class ix0 extends yl0 {
+    public int f27510c;
+    public final rx0 d;
 
-    static {
-        new HashSet();
+    public ix0(rx0 rx0Var) {
+        this.d = rx0Var;
     }
 
-    public ix0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.X2 = 6.5f;
-        this.Y2 = null;
-        sr srVar = sr.h;
-        this.f25205a3 = new e6(this, 360L, srVar);
-        Paint paint = new Paint(1);
-        this.f25209e3 = paint;
-        this.f25216m3 = -1;
-        this.f25218o3 = 0.0f;
-        this.f25220q3 = true;
-        this.f25221r3 = new e6(this, 350L, srVar);
-        this.f25222s3 = new e6(this, 350L, srVar);
-        this.f25223t3 = new RectF();
-        this.f25224u3 = new RectF();
-        this.f25225v3 = new RectF();
-        setPadding(0, 0, AndroidUtilities.dp(2.0f), 0);
-        zw0 zw0Var = new zw0(this);
-        this.Z2 = zw0Var;
-        setAdapter(zw0Var);
-        s4.c0 c0Var = new s4.c0();
-        setLayoutManager(c0Var);
-        c0Var.j1(0);
-        setSelectorRadius(AndroidUtilities.dp(15.0f));
-        setSelectorType(1);
-        int i11 = org.telegram.ui.ActionBar.h6.f19150i6;
-        setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(i11, this.f30700p2));
-        paint.setColor(org.telegram.ui.ActionBar.h6.v0(i11, this.f30700p2));
-        setWillNotDraw(false);
-        setOnItemClickListener(new j(this, 15));
-        long currentTimeMillis = System.currentTimeMillis();
-        f25204x3.fetch(UserConfig.selectedAccount, Integer.valueOf(i10), new ci.p9(this, currentTimeMillis, 2));
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f46527f == 1) {
+            return true;
+        }
+        return false;
     }
 
-    private int getScrollToStartWidth() {
-        if (getChildCount() <= 0) {
+    @Override
+    public final int h() {
+        int length;
+        rx0 rx0Var = this.d;
+        nx0[] nx0VarArr = rx0Var.f30521f3;
+        if (nx0VarArr == null) {
+            length = 0;
+        } else {
+            length = nx0VarArr.length;
+        }
+        int i10 = length + 1;
+        if (i10 != this.f27510c) {
+            ci.ab abVar = rx0Var.f30533s3;
+            if (abVar != null) {
+                abVar.requestLayout();
+            }
+            this.f27510c = i10;
+        }
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
             return 0;
         }
-        View childAt = getChildAt(0);
-        if (childAt instanceof dx0) {
-            return Math.max(0, getHeight() * (RecyclerView.R(childAt) - 1)) + this.f25210f3 + (-childAt.getLeft());
-        }
-        return -childAt.getLeft();
-    }
-
-    public void setCategoriesShownT(float f7) {
-        this.f25218o3 = f7;
-        for (int i10 = 0; i10 < getChildCount(); i10++) {
-            View childAt = getChildAt(i10);
-            if (childAt instanceof dx0) {
-                float cascade = AndroidUtilities.cascade(f7, (getChildCount() - 1) - RecyclerView.R(childAt), getChildCount() - 1, 3.0f);
-                if (cascade > 0.0f && childAt.getAlpha() <= 0.0f) {
-                    ((dx0) childAt).j();
-                }
-                childAt.setAlpha(cascade);
-                childAt.setScaleX(cascade);
-                childAt.setScaleY(cascade);
-            }
-        }
-        invalidate();
-    }
-
-    public static void x1(ix0 ix0Var, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, long j3) {
-        ix0Var.Y2 = new ex0[tL_messages_emojiGroups.groups.size()];
-        boolean z10 = false;
-        for (int i10 = 0; i10 < tL_messages_emojiGroups.groups.size(); i10++) {
-            ex0[] ex0VarArr = ix0Var.Y2;
-            TLRPC.EmojiGroup emojiGroup = tL_messages_emojiGroups.groups.get(i10);
-            ?? obj = new Object();
-            obj.f24080c = emojiGroup.icon_emoji_id;
-            if (emojiGroup instanceof TLRPC.TL_emojiGroupPremium) {
-                obj.f24078a = "premium";
-            } else {
-                obj.f24078a = TextUtils.concat((CharSequence[]) emojiGroup.emoticons.toArray(new String[0])).toString();
-            }
-            obj.f24079b = emojiGroup instanceof TLRPC.TL_emojiGroupGreeting;
-            obj.d = emojiGroup.title;
-            ex0VarArr[i10] = obj;
-        }
-        ix0Var.Y2 = ix0Var.B1(ix0Var.Y2);
-        ix0Var.Z2.l();
-        ix0Var.setCategoriesShownT(0.0f);
-        boolean z11 = ix0Var.f25220q3;
-        if (System.currentTimeMillis() - j3 > 16) {
-            z10 = true;
-        }
-        ix0Var.G1(z11, z10);
-    }
-
-    public static void y1(ix0 ix0Var, float f7) {
-        ix0Var.setCategoriesShownT(f7);
-    }
-
-    public static void z1(RectF rectF, View view) {
-        float left = (view.getLeft() + view.getRight()) / 2.0f;
-        float top = (view.getTop() + view.getBottom()) / 2.0f;
-        float f7 = 1.0f;
-        float width = (view.getWidth() / 2.0f) - AndroidUtilities.dp(1.0f);
-        if (view instanceof dx0) {
-            dx0 dx0Var = (dx0) view;
-            f7 = com.google.android.gms.internal.vision.e2.z(1.0f, dx0Var.E, 0.15f, 0.85f) * dx0Var.f23737y;
-        }
-        float f10 = width * f7;
-        rectF.set(left - f10, top - f10, left + f10, top + f10);
-    }
-
-    public abstract boolean A1();
-
-    public final void C1() {
-        int dp = (AndroidUtilities.dp(34.0f) * this.f25216m3) + ((-getScrollToStartWidth()) - Math.max(0, this.f25211g3));
-        scrollBy(dp, 0);
-        post(new ld((ci.k2) this, dp, 10));
-    }
-
-    public final void D1() {
-        v0(-getScrollToStartWidth(), 0, sr.h);
-    }
-
-    public void E1(int i10) {
-        boolean z10;
-        if (this.f25216m3 < 0 && i10 >= 0) {
-            this.f25222s3.d(i10, true);
-        }
-        this.f25216m3 = i10;
-        for (int i11 = 0; i11 < getChildCount(); i11++) {
-            View childAt = getChildAt(i11);
-            if (childAt instanceof dx0) {
-                int R = RecyclerView.R(childAt);
-                dx0 dx0Var = (dx0) childAt;
-                if (this.f25216m3 == R - 1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                dx0Var.l(z10, true);
-            }
-        }
-        invalidate();
-    }
-
-    public final void F1(ex0 ex0Var) {
-        int i10;
-        if (this.Y2 != null) {
-            i10 = 0;
-            while (true) {
-                ex0[] ex0VarArr = this.Y2;
-                if (i10 >= ex0VarArr.length) {
-                    break;
-                } else if (ex0VarArr[i10] == ex0Var) {
-                    break;
-                } else {
-                    i10++;
-                }
-            }
-            E1(i10);
-        }
-        i10 = -1;
-        E1(i10);
-    }
-
-    public final void G1(boolean z10, boolean z11) {
-        int length;
-        this.f25220q3 = z10;
-        ?? r52 = z10;
-        if (this.Y2 == null) {
-            r52 = 0;
-        }
-        if (this.f25218o3 == ((float) r52)) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.f25219p3;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f25219p3 = null;
-        }
-        float f7 = 0.0f;
-        if (z11) {
-            float f10 = this.f25218o3;
-            if (r52 != 0) {
-                f7 = 1.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f25219p3 = ofFloat;
-            ofFloat.addUpdateListener(new u70(this, 23));
-            this.f25219p3.addListener(new hd0(this, 17));
-            this.f25219p3.setInterpolator(sr.h);
-            ValueAnimator valueAnimator2 = this.f25219p3;
-            ex0[] ex0VarArr = this.Y2;
-            if (ex0VarArr == null) {
-                length = 5;
-            } else {
-                length = ex0VarArr.length;
-            }
-            valueAnimator2.setDuration(length * 120);
-            this.f25219p3.start();
-            return;
-        }
-        if (r52 != 0) {
-            f7 = 1.0f;
-        }
-        setCategoriesShownT(f7);
+        return 1;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            View E = E(motionEvent.getX(), motionEvent.getY());
-            if (!(E instanceof dx0) || E.getAlpha() < 0.5f) {
-                return false;
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ix0.draw(android.graphics.Canvas):void");
-    }
-
-    public int getCategoryIndex() {
-        return this.f25216m3;
-    }
-
-    public ex0 getSelectedCategory() {
-        int i10;
-        ex0[] ex0VarArr = this.Y2;
-        if (ex0VarArr != null && (i10 = this.f25216m3) >= 0 && i10 < ex0VarArr.length) {
-            return ex0VarArr[i10];
-        }
-        return null;
-    }
-
-    @Override
-    public final void k0(int i10, int i11) {
-        boolean z10;
-        boolean z11;
-        Utilities.Callback callback;
-        int i12 = 0;
-        if (getChildCount() > 0) {
-            View childAt = getChildAt(0);
-            z11 = true;
-            if (childAt instanceof dx0) {
-                z10 = true;
-            } else {
-                if (childAt.getRight() > this.f25211g3) {
-                    z11 = false;
-                }
+    public final void v(s4.c1 c1Var, int i10) {
+        rx0 rx0Var;
+        nx0[] nx0VarArr;
+        boolean z10 = true;
+        if (c1Var.f46527f == 1 && (nx0VarArr = (rx0Var = this.d).f30521f3) != null) {
+            int i11 = i10 - 1;
+            nx0 nx0Var = nx0VarArr[i11];
+            final mx0 mx0Var = (mx0) c1Var.f46523a;
+            if (rx0Var.f30534t3 != i11) {
                 z10 = false;
             }
-        } else {
-            z10 = false;
-            z11 = false;
-        }
-        boolean z12 = this.j3;
-        if (z12 != z11) {
-            this.j3 = z11;
-            Utilities.Callback callback2 = this.f25212h3;
-            if (callback2 != null) {
-                if (z11) {
-                    i12 = Math.max(0, getScrollToStartWidth() - (this.f25210f3 - this.f25211g3));
+            mx0Var.getClass();
+            if (!TextUtils.isEmpty(nx0Var.d)) {
+                mx0Var.setContentDescription(nx0Var.d);
+            } else if (!TextUtils.isEmpty(nx0Var.f29070a)) {
+                mx0Var.setContentDescription(nx0Var.f29070a);
+            } else {
+                mx0Var.setContentDescription(null);
+            }
+            ValueAnimator valueAnimator = mx0Var.G;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                mx0Var.G = null;
+            }
+            mx0Var.setImageResource(0);
+            mx0Var.a();
+            final boolean C1 = mx0Var.H.C1();
+            mx0Var.f28745w = false;
+            mx0Var.f28747y = 1.0f;
+            q5.h(UserConfig.selectedAccount).b(nx0Var.f29072c, new n5() {
+                @Override
+                public final void a(TLRPC.Document document) {
+                    mx0 mx0Var2 = mx0.this;
+                    mx0Var2.setOnlyLastFrame(!C1);
+                    mx0Var2.g(24, 24, document);
+                    mx0Var2.d();
                 }
-                callback2.run(Integer.valueOf(i12));
+            });
+            AndroidUtilities.runOnUIThread(new br0(mx0Var, 11), 60L);
+            mx0Var.l(z10, false);
+            mx0Var.setAlpha(rx0Var.f30536v3);
+            mx0Var.setScaleX(rx0Var.f30536v3);
+            mx0Var.setScaleY(rx0Var.f30536v3);
+            mx0Var.j();
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        mx0 mx0Var;
+        rx0 rx0Var = this.d;
+        if (i10 == 0) {
+            ci.ab abVar = new ci.ab(this, rx0Var.getContext(), 26);
+            rx0Var.f30533s3 = abVar;
+            mx0Var = abVar;
+        } else {
+            mx0Var = new mx0(rx0Var, rx0Var.getContext());
+        }
+        return new s4.c1(mx0Var);
+    }
+
+    @Override
+    public final void y(s4.c1 c1Var) {
+        boolean z10 = true;
+        if (c1Var.f46527f == 1) {
+            mx0 mx0Var = (mx0) c1Var.f46523a;
+            if (this.d.f30534t3 != c1Var.b() - 1) {
+                z10 = false;
             }
-            invalidate();
-        } else if (z12 && (callback = this.f25212h3) != null) {
-            callback.run(Integer.valueOf(Math.max(0, getScrollToStartWidth() - (this.f25210f3 - this.f25211g3))));
+            mx0Var.l(z10, false);
+            mx0Var.j();
         }
-        if (this.f25214k3 != z10) {
-            this.f25214k3 = z10;
-            Utilities.Callback callback3 = this.f25213i3;
-            if (callback3 != null) {
-                callback3.run(Boolean.valueOf(z10));
-            }
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        G1(this.f25220q3, false);
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        ci.bb bbVar = this.f25215l3;
-        if (bbVar != null) {
-            bbVar.requestLayout();
-        }
-    }
-
-    @Override
-    public void setBackgroundColor(int i10) {
-        if (this.f25208d3 == null) {
-            this.f25208d3 = new Paint(1);
-        }
-        this.f25208d3.setColor(i10);
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.gradient_right).mutate();
-        this.f25206b3 = mutate;
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        mutate.setColorFilter(new PorterDuffColorFilter(i10, mode));
-        Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.gradient_left).mutate();
-        this.f25207c3 = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(i10, mode));
-    }
-
-    public void setDontOccupyWidth(int i10) {
-        this.f25211g3 = i10;
-    }
-
-    public void setOnCategoryClick(Utilities.Callback<ex0> callback) {
-        this.f25217n3 = callback;
-    }
-
-    public void setOnScrollFully(Utilities.Callback<Boolean> callback) {
-        this.f25213i3 = callback;
-    }
-
-    public void setOnScrollIntoOccupiedWidth(Utilities.Callback<Integer> callback) {
-        this.f25212h3 = callback;
-    }
-
-    public void setShownButtonsAtStart(float f7) {
-        this.X2 = f7;
-    }
-
-    public ex0[] B1(ex0[] ex0VarArr) {
-        return ex0VarArr;
     }
 }

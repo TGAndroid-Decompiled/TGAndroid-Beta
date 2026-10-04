@@ -1,12 +1,12 @@
 package w7;
 public abstract class j9 {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj == obj2) {
-            return true;
+    public static int a(Object obj) {
+        int hashCode;
+        if (obj == null) {
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
         }
-        if (obj != null && obj.equals(obj2)) {
-            return true;
-        }
-        return false;
+        return (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
     }
 }

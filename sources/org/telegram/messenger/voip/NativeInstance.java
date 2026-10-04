@@ -127,8 +127,8 @@ public class NativeInstance {
     private void onEmitJoinPayload(String str, int i10) {
         try {
             AndroidUtilities.runOnUIThread(new s1(this, i10, str, 19));
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -142,7 +142,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, iArr, 11));
+        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, iArr, 10));
     }
 
     private void onRemoteMediaStateUpdated(int i10, int i11) {
@@ -286,8 +286,8 @@ public class NativeInstance {
         stopNative();
         try {
             this.stopBarrier.await();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         return this.finalState;
     }

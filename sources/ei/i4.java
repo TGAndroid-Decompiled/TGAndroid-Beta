@@ -1,36 +1,29 @@
 package ei;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GenericProvider;
-public final class i4 implements org.telegram.ui.ActionBar.z1, o4, GenericProvider {
-    public final q4 f8382a;
+import android.animation.ValueAnimator;
+public final class i4 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f9098a;
+    public final r4 f9099b;
 
-    public i4(q4 q4Var) {
-        this.f8382a = q4Var;
+    public i4(r4 r4Var, int i10) {
+        this.f9098a = i10;
+        this.f9099b = r4Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        this.f8382a.f27075b.dismiss();
-    }
-
-    @Override
-    public void j(boolean z10) {
-        q4 q4Var = this.f8382a;
-        if (!q4Var.K()) {
-            q4Var.J.e(0.0f);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f9098a) {
+            case 0:
+                this.f9099b.I.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                k4 k4Var = this.f9099b.f9306n;
+                if (k4Var.getWebView() != null) {
+                    k4Var.getWebView().setScrollY(intValue);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        boolean z10;
-        Void r22 = (Void) obj;
-        if (this.f8382a.f27075b.f29971r1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        return Boolean.valueOf(z10);
     }
 }

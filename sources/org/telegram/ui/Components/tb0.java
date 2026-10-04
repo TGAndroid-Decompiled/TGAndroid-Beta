@@ -5,17 +5,17 @@ import org.telegram.messenger.MessagePreviewParams;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class tb0 extends org.telegram.ui.Cells.r9 {
-    public final bc0 B0;
+    public final cc0 B0;
 
-    public tb0(bc0 bc0Var) {
-        this.B0 = bc0Var;
-        this.f20169h0 = bc0Var.f22938c0.F;
+    public tb0(cc0 cc0Var) {
+        this.B0 = cc0Var;
+        this.f21955h0 = cc0Var.f25320c0.F;
     }
 
     @Override
     public final boolean A(MessageObject messageObject) {
-        bc0 bc0Var = this.B0;
-        if (bc0Var.f22933a == 0 && !bc0Var.f22938c0.d.isSecret && y()) {
+        cc0 cc0Var = this.B0;
+        if (cc0Var.f25315a == 0 && !cc0Var.f25320c0.d.isSecret && y()) {
             return true;
         }
         return false;
@@ -23,36 +23,36 @@ public final class tb0 extends org.telegram.ui.Cells.r9 {
 
     @Override
     public final void J(int i10, int i11, MessageObject messageObject) {
-        org.telegram.ui.mn mnVar;
+        org.telegram.ui.on onVar;
         MessageObject messageObject2;
-        bc0 bc0Var = this.B0;
-        tb0 tb0Var = bc0Var.e;
-        int i12 = tb0Var.v - tb0Var.f20193u;
-        hc0 hc0Var = bc0Var.f22938c0;
-        if (i12 > MessagesController.getInstance(hc0Var.f24779w).quoteLengthMax) {
-            bc0Var.f();
+        cc0 cc0Var = this.B0;
+        tb0 tb0Var = cc0Var.f25321e;
+        int i12 = tb0Var.v - tb0Var.f21979u;
+        ic0 ic0Var = cc0Var.f25320c0;
+        if (i12 > MessagesController.getInstance(ic0Var.f27363w).quoteLengthMax) {
+            cc0Var.f();
             return;
         }
-        MessagePreviewParams messagePreviewParams = hc0Var.d;
-        messagePreviewParams.quoteStart = tb0Var.f20193u;
+        MessagePreviewParams messagePreviewParams = ic0Var.d;
+        messagePreviewParams.quoteStart = tb0Var.f21979u;
         messagePreviewParams.quoteEnd = tb0Var.v;
-        MessageObject c10 = bc0Var.c(messageObject);
-        if (c10 != null && ((mnVar = hc0Var.d.quote) == null || (messageObject2 = mnVar.f35628a) == null || messageObject2.getId() != c10.getId())) {
-            hc0Var.d.quote = org.telegram.ui.mn.b(i10, i11, c10);
+        MessageObject c10 = cc0Var.c(messageObject);
+        if (c10 != null && ((onVar = ic0Var.d.quote) == null || (messageObject2 = onVar.f39235a) == null || messageObject2.getId() != c10.getId())) {
+            ic0Var.d.quote = org.telegram.ui.on.b(i10, i11, c10);
         }
-        hc0Var.b();
-        hc0Var.a(true);
+        ic0Var.b();
+        ic0Var.a(true);
     }
 
     @Override
     public final boolean b() {
         MessageObject c10;
         TLRPC.Message message;
-        bc0 bc0Var = this.B0;
-        if (bc0Var.f22933a == 0 && (c10 = bc0Var.c(null)) != null && (message = c10.messageOwner) != null && message.rich_message != null) {
+        cc0 cc0Var = this.B0;
+        if (cc0Var.f25315a == 0 && (c10 = cc0Var.c(null)) != null && (message = c10.messageOwner) != null && message.rich_message != null) {
             return false;
         }
-        MessagePreviewParams messagePreviewParams = bc0Var.f22938c0.d;
+        MessagePreviewParams messagePreviewParams = cc0Var.f25320c0.d;
         if (messagePreviewParams != null && messagePreviewParams.noforwards) {
             return false;
         }
@@ -63,10 +63,10 @@ public final class tb0 extends org.telegram.ui.Cells.r9 {
     public final boolean e() {
         MessageObject c10;
         TLRPC.Message message;
-        bc0 bc0Var = this.B0;
-        int i10 = bc0Var.f22933a;
-        if (i10 == 0 && !bc0Var.f22938c0.d.isSecret) {
-            if (i10 != 0 || (c10 = bc0Var.c(null)) == null || (message = c10.messageOwner) == null || message.rich_message == null) {
+        cc0 cc0Var = this.B0;
+        int i10 = cc0Var.f25315a;
+        if (i10 == 0 && !cc0Var.f25320c0.d.isSecret) {
+            if (i10 != 0 || (c10 = cc0Var.c(null)) == null || (message = c10.messageOwner) == null || message.rich_message == null) {
                 return true;
             }
             return false;
@@ -76,13 +76,13 @@ public final class tb0 extends org.telegram.ui.Cells.r9 {
 
     @Override
     public final org.telegram.ui.ActionBar.d6 r() {
-        return this.f20169h0;
+        return this.f21955h0;
     }
 
     @Override
     public final void x() {
         super.x();
-        ub0 ub0Var = this.B0.f22939f;
+        ub0 ub0Var = this.B0.f25322f;
         if (ub0Var != null) {
             ub0Var.invalidate();
         }

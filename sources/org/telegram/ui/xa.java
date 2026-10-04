@@ -1,30 +1,42 @@
 package org.telegram.ui;
-public final class xa implements Runnable {
-    public final int f39893a;
-    public final ub f39894b;
 
-    public xa(ub ubVar, int i10) {
-        this.f39893a = i10;
-        this.f39894b = ubVar;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class xa implements bh.a {
+    public final int f42810a;
+    public final Object f42811b;
+
+    public xa(Object obj, int i10) {
+        this.f42810a = i10;
+        this.f42811b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39893a) {
+    public final void b(ah.a aVar, RectF rectF) {
+        switch (this.f42810a) {
             case 0:
-                ub ubVar = this.f39894b;
-                ubVar.G0 = Integer.MAX_VALUE;
-                ubVar.H0 = -1;
-                ubVar.d1();
-                ubVar.I0 = null;
+            case 1:
+            default:
+                aVar.f450a = true;
+                return;
+        }
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        switch (this.f42810a) {
+            case 0:
+                ((tb) this.f42811b).Z(canvas, rectF);
                 return;
             case 1:
-                ub ubVar2 = this.f39894b;
-                ubVar2.W0(false);
-                ubVar2.E.l();
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f42811b;
+                org.telegram.ui.Components.zl0 zl0Var = premiumPreviewFragment.f34115a;
+                gh.d.a(zl0Var, canvas, rectF, zl0Var, premiumPreviewFragment.f34121d0);
                 return;
             default:
-                this.f39894b.V0();
+                a91 a91Var = (a91) this.f42811b;
+                org.telegram.ui.Components.c71 c71Var = a91Var.f34738c;
+                gh.d.a(c71Var, canvas, rectF, c71Var, a91Var.f34737b);
                 return;
         }
     }

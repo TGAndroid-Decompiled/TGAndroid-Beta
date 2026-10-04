@@ -74,7 +74,7 @@ public class VideoCapturerDevice {
             }
             videoCapturerDevice.currentWidth = i11;
             videoCapturerDevice.currentHeight = screenCaptureSize.y;
-            videoCapturerDevice.handler.post(new ki.h0(18, videoCapturerDevice, screenCaptureSize));
+            videoCapturerDevice.handler.post(new ki.h0(16, videoCapturerDevice, screenCaptureSize));
         }
     }
 
@@ -109,7 +109,7 @@ public class VideoCapturerDevice {
     }
 
     private void init(long j3, String str) {
-        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, str, 12));
+        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, str, 11));
     }
 
     public static void lambda$checkScreenCapturerSize$1(VideoCapturerDevice videoCapturerDevice, Point point) {
@@ -160,7 +160,7 @@ public class VideoCapturerDevice {
                     this.currentWidth = screenCaptureSize.x;
                     this.currentHeight = screenCaptureSize.y;
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("ScreenCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new a3.h0(this, j3, screenCaptureSize, 13));
+                    this.handler.post(new a3.h0(this, j3, screenCaptureSize, 12));
                 }
             } else {
                 if (Camera2Enumerator.isSupported(ApplicationLoader.applicationContext)) {
@@ -192,7 +192,7 @@ public class VideoCapturerDevice {
                     return;
                 }
                 FileLog.d("VideoCapturerDevice init(" + j3 + "): videoCapturer.switchCamera CAMERA");
-                this.handler.post(new ki.h0(19, this, str2));
+                this.handler.post(new ki.h0(17, this, str2));
             }
         }
     }
@@ -219,8 +219,8 @@ public class VideoCapturerDevice {
                 this.videoCapturer.stopCapture();
                 this.videoCapturer.dispose();
                 this.videoCapturer = null;
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            } catch (InterruptedException e7) {
+                throw new RuntimeException(e7);
             }
         }
         SurfaceTextureHelper surfaceTextureHelper = this.videoCapturerSurfaceTextureHelper;
@@ -246,8 +246,8 @@ public class VideoCapturerDevice {
         this.handler.post(new j(this, 0));
         try {
             this.thread.quitSafely();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -267,8 +267,8 @@ public class VideoCapturerDevice {
         try {
             FileLog.d("VideoCapturerDevice onStateChanged(" + j3 + ", " + i10 + "): videoCapturer.stopCapture");
             this.videoCapturer.stopCapture();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException e7) {
+            throw new RuntimeException(e7);
         }
     }
 
@@ -282,7 +282,7 @@ public class VideoCapturerDevice {
     private static native CapturerObserver nativeGetJavaVideoCapturerObserver(long j3);
 
     private void onDestroy() {
-        hg.c.u(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
+        hg.k0.t(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
         this.nativePtr = 0L;
         AndroidUtilities.runOnUIThread(new j(this, 1));
     }

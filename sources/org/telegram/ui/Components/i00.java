@@ -1,69 +1,106 @@
 package org.telegram.ui.Components;
 
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.MessageObject;
-public final class i00 {
-    public int f24938a;
-    public CharSequence f24939b;
-    public int f24940c;
-    public int d;
-    public boolean e;
-    public boolean f24941f;
-    public boolean f24942g;
-    public final m00 h;
+import android.content.Context;
+import android.view.ViewGroup;
+public final class i00 extends yl0 {
+    public final Context f27268c;
+    public final n00 d;
 
-    public i00(m00 m00Var, int i10, Spannable spannable, boolean z10) {
-        this.h = m00Var;
-        this.f24938a = i10;
-        this.f24939b = spannable;
-        this.f24942g = z10;
+    public i00(n00 n00Var, Context context) {
+        this.d = n00Var;
+        this.f27268c = context;
     }
 
-    public final int a(boolean z10) {
-        int i10;
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.h.size();
+    }
+
+    @Override
+    public final long i(int i10) {
+        return this.d.f28778k0.get(i10);
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
         int i11;
-        CharSequence charSequence = this.f24939b;
-        m00 m00Var = this.h;
-        int ceil = (int) Math.ceil(ci.e4.g(charSequence, m00Var.f26186b));
-        this.f24940c = ceil;
-        int i12 = 0;
-        if (z10) {
-            i10 = ((org.telegram.ui.pw) m00Var.J).a(this.f24938a);
-            if (i10 < 0) {
-                i10 = 0;
-            }
-            if (z10) {
-                this.d = i10;
-            }
+        boolean z10;
+        float f7;
+        int i12;
+        int i13;
+        int i14;
+        l00 l00Var = (l00) c1Var.f46523a;
+        if (l00Var.f28218b != null) {
+            i11 = l00Var.getId();
         } else {
-            i10 = this.d;
+            i11 = -1;
         }
-        if (i10 > 0) {
-            i11 = AndroidUtilities.dp(-2.0f) + AndroidUtilities.dp(10.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(m00Var.f26188c.measureText(String.format("%d", Integer.valueOf(i10)))));
+        j00 j00Var = (j00) this.d.h.get(i10);
+        l00Var.f28218b = j00Var;
+        l00Var.f28223e = i10;
+        l00Var.setContentDescription(j00Var.f27544b);
+        l00Var.requestLayout();
+        boolean z11 = l00Var.f28233n;
+        j00 j00Var2 = l00Var.f28218b;
+        if (j00Var2 != null && j00Var2.f27548g) {
+            z10 = true;
         } else {
-            if (!this.e && m00Var.f26200n) {
-                i12 = AndroidUtilities.dp(12.333f);
-            }
-            i11 = i12;
+            z10 = false;
         }
-        return Math.max(AndroidUtilities.dp(16.0f), ceil + i11);
+        if (z11 != z10) {
+            z5.release(l00Var, l00Var.f28234r);
+            z5.release(l00Var, l00Var.O);
+            z5.release(l00Var, l00Var.Q);
+            z5.release(l00Var, l00Var.S);
+            if (l00Var.f28232l0) {
+                int i15 = 26;
+                if (l00Var.f28218b.f27548g) {
+                    i12 = 26;
+                } else {
+                    i12 = 0;
+                }
+                l00Var.f28234r = z5.update(i12, l00Var, l00Var.f28234r, l00Var.f28235s);
+                if (l00Var.f28218b.f27548g) {
+                    i13 = 26;
+                } else {
+                    i13 = 0;
+                }
+                l00Var.O = z5.update(i13, l00Var, l00Var.O, l00Var.P);
+                if (l00Var.f28218b.f27548g) {
+                    i14 = 26;
+                } else {
+                    i14 = 0;
+                }
+                l00Var.Q = z5.update(i14, l00Var, l00Var.Q, l00Var.R);
+                if (!l00Var.f28218b.f27548g) {
+                    i15 = 0;
+                }
+                l00Var.S = z5.update(i15, l00Var, l00Var.S, l00Var.T);
+            }
+            l00Var.f28233n = l00Var.f28218b.f27548g;
+        }
+        if (i11 != l00Var.getId()) {
+            if (l00Var.f28218b.f27547f) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            l00Var.f28231k0 = f7;
+        }
     }
 
-    public final void b(String str) {
-        TextPaint textPaint = this.h.f26186b;
-        if (TextUtils.equals(this.f24939b, str)) {
-            return;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        this.f24939b = spannableStringBuilder;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false);
-        this.f24939b = replaceEmoji;
-        this.f24939b = MessageObject.replaceAnimatedEmoji(replaceEmoji, null, textPaint.getFontMetricsInt());
-        this.f24942g = false;
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new l00(this.d, this.f27268c));
     }
 }

@@ -3,44 +3,44 @@ package m;
 import android.view.View;
 import android.view.ViewConfiguration;
 public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChangeListener {
-    public final float f14561a;
-    public final int f14562b;
-    public final int f14563c;
+    public final float f15889a;
+    public final int f15890b;
+    public final int f15891c;
     public final View d;
-    public t1 e;
-    public t1 f14564f;
+    public t1 f15892e;
+    public t1 f15893f;
     public boolean h;
-    public int f14565n;
-    public final int[] f14566r = new int[2];
+    public int f15894n;
+    public final int[] f15895r = new int[2];
 
     public u1(View view) {
         this.d = view;
         view.setLongClickable(true);
         view.addOnAttachStateChangeListener(this);
-        this.f14561a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+        this.f15889a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
         int tapTimeout = ViewConfiguration.getTapTimeout();
-        this.f14562b = tapTimeout;
-        this.f14563c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
+        this.f15890b = tapTimeout;
+        this.f15891c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
     }
 
     public final void a() {
-        t1 t1Var = this.f14564f;
+        t1 t1Var = this.f15893f;
         View view = this.d;
         if (t1Var != null) {
             view.removeCallbacks(t1Var);
         }
-        t1 t1Var2 = this.e;
+        t1 t1Var2 = this.f15892e;
         if (t1Var2 != null) {
             view.removeCallbacks(t1Var2);
         }
     }
 
-    public abstract l.c0 b();
+    public abstract l.b0 b();
 
     public abstract boolean c();
 
     public boolean d() {
-        l.c0 b10 = b();
+        l.b0 b10 = b();
         if (b10 != null && b10.a()) {
             b10.dismiss();
             return true;
@@ -56,8 +56,8 @@ public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChan
     @Override
     public final void onViewDetachedFromWindow(View view) {
         this.h = false;
-        this.f14565n = -1;
-        t1 t1Var = this.e;
+        this.f15894n = -1;
+        t1 t1Var = this.f15892e;
         if (t1Var != null) {
             this.d.removeCallbacks(t1Var);
         }

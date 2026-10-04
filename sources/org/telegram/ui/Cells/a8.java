@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stats;
-import org.telegram.ui.pa1;
+import org.telegram.ui.sa1;
 public final class a8 extends org.telegram.ui.Components.w9 {
     public final org.telegram.ui.ActionBar.d6 G;
     public final c8 H;
@@ -19,18 +19,18 @@ public final class a8 extends org.telegram.ui.Components.w9 {
     public final void onDraw(Canvas canvas) {
         int dp;
         c8 c8Var = this.H;
-        pa1 pa1Var = c8Var.v;
-        if (pa1Var != null && (pa1Var.f36486a instanceof TL_stats.TL_postInteractionCountersStory)) {
+        sa1 sa1Var = c8Var.v;
+        if (sa1Var != null && (sa1Var.f40436a instanceof TL_stats.TL_postInteractionCountersStory)) {
             float dp2 = AndroidUtilities.dp(1.0f);
-            c8Var.f20104r.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
-            ai.ca caVar = c8Var.f20104r;
-            caVar.f656a = false;
-            caVar.f657b = false;
+            c8Var.f21883r.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
+            ai.ca caVar = c8Var.f21883r;
+            caVar.f712a = false;
+            caVar.f713b = false;
             caVar.v = true;
-            caVar.f667o = false;
-            caVar.f677z = 1;
+            caVar.f724o = false;
+            caVar.f734z = 1;
             caVar.J = this.G;
-            ai.ia.h(0L, canvas, this.f29872a, caVar);
+            ai.ia.h(0L, canvas, this.f32486a, caVar);
             return;
         }
         super.onDraw(canvas);

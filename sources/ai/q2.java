@@ -5,33 +5,33 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.vp;
+import org.telegram.ui.Components.wp;
 public final class q2 extends View {
-    public final int f1414a = 1;
-    public final vp f1415b;
+    public final int f1537a = 1;
+    public final wp f1538b;
 
     public q2(Context context) {
         super(context);
-        this.f1415b = new vp(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(2.0f), -13522392);
+        this.f1538b = new wp(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(2.0f), -13522392);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f1414a) {
+        switch (this.f1537a) {
             case 0:
                 int dp = AndroidUtilities.dp(1.0f);
-                vp vpVar = this.f1415b;
-                vpVar.setBounds(dp, dp, (getWidth() - dp) - dp, (getHeight() - dp) - dp);
-                vpVar.draw(canvas);
+                wp wpVar = this.f1538b;
+                wpVar.setBounds(dp, dp, (getWidth() - dp) - dp, (getHeight() - dp) - dp);
+                wpVar.draw(canvas);
                 invalidate();
                 return;
             default:
                 int width = getWidth();
                 int height = getHeight();
-                vp vpVar2 = this.f1415b;
-                vpVar2.setBounds(0, 0, width, height);
-                vpVar2.setAlpha(255);
-                vpVar2.draw(canvas);
+                wp wpVar2 = this.f1538b;
+                wpVar2.setBounds(0, 0, width, height);
+                wpVar2.setAlpha(255);
+                wpVar2.draw(canvas);
                 invalidate();
                 super.onDraw(canvas);
                 return;
@@ -40,6 +40,6 @@ public final class q2 extends View {
 
     public q2(Activity activity) {
         super(activity);
-        this.f1415b = new vp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19224m5, false));
+        this.f1538b = new wp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20982m5, false));
     }
 }

@@ -1,21 +1,21 @@
 package a0;
 
-import w7.u7;
+import w7.v7;
 public final class l {
-    public int[] f26a;
-    public int f27b;
+    public int[] f29a;
+    public int f30b;
 
     public final boolean equals(Object obj) {
         if (obj instanceof l) {
             l lVar = (l) obj;
-            int i10 = lVar.f27b;
-            int i11 = this.f27b;
+            int i10 = lVar.f30b;
+            int i11 = this.f30b;
             if (i10 == i11) {
-                int[] iArr = this.f26a;
-                int[] iArr2 = lVar.f26a;
-                ud.e a2 = u7.a(0, i11);
-                int i12 = a2.f43971a;
-                int i13 = a2.f43972b;
+                int[] iArr = this.f29a;
+                int[] iArr2 = lVar.f29a;
+                ud.e a2 = v7.a(0, i11);
+                int i12 = a2.f47609a;
+                int i13 = a2.f47610b;
                 if (i12 <= i13) {
                     while (iArr[i12] == iArr2[i12]) {
                         if (i12 != i13) {
@@ -33,8 +33,8 @@ public final class l {
     }
 
     public final int hashCode() {
-        int[] iArr = this.f26a;
-        int i10 = this.f27b;
+        int[] iArr = this.f29a;
+        int i10 = this.f30b;
         int i11 = 0;
         for (int i12 = 0; i12 < i10; i12++) {
             i11 += iArr[i12] * 31;
@@ -45,8 +45,8 @@ public final class l {
     public final String toString() {
         StringBuilder sb2 = new StringBuilder();
         sb2.append((CharSequence) "[");
-        int[] iArr = this.f26a;
-        int i10 = this.f27b;
+        int[] iArr = this.f29a;
+        int i10 = this.f30b;
         int i11 = 0;
         while (true) {
             if (i11 < i10) {

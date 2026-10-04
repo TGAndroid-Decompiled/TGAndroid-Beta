@@ -1,21 +1,21 @@
 package c3;
 public final class f {
-    public final long f3752a;
-    public final long f3753b;
-    public final long f3754c;
+    public final long f4057a;
+    public final long f4058b;
+    public final long f4059c;
     public long d = 0;
-    public long e;
-    public long f3755f;
-    public long f3756g;
+    public long f4060e;
+    public long f4061f;
+    public long f4062g;
     public long h;
 
     public f(long j3, long j10, long j11, long j12, long j13, long j14) {
-        this.f3752a = j3;
-        this.f3753b = j10;
-        this.e = j11;
-        this.f3755f = j12;
-        this.f3756g = j13;
-        this.f3754c = j14;
+        this.f4057a = j3;
+        this.f4058b = j10;
+        this.f4060e = j11;
+        this.f4061f = j12;
+        this.f4062g = j13;
+        this.f4059c = j14;
         this.h = a(j10, 0L, j11, j12, j13, j14);
     }
 

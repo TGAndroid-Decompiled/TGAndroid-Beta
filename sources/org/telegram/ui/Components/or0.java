@@ -1,32 +1,63 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-public final class or0 implements org.telegram.ui.ActionBar.z1, MessagesStorage.StringCallback {
-    public final lv0 f27180a;
-    public final TL_stories.StoryItem f27181b;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class or0 implements Runnable {
+    public final int f29437a = 0;
+    public final pv0 f29438b;
+    public final org.telegram.ui.ActionBar.d6 f29439c;
+    public final MessageObject d;
+    public final int f29440e;
 
-    public or0(lv0 lv0Var, TL_stories.StoryItem storyItem) {
-        this.f27180a = lv0Var;
-        this.f27181b = storyItem;
+    public or0(pv0 pv0Var, org.telegram.ui.ActionBar.d6 d6Var, int i10, MessageObject messageObject) {
+        this.f29438b = pv0Var;
+        this.f29439c = d6Var;
+        this.f29440e = i10;
+        this.d = messageObject;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        ArrayList arrayList = new ArrayList(1);
-        arrayList.add(this.f27181b);
-        lv0 lv0Var = this.f27180a;
-        org.telegram.ui.ActionBar.m2 m2Var = lv0Var.f26154v1;
-        m2Var.getMessagesController().getStoriesController().s(lv0Var.f26129j1, arrayList);
-        yc.a0(m2Var).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("StoriesDeleted", 1, new Object[0])).j();
-        lv0Var.L(false);
+    public final void run() {
+        switch (this.f29437a) {
+            case 0:
+                org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(this.f29438b.getContext(), 3, this.f29439c)};
+                int i10 = this.f29440e;
+                int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new os(b2VarArr, 1));
+                if (sendVote != 0) {
+                    AndroidUtilities.runOnUIThread(new sr0(b2VarArr, i10, sendVote, 0), 500L);
+                    return;
+                }
+                return;
+            default:
+                pv0 pv0Var = this.f29438b;
+                Context context = pv0Var.getContext();
+                org.telegram.ui.ActionBar.d6 d6Var = this.f29439c;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
+                b2Var.P0 = false;
+                MessageObject messageObject = this.d;
+                if (messageObject.isQuiz()) {
+                    b2Var.R = LocaleController.getString(R.string.StopQuizAlertTitle);
+                    b2Var.T = LocaleController.getString(R.string.StopQuizAlertText);
+                } else {
+                    b2Var.R = LocaleController.getString(R.string.StopPollAlertTitle);
+                    b2Var.T = LocaleController.getString(R.string.StopPollAlertText);
+                }
+                alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new org.telegram.ui.fa(pv0Var, d6Var, messageObject, this.f29440e, 4));
+                hg.k0.o(R.string.Cancel, alertDialog$Builder, null);
+                return;
+        }
     }
 
-    @Override
-    public void run(String str) {
-        r0.getStoriesController().r(r0.f26129j1, str, new org.telegram.ui.oc(29, this.f27180a, this.f27181b));
+    public or0(pv0 pv0Var, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject, int i10) {
+        this.f29438b = pv0Var;
+        this.f29439c = d6Var;
+        this.d = messageObject;
+        this.f29440e = i10;
     }
 }

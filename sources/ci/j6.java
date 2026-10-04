@@ -6,16 +6,16 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 public final class j6 extends qg.d {
     public final Paint h;
-    public long f4823n;
-    public float f4824r;
-    public float f4825s;
+    public long f5210n;
+    public float f5211r;
+    public float f5212s;
     public int v;
-    public int f4826w;
-    public final nb f4827x;
+    public int f5213w;
+    public final mb f5214x;
 
-    public j6(nb nbVar, Context context, i6 i6Var) {
+    public j6(mb mbVar, Context context, i6 i6Var) {
         super(context, i6Var);
-        this.f4827x = nbVar;
+        this.f5214x = mbVar;
         Paint paint = new Paint();
         this.h = paint;
         setWillNotDraw(false);
@@ -26,7 +26,7 @@ public final class j6 extends qg.d {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f4827x.f5354m2) {
+        if (this.f5214x.f5768m2) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -40,14 +40,14 @@ public final class j6 extends qg.d {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        nb nbVar = this.f4827x;
-        j6 j6Var = nbVar.R0;
-        if (nbVar.R1 <= 0) {
-            nbVar.R1 = j6Var.getMeasuredWidth();
+        mb mbVar = this.f5214x;
+        j6 j6Var = mbVar.R0;
+        if (mbVar.R1 <= 0) {
+            mbVar.R1 = j6Var.getMeasuredWidth();
         }
-        if (nbVar.S1 <= 0) {
-            nbVar.S1 = j6Var.getMeasuredHeight();
+        if (mbVar.S1 <= 0) {
+            mbVar.S1 = j6Var.getMeasuredHeight();
         }
-        nbVar.H0();
+        mbVar.H0();
     }
 }

@@ -23,44 +23,44 @@ public final class b {
     public static final String J;
     public static final String K;
     public static final String L;
-    public static final String f7410s;
-    public static final String f7411t;
-    public static final String f7412u;
+    public static final String f8014s;
+    public static final String f8015t;
+    public static final String f8016u;
     public static final String v;
-    public static final String f7413w;
-    public static final String f7414x;
-    public static final String f7415y;
-    public static final String f7416z;
-    public final CharSequence f7417a;
-    public final Layout.Alignment f7418b;
-    public final Layout.Alignment f7419c;
+    public static final String f8017w;
+    public static final String f8018x;
+    public static final String f8019y;
+    public static final String f8020z;
+    public final CharSequence f8021a;
+    public final Layout.Alignment f8022b;
+    public final Layout.Alignment f8023c;
     public final Bitmap d;
-    public final float e;
-    public final int f7420f;
-    public final int f7421g;
+    public final float f8024e;
+    public final int f8025f;
+    public final int f8026g;
     public final float h;
-    public final int f7422i;
-    public final float f7423j;
-    public final float f7424k;
-    public final boolean f7425l;
-    public final int f7426m;
-    public final int f7427n;
-    public final float f7428o;
-    public final int f7429p;
-    public final float f7430q;
-    public final int f7431r;
+    public final int f8027i;
+    public final float f8028j;
+    public final float f8029k;
+    public final boolean f8030l;
+    public final int f8031m;
+    public final int f8032n;
+    public final float f8033o;
+    public final int f8034p;
+    public final float f8035q;
+    public final int f8036r;
 
     static {
         new b("", null, null, null, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0);
-        String str = d0.f7870a;
-        f7410s = Integer.toString(0, 36);
-        f7411t = Integer.toString(17, 36);
-        f7412u = Integer.toString(1, 36);
+        String str = d0.f8537a;
+        f8014s = Integer.toString(0, 36);
+        f8015t = Integer.toString(17, 36);
+        f8016u = Integer.toString(1, 36);
         v = Integer.toString(2, 36);
-        f7413w = Integer.toString(3, 36);
-        f7414x = Integer.toString(18, 36);
-        f7415y = Integer.toString(4, 36);
-        f7416z = Integer.toString(5, 36);
+        f8017w = Integer.toString(3, 36);
+        f8018x = Integer.toString(18, 36);
+        f8019y = Integer.toString(4, 36);
+        f8020z = Integer.toString(5, 36);
         A = Integer.toString(6, 36);
         B = Integer.toString(7, 36);
         C = Integer.toString(8, 36);
@@ -88,29 +88,29 @@ public final class b {
             e2.d.b(z11);
         }
         if (charSequence instanceof Spanned) {
-            this.f7417a = SpannedString.valueOf(charSequence);
+            this.f8021a = SpannedString.valueOf(charSequence);
         } else if (charSequence != null) {
-            this.f7417a = charSequence.toString();
+            this.f8021a = charSequence.toString();
         } else {
-            this.f7417a = null;
+            this.f8021a = null;
         }
-        this.f7418b = alignment;
-        this.f7419c = alignment2;
+        this.f8022b = alignment;
+        this.f8023c = alignment2;
         this.d = bitmap;
-        this.e = f7;
-        this.f7420f = i10;
-        this.f7421g = i11;
+        this.f8024e = f7;
+        this.f8025f = i10;
+        this.f8026g = i11;
         this.h = f10;
-        this.f7422i = i12;
-        this.f7423j = f12;
-        this.f7424k = f13;
-        this.f7425l = z10;
-        this.f7426m = i14;
-        this.f7427n = i13;
-        this.f7428o = f11;
-        this.f7429p = i15;
-        this.f7430q = f14;
-        this.f7431r = i16;
+        this.f8027i = i12;
+        this.f8028j = f12;
+        this.f8029k = f13;
+        this.f8030l = z10;
+        this.f8031m = i14;
+        this.f8032n = i13;
+        this.f8033o = f11;
+        this.f8034p = i15;
+        this.f8035q = f14;
+        this.f8036r = i16;
     }
 
     public final Bundle a() {
@@ -118,26 +118,26 @@ public final class b {
         h[] hVarArr;
         i[] iVarArr;
         Bundle bundle = new Bundle();
-        CharSequence charSequence = this.f7417a;
+        CharSequence charSequence = this.f8021a;
         if (charSequence != null) {
-            bundle.putCharSequence(f7410s, charSequence);
+            bundle.putCharSequence(f8014s, charSequence);
             if (charSequence instanceof Spanned) {
                 Spanned spanned = (Spanned) charSequence;
-                String str = e.f7437a;
+                String str = e.f8043a;
                 ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
                 for (g gVar : (g[]) spanned.getSpans(0, spanned.length(), g.class)) {
                     gVar.getClass();
                     Bundle bundle2 = new Bundle();
-                    bundle2.putString(g.f7440c, gVar.f7441a);
-                    bundle2.putInt(g.d, gVar.f7442b);
+                    bundle2.putString(g.f8047c, gVar.f8048a);
+                    bundle2.putInt(g.d, gVar.f8049b);
                     arrayList.add(e.a(spanned, gVar, 1, bundle2));
                 }
                 for (h hVar : (h[]) spanned.getSpans(0, spanned.length(), h.class)) {
                     hVar.getClass();
                     Bundle bundle3 = new Bundle();
-                    bundle3.putInt(h.d, hVar.f7444a);
-                    bundle3.putInt(h.e, hVar.f7445b);
-                    bundle3.putInt(h.f7443f, hVar.f7446c);
+                    bundle3.putInt(h.d, hVar.f8052a);
+                    bundle3.putInt(h.f8050e, hVar.f8053b);
+                    bundle3.putInt(h.f8051f, hVar.f8054c);
                     arrayList.add(e.a(spanned, hVar, 2, bundle3));
                 }
                 for (f fVar : (f[]) spanned.getSpans(0, spanned.length(), f.class)) {
@@ -146,30 +146,30 @@ public final class b {
                 for (i iVar : (i[]) spanned.getSpans(0, spanned.length(), i.class)) {
                     iVar.getClass();
                     Bundle bundle4 = new Bundle();
-                    bundle4.putString(i.f7447b, iVar.f7448a);
+                    bundle4.putString(i.f8055b, iVar.f8056a);
                     arrayList.add(e.a(spanned, iVar, 4, bundle4));
                 }
                 if (!arrayList.isEmpty()) {
-                    bundle.putParcelableArrayList(f7411t, arrayList);
+                    bundle.putParcelableArrayList(f8015t, arrayList);
                 }
             }
         }
-        bundle.putSerializable(f7412u, this.f7418b);
-        bundle.putSerializable(v, this.f7419c);
-        bundle.putFloat(f7415y, this.e);
-        bundle.putInt(f7416z, this.f7420f);
-        bundle.putInt(A, this.f7421g);
+        bundle.putSerializable(f8016u, this.f8022b);
+        bundle.putSerializable(v, this.f8023c);
+        bundle.putFloat(f8019y, this.f8024e);
+        bundle.putInt(f8020z, this.f8025f);
+        bundle.putInt(A, this.f8026g);
         bundle.putFloat(B, this.h);
-        bundle.putInt(C, this.f7422i);
-        bundle.putInt(D, this.f7427n);
-        bundle.putFloat(E, this.f7428o);
-        bundle.putFloat(F, this.f7423j);
-        bundle.putFloat(G, this.f7424k);
-        bundle.putBoolean(I, this.f7425l);
-        bundle.putInt(H, this.f7426m);
-        bundle.putInt(J, this.f7429p);
-        bundle.putFloat(K, this.f7430q);
-        bundle.putInt(L, this.f7431r);
+        bundle.putInt(C, this.f8027i);
+        bundle.putInt(D, this.f8032n);
+        bundle.putFloat(E, this.f8033o);
+        bundle.putFloat(F, this.f8028j);
+        bundle.putFloat(G, this.f8029k);
+        bundle.putBoolean(I, this.f8030l);
+        bundle.putInt(H, this.f8031m);
+        bundle.putInt(J, this.f8034p);
+        bundle.putFloat(K, this.f8035q);
+        bundle.putInt(L, this.f8036r);
         return bundle;
     }
 
@@ -181,7 +181,7 @@ public final class b {
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
             Bitmap bitmap2 = bVar.d;
-            if (TextUtils.equals(this.f7417a, bVar.f7417a) && this.f7418b == bVar.f7418b && this.f7419c == bVar.f7419c && ((bitmap = this.d) != null ? !(bitmap2 == null || !bitmap.sameAs(bitmap2)) : bitmap2 == null) && this.e == bVar.e && this.f7420f == bVar.f7420f && this.f7421g == bVar.f7421g && this.h == bVar.h && this.f7422i == bVar.f7422i && this.f7423j == bVar.f7423j && this.f7424k == bVar.f7424k && this.f7425l == bVar.f7425l && this.f7426m == bVar.f7426m && this.f7427n == bVar.f7427n && this.f7428o == bVar.f7428o && this.f7429p == bVar.f7429p && this.f7430q == bVar.f7430q && this.f7431r == bVar.f7431r) {
+            if (TextUtils.equals(this.f8021a, bVar.f8021a) && this.f8022b == bVar.f8022b && this.f8023c == bVar.f8023c && ((bitmap = this.d) != null ? !(bitmap2 == null || !bitmap.sameAs(bitmap2)) : bitmap2 == null) && this.f8024e == bVar.f8024e && this.f8025f == bVar.f8025f && this.f8026g == bVar.f8026g && this.h == bVar.h && this.f8027i == bVar.f8027i && this.f8028j == bVar.f8028j && this.f8029k == bVar.f8029k && this.f8030l == bVar.f8030l && this.f8031m == bVar.f8031m && this.f8032n == bVar.f8032n && this.f8033o == bVar.f8033o && this.f8034p == bVar.f8034p && this.f8035q == bVar.f8035q && this.f8036r == bVar.f8036r) {
                 return true;
             }
         }
@@ -189,6 +189,6 @@ public final class b {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f7417a, this.f7418b, this.f7419c, this.d, Float.valueOf(this.e), Integer.valueOf(this.f7420f), Integer.valueOf(this.f7421g), Float.valueOf(this.h), Integer.valueOf(this.f7422i), Float.valueOf(this.f7423j), Float.valueOf(this.f7424k), Boolean.valueOf(this.f7425l), Integer.valueOf(this.f7426m), Integer.valueOf(this.f7427n), Float.valueOf(this.f7428o), Integer.valueOf(this.f7429p), Float.valueOf(this.f7430q), Integer.valueOf(this.f7431r));
+        return Objects.hash(this.f8021a, this.f8022b, this.f8023c, this.d, Float.valueOf(this.f8024e), Integer.valueOf(this.f8025f), Integer.valueOf(this.f8026g), Float.valueOf(this.h), Integer.valueOf(this.f8027i), Float.valueOf(this.f8028j), Float.valueOf(this.f8029k), Boolean.valueOf(this.f8030l), Integer.valueOf(this.f8031m), Integer.valueOf(this.f8032n), Float.valueOf(this.f8033o), Integer.valueOf(this.f8034p), Float.valueOf(this.f8035q), Integer.valueOf(this.f8036r));
     }
 }

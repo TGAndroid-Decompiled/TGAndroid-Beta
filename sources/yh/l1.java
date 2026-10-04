@@ -2,23 +2,23 @@ package yh;
 
 import android.os.Bundle;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.sa1;
+import org.telegram.ui.va1;
 public final class l1 implements Runnable {
-    public final int f47638a = 0;
-    public final org.telegram.ui.ActionBar.m2 f47639b;
-    public final long f47640c;
+    public final int f51552a = 0;
+    public final org.telegram.ui.ActionBar.n2 f51553b;
+    public final long f51554c;
 
-    public l1(long j3, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f47640c = j3;
-        this.f47639b = m2Var;
+    public l1(long j3, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f51554c = j3;
+        this.f51553b = n2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f47638a) {
+        switch (this.f51552a) {
             case 0:
                 Bundle bundle = new Bundle();
-                long j3 = this.f47640c;
+                long j3 = this.f51554c;
                 if (j3 >= 0) {
                     bundle.putLong("user_id", j3);
                 } else {
@@ -26,17 +26,17 @@ public final class l1 implements Runnable {
                 }
                 bundle.putBoolean("my_profile", true);
                 bundle.putBoolean("open_gifts", true);
-                this.f47639b.presentFragment(new ProfileActivity(bundle, null));
+                this.f51553b.presentFragment(new ProfileActivity(bundle, null));
                 return;
             default:
-                org.telegram.ui.ActionBar.m2 m2Var = this.f47639b;
-                m2Var.presentFragment(sa1.d0(m2Var.getMessagesController().getChat(Long.valueOf(-this.f47640c)), true));
+                org.telegram.ui.ActionBar.n2 n2Var = this.f51553b;
+                n2Var.presentFragment(va1.b0(n2Var.getMessagesController().getChat(Long.valueOf(-this.f51554c)), true));
                 return;
         }
     }
 
-    public l1(org.telegram.ui.ActionBar.m2 m2Var, long j3) {
-        this.f47639b = m2Var;
-        this.f47640c = j3;
+    public l1(org.telegram.ui.ActionBar.n2 n2Var, long j3) {
+        this.f51553b = n2Var;
+        this.f51554c = j3;
     }
 }

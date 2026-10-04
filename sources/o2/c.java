@@ -2,34 +2,34 @@ package o2;
 
 import b2.r0;
 import java.util.ArrayList;
-import v7.z7;
+import v7.y7;
 public final class c {
-    public static final int[] f15549c = {8, 13, 11, 2, 0, 1, 7};
-    public qb.b f15550a;
-    public boolean f15551b;
+    public static final int[] f17000c = {8, 13, 11, 2, 0, 1, 7};
+    public qb.b f17001a;
+    public boolean f17002b;
 
     public static void a(int i10, ArrayList arrayList) {
-        if (z7.d(i10, 0, 7, f15549c) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
+        if (y7.d(i10, 0, 7, f17000c) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
             arrayList.add(Integer.valueOf(i10));
         }
     }
 
     public final b2.s b(b2.s sVar) {
         String str;
-        if (this.f15551b && this.f15550a.W(sVar)) {
+        if (this.f17002b && this.f17001a.V(sVar)) {
             b2.r a2 = sVar.a();
-            String str2 = sVar.f3294k;
-            a2.f3245q = r0.n("application/x-media3-cues");
-            a2.O = this.f15550a.D(sVar);
+            String str2 = sVar.f3557k;
+            a2.f3506q = r0.n("application/x-media3-cues");
+            a2.O = this.f17001a.H(sVar);
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(sVar.f3301r);
+            sb2.append(sVar.f3564r);
             if (str2 != null) {
                 str = " ".concat(str2);
             } else {
                 str = "";
             }
             sb2.append(str);
-            a2.f3238j = sb2.toString();
+            a2.f3499j = sb2.toString();
             a2.v = Long.MAX_VALUE;
             return new b2.s(a2);
         }

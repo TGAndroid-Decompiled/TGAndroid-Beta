@@ -1,8 +1,22 @@
 package org.telegram.ui;
+public final class rs0 extends org.telegram.ui.Cells.aa {
+    public final int f40254v0 = 0;
 
-import android.content.Context;
-public final class rs0 extends org.telegram.ui.Components.rt {
-    public rs0(Context context, String str) {
-        super(context, str);
+    public rs0(ai.wa waVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(waVar, d6Var);
+    }
+
+    @Override
+    public final int p() {
+        switch (this.f40254v0) {
+            case 0:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public rs0(ai.d dVar) {
+        super(null, dVar);
     }
 }

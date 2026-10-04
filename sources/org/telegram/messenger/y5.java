@@ -10,73 +10,73 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ExternalActionActivity;
-import org.telegram.ui.cx0;
-import org.telegram.ui.gn0;
+import org.telegram.ui.fx0;
+import org.telegram.ui.kn0;
 public final class y5 implements Runnable {
-    public final int f18186a = 0;
-    public final Object f18187b;
-    public final int f18188c;
+    public final int f19867a = 0;
+    public final Object f19868b;
+    public final int f19869c;
     public final Object d;
-    public final Object e;
-    public final Object f18189f;
+    public final Object f19870e;
+    public final Object f19871f;
     public final Object h;
-    public final Object f18190n;
-    public final Object f18191r;
+    public final Object f19872n;
+    public final Object f19873r;
 
-    public y5(int i10, File file, String str, org.telegram.ui.ActionBar.a2 a2Var, boolean[] zArr, String str2, Utilities.Callback callback, boolean[] zArr2) {
-        this.f18188c = i10;
-        this.f18189f = file;
+    public y5(int i10, File file, String str, org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr, String str2, Utilities.Callback callback, boolean[] zArr2) {
+        this.f19869c = i10;
+        this.f19871f = file;
         this.d = str;
-        this.f18187b = a2Var;
+        this.f19868b = b2Var;
         this.h = zArr;
-        this.e = str2;
-        this.f18191r = callback;
-        this.f18190n = zArr2;
+        this.f19870e = str2;
+        this.f19873r = callback;
+        this.f19872n = zArr2;
     }
 
     @Override
     public final void run() {
         Activity activity;
-        int i10 = this.f18186a;
-        int i11 = this.f18188c;
-        Object obj = this.f18191r;
-        Object obj2 = this.f18190n;
+        int i10 = this.f19867a;
+        int i11 = this.f19869c;
+        Object obj = this.f19873r;
+        Object obj2 = this.f19872n;
         Object obj3 = this.h;
-        Object obj4 = this.f18187b;
-        Object obj5 = this.e;
+        Object obj4 = this.f19868b;
+        Object obj5 = this.f19870e;
         Object obj6 = this.d;
-        Object obj7 = this.f18189f;
+        Object obj7 = this.f19871f;
         switch (i10) {
             case 0:
-                MediaController.lambda$saveFile$50(this.f18188c, (File) obj7, (String) obj6, (org.telegram.ui.ActionBar.a2) obj4, (boolean[]) obj3, (String) obj5, (Utilities.Callback) obj, (boolean[]) obj2);
+                MediaController.lambda$saveFile$50(this.f19869c, (File) obj7, (String) obj6, (org.telegram.ui.ActionBar.b2) obj4, (boolean[]) obj3, (String) obj5, (Utilities.Callback) obj, (boolean[]) obj2);
                 return;
             case 1:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj7;
-                org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) obj4;
+                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj4;
                 TLObject tLObject = (TLObject) obj3;
                 TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) obj2;
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj;
                 String str = (String) obj6;
                 String str2 = (String) obj5;
-                ArrayList arrayList = ExternalActionActivity.f31077x;
+                ArrayList arrayList = ExternalActionActivity.f33739x;
                 try {
-                    a2Var.dismiss();
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    b2Var.dismiss();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                 }
                 if (tLObject != null) {
                     MessagesController.getInstance(i11).putUsers(authorizationform.users, false);
-                    gn0 gn0Var = new gn0(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, (String) null, authorizationform, (TL_account.Password) tLObject);
-                    gn0Var.C1 = true;
+                    kn0 kn0Var = new kn0(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, (String) null, authorizationform, (TL_account.Password) tLObject);
+                    kn0Var.C1 = true;
                     if (AndroidUtilities.isTablet()) {
-                        externalActionActivity.d.c(-1, gn0Var);
+                        externalActionActivity.d.c(-1, kn0Var);
                     } else {
-                        externalActionActivity.f31081c.c(-1, gn0Var);
+                        externalActionActivity.f33743c.c(-1, kn0Var);
                     }
                     if (!AndroidUtilities.isTablet()) {
-                        externalActionActivity.e.setVisibility(8);
+                        externalActionActivity.f33744e.setVisibility(8);
                     }
-                    externalActionActivity.f31081c.c0();
+                    externalActionActivity.f33743c.c0();
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.c0();
                         return;
@@ -85,56 +85,56 @@ public final class y5 implements Runnable {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj6;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj6;
                 TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription = (TLRPC.TL_inputStorePaymentPremiumSubscription) obj5;
-                cx0 cx0Var = (cx0) obj4;
+                fx0 fx0Var = (fx0) obj4;
                 c5.f fVar = (c5.f) obj3;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
                 if (((TLObject) obj7) instanceof TLRPC.TL_boolTrue) {
-                    if (m2Var != null) {
-                        activity = m2Var.getParentActivity();
+                    if (n2Var != null) {
+                        activity = n2Var.getParentActivity();
                     } else {
                         activity = AndroidUtilities.getActivity();
                     }
                     Activity activity2 = activity;
                     BillingController billingController = BillingController.getInstance();
-                    AccountInstance accountInstance = m2Var.getAccountInstance();
+                    AccountInstance accountInstance = n2Var.getAccountInstance();
                     of.b bVar = new of.b(7, false);
-                    bVar.U(BillingController.PREMIUM_PRODUCT_DETAILS);
-                    cx0Var.a();
-                    String str3 = cx0Var.f32816g.f3905a;
+                    bVar.O(BillingController.PREMIUM_PRODUCT_DETAILS);
+                    fx0Var.a();
+                    String str3 = fx0Var.f36426g.f4224a;
                     if (!TextUtils.isEmpty(str3)) {
-                        bVar.f15695c = str3;
-                        billingController.launchBillingFlow(activity2, accountInstance, tL_inputStorePaymentPremiumSubscription, Collections.singletonList(bVar.B()), fVar, false);
+                        bVar.f17158c = str3;
+                        billingController.launchBillingFlow(activity2, accountInstance, tL_inputStorePaymentPremiumSubscription, Collections.singletonList(bVar.s()), fVar, false);
                         return;
                     }
                     throw new IllegalArgumentException("offerToken can not be empty");
                 }
-                org.telegram.ui.Components.e5.f0(i11, tL_error, m2Var, tL_payments_canPurchaseStore, new Object[0]);
+                org.telegram.ui.Components.e5.f0(i11, tL_error, n2Var, tL_payments_canPurchaseStore, new Object[0]);
                 return;
         }
     }
 
-    public y5(TLObject tLObject, org.telegram.ui.ActionBar.m2 m2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, cx0 cx0Var, c5.f fVar, int i10, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
-        this.f18189f = tLObject;
-        this.d = m2Var;
-        this.e = tL_inputStorePaymentPremiumSubscription;
-        this.f18187b = cx0Var;
+    public y5(TLObject tLObject, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, fx0 fx0Var, c5.f fVar, int i10, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+        this.f19871f = tLObject;
+        this.d = n2Var;
+        this.f19870e = tL_inputStorePaymentPremiumSubscription;
+        this.f19868b = fx0Var;
         this.h = fVar;
-        this.f18188c = i10;
-        this.f18190n = tL_error;
-        this.f18191r = tL_payments_canPurchaseStore;
+        this.f19869c = i10;
+        this.f19872n = tL_error;
+        this.f19873r = tL_payments_canPurchaseStore;
     }
 
-    public y5(ExternalActionActivity externalActionActivity, org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
-        this.f18189f = externalActionActivity;
-        this.f18187b = a2Var;
+    public y5(ExternalActionActivity externalActionActivity, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
+        this.f19871f = externalActionActivity;
+        this.f19868b = b2Var;
         this.h = tLObject;
-        this.f18188c = i10;
-        this.f18190n = authorizationform;
-        this.f18191r = getauthorizationform;
+        this.f19869c = i10;
+        this.f19872n = authorizationform;
+        this.f19873r = getauthorizationform;
         this.d = str;
-        this.e = str2;
+        this.f19870e = str2;
     }
 }

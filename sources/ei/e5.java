@@ -7,85 +7,85 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.cw0;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.x51;
-import w7.y5;
-public final class e5 extends org.telegram.ui.ActionBar.m2 implements NotificationCenter.NotificationCenterDelegate {
-    public final long f8302a;
-    public org.telegram.ui.ActionBar.f2 f8303b;
-    public t61 f8304c;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.u61;
+import w7.z5;
+public final class e5 extends org.telegram.ui.ActionBar.n2 implements NotificationCenter.NotificationCenterDelegate {
+    public final long f9017a;
+    public org.telegram.ui.ActionBar.g2 f9018b;
+    public c71 f9019c;
 
     public e5(long j3) {
         super(null);
-        this.f8302a = j3;
+        this.f9017a = j3;
     }
 
-    public final void U(ArrayList arrayList, l61 l61Var) {
-        yh.m e = yh.o.g(this.currentAccount).e(this.f8302a);
-        ArrayList arrayList2 = e.e;
+    public final void S(ArrayList arrayList, u61 u61Var) {
+        yh.m e7 = yh.o.g(this.currentAccount).e(this.f9017a);
+        ArrayList arrayList2 = e7.f51597e;
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             Object obj = arrayList2.get(i10);
-            int i11 = a4.f8218a;
-            x51 J = x51.J(a4.class);
+            int i11 = b4.f8943a;
+            g61 J = g61.J(b4.class);
             J.G = obj;
-            J.f30284r = false;
+            J.f26674r = false;
             arrayList.add(J);
         }
-        if (e.h) {
-            arrayList.add(x51.n(29));
-            arrayList.add(x51.n(29));
-            arrayList.add(x51.n(29));
+        if (e7.h) {
+            arrayList.add(g61.o(29));
+            arrayList.add(g61.o(29));
+            arrayList.add(g61.o(29));
         }
     }
 
-    public final void V(x51 x51Var) {
-        Object obj = x51Var.G;
+    public final void T(g61 g61Var) {
+        Object obj = g61Var.G;
         if (obj instanceof TL_payments.starRefProgram) {
-            e4.G0(getParentActivity(), this.currentAccount, (TL_payments.starRefProgram) obj, this.f8302a, this.resourceProvider, false);
+            f4.L0(getParentActivity(), this.currentAccount, (TL_payments.starRefProgram) obj, this.f9017a, this.resourceProvider, false);
         }
     }
 
     @Override
     public final View createView(Context context) {
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        org.telegram.ui.ActionBar.f2 f2Var = new org.telegram.ui.ActionBar.f2(false);
-        this.f8303b = f2Var;
-        kVar.setBackButtonDrawable(f2Var);
-        this.f8303b.f18877k = 240.0f;
-        this.actionBar.setActionBarMenuOnItemClick(new t(this, 2));
-        this.actionBar.setBackgroundColor(h6.w0(null, h6.f19061d6, false));
+        org.telegram.ui.ActionBar.g2 g2Var = new org.telegram.ui.ActionBar.g2(false);
+        this.f9018b = g2Var;
+        kVar.setBackButtonDrawable(g2Var);
+        this.f9018b.f20648k = 240.0f;
+        this.actionBar.setActionBarMenuOnItemClick(new u(this, 2));
+        this.actionBar.setBackgroundColor(i6.w0(null, i6.f20817d6, false));
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
-        int i10 = h6.G6;
-        kVar2.B(h6.w0(null, i10, false), false);
-        this.actionBar.B(h6.w0(null, i10, false), true);
-        this.actionBar.A(h6.w0(null, h6.f19465z8, false), false);
-        this.actionBar.setTitleColor(h6.w0(null, i10, false));
+        int i10 = i6.G6;
+        kVar2.B(i6.w0(null, i10, false), false);
+        this.actionBar.B(i6.w0(null, i10, false), true);
+        this.actionBar.A(i6.w0(null, i6.f21225z8, false), false);
+        this.actionBar.setTitleColor(i6.w0(null, i10, false));
         this.actionBar.setTitle(LocaleController.getString(R.string.ChannelAffiliatePrograms));
-        cw0 cw0Var = new cw0(context, null);
-        t61 t61Var = new t61(this, new bi.v(this, 18), new d5(this, 0), null);
-        this.f8304c = t61Var;
-        cw0Var.addView(t61Var, y5.e(-1, -1, 119));
-        this.fragmentView = cw0Var;
-        return cw0Var;
+        lw0 lw0Var = new lw0(context, null);
+        c71 c71Var = new c71(this, new bi.v(this, 18), new f(this, 1), null);
+        this.f9019c = c71Var;
+        lw0Var.addView(c71Var, z5.e(-1, -1, 119));
+        this.fragmentView = lw0Var;
+        return lw0Var;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        t61 t61Var;
-        if (i10 == NotificationCenter.channelSuggestedBotsUpdate && ((Long) objArr[0]).longValue() == this.f8302a && (t61Var = this.f8304c) != null && (t61Var.getAdapter() instanceof l61)) {
-            ((l61) this.f8304c.getAdapter()).N(true);
+        c71 c71Var;
+        if (i10 == NotificationCenter.channelSuggestedBotsUpdate && ((Long) objArr[0]).longValue() == this.f9017a && (c71Var = this.f9019c) != null && (c71Var.getAdapter() instanceof u61)) {
+            ((u61) this.f9019c.getAdapter()).N(true);
         }
     }
 
     @Override
     public final boolean isLightStatusBar() {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
-            int w02 = h6.w0(null, h6.f19061d6, false);
+            int w02 = i6.w0(null, i6.f20817d6, false);
             if (this.actionBar.s()) {
-                w02 = h6.w0(null, h6.f19412w8, false);
+                w02 = i6.w0(null, i6.f21172w8, false);
             }
             if (i0.a.f(w02) > 0.699999988079071d) {
                 return true;

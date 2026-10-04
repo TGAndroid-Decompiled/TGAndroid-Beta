@@ -2,63 +2,55 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.view.MotionEvent;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 public final class vw extends og.d {
-    public boolean Y2;
-    public final mz Z2;
+    public boolean f32357f3;
+    public final nz f32358g3;
 
-    public vw(mz mzVar, Context context) {
+    public vw(nz nzVar, Context context) {
         super(context, null);
-        this.Z2 = mzVar;
+        this.f32358g3 = nzVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.Z2.f26561m2.h++;
+        this.f32358g3.f29122m2.g();
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        int i12;
-        ah.h hVar;
-        mz mzVar = this.Z2;
-        hz hzVar = mzVar.f26604z0;
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = mzVar.f26554j2) != null) {
-            hVar.f(i10, i11);
-        }
-        if (mzVar.C0 != null) {
-            zw zwVar = mzVar.B0;
-            if (mzVar.D0.canScrollVertically(-1)) {
-                i12 = AndroidUtilities.getShadowHeight();
+    public final void l0(int i10) {
+        int i11;
+        nz nzVar = this.f32358g3;
+        iz izVar = nzVar.f29165z0;
+        if (nzVar.C0 != null) {
+            ax axVar = nzVar.B0;
+            if (nzVar.D0.canScrollVertically(-1)) {
+                i11 = AndroidUtilities.getShadowHeight();
             } else {
-                i12 = 0;
+                i11 = 0;
             }
-            zwVar.setUnderlineHeight(i12);
+            axVar.setUnderlineHeight(i11);
         }
-        if (hzVar != null && getAdapter() == hzVar && hzVar.d == 0) {
-            hz hzVar2 = hzVar.O.f24359w;
-            if (!hzVar2.Q.G0.F && !hzVar2.f24931y) {
-                if (mzVar.E0.N0() + 50 > hzVar.h()) {
-                    fz fzVar = hzVar.O;
-                    Objects.requireNonNull(fzVar);
-                    AndroidUtilities.runOnUIThread(new uw(fzVar, 0));
-                }
+        if (izVar != null && getAdapter() == izVar && izVar.d == 0 && !izVar.O.a() && !izVar.O.f26956w.f27523y) {
+            if (nzVar.E0.N0() + 50 > izVar.h()) {
+                gz gzVar = izVar.O;
+                Objects.requireNonNull(gzVar);
+                AndroidUtilities.runOnUIThread(new uw(gzVar, 0));
             }
         }
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        mz mzVar = this.Z2;
-        if (!mzVar.f26539f) {
-            org.telegram.ui.nt q6 = org.telegram.ui.nt.q();
-            vw vwVar = mzVar.D0;
-            mzVar.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, vwVar, mzVar.f26545g2, this.f30700p2);
+        nz nzVar = this.f32358g3;
+        if (!nzVar.f29100f) {
+            org.telegram.ui.rt q6 = org.telegram.ui.rt.q();
+            vw vwVar = nzVar.D0;
+            nzVar.getMeasuredHeight();
+            boolean r10 = q6.r(motionEvent, vwVar, nzVar.f29106g2, this.f33545p2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -69,20 +61,20 @@ public final class vw extends og.d {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        mz mzVar = this.Z2;
-        if (mzVar.I0 && mzVar.f26601y0.h() > 0) {
-            this.Y2 = true;
-            mzVar.E0.h1(0, 0);
-            mzVar.I0 = false;
-            this.Y2 = false;
+        nz nzVar = this.f32358g3;
+        if (nzVar.I0 && nzVar.f29162y0.h() > 0) {
+            this.f32357f3 = true;
+            nzVar.E0.h1(0, 0);
+            nzVar.I0 = false;
+            this.f32357f3 = false;
         }
         super.onLayout(z10, i10, i11, i12, i13);
-        mzVar.q(true);
+        nzVar.q(true);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.Y2) {
+        if (this.f32357f3) {
             return;
         }
         super.requestLayout();

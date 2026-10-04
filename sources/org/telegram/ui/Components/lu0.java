@@ -1,230 +1,280 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class lu0 implements org.telegram.ui.lt {
-    public final TLRPC.TL_messageMediaPoll f26089a;
-    public final TLRPC.PollAnswer f26090b;
-    public final org.telegram.ui.Cells.u1 f26091c;
-    public final qu0 d;
+public final class lu0 extends yl0 {
+    public final Context f28431c;
+    public uo0 f28432e;
+    public int f28434n;
+    public final int f28435r;
+    public int f28436s;
+    public final pv0 v;
+    public ArrayList d = new ArrayList();
+    public ArrayList f28433f = new ArrayList();
+    public int h = 0;
 
-    public lu0(qu0 qu0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.u1 u1Var) {
-        this.d = qu0Var;
-        this.f26089a = tL_messageMediaPoll;
-        this.f26090b = pollAnswer;
-        this.f26091c = u1Var;
+    public lu0(pv0 pv0Var, Context context, int i10) {
+        this.v = pv0Var;
+        this.f28431c = context;
+        this.f28435r = i10;
     }
 
     @Override
-    public final MessageObject A() {
-        return this.f26091c.getMessageObject();
-    }
-
-    @Override
-    public final boolean B() {
+    public final boolean D(s4.c1 c1Var) {
+        if (this.f28433f.size() + this.d.size() != 0) {
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public final boolean D() {
-        return false;
+    public final MessageObject E(int i10) {
+        if (i10 < this.d.size()) {
+            return (MessageObject) this.d.get(i10);
+        }
+        return (MessageObject) this.f28433f.get(i10 - this.d.size());
     }
 
-    @Override
-    public final boolean E(TLRPC.Document document) {
-        return false;
+    public final void F(final int i10, final String str, long j3, long j10) {
+        org.telegram.ui.ActionBar.n2 n2Var = this.v.f29800v1;
+        if (!DialogObject.isEncryptedDialog(j3)) {
+            if (this.h != 0) {
+                n2Var.getConnectionsManager().cancelRequest(this.h, true);
+                this.h = 0;
+                this.f28436s--;
+            }
+            if (str != null && str.length() != 0) {
+                TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
+                tL_messages_search.limit = 50;
+                tL_messages_search.offset_id = i10;
+                int i11 = this.f28435r;
+                if (i11 == 1) {
+                    tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterDocument();
+                } else if (i11 == 3) {
+                    tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterUrl();
+                } else if (i11 == 4) {
+                    tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterMusic();
+                }
+                tL_messages_search.f20146q = str;
+                tL_messages_search.peer = n2Var.getMessagesController().getInputPeer(j3);
+                if (j10 != 0) {
+                    if (j3 == n2Var.getUserConfig().getClientUserId()) {
+                        tL_messages_search.flags |= 4;
+                        tL_messages_search.saved_peer_id = n2Var.getMessagesController().getInputPeer(j10);
+                    } else {
+                        tL_messages_search.flags |= 2;
+                        tL_messages_search.top_msg_id = (int) j10;
+                    }
+                }
+                if (tL_messages_search.peer == null) {
+                    return;
+                }
+                final int i12 = this.f28434n + 1;
+                this.f28434n = i12;
+                this.f28436s++;
+                this.h = n2Var.getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ArrayList arrayList = new ArrayList();
+                        lu0 lu0Var = lu0.this;
+                        if (tL_error == null) {
+                            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                            for (int i13 = 0; i13 < messages_messages.messages.size(); i13++) {
+                                TLRPC.Message message = messages_messages.messages.get(i13);
+                                int i14 = i10;
+                                if (i14 == 0 || message.f20058id <= i14) {
+                                    arrayList.add(new MessageObject(lu0Var.v.f29800v1.getCurrentAccount(), message, false, true));
+                                }
+                            }
+                        }
+                        AndroidUtilities.runOnUIThread(new ai.c9(lu0Var, i12, arrayList, str, 26));
+                    }
+                }, 2);
+                n2Var.getConnectionsManager().bindRequestToGuid(this.h, n2Var.getClassGuid());
+                return;
+            }
+            this.f28433f.clear();
+            this.f28434n = 0;
+            l();
+        }
     }
 
-    @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final void K() {
-        ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f26090b);
-        SendMessagesHelper.getInstance(this.d.f27827a).sendVote(this.f26091c.getMessageObject(), arrayList, null);
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        qu0 qu0Var = this.d;
-        su0 su0Var = qu0Var.f27829c;
-        if (inputStickerSet != null && su0Var.f28372s.getContext() != null) {
-            TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f18357id = inputStickerSet.f18357id;
-            hy0 hy0Var = new hy0(su0Var.f28372s.getContext(), su0Var.f28372s.f26154v1, tL_inputStickerSetID, null, null, qu0Var.f27828b);
-            hy0Var.setCalcMandatoryInsets(true);
-            hy0Var.f24907i0 = z10;
-            hy0Var.show();
+    public final void G(String str, boolean z10) {
+        uo0 uo0Var = this.f28432e;
+        if (uo0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(uo0Var);
+            this.f28432e = null;
+        }
+        if (!this.d.isEmpty() || !this.f28433f.isEmpty()) {
+            this.d.clear();
+            this.f28433f.clear();
+            l();
+        }
+        boolean isEmpty = TextUtils.isEmpty(str);
+        int i10 = 0;
+        pv0 pv0Var = this.v;
+        if (isEmpty) {
+            if (!this.d.isEmpty() || !this.f28433f.isEmpty() || this.f28436s != 0) {
+                this.d.clear();
+                this.f28433f.clear();
+                if (this.h != 0) {
+                    pv0Var.f29800v1.getConnectionsManager().cancelRequest(this.h, true);
+                    this.h = 0;
+                    this.f28436s--;
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        while (true) {
+            iu0[] iu0VarArr = pv0Var.f29776k0;
+            if (i10 < iu0VarArr.length) {
+                iu0 iu0Var = iu0VarArr[i10];
+                if (iu0Var.F == this.f28435r) {
+                    iu0Var.f27503w.e(true, z10);
+                }
+                i10++;
+            } else {
+                uo0 uo0Var2 = new uo0(7, this, str);
+                this.f28432e = uo0Var2;
+                AndroidUtilities.runOnUIThread(uo0Var2, 300L);
+                return;
+            }
         }
     }
 
     @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
+    public final int h() {
+        int size = this.d.size();
+        int size2 = this.f28433f.size();
+        if (size2 != 0) {
+            return size + size2;
+        }
+        return size;
     }
 
     @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
+    public final int j(int i10) {
+        return 24;
     }
 
     @Override
-    public final boolean Q() {
-        return true;
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        char c10;
+        boolean z11;
+        char c11;
+        boolean z12;
+        char c12;
+        View view = c1Var.f46523a;
+        pv0 pv0Var = this.v;
+        long j3 = pv0Var.f29775j1;
+        SparseArray[] sparseArrayArr = pv0Var.Z0;
+        boolean z13 = false;
+        int i11 = this.f28435r;
+        if (i11 == 1) {
+            if (view instanceof org.telegram.ui.Cells.k7) {
+                org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
+                MessageObject E = E(i10);
+                if (i10 != h() - 1) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                k7Var.c(E, z12);
+                if (pv0Var.C1) {
+                    if (E.getDialogId() == j3) {
+                        c12 = 0;
+                    } else {
+                        c12 = 1;
+                    }
+                    if (sparseArrayArr[c12].indexOfKey(E.getId()) >= 0) {
+                        z13 = true;
+                    }
+                    k7Var.b(z13, !pv0Var.f29754b1);
+                    return;
+                }
+                k7Var.b(false, !pv0Var.f29754b1);
+            }
+        } else if (i11 == 3) {
+            if (view instanceof org.telegram.ui.Cells.n7) {
+                org.telegram.ui.Cells.n7 n7Var = (org.telegram.ui.Cells.n7) view;
+                MessageObject E2 = E(i10);
+                if (i10 != h() - 1) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                n7Var.f22553y = z11;
+                n7Var.e();
+                n7Var.f22534b0 = E2;
+                n7Var.requestLayout();
+                if (pv0Var.C1) {
+                    if (E2.getDialogId() == j3) {
+                        c11 = 0;
+                    } else {
+                        c11 = 1;
+                    }
+                    if (sparseArrayArr[c11].indexOfKey(E2.getId()) >= 0) {
+                        z13 = true;
+                    }
+                    n7Var.f(z13, !pv0Var.f29754b1);
+                    return;
+                }
+                n7Var.f(false, !pv0Var.f29754b1);
+            }
+        } else if (i11 == 4 && (view instanceof org.telegram.ui.Cells.j7)) {
+            org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) view;
+            MessageObject E3 = E(i10);
+            if (i10 != h() - 1) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            j7Var.f(E3, z10);
+            if (pv0Var.C1) {
+                if (E3.getDialogId() == j3) {
+                    c10 = 0;
+                } else {
+                    c10 = 1;
+                }
+                if (sparseArrayArr[c10].indexOfKey(E3.getId()) >= 0) {
+                    z13 = true;
+                }
+                j7Var.e(z13, !pv0Var.f29754b1);
+                return;
+            }
+            j7Var.e(false, !pv0Var.f29754b1);
+        }
     }
 
     @Override
-    public final long a() {
-        return this.d.f27829c.f28372s.f26129j1;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return this.f26089a;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer h() {
-        return this.f26090b;
-    }
-
-    @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final a80 j(ci.m6 m6Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean m(int i10) {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return false;
-    }
-
-    @Override
-    public final void s() {
-        SendMessagesHelper.getInstance(this.d.f27827a).sendVote(this.f26091c.getMessageObject(), null, null);
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void o(String str) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void f(CharSequence charSequence, String str, org.telegram.ui.bt btVar) {
-    }
-
-    @Override
-    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        pv0 pv0Var = this.v;
+        org.telegram.ui.ActionBar.d6 d6Var = pv0Var.F1;
+        Context context = this.f28431c;
+        int i11 = this.f28435r;
+        if (i11 == 1) {
+            view = new org.telegram.ui.Cells.k7(context, 0, d6Var);
+        } else if (i11 == 4) {
+            view = new ku0(this, context, d6Var, 0);
+        } else {
+            org.telegram.ui.Cells.n7 n7Var = new org.telegram.ui.Cells.n7(context, 0, d6Var);
+            n7Var.setDelegate(pv0Var.S1);
+            view = n7Var;
+        }
+        view.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(view);
     }
 }

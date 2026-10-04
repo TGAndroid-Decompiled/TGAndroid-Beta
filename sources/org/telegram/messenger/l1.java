@@ -4,26 +4,26 @@ import java.text.Collator;
 import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
 public final class l1 implements Comparator {
-    public final int f16879a;
-    public final Collator f16880b;
-    public final Object f16881c;
+    public final int f18420a;
+    public final Collator f18421b;
+    public final Object f18422c;
 
     public l1(Object obj, Collator collator, int i10) {
-        this.f16879a = i10;
-        this.f16881c = obj;
-        this.f16880b = collator;
+        this.f18420a = i10;
+        this.f18422c = obj;
+        this.f18421b = collator;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int lambda$buildContactsSectionsArrays$43;
         int lambda$processLoadedContacts$30;
-        switch (this.f16879a) {
+        switch (this.f18420a) {
             case 0:
-                lambda$buildContactsSectionsArrays$43 = ((ContactsController) this.f16881c).lambda$buildContactsSectionsArrays$43(this.f16880b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
+                lambda$buildContactsSectionsArrays$43 = ((ContactsController) this.f18422c).lambda$buildContactsSectionsArrays$43(this.f18421b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
                 return lambda$buildContactsSectionsArrays$43;
             default:
-                lambda$processLoadedContacts$30 = ContactsController.lambda$processLoadedContacts$30((a0.i) this.f16881c, this.f16880b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
+                lambda$processLoadedContacts$30 = ContactsController.lambda$processLoadedContacts$30((a0.i) this.f18422c, this.f18421b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
                 return lambda$processLoadedContacts$30;
         }
     }

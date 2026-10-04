@@ -56,7 +56,7 @@ public class TeXSymbolParser {
             if (num != null) {
                 hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z10));
             } else {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", a.q("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", a.p("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
             }
         }
         return hashMap;
@@ -69,8 +69,8 @@ public class TeXSymbolParser {
             newInstance.setIgnoringComments(true);
             this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
             setTypeMappings();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e7) {
+            throw new XMLResourceParseException(str, e7);
         }
     }
 }

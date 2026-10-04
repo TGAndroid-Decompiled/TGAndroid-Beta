@@ -1,31 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class ox0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27195a;
-    public final View f27196b;
-    public final FrameLayout f27197c;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ox0 implements RequestDelegate {
+    public final int f29460a;
+    public final Utilities.Callback4 f29461b;
 
-    public ox0(FrameLayout frameLayout, View view, int i10) {
-        this.f27195a = i10;
-        this.f27197c = frameLayout;
-        this.f27196b = view;
+    public ox0(Utilities.Callback4 callback4, int i10) {
+        this.f29460a = i10;
+        this.f29461b = callback4;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27195a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f29460a) {
             case 0:
-                px0 px0Var = (px0) this.f27197c;
-                px0Var.f27430b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                px0Var.invalidate();
-                ((wm0) this.f27196b).invalidate();
-                return;
+                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
+                Utilities.Callback4 callback4 = this.f29461b;
+                if (z10) {
+                    Boolean bool = Boolean.TRUE;
+                    callback4.run(bool, null, 0L, bool);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
+                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
+                    callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
+                    return;
+                }
             default:
-                ((y81) this.f27197c).E(this.f27196b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
+                Utilities.Callback4 callback42 = this.f29461b;
+                if (z11) {
+                    Boolean bool2 = Boolean.TRUE;
+                    callback42.run(bool2, null, 0L, bool2);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_emojiList) {
+                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
+                    callback42.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    callback42.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
+                    return;
+                }
         }
     }
 }

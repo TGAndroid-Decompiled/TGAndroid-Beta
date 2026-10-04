@@ -13,19 +13,19 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGL10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 import org.telegram.ui.ThemeActivity;
 public abstract class ok {
     public static int A(float f7, int i10, int i11) {
-        return (i10 - AndroidUtilities.dp(f7)) / i11;
-    }
-
-    public static int B(float f7, int i10, int i11) {
         return i11 - (AndroidUtilities.dp(f7) * i10);
     }
 
-    public static int C(float f7, int i10, int i11) {
+    public static int B(float f7, int i10, int i11) {
         return View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7) + i10, i11);
+    }
+
+    public static int C(float f7, int i10, int i11) {
+        return Math.min(i11, i10 - AndroidUtilities.dp(f7));
     }
 
     public static int D(float f7, int i10, int i11) {
@@ -81,10 +81,10 @@ public abstract class ok {
         return byteBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer();
     }
 
-    public static org.telegram.ui.ActionBar.e3 j(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(i10, context, d6Var, z10);
-        e3Var.fixNavigationBar();
-        return e3Var;
+    public static org.telegram.ui.ActionBar.f3 j(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(i10, context, d6Var, z10);
+        f3Var.fixNavigationBar();
+        return f3Var;
     }
 
     public static void k(float f7, int i10, TextView textView) {
@@ -97,12 +97,12 @@ public abstract class ok {
         textView.setGravity(i11);
     }
 
-    public static void m(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
-        m2Var.presentFragment(new ThemeActivity(i10));
+    public static void m(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        n2Var.presentFragment(new ThemeActivity(i10));
     }
 
     public static void n(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11, float f7) {
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, d6Var));
         textView.setTextSize(i11, f7);
     }
 
@@ -122,8 +122,8 @@ public abstract class ok {
         viewPropertyAnimator.alpha(f7).setDuration(j3).start();
     }
 
-    public static void s(ViewPropertyAnimator viewPropertyAnimator, sr srVar, long j3) {
-        viewPropertyAnimator.setInterpolator(srVar).setDuration(j3).start();
+    public static void s(ViewPropertyAnimator viewPropertyAnimator, tr trVar, long j3) {
+        viewPropertyAnimator.setInterpolator(trVar).setDuration(j3).start();
     }
 
     public static void t(TextView textView, int i10, int i11, float f7, int i12) {
@@ -159,7 +159,7 @@ public abstract class ok {
         return i11 - (AndroidUtilities.dp(f7) + i10);
     }
 
-    public static int z(int i10, int i11, Drawable drawable) {
-        return i11 - (drawable.getIntrinsicWidth() / i10);
+    public static int z(float f7, int i10, int i11) {
+        return (i10 - AndroidUtilities.dp(f7)) / i11;
     }
 }

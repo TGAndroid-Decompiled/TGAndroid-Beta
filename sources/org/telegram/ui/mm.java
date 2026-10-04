@@ -4,33 +4,33 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class mm extends AnimatorListenerAdapter {
-    public final int f35624a;
-    public final org.telegram.ui.ActionBar.y f35625b;
-    public final nm f35626c;
+    public final int f38667a;
+    public final org.telegram.ui.ActionBar.z f38668b;
+    public final nm f38669c;
 
-    public mm(nm nmVar, org.telegram.ui.ActionBar.y yVar, int i10) {
-        this.f35624a = i10;
-        this.f35626c = nmVar;
-        this.f35625b = yVar;
+    public mm(nm nmVar, org.telegram.ui.ActionBar.z zVar, int i10) {
+        this.f38667a = i10;
+        this.f38669c = nmVar;
+        this.f38668b = zVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        switch (this.f35624a) {
+        switch (this.f38667a) {
             case 0:
-                kVar = ((org.telegram.ui.ActionBar.m2) this.f35626c.f35918c).actionBar;
+                kVar = ((org.telegram.ui.ActionBar.n2) this.f38669c.f39009c).actionBar;
                 kVar.setMenuOffsetSuppressed(false);
                 return;
             default:
-                nm nmVar = this.f35626c;
-                wn wnVar = nmVar.f35918c;
-                wnVar.f39507i0.f(8);
-                this.f35625b.r(0.0f);
-                kVar2 = ((org.telegram.ui.ActionBar.m2) wnVar).actionBar;
+                nm nmVar = this.f38669c;
+                yn ynVar = nmVar.f39009c;
+                ynVar.f43339g0.f(8);
+                this.f38668b.r(0.0f);
+                kVar2 = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
                 kVar2.setMenuOffsetSuppressed(false);
-                nmVar.f35917b = false;
+                nmVar.f39008b = false;
                 return;
         }
     }
@@ -39,20 +39,20 @@ public final class mm extends AnimatorListenerAdapter {
     public final void onAnimationStart(Animator animator) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        switch (this.f35624a) {
+        switch (this.f38667a) {
             case 0:
-                wn wnVar = this.f35626c.f35918c;
-                kVar = ((org.telegram.ui.ActionBar.m2) wnVar).actionBar;
+                yn ynVar = this.f38669c.f39009c;
+                kVar = ((org.telegram.ui.ActionBar.n2) ynVar).actionBar;
                 kVar.setMenuOffsetSuppressed(true);
-                wn.J3(wnVar);
-                wnVar.f39507i0.f(0);
-                this.f35625b.r(AndroidUtilities.dp(48.0f));
+                yn.J3(ynVar);
+                ynVar.f43339g0.f(0);
+                this.f38668b.r(AndroidUtilities.dp(48.0f));
                 return;
             default:
-                nm nmVar = this.f35626c;
-                kVar2 = ((org.telegram.ui.ActionBar.m2) nmVar.f35918c).actionBar;
+                nm nmVar = this.f38669c;
+                kVar2 = ((org.telegram.ui.ActionBar.n2) nmVar.f39009c).actionBar;
                 kVar2.setMenuOffsetSuppressed(true);
-                nmVar.f35917b = true;
+                nmVar.f39008b = true;
                 return;
         }
     }

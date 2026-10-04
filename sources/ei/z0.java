@@ -4,49 +4,38 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import ci.rc;
+import ci.qc;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 public final class z0 implements SensorEventListener {
-    public long f8739a;
-    public float[] f8740b;
-    public float[] f8741c;
-    public float[] d;
-    public final a1 e;
+    public long f9501a;
+    public float[] f9502b;
+    public float[] f9503c;
+    public final b1 d;
 
-    public z0(a1 a1Var) {
-        this.e = a1Var;
+    public z0(b1 b1Var) {
+        this.d = b1Var;
     }
 
     public final void a() {
-        if (this.f8740b != null) {
-            a1 a1Var = this.e;
-            if (a1Var.f8206k != null) {
-                this.f8739a = System.currentTimeMillis();
-                if (this.f8741c == null) {
-                    this.f8741c = new float[9];
-                }
-                if (this.d == null) {
-                    this.d = new float[4];
-                }
-                float[] fArr = this.f8740b;
-                if (fArr.length > 4) {
-                    System.arraycopy(fArr, 0, this.d, 0, 4);
-                    SensorManager.getRotationMatrixFromVector(this.f8741c, this.d);
-                } else {
-                    SensorManager.getRotationMatrixFromVector(this.f8741c, fArr);
-                }
-                float[] fArr2 = new float[3];
-                SensorManager.getOrientation(this.f8741c, fArr2);
-                try {
-                    JSONObject jSONObject = new JSONObject();
-                    jSONObject.put("absolute", false);
-                    jSONObject.put("alpha", -fArr2[0]);
-                    jSONObject.put("beta", -fArr2[1]);
-                    jSONObject.put("gamma", fArr2[2]);
-                    org.telegram.ui.web.y0 y0Var = a1Var.f8206k;
-                    y0Var.d("window.Telegram.WebView.receiveEvent('device_orientation_changed', " + jSONObject + ");");
-                } catch (Exception unused) {
+        if (this.f9502b != null && this.f9503c != null) {
+            b1 b1Var = this.d;
+            if (b1Var.f8931k != null) {
+                this.f9501a = System.currentTimeMillis();
+                float[] fArr = new float[9];
+                if (SensorManager.getRotationMatrix(fArr, new float[9], this.f9502b, this.f9503c)) {
+                    float[] fArr2 = new float[3];
+                    SensorManager.getOrientation(fArr, fArr2);
+                    try {
+                        JSONObject jSONObject = new JSONObject();
+                        jSONObject.put("absolute", true);
+                        jSONObject.put("alpha", -fArr2[0]);
+                        jSONObject.put("beta", -fArr2[1]);
+                        jSONObject.put("gamma", fArr2[2]);
+                        org.telegram.ui.web.z0 z0Var = b1Var.f8931k;
+                        z0Var.d("window.Telegram.WebView.receiveEvent('device_orientation_changed', " + jSONObject + ");");
+                    } catch (Exception unused) {
+                    }
                 }
             }
         }
@@ -54,23 +43,26 @@ public final class z0 implements SensorEventListener {
 
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
-        a1 a1Var = this.e;
-        rc rcVar = a1Var.f8214s;
-        if (rcVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(rcVar);
-            a1Var.f8214s = null;
+        b1 b1Var = this.d;
+        qc qcVar = b1Var.f8937q;
+        if (qcVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(qcVar);
+            b1Var.f8937q = null;
         }
-        if (!a1Var.f8207l && a1Var.f8206k != null) {
-            long currentTimeMillis = System.currentTimeMillis() - this.f8739a;
-            long j3 = a1Var.f8205j;
-            if (currentTimeMillis < j3) {
-                rc rcVar2 = new rc(this, 12);
-                a1Var.f8214s = rcVar2;
-                AndroidUtilities.runOnUIThread(rcVar2, j3 - currentTimeMillis);
-                return;
+        if (!b1Var.f8932l && b1Var.f8931k != null) {
+            long currentTimeMillis = System.currentTimeMillis() - this.f9501a;
+            if (sensorEvent.sensor.getType() == 1) {
+                this.f9502b = sensorEvent.values;
             }
-            if (sensorEvent.sensor.getType() == 15) {
-                this.f8740b = sensorEvent.values;
+            if (sensorEvent.sensor.getType() == 2) {
+                this.f9503c = sensorEvent.values;
+            }
+            long j3 = b1Var.h;
+            if (currentTimeMillis < j3) {
+                qc qcVar2 = new qc(this, 11);
+                b1Var.f8937q = qcVar2;
+                AndroidUtilities.runOnUIThread(qcVar2, j3 - currentTimeMillis);
+                return;
             }
             a();
         }

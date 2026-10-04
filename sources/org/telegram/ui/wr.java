@@ -1,81 +1,56 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.KeyEvent;
-public final class wr extends as {
-    public final int M;
-    public final int N;
-    public final yr O;
+import android.graphics.drawable.Drawable;
+public final class wr implements Drawable.Callback {
+    public final int f42626a;
+    public final Drawable f42627b;
 
-    public wr(yr yrVar, Context context, int i10, int i11) {
-        super(context);
-        this.O = yrVar;
-        this.M = i10;
-        this.N = i11;
-        this.e = 1.0f;
-        this.f32224f = new o1.k(this, as.I);
-        this.h = new o1.k(this, as.J);
-        this.f32225n = new o1.k(this, as.K);
-        this.f32226r = new o1.k(this, as.L);
-        this.f32227s = true;
-        this.v = 1.0f;
-        this.f32228w = 1.0f;
-        this.H = false;
-        setBackground(null);
-        setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        setMovementMethod(null);
-        addTextChangedListener(new m0(this, 5));
+    public wr(int i10, Drawable drawable) {
+        this.f42626a = i10;
+        this.f42627b = drawable;
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4) {
-            return false;
-        }
-        int keyCode = keyEvent.getKeyCode();
-        yr yrVar = this.O;
-        int length = yrVar.f40237f.length;
-        int i10 = this.M;
-        if (i10 >= length) {
-            return false;
-        }
-        if (keyEvent.getAction() == 1) {
-            if (keyCode == 67 && yrVar.f40237f[i10].length() == 1) {
-                yrVar.f40237f[i10].m();
-                yrVar.f40237f[i10].setText("");
-                return true;
-            } else if (keyCode == 67 && yrVar.f40237f[i10].length() == 0 && i10 > 0) {
-                as[] asVarArr = yrVar.f40237f;
-                asVarArr[i10 - 1].setSelection(asVarArr[i10 - 1].length());
-                for (int i11 = 0; i11 < i10; i11++) {
-                    if (i11 == i10 - 1) {
-                        yrVar.f40237f[i10 - 1].requestFocus();
-                    } else {
-                        yrVar.f40237f[i11].clearFocus();
-                    }
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f42626a) {
+            case 0:
+                ((xr) this.f42627b).invalidateSelf();
+                return;
+            default:
+                org.telegram.ui.Cells.w0 w0Var = ((d11) this.f42627b).h;
+                if (w0Var != null) {
+                    w0Var.invalidate();
+                    return;
                 }
-                yrVar.f40237f[i10 - 1].m();
-                yrVar.f40237f[i10 - 1].setText("");
-                return true;
-            } else {
-                if (keyCode >= 7 && keyCode <= 16) {
-                    String num = Integer.toString(keyCode - 7);
-                    if (yrVar.f40237f[i10].getText() != null && num.equals(yrVar.f40237f[i10].getText().toString())) {
-                        if (i10 >= this.N - 1) {
-                            yrVar.a();
-                        } else {
-                            yrVar.f40237f[i10 + 1].requestFocus();
-                        }
-                        return true;
-                    }
-                    if (yrVar.f40237f[i10].length() > 0) {
-                        yrVar.f40237f[i10].m();
-                    }
-                    yrVar.f40237f[i10].setText(num);
-                }
-                return true;
-            }
+                return;
         }
-        return isFocused();
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        switch (this.f42626a) {
+            case 0:
+                ((xr) this.f42627b).scheduleSelf(runnable, j3);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f42626a) {
+            case 0:
+                ((xr) this.f42627b).unscheduleSelf(runnable);
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void b(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void a(Drawable drawable, Runnable runnable, long j3) {
     }
 }

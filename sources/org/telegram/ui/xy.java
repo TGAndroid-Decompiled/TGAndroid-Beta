@@ -1,83 +1,73 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.appwidget.AppWidgetManager;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import java.util.ArrayList;
-public final class xy extends s4.v {
-    public boolean d;
-    public final zy e;
+import org.telegram.messenger.ChatsWidgetProvider;
+import org.telegram.messenger.ContactsWidgetProvider;
+import org.telegram.messenger.MessagesStorage;
+public final class xy extends org.telegram.ui.ActionBar.j {
+    public final dz f42967a;
 
-    public xy(zy zyVar) {
-        this.e = zyVar;
+    public xy(dz dzVar) {
+        this.f42967a = dzVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        c1Var.f42962a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (c1Var.f42965f != 3) {
-            return s4.v.l(0, 0);
-        }
-        return s4.v.l(3, 0);
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        boolean z10;
-        boolean z11 = false;
-        if (c1Var.f42965f != c1Var2.f42965f) {
-            return false;
-        }
-        int b10 = c1Var.b();
-        int b11 = c1Var2.b();
-        zy zyVar = this.e;
-        wy wyVar = zyVar.f40596a;
-        zy zyVar2 = wyVar.d;
-        int i10 = zyVar2.f40600n;
-        ArrayList arrayList = zyVar2.e;
-        int i11 = b10 - i10;
-        int i12 = b11 - i10;
-        int i13 = zyVar2.f40601r - i10;
-        if (i11 >= 0 && i12 >= 0 && i11 < i13 && i12 < i13) {
-            arrayList.set(i11, (Long) arrayList.get(i12));
-            arrayList.set(i12, (Long) arrayList.get(i11));
-            wyVar.p(b10, b11);
-            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) c1Var.f42962a;
-            if (b11 != zyVar.f40601r - 1) {
-                z10 = true;
+    public final void b(int i10) {
+        int i11;
+        dz dzVar = this.f42967a;
+        int i12 = dzVar.f35869w;
+        ArrayList arrayList = dzVar.f35864e;
+        int i13 = dzVar.f35870x;
+        if (i10 == -1) {
+            if (dzVar.f35871y == null) {
+                dzVar.X();
             } else {
-                z10 = false;
+                dzVar.finishFragment();
             }
-            g4Var.setDrawDivider(z10);
-            org.telegram.ui.Cells.g4 g4Var2 = (org.telegram.ui.Cells.g4) c1Var2.f42962a;
-            if (b10 != zyVar.f40601r - 1) {
-                z11 = true;
+        } else if (i10 == 1 && dzVar.getParentActivity() != null) {
+            ArrayList<MessagesStorage.TopicKey> arrayList2 = new ArrayList<>();
+            for (int i14 = 0; i14 < arrayList.size(); i14++) {
+                arrayList2.add(MessagesStorage.TopicKey.of(((Long) arrayList.get(i14)).longValue(), 0L));
             }
-            g4Var2.setDrawDivider(z11);
-            this.d = true;
+            dzVar.getMessagesStorage().putWidgetDialogs(i13, arrayList2);
+            SharedPreferences.Editor edit = dzVar.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
+            i11 = ((org.telegram.ui.ActionBar.n2) dzVar).currentAccount;
+            edit.putInt("account" + i13, i11);
+            edit.putInt("type" + i13, i12);
+            edit.commit();
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(dzVar.getParentActivity());
+            if (i12 == 0) {
+                ChatsWidgetProvider.updateWidget(dzVar.getParentActivity(), appWidgetManager, i13);
+            } else {
+                ContactsWidgetProvider.updateWidget(dzVar.getParentActivity(), appWidgetManager, i13);
+            }
+            z0 z0Var = dzVar.f35871y;
+            if (z0Var != null) {
+                int i15 = z0Var.f43660a;
+                Object obj = z0Var.f43661b;
+                switch (i15) {
+                    case 27:
+                        ChatsWidgetConfigActivity chatsWidgetConfigActivity = (ChatsWidgetConfigActivity) obj;
+                        int i16 = ChatsWidgetConfigActivity.F;
+                        Intent intent = new Intent();
+                        intent.putExtra("appWidgetId", chatsWidgetConfigActivity.E);
+                        chatsWidgetConfigActivity.setResult(-1, intent);
+                        chatsWidgetConfigActivity.finish();
+                        return;
+                    default:
+                        ContactsWidgetConfigActivity contactsWidgetConfigActivity = (ContactsWidgetConfigActivity) obj;
+                        int i17 = ContactsWidgetConfigActivity.F;
+                        Intent intent2 = new Intent();
+                        intent2.putExtra("appWidgetId", contactsWidgetConfigActivity.E);
+                        contactsWidgetConfigActivity.setResult(-1, intent2);
+                        contactsWidgetConfigActivity.finish();
+                        return;
+                }
+            }
+            dzVar.X();
         }
-        return true;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        zy zyVar = this.e;
-        if (i10 != 0) {
-            zyVar.f40597b.I0(false);
-            c1Var.f42962a.setPressed(true);
-        } else if (this.d) {
-            yy yyVar = zyVar.f40599f;
-            if (yyVar != null) {
-                yyVar.a();
-            }
-            this.d = false;
-        }
-    }
-
-    @Override
-    public final void q(s4.c1 c1Var) {
     }
 }

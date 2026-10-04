@@ -1,69 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class fo0 extends AnimatorListenerAdapter {
-    public final int f33707a;
-    public final boolean f33708b;
-    public final oo0 f33709c;
-
-    public fo0(oo0 oo0Var, boolean z10, int i10) {
-        this.f33707a = i10;
-        this.f33709c = oo0Var;
-        this.f33708b = z10;
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f33707a) {
-            case 0:
-                oo0 oo0Var = this.f33709c;
-                AnimatorSet animatorSet = oo0Var.v;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    oo0Var.v = null;
+import org.json.JSONObject;
+public final class fo0 extends JSONObject {
+    public fo0(so0 so0Var, int i10) {
+        switch (i10) {
+            case 3:
+                put("type", "PAYMENT_GATEWAY");
+                Object obj = so0Var.M0;
+                if (obj != null) {
+                    put("parameters", obj);
                     return;
                 }
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("gateway", "stripe");
+                jSONObject.put("stripe:publishableKey", so0Var.f40559j0);
+                jSONObject.put("stripe:version", "3.5.0");
+                put("parameters", jSONObject);
                 return;
             default:
-                oo0 oo0Var2 = this.f33709c;
-                AnimatorSet animatorSet2 = oo0Var2.v;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    oo0Var2.v = null;
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33707a) {
-            case 0:
-                oo0 oo0Var = this.f33709c;
-                AnimatorSet animatorSet = oo0Var.v;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f33708b) {
-                        oo0Var.f36306r.setVisibility(4);
-                        return;
-                    } else {
-                        oo0Var.f36301n.getContentView().setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-            default:
-                oo0 oo0Var2 = this.f33709c;
-                AnimatorSet animatorSet2 = oo0Var2.v;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f33708b) {
-                        oo0Var2.f36308s.setVisibility(4);
-                        return;
-                    } else {
-                        oo0Var2.U.setVisibility(4);
-                        return;
-                    }
-                }
+                put("type", "DIRECT");
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("protocolVersion", "ECv2");
+                jSONObject2.put("publicKey", so0Var.K0);
+                put("parameters", jSONObject2);
                 return;
         }
     }

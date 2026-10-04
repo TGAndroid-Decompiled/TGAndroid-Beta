@@ -2,6 +2,9 @@ package e0;
 
 import android.app.Notification;
 import android.content.ComponentName;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.RenderEffect;
 import android.media.AudioAttributes;
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -12,11 +15,19 @@ import android.media.metrics.LogSessionId;
 import android.media.session.MediaSession;
 import android.os.Build;
 public abstract class h0 {
-    public static k2.e a(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
+    public static RenderEffect f8423a;
+
+    public static RenderEffect a() {
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.setSaturation(1.125f);
+        return RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+    }
+
+    public static k2.f b(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
         boolean z11;
         int playbackOffloadSupport = AudioManager.getPlaybackOffloadSupport(audioFormat, audioAttributes);
         if (playbackOffloadSupport == 0) {
-            return k2.e.d;
+            return k2.f.d;
         }
         ?? obj = new Object();
         if (Build.VERSION.SDK_INT > 32 && playbackOffloadSupport == 2) {
@@ -24,21 +35,30 @@ public abstract class h0 {
         } else {
             z11 = false;
         }
-        obj.f382a = true;
-        obj.f383b = z11;
-        obj.f384c = z10;
+        obj.f411a = true;
+        obj.f412b = z11;
+        obj.f413c = z10;
         return obj.a();
     }
 
-    public static boolean b(MediaDrm mediaDrm, String str, int i10) {
+    public static RenderEffect c() {
+        if (f8423a == null) {
+            ColorMatrix colorMatrix = new ColorMatrix();
+            colorMatrix.setSaturation(3.0f);
+            f8423a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+        }
+        return f8423a;
+    }
+
+    public static boolean d(MediaDrm mediaDrm, String str, int i10) {
         return mediaDrm.requiresSecureDecoder(str, i10);
     }
 
-    public static void c(Notification.Action.Builder builder) {
+    public static void e(Notification.Action.Builder builder) {
         builder.setAuthenticationRequired(false);
     }
 
-    public static void d(AudioTrack audioTrack, j2.k kVar) {
+    public static void f(AudioTrack audioTrack, j2.k kVar) {
         LogSessionId logSessionId;
         LogSessionId a2 = kVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
@@ -47,7 +67,7 @@ public abstract class h0 {
         }
     }
 
-    public static void e(MediaDrm mediaDrm, byte[] bArr, j2.k kVar) {
+    public static void g(MediaDrm mediaDrm, byte[] bArr, j2.k kVar) {
         LogSessionId logSessionId;
         LogSessionId a2 = kVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
@@ -58,26 +78,26 @@ public abstract class h0 {
         }
     }
 
-    public static void f(com.google.firebase.messaging.n nVar, j2.k kVar) {
+    public static void h(com.google.firebase.messaging.n nVar, j2.k kVar) {
         LogSessionId logSessionId;
         LogSessionId a2 = kVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!a2.equals(logSessionId)) {
-            ((MediaFormat) nVar.f7313b).setString("log-session-id", a2.getStringId());
+            ((MediaFormat) nVar.f7905b).setString("log-session-id", a2.getStringId());
         }
     }
 
-    public static void g(n4.y yVar, ComponentName componentName) {
+    public static void i(n4.y yVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((n4.r) yVar.f15223b).f15204a;
+            MediaSession mediaSession = ((n4.r) yVar.f16639b).f16619a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e7) {
             if (Build.MANUFACTURER.equals("motorola")) {
-                e2.a.f("MediaSessionLegacyStub", "caught IllegalArgumentException on a motorola device when attempting to set the media button broadcast receiver. See https://github.com/androidx/media/issues/1730 for details.", e);
+                e2.a.f("MediaSessionLegacyStub", "caught IllegalArgumentException on a motorola device when attempting to set the media button broadcast receiver. See https://github.com/androidx/media/issues/1730 for details.", e7);
                 return;
             }
-            throw e;
+            throw e7;
         }
     }
 }

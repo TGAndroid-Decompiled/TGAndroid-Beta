@@ -1,27 +1,23 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class w60 implements RequestDelegate {
-    public final int f29816a;
-    public final y60 f29817b;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+public final class w60 extends j90 {
+    public final a70 L;
 
-    public w60(y60 y60Var, int i10) {
-        this.f29816a = i10;
-        this.f29817b = y60Var;
+    public w60(a70 a70Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f3 f3Var, boolean z10) {
+        super(context, n2Var, f3Var, false, z10);
+        this.L = a70Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f29816a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o(this.f29817b, tL_error, tLObject, 22));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new dv(16, this.f29817b, tL_error));
-                return;
-        }
+    public final void e(int i10, SpannableStringBuilder spannableStringBuilder) {
+        org.telegram.ui.ActionBar.d6 d6Var;
+        f70 f70Var = this.L.f24476c;
+        org.telegram.ui.ActionBar.d3 d3Var = f70Var.container;
+        d6Var = ((org.telegram.ui.ActionBar.f3) f70Var).resourcesProvider;
+        rc Q = new yc(d3Var, d6Var).Q(i10, 36, spannableStringBuilder);
+        Q.f30346r = false;
+        Q.k(true);
     }
 }

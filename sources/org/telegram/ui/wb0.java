@@ -1,73 +1,169 @@
 package org.telegram.ui;
 
 import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_update;
-public final class wb0 extends z60 {
-    public wb0(zb0 zb0Var, Bundle bundle) {
-        super(bundle);
-    }
+public final class wb0 implements Runnable {
+    public final int f42049a;
+    public final ProfileActivity f42050b;
 
-    public static void t0(wb0 wb0Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_error tL_error) {
-        int i10 = 0;
-        if (tLObject instanceof TLRPC.Updates) {
-            TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            MessagesController.getInstance(wb0Var.currentAccount).putUsers(updates.users, false);
-            MessagesController.getInstance(wb0Var.currentAccount).putChats(updates.chats, false);
-            ArrayList findUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class);
-            int size = findUpdatesAndRemove.size();
-            TLRPC.GroupCall groupCall = null;
-            while (i10 < size) {
-                Object obj = findUpdatesAndRemove.get(i10);
-                i10++;
-                groupCall = ((TL_update.TL_updateGroupCall) obj).call;
-            }
-            if (LaunchActivity.G1 != null && groupCall != null) {
-                TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f18354id = groupCall.f18347id;
-                tL_inputGroupCall.access_hash = groupCall.access_hash;
-                org.telegram.ui.Components.voip.g2.g(LaunchActivity.G1, wb0Var.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
-            }
-        } else if (tLObject instanceof TL_phone.groupCall) {
-            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            MessagesController.getInstance(wb0Var.currentAccount).putUsers(groupcall.users, false);
-            MessagesController.getInstance(wb0Var.currentAccount).putChats(groupcall.chats, false);
-            if (LaunchActivity.G1 != null) {
-                TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
-                TLRPC.GroupCall groupCall2 = groupcall.call;
-                tL_inputGroupCall2.f18354id = groupCall2.f18347id;
-                tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                org.telegram.ui.Components.voip.g2.g(LaunchActivity.G1, wb0Var.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
-            }
-        } else if (tL_error != null) {
-            zb0.b().d0(tL_error, false);
-        }
+    public wb0(ProfileActivity profileActivity, int i10) {
+        this.f42049a = i10;
+        this.f42050b = profileActivity;
     }
 
     @Override
-    public final void n0(HashSet hashSet) {
-        if (hashSet.size() == 1) {
-            TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f18484id);
-            if (userFull == null) {
-                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f18477id = getMessagesController().getInputUser(user.f18484id);
-                getConnectionsManager().sendRequest(tL_users_getFullUser, new lo(29, this, user));
+    public final void run() {
+        s01 s01Var;
+        switch (this.f42049a) {
+            case 0:
+                ProfileActivity profileActivity = this.f42050b;
+                e01 e01Var = profileActivity.O;
+                if (e01Var != null) {
+                    e01Var.Y0(14);
+                    profileActivity.G4(false);
+                    return;
+                }
                 return;
-            }
-            org.telegram.ui.Components.voip.g2.m(user, false, userFull.video_calls_available, getParentActivity(), userFull, getAccountInstance());
-        } else {
-            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-            createconferencecall.random_id = Utilities.random.nextInt();
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new vb0(0, this, hashSet));
+            case 1:
+                ProfileActivity profileActivity2 = this.f42050b;
+                e01 e01Var2 = profileActivity2.O;
+                if (e01Var2 != null) {
+                    e01Var2.Y0(14);
+                    profileActivity2.G4(false);
+                    return;
+                }
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new wb0(this.f42050b, 0), 200L);
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new wb0(this.f42050b, 1), 200L);
+                return;
+            case 4:
+                ProfileActivity profileActivity3 = this.f42050b;
+                profileActivity3.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity3.f34233e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 5:
+                this.f42050b.z4(false);
+                return;
+            case 6:
+                ProfileActivity profileActivity4 = this.f42050b;
+                profileActivity4.getClass();
+                profileActivity4.presentFragment(new UserInfoActivity());
+                return;
+            case 7:
+                this.f42050b.z4(true);
+                return;
+            case 8:
+                ProfileActivity profileActivity5 = this.f42050b;
+                profileActivity5.getClass();
+                profileActivity5.presentFragment(new hg.g1());
+                return;
+            case 9:
+                ProfileActivity profileActivity6 = this.f42050b;
+                profileActivity6.getClass();
+                profileActivity6.presentFragment(new hg.e1());
+                return;
+            case 10:
+                ProfileActivity profileActivity7 = this.f42050b;
+                profileActivity7.getClass();
+                profileActivity7.presentFragment(new sa(null));
+                return;
+            case 11:
+                ProfileActivity profileActivity8 = this.f42050b;
+                profileActivity8.getClass();
+                profileActivity8.presentFragment(new UserInfoActivity());
+                return;
+            case 12:
+                ProfileActivity profileActivity9 = this.f42050b;
+                profileActivity9.getClass();
+                profileActivity9.presentFragment(new h(3));
+                return;
+            case 13:
+                ?? obj = new Object();
+                obj.f21349a = true;
+                this.f42050b.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                return;
+            case 14:
+                ProfileActivity profileActivity10 = this.f42050b;
+                profileActivity10.k4(true);
+                if (profileActivity10.f34270j2.isRunning()) {
+                    profileActivity10.f34270j2.cancel();
+                }
+                profileActivity10.J4(1.0f);
+                return;
+            case 15:
+                this.f42050b.e5(false, false);
+                return;
+            case 16:
+                this.f42050b.F3();
+                return;
+            case 17:
+                ProfileActivity profileActivity11 = this.f42050b;
+                e01 e01Var3 = profileActivity11.O;
+                if (e01Var3 != null) {
+                    e01Var3.v1(true);
+                    profileActivity11.O.n1();
+                    return;
+                }
+                return;
+            case 18:
+                ProfileActivity profileActivity12 = this.f42050b;
+                profileActivity12.getMessagesController().reloadUser(profileActivity12.a());
+                return;
+            case 19:
+                ProfileActivity profileActivity13 = this.f42050b;
+                if (!profileActivity13.f34201a.c0() && (s01Var = profileActivity13.d) != null) {
+                    s01Var.l();
+                    return;
+                }
+                return;
+            case 20:
+                this.f42050b.e5(false, false);
+                return;
+            case 21:
+                this.f42050b.f34375y5.setVisibility(8);
+                return;
+            case 22:
+                ProfileActivity profileActivity14 = this.f42050b;
+                profileActivity14.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", profileActivity14.f34241f1);
+                bundle.putLong("user_id", profileActivity14.f34233e1);
+                profileActivity14.presentFragment(new y21(bundle));
+                return;
+            case 23:
+                ProfileActivity profileActivity15 = this.f42050b;
+                profileActivity15.getClass();
+                profileActivity15.presentFragment(new sa(null));
+                return;
+            case 24:
+                ProfileActivity.U(this.f42050b);
+                return;
+            case 25:
+                ProfileActivity profileActivity16 = this.f42050b;
+                TLRPC.UserFull userFull = profileActivity16.f34351v2;
+                if (userFull != null) {
+                    AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(userFull.note, false));
+                    org.telegram.messenger.ok.o(R.string.TextCopied, org.telegram.ui.Components.yc.a0(profileActivity16));
+                    return;
+                }
+                return;
+            case 26:
+                ProfileActivity profileActivity17 = this.f42050b;
+                profileActivity17.getClass();
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", profileActivity17.f34233e1);
+                bundle2.putBoolean("focus_notes", true);
+                profileActivity17.presentFragment(new qs(bundle2, profileActivity17.f34376z0));
+                return;
+            default:
+                this.f42050b.G4(true);
+                return;
         }
-        finishFragment();
     }
 }

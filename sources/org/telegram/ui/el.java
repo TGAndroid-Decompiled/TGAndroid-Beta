@@ -6,24 +6,24 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagePreviewParams;
 import org.telegram.tgnet.TLRPC;
-public final class el extends org.telegram.ui.Components.hc0 {
-    public final wn H;
+public final class el extends org.telegram.ui.Components.ic0 {
+    public final yn H;
 
-    public el(wn wnVar, Context context, wn wnVar2, ah.c cVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, org.telegram.ui.Components.dc0 dc0Var, int i11, boolean z10) {
-        super(context, wnVar2, cVar, messagePreviewParams, user, chat, i10, dc0Var, i11, z10);
-        this.H = wnVar;
+    public el(yn ynVar, Context context, yn ynVar2, ah.c cVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, org.telegram.ui.Components.ec0 ec0Var, int i11, boolean z10) {
+        super(context, ynVar2, cVar, messagePreviewParams, user, chat, i10, ec0Var, i11, z10);
+        this.H = ynVar;
     }
 
     @Override
     public final void b() {
         MessageObject messageObject;
-        mn mnVar;
-        wn wnVar = this.H;
-        mn mnVar2 = wnVar.f39548l5;
-        if (mnVar2 != null && (messageObject = mnVar2.f35628a) != null && ((mnVar = wnVar.f39477f5.quote) == null || mnVar.f35628a == null || messageObject.getId() == wnVar.f39477f5.quote.f35628a.getId())) {
+        on onVar;
+        yn ynVar = this.H;
+        on onVar2 = ynVar.f43380j5;
+        if (onVar2 != null && (messageObject = onVar2.f39235a) != null && ((onVar = ynVar.f43306d5.quote) == null || onVar.f39235a == null || messageObject.getId() == ynVar.f43306d5.quote.f39235a.getId())) {
             return;
         }
-        wnVar.f39548l5 = wnVar.f39477f5.quote;
+        ynVar.f43380j5 = ynVar.f43306d5.quote;
     }
 
     @Override
@@ -36,11 +36,11 @@ public final class el extends org.telegram.ui.Components.hc0 {
         MessagePreviewParams.Messages messages;
         int i12 = 0;
         a(false);
-        wn wnVar = this.H;
-        MessagePreviewParams messagePreviewParams = wnVar.f39477f5;
+        yn ynVar = this.H;
+        MessagePreviewParams messagePreviewParams = ynVar.f43306d5;
         if (messagePreviewParams != null) {
             if (!z10) {
-                wnVar.f39560m5 = true;
+                ynVar.f43393k5 = true;
             }
             MessagePreviewParams.Messages messages2 = messagePreviewParams.forwardMessages;
             if (messages2 != null) {
@@ -48,7 +48,7 @@ public final class el extends org.telegram.ui.Components.hc0 {
                 i10 = 0;
                 z11 = false;
                 for (int i13 = 0; i13 < size; i13++) {
-                    MessageObject messageObject = wnVar.f39477f5.forwardMessages.messages.get(i13);
+                    MessageObject messageObject = ynVar.f43306d5.forwardMessages.messages.get(i13);
                     if (messageObject.isTodo()) {
                         i10 = 3;
                     } else if (messageObject.isPoll()) {
@@ -62,34 +62,34 @@ public final class el extends org.telegram.ui.Components.hc0 {
                     } else if (messageObject.isInvoice()) {
                         z11 = true;
                     }
-                    wnVar.W5[0].put(messageObject.getId(), messageObject);
+                    ynVar.U5[0].put(messageObject.getId(), messageObject);
                 }
             } else {
                 i10 = 0;
                 z11 = false;
             }
-            Bundle e = org.telegram.messenger.ok.e(3, "onlySelect", "dialogsType", true);
-            e.putBoolean("quote", !z10);
-            if (!z10 && (messages = wnVar.f39477f5.replyMessage) != null && !messages.messages.isEmpty() && wnVar.f39477f5.quote == null) {
+            Bundle e7 = org.telegram.messenger.ok.e(3, "onlySelect", "dialogsType", true);
+            e7.putBoolean("quote", !z10);
+            if (!z10 && (messages = ynVar.f43306d5.replyMessage) != null && !messages.messages.isEmpty() && ynVar.f43306d5.quote == null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            e.putBoolean("reply_to", z12);
-            if (z12 && (DialogObject.getPeerDialogId(wnVar.f39477f5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != wnVar.a() && peerDialogId != wnVar.getUserConfig().getClientUserId() && i11 > 0) {
-                e.putLong("reply_to_author", peerDialogId);
+            e7.putBoolean("reply_to", z12);
+            if (z12 && (DialogObject.getPeerDialogId(ynVar.f43306d5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != ynVar.a() && peerDialogId != ynVar.getUserConfig().getClientUserId() && i11 > 0) {
+                e7.putLong("reply_to_author", peerDialogId);
             }
-            e.putInt("hasPoll", i10);
-            e.putBoolean("hasInvoice", z11);
-            MessagePreviewParams.Messages messages3 = wnVar.f39477f5.forwardMessages;
+            e7.putInt("hasPoll", i10);
+            e7.putBoolean("hasInvoice", z11);
+            MessagePreviewParams.Messages messages3 = ynVar.f43306d5.forwardMessages;
             if (messages3 != null) {
                 i12 = messages3.messages.size();
             }
-            e.putInt("messagesCount", i12);
-            e.putBoolean("canSelectTopics", true);
-            qy qyVar = new qy(e);
-            qyVar.C2 = wnVar;
-            wnVar.presentFragment(qyVar);
+            e7.putInt("messagesCount", i12);
+            e7.putBoolean("canSelectTopics", true);
+            uy uyVar = new uy(e7);
+            uyVar.C2 = ynVar;
+            ynVar.presentFragment(uyVar);
         }
     }
 }

@@ -1,40 +1,83 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-public final class pn0 extends s4.j {
-    @Override
-    public final boolean r(s4.c1 c1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13) {
-        vn0 vn0Var;
-        un0 un0Var;
-        View view = c1Var.f42962a;
-        if ((view instanceof vn0) && (un0Var = (vn0Var = (vn0) view).f29150a) != null) {
-            un0Var.f49376i = un0Var.N;
-            un0Var.f49374g = un0Var.O;
-            un0Var.h = un0Var.P;
-            vn0Var.f29151b.d(0.0f, true);
-            vn0Var.invalidate();
-        }
-        int translationX = i10 + ((int) view.getTranslationX());
-        int translationY = i11 + ((int) view.getTranslationY());
-        R(c1Var);
-        int i14 = i12 - translationX;
-        int i15 = i13 - translationY;
-        if (i14 == 0 && i15 == 0) {
-            v(c1Var);
-            return false;
-        }
-        if (i14 != 0) {
-            view.setTranslationX(-i14);
-        }
-        if (i15 != 0) {
-            view.setTranslationY(-i15);
-        }
-        this.f43022r.add(new s4.i(c1Var, translationX, translationY, i12, i13));
-        return true;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public abstract class pn0 extends FrameLayout {
+    public final View f29668a;
+    public final ImageView f29669b;
+    public final ImageView f29670c;
+    public final ci.j2 d;
+    public final ci.h2 f29671e;
+    public final org.telegram.ui.ActionBar.d6 f29672f;
+
+    public pn0(Context context, float f7, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f29672f = d6Var;
+        View view = new View(context);
+        this.f29668a = view;
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.O5, d6Var)));
+        addView(view, w7.z5.i(-1.0f, 36.0f, 8388659, f7, 11.0f, f7, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.f29669b = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(R.drawable.smiles_inputsearch);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Q5, d6Var), PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.z5.i(36.0f, 36.0f, 8388659, f7 + 2.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f29670c = imageView2;
+        imageView2.setScaleType(scaleType);
+        ci.j2 j2Var = new ci.j2(3, this);
+        this.d = j2Var;
+        imageView2.setImageDrawable(j2Var);
+        j2Var.f27458f = AndroidUtilities.dp(7.0f);
+        imageView2.setScaleX(0.1f);
+        imageView2.setScaleY(0.1f);
+        imageView2.setAlpha(0.0f);
+        addView(imageView2, w7.z5.i(36.0f, 36.0f, 8388661, f7, 11.0f, f7, 0.0f));
+        imageView2.setOnClickListener(new l80(this, 12));
+        ci.h2 h2Var = new ci.h2(this, context, 6);
+        this.f29671e = h2Var;
+        h2Var.setTextSize(1, 16.0f);
+        h2Var.setHintTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.P5, d6Var));
+        h2Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.R5, d6Var));
+        h2Var.setBackgroundDrawable(null);
+        h2Var.setPadding(0, 0, 0, 0);
+        h2Var.setMaxLines(1);
+        h2Var.setLines(1);
+        h2Var.setSingleLine(true);
+        h2Var.setGravity(w7.z5.y() | 16);
+        h2Var.setImeOptions(268435459);
+        h2Var.setCursorColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Mh, d6Var));
+        h2Var.setCursorSize(AndroidUtilities.dp(20.0f));
+        h2Var.setCursorWidth(1.5f);
+        float f10 = f7 + 2.0f;
+        addView(h2Var, w7.z5.i(-1.0f, 40.0f, 8388659, f10 + 38.0f, 9.0f, f10 + 30.0f, 0.0f));
+        h2Var.addTextChangedListener(new ci.i2(this, 11));
+        h2Var.setOnEditorActionListener(new e1(this, 5));
     }
 
-    @Override
-    public final boolean t(s4.c1 c1Var) {
-        return true;
+    public abstract void a(String str);
+
+    public iq getProgressDrawable() {
+        return this.d;
+    }
+
+    public View getSearchBackground() {
+        return this.f29668a;
+    }
+
+    public EditTextBoldCursor getSearchEditText() {
+        return this.f29671e;
+    }
+
+    public void setHint(String str) {
+        this.f29671e.setHint(str);
     }
 }

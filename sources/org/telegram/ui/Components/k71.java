@@ -1,161 +1,107 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-public final class k71 extends TextureView implements TextureView.SurfaceTextureListener {
-    public u71 f25617a;
-    public xz f25618b;
-    public final uk0 f25619c;
-    public int d;
-    public int e;
-    public ci.k8 f25620f;
-    public j71 h;
-    public int f25621n;
-    public int f25622r;
-    public ja f25623s;
+import android.app.Activity;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.io.File;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.IUpdateLayout;
+public final class k71 extends IUpdateLayout {
+    public FrameLayout f27977a;
+    public RadialProgress2 f27978b;
+    public org.telegram.ui.Cells.x1 f27979c;
+    public final Activity d;
+    public final ViewGroup f27980e;
 
-    public k71(Context context, u71 u71Var) {
-        super(context);
-        this.f25619c = new Object();
-        this.f25617a = u71Var;
-        setSurfaceTextureListener(this);
+    public k71(Activity activity, ViewGroup viewGroup) {
+        super(activity, viewGroup);
+        this.d = activity;
+        this.f27980e = viewGroup;
     }
 
-    public final void a(float f7, float f10, float f11, float f12) {
-        uk0 uk0Var = this.f25619c;
-        uk0Var.f28826a = f7;
-        uk0Var.f28827b = f10;
-        uk0Var.f28828c = f11;
-        uk0Var.d = f12;
-    }
-
-    public Bitmap getUiBlurBitmap() {
-        pa paVar;
-        xz xzVar = this.f25618b;
-        if (xzVar == null || (paVar = xzVar.I) == null) {
-            return null;
+    @Override
+    public final void createUpdateUI(int i10) {
+        ViewGroup viewGroup = this.f27980e;
+        if (viewGroup != null && this.f27977a == null) {
+            Activity activity = this.d;
+            FrameLayout frameLayout = new FrameLayout(activity);
+            this.f27977a = frameLayout;
+            frameLayout.setVisibility(4);
+            this.f27977a.setTranslationY(AndroidUtilities.dp(44.0f));
+            this.f27977a.setBackground(org.telegram.ui.ActionBar.i6.f0(1090519039, 2, -1));
+            viewGroup.addView(this.f27977a, w7.z5.e(-1, 44, 83));
+            this.f27977a.setOnClickListener(new ci.n4(this, i10, 14));
+            org.telegram.ui.Cells.x1 x1Var = new org.telegram.ui.Cells.x1(this, activity);
+            this.f27979c = x1Var;
+            x1Var.setTextSize(AndroidUtilities.dp(15.0f));
+            this.f27979c.setTypeface(AndroidUtilities.bold());
+            this.f27979c.setTextColor(-1);
+            this.f27979c.setGravity(17);
+            this.f27977a.addView(this.f27979c, w7.z5.g());
+            this.f27979c.c(LocaleController.getString(R.string.AppUpdateBeta), false, true);
+            RadialProgress2 radialProgress2 = new RadialProgress2(this.f27979c, null);
+            this.f27978b = radialProgress2;
+            int i11 = org.telegram.ui.ActionBar.i6.Oh;
+            radialProgress2.setColors(-1, -1, org.telegram.ui.ActionBar.i6.w0(null, i11, false), org.telegram.ui.ActionBar.i6.w0(null, i11, false));
+            this.f27978b.q(0, 0, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
+            this.f27978b.setCircleRadius(AndroidUtilities.dp(11.0f));
+            this.f27978b.setAsMini();
         }
-        synchronized (paVar.f27314n) {
-            try {
-                if (!paVar.f27317q) {
-                    return null;
+    }
+
+    @Override
+    public final void updateAppUpdateViews(int i10, boolean z10) {
+        if (this.f27980e != null) {
+            if (ApplicationLoader.applicationLoaderInstance.getUpdate() != null) {
+                createUpdateUI(i10);
+                File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
+                if (downloadedUpdateFile != null && downloadedUpdateFile.exists()) {
+                    this.f27978b.setIcon(15, true, z10);
+                    this.f27979c.c(LocaleController.getString(R.string.AppUpdateNow), z10, true);
+                } else if (ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
+                    this.f27978b.setIcon(3, true, z10);
+                    this.f27978b.o(ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress(), true);
+                    this.f27979c.c(LocaleController.formatString(R.string.AppUpdateDownloading, Integer.valueOf((int) (ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress() * 100.0f))), z10, true);
+                } else {
+                    this.f27978b.setIcon(2, true, z10);
+                    this.f27979c.c(LocaleController.getString(R.string.AppUpdateBeta), z10, true);
                 }
-                return paVar.f27316p;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public int getVideoHeight() {
-        return this.e;
-    }
-
-    public int getVideoWidth() {
-        return this.d;
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int i12;
-        if (this.f25618b == null && surfaceTexture != null && this.f25617a != null) {
-            xz xzVar = new xz(surfaceTexture, new ov(this, 29), this.f25620f, this.f25623s, i10, i11);
-            this.f25618b = xzVar;
-            xzVar.i(this.f25621n, this.f25622r);
-            xz xzVar2 = this.f25618b;
-            ja jaVar = this.f25623s;
-            pa paVar = xzVar2.I;
-            if (paVar != null) {
-                ja jaVar2 = paVar.f27320t;
-                if (jaVar2 != null && jaVar2.f25400m != null) {
-                    jaVar2.f25400m = null;
+                if (this.f27977a.getTag() == null) {
+                    this.f27977a.setVisibility(0);
+                    this.f27977a.setTag(1);
+                    if (z10) {
+                        this.f27977a.animate().translationY(0.0f).setInterpolator(tr.f31141g).setListener(null).setDuration(180L).start();
+                        return;
+                    } else {
+                        this.f27977a.setTranslationY(0.0f);
+                        return;
+                    }
                 }
-                paVar.f27320t = jaVar;
-                if (jaVar != null && jaVar.f25400m != paVar) {
-                    jaVar.f25400m = paVar;
-                    jaVar.d();
+                return;
+            }
+            FrameLayout frameLayout = this.f27977a;
+            if (frameLayout != null && frameLayout.getTag() != null) {
+                this.f27977a.setTag(null);
+                if (z10) {
+                    this.f27977a.animate().translationY(AndroidUtilities.dp(44.0f)).setInterpolator(tr.f31141g).setListener(new hd0(this, 28)).setDuration(180L).start();
+                    return;
                 }
-            }
-            int i13 = this.d;
-            if (i13 != 0 && (i12 = this.e) != 0) {
-                xz xzVar3 = this.f25618b;
-                xzVar3.getClass();
-                xzVar3.postRunnable(new tz(xzVar3, i13, i12, 0));
-            }
-            this.f25618b.e(true, true, false);
-            j71 j71Var = this.h;
-            if (j71Var != null) {
-                j71Var.c(this.f25618b);
+                this.f27977a.setTranslationY(AndroidUtilities.dp(44.0f));
+                this.f27977a.setVisibility(4);
             }
         }
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        xz xzVar = this.f25618b;
-        if (xzVar != null) {
-            xzVar.postRunnable(new uz(xzVar, 0));
-            this.f25618b = null;
-            return true;
+    public final void updateFileProgress(Object[] objArr) {
+        if (this.f27977a != null && this.f27979c != null && ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
+            float downloadingUpdateProgress = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
+            this.f27978b.o(downloadingUpdateProgress, true);
+            this.f27979c.setText(LocaleController.formatString(R.string.AppUpdateDownloading, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
+            this.f27977a.invalidate();
         }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        xz xzVar = this.f25618b;
-        if (xzVar != null) {
-            xzVar.postRunnable(new tz(xzVar, i10, i11, 1));
-            this.f25618b.e(false, true, false);
-            this.f25618b.postRunnable(new i71(this, 0));
-        }
-    }
-
-    public void setDelegate(j71 j71Var) {
-        this.h = j71Var;
-        xz xzVar = this.f25618b;
-        if (xzVar != null) {
-            if (j71Var == null) {
-                xzVar.f(null);
-            } else {
-                j71Var.c(xzVar);
-            }
-        }
-    }
-
-    public void setHDRInfo(ci.k8 k8Var) {
-        this.f25620f = k8Var;
-        xz xzVar = this.f25618b;
-        if (xzVar != null) {
-            xzVar.postRunnable(new dv(8, xzVar, k8Var));
-        }
-    }
-
-    @Override
-    public void setTransform(Matrix matrix) {
-        super.setTransform(matrix);
-        xz xzVar = this.f25618b;
-        if (xzVar != null) {
-            int width = getWidth();
-            int height = getHeight();
-            pa paVar = xzVar.I;
-            if (paVar != null) {
-                Matrix matrix2 = paVar.v;
-                matrix.invert(matrix2);
-                float f7 = width;
-                float f10 = height;
-                matrix2.preScale(f7, f10);
-                matrix2.postScale(1.0f / f7, 1.0f / f10);
-                paVar.c(matrix2);
-                xzVar.e(false, false, false);
-            }
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

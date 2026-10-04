@@ -1,197 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.LocaleController;
+import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class jn0 extends xl0 {
-    public final kn0 f25491c;
+public final class jn0 extends s4.o {
+    public final int f27860b;
+    public final int f27861c;
+    public final int d;
+    public final int f27862e;
+    public final int f27863f;
+    public final ArrayList f27864g;
+    public final int h;
+    public final int f27865i;
+    public final ArrayList f27866j;
+    public final on0 f27867k;
 
-    public jn0(kn0 kn0Var) {
-        this.f25491c = kn0Var;
+    public jn0(on0 on0Var, int i10, int i11, int i12, int i13, int i14, ArrayList arrayList, int i15, int i16, ArrayList arrayList2) {
+        this.f27867k = on0Var;
+        this.f27860b = i10;
+        this.f27861c = i11;
+        this.d = i12;
+        this.f27862e = i13;
+        this.f27863f = i14;
+        this.f27864g = arrayList;
+        this.h = i15;
+        this.f27865i = i16;
+        this.f27866j = arrayList2;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42965f;
-        if (i10 == 1 || i10 == 2) {
+    public final boolean a(int i10, int i11) {
+        return b(i10, i11);
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        MessageObject messageObject;
+        on0 on0Var = this.f27867k;
+        if (i10 >= 0 && i11 >= 0) {
+            if (i10 == this.f27861c && i11 == on0Var.f29413s) {
+                return true;
+            }
+            if (i10 == this.d && i11 == on0Var.f29415x) {
+                return true;
+            }
+        }
+        MessageObject messageObject2 = null;
+        int i12 = this.f27862e;
+        if (i10 >= i12 && i10 < this.f27863f) {
+            messageObject = (MessageObject) this.f27864g.get(i10 - i12);
+        } else {
+            int i13 = this.h;
+            if (i10 >= i13 && i10 < this.f27865i) {
+                messageObject = (MessageObject) this.f27866j.get(i10 - i13);
+            } else {
+                messageObject = null;
+            }
+        }
+        int i14 = on0Var.v;
+        if (i11 >= i14 && i11 < on0Var.f29414w) {
+            messageObject2 = (MessageObject) on0Var.f29409e.get(i11 - i14);
+        } else {
+            int i15 = on0Var.f29416y;
+            if (i11 >= i15 && i11 < on0Var.E) {
+                messageObject2 = (MessageObject) on0Var.f29410f.get(i11 - i15);
+            }
+        }
+        if (messageObject2 != null && messageObject != null && messageObject2.getDocument() != null && messageObject.getDocument() != null && messageObject2.getDocument().f20043id == messageObject.getDocument().f20043id) {
             return true;
         }
         return false;
     }
 
-    public final MessageObject E(int i10) {
-        kn0 kn0Var = this.f25491c;
-        int i11 = kn0Var.v;
-        if (i10 >= i11 && i10 < kn0Var.f25774w) {
-            return (MessageObject) kn0Var.e.get(i10 - i11);
-        }
-        int i12 = kn0Var.f25776y;
-        if (i10 >= i12 && i10 < kn0Var.E) {
-            return (MessageObject) kn0Var.f25770f.get(i10 - i12);
-        }
-        return null;
+    @Override
+    public final int d() {
+        return this.f27867k.f29412r;
     }
 
     @Override
-    public final int h() {
-        return this.f25491c.f25772r;
-    }
-
-    @Override
-    public final int j(int i10) {
-        kn0 kn0Var = this.f25491c;
-        if (i10 != kn0Var.f25773s && i10 != kn0Var.f25775x) {
-            MessageObject E = E(i10);
-            if (E == null || !E.isMusic()) {
-                return 1;
-            }
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        boolean z10;
-        int id2;
-        boolean z11;
-        int id3;
-        boolean z12;
-        int i11;
-        int i12;
-        kn0 kn0Var = this.f25491c;
-        org.telegram.ui.l10 l10Var = kn0Var.J;
-        int i13 = c1Var.f42965f;
-        View view = c1Var.f42962a;
-        boolean z13 = false;
-        if (i13 == 0) {
-            org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) view;
-            if (i10 == kn0Var.f25773s) {
-                String string = LocaleController.getString(R.string.Downloading);
-                if (v3Var.getText().equals(string)) {
-                    if (kn0Var.H) {
-                        i12 = R.string.PauseAll;
-                    } else {
-                        i12 = R.string.ResumeAll;
-                    }
-                    String string2 = LocaleController.getString(i12);
-                    boolean z14 = kn0Var.H;
-                    org.telegram.ui.Cells.u3 u3Var = v3Var.f21681b;
-                    u3Var.c(string2, true, z14);
-                    u3Var.setVisibility(0);
-                    return;
-                }
-                if (kn0Var.H) {
-                    i11 = R.string.PauseAll;
-                } else {
-                    i11 = R.string.ResumeAll;
-                }
-                v3Var.c(string, LocaleController.getString(i11), new in0(this));
-                return;
-            } else if (i10 == kn0Var.f25775x) {
-                v3Var.c(LocaleController.getString(R.string.RecentlyDownloaded), LocaleController.getString(R.string.Settings), new k80(this, 11));
-                return;
-            } else {
-                return;
-            }
-        }
-        MessageObject E = E(i10);
-        if (E != null) {
-            if (kn0Var.I.g() && i10 >= kn0Var.v && i10 < kn0Var.f25774w) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            float f7 = 0.0f;
-            if (i13 == 1) {
-                gn0 gn0Var = (gn0) view;
-                gn0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19061d6, false));
-                org.telegram.ui.Cells.k7 k7Var = gn0Var.f24579a;
-                if (k7Var.getMessage() == null) {
-                    id3 = 0;
-                } else {
-                    id3 = k7Var.getMessage().getId();
-                }
-                k7Var.c(E, true);
-                int id4 = k7Var.getMessage().getId();
-                l10Var.f35188a = k7Var.getMessage().getDialogId();
-                l10Var.f35189b = id4;
-                boolean c10 = kn0Var.I.c(l10Var);
-                if (id3 == E.getId()) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                k7Var.b(c10, z12);
-                if (id3 == E.getId()) {
-                    z13 = true;
-                }
-                if (k7Var.O != z10) {
-                    k7Var.O = z10;
-                    if (!z13) {
-                        if (z10) {
-                            f7 = 1.0f;
-                        }
-                        k7Var.P = f7;
-                    }
-                    k7Var.invalidate();
-                }
-            } else if (i13 == 2) {
-                org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) view;
-                if (j7Var.getMessage() == null) {
-                    id2 = 0;
-                } else {
-                    id2 = j7Var.getMessage().getId();
-                }
-                j7Var.f(E, true);
-                int id5 = j7Var.getMessage().getId();
-                l10Var.f35188a = j7Var.getMessage().getDialogId();
-                l10Var.f35189b = id5;
-                boolean c11 = kn0Var.I.c(l10Var);
-                if (id2 == E.getId()) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                j7Var.e(c11, z11);
-                if (id2 == E.getId()) {
-                    z13 = true;
-                }
-                if (j7Var.f20526d0 != z10) {
-                    j7Var.f20526d0 = z10;
-                    if (!z13) {
-                        if (z10) {
-                            f7 = 1.0f;
-                        }
-                        j7Var.f20527e0 = f7;
-                    }
-                    j7Var.invalidate();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        FrameLayout frameLayout;
-        if (i10 == 0) {
-            frameLayout = new org.telegram.ui.Cells.v3(viewGroup.getContext(), null);
-        } else if (i10 == 1) {
-            Context context = viewGroup.getContext();
-            ?? frameLayout2 = new FrameLayout(context);
-            org.telegram.ui.Cells.k7 k7Var = new org.telegram.ui.Cells.k7(context, 2, null);
-            frameLayout2.f24579a = k7Var;
-            k7Var.f20590r.setVisibility(8);
-            frameLayout2.addView(k7Var);
-            frameLayout = frameLayout2;
-        } else {
-            frameLayout = new org.telegram.ui.Cells.j7(viewGroup.getContext());
-        }
-        frameLayout.setLayoutParams(new s4.p0(-1, -2));
-        return new s4.c1(frameLayout);
+    public final int e() {
+        return this.f27860b;
     }
 }

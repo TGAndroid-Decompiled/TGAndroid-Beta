@@ -11,10 +11,10 @@ public class q0 extends db.u {
         String v = aVar.v();
         try {
             return UUID.fromString(v);
-        } catch (IllegalArgumentException e) {
-            StringBuilder w10 = a4.a.w("Failed parsing '", v, "' as UUID; at path ");
-            w10.append(aVar.j());
-            throw new RuntimeException(w10.toString(), e);
+        } catch (IllegalArgumentException e7) {
+            StringBuilder v9 = a4.a.v("Failed parsing '", v, "' as UUID; at path ");
+            v9.append(aVar.j());
+            throw new RuntimeException(v9.toString(), e7);
         }
     }
 

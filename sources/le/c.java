@@ -1,80 +1,70 @@
 package le;
 
-import android.view.View;
-import android.view.animation.Interpolator;
-public final class c implements e {
-    public final int f14199a;
-    public final e f14200b;
-    public final Interpolator f14201c;
-    public final long d;
-    public float e;
-    public boolean f14202f;
-    public f h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.voip.v1;
+public final class c extends AnimatorListenerAdapter {
+    public final int f15436a;
+    public final float f15437b;
+    public final float f15438c;
+    public final Object d;
 
-    public c(View view, Interpolator interpolator, long j3) {
-        this(0, new a(view), interpolator, j3, false);
+    public c(Object obj, float f7, float f10, int i10) {
+        this.f15436a = i10;
+        this.d = obj;
+        this.f15437b = f7;
+        this.f15438c = f10;
     }
 
-    @Override
-    public final void C(float f7, int i10) {
-        this.f14200b.C(f7, this.f14199a);
-    }
-
-    @Override
-    public final void D(int i10, float f7, float f10, f fVar) {
-        if (this.e != f7) {
-            this.e = f7;
-            this.f14200b.D(this.f14199a, f7, -1.0f, null);
+    public void a() {
+        e eVar = (e) this.d;
+        if (eVar.f15444g) {
+            eVar.d(this.f15437b + this.f15438c, 1.0f);
+            if (eVar.f15444g) {
+                eVar.f15444g = false;
+            }
+            eVar.f15440b.V(eVar.f15442e, eVar.f15439a);
         }
     }
 
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        c cVar;
-        if (this.f14202f != z10 || !z11) {
-            this.f14202f = z10;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            if (z11) {
-                if (this.h == null) {
-                    cVar = this;
-                    cVar.h = new f(0, cVar, this.f14201c, this.d, this.e);
-                } else {
-                    cVar = this;
-                }
-                cVar.h.a(f7);
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f15436a) {
+            case 0:
+                a();
                 return;
-            }
-            f fVar = this.h;
-            if (fVar != null) {
-                fVar.c(f7);
-            }
-            float f10 = this.e;
-            if (f10 != f7) {
-                int i10 = this.f14199a;
-                e eVar = this.f14200b;
-                if (f10 != f7) {
-                    this.e = f7;
-                    eVar.D(i10, f7, -1.0f, null);
-                }
-                eVar.C(f7, i10);
-            }
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
-    public c(int i10, e eVar, Interpolator interpolator, long j3) {
-        this(i10, eVar, interpolator, j3, false);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f15436a) {
+            case 0:
+                a();
+                return;
+            default:
+                v1 v1Var = (v1) this.d;
+                v1Var.O = false;
+                v1Var.M = true;
+                v1Var.W = this.f15437b;
+                v1Var.f32220a0 = this.f15438c;
+                v1Var.requestLayout();
+                return;
+        }
     }
 
-    public c(int i10, e eVar, Interpolator interpolator, long j3, boolean z10) {
-        this.f14199a = i10;
-        this.f14200b = eVar;
-        this.f14201c = interpolator;
-        this.d = j3;
-        this.f14202f = z10;
-        this.e = z10 ? 1.0f : 0.0f;
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f15436a) {
+            case 0:
+                ((e) this.d).getClass();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

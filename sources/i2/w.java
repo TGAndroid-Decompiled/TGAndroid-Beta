@@ -6,32 +6,32 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.Components.cd0;
 import org.telegram.ui.Components.jl0;
-public final class w implements e2.m, d9.e, e2.h, jl0, cd0, z1 {
-    public final int f10891a;
-    public final int f10892b;
+public final class w implements e2.m, d9.e, e2.h, jl0, cd0, a2 {
+    public final int f11865a;
+    public final int f11866b;
 
     public w(int i10, int i11) {
-        this.f10891a = i11;
-        this.f10892b = i10;
+        this.f11865a = i11;
+        this.f11866b = i10;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f10891a) {
+        switch (this.f11865a) {
             case 3:
-                ((m4.e1) obj).f0(this.f10892b);
+                ((m4.e1) obj).f0(this.f11866b);
                 return;
             case 4:
-                ((m4.e1) obj).N(this.f10892b);
+                ((m4.e1) obj).N(this.f11866b);
                 return;
             case 5:
-                ((m4.e1) obj).j(this.f10892b);
+                ((m4.e1) obj).j(this.f11866b);
                 return;
             default:
-                ((m4.e1) obj).D0(this.f10892b);
+                ((m4.e1) obj).D0(this.f11866b);
                 return;
         }
     }
@@ -39,30 +39,13 @@ public final class w implements e2.m, d9.e, e2.h, jl0, cd0, z1 {
     @Override
     public Object apply(Object obj) {
         Integer num = (Integer) obj;
-        return Integer.valueOf(this.f10892b);
+        return Integer.valueOf(this.f11866b);
     }
 
     @Override
-    public void f(a2 a2Var, int i10) {
-        MessagesController.getInstance(this.f10892b).performLogout(1);
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        switch (this.f10891a) {
-            case 0:
-                ((b2.z0) obj).onRepeatModeChanged(this.f10892b);
-                return;
-            default:
-                ((b2.z0) obj).onAudioSessionIdChanged(this.f10892b);
-                return;
-        }
-    }
-
-    @Override
-    public String j(int i10) {
-        int i11 = this.f10891a;
-        int i12 = this.f10892b;
+    public String e(int i10) {
+        int i11 = this.f11865a;
+        int i12 = this.f11866b;
         switch (i11) {
             case 8:
                 if (i10 == 0) {
@@ -84,7 +67,24 @@ public final class w implements e2.m, d9.e, e2.h, jl0, cd0, z1 {
     }
 
     @Override
+    public void g(b2 b2Var, int i10) {
+        MessagesController.getInstance(this.f11866b).performLogout(1);
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        switch (this.f11865a) {
+            case 0:
+                ((b2.z0) obj).onRepeatModeChanged(this.f11866b);
+                return;
+            default:
+                ((b2.z0) obj).onAudioSessionIdChanged(this.f11866b);
+                return;
+        }
+    }
+
+    @Override
     public int run() {
-        return this.f10892b;
+        return this.f11866b;
     }
 }

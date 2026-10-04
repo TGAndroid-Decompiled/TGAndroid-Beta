@@ -1,29 +1,24 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class b50 implements DialogInterface.OnShowListener {
-    public final int f32321a;
-    public final org.telegram.ui.ActionBar.a2 f32322b;
-    public final EditTextBoldCursor f32323c;
-    public final Object d;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+public final class b50 implements ViewTreeObserver.OnPreDrawListener {
+    public final h60 f34993a;
 
-    public b50(Object obj, org.telegram.ui.ActionBar.a2 a2Var, EditTextBoldCursor editTextBoldCursor, int i10) {
-        this.f32321a = i10;
-        this.d = obj;
-        this.f32322b = a2Var;
-        this.f32323c = editTextBoldCursor;
+    public b50(h60 h60Var) {
+        this.f34993a = h60Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f32321a) {
-            case 0:
-                ((g50) this.d).f33829b.s1(null, this.f32322b, this.f32323c, true);
-                return;
-            default:
-                ((c50) this.d).f32572n.f33829b.s1(null, this.f32322b, this.f32323c, true);
-                return;
-        }
+    public final boolean onPreDraw() {
+        ViewGroup viewGroup;
+        h60 h60Var = this.f34993a;
+        h60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        h60Var.a2.j(null);
+        AndroidUtilities.updateVisibleRows(h60Var.f36922m2);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) h60Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

@@ -1,56 +1,42 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class kv implements Runnable {
-    public final int f35160a;
-    public final Context f35161b;
+import java.util.ArrayList;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
+public final class kv implements oy, bt {
+    public final nv f38093a;
 
-    public kv(Context context, int i10) {
-        this.f35160a = i10;
-        this.f35161b = context;
+    public kv(nv nvVar) {
+        this.f38093a = nvVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35160a) {
-            case 0:
-                org.telegram.ui.ActionBar.h6.J(this.f35161b, false);
-                return;
-            case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f35161b);
-                if (findActivity == null) {
-                    findActivity = LaunchActivity.G1;
-                }
-                if (findActivity != null && !findActivity.isFinishing()) {
-                    findActivity.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                nf.f.s(this.f35161b, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                nf.f.s(this.f35161b, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                nf.f.s(this.f35161b, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                nf.f.s(this.f35161b, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                nf.f.s(this.f35161b, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                nf.f.s(this.f35161b, "https://promote.telegram.org/guidelines");
-                return;
-            default:
-                nf.f.s(this.f35161b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
-                return;
+    public boolean A() {
+        return false;
+    }
+
+    @Override
+    public boolean H(uy uyVar) {
+        return false;
+    }
+
+    @Override
+    public void b(TLRPC.User user) {
+        this.f38093a.l0(user);
+    }
+
+    @Override
+    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, yf1 yf1Var) {
+        if (!arrayList.isEmpty()) {
+            long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            if (DialogObject.isUserDialog(j3)) {
+                nv nvVar = this.f38093a;
+                nvVar.l0(nvVar.getMessagesController().getUser(Long.valueOf(j3)));
+                return true;
+            }
+            return true;
         }
+        return true;
     }
 }

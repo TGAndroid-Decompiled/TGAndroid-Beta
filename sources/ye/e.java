@@ -3,52 +3,52 @@ package ye;
 import bf.p;
 import t7.s;
 public final class e extends df.a {
-    public final bf.h f47012a;
-    public String f47013b;
-    public final StringBuilder f47014c;
+    public final bf.h f50879a;
+    public String f50880b;
+    public final StringBuilder f50881c;
 
     public e(char c10, int i10, int i11) {
         ?? pVar = new p();
-        this.f47012a = pVar;
-        this.f47014c = new StringBuilder();
-        pVar.f3532g = c10;
+        this.f50879a = pVar;
+        this.f50881c = new StringBuilder();
+        pVar.f3819g = c10;
         pVar.h = i10;
-        pVar.f3533i = i11;
+        pVar.f3820i = i11;
     }
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.f47013b == null) {
-            this.f47013b = charSequence.toString();
+        if (this.f50880b == null) {
+            this.f50880b = charSequence.toString();
             return;
         }
-        StringBuilder sb2 = this.f47014c;
+        StringBuilder sb2 = this.f50881c;
         sb2.append(charSequence);
         sb2.append('\n');
     }
 
     @Override
     public final void d() {
-        String a2 = af.a.a(this.f47013b.trim());
-        bf.h hVar = this.f47012a;
-        hVar.f3534j = a2;
-        hVar.f3535k = this.f47014c.toString();
+        String a2 = af.a.a(this.f50880b.trim());
+        bf.h hVar = this.f50879a;
+        hVar.f3821j = a2;
+        hVar.f3822k = this.f50881c.toString();
     }
 
     @Override
     public final bf.a e() {
-        return this.f47012a;
+        return this.f50879a;
     }
 
     @Override
     public final q3.h h(d dVar) {
-        int i10 = dVar.e;
-        int i11 = dVar.f47001b;
-        CharSequence charSequence = dVar.f47000a;
-        int i12 = dVar.f47004g;
-        bf.h hVar = this.f47012a;
+        int i10 = dVar.f50869e;
+        int i11 = dVar.f50867b;
+        CharSequence charSequence = dVar.f50866a;
+        int i12 = dVar.f50871g;
+        bf.h hVar = this.f50879a;
         if (i12 < 4) {
-            char c10 = hVar.f3532g;
+            char c10 = hVar.f3819g;
             int i13 = hVar.h;
             int b10 = s.b(c10, charSequence, i10, charSequence.length()) - i10;
             if (b10 >= i13 && s.c(i10 + b10, charSequence.length(), charSequence) == charSequence.length()) {
@@ -56,7 +56,7 @@ public final class e extends df.a {
             }
         }
         int length = charSequence.length();
-        for (int i14 = hVar.f3533i; i14 > 0 && i11 < length && charSequence.charAt(i11) == ' '; i14--) {
+        for (int i14 = hVar.f3820i; i14 > 0 && i11 < length && charSequence.charAt(i11) == ' '; i14--) {
             i11++;
         }
         return q3.h.a(i11);

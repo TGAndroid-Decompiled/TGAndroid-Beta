@@ -1,10 +1,14 @@
 package org.telegram.ui;
+public final class lp implements j70 {
+    public final tp f38313a;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class lp extends FrameLayout {
+    public lp(tp tpVar) {
+        this.f38313a = tpVar;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void a(k70 k70Var, long j3) {
+        tp tpVar = this.f38313a;
+        tpVar.X(tpVar.getMessagesController().getChat(Long.valueOf(j3)), k70Var);
     }
 }

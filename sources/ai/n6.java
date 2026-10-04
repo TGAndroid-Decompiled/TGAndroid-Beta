@@ -2,14 +2,14 @@ package ai;
 
 import org.telegram.ui.Components.ml0;
 public final class n6 implements ml0 {
-    public final int f1298a;
-    public final Object f1299b;
-    public final Object f1300c;
+    public final int f1405a;
+    public final Object f1406b;
+    public final Object f1407c;
 
     public n6(int i10, Object obj, Object obj2) {
-        this.f1298a = i10;
-        this.f1299b = obj;
-        this.f1300c = obj2;
+        this.f1405a = i10;
+        this.f1406b = obj;
+        this.f1407c = obj2;
     }
 
     @Override

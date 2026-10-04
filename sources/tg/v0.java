@@ -2,25 +2,25 @@ package tg;
 
 import android.view.View;
 public final class v0 implements View.OnClickListener {
-    public final int f43499a;
-    public final z0 f43500b;
+    public final int f47104a;
+    public final z0 f47105b;
 
     public v0(z0 z0Var, int i10) {
-        this.f43499a = i10;
-        this.f43500b = z0Var;
+        this.f47104a = i10;
+        this.f47105b = z0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f43499a) {
+        switch (this.f47104a) {
             case 0:
-                z0 z0Var = this.f43500b;
-                z0Var.f43517e0.clear();
+                z0 z0Var = this.f47105b;
+                z0Var.f47123e0.clear();
                 z0Var.Y.d.b(true);
                 z0Var.b0(true, false);
                 return;
             default:
-                this.f43500b.W(false);
+                this.f47105b.U(false);
                 return;
         }
     }

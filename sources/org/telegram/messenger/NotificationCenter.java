@@ -394,10 +394,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f15836id;
+        private int f17259id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f15836id = i10;
+            this.f17259id = i10;
             this.args = objArr;
         }
     }
@@ -426,17 +426,17 @@ public class NotificationCenter {
                 return this;
             }
             a0.l lVar = this.ids;
-            int i11 = lVar.f27b + 1;
-            int[] iArr = lVar.f26a;
+            int i11 = lVar.f30b + 1;
+            int[] iArr = lVar.f29a;
             if (iArr.length < i11) {
                 int[] copyOf = Arrays.copyOf(iArr, Math.max(i11, (iArr.length * 3) / 2));
                 kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
-                lVar.f26a = copyOf;
+                lVar.f29a = copyOf;
             }
-            int[] iArr2 = lVar.f26a;
-            int i12 = lVar.f27b;
+            int[] iArr2 = lVar.f29a;
+            int i12 = lVar.f30b;
             iArr2[i12] = i10;
-            lVar.f27b = i12 + 1;
+            lVar.f30b = i12 + 1;
             this.notificationCenter.addObserverInternal(this.delegate, i10);
             return this;
         }
@@ -463,30 +463,30 @@ public class NotificationCenter {
                 observersGroupImpl.removeAllObservers();
                 this.globalGroup = null;
             }
-            int i10 = this.ids.f27b;
+            int i10 = this.ids.f30b;
             for (int i11 = 0; i11 < i10; i11++) {
                 NotificationCenter notificationCenter = this.notificationCenter;
                 NotificationCenterDelegate notificationCenterDelegate = this.delegate;
                 a0.l lVar = this.ids;
                 if (i11 >= 0) {
-                    if (i11 < lVar.f27b) {
-                        notificationCenter.removeObserver(notificationCenterDelegate, lVar.f26a[i11]);
+                    if (i11 < lVar.f30b) {
+                        notificationCenter.removeObserver(notificationCenterDelegate, lVar.f29a[i11]);
                     }
                 } else {
                     lVar.getClass();
                 }
-                StringBuilder j3 = hg.c.j(i11, "Index ", " must be in 0..");
-                j3.append(lVar.f27b - 1);
+                StringBuilder j3 = hg.k0.j(i11, "Index ", " must be in 0..");
+                j3.append(lVar.f30b - 1);
                 throw new IndexOutOfBoundsException(j3.toString());
             }
-            this.ids.f27b = 0;
+            this.ids.f30b = 0;
             this.notificationCenter = null;
             this.delegate = null;
         }
 
         private ObserversGroupImpl(NotificationCenter notificationCenter, NotificationCenterDelegate notificationCenterDelegate) {
             ?? obj = new Object();
-            obj.f26a = new int[16];
+            obj.f29a = new int[16];
             this.ids = obj;
             this.notificationCenter = notificationCenter;
             this.delegate = notificationCenterDelegate;
@@ -911,7 +911,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(hg.c.h(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(hg.k0.h(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -959,7 +959,7 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder k10 = hg.c.k("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                StringBuilder k10 = hg.k0.k("key=", keyAt, " CHANGED: ", intValue, " -> ");
                 k10.append(intValue2);
                 Log.i("ObserverDiff", k10.toString());
             }
@@ -967,7 +967,7 @@ public class NotificationCenter {
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder j3 = hg.c.j(keyAt2, "key=", " ADDED (size=");
+                StringBuilder j3 = hg.k0.j(keyAt2, "key=", " ADDED (size=");
                 j3.append(sparseArray2.valueAt(i11));
                 j3.append(")");
                 Log.i("ObserverDiff", j3.toString());
@@ -1089,12 +1089,12 @@ public class NotificationCenter {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with View with destroyed Context");
                                 valueAt.remove(size);
                             }
-                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.m2) {
-                            if (((org.telegram.ui.ActionBar.m2) notificationCenterDelegate).isFinished) {
+                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.n2) {
+                            if (((org.telegram.ui.ActionBar.n2) notificationCenterDelegate).isFinished) {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BaseFragment");
                                 valueAt.remove(size);
                             }
-                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.e3) && ((org.telegram.ui.ActionBar.e3) notificationCenterDelegate).isDismissed()) {
+                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.f3) && ((org.telegram.ui.ActionBar.f3) notificationCenterDelegate).isDismissed()) {
                             FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BottomSheet");
                             valueAt.remove(size);
                         }
@@ -1214,7 +1214,7 @@ public class NotificationCenter {
                 }
             };
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
-            return new ei.l3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
+            return new ei.m3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
         }
         return new w1(18);
     }
@@ -1391,7 +1391,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f15836id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f17259id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

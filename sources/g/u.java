@@ -11,10 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import m.j1;
 import m.l3;
 import r0.i0;
-import w7.w6;
+import w7.x6;
 public abstract class u extends androidx.activity.m {
     public s d;
-    public final t e;
+    public final t f10120e;
 
     public u(android.view.ContextThemeWrapper r5, int r6) {
         throw new UnsupportedOperationException("Method not decompiled: g.u.<init>(android.view.ContextThemeWrapper, int):void");
@@ -25,12 +25,12 @@ public abstract class u extends androidx.activity.m {
         s sVar = (s) c();
         sVar.k();
         ((ViewGroup) sVar.J.findViewById(16908290)).addView(view, layoutParams);
-        sVar.h.a(sVar.f9280f.getCallback());
+        sVar.h.a(sVar.f10102f.getCallback());
     }
 
     public final h c() {
         if (this.d == null) {
-            int i10 = h.f9245a;
+            int i10 = h.f10063a;
             this.d = new s(this, this);
         }
         return this.d;
@@ -45,19 +45,19 @@ public abstract class u extends androidx.activity.m {
         super.dismiss();
         s sVar = (s) c();
         u uVar = sVar.d;
-        if (sVar.f9283h0) {
-            sVar.f9280f.getDecorView().removeCallbacks(sVar.f9285j0);
+        if (sVar.f10105h0) {
+            sVar.f10102f.getDecorView().removeCallbacks(sVar.f10107j0);
         }
         sVar.Z = true;
-        if (sVar.f9276b0 != -100) {
+        if (sVar.f10097b0 != -100) {
             u uVar2 = sVar.d;
         }
-        s.f9272q0.remove(sVar.d.getClass().getName());
-        o oVar = sVar.f9281f0;
+        s.f10093q0.remove(sVar.d.getClass().getName());
+        o oVar = sVar.f10103f0;
         if (oVar != null) {
             oVar.c();
         }
-        o oVar2 = sVar.f9282g0;
+        o oVar2 = sVar.f10104g0;
         if (oVar2 != null) {
             oVar2.c();
         }
@@ -65,20 +65,20 @@ public abstract class u extends androidx.activity.m {
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        return w6.b(this.e, getWindow().getDecorView(), this, keyEvent);
+        return x6.b(this.f10120e, getWindow().getDecorView(), this, keyEvent);
     }
 
     @Override
     public final View findViewById(int i10) {
         s sVar = (s) c();
         sVar.k();
-        return sVar.f9280f.findViewById(i10);
+        return sVar.f10102f.findViewById(i10);
     }
 
     @Override
     public final void invalidateOptionsMenu() {
         s sVar = (s) c();
-        if (sVar.f9288n != null) {
+        if (sVar.f10110n != null) {
             sVar.p().getClass();
             sVar.q(0);
         }
@@ -87,7 +87,7 @@ public abstract class u extends androidx.activity.m {
     @Override
     public void onCreate(Bundle bundle) {
         s sVar = (s) c();
-        LayoutInflater from = LayoutInflater.from(sVar.e);
+        LayoutInflater from = LayoutInflater.from(sVar.f10100e);
         if (from.getFactory() == null) {
             from.setFactory2(sVar);
         } else if (!(from.getFactory2() instanceof s)) {
@@ -102,7 +102,7 @@ public abstract class u extends androidx.activity.m {
         bc.d dVar;
         super.onStop();
         b0 p5 = ((s) c()).p();
-        if (p5 != null && (dVar = p5.f9206s) != null) {
+        if (p5 != null && (dVar = p5.f10022s) != null) {
             dVar.a();
         }
     }
@@ -113,31 +113,31 @@ public abstract class u extends androidx.activity.m {
         sVar.k();
         ViewGroup viewGroup = (ViewGroup) sVar.J.findViewById(16908290);
         viewGroup.removeAllViews();
-        LayoutInflater.from(sVar.e).inflate(i10, viewGroup);
-        sVar.h.a(sVar.f9280f.getCallback());
+        LayoutInflater.from(sVar.f10100e).inflate(i10, viewGroup);
+        sVar.h.a(sVar.f10102f.getCallback());
     }
 
     @Override
     public void setTitle(CharSequence charSequence) {
         super.setTitle(charSequence);
         s sVar = (s) c();
-        sVar.f9292r = charSequence;
-        j1 j1Var = sVar.f9293s;
+        sVar.f10114r = charSequence;
+        j1 j1Var = sVar.f10115s;
         if (j1Var != null) {
             j1Var.setWindowTitle(charSequence);
             return;
         }
-        b0 b0Var = sVar.f9288n;
+        b0 b0Var = sVar.f10110n;
         if (b0Var != null) {
-            l3 l3Var = (l3) b0Var.e;
-            if (l3Var.f14469g) {
+            l3 l3Var = (l3) b0Var.f10009e;
+            if (l3Var.f15789g) {
                 return;
             }
-            Toolbar toolbar = l3Var.f14465a;
+            Toolbar toolbar = l3Var.f15784a;
             l3Var.h = charSequence;
-            if ((l3Var.f14466b & 8) != 0) {
+            if ((l3Var.f15785b & 8) != 0) {
                 toolbar.setTitle(charSequence);
-                if (l3Var.f14469g) {
+                if (l3Var.f15789g) {
                     i0.l(toolbar.getRootView(), charSequence);
                     return;
                 }
@@ -158,7 +158,7 @@ public abstract class u extends androidx.activity.m {
         ViewGroup viewGroup = (ViewGroup) sVar.J.findViewById(16908290);
         viewGroup.removeAllViews();
         viewGroup.addView(view);
-        sVar.h.a(sVar.f9280f.getCallback());
+        sVar.h.a(sVar.f10102f.getCallback());
     }
 
     @Override
@@ -168,7 +168,7 @@ public abstract class u extends androidx.activity.m {
         ViewGroup viewGroup = (ViewGroup) sVar.J.findViewById(16908290);
         viewGroup.removeAllViews();
         viewGroup.addView(view, layoutParams);
-        sVar.h.a(sVar.f9280f.getCallback());
+        sVar.h.a(sVar.f10102f.getCallback());
     }
 
     @Override
@@ -177,23 +177,23 @@ public abstract class u extends androidx.activity.m {
         h c10 = c();
         String string = getContext().getString(i10);
         s sVar = (s) c10;
-        sVar.f9292r = string;
-        j1 j1Var = sVar.f9293s;
+        sVar.f10114r = string;
+        j1 j1Var = sVar.f10115s;
         if (j1Var != null) {
             j1Var.setWindowTitle(string);
             return;
         }
-        b0 b0Var = sVar.f9288n;
+        b0 b0Var = sVar.f10110n;
         if (b0Var != null) {
-            l3 l3Var = (l3) b0Var.e;
-            if (l3Var.f14469g) {
+            l3 l3Var = (l3) b0Var.f10009e;
+            if (l3Var.f15789g) {
                 return;
             }
-            Toolbar toolbar = l3Var.f14465a;
+            Toolbar toolbar = l3Var.f15784a;
             l3Var.h = string;
-            if ((l3Var.f14466b & 8) != 0) {
+            if ((l3Var.f15785b & 8) != 0) {
                 toolbar.setTitle(string);
-                if (l3Var.f14469g) {
+                if (l3Var.f15789g) {
                     i0.l(toolbar.getRootView(), string);
                     return;
                 }

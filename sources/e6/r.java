@@ -5,30 +5,30 @@ import ci.o2;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.internal.cast.c0;
 public final class r {
-    public final int f8020a;
-    public final c f8021b;
+    public final int f8701a;
+    public final c f8702b;
 
     public r(c cVar, int i10) {
-        this.f8020a = i10;
-        this.f8021b = cVar;
+        this.f8701a = i10;
+        this.f8702b = cVar;
     }
 
     public final void a(com.google.android.gms.common.api.q qVar) {
         o oVar = (o) qVar;
-        switch (this.f8020a) {
+        switch (this.f8701a) {
             case 0:
                 Status i10 = oVar.i();
-                int i11 = i10.f6005a;
-                c cVar = this.f8021b;
+                int i11 = i10.f6472a;
+                c cVar = this.f8702b;
                 if (i11 != 0) {
-                    g6.b bVar = cVar.f7972a;
-                    String str = i10.f6006b;
-                    Log.w(bVar.f9412a, bVar.d("Error fetching queue item ids, statusCode=" + i11 + ", statusMessage=" + str, new Object[0]));
+                    g6.b bVar = cVar.f8650a;
+                    String str = i10.f6473b;
+                    Log.w(bVar.f10249a, bVar.d("Error fetching queue item ids, statusCode=" + i11 + ", statusMessage=" + str, new Object[0]));
                 }
-                cVar.f7980l = null;
+                cVar.f8659l = null;
                 if (!cVar.h.isEmpty()) {
-                    c0 c0Var = cVar.f7977i;
-                    o2 o2Var = cVar.f7978j;
+                    c0 c0Var = cVar.f8656i;
+                    o2 o2Var = cVar.f8657j;
                     c0Var.removeCallbacks(o2Var);
                     c0Var.postDelayed(o2Var, 500L);
                     return;
@@ -36,17 +36,17 @@ public final class r {
                 return;
             default:
                 Status i12 = oVar.i();
-                int i13 = i12.f6005a;
-                c cVar2 = this.f8021b;
+                int i13 = i12.f6472a;
+                c cVar2 = this.f8702b;
                 if (i13 != 0) {
-                    g6.b bVar2 = cVar2.f7972a;
-                    String str2 = i12.f6006b;
-                    Log.w(bVar2.f9412a, bVar2.d("Error fetching queue items, statusCode=" + i13 + ", statusMessage=" + str2, new Object[0]));
+                    g6.b bVar2 = cVar2.f8650a;
+                    String str2 = i12.f6473b;
+                    Log.w(bVar2.f10249a, bVar2.d("Error fetching queue items, statusCode=" + i13 + ", statusMessage=" + str2, new Object[0]));
                 }
-                cVar2.f7979k = null;
+                cVar2.f8658k = null;
                 if (!cVar2.h.isEmpty()) {
-                    c0 c0Var2 = cVar2.f7977i;
-                    o2 o2Var2 = cVar2.f7978j;
+                    c0 c0Var2 = cVar2.f8656i;
+                    o2 o2Var2 = cVar2.f8657j;
                     c0Var2.removeCallbacks(o2Var2);
                     c0Var2.postDelayed(o2Var2, 500L);
                     return;

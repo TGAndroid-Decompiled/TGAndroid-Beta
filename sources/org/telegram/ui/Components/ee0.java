@@ -32,7 +32,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.LaunchActivity;
 public class ee0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public static final int[] f23989a0 = {R.id.passcode_btn_0, R.id.passcode_btn_1, R.id.passcode_btn_2, R.id.passcode_btn_3, R.id.passcode_btn_4, R.id.passcode_btn_5, R.id.passcode_btn_6, R.id.passcode_btn_7, R.id.passcode_btn_8, R.id.passcode_btn_9, R.id.passcode_btn_backspace, R.id.passcode_btn_fingerprint};
+    public static final int[] f26050a0 = {R.id.passcode_btn_0, R.id.passcode_btn_1, R.id.passcode_btn_2, R.id.passcode_btn_3, R.id.passcode_btn_4, R.id.passcode_btn_5, R.id.passcode_btn_6, R.id.passcode_btn_7, R.id.passcode_btn_8, R.id.passcode_btn_9, R.id.passcode_btn_backspace, R.id.passcode_btn_fingerprint};
     public final ImageView E;
     public final View F;
     public int G;
@@ -52,25 +52,25 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
     public boolean U;
     public ValueAnimator V;
     public final int[] W;
-    public Drawable f23990a;
-    public final FrameLayout f23991b;
-    public final TextView f23992c;
+    public Drawable f26051a;
+    public final FrameLayout f26052b;
+    public final TextView f26053c;
     public final FrameLayout d;
-    public final ai.w5 e;
-    public final ArrayList f23993f;
+    public final ai.w5 f26054e;
+    public final ArrayList f26055f;
     public final FrameLayout h;
-    public final ce0 f23994n;
-    public final EditTextBoldCursor f23995r;
-    public final ci.j9 f23996s;
+    public final ce0 f26056n;
+    public final EditTextBoldCursor f26057r;
+    public final ci.i9 f26058s;
     public final ci.m6 v;
-    public final TextView f23997w;
-    public final TextView f23998x;
-    public final ImageView f23999y;
+    public final TextView f26059w;
+    public final TextView f26060x;
+    public final ImageView f26061y;
 
     public ee0(Context context) {
         super(context);
         int i10;
-        int[] iArr = f23989a0;
+        int[] iArr = f26050a0;
         this.G = 0;
         this.J = new Rect();
         this.M = new LinkedList();
@@ -85,34 +85,34 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         ci.m6 m6Var = new ci.m6(this, context);
         this.v = m6Var;
         m6Var.setWillNotDraw(false);
-        addView(m6Var, w7.y5.c(-1.0f, -1));
+        addView(m6Var, w7.z5.c(-1.0f, -1));
         ?? imageView = new ImageView(context);
         this.I = imageView;
         imageView.f(R.raw.passcode_lock, 58, 58, null);
         imageView.setAutoRepeat(false);
-        addView((View) imageView, w7.y5.e(58, 58, 51));
+        addView((View) imageView, w7.z5.e(58, 58, 51));
         FrameLayout frameLayout = new FrameLayout(context);
         this.h = frameLayout;
-        m6Var.addView(frameLayout, w7.y5.c(-1.0f, -1));
+        m6Var.addView(frameLayout, w7.z5.c(-1.0f, -1));
         TextView textView = new TextView(context);
-        this.f23997w = textView;
+        this.f26059w = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 18.33f);
         textView.setGravity(1);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setAlpha(0.0f);
-        TextView h = org.telegram.ui.Cells.c1.h(frameLayout, textView, w7.y5.d(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, 128.0f), context);
-        this.f23998x = h;
-        h.setTextColor(-1);
-        h.setTextSize(1, 15.0f);
-        h.setGravity(1);
-        h.setVisibility(4);
-        m6Var.addView(h, w7.y5.e(-2, -2, 17));
-        ci.j9 j9Var = new ci.j9(this, context);
-        this.f23996s = j9Var;
-        frameLayout.addView(j9Var, w7.y5.d(-1, -2.0f, 81, 70.0f, 0.0f, 70.0f, 46.0f));
+        TextView i11 = org.telegram.ui.Cells.c1.i(frameLayout, textView, w7.z5.d(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, 128.0f), context);
+        this.f26060x = i11;
+        i11.setTextColor(-1);
+        i11.setTextSize(1, 15.0f);
+        i11.setGravity(1);
+        i11.setVisibility(4);
+        m6Var.addView(i11, w7.z5.e(-2, -2, 17));
+        ci.i9 i9Var = new ci.i9(this, context);
+        this.f26058s = i9Var;
+        frameLayout.addView(i9Var, w7.z5.d(-1, -2.0f, 81, 70.0f, 0.0f, 70.0f, 46.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f23995r = editTextBoldCursor;
+        this.f26057r = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 36.0f);
         editTextBoldCursor.setTextColor(-1);
         editTextBoldCursor.setMaxLines(1);
@@ -124,40 +124,40 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setCursorColor(-1);
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(32.0f));
-        frameLayout.addView(editTextBoldCursor, w7.y5.d(-1, -2.0f, 81, 70.0f, 0.0f, 70.0f, 0.0f));
+        frameLayout.addView(editTextBoldCursor, w7.z5.d(-1, -2.0f, 81, 70.0f, 0.0f, 70.0f, 0.0f));
         editTextBoldCursor.setOnEditorActionListener(new e1(this, 3));
         editTextBoldCursor.addTextChangedListener(new ci.i2(this, 10));
         editTextBoldCursor.setCustomSelectionActionModeCallback(new ii.d1(2));
         ImageView imageView2 = new ImageView(context);
-        this.f23999y = imageView2;
+        this.f26061y = imageView2;
         imageView2.setImageResource(R.drawable.passcode_check);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView2.setScaleType(scaleType);
         imageView2.setBackgroundResource(R.drawable.bar_selector_lock);
-        frameLayout.addView(imageView2, w7.y5.d(60, 60.0f, 85, 0.0f, 0.0f, 10.0f, 4.0f));
+        frameLayout.addView(imageView2, w7.z5.d(60, 60.0f, 85, 0.0f, 0.0f, 10.0f, 4.0f));
         imageView2.setContentDescription(LocaleController.getString(R.string.Done));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final ee0 f29039b;
+            public final ee0 f31638b;
 
             {
-                this.f29039b = this;
+                this.f31638b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 LinkedList linkedList;
                 LinkedList linkedList2;
-                int i11;
+                int i12;
                 boolean z10;
                 LinkedList linkedList3;
-                int i12;
                 int i13;
                 int i14;
+                int i15;
                 boolean z11;
                 boolean z12;
-                int i15 = r2;
-                ee0 ee0Var = this.f29039b;
-                switch (i15) {
+                int i16 = r2;
+                ee0 ee0Var = this.f31638b;
+                switch (i16) {
                     case 0:
                         ee0Var.k(false);
                         return;
@@ -167,107 +167,107 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                     default:
                         LinkedList linkedList4 = ee0Var.N;
                         LinkedList linkedList5 = ee0Var.M;
-                        ci.j9 j9Var2 = ee0Var.f23996s;
+                        ci.i9 i9Var2 = ee0Var.f26058s;
                         if (ee0Var.U) {
                             int intValue = ((Integer) view.getTag()).intValue();
                             switch (intValue) {
                                 case 0:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("0");
+                                    i12 = intValue;
+                                    i9Var2.b("0");
                                     z10 = false;
                                     break;
                                 case 1:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("1");
+                                    i12 = intValue;
+                                    i9Var2.b("1");
                                     z10 = false;
                                     break;
                                 case 2:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("2");
+                                    i12 = intValue;
+                                    i9Var2.b("2");
                                     z10 = false;
                                     break;
                                 case 3:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("3");
+                                    i12 = intValue;
+                                    i9Var2.b("3");
                                     z10 = false;
                                     break;
                                 case 4:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("4");
+                                    i12 = intValue;
+                                    i9Var2.b("4");
                                     z10 = false;
                                     break;
                                 case 5:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("5");
+                                    i12 = intValue;
+                                    i9Var2.b("5");
                                     z10 = false;
                                     break;
                                 case 6:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("6");
+                                    i12 = intValue;
+                                    i9Var2.b("6");
                                     z10 = false;
                                     break;
                                 case 7:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("7");
+                                    i12 = intValue;
+                                    i9Var2.b("7");
                                     z10 = false;
                                     break;
                                 case 8:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("8");
+                                    i12 = intValue;
+                                    i9Var2.b("8");
                                     z10 = false;
                                     break;
                                 case 9:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("9");
+                                    i12 = intValue;
+                                    i9Var2.b("9");
                                     z10 = false;
                                     break;
                                 case 10:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
+                                    i12 = intValue;
                                     ee0Var.c();
                                     z10 = false;
                                     break;
                                 case 11:
-                                    ArrayList arrayList = (ArrayList) j9Var2.f4865c;
+                                    ArrayList arrayList = (ArrayList) i9Var2.f5175c;
                                     Property property = View.TRANSLATION_Y;
                                     Property property2 = View.ALPHA;
                                     Property property3 = View.SCALE_Y;
                                     Property property4 = View.SCALE_X;
-                                    ArrayList arrayList2 = (ArrayList) j9Var2.f4864b;
+                                    ArrayList arrayList2 = (ArrayList) i9Var2.f5174b;
                                     Property property5 = View.TRANSLATION_X;
-                                    StringBuilder sb2 = (StringBuilder) j9Var2.d;
+                                    StringBuilder sb2 = (StringBuilder) i9Var2.d;
                                     if (sb2.length() == 0) {
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i11 = intValue;
+                                        i12 = intValue;
                                         z10 = false;
                                         break;
                                     } else {
                                         try {
-                                            j9Var2.performHapticFeedback(3);
-                                        } catch (Exception e) {
-                                            FileLog.e(e);
+                                            i9Var2.performHapticFeedback(3);
+                                        } catch (Exception e7) {
+                                            FileLog.e(e7);
                                         }
                                         ArrayList arrayList3 = new ArrayList();
                                         int length = sb2.length() - 1;
@@ -275,97 +275,97 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                                             sb2.deleteCharAt(length);
                                         }
                                         linkedList = linkedList4;
-                                        int i16 = length;
-                                        while (i16 < 4) {
-                                            TextView textView2 = (TextView) arrayList2.get(i16);
+                                        int i17 = length;
+                                        while (i17 < 4) {
+                                            TextView textView2 = (TextView) arrayList2.get(i17);
                                             if (textView2.getAlpha() != 0.0f) {
                                                 linkedList3 = linkedList5;
-                                                i12 = intValue;
-                                                i13 = 1;
+                                                i13 = intValue;
+                                                i14 = 1;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView2, property4, 0.0f));
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView2, property3, 0.0f));
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f));
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f));
-                                                arrayList3.add(ObjectAnimator.ofFloat(textView2, property5, j9Var2.c(i16)));
+                                                arrayList3.add(ObjectAnimator.ofFloat(textView2, property5, i9Var2.c(i17)));
                                             } else {
                                                 linkedList3 = linkedList5;
-                                                i12 = intValue;
-                                                i13 = 1;
+                                                i13 = intValue;
+                                                i14 = 1;
                                             }
-                                            TextView textView3 = (TextView) arrayList.get(i16);
+                                            TextView textView3 = (TextView) arrayList.get(i17);
                                             if (textView3.getAlpha() != 0.0f) {
-                                                float[] fArr = new float[i13];
+                                                float[] fArr = new float[i14];
                                                 fArr[0] = 0.0f;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property4, fArr));
-                                                float[] fArr2 = new float[i13];
+                                                float[] fArr2 = new float[i14];
                                                 fArr2[0] = 0.0f;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property3, fArr2));
-                                                float[] fArr3 = new float[i13];
+                                                float[] fArr3 = new float[i14];
                                                 fArr3[0] = 0.0f;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property2, fArr3));
-                                                float[] fArr4 = new float[i13];
+                                                float[] fArr4 = new float[i14];
                                                 fArr4[0] = 0.0f;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property, fArr4));
-                                                i14 = i16;
-                                                float[] fArr5 = new float[i13];
-                                                fArr5[0] = j9Var2.c(i16);
+                                                i15 = i17;
+                                                float[] fArr5 = new float[i14];
+                                                fArr5[0] = i9Var2.c(i17);
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property5, fArr5));
                                             } else {
-                                                i14 = i16;
+                                                i15 = i17;
                                             }
-                                            i16 = i14 + 1;
+                                            i17 = i15 + 1;
                                             linkedList5 = linkedList3;
-                                            intValue = i12;
+                                            intValue = i13;
                                         }
                                         linkedList2 = linkedList5;
-                                        i11 = intValue;
+                                        i12 = intValue;
                                         if (length == 0) {
                                             sb2.deleteCharAt(length);
                                         }
-                                        for (int i17 = 0; i17 < length; i17++) {
-                                            arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i17), property5, j9Var2.c(i17)));
-                                            arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i17), property5, j9Var2.c(i17)));
+                                        for (int i18 = 0; i18 < length; i18++) {
+                                            arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i18), property5, i9Var2.c(i18)));
+                                            arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i18), property5, i9Var2.c(i18)));
                                         }
-                                        jf jfVar = (jf) j9Var2.f4866f;
-                                        if (jfVar != null) {
-                                            AndroidUtilities.cancelRunOnUIThread(jfVar);
-                                            j9Var2.f4866f = null;
+                                        kf kfVar = (kf) i9Var2.f5177f;
+                                        if (kfVar != null) {
+                                            AndroidUtilities.cancelRunOnUIThread(kfVar);
+                                            i9Var2.f5177f = null;
                                         }
-                                        AnimatorSet animatorSet = (AnimatorSet) j9Var2.e;
+                                        AnimatorSet animatorSet = (AnimatorSet) i9Var2.f5176e;
                                         if (animatorSet != null) {
                                             animatorSet.cancel();
                                         }
                                         AnimatorSet animatorSet2 = new AnimatorSet();
-                                        j9Var2.e = animatorSet2;
+                                        i9Var2.f5176e = animatorSet2;
                                         animatorSet2.setDuration(150L);
-                                        ((AnimatorSet) j9Var2.e).playTogether(arrayList3);
-                                        ((AnimatorSet) j9Var2.e).addListener(new ae0(j9Var2, 1));
-                                        ((AnimatorSet) j9Var2.e).start();
-                                        ee0.a((ee0) j9Var2.h);
+                                        ((AnimatorSet) i9Var2.f5176e).playTogether(arrayList3);
+                                        ((AnimatorSet) i9Var2.f5176e).addListener(new ae0(i9Var2, 1));
+                                        ((AnimatorSet) i9Var2.f5176e).start();
+                                        ee0.a((ee0) i9Var2.h);
                                         z10 = true;
                                         break;
                                     }
                                 default:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
+                                    i12 = intValue;
                                     z10 = false;
                                     break;
                             }
-                            if (((StringBuilder) j9Var2.d).length() == 4) {
+                            if (((StringBuilder) i9Var2.d).length() == 4) {
                                 ee0Var.k(false);
                             }
-                            int i18 = i11;
-                            if (i18 != 11) {
-                                Drawable drawable = ee0Var.f23990a;
-                                if (drawable instanceof oc0) {
-                                    oc0 oc0Var = (oc0) drawable;
-                                    oc0Var.D = null;
-                                    oc0Var.z();
-                                    float f7 = oc0Var.h;
-                                    if (i18 == 10) {
+                            int i19 = i12;
+                            if (i19 != 11) {
+                                Drawable drawable = ee0Var.f26051a;
+                                if (drawable instanceof pc0) {
+                                    pc0 pc0Var = (pc0) drawable;
+                                    pc0Var.D = null;
+                                    pc0Var.z();
+                                    float f7 = pc0Var.h;
+                                    if (i19 == 10) {
                                         if (z10) {
-                                            oc0Var.y();
+                                            pc0Var.y();
                                             z12 = true;
                                         } else {
                                             z12 = false;
@@ -373,42 +373,42 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                                         z11 = false;
                                     } else {
                                         z11 = true;
-                                        oc0Var.x(true);
+                                        pc0Var.x(true);
                                         z12 = true;
                                     }
                                     if (z12) {
                                         if (f7 >= 1.0f) {
-                                            ee0Var.b(oc0Var);
+                                            ee0Var.b(pc0Var);
                                             return;
                                         }
-                                        ci.y0 y0Var = new ci.y0(ee0Var, z11, oc0Var, 21);
+                                        ci.y0 y0Var = new ci.y0(ee0Var, z11, pc0Var, 21);
                                         LinkedList linkedList6 = linkedList2;
                                         linkedList6.offer(y0Var);
                                         LinkedList linkedList7 = linkedList;
                                         linkedList7.offer(Boolean.valueOf(z11));
                                         ArrayList arrayList4 = new ArrayList();
                                         ArrayList arrayList5 = new ArrayList();
-                                        for (int i19 = 0; i19 < linkedList6.size(); i19++) {
-                                            Runnable runnable = (Runnable) linkedList6.get(i19);
-                                            Boolean bool = (Boolean) linkedList7.get(i19);
+                                        for (int i20 = 0; i20 < linkedList6.size(); i20++) {
+                                            Runnable runnable = (Runnable) linkedList6.get(i20);
+                                            Boolean bool = (Boolean) linkedList7.get(i20);
                                             if (bool != null && bool.booleanValue() != z11) {
                                                 arrayList4.add(runnable);
-                                                arrayList5.add(Integer.valueOf(i19));
+                                                arrayList5.add(Integer.valueOf(i20));
                                             }
                                         }
                                         int size = arrayList4.size();
-                                        int i20 = 0;
-                                        while (i20 < size) {
-                                            Object obj = arrayList4.get(i20);
-                                            i20++;
+                                        int i21 = 0;
+                                        while (i21 < size) {
+                                            Object obj = arrayList4.get(i21);
+                                            i21++;
                                             linkedList6.remove((Runnable) obj);
                                         }
-                                        Collections.sort(arrayList5, new org.telegram.ui.cf(11));
+                                        Collections.sort(arrayList5, new org.telegram.ui.ff(11));
                                         int size2 = arrayList5.size();
-                                        int i21 = 0;
-                                        while (i21 < size2) {
-                                            Object obj2 = arrayList5.get(i21);
-                                            i21++;
+                                        int i22 = 0;
+                                        while (i22 < size2) {
+                                            Object obj2 = arrayList5.get(i22);
+                                            i22++;
                                             linkedList7.remove(((Integer) obj2).intValue());
                                         }
                                         return;
@@ -428,30 +428,30 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         imageView3.setImageResource(R.drawable.fingerprint);
         imageView3.setScaleType(scaleType);
         imageView3.setBackgroundResource(R.drawable.bar_selector_lock);
-        frameLayout.addView(imageView3, w7.y5.d(60, 60.0f, 83, 10.0f, 0.0f, 0.0f, 4.0f));
+        frameLayout.addView(imageView3, w7.z5.d(60, 60.0f, 83, 10.0f, 0.0f, 0.0f, 4.0f));
         imageView3.setContentDescription(LocaleController.getString(R.string.AccDescrFingerprint));
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final ee0 f29039b;
+            public final ee0 f31638b;
 
             {
-                this.f29039b = this;
+                this.f31638b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 LinkedList linkedList;
                 LinkedList linkedList2;
-                int i11;
+                int i12;
                 boolean z10;
                 LinkedList linkedList3;
-                int i12;
                 int i13;
                 int i14;
+                int i15;
                 boolean z11;
                 boolean z12;
-                int i15 = r2;
-                ee0 ee0Var = this.f29039b;
-                switch (i15) {
+                int i16 = r2;
+                ee0 ee0Var = this.f31638b;
+                switch (i16) {
                     case 0:
                         ee0Var.k(false);
                         return;
@@ -461,107 +461,107 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                     default:
                         LinkedList linkedList4 = ee0Var.N;
                         LinkedList linkedList5 = ee0Var.M;
-                        ci.j9 j9Var2 = ee0Var.f23996s;
+                        ci.i9 i9Var2 = ee0Var.f26058s;
                         if (ee0Var.U) {
                             int intValue = ((Integer) view.getTag()).intValue();
                             switch (intValue) {
                                 case 0:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("0");
+                                    i12 = intValue;
+                                    i9Var2.b("0");
                                     z10 = false;
                                     break;
                                 case 1:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("1");
+                                    i12 = intValue;
+                                    i9Var2.b("1");
                                     z10 = false;
                                     break;
                                 case 2:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("2");
+                                    i12 = intValue;
+                                    i9Var2.b("2");
                                     z10 = false;
                                     break;
                                 case 3:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("3");
+                                    i12 = intValue;
+                                    i9Var2.b("3");
                                     z10 = false;
                                     break;
                                 case 4:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("4");
+                                    i12 = intValue;
+                                    i9Var2.b("4");
                                     z10 = false;
                                     break;
                                 case 5:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("5");
+                                    i12 = intValue;
+                                    i9Var2.b("5");
                                     z10 = false;
                                     break;
                                 case 6:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("6");
+                                    i12 = intValue;
+                                    i9Var2.b("6");
                                     z10 = false;
                                     break;
                                 case 7:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("7");
+                                    i12 = intValue;
+                                    i9Var2.b("7");
                                     z10 = false;
                                     break;
                                 case 8:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("8");
+                                    i12 = intValue;
+                                    i9Var2.b("8");
                                     z10 = false;
                                     break;
                                 case 9:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
-                                    j9Var2.b("9");
+                                    i12 = intValue;
+                                    i9Var2.b("9");
                                     z10 = false;
                                     break;
                                 case 10:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
+                                    i12 = intValue;
                                     ee0Var.c();
                                     z10 = false;
                                     break;
                                 case 11:
-                                    ArrayList arrayList = (ArrayList) j9Var2.f4865c;
+                                    ArrayList arrayList = (ArrayList) i9Var2.f5175c;
                                     Property property = View.TRANSLATION_Y;
                                     Property property2 = View.ALPHA;
                                     Property property3 = View.SCALE_Y;
                                     Property property4 = View.SCALE_X;
-                                    ArrayList arrayList2 = (ArrayList) j9Var2.f4864b;
+                                    ArrayList arrayList2 = (ArrayList) i9Var2.f5174b;
                                     Property property5 = View.TRANSLATION_X;
-                                    StringBuilder sb2 = (StringBuilder) j9Var2.d;
+                                    StringBuilder sb2 = (StringBuilder) i9Var2.d;
                                     if (sb2.length() == 0) {
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i11 = intValue;
+                                        i12 = intValue;
                                         z10 = false;
                                         break;
                                     } else {
                                         try {
-                                            j9Var2.performHapticFeedback(3);
-                                        } catch (Exception e) {
-                                            FileLog.e(e);
+                                            i9Var2.performHapticFeedback(3);
+                                        } catch (Exception e7) {
+                                            FileLog.e(e7);
                                         }
                                         ArrayList arrayList3 = new ArrayList();
                                         int length = sb2.length() - 1;
@@ -569,97 +569,97 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                                             sb2.deleteCharAt(length);
                                         }
                                         linkedList = linkedList4;
-                                        int i16 = length;
-                                        while (i16 < 4) {
-                                            TextView textView2 = (TextView) arrayList2.get(i16);
+                                        int i17 = length;
+                                        while (i17 < 4) {
+                                            TextView textView2 = (TextView) arrayList2.get(i17);
                                             if (textView2.getAlpha() != 0.0f) {
                                                 linkedList3 = linkedList5;
-                                                i12 = intValue;
-                                                i13 = 1;
+                                                i13 = intValue;
+                                                i14 = 1;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView2, property4, 0.0f));
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView2, property3, 0.0f));
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f));
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f));
-                                                arrayList3.add(ObjectAnimator.ofFloat(textView2, property5, j9Var2.c(i16)));
+                                                arrayList3.add(ObjectAnimator.ofFloat(textView2, property5, i9Var2.c(i17)));
                                             } else {
                                                 linkedList3 = linkedList5;
-                                                i12 = intValue;
-                                                i13 = 1;
+                                                i13 = intValue;
+                                                i14 = 1;
                                             }
-                                            TextView textView3 = (TextView) arrayList.get(i16);
+                                            TextView textView3 = (TextView) arrayList.get(i17);
                                             if (textView3.getAlpha() != 0.0f) {
-                                                float[] fArr = new float[i13];
+                                                float[] fArr = new float[i14];
                                                 fArr[0] = 0.0f;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property4, fArr));
-                                                float[] fArr2 = new float[i13];
+                                                float[] fArr2 = new float[i14];
                                                 fArr2[0] = 0.0f;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property3, fArr2));
-                                                float[] fArr3 = new float[i13];
+                                                float[] fArr3 = new float[i14];
                                                 fArr3[0] = 0.0f;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property2, fArr3));
-                                                float[] fArr4 = new float[i13];
+                                                float[] fArr4 = new float[i14];
                                                 fArr4[0] = 0.0f;
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property, fArr4));
-                                                i14 = i16;
-                                                float[] fArr5 = new float[i13];
-                                                fArr5[0] = j9Var2.c(i16);
+                                                i15 = i17;
+                                                float[] fArr5 = new float[i14];
+                                                fArr5[0] = i9Var2.c(i17);
                                                 arrayList3.add(ObjectAnimator.ofFloat(textView3, property5, fArr5));
                                             } else {
-                                                i14 = i16;
+                                                i15 = i17;
                                             }
-                                            i16 = i14 + 1;
+                                            i17 = i15 + 1;
                                             linkedList5 = linkedList3;
-                                            intValue = i12;
+                                            intValue = i13;
                                         }
                                         linkedList2 = linkedList5;
-                                        i11 = intValue;
+                                        i12 = intValue;
                                         if (length == 0) {
                                             sb2.deleteCharAt(length);
                                         }
-                                        for (int i17 = 0; i17 < length; i17++) {
-                                            arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i17), property5, j9Var2.c(i17)));
-                                            arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i17), property5, j9Var2.c(i17)));
+                                        for (int i18 = 0; i18 < length; i18++) {
+                                            arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i18), property5, i9Var2.c(i18)));
+                                            arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i18), property5, i9Var2.c(i18)));
                                         }
-                                        jf jfVar = (jf) j9Var2.f4866f;
-                                        if (jfVar != null) {
-                                            AndroidUtilities.cancelRunOnUIThread(jfVar);
-                                            j9Var2.f4866f = null;
+                                        kf kfVar = (kf) i9Var2.f5177f;
+                                        if (kfVar != null) {
+                                            AndroidUtilities.cancelRunOnUIThread(kfVar);
+                                            i9Var2.f5177f = null;
                                         }
-                                        AnimatorSet animatorSet = (AnimatorSet) j9Var2.e;
+                                        AnimatorSet animatorSet = (AnimatorSet) i9Var2.f5176e;
                                         if (animatorSet != null) {
                                             animatorSet.cancel();
                                         }
                                         AnimatorSet animatorSet2 = new AnimatorSet();
-                                        j9Var2.e = animatorSet2;
+                                        i9Var2.f5176e = animatorSet2;
                                         animatorSet2.setDuration(150L);
-                                        ((AnimatorSet) j9Var2.e).playTogether(arrayList3);
-                                        ((AnimatorSet) j9Var2.e).addListener(new ae0(j9Var2, 1));
-                                        ((AnimatorSet) j9Var2.e).start();
-                                        ee0.a((ee0) j9Var2.h);
+                                        ((AnimatorSet) i9Var2.f5176e).playTogether(arrayList3);
+                                        ((AnimatorSet) i9Var2.f5176e).addListener(new ae0(i9Var2, 1));
+                                        ((AnimatorSet) i9Var2.f5176e).start();
+                                        ee0.a((ee0) i9Var2.h);
                                         z10 = true;
                                         break;
                                     }
                                 default:
                                     linkedList = linkedList4;
                                     linkedList2 = linkedList5;
-                                    i11 = intValue;
+                                    i12 = intValue;
                                     z10 = false;
                                     break;
                             }
-                            if (((StringBuilder) j9Var2.d).length() == 4) {
+                            if (((StringBuilder) i9Var2.d).length() == 4) {
                                 ee0Var.k(false);
                             }
-                            int i18 = i11;
-                            if (i18 != 11) {
-                                Drawable drawable = ee0Var.f23990a;
-                                if (drawable instanceof oc0) {
-                                    oc0 oc0Var = (oc0) drawable;
-                                    oc0Var.D = null;
-                                    oc0Var.z();
-                                    float f7 = oc0Var.h;
-                                    if (i18 == 10) {
+                            int i19 = i12;
+                            if (i19 != 11) {
+                                Drawable drawable = ee0Var.f26051a;
+                                if (drawable instanceof pc0) {
+                                    pc0 pc0Var = (pc0) drawable;
+                                    pc0Var.D = null;
+                                    pc0Var.z();
+                                    float f7 = pc0Var.h;
+                                    if (i19 == 10) {
                                         if (z10) {
-                                            oc0Var.y();
+                                            pc0Var.y();
                                             z12 = true;
                                         } else {
                                             z12 = false;
@@ -667,42 +667,42 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                                         z11 = false;
                                     } else {
                                         z11 = true;
-                                        oc0Var.x(true);
+                                        pc0Var.x(true);
                                         z12 = true;
                                     }
                                     if (z12) {
                                         if (f7 >= 1.0f) {
-                                            ee0Var.b(oc0Var);
+                                            ee0Var.b(pc0Var);
                                             return;
                                         }
-                                        ci.y0 y0Var = new ci.y0(ee0Var, z11, oc0Var, 21);
+                                        ci.y0 y0Var = new ci.y0(ee0Var, z11, pc0Var, 21);
                                         LinkedList linkedList6 = linkedList2;
                                         linkedList6.offer(y0Var);
                                         LinkedList linkedList7 = linkedList;
                                         linkedList7.offer(Boolean.valueOf(z11));
                                         ArrayList arrayList4 = new ArrayList();
                                         ArrayList arrayList5 = new ArrayList();
-                                        for (int i19 = 0; i19 < linkedList6.size(); i19++) {
-                                            Runnable runnable = (Runnable) linkedList6.get(i19);
-                                            Boolean bool = (Boolean) linkedList7.get(i19);
+                                        for (int i20 = 0; i20 < linkedList6.size(); i20++) {
+                                            Runnable runnable = (Runnable) linkedList6.get(i20);
+                                            Boolean bool = (Boolean) linkedList7.get(i20);
                                             if (bool != null && bool.booleanValue() != z11) {
                                                 arrayList4.add(runnable);
-                                                arrayList5.add(Integer.valueOf(i19));
+                                                arrayList5.add(Integer.valueOf(i20));
                                             }
                                         }
                                         int size = arrayList4.size();
-                                        int i20 = 0;
-                                        while (i20 < size) {
-                                            Object obj = arrayList4.get(i20);
-                                            i20++;
+                                        int i21 = 0;
+                                        while (i21 < size) {
+                                            Object obj = arrayList4.get(i21);
+                                            i21++;
                                             linkedList6.remove((Runnable) obj);
                                         }
-                                        Collections.sort(arrayList5, new org.telegram.ui.cf(11));
+                                        Collections.sort(arrayList5, new org.telegram.ui.ff(11));
                                         int size2 = arrayList5.size();
-                                        int i21 = 0;
-                                        while (i21 < size2) {
-                                            Object obj2 = arrayList5.get(i21);
-                                            i21++;
+                                        int i22 = 0;
+                                        while (i22 < size2) {
+                                            Object obj2 = arrayList5.get(i22);
+                                            i22++;
                                             linkedList7.remove(((Integer) obj2).intValue());
                                         }
                                         return;
@@ -720,62 +720,62 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         View view = new View(context);
         this.F = view;
         view.setBackgroundColor(822083583);
-        frameLayout.addView(view, w7.y5.a(-1.0f, 1.0f / AndroidUtilities.density, 87));
+        frameLayout.addView(view, w7.z5.a(-1.0f, 1.0f / AndroidUtilities.density, 87));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.d = frameLayout2;
-        m6Var.addView(frameLayout2, w7.y5.e(-1, -1, 51));
+        m6Var.addView(frameLayout2, w7.z5.e(-1, -1, 51));
         ai.w5 w5Var = new ai.w5(context, 17);
-        this.e = w5Var;
-        frameLayout2.addView(w5Var, w7.y5.e(-2, -2, 17));
+        this.f26054e = w5Var;
+        frameLayout2.addView(w5Var, w7.z5.e(-2, -2, 17));
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f23991b = frameLayout3;
-        w5Var.addView(frameLayout3, w7.y5.e(-2, -2, 49));
+        this.f26052b = frameLayout3;
+        w5Var.addView(frameLayout3, w7.z5.e(-2, -2, 49));
         TextView f7 = org.telegram.messenger.f0.f(context, 1, 15.0f);
         f7.setTypeface(AndroidUtilities.bold());
         f7.setTextColor(-1);
         f7.setText(LocaleController.getString(R.string.UnlockToUse));
-        TextView h10 = org.telegram.ui.Cells.c1.h(frameLayout3, f7, w7.y5.d(-2, -2.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f), context);
-        this.f23992c = h10;
-        h10.setTextSize(1, 14.0f);
-        h10.setTextColor(-1);
-        h10.setText(LocaleController.getString(R.string.EnterPINorFingerprint));
-        frameLayout3.addView(h10, w7.y5.d(-2, -2.0f, 49, 0.0f, 23.0f, 0.0f, 0.0f));
-        this.f23993f = new ArrayList(10);
-        int i11 = 0;
+        TextView i12 = org.telegram.ui.Cells.c1.i(frameLayout3, f7, w7.z5.d(-2, -2.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f), context);
+        this.f26053c = i12;
+        i12.setTextSize(1, 14.0f);
+        i12.setTextColor(-1);
+        i12.setText(LocaleController.getString(R.string.EnterPINorFingerprint));
+        frameLayout3.addView(i12, w7.z5.d(-2, -2.0f, 49, 0.0f, 23.0f, 0.0f, 0.0f));
+        this.f26055f = new ArrayList(10);
+        int i13 = 0;
         while (true) {
-            if (i11 >= 12) {
+            if (i13 >= 12) {
                 break;
             }
             ce0 ce0Var = new ce0(context);
-            w7.a6.b(ce0Var, 0.15f, 1.5f);
-            ce0Var.setTag(Integer.valueOf(i11));
-            if (i11 == 11) {
+            w7.b6.b(ce0Var, 0.15f, 1.5f);
+            ce0Var.setTag(Integer.valueOf(i13));
+            if (i13 == 11) {
                 int dp = AndroidUtilities.dp(30.0f);
-                ce0Var.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, 0, 654311423, 654311423));
+                ce0Var.setBackground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, 0, 654311423, 654311423));
                 ce0Var.setImage(R.drawable.filled_clear);
-                ce0Var.setOnLongClickListener(new o10(this, 1));
+                ce0Var.setOnLongClickListener(new p10(this, 1));
                 ce0Var.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
                 l(ce0Var, R.id.passcode_btn_0);
-            } else if (i11 == 10) {
-                this.f23994n = ce0Var;
+            } else if (i13 == 10) {
+                this.f26056n = ce0Var;
                 int dp2 = AndroidUtilities.dp(30.0f);
-                ce0Var.setBackground(org.telegram.ui.ActionBar.h6.i0(dp2, dp2, dp2, dp2, 0, 654311423, 654311423));
+                ce0Var.setBackground(org.telegram.ui.ActionBar.i6.i0(dp2, dp2, dp2, dp2, 0, 654311423, 654311423));
                 ce0Var.setContentDescription(LocaleController.getString(R.string.AccDescrFingerprint));
                 ce0Var.setImage(R.drawable.fingerprint);
                 l(ce0Var, R.id.passcode_btn_1);
             } else {
                 int dp3 = AndroidUtilities.dp(30.0f);
-                ce0Var.setBackground(org.telegram.ui.ActionBar.h6.i0(dp3, dp3, dp3, dp3, 654311423, 1291845631, 1291845631));
-                ce0Var.setContentDescription(i11 + "");
-                ce0Var.setNum(i11);
-                if (i11 == 0) {
+                ce0Var.setBackground(org.telegram.ui.ActionBar.i6.i0(dp3, dp3, dp3, dp3, 654311423, 1291845631, 1291845631));
+                ce0Var.setContentDescription(i13 + "");
+                ce0Var.setNum(i13);
+                if (i13 == 0) {
                     l(ce0Var, R.id.passcode_btn_backspace);
-                } else if (i11 == 9) {
+                } else if (i13 == 9) {
                     Activity findActivity = AndroidUtilities.findActivity(getContext());
                     if (Build.VERSION.SDK_INT >= 23 && findActivity != null && SharedConfig.useFingerprintLock) {
                         try {
                             Context context2 = ApplicationLoader.applicationContext;
-                            xf.a aVar = xf.b.f46031a;
+                            xf.a aVar = xf.b.f49828a;
                             if (aVar.H0(context2) && aVar.c(context2) && FingerprintController.isKeyReady() && !FingerprintController.checkDeviceFingerprintsChanged()) {
                                 l(ce0Var, R.id.passcode_btn_fingerprint);
                             }
@@ -785,32 +785,32 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                     }
                     l(ce0Var, R.id.passcode_btn_0);
                 } else {
-                    l(ce0Var, iArr[i11 + 1]);
+                    l(ce0Var, iArr[i13 + 1]);
                 }
             }
-            ce0Var.setId(iArr[i11]);
+            ce0Var.setId(iArr[i13]);
             ce0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final ee0 f29039b;
+                public final ee0 f31638b;
 
                 {
-                    this.f29039b = this;
+                    this.f31638b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     LinkedList linkedList;
                     LinkedList linkedList2;
-                    int i112;
+                    int i122;
                     boolean z10;
                     LinkedList linkedList3;
-                    int i12;
-                    int i13;
+                    int i132;
                     int i14;
+                    int i15;
                     boolean z11;
                     boolean z12;
-                    int i15 = r2;
-                    ee0 ee0Var = this.f29039b;
-                    switch (i15) {
+                    int i16 = r2;
+                    ee0 ee0Var = this.f31638b;
+                    switch (i16) {
                         case 0:
                             ee0Var.k(false);
                             return;
@@ -820,107 +820,107 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                         default:
                             LinkedList linkedList4 = ee0Var.N;
                             LinkedList linkedList5 = ee0Var.M;
-                            ci.j9 j9Var2 = ee0Var.f23996s;
+                            ci.i9 i9Var2 = ee0Var.f26058s;
                             if (ee0Var.U) {
                                 int intValue = ((Integer) view2.getTag()).intValue();
                                 switch (intValue) {
                                     case 0:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("0");
+                                        i122 = intValue;
+                                        i9Var2.b("0");
                                         z10 = false;
                                         break;
                                     case 1:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("1");
+                                        i122 = intValue;
+                                        i9Var2.b("1");
                                         z10 = false;
                                         break;
                                     case 2:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("2");
+                                        i122 = intValue;
+                                        i9Var2.b("2");
                                         z10 = false;
                                         break;
                                     case 3:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("3");
+                                        i122 = intValue;
+                                        i9Var2.b("3");
                                         z10 = false;
                                         break;
                                     case 4:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("4");
+                                        i122 = intValue;
+                                        i9Var2.b("4");
                                         z10 = false;
                                         break;
                                     case 5:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("5");
+                                        i122 = intValue;
+                                        i9Var2.b("5");
                                         z10 = false;
                                         break;
                                     case 6:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("6");
+                                        i122 = intValue;
+                                        i9Var2.b("6");
                                         z10 = false;
                                         break;
                                     case 7:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("7");
+                                        i122 = intValue;
+                                        i9Var2.b("7");
                                         z10 = false;
                                         break;
                                     case 8:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("8");
+                                        i122 = intValue;
+                                        i9Var2.b("8");
                                         z10 = false;
                                         break;
                                     case 9:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
-                                        j9Var2.b("9");
+                                        i122 = intValue;
+                                        i9Var2.b("9");
                                         z10 = false;
                                         break;
                                     case 10:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
+                                        i122 = intValue;
                                         ee0Var.c();
                                         z10 = false;
                                         break;
                                     case 11:
-                                        ArrayList arrayList = (ArrayList) j9Var2.f4865c;
+                                        ArrayList arrayList = (ArrayList) i9Var2.f5175c;
                                         Property property = View.TRANSLATION_Y;
                                         Property property2 = View.ALPHA;
                                         Property property3 = View.SCALE_Y;
                                         Property property4 = View.SCALE_X;
-                                        ArrayList arrayList2 = (ArrayList) j9Var2.f4864b;
+                                        ArrayList arrayList2 = (ArrayList) i9Var2.f5174b;
                                         Property property5 = View.TRANSLATION_X;
-                                        StringBuilder sb2 = (StringBuilder) j9Var2.d;
+                                        StringBuilder sb2 = (StringBuilder) i9Var2.d;
                                         if (sb2.length() == 0) {
                                             linkedList = linkedList4;
                                             linkedList2 = linkedList5;
-                                            i112 = intValue;
+                                            i122 = intValue;
                                             z10 = false;
                                             break;
                                         } else {
                                             try {
-                                                j9Var2.performHapticFeedback(3);
-                                            } catch (Exception e) {
-                                                FileLog.e(e);
+                                                i9Var2.performHapticFeedback(3);
+                                            } catch (Exception e7) {
+                                                FileLog.e(e7);
                                             }
                                             ArrayList arrayList3 = new ArrayList();
                                             int length = sb2.length() - 1;
@@ -928,97 +928,97 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                                                 sb2.deleteCharAt(length);
                                             }
                                             linkedList = linkedList4;
-                                            int i16 = length;
-                                            while (i16 < 4) {
-                                                TextView textView2 = (TextView) arrayList2.get(i16);
+                                            int i17 = length;
+                                            while (i17 < 4) {
+                                                TextView textView2 = (TextView) arrayList2.get(i17);
                                                 if (textView2.getAlpha() != 0.0f) {
                                                     linkedList3 = linkedList5;
-                                                    i12 = intValue;
-                                                    i13 = 1;
+                                                    i132 = intValue;
+                                                    i14 = 1;
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView2, property4, 0.0f));
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView2, property3, 0.0f));
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f));
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f));
-                                                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property5, j9Var2.c(i16)));
+                                                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property5, i9Var2.c(i17)));
                                                 } else {
                                                     linkedList3 = linkedList5;
-                                                    i12 = intValue;
-                                                    i13 = 1;
+                                                    i132 = intValue;
+                                                    i14 = 1;
                                                 }
-                                                TextView textView3 = (TextView) arrayList.get(i16);
+                                                TextView textView3 = (TextView) arrayList.get(i17);
                                                 if (textView3.getAlpha() != 0.0f) {
-                                                    float[] fArr = new float[i13];
+                                                    float[] fArr = new float[i14];
                                                     fArr[0] = 0.0f;
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView3, property4, fArr));
-                                                    float[] fArr2 = new float[i13];
+                                                    float[] fArr2 = new float[i14];
                                                     fArr2[0] = 0.0f;
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView3, property3, fArr2));
-                                                    float[] fArr3 = new float[i13];
+                                                    float[] fArr3 = new float[i14];
                                                     fArr3[0] = 0.0f;
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView3, property2, fArr3));
-                                                    float[] fArr4 = new float[i13];
+                                                    float[] fArr4 = new float[i14];
                                                     fArr4[0] = 0.0f;
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView3, property, fArr4));
-                                                    i14 = i16;
-                                                    float[] fArr5 = new float[i13];
-                                                    fArr5[0] = j9Var2.c(i16);
+                                                    i15 = i17;
+                                                    float[] fArr5 = new float[i14];
+                                                    fArr5[0] = i9Var2.c(i17);
                                                     arrayList3.add(ObjectAnimator.ofFloat(textView3, property5, fArr5));
                                                 } else {
-                                                    i14 = i16;
+                                                    i15 = i17;
                                                 }
-                                                i16 = i14 + 1;
+                                                i17 = i15 + 1;
                                                 linkedList5 = linkedList3;
-                                                intValue = i12;
+                                                intValue = i132;
                                             }
                                             linkedList2 = linkedList5;
-                                            i112 = intValue;
+                                            i122 = intValue;
                                             if (length == 0) {
                                                 sb2.deleteCharAt(length);
                                             }
-                                            for (int i17 = 0; i17 < length; i17++) {
-                                                arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i17), property5, j9Var2.c(i17)));
-                                                arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i17), property5, j9Var2.c(i17)));
+                                            for (int i18 = 0; i18 < length; i18++) {
+                                                arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i18), property5, i9Var2.c(i18)));
+                                                arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i18), property5, i9Var2.c(i18)));
                                             }
-                                            jf jfVar = (jf) j9Var2.f4866f;
-                                            if (jfVar != null) {
-                                                AndroidUtilities.cancelRunOnUIThread(jfVar);
-                                                j9Var2.f4866f = null;
+                                            kf kfVar = (kf) i9Var2.f5177f;
+                                            if (kfVar != null) {
+                                                AndroidUtilities.cancelRunOnUIThread(kfVar);
+                                                i9Var2.f5177f = null;
                                             }
-                                            AnimatorSet animatorSet = (AnimatorSet) j9Var2.e;
+                                            AnimatorSet animatorSet = (AnimatorSet) i9Var2.f5176e;
                                             if (animatorSet != null) {
                                                 animatorSet.cancel();
                                             }
                                             AnimatorSet animatorSet2 = new AnimatorSet();
-                                            j9Var2.e = animatorSet2;
+                                            i9Var2.f5176e = animatorSet2;
                                             animatorSet2.setDuration(150L);
-                                            ((AnimatorSet) j9Var2.e).playTogether(arrayList3);
-                                            ((AnimatorSet) j9Var2.e).addListener(new ae0(j9Var2, 1));
-                                            ((AnimatorSet) j9Var2.e).start();
-                                            ee0.a((ee0) j9Var2.h);
+                                            ((AnimatorSet) i9Var2.f5176e).playTogether(arrayList3);
+                                            ((AnimatorSet) i9Var2.f5176e).addListener(new ae0(i9Var2, 1));
+                                            ((AnimatorSet) i9Var2.f5176e).start();
+                                            ee0.a((ee0) i9Var2.h);
                                             z10 = true;
                                             break;
                                         }
                                     default:
                                         linkedList = linkedList4;
                                         linkedList2 = linkedList5;
-                                        i112 = intValue;
+                                        i122 = intValue;
                                         z10 = false;
                                         break;
                                 }
-                                if (((StringBuilder) j9Var2.d).length() == 4) {
+                                if (((StringBuilder) i9Var2.d).length() == 4) {
                                     ee0Var.k(false);
                                 }
-                                int i18 = i112;
-                                if (i18 != 11) {
-                                    Drawable drawable = ee0Var.f23990a;
-                                    if (drawable instanceof oc0) {
-                                        oc0 oc0Var = (oc0) drawable;
-                                        oc0Var.D = null;
-                                        oc0Var.z();
-                                        float f72 = oc0Var.h;
-                                        if (i18 == 10) {
+                                int i19 = i122;
+                                if (i19 != 11) {
+                                    Drawable drawable = ee0Var.f26051a;
+                                    if (drawable instanceof pc0) {
+                                        pc0 pc0Var = (pc0) drawable;
+                                        pc0Var.D = null;
+                                        pc0Var.z();
+                                        float f72 = pc0Var.h;
+                                        if (i19 == 10) {
                                             if (z10) {
-                                                oc0Var.y();
+                                                pc0Var.y();
                                                 z12 = true;
                                             } else {
                                                 z12 = false;
@@ -1026,42 +1026,42 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                                             z11 = false;
                                         } else {
                                             z11 = true;
-                                            oc0Var.x(true);
+                                            pc0Var.x(true);
                                             z12 = true;
                                         }
                                         if (z12) {
                                             if (f72 >= 1.0f) {
-                                                ee0Var.b(oc0Var);
+                                                ee0Var.b(pc0Var);
                                                 return;
                                             }
-                                            ci.y0 y0Var = new ci.y0(ee0Var, z11, oc0Var, 21);
+                                            ci.y0 y0Var = new ci.y0(ee0Var, z11, pc0Var, 21);
                                             LinkedList linkedList6 = linkedList2;
                                             linkedList6.offer(y0Var);
                                             LinkedList linkedList7 = linkedList;
                                             linkedList7.offer(Boolean.valueOf(z11));
                                             ArrayList arrayList4 = new ArrayList();
                                             ArrayList arrayList5 = new ArrayList();
-                                            for (int i19 = 0; i19 < linkedList6.size(); i19++) {
-                                                Runnable runnable = (Runnable) linkedList6.get(i19);
-                                                Boolean bool = (Boolean) linkedList7.get(i19);
+                                            for (int i20 = 0; i20 < linkedList6.size(); i20++) {
+                                                Runnable runnable = (Runnable) linkedList6.get(i20);
+                                                Boolean bool = (Boolean) linkedList7.get(i20);
                                                 if (bool != null && bool.booleanValue() != z11) {
                                                     arrayList4.add(runnable);
-                                                    arrayList5.add(Integer.valueOf(i19));
+                                                    arrayList5.add(Integer.valueOf(i20));
                                                 }
                                             }
                                             int size = arrayList4.size();
-                                            int i20 = 0;
-                                            while (i20 < size) {
-                                                Object obj = arrayList4.get(i20);
-                                                i20++;
+                                            int i21 = 0;
+                                            while (i21 < size) {
+                                                Object obj = arrayList4.get(i21);
+                                                i21++;
                                                 linkedList6.remove((Runnable) obj);
                                             }
-                                            Collections.sort(arrayList5, new org.telegram.ui.cf(11));
+                                            Collections.sort(arrayList5, new org.telegram.ui.ff(11));
                                             int size2 = arrayList5.size();
-                                            int i21 = 0;
-                                            while (i21 < size2) {
-                                                Object obj2 = arrayList5.get(i21);
-                                                i21++;
+                                            int i22 = 0;
+                                            while (i22 < size2) {
+                                                Object obj2 = arrayList5.get(i22);
+                                                i22++;
                                                 linkedList7.remove(((Integer) obj2).intValue());
                                             }
                                             return;
@@ -1076,11 +1076,11 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                     }
                 }
             });
-            this.f23993f.add(ce0Var);
-            i11++;
+            this.f26055f.add(ce0Var);
+            i13++;
         }
         for (i10 = 11; i10 >= 0; i10--) {
-            this.e.addView((FrameLayout) this.f23993f.get(i10), w7.y5.e(60, 60, 51));
+            this.f26054e.addView((FrameLayout) this.f26055f.get(i10), w7.z5.e(60, 60, 51));
         }
         d();
     }
@@ -1089,9 +1089,9 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         boolean z10;
         float f7;
         float f10;
-        FrameLayout frameLayout = ee0Var.f23991b;
-        ci.j9 j9Var = ee0Var.f23996s;
-        if (j9Var != null && ((StringBuilder) j9Var.d).length() <= 0) {
+        FrameLayout frameLayout = ee0Var.f26052b;
+        ci.i9 i9Var = ee0Var.f26058s;
+        if (i9Var != null && ((StringBuilder) i9Var.d).length() <= 0) {
             z10 = false;
         } else {
             z10 = true;
@@ -1115,7 +1115,7 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             if (z10) {
                 f11 = 0.8f;
             }
-            org.telegram.messenger.ok.s(scaleX.scaleY(f11), sr.h, 320L);
+            org.telegram.messenger.ok.s(scaleX.scaleY(f11), tr.h, 320L);
         }
     }
 
@@ -1126,34 +1126,34 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         }
     }
 
-    public final void b(oc0 oc0Var) {
+    public final void b(pc0 pc0Var) {
         o1.k kVar = this.L;
-        if (kVar != null && kVar.f15527f) {
+        if (kVar != null && kVar.f16976f) {
             kVar.c();
         }
         o1.j jVar = new o1.j(0.0f);
-        oc0Var.D = new ov(jVar, 9);
-        oc0Var.z();
+        pc0Var.D = new pv(jVar, 9);
+        pc0Var.z();
         o1.k kVar2 = new o1.k(jVar);
-        kVar2.f15534u = org.telegram.ui.Cells.c1.l(100.0f, 300.0f, 1.0f);
+        kVar2.f16983u = org.telegram.ui.Cells.c1.l(100.0f, 300.0f, 1.0f);
         this.L = kVar2;
-        kVar2.a(new ei.m4(4, this, oc0Var));
-        this.L.b(new k7(oc0Var, 4));
+        kVar2.a(new ei.n4(4, this, pc0Var));
+        this.L.b(new k7(pc0Var, 4));
         this.L.f();
     }
 
     public final void c() {
         Activity findActivity;
         ge0 ge0Var;
-        if (Build.VERSION.SDK_INT >= 23 && (findActivity = AndroidUtilities.findActivity(getContext())) != null && this.f23994n.getVisibility() == 0 && !ApplicationLoader.mainInterfacePaused) {
+        if (Build.VERSION.SDK_INT >= 23 && (findActivity = AndroidUtilities.findActivity(getContext())) != null && this.f26056n.getVisibility() == 0 && !ApplicationLoader.mainInterfacePaused) {
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
                 ArrayList arrayList = launchActivity.B0;
                 if (arrayList.isEmpty() && (ge0Var = launchActivity.A0) != null) {
-                    if (this != ge0Var.f24538b) {
+                    if (this != ge0Var.f26848b) {
                         return;
                     }
-                } else if (hg.c.g(1, arrayList) != this) {
+                } else if (hg.k0.g(1, arrayList) != this) {
                     return;
                 }
             }
@@ -1161,14 +1161,14 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                 if (new aa.a(new k6.h(getContext(), 1)).f(15) == 0 && FingerprintController.isKeyReady() && !FingerprintController.checkDeviceFingerprintsChanged()) {
                     a6.m mVar = new a6.m(LaunchActivity.G1, f0.e.e(getContext()), new wd0(this));
                     j6.l lVar = new j6.l(2);
-                    lVar.f12900b = LocaleController.getString(R.string.UnlockToUse);
+                    lVar.f14024b = LocaleController.getString(R.string.UnlockToUse);
                     lVar.d = LocaleController.getString(R.string.UsePIN);
-                    lVar.f12899a = 15;
-                    mVar.b(lVar.d(), null);
+                    lVar.f14023a = 15;
+                    mVar.a(lVar.d(), null);
                     m(false);
                 }
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
         }
     }
@@ -1201,10 +1201,10 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         SharedConfig.lastUptimeMillis = elapsedRealtime;
         SharedConfig.saveConfig();
         long j10 = SharedConfig.passcodeRetryInMs;
-        EditTextBoldCursor editTextBoldCursor = this.f23995r;
+        EditTextBoldCursor editTextBoldCursor = this.f26057r;
         FrameLayout frameLayout = this.h;
         org.telegram.ui.Cells.t6 t6Var = this.R;
-        TextView textView = this.f23998x;
+        TextView textView = this.f26060x;
         if (j10 > 0) {
             int max = Math.max(1, (int) Math.ceil(j10 / 1000.0d));
             if (max != this.S) {
@@ -1235,7 +1235,7 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
     public final boolean g() {
         ci.i4 i4Var = this.T;
         if (i4Var != null && i4Var.c()) {
-            AndroidUtilities.hideKeyboard(this.f23995r);
+            AndroidUtilities.hideKeyboard(this.f26057r);
             return false;
         }
         return true;
@@ -1243,9 +1243,9 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
 
     public final void i() {
         e();
-        if (this.f23998x.getVisibility() != 0) {
+        if (this.f26060x.getVisibility() != 0) {
             if (SharedConfig.passcodeType == 1) {
-                EditTextBoldCursor editTextBoldCursor = this.f23995r;
+                EditTextBoldCursor editTextBoldCursor = this.f26057r;
                 if (editTextBoldCursor != null) {
                     editTextBoldCursor.requestFocus();
                     AndroidUtilities.showKeyboard(editTextBoldCursor);
@@ -1256,7 +1256,7 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         }
     }
 
-    public final void j(boolean z10, int i10, int i11, org.telegram.ui.m80 m80Var) {
+    public final void j(boolean z10, int i10, int i11, org.telegram.ui.h90 h90Var) {
         View currentFocus;
         boolean z11;
         int i12;
@@ -1265,8 +1265,8 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         e();
         Activity findActivity = AndroidUtilities.findActivity(getContext());
         int i14 = SharedConfig.passcodeType;
-        TextView textView = this.f23998x;
-        EditTextBoldCursor editTextBoldCursor = this.f23995r;
+        TextView textView = this.f26060x;
+        EditTextBoldCursor editTextBoldCursor = this.f26057r;
         if (i14 == 1) {
             if (!z10 && textView.getVisibility() != 0 && editTextBoldCursor != null) {
                 editTextBoldCursor.requestFocus();
@@ -1281,34 +1281,34 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         }
         setTranslationY(0.0f);
         v9 v9Var = null;
-        this.f23990a = null;
-        boolean z12 = org.telegram.ui.ActionBar.h6.r0() instanceof oc0;
+        this.f26051a = null;
+        boolean z12 = org.telegram.ui.ActionBar.i6.r0() instanceof pc0;
         ci.m6 m6Var = this.v;
         if (z12) {
-            z11 = !org.telegram.ui.ActionBar.h6.I.q();
-            this.f23990a = org.telegram.ui.ActionBar.h6.r0();
+            z11 = !org.telegram.ui.ActionBar.i6.I.q();
+            this.f26051a = org.telegram.ui.ActionBar.i6.r0();
             m6Var.setBackgroundColor(-1090519040);
         } else {
-            if (org.telegram.ui.ActionBar.h6.W && !"CJz3BZ6YGEYBAAAABboWp6SAv04".equals(org.telegram.ui.ActionBar.h6.H0()) && !"qeZWES8rGVIEAAAARfWlK1lnfiI".equals(org.telegram.ui.ActionBar.h6.H0())) {
-                org.telegram.ui.ActionBar.z5 z5Var = org.telegram.ui.ActionBar.h6.I.f18946i0;
-                if (z5Var != null && (i12 = z5Var.d) != 0 && (i13 = z5Var.e) != 0) {
-                    v9Var = new v9(v9.d(z5Var.h), new int[]{i12, i13});
+            if (org.telegram.ui.ActionBar.i6.W && !"CJz3BZ6YGEYBAAAABboWp6SAv04".equals(org.telegram.ui.ActionBar.i6.H0()) && !"qeZWES8rGVIEAAAARfWlK1lnfiI".equals(org.telegram.ui.ActionBar.i6.H0())) {
+                org.telegram.ui.ActionBar.a6 a6Var = org.telegram.ui.ActionBar.i6.I.f20700i0;
+                if (a6Var != null && (i12 = a6Var.d) != 0 && (i13 = a6Var.f20387e) != 0) {
+                    v9Var = new v9(v9.d(a6Var.h), new int[]{i12, i13});
                 }
-                this.f23990a = v9Var;
+                this.f26051a = v9Var;
                 if (v9Var == null) {
-                    this.f23990a = org.telegram.ui.ActionBar.h6.r0();
+                    this.f26051a = org.telegram.ui.ActionBar.i6.r0();
                 }
-                if (this.f23990a instanceof v9) {
+                if (this.f26051a instanceof v9) {
                     m6Var.setBackgroundColor(570425344);
                 } else {
                     m6Var.setBackgroundColor(-1090519040);
                 }
             } else {
-                if (!"d".equals(org.telegram.ui.ActionBar.h6.H0())) {
-                    String H0 = org.telegram.ui.ActionBar.h6.H0();
-                    if (!org.telegram.ui.ActionBar.h6.f19163j0 && !"CJz3BZ6YGEYBAAAABboWp6SAv04".equals(H0) && !"qeZWES8rGVIEAAAARfWlK1lnfiI".equals(H0)) {
-                        Drawable r02 = org.telegram.ui.ActionBar.h6.r0();
-                        this.f23990a = r02;
+                if (!"d".equals(org.telegram.ui.ActionBar.i6.H0())) {
+                    String H0 = org.telegram.ui.ActionBar.i6.H0();
+                    if (!org.telegram.ui.ActionBar.i6.f20921j0 && !"CJz3BZ6YGEYBAAAABboWp6SAv04".equals(H0) && !"qeZWES8rGVIEAAAARfWlK1lnfiI".equals(H0)) {
+                        Drawable r02 = org.telegram.ui.ActionBar.i6.r0();
+                        this.f26051a = r02;
                         if (r02 instanceof v9) {
                             m6Var.setBackgroundColor(570425344);
                         } else if (r02 != null) {
@@ -1322,37 +1322,37 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             }
             z11 = false;
         }
-        Drawable drawable = this.f23990a;
-        if (drawable instanceof oc0) {
-            oc0 oc0Var = (oc0) drawable;
-            int[] iArr = oc0Var.f27024a;
+        Drawable drawable = this.f26051a;
+        if (drawable instanceof pc0) {
+            pc0 pc0Var = (pc0) drawable;
+            int[] iArr = pc0Var.f29600a;
             if (z11) {
                 int[] iArr2 = new int[iArr.length];
                 for (int i15 = 0; i15 < iArr.length; i15++) {
-                    iArr2[i15] = org.telegram.ui.ActionBar.h6.b(0.14f, 0.0f, iArr[i15]);
+                    iArr2[i15] = org.telegram.ui.ActionBar.i6.b(0.14f, 0.0f, iArr[i15]);
                 }
                 iArr = iArr2;
             }
-            this.f23990a = new oc0(false, iArr[0], iArr[1], iArr[2], iArr[3]);
-            if (oc0Var.f27045u != null && oc0Var.f27041q < 0) {
+            this.f26051a = new pc0(false, iArr[0], iArr[1], iArr[2], iArr[3]);
+            if (pc0Var.f29622u != null && pc0Var.f29618q < 0) {
                 m6Var.setBackgroundColor(2130706432);
             } else {
                 m6Var.setBackgroundColor(570425344);
             }
-            ((oc0) this.f23990a).r(m6Var);
+            ((pc0) this.f26051a).r(m6Var);
         }
-        this.f23997w.setText(LocaleController.getString(R.string.AppLocked));
+        this.f26059w.setText(LocaleController.getString(R.string.AppLocked));
         int i16 = SharedConfig.passcodeType;
         ImageView imageView = this.E;
-        ImageView imageView2 = this.f23999y;
-        ai.w5 w5Var = this.e;
-        ci.j9 j9Var = this.f23996s;
+        ImageView imageView2 = this.f26061y;
+        ai.w5 w5Var = this.f26054e;
+        ci.i9 i9Var = this.f26058s;
         if (i16 == 0) {
             if (textView.getVisibility() != 0) {
                 w5Var.setVisibility(0);
             }
             editTextBoldCursor.setVisibility(8);
-            j9Var.setVisibility(0);
+            i9Var.setVisibility(0);
             imageView2.setVisibility(8);
             imageView.setVisibility(8);
         } else if (i16 == 1) {
@@ -1362,17 +1362,17 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             editTextBoldCursor.setFocusable(true);
             editTextBoldCursor.setFocusableInTouchMode(true);
             editTextBoldCursor.setVisibility(0);
-            j9Var.setVisibility(8);
+            i9Var.setVisibility(8);
             imageView2.setVisibility(0);
-            imageView.setVisibility(this.f23994n.getVisibility());
+            imageView.setVisibility(this.f26056n.getVisibility());
         }
         setVisibility(0);
         editTextBoldCursor.setTransformationMethod(PasswordTransformationMethod.getInstance());
         editTextBoldCursor.setText("");
-        ci.j9.a(j9Var, false);
+        ci.i9.a(i9Var, false);
         if (z10) {
             setAlpha(0.0f);
-            getViewTreeObserver().addOnGlobalLayoutListener(new zd0(this, i10, i11, m80Var));
+            getViewTreeObserver().addOnGlobalLayoutListener(new zd0(this, i10, i11, h90Var));
             requestLayout();
         } else {
             setAlpha(1.0f);
@@ -1383,8 +1383,8 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             nj0Var.setScaleY(1.0f);
             nj0Var.i();
             nj0Var.getAnimatedDrawable().N(38, false, false);
-            if (m80Var != null) {
-                m80Var.run();
+            if (h90Var != null) {
+                h90Var.run();
             }
         }
         setOnTouchListener(new bi.d(19));
@@ -1392,20 +1392,20 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
 
     public final void k(boolean z10) {
         String str;
-        EditTextBoldCursor editTextBoldCursor = this.f23995r;
+        EditTextBoldCursor editTextBoldCursor = this.f26057r;
         if (!z10) {
             if (SharedConfig.passcodeRetryInMs <= 0) {
                 int i10 = SharedConfig.passcodeType;
-                ci.j9 j9Var = this.f23996s;
+                ci.i9 i9Var = this.f26058s;
                 if (i10 == 0) {
-                    str = ((StringBuilder) j9Var.d).toString();
+                    str = ((StringBuilder) i9Var.d).toString();
                 } else if (i10 != 1) {
                     str = "";
                 } else {
                     str = editTextBoldCursor.getText().toString();
                 }
                 int length = str.length();
-                FrameLayout frameLayout = this.f23991b;
+                FrameLayout frameLayout = this.f26052b;
                 if (length == 0) {
                     BotWebViewVibrationEffect.NOTIFICATION_ERROR.vibrate();
                     int i11 = -this.Q;
@@ -1418,22 +1418,22 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                         e();
                     }
                     editTextBoldCursor.setText("");
-                    ci.j9.a(j9Var, true);
+                    ci.i9.a(i9Var, true);
                     BotWebViewVibrationEffect.NOTIFICATION_ERROR.vibrate();
                     int i12 = -this.Q;
                     this.Q = i12;
                     AndroidUtilities.shakeViewSpring(frameLayout, i12);
-                    Drawable drawable = this.f23990a;
-                    if (drawable instanceof oc0) {
-                        oc0 oc0Var = (oc0) drawable;
+                    Drawable drawable = this.f26051a;
+                    if (drawable instanceof pc0) {
+                        pc0 pc0Var = (pc0) drawable;
                         o1.k kVar = this.L;
                         if (kVar != null) {
                             kVar.c();
-                            oc0Var.h = 1.0f;
-                            oc0Var.z();
+                            pc0Var.h = 1.0f;
+                            pc0Var.z();
                         }
-                        if (oc0Var.h >= 1.0f) {
-                            oc0Var.m(true);
+                        if (pc0Var.h >= 1.0f) {
+                            pc0Var.m(true);
                             return;
                         }
                         return;
@@ -1456,7 +1456,7 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         setOnTouchListener(null);
         de0 de0Var = this.K;
         if (de0Var != null) {
-            de0Var.g(this);
+            de0Var.m(this);
         }
         nj0 nj0Var = this.I;
         nj0Var.getAnimatedDrawable().P(71);
@@ -1472,7 +1472,7 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             valueAnimator.cancel();
         }
         this.U = z10;
-        float alpha = this.e.getAlpha();
+        float alpha = this.f26054e.getAlpha();
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -1481,8 +1481,8 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
         ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f7);
         this.V = ofFloat;
         ofFloat.addUpdateListener(new ud0(this, 1));
-        this.V.addListener(new ca(16, this, z10));
-        this.V.setInterpolator(sr.h);
+        this.V.addListener(new da(16, this, z10));
+        this.V.setInterpolator(tr.h);
         this.V.setDuration(320L);
         this.V.start();
     }
@@ -1524,7 +1524,7 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             frameLayout.setLayoutParams(layoutParams);
         }
         super.onLayout(z10, i10, i11, i12, i13);
-        TextView textView = this.f23997w;
+        TextView textView = this.f26059w;
         int[] iArr = this.W;
         textView.getLocationInWindow(iArr);
         boolean isTablet = AndroidUtilities.isTablet();
@@ -1571,7 +1571,7 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             view.setVisibility(i16);
         }
         nj0 nj0Var = this.I;
-        ai.w5 w5Var = this.e;
+        ai.w5 w5Var = this.f26054e;
         FrameLayout frameLayout = this.d;
         FrameLayout frameLayout2 = this.h;
         if (z10) {
@@ -1591,13 +1591,13 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             }
             layoutParams.width = i14;
             layoutParams.height = AndroidUtilities.dp(180.0f);
-            int A = org.telegram.messenger.ok.A(140.0f, i17, 2);
+            int z11 = org.telegram.messenger.ok.z(140.0f, i17, 2);
             if (SharedConfig.passcodeType == 0) {
                 i15 = AndroidUtilities.dp(40.0f);
             } else {
                 i15 = 0;
             }
-            layoutParams.topMargin = A + i15;
+            layoutParams.topMargin = z11 + i15;
             frameLayout2.setLayoutParams(layoutParams);
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
             layoutParams2.height = i17;
@@ -1616,13 +1616,13 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
             int i19 = AndroidUtilities.statusBarHeight;
             if (AndroidUtilities.isTablet()) {
                 if (size > AndroidUtilities.dp(498.0f)) {
-                    i12 = org.telegram.messenger.ok.A(498.0f, size, 2);
+                    i12 = org.telegram.messenger.ok.z(498.0f, size, 2);
                     size = AndroidUtilities.dp(498.0f);
                 } else {
                     i12 = 0;
                 }
                 if (i17 > AndroidUtilities.dp(528.0f)) {
-                    i19 = org.telegram.messenger.ok.A(528.0f, i17, 2);
+                    i19 = org.telegram.messenger.ok.z(528.0f, i17, 2);
                     i17 = AndroidUtilities.dp(528.0f);
                 }
             } else {
@@ -1680,7 +1680,7 @@ public class ee0 extends FrameLayout implements NotificationCenter.NotificationC
                     i24 = i23 - 1;
                 }
             }
-            FrameLayout frameLayout3 = (FrameLayout) this.f23993f.get(i23);
+            FrameLayout frameLayout3 = (FrameLayout) this.f26055f.get(i23);
             FrameLayout.LayoutParams layoutParams7 = (FrameLayout.LayoutParams) frameLayout3.getLayoutParams();
             layoutParams7.topMargin = ((dp3 + dp2) * (i24 / 3)) + dp4;
             layoutParams7.leftMargin = (dp3 + dp) * (i24 % 3);

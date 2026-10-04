@@ -3,16 +3,16 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class l3 implements org.telegram.ui.web.g0 {
-    public final m3 f35193a;
+public final class l3 implements org.telegram.ui.web.h0 {
+    public final m3 f38144a;
 
     public l3(m3 m3Var) {
-        this.f35193a = m3Var;
+        this.f38144a = m3Var;
     }
 
     @Override
     public final void b() {
-        v3 v3Var = this.f35193a.K.K;
+        v3 v3Var = this.f38144a.K.K;
         if (v3Var != null) {
             v3Var.dismiss(true);
         }
@@ -30,7 +30,7 @@ public final class l3 implements org.telegram.ui.web.g0 {
 
     @Override
     public final void j() {
-        m3 m3Var = this.f35193a;
+        m3 m3Var = this.f38144a;
         i4 i4Var = m3Var.K;
         v3 v3Var = i4Var.K;
         if (v3Var != null) {
@@ -39,27 +39,27 @@ public final class l3 implements org.telegram.ui.web.g0 {
                 v3Var.release();
                 v3Var.K.s();
             }
-        } else if (i4Var.f34410u0[0] == m3Var) {
+        } else if (i4Var.f37274u0[0] == m3Var) {
             i4Var.G();
         }
     }
 
     @Override
     public final void o(int i10, boolean z10) {
-        m3.a(this.f35193a, z10, i10);
+        m3.a(this.f38144a, z10, i10);
     }
 
     @Override
     public final void y() {
-        m3 m3Var = this.f35193a;
+        m3 m3Var = this.f38144a;
         i4 i4Var = m3Var.K;
-        if (i4Var.f34410u0[0] == m3Var) {
+        if (i4Var.f37274u0[0] == m3Var) {
             i4Var.G();
         }
     }
 
     @Override
-    public final ei.a1 z() {
+    public final ei.b1 z() {
         return null;
     }
 
@@ -132,10 +132,10 @@ public final class l3 implements org.telegram.ui.web.g0 {
     }
 
     @Override
-    public final void q(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13) {
+    public final void l(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13, String str2) {
     }
 
     @Override
-    public final void l(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13, String str2) {
+    public final void q(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13) {
     }
 }

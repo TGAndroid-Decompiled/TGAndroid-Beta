@@ -1,36 +1,49 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class m5 extends Drawable {
-    public final int f19655a;
-    public final int f19656b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.j90;
+public final class m5 implements Runnable {
+    public final int f21395a;
+    public final Object f21396b;
+    public final Object f21397c;
+    public final Object d;
+    public final Object f21398e;
 
-    public m5(int i10, int i11) {
-        this.f19655a = i10;
-        this.f19656b = i11;
+    public m5(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f21395a = i10;
+        this.f21396b = obj;
+        this.f21397c = obj2;
+        this.d = obj3;
+        this.f21398e = obj4;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        int i10 = this.f19655a;
-        int i11 = this.f19656b;
-        canvas.drawCircle((bounds.centerX() - i10) + i11, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i10 + i11, h6.f19456z);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.m5.run():void");
     }
 
-    @Override
-    public final int getOpacity() {
-        return 0;
+    public m5(Object obj, Object obj2, TLObject tLObject, Object obj3, int i10) {
+        this.f21395a = i10;
+        this.f21397c = obj;
+        this.d = obj2;
+        this.f21396b = tLObject;
+        this.f21398e = obj3;
     }
 
-    @Override
-    public final void setAlpha(int i10) {
+    public m5(n2 n2Var, TLObject tLObject, TLObject tLObject2, Object obj, int i10) {
+        this.f21395a = i10;
+        this.f21397c = n2Var;
+        this.f21396b = tLObject;
+        this.d = tLObject2;
+        this.f21398e = obj;
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public m5(j90 j90Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject) {
+        this.f21395a = 26;
+        this.f21397c = j90Var;
+        this.d = tL_chatInviteExported;
+        this.f21398e = tL_error;
+        this.f21396b = tLObject;
     }
 }

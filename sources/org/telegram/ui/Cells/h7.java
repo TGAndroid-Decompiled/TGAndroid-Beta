@@ -10,36 +10,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.rq;
-import org.telegram.ui.Components.y80;
+import org.telegram.ui.Components.sq;
+import org.telegram.ui.Components.z80;
 public final class h7 extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f20405a;
-    public final e7 f20406b;
-    public final TextView f20407c;
+    public final org.telegram.ui.Components.w9 f22213a;
+    public final e7 f22214b;
+    public final TextView f22215c;
     public long d;
-    public long e;
-    public final int f20408f;
+    public long f22216e;
+    public final int f22217f;
     public final org.telegram.ui.ActionBar.d6 h;
 
     public h7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f20408f = UserConfig.selectedAccount;
+        this.f22217f = UserConfig.selectedAccount;
         this.h = d6Var;
         setWillNotDraw(false);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f20405a = w9Var;
+        this.f22213a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
-        addView(w9Var, w7.y5.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
+        addView(w9Var, w7.z5.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f20407c = textView;
-        ok.n(org.telegram.ui.ActionBar.h6.f19167j5, d6Var, textView, 1, 12.0f);
+        this.f22215c = textView;
+        ok.n(org.telegram.ui.ActionBar.i6.f20925j5, d6Var, textView, 1, 12.0f);
         textView.setMaxLines(2);
         textView.setGravity(49);
         textView.setLines(2);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, w7.y5.d(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
-        this.f20406b = new e7(this, d6Var, 1);
-        setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19150i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
+        addView(textView, w7.z5.d(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
+        this.f22214b = new e7(this, d6Var, 1);
+        setBackground(org.telegram.ui.ActionBar.i6.Y(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20908i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
     public long getCurrentDialog() {
@@ -47,7 +47,7 @@ public final class h7 extends FrameLayout {
     }
 
     public long getCurrentTopic() {
-        return this.e;
+        return this.f22216e;
     }
 
     @Override
@@ -62,15 +62,15 @@ public final class h7 extends FrameLayout {
         } else {
             i10 = R.string.ShareSendToOffTopic;
         }
-        this.f20407c.setText(LocaleController.getString(i10));
-        org.telegram.ui.Components.w9 w9Var = this.f20405a;
+        this.f22215c.setText(LocaleController.getString(i10));
+        org.telegram.ui.Components.w9 w9Var = this.f22213a;
         w9Var.setAnimatedEmojiDrawable(null);
-        ng.a aVar = new ng.a(ng.a.f15445k[0]);
-        y80 y80Var = new y80(1, null);
-        y80Var.a("");
-        y80Var.f30611i = 1.8f;
-        rq rqVar = new rq(aVar, y80Var, 0, 0);
-        rqVar.f28033w = true;
-        w9Var.setImageDrawable(rqVar);
+        ng.a aVar = new ng.a(ng.a.f16884k[0]);
+        z80 z80Var = new z80(1, null);
+        z80Var.a("");
+        z80Var.f33420i = 1.8f;
+        sq sqVar = new sq(aVar, z80Var, 0, 0);
+        sqVar.f30856w = true;
+        w9Var.setImageDrawable(sqVar);
     }
 }

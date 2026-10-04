@@ -2,49 +2,62 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 public final class vc1 extends AnimatorListenerAdapter {
-    public final boolean f38688a;
-    public final int f38689b;
-    public final int f38690c;
-    public final boolean d;
-    public final od1 e;
+    public final int f41698a;
+    public final rd1 f41699b;
 
-    public vc1(od1 od1Var, boolean z10, int i10, int i11, boolean z11) {
-        this.e = od1Var;
-        this.f38688a = z10;
-        this.f38689b = i10;
-        this.f38690c = i11;
-        this.d = z11;
+    public vc1(rd1 rd1Var, int i10) {
+        this.f41698a = i10;
+        this.f41699b = rd1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        od1 od1Var = this.e;
-        FrameLayout[] frameLayoutArr = od1Var.L0;
-        od1Var.f36194r1 = null;
-        int i10 = this.f38690c;
-        int i11 = this.f38689b;
-        boolean z10 = this.f38688a;
-        if (z10 && frameLayoutArr[i11].getVisibility() == 0) {
-            frameLayoutArr[i11].setAlpha(1.0f);
-            frameLayoutArr[i11].setVisibility(4);
-        } else if (!z10) {
-            frameLayoutArr[i10].setVisibility(4);
-        }
-        int i12 = od1Var.f36149b;
-        char c10 = 2;
-        if (i12 != 1 && i12 != 2) {
-            if (i10 == 1) {
-                frameLayoutArr[i11].setAlpha(0.0f);
+        switch (this.f41698a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                rd1 rd1Var = this.f41699b;
+                rd1Var.f40094x0.invalidate();
+                rd1Var.f40091w0[1].setVisibility(8);
+                rd1Var.f40041c2 = null;
                 return;
-            }
-            return;
+            case 1:
+                this.f41699b.B0 = null;
+                return;
+            case 2:
+                rd1 rd1Var2 = this.f41699b;
+                if (rd1Var2.D0.getTag() == null) {
+                    rd1Var2.D0.setVisibility(4);
+                }
+                rd1Var2.H0 = null;
+                return;
+            case 3:
+                rd1 rd1Var3 = this.f41699b;
+                if (rd1Var3.E0.getTag() == null) {
+                    rd1Var3.E0.setVisibility(4);
+                }
+                rd1Var3.I0 = null;
+                return;
+            case 4:
+                rd1 rd1Var4 = this.f41699b;
+                mc mcVar = rd1Var4.f40058h2;
+                if (mcVar != null) {
+                    if (mcVar.getParent() != null) {
+                        ((ViewGroup) rd1Var4.f40058h2.getParent()).removeView(rd1Var4.f40058h2);
+                    }
+                    rd1Var4.f40058h2 = null;
+                }
+                rd1Var4.f40064j2 = null;
+                super.onAnimationEnd(animator);
+                return;
+            default:
+                rd1 rd1Var5 = this.f41699b;
+                if (!rd1Var5.f40075p1.a()) {
+                    rd1Var5.R1.setVisibility(8);
+                    return;
+                }
+                return;
         }
-        org.telegram.ui.Components.z81[] z81VarArr = od1Var.J0;
-        if (this.d) {
-            c10 = 0;
-        }
-        z81VarArr[c10].setVisibility(4);
     }
 }

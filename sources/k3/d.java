@@ -6,24 +6,24 @@ import c3.c0;
 import c3.v;
 import e6.n;
 public final class d extends v {
-    public final b0 f13399b;
-    public final n f13400c;
+    public final b0 f14566b;
+    public final n f14567c;
 
     public d(n nVar, b0 b0Var, b0 b0Var2) {
         super(b0Var);
-        this.f13400c = nVar;
-        this.f13399b = b0Var2;
+        this.f14567c = nVar;
+        this.f14566b = b0Var2;
     }
 
     @Override
     public final a0 j(long j3) {
-        a0 j10 = this.f13399b.j(j3);
-        c0 c0Var = j10.f3703a;
-        long j11 = c0Var.f3732a;
-        long j12 = c0Var.f3733b;
-        long j13 = this.f13400c.f8013b;
+        a0 j10 = this.f14566b.j(j3);
+        c0 c0Var = j10.f4003a;
+        long j11 = c0Var.f4034a;
+        long j12 = c0Var.f4035b;
+        long j13 = this.f14567c.f8694b;
         c0 c0Var2 = new c0(j11, j12 + j13);
-        c0 c0Var3 = j10.f3704b;
-        return new a0(c0Var2, new c0(c0Var3.f3732a, c0Var3.f3733b + j13));
+        c0 c0Var3 = j10.f4004b;
+        return new a0(c0Var2, new c0(c0Var3.f4034a, c0Var3.f4035b + j13));
     }
 }

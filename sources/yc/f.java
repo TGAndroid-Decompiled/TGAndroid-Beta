@@ -33,11 +33,11 @@ public enum f {
     SERVICE_UNAVAILABLE(503, "Service Unavailable"),
     UNSUPPORTED_HTTP_VERSION(505, "HTTP Version Not Supported");
     
-    public final int f46968a;
-    public final String f46969b;
+    public final int f50831a;
+    public final String f50832b;
 
     f(int i10, String str) {
-        this.f46968a = i10;
-        this.f46969b = str;
+        this.f50831a = i10;
+        this.f50832b = str;
     }
 }

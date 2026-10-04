@@ -1,42 +1,42 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.d60;
-import org.telegram.ui.z40;
+import org.telegram.ui.e50;
+import org.telegram.ui.h60;
 public final class w implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29623a;
-    public final m0 f29624b;
+    public final int f32242a;
+    public final m0 f32243b;
 
     public w(m0 m0Var, int i10) {
-        this.f29623a = i10;
-        this.f29624b = m0Var;
+        this.f32242a = i10;
+        this.f32243b = m0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f7;
-        switch (this.f29623a) {
+        switch (this.f32242a) {
             case 0:
-                m0 m0Var = this.f29624b;
+                m0 m0Var = this.f32243b;
                 m0Var.getClass();
                 m0Var.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 m0Var.invalidate();
                 return;
             default:
-                m0 m0Var2 = this.f29624b;
+                m0 m0Var2 = this.f32243b;
                 m0Var2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m0Var2.f29375c = floatValue;
-                d60 d60Var = m0Var2.f29384j0;
-                d60Var.f33039z1.setAlpha(1.0f - floatValue);
-                z40 z40Var = d60Var.O;
-                if (z40Var.getTag() != null) {
+                m0Var2.f31977c = floatValue;
+                h60 h60Var = m0Var2.f31987j0;
+                h60Var.f36978z1.setAlpha(1.0f - floatValue);
+                e50 e50Var = h60Var.O;
+                if (e50Var.getTag() != null) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                z40Var.setAlpha((1.0f - d60Var.a2.f29375c) * f7);
-                d60Var.E1(d60Var.f33035y0);
+                e50Var.setAlpha((1.0f - h60Var.a2.f31977c) * f7);
+                h60Var.E1(h60Var.f36974y0);
                 m0Var2.l();
                 return;
         }

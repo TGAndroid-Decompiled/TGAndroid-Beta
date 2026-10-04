@@ -18,8 +18,8 @@ public class PredefinedTeXFormulaParser {
             newInstance.setIgnoringElementContentWhitespace(true);
             newInstance.setIgnoringComments(true);
             this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e) {
-            throw new XMLResourceParseException("", e);
+        } catch (Exception e7) {
+            throw new XMLResourceParseException("", e7);
         }
     }
 

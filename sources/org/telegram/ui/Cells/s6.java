@@ -1,11 +1,11 @@
 package org.telegram.ui.Cells;
 public final class s6 {
-    public final int f21065a;
-    public final CharSequence f21066b;
+    public final int f22912a;
+    public final CharSequence f22913b;
 
     public s6(CharSequence charSequence, int i10) {
-        this.f21066b = charSequence;
-        this.f21065a = i10;
+        this.f22913b = charSequence;
+        this.f22912a = i10;
     }
 
     public static s6 a(CharSequence charSequence) {

@@ -7,34 +7,34 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.h6;
-import w7.y5;
+import org.telegram.ui.ActionBar.i6;
+import w7.z5;
 public final class t implements Runnable {
-    public final int f41927a;
-    public final n0 f41928b;
-    public final j f41929c;
+    public final int f45332a;
+    public final m0 f45333b;
+    public final j f45334c;
 
-    public t(n0 n0Var, j jVar, int i10) {
-        this.f41927a = i10;
-        this.f41928b = n0Var;
-        this.f41929c = jVar;
+    public t(m0 m0Var, j jVar, int i10) {
+        this.f45332a = i10;
+        this.f45333b = m0Var;
+        this.f45334c = jVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f41927a) {
+        switch (this.f45332a) {
             case 0:
-                this.f41928b.r0(this.f41929c);
+                this.f45333b.r0(this.f45334c);
                 return;
             default:
-                final n0 n0Var = this.f41928b;
-                LinearLayout linearLayout = new LinearLayout(n0Var.getContext());
+                final m0 m0Var = this.f45333b;
+                LinearLayout linearLayout = new LinearLayout(m0Var.getContext());
                 linearLayout.setOrientation(0);
-                TextView textView = new TextView(n0Var.getContext());
-                int i10 = h6.E8;
-                eh.a aVar = n0Var.Q1;
-                textView.setTextColor(h6.v0(i10, aVar));
-                textView.setBackground(h6.K0(false));
+                TextView textView = new TextView(m0Var.getContext());
+                int i10 = i6.E8;
+                eh.a aVar = m0Var.Q1;
+                textView.setTextColor(i6.v0(i10, aVar));
+                textView.setBackground(i6.K0(false));
                 textView.setGravity(16);
                 textView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(14.0f), 0);
                 textView.setTextSize(1, 14.0f);
@@ -42,52 +42,52 @@ public final class t implements Runnable {
                 textView.setText(LocaleController.getString(R.string.PaintDelete));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
-                final j jVar = this.f41929c;
+                final j jVar = this.f45334c;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         switch (r3) {
                             case 0:
                                 j jVar2 = jVar;
-                                n0 n0Var2 = n0Var;
-                                n0Var2.r0(jVar2);
-                                org.telegram.ui.ActionBar.m1 m1Var = n0Var2.R1;
-                                if (m1Var != null && m1Var.isShowing()) {
-                                    n0Var2.R1.d(true);
+                                m0 m0Var2 = m0Var;
+                                m0Var2.r0(jVar2);
+                                org.telegram.ui.ActionBar.n1 n1Var = m0Var2.R1;
+                                if (n1Var != null && n1Var.isShowing()) {
+                                    m0Var2.R1.d(true);
                                     return;
                                 }
                                 return;
                             default:
-                                n0 n0Var3 = n0Var;
-                                n0Var3.getClass();
+                                m0 m0Var3 = m0Var;
+                                m0Var3.getClass();
                                 ((o2) jVar).r(true);
-                                org.telegram.ui.ActionBar.m1 m1Var2 = n0Var3.R1;
-                                if (m1Var2 != null && m1Var2.isShowing()) {
-                                    n0Var3.R1.d(true);
+                                org.telegram.ui.ActionBar.n1 n1Var2 = m0Var3.R1;
+                                if (n1Var2 != null && n1Var2.isShowing()) {
+                                    m0Var3.R1.d(true);
                                     return;
                                 }
                                 return;
                         }
                     }
                 });
-                linearLayout.addView(textView, y5.n(-2, 48));
+                linearLayout.addView(textView, z5.n(-2, 48));
                 if (jVar instanceof v2) {
-                    TextView textView2 = new TextView(n0Var.getContext());
-                    textView2.setTextColor(h6.v0(i10, aVar));
-                    textView2.setBackground(h6.K0(false));
+                    TextView textView2 = new TextView(m0Var.getContext());
+                    textView2.setTextColor(i6.v0(i10, aVar));
+                    textView2.setBackground(i6.K0(false));
                     textView2.setGravity(16);
                     textView2.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
                     textView2.setTextSize(1, 14.0f);
                     textView2.setEllipsize(truncateAt);
                     textView2.setTag(1);
                     textView2.setText(LocaleController.getString(R.string.PaintEdit));
-                    textView2.setOnClickListener(new k(n0Var, 2));
-                    linearLayout.addView(textView2, y5.n(-2, 48));
+                    textView2.setOnClickListener(new k(m0Var, 2));
+                    linearLayout.addView(textView2, z5.n(-2, 48));
                 }
                 if (jVar instanceof o2) {
-                    TextView textView3 = new TextView(n0Var.getContext());
-                    textView3.setTextColor(h6.v0(i10, aVar));
-                    textView3.setBackgroundDrawable(h6.K0(false));
+                    TextView textView3 = new TextView(m0Var.getContext());
+                    textView3.setTextColor(i6.v0(i10, aVar));
+                    textView3.setBackgroundDrawable(i6.K0(false));
                     textView3.setGravity(16);
                     textView3.setEllipsize(truncateAt);
                     textView3.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -100,43 +100,43 @@ public final class t implements Runnable {
                             switch (r3) {
                                 case 0:
                                     j jVar2 = jVar;
-                                    n0 n0Var2 = n0Var;
-                                    n0Var2.r0(jVar2);
-                                    org.telegram.ui.ActionBar.m1 m1Var = n0Var2.R1;
-                                    if (m1Var != null && m1Var.isShowing()) {
-                                        n0Var2.R1.d(true);
+                                    m0 m0Var2 = m0Var;
+                                    m0Var2.r0(jVar2);
+                                    org.telegram.ui.ActionBar.n1 n1Var = m0Var2.R1;
+                                    if (n1Var != null && n1Var.isShowing()) {
+                                        m0Var2.R1.d(true);
                                         return;
                                     }
                                     return;
                                 default:
-                                    n0 n0Var3 = n0Var;
-                                    n0Var3.getClass();
+                                    m0 m0Var3 = m0Var;
+                                    m0Var3.getClass();
                                     ((o2) jVar).r(true);
-                                    org.telegram.ui.ActionBar.m1 m1Var2 = n0Var3.R1;
-                                    if (m1Var2 != null && m1Var2.isShowing()) {
-                                        n0Var3.R1.d(true);
+                                    org.telegram.ui.ActionBar.n1 n1Var2 = m0Var3.R1;
+                                    if (n1Var2 != null && n1Var2.isShowing()) {
+                                        m0Var3.R1.d(true);
                                         return;
                                     }
                                     return;
                             }
                         }
                     });
-                    linearLayout.addView(textView3, y5.n(-2, 48));
+                    linearLayout.addView(textView3, z5.n(-2, 48));
                 }
-                if (!(jVar instanceof y1)) {
-                    TextView textView4 = new TextView(n0Var.getContext());
-                    textView4.setTextColor(h6.v0(i10, aVar));
-                    textView4.setBackgroundDrawable(h6.K0(false));
+                if (!(jVar instanceof x1)) {
+                    TextView textView4 = new TextView(m0Var.getContext());
+                    textView4.setTextColor(i6.v0(i10, aVar));
+                    textView4.setBackgroundDrawable(i6.K0(false));
                     textView4.setGravity(16);
                     textView4.setEllipsize(truncateAt);
                     textView4.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(16.0f), 0);
                     textView4.setTextSize(1, 14.0f);
                     textView4.setTag(2);
                     textView4.setText(LocaleController.getString(R.string.PaintDuplicate));
-                    textView4.setOnClickListener(new k(n0Var, 3));
-                    linearLayout.addView(textView4, y5.n(-2, 48));
+                    textView4.setOnClickListener(new k(m0Var, 3));
+                    linearLayout.addView(textView4, z5.n(-2, 48));
                 }
-                n0Var.S1.addView(linearLayout);
+                m0Var.S1.addView(linearLayout);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
                 layoutParams.width = -2;
                 layoutParams.height = -2;

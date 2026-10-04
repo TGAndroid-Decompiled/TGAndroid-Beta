@@ -1,64 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import org.telegram.messenger.Emoji;
-public final class ut extends org.telegram.ui.Components.xl0 {
-    public final Context f38553c;
-    public Timer d;
-    public ArrayList e;
-    public final ArrayList f38554f = new ArrayList();
-    public final wt h;
+import j$.util.Objects;
+public final class ut {
+    public String f41297a;
+    public String f41298b;
+    public String f41299c;
+    public String d;
 
-    public ut(wt wtVar, Context context, HashMap hashMap) {
-        this.h = wtVar;
-        this.f38553c = context;
-        for (List<qt> list : hashMap.values()) {
-            for (qt qtVar : list) {
-                this.f38554f.add(qtVar);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && ut.class == obj.getClass()) {
+            ut utVar = (ut) obj;
+            if (Objects.equals(this.f41297a, utVar.f41297a) && Objects.equals(this.f41299c, utVar.f41299c)) {
+                return true;
             }
         }
+        return false;
     }
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.e;
-        if (arrayList == null) {
-            return 0;
-        }
-        return arrayList.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        String str;
-        qt qtVar = (qt) this.e.get(i10);
-        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) c1Var.f42962a;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(wt.V(qtVar), eaVar.getTextView().getPaint().getFontMetricsInt(), false);
-        if (this.h.h) {
-            str = "+" + qtVar.f36984c;
-        } else {
-            str = null;
-        }
-        eaVar.c(replaceEmoji, str, false, false);
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(wt.U(this.f38553c));
+    public final int hashCode() {
+        return Objects.hash(this.f41297a, this.f41299c);
     }
 }

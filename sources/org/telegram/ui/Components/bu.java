@@ -1,4 +1,48 @@
 package org.telegram.ui.Components;
-public interface bu {
-    void j();
+
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class bu implements ActionMode.Callback {
+    public final ActionMode.Callback f25055a;
+    public final eu f25056b;
+
+    public bu(eu euVar, ActionMode.Callback callback) {
+        this.f25056b = euVar;
+        this.f25055a = callback;
+    }
+
+    @Override
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        if (this.f25056b.performMenuAction(menuItem.getItemId())) {
+            actionMode.finish();
+            return true;
+        }
+        try {
+            return this.f25055a.onActionItemClicked(actionMode, menuItem);
+        } catch (Exception unused) {
+            return true;
+        }
+    }
+
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        eu euVar = this.f25056b;
+        euVar.copyPasteShowed = true;
+        euVar.onContextMenuOpen();
+        return this.f25055a.onCreateActionMode(actionMode, menu);
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        eu euVar = this.f25056b;
+        euVar.copyPasteShowed = false;
+        euVar.onContextMenuClose();
+        this.f25055a.onDestroyActionMode(actionMode);
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return this.f25055a.onPrepareActionMode(actionMode, menu);
+    }
 }

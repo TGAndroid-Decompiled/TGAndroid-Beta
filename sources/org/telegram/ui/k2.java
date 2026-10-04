@@ -6,24 +6,24 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class k2 extends View {
-    public final p70 f34919a;
-    public final org.telegram.ui.Components.rq f34920b;
+    public final t70 f37810a;
+    public final org.telegram.ui.Components.sq f37811b;
 
-    public k2(Context context, p70 p70Var) {
+    public k2(Context context, t70 t70Var) {
         super(context);
-        this.f34919a = p70Var;
-        org.telegram.ui.Components.rq rqVar = new org.telegram.ui.Components.rq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qk, false)), org.telegram.ui.ActionBar.h6.U0(context, R.drawable.greydivider_bottom, -16777216));
-        this.f34920b = rqVar;
-        rqVar.f28033w = true;
-        setBackgroundDrawable(rqVar);
+        this.f37810a = t70Var;
+        org.telegram.ui.Components.sq sqVar = new org.telegram.ui.Components.sq(new ColorDrawable(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Qk, false)), org.telegram.ui.ActionBar.i6.U0(context, R.drawable.greydivider_bottom, -16777216));
+        this.f37811b = sqVar;
+        sqVar.f30856w = true;
+        setBackgroundDrawable(sqVar);
         setImportantForAccessibility(2);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(12.0f));
-        int i12 = org.telegram.ui.ActionBar.h6.Qk;
-        ((i4) this.f34919a).getClass();
-        org.telegram.ui.ActionBar.h6.v1(this.f34920b, org.telegram.ui.ActionBar.h6.w0(null, i12, false), false);
+        int i12 = org.telegram.ui.ActionBar.i6.Qk;
+        ((i4) this.f37810a).getClass();
+        org.telegram.ui.ActionBar.i6.v1(this.f37811b, org.telegram.ui.ActionBar.i6.w0(null, i12, false), false);
     }
 }

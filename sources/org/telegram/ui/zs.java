@@ -1,72 +1,62 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class zs implements r0.n, org.telegram.ui.Components.rk0 {
-    public final nt f40574a;
+public final class zs extends s4.s0 {
+    public boolean f43874a;
+    public boolean f43875b;
+    public final ContactsActivity f43876c;
 
-    public zs(nt ntVar) {
-        this.f40574a = ntVar;
+    public zs(ContactsActivity contactsActivity) {
+        this.f43876c = contactsActivity;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        this.f40574a.f35984q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        return l1Var;
-    }
-
-    @Override
-    public void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
-        if (o0Var != null) {
-            nt ntVar = this.f40574a;
-            zg.b0 reactionsWindow = ntVar.P.getReactionsWindow();
-            if (ntVar.f35982o.contains(o0Var.f49398f)) {
-                if (ntVar.f35982o.size() > 1) {
-                    ntVar.f35982o.remove(o0Var.f49398f);
-                } else {
-                    return;
-                }
-            } else {
-                ntVar.f35982o.add(o0Var.f49398f);
-                if (ntVar.f35982o.size() > 7) {
-                    ntVar.f35982o.remove(0);
-                }
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            ContactsActivity contactsActivity = this.f43876c;
+            if ((contactsActivity.F && contactsActivity.E) || contactsActivity.Z.f26246r.isFocused()) {
+                AndroidUtilities.hideKeyboard(contactsActivity.getParentActivity().getCurrentFocus());
             }
-            ntVar.P.setSelectedEmojis(ntVar.f35982o);
-            if (reactionsWindow != null) {
-                zg.x xVar = reactionsWindow.f49256m;
-                ntVar.P.p(null, null, false);
-                if (xVar != null) {
-                    xVar.setSelectedReactions(ntVar.f35982o);
-                    xVar.setRecentReactions(ntVar.P.V);
-                }
-                reactionsWindow.d();
-            }
+            this.f43875b = true;
+            return;
         }
+        this.f43875b = false;
     }
 
     @Override
-    public boolean j() {
-        return true;
-    }
-
-    @Override
-    public boolean k() {
-        return false;
-    }
-
-    @Override
-    public boolean p() {
-        return false;
-    }
-
-    @Override
-    public void n() {
-    }
-
-    @Override
-    public void m(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        ah.i iVar;
+        boolean z10;
+        ContactsActivity contactsActivity = this.f43876c;
+        int L0 = contactsActivity.f33698n.L0();
+        boolean z11 = false;
+        View childAt = recyclerView.getChildAt(0);
+        if (childAt != null) {
+            i12 = childAt.getTop();
+        } else {
+            i12 = 0;
+        }
+        if (contactsActivity.f33710w != null && !contactsActivity.F) {
+            if (i11 > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (i11 != 0 && this.f43874a && (z10 || this.f43875b)) {
+                contactsActivity.f33712x = !z10;
+                ContactsActivity.e0(contactsActivity);
+            }
+            this.f43874a = true;
+        }
+        ((le.b) contactsActivity.Y.f5868c).a((L0 != 0 || i12 < contactsActivity.f33690f.getPaddingTop()) ? true : true, true);
+        if (Build.VERSION.SDK_INT >= 31 && (iVar = contactsActivity.f33707t0) != null) {
+            iVar.f(i10, i11);
+            contactsActivity.g0();
+        }
+        ContactsActivity.d0(contactsActivity);
     }
 }

@@ -2,12 +2,11 @@ package o1;
 
 import a0.m;
 import java.util.ArrayList;
-import k2.u;
 public final class b {
-    public static final ThreadLocal f15507f = new ThreadLocal();
+    public static final ThreadLocal f16954f = new ThreadLocal();
     public la.h d;
-    public final m f15508a = new m(0);
-    public final ArrayList f15509b = new ArrayList();
-    public final u f15510c = new u(this, 9);
-    public boolean e = false;
+    public final m f16955a = new m(0);
+    public final ArrayList f16956b = new ArrayList();
+    public final k2.e f16957c = new k2.e(this, 7);
+    public boolean f16958e = false;
 }

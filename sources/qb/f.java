@@ -8,26 +8,26 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.Callable;
 public final class f {
-    public static final Object f41527b = new Object();
-    public static f f41528c;
-    public final c0 f41529a;
+    public static final Object f44901b = new Object();
+    public static f f44902c;
+    public final c0 f44903a;
 
     public f(Looper looper) {
         ?? handler = new Handler(looper);
         Looper.getMainLooper();
-        this.f41529a = handler;
+        this.f44903a = handler;
     }
 
     public static f a() {
         f fVar;
-        synchronized (f41527b) {
+        synchronized (f44901b) {
             try {
-                if (f41528c == null) {
+                if (f44902c == null) {
                     HandlerThread handlerThread = new HandlerThread("MLHandler", 9);
                     handlerThread.start();
-                    f41528c = new f(handlerThread.getLooper());
+                    f44902c = new f(handlerThread.getLooper());
                 }
-                fVar = f41528c;
+                fVar = f44902c;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -37,7 +37,7 @@ public final class f {
 
     public static Task b(Callable callable) {
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        m.f41545a.execute(new i9.s(25, callable, taskCompletionSource));
+        m.f44919a.execute(new i9.s(25, callable, taskCompletionSource));
         return taskCompletionSource.getTask();
     }
 }

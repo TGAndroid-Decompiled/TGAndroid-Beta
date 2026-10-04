@@ -187,8 +187,8 @@ public class EmuDetector {
                     FileInputStream fileInputStream = new FileInputStream(file);
                     fileInputStream.read(bArr);
                     fileInputStream.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (Exception e7) {
+                    e7.printStackTrace();
                 }
                 String str = new String(bArr);
                 for (String str2 : QEMU_DRIVERS) {

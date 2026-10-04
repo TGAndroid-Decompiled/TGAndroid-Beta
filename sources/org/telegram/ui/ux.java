@@ -1,75 +1,54 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class ux extends UndoView {
-    public final qy f38570f0;
+public final class ux extends ScrollView {
+    public final int f41362a;
 
-    public ux(qy qyVar, Activity activity) {
-        super(activity);
-        this.f38570f0 = qyVar;
+    public ux(Context context, int i10) {
+        super(context);
+        this.f41362a = i10;
     }
 
     @Override
-    public final boolean a() {
-        int i10 = 0;
-        while (true) {
-            py[] pyVarArr = this.f38570f0.f37034e0;
-            if (i10 < pyVarArr.length) {
-                if (pyVarArr[i10].f36703x.k()) {
-                    return false;
-                }
-                i10++;
-            } else {
-                return true;
-            }
+    public void onMeasure(int i10, int i11) {
+        switch (this.f41362a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i11), Math.min(AndroidUtilities.displaySize.y * 0.35f, AndroidUtilities.dp(400.0f))), View.MeasureSpec.getMode(i11)));
+                return;
+            case 1:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
+                return;
         }
     }
 
     @Override
-    public final void h(int i10, long j3) {
-        if (i10 != 1 && i10 != 27) {
-            return;
+    public boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        switch (this.f41362a) {
+            case 1:
+                return false;
+            default:
+                return super.onRequestFocusInDescendants(i10, rect);
         }
-        qy qyVar = this.f38570f0;
-        qyVar.y3 = 1;
-        qyVar.A4(true, true);
-        if (qyVar.R1 != null) {
-            int i11 = 0;
-            while (true) {
-                if (i11 < qyVar.R1.size()) {
-                    if (((TLRPC.Dialog) qyVar.R1.get(i11)).f18341id == j3) {
-                        break;
-                    }
-                    i11++;
-                } else {
-                    i11 = -1;
-                    break;
-                }
-            }
-            if (i11 >= 0) {
-                qyVar.f37034e0[0].d.l();
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ym(this, i11, (TLRPC.Dialog) qyVar.R1.remove(i11), 25));
-            } else {
-                qyVar.A4(false, true);
-            }
-        }
-        qyVar.o3();
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        qy qyVar = this.f38570f0;
-        UndoView[] undoViewArr = qyVar.f37135y0;
-        if (this == undoViewArr[0]) {
-            UndoView undoView = undoViewArr[1];
-            if (undoView == null || undoView.getVisibility() != 0) {
-                qyVar.f37115u1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f7);
-                qyVar.X4();
-            }
+    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        switch (this.f41362a) {
+            case 1:
+                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+                rect.top = AndroidUtilities.dp(20.0f) + rect.top;
+                rect.bottom = AndroidUtilities.dp(50.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+            default:
+                return super.requestChildRectangleOnScreen(view, rect, z10);
         }
     }
 }

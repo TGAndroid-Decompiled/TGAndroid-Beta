@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 public final class mb0 implements Runnable {
-    public final int f26363a;
-    public final bc0 f26364b;
-    public final Context f26365c;
+    public final int f28567a;
+    public final cc0 f28568b;
+    public final Context f28569c;
 
-    public mb0(bc0 bc0Var, Context context, int i10) {
-        this.f26363a = i10;
-        this.f26364b = bc0Var;
-        this.f26365c = context;
+    public mb0(cc0 cc0Var, Context context, int i10) {
+        this.f28567a = i10;
+        this.f28568b = cc0Var;
+        this.f28569c = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f26363a) {
+        switch (this.f28567a) {
             case 0:
-                bc0 bc0Var = this.f26364b;
-                bc0Var.f22938c0.a(false);
-                AndroidUtilities.runOnUIThread(new mb0(bc0Var, this.f26365c, 1));
+                cc0 cc0Var = this.f28568b;
+                cc0Var.f25320c0.a(false);
+                AndroidUtilities.runOnUIThread(new mb0(cc0Var, this.f28569c, 1));
                 return;
             default:
-                Context context = this.f26365c;
+                Context context = this.f28569c;
                 if (AndroidUtilities.isContextSafe(context)) {
-                    new rg.x0(context, 43, this.f26364b.f22938c0.F).show();
+                    new rg.y0(context, 43, this.f28568b.f25320c0.F).show();
                     return;
                 }
                 return;

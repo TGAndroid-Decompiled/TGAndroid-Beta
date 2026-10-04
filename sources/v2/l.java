@@ -4,7 +4,7 @@ public interface l {
 
     long a();
 
-    long g();
+    long f();
 
     boolean next();
 }

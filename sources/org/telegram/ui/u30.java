@@ -1,18 +1,25 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class u30 extends s4.n0 {
+public final class u30 extends TextView {
+    public final RectF f41034a;
+    public final h60 f41035b;
+
+    public u30(h60 h60Var, Context context) {
+        super(context);
+        this.f41035b = h60Var;
+        this.f41034a = new RectF();
+    }
+
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
-        recyclerView.getClass();
-        RecyclerView.R(view);
-        if (!d60.F3) {
-            rect.set(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        } else {
-            rect.set(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-        }
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.f41034a;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f41035b.f36900g1);
+        super.onDraw(canvas);
     }
 }

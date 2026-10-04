@@ -9,22 +9,22 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.tl.TL_account;
 public final class w0 implements Runnable {
-    public final int f5695a;
-    public final MessagesStorage f5696b;
-    public final ArrayList f5697c;
+    public final int f6197a;
+    public final MessagesStorage f6198b;
+    public final ArrayList f6199c;
 
     public w0(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f5695a = i10;
-        this.f5696b = messagesStorage;
-        this.f5697c = arrayList;
+        this.f6197a = i10;
+        this.f6198b = messagesStorage;
+        this.f6199c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f5695a) {
+        switch (this.f6197a) {
             case 0:
-                MessagesStorage messagesStorage = this.f5696b;
-                ArrayList arrayList = this.f5697c;
+                MessagesStorage messagesStorage = this.f6198b;
+                ArrayList arrayList = this.f6199c;
                 try {
                     SQLiteDatabase database = messagesStorage.getDatabase();
                     if (database != null) {
@@ -32,13 +32,13 @@ public final class w0 implements Runnable {
                         return;
                     }
                     return;
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     return;
                 }
             case 1:
-                MessagesStorage messagesStorage2 = this.f5696b;
-                ArrayList arrayList2 = this.f5697c;
+                MessagesStorage messagesStorage2 = this.f6198b;
+                ArrayList arrayList2 = this.f6199c;
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
@@ -57,8 +57,8 @@ public final class w0 implements Runnable {
                         if (sQLitePreparedStatement == null) {
                             return;
                         }
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
                         if (sQLitePreparedStatement == null) {
                             return;
                         }
@@ -72,15 +72,15 @@ public final class w0 implements Runnable {
                     throw th2;
                 }
             default:
-                MessagesStorage messagesStorage3 = this.f5696b;
-                ArrayList arrayList3 = this.f5697c;
+                MessagesStorage messagesStorage3 = this.f6198b;
+                ArrayList arrayList3 = this.f6199c;
                 try {
                     SQLiteDatabase database3 = messagesStorage3.getDatabase();
                     String join = TextUtils.join(", ", arrayList3);
                     database3.executeFast("DELETE FROM quick_replies_messages WHERE topic_id IN (" + join + ")").stepThis().dispose();
                     return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
+                } catch (Exception e11) {
+                    FileLog.e(e11);
                     return;
                 }
         }

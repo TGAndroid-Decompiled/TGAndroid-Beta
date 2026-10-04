@@ -1,6 +1,6 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
+import java.util.ArrayList;
 public interface nj0 {
-    void b(Canvas canvas);
+    void a(ArrayList arrayList);
 }

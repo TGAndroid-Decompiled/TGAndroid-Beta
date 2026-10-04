@@ -1,23 +1,26 @@
 package org.telegram.ui;
+public final class bn0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f35146a;
+    public final gn0 f35147b;
 
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-public final class bn0 extends TimerTask {
-    public final cn0 f32456a;
-
-    public bn0(cn0 cn0Var) {
-        this.f32456a = cn0Var;
+    public bn0(gn0 gn0Var, int i10) {
+        this.f35146a = i10;
+        this.f35147b = gn0Var;
     }
 
     @Override
-    public final void run() {
-        cn0 cn0Var = this.f32456a;
-        if (cn0Var.v == null) {
-            return;
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f35146a) {
+            case 0:
+                gn0 gn0Var = this.f35147b;
+                gn0Var.c(true);
+                gn0Var.Q.finishFragment();
+                return;
+            default:
+                gn0 gn0Var2 = this.f35147b;
+                gn0Var2.c(true);
+                gn0Var2.Q.K1(null, 0, true);
+                return;
         }
-        double currentTimeMillis = System.currentTimeMillis();
-        cn0Var.f32760y = (int) (cn0Var.f32760y - (currentTimeMillis - cn0Var.F));
-        cn0Var.F = currentTimeMillis;
-        AndroidUtilities.runOnUIThread(new il0(this, 6));
     }
 }

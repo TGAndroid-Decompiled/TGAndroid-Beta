@@ -1,29 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class z51 extends URLSpan {
-    public final d11 f30824a;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public abstract class z51 {
+    public String[] f33389a = new String[0];
 
-    public z51(String str, d11 d11Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f30824a = d11Var;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void onClick(View view) {
-        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
+    public String[] b() {
+        return this.f33389a;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        d11 d11Var = this.f30824a;
-        if (d11Var != null) {
-            d11Var.a(textPaint);
-        }
-        textPaint.setUnderlineText(true);
+    public boolean c() {
+        return false;
+    }
+
+    public boolean d(s51 s51Var, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean e(s51 s51Var, j jVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f33389a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
     }
 }

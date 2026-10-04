@@ -1,28 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.UndoView;
-public final class g81 extends UndoView {
-    public final SessionsActivity f33860f0;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class g81 implements org.telegram.ui.ActionBar.a2 {
+    public final int f36530a;
+    public final SessionsActivity f36531b;
 
-    public g81(SessionsActivity sessionsActivity, Context context) {
-        super(context);
-        this.f33860f0 = sessionsActivity;
+    public g81(SessionsActivity sessionsActivity, int i10) {
+        this.f36530a = i10;
+        this.f36531b = sessionsActivity;
     }
 
     @Override
-    public final void e(int i10, boolean z10) {
-        int i11;
-        if (!z10 && getCurrentInfoObject() != null) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
-            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-            resetauthorization.hash = tL_authorization.hash;
-            i11 = ((org.telegram.ui.ActionBar.m2) this.f33860f0).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new vb0(19, this, tL_authorization));
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f36530a) {
+            case 0:
+                SessionsActivity sessionsActivity = this.f36531b;
+                sessionsActivity.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    sessionsActivity.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            default:
+                SessionsActivity.U(this.f36531b);
+                return;
         }
-        super.e(i10, z10);
     }
 }

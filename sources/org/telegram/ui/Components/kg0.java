@@ -1,34 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class kg0 extends AnimatorListenerAdapter {
-    public final int f25697a;
-    public final PipRoundVideoView f25698b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class kg0 extends org.telegram.ui.l4 {
+    public final int h;
+    public final Object f28096n;
 
-    public kg0(PipRoundVideoView pipRoundVideoView, int i10) {
-        this.f25697a = i10;
-        this.f25698b = pipRoundVideoView;
+    public kg0(Object obj, Context context, int i10) {
+        super(context);
+        this.h = i10;
+        this.f28096n = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25697a) {
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        MessageObject playingMessageObject;
+        switch (this.h) {
             case 0:
-                PipRoundVideoView pipRoundVideoView = this.f25698b;
-                if (animator.equals(pipRoundVideoView.f22309r)) {
-                    pipRoundVideoView.f22309r = null;
+                boolean drawChild = super.drawChild(canvas, view, j3);
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f28096n;
+                if (view == pipRoundVideoView.f24210c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
+                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
+                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.i6.f20942k2);
+                }
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.h) {
+            case 1:
+                super.onMeasure(i10, i11);
+                z91 z91Var = (z91) this.f28096n;
+                if (z91Var.f33448f != null) {
+                    ViewGroup.LayoutParams layoutParams = z91Var.d.getLayoutParams();
+                    layoutParams.width = getMeasuredWidth();
+                    layoutParams.height = getMeasuredHeight();
+                    ImageView imageView = z91Var.f33446e;
+                    if (imageView != null) {
+                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
+                        layoutParams2.width = getMeasuredWidth();
+                        layoutParams2.height = getMeasuredHeight();
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                PipRoundVideoView pipRoundVideoView2 = this.f25698b;
-                pipRoundVideoView2.a(false);
-                Runnable runnable = pipRoundVideoView2.f22310s;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                super.onMeasure(i10, i11);
                 return;
         }
     }

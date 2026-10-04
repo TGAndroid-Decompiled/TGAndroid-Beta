@@ -1,0 +1,196 @@
+package org.telegram.ui.Components;
+
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.webkit.JsPromptResult;
+import java.util.ArrayList;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.yf1;
+public final class v50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceiver.ImageReceiverDelegate, MessagesStorage.BooleanCallback, t5.b, s5.e, e2.h, x2.m, org.telegram.ui.oy {
+    public final int f31566a;
+    public final Object f31567b;
+    public final Object f31568c;
+    public final Object d;
+
+    public v50(Object obj, Object obj2, Object obj3, int i10) {
+        this.f31566a = i10;
+        this.f31567b = obj;
+        this.f31568c = obj2;
+        this.d = obj3;
+    }
+
+    @Override
+    public boolean A() {
+        return false;
+    }
+
+    @Override
+    public boolean H(org.telegram.ui.uy uyVar) {
+        return false;
+    }
+
+    @Override
+    public void K(int i10, int i11, boolean z10) {
+        boolean z11;
+        int i12;
+        int i13;
+        long j3;
+        y50 y50Var = (y50) this.f31567b;
+        t50 t50Var = (t50) this.f31568c;
+        VideoEditedInfo videoEditedInfo = (VideoEditedInfo) this.d;
+        f60 f60Var = y50Var.H0;
+        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, y50Var.f33055a.getAbsolutePath(), 0, true, 0, 0, 0L);
+        if (t50Var != null) {
+            photoEntry.ttl = t50Var.f30972c;
+            photoEntry.effectId = t50Var.d;
+        }
+        r50 r50Var = f60Var.f26314n;
+        if (!z10 && t50Var != null && !t50Var.f30970a) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        if (i10 != 0) {
+            i12 = i10;
+        } else if (t50Var != null) {
+            i12 = t50Var.f30971b;
+        } else {
+            i12 = 0;
+        }
+        if (i11 != 0) {
+            i13 = i11;
+        } else {
+            i13 = 0;
+        }
+        if (t50Var != null) {
+            j3 = t50Var.f30973e;
+        } else {
+            j3 = 0;
+        }
+        r50Var.q(photoEntry, videoEditedInfo, z11, i12, i13, false, j3);
+        f60Var.q(false, false);
+    }
+
+    @Override
+    public void accept(Object obj) {
+        ((u2.k0) obj).c(((a5.a) this.f31567b).f299b, (u2.f0) this.f31568c, (u2.b0) this.d);
+    }
+
+    @Override
+    public java.lang.Object apply(java.lang.Object r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.v50.apply(java.lang.Object):java.lang.Object");
+    }
+
+    @Override
+    public e9.a1 b(int i10, b2.l1 l1Var, int[] iArr) {
+        x2.i iVar = (x2.i) this.f31567b;
+        String str = (String) this.f31568c;
+        String str2 = (String) this.d;
+        e9.f0 u10 = e9.i0.u();
+        for (int i11 = 0; i11 < l1Var.f3336a; i11++) {
+            u10.b(new x2.l(i10, l1Var, i11, iVar, iArr[i11], str, str2));
+        }
+        return u10.i();
+    }
+
+    @Override
+    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        Bitmap bitmap;
+        int i10;
+        s21 s21Var = (s21) this.f31567b;
+        op opVar = (op) this.f31568c;
+        TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
+        ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
+        if (z10 && bitmapSafe != null && (bitmap = bitmapSafe.bitmap) != null) {
+            Drawable drawable = opVar.f29423b;
+            if (drawable instanceof pc0) {
+                pc0 pc0Var = (pc0) drawable;
+                TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
+                if (wallPaperSettings != null && wallPaperSettings.intensity < 0) {
+                    i10 = -100;
+                } else {
+                    i10 = 100;
+                }
+                pc0Var.t(s21.e(bitmap), i10);
+                pc0Var.u(s21Var.L);
+                s21Var.invalidate();
+            }
+        }
+    }
+
+    @Override
+    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.h5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f31566a) {
+            case 1:
+                pv0 pv0Var = (pv0) this.f31567b;
+                ArrayList arrayList = (ArrayList) this.d;
+                ((ai.u8) this.f31568c).F(arrayList);
+                yc.a0(pv0Var.f29800v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
+                pv0Var.L(false);
+                return;
+            case 4:
+                boolean[] zArr = (boolean[]) this.f31567b;
+                JsPromptResult jsPromptResult = (JsPromptResult) this.f31568c;
+                eu euVar = (eu) this.d;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    jsPromptResult.confirm(euVar.getText().toString());
+                    return;
+                }
+                return;
+            default:
+                rg.k0.N((rg.k0) this.f31567b, (ArrayList) this.f31568c, (TLRPC.User) this.d);
+                return;
+        }
+    }
+
+    @Override
+    public Object h() {
+        q5.a aVar = (q5.a) this.f31567b;
+        l5.i iVar = (l5.i) this.f31568c;
+        l5.h hVar = (l5.h) this.d;
+        s5.g gVar = (s5.g) aVar.d;
+        gVar.getClass();
+        i5.d dVar = iVar.f15347c;
+        String str = hVar.f15340a;
+        String str2 = iVar.f15345a;
+        String c10 = w7.h6.c("SQLiteEventStore");
+        if (Log.isLoggable(c10, 3)) {
+            Log.d(c10, "Storing event with priority=" + dVar + ", name=" + str + " for destination " + str2);
+        }
+        ((Long) gVar.c(new v50(gVar, hVar, iVar, 7))).getClass();
+        aVar.f44825a.V(iVar, 1, false);
+        return null;
+    }
+
+    @Override
+    public void onAnimationReady(ImageReceiver imageReceiver) {
+        org.telegram.messenger.h5.b(this, imageReceiver);
+    }
+
+    @Override
+    public void run(boolean z10) {
+        TLRPC.Chat chat = (TLRPC.Chat) this.f31567b;
+        org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f31568c;
+        org.telegram.ui.Components.voip.g2.l(chat, null, true, null, n2Var.getParentActivity(), n2Var, (AccountInstance) this.d);
+    }
+
+    @Override
+    public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, yf1 yf1Var) {
+        return yh.x3.W((yh.x3) this.f31567b, (TL_stars.TL_starGiftUnique) this.f31568c, (org.telegram.ui.uy) this.d, arrayList);
+    }
+}

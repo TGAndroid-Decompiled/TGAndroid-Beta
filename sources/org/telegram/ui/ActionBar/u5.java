@@ -2,41 +2,45 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 public final class u5 extends Drawable {
-    public final RectF f19837a = new RectF();
-    public final int f19838b;
-    public final int f19839c;
+    public final RectF f21560a = new RectF();
+    public final View f21561b;
+    public final View f21562c;
     public final int d;
-    public final int e;
-    public final float f19840f;
+    public final Paint f21563e;
 
-    public u5(int i10, int i11, int i12, int i13, float f7) {
-        this.f19838b = i10;
-        this.f19839c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f19840f = f7;
+    public u5(View view, View view2, int i10, Paint paint) {
+        this.f21561b = view;
+        this.f21562c = view2;
+        this.d = i10;
+        this.f21563e = paint;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f19837a;
-        rectF.set(bounds);
-        rectF.left += this.f19838b;
-        rectF.top += this.f19839c;
-        rectF.right -= this.d;
-        rectF.bottom -= this.e;
-        float f7 = this.f19840f;
-        canvas.drawRoundRect(rectF, f7, f7, h6.f19456z);
+        RectF rectF = this.f21560a;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        i6.s(this.f21561b, this.f21562c, null);
+        float f7 = this.d;
+        Paint paint = this.f21563e;
+        if (paint == null) {
+            paint = i6.S0("paintChatActionBackground");
+        }
+        canvas.drawRoundRect(rectF, f7, f7, paint);
+        if (i6.a1()) {
+            canvas.drawRoundRect(rectF, f7, f7, i6.S0("paintChatActionBackgroundDarken"));
+        }
     }
 
     @Override
     public final int getOpacity() {
-        return 0;
+        return -2;
     }
 
     @Override

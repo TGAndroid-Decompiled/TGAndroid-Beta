@@ -1,44 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class si implements Runnable {
-    public final int f37797a;
-    public final ti f37798b;
-    public final int f37799c;
-    public final boolean d;
-    public final org.telegram.ui.Components.sk0 e;
-    public final float f37800f;
-    public final float h;
-    public final zg.o0 f37801n;
+import android.app.Activity;
+public final class si extends org.telegram.ui.Cells.w0 {
+    public final yn f40489l2;
 
-    public si(ti tiVar, int i10, boolean z10, org.telegram.ui.Components.sk0 sk0Var, float f7, float f10, zg.o0 o0Var, int i11) {
-        this.f37797a = i11;
-        this.f37798b = tiVar;
-        this.f37799c = i10;
-        this.d = z10;
-        this.e = sk0Var;
-        this.f37800f = f7;
-        this.h = f10;
-        this.f37801n = o0Var;
+    public si(Activity activity, org.telegram.ui.ActionBar.d6 d6Var, yn ynVar) {
+        super(activity, d6Var, false);
+        this.f40489l2 = ynVar;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f37797a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new si(this.f37798b, this.f37799c, this.d, this.e, this.f37800f, this.h, this.f37801n, 1), 50L);
-                return;
-            default:
-                wn wnVar = this.f37798b.f38137s;
-                org.telegram.ui.Cells.a0 q82 = wnVar.q8(this.f37799c, true);
-                if (this.d) {
-                    i10 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-                    zg.k0.d(wnVar, this.e, q82, null, this.f37800f, this.h, this.f37801n, i10, 1);
-                    zg.k0.f();
-                    return;
-                }
-                return;
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        float y3 = getY();
+        yn ynVar = this.f40489l2;
+        U(ynVar.P0.getY() + y3, ynVar.V0.getBackgroundSizeY());
     }
 }

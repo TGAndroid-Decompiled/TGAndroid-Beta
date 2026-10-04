@@ -1,94 +1,47 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class cn0 implements Runnable {
-    public final int f23350a = 1;
-    public final kn0 f23351b;
-    public final String f23352c;
-    public final ArrayList d;
-    public final ArrayList e;
+public final class cn0 extends y5 {
+    public final e6 d;
+    public final int f25419e;
+    public final ScrollSlidingTextTabStrip f25420f;
 
-    public cn0(kn0 kn0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f23351b = kn0Var;
-        this.f23352c = str;
-        this.d = arrayList;
-        this.e = arrayList2;
+    public cn0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i10) {
+        super(context);
+        this.f25420f = scrollSlidingTextTabStrip;
+        this.f25419e = i10;
+        this.d = new e6(this, 360L, tr.h);
     }
 
     @Override
-    public final void run() {
-        switch (this.f23350a) {
-            case 0:
-                kn0 kn0Var = this.f23351b;
-                int i10 = kn0Var.d;
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList3 = this.d;
-                    int size = arrayList3.size();
-                    String str = this.f23352c;
-                    if (i11 < size) {
-                        String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
-                        if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
-                            MessageObject messageObject = new MessageObject(i10, ((MessageObject) arrayList3.get(i11)).messageOwner, false, false);
-                            messageObject.mediaExists = ((MessageObject) arrayList3.get(i11)).mediaExists;
-                            messageObject.setQuery(kn0Var.K);
-                            arrayList.add(messageObject);
-                        }
-                        i11++;
-                    } else {
-                        int i12 = 0;
-                        while (true) {
-                            ArrayList arrayList4 = this.e;
-                            if (i12 < arrayList4.size()) {
-                                String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList4.get(i12)).getDocument());
-                                if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
-                                    MessageObject messageObject2 = new MessageObject(i10, ((MessageObject) arrayList4.get(i12)).messageOwner, false, false);
-                                    messageObject2.mediaExists = ((MessageObject) arrayList4.get(i12)).mediaExists;
-                                    messageObject2.setQuery(kn0Var.K);
-                                    arrayList2.add(messageObject2);
-                                }
-                                i12++;
-                            } else {
-                                AndroidUtilities.runOnUIThread(new cn0(kn0Var, str, arrayList, arrayList2));
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-            default:
-                kn0 kn0Var2 = this.f23351b;
-                kx0 kx0Var = kn0Var2.f25767a;
-                if (this.f23352c.equals(kn0Var2.L)) {
-                    if (kn0Var2.f25772r == 0) {
-                        kn0Var2.N.b(0);
-                    }
-                    kn0Var2.e(this.d, this.e, true);
-                    if (kn0Var2.f25772r == 0) {
-                        kx0Var.e(false, true);
-                        p90 p90Var = kx0Var.e;
-                        kx0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-                        p90Var.setVisibility(0);
-                        p90Var.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e7 = this.d.e(this.f25420f.f24318n0);
+        int i10 = (e7 > 0.0f ? 1 : (e7 == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (AndroidUtilities.lerp(1.0f, 0.5f, e7) * 255.0f));
+        } else {
+            canvas2 = canvas;
+        }
+        super.onDraw(canvas2);
+        if (i10 > 0) {
+            canvas2.restore();
         }
     }
 
-    public cn0(kn0 kn0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f23351b = kn0Var;
-        this.d = arrayList;
-        this.f23352c = str;
-        this.e = arrayList2;
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f25420f.f24319r == this.f25419e) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        accessibilityNodeInfo.setSelected(z10);
     }
 }

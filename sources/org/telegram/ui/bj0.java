@@ -1,83 +1,78 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public final class bj0 extends ca1 {
-    public final cj0 v;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class bj0 implements RequestDelegate {
+    public final int f35121a;
+    public final hj0 f35122b;
 
-    public bj0(cj0 cj0Var, Context context, int i10, ig.f fVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, fVar, d6Var);
-        this.v = cj0Var;
+    public bj0(hj0 hj0Var, int i10) {
+        this.f35121a = i10;
+        this.f35122b = hj0Var;
     }
 
     @Override
-    public final void c() {
-        int i10;
-        int i11;
-        int i12;
-        ej0 ej0Var = this.v.d;
-        if (this.f32619r.f33335c <= 0) {
-            performClick();
-            ig.g gVar = this.f32615b;
-            if (gVar.f11152t0.G) {
-                long selectedDate = gVar.getSelectedDate();
-                if (this.f32620s == 4) {
-                    ea1 ea1Var = this.f32619r;
-                    ea1Var.e = new jg.e(ea1Var.d, selectedDate);
-                    g(false);
-                } else if (this.f32619r.f33337g == null) {
-                } else {
-                    f();
-                    String str = this.f32619r.f33337g + "_" + selectedDate;
-                    jg.b bVar = (jg.b) ej0Var.v.get(str);
-                    if (bVar != null) {
-                        this.f32619r.e = bVar;
-                        g(false);
-                        return;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f35121a) {
+            case 0:
+                final hj0 hj0Var = this.f35122b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                hj0.S(hj0Var, tL_error, tLObject);
+                                return;
+                            case 1:
+                                hj0.U(hj0Var, tL_error, tLObject);
+                                return;
+                            default:
+                                hj0.T(hj0Var, tL_error, tLObject);
+                                return;
+                        }
                     }
-                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f32619r.f33337g;
-                    if (selectedDate != 0) {
-                        tL_loadAsyncGraph.f18566x = selectedDate;
-                        tL_loadAsyncGraph.flags |= 1;
+                });
+                return;
+            case 1:
+                final hj0 hj0Var2 = this.f35122b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                hj0.S(hj0Var2, tL_error, tLObject);
+                                return;
+                            case 1:
+                                hj0.U(hj0Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                hj0.T(hj0Var2, tL_error, tLObject);
+                                return;
+                        }
                     }
-                    ?? obj = new Object();
-                    ej0Var.f33429w = obj;
-                    ej0Var.f33425f.getClass();
-                    obj.f37279a = RecyclerView.R(this);
-                    gVar.f11152t0.d(true, false);
-                    i10 = ((org.telegram.ui.ActionBar.m2) ej0Var).currentAccount;
-                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new aa(this, str, (Object) obj, 25), null, null, 0, ej0Var.f33417a.stats_dc, 1, true);
-                    i11 = ((org.telegram.ui.ActionBar.m2) ej0Var).currentAccount;
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
-                    i12 = ((org.telegram.ui.ActionBar.m2) ej0Var).classGuid;
-                    connectionsManager.bindRequestToGuid(sendRequest, i12);
-                }
-            }
+                });
+                return;
+            default:
+                final hj0 hj0Var3 = this.f35122b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                hj0.S(hj0Var3, tL_error, tLObject);
+                                return;
+                            case 1:
+                                hj0.U(hj0Var3, tL_error, tLObject);
+                                return;
+                            default:
+                                hj0.T(hj0Var3, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-    }
-
-    @Override
-    public final void f() {
-        cj0 cj0Var = this.v;
-        ej0 ej0Var = cj0Var.d;
-        ra1 ra1Var = ej0Var.f33429w;
-        if (ra1Var != null) {
-            ra1Var.f37280b = true;
-        }
-        int childCount = ej0Var.f33425f.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = cj0Var.d.f33425f.getChildAt(i10);
-            if (childAt instanceof ca1) {
-                ((ca1) childAt).f32615b.f11152t0.d(false, true);
-            }
-        }
-    }
-
-    @Override
-    public final void b(ea1 ea1Var) {
     }
 }

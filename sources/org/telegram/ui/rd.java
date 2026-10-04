@@ -1,28 +1,141 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class rd implements mg1 {
-    public final int f37300a;
-    public final je f37301b;
-    public final TwoStepVerificationActivity f37302c;
+import android.view.View;
+import android.widget.EditText;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class rd implements View.OnFocusChangeListener {
+    public final int f40027a;
+    public final Object f40028b;
 
-    public rd(je jeVar, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f37300a = i10;
-        this.f37301b = jeVar;
-        this.f37302c = twoStepVerificationActivity;
+    public rd(Object obj, int i10) {
+        this.f40027a = i10;
+        this.f40028b = obj;
     }
 
     @Override
-    public final void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f37300a) {
+    public final void onFocusChange(View view, boolean z10) {
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        float f16;
+        switch (this.f40027a) {
             case 0:
-                this.f37301b.b0(false, tL_inputCheckPasswordSRP, this.f37302c);
+                ae aeVar = ((me) this.f40028b).N1;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                aeVar.b(f7, f7, true);
                 return;
             case 1:
-                this.f37301b.b0(true, tL_inputCheckPasswordSRP, this.f37302c);
+                uy uyVar = (uy) this.f40028b;
+                if (z10) {
+                    uyVar.Y.b(true);
+                    return;
+                }
                 return;
+            case 2:
+                ug0 ug0Var = ((ee0) this.f40028b).W;
+                if (z10) {
+                    ug0Var.f41196c.setEditText((EditText) view);
+                    ug0Var.f41196c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 3:
+                org.telegram.ui.Components.ld0 ld0Var = (org.telegram.ui.Components.ld0) this.f40028b;
+                if (z10) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                ld0Var.b(f10, f10, true);
+                return;
+            case 4:
+                org.telegram.ui.Components.ld0 ld0Var2 = ((ne0) this.f40028b).f38953x;
+                if (z10) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                ld0Var2.b(f11, f11, true);
+                return;
+            case 5:
+                org.telegram.ui.Components.ld0 ld0Var3 = ((ve0) this.f40028b).f41712b;
+                if (z10) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.0f;
+                }
+                ld0Var3.b(f12, f12, true);
+                return;
+            case 6:
+                ug0 ug0Var2 = ((ye0) this.f40028b).f43152y;
+                if (z10) {
+                    ug0Var2.f41196c.setEditText((EditText) view);
+                    ug0Var2.f41196c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 7:
+                org.telegram.ui.Components.ld0 ld0Var4 = ((jf0) this.f40028b).f37671a;
+                if (z10) {
+                    f13 = 1.0f;
+                } else {
+                    f13 = 0.0f;
+                }
+                ld0Var4.b(f13, f13, true);
+                return;
+            case 8:
+                ug0 ug0Var3 = ((xf0) this.f40028b).f42874s0;
+                if (z10) {
+                    ug0Var3.f41196c.setEditText((EditText) view);
+                    ug0Var3.f41196c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 9:
+                org.telegram.ui.Components.ld0 ld0Var5 = ((tg0) this.f40028b).f40819e;
+                if (z10) {
+                    f14 = 1.0f;
+                } else {
+                    f14 = 0.0f;
+                }
+                ld0Var5.b(f14, f14, true);
+                return;
+            case 10:
+                org.telegram.ui.Components.ld0 ld0Var6 = ((PasscodeActivity) this.f40028b).f33843f;
+                if (z10) {
+                    f15 = 1.0f;
+                } else {
+                    f15 = 0.0f;
+                }
+                ld0Var6.b(f15, f15, true);
+                return;
+            case 11:
+                wd1 wd1Var = (wd1) this.f40028b;
+                if (z10) {
+                    wd1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
+                    return;
+                } else {
+                    wd1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
+                    return;
+                }
             default:
-                this.f37301b.b0(true, tL_inputCheckPasswordSRP, this.f37302c);
+                org.telegram.ui.Components.ld0 ld0Var7 = ((TwoStepVerificationActivity) this.f40028b).v;
+                if (z10) {
+                    f16 = 1.0f;
+                } else {
+                    f16 = 0.0f;
+                }
+                ld0Var7.b(f16, f16, true);
                 return;
         }
     }

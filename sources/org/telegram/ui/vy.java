@@ -1,40 +1,38 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class vy implements org.telegram.ui.Components.pl0 {
-    public final Rect f38847a = new Rect();
-    public final zy f38848b;
+import org.telegram.messenger.DownloadController;
+public final class vy implements DownloadController.FileDownloadProgressListener {
+    public long f41852a;
+    public long f41853b;
+    public final String f41854c;
+    public final wy d;
 
-    public vy(zy zyVar) {
-        this.f38848b = zyVar;
+    public vy(wy wyVar, String str) {
+        this.d = wyVar;
+        this.f41854c = str;
     }
 
     @Override
-    public final boolean mo18c(float f7, float f10, int i10, View view) {
-        zy zyVar = this.f38848b;
-        if (zyVar.getParentActivity() != null && (view instanceof org.telegram.ui.Cells.g4)) {
-            Rect rect = this.f38847a;
-            ((ImageView) view.getTag(R.id.object_tag)).getHitRect(rect);
-            if (!rect.contains((int) f7, (int) f10)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zyVar.getParentActivity());
-                alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new uy(this, i10, 0));
-                zyVar.showDialog(alertDialog$Builder.f18663a);
-                return true;
-            }
-        }
-        return false;
+    public final int getObserverTag() {
+        return 0;
     }
 
     @Override
-    public final void g() {
+    public final void onProgressDownload(String str, long j3, long j10) {
+        this.f41853b = j3;
+        this.f41852a = j10;
+        this.d.c();
     }
 
     @Override
-    public final void q(float f7) {
+    public final void onSuccessDownload(String str) {
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z10) {
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j3, long j10, boolean z10) {
     }
 }

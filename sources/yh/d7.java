@@ -1,47 +1,58 @@
 package yh;
 
-import android.widget.LinearLayout;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.lu0;
-import org.telegram.ui.vu0;
-public final class d7 extends lu0 {
-    public final w9 f47308a;
-    public final LinearLayout f47309b;
-    public final long f47310c;
-
-    public d7(w9 w9Var, LinearLayout linearLayout, long j3) {
-        this.f47308a = w9Var;
-        this.f47309b = linearLayout;
-        this.f47310c = j3;
-    }
+public final class d7 extends w9 {
+    public vh.f G;
+    public Path H;
+    public RectF I;
+    public Drawable J;
 
     @Override
-    public final vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        w9 w9Var = this.f47308a;
-        ImageReceiver imageReceiver = w9Var.getImageReceiver();
-        int[] iArr = new int[2];
-        w9Var.getLocationInWindow(iArr);
-        vu0 vu0Var = new vu0();
-        vu0Var.f38820b = iArr[0];
-        vu0Var.f38821c = iArr[1];
-        vu0Var.d = this.f47309b;
-        vu0Var.f38828m = null;
-        vu0Var.f38819a = imageReceiver;
-        if (z10) {
-            vu0Var.e = imageReceiver.getBitmapSafe();
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        RectF rectF = this.I;
+        Path path = this.H;
+        Drawable drawable = this.J;
+        super.dispatchDraw(canvas);
+        if (this.G == null) {
+            this.G = vh.f.e(this);
         }
-        vu0Var.h = imageReceiver.getRoundRadius(true);
-        vu0Var.f38822f = this.f47310c;
-        vu0Var.f38825j = 0;
-        vu0Var.f38824i = 0;
-        return vu0Var;
+        if (this.G != null) {
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            path.rewind();
+            path.addRoundRect(rectF, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
+            canvas2 = canvas;
+            this.G.c(canvas2, this, getWidth(), getHeight(), 1.0f, false);
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+        }
+        drawable.setBounds((getWidth() - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
+        drawable.draw(canvas2);
     }
 
     @Override
-    public final boolean K() {
-        return true;
+    public final void onAttachedToWindow() {
+        vh.f fVar = this.G;
+        if (fVar != null) {
+            fVar.a(this);
+        }
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        vh.f fVar = this.G;
+        if (fVar != null) {
+            fVar.b(this);
+        }
+        super.onDetachedFromWindow();
     }
 }

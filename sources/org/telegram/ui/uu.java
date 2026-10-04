@@ -1,13 +1,8 @@
 package org.telegram.ui;
-
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class uu extends FrameLayout {
-    public TextView f38558a;
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-    }
+public final class uu extends org.telegram.ui.Components.dd {
+    public int d;
+    public long f41300e;
+    public long f41301f;
+    public int f41302g;
+    public int h;
 }

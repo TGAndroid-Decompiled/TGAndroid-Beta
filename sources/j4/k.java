@@ -3,40 +3,40 @@ package j4;
 import c3.h0;
 import i2.m0;
 public final class k implements i {
-    public static final double[] f12696r = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
-    public String f12697a;
-    public h0 f12698b;
-    public final c0 f12699c;
+    public static final double[] f13797r = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
+    public String f13798a;
+    public h0 f13799b;
+    public final c0 f13800c;
     public final String d;
-    public final e2.v e;
-    public final m0 f12700f;
-    public final boolean[] f12701g = new boolean[4];
+    public final e2.v f13801e;
+    public final m0 f13802f;
+    public final boolean[] f13803g = new boolean[4];
     public final j h;
-    public long f12702i;
-    public boolean f12703j;
-    public boolean f12704k;
-    public long f12705l;
-    public long f12706m;
-    public long f12707n;
-    public long f12708o;
-    public boolean f12709p;
-    public boolean f12710q;
+    public long f13804i;
+    public boolean f13805j;
+    public boolean f13806k;
+    public long f13807l;
+    public long f13808m;
+    public long f13809n;
+    public long f13810o;
+    public boolean f13811p;
+    public boolean f13812q;
 
     public k(c0 c0Var, String str) {
-        this.f12699c = c0Var;
+        this.f13800c = c0Var;
         this.d = str;
         ?? obj = new Object();
         obj.d = new byte[128];
         this.h = obj;
         if (c0Var != null) {
-            this.f12700f = new m0(178);
-            this.e = new e2.v();
+            this.f13802f = new m0(178);
+            this.f13801e = new e2.v();
         } else {
-            this.f12700f = null;
-            this.e = null;
+            this.f13802f = null;
+            this.f13801e = null;
         }
-        this.f12706m = -9223372036854775807L;
-        this.f12708o = -9223372036854775807L;
+        this.f13808m = -9223372036854775807L;
+        this.f13810o = -9223372036854775807L;
     }
 
     @Override
@@ -46,29 +46,29 @@ public final class k implements i {
 
     @Override
     public final void c() {
-        f2.o.a(this.f12701g);
+        f2.o.a(this.f13803g);
         j jVar = this.h;
-        jVar.f12693a = false;
-        jVar.f12694b = 0;
-        jVar.f12695c = 0;
-        m0 m0Var = this.f12700f;
+        jVar.f13794a = false;
+        jVar.f13795b = 0;
+        jVar.f13796c = 0;
+        m0 m0Var = this.f13802f;
         if (m0Var != null) {
             m0Var.g();
         }
-        this.f12702i = 0L;
-        this.f12703j = false;
-        this.f12706m = -9223372036854775807L;
-        this.f12708o = -9223372036854775807L;
+        this.f13804i = 0L;
+        this.f13805j = false;
+        this.f13808m = -9223372036854775807L;
+        this.f13810o = -9223372036854775807L;
     }
 
     @Override
     public final void d(c3.q qVar, f0 f0Var) {
         f0Var.a();
         f0Var.b();
-        this.f12697a = f0Var.e;
+        this.f13798a = f0Var.f13771e;
         f0Var.b();
-        this.f12698b = qVar.Z1(f0Var.d, 2);
-        c0 c0Var = this.f12699c;
+        this.f13799b = qVar.Z1(f0Var.d, 2);
+        c0 c0Var = this.f13800c;
         if (c0Var != null) {
             c0Var.b(qVar, f0Var);
         }
@@ -76,15 +76,15 @@ public final class k implements i {
 
     @Override
     public final void e(boolean z10) {
-        e2.d.h(this.f12698b);
+        e2.d.h(this.f13799b);
         if (z10) {
-            boolean z11 = this.f12709p;
-            this.f12698b.c(this.f12708o, z11 ? 1 : 0, (int) (this.f12702i - this.f12707n), 0, null);
+            boolean z11 = this.f13811p;
+            this.f13799b.c(this.f13810o, z11 ? 1 : 0, (int) (this.f13804i - this.f13809n), 0, null);
         }
     }
 
     @Override
     public final void f(int i10, long j3) {
-        this.f12706m = j3;
+        this.f13808m = j3;
     }
 }

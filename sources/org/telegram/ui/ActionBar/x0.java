@@ -1,24 +1,75 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.ui.Components.o6;
-public final class x0 extends o6 {
-    public final int W;
-    public final b1 X;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class x0 implements Utilities.Callback {
+    public final int f21681a;
+    public final Object f21682b;
 
-    public x0(b1 b1Var, int i10) {
-        super(false, true, true, false);
-        this.W = i10;
-        this.X = b1Var;
+    public x0(Object obj, int i10) {
+        this.f21681a = i10;
+        this.f21682b = obj;
     }
 
     @Override
-    public final void invalidateSelf() {
-        switch (this.W) {
+    public final void run(Object obj) {
+        switch (this.f21681a) {
             case 0:
-                this.X.invalidate();
+                c1 c1Var = (c1) this.f21682b;
+                Bitmap bitmap = (Bitmap) obj;
+                Paint paint = c1Var.F;
+                c1Var.U = false;
+                c1Var.f20488f = bitmap;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                c1Var.h = new BitmapShader(bitmap, tileMode, tileMode);
+                Matrix matrix = c1Var.f20489n;
+                if (matrix == null) {
+                    c1Var.f20489n = new Matrix();
+                } else {
+                    matrix.reset();
+                }
+                c1Var.f20489n.postScale(8.0f, 8.0f);
+                Matrix matrix2 = c1Var.f20489n;
+                int[] iArr = c1Var.f20490r;
+                matrix2.postTranslate(-iArr[0], -iArr[1]);
+                c1Var.h.setLocalMatrix(c1Var.f20489n);
+                paint.setShader(c1Var.h);
+                ColorMatrix colorMatrix = new ColorMatrix();
+                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, -0.2f);
+                paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                c1Var.invalidate();
                 return;
             default:
-                this.X.invalidate();
+                b2 b2Var = (b2) this.f21682b;
+                Bitmap bitmap2 = (Bitmap) obj;
+                if (bitmap2 == null) {
+                    b2Var.getClass();
+                    return;
+                }
+                if (b2Var.F0 == null) {
+                    b2Var.F0 = new Paint(1);
+                }
+                b2Var.C0 = bitmap2;
+                Bitmap bitmap3 = b2Var.C0;
+                Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode2, tileMode2);
+                b2Var.E0 = bitmapShader;
+                b2Var.F0.setShader(bitmapShader);
+                Matrix matrix3 = new Matrix();
+                b2Var.D0 = matrix3;
+                matrix3.postScale(8.0f, 8.0f);
+                Matrix matrix4 = b2Var.D0;
+                int[] iArr2 = b2Var.f20443x0;
+                matrix4.postTranslate(-iArr2[0], -iArr2[1]);
+                b2Var.E0.setLocalMatrix(b2Var.D0);
+                b2Var.f20411a1.invalidate();
                 return;
         }
     }

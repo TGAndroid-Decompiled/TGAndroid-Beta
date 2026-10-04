@@ -12,16 +12,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class d8 extends FrameLayout {
-    public org.telegram.ui.Components.w9 f20147a;
-    public TLRPC.Document f20148b;
-    public Object f20149c;
+    public org.telegram.ui.Components.w9 f21930a;
+    public TLRPC.Document f21931b;
+    public Object f21932c;
     public long d;
-    public boolean e;
-    public float f20150f;
+    public boolean f21933e;
+    public float f21934f;
     public boolean h;
-    public rg.b1 f20151n;
-    public boolean f20152r;
-    public boolean f20153s;
+    public rg.c1 f21935n;
+    public boolean f21936r;
+    public boolean f21937s;
     public org.telegram.ui.ActionBar.d6 v;
 
     static {
@@ -32,32 +32,32 @@ public final class d8 extends FrameLayout {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         boolean z10;
         boolean drawChild = super.drawChild(canvas, view, j3);
-        org.telegram.ui.Components.w9 w9Var = this.f20147a;
-        if (view == w9Var && (((z10 = this.e) && this.f20150f != 0.8f) || (!z10 && this.f20150f != 1.0f))) {
+        org.telegram.ui.Components.w9 w9Var = this.f21930a;
+        if (view == w9Var && (((z10 = this.f21933e) && this.f21934f != 0.8f) || (!z10 && this.f21934f != 1.0f))) {
             long currentTimeMillis = System.currentTimeMillis();
             long j10 = currentTimeMillis - this.d;
             this.d = currentTimeMillis;
-            if (this.e) {
-                float f7 = this.f20150f;
+            if (this.f21933e) {
+                float f7 = this.f21934f;
                 if (f7 != 0.8f) {
                     float f10 = f7 - (((float) j10) / 400.0f);
-                    this.f20150f = f10;
+                    this.f21934f = f10;
                     if (f10 < 0.8f) {
-                        this.f20150f = 0.8f;
+                        this.f21934f = 0.8f;
                     }
-                    w9Var.setScaleX(this.f20150f);
-                    w9Var.setScaleY(this.f20150f);
+                    w9Var.setScaleX(this.f21934f);
+                    w9Var.setScaleY(this.f21934f);
                     w9Var.invalidate();
                     invalidate();
                 }
             }
-            float f11 = (((float) j10) / 400.0f) + this.f20150f;
-            this.f20150f = f11;
+            float f11 = (((float) j10) / 400.0f) + this.f21934f;
+            this.f21934f = f11;
             if (f11 > 1.0f) {
-                this.f20150f = 1.0f;
+                this.f21934f = 1.0f;
             }
-            w9Var.setScaleX(this.f20150f);
-            w9Var.setScaleY(this.f20150f);
+            w9Var.setScaleX(this.f21934f);
+            w9Var.setScaleY(this.f21934f);
             w9Var.invalidate();
             invalidate();
         }
@@ -65,11 +65,11 @@ public final class d8 extends FrameLayout {
     }
 
     public Object getParentObject() {
-        return this.f20149c;
+        return this.f21932c;
     }
 
     public MessageObject.SendAnimationData getSendAnimationData() {
-        org.telegram.ui.Components.w9 w9Var = this.f20147a;
+        org.telegram.ui.Components.w9 w9Var = this.f21930a;
         ImageReceiver imageReceiver = w9Var.getImageReceiver();
         if (!imageReceiver.hasNotThumb()) {
             return null;
@@ -77,26 +77,26 @@ public final class d8 extends FrameLayout {
         MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
         int[] iArr = new int[2];
         w9Var.getLocationInWindow(iArr);
-        sendAnimationData.f15831x = imageReceiver.getCenterX() + iArr[0];
-        sendAnimationData.f15832y = imageReceiver.getCenterY() + iArr[1];
+        sendAnimationData.f17254x = imageReceiver.getCenterX() + iArr[0];
+        sendAnimationData.f17255y = imageReceiver.getCenterY() + iArr[1];
         sendAnimationData.width = imageReceiver.getImageWidth();
         sendAnimationData.height = imageReceiver.getImageHeight();
         return sendAnimationData;
     }
 
     public TLRPC.Document getSticker() {
-        return this.f20148b;
+        return this.f21931b;
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f20148b == null) {
+        if (this.f21931b == null) {
             return;
         }
         String str = null;
-        for (int i10 = 0; i10 < this.f20148b.attributes.size(); i10++) {
-            TLRPC.DocumentAttribute documentAttribute = this.f20148b.attributes.get(i10);
+        for (int i10 = 0; i10 < this.f21931b.attributes.size(); i10++) {
+            TLRPC.DocumentAttribute documentAttribute = this.f21931b.attributes.get(i10);
             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                 String str2 = documentAttribute.alt;
                 if (str2 != null && str2.length() > 0) {
@@ -107,9 +107,9 @@ public final class d8 extends FrameLayout {
             }
         }
         if (str != null) {
-            StringBuilder h = v7.j.h(str, " ");
-            h.append(LocaleController.getString(R.string.AttachSticker));
-            accessibilityNodeInfo.setText(h.toString());
+            StringBuilder j3 = t8.b.j(str, " ");
+            j3.append(LocaleController.getString(R.string.AttachSticker));
+            accessibilityNodeInfo.setText(j3.toString());
         } else {
             accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachSticker));
         }
@@ -127,7 +127,7 @@ public final class d8 extends FrameLayout {
 
     @Override
     public void setPressed(boolean z10) {
-        org.telegram.ui.Components.w9 w9Var = this.f20147a;
+        org.telegram.ui.Components.w9 w9Var = this.f21930a;
         if (w9Var.getImageReceiver().getPressed() != z10) {
             w9Var.getImageReceiver().setPressed(z10 ? 1 : 0);
             w9Var.invalidate();
@@ -136,7 +136,7 @@ public final class d8 extends FrameLayout {
     }
 
     public void setScaled(boolean z10) {
-        this.e = z10;
+        this.f21933e = z10;
         this.d = System.currentTimeMillis();
         invalidate();
     }

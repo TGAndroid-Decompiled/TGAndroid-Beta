@@ -1,95 +1,401 @@
 package ei;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.SpannableStringBuilder;
-import android.view.View;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.g5;
-import w7.y5;
-public final class u extends org.telegram.ui.ActionBar.m2 {
-    public t61 f8619a;
-    public final ArrayList f8620b;
-    public final HashMap f8621c;
+import ci.tb;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.nt;
+import org.telegram.ui.a7;
+import org.telegram.ui.b6;
+import org.telegram.ui.ba;
+import org.telegram.ui.cd;
+import org.telegram.ui.hc;
+import org.telegram.ui.k6;
+import org.telegram.ui.k8;
+import org.telegram.ui.m9;
+import org.telegram.ui.mc;
+import org.telegram.ui.sa;
+import org.telegram.ui.w9;
+import org.telegram.ui.wb;
+public final class u extends org.telegram.ui.ActionBar.j {
+    public final int f9356a;
+    public final Object f9357b;
 
-    public u() {
-        super(null);
-        this.f8620b = new ArrayList();
-        this.f8621c = new HashMap();
-    }
-
-    public static void U(u uVar, ArrayList arrayList) {
-        HashMap hashMap = uVar.f8621c;
-        ArrayList arrayList2 = uVar.f8620b;
-        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            q qVar = (q) arrayList2.get(i10);
-            SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) hashMap.get(qVar);
-            if (spannableStringBuilder == null) {
-                spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append((CharSequence) "a   ");
-                g5 g5Var = new g5(null, 24.0f, uVar.currentAccount);
-                g5Var.e(qVar.f8540a);
-                spannableStringBuilder.setSpan(g5Var, 0, 1, 33);
-                spannableStringBuilder.append((CharSequence) UserObject.getUserName(qVar.f8540a));
-                hashMap.put(qVar, spannableStringBuilder);
-            }
-            x51 i11 = x51.i(i10, spannableStringBuilder);
-            i11.K(!qVar.f8541b);
-            arrayList.add(i11);
-        }
-        hg.c.n(R.string.PrivacyBiometryBotsInfo, arrayList);
-    }
-
-    public static void V(u uVar, x51 x51Var) {
-        int i10;
-        l61 l61Var;
-        ArrayList arrayList = uVar.f8620b;
-        if (x51Var.f15716a == 4 && (i10 = x51Var.d) >= 0 && i10 < arrayList.size()) {
-            q qVar = (q) arrayList.get(x51Var.d);
-            qVar.f8541b = !qVar.f8541b;
-            Activity parentActivity = uVar.getParentActivity();
-            int i11 = uVar.currentAccount;
-            long j3 = qVar.f8540a.f18484id;
-            boolean z10 = qVar.f8541b;
-            WeakHashMap weakHashMap = r.f8558k;
-            SharedPreferences sharedPreferences = parentActivity.getSharedPreferences("2botbiometry_" + i11, 0);
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putBoolean(j3 + "_disabled", z10);
-            if (!z10 && sharedPreferences.getString(String.valueOf(j3), null) == null) {
-                edit.putString(String.valueOf(j3), "");
-            }
-            edit.apply();
-            t61 t61Var = uVar.f8619a;
-            if (t61Var != null && (l61Var = t61Var.Y2) != null) {
-                l61Var.N(true);
-            }
-        }
+    public u(Object obj, int i10) {
+        this.f9356a = i10;
+        this.f9357b = obj;
     }
 
     @Override
-    public final View createView(Context context) {
-        hg.c.v(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.PrivacyBiometryBots));
-        this.actionBar.setActionBarMenuOnItemClick(new t(this, 0));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.v0(h6.f19005a7, this.resourceProvider));
-        t61 t61Var = new t61(this, new bi.v(this, 13), new s(this), new s(this));
-        this.f8619a = t61Var;
-        frameLayout.addView(t61Var, y5.e(-1, -1, 119));
-        r.d(getParentActivity(), this.currentAccount, new ai.y1(this, 18));
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    public final void b(int i10) {
+        int i11 = this.f9356a;
+        Object obj = this.f9357b;
+        switch (i11) {
+            case 0:
+                if (i10 == -1) {
+                    ((v) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 1:
+                if (i10 == -1) {
+                    ((l3) obj).q();
+                    return;
+                }
+                return;
+            case 2:
+                if (i10 == -1) {
+                    ((e5) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 3:
+                if (i10 == -1) {
+                    ((fi.f) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 4:
+                if (i10 == -1) {
+                    ((fi.p) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 5:
+                if (i10 == -1) {
+                    ((fi.s) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 6:
+                fi.k0 k0Var = ((fi.e0) obj).h;
+                if (i10 == -1) {
+                    if (k0Var.N) {
+                        k0Var.dismiss();
+                        return;
+                    }
+                    k0Var.v.d.f25244f3.N(false);
+                    k0Var.d.E(0);
+                    return;
+                } else if (i10 == 3) {
+                    k0Var.f9915c.a(true, true);
+                    k0Var.setAllowNestedScroll(false);
+                    k0Var.S = null;
+                    k0Var.G.f25244f3.N(true);
+                    k0Var.E.f26246r.getText().clear();
+                    k0Var.E.f26246r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var.E.f26246r);
+                    return;
+                } else {
+                    return;
+                }
+            case 7:
+                fi.k0 k0Var2 = ((fi.f0) obj).f9891r;
+                if (i10 == 2) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("community_id", k0Var2.f9916e);
+                    k0Var2.f9920s.presentFragment(new fi.p(bundle));
+                    k0Var2.dismiss();
+                    return;
+                } else if (i10 == 3) {
+                    k0Var2.f9914b.a(true, true);
+                    k0Var2.setAllowNestedScroll(false);
+                    TextUtils.isEmpty(k0Var2.R);
+                    k0Var2.R = null;
+                    k0Var2.F.h(0L, k0Var2.f9916e, 0L, 0L, null, false, null, true);
+                    k0Var2.f9923y.f26246r.getText().clear();
+                    k0Var2.f9923y.f26246r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var2.f9923y.f26246r);
+                    return;
+                } else {
+                    return;
+                }
+            case 8:
+                fi.k0 k0Var3 = ((fi.j0) obj).h;
+                if (i10 == -1) {
+                    k0Var3.v.d.f25244f3.N(false);
+                    k0Var3.d.E(0);
+                    return;
+                }
+                return;
+            case 9:
+                hg.c cVar = (hg.c) obj;
+                if (i10 == -1) {
+                    if (cVar.onBackPressed(true)) {
+                        cVar.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    cVar.W();
+                    return;
+                } else {
+                    return;
+                }
+            case 10:
+                hg.m mVar = (hg.m) obj;
+                if (i10 == -1) {
+                    if (mVar.onBackPressed(true)) {
+                        mVar.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    mVar.h0();
+                    return;
+                } else {
+                    return;
+                }
+            case 11:
+                hg.u0 u0Var = (hg.u0) obj;
+                if (i10 == -1) {
+                    if (u0Var.onBackPressed(true)) {
+                        u0Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    u0Var.Z();
+                    return;
+                } else {
+                    return;
+                }
+            case 12:
+                hg.w0 w0Var = (hg.w0) obj;
+                if (i10 == -1) {
+                    if (w0Var.onBackPressed(true)) {
+                        w0Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    w0Var.W();
+                    return;
+                } else {
+                    return;
+                }
+            case 13:
+                hg.e1 e1Var = (hg.e1) obj;
+                if (i10 == -1) {
+                    if (e1Var.onBackPressed(true)) {
+                        e1Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    e1Var.U();
+                    return;
+                } else {
+                    return;
+                }
+            case 14:
+                hg.g1 g1Var = (hg.g1) obj;
+                if (i10 == -1) {
+                    if (g1Var.onBackPressed(true)) {
+                        g1Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    g1Var.d0();
+                    return;
+                } else {
+                    return;
+                }
+            case 15:
+                if (i10 == -1) {
+                    ((hg.i1) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 16:
+                if (i10 == -1) {
+                    ((hg.e2) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 17:
+                if (i10 == -1) {
+                    ((org.telegram.ui.h) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 18:
+                if (i10 == -1) {
+                    ((org.telegram.ui.l) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 19:
+                if (i10 == -1) {
+                    ((org.telegram.ui.q) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 20:
+                if (i10 == -1) {
+                    ((org.telegram.ui.q4) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 21:
+                if (i10 == -1) {
+                    ((b6) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 22:
+                a7 a7Var = (a7) obj;
+                if (i10 == -1) {
+                    if (a7.Y(a7Var).s()) {
+                        zh.b bVar = a7Var.f34685e0;
+                        if (bVar != null) {
+                            bVar.d();
+                        }
+                        k6 k6Var = a7Var.M;
+                        if (k6Var != null) {
+                            k6Var.f(false);
+                            a7Var.M.e();
+                            return;
+                        }
+                        return;
+                    }
+                    a7Var.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    a7Var.j0();
+                    return;
+                } else if (i10 == 3) {
+                    a7.f0(a7Var, false);
+                    return;
+                } else if (i10 == 4) {
+                    a7.f0(a7Var, true);
+                    return;
+                } else {
+                    return;
+                }
+            case 23:
+                k8 k8Var = (k8) obj;
+                if (i10 == -1) {
+                    if (k8Var.P == 0 && k8Var.Q == 0 && !k8Var.G) {
+                        k8Var.finishFragment();
+                        return;
+                    }
+                    k8Var.G = false;
+                    k8Var.P = 0;
+                    k8Var.Q = 0;
+                    k8Var.t0();
+                    k8Var.o0();
+                    return;
+                }
+                return;
+            case 24:
+                m9 m9Var = (m9) obj;
+                if (i10 == -1) {
+                    if (m9.Y(m9Var).s()) {
+                        m9Var.e0(true);
+                        return;
+                    } else {
+                        m9Var.finishFragment();
+                        return;
+                    }
+                } else if (i10 == 2) {
+                    m9Var.j0(false);
+                    return;
+                } else {
+                    return;
+                }
+            case 25:
+                if (i10 == -1) {
+                    ((w9) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 26:
+                ba baVar = (ba) obj;
+                if (i10 == -1) {
+                    baVar.finishFragment();
+                    return;
+                } else if (i10 == 1 && baVar.f35039a.getText().length() != 0) {
+                    ba.S(baVar);
+                    baVar.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
+            case 27:
+                sa saVar = (sa) obj;
+                if (i10 == -1) {
+                    saVar.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    sa.X(saVar);
+                    sa.Y(saVar);
+                    return;
+                } else {
+                    return;
+                }
+            case 28:
+                if (i10 == -1) {
+                    ((wb) obj).finishFragment();
+                    return;
+                }
+                return;
+            default:
+                cd cdVar = (cd) obj;
+                if (i10 == -1) {
+                    if (cdVar.f35410b >= cdVar.S0() && cdVar.Q0()) {
+                        cdVar.V0();
+                        return;
+                    } else {
+                        cdVar.finishFragment();
+                        return;
+                    }
+                } else if (i10 == 1) {
+                    FrameLayout frameLayout = (FrameLayout) cdVar.getParentActivity().getWindow().getDecorView();
+                    Bitmap createBitmap = Bitmap.createBitmap(frameLayout.getWidth(), frameLayout.getHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    cdVar.L.setAlpha(0.0f);
+                    frameLayout.draw(canvas);
+                    cdVar.L.setAlpha(1.0f);
+                    Paint paint = new Paint(1);
+                    paint.setColor(-16777216);
+                    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                    Paint paint2 = new Paint(1);
+                    paint2.setFilterBitmap(true);
+                    int[] iArr = new int[2];
+                    cdVar.L.getLocationInWindow(iArr);
+                    float f7 = iArr[0];
+                    float f10 = iArr[1];
+                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                    paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
+                    mc mcVar = new mc(cdVar, cdVar.getParentActivity(), canvas, (cdVar.L.getMeasuredWidth() / 2.0f) + f7, (cdVar.L.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
+                    cdVar.m0 = mcVar;
+                    mcVar.setOnTouchListener(new bi.d(2));
+                    cdVar.f35426n0 = 0.0f;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    cdVar.f35427o0 = ofFloat;
+                    ofFloat.addUpdateListener(new tb(cdVar, 1));
+                    cdVar.f35427o0.addListener(new org.telegram.ui.u4(cdVar, 17));
+                    cdVar.f35427o0.setDuration(400L);
+                    cdVar.f35427o0.setInterpolator(nt.f29061e);
+                    cdVar.f35427o0.start();
+                    frameLayout.addView(cdVar.m0, new ViewGroup.LayoutParams(-1, -1));
+                    AndroidUtilities.runOnUIThread(new hc(cdVar, 0));
+                    return;
+                } else {
+                    return;
+                }
+        }
     }
 }

@@ -10,29 +10,29 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import u4.e;
 public final class a implements Runnable {
-    public static Handler f45414f;
-    public final d e;
-    public volatile int f45416b = 1;
-    public final AtomicBoolean f45417c = new AtomicBoolean();
+    public static Handler f49158f;
+    public final d f49162e;
+    public volatile int f49160b = 1;
+    public final AtomicBoolean f49161c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f45415a = new b(this, new x(this, 8));
+    public final b f49159a = new b(this, new x(this, 8));
 
     public a(d dVar) {
-        this.e = dVar;
+        this.f49162e = dVar;
     }
 
     public final void a() {
-        d dVar = this.e;
+        d dVar = this.f49162e;
         int i10 = 0;
-        for (m mVar : dVar.f296j) {
+        for (m mVar : dVar.f319j) {
             if (mVar.d(dVar)) {
                 i10++;
             }
         }
         try {
-            dVar.f295i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            Log.i("GACSignInLoader", "Unexpected InterruptedException", e);
+            dVar.f318i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
+        } catch (InterruptedException e7) {
+            Log.i("GACSignInLoader", "Unexpected InterruptedException", e7);
             Thread.currentThread().interrupt();
         }
     }
@@ -41,10 +41,10 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f45414f == null) {
-                    f45414f = new Handler(Looper.getMainLooper());
+                if (f49158f == null) {
+                    f49158f = new Handler(Looper.getMainLooper());
                 }
-                handler = f45414f;
+                handler = f49158f;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -54,6 +54,6 @@ public final class a implements Runnable {
 
     @Override
     public final void run() {
-        this.e.b();
+        this.f49162e.b();
     }
 }

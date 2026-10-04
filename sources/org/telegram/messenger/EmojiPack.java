@@ -50,14 +50,14 @@ public final class EmojiPack {
         private static EmojiPack open() {
             try {
                 return new EmojiPack();
-            } catch (IOException e) {
-                throw new IllegalStateException("Unable to open emoji.pack", e);
+            } catch (IOException e7) {
+                throw new IllegalStateException("Unable to open emoji.pack", e7);
             }
         }
     }
 
     private static IllegalStateException damaged(String str) {
-        return new IllegalStateException(v7.j.g("Damaged emoji.pack: ", str));
+        return new IllegalStateException(t8.b.i("Damaged emoji.pack: ", str));
     }
 
     private Bitmap decode(int i10) {
@@ -272,8 +272,8 @@ public final class EmojiPack {
                 } else {
                     throw damaged("Truncated DEFLATE stream");
                 }
-            } catch (DataFormatException e) {
-                throw new IllegalStateException("Damaged EPK3 DEFLATE stream", e);
+            } catch (DataFormatException e7) {
+                throw new IllegalStateException("Damaged EPK3 DEFLATE stream", e7);
             }
         }
         if (!this.inflater.finished() && (this.inflater.inflate(this.indices, 0, 1) != 0 || !this.inflater.finished())) {

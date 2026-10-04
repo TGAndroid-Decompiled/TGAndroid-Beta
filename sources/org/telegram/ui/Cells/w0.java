@@ -53,21 +53,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.b61;
-import org.telegram.ui.Components.q21;
-import org.telegram.ui.Components.sr;
-import org.telegram.ui.Components.t90;
-import org.telegram.ui.Components.ty0;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.v01;
+import org.telegram.ui.Components.cz0;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.u90;
 import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.z21;
 import org.telegram.ui.Components.zc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ak;
-import org.telegram.ui.g20;
-import org.telegram.ui.pm;
+import org.telegram.ui.k20;
+import org.telegram.ui.qm;
 public class w0 extends a0 implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate, o4 {
-    public static final HashMap f21719k2;
+    public static final HashMap f23590k2;
     public boolean A0;
     public TLRPC.VideoSize A1;
     public boolean B0;
@@ -83,7 +83,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     public final yh.z3 F0;
     public final la F1;
     public boolean G;
-    public ty0 G0;
+    public cz0 G0;
     public boolean G1;
     public final int H;
     public MessageObject H0;
@@ -96,7 +96,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     public Path J1;
     public Path K;
     public xh.f1 K0;
-    public v01 K1;
+    public e11 K1;
     public final org.telegram.ui.Components.h9 L;
     public int L0;
     public final View L1;
@@ -105,7 +105,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     public final Path M1;
     public int N;
     public Paint N0;
-    public final rg.v1 N1;
+    public final rg.x1 N1;
     public int O;
     public TextPaint O0;
     public int O1;
@@ -139,83 +139,83 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     public final Path Y1;
     public int Z0;
     public final float[] Z1;
-    public boolean f21720a0;
-    public int f21721a1;
+    public boolean f23591a0;
+    public int f23592a1;
     public final float[] a2;
-    public RadialProgressView f21722b0;
-    public StaticLayout f21723b1;
-    public final Path f21724b2;
-    public float f21725c0;
-    public Paint f21726c1;
-    public final int[] f21727c2;
-    public final ai.ca f21728d0;
-    public v01 f21729d1;
-    public int f21730d2;
-    public boolean f21731e0;
-    public StaticLayout f21732e1;
-    public SpannableStringBuilder f21733e2;
-    public int f21734f;
-    public boolean f21735f0;
-    public boolean f21736f1;
-    public boolean f21737f2;
-    public boolean f21738g0;
-    public boolean f21739g1;
-    public Runnable f21740g2;
+    public RadialProgressView f23593b0;
+    public StaticLayout f23594b1;
+    public final Path f23595b2;
+    public float f23596c0;
+    public Paint f23597c1;
+    public final int[] f23598c2;
+    public final ai.ca f23599d0;
+    public e11 f23600d1;
+    public int f23601d2;
+    public boolean f23602e0;
+    public StaticLayout f23603e1;
+    public SpannableStringBuilder f23604e2;
+    public int f23605f;
+    public boolean f23606f0;
+    public boolean f23607f1;
+    public boolean f23608f2;
+    public boolean f23609g0;
+    public boolean f23610g1;
+    public Runnable f23611g2;
     public int h;
-    public boolean f21741h0;
-    public int f21742h1;
-    public PorterDuffColorFilter f21743h2;
-    public boolean f21744i0;
-    public final org.telegram.ui.Components.e6 f21745i1;
-    public int f21746i2;
-    public int f21747j0;
-    public g20 f21748j1;
-    public final v0 f21749j2;
-    public boolean f21750k0;
-    public u0 f21751k1;
-    public int f21752l0;
+    public boolean f23612h0;
+    public int f23613h1;
+    public PorterDuffColorFilter f23614h2;
+    public boolean f23615i0;
+    public final org.telegram.ui.Components.e6 f23616i1;
+    public int f23617i2;
+    public int f23618j0;
+    public k20 f23619j1;
+    public final v0 f23620j2;
+    public boolean f23621k0;
+    public u0 f23622k1;
+    public int f23623l0;
     public int l1;
     public boolean m0;
-    public int f21753m1;
-    public final zc f21754n;
-    public q21 f21755n0;
-    public int f21756n1;
-    public final RectF f21757o0;
-    public v01 f21758o1;
-    public final ArrayList f21759p0;
-    public StaticLayout f21760p1;
-    public final Stack f21761q0;
-    public boolean f21762q1;
-    public t90 f21763r;
-    public org.telegram.ui.Components.v5 f21764r0;
-    public TextPaint f21765r1;
-    public final boolean f21766s;
-    public TextPaint f21767s0;
-    public StaticLayout f21768s1;
-    public float f21769t0;
-    public float f21770t1;
-    public float f21771u0;
-    public StaticLayout f21772u1;
+    public int f23624m1;
+    public final zc f23625n;
+    public z21 f23626n0;
+    public int f23627n1;
+    public final RectF f23628o0;
+    public e11 f23629o1;
+    public final ArrayList f23630p0;
+    public StaticLayout f23631p1;
+    public final Stack f23632q0;
+    public boolean f23633q1;
+    public u90 f23634r;
+    public org.telegram.ui.Components.v5 f23635r0;
+    public TextPaint f23636r1;
+    public final boolean f23637s;
+    public TextPaint f23638s0;
+    public StaticLayout f23639s1;
+    public float f23640t0;
+    public float f23641t1;
+    public float f23642u0;
+    public StaticLayout f23643u1;
     public View v;
-    public int f21773v0;
-    public float f21774v1;
-    public final int f21775w;
-    public boolean f21776w0;
-    public final TextPaint f21777w1;
-    public URLSpan f21778x;
-    public ImageLocation f21779x0;
-    public final TextPaint f21780x1;
-    public vh.g f21781y;
-    public float f21782y0;
-    public final TextPaint f21783y1;
-    public float f21784z0;
-    public TLRPC.Document f21785z1;
+    public int f23644v0;
+    public float f23645v1;
+    public final int f23646w;
+    public boolean f23647w0;
+    public final TextPaint f23648w1;
+    public URLSpan f23649x;
+    public ImageLocation f23650x0;
+    public final TextPaint f23651x1;
+    public vh.g f23652y;
+    public float f23653y0;
+    public final TextPaint f23654y1;
+    public float f23655z0;
+    public TLRPC.Document f23656z1;
 
     static {
         HashMap hashMap = new HashMap();
-        f21719k2 = hashMap;
-        hg.c.o(1, hashMap, "1⃣", 3, "2⃣");
-        hg.c.o(6, hashMap, "3⃣", 12, "4⃣");
+        f23590k2 = hashMap;
+        hg.k0.n(1, hashMap, "1⃣", 3, "2⃣");
+        hg.k0.n(6, hashMap, "3⃣", 12, "4⃣");
         hashMap.put(24, "5⃣");
     }
 
@@ -223,7 +223,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         this(context, null, false);
     }
 
-    public static float P(StaticLayout staticLayout) {
+    public static float N(StaticLayout staticLayout) {
         float f7 = 0.0f;
         for (int i10 = 0; i10 < staticLayout.getLineCount(); i10++) {
             float ceil = (int) Math.ceil(staticLayout.getLineWidth(i10));
@@ -235,18 +235,18 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     }
 
     private void setStarsPaused(boolean z10) {
-        rg.v1 v1Var = this.N1;
-        if (z10 == v1Var.f42792g) {
+        rg.x1 x1Var = this.N1;
+        if (z10 == x1Var.f46362g) {
             return;
         }
-        v1Var.f42792g = z10;
+        x1Var.f46362g = z10;
         if (z10) {
-            v1Var.Q = System.currentTimeMillis();
+            x1Var.Q = System.currentTimeMillis();
             return;
         }
-        for (int i10 = 0; i10 < v1Var.f42798n.size(); i10++) {
-            rg.u1 u1Var = (rg.u1) v1Var.f42798n.get(i10);
-            u1Var.f42769a = (System.currentTimeMillis() - v1Var.Q) + u1Var.f42769a;
+        for (int i10 = 0; i10 < x1Var.f46368n.size(); i10++) {
+            rg.w1 w1Var = (rg.w1) x1Var.f46368n.get(i10);
+            w1Var.f46332a = (System.currentTimeMillis() - x1Var.Q) + w1Var.f46332a;
         }
         invalidate();
     }
@@ -256,17 +256,17 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         spannableStringBuilder.insert(0, (CharSequence) "*");
         spannableStringBuilder.setSpan(new q2(AndroidUtilities.dp(18.0f)), 0, 1, 33);
         if (Build.VERSION.SDK_INT >= 29) {
-            ah.e.l();
-            spannableStringBuilder.setSpan(ah.e.g(AndroidUtilities.dp(12.0f)), 0, spannableStringBuilder.length(), 33);
+            ah.f.l();
+            spannableStringBuilder.setSpan(ah.f.g(AndroidUtilities.dp(12.0f)), 0, spannableStringBuilder.length(), 33);
         }
         spannableStringBuilder.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_NORMAL), 0, spannableStringBuilder.length(), 33);
         return spannableStringBuilder;
     }
 
     public final void A(Canvas canvas, boolean z10) {
-        if (this.f21766s) {
-            if (!J() || z10) {
-                if (!J() && z10) {
+        if (this.f23637s) {
+            if (!H() || z10) {
+                if (!H() && z10) {
                     return;
                 }
             } else {
@@ -288,17 +288,17 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         if (f7 > 0.0f) {
             org.telegram.ui.ActionBar.d6 d6Var = this.Y0;
             if (d6Var != null) {
-                d6Var.m(this.f21771u0, this.f21769t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f21773v0);
+                d6Var.m(this.f23642u0, this.f23640t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f23644v0);
             } else {
-                org.telegram.ui.ActionBar.h6.q(this.f21771u0, this.f21769t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f21773v0);
+                org.telegram.ui.ActionBar.i6.q(this.f23642u0, this.f23640t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f23644v0);
             }
             MessageObject messageObject = this.H0;
             if (messageObject != null && messageObject.shouldDrawReactions()) {
                 zg.p0 p0Var = this.C0;
-                boolean z11 = p0Var.f49406b;
-                v0 v0Var = this.f21749j2;
-                if (!z11 || (v0Var.f21673b && p0Var.f49413l)) {
-                    p0Var.f49405a = 1.0f;
+                boolean z11 = p0Var.f53487b;
+                v0 v0Var = this.f23620j2;
+                if (!z11 || (v0Var.f23538b && p0Var.f53495l)) {
+                    p0Var.f53486a = 1.0f;
                     int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
                     if (i10 < 0) {
                         canvas2 = canvas;
@@ -306,8 +306,8 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     } else {
                         canvas2 = canvas;
                     }
-                    if (v0Var.f21673b) {
-                        f10 = v0Var.f21674c;
+                    if (v0Var.f23538b) {
+                        f10 = v0Var.f23539c;
                     }
                     p0Var.d(canvas2, f10, num);
                     if (i10 < 0) {
@@ -318,83 +318,83 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         }
     }
 
-    public final void E(pm pmVar, Canvas canvas, int i10, Integer num, float f7) {
+    public final void C(qm qmVar, Canvas canvas, int i10, Integer num, float f7) {
         zg.p0 p0Var = this.C0;
-        if (!p0Var.f49406b) {
+        if (!p0Var.f53487b) {
             org.telegram.ui.ActionBar.d6 d6Var = this.Y0;
             if (d6Var != null) {
-                d6Var.m(this.f21771u0, this.f21769t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f21773v0);
+                d6Var.m(this.f23642u0, this.f23640t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f23644v0);
             } else {
-                org.telegram.ui.ActionBar.h6.q(this.f21771u0, this.f21769t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f21773v0);
+                org.telegram.ui.ActionBar.i6.q(this.f23642u0, this.f23640t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f23644v0);
             }
             p0Var.D = f7;
-            p0Var.f(pmVar, canvas, i10, num);
+            p0Var.f(qmVar, canvas, i10, num);
         }
     }
 
-    public final ColorFilter F(int i10) {
-        if (i10 != this.f21746i2 || this.f21743h2 == null) {
-            this.f21746i2 = i10;
-            this.f21743h2 = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+    public final ColorFilter D(int i10) {
+        if (i10 != this.f23617i2 || this.f23614h2 == null) {
+            this.f23617i2 = i10;
+            this.f23614h2 = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
         }
-        return this.f21743h2;
+        return this.f23614h2;
     }
 
-    public final int G(MessageObject messageObject) {
+    public final int E(MessageObject messageObject) {
         int i10;
         int i11 = this.Z0;
         int i12 = messageObject.type;
         if (i12 == 37) {
             i11 = AndroidUtilities.dp(52.0f);
-        } else if (i12 == 21 || N()) {
+        } else if (i12 == 21 || L()) {
             i11 = AndroidUtilities.dp(78.0f);
         }
-        if (!M() && (i10 = messageObject.type) != 34 && i10 != 35) {
+        if (!K() && (i10 = messageObject.type) != 34 && i10 != 35) {
             return i11;
         }
         return 0;
     }
 
-    public Paint H(String str) {
+    public Paint F(String str) {
         Paint paint;
         org.telegram.ui.ActionBar.d6 d6Var = this.Y0;
         if (d6Var != null) {
-            paint = d6Var.G(str);
+            paint = d6Var.H(str);
         } else {
             paint = null;
         }
         if (paint != null) {
             return paint;
         }
-        return org.telegram.ui.ActionBar.h6.S0(str);
+        return org.telegram.ui.ActionBar.i6.S0(str);
     }
 
-    public final float I(MessageObject messageObject) {
+    public final float G(MessageObject messageObject) {
         MessagesController messagesController;
         String str;
         if (messageObject != null) {
             try {
                 if (messageObject.type == 22 && (str = (messagesController = MessagesController.getInstance(this.H)).uploadingWallpaper) != null && TextUtils.equals(messageObject.messageOwner.action.wallpaper.uploadingImage, str)) {
-                    return messagesController.uploadingWallpaperInfo.f19974r;
+                    return messagesController.uploadingWallpaperInfo.f20399r;
                 }
                 return 1.0f;
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
                 return 1.0f;
             }
         }
         return 1.0f;
     }
 
-    public final boolean J() {
+    public final boolean H() {
         if (this.N0 == null) {
             org.telegram.ui.ActionBar.d6 d6Var = this.Y0;
             if (d6Var != null) {
-                if (d6Var.p0()) {
+                if (d6Var.r0()) {
                     return true;
                 }
                 return false;
-            } else if (org.telegram.ui.ActionBar.h6.a1()) {
+            } else if (org.telegram.ui.ActionBar.i6.a1()) {
                 return true;
             } else {
                 return false;
@@ -403,19 +403,19 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         return false;
     }
 
-    public final void K() {
+    public final void I() {
         t0 t0Var = this.X0;
-        if (t0Var != null && t0Var.f()) {
+        if (t0Var != null && t0Var.g()) {
             super.invalidate();
         } else if (getParent() instanceof View) {
             ((View) getParent()).invalidate();
         }
     }
 
-    public final boolean L(MessageObject messageObject) {
+    public final boolean J(MessageObject messageObject) {
         if (messageObject != null) {
             int i10 = messageObject.type;
-            if (i10 == 30 || i10 == 18 || i10 == 25 || N()) {
+            if (i10 == 30 || i10 == 18 || i10 == 25 || L()) {
                 return true;
             }
             return false;
@@ -423,7 +423,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         return false;
     }
 
-    public final boolean M() {
+    public final boolean K() {
         TLRPC.Message message;
         MessageObject messageObject = this.H0;
         if (messageObject != null && (message = messageObject.messageOwner) != null && (message.action instanceof TLRPC.TL_messageActionSuggestedPostApproval)) {
@@ -432,7 +432,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         return false;
     }
 
-    public final boolean N() {
+    public final boolean L() {
         MessageObject messageObject;
         int i10;
         if (!this.F0.d() && this.G0 == null && (i10 = (messageObject = this.H0).type) != 31 && i10 != 37 && i10 != 33 && i10 != 35 && i10 != 34 && i10 != 21 && i10 != 22 && !messageObject.isStoryMention()) {
@@ -452,7 +452,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         return true;
     }
 
-    public final boolean O() {
+    public final boolean M() {
         MessageObject messageObject = this.H0;
         if (messageObject != null) {
             TLRPC.Message message = messageObject.messageOwner;
@@ -465,17 +465,17 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         return false;
     }
 
-    public final void Q(CharacterStyle characterStyle) {
+    public final void O(CharacterStyle characterStyle) {
         if (this.X0 != null && (characterStyle instanceof URLSpan)) {
             String url = ((URLSpan) characterStyle).getURL();
             if (url.startsWith("task")) {
-                this.X0.g0(this, this.H0.getReplyMsgId(), Integer.parseInt(url.substring(5)));
+                this.X0.d0(this, this.H0.getReplyMsgId(), Integer.parseInt(url.substring(5)));
                 return;
             }
             if (url.startsWith("topic")) {
-                URLSpan uRLSpan = this.f21778x;
-                if (uRLSpan instanceof b61) {
-                    TLObject tLObject = ((b61) uRLSpan).f22865c;
+                URLSpan uRLSpan = this.f23649x;
+                if (uRLSpan instanceof k61) {
+                    TLObject tLObject = ((k61) uRLSpan).f27971c;
                     if (tLObject instanceof TLRPC.TL_forumTopic) {
                         ng.d.m(this.X0.O0(), -this.X0.a(), (TLRPC.TL_forumTopic) tLObject, 0);
                         return;
@@ -484,9 +484,9 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 }
             }
             if (url.startsWith("invite")) {
-                URLSpan uRLSpan2 = this.f21778x;
-                if (uRLSpan2 instanceof b61) {
-                    TLObject tLObject2 = ((b61) uRLSpan2).f22865c;
+                URLSpan uRLSpan2 = this.f23649x;
+                if (uRLSpan2 instanceof k61) {
+                    TLObject tLObject2 = ((k61) uRLSpan2).f27971c;
                     if (tLObject2 instanceof TLRPC.TL_chatInviteExported) {
                         this.X0.Q0((TLRPC.TL_chatInviteExported) tLObject2);
                         return;
@@ -495,7 +495,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 }
             }
             if (url.startsWith("game")) {
-                this.X0.U(this, this.H0.getReplyMsgId());
+                this.X0.L(this, this.H0.getReplyMsgId());
             } else if (url.startsWith("http")) {
                 nf.f.s(getContext(), url);
             } else {
@@ -504,7 +504,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         }
     }
 
-    public final void R() {
+    public final void P() {
         TLRPC.TL_premiumGiftOption tL_premiumGiftOption = new TLRPC.TL_premiumGiftOption();
         MessageObject messageObject = this.H0;
         TLRPC.MessageAction messageAction = messageObject.messageOwner.action;
@@ -512,7 +512,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         tL_premiumGiftOption.months = messageAction.months;
         tL_premiumGiftOption.currency = messageAction.currency;
         String str = null;
-        if (messageObject != null && (messageAction instanceof TLRPC.TL_messageActionGiftCode) && !O()) {
+        if (messageObject != null && (messageAction instanceof TLRPC.TL_messageActionGiftCode) && !M()) {
             str = ((TLRPC.TL_messageActionGiftCode) this.H0.messageOwner.action).slug;
         }
         if (this.X0 != null) {
@@ -520,13 +520,13 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         }
     }
 
-    public final void S() {
+    public final void Q() {
         TLRPC.Message message;
         MessageObject messageObject = this.H0;
         if (messageObject != null && (message = messageObject.messageOwner) != null) {
             TLRPC.MessageAction messageAction = message.action;
             boolean z10 = messageAction instanceof TLRPC.TL_messageActionGiftStars;
-            ai.ca caVar = this.f21728d0;
+            ai.ca caVar = this.f23599d0;
             if (z10) {
                 Context context = getContext();
                 TLRPC.Message message2 = this.H0.messageOwner;
@@ -544,11 +544,11 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 tL_starsTransactionPeer.peer = peer;
                 starsTransaction.date = i10;
                 starsTransaction.amount = TL_stars.StarsAmount.ofStars(tL_messageActionGiftStars.stars);
-                starsTransaction.f18564id = tL_messageActionGiftStars.transaction_id;
+                starsTransaction.f20266id = tL_messageActionGiftStars.transaction_id;
                 starsTransaction.gift = true;
                 starsTransaction.sent_by = peer;
                 starsTransaction.received_by = peer2;
-                yh.w7.h1(context, false, 0L, this.H, starsTransaction, d6Var);
+                yh.x7.n1(context, false, 0L, this.H, starsTransaction, d6Var);
             } else if (messageAction instanceof TLRPC.TL_messageActionPrizeStars) {
                 Context context2 = getContext();
                 TLRPC.Message message3 = this.H0.messageOwner;
@@ -566,13 +566,13 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 tL_starsTransactionPeer2.peer = tL_messageActionPrizeStars.boost_peer;
                 starsTransaction2.date = i11;
                 starsTransaction2.amount = TL_stars.StarsAmount.ofStars(tL_messageActionPrizeStars.stars);
-                starsTransaction2.f18564id = tL_messageActionPrizeStars.transaction_id;
+                starsTransaction2.f20266id = tL_messageActionPrizeStars.transaction_id;
                 starsTransaction2.gift = true;
                 starsTransaction2.flags |= 8192;
                 starsTransaction2.giveaway_post_id = tL_messageActionPrizeStars.giveaway_msg_id;
                 starsTransaction2.sent_by = peer3;
                 starsTransaction2.received_by = peer4;
-                yh.w7.h1(context2, false, 0L, this.H, starsTransaction2, d6Var2);
+                yh.x7.n1(context2, false, 0L, this.H, starsTransaction2, d6Var2);
             } else if (messageAction instanceof TLRPC.TL_messageActionGiftTon) {
                 Context context3 = getContext();
                 TLRPC.Message message4 = this.H0.messageOwner;
@@ -592,11 +592,11 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 TL_stars.TL_starsTonAmount tL_starsTonAmount = new TL_stars.TL_starsTonAmount();
                 starsTransaction3.amount = tL_starsTonAmount;
                 tL_starsTonAmount.amount = tL_messageActionGiftTon.cryptoAmount;
-                starsTransaction3.f18564id = tL_messageActionGiftTon.transaction_id;
+                starsTransaction3.f20266id = tL_messageActionGiftTon.transaction_id;
                 starsTransaction3.gift = true;
                 starsTransaction3.sent_by = peer5;
                 starsTransaction3.received_by = peer6;
-                yh.w7.h1(context3, false, 0L, this.H, starsTransaction3, d6Var3);
+                yh.x7.n1(context3, false, 0L, this.H, starsTransaction3, d6Var3);
             } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
                 if (!((TLRPC.TL_messageActionStarGift) messageAction).forceIn) {
                     yh.x3 x3Var = new yh.x3(getContext(), this.H, this.H0.getDialogId(), this.Y0, null);
@@ -605,7 +605,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 }
             } else if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
                 if (((TLRPC.TL_messageActionStarGiftUnique) messageAction).gift.burned) {
-                    org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                     if (U != null) {
                         org.telegram.messenger.f0.p(R.string.UniqueGiftNotFoundBurned, yc.a0(U), R.raw.fire_on, 36);
                         return;
@@ -629,7 +629,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         }
     }
 
-    public final void T(int i10, boolean z10, boolean z11) {
+    public final void R(int i10, boolean z10, boolean z11) {
         String formatDateChat;
         int i11 = this.I0;
         if (i11 != i10 && i11 / 3600 != i10 / 3600) {
@@ -646,29 +646,29 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             CharSequence charSequence = this.J0;
             if (charSequence == null || !TextUtils.equals(formatDateChat, charSequence)) {
                 this.J0 = formatDateChat;
-                this.f21733e2 = null;
-                X(z11);
+                this.f23604e2 = null;
+                W(z11);
             }
         }
     }
 
-    public final void U(org.telegram.messenger.MessageObject r38, boolean r39) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.w0.U(org.telegram.messenger.MessageObject, boolean):void");
+    public final void S(org.telegram.messenger.MessageObject r38, boolean r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.w0.S(org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public final void V(int i10, int i11) {
+    public final void T(int i10, int i11) {
         this.L0 = i10;
         this.M0 = i11;
     }
 
-    public final void W(float f7, int i10) {
-        this.f21776w0 = true;
-        this.f21773v0 = i10;
-        this.f21769t0 = f7;
-        this.f21771u0 = 0.0f;
+    public final void U(float f7, int i10) {
+        this.f23647w0 = true;
+        this.f23644v0 = i10;
+        this.f23640t0 = f7;
+        this.f23642u0 = 0.0f;
     }
 
-    public final void X(boolean z10) {
+    public final void W(boolean z10) {
         if (getMeasuredWidth() != 0) {
             w(getMeasuredWidth(), this.J0);
             invalidate();
@@ -701,12 +701,12 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             setSpoilersSuppressed(true);
         } else if (i10 != NotificationCenter.didUpdatePremiumGiftStickers && i10 != NotificationCenter.starGiftsLoaded && i10 != NotificationCenter.didUpdateTonGiftStickers) {
             if (i10 == NotificationCenter.diceStickersDidLoad && Objects.equals(objArr[0], UserConfig.getInstance(this.H).premiumGiftsStickerPack) && (messageObject = this.H0) != null) {
-                U(messageObject, true);
+                S(messageObject, true);
             }
         } else {
             MessageObject messageObject2 = this.H0;
             if (messageObject2 != null) {
-                U(messageObject2, true);
+                S(messageObject2, true);
             }
         }
     }
@@ -714,7 +714,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view == this.L1) {
-            float a2 = this.f21754n.a(0.02f);
+            float a2 = this.f23625n.a(0.02f);
             canvas.save();
             canvas.scale(a2, a2, (view.getMeasuredWidth() / 2.0f) + view.getX(), (view.getMeasuredHeight() / 2.0f) + view.getY());
             boolean drawChild = super.drawChild(canvas, view, j3);
@@ -740,20 +740,20 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     public int getBoundsLeft() {
         yh.z3 z3Var = this.F0;
         if (z3Var.d()) {
-            int width = ((int) (getWidth() - (z3Var.Q.e + AndroidUtilities.dp(8.0f)))) / 2;
-            if (z3Var.f48331p) {
+            int width = ((int) (getWidth() - (z3Var.Q.f15442e + AndroidUtilities.dp(8.0f)))) / 2;
+            if (z3Var.f52321p) {
                 return width;
             }
             return Math.min(this.S0, width);
-        } else if (L(this.H0)) {
-            return hg.c.z(getWidth(), this.f21721a1, 2, this.f21747j0 / 2);
+        } else if (J(this.H0)) {
+            return hg.k0.y(getWidth(), this.f23592a1, 2, this.f23618j0 / 2);
         } else {
             int i10 = this.S0;
             ImageReceiver imageReceiver = this.I;
             if (imageReceiver != null && imageReceiver.getVisible()) {
                 i10 = Math.min((int) imageReceiver.getImageX(), i10);
             }
-            return (this.f21747j0 / 2) + i10;
+            return (this.f23618j0 / 2) + i10;
         }
     }
 
@@ -763,22 +763,22 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         int i11;
         yh.z3 z3Var = this.F0;
         if (z3Var.d()) {
-            int dp = ((int) ((z3Var.Q.e + AndroidUtilities.dp(8.0f)) + getWidth())) / 2;
-            if (z3Var.f48331p) {
+            int dp = ((int) ((z3Var.Q.f15442e + AndroidUtilities.dp(8.0f)) + getWidth())) / 2;
+            if (z3Var.f52321p) {
                 return dp;
             }
             return Math.max(this.T0, dp);
         }
-        if (L(this.H0)) {
-            i10 = this.f21747j0 / 2;
-            i11 = (getWidth() + this.f21721a1) / 2;
+        if (J(this.H0)) {
+            i10 = this.f23618j0 / 2;
+            i11 = (getWidth() + this.f23592a1) / 2;
         } else {
             i10 = this.T0;
             ImageReceiver imageReceiver = this.I;
             if (imageReceiver != null && imageReceiver.getVisible()) {
                 i10 = Math.max((int) imageReceiver.getImageX2(), i10);
             }
-            i11 = this.f21747j0 / 2;
+            i11 = this.f23618j0 / 2;
         }
         return i11 + i10;
     }
@@ -828,7 +828,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
 
     @Override
     public int getObserverTag() {
-        return this.f21775w;
+        return this.f23646w;
     }
 
     public ImageReceiver getPhotoImage() {
@@ -845,7 +845,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     }
 
     public v0 getTransitionParams() {
-        return this.f21749j2;
+        return this.f23620j2;
     }
 
     @Override
@@ -865,11 +865,11 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         if (view != null) {
             view.invalidate();
         }
-        Runnable runnable = this.f21740g2;
+        Runnable runnable = this.f23611g2;
         if (runnable != null) {
             runnable.run();
         }
-        if (!this.f21737f2 || getParent() == null) {
+        if (!this.f23608f2 || getParent() == null) {
             return;
         }
         View view2 = (View) getParent();
@@ -888,7 +888,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     public final boolean m() {
         t0 t0Var = this.X0;
         if (t0Var != null) {
-            return t0Var.r2(this, this.f21782y0, this.f21784z0);
+            return t0Var.r2(this, this.f23653y0, this.f23655z0);
         }
         return false;
     }
@@ -901,15 +901,15 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         this.U1 = true;
         this.I.onAttachedToWindow();
         setStarsPaused(false);
-        if (this.f21766s && (t0Var = this.X0) != null && !t0Var.f()) {
+        if (this.f23637s && (t0Var = this.X0) != null && !t0Var.g()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f21764r0 = org.telegram.ui.Components.z5.update(0, this, z10, this.f21764r0, this.M);
-        u0 u0Var = this.f21751k1;
+        this.f23635r0 = org.telegram.ui.Components.z5.update(0, this, z10, this.f23635r0, this.M);
+        u0 u0Var = this.f23622k1;
         if (u0Var != null) {
-            u0Var.h = org.telegram.ui.Components.z5.update(0, (View) ((w0) u0Var.f21259i), false, (org.telegram.ui.Components.v5) u0Var.h, (StaticLayout) u0Var.f21257f);
+            u0Var.h = org.telegram.ui.Components.z5.update(0, (View) ((w0) u0Var.f23118i), false, (org.telegram.ui.Components.v5) u0Var.h, (StaticLayout) u0Var.f23116f);
         }
         NotificationCenter.ObserversGroup observersGroup = this.V1;
         if (observersGroup != null) {
@@ -919,14 +919,14 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         this.V1 = NotificationCenter.getInstance(this.H).createObserversGroup(this).addGlobal(NotificationCenter.emojiLoaded).add(NotificationCenter.didUpdatePremiumGiftStickers).add(NotificationCenter.didUpdateTonGiftStickers).add(NotificationCenter.starGiftsLoaded).add(NotificationCenter.diceStickersDidLoad);
         MessageObject messageObject = this.H0;
         if (messageObject != null && messageObject.type == 21) {
-            U(messageObject, true);
+            S(messageObject, true);
         }
         yh.z3 z3Var = this.F0;
         z3Var.P = true;
         if (z3Var.N != null) {
             z3Var.d.onAttachedToWindow();
-            z3Var.e.a();
-            z3Var.f48339y.d.onAttachedToWindow();
+            z3Var.f52311e.a();
+            z3Var.f52329y.d.onAttachedToWindow();
         }
         zg.p0 p0Var = this.C0;
         ArrayList arrayList = p0Var.v;
@@ -934,13 +934,13 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             ((zg.m0) arrayList.get(i10)).a();
         }
-        q21 q21Var = this.f21755n0;
-        if (q21Var != null) {
-            q21Var.a();
+        z21 z21Var = this.f23626n0;
+        if (z21Var != null) {
+            z21Var.a();
         }
-        ty0 ty0Var = this.G0;
-        if (ty0Var != null) {
-            ty0Var.d.R(ty0Var.f28645b);
+        cz0 cz0Var = this.G0;
+        if (cz0Var != null) {
+            cz0Var.d.R(cz0Var.f25478b);
         }
     }
 
@@ -952,34 +952,34 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         this.I.onDetachedFromWindow();
         setStarsPaused(true);
         this.A0 = false;
-        org.telegram.ui.Components.z5.release(this, this.f21764r0);
-        u0 u0Var = this.f21751k1;
+        org.telegram.ui.Components.z5.release(this, this.f23635r0);
+        u0 u0Var = this.f23622k1;
         if (u0Var != null) {
-            org.telegram.ui.Components.z5.release((w0) u0Var.f21259i, (org.telegram.ui.Components.v5) u0Var.h);
+            org.telegram.ui.Components.z5.release((w0) u0Var.f23118i, (org.telegram.ui.Components.v5) u0Var.h);
         }
         NotificationCenter.ObserversGroup observersGroup = this.V1;
         if (observersGroup != null) {
             observersGroup.removeAllObservers();
             this.V1 = null;
         }
-        this.f21728d0.g();
-        this.f21749j2.f21672a = false;
+        this.f23599d0.g();
+        this.f23620j2.f23537a = false;
         yh.z3 z3Var = this.F0;
         z3Var.P = false;
         z3Var.d.onDetachedFromWindow();
-        z3Var.e.b();
-        xh.k0 k0Var = z3Var.f48339y;
+        z3Var.f52311e.b();
+        xh.k0 k0Var = z3Var.f52329y;
         k0Var.d.onDetachedFromWindow();
-        org.telegram.ui.Components.z5.release((View) null, k0Var.f46247q);
-        k0Var.f46247q = null;
+        org.telegram.ui.Components.z5.release((View) null, k0Var.f50056q);
+        k0Var.f50056q = null;
         this.C0.q();
-        q21 q21Var = this.f21755n0;
-        if (q21Var != null) {
-            q21Var.b();
+        z21 z21Var = this.f23626n0;
+        if (z21Var != null) {
+            z21Var.b();
         }
-        ty0 ty0Var = this.G0;
-        if (ty0Var != null) {
-            ty0Var.d.R(null);
+        cz0 cz0Var = this.G0;
+        if (cz0Var != null) {
+            cz0Var.d.R(null);
         }
     }
 
@@ -997,7 +997,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         if (TextUtils.isEmpty(this.J0) && messageObject == null) {
             return;
         }
-        if (this.f21733e2 == null) {
+        if (this.f23604e2 == null) {
             if (!TextUtils.isEmpty(this.J0)) {
                 charSequence = this.J0;
             } else {
@@ -1010,19 +1010,19 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 spannableStringBuilder.removeSpan(characterStyle);
                 spannableStringBuilder.setSpan(new i(1, this, characterStyle), spanStart, spanEnd, 33);
             }
-            this.f21733e2 = spannableStringBuilder;
+            this.f23604e2 = spannableStringBuilder;
         }
         if (Build.VERSION.SDK_INT < 24) {
-            accessibilityNodeInfo.setContentDescription(this.f21733e2.toString());
+            accessibilityNodeInfo.setContentDescription(this.f23604e2.toString());
         } else {
-            accessibilityNodeInfo.setText(this.f21733e2);
+            accessibilityNodeInfo.setText(this.f23604e2);
         }
         accessibilityNodeInfo.setEnabled(true);
     }
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        RectF rectF = this.f21757o0;
+        RectF rectF = this.f23628o0;
         this.L1.layout((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
     }
 
@@ -1050,7 +1050,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     break;
                 }
             }
-            this.I.setImage(this.f21779x0, "g", ImageLocation.getForObject(photoSize, messageObject.photoThumbsObject), "50_50_b", this.L, 0L, null, messageObject, 1);
+            this.I.setImage(this.f23650x0, "g", ImageLocation.getForObject(photoSize, messageObject.photoThumbsObject), "50_50_b", this.L, 0L, null, messageObject, 1);
             DownloadController.getInstance(this.H).removeLoadingFileObserver(this);
         }
     }
@@ -1073,7 +1073,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     public void setCustomText(CharSequence charSequence) {
         this.J0 = charSequence;
         if (charSequence != null) {
-            X(false);
+            W(false);
         }
     }
 
@@ -1090,7 +1090,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     }
 
     public void setInvalidateListener(Runnable runnable) {
-        this.f21740g2 = runnable;
+        this.f23611g2 = runnable;
     }
 
     public void setInvalidateWithParent(View view) {
@@ -1098,11 +1098,11 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     }
 
     public void setInvalidatesParent(boolean z10) {
-        this.f21737f2 = z10;
+        this.f23608f2 = z10;
     }
 
     public void setMessageObject(MessageObject messageObject) {
-        U(messageObject, false);
+        S(messageObject, false);
     }
 
     public void setOnActionClickListener(View.OnClickListener onClickListener) {
@@ -1120,13 +1120,13 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
     public void setShowTopic(boolean z10) {
         if (this.m0 != z10) {
             this.m0 = z10;
-            K();
+            I();
             invalidate();
         }
     }
 
     public void setSpoilersSuppressed(boolean z10) {
-        ArrayList arrayList = this.f21759p0;
+        ArrayList arrayList = this.f23630p0;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -1142,7 +1142,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             return false;
         }
         float y3 = getY() + p0Var.d;
-        if (y3 <= f7 || (y3 + p0Var.f49416o) - AndroidUtilities.dp(16.0f) >= i10) {
+        if (y3 <= f7 || (y3 + p0Var.f53498o) - AndroidUtilities.dp(16.0f) >= i10) {
             return false;
         }
         return true;
@@ -1154,10 +1154,10 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         String formatPluralString;
         SpannableStringBuilder spannableStringBuilder;
         String formatString;
-        int dp = this.f21721a1 - AndroidUtilities.dp(16.0f);
-        TextPaint textPaint = this.f21777w1;
+        int dp = this.f23592a1 - AndroidUtilities.dp(16.0f);
+        TextPaint textPaint = this.f23648w1;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        TextPaint textPaint2 = this.f21780x1;
+        TextPaint textPaint2 = this.f23651x1;
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode = (TLRPC.TL_messageActionGiftCode) this.H0.messageOwner.action;
         int i10 = tL_messageActionGiftCode.months;
@@ -1200,27 +1200,27 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         }
         String string2 = LocaleController.getString("BoostingReceivedGiftOpenBtn", R.string.BoostingReceivedGiftOpenBtn);
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
-        valueOf.setSpan(new u51(AndroidUtilities.bold()), 0, valueOf.length(), 33);
+        valueOf.setSpan(new d61(AndroidUtilities.bold()), 0, valueOf.length(), 33);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        this.f21723b1 = new StaticLayout(valueOf, textPaint, dp, alignment, 1.1f, 0.0f, false);
-        this.f21732e1 = null;
-        this.f21729d1 = null;
-        u0 u0Var = this.f21751k1;
+        this.f23594b1 = new StaticLayout(valueOf, textPaint, dp, alignment, 1.1f, 0.0f, false);
+        this.f23603e1 = null;
+        this.f23600d1 = null;
+        u0 u0Var = this.f23622k1;
         if (u0Var != null) {
-            org.telegram.ui.Components.z5.release((w0) u0Var.f21259i, (org.telegram.ui.Components.v5) u0Var.h);
+            org.telegram.ui.Components.z5.release((w0) u0Var.f23118i, (org.telegram.ui.Components.v5) u0Var.h);
         }
         u0 u0Var2 = new u0(this);
-        this.f21751k1 = u0Var2;
+        this.f23622k1 = u0Var2;
         u0Var2.a(spannableStringBuilder, textPaint2, dp);
         SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(string2);
-        valueOf2.setSpan(new u51(AndroidUtilities.bold()), 0, valueOf2.length(), 33);
-        this.f21739g1 = false;
-        this.f21742h1 = 0;
-        this.f21758o1 = null;
-        StaticLayout staticLayout = new StaticLayout(valueOf2, (TextPaint) H("paintChatActionText"), dp, alignment, 1.0f, 0.0f, false);
-        this.f21760p1 = staticLayout;
-        this.f21762q1 = true;
-        this.f21774v1 = P(staticLayout);
+        valueOf2.setSpan(new d61(AndroidUtilities.bold()), 0, valueOf2.length(), 33);
+        this.f23610g1 = false;
+        this.f23613h1 = 0;
+        this.f23629o1 = null;
+        StaticLayout staticLayout = new StaticLayout(valueOf2, (TextPaint) F("paintChatActionText"), dp, alignment, 1.0f, 0.0f, false);
+        this.f23631p1 = staticLayout;
+        this.f23633q1 = true;
+        this.f23645v1 = N(staticLayout);
     }
 
     public final void v(CharSequence charSequence, SpannableStringBuilder spannableStringBuilder, CharSequence charSequence2, boolean z10, CharSequence charSequence3, int i10, String str, int i11, boolean z11) {
@@ -1236,33 +1236,33 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         int i13 = dp;
         if (charSequence != null) {
             MessageObject messageObject2 = this.H0;
-            TextPaint textPaint = this.f21777w1;
+            TextPaint textPaint = this.f23648w1;
             if (messageObject2 != null && messageObject2.type == 30) {
                 textPaint.setTextSize(AndroidUtilities.dp(14.0f));
             } else {
                 textPaint.setTextSize(AndroidUtilities.dp(16.0f));
             }
             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
-            valueOf.setSpan(new u51(AndroidUtilities.bold()), 0, valueOf.length(), 33);
+            valueOf.setSpan(new d61(AndroidUtilities.bold()), 0, valueOf.length(), 33);
             r42 = 0;
-            this.f21723b1 = new StaticLayout(valueOf, textPaint, i13, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.f23594b1 = new StaticLayout(valueOf, textPaint, i13, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         } else {
             r42 = 0;
-            this.f21723b1 = null;
+            this.f23594b1 = null;
         }
-        this.f21732e1 = null;
+        this.f23603e1 = null;
         if (spannableStringBuilder != null) {
-            v01 v01Var = new v01(spannableStringBuilder, 10.0f, null);
-            this.f21729d1 = v01Var;
-            v01Var.f28920a.linkColor = -1;
+            e11 e11Var = new e11(spannableStringBuilder, 10.0f, null);
+            this.f23600d1 = e11Var;
+            e11Var.f25876a.linkColor = -1;
         } else {
-            this.f21729d1 = null;
+            this.f23600d1 = null;
         }
         MessageObject messageObject3 = this.H0;
-        TextPaint textPaint2 = this.f21780x1;
+        TextPaint textPaint2 = this.f23651x1;
         if (messageObject3 != null && messageObject3.type == 35) {
             textPaint2.setTextSize(AndroidUtilities.dp(14.3f));
-        } else if (messageObject3 != null && (N() || (i12 = this.H0.type) == 30 || i12 == 18 || i12 == 31 || i12 == 37 || i12 == 33)) {
+        } else if (messageObject3 != null && (L() || (i12 = this.H0.type) == 30 || i12 == 18 || i12 == 31 || i12 == 37 || i12 == 33)) {
             textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         } else {
             textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
@@ -1274,37 +1274,37 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         }
         boolean z12 = true;
         if (charSequence4 == null) {
-            u0 u0Var = this.f21751k1;
+            u0 u0Var = this.f23622k1;
             if (u0Var != null) {
-                org.telegram.ui.Components.z5.release((w0) u0Var.f21259i, (org.telegram.ui.Components.v5) u0Var.h);
-                this.f21751k1 = null;
+                org.telegram.ui.Components.z5.release((w0) u0Var.f23118i, (org.telegram.ui.Components.v5) u0Var.h);
+                this.f23622k1 = null;
             }
-            this.f21739g1 = r42;
+            this.f23610g1 = r42;
         } else {
-            if (this.f21751k1 == null) {
-                this.f21751k1 = new u0(this);
+            if (this.f23622k1 == null) {
+                this.f23622k1 = new u0(this);
             }
             try {
                 charSequence4 = Emoji.replaceEmoji(charSequence4, textPaint2.getFontMetricsInt(), r42);
             } catch (Exception unused) {
             }
-            this.f21751k1.a(charSequence4, textPaint2, dp2);
-            if (z10 && ((StaticLayout) this.f21751k1.f21257f).getLineCount() > 3) {
-                this.f21739g1 = !this.f21736f1;
-                this.f21742h1 = ((StaticLayout) this.f21751k1.f21257f).getLineBottom(2);
-                this.f21758o1 = new v01(LocaleController.getString(R.string.Gift2CaptionMore), textPaint2.getTextSize() / AndroidUtilities.density, AndroidUtilities.bold());
-                int lineBottom = ((StaticLayout) this.f21751k1.f21257f).getLineBottom(2);
-                this.f21753m1 = lineBottom;
-                this.f21756n1 = lineBottom - ((StaticLayout) this.f21751k1.f21257f).getLineTop(2);
-                this.l1 = (int) ((StaticLayout) this.f21751k1.f21257f).getLineRight(2);
+            this.f23622k1.a(charSequence4, textPaint2, dp2);
+            if (z10 && ((StaticLayout) this.f23622k1.f23116f).getLineCount() > 3) {
+                this.f23610g1 = !this.f23607f1;
+                this.f23613h1 = ((StaticLayout) this.f23622k1.f23116f).getLineBottom(2);
+                this.f23629o1 = new e11(LocaleController.getString(R.string.Gift2CaptionMore), textPaint2.getTextSize() / AndroidUtilities.density, AndroidUtilities.bold());
+                int lineBottom = ((StaticLayout) this.f23622k1.f23116f).getLineBottom(2);
+                this.f23624m1 = lineBottom;
+                this.f23627n1 = lineBottom - ((StaticLayout) this.f23622k1.f23116f).getLineTop(2);
+                this.l1 = (int) ((StaticLayout) this.f23622k1.f23116f).getLineRight(2);
             } else {
-                this.f21739g1 = r42;
-                this.f21745i1.f(true, true);
-                this.f21742h1 = r42;
+                this.f23610g1 = r42;
+                this.f23616i1.f(true, true);
+                this.f23613h1 = r42;
             }
-            if (this.f21739g1) {
-                int lineEnd = ((StaticLayout) this.f21751k1.f21257f).getLineEnd(2) - 1;
-                u0 u0Var2 = this.f21751k1;
+            if (this.f23610g1) {
+                int lineEnd = ((StaticLayout) this.f23622k1.f23116f).getLineEnd(2) - 1;
+                u0 u0Var2 = this.f23622k1;
                 if (lineEnd >= 0) {
                     charSequence4 = charSequence4.subSequence(r42, lineEnd);
                 }
@@ -1313,15 +1313,15 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         }
         if (charSequence3 != null) {
             SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(charSequence3);
-            valueOf2.setSpan(new u51(AndroidUtilities.bold()), r42, valueOf2.length(), 33);
-            StaticLayout staticLayout = new StaticLayout(valueOf2, (TextPaint) H("paintChatActionText"), i13, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            this.f21760p1 = staticLayout;
-            this.f21762q1 = (!z11 || this.f21739g1) ? false : false;
-            this.f21774v1 = P(staticLayout);
+            valueOf2.setSpan(new d61(AndroidUtilities.bold()), r42, valueOf2.length(), 33);
+            StaticLayout staticLayout = new StaticLayout(valueOf2, (TextPaint) F("paintChatActionText"), i13, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.f23631p1 = staticLayout;
+            this.f23633q1 = (!z11 || this.f23610g1) ? false : false;
+            this.f23645v1 = N(staticLayout);
         } else {
-            this.f21760p1 = null;
-            this.f21762q1 = r42;
-            this.f21774v1 = 0.0f;
+            this.f23631p1 = null;
+            this.f23633q1 = r42;
+            this.f23645v1 = 0.0f;
         }
         if (str != null) {
             if (this.I1 == null) {
@@ -1330,11 +1330,11 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             if (this.J1 == null) {
                 Path path = new Path();
                 this.J1 = path;
-                xh.m1.c(path, 1.35f, r42);
+                xh.l1.c(path, 1.35f, r42);
             }
-            v01 v01Var2 = new v01(str, i10, AndroidUtilities.bold());
-            this.K1 = v01Var2;
-            v01Var2.f28932p = AndroidUtilities.dp(62.0f);
+            e11 e11Var2 = new e11(str, i10, AndroidUtilities.bold());
+            this.K1 = e11Var2;
+            e11Var2.f25889p = AndroidUtilities.dp(62.0f);
             return;
         }
         this.J1 = null;
@@ -1361,11 +1361,11 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         int i11;
         float f7;
         int dp = i10 - AndroidUtilities.dp(30.0f);
-        if (this.f21744i0) {
+        if (this.f23615i0) {
             dp -= AndroidUtilities.dp(64.0f);
         }
-        if (M()) {
-            if (this.f21744i0) {
+        if (K()) {
+            if (this.f23615i0) {
                 f7 = 28.0f;
             } else {
                 f7 = 82.0f;
@@ -1379,18 +1379,18 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             }
             int i13 = dp;
             this.V0 = true;
-            if (!M() && ((messageObject = this.H0) == null || ((i11 = messageObject.type) != 34 && i11 != 35))) {
+            if (!K() && ((messageObject = this.H0) == null || ((i11 = messageObject.type) != 34 && i11 != 35))) {
                 if (messageObject != null && messageObject.drawServiceWithDefaultTypeface) {
-                    textPaint = (TextPaint) H("paintChatActionText2");
+                    textPaint = (TextPaint) F("paintChatActionText2");
                 } else {
-                    textPaint = (TextPaint) H("paintChatActionText");
+                    textPaint = (TextPaint) F("paintChatActionText");
                 }
             } else {
-                textPaint = (TextPaint) H("paintChatActionText3");
+                textPaint = (TextPaint) F("paintChatActionText3");
             }
             TextPaint textPaint2 = textPaint;
             textPaint2.linkColor = textPaint2.getColor();
-            if (M()) {
+            if (K()) {
                 if (charSequence instanceof Spannable) {
                     Spannable spannable = (Spannable) charSequence;
                     for (Emoji.EmojiSpan emojiSpan : (Emoji.EmojiSpan[]) spannable.getSpans(0, spannable.length(), Emoji.EmojiSpan.class)) {
@@ -1401,7 +1401,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             } else {
                 charSequence2 = charSequence;
             }
-            if (M()) {
+            if (K()) {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             } else {
                 alignment = Layout.Alignment.ALIGN_CENTER;
@@ -1420,12 +1420,12 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     }
                 }
             }
-            if (this.f21766s && (t0Var = this.X0) != null && !t0Var.f()) {
+            if (this.f23637s && (t0Var = this.X0) != null && !t0Var.g()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f21764r0 = org.telegram.ui.Components.z5.update(0, this, z10, this.f21764r0, this.M);
+            this.f23635r0 = org.telegram.ui.Components.z5.update(0, this, z10, this.f23635r0, this.M);
             this.O = 0;
             this.N = 0;
             this.Q = 0;
@@ -1448,13 +1448,13 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                             }
                             this.O = (int) Math.max(this.O, Math.ceil(this.M.getLineBottom(i14)));
                             this.N = (int) Math.max(this.N, Math.ceil(lineWidth));
-                        } catch (Exception e) {
-                            FileLog.e(e);
+                        } catch (Exception e7) {
+                            FileLog.e(e7);
                             return;
                         }
                     }
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                 }
             }
             this.R = (i10 - this.N) / 2;
@@ -1463,15 +1463,15 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             if (this.P != null) {
                 this.S = org.telegram.messenger.f0.C(11.0f, this.Q, dp2);
             }
-            if (M()) {
+            if (K()) {
                 width = this.N;
             } else {
                 width = this.M.getWidth();
             }
             this.T = (i10 - width) / 2;
             this.U = (i10 - i13) / 2;
-            Stack stack = this.f21761q0;
-            ArrayList arrayList = this.f21759p0;
+            Stack stack = this.f23632q0;
+            ArrayList arrayList = this.f23630p0;
             stack.addAll(arrayList);
             arrayList.clear();
             if (charSequence3 instanceof Spannable) {
@@ -1522,14 +1522,14 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         int i23;
         int i24;
         w0 w0Var2 = this;
-        if (!w0Var2.f21766s || ((!w0Var2.J() || z10) && (w0Var2.J() || !z10))) {
-            Paint H = w0Var2.H("paintChatActionBackground");
-            Paint H2 = w0Var2.H("paintChatActionBackgroundDarken");
-            w0Var2.f21767s0 = (TextPaint) w0Var2.H("paintChatActionText");
+        if (!w0Var2.f23637s || ((!w0Var2.H() || z10) && (w0Var2.H() || !z10))) {
+            Paint F = w0Var2.F("paintChatActionBackground");
+            Paint F2 = w0Var2.F("paintChatActionBackgroundDarken");
+            w0Var2.f23638s0 = (TextPaint) w0Var2.F("paintChatActionText");
             int i25 = w0Var2.L0;
             org.telegram.ui.ActionBar.d6 d6Var3 = w0Var2.Y0;
             if (i25 >= 0) {
-                int v02 = org.telegram.ui.ActionBar.h6.v0(i25, d6Var3);
+                int v02 = org.telegram.ui.ActionBar.i6.v0(i25, d6Var3);
                 if (w0Var2.N0 == null) {
                     Paint paint6 = new Paint(1);
                     w0Var2.N0 = paint6;
@@ -1538,10 +1538,10 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     w0Var2.O0 = textPaint;
                     textPaint.setTypeface(AndroidUtilities.bold());
                     w0Var2.O0.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-                    w0Var2.O0.setColor(org.telegram.ui.ActionBar.h6.v0(w0Var2.M0, d6Var3));
+                    w0Var2.O0.setColor(org.telegram.ui.ActionBar.i6.v0(w0Var2.M0, d6Var3));
                 }
-                H = w0Var2.N0;
-                w0Var2.f21767s0 = w0Var2.O0;
+                F = w0Var2.N0;
+                w0Var2.f23638s0 = w0Var2.O0;
             }
             boolean z11 = w0Var2.V0;
             Path path = w0Var2.R0;
@@ -1604,10 +1604,10 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     int lineBottom = w0Var2.M.getLineBottom(i33);
                     int i35 = i34 - 1;
                     if (i33 < i35) {
-                        paint5 = H2;
+                        paint5 = F2;
                         i20 = ((Integer) arrayList3.get(i33 + 1)).intValue();
                     } else {
-                        paint5 = H2;
+                        paint5 = F2;
                         i20 = 0;
                     }
                     int i36 = lineBottom - i32;
@@ -1617,7 +1617,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     if (i33 == i35 || intValue2 > i20) {
                         i36 = AndroidUtilities.dp(3.0f) + i36;
                     }
-                    Paint paint7 = H;
+                    Paint paint7 = F;
                     float f18 = (intValue2 / 2.0f) + f17;
                     if (i33 != i35 && intValue2 < i20 && i33 != 0 && intValue2 < i31) {
                         i21 = dp6;
@@ -1672,13 +1672,13 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     i31 = intValue2;
                     i32 = lineBottom;
                     lineCount = i34;
-                    H2 = paint5;
-                    H = paint7;
+                    F2 = paint5;
+                    F = paint7;
                     d6Var3 = d6Var2;
                     arrayList3 = arrayList2;
                 }
-                paint = H;
-                paint2 = H2;
+                paint = F;
+                paint2 = F2;
                 ArrayList arrayList5 = arrayList3;
                 d6Var = d6Var3;
                 int i37 = lineCount - 1;
@@ -1739,7 +1739,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 }
                 w0Var = this;
                 path.close();
-                if (w0Var.M() && !w0Var.N()) {
+                if (w0Var.K() && !w0Var.L()) {
                     rectF.left = (f17 - (w0Var.N / 2.0f)) - AndroidUtilities.dp(17.0f);
                     rectF.top = dp4;
                     rectF.right = (w0Var.N / 2.0f) + f17 + AndroidUtilities.dp(17.0f);
@@ -1749,8 +1749,8 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     path.close();
                 }
             } else {
-                paint = H;
-                paint2 = H2;
+                paint = F;
+                paint2 = F2;
                 d6Var = d6Var3;
                 f7 = 6.0f;
                 f10 = 8.0f;
@@ -1758,13 +1758,13 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 f12 = 4.0f;
                 w0Var = w0Var2;
             }
-            if (!w0Var.f21776w0) {
-                w0Var.f21773v0 = ((ViewGroup) w0Var.getParent()).getMeasuredHeight();
+            if (!w0Var.f23647w0) {
+                w0Var.f23644v0 = ((ViewGroup) w0Var.getParent()).getMeasuredHeight();
             }
             if (d6Var != null) {
-                d6Var.m(w0Var.f21771u0, w0Var.f21769t0 + AndroidUtilities.dp(f12), w0Var.getMeasuredWidth(), w0Var.f21773v0);
+                d6Var.m(w0Var.f23642u0, w0Var.f23640t0 + AndroidUtilities.dp(f12), w0Var.getMeasuredWidth(), w0Var.f23644v0);
             } else {
-                org.telegram.ui.ActionBar.h6.q(w0Var.f21771u0, w0Var.f21769t0 + AndroidUtilities.dp(f12), w0Var.getMeasuredWidth(), w0Var.f21773v0);
+                org.telegram.ui.ActionBar.i6.q(w0Var.f23642u0, w0Var.f23640t0 + AndroidUtilities.dp(f12), w0Var.getMeasuredWidth(), w0Var.f23644v0);
             }
             float f24 = 0.75f;
             if (!z10 || (w0Var.getAlpha() == 1.0f && !(w0Var instanceof ak))) {
@@ -1815,7 +1815,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             if (messageObject == null || !messageObject.isRepostPreview) {
                 canvas2 = canvas;
                 canvas2.drawPath(path, paint4);
-                if (w0Var.J() && paint3.getAlpha() > 0) {
+                if (w0Var.H() && paint3.getAlpha() > 0) {
                     canvas2.drawPath(path, paint3);
                 }
                 if (w0Var.S1 > 0.0f) {
@@ -1833,9 +1833,9 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             MessageObject messageObject2 = w0Var.H0;
             yh.z3 z3Var = w0Var.F0;
             if (z3Var.d()) {
-                float dp7 = z3Var.Q.e + AndroidUtilities.dp(f10);
+                float dp7 = z3Var.Q.f15442e + AndroidUtilities.dp(f10);
                 float width = (w0Var.getWidth() - dp7) / f11;
-                if (z3Var.f48331p) {
+                if (z3Var.f52321p) {
                     dp = 0.0f;
                 } else {
                     dp = AndroidUtilities.dp(12.0f) + w0Var.S + w0Var.O;
@@ -1847,15 +1847,15 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 }
                 w0Var.E1.set(rectF2);
                 canvas2.drawRoundRect(w0Var.E1, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint4);
-                if (w0Var.J()) {
+                if (w0Var.H()) {
                     canvas2.drawRoundRect(w0Var.E1, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
                 }
             } else if (w0Var.G0 != null) {
                 float dp8 = AndroidUtilities.dp(174.0f);
-                ty0 ty0Var = w0Var.G0;
-                ty0Var.getClass();
-                int dp9 = AndroidUtilities.dp(140.0f) + ((int) ty0Var.f28647f.j());
-                if (ty0Var.f28649i) {
+                cz0 cz0Var = w0Var.G0;
+                cz0Var.getClass();
+                int dp9 = AndroidUtilities.dp(140.0f) + ((int) cz0Var.f25481f.j());
+                if (cz0Var.f25483i) {
                     i13 = AndroidUtilities.dp(40.0f);
                 } else {
                     i13 = 0;
@@ -1867,24 +1867,24 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 }
                 w0Var.E1.set(width2, AndroidUtilities.dp(f12), dp8 + width2, AndroidUtilities.dp(f12) + f27);
                 canvas2.drawRoundRect(w0Var.E1, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint4);
-                if (w0Var.J()) {
+                if (w0Var.H()) {
                     canvas2.drawRoundRect(w0Var.E1, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
                 }
-            } else if (w0Var.L(messageObject2)) {
-                float width3 = (w0Var.getWidth() - w0Var.f21721a1) / f11;
+            } else if (w0Var.J(messageObject2)) {
+                float width3 = (w0Var.getWidth() - w0Var.f23592a1) / f11;
                 float f28 = w0Var.S + w0Var.O;
-                if (w0Var.N()) {
+                if (w0Var.L()) {
                     float dp10 = f28 + AndroidUtilities.dp(f12);
-                    AndroidUtilities.rectTmp.set(width3, dp10, w0Var.f21721a1 + width3, w0Var.f21734f + dp10);
+                    AndroidUtilities.rectTmp.set(width3, dp10, w0Var.f23592a1 + width3, w0Var.f23605f + dp10);
                 } else {
                     float dp11 = f28 + AndroidUtilities.dp(12.0f);
                     RectF rectF3 = AndroidUtilities.rectTmp;
-                    float f29 = w0Var.f21721a1;
+                    float f29 = w0Var.f23592a1;
                     rectF3.set(width3, dp11, width3 + f29, f29 + dp11 + w0Var.C1);
                 }
-                if (messageObject2 != null && messageObject2.type == 18 && !w0Var.f21739g1 && (u0Var = w0Var.f21751k1) != null && w0Var.f21742h1 > 0) {
+                if (messageObject2 != null && messageObject2.type == 18 && !w0Var.f23610g1 && (u0Var = w0Var.f23622k1) != null && w0Var.f23613h1 > 0) {
                     RectF rectF4 = AndroidUtilities.rectTmp;
-                    rectF4.bottom = com.google.android.gms.internal.vision.e2.b(1.0f, w0Var.f21745i1.f23862c, ((StaticLayout) u0Var.f21257f).getHeight() - w0Var.f21742h1, rectF4.bottom);
+                    rectF4.bottom = com.google.android.gms.internal.vision.e2.b(1.0f, w0Var.f23616i1.f25933c, ((StaticLayout) u0Var.f23116f).getHeight() - w0Var.f23613h1, rectF4.bottom);
                 }
                 if (w0Var.E1 == null) {
                     w0Var.E1 = new RectF();
@@ -1902,12 +1902,12 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                     path2.rewind();
                     path2.addRoundRect(w0Var.E1, fArr, Path.Direction.CW);
                     canvas2.drawPath(path2, paint4);
-                    if (w0Var.J()) {
+                    if (w0Var.H()) {
                         canvas2.drawPath(path2, paint3);
                     }
                 } else {
                     canvas2.drawRoundRect(w0Var.E1, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), paint4);
-                    if (w0Var.J()) {
+                    if (w0Var.H()) {
                         canvas2.drawRoundRect(w0Var.E1, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), paint3);
                     }
                 }
@@ -1931,24 +1931,24 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         Canvas canvas2 = canvas;
         canvas2.save();
         float f12 = 2.0f;
-        canvas2.translate(this.f21747j0 / 2.0f, getPaddingTop());
+        canvas2.translate(this.f23618j0 / 2.0f, getPaddingTop());
         canvas2.save();
         canvas2.translate(this.T, this.S);
         StaticLayout staticLayout = this.M;
-        org.telegram.ui.Components.v5 v5Var = this.f21764r0;
+        org.telegram.ui.Components.v5 v5Var = this.f23635r0;
         if (staticLayout != null) {
-            colorFilter = F(staticLayout.getPaint().getColor());
+            colorFilter = D(staticLayout.getPaint().getColor());
         } else {
             colorFilter = null;
         }
-        org.telegram.ui.Components.z5.drawAnimatedEmojis(canvas2, staticLayout, v5Var, 0.0f, this.f21759p0, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
+        org.telegram.ui.Components.z5.drawAnimatedEmojis(canvas2, staticLayout, v5Var, 0.0f, this.f23630p0, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
         canvas2.restore();
         yh.z3 z3Var = this.F0;
         float f13 = 4.0f;
         if (z3Var.d()) {
             canvas2.save();
-            float width = (getWidth() - z3Var.Q.e) / 2.0f;
-            if (z3Var.f48331p) {
+            float width = (getWidth() - z3Var.Q.f15442e) / 2.0f;
+            if (z3Var.f52321p) {
                 dp = AndroidUtilities.dp(4.0f);
             } else {
                 dp = AndroidUtilities.dp(16.0f) + this.S + this.O;
@@ -1958,28 +1958,28 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             canvas2.restore();
         }
         canvas2.restore();
-        q21 q21Var = this.f21755n0;
+        z21 z21Var = this.f23626n0;
         org.telegram.ui.ActionBar.d6 d6Var = this.Y0;
-        if (q21Var != null) {
+        if (z21Var != null) {
             float alpha = getAlpha();
             if (d6Var != null) {
-                d6Var.m(this.f21771u0, this.f21769t0 + 0.0f, getMeasuredWidth(), this.f21773v0);
+                d6Var.m(this.f23642u0, this.f23640t0 + 0.0f, getMeasuredWidth(), this.f23644v0);
             } else {
-                org.telegram.ui.ActionBar.h6.q(this.f21771u0, this.f21769t0 + 0.0f, getMeasuredWidth(), this.f21773v0);
+                org.telegram.ui.ActionBar.i6.q(this.f23642u0, this.f23640t0 + 0.0f, getMeasuredWidth(), this.f23644v0);
             }
-            this.f21755n0.c(canvas, getWidth(), this.f21747j0, 0.0f, 1.0f, alpha, this.m0);
+            this.f23626n0.c(canvas, getWidth(), this.f23618j0, 0.0f, 1.0f, alpha, this.m0);
             canvas2 = canvas;
         }
         ArrayList arrayList = this.P1;
         if (arrayList != null && !arrayList.isEmpty()) {
             if (d6Var != null) {
-                d6Var.m(this.f21771u0, this.f21769t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f21773v0);
+                d6Var.m(this.f23642u0, this.f23640t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f23644v0);
             } else {
-                org.telegram.ui.ActionBar.h6.q(this.f21771u0, this.f21769t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f21773v0);
+                org.telegram.ui.ActionBar.i6.q(this.f23642u0, this.f23640t0 + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.f23644v0);
             }
-            float width2 = (getWidth() - this.f21721a1) / 2.0f;
-            float dp2 = AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(4.0f) + this.S + this.O + this.f21734f;
-            float dp3 = (this.f21721a1 - AndroidUtilities.dp(4.0f)) / 2.0f;
+            float width2 = (getWidth() - this.f23592a1) / 2.0f;
+            float dp2 = AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(4.0f) + this.S + this.O + this.f23605f;
+            float dp3 = (this.f23592a1 - AndroidUtilities.dp(4.0f)) / 2.0f;
             int i13 = 0;
             while (i13 < arrayList.size()) {
                 e0 e0Var = (e0) arrayList.get(i13);
@@ -1987,7 +1987,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 float dp4 = ((AndroidUtilities.dp(f13) + dp3) * i13) + width2;
                 float f14 = dp4 + dp3;
                 RectF rectF = this.U0;
-                rectF.set(dp4, dp2, f14, e0Var.f20207f + dp2);
+                rectF.set(dp4, dp2, f14, e0Var.f21995f + dp2);
                 canvas2.save();
                 if (a2 != 1.0f) {
                     f7 = 4.0f;
@@ -1997,73 +1997,73 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 }
                 float[] fArr = this.a2;
                 Arrays.fill(fArr, AndroidUtilities.dp(Math.min(6.75f, SharedConfig.bubbleRadius)));
-                if ((e0Var.f20208g & 9) == 9) {
+                if ((e0Var.f21996g & 9) == 9) {
                     float dp5 = AndroidUtilities.dp(SharedConfig.bubbleRadius);
                     fArr[7] = dp5;
                     fArr[6] = dp5;
                 }
-                if ((e0Var.f20208g & 10) == 10) {
+                if ((e0Var.f21996g & 10) == 10) {
                     float dp6 = AndroidUtilities.dp(SharedConfig.bubbleRadius);
                     fArr[5] = dp6;
                     fArr[4] = dp6;
                 }
-                Path path = this.f21724b2;
+                Path path = this.f23595b2;
                 path.rewind();
                 path.addRoundRect(rectF, fArr, Path.Direction.CW);
-                canvas2.drawPath(path, H("paintChatActionBackground"));
-                if (J()) {
-                    canvas2.drawPath(path, org.telegram.ui.ActionBar.h6.f19128h2);
+                canvas2.drawPath(path, F("paintChatActionBackground"));
+                if (H()) {
+                    canvas2.drawPath(path, org.telegram.ui.ActionBar.i6.f20886h2);
                 }
                 canvas2.save();
                 canvas2.clipPath(path);
-                z zVar = e0Var.f20219s;
+                z zVar = e0Var.f22007s;
                 if (zVar != null) {
                     int i14 = (int) dp2;
-                    zVar.setBounds((int) dp4, i14, (int) f14, e0Var.f20207f + i14);
-                    e0Var.f20219s.setAlpha(255);
-                    e0Var.f20219s.draw(canvas2);
+                    zVar.setBounds((int) dp4, i14, (int) f14, e0Var.f21995f + i14);
+                    e0Var.f22007s.setAlpha(255);
+                    e0Var.f22007s.draw(canvas2);
                 }
                 canvas2.restore();
                 canvas2.save();
-                if (e0Var.f20220t != null) {
+                if (e0Var.f22008t != null) {
                     i10 = AndroidUtilities.dp(26.0f);
                 } else {
                     i10 = 0;
                 }
                 float l4 = e0Var.h.l();
-                if (e0Var.f20220t != null) {
+                if (e0Var.f22008t != null) {
                     i11 = AndroidUtilities.dp(f7);
                 } else {
                     i11 = 0;
                 }
                 float f15 = i10;
                 float A = com.google.android.gms.internal.vision.e2.A(dp3 - (l4 + i11), f15, f12, dp4);
-                Drawable drawable = e0Var.f20220t;
+                Drawable drawable = e0Var.f22008t;
                 if (drawable != null) {
                     int i15 = (int) A;
                     f10 = 2.0f;
-                    drawable.setBounds(i15, (int) (((e0Var.f20207f - AndroidUtilities.dp(24.0f)) / f12) + dp2), AndroidUtilities.dp(24.0f) + i15, AndroidUtilities.dp(24.0f) + ((int) (((e0Var.f20207f - AndroidUtilities.dp(24.0f)) / 2.0f) + dp2)));
-                    Drawable drawable2 = e0Var.f20220t;
-                    if (e0Var.f20213m) {
+                    drawable.setBounds(i15, (int) (((e0Var.f21995f - AndroidUtilities.dp(24.0f)) / f12) + dp2), AndroidUtilities.dp(24.0f) + i15, AndroidUtilities.dp(24.0f) + ((int) (((e0Var.f21995f - AndroidUtilities.dp(24.0f)) / 2.0f) + dp2)));
+                    Drawable drawable2 = e0Var.f22008t;
+                    if (e0Var.f22001m) {
                         i12 = 128;
                     } else {
                         i12 = 255;
                     }
                     drawable2.setAlpha(i12);
-                    e0Var.f20220t.draw(canvas2);
+                    e0Var.f22008t.draw(canvas2);
                     A += f15;
                 } else {
                     f10 = 2.0f;
                 }
-                e0Var.h.f28932p = Math.max(1, (((int) dp3) - AndroidUtilities.dp(15.0f)) - i10);
-                v01 v01Var = e0Var.h;
+                e0Var.h.f25889p = Math.max(1, (((int) dp3) - AndroidUtilities.dp(15.0f)) - i10);
+                e11 e11Var = e0Var.h;
                 float dp7 = (AndroidUtilities.dp(40.0f) / f10) + dp2;
-                if (e0Var.f20213m) {
+                if (e0Var.f22001m) {
                     f11 = 0.5f;
                 } else {
                     f11 = 1.0f;
                 }
-                v01Var.f(canvas2, A, dp7, f11);
+                e11Var.f(canvas2, A, dp7, f11);
                 canvas2.restore();
                 canvas2.restore();
                 i13++;
@@ -2075,15 +2075,15 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
 
     public w0(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context);
-        this.f21754n = new zc(this);
+        this.f23625n = new zc(this);
         int i10 = UserConfig.selectedAccount;
         this.H = i10;
         ai.ca caVar = new ai.ca(null, false);
-        this.f21728d0 = caVar;
+        this.f23599d0 = caVar;
         this.m0 = true;
-        this.f21757o0 = new RectF();
-        this.f21759p0 = new ArrayList();
-        this.f21761q0 = new Stack();
+        this.f23628o0 = new RectF();
+        this.f23630p0 = new ArrayList();
+        this.f23632q0 = new Stack();
         this.C0 = new zg.p0(this);
         this.L0 = -1;
         this.M0 = -1;
@@ -2093,16 +2093,16 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         this.U0 = new RectF();
         this.V0 = true;
         this.W0 = false;
-        this.f21736f1 = false;
-        this.f21739g1 = false;
-        this.f21745i1 = new org.telegram.ui.Components.e6(this, 0L, 320L, sr.h);
-        this.f21762q1 = true;
+        this.f23607f1 = false;
+        this.f23610g1 = false;
+        this.f23616i1 = new org.telegram.ui.Components.e6(this, 0L, 320L, tr.h);
+        this.f23633q1 = true;
         TextPaint textPaint = new TextPaint(1);
-        this.f21777w1 = textPaint;
+        this.f23648w1 = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f21780x1 = textPaint2;
+        this.f23651x1 = textPaint2;
         TextPaint textPaint3 = new TextPaint(1);
-        this.f21783y1 = textPaint3;
+        this.f23654y1 = textPaint3;
         this.B1 = new RadialProgress2(this, null);
         this.F1 = new la(this, 2);
         this.M1 = new Path();
@@ -2111,43 +2111,43 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         this.Y1 = new Path();
         this.Z1 = new float[8];
         this.a2 = new float[8];
-        this.f21724b2 = new Path();
-        this.f21727c2 = new int[]{16842910, 16842919};
-        this.f21749j2 = new v0(this);
-        caVar.f656a = false;
-        this.f21766s = z10;
+        this.f23595b2 = new Path();
+        this.f23598c2 = new int[]{16842910, 16842919};
+        this.f23620j2 = new v0(this);
+        caVar.f712a = false;
+        this.f23637s = z10;
         this.Y0 = d6Var;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.I = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.roundMessageSize / 2);
         this.L = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        this.f21775w = DownloadController.getInstance(i10).generateObserverTag();
+        this.f23646w = DownloadController.getInstance(i10).generateObserverTag();
         this.F0 = new yh.z3(i10, this, d6Var);
         textPaint.setTextSize(TypedValue.applyDimension(1, 16.0f, getResources().getDisplayMetrics()));
         textPaint3.setTextSize(TypedValue.applyDimension(1, 15.0f, getResources().getDisplayMetrics()));
         textPaint2.setTextSize(TypedValue.applyDimension(1, 15.0f, getResources().getDisplayMetrics()));
         View view = new View(context);
         this.L1 = view;
-        view.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.l1(0.1f, -16777216), 7, AndroidUtilities.dp(16.0f)));
+        view.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.l1(0.1f, -16777216), 7, AndroidUtilities.dp(16.0f)));
         view.setVisibility(8);
         addView(view);
-        rg.v1 v1Var = new rg.v1(10);
-        this.N1 = v1Var;
-        v1Var.N = 100;
-        v1Var.J = false;
-        v1Var.M = true;
-        v1Var.G = false;
-        v1Var.K = true;
-        v1Var.H = true;
-        v1Var.f42802r = 1;
-        v1Var.f42806w = 0.98f;
-        v1Var.v = 0.98f;
-        v1Var.f42805u = 0.98f;
-        v1Var.f42792g = false;
-        v1Var.f42799o = 0.0f;
-        v1Var.f42807x = 750L;
-        v1Var.f42808y = 750;
-        v1Var.c();
+        rg.x1 x1Var = new rg.x1(10);
+        this.N1 = x1Var;
+        x1Var.N = 100;
+        x1Var.J = false;
+        x1Var.M = true;
+        x1Var.G = false;
+        x1Var.K = true;
+        x1Var.H = true;
+        x1Var.f46372r = 1;
+        x1Var.f46376w = 0.98f;
+        x1Var.v = 0.98f;
+        x1Var.f46375u = 0.98f;
+        x1Var.f46362g = false;
+        x1Var.f46369o = 0.0f;
+        x1Var.f46377x = 750L;
+        x1Var.f46378y = 750;
+        x1Var.c();
     }
 
     @Override
@@ -2157,7 +2157,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         if (view != null) {
             view.invalidate();
         }
-        if (!this.f21737f2 || getParent() == null) {
+        if (!this.f23608f2 || getParent() == null) {
             return;
         }
         View view2 = (View) getParent();
@@ -2174,7 +2174,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         if (view != null) {
             view.invalidate();
         }
-        if (!this.f21737f2 || getParent() == null) {
+        if (!this.f23608f2 || getParent() == null) {
             return;
         }
         View view2 = (View) getParent();

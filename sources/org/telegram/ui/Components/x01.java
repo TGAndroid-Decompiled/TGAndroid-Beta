@@ -1,33 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class x01 extends MetricAffectingSpan {
-    public TextPaint f30206a;
+import java.io.File;
+import org.telegram.tgnet.TLRPC;
+public final class x01 {
+    public final File f32680a;
+    public long f32681b;
+    public long f32682c;
+    public boolean d;
+    public boolean f32683e;
+    public TLRPC.InputFile f32684f;
+    public TLRPC.InputEncryptedFile f32685g;
+    public byte[] h;
+    public byte[] f32686i;
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f30206a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f30206a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public x01(File file) {
+        this.f32680a = file;
     }
 }

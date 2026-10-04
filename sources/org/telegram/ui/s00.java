@@ -1,94 +1,58 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class s00 extends og.a {
-    public View.OnClickListener f37555c;
-    public CharSequence d;
-    public String e;
-    public boolean f37556f;
-    public boolean f37557g;
-    public long h;
-    public String f37558i;
-    public int f37559j;
-    public int f37560k;
-    public boolean f37561l;
-    public TL_chatlists.TL_exportedChatlistInvite f37562m;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class s00 extends org.telegram.ui.Components.p6 {
+    public final int f40314s = 0;
+    public final Object v;
+    public final ViewGroup f40315w;
 
-    public static s00 b(int i10, String str, boolean z10) {
-        ?? aVar = new og.a(4, false);
-        aVar.f37560k = i10;
-        aVar.d = str;
-        aVar.f37561l = z10;
-        return aVar;
+    public s00(yh.l7 l7Var, Context context, Drawable drawable) {
+        super(context, false, false, false);
+        this.f40315w = l7Var;
+        this.v = drawable;
     }
 
-    public static s00 c(int i10, String str, String str2, boolean z10) {
-        ?? aVar = new og.a(1, false);
-        aVar.f37557g = z10;
-        aVar.d = str;
-        aVar.f37558i = str2;
-        aVar.f37559j = i10;
-        return aVar;
-    }
-
-    public static s00 d(String str) {
-        int i10;
-        if (TextUtils.isEmpty(str)) {
-            i10 = 3;
-        } else {
-            i10 = 6;
-        }
-        ?? aVar = new og.a(i10, false);
-        aVar.d = str;
-        return aVar;
-    }
-
-    public final boolean equals(Object obj) {
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite;
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2;
-        if (this != obj) {
-            if (obj != null && s00.class == obj.getClass()) {
-                s00 s00Var = (s00) obj;
-                int i10 = this.f15716a;
-                if (i10 == s00Var.f15716a) {
-                    if (i10 == 11) {
-                        if (!TextUtils.equals(this.d, s00Var.d) || !TextUtils.equals(this.e, s00Var.e)) {
-                            return false;
-                        }
-                    } else if ((i10 != 0 && i10 != 1 && i10 != 3 && i10 != 4) || TextUtils.equals(this.d, s00Var.d)) {
-                        int i11 = this.f15716a;
-                        if (i11 == 0) {
-                            if (this.f37556f != s00Var.f37556f) {
-                                return false;
-                            }
-                        } else if (i11 == 1) {
-                            if (this.h != s00Var.h || !TextUtils.equals(this.f37558i, s00Var.f37558i) || this.f37559j != s00Var.f37559j) {
-                                return false;
-                            }
-                        } else if (i11 == 7 && (tL_exportedChatlistInvite = this.f37562m) != (tL_exportedChatlistInvite2 = s00Var.f37562m)) {
-                            if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f37562m;
-                                boolean z10 = tL_exportedChatlistInvite3.revoked;
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = s00Var.f37562m;
-                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f37562m.peers.size() != s00Var.f37562m.peers.size()) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        }
-                    } else {
-                        return false;
-                    }
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        switch (this.f40314s) {
+            case 0:
+                t00 t00Var = (t00) this.f40315w;
+                int a2 = t00Var.f40642w.a(t00Var.v, false);
+                setTextColor(a2);
+                Paint paint = (Paint) this.v;
+                if (org.telegram.ui.ActionBar.i6.I.q()) {
+                    f7 = 0.2f;
                 } else {
-                    return false;
+                    f7 = 0.1f;
                 }
-            } else {
-                return false;
-            }
+                paint.setColor(org.telegram.ui.ActionBar.i6.l1(f7, a2));
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set((getWidth() - getDrawable().d()) - AndroidUtilities.dpf2(9.32f), (getHeight() - AndroidUtilities.dpf2(14.66f)) / 2.0f, getWidth(), (AndroidUtilities.dpf2(14.66f) + getHeight()) / 2.0f);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                Drawable drawable = (Drawable) this.v;
+                if (!((yh.l7) this.f40315w).d) {
+                    int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().d()) - AndroidUtilities.dp(20.0f));
+                    drawable.setBounds(measuredWidth, org.telegram.messenger.ok.z(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
+                    drawable.draw(canvas);
+                }
+                super.dispatchDraw(canvas);
+                return;
         }
-        return true;
+    }
+
+    public s00(t00 t00Var, Context context) {
+        super(context, false, true, true);
+        this.f40315w = t00Var;
+        this.v = new Paint(1);
     }
 }

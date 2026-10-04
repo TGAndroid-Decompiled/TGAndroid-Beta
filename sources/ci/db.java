@@ -1,11 +1,39 @@
 package ci;
 
-import android.app.Activity;
-public final class db extends x8 {
-    public final lc f4550y;
+import org.telegram.messenger.camera.CameraController;
+public final class db implements Runnable {
+    public final int f4929a;
+    public final fb f4930b;
 
-    public db(lc lcVar, Activity activity) {
-        super(activity);
-        this.f4550y = lcVar;
+    public db(fb fbVar, int i10) {
+        this.f4929a = i10;
+        this.f4930b = fbVar;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f4929a) {
+            case 0:
+                kc kcVar = this.f4930b.f5089a;
+                f7 f7Var = kcVar.C0;
+                if (f7Var != null) {
+                    f7Var.c(false);
+                }
+                if (kcVar.Q1 && kcVar.R1 && kcVar.B0 != null) {
+                    kcVar.j0(false);
+                    CameraController.getInstance().stopVideoRecording(kcVar.B0.getCameraSessionRecording(), false, false);
+                    return;
+                }
+                return;
+            case 1:
+                this.f4930b.f5089a.K(1, true);
+                return;
+            case 2:
+                this.f4930b.f5089a.K(1, true);
+                return;
+            default:
+                this.f4930b.f5089a.K(1, true);
+                return;
+        }
     }
 }

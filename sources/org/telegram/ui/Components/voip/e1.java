@@ -16,95 +16,47 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.cd0;
-import org.telegram.ui.Components.fw0;
-import org.telegram.ui.Components.tv0;
-import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.dw0;
+import org.telegram.ui.Components.ow0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.yg0;
-import yh.w7;
-public final class e1 implements tv0, uv0, org.telegram.ui.ActionBar.z1, cd0, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, fw0 {
-    public final int f29247a;
+import org.telegram.ui.ch0;
+import yh.x7;
+public final class e1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, cd0, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, ow0 {
+    public final int f31839a;
 
     public e1(int i10) {
-        this.f29247a = i10;
+        this.f31839a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         k1 k1Var = (k1) obj;
-        WindowManager.LayoutParams layoutParams = k1Var.f29336c;
-        k1Var.R = f7;
-        layoutParams.y = (int) f7;
-        AndroidUtilities.updateViewLayout(k1Var.f29335b, k1Var.d, layoutParams);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f29247a) {
-            case 2:
-                a2Var.dismiss();
-                return;
-            case 3:
-                return;
-            case 4:
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
-                return;
-            case 5:
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutFSILockscreen", true).commit();
-                return;
-            case 13:
-                a2Var.dismiss();
-                return;
-            case 15:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return;
-            case 16:
-                a2Var.dismiss();
-                return;
-            case 17:
-                a2Var.dismiss();
-                return;
-            case 19:
-                a2Var.dismiss();
-                return;
-            case 20:
-                a2Var.dismiss();
-                return;
-            case 26:
-                a2Var.dismiss();
-                return;
-            case 27:
-                a2Var.dismiss();
-                return;
-            case 28:
-                a2Var.dismiss();
+        switch (this.f31839a) {
+            case 1:
+                WindowManager.LayoutParams layoutParams = k1Var.f31934c;
+                k1Var.Q = f7;
+                layoutParams.x = (int) f7;
+                AndroidUtilities.updateViewLayout(k1Var.f31933b, k1Var.d, layoutParams);
                 return;
             default:
-                a2Var.dismiss();
+                WindowManager.LayoutParams layoutParams2 = k1Var.f31934c;
+                k1Var.R = f7;
+                layoutParams2.y = (int) f7;
+                AndroidUtilities.updateViewLayout(k1Var.f31933b, k1Var.d, layoutParams2);
                 return;
         }
     }
 
     @Override
-    public float get(Object obj) {
-        return ((k1) obj).R;
-    }
-
-    @Override
-    public void h(int i10) {
-        SharedConfig.proxyRotationTimeout = i10;
-        SharedConfig.saveConfig();
-    }
-
-    @Override
-    public String j(int i10) {
-        switch (this.f29247a) {
-            case 6:
+    public String e(int i10) {
+        switch (this.f31839a) {
+            case 8:
                 return String.format("%02d", Integer.valueOf(i10));
-            case 7:
+            case 9:
                 return String.format("%02d", Integer.valueOf(i10));
             default:
                 if (i10 == 0) {
@@ -127,19 +79,77 @@ public final class e1 implements tv0, uv0, org.telegram.ui.ActionBar.z1, cd0, Ge
     }
 
     @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f31839a) {
+            case 4:
+                b2Var.dismiss();
+                return;
+            case 5:
+                return;
+            case 6:
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
+                return;
+            case 7:
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutFSILockscreen", true).commit();
+                return;
+            case 15:
+                b2Var.dismiss();
+                return;
+            case 17:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                return;
+            case 18:
+                b2Var.dismiss();
+                return;
+            case 19:
+                b2Var.dismiss();
+                return;
+            case 21:
+                b2Var.dismiss();
+                return;
+            case 22:
+                b2Var.dismiss();
+                return;
+            case 28:
+                b2Var.dismiss();
+                return;
+            default:
+                b2Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        k1 k1Var = (k1) obj;
+        switch (this.f31839a) {
+            case 0:
+                return k1Var.Q;
+            default:
+                return k1Var.R;
+        }
+    }
+
+    @Override
+    public void j(int i10) {
+        SharedConfig.proxyRotationTimeout = i10;
+        SharedConfig.saveConfig();
+    }
+
+    @Override
     public Object provide(Object obj) {
         Void r82 = (Void) obj;
-        switch (this.f29247a) {
-            case 8:
+        switch (this.f31839a) {
+            case 10:
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(h6.w0(null, h6.f19061d6, false));
+                canvas.drawColor(i6.w0(null, i6.f20817d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);
                 return createBitmap;
-            case 9:
+            case 11:
                 Paint paint2 = new Paint(1);
                 paint2.setColor(-14509328);
                 int dp2 = AndroidUtilities.dp(150.0f);
@@ -149,7 +159,7 @@ public final class e1 implements tv0, uv0, org.telegram.ui.ActionBar.z1, cd0, Ge
                 return createBitmap2;
             default:
                 Pattern pattern = LaunchActivity.B1;
-                return new yg0();
+                return new ch0();
         }
     }
 
@@ -157,7 +167,7 @@ public final class e1 implements tv0, uv0, org.telegram.ui.ActionBar.z1, cd0, Ge
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj2;
         if (((Integer) obj).intValue() == 0) {
-            return w7.X0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+            return x7.d1(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
         }
         return LocaleController.formatNumber(num.intValue(), ',');
     }
@@ -169,9 +179,9 @@ public final class e1 implements tv0, uv0, org.telegram.ui.ActionBar.z1, cd0, Ge
     }
 
     @Override
-    public void n() {
+    public void l() {
     }
 
-    private final void a(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+    private final void a(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
     }
 }

@@ -1,65 +1,69 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.concurrent.CountDownLatch;
+import android.graphics.SurfaceTexture;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.NotificationCenter;
-public final class d51 implements Runnable {
-    public final int f32928a;
-    public final a71 f32929b;
+public final class d51 implements org.telegram.ui.Components.a81, org.telegram.ui.Components.w71 {
+    public final e51 f35649a;
 
-    public d51(a71 a71Var, int i10) {
-        this.f32928a = i10;
-        this.f32929b = a71Var;
+    public d51(e51 e51Var) {
+        this.f35649a = e51Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32928a) {
-            case 0:
-                a71 a71Var = this.f32929b;
-                a71Var.getClass();
-                HashSet hashSet = zg.e0.f49292a;
-                ff.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-                if (cacheOutQueue.f9047b == null) {
-                    cacheOutQueue.f9047b = new CountDownLatch(1);
-                }
-                zg.e0.f49293b = true;
-                zg.e0.e = false;
-                zg.e0.f49296g = false;
-                AndroidUtilities.runOnUIThread(new d51(a71Var, 2), 0L);
-                return;
-            case 1:
-                a71 a71Var2 = this.f32929b;
-                ArrayList arrayList = a71Var2.A1;
-                if (arrayList != null) {
-                    arrayList.clear();
-                }
-                ArrayList arrayList2 = a71Var2.B1;
-                if (arrayList2 != null) {
-                    arrayList2.clear();
-                }
-                ArrayList arrayList3 = a71Var2.D1;
-                if (arrayList3 != null) {
-                    arrayList3.clear();
-                }
-                a71Var2.f32046q0.E(true);
-                return;
-            case 2:
-                this.f32929b.U1.start();
-                return;
-            case 3:
-                this.f32929b.B(true, true, true);
-                return;
-            default:
-                a71 a71Var3 = this.f32929b;
-                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-                d51 d51Var = a71Var3.R1;
-                globalInstance.removeDelayed(d51Var);
-                NotificationCenter.getGlobalInstance().doOnIdle(d51Var);
-                return;
+    public boolean needUpdate() {
+        if (this.f35649a.V.f27987i != null) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public void onRenderedFirstFrame(j2.a aVar) {
+    }
+
+    @Override
+    public void onStateChanged(boolean z10, int i10) {
+        e51 e51Var = this.f35649a;
+        if (i10 == 4) {
+            e51Var.dismiss();
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(e51Var.Z);
+        AndroidUtilities.runOnUIThread(e51Var.Z, 16L);
+    }
+
+    @Override
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
+        this.f35649a.V.e(z10, true, fArr);
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        AndroidUtilities.runOnUIThread(new hz0(this, 13));
+    }
+
+    @Override
+    public void onSeekFinished(j2.a aVar) {
+    }
+
+    @Override
+    public void onSeekStarted(j2.a aVar) {
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public void onError(org.telegram.ui.Components.d81 d81Var, Exception exc) {
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
     }
 }

@@ -1,42 +1,49 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class xh implements Runnable {
-    public final int f39922a = 1;
-    public final wn f39923b;
-    public final int f39924c;
-    public final MessageObject d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.Utilities;
+public final class xh implements Utilities.Callback0Return {
+    public final int f42886a;
+    public final yn f42887b;
 
-    public xh(wn wnVar, int i10, MessageObject messageObject) {
-        this.f39923b = wnVar;
-        this.f39924c = i10;
-        this.d = messageObject;
+    public xh(yn ynVar, int i10) {
+        this.f42886a = i10;
+        this.f42887b = ynVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39922a) {
+    public final Object run() {
+        boolean z10;
+        switch (this.f42886a) {
             case 0:
-                this.f39923b.f39573n4 = null;
-                this.d.messageOwner.replies.read_max_id = this.f39924c;
-                return;
+                this.f42887b.getClass();
+                if (org.telegram.ui.Components.v11.c() && LiteMode.isEnabled(65536)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                return Boolean.valueOf(z10);
             default:
-                wn wnVar = this.f39923b;
-                org.telegram.ui.Components.yc.a0(wnVar).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessagesController.getInstance(this.f39924c).disableAds(false);
-                MessageObject messageObject = this.d;
-                wnVar.Fa(messageObject);
-                wnVar.Ha(messageObject);
-                return;
+                if (LiteMode.isEnabled(65536) && org.telegram.ui.Components.v11.c()) {
+                    yn ynVar = this.f42887b;
+                    org.telegram.ui.Components.v11 v11Var = ynVar.f43500t0;
+                    if (v11Var == null || v11Var.f31502e) {
+                        if (ynVar.getParentActivity() != null && org.telegram.ui.Components.v11.c() && ynVar.f43525v0 != null && ynVar.V0 != null) {
+                            org.telegram.ui.Components.v11 v11Var2 = ynVar.f43500t0;
+                            if (v11Var2 != null) {
+                                AndroidUtilities.removeFromParent(v11Var2);
+                            }
+                            org.telegram.ui.Components.v11 v11Var3 = new org.telegram.ui.Components.v11(ynVar.getParentActivity(), new org.telegram.ui.ActionBar.g6(24, ynVar, r2));
+                            ynVar.f43500t0 = v11Var3;
+                            org.telegram.ui.Components.v11[] v11VarArr = {v11Var3};
+                            qm qmVar = ynVar.V0;
+                            qmVar.addView(v11Var3, qmVar.indexOfChild(ynVar.f43525v0) + 1, w7.z5.c(-1.0f, -1));
+                        }
+                    }
+                    return ynVar.f43500t0;
+                }
+                return null;
         }
-    }
-
-    public xh(wn wnVar, MessageObject messageObject, int i10) {
-        this.f39923b = wnVar;
-        this.d = messageObject;
-        this.f39924c = i10;
     }
 }

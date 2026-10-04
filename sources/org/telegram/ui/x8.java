@@ -1,59 +1,37 @@
 package org.telegram.ui;
 
-import android.os.Build;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class x8 extends s4.s0 {
-    public boolean f39858a;
-    public final k9 f39859b;
+import org.telegram.messenger.Utilities;
+public final class x8 implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
+    public final m9 f42766a;
 
-    public x8(k9 k9Var) {
-        this.f39859b = k9Var;
+    @Override
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        return this.f42766a.onInsetsInternal(view, l1Var);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        int i12;
-        ah.h hVar;
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        m9.U(this.f42766a, (org.telegram.ui.Components.g61) obj, (View) obj2);
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         boolean z10;
-        k9 k9Var = this.f39859b;
-        ArrayList arrayList = k9Var.G;
-        int L0 = k9Var.f34987c.L0();
-        boolean z11 = false;
-        if (L0 == -1) {
-            abs = 0;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        Object obj6 = ((org.telegram.ui.Components.g61) obj).G;
+        if (obj6 instanceof i9) {
+            this.f42766a.Z(((i9) obj6).f37316c, (h9) view);
+            z10 = true;
         } else {
-            abs = Math.abs(k9Var.f34987c.N0() - L0) + 1;
+            z10 = false;
         }
-        if (abs > 0) {
-            int size = k9Var.d.Y2.f25927x.size();
-            if (!k9Var.J && !k9Var.H && !arrayList.isEmpty() && abs + L0 >= size - 5) {
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.a6(11, this, (g9) hg.c.g(1, arrayList)));
-            }
-        }
-        View childAt = recyclerView.getChildAt(0);
-        if (childAt != null) {
-            i12 = childAt.getTop();
-        } else {
-            i12 = 0;
-        }
-        if (i11 != 0 && this.f39858a) {
-            org.telegram.ui.Components.b20 b20Var = k9Var.f34991f;
-            if (i11 < 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            b20Var.e(z10, true);
-        }
-        this.f39858a = true;
-        k9Var.f34994r.b((L0 != 0 || i12 < k9Var.d.getPaddingTop()) ? true : true, true);
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = k9Var.Y) != null) {
-            hVar.f(i10, i11);
-            k9Var.f0();
-        }
+        return Boolean.valueOf(z10);
     }
 }

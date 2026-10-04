@@ -1,34 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class zt implements DialogInterface.OnShowListener {
-    public final int f30969a;
-    public final EditTextBoldCursor f30970b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+public final class zt implements org.telegram.ui.ActionBar.a2 {
+    public final int f33638a;
+    public final int f33639b;
+    public final Object f33640c;
 
-    public zt(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f30969a = i10;
-        this.f30970b = editTextBoldCursor;
+    public zt(int i10, int i11, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f33638a = i10;
+        this.f33639b = i11;
+        this.f33640c = n2Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f30969a) {
-            case 0:
-                fi.o oVar = (fi.o) this.f30970b;
-                oVar.requestFocus();
-                AndroidUtilities.showKeyboard(oVar);
-                return;
-            case 1:
-                fi.o oVar2 = (fi.o) this.f30970b;
-                oVar2.requestFocus();
-                AndroidUtilities.showKeyboard(oVar2);
-                return;
-            default:
-                f4 f4Var = (f4) this.f30970b;
-                f4Var.requestFocus();
-                AndroidUtilities.showKeyboard(f4Var);
-                return;
-        }
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        nf.e g10 = b2Var.g(-1, true, true);
+        g10.d();
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = this.f33638a;
+        int i11 = this.f33639b;
+        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new ei.i1(i11, (org.telegram.ui.ActionBar.n2) this.f33640c, g10, b2Var));
+    }
+
+    public zt(eu euVar, int i10, int i11) {
+        this.f33640c = euVar;
+        this.f33638a = i10;
+        this.f33639b = i11;
     }
 }

@@ -3,81 +3,81 @@ package m2;
 import e9.i0;
 import java.util.ArrayList;
 import java.util.List;
-public final class k extends m implements l2.h {
-    public final n f14669n;
+public final class k extends m implements l2.i {
+    public final n f16009n;
 
     public k(b2.s sVar, i0 i0Var, n nVar, ArrayList arrayList, List list, List list2) {
         super(sVar, i0Var, nVar, arrayList, list, list2);
-        this.f14669n = nVar;
+        this.f16009n = nVar;
     }
 
     @Override
-    public final long A(long j3, long j10) {
-        return this.f14669n.b(j3, j10);
+    public final long H(long j3, long j10) {
+        return this.f16009n.f(j3, j10);
     }
 
     @Override
-    public final String a() {
+    public final long a(long j3) {
+        return this.f16009n.g(j3);
+    }
+
+    @Override
+    public final String b() {
         return null;
     }
 
     @Override
-    public final long b(long j3) {
-        return this.f14669n.g(j3);
-    }
-
-    @Override
-    public final long c(long j3, long j10) {
-        return this.f14669n.e(j3, j10);
-    }
-
-    @Override
-    public final j e() {
+    public final j d() {
         return null;
     }
 
     @Override
-    public final long f(long j3, long j10) {
-        return this.f14669n.c(j3, j10);
+    public final boolean e0() {
+        return this.f16009n.i();
     }
 
     @Override
-    public final long j(long j3, long j10) {
-        n nVar = this.f14669n;
-        if (nVar.f14676f != null) {
+    public final long i(long j3, long j10) {
+        return this.f16009n.e(j3, j10);
+    }
+
+    @Override
+    public final long j0() {
+        return this.f16009n.d;
+    }
+
+    @Override
+    public final long n(long j3, long j10) {
+        return this.f16009n.c(j3, j10);
+    }
+
+    @Override
+    public final long p(long j3, long j10) {
+        n nVar = this.f16009n;
+        if (nVar.f16018f != null) {
             return -9223372036854775807L;
         }
         long b10 = nVar.b(j3, j10) + nVar.c(j3, j10);
-        return (nVar.e(b10, j3) + nVar.g(b10)) - nVar.f14678i;
+        return (nVar.e(b10, j3) + nVar.g(b10)) - nVar.f16020i;
     }
 
     @Override
-    public final j k(long j3) {
-        return this.f14669n.h(this, j3);
+    public final long p0(long j3) {
+        return this.f16009n.d(j3);
     }
 
     @Override
-    public final long s(long j3, long j10) {
-        return this.f14669n.f(j3, j10);
+    public final j q(long j3) {
+        return this.f16009n.h(this, j3);
     }
 
     @Override
-    public final boolean w() {
-        return this.f14669n.i();
+    public final long q0(long j3, long j10) {
+        return this.f16009n.b(j3, j10);
     }
 
     @Override
-    public final long y() {
-        return this.f14669n.d;
-    }
-
-    @Override
-    public final long z(long j3) {
-        return this.f14669n.d(j3);
-    }
-
-    @Override
-    public final l2.h d() {
+    public final l2.i c() {
         return this;
     }
 }

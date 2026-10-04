@@ -1,20 +1,46 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import java.util.ArrayList;
-public final class di extends org.telegram.ui.Components.vv {
-    public final ei W;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class di implements org.telegram.ui.Components.n8 {
+    public final yn f35775a;
 
-    public di(ei eiVar, org.telegram.ui.ActionBar.m2 m2Var, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
-        super(m2Var, activity, d6Var, arrayList);
-        this.W = eiVar;
+    public di(yn ynVar) {
+        this.f35775a = ynVar;
+    }
+
+    @Override
+    public final void U0(int i10, int i11) {
+        int i12;
+        yn ynVar = this.f35775a;
+        ynVar.getMessagesController().setDialogHistoryTTL(ynVar.R5, i10);
+        if (ynVar.Y7 != null || ynVar.X7 != null) {
+            ynVar.Q7();
+            UndoView undoView = ynVar.f43541w3;
+            if (undoView == null) {
+                return;
+            }
+            long j3 = ynVar.R5;
+            TLRPC.User user = ynVar.f43326f;
+            TLRPC.UserFull userFull = ynVar.Y7;
+            if (userFull != null) {
+                i12 = userFull.ttl_period;
+            } else {
+                i12 = ynVar.X7.ttl_period;
+            }
+            undoView.k(j3, i11, user, Integer.valueOf(i12), null, null);
+        }
     }
 
     @Override
     public final void dismiss() {
-        super.dismiss();
-        wn wnVar = this.W.f33412p;
-        wnVar.getClass();
-        wnVar.g8(false, true, 0.0f);
+        org.telegram.ui.ActionBar.n1 n1Var = this.f35775a.O8;
+        if (n1Var != null) {
+            n1Var.dismiss();
+        }
+    }
+
+    @Override
+    public final void l1() {
     }
 }

@@ -1,13 +1,13 @@
 package y9;
 public final class q0 extends p1 {
-    public final String f46890a;
-    public final String f46891b;
-    public final long f46892c;
+    public final String f50743a;
+    public final String f50744b;
+    public final long f50745c;
 
     public q0(long j3, String str, String str2) {
-        this.f46890a = str;
-        this.f46891b = str2;
-        this.f46892c = j3;
+        this.f50743a = str;
+        this.f50744b = str2;
+        this.f50745c = j3;
     }
 
     public final boolean equals(Object obj) {
@@ -16,7 +16,7 @@ public final class q0 extends p1 {
         }
         if (obj instanceof p1) {
             q0 q0Var = (q0) ((p1) obj);
-            if (this.f46890a.equals(q0Var.f46890a) && this.f46891b.equals(q0Var.f46891b) && this.f46892c == q0Var.f46892c) {
+            if (this.f50743a.equals(q0Var.f50743a) && this.f50744b.equals(q0Var.f50744b) && this.f50745c == q0Var.f50745c) {
                 return true;
             }
         }
@@ -24,16 +24,16 @@ public final class q0 extends p1 {
     }
 
     public final int hashCode() {
-        long j3 = this.f46892c;
-        return ((((this.f46890a.hashCode() ^ 1000003) * 1000003) ^ this.f46891b.hashCode()) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
+        long j3 = this.f50745c;
+        return ((((this.f50743a.hashCode() ^ 1000003) * 1000003) ^ this.f50744b.hashCode()) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Signal{name=");
-        sb2.append(this.f46890a);
+        sb2.append(this.f50743a);
         sb2.append(", code=");
-        sb2.append(this.f46891b);
+        sb2.append(this.f50744b);
         sb2.append(", address=");
-        return a4.a.s(sb2, this.f46892c, "}");
+        return a4.a.r(sb2, this.f50745c, "}");
     }
 }

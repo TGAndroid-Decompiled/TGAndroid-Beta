@@ -1,29 +1,36 @@
 package ei;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import android.view.View;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.p90;
-import w7.y5;
-public final class d4 extends org.telegram.ui.Cells.m4 {
-    public final p90 f8284r;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.zl0;
+public final class d4 extends f61 {
+    public static final int f9001a = 0;
 
-    public d4(Context context, d6 d6Var) {
-        super(context, d6Var);
-        int i10;
-        p90 p90Var = new p90(context, d6Var);
-        this.f8284r = p90Var;
-        p90Var.setTextSize(1, 14.0f);
-        p90Var.setTextColor(h6.v0(h6.f19463z6, d6Var));
-        p90Var.setLinkTextColor(h6.v0(h6.L6, d6Var));
-        p90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        if (LocaleController.isRTL) {
-            i10 = 3;
-        } else {
-            i10 = 5;
-        }
-        addView(p90Var, y5.d(-2, -2.0f, i10 | 48, 10.0f, 14.0f, 10.0f, 0.0f));
+    static {
+        f61.setup(new f61());
+    }
+
+    @Override
+    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
+        e4 e4Var = (e4) view;
+        CharSequence charSequence = g61Var.f26668l;
+        CharSequence charSequence2 = g61Var.f26669m;
+        e4Var.setText(charSequence);
+        e4Var.f9016r.setText(charSequence2);
+    }
+
+    @Override
+    public final View createView(Context context, zl0 zl0Var, int i10, int i11, d6 d6Var) {
+        return new e4(context, d6Var);
+    }
+
+    @Override
+    public final boolean isClickable() {
+        return false;
     }
 }

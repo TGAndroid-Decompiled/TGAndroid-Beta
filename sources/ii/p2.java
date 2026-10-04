@@ -3,114 +3,114 @@ package ii;
 import android.view.View;
 import org.telegram.ui.Cells.p9;
 public final class p2 implements Runnable {
-    public final int f11545a;
-    public final x3 f11546b;
-    public final a f11547c;
+    public final int f12573a;
+    public final x3 f12574b;
+    public final a f12575c;
 
     public p2(x3 x3Var, a aVar, int i10) {
-        this.f11545a = i10;
-        this.f11546b = x3Var;
-        this.f11547c = aVar;
+        this.f12573a = i10;
+        this.f12574b = x3Var;
+        this.f12575c = aVar;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f11545a) {
+        switch (this.f12573a) {
             case 0:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             case 1:
-                View z12 = this.f11546b.z1(this.f11547c);
-                if (z12 instanceof e6) {
-                    e6 e6Var = (e6) z12;
-                    e6Var.B();
-                    e6Var.getEditText().setSelection(0);
+                View B1 = this.f12574b.B1(this.f12575c);
+                if (B1 instanceof f6) {
+                    f6 f6Var = (f6) B1;
+                    f6Var.B();
+                    f6Var.getEditText().setSelection(0);
                     return;
                 }
                 return;
             case 2:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             case 3:
-                this.f11546b.c3(this.f11547c, true);
+                this.f12574b.e3(this.f12575c, true);
                 return;
             case 4:
-                this.f11546b.c3(this.f11547c, false);
+                this.f12574b.e3(this.f12575c, false);
                 return;
             case 5:
-                this.f11546b.c3(this.f11547c, true);
+                this.f12574b.e3(this.f12575c, true);
                 return;
             case 6:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             case 7:
-                this.f11546b.b3(this.f11547c, false);
+                this.f12574b.d3(this.f12575c, false);
                 return;
             case 8:
-                this.f11546b.b3(this.f11547c, true);
+                this.f12574b.d3(this.f12575c, true);
                 return;
             case 9:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             case 10:
-                this.f11546b.b3(this.f11547c, true);
+                this.f12574b.d3(this.f12575c, true);
                 return;
             case 11:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             case 12:
-                this.f11546b.c3(this.f11547c, false);
+                this.f12574b.e3(this.f12575c, false);
                 return;
             case 13:
-                this.f11546b.b3(this.f11547c, true);
+                this.f12574b.d3(this.f12575c, true);
                 return;
             case 14:
-                x3 x3Var = this.f11546b;
-                View z13 = x3Var.z1(this.f11547c);
-                if (z13 instanceof p9) {
-                    x3Var.f11738n3.c0(0, 0, (p9) z13);
+                x3 x3Var = this.f12574b;
+                View B12 = x3Var.B1(this.f12575c);
+                if (B12 instanceof p9) {
+                    x3Var.f12781u3.c0(0, 0, (p9) B12);
                     return;
                 }
                 return;
             case 15:
-                x3 x3Var2 = this.f11546b;
-                View z14 = x3Var2.z1(this.f11547c);
-                if (z14 instanceof p9) {
-                    if (z14 instanceof e6) {
-                        i10 = ((e6) z14).getEditText().length();
+                x3 x3Var2 = this.f12574b;
+                View B13 = x3Var2.B1(this.f12575c);
+                if (B13 instanceof p9) {
+                    if (B13 instanceof f6) {
+                        i10 = ((f6) B13).getEditText().length();
                     } else {
                         i10 = 0;
                     }
-                    x3Var2.f11738n3.c0(0, i10, (p9) z14);
+                    x3Var2.f12781u3.c0(0, i10, (p9) B13);
                     return;
                 }
                 return;
             case 16:
-                this.f11546b.f3(this.f11547c);
+                this.f12574b.h3(this.f12575c);
                 return;
             case 17:
-                View z15 = this.f11546b.z1(this.f11547c);
-                if (z15 instanceof e6) {
-                    e6 e6Var2 = (e6) z15;
-                    e6Var2.B();
-                    e6Var2.getEditText().setSelection(0);
+                View B14 = this.f12574b.B1(this.f12575c);
+                if (B14 instanceof f6) {
+                    f6 f6Var2 = (f6) B14;
+                    f6Var2.B();
+                    f6Var2.getEditText().setSelection(0);
                     return;
                 }
                 return;
             case 18:
-                View z16 = this.f11546b.z1(this.f11547c);
-                if (z16 instanceof e6) {
-                    e6 e6Var3 = (e6) z16;
-                    e6Var3.B();
-                    e6Var3.getEditText().setSelection(e6Var3.getEditText().length());
+                View B15 = this.f12574b.B1(this.f12575c);
+                if (B15 instanceof f6) {
+                    f6 f6Var3 = (f6) B15;
+                    f6Var3.B();
+                    f6Var3.getEditText().setSelection(f6Var3.getEditText().length());
                     return;
-                } else if (z16 instanceof p5) {
-                    p5 p5Var = (p5) z16;
-                    if (p5Var.getGrid().getChildCount() > 0) {
-                        View childAt = p5Var.getGrid().getChildAt(0);
-                        if (childAt instanceof s5) {
-                            ((s5) childAt).f11616a.r();
+                } else if (B15 instanceof q5) {
+                    q5 q5Var = (q5) B15;
+                    if (q5Var.getGrid().getChildCount() > 0) {
+                        View childAt = q5Var.getGrid().getChildAt(0);
+                        if (childAt instanceof t5) {
+                            ((t5) childAt).f12660a.r();
                             return;
                         }
                         return;
@@ -120,47 +120,47 @@ public final class p2 implements Runnable {
                     return;
                 }
             case 19:
-                this.f11546b.e3(this.f11547c);
+                this.f12574b.g3(this.f12575c);
                 return;
             case 20:
-                View z17 = this.f11546b.z1(this.f11547c);
-                if (z17 instanceof u0) {
-                    ((u0) z17).d.r();
+                View B16 = this.f12574b.B1(this.f12575c);
+                if (B16 instanceof u0) {
+                    ((u0) B16).d.r();
                     return;
                 }
                 return;
             case 21:
-                this.f11546b.e3(this.f11547c);
+                this.f12574b.g3(this.f12575c);
                 return;
             case 22:
-                this.f11546b.e3(this.f11547c);
+                this.f12574b.g3(this.f12575c);
                 return;
             case 23:
-                View z18 = this.f11546b.z1(this.f11547c);
-                if (z18 instanceof e6) {
-                    e6 e6Var4 = (e6) z18;
-                    e6Var4.B();
-                    e6Var4.getEditText().setSelection(0);
+                View B17 = this.f12574b.B1(this.f12575c);
+                if (B17 instanceof f6) {
+                    f6 f6Var4 = (f6) B17;
+                    f6Var4.B();
+                    f6Var4.getEditText().setSelection(0);
                     return;
                 }
                 return;
             case 24:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             case 25:
-                this.f11546b.Z4(this.f11547c, "");
+                this.f12574b.b5(this.f12575c, "");
                 return;
             case 26:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             case 27:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             case 28:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
             default:
-                this.f11546b.d3(this.f11547c);
+                this.f12574b.f3(this.f12575c);
                 return;
         }
     }

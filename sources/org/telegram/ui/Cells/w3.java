@@ -11,22 +11,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public abstract class w3 extends FrameLayout {
-    public org.telegram.ui.Components.w9 f21791a;
-    public org.telegram.ui.ActionBar.h5 f21792b;
-    public org.telegram.ui.ActionBar.h5 f21793c;
+    public org.telegram.ui.Components.w9 f23662a;
+    public org.telegram.ui.ActionBar.i5 f23663b;
+    public org.telegram.ui.ActionBar.i5 f23664c;
     public ImageView d;
-    public org.telegram.ui.Components.h9 e;
-    public TLRPC.User f21794f;
+    public org.telegram.ui.Components.h9 f23665e;
+    public TLRPC.User f23666f;
     public Paint h;
-    public int f21795n;
-    public boolean f21796r;
+    public int f23667n;
+    public boolean f23668r;
 
     public final void a(int i10, int i11) {
-        this.f21795n = i10;
+        this.f23667n = i10;
         ImageView imageView = this.d;
         imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f21793c.setTextColor(i11);
-        org.telegram.ui.ActionBar.h6.B1(imageView.getDrawable(), i11 & 620756991, true);
+        this.f23664c.setTextColor(i11);
+        org.telegram.ui.ActionBar.i6.B1(imageView.getDrawable(), i11 & 620756991, true);
     }
 
     @Override
@@ -34,7 +34,7 @@ public abstract class w3 extends FrameLayout {
         Canvas canvas2;
         float dp;
         int i10;
-        if (this.f21796r) {
+        if (this.f23668r) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -56,11 +56,11 @@ public abstract class w3 extends FrameLayout {
     }
 
     public CharSequence getName() {
-        return this.f21792b.getText();
+        return this.f23663b.getText();
     }
 
     public TLRPC.User getUser() {
-        return this.f21794f;
+        return this.f23666f;
     }
 
     @Override
@@ -74,7 +74,7 @@ public abstract class w3 extends FrameLayout {
     }
 
     public void setDrawDivider(boolean z10) {
-        this.f21796r = z10;
+        this.f23668r = z10;
         invalidate();
     }
 }

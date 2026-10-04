@@ -1,44 +1,28 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class o81 implements View.OnClickListener {
-    public final int f36075a;
-    public final z81 f36076b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class o81 implements Runnable {
+    public final int f39127a;
+    public final a91 f39128b;
 
-    public o81(z81 z81Var, int i10) {
-        this.f36075a = i10;
-        this.f36076b = z81Var;
+    public o81(a91 a91Var, int i10) {
+        this.f39127a = i10;
+        this.f39128b = a91Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f36075a) {
+    public final void run() {
+        switch (this.f39127a) {
             case 0:
-                z81 z81Var = this.f36076b;
-                nf.f.s(z81Var.getParentActivity(), z81Var.getMessagesController().premiumManageSubscriptionUrl);
-                z81Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
+                MessagesController.getInstance(this.f39128b.currentAccount).deleteUserPhoto(null);
                 return;
             case 1:
-                z81 z81Var2 = this.f36076b;
-                z81Var2.getClass();
-                z81Var2.presentFragment(new h(3));
-                return;
-            case 2:
-                this.f36076b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
-                return;
-            case 3:
-                z81 z81Var3 = this.f36076b;
-                z81Var3.getClass();
-                z81Var3.presentFragment(new zg1(8, null));
-                return;
-            case 4:
-                this.f36076b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                return;
-            case 5:
-                z81.V(this.f36076b);
+                this.f39128b.f34738c.f25244f3.N(true);
                 return;
             default:
-                z81.Z(this.f36076b);
+                nf.f.s(this.f39128b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
                 return;
         }
     }

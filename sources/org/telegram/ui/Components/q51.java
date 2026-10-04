@@ -1,38 +1,18 @@
 package org.telegram.ui.Components;
+public final class q51 {
+    public final z51 f29925a;
+    public final c61 f29926b;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public abstract class q51 {
-    public String[] f27550a = new String[0];
-
-    public boolean a() {
-        return false;
+    public q51(c61 c61Var, z51 z51Var) {
+        this.f29926b = c61Var;
+        this.f29925a = z51Var;
     }
 
-    public String[] b() {
-        return this.f27550a;
+    public final int a() {
+        return this.f29926b.f25233s.v;
     }
 
-    public boolean c() {
-        return false;
-    }
-
-    public boolean d(j51 j51Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(j51 j51Var, j jVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f27550a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+    public final void b(boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q51.b(boolean):void");
     }
 }

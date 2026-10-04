@@ -2,7 +2,7 @@ package ai;
 
 import android.os.Build;
 import android.text.TextUtils;
-import ci.wc;
+import ci.vc;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -14,46 +14,46 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_phone;
 public final class q0 implements Utilities.Callback3 {
-    public final int f1409a;
-    public final Object f1410b;
-    public final Object f1411c;
+    public final int f1532a;
+    public final Object f1533b;
+    public final Object f1534c;
 
     public q0(int i10, Object obj, Object obj2) {
-        this.f1409a = i10;
-        this.f1410b = obj;
-        this.f1411c = obj2;
+        this.f1532a = i10;
+        this.f1533b = obj;
+        this.f1534c = obj2;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3) {
-        ci.nb nbVar;
-        switch (this.f1409a) {
+        ci.mb mbVar;
+        switch (this.f1532a) {
             case 0:
-                r3 r3Var = (r3) this.f1410b;
-                m1 m1Var = (m1) this.f1411c;
+                r3 r3Var = (r3) this.f1533b;
+                m1 m1Var = (m1) this.f1534c;
                 Boolean bool = (Boolean) obj;
                 Boolean bool2 = (Boolean) obj3;
                 int i10 = r3Var.N;
                 if (((Boolean) obj2).booleanValue()) {
                     TL_phone.deleteGroupCallParticipantMessages deletegroupcallparticipantmessages = new TL_phone.deleteGroupCallParticipantMessages();
                     deletegroupcallparticipantmessages.call = r3Var.O;
-                    deletegroupcallparticipantmessages.participant = MessagesController.getInstance(i10).getInputPeer(m1Var.f1228c);
+                    deletegroupcallparticipantmessages.participant = MessagesController.getInstance(i10).getInputPeer(m1Var.f1327c);
                     deletegroupcallparticipantmessages.report_spam = bool.booleanValue();
                     ConnectionsManager.getInstance(i10).sendRequest(deletegroupcallparticipantmessages, null);
-                    long j3 = m1Var.f1228c;
-                    ArrayList arrayList = r3Var.f1339r;
-                    ArrayList arrayList2 = r3Var.f1340s;
+                    long j3 = m1Var.f1327c;
+                    ArrayList arrayList = r3Var.f1448r;
+                    ArrayList arrayList2 = r3Var.f1449s;
                     int i11 = 0;
                     boolean z10 = false;
                     while (i11 < arrayList.size()) {
-                        if (((m1) arrayList.get(i11)).f1228c == j3) {
+                        if (((m1) arrayList.get(i11)).f1327c == j3) {
                             m1 m1Var2 = (m1) arrayList.get(i11);
                             int i12 = 0;
                             while (true) {
                                 if (i12 < arrayList2.size()) {
-                                    if (((n1) arrayList2.get(i12)).f1289f.contains(m1Var2)) {
-                                        ((n1) arrayList2.get(i12)).f1289f.remove(m1Var2);
-                                        if (((n1) arrayList2.get(i12)).f1289f.isEmpty()) {
+                                    if (((n1) arrayList2.get(i12)).f1396f.contains(m1Var2)) {
+                                        ((n1) arrayList2.get(i12)).f1396f.remove(m1Var2);
+                                        if (((n1) arrayList2.get(i12)).f1396f.isEmpty()) {
                                             arrayList2.remove(i12);
                                             z10 = true;
                                         } else {
@@ -65,7 +65,7 @@ public final class q0 implements Utilities.Callback3 {
                                 }
                             }
                             arrayList.remove(i11);
-                            r3Var.e.N(true);
+                            r3Var.f1442e.N(true);
                             i11--;
                         }
                         i11++;
@@ -73,61 +73,61 @@ public final class q0 implements Utilities.Callback3 {
                     if (z10) {
                         ConnectionsManager.getInstance(i10).getCurrentTime();
                         Collections.sort(arrayList2, new a4.e(r3Var, 4));
-                        r3Var.f1338n.N(true);
+                        r3Var.f1447n.N(true);
                         r3Var.t();
                     }
                 } else {
                     TL_phone.deleteGroupCallMessages deletegroupcallmessages = new TL_phone.deleteGroupCallMessages();
                     deletegroupcallmessages.call = r3Var.O;
-                    deletegroupcallmessages.messages.add(Integer.valueOf(m1Var.f1226a));
+                    deletegroupcallmessages.messages.add(Integer.valueOf(m1Var.f1325a));
                     ConnectionsManager.getInstance(i10).sendRequest(deletegroupcallmessages, null);
-                    r3Var.c(m1Var.f1226a);
+                    r3Var.c(m1Var.f1325a);
                 }
                 if (bool2.booleanValue()) {
                     if (r3Var.M >= 0) {
                         MessagesController.getInstance(i10).blockPeer(r3Var.M);
                         return;
                     } else {
-                        MessagesController.getInstance(i10).deleteParticipantFromChat(-r3Var.M, MessagesController.getInstance(i10).getInputPeer(m1Var.f1228c), false, true);
+                        MessagesController.getInstance(i10).deleteParticipantFromChat(-r3Var.M, MessagesController.getInstance(i10).getInputPeer(m1Var.f1327c), false, true);
                         return;
                     }
                 }
                 return;
             case 1:
-                ci.bc bcVar = (ci.bc) this.f1410b;
-                ci.p pVar = (ci.p) this.f1411c;
+                ci.ac acVar = (ci.ac) this.f1533b;
+                ci.p pVar = (ci.p) this.f1534c;
                 File file = (File) obj;
                 String str = (String) obj2;
                 Long l4 = (Long) obj3;
-                ci.lc lcVar = bcVar.S1;
-                ci.zb zbVar = lcVar.X0;
-                if (zbVar != null) {
-                    zbVar.O = false;
-                    zbVar.c();
-                    ci.zb zbVar2 = lcVar.X0;
-                    zbVar2.m(0L);
-                    wc wcVar = zbVar2.F;
-                    if (wcVar != null) {
-                        wcVar.setProgress(0L);
+                ci.kc kcVar = acVar.S1;
+                ci.yb ybVar = kcVar.X0;
+                if (ybVar != null) {
+                    ybVar.O = false;
+                    ybVar.c();
+                    ci.yb ybVar2 = kcVar.X0;
+                    ybVar2.m(0L);
+                    vc vcVar = ybVar2.F;
+                    if (vcVar != null) {
+                        vcVar.setProgress(0L);
                     }
                 }
-                ci.l8 l8Var = lcVar.K1;
-                if (l8Var != null) {
-                    l8Var.f4994o0 = file;
-                    l8Var.f4996p0 = str;
-                    l8Var.f4998q0 = l4.longValue();
-                    ci.l8 l8Var2 = lcVar.K1;
-                    l8Var2.f5002s0 = 0.0f;
-                    l8Var2.f5004t0 = 1.0f;
-                    l8Var2.f5000r0 = 0L;
-                    l8Var2.f5006u0 = 1.0f;
-                    lcVar.u();
-                    if (lcVar.X0 != null && (nbVar = lcVar.f5094v1) != null) {
-                        qg.c2 m0 = nbVar.m0(lcVar.K1.f4996p0, true);
-                        bcVar.setHasRoundVideo(true);
-                        lcVar.X0.s(lcVar.K1, m0, true);
+                ci.k8 k8Var = kcVar.K1;
+                if (k8Var != null) {
+                    k8Var.f5340o0 = file;
+                    k8Var.f5342p0 = str;
+                    k8Var.f5344q0 = l4.longValue();
+                    ci.k8 k8Var2 = kcVar.K1;
+                    k8Var2.f5348s0 = 0.0f;
+                    k8Var2.f5350t0 = 1.0f;
+                    k8Var2.f5346r0 = 0L;
+                    k8Var2.f5352u0 = 1.0f;
+                    kcVar.u();
+                    if (kcVar.X0 != null && (mbVar = kcVar.f5442v1) != null) {
+                        qg.b2 m0 = mbVar.m0(kcVar.K1.f5342p0, true);
+                        acVar.setHasRoundVideo(true);
+                        kcVar.X0.s(kcVar.K1, m0, true);
                         AndroidUtilities.cancelRunOnUIThread(pVar.h);
-                        pVar.f5243a.destroy(true, null);
+                        pVar.f5655a.destroy(true, null);
                         m0.setDraw(false);
                         pVar.post(new ba(24, pVar, m0));
                         return;
@@ -137,30 +137,30 @@ public final class q0 implements Utilities.Callback3 {
                 }
                 return;
             default:
-                ei.r rVar = (ei.r) this.f1410b;
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f1411c;
+                ei.s sVar = (ei.s) this.f1533b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f1534c;
                 Boolean bool3 = (Boolean) obj;
-                androidx.biometric.s sVar = (androidx.biometric.s) obj2;
+                androidx.biometric.s sVar2 = (androidx.biometric.s) obj2;
                 androidx.biometric.t tVar = (androidx.biometric.t) obj3;
-                rVar.getClass();
+                sVar.getClass();
                 String str2 = null;
-                if (sVar != null) {
+                if (sVar2 != null) {
                     try {
                         int i13 = Build.VERSION.SDK_INT;
                         if (i13 < 23) {
-                            str2 = rVar.f8564g;
+                            str2 = sVar.f9319g;
                         } else {
                             if (i13 >= 30) {
-                                tVar = rVar.i(true);
+                                tVar = sVar.i(true);
                             }
                             if (tVar != null) {
-                                str2 = !TextUtils.isEmpty(rVar.f8564g) ? new String(tVar.f2064b.doFinal(Utilities.hexToBytes(rVar.f8564g)), StandardCharsets.UTF_8) : rVar.f8564g;
-                            } else if (!TextUtils.isEmpty(rVar.f8564g)) {
+                                str2 = !TextUtils.isEmpty(sVar.f9319g) ? new String(tVar.f2242b.doFinal(Utilities.hexToBytes(sVar.f9319g)), StandardCharsets.UTF_8) : sVar.f9319g;
+                            } else if (!TextUtils.isEmpty(sVar.f9319g)) {
                                 throw new RuntimeException("No cryptoObject found");
                             }
                         }
-                    } catch (Exception e) {
-                        FileLog.e(e);
+                    } catch (Exception e7) {
+                        FileLog.e(e7);
                         bool3 = Boolean.FALSE;
                     }
                 }

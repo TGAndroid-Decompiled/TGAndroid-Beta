@@ -1,32 +1,46 @@
 package org.telegram.ui.Components;
 
-import java.util.function.ToDoubleFunction;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class y71 implements ToDoubleFunction {
-    public final int f30599a;
+import android.net.Uri;
+import java.util.Map;
+import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
+public final class y71 implements g2.h {
+    public final g2.h f33099a;
+    public final long f33100b;
 
-    public y71(int i10) {
-        this.f30599a = i10;
+    public y71(ExtendedDefaultDataSource extendedDefaultDataSource, long j3) {
+        this.f33099a = extendedDefaultDataSource;
+        this.f33100b = j3;
     }
 
     @Override
-    public final double applyAsDouble(Object obj) {
-        switch (this.f30599a) {
-            case 0:
-                return ((b81) obj).f22881a;
-            case 1:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            case 2:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            case 3:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            case 4:
-                return yh.s0.P((TL_stars.starGiftAttributeBackdrop) obj);
-            case 5:
-                return yh.s0.P((TL_stars.starGiftAttributePattern) obj);
-            default:
-                return yh.s0.P((TL_stars.starGiftAttributeModel) obj);
-        }
+    public final void addTransferListener(g2.c0 c0Var) {
+        this.f33099a.addTransferListener(c0Var);
+    }
+
+    @Override
+    public final void close() {
+        this.f33099a.close();
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        return this.f33099a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.f33099a.getUri();
+    }
+
+    @Override
+    public final long open(g2.m mVar) {
+        g2.l a2 = mVar.a();
+        a2.f10187b = mVar.f10196e + this.f33100b;
+        return this.f33099a.open(a2.d());
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        return this.f33099a.read(bArr, i10, i11);
     }
 }

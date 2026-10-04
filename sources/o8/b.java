@@ -5,35 +5,35 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.q;
-import w7.f0;
+import w7.g0;
 public final class b extends o6.a implements q {
     public static final Parcelable.Creator<b> CREATOR = new m8.h(22);
-    public final int f15675a;
-    public final int f15676b;
-    public final Intent f15677c;
+    public final int f17137a;
+    public final int f17138b;
+    public final Intent f17139c;
 
     public b(int i10, int i11, Intent intent) {
-        this.f15675a = i10;
-        this.f15676b = i11;
-        this.f15677c = intent;
+        this.f17137a = i10;
+        this.f17138b = i11;
+        this.f17139c = intent;
     }
 
     @Override
     public final Status i() {
-        if (this.f15676b == 0) {
-            return Status.e;
+        if (this.f17138b == 0) {
+            return Status.f6468e;
         }
-        return Status.f6004r;
+        return Status.f6471r;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f15675a);
-        f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f15676b);
-        f0.k(parcel, 3, this.f15677c, i10);
-        f0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.s(parcel, 1, 4);
+        parcel.writeInt(this.f17137a);
+        g0.s(parcel, 2, 4);
+        parcel.writeInt(this.f17138b);
+        g0.k(parcel, 3, this.f17139c, i10);
+        g0.r(parcel, q6);
     }
 }

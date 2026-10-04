@@ -1,50 +1,24 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class bl extends s4.s0 {
-    public final il f23010a;
+public final class bl extends s4.d0 {
+    public final hg.e0 f24992r;
 
-    public bl(il ilVar) {
-        this.f23010a = ilVar;
+    public bl(hg.e0 e0Var, Context context) {
+        super(context);
+        this.f24992r = e0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        il0 il0Var;
-        il ilVar = this.f23010a;
-        ai.w0 w0Var = ilVar.P;
-        wi wiVar = ilVar.f27075b;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        ilVar.L = z10;
-        if (!z10 && ilVar.J != null) {
-            ilVar.J = null;
-        }
-        if (i10 == 0) {
-            int dp = AndroidUtilities.dp(13.0f);
-            int backgroundPaddingTop = wiVar.getBackgroundPaddingTop();
-            if (((wiVar.f29922b2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (il0Var = (il0) w0Var.K(0)) != null) {
-                View view = il0Var.f42962a;
-                if (view.getTop() > ilVar.A0 - ilVar.f25155z0) {
-                    w0Var.v0(0, view.getTop() - (ilVar.A0 - ilVar.f25155z0), null);
-                }
-            }
-        }
+    public final int k(int i10, View view) {
+        int k10 = super.k(i10, view);
+        jl jlVar = (jl) this.f24992r.V;
+        return k10 - (jlVar.P.getPaddingTop() - (jlVar.A0 - jlVar.f27833z0));
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        il ilVar = this.f23010a;
-        ilVar.e0();
-        if (ilVar.J != null) {
-            ilVar.K += i11;
-        }
-        ilVar.f27075b.X1(ilVar, i11);
+    public final int m(int i10) {
+        return super.m(i10) * 4;
     }
 }

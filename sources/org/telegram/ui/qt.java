@@ -1,26 +1,25 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class qt {
-    public String f36982a;
-    public String f36983b;
-    public String f36984c;
-    public String d;
+import android.content.Context;
+import android.widget.LinearLayout;
+import org.telegram.tgnet.TLRPC;
+public final class qt extends LinearLayout {
+    public final org.telegram.ui.Components.w9 f39814a;
+    public final org.telegram.ui.ActionBar.i5 f39815b;
+    public final org.telegram.ui.ActionBar.d6 f39816c;
+    public TLRPC.StickerSetCovered d;
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && qt.class == obj.getClass()) {
-            qt qtVar = (qt) obj;
-            if (Objects.equals(this.f36982a, qtVar.f36982a) && Objects.equals(this.f36984c, qtVar.f36984c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.f36982a, this.f36984c);
+    public qt(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f39816c = d6Var;
+        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
+        this.f39814a = w9Var;
+        org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
+        this.f39815b = i5Var;
+        i5Var.setTextSize(16);
+        i5Var.setTextColor(-1);
+        setOrientation(0);
+        addView(w9Var, w7.z5.t(24, 24, 17, 17, 0, 17, 0));
+        addView(i5Var, w7.z5.t(-2, -2, 17, 0, 0, 12, 0));
     }
 }

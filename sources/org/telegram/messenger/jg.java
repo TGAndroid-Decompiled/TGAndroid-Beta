@@ -3,37 +3,37 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jg implements Runnable {
-    public final int f16747a = 0;
-    public final long f16748b;
-    public final long f16749c;
+    public final int f18271a = 0;
+    public final long f18272b;
+    public final long f18273c;
     public final boolean d;
-    public final Object e;
-    public final TLObject f16750f;
+    public final Object f18274e;
+    public final TLObject f18275f;
 
     public jg(MessagesStorage messagesStorage, long j3, boolean z10, TLRPC.InputPeer inputPeer, long j10) {
-        this.e = messagesStorage;
-        this.f16748b = j3;
+        this.f18274e = messagesStorage;
+        this.f18272b = j3;
         this.d = z10;
-        this.f16750f = inputPeer;
-        this.f16749c = j10;
+        this.f18275f = inputPeer;
+        this.f18273c = j10;
     }
 
     @Override
     public final void run() {
         TLRPC.PeerSettings peerSettings;
-        int i10 = this.f16747a;
-        TLObject tLObject = this.f16750f;
-        Object obj = this.e;
+        int i10 = this.f18271a;
+        TLObject tLObject = this.f18275f;
+        Object obj = this.f18274e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f16748b, this.d, (TLRPC.InputPeer) tLObject, this.f16749c);
+                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f18272b, this.d, (TLRPC.InputPeer) tLObject, this.f18273c);
                 return;
             default:
                 yh.t5 t5Var = (yh.t5) obj;
-                int i11 = t5Var.f48041a;
+                int i11 = t5Var.f52010a;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    long j3 = this.f16748b;
-                    long j10 = this.f16749c;
+                    long j3 = this.f18272b;
+                    long j10 = this.f18273c;
                     if (j3 != 0) {
                         t5Var.b0(-j3, j10, this.d);
                         return;
@@ -43,7 +43,7 @@ public final class jg implements Runnable {
                         peerSettings.flags &= -16385;
                         peerSettings.charge_paid_message_stars = 0L;
                     }
-                    MessagesController.getNotificationsSettings(i11).edit().putLong(a4.a.p(j10, "dialog_bar_paying_"), 0L).apply();
+                    MessagesController.getNotificationsSettings(i11).edit().putLong(a4.a.o(j10, "dialog_bar_paying_"), 0L).apply();
                     MessagesController.getInstance(i11).loadPeerSettings(MessagesController.getInstance(i11).getUser(Long.valueOf(j10)), MessagesController.getInstance(i11).getChat(Long.valueOf(-j10)), true);
                     ContactsController.getInstance(i11).loadPrivacySettings(true);
                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesFeeUpdated, Long.valueOf(j10));
@@ -54,10 +54,10 @@ public final class jg implements Runnable {
     }
 
     public jg(yh.t5 t5Var, TLObject tLObject, long j3, long j10, boolean z10) {
-        this.e = t5Var;
-        this.f16750f = tLObject;
-        this.f16748b = j3;
-        this.f16749c = j10;
+        this.f18274e = t5Var;
+        this.f18275f = tLObject;
+        this.f18272b = j3;
+        this.f18273c = j10;
         this.d = z10;
     }
 }

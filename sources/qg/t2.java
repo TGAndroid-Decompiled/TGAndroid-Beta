@@ -21,140 +21,140 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.a80;
-import org.telegram.ui.Components.gc0;
-import org.telegram.ui.Components.sr;
-import org.telegram.ui.xd;
-import w7.y5;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.b80;
+import org.telegram.ui.Components.hc0;
+import org.telegram.ui.Components.tr;
+import org.telegram.ui.zd;
+import w7.z5;
 public final class t2 extends Dialog {
     public ValueAnimator E;
     public boolean F;
-    public o0 G;
+    public n0 G;
     public ai.y1 H;
-    public final int f41940a;
-    public final ai.f0 f41941b;
-    public final xd f41942c;
+    public final int f45343a;
+    public final ai.f0 f45344b;
+    public final zd f45345c;
     public final w7 d;
-    public final ImageView e;
-    public final r2 f41943f;
+    public final ImageView f45346e;
+    public final r2 f45347f;
     public final Rect h;
-    public Bitmap f41944n;
-    public BitmapShader f41945r;
-    public Paint f41946s;
+    public Bitmap f45348n;
+    public BitmapShader f45349r;
+    public Paint f45350s;
     public Matrix v;
-    public final gc0 f41947w;
-    public final gc0 f41948x;
-    public float f41949y;
+    public final hc0 f45351w;
+    public final hc0 f45352x;
+    public float f45353y;
 
     public t2(Context context, final int i10) {
         super(context, R.style.TransparentDialog);
         ai.d dVar = new ai.d();
         this.h = new Rect();
         this.F = false;
-        this.f41940a = i10;
-        ai.f0 f0Var = new ai.f0(this, context, 26);
-        this.f41941b = f0Var;
+        this.f45343a = i10;
+        ai.f0 f0Var = new ai.f0(this, context, 27);
+        this.f45344b = f0Var;
         f0Var.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 7));
-        xd xdVar = new xd(context, 8);
-        this.f41942c = xdVar;
-        xdVar.setOrientation(1);
-        f0Var.addView(xdVar, y5.d(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
+        zd zdVar = new zd(context, 8);
+        this.f45345c = zdVar;
+        zdVar.setOrientation(1);
+        f0Var.addView(zdVar, z5.d(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
         w7 w7Var = new w7(this, context, 9);
         w7Var.setWillNotDraw(false);
-        xdVar.addView(w7Var, y5.p(-1, -2, 1.0f, 49, 0, 0, 0, 0));
+        zdVar.addView(w7Var, z5.p(-1, -2, 1.0f, 49, 0, 0, 0, 0));
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(-14737633);
-        w7Var.addView(frameLayout, y5.e(-1, 56, 55));
+        w7Var.addView(frameLayout, z5.e(-1, 56, 55));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString(R.string.StoryLinkPreviewTitle));
         textView.setTextColor(-1);
         textView.setTextSize(1, 18.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        TextView h = org.telegram.ui.Cells.c1.h(frameLayout, textView, y5.d(-1, -2.0f, 55, 18.0f, 8.33f, 18.0f, 0.0f), context);
-        h.setText(LocaleController.getString(R.string.StoryLinkPreviewSubtitle));
-        h.setTextColor(-8421505);
-        h.setTextSize(1, 14.0f);
-        frameLayout.addView(h, y5.d(-1, -2.0f, 55, 18.0f, 31.0f, 18.0f, 0.0f));
+        TextView i11 = org.telegram.ui.Cells.c1.i(frameLayout, textView, z5.d(-1, -2.0f, 55, 18.0f, 8.33f, 18.0f, 0.0f), context);
+        i11.setText(LocaleController.getString(R.string.StoryLinkPreviewSubtitle));
+        i11.setTextColor(-8421505);
+        i11.setTextSize(1, 14.0f);
+        frameLayout.addView(i11, z5.d(-1, -2.0f, 55, 18.0f, 31.0f, 18.0f, 0.0f));
         w7 w7Var2 = new w7(this, context, 10);
         this.d = w7Var2;
-        w7Var.addView(w7Var2, y5.d(-1, -1.0f, 119, 0.0f, 56.0f, 0.0f, 0.0f));
+        w7Var.addView(w7Var2, z5.d(-1, -1.0f, 119, 0.0f, 56.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.e = imageView;
+        this.f45346e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        w7Var2.addView(imageView, y5.e(-1, -1, 119));
+        w7Var2.addView(imageView, z5.e(-1, -1, 119));
         r2 r2Var = new r2(this, context, AndroidUtilities.density);
-        this.f41943f = r2Var;
-        w7Var2.addView(r2Var, y5.e(-2, -2, 17));
-        a80 F = a80.F(f0Var, dVar, f0Var);
-        gc0 gc0Var = new gc0(getContext(), R.raw.position_below, LocaleController.getString(R.string.StoryLinkCaptionAbove), R.raw.position_above, LocaleController.getString(R.string.StoryLinkCaptionBelow), dVar);
-        this.f41947w = gc0Var;
-        gc0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final t2 f41903b;
+        this.f45347f = r2Var;
+        w7Var2.addView(r2Var, z5.e(-2, -2, 17));
+        b80 F = b80.F(f0Var, dVar, f0Var);
+        hc0 hc0Var = new hc0(getContext(), R.raw.position_below, LocaleController.getString(R.string.StoryLinkCaptionAbove), R.raw.position_above, LocaleController.getString(R.string.StoryLinkCaptionBelow), dVar);
+        this.f45351w = hc0Var;
+        hc0Var.setOnClickListener(new View.OnClickListener(this) {
+            public final t2 f45301b;
 
             {
-                this.f41903b = this;
+                this.f45301b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        t2 t2Var = this.f41903b;
-                        o0 o0Var = t2Var.G;
-                        boolean z10 = o0Var.f41843f;
-                        o0Var.f41843f = !z10;
-                        t2Var.f41947w.a(z10, true);
-                        t2Var.f41943f.b(i10, t2Var.G, true);
+                        t2 t2Var = this.f45301b;
+                        n0 n0Var = t2Var.G;
+                        boolean z10 = n0Var.f45204f;
+                        n0Var.f45204f = !z10;
+                        t2Var.f45351w.a(z10, true);
+                        t2Var.f45347f.b(i10, t2Var.G, true);
                         return;
                     default:
-                        t2 t2Var2 = this.f41903b;
-                        o0 o0Var2 = t2Var2.G;
-                        boolean z11 = o0Var2.e;
-                        o0Var2.e = !z11;
-                        t2Var2.f41948x.a(z11, true);
-                        t2Var2.f41943f.b(i10, t2Var2.G, true);
+                        t2 t2Var2 = this.f45301b;
+                        n0 n0Var2 = t2Var2.G;
+                        boolean z11 = n0Var2.f45203e;
+                        n0Var2.f45203e = !z11;
+                        t2Var2.f45352x.a(z11, true);
+                        t2Var2.f45347f.b(i10, t2Var2.G, true);
                         return;
                 }
             }
         });
-        F.q(gc0Var);
-        gc0 gc0Var2 = new gc0(context, R.raw.media_shrink, LocaleController.getString(R.string.LinkMediaLarger), R.raw.media_enlarge, LocaleController.getString(R.string.LinkMediaSmaller), dVar);
-        this.f41948x = gc0Var2;
-        gc0Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final t2 f41903b;
+        F.q(hc0Var);
+        hc0 hc0Var2 = new hc0(context, R.raw.media_shrink, LocaleController.getString(R.string.LinkMediaLarger), R.raw.media_enlarge, LocaleController.getString(R.string.LinkMediaSmaller), dVar);
+        this.f45352x = hc0Var2;
+        hc0Var2.setOnClickListener(new View.OnClickListener(this) {
+            public final t2 f45301b;
 
             {
-                this.f41903b = this;
+                this.f45301b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        t2 t2Var = this.f41903b;
-                        o0 o0Var = t2Var.G;
-                        boolean z10 = o0Var.f41843f;
-                        o0Var.f41843f = !z10;
-                        t2Var.f41947w.a(z10, true);
-                        t2Var.f41943f.b(i10, t2Var.G, true);
+                        t2 t2Var = this.f45301b;
+                        n0 n0Var = t2Var.G;
+                        boolean z10 = n0Var.f45204f;
+                        n0Var.f45204f = !z10;
+                        t2Var.f45351w.a(z10, true);
+                        t2Var.f45347f.b(i10, t2Var.G, true);
                         return;
                     default:
-                        t2 t2Var2 = this.f41903b;
-                        o0 o0Var2 = t2Var2.G;
-                        boolean z11 = o0Var2.e;
-                        o0Var2.e = !z11;
-                        t2Var2.f41948x.a(z11, true);
-                        t2Var2.f41943f.b(i10, t2Var2.G, true);
+                        t2 t2Var2 = this.f45301b;
+                        n0 n0Var2 = t2Var2.G;
+                        boolean z11 = n0Var2.f45203e;
+                        n0Var2.f45203e = !z11;
+                        t2Var2.f45352x.a(z11, true);
+                        t2Var2.f45347f.b(i10, t2Var2.G, true);
                         return;
                 }
             }
         });
-        F.q(gc0Var2);
+        F.q(hc0Var2);
         F.k();
         F.c(R.drawable.msg_select, LocaleController.getString(R.string.ApplyChanges), new p2(this, 2), false);
         F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DoNotLinkPreview), new p2(this, 3), true);
-        xdVar.addView(F.A, y5.o(-2, -2, 0.0f, 85));
+        zdVar.addView(F.A, z5.o(-2, -2, 0.0f, 85));
         f0Var.setFitsSystemWindows(true);
         f0Var.setOnApplyWindowInsetsListener(new s2(this));
     }
@@ -166,7 +166,7 @@ public final class t2 extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f10 = this.f41949y;
+        float f10 = this.f45353y;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -176,7 +176,7 @@ public final class t2 extends Dialog {
         this.E = ofFloat;
         ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(this, 13));
         this.E.addListener(new androidx.fragment.app.g(this, z10, p2Var, 12));
-        this.E.setInterpolator(sr.h);
+        this.E.setInterpolator(tr.h);
         ValueAnimator valueAnimator2 = this.E;
         if (z10) {
             j3 = 420;
@@ -199,7 +199,7 @@ public final class t2 extends Dialog {
         }
         this.F = true;
         b(false, new p2(this, 1));
-        this.f41941b.invalidate();
+        this.f45344b.invalidate();
     }
 
     @Override
@@ -213,7 +213,7 @@ public final class t2 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        ai.f0 f0Var = this.f41941b;
+        ai.f0 f0Var = this.f45344b;
         setContentView(f0Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
@@ -230,7 +230,7 @@ public final class t2 extends Dialog {
         }
         window.setAttributes(attributes);
         f0Var.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar(f0Var, !h6.I.q());
+        AndroidUtilities.setLightNavigationBar(f0Var, !i6.I.q());
     }
 
     @Override

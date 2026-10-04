@@ -1,34 +1,99 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class pm0 implements View.OnClickListener {
-    public final int f27391a;
-    public final wm0 f27392b;
+public final class pm0 extends Drawable {
+    public final RectF f29660a = new RectF();
+    public final Paint f29661b;
+    public final TextPaint f29662c;
+    public int d;
+    public String f29663e;
+    public final int f29664f;
+    public int f29665g;
+    public final int h;
 
-    public pm0(wm0 wm0Var, int i10) {
-        this.f27391a = i10;
-        this.f27392b = wm0Var;
+    public pm0(int i10) {
+        Paint paint = new Paint(1);
+        this.f29661b = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f29662c = textPaint;
+        this.f29665g = 255;
+        this.h = 255;
+        this.f29664f = i10;
+        textPaint.setTextSize(AndroidUtilities.dp(11));
+        textPaint.setTypeface(AndroidUtilities.bold());
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        if (i10 == 0) {
+            this.f29663e = LocaleController.getString(R.string.ScamMessage);
+        } else {
+            this.f29663e = LocaleController.getString(R.string.FakeMessage);
+        }
+        this.d = (int) Math.ceil(textPaint.measureText(this.f29663e));
+    }
+
+    public final void a() {
+        String string;
+        if (this.f29664f == 0) {
+            string = LocaleController.getString(R.string.ScamMessage);
+        } else {
+            string = LocaleController.getString(R.string.FakeMessage);
+        }
+        if (!string.equals(this.f29663e)) {
+            this.f29663e = string;
+            this.d = (int) Math.ceil(this.f29662c.measureText(string));
+        }
+    }
+
+    public final void b(int i10) {
+        this.f29662c.setColor(i10);
+        this.f29661b.setColor(i10);
+        this.f29665g = Color.alpha(i10);
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f27391a) {
-            case 0:
-                this.f27392b.f30027f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            case 1:
-                this.f27392b.f30027f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            case 2:
-                this.f27392b.f30027f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            case 3:
-                this.f27392b.f30027f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            default:
-                this.f27392b.f30027f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f29660a;
+        rectF.set(bounds);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.f29661b);
+        canvas.drawText(this.f29663e, rectF.left + AndroidUtilities.dp(5.0f), rectF.top + AndroidUtilities.dp(12.0f), this.f29662c);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(16.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(10.0f) + this.d;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        if (this.h != i10) {
+            int i11 = (int) ((i10 / 255.0f) * this.f29665g);
+            this.f29661b.setAlpha(i11);
+            this.f29662c.setAlpha(i11);
         }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

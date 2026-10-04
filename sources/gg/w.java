@@ -1,31 +1,31 @@
 package gg;
 
-import org.telegram.ui.k10;
-import org.telegram.ui.sv;
+import org.telegram.ui.o10;
+import org.telegram.ui.xv;
 public final class w implements Runnable {
-    public final int f9948a;
-    public final i0 f9949b;
+    public final int f10834a;
+    public final i0 f10835b;
 
     public w(i0 i0Var, int i10) {
-        this.f9948a = i10;
-        this.f9949b = i0Var;
+        this.f10834a = i10;
+        this.f10835b = i0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f9948a) {
+        switch (this.f10834a) {
             case 0:
-                i0 i0Var = this.f9949b;
-                k10 k10Var = i0Var.A0;
-                if (k10Var != null) {
-                    ((sv) k10Var).i(false, null, i0Var.f9774y0, i0Var.f9775z0);
+                i0 i0Var = this.f10835b;
+                o10 o10Var = i0Var.A0;
+                if (o10Var != null) {
+                    ((xv) o10Var).j(false, null, i0Var.f10641y0, i0Var.f10642z0);
                     return;
                 }
                 return;
             default:
-                i0 i0Var2 = this.f9949b;
+                i0 i0Var2 = this.f10835b;
                 i0Var2.getClass();
-                i0Var2.f9745c = f0.All;
+                i0Var2.f10611c = f0.All;
                 i0Var2.I.clear();
                 int i10 = i0Var2.F0;
                 if (i10 >= 0 && i10 < i0Var2.h()) {

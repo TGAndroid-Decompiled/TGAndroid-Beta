@@ -10,16 +10,16 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.f0;
-import org.telegram.ui.je;
-import yh.w7;
+import org.telegram.ui.me;
+import yh.x7;
 public final class d {
-    public final long[] f13591a;
-    public final CharSequence[] f13592b;
-    public final CharSequence[] f13593c;
+    public final long[] f14776a;
+    public final CharSequence[] f14777b;
+    public final CharSequence[] f14778c;
     public final StaticLayout[] d;
-    public final StaticLayout[] e;
-    public int f13594f;
-    public int f13595g;
+    public final StaticLayout[] f14779e;
+    public int f14780f;
+    public int f14781g;
     public DecimalFormat h;
 
     public d(long r25, long r27, boolean r29, float r30, int r31, android.text.TextPaint r32, android.text.TextPaint r33) {
@@ -29,7 +29,7 @@ public final class d {
     public final void a(Canvas canvas, int i10, int i11, float f7, float f10, TextPaint textPaint) {
         StaticLayout[] staticLayoutArr;
         CharSequence[] charSequenceArr;
-        StaticLayout[] staticLayoutArr2 = this.e;
+        StaticLayout[] staticLayoutArr2 = this.f14779e;
         StaticLayout[] staticLayoutArr3 = this.d;
         if (i10 == 0) {
             staticLayoutArr = staticLayoutArr3;
@@ -39,9 +39,9 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i11];
         if (staticLayout == null) {
             if (i10 == 0) {
-                charSequenceArr = this.f13592b;
+                charSequenceArr = this.f14777b;
             } else {
-                charSequenceArr = this.f13593c;
+                charSequenceArr = this.f14778c;
             }
             CharSequence charSequence = charSequenceArr[i11];
             if (i10 == 0) {
@@ -77,12 +77,12 @@ public final class d {
                 i12 = 6;
             }
             decimalFormat2.setMaximumFractionDigits(i12);
-            return je.f0("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
+            return me.D0("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
         } else if (i11 == 2) {
             if (i10 == 1) {
                 return "≈" + BillingController.getInstance().formatCurrency(j3, "USD");
             }
-            return w7.X0(false, f0.h(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return x7.d1(false, f0.h(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return AndroidUtilities.formatWholeNumber((int) j3, 0);
         }

@@ -1,93 +1,104 @@
 package org.telegram.ui;
 
-import android.text.Editable;
+import android.app.Dialog;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-public final class fe0 implements TextWatcher {
-    public final int f33651a = 0;
-    public boolean f33652b;
-    public final ViewGroup f33653c;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class fe0 implements Runnable {
+    public final int f36277a = 1;
+    public final ke0 f36278b;
+    public final TLRPC.TL_error f36279c;
+    public final String d;
+    public final String f36280e;
+    public final TLObject f36281f;
 
-    public fe0(qg.v2 v2Var) {
-        this.f33653c = v2Var;
+    public fe0(ke0 ke0Var, TLRPC.TL_error tL_error, String str, String str2, TLObject tLObject) {
+        this.f36278b = ke0Var;
+        this.f36279c = tL_error;
+        this.d = str;
+        this.f36280e = str2;
+        this.f36281f = tLObject;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int clamp;
-        switch (this.f33651a) {
+    public final void run() {
+        String formatPluralString;
+        int i10;
+        int i11 = this.f36277a;
+        TLObject tLObject = this.f36281f;
+        String str = this.f36280e;
+        String str2 = this.d;
+        TLRPC.TL_error tL_error = this.f36279c;
+        ke0 ke0Var = this.f36278b;
+        switch (i11) {
             case 0:
-                ge0 ge0Var = (ge0) this.f33653c;
-                if (this.f33652b) {
-                    if (ge0Var.f33918f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        if (ge0Var.f33924y) {
-                            ge0Var.f33918f.callOnClick();
-                        }
-                        AndroidUtilities.updateViewVisibilityAnimated(ge0Var.f33918f, true, 0.1f, true);
-                        return;
-                    } else if (ge0Var.f33918f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(ge0Var.f33918f, false, 0.1f, true);
-                        return;
+                ke0Var.getClass();
+                if (tL_error == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject;
+                    ke0Var.f37954s = password;
+                    TwoStepVerificationActivity.m0(password);
+                    ke0Var.o(str2, str);
+                    return;
+                }
+                return;
+            default:
+                ug0 ug0Var = ke0Var.E;
+                if (tL_error != null && ("SRP_ID_INVALID".equals(tL_error.text) || "NEW_SALT_INVALID".equals(tL_error.text))) {
+                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                    i10 = ((org.telegram.ui.ActionBar.n2) ug0Var).currentAccount;
+                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new ie0(ke0Var, str2, str, 1), 8);
+                    return;
+                }
+                ug0Var.k1(false, true);
+                if (tLObject instanceof TLRPC.auth_Authorization) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ug0Var.getParentActivity());
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new pw(18, ke0Var, tLObject));
+                    boolean isEmpty = TextUtils.isEmpty(str2);
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20367a;
+                    if (isEmpty) {
+                        b2Var.T = LocaleController.getString(R.string.YourPasswordReset);
                     } else {
+                        b2Var.T = LocaleController.getString(R.string.YourPasswordChangedSuccessText);
+                    }
+                    b2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
+                    Dialog showDialog = ug0Var.showDialog(b2Var);
+                    if (showDialog != null) {
+                        showDialog.setCanceledOnTouchOutside(false);
+                        showDialog.setCancelable(false);
                         return;
                     }
-                }
-                return;
-            default:
-                qg.v2 v2Var = (qg.v2) this.f33653c;
-                qg.u2 u2Var = v2Var.f41965q0;
-                if (this.f33652b && v2Var.f41971w0 > 0 && v2Var.f41972x0 > 0 && !v2Var.f41974z0 && u2Var.getLayout() != null) {
-                    float f7 = AndroidUtilities.displaySize.y / 3.0f;
-                    float height = u2Var.getLayout().getHeight();
-                    if (height > f7 && (clamp = Utilities.clamp((int) ((f7 / height) * v2Var.getBaseFontSize()), v2Var.f41972x0, v2Var.f41971w0)) != v2Var.getBaseFontSize()) {
-                        v2Var.setBaseFontSize(clamp);
-                        Runnable runnable = v2Var.f41973y0;
-                        if (runnable != null) {
-                            runnable.run();
+                    return;
+                } else if (tL_error != null) {
+                    ke0Var.f37955w = false;
+                    if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                        int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                        if (intValue < 60) {
+                            formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
+                        } else {
+                            formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                         }
+                        ug0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                        return;
                     }
-                }
-                v2Var.s();
-                return;
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        boolean z10;
-        switch (this.f33651a) {
-            case 0:
-                return;
-            default:
-                if (i12 > 3) {
-                    z10 = true;
+                    ug0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error.text);
+                    return;
                 } else {
-                    z10 = false;
+                    return;
                 }
-                this.f33652b = z10;
-                return;
         }
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f33651a;
-    }
-
-    public fe0(ge0 ge0Var, boolean z10) {
-        this.f33653c = ge0Var;
-        this.f33652b = z10;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    public fe0(ke0 ke0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str, String str2) {
+        this.f36278b = ke0Var;
+        this.f36279c = tL_error;
+        this.f36281f = tLObject;
+        this.d = str;
+        this.f36280e = str2;
     }
 }

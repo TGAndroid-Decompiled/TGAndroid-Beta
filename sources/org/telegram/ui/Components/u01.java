@@ -1,39 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class u01 extends FrameLayout {
-    public static final int e = 0;
-    public TextView f28675a;
-    public t01 f28676b;
-    public TLRPC.TL_help_termsOfService f28677c;
-    public int d;
+public final class u01 extends lw0 {
+    public final org.telegram.ui.k20 f31230w0;
+    public final org.telegram.ui.ActionBar.d6 f31231x0;
+    public final s01 f31232y0;
 
-    public final void a() {
-        t01 t01Var = this.f28676b;
-        int i10 = this.d;
-        org.telegram.ui.ra0 ra0Var = (org.telegram.ui.ra0) t01Var;
-        ra0Var.getClass();
-        UserConfig.getInstance(i10).unacceptedTermsOfService = null;
-        UserConfig.getInstance(i10).saveConfig(false);
-        LaunchActivity launchActivity = ra0Var.f37278a;
-        ArrayList arrayList = launchActivity.f31108d0;
-        if (!arrayList.isEmpty()) {
-            ((org.telegram.ui.ActionBar.m2) hg.c.g(1, arrayList)).onResume();
-        }
-        launchActivity.C0.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new org.telegram.ui.c10(ra0Var, 15)).start();
-        TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
-        tL_help_acceptTermsOfService.f18392id = this.f28677c.f18394id;
-        ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new ai.u7(16));
+    public u01(Context context, org.telegram.ui.ActionBar.d6 d6Var, s01 s01Var) {
+        super(context, null);
+        this.f31231x0 = d6Var;
+        this.f31232y0 = s01Var;
+        this.f31230w0 = new org.telegram.ui.k20();
     }
 
-    public void setDelegate(t01 t01Var) {
-        this.f28676b = t01Var;
+    @Override
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final boolean Q() {
+        return false;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.f31232y0) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.save();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, AndroidUtilities.dp(45.0f), getHeight());
+            this.f31230w0.b(canvas, rectF, 0, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
+        return this.f31231x0;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824);
+        s01 s01Var = this.f31232y0;
+        s01Var.measure(makeMeasureSpec, i11);
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), s01Var.getMeasuredHeight() + AndroidUtilities.dp(24.0f));
     }
 }

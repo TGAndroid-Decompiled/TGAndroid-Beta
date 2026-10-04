@@ -27,8 +27,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f9323a;
-    public static volatile ArrayList f9324b;
+    public static volatile e f10148a;
+    public static volatile ArrayList f10149b;
 
     public static void a(Context context, ArrayList arrayList) {
         List p5 = p(arrayList);
@@ -55,7 +55,8 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        it.next().getClass();
+        throw new ClassCastException();
     }
 
     public static boolean b(Context context, c cVar) {
@@ -63,7 +64,7 @@ public abstract class f {
         IconCompat c10;
         IconCompat iconCompat = cVar.h;
         if (iconCompat != null) {
-            int i10 = iconCompat.f2160a;
+            int i10 = iconCompat.f2344a;
             if (i10 != 6 && i10 != 4) {
                 return true;
             }
@@ -73,7 +74,7 @@ public abstract class f {
             }
             if (i10 == 6) {
                 c10 = new IconCompat(5);
-                c10.f2161b = decodeStream;
+                c10.f2345b = decodeStream;
             } else {
                 c10 = IconCompat.c(decodeStream);
             }
@@ -147,7 +148,7 @@ public abstract class f {
     public static List i(Context context) {
         Bundle bundle;
         String string;
-        if (f9324b == null) {
+        if (f10149b == null) {
             ArrayList arrayList = new ArrayList();
             PackageManager packageManager = context.getPackageManager();
             Intent intent = new Intent("androidx.core.content.pm.SHORTCUT_LISTENER");
@@ -166,26 +167,26 @@ public abstract class f {
                     }
                 }
             }
-            if (f9324b == null) {
-                f9324b = arrayList;
+            if (f10149b == null) {
+                f10149b = arrayList;
             }
         }
-        return f9324b;
+        return f10149b;
     }
 
     public static e j(Context context) {
-        if (f9323a == null) {
+        if (f10148a == null) {
             if (Build.VERSION.SDK_INT >= 23) {
                 try {
-                    f9323a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                    f10148a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
                 } catch (Exception unused) {
                 }
             }
-            if (f9323a == null) {
-                f9323a = new Object();
+            if (f10148a == null) {
+                f10148a = new Object();
             }
         }
-        return f9323a;
+        return f10148a;
     }
 
     public static List k(Context context) {
@@ -242,9 +243,9 @@ public abstract class f {
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f9321m;
+                        int i13 = cVar2.f10146m;
                         if (i13 > i11) {
-                            str2 = cVar2.f9313b;
+                            str2 = cVar2.f10137b;
                             i11 = i13;
                         }
                     }
@@ -277,10 +278,10 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f9313b);
+                q(context, cVar.f10137b);
                 throw th2;
             }
-            q(context, cVar.f9313b);
+            q(context, cVar.f10137b);
         }
     }
 
@@ -293,7 +294,8 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        it.next().getClass();
+        throw new ClassCastException();
     }
 
     public static void o(Context context, ArrayList arrayList) {
@@ -305,7 +307,8 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        it.next().getClass();
+        throw new ClassCastException();
     }
 
     public static List p(ArrayList arrayList) {
@@ -367,8 +370,8 @@ public abstract class f {
         }
         try {
             surface.setFrameRate(f7, i10);
-        } catch (IllegalStateException e) {
-            e2.a.f("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e);
+        } catch (IllegalStateException e7) {
+            e2.a.f("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e7);
         }
     }
 
@@ -401,6 +404,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw a4.a.k(it);
+        it.next().getClass();
+        throw new ClassCastException();
     }
 }

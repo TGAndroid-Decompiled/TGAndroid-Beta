@@ -6,30 +6,30 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.q;
 import java.util.ArrayList;
 import java.util.List;
-import w7.f0;
+import w7.g0;
 public final class f extends o6.a implements q {
     public static final Parcelable.Creator<f> CREATOR = new m8.h(23);
-    public final List f15678a;
-    public final String f15679b;
+    public final List f17140a;
+    public final String f17141b;
 
     public f(String str, ArrayList arrayList) {
-        this.f15678a = arrayList;
-        this.f15679b = str;
+        this.f17140a = arrayList;
+        this.f17141b = str;
     }
 
     @Override
     public final Status i() {
-        if (this.f15679b != null) {
-            return Status.e;
+        if (this.f17141b != null) {
+            return Status.f6468e;
         }
-        return Status.f6004r;
+        return Status.f6471r;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.n(parcel, 1, this.f15678a);
-        f0.l(parcel, 2, this.f15679b);
-        f0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.n(parcel, 1, this.f17140a);
+        g0.l(parcel, 2, this.f17141b);
+        g0.r(parcel, q6);
     }
 }

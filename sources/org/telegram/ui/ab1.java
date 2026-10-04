@@ -1,69 +1,38 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class ab1 extends org.telegram.ui.ActionBar.e3 {
-    public static ab1 f32095b;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class ab1 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final StickersActivity f34774a;
 
-    public static void m(ab1 ab1Var, qy qyVar) {
-        if (qyVar.getParentActivity() == null) {
-            return;
-        }
-        MessagesController.getInstance(ab1Var.currentAccount).clearQueryTime();
-        qyVar.getMessagesStorage().clearLocalDatabase();
-    }
-
-    public static void n(qy qyVar) {
-        if (f32095b == null) {
-            ?? e3Var = new org.telegram.ui.ActionBar.e3(qyVar.getParentActivity(), false);
-            Activity parentActivity = qyVar.getParentActivity();
-            LinearLayout e = org.telegram.messenger.f0.e(parentActivity, 1);
-            org.telegram.ui.Components.lx0 lx0Var = new org.telegram.ui.Components.lx0(parentActivity, e3Var.currentAccount);
-            lx0Var.setStickerNum(7);
-            lx0Var.getImageReceiver().setAutoRepeat(1);
-            e.addView(lx0Var, w7.y5.t(144, 144, 1, 0, 16, 0, 0));
-            TextView textView = new TextView(parentActivity);
-            textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.h6.f19167j5;
-            org.telegram.messenger.f0.q(textView, org.telegram.ui.ActionBar.h6.w0(null, i10, false), 1, 20.0f);
-            textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
-            e.addView(textView, w7.y5.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
-            TextView textView2 = new TextView(parentActivity);
-            textView2.setGravity(8388611);
-            textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
-            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(qyVar.getMessagesStorage().getDatabaseSize()))));
-            e.addView(textView2, w7.y5.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
-            TextView textView3 = new TextView(parentActivity);
-            textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-            textView3.setGravity(17);
-            textView3.setTextSize(1, 14.0f);
-            textView3.setTypeface(AndroidUtilities.bold());
-            textView3.setText(LocaleController.getString(R.string.ClearLocalDatabase));
-            textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-            int dp = AndroidUtilities.dp(6.0f);
-            int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-            int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19061d6, false), 120);
-            textView3.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, w02, k10, k10));
-            e.addView(textView3, w7.y5.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-            textView3.setOnClickListener(new ny0(8, e3Var, qyVar));
-            ScrollView scrollView = new ScrollView(parentActivity);
-            scrollView.addView(e);
-            e3Var.setCustomView(scrollView);
-            f32095b = e3Var;
-            e3Var.show();
-        }
+    public ab1(StickersActivity stickersActivity) {
+        this.f34774a = stickersActivity;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        f32095b = null;
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        StickersActivity.S(this.f34774a, (org.telegram.ui.Components.g61) obj, (View) obj2);
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        boolean z10;
+        org.telegram.ui.Components.g61 g61Var = (org.telegram.ui.Components.g61) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        StickersActivity stickersActivity = this.f34774a;
+        if (stickersActivity.f34485x.isEmpty() && (g61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
+            stickersActivity.n0((org.telegram.ui.Cells.m8) view);
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        return Boolean.valueOf(z10);
     }
 }

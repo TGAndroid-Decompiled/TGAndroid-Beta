@@ -6,129 +6,129 @@ import android.view.View;
 import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
-import org.telegram.ui.ActionBar.e3;
+import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.Cells.y2;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.ee0;
-import org.telegram.ui.Components.hy0;
-import org.telegram.ui.Components.il;
 import org.telegram.ui.Components.j8;
-import org.telegram.ui.Components.lv0;
-import org.telegram.ui.Components.no0;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.oz;
-import org.telegram.ui.Components.qk;
+import org.telegram.ui.Components.jl;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.pv0;
+import org.telegram.ui.Components.pz;
+import org.telegram.ui.Components.qo0;
+import org.telegram.ui.Components.qy0;
 import org.telegram.ui.Components.ri0;
-import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.wq0;
-import org.telegram.ui.Components.xu;
+import org.telegram.ui.Components.rk;
+import org.telegram.ui.Components.xi;
+import org.telegram.ui.Components.zq0;
+import org.telegram.ui.Components.zu;
 import org.telegram.ui.PopupNotificationActivity;
-import org.telegram.ui.h9;
+import org.telegram.ui.ak0;
 import org.telegram.ui.i4;
-import org.telegram.ui.oo0;
-import org.telegram.ui.qa;
-import org.telegram.ui.ub;
-import org.telegram.ui.wj0;
-import org.telegram.ui.wn;
+import org.telegram.ui.j9;
+import org.telegram.ui.sa;
+import org.telegram.ui.so0;
+import org.telegram.ui.wb;
+import org.telegram.ui.yn;
 public final class d implements View.OnTouchListener {
-    public final int f3558a;
+    public final int f3846a;
 
     public d(int i10) {
-        this.f3558a = i10;
+        this.f3846a = i10;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f3558a) {
+        switch (this.f3846a) {
             case 0:
-                int i10 = u.f3582a0;
+                int i10 = u.f3872a0;
                 return true;
             case 1:
-                int i11 = e3.f18854a;
+                int i11 = f3.f20603a;
                 return true;
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = i4.f34366b1;
+                HashSet hashSet = i4.f37230b1;
                 return true;
             case 4:
-                int i12 = h9.e;
+                int i12 = j9.f37601e;
                 return true;
             case 5:
-                int i13 = y2.f21867w;
+                int i13 = y2.f23747w;
                 return true;
             case 6:
-                Paint paint = qa.H;
+                Paint paint = sa.H;
                 return true;
             case 7:
-                int i14 = ub.Q0;
+                int i14 = wb.Q0;
                 return true;
             case 8:
-                int i15 = wn.Gc;
+                int i15 = yn.Bc;
                 return true;
             case 9:
                 return true;
             case 10:
-                Pattern pattern = e5.f23847a;
+                Pattern pattern = e5.f25913a;
                 return true;
             case 11:
                 j8 j8Var = j8.T0;
                 return true;
             case 12:
-                int i16 = ChatActivityEnterView.f21954n5;
+                int i16 = ChatActivityEnterView.f23846n5;
                 return true;
             case 13:
-                int i17 = wi.O2;
+                int i17 = xi.H2;
                 return true;
             case 14:
-                int i18 = qk.f27732g0;
+                int i18 = rk.f30424g0;
                 return true;
             case 15:
-                int i19 = il.E0;
+                int i19 = jl.E0;
                 return true;
             case 16:
-                int i20 = op.f27135i0;
+                int i20 = pp.f29680i0;
                 return true;
             case 17:
-                xu xuVar = xu.S;
+                zu zuVar = zu.S;
                 return true;
             case 18:
-                int i21 = oz.h;
+                int i21 = pz.h;
                 return true;
             case 19:
-                int[] iArr = ee0.f23989a0;
+                int[] iArr = ee0.f26050a0;
                 return true;
             case 20:
                 int i22 = ri0.R;
                 return true;
             case 21:
-                int i23 = no0.Y0;
+                int i23 = qo0.Z0;
                 return true;
             case 22:
-                int i24 = wq0.f30117a1;
+                int i24 = zq0.W0;
                 return true;
             case 23:
-                int[] iArr2 = lv0.f26102d2;
+                int[] iArr2 = pv0.f29747d2;
                 return true;
             case 24:
-                int i25 = hy0.f24895u0;
+                int i25 = qy0.f30184u0;
                 return true;
             case 25:
-                int i26 = UndoView.f22452e0;
+                int i26 = UndoView.f24367e0;
                 return true;
             case 26:
-                int i27 = UndoView.f22452e0;
+                int i27 = UndoView.f24367e0;
                 return true;
             case 27:
-                int i28 = wj0.f39377d0;
+                int i28 = ak0.f34838d0;
                 return true;
             case 28:
-                List list = oo0.f36277g1;
+                List list = so0.f40537g1;
                 return true;
             default:
-                int i29 = PopupNotificationActivity.f31431b0;
+                int i29 = PopupNotificationActivity.f34102b0;
                 return true;
         }
     }

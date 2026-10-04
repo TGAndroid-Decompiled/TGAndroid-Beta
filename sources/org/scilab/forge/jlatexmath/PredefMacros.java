@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.dynamic.DynamicAtom;
 import ru.noties.jlatexmath.awt.Color;
-import v7.j;
+import t8.b;
 public class PredefMacros {
     static {
         NewEnvironmentMacro.addNewEnvironment("array", "\\array@@env{#1}{", "}", 1);
@@ -128,7 +128,7 @@ public class PredefMacros {
     }
 
     public static final Atom Braket_macro(TeXParser teXParser, String[] strArr) {
-        return new TeXFormula(teXParser, a.q("\\left\\langle ", strArr[1].replaceAll("\\|", "\\\\middle\\\\vert "), "\\right\\rangle")).root;
+        return new TeXFormula(teXParser, a.p("\\left\\langle ", strArr[1].replaceAll("\\|", "\\\\middle\\\\vert "), "\\right\\rangle")).root;
     }
 
     public static final Atom DeclareMathSizes_macro(TeXParser teXParser, String[] strArr) {
@@ -184,7 +184,7 @@ public class PredefMacros {
     }
 
     public static final Atom Set_macro(TeXParser teXParser, String[] strArr) {
-        return new TeXFormula(teXParser, a.q("\\left\\{", strArr[1].replaceFirst("\\|", "\\\\middle\\\\vert "), "\\right\\}")).root;
+        return new TeXFormula(teXParser, a.p("\\left\\{", strArr[1].replaceFirst("\\|", "\\\\middle\\\\vert "), "\\right\\}")).root;
     }
 
     public static final Atom TStroke_macro(TeXParser teXParser, String[] strArr) {
@@ -417,8 +417,8 @@ public class PredefMacros {
     public static final Atom bgcolor_macro(TeXParser teXParser, String[] strArr) {
         try {
             return new ColorAtom(new TeXFormula(teXParser, strArr[2]).root, ColorAtom.getColor(strArr[1]), (Color) null);
-        } catch (NumberFormatException e) {
-            throw new ParseException(e.toString());
+        } catch (NumberFormatException e7) {
+            throw new ParseException(e7.toString());
         }
     }
 
@@ -769,8 +769,8 @@ public class PredefMacros {
     public static final Atom fgcolor_macro(TeXParser teXParser, String[] strArr) {
         try {
             return new ColorAtom(new TeXFormula(teXParser, strArr[2]).root, (Color) null, ColorAtom.getColor(strArr[1]));
-        } catch (NumberFormatException e) {
-            throw new ParseException(e.toString());
+        } catch (NumberFormatException e7) {
+            throw new ParseException(e7.toString());
         }
     }
 
@@ -934,8 +934,8 @@ public class PredefMacros {
                 return new SpaceAtom(i10, 0.0f, parseFloat, 0.0f);
             }
             throw new ParseException("Unknown unit \"" + strArr[1].substring(i11) + "\" !");
-        } catch (NumberFormatException e) {
-            throw new ParseException(e.toString());
+        } catch (NumberFormatException e7) {
+            throw new ParseException(e7.toString());
         }
     }
 
@@ -1342,7 +1342,7 @@ public class PredefMacros {
             NewCommandMacro.addNewCommand(str.substring(1), strArr[2], valueOf.intValue(), strArr[4]);
             return null;
         }
-        throw new ParseException(j.g("Invalid name for the command :", str));
+        throw new ParseException(b.i("Invalid name for the command :", str));
     }
 
     public static final Atom newenvironment_macro(TeXParser teXParser, String[] strArr) {
@@ -1508,7 +1508,7 @@ public class PredefMacros {
             NewCommandMacro.addReNewCommand(str.substring(1), strArr[2], valueOf.intValue());
             return null;
         }
-        throw new ParseException(j.g("Invalid name for the command :", str));
+        throw new ParseException(b.i("Invalid name for the command :", str));
     }
 
     public static final Atom renewenvironment_macro(TeXParser teXParser, String[] strArr) {
@@ -1554,9 +1554,9 @@ public class PredefMacros {
         String str = "";
         for (int i10 = 0; i10 < 13; i10++) {
             while (parseInt >= iArr[i10]) {
-                StringBuilder v = a.v(str);
-                v.append(strArr2[i10]);
-                str = v.toString();
+                StringBuilder u10 = a.u(str);
+                u10.append(strArr2[i10]);
+                str = u10.toString();
                 parseInt -= iArr[i10];
             }
         }

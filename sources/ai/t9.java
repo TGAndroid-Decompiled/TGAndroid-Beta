@@ -1,4 +1,4 @@
 package ai;
 public interface t9 {
-    void b(boolean z10);
+    void f(boolean z10);
 }

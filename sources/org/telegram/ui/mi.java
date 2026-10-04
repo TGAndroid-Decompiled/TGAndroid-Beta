@@ -1,20 +1,23 @@
 package org.telegram.ui;
+public final class mi implements org.telegram.ui.Components.gh0 {
+    public boolean f38598a = true;
+    public final org.telegram.ui.Components.sk0 f38599b;
 
-import android.app.Activity;
-import java.util.ArrayList;
-public final class mi extends org.telegram.ui.Components.vv {
-    public final wn W;
-
-    public mi(wn wnVar, org.telegram.ui.ActionBar.m2 m2Var, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
-        super(m2Var, activity, d6Var, arrayList);
-        this.W = wnVar;
+    public mi(org.telegram.ui.Components.sk0 sk0Var) {
+        this.f38599b = sk0Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        wn wnVar = this.W;
-        wnVar.getClass();
-        wnVar.g8(false, true, 0.0f);
+    public final void a(float f7, float f10) {
+        org.telegram.ui.Components.sk0 sk0Var = this.f38599b;
+        if (f7 == 0.0f && !this.f38598a) {
+            sk0Var.r(false);
+            this.f38598a = true;
+        } else if (f7 == 1.0f && this.f38598a) {
+            sk0Var.setAlpha(1.0f - f10);
+            if (f10 == 1.0f) {
+                this.f38598a = false;
+            }
+        }
     }
 }

@@ -3,13 +3,13 @@ package u2;
 import android.net.Uri;
 import java.util.Map;
 public final class s implements g2.h {
-    public final g2.h f43766a;
-    public final int f43767b;
-    public final r0 f43768c;
+    public final g2.h f47378a;
+    public final int f47379b;
+    public final s0 f47380c;
     public final byte[] d;
-    public int e;
+    public int f47381e;
 
-    public s(g2.h hVar, int i10, r0 r0Var) {
+    public s(g2.h hVar, int i10, s0 s0Var) {
         boolean z10;
         if (i10 > 0) {
             z10 = true;
@@ -17,17 +17,17 @@ public final class s implements g2.h {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f43766a = hVar;
-        this.f43767b = i10;
-        this.f43768c = r0Var;
+        this.f47378a = hVar;
+        this.f47379b = i10;
+        this.f47380c = s0Var;
         this.d = new byte[1];
-        this.e = i10;
+        this.f47381e = i10;
     }
 
     @Override
     public final void addTransferListener(g2.c0 c0Var) {
         c0Var.getClass();
-        this.f43766a.addTransferListener(c0Var);
+        this.f47378a.addTransferListener(c0Var);
     }
 
     @Override
@@ -37,12 +37,12 @@ public final class s implements g2.h {
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f43766a.getResponseHeaders();
+        return this.f47378a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f43766a.getUri();
+        return this.f47378a.getUri();
     }
 
     @Override
@@ -53,8 +53,8 @@ public final class s implements g2.h {
     @Override
     public final int read(byte[] bArr, int i10, int i11) {
         long max;
-        int i12 = this.e;
-        g2.h hVar = this.f43766a;
+        int i12 = this.f47381e;
+        g2.h hVar = this.f47378a;
         if (i12 == 0) {
             byte[] bArr2 = this.d;
             int i13 = 0;
@@ -75,28 +75,28 @@ public final class s implements g2.h {
                     }
                     if (i14 > 0) {
                         e2.v vVar = new e2.v(bArr3, i14);
-                        r0 r0Var = this.f43768c;
-                        if (!r0Var.f43764w) {
-                            max = r0Var.f43762r;
+                        s0 s0Var = this.f47380c;
+                        if (!s0Var.f47390w) {
+                            max = s0Var.f47388r;
                         } else {
-                            max = Math.max(r0Var.f43765x.j(true), r0Var.f43762r);
+                            max = Math.max(s0Var.f47391x.j(true), s0Var.f47388r);
                         }
                         long j3 = max;
                         int a2 = vVar.a();
-                        c3.h0 h0Var = r0Var.v;
+                        c3.h0 h0Var = s0Var.v;
                         h0Var.getClass();
                         h0Var.d(a2, vVar);
                         h0Var.c(j3, 1, a2, 0, null);
-                        r0Var.f43764w = true;
+                        s0Var.f47390w = true;
                     }
                 }
-                this.e = this.f43767b;
+                this.f47381e = this.f47379b;
             }
             return -1;
         }
-        int read2 = hVar.read(bArr, i10, Math.min(this.e, i11));
+        int read2 = hVar.read(bArr, i10, Math.min(this.f47381e, i11));
         if (read2 != -1) {
-            this.e -= read2;
+            this.f47381e -= read2;
         }
         return read2;
     }

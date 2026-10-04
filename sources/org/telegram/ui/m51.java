@@ -1,141 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class m51 extends FrameLayout {
-    public final int f35490a;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class m51 implements Utilities.Callback {
+    public final int f38417a;
+    public final LinkedHashSet f38418b;
+    public final Runnable f38419c;
 
-    public m51(Context context, int i10) {
-        super(context);
-        this.f35490a = i10;
+    public m51(LinkedHashSet linkedHashSet, Runnable runnable, int i10) {
+        this.f38417a = i10;
+        this.f38418b = linkedHashSet;
+        this.f38419c = runnable;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f35490a) {
-            case 6:
-                org.telegram.ui.ActionBar.h6.f19147i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.h6.f19147i3.getIntrinsicHeight());
-                org.telegram.ui.ActionBar.h6.f19147i3.draw(canvas);
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f35490a) {
-            case 9:
-                return super.drawChild(canvas, view, j3);
-            case 10:
-            default:
-                return super.drawChild(canvas, view, j3);
-            case 11:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean hasOverlappingRendering() {
-        switch (this.f35490a) {
-            case 8:
-                return false;
-            default:
-                return super.hasOverlappingRendering();
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f35490a) {
-            case 5:
-                super.onDraw(canvas);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.h6.f19182k0);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f35490a) {
-            case 2:
-                int childCount = getChildCount();
-                int i14 = 0;
-                int i15 = 0;
-                for (int i16 = 0; i16 < childCount; i16++) {
-                    if (getChildAt(i16).getMeasuredWidth() + i14 > getMeasuredWidth()) {
-                        i15 += getChildAt(i16).getMeasuredHeight();
-                        i14 = 0;
-                    }
-                    getChildAt(i16).layout(i14, i15, getChildAt(i16).getMeasuredWidth() + i14, getChildAt(i16).getMeasuredHeight() + i15);
-                    i14 += getChildAt(i16).getMeasuredWidth();
-                }
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        int i12;
-        switch (this.f35490a) {
+    public final void run(Object obj) {
+        switch (this.f38417a) {
             case 0:
-                super.onMeasure(i10, org.telegram.messenger.ok.C(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(i10, i11);
-                return;
-            case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
-                int childCount = getChildCount();
-                int i13 = 0;
-                if (childCount > 0) {
-                    i12 = getChildAt(0).getMeasuredHeight();
-                } else {
-                    i12 = 0;
+                ArrayList arrayList = (ArrayList) obj;
+                if (arrayList != null) {
+                    this.f38418b.addAll(arrayList);
                 }
-                int i14 = 0;
-                int i15 = 0;
-                for (int i16 = 0; i16 < childCount; i16++) {
-                    if (getChildAt(i16).getMeasuredWidth() + i14 > size) {
-                        i15 += getChildAt(i16).getMeasuredHeight();
-                        i14 = 0;
-                    }
-                    i14 += getChildAt(i16).getMeasuredWidth();
-                }
-                int measuredWidth = getMeasuredWidth();
-                if (getChildCount() != 0) {
-                    i13 = AndroidUtilities.dp(16.0f) + i12 + i15;
-                }
-                setMeasuredDimension(measuredWidth, i13);
+                this.f38419c.run();
                 return;
-            case 3:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                return;
-            case 4:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                return;
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
             default:
-                super.onMeasure(i10, i11);
-                return;
-            case 10:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
+                TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) obj;
+                if (tL_emojiList != null) {
+                    this.f38418b.addAll(tL_emojiList.document_id);
+                }
+                this.f38419c.run();
                 return;
         }
     }

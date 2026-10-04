@@ -1,39 +1,110 @@
 package w7;
 public abstract class f9 {
-    public static int a(java.lang.Object r8, java.lang.Object r9, int r10, java.lang.Object r11, int[] r12, java.lang.Object[] r13, java.lang.Object[] r14) {
-        throw new UnsupportedOperationException("Method not decompiled: w7.f9.a(java.lang.Object, java.lang.Object, int, java.lang.Object, int[], java.lang.Object[], java.lang.Object[]):int");
-    }
-
-    public static int b(int i10, Object obj) {
-        if (obj instanceof byte[]) {
-            return ((byte[]) obj)[i10] & 255;
+    public static final w0.d a(CharSequence charSequence, String str) {
+        String str2;
+        switch (str.hashCode()) {
+            case -2055374133:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_USER_CANCELED")) {
+                    return new w0.b(charSequence);
+                }
+                break;
+            case -1166690414:
+                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
+                    return new w0.c(charSequence, 3);
+                }
+                break;
+            case -580283253:
+                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
+                    return new w0.c(charSequence, 1);
+                }
+                break;
+            case 1316905704:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_UNKNOWN")) {
+                    return new w0.c(charSequence, 2);
+                }
+                break;
+            case 2092588512:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_INTERRUPTED")) {
+                    return new w0.e(charSequence);
+                }
+                break;
+            case 2131915191:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_NO_CREATE_OPTIONS")) {
+                    return new w0.f(charSequence);
+                }
+                break;
         }
-        if (obj instanceof short[]) {
-            return (char) ((short[]) obj)[i10];
-        }
-        return ((int[]) obj)[i10];
-    }
-
-    public static Object c(int i10) {
-        if (i10 >= 2 && i10 <= 1073741824 && Integer.highestOneBit(i10) == i10) {
-            if (i10 <= 256) {
-                return new byte[i10];
+        if (xd.j.h(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+            int i10 = y0.a.f50350c;
+            if (charSequence != null) {
+                str2 = charSequence.toString();
+            } else {
+                str2 = null;
             }
-            if (i10 <= 65536) {
-                return new short[i10];
+            try {
+                if (xd.j.b(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+                    int i11 = y0.a.f50350c;
+                    return w8.a(str, str2);
+                }
+                throw new Exception();
+            } catch (z0.a unused) {
+                return new w0.c(str2, str);
             }
-            return new int[i10];
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "must be power of 2 between 2^1 and 2^30: "));
+        return new w0.c(charSequence, str);
     }
 
-    public static void d(int i10, int i11, Object obj) {
-        if (obj instanceof byte[]) {
-            ((byte[]) obj)[i10] = (byte) i11;
-        } else if (obj instanceof short[]) {
-            ((short[]) obj)[i10] = (short) i11;
-        } else {
-            ((int[]) obj)[i10] = i11;
+    public static final w0.i b(CharSequence charSequence, String str) {
+        String str2;
+        switch (str.hashCode()) {
+            case -781118336:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_UNKNOWN")) {
+                    return new w0.h(charSequence, 2);
+                }
+                break;
+            case -408155724:
+                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
+                    return new w0.h(charSequence, 3);
+                }
+                break;
+            case -45448328:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_INTERRUPTED")) {
+                    return new w0.j(charSequence);
+                }
+                break;
+            case 580557411:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_USER_CANCELED")) {
+                    return new w0.g(charSequence);
+                }
+                break;
+            case 627896683:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_NO_CREDENTIAL")) {
+                    return new w0.k(charSequence);
+                }
+                break;
+            case 1594095913:
+                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
+                    return new w0.h(charSequence, 1);
+                }
+                break;
         }
+        if (xd.j.h(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+            int i10 = y0.b.f50352c;
+            if (charSequence != null) {
+                str2 = charSequence.toString();
+            } else {
+                str2 = null;
+            }
+            try {
+                if (xd.j.h(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+                    int i11 = y0.b.f50352c;
+                    return y8.a(str, str2);
+                }
+                throw new Exception();
+            } catch (z0.a unused) {
+                return new w0.h(str2, str);
+            }
+        }
+        return new w0.h(charSequence, str);
     }
 }

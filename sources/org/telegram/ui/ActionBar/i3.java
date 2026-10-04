@@ -1,40 +1,112 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.Utilities;
-public final class i3 implements DialogInterface.OnDismissListener {
-    public final int f19478a = 1;
-    public final Utilities.Callback f19479b;
-    public final boolean[] f19480c;
+import android.app.Dialog;
+import android.graphics.Paint;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowManager;
+import ci.ab;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.ui.LaunchActivity;
+public final class i3 extends Dialog {
+    public final t3 f20714a;
+    public final h3 f20715b;
+    public final ab f20716c;
+    public final Paint d;
+    public boolean f20717e;
 
-    public i3(Utilities.Callback callback, boolean[] zArr) {
-        this.f19479b = callback;
-        this.f19480c = zArr;
+    public i3(t3 t3Var) {
+        super(t3Var.mo37getWindowView().getContext(), R.style.TransparentDialog);
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f20714a = t3Var;
+        u3 mo37getWindowView = t3Var.mo37getWindowView();
+        ab abVar = new ab(this, getContext(), 8);
+        this.f20716c = abVar;
+        paint.setColor(i6.w0(null, i6.f20761a7, false));
+        h3 h3Var = new h3(mo37getWindowView);
+        this.f20715b = h3Var;
+        setContentView(h3Var, new ViewGroup.LayoutParams(-1, -1));
+        h3Var.addView(abVar, w7.z5.e(-1, -2, 80));
+        h3Var.setClipToPadding(false);
     }
 
-    @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f19478a) {
-            case 0:
-                boolean[] zArr = this.f19480c;
-                if (!zArr[0]) {
-                    this.f19479b.run(Boolean.FALSE);
-                    zArr[0] = true;
-                    return;
+    public static WindowInsets a(View view, WindowInsets windowInsets) {
+        view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
+        if (Build.VERSION.SDK_INT >= 30) {
+            return WindowInsets.CONSUMED;
+        }
+        return windowInsets.consumeSystemWindowInsets();
+    }
+
+    public static void b(t3 t3Var) {
+        n2 U = LaunchActivity.U();
+        if (U != null) {
+            if (AndroidUtilities.isTablet() || t3Var.b() || AndroidUtilities.hasDialogOnTop(U)) {
+                i3 i3Var = new i3(t3Var);
+                if (t3Var.c(i3Var)) {
+                    h3 h3Var = i3Var.f20715b;
+                    View view = (View) h3Var.f20669a;
+                    AndroidUtilities.removeFromParent(view);
+                    h3Var.addView(view, w7.z5.e(-1, -1, 119));
                 }
-                return;
-            default:
-                Utilities.Callback callback = this.f19479b;
-                if (callback != null && !this.f19480c[0]) {
-                    callback.run(Boolean.FALSE);
-                    return;
-                }
-                return;
+            }
         }
     }
 
-    public i3(boolean[] zArr, Utilities.Callback callback) {
-        this.f19480c = zArr;
-        this.f19479b = callback;
+    public final void c() {
+        this.f20714a.c(null);
+        if (!this.f20717e) {
+            return;
+        }
+        this.f20717e = false;
+        try {
+            super.dismiss();
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        this.f20714a.dismiss(false);
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 30) {
+            window.addFlags(-2147483392);
+        } else {
+            window.addFlags(-2147417856);
+        }
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.gravity = 51;
+        attributes.dimAmount = 0.0f;
+        attributes.flags &= -3;
+        attributes.softInputMode = 16;
+        attributes.height = -1;
+        if (i10 >= 28) {
+            attributes.layoutInDisplayCutoutMode = 1;
+        }
+        window.setAttributes(attributes);
+        if (i10 >= 23) {
+            window.setStatusBarColor(0);
+        }
+        h3 h3Var = this.f20715b;
+        h3Var.setFitsSystemWindows(true);
+        h3Var.setSystemUiVisibility(1792);
+        h3Var.setPadding(0, 0, 0, 0);
+        h3Var.setOnApplyWindowInsetsListener(new g3(0));
     }
 }

@@ -1,48 +1,18 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.ImageReceiver;
-public final class jz0 extends AnimatorListenerAdapter {
-    public final ProfileActivity f34904a;
+import android.content.Context;
+public final class jz0 extends org.telegram.ui.Components.bi0 {
+    public final ProfileActivity f37788s1;
 
-    public jz0(ProfileActivity profileActivity) {
-        this.f34904a = profileActivity;
+    public jz0(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.ActionBar.k kVar, yy0 yy0Var, iz0 iz0Var, org.telegram.ui.Components.wh0 wh0Var, org.telegram.ui.Components.sh0 sh0Var) {
+        super(context, j3, kVar, yy0Var, iz0Var, wh0Var, sh0Var);
+        this.f37788s1 = profileActivity;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        org.telegram.ui.ActionBar.k kVar;
-        int v02;
-        ProfileActivity profileActivity = this.f34904a;
-        kVar = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
-        if (profileActivity.f31633p2) {
-            v02 = 1090519039;
-        } else if (profileActivity.Q5 != null) {
-            v02 = 553648127;
-        } else {
-            v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19098f8, profileActivity.f31700z0);
-        }
-        kVar.A(v02, false);
-        fz0 fz0Var = profileActivity.f31556e0;
-        ImageReceiver imageReceiver = fz0Var.U;
-        org.telegram.ui.Components.d6 animation = imageReceiver.getAnimation();
-        if (animation != null) {
-            animation.w(fz0Var);
-        }
-        imageReceiver.clearImage();
-        ImageReceiver.BitmapHolder bitmapHolder = fz0Var.W;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            fz0Var.W = null;
-        }
-        fz0Var.V = 0.0f;
-        fz0Var.invalidate();
-        profileActivity.H0 = false;
-        profileActivity.l5(false);
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
+    public final void setCustomAvatarProgress(float f7) {
+        ProfileActivity profileActivity = this.f37788s1;
+        profileActivity.f34298n5 = f7;
+        profileActivity.B3();
     }
 }

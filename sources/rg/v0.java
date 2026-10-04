@@ -1,138 +1,90 @@
 package rg;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import java.lang.reflect.Field;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.sa;
-import org.telegram.ui.bx0;
-public final class v0 implements z4.e {
-    public final sa f42786a;
-    public final x0 f42787b;
+import org.telegram.messenger.FileLog;
+public final class v0 extends z4.g {
+    public long f46316w0;
+    public boolean f46317x0;
+    public final u0 f46318y0;
+    public final y0 f46319z0;
 
-    public v0(x0 x0Var, sa saVar) {
-        this.f42787b = x0Var;
-        this.f42786a = saVar;
-    }
-
-    @Override
-    public final void a(int i10) {
-        x0 x0Var = this.f42787b;
-        ArrayList arrayList = x0Var.d;
-        if (((bx0) arrayList.get(i10)).f32509a == 0) {
-            x0Var.N.setTitle(LocaleController.getString(R.string.DoubledLimits));
-            x0Var.N.requestLayout();
-        } else if (((bx0) arrayList.get(i10)).f32509a == 14) {
-            x0Var.N.setTitle(LocaleController.getString(R.string.UpgradedStories));
-            x0Var.N.requestLayout();
-        } else if (((bx0) arrayList.get(i10)).f32509a == 40) {
-            x0Var.N.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
-            x0Var.N.requestLayout();
-        } else if (((bx0) arrayList.get(i10)).f32509a == 28) {
-            x0Var.N.setTitle(LocaleController.getString(R.string.TelegramBusiness));
-            x0Var.N.requestLayout();
+    public v0(y0 y0Var, Context context) {
+        super(context);
+        this.f46319z0 = y0Var;
+        try {
+            Field declaredField = z4.g.class.getDeclaredField("r");
+            declaredField.setAccessible(true);
+            u0 u0Var = new u0(this, getContext());
+            this.f46318y0 = u0Var;
+            declaredField.set(this, u0Var);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
-        d();
     }
 
-    @Override
-    public final void b(float f7, int i10, int i11) {
-        int i12;
-        sa saVar = this.f42786a;
-        saVar.f28175b = f7;
-        saVar.f28176c = i10;
-        saVar.invalidate();
-        x0 x0Var = this.f42787b;
-        x0Var.G = i10;
-        if (i11 > 0) {
-            i12 = i10 + 1;
-        } else {
-            i12 = i10 - 1;
+    public final boolean A(MotionEvent motionEvent) {
+        u0 u0Var;
+        if (motionEvent.getAction() == 0) {
+            this.f46316w0 = System.currentTimeMillis();
+            return true;
         }
-        x0Var.H = i12;
-        x0Var.I = f7;
-        d();
-    }
-
-    public final void d() {
-        boolean z10;
-        boolean z11;
-        int i10;
-        int i11;
-        x0 x0Var = this.f42787b;
-        u0 u0Var = x0Var.f42826n;
-        ArrayList arrayList = x0Var.d;
-        int i12 = 0;
-        while (true) {
-            float f7 = 0.0f;
-            if (i12 >= u0Var.getChildCount()) {
-                break;
-            }
-            w0 w0Var = (w0) u0Var.getChildAt(i12);
-            if (!x0Var.f42829w || !(w0Var.f42815f instanceof n0)) {
-                int i13 = w0Var.f42812a;
-                l0 l0Var = w0Var.e;
-                if (i13 == x0Var.G) {
-                    f7 = (-w0Var.getMeasuredWidth()) * x0Var.I;
-                    l0Var.setOffset(f7);
-                } else if (i13 == x0Var.H) {
-                    f7 = ((-w0Var.getMeasuredWidth()) * x0Var.I) + w0Var.getMeasuredWidth();
-                    l0Var.setOffset(f7);
+        if (motionEvent.getAction() == 1) {
+            if (System.currentTimeMillis() - this.f46316w0 <= ViewConfiguration.getTapTimeout() && (u0Var = this.f46318y0) != null && u0Var.isFinished()) {
+                this.f46317x0 = true;
+                y0 y0Var = this.f46319z0;
+                if (motionEvent.getX() > getWidth() * 0.45f) {
+                    if (y0Var.G + 1 < y0Var.d.size()) {
+                        x(y0Var.G + 1, true);
+                    }
                 } else {
-                    l0Var.setOffset(w0Var.getMeasuredWidth());
+                    int i10 = y0Var.G - 1;
+                    if (i10 >= 0) {
+                        x(i10, true);
+                    }
                 }
+                this.f46317x0 = false;
+                return false;
             }
-            if (w0Var.f42815f instanceof n0) {
-                w0Var.setTranslationX(-f7);
-                w0Var.f42813b.setTranslationX(f7);
-                w0Var.f42814c.setTranslationX(f7);
-            }
-            i12++;
+        } else if (motionEvent.getAction() == 3) {
+            this.f46316w0 = -1L;
         }
-        int i14 = x0Var.G;
-        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((bx0) arrayList.get(x0Var.G)).f32509a) == 0 || i11 == 14 || i11 == 28)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int i15 = x0Var.H;
-        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((bx0) arrayList.get(x0Var.H)).f32509a) == 0 || i10 == 14 || i10 == 28)) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (z10 && z11) {
-            x0Var.f42825f = 1.0f;
-            float f10 = x0Var.I;
-            if (f10 == 0.0f) {
-                f10 = 1.0f;
-            }
-            x0Var.e = f10;
-            x0Var.h = true;
-        } else if (z10) {
-            float f11 = 1.0f - x0Var.I;
-            x0Var.e = f11;
-            x0Var.f42825f = f11;
-            x0Var.h = true;
-        } else if (z11) {
-            float f12 = x0Var.I;
-            x0Var.e = f12;
-            x0Var.f42825f = f12;
-            x0Var.h = false;
-        } else {
-            x0Var.e = 0.0f;
-            x0Var.f42825f = 0.0f;
-            x0Var.h = true;
-        }
-        int i16 = (int) ((1.0f - x0Var.e) * 255.0f);
-        if (i16 != x0Var.K) {
-            x0Var.K = i16;
-            x0Var.f42827r.invalidate();
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.q0(this, 28));
+        return false;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        try {
+            A(motionEvent);
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (Exception unused) {
+            return false;
         }
     }
 
     @Override
-    public final void c(int i10) {
+    public final void onMeasure(int i10, int i11) {
+        int dp = AndroidUtilities.dp(100.0f);
+        if (getChildCount() > 0) {
+            getChildAt(0).measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
+            dp = getChildAt(0).getMeasuredHeight();
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp + this.f46319z0.L, 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f46319z0.f46389w) {
+            boolean A = A(motionEvent);
+            if (!super.onTouchEvent(motionEvent) && !A) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 }

@@ -1,33 +1,33 @@
 package ei;
 
-import ci.y8;
+import ci.x8;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class a implements Utilities.Callback {
-    public final int f8194a;
-    public final l f8195b;
+    public final int f8904a;
+    public final m f8905b;
 
-    public a(l lVar, int i10) {
-        this.f8194a = i10;
-        this.f8195b = lVar;
+    public a(m mVar, int i10) {
+        this.f8904a = i10;
+        this.f8905b = mVar;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f8194a) {
+        switch (this.f8904a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new y8(15, this.f8195b, (TLRPC.UserFull) obj));
+                AndroidUtilities.runOnUIThread(new x8(15, this.f8905b, (TLRPC.UserFull) obj));
                 return;
             case 1:
-                l lVar = this.f8195b;
-                lVar.Y.commission_permille = ((Integer) obj).intValue();
-                lVar.I0();
+                m mVar = this.f8905b;
+                mVar.Y.commission_permille = ((Integer) obj).intValue();
+                mVar.N0();
                 return;
             default:
-                l lVar2 = this.f8195b;
-                lVar2.Y.duration_months = ((Integer) lVar2.f8446a0.get(((Integer) obj).intValue())).intValue();
-                lVar2.I0();
+                m mVar2 = this.f8905b;
+                mVar2.Y.duration_months = ((Integer) mVar2.f9188a0.get(((Integer) obj).intValue())).intValue();
+                mVar2.N0();
                 return;
         }
     }

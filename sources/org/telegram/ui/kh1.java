@@ -7,40 +7,40 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class kh1 extends LinearLayout {
-    public final org.telegram.ui.ActionBar.d6 f35068a;
-    public final ImageView f35069b;
-    public final LinearLayout f35070c;
+    public final org.telegram.ui.ActionBar.d6 f37982a;
+    public final ImageView f37983b;
+    public final LinearLayout f37984c;
     public final TextView d;
-    public final TextView e;
-    public final ImageView f35071f;
+    public final TextView f37985e;
+    public final ImageView f37986f;
     public boolean h;
-    public boolean f35072n;
+    public boolean f37987n;
 
     public kh1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         setOrientation(0);
-        this.f35068a = d6Var;
+        this.f37982a = d6Var;
         ImageView imageView = new ImageView(context);
-        this.f35069b = imageView;
+        this.f37983b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        addView(imageView, w7.y5.t(40, 40, 19, 12, 0, 12, 0));
+        addView(imageView, w7.z5.t(40, 40, 19, 12, 0, 12, 0));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f35070c = linearLayout;
+        this.f37984c = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
-        addView(linearLayout, w7.y5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
+        addView(linearLayout, w7.z5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 16.0f);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.y5.t(-1, -2, 7, 0, 0, 0, 0), context);
-        this.e = h;
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.z5.t(-1, -2, 7, 0, 0, 0, 0), context);
+        this.f37985e = h;
         h.setTextSize(1, 13.0f);
-        linearLayout.addView(h, w7.y5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
+        linearLayout.addView(h, w7.z5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f35071f = imageView2;
+        this.f37986f = imageView2;
         imageView2.setScaleType(scaleType);
-        addView(imageView2, w7.y5.t(40, 40, 21, 12, 0, 12, 0));
+        addView(imageView2, w7.z5.t(40, 40, 21, 12, 0, 12, 0));
     }
 
     @Override

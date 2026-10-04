@@ -1,169 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class dt0 implements zm0 {
-    public final lv0 f23709a;
+import android.view.ViewGroup;
+public final class dt0 extends g.p {
+    public final int f25822c;
+    public final Object d;
+    public final ViewGroup f25823e;
 
-    public dt0(lv0 lv0Var) {
-        this.f23709a = lv0Var;
+    public dt0(ViewGroup viewGroup, Object obj, int i10) {
+        this.f25822c = i10;
+        this.f25823e = viewGroup;
+        this.d = obj;
     }
 
     @Override
-    public final void C() {
-        int a2;
-        int L0;
-        lv0 lv0Var = this.f23709a;
-        eu0[] eu0VarArr = lv0Var.f26130k0;
-        int i10 = eu0VarArr[0].F;
-        if (i10 != 0) {
-            if (i10 != 1 && i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            a2 = AndroidUtilities.dp(58.0f);
-                        } else {
-                            a2 = AndroidUtilities.dp(60.0f);
-                        }
-                    }
-                } else {
-                    a2 = AndroidUtilities.dp(100.0f);
-                }
-            }
-            a2 = AndroidUtilities.dp(56.0f);
-        } else {
-            a2 = org.telegram.ui.Cells.u7.a(1);
-        }
-        eu0 eu0Var = eu0VarArr[0];
-        if (eu0Var.F == 0) {
-            L0 = (eu0Var.f24070x.L0() / lv0Var.f26133m1[0]) * a2;
-        } else {
-            L0 = eu0Var.f24070x.L0() * a2;
-        }
-        if (L0 >= eu0VarArr[0].h.getMeasuredHeight() * 1.2f) {
-            bl0 bl0Var = eu0VarArr[0].E;
-            bl0Var.f23012b = 1;
-            bl0Var.c(0, 0, false, false);
-            return;
-        }
-        eu0VarArr[0].h.x0(0);
-    }
-
-    @Override
-    public final void C0(float f7) {
-        int i10;
+    public final int i(int i10) {
         int i11;
-        lv0 lv0Var = this.f23709a;
-        org.telegram.ui.ActionBar.u0 u0Var = lv0Var.f26135n0;
-        eu0[] eu0VarArr = lv0Var.f26130k0;
-        int i12 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        if (i12 != 0 || eu0VarArr[1].getVisibility() == 0) {
-            if (lv0Var.f26125h1) {
-                eu0 eu0Var = eu0VarArr[0];
-                eu0Var.setTranslationX((-f7) * eu0Var.getMeasuredWidth());
-                eu0VarArr[1].setTranslationX(eu0VarArr[0].getMeasuredWidth() - (eu0VarArr[0].getMeasuredWidth() * f7));
-            } else {
-                eu0 eu0Var2 = eu0VarArr[0];
-                eu0Var2.setTranslationX(eu0Var2.getMeasuredWidth() * f7);
-                eu0VarArr[1].setTranslationX((eu0VarArr[0].getMeasuredWidth() * f7) - eu0VarArr[0].getMeasuredWidth());
-            }
-            lv0Var.M0(lv0Var.getTabProgress());
-            float a02 = lv0Var.a0(f7);
-            lv0Var.f26139p0 = a02;
-            ImageView imageView = lv0Var.f26144r0;
-            int i13 = 4;
-            if (a02 != 0.0f && lv0Var.D() && !lv0Var.q0()) {
-                i10 = 0;
-            } else {
-                i10 = 4;
-            }
-            imageView.setVisibility(i10);
-            if (u0Var != null && !lv0Var.D()) {
-                if (lv0Var.v0()) {
-                    i11 = 8;
+        switch (this.f25822c) {
+            case 0:
+                iu0 iu0Var = (iu0) this.d;
+                s4.h0 adapter = iu0Var.f27501r.getAdapter();
+                pv0 pv0Var = (pv0) this.f25823e;
+                jv0 jv0Var = pv0Var.I;
+                if (adapter == jv0Var) {
+                    if (jv0Var.j(i10) != 2) {
+                        return 1;
+                    }
+                    return iu0Var.f27502s.J;
+                } else if (pv0.v(pv0Var, adapter) == -1) {
+                    return 1;
                 } else {
-                    i11 = 4;
+                    ((mv0) adapter).getClass();
+                    return 1;
                 }
-                u0Var.setVisibility(i11);
-                lv0Var.f26137o0 = 0.0f;
-            } else {
-                lv0Var.f26137o0 = lv0Var.b0(f7);
-                lv0Var.t1();
-            }
-            lv0Var.q1(false);
-            if (i12 == 0) {
-                eu0 eu0Var3 = eu0VarArr[0];
-                eu0VarArr[0] = eu0VarArr[1];
-                eu0VarArr[1] = eu0Var3;
-                eu0Var3.setVisibility(8);
-                if (u0Var != null && lv0Var.f26159x0 == 2) {
-                    if (lv0Var.v0()) {
-                        i13 = 8;
-                    }
-                    u0Var.setVisibility(i13);
+            default:
+                bi.i iVar = (bi.i) this.d;
+                u61 u61Var = ((c71) this.f25823e).f25244f3;
+                if (u61Var == null) {
+                    return iVar.J;
                 }
-                lv0Var.f26159x0 = 0;
-                lv0Var.f1();
-            }
-        }
-    }
-
-    @Override
-    public final void d(int i10, boolean z10) {
-        lv0 lv0Var = this.f23709a;
-        eu0[] eu0VarArr = lv0Var.f26130k0;
-        if (eu0VarArr[0].F == i10) {
-            return;
-        }
-        gs0 gs0Var = lv0Var.W;
-        if (gs0Var != null && i10 == 8) {
-            gs0Var.f37566n.f(1.0f, 0);
-        }
-        eu0 eu0Var = eu0VarArr[1];
-        eu0Var.F = i10;
-        eu0Var.setVisibility(0);
-        lv0Var.k0();
-        lv0Var.m1(true);
-        lv0Var.f26125h1 = z10;
-        lv0Var.L0();
-        lv0Var.A(!lv0Var.s0(i10), true);
-        lv0Var.q1(true);
-    }
-
-    @Override
-    public final boolean n1(int i10, View view) {
-        TLRPC.UserFull userFull;
-        TLRPC.ProfileTab profileTab;
-        lv0 lv0Var = this.f23709a;
-        org.telegram.ui.ActionBar.m2 m2Var = lv0Var.f26154v1;
-        if (m2Var != null && lv0.d0(i10, lv0Var.f26116d1 instanceof TLRPC.TL_channelFull) != null) {
-            if (lv0Var.f26116d1 instanceof TLRPC.TL_channelFull) {
-                if (ChatObject.canUserDoAction(m2Var.getMessagesController().getChat(Long.valueOf(lv0Var.f26116d1.f18338id)), 5)) {
-                    profileTab = lv0Var.f26116d1.main_tab;
-                    if (profileTab != null || (i10 != lv0.e0(profileTab) && lv0Var.R1 != i10)) {
-                        a80 H = a80.H(m2Var, view);
-                        H.W(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19061d6, false)));
-                        H.c(R.drawable.tabs_reorder, LocaleController.getString(R.string.ProfileTabSetAsMain), new ld(this, i10, 9), false);
-                        H.Z();
-                        return true;
-                    }
+                g61 G = u61Var.G(i10);
+                if (G == null || (i11 = G.f26677u) == -1) {
+                    return iVar.J;
                 }
-            } else if (lv0Var.f26129j1 == m2Var.getUserConfig().getClientUserId() && (userFull = lv0Var.f26118e1) != null) {
-                profileTab = userFull.main_tab;
-                if (profileTab != null) {
-                }
-                a80 H2 = a80.H(m2Var, view);
-                H2.W(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19061d6, false)));
-                H2.c(R.drawable.tabs_reorder, LocaleController.getString(R.string.ProfileTabSetAsMain), new ld(this, i10, 9), false);
-                H2.Z();
-                return true;
-            }
+                return i11;
         }
-        return false;
     }
 }

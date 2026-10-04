@@ -4,23 +4,23 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class ab0 extends yl0 {
-    public boolean X2;
-    public boolean Y2;
-    public int Z2;
-    public int f22632a3;
-    public final bb0 f22633b3;
+public final class ab0 extends zl0 {
+    public boolean f24508e3;
+    public boolean f24509f3;
+    public int f24510g3;
+    public int f24511h3;
+    public final bb0 f24512i3;
 
     public ab0(bb0 bb0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
-        this.f22633b3 = bb0Var;
-        setOnScrollListener(new ai.r(this, 28));
+        this.f24512i3 = bb0Var;
+        setOnScrollListener(new ai.r(this, 29));
         i(new za0(this));
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        bb0 bb0Var = this.f22633b3;
+    public final void l0(int i10) {
+        bb0 bb0Var = this.f24512i3;
         bb0Var.invalidate();
         bb0Var.b();
     }
@@ -28,22 +28,22 @@ public final class ab0 extends yl0 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        bb0 bb0Var = this.f22633b3;
-        gg.k1 k1Var = bb0Var.f22924f;
-        gg.q1 q1Var = bb0Var.e;
-        if (!bb0Var.f22923c.f42955t ? this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9884f || motionEvent.getY() >= q1Var.e.getBottom() : this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9884f || motionEvent.getY() <= q1Var.e.getTop()) {
-            if (!this.X2 && org.telegram.ui.nt.q().r(motionEvent, bb0Var.f22922b, null, this.f30700p2)) {
+        bb0 bb0Var = this.f24512i3;
+        gg.k1 k1Var = bb0Var.f24909f;
+        gg.q1 q1Var = bb0Var.f24908e;
+        if (!bb0Var.f24907c.f46516t ? this.f24509f3 || q1Var == null || q1Var.f10761e == null || !q1Var.f10762f || motionEvent.getY() >= q1Var.f10761e.getBottom() : this.f24509f3 || q1Var == null || q1Var.f10761e == null || !q1Var.f10762f || motionEvent.getY() <= q1Var.f10761e.getTop()) {
+            if (!this.f24508e3 && org.telegram.ui.rt.q().r(motionEvent, bb0Var.f24906b, null, this.f33545p2)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (((k1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && k1Var.N()) {
-                if (k1Var.f9811n0 == null) {
-                    gg.g1 g1Var = new gg.g1(k1Var, k1Var.f9802f, k1Var.f9810n, k1Var.f9815r, 0);
-                    k1Var.f9811n0 = g1Var;
+                if (k1Var.f10683n0 == null) {
+                    gg.g1 g1Var = new gg.g1(k1Var, k1Var.f10674f, k1Var.f10682n, k1Var.f10687r, 0);
+                    k1Var.f10683n0 = g1Var;
                     g1Var.a();
                 }
-                k1Var.f9811n0.b();
+                k1Var.f10683n0.b();
             }
             if (super.onInterceptTouchEvent(motionEvent) || z10) {
                 return true;
@@ -59,7 +59,7 @@ public final class ab0 extends yl0 {
         int i15;
         int i16 = i12 - i10;
         int i17 = i13 - i11;
-        bb0 bb0Var = this.f22633b3;
+        bb0 bb0Var = this.f24512i3;
         boolean g10 = bb0Var.g();
         s4.c0 currentLayoutManager = bb0Var.getCurrentLayoutManager();
         if (g10) {
@@ -73,7 +73,7 @@ public final class ab0 extends yl0 {
             if (g10) {
                 i15 = 0;
             } else {
-                i15 = this.f22632a3 - i17;
+                i15 = this.f24511h3 - i17;
             }
             i14 = top - i15;
         } else {
@@ -86,26 +86,26 @@ public final class ab0 extends yl0 {
             super.onLayout(false, i10, i11, i12, i13);
             bb0Var.G = false;
             bb0Var.H = false;
-        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f22632a3 != 0) {
+        } else if (N0 != -1 && i16 == this.f24510g3 && i17 - this.f24511h3 != 0) {
             bb0Var.G = true;
             currentLayoutManager.i1(N0, i14, false);
             super.onLayout(false, i10, i11, i12, i13);
             bb0Var.G = false;
         }
-        this.f22632a3 = i17;
-        this.Z2 = i16;
+        this.f24511h3 = i17;
+        this.f24510g3 = i16;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i11);
-        bb0 bb0Var = this.f22633b3;
-        gg.q1 q1Var = bb0Var.e;
+        bb0 bb0Var = this.f24512i3;
+        gg.q1 q1Var = bb0Var.f24908e;
         if (q1Var != null) {
             q1Var.d = Integer.valueOf(size);
-            ci.bb bbVar = q1Var.e;
-            if (bbVar != null) {
-                bbVar.requestLayout();
+            ci.ab abVar = q1Var.f10761e;
+            if (abVar != null) {
+                abVar.requestLayout();
             }
         }
         float min = (int) Math.min(AndroidUtilities.dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
@@ -115,13 +115,13 @@ public final class ab0 extends yl0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        bb0 bb0Var = this.f22633b3;
-        gg.q1 q1Var = bb0Var.e;
-        if (bb0Var.f22923c.f42955t) {
-            if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9884f && motionEvent.getY() > q1Var.e.getTop()) {
+        bb0 bb0Var = this.f24512i3;
+        gg.q1 q1Var = bb0Var.f24908e;
+        if (bb0Var.f24907c.f46516t) {
+            if (!this.f24509f3 && q1Var != null && q1Var.f10761e != null && q1Var.f10762f && motionEvent.getY() > q1Var.f10761e.getTop()) {
                 return false;
             }
-        } else if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9884f && motionEvent.getY() < q1Var.e.getBottom()) {
+        } else if (!this.f24509f3 && q1Var != null && q1Var.f10761e != null && q1Var.f10762f && motionEvent.getY() < q1Var.f10761e.getBottom()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
@@ -129,7 +129,7 @@ public final class ab0 extends yl0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f22633b3.G) {
+        if (this.f24512i3.G) {
             return;
         }
         super.requestLayout();
@@ -138,7 +138,7 @@ public final class ab0 extends yl0 {
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        bb0 bb0Var = this.f22633b3;
+        bb0 bb0Var = this.f24512i3;
         bb0Var.invalidate();
         bb0Var.b();
     }

@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
+public interface e81 {
+    void b(float f7);
 
-import android.graphics.Bitmap;
-public final class e81 {
-    public Bitmap f23937a;
-    public float f23938b;
+    void d(float f7);
 }

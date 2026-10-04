@@ -1,15 +1,28 @@
 package org.telegram.ui;
-public final class bx0 {
-    public final int f32509a;
-    public final int f32510b;
-    public final CharSequence f32511c;
-    public final String d;
-    public int e;
 
-    public bx0(int i10, int i11, String str, String str2) {
-        this.f32509a = i10;
-        this.f32510b = i11;
-        this.f32511c = str;
-        this.d = str2;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class bx0 extends rg.r1 {
+    public final cx0 N;
+
+    public bx0(cx0 cx0Var, Context context) {
+        super(context);
+        this.N = cx0Var;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        TextView textView = this.f46285r;
+        if (textView.getVisibility() == 0) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
+            cx0 cx0Var = this.N;
+            cx0Var.d.f35855n.f34133n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46284n.h, cx0Var.d.f35855n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), cx0Var.d.f35855n.f34133n0.f46037f);
+        }
+        super.dispatchDraw(canvas);
     }
 }

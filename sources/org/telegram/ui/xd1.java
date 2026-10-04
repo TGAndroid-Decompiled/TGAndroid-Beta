@@ -1,16 +1,25 @@
 package org.telegram.ui;
+public final class xd1 implements Runnable {
+    public final int f42834a;
+    public final ge1 f42835b;
 
-import android.view.View;
-public final class xd1 implements View.OnClickListener {
-    public final org.telegram.ui.Components.a80 f39905a;
-
-    public xd1(org.telegram.ui.Components.a80 a80Var) {
-        this.f39905a = a80Var;
+    public xd1(ge1 ge1Var, int i10) {
+        this.f42834a = i10;
+        this.f42835b = ge1Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Components.qc.e();
-        this.f39905a.s();
+    public final void run() {
+        switch (this.f42834a) {
+            case 0:
+                this.f42835b.c(false);
+                return;
+            case 1:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            default:
+                this.f42835b.c(false);
+                return;
+        }
     }
 }

@@ -1,337 +1,80 @@
 package le;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.graphics.fonts.Font;
-import android.view.Surface;
-import android.view.ViewPropertyAnimator;
-import android.widget.ImageView;
-import android.widget.TextView;
-import b2.s;
-import b2.v0;
-import ci.j8;
-import com.google.android.gms.internal.vision.e2;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.messaging.t;
-import ei.r4;
-import i9.u;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.Executor;
-import m4.a1;
-import m4.e1;
-import m4.k1;
-import m4.q;
-import m4.x0;
-import m4.z;
-import m4.z0;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.h5;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.u50;
-import org.telegram.ui.Components.voip.n1;
-import org.telegram.ui.Components.yn0;
-import org.telegram.ui.ar0;
-import org.telegram.ui.st0;
-import org.telegram.ui.web.a0;
-import org.webrtc.GlGenericDrawer;
-import p4.r0;
-import p4.s0;
-import pg.i0;
-import pg.k0;
-import pg.v1;
-import q9.r;
-import qg.c0;
-import qg.n2;
-import qg.o2;
-import qg.y1;
-import r2.v;
-import r2.w;
-import w7.m6;
-public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, n1, z1, i0, v1, j8, OnSuccessListener, ImageReceiver.ImageReceiverDelegate, v, t5.b {
-    public final int f14197a;
-    public final Object f14198b;
+import android.view.View;
+import android.view.animation.Interpolator;
+public final class b implements d {
+    public final int f15431a;
+    public final d f15432b;
+    public final Interpolator f15433c;
+    public final long d;
+    public float f15434e;
+    public boolean f15435f;
+    public e h;
 
-    public b(Object obj, int i10) {
-        this.f14197a = i10;
-        this.f14198b = obj;
+    public b(View view, Interpolator interpolator, long j3) {
+        this(0, new a(view), interpolator, j3, false);
     }
 
     @Override
-    public void C(float f7, int i10) {
-        int i11 = this.f14197a;
+    public final void V(float f7, int i10) {
+        this.f15432b.V(f7, this.f15431a);
     }
 
-    @Override
-    public void D(int i10, float f7, float f10, f fVar) {
-        switch (this.f14197a) {
-            case 0:
-                ((Switch) this.f14198b).invalidate();
-                return;
-            default:
-                qh.c.a((qh.c) this.f14198b);
-                return;
-        }
-    }
-
-    @Override
-    public Object G(cf.c cVar) {
-        switch (this.f14197a) {
-            case 7:
-                return new na.c((Context) cVar.a(Context.class), ((k9.h) cVar.a(k9.h.class)).d(), cVar.x(na.d.class), cVar.c(xa.b.class), (Executor) cVar.i((r) this.f14198b));
-            default:
-                return this.f14198b;
-        }
-    }
-
-    @Override
-    public Typeface a() {
-        return k0.a((Font) this.f14198b);
-    }
-
-    @Override
-    public void accept(Object obj) {
-        switch (this.f14197a) {
-            case 3:
-                ((e1) obj).f((v0) this.f14198b);
-                return;
-            default:
-                ((e1) obj).n((Surface) this.f14198b);
-                return;
-        }
-    }
-
-    @Override
-    public int b(Object obj) {
-        s sVar = (s) this.f14198b;
-        r2.o oVar = (r2.o) obj;
-        String str = oVar.f42251b;
-        if ((!str.equals(sVar.f3301r) && !str.equals(w.b(sVar))) || !oVar.c(sVar, false) || !oVar.d(sVar)) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public void c(q qVar, int i10) {
-        qVar.c(i10, (b2.x0) this.f14198b);
-    }
-
-    @Override
-    public void d(e1 e1Var, m4.r rVar) {
-        ((e2.h) this.f14198b).accept(e1Var);
-    }
-
-    @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        TLRPC.PhotoSize lambda$readParams$0;
-        TLRPC.PhotoSize lambda$readParams$02;
-        switch (this.f14197a) {
-            case 10:
-                lambda$readParams$0 = ((TLRPC.TL_stickerSet) this.f14198b).lambda$readParams$0(inputSerializedData, i10, z10);
-                return lambda$readParams$0;
-            default:
-                lambda$readParams$02 = ((TLRPC.TL_stickerSet_layer143) this.f14198b).lambda$readParams$0(inputSerializedData, i10, z10);
-                return lambda$readParams$02;
-        }
-    }
-
-    @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        kj0 lottieAnimation;
-        o2 o2Var = (o2) this.f14198b;
-        if (z10 && !z11 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
-            o2Var.q(lottieAnimation);
-        }
-    }
-
-    @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        h5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public void e() {
+    public final void a(boolean z10, boolean z11) {
         float f7;
-        st0 st0Var = (st0) this.f14198b;
-        TextView textView = st0Var.f41808y1;
-        boolean a2 = st0Var.F0.a();
-        ImageView imageView = st0Var.f41806w1;
-        imageView.animate().cancel();
-        ViewPropertyAnimator animate = imageView.animate();
-        float f10 = 0.6f;
-        if (a2) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.6f;
-        }
-        animate.alpha(f7).translationY(0.0f).setDuration(150L).start();
-        imageView.setClickable(a2);
-        textView.animate().cancel();
-        ViewPropertyAnimator animate2 = textView.animate();
-        if (a2) {
-            f10 = 1.0f;
-        }
-        animate2.alpha(f10).translationY(0.0f).setDuration(150L).start();
-        textView.setClickable(a2);
-    }
-
-    @Override
-    public void f(a2 a2Var, int i10) {
-        switch (this.f14197a) {
-            case 15:
-                ((a0) this.f14198b).run();
-                return;
-            case 20:
-                ((ar0) this.f14198b).run();
-                return;
-            default:
-                ((c0) this.f14198b).f41600a.f41782f2.r();
-                return;
-        }
-    }
-
-    @Override
-    public Bitmap g(BitmapFactory.Options options) {
-        return BitmapFactory.decodeFile((String) this.f14198b, options);
-    }
-
-    @Override
-    public Object h(m4.a0 a0Var, m4.r rVar, int i10) {
-        int i11 = this.f14197a;
-        Object obj = this.f14198b;
-        switch (i11) {
-            case 2:
-                return a0Var.l(rVar, (e9.i0) obj);
-            default:
-                x0 x0Var = (x0) obj;
-                u uVar = u.f11044b;
-                if (!a0Var.j()) {
-                    x0Var.d(a0Var.f14708t, rVar);
-                    a1.O0(a0Var, rVar, i10, new k1(0));
+        b bVar;
+        if (this.f15435f != z10 || !z11) {
+            this.f15435f = z10;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            if (z11) {
+                if (this.h == null) {
+                    bVar = this;
+                    bVar.h = new e(0, bVar, this.f15433c, this.d, this.f15434e);
+                } else {
+                    bVar = this;
                 }
-                return u.f11044b;
-        }
-    }
-
-    @Override
-    public Object i() {
-        s5.h hVar = (s5.h) ((s5.c) this.f14198b);
-        hVar.getClass();
-        int i10 = o5.a.e;
-        t tVar = new t(7, false);
-        tVar.f7329c = null;
-        tVar.d = new ArrayList();
-        tVar.e = null;
-        tVar.f7328b = "";
-        HashMap hashMap = new HashMap();
-        SQLiteDatabase a2 = hVar.a();
-        a2.beginTransaction();
-        try {
-            o5.a aVar = (o5.a) s5.h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new u50(hVar, hashMap, tVar, 9));
-            a2.setTransactionSuccessful();
-            return aVar;
-        } finally {
-            a2.endTransaction();
-        }
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        h5.b(this, imageReceiver);
-    }
-
-    @Override
-    public void onSuccess(Object obj) {
-        int i10 = this.f14197a;
-        Object obj2 = this.f14198b;
-        switch (i10) {
-            case 23:
-                y1 y1Var = (y1) obj2;
-                ac.b bVar = (ac.b) obj;
-                y1Var.C0 = true;
-                y1Var.B0 = false;
+                bVar.h.a(f7);
                 return;
-            case 24:
-                r4 r4Var = (r4) obj2;
-                ac.b bVar2 = (ac.b) obj;
-                ArrayList arrayList = new ArrayList();
-                for (int i11 = 0; i11 < bVar2.f381a.size(); i11++) {
-                    ac.a aVar = (ac.a) bVar2.f381a.get(i11);
-                    ?? obj3 = new Object();
-                    obj3.f41767a = aVar.f378a;
-                    obj3.f41768b = aVar.d;
-                    obj3.f41769c = aVar.e;
-                    obj3.d = aVar.f379b;
-                    obj3.e = aVar.f380c;
-                    arrayList.add(obj3);
+            }
+            e eVar = this.h;
+            if (eVar != null) {
+                eVar.c(f7);
+            }
+            float f10 = this.f15434e;
+            if (f10 != f7) {
+                int i10 = this.f15431a;
+                d dVar = this.f15432b;
+                if (f10 != f7) {
+                    this.f15434e = f7;
+                    dVar.a0(i10, f7, -1.0f, null);
                 }
-                r4Var.run(arrayList);
-                return;
-            default:
-                n2 n2Var = (n2) obj2;
-                List list = (List) obj;
-                n2Var.getClass();
-                if (list.size() <= 0) {
-                    FileLog.d("objimg: no objects");
-                    return;
-                }
-                int i12 = ((xb.a) list.get(0)).f46020c;
-                String str = null;
-                if (m6.f45063a == null) {
-                    m6.f45063a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
-                }
-                if (i12 >= 0) {
-                    String[] strArr = m6.f45063a;
-                    if (i12 < strArr.length) {
-                        str = strArr[i12];
-                    }
-                }
-                n2Var.f41816c0 = str;
-                StringBuilder sb2 = new StringBuilder("objimg: detected #");
-                sb2.append(((xb.a) list.get(0)).f46020c);
-                sb2.append(" ");
-                sb2.append(n2Var.f41816c0);
-                sb2.append(" ");
-                e2.t(((xb.a) list.get(0)).f46018a, sb2);
-                Emoji.getEmojiDrawable(n2Var.f41816c0);
-                return;
+                dVar.V(f7, i10);
+            }
         }
     }
 
     @Override
-    public void run(Bitmap bitmap, int i10) {
-        org.telegram.ui.Components.voip.u uVar = (org.telegram.ui.Components.voip.u) this.f14198b;
-        if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
-            Utilities.stackBlurBitmap(bitmap, Math.max(7, Math.max(bitmap.getWidth(), bitmap.getHeight()) / 180));
-            AndroidUtilities.runOnUIThread(new yn0(27, uVar, bitmap));
+    public final void a0(int i10, float f7, float f10, e eVar) {
+        if (this.f15434e != f7) {
+            this.f15434e = f7;
+            this.f15432b.a0(this.f15431a, f7, -1.0f, null);
         }
     }
 
-    public b(s0 s0Var, r0 r0Var) {
-        this.f14197a = 16;
-        this.f14198b = s0Var;
+    public b(int i10, d dVar, Interpolator interpolator, long j3) {
+        this(i10, dVar, interpolator, j3, false);
     }
 
-    private final void j(float f7, int i10) {
-    }
-
-    private final void k(float f7, int i10) {
+    public b(int i10, d dVar, Interpolator interpolator, long j3, boolean z10) {
+        this.f15431a = i10;
+        this.f15432b = dVar;
+        this.f15433c = interpolator;
+        this.d = j3;
+        this.f15435f = z10;
+        this.f15434e = z10 ? 1.0f : 0.0f;
     }
 }

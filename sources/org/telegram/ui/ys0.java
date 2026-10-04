@@ -1,44 +1,74 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class ys0 extends org.telegram.ui.Components.wq0 {
-    public final FrameLayout f40243b1;
-    public final boolean f40244c1;
-    public final PhotoViewer f40245d1;
+import android.graphics.PointF;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+public final class ys0 extends s4.y0 {
+    public final float f43613k;
+    public final LinearInterpolator f43611i = new LinearInterpolator();
+    public final DecelerateInterpolator f43612j = new DecelerateInterpolator(1.5f);
+    public int f43614l = 0;
+    public int f43615m = 0;
 
-    public ys0(PhotoViewer photoViewer, Context context, wn wnVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
-        super(context, wnVar, arrayList, null, null, false, str, null, false, true, false, num, null);
-        this.f40245d1 = photoViewer;
-        this.f40243b1 = frameLayout;
-        this.f40244c1 = z10;
+    public ys0(Context context) {
+        this.f43613k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
+    public final PointF a(int i10) {
+        s4.o0 o0Var = this.f46693c;
+        if (o0Var instanceof s4.c0) {
+            return ((s4.c0) o0Var).E0(i10);
+        }
+        return null;
+    }
+
+    @Override
+    public final void d(int i10, int i11, s4.x0 x0Var) {
+        if (this.f46692b.f3090x.r() == 0) {
+            h();
             return;
         }
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.h21(this, this.f40243b1, iVar, i10, 9), 250L);
+        int i12 = this.f43614l;
+        int i13 = i12 - i10;
+        int i14 = 0;
+        if (i12 * i13 <= 0) {
+            i13 = 0;
+        }
+        this.f43614l = i13;
+        int i15 = this.f43615m;
+        int i16 = i15 - i11;
+        if (i15 * i16 > 0) {
+            i14 = i16;
+        }
+        this.f43615m = i14;
+        if (i13 == 0 && i14 == 0) {
+            PointF a2 = a(this.f46691a);
+            if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+                s4.y0.b(a2);
+                this.f43614l = (int) (a2.x * 10000.0f);
+                this.f43615m = (int) (a2.y * 10000.0f);
+                x0Var.b((int) (this.f43614l * 1.2f), (int) (this.f43615m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f43613k)) * 1.2f), this.f43611i);
+                return;
+            }
+            x0Var.d = this.f46691a;
+            h();
+        }
     }
 
     @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        if (this.f40244c1) {
-            AndroidUtilities.runOnUIThread(new il0(this, 16), 50L);
-        }
-        PhotoViewer photoViewer = this.f40245d1;
-        photoViewer.f31216d0.softInputMode = 272;
-        try {
-            ((WindowManager) photoViewer.f31403y.getSystemService("window")).updateViewLayout(photoViewer.f31242g0, photoViewer.f31216d0);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public final void f() {
+        this.f43615m = 0;
+        this.f43614l = 0;
+    }
+
+    @Override
+    public final void g(android.view.View r8, s4.x0 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ys0.g(android.view.View, s4.x0):void");
+    }
+
+    @Override
+    public final void e() {
     }
 }

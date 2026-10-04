@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class pl extends lu0 {
-    public final wn f36573a;
+public final class pl extends ou0 {
+    public final yn f39512a;
 
-    public pl(wn wnVar) {
-        this.f36573a = wnVar;
+    public pl(yn ynVar) {
+        this.f39512a = ynVar;
     }
 
     @Override
-    public final vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return wn.A1(this.f36573a, messageObject, fileLocation, i10, z10, false);
+    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return yn.A1(this.f39512a, messageObject, fileLocation, i10, z10, false);
     }
 
     @Override

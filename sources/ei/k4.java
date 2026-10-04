@@ -1,72 +1,30 @@
 package ei;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.MotionEvent;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.vv0;
-public class k4 extends View {
-    public final vv0 f8443a;
-    public final Paint f8444b;
-    public float f8445c;
-    public o1.k d;
+public final class k4 extends org.telegram.ui.web.c1 {
+    public final r4 S0;
 
-    public k4(Context context, d6 d6Var) {
-        super(context);
-        vv0 vv0Var = new vv0(new d2.c(18), new d2.c(19));
-        vv0Var.f29745c = 100.0f;
-        this.f8443a = vv0Var;
-        Paint paint = new Paint(1);
-        this.f8444b = paint;
-        paint.setColor(h6.v0(h6.Oh, d6Var));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
+    public k4(r4 r4Var, Context context, d6 d6Var, int i10) {
+        super(i10, context, d6Var, true);
+        this.S0 = r4Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        super.draw(canvas);
-        if (this.f8445c > 0.0f) {
-            Paint paint = this.f8444b;
-            float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f8445c, height, paint);
+    public final void K(org.telegram.ui.web.z0 z0Var) {
+        this.S0.J.setWebView(z0Var);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            r4 r4Var = this.S0;
+            if (!r4Var.P) {
+                r4Var.P = true;
+                r4Var.f9306n.R();
+            }
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        o1.k kVar = new o1.k(this, this.f8443a);
-        o1.l lVar = new o1.l();
-        lVar.b(400.0f);
-        lVar.a(1.0f);
-        kVar.f15534u = lVar;
-        this.d = kVar;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.d.c();
-        this.d = null;
-    }
-
-    public void setLoadProgress(float f7) {
-        this.f8445c = f7;
-        invalidate();
-    }
-
-    public void setLoadProgressAnimated(float f7) {
-        o1.k kVar = this.d;
-        if (kVar == null) {
-            setLoadProgress(f7);
-            return;
-        }
-        kVar.f15534u.f15540i = f7 * 100.0f;
-        kVar.f();
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

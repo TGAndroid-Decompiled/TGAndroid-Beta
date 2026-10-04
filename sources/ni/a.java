@@ -1,94 +1,111 @@
 package ni;
 
-import android.content.Context;
-import android.util.SparseArray;
-import android.util.SparseIntArray;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import l.d;
-import org.telegram.tgnet.SerializedData;
+import android.graphics.RectF;
+import hg.k0;
+import java.util.ArrayList;
 public final class a {
-    public static SparseIntArray f15467b;
-    public static final a f15468c = new a();
-    public final SparseArray f15469a;
+    public final ArrayList f16908a = new ArrayList();
+    public int f16909b;
 
-    public a() {
-        this.f15469a = new SparseArray();
-    }
-
-    public static SparseArray a(Context context, String str, SparseArray sparseArray) {
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getAssets().open(str));
-        try {
-            SerializedData serializedData = new SerializedData(bufferedInputStream);
-            int readInt32 = serializedData.readInt32(true);
-            int i10 = 0;
-            if (sparseArray == null) {
-                sparseArray = new SparseArray(readInt32);
-                while (i10 < readInt32) {
-                    sparseArray.append(serializedData.readInt32(true), serializedData.readString(true));
-                    i10++;
-                }
-            } else {
-                while (i10 < readInt32) {
-                    sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
-                    i10++;
-                }
-            }
-            bufferedInputStream.close();
-            return sparseArray;
-        } catch (Throwable th2) {
-            try {
-                bufferedInputStream.close();
-            } catch (Throwable th3) {
-                th2.addSuppressed(th3);
-            }
-            throw th2;
-        }
-    }
-
-    public final String b(String str) {
-        if (str != null) {
-            return (String) this.f15469a.get(str.hashCode());
-        }
-        return null;
-    }
-
-    public final String c(Context context, String str, int i10) {
-        String str2;
-        if (str != null) {
-            str2 = b(str);
+    public final RectF a(float f7, float f10, float f11, float f12) {
+        RectF rectF;
+        int i10 = this.f16909b;
+        ArrayList arrayList = this.f16908a;
+        if (i10 < arrayList.size()) {
+            rectF = (RectF) arrayList.get(this.f16909b);
+            rectF.set(f7, f10, f11, f12);
         } else {
-            str2 = null;
+            rectF = new RectF(f7, f10, f11, f12);
+            arrayList.add(rectF);
         }
-        if (str2 == null && i10 != 0) {
-            if (context != null && i10 != 0) {
-                if (f15467b == null) {
-                    try {
-                        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
-                        SerializedData serializedData = new SerializedData(bufferedInputStream);
-                        int readInt32 = serializedData.readInt32(true);
-                        SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
-                        for (int i11 = 0; i11 < readInt32; i11++) {
-                            sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
+        this.f16909b++;
+        return rectF;
+    }
+
+    public final void b(float f7, float f10, float f11) {
+        int i10 = 0;
+        while (i10 < this.f16909b) {
+            RectF rectF = (RectF) this.f16908a.get(i10);
+            float f12 = rectF.right;
+            if (f12 > 0.0f) {
+                float f13 = rectF.bottom;
+                if (f13 > f7) {
+                    float f14 = rectF.left;
+                    if (f14 < f10) {
+                        float f15 = rectF.top;
+                        if (f15 < f11) {
+                            if (f14 < 0.0f) {
+                                rectF.left = 0.0f;
+                            }
+                            if (f15 < f7) {
+                                rectF.top = f7;
+                            }
+                            if (f12 > f10) {
+                                rectF.right = f10;
+                            }
+                            if (f13 > f11) {
+                                rectF.bottom = f11;
+                            }
+                            i10++;
                         }
-                        bufferedInputStream.close();
-                        f15467b = sparseIntArray;
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
                     }
                 }
-                int i12 = f15467b.get(i10);
-                if (i12 != 0) {
-                    return (String) this.f15469a.get(i12);
-                }
             }
-            return null;
+            d(i10);
         }
-        return str2;
     }
 
-    public a(d dVar) {
-        SparseArray sparseArray = (SparseArray) dVar.f13925a;
-        this.f15469a = sparseArray == null ? new SparseArray() : sparseArray;
+    public final RectF c(int i10) {
+        if (i10 >= 0 && i10 < this.f16909b) {
+            return (RectF) this.f16908a.get(i10);
+        }
+        StringBuilder j3 = k0.j(i10, "index=", ", size=");
+        j3.append(this.f16909b);
+        throw new IndexOutOfBoundsException(j3.toString());
+    }
+
+    public final void d(int i10) {
+        int i11;
+        if (i10 >= 0 && i10 < (i11 = this.f16909b)) {
+            int i12 = i11 - 1;
+            ArrayList arrayList = this.f16908a;
+            RectF rectF = (RectF) arrayList.get(i10);
+            if (i10 != i12) {
+                arrayList.set(i10, (RectF) arrayList.get(i12));
+                arrayList.set(i12, rectF);
+            }
+            this.f16909b = i12;
+            return;
+        }
+        StringBuilder j3 = k0.j(i10, "index=", ", size=");
+        j3.append(this.f16909b);
+        throw new IndexOutOfBoundsException(j3.toString());
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof a)) {
+            return false;
+        }
+        a aVar = (a) obj;
+        if (this.f16909b != aVar.f16909b) {
+            return false;
+        }
+        for (int i10 = 0; i10 < this.f16909b; i10++) {
+            if (!((RectF) this.f16908a.get(i10)).equals(aVar.f16908a.get(i10))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int i10 = 1;
+        for (int i11 = 0; i11 < this.f16909b; i11++) {
+            i10 = (i10 * 31) + ((RectF) this.f16908a.get(i11)).hashCode();
+        }
+        return i10;
     }
 }

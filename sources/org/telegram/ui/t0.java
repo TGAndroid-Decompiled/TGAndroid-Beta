@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class t0 extends org.telegram.ui.Components.r6 {
-    public final int f37901b;
+    public final int f40639b;
 
     public t0(String str, int i10) {
         super(str, 0);
-        this.f37901b = i10;
+        this.f40639b = i10;
     }
 
     @Override
-    public final void b(Object obj, float f7) {
-        switch (this.f37901b) {
+    public final void c(Object obj, float f7) {
+        switch (this.f40639b) {
             case 0:
                 ((ArticleViewer$WindowView) obj).setInnerTranslationX(f7);
                 return;
             case 1:
-                wn.Gc = (int) f7;
+                yn.Bc = (int) f7;
                 return;
             case 2:
                 ((org.telegram.ui.Cells.u1) obj).setTimeAlpha(f7);
                 return;
             case 3:
-                ((d01) obj).setCrossfadeProgress(f7);
+                ((f01) obj).setCrossfadeProgress(f7);
                 return;
             case 4:
                 ((SecretMediaViewer) obj).setVideoCrossfadeAlpha(f7);
@@ -31,30 +31,30 @@ public final class t0 extends org.telegram.ui.Components.r6 {
                 ((SecretMediaViewer) obj).setAnimationValue(f7);
                 return;
             default:
-                v41 v41Var = (v41) obj;
-                if (v41Var.f38630a != f7) {
-                    v41Var.f38630a = f7;
-                    SecretMediaViewer secretMediaViewer = v41Var.f38635r;
+                y41 y41Var = (y41) obj;
+                if (y41Var.f43054a != f7) {
+                    y41Var.f43054a = f7;
+                    SecretMediaViewer secretMediaViewer = y41Var.f43060r;
                     secretMediaViewer.S.setAlpha(f7);
-                    if (v41Var.f38631b) {
-                        org.telegram.ui.ActionBar.h5 h5Var = secretMediaViewer.S;
-                        h5Var.setPivotX(h5Var.getWidth());
-                        org.telegram.ui.ActionBar.h5 h5Var2 = secretMediaViewer.S;
-                        h5Var2.setPivotY(h5Var2.getHeight());
+                    if (y41Var.f43055b) {
+                        org.telegram.ui.ActionBar.i5 i5Var = secretMediaViewer.S;
+                        i5Var.setPivotX(i5Var.getWidth());
+                        org.telegram.ui.ActionBar.i5 i5Var2 = secretMediaViewer.S;
+                        i5Var2.setPivotY(i5Var2.getHeight());
                         float f10 = 1.0f - f7;
                         float f11 = 1.0f - (0.1f * f10);
                         secretMediaViewer.S.setScaleX(f11);
                         secretMediaViewer.S.setScaleY(f11);
-                        org.telegram.ui.Components.w71 w71Var = secretMediaViewer.Q;
-                        if (w71Var.f29863y != f10) {
-                            w71Var.f29863y = f10;
-                            w71Var.v.invalidate();
+                        org.telegram.ui.Components.f81 f81Var = secretMediaViewer.Q;
+                        if (f81Var.f26384y != f10) {
+                            f81Var.f26384y = f10;
+                            f81Var.v.invalidate();
                             return;
                         }
                         return;
                     }
-                    if (v41Var.f38632c) {
-                        v41Var.setTranslationY((1.0f - f7) * AndroidUtilities.dpf2(24.0f));
+                    if (y41Var.f43056c) {
+                        y41Var.setTranslationY((1.0f - f7) * AndroidUtilities.dpf2(24.0f));
                     }
                     secretMediaViewer.R.setAlpha(f7);
                     return;
@@ -65,21 +65,21 @@ public final class t0 extends org.telegram.ui.Components.r6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f37901b) {
+        switch (this.f40639b) {
             case 0:
                 return Float.valueOf(((ArticleViewer$WindowView) obj).getInnerTranslationX());
             case 1:
-                return Float.valueOf(wn.Gc);
+                return Float.valueOf(yn.Bc);
             case 2:
                 return Float.valueOf(((org.telegram.ui.Cells.u1) obj).getTimeAlpha());
             case 3:
-                return Float.valueOf(((d01) obj).S);
+                return Float.valueOf(((f01) obj).S);
             case 4:
                 return Float.valueOf(((SecretMediaViewer) obj).getVideoCrossfadeAlpha());
             case 5:
                 return Float.valueOf(((SecretMediaViewer) obj).getAnimationValue());
             default:
-                return Float.valueOf(((v41) obj).f38630a);
+                return Float.valueOf(((y41) obj).f43054a);
         }
     }
 }

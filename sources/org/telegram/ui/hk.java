@@ -1,30 +1,30 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class hk extends org.telegram.ui.Components.vo {
-    public final wn f34245f;
+public final class hk extends org.telegram.ui.Components.wo {
+    public final yn f37111f;
 
-    public hk(wn wnVar, Context context) {
+    public hk(yn ynVar, Context context) {
         super(context);
-        this.f34245f = wnVar;
+        this.f37111f = ynVar;
     }
 
     @Override
     public final void a(boolean z10) {
-        wn wnVar = this.f34245f;
-        wnVar.t7();
-        wnVar.r7();
-        wnVar.u7();
-        wnVar.v7();
-        al alVar = wnVar.f39418ab;
+        yn ynVar = this.f37111f;
+        ynVar.t7();
+        ynVar.r7();
+        ynVar.u7();
+        ynVar.v7();
+        al alVar = ynVar.Ya;
         if (alVar != null) {
-            alVar.setTranslationY(wnVar.f39691w9 + getCurrentHeight());
+            alVar.setTranslationY(ynVar.f43521u9 + getCurrentHeight());
         }
         if (z10) {
-            wnVar.D9 = true;
-            wnVar.jc();
+            ynVar.B9 = true;
+            ynVar.ic();
             return;
         }
-        wnVar.o9();
+        ynVar.o9();
     }
 }

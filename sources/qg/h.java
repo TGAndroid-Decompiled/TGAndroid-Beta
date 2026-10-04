@@ -1,30 +1,30 @@
 package qg;
 public interface h {
-    void A(boolean z10);
+    void A(j jVar);
 
-    void B();
+    void B(boolean z10);
 
-    int[] C(j jVar);
+    void C();
 
-    boolean d(j jVar);
+    int[] D(j jVar);
+
+    boolean c(j jVar);
+
+    void g(boolean z10);
 
     void h(boolean z10);
 
-    void i(boolean z10);
+    void i();
 
-    void k();
+    void j();
 
-    void l();
-
-    void n(boolean z10);
+    void l(boolean z10);
 
     boolean q();
 
     boolean r();
 
-    void u(float f7, float f10, float[] fArr);
+    void v(float f7, float f10, float[] fArr);
 
-    void w();
-
-    void z(j jVar);
+    void x();
 }

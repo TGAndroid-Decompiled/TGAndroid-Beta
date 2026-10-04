@@ -11,32 +11,32 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.d6;
 import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.fw0;
 import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.uk0;
-import org.telegram.ui.Components.wv0;
-import w7.y5;
+import w7.z5;
 public class o2 extends j {
-    public final TLRPC.Document f41847q0;
-    public final Object f41848r0;
-    public final int f41849s0;
-    public boolean f41850t0;
-    public final e6 f41851u0;
-    public final wv0 f41852v0;
-    public final ai.f0 f41853w0;
-    public final ImageReceiver f41854x0;
+    public final TLRPC.Document f45276q0;
+    public final Object f45277r0;
+    public final int f45278s0;
+    public boolean f45279t0;
+    public final e6 f45280u0;
+    public final fw0 f45281v0;
+    public final ai.f0 f45282w0;
+    public final ImageReceiver f45283x0;
 
-    public o2(Context context, PointF pointF, float f7, float f10, wv0 wv0Var, TLRPC.Document document, Object obj) {
+    public o2(Context context, PointF pointF, float f7, float f10, fw0 fw0Var, TLRPC.Document document, Object obj) {
         super(context, pointF);
-        this.f41849s0 = -1;
+        this.f45278s0 = -1;
         int i10 = 0;
-        this.f41850t0 = false;
-        this.f41854x0 = new ImageReceiver();
+        this.f45279t0 = false;
+        this.f45283x0 = new ImageReceiver();
         setRotation(f7);
         setScale(f10);
-        this.f41847q0 = document;
-        this.f41852v0 = wv0Var;
-        this.f41848r0 = obj;
+        this.f45276q0 = document;
+        this.f45281v0 = fw0Var;
+        this.f45277r0 = obj;
         while (true) {
             if (i10 >= document.attributes.size()) {
                 break;
@@ -45,41 +45,41 @@ public class o2 extends j {
             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                 TLRPC.TL_maskCoords tL_maskCoords = documentAttribute.mask_coords;
                 if (tL_maskCoords != null) {
-                    this.f41849s0 = tL_maskCoords.f18412n;
+                    this.f45278s0 = tL_maskCoords.f20112n;
                 }
             } else {
                 i10++;
             }
         }
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f41853w0 = f0Var;
-        addView(f0Var, y5.c(-1.0f, -1));
-        this.f41851u0 = new e6(f0Var, 0L, 500L, sr.h);
-        this.f41854x0.setAspectFit(true);
-        this.f41854x0.setInvalidateAll(true);
-        this.f41854x0.setParentView(f0Var);
-        this.f41854x0.setImage(ImageLocation.getForDocument(document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, "webp", obj, 1);
-        this.f41854x0.setDelegate(new le.b(this, 26));
+        this.f45282w0 = f0Var;
+        addView(f0Var, z5.c(-1.0f, -1));
+        this.f45280u0 = new e6(f0Var, 0L, 500L, tr.h);
+        this.f45283x0.setAspectFit(true);
+        this.f45283x0.setInvalidateAll(true);
+        this.f45283x0.setParentView(f0Var);
+        this.f45283x0.setImage(ImageLocation.getForDocument(document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, "webp", obj, 1);
+        this.f45283x0.setDelegate(new k2.v(this, 27));
         k();
     }
 
     @Override
     public final i a() {
-        a2 a2Var = new a2(this, getContext(), 2);
-        a2Var.f41576r = new RectF();
-        return a2Var;
+        z1 z1Var = new z1(this, getContext(), 2);
+        z1Var.f45434r = new RectF();
+        return z1Var;
     }
 
     public int getAnchor() {
-        return this.f41849s0;
+        return this.f45278s0;
     }
 
-    public wv0 getBaseSize() {
-        return this.f41852v0;
+    public fw0 getBaseSize() {
+        return this.f45281v0;
     }
 
     public long getDuration() {
-        ImageReceiver imageReceiver = this.f41854x0;
+        ImageReceiver imageReceiver = this.f45283x0;
         kj0 lottieAnimation = imageReceiver.getLottieAnimation();
         if (lottieAnimation != null) {
             return lottieAnimation.r();
@@ -92,7 +92,7 @@ public class o2 extends j {
     }
 
     public Object getParentObject() {
-        return this.f41848r0;
+        return this.f45277r0;
     }
 
     @Override
@@ -109,47 +109,47 @@ public class o2 extends j {
     }
 
     public TLRPC.Document getSticker() {
-        return this.f41847q0;
+        return this.f45276q0;
     }
 
     @Override
     public final void k() {
-        wv0 wv0Var = this.f41852v0;
-        setX(getPositionX() - (wv0Var.f30182a / 2.0f));
-        setY(getPositionY() - (wv0Var.f30183b / 2.0f));
+        fw0 fw0Var = this.f45281v0;
+        setX(getPositionX() - (fw0Var.f26584a / 2.0f));
+        setY(getPositionY() - (fw0Var.f26585b / 2.0f));
         m();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f41854x0.onAttachedToWindow();
+        this.f45283x0.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f41854x0.onDetachedFromWindow();
+        this.f45283x0.onDetachedFromWindow();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        wv0 wv0Var = this.f41852v0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) wv0Var.f30182a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) wv0Var.f30183b, 1073741824));
+        fw0 fw0Var = this.f45281v0;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) fw0Var.f26584a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) fw0Var.f26585b, 1073741824));
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f41850t0;
-        this.f41850t0 = z11;
+        boolean z11 = !this.f45279t0;
+        this.f45279t0 = z11;
         if (!z10) {
-            this.f41851u0.f(z11, true);
+            this.f45280u0.f(z11, true);
         }
-        this.f41853w0.invalidate();
+        this.f45282w0.invalidate();
     }
 
     public o2(Context context, o2 o2Var, PointF pointF) {
-        this(context, pointF, o2Var.getRotation(), o2Var.getScale(), o2Var.f41852v0, o2Var.f41847q0, o2Var.f41848r0);
-        if (o2Var.f41850t0) {
+        this(context, pointF, o2Var.getRotation(), o2Var.getScale(), o2Var.f45281v0, o2Var.f45276q0, o2Var.f45277r0);
+        if (o2Var.f45279t0) {
             r(false);
         }
     }

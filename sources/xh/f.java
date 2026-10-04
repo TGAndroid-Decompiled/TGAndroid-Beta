@@ -1,19 +1,19 @@
 package xh;
-public final class f implements le.e, yf.m {
-    public final m f46124a;
+public final class f implements le.d, yf.m {
+    public final m f49926a;
 
     @Override
-    public void D(int i10, float f7, float f10, le.f fVar) {
-        this.f46124a.a0();
+    public void a0(int i10, float f7, float f10, le.e eVar) {
+        this.f49926a.Z();
     }
 
     @Override
     public void e(long j3) {
-        m mVar = this.f46124a;
-        mVar.b0(j3, mVar.f46283w0);
+        m mVar = this.f49926a;
+        mVar.b0(j3, mVar.f50096w0);
     }
 
     @Override
-    public void C(float f7, int i10) {
+    public void V(float f7, int i10) {
     }
 }

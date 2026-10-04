@@ -1,202 +1,167 @@
 package ci;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Shader;
+import android.os.Build;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ScrollView;
 import java.util.ArrayList;
-import org.telegram.ui.Components.p30;
-public final class ba extends ViewGroup {
-    public final int f4416a = 0;
-    public AnimatorSet f4417b;
-    public boolean f4418c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.q30;
+import org.telegram.ui.Components.tr;
+public abstract class ba extends ScrollView {
+    public final Paint E;
+    public final Matrix F;
+    public boolean G;
+    public int H;
+    public float I;
+    public int J;
+    public boolean K;
+    public final h2 f4777a;
+    public final int f4778b;
+    public final aa f4779c;
     public final ArrayList d;
-    public final ArrayList e;
-    public final ArrayList f4419f;
-    public final ArrayList h;
-    public final ScrollView f4420n;
+    public q30 f4780e;
+    public final l9 f4781f;
+    public boolean h;
+    public Utilities.Callback f4782n;
+    public final org.telegram.ui.Components.e6 f4783r;
+    public final LinearGradient f4784s;
+    public final Paint v;
+    public final Matrix f4785w;
+    public final org.telegram.ui.Components.e6 f4786x;
+    public final LinearGradient f4787y;
 
-    public ba(xg.i iVar, Context context) {
+    public ba(Context context, org.telegram.ui.ActionBar.d6 d6Var, l9 l9Var) {
         super(context);
-        this.f4420n = iVar;
+        int i10;
         this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.f4419f = new ArrayList();
-        this.h = new ArrayList();
-    }
-
-    public void a() {
-        ca caVar = (ca) this.f4420n;
-        caVar.G = true;
-        ArrayList arrayList = caVar.d;
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        ArrayList arrayList3 = this.h;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList);
-        arrayList.clear();
-        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            ((p30) arrayList2.get(i10)).setOnClickListener(null);
+        tr trVar = tr.h;
+        this.f4783r = new org.telegram.ui.Components.e6(this, 0L, 300L, trVar);
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
+        this.f4784s = linearGradient;
+        Paint paint = new Paint(1);
+        this.v = paint;
+        this.f4785w = new Matrix();
+        this.f4786x = new org.telegram.ui.Components.e6(this, 0L, 300L, trVar);
+        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
+        this.f4787y = linearGradient2;
+        Paint paint2 = new Paint(1);
+        this.E = paint2;
+        this.F = new Matrix();
+        paint.setShader(linearGradient);
+        PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+        paint.setXfermode(new PorterDuffXfermode(mode));
+        paint2.setShader(linearGradient2);
+        paint2.setXfermode(new PorterDuffXfermode(mode));
+        this.f4781f = l9Var;
+        setVerticalScrollBarEnabled(false);
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f20817d6, false));
+        aa aaVar = new aa(this, context);
+        this.f4779c = aaVar;
+        addView(aaVar, w7.z5.c(-2.0f, -1));
+        h2 h2Var = new h2(this, context, 1);
+        this.f4777a = h2Var;
+        if (Build.VERSION.SDK_INT >= 25) {
+            h2Var.setRevealOnFocusHint(false);
         }
-        c();
-        this.f4418c = false;
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.f4417b = animatorSet;
-        animatorSet.addListener(new aa(this, arrayList2, 1));
-        ArrayList arrayList4 = this.f4419f;
-        arrayList4.clear();
-        ArrayList arrayList5 = this.d;
-        arrayList5.clear();
-        this.e.clear();
-        for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-            p30 p30Var = (p30) arrayList2.get(i11);
-            arrayList5.add(p30Var);
-            arrayList4.add(ObjectAnimator.ofFloat(p30Var, View.SCALE_X, 1.0f, 0.01f));
-            arrayList4.add(ObjectAnimator.ofFloat(p30Var, View.SCALE_Y, 1.0f, 0.01f));
-            arrayList4.add(ObjectAnimator.ofFloat(p30Var, View.ALPHA, 1.0f, 0.0f));
-        }
-        requestLayout();
-    }
-
-    public void b(boolean z10) {
-        xg.i iVar = (xg.i) this.f4420n;
-        iVar.G = true;
-        ArrayList arrayList = iVar.e;
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        ArrayList arrayList3 = this.h;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList);
-        arrayList.clear();
-        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            ((p30) arrayList2.get(i10)).setOnClickListener(null);
-        }
-        c();
-        if (z10) {
-            this.f4418c = false;
-            AnimatorSet animatorSet = new AnimatorSet();
-            this.f4417b = animatorSet;
-            animatorSet.addListener(new xg.h(this, arrayList2, 1));
-            ArrayList arrayList4 = this.f4419f;
-            arrayList4.clear();
-            ArrayList arrayList5 = this.d;
-            arrayList5.clear();
-            this.e.clear();
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                p30 p30Var = (p30) arrayList2.get(i11);
-                arrayList5.add(p30Var);
-                arrayList4.add(ObjectAnimator.ofFloat(p30Var, View.SCALE_X, 1.0f, 0.01f));
-                arrayList4.add(ObjectAnimator.ofFloat(p30Var, View.SCALE_Y, 1.0f, 0.01f));
-                arrayList4.add(ObjectAnimator.ofFloat(p30Var, View.ALPHA, 1.0f, 0.0f));
-            }
+        h2Var.setTextSize(1, 16.0f);
+        h2Var.setHintColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Xh, d6Var));
+        h2Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, d6Var));
+        int i11 = org.telegram.ui.ActionBar.i6.Yh;
+        h2Var.setCursorColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
+        h2Var.setHandlesColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
+        h2Var.setCursorWidth(1.5f);
+        h2Var.setInputType(h2Var.getInputType() | 176);
+        h2Var.setSingleLine(true);
+        h2Var.setBackgroundDrawable(null);
+        h2Var.setVerticalScrollBarEnabled(false);
+        h2Var.setHorizontalScrollBarEnabled(false);
+        h2Var.setTextIsSelectable(false);
+        h2Var.setPadding(0, 0, 0, 0);
+        h2Var.setImeOptions(268435462);
+        if (LocaleController.isRTL) {
+            i10 = 5;
         } else {
-            for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                removeView((View) arrayList2.get(i12));
-            }
-            arrayList3.clear();
-            this.f4417b = null;
-            this.f4418c = false;
-            iVar.f46053b.setAllowDrawCursor(true);
+            i10 = 3;
         }
-        requestLayout();
-    }
-
-    public final void c() {
-        switch (this.f4416a) {
-            case 0:
-                AnimatorSet animatorSet = this.f4417b;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                }
-                int i10 = 0;
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList = this.d;
-                    if (i11 < arrayList.size()) {
-                        ((View) arrayList.get(i11)).setScaleX(1.0f);
-                        ((View) arrayList.get(i11)).setScaleY(1.0f);
-                        ((View) arrayList.get(i11)).setAlpha(1.0f);
-                        i11++;
-                    } else {
-                        while (true) {
-                            ArrayList arrayList2 = this.e;
-                            if (i10 < arrayList2.size()) {
-                                ((View) arrayList2.get(i10)).setScaleX(0.0f);
-                                ((View) arrayList2.get(i10)).setScaleY(0.0f);
-                                ((View) arrayList2.get(i10)).setAlpha(0.0f);
-                                i10++;
-                            } else {
-                                arrayList.clear();
-                                arrayList2.clear();
-                                return;
-                            }
-                        }
-                    }
-                }
-            default:
-                AnimatorSet animatorSet2 = this.f4417b;
-                if (animatorSet2 != null) {
-                    animatorSet2.cancel();
-                }
-                int i12 = 0;
-                int i13 = 0;
-                while (true) {
-                    ArrayList arrayList3 = this.d;
-                    if (i13 < arrayList3.size()) {
-                        ((View) arrayList3.get(i13)).setScaleX(1.0f);
-                        ((View) arrayList3.get(i13)).setScaleY(1.0f);
-                        ((View) arrayList3.get(i13)).setAlpha(1.0f);
-                        i13++;
-                    } else {
-                        while (true) {
-                            ArrayList arrayList4 = this.e;
-                            if (i12 < arrayList4.size()) {
-                                ((View) arrayList4.get(i12)).setScaleX(0.0f);
-                                ((View) arrayList4.get(i12)).setScaleY(0.0f);
-                                ((View) arrayList4.get(i12)).setAlpha(0.0f);
-                                i12++;
-                            } else {
-                                arrayList3.clear();
-                                arrayList4.clear();
-                                return;
-                            }
-                        }
-                    }
-                }
-        }
+        h2Var.setGravity(i10 | 16);
+        aaVar.addView(h2Var);
+        h2Var.setHintText(LocaleController.getString(R.string.Search));
+        this.f4778b = (int) h2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
+        h2Var.addTextChangedListener(new y9(this));
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f4416a) {
-            case 0:
-                int childCount = getChildCount();
-                for (int i14 = 0; i14 < childCount; i14++) {
-                    View childAt = getChildAt(i14);
-                    childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-                }
-                return;
-            default:
-                int childCount2 = getChildCount();
-                for (int i15 = 0; i15 < childCount2; i15++) {
-                    View childAt2 = getChildAt(i15);
-                    childAt2.layout(0, 0, childAt2.getMeasuredWidth(), childAt2.getMeasuredHeight());
-                }
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        int scrollY;
+        float scrollY2 = getScrollY();
+        canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
+        super.dispatchDraw(canvas);
+        canvas.save();
+        float e7 = this.f4783r.e(canScrollVertically(-1));
+        Matrix matrix = this.f4785w;
+        matrix.reset();
+        matrix.postTranslate(0.0f, scrollY2);
+        this.f4784s.setLocalMatrix(matrix);
+        Paint paint = this.v;
+        paint.setAlpha((int) (e7 * 255.0f));
+        canvas.drawRect(0.0f, scrollY2, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
+        float e10 = this.f4786x.e(canScrollVertically(1));
+        Matrix matrix2 = this.F;
+        matrix2.reset();
+        matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
+        this.f4787y.setLocalMatrix(matrix2);
+        Paint paint2 = this.E;
+        paint2.setAlpha((int) (e10 * 255.0f));
+        canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), getHeight() + scrollY, paint2);
+        canvas.restore();
+        canvas.restore();
     }
 
     @Override
-    public final void onMeasure(int r29, int r30) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.ba.onMeasure(int, int):void");
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), Integer.MIN_VALUE));
     }
 
-    public ba(ca caVar, Context context) {
-        super(context);
-        this.f4420n = caVar;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.f4419f = new ArrayList();
-        this.h = new ArrayList();
+    @Override
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        if (this.G) {
+            this.G = false;
+            return false;
+        }
+        rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+        rect.top = org.telegram.messenger.f0.C(20.0f, this.H, rect.top);
+        rect.bottom = org.telegram.messenger.f0.C(50.0f, this.H, rect.bottom);
+        return super.requestChildRectangleOnScreen(view, rect, z10);
+    }
+
+    public void setContainerHeight(float f7) {
+        this.I = f7;
+        aa aaVar = this.f4779c;
+        if (aaVar != null) {
+            aaVar.requestLayout();
+        }
+    }
+
+    public void setOnSearchTextChange(Utilities.Callback<String> callback) {
+        this.f4782n = callback;
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.h = true;
+        this.f4777a.setText(charSequence);
+        this.h = false;
     }
 }

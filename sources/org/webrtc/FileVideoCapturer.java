@@ -80,7 +80,7 @@ public class FileVideoCapturer implements VideoCapturer {
                     }
                     sb2.append((char) read);
                 } else {
-                    throw new RuntimeException(v7.j.g("Found end of file before end of header for file: ", str));
+                    throw new RuntimeException(t8.b.i("Found end of file before end of header for file: ", str));
                 }
             }
         }
@@ -89,8 +89,8 @@ public class FileVideoCapturer implements VideoCapturer {
         public void close() {
             try {
                 this.mediaFile.close();
-            } catch (IOException e) {
-                Logging.e("VideoReaderY4M", "Problem closing file", e);
+            } catch (IOException e7) {
+                Logging.e("VideoReaderY4M", "Problem closing file", e7);
             }
         }
 
@@ -121,8 +121,8 @@ public class FileVideoCapturer implements VideoCapturer {
                     return new VideoFrame(allocate, 0, nanos);
                 }
                 throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (IOException e7) {
+                throw new RuntimeException(e7);
             }
         }
     }
@@ -130,9 +130,9 @@ public class FileVideoCapturer implements VideoCapturer {
     public FileVideoCapturer(String str) {
         try {
             this.videoReader = new VideoReaderY4M(str);
-        } catch (IOException e) {
+        } catch (IOException e7) {
             Logging.d("FileVideoCapturer", "Could not open video file: " + str);
-            throw e;
+            throw e7;
         }
     }
 

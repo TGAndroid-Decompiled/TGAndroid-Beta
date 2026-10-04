@@ -1,102 +1,91 @@
 package ei;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hh0;
-import org.telegram.ui.Components.tr;
-import org.telegram.ui.Components.wr;
-public final class n4 extends GestureDetector.SimpleOnGestureListener {
-    public final int f8492a;
-    public final int f8493b;
-    public final ViewGroup f8494c;
+import java.util.LinkedList;
+import org.telegram.ui.Components.ee0;
+import org.telegram.ui.Components.fi;
+import org.telegram.ui.Components.ih;
+import org.telegram.ui.Components.pc0;
+import org.telegram.ui.Components.qg;
+import org.telegram.ui.Components.vb;
+import org.telegram.ui.Components.xi;
+public final class n4 implements o1.f {
+    public final int f9220a;
+    public final Object f9221b;
+    public final Object f9222c;
 
-    public n4(ViewGroup viewGroup, int i10, int i11) {
-        this.f8492a = i11;
-        this.f8494c = viewGroup;
-        this.f8493b = i10;
+    public n4(int i10, Object obj, Object obj2) {
+        this.f9220a = i10;
+        this.f9221b = obj;
+        this.f9222c = obj2;
     }
 
     @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        switch (this.f8492a) {
-            case 1:
-                wr wrVar = (wr) this.f8494c;
-                tr trVar = wrVar.f30158r;
-                if (wrVar.f30157n) {
-                    wrVar.removeCallbacks(trVar);
-                }
-                wrVar.f30157n = true;
-                wrVar.postDelayed(trVar, 200L);
-                wrVar.h.run();
-                return true;
-            case 2:
-                return true;
-            default:
-                return super.onDown(motionEvent);
-        }
-    }
-
-    @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        org.telegram.ui.web.y0 y0Var;
-        switch (this.f8492a) {
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        ViewGroup viewGroup;
+        switch (this.f9220a) {
             case 0:
-                p4 p4Var = (p4) this.f8494c;
-                if (p4Var.d || !p4Var.M) {
-                    return false;
-                }
-                if (p4Var.J && !p4Var.L) {
-                    return false;
-                }
-                if (p4Var.N && !p4Var.b(false)) {
-                    return false;
-                }
-                float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), motionEvent2.getX(), motionEvent2.getY());
-                float eventTime = (float) (motionEvent2.getEventTime() - motionEvent.getEventTime());
-                if (f10 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && ((y0Var = p4Var.f8538x) == null || y0Var.getScrollY() == 0))) {
-                    p4Var.f8537w = true;
-                    float f11 = p4Var.f8535r;
-                    int i10 = p4Var.H;
-                    if (f11 < i10 && !p4Var.J) {
-                        p4Var.e(0.0f);
-                    } else if (p4Var.J && p4Var.L && (p4Var.Q == (-p4Var.f8533f) + p4Var.e || (f11 <= (-i10) && f10 < AndroidUtilities.dp(1200.0f)))) {
-                        p4Var.e((-p4Var.f8533f) + p4Var.e);
-                    } else {
-                        o4 o4Var = p4Var.F;
-                        if (o4Var != null) {
-                            o4Var.j(false);
-                        }
+                q4 q4Var = (q4) this.f9221b;
+                Runnable runnable = (Runnable) this.f9222c;
+                if (hVar == q4Var.G) {
+                    q4Var.G = null;
+                    if (runnable != null) {
+                        runnable.run();
                     }
-                } else if (f10 > -700.0f) {
-                    return false;
-                } else {
-                    float f12 = p4Var.f8535r;
-                    float f13 = (-p4Var.f8533f) + p4Var.e;
-                    if (f12 <= f13) {
-                        return false;
+                    Runnable runnable2 = q4Var.E;
+                    if (runnable2 != null) {
+                        runnable2.run();
                     }
-                    p4Var.f8537w = true;
-                    p4Var.e(f13);
+                    float f11 = q4Var.h;
+                    if (f11 != -1.0f) {
+                        boolean z11 = q4Var.f9289s;
+                        q4Var.f9289s = true;
+                        q4Var.setOffsetY(f11);
+                        q4Var.h = -1.0f;
+                        q4Var.f9289s = z11;
+                    }
+                    q4Var.f9287n = -2.1474836E9f;
+                    return;
                 }
-                return true;
+                return;
             case 1:
-            default:
-                return super.onFling(motionEvent, motionEvent2, f7, f10);
-            case 2:
-                hh0 hh0Var = (hh0) this.f8494c;
-                if (!hh0Var.f24811f && !hh0Var.h && f7 >= 600.0f) {
-                    hh0Var.e = false;
-                    hh0Var.h = false;
-                    hh0Var.a(0.0f, f7 / 6000.0f);
+                qg qgVar = (qg) this.f9222c;
+                ((vb) this.f9221b).setInOutOffset(0.0f);
+                if (!z10) {
+                    qgVar.run();
+                    return;
                 }
-                return false;
+                return;
+            case 2:
+                xi.u((xi) this.f9221b, (org.telegram.messenger.video.o) this.f9222c);
+                return;
+            case 3:
+                xi xiVar = (xi) ((fi) this.f9221b).d;
+                xiVar.f32876z0.setTranslationY(0.0f);
+                xiVar.f32876z0.k(xiVar.f32831l2);
+                viewGroup = ((org.telegram.ui.ActionBar.f3) xiVar).containerView;
+                viewGroup.invalidate();
+                ((ih) this.f9222c).run();
+                xiVar.X1(0);
+                return;
+            default:
+                ee0 ee0Var = (ee0) this.f9221b;
+                pc0 pc0Var = (pc0) this.f9222c;
+                LinkedList linkedList = ee0Var.M;
+                ee0Var.L = null;
+                pc0Var.D = null;
+                pc0Var.z();
+                if (!z10) {
+                    pc0Var.h = 1.0f;
+                    pc0Var.z();
+                    if (!linkedList.isEmpty()) {
+                        ((Runnable) linkedList.poll()).run();
+                        ee0Var.N.poll();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final boolean onScroll(android.view.MotionEvent r18, android.view.MotionEvent r19, float r20, float r21) {
-        throw new UnsupportedOperationException("Method not decompiled: ei.n4.onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float):boolean");
     }
 }

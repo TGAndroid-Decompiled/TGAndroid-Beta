@@ -20,17 +20,16 @@ import n6.l;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.ui.Cells.c1;
-import v7.j;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset e = Charset.forName("UTF-8");
-    public final Context f43176a;
-    public final pa.b f43177b;
-    public final d f43178c = new d();
+    public static final Charset f46758e = Charset.forName("UTF-8");
+    public final Context f46759a;
+    public final pa.b f46760b;
+    public final d f46761c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f43176a = context;
-        this.f43177b = bVar;
+        this.f46759a = context;
+        this.f46760b = bVar;
     }
 
     public static URL a(String str) {
@@ -42,11 +41,11 @@ public final class c {
     }
 
     public static void b(HttpURLConnection httpURLConnection, String str, String str2, String str3) {
-        String g10;
+        String i10;
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f46758e));
             try {
                 StringBuilder sb2 = new StringBuilder();
                 while (true) {
@@ -74,11 +73,11 @@ public final class c {
         if (!TextUtils.isEmpty(str4)) {
             Log.w("Firebase-Installations", str4);
             if (TextUtils.isEmpty(str)) {
-                g10 = "";
+                i10 = "";
             } else {
-                g10 = j.g(", ", str);
+                i10 = t8.b.i(", ", str);
             }
-            Log.w("Firebase-Installations", c1.k("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, g10));
+            Log.w("Firebase-Installations", c1.k("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, i10));
         }
     }
 
@@ -92,7 +91,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f46758e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         String str = null;
@@ -112,16 +111,16 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f278c = jsonReader.nextString();
+                        a2.f300c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
                         jsonReader.skipValue();
                     }
                 }
-                b c10 = a2.c();
+                b b10 = a2.b();
                 jsonReader.endObject();
-                bVar = c10;
+                bVar = b10;
             } else {
                 jsonReader.skipValue();
             }
@@ -134,13 +133,13 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f46758e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f278c = jsonReader.nextString();
+                a2.f300c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -150,8 +149,8 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f277b = 1;
-        return a2.c();
+        a2.f299b = 1;
+        return a2.b();
     }
 
     public static void g(HttpURLConnection httpURLConnection, String str, String str2) {

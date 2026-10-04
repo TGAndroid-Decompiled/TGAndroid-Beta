@@ -1,22 +1,55 @@
 package org.telegram.ui;
-public final class mp implements Runnable {
-    public final int f35642a;
-    public final np f35643b;
 
-    public mp(np npVar, int i10) {
-        this.f35642a = i10;
-        this.f35643b = npVar;
+import android.widget.LinearLayout;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class mp extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    public org.telegram.ui.Components.w9 f38698a;
+    public org.telegram.ui.Components.w90 f38699b;
+    public int f38700c;
+
+    public final void a() {
+        boolean z10;
+        org.telegram.ui.Components.w9 w9Var = this.f38698a;
+        int i10 = this.f38700c;
+        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
+        if (stickerSetByName == null) {
+            stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 3) {
+            w9Var.i(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f38699b, tL_messages_stickerSet);
+            return;
+        }
+        MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+        if (tL_messages_stickerSet == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z10);
+        w9Var.setImageDrawable(this.f38699b);
     }
 
     @Override
-    public final void run() {
-        switch (this.f35642a) {
-            case 0:
-                this.f35643b.f35928x.d.P = false;
-                return;
-            default:
-                this.f35643b.f35928x.d.P = false;
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
+            a();
         }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        NotificationCenter.getInstance(this.f38700c).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.f38700c).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 }

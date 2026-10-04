@@ -2,41 +2,77 @@ package org.telegram.ui.ActionBar;
 
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+import android.widget.RelativeLayout;
 public final class m4 extends Animation {
-    public final int f19652a;
-    public final float f19653b;
-    public final float f19654c;
-    public final int d;
-    public final t4 e;
+    public final int f21391a;
+    public final int f21392b;
+    public final int f21393c;
+    public final float d;
+    public final u4 f21394e;
 
-    public m4(t4 t4Var, float f7, float f10, int i10, int i11) {
-        this.f19652a = i11;
-        this.e = t4Var;
-        this.f19653b = f7;
-        this.f19654c = f10;
-        this.d = i10;
+    public m4(u4 u4Var, int i10, int i11, float f7, float f10, int i12) {
+        this.f21391a = i12;
+        this.f21394e = u4Var;
+        this.f21392b = i10;
+        this.f21393c = i11;
+        this.d = f10;
     }
 
     @Override
     public final void applyTransformation(float f7, Transformation transformation) {
-        switch (this.f19652a) {
+        switch (this.f21391a) {
             case 0:
-                float f10 = this.f19653b;
-                float z10 = com.google.android.gms.internal.vision.e2.z(this.f19654c, f10, f7, f10);
-                t4 t4Var = this.e;
-                t4Var.f19765i.setX(z10 + (t4Var.f19763f.getWidth() - this.d));
-                float f11 = 1.0f - f7;
-                t4Var.f19768l.setAlpha(f11);
-                t4Var.f19766j.setAlpha(f11);
+                int i10 = this.f21392b;
+                int i11 = this.f21393c;
+                u4 u4Var = this.f21394e;
+                RelativeLayout relativeLayout = u4Var.f21541f;
+                u4.l(relativeLayout, relativeLayout.getLayoutParams().width, i11 + ((int) (f7 * (i10 - i11))));
+                if (u4Var.M) {
+                    relativeLayout.setY(this.d - relativeLayout.getHeight());
+                    u4.a(u4Var);
+                    return;
+                }
+                return;
+            case 1:
+                int i12 = this.f21392b;
+                int i13 = this.f21393c;
+                u4 u4Var2 = this.f21394e;
+                RelativeLayout relativeLayout2 = u4Var2.f21541f;
+                u4.l(relativeLayout2, ((int) (f7 * (i12 - i13))) + i13, relativeLayout2.getLayoutParams().height);
+                relativeLayout2.setX(this.d - relativeLayout2.getWidth());
+                u4Var2.f21542g.setX(relativeLayout2.getWidth() - i13);
+                u4Var2.h.setX(relativeLayout2.getWidth() - i12);
+                return;
+            case 2:
+                int i14 = this.f21392b;
+                int i15 = this.f21393c;
+                u4 u4Var3 = this.f21394e;
+                RelativeLayout relativeLayout3 = u4Var3.f21541f;
+                u4.l(relativeLayout3, relativeLayout3.getLayoutParams().width, ((int) (f7 * (i14 - i15))) + i15);
+                if (u4Var3.M) {
+                    relativeLayout3.setY(this.d - (relativeLayout3.getHeight() - i15));
+                    u4.a(u4Var3);
+                    return;
+                }
                 return;
             default:
-                float f12 = this.f19653b;
-                float z11 = com.google.android.gms.internal.vision.e2.z(this.f19654c, f12, f7, f12);
-                t4 t4Var2 = this.e;
-                t4Var2.f19765i.setX(z11 + (t4Var2.f19763f.getWidth() - this.d));
-                t4Var2.f19768l.setAlpha(f7);
-                t4Var2.f19766j.setAlpha(f7);
+                int i16 = this.f21392b;
+                int i17 = this.f21393c;
+                u4 u4Var4 = this.f21394e;
+                RelativeLayout relativeLayout4 = u4Var4.f21541f;
+                u4.l(relativeLayout4, ((int) (f7 * (i16 - i17))) + i17, relativeLayout4.getLayoutParams().height);
+                relativeLayout4.setX(this.d - relativeLayout4.getWidth());
+                u4Var4.f21542g.setX(relativeLayout4.getWidth() - i16);
+                u4Var4.h.setX(relativeLayout4.getWidth() - i17);
                 return;
         }
+    }
+
+    public m4(u4 u4Var, int i10, int i11, float f7, int i12) {
+        this.f21391a = i12;
+        this.f21394e = u4Var;
+        this.f21392b = i10;
+        this.f21393c = i11;
+        this.d = f7;
     }
 }

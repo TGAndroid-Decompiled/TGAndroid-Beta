@@ -13,10 +13,10 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class f {
-    public static final String[] f43236a0 = {"models/star.binobj"};
-    public static final String[] f43237b0 = {"models/diamond_outer_2.binobj", "models/diamond_outer.binobj", "models/diamond.binobj"};
-    public static final String[] f43238c0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
-    public static final String[] f43239d0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
+    public static final String[] f46822a0 = {"models/star.binobj"};
+    public static final String[] f46823b0 = {"models/diamond_outer_2.binobj", "models/diamond_outer.binobj", "models/diamond.binobj"};
+    public static final String[] f46824c0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
+    public static final String[] f46825d0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
     public boolean D;
     public final int E;
     public final int F;
@@ -39,32 +39,32 @@ public final class f {
     public final int W;
     public final int X;
     public final int[] Y;
-    public final int f43240a;
-    public final int f43241b;
-    public final int f43242c;
+    public final int f46826a;
+    public final int f46827b;
+    public final int f46828c;
     public final FloatBuffer[] d;
-    public final FloatBuffer[] e;
-    public final FloatBuffer[] f43243f;
-    public final int f43244g;
+    public final FloatBuffer[] f46829e;
+    public final FloatBuffer[] f46830f;
+    public final int f46831g;
     public final int h;
-    public final int f43245i;
-    public final int f43246j;
-    public final int f43247k;
-    public final int f43248l;
-    public final int f43249m;
-    public final int f43250n;
-    public final int f43251o;
-    public final int f43252p;
-    public final int f43253q;
-    public final int f43254r;
-    public float f43255s;
-    public final int[] f43256t;
-    public int f43260y;
-    public int f43261z;
-    public float f43257u = 0.0f;
+    public final int f46832i;
+    public final int f46833j;
+    public final int f46834k;
+    public final int f46835l;
+    public final int f46836m;
+    public final int f46837n;
+    public final int f46838o;
+    public final int f46839p;
+    public final int f46840q;
+    public final int f46841r;
+    public float f46842s;
+    public final int[] f46843t;
+    public int f46847y;
+    public int f46848z;
+    public float f46844u = 0.0f;
     public float v = 2.0f;
-    public float f43258w = 0.13f;
-    public float f43259x = 1.0f;
+    public float f46845w = 0.13f;
+    public float f46846x = 1.0f;
     public float A = 0.2f;
     public int B = -1;
     public int C = -1;
@@ -89,8 +89,8 @@ public final class f {
             }
             bufferedReader.close();
             open.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e7) {
+            e7.printStackTrace();
         }
         return sb2.toString();
     }
@@ -109,15 +109,15 @@ public final class f {
     public final void a(int i10, boolean z10) {
         int i11 = i10 * 3;
         GLES20.glBindBuffer(34962, this.Y[i11]);
-        GLES20.glVertexAttribPointer(this.f43248l, 2, 5126, false, 0, 0);
+        GLES20.glVertexAttribPointer(this.f46835l, 2, 5126, false, 0, 0);
         GLES20.glBindBuffer(34962, this.Y[i11 + 1]);
-        GLES20.glVertexAttribPointer(this.f43249m, 3, 5126, false, 0, 0);
+        GLES20.glVertexAttribPointer(this.f46836m, 3, 5126, false, 0, 0);
         GLES20.glBindBuffer(34962, this.Y[i11 + 2]);
-        GLES20.glVertexAttribPointer(this.f43247k, 3, 5126, false, 0, 0);
+        GLES20.glVertexAttribPointer(this.f46834k, 3, 5126, false, 0, 0);
         GLES20.glUniform1i(this.O, i10);
         GLES20.glUniform1i(this.P, i10);
         GLES20.glUniform1i(this.Q, z10 ? 1 : 0);
         GLES20.glUniform1i(this.R, this.X);
-        GLES20.glDrawArrays(4, 0, this.f43256t[i10] / 3);
+        GLES20.glDrawArrays(4, 0, this.f46843t[i10] / 3);
     }
 }

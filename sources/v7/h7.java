@@ -1,12 +1,11 @@
 package v7;
-public final class h7 {
-    public final c6 f44275a;
-    public final g6 f44276b;
-    public final f7 f44277c;
-
-    public h7(l lVar) {
-        this.f44275a = (c6) lVar.f44315b;
-        this.f44276b = (g6) lVar.f44316c;
-        this.f44277c = (f7) lVar.d;
+public abstract class h7 {
+    public static void a(rd.p pVar, zd.a aVar, zd.a aVar2) {
+        try {
+            ee.a.g(gd.i.f10452a, w7.g.b(w7.g.a(aVar, aVar2, pVar)));
+        } catch (Throwable th2) {
+            aVar2.resumeWith(t7.a(th2));
+            throw th2;
+        }
     }
 }

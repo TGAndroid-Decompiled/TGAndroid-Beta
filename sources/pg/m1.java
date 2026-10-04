@@ -2,7 +2,7 @@ package pg;
 
 import java.util.ArrayList;
 public final class m1 {
-    public int f41175a;
-    public ArrayList f41176b = new ArrayList();
-    public int f41177c;
+    public int f44530a;
+    public ArrayList f44531b = new ArrayList();
+    public int f44532c;
 }

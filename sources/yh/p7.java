@@ -1,27 +1,86 @@
 package yh;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.yl0;
-public final class p7 extends w51 {
-    public static final int f47887a = 0;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.ok;
+import org.telegram.ui.Components.w9;
+public final class p7 extends LinearLayout {
+    public final int f51821a;
+    public final org.telegram.ui.ActionBar.d6 f51822b;
+    public final w9 f51823c;
+    public final org.telegram.ui.ActionBar.i5 d;
+    public final TextView f51824e;
+    public final TextView f51825f;
+    public final TextView h;
+    public final TextView f51826n;
+    public boolean f51827r;
+    public boolean f51828s;
 
-    static {
-        w51.setup(new w51());
+    public p7(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f51821a = i10;
+        this.f51822b = d6Var;
+        setOrientation(0);
+        w9 w9Var = new w9(context);
+        this.f51823c = w9Var;
+        w9Var.setRoundRadius(AndroidUtilities.dp(46.0f));
+        addView(w9Var, w7.z5.p(46, 46, 0.0f, 19, 13, 0, 13, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.z5.p(-1, -2, 1.0f, 16, 0, 0, 0, 0));
+        org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
+        this.d = i5Var;
+        int i11 = org.telegram.ui.ActionBar.i6.G6;
+        i5Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, d6Var));
+        i5Var.setTextSize(16);
+        i5Var.setTypeface(AndroidUtilities.bold());
+        NotificationCenter.listenEmojiLoading(i5Var);
+        linearLayout.addView(i5Var, w7.z5.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2));
+        TextView textView = new TextView(context);
+        this.f51824e = textView;
+        ok.n(i11, d6Var, textView, 1, 13.0f);
+        textView.setVisibility(8);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.z5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, -2), context);
+        this.f51825f = h;
+        int i12 = org.telegram.ui.ActionBar.i6.f21223z6;
+        ok.n(i12, d6Var, h, 1, 14.0f);
+        linearLayout.addView(h, w7.z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        addView(linearLayout2, w7.z5.p(-2, -2, 0.0f, 16, 0, 0, 18, 0));
+        TextView textView2 = new TextView(context);
+        this.h = textView2;
+        org.telegram.ui.Cells.c1.p(i11, d6Var, textView2, 1, 16.0f);
+        textView2.setGravity(5);
+        TextView h10 = com.google.android.gms.internal.vision.e2.h(linearLayout2, textView2, w7.z5.t(-1, -2, 5, 0, 0, 0, 1), context);
+        this.f51826n = h10;
+        ok.n(i12, d6Var, h10, 1, 13.0f);
+        h10.setGravity(5);
+        linearLayout2.addView(h10, w7.z5.t(-1, -2, 5, 0, 0, 0, 0));
     }
 
     @Override
-    public final void bindView(android.view.View r32, org.telegram.ui.Components.x51 r33, boolean r34, org.telegram.ui.Components.l61 r35, org.telegram.ui.Components.t61 r36) {
-        throw new UnsupportedOperationException("Method not decompiled: yh.p7.bindView(android.view.View, org.telegram.ui.Components.x51, boolean, org.telegram.ui.Components.l61, org.telegram.ui.Components.t61):void");
-    }
-
-    @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        q7 q7Var = (q7) getCached();
-        if (q7Var != null) {
-            return q7Var;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f51828s) {
+            canvas.drawRect(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.i6.f20940k0);
         }
-        return new q7(context, i10, d6Var);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+        if (this.f51827r) {
+            f7 = 68.0f;
+        } else {
+            f7 = 58.0f;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824));
     }
 }

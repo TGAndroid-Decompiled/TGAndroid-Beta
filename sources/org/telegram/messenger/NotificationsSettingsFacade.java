@@ -39,12 +39,12 @@ public class NotificationsSettingsFacade {
         int c11 = f0.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
         SharedPreferences.Editor edit = getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
-            edit.putBoolean(v7.j.g("silent_", sharedPrefKey), peerNotifySettings.silent);
+            edit.putBoolean(t8.b.i("silent_", sharedPrefKey), peerNotifySettings.silent);
         } else {
             edit.remove("silent_" + sharedPrefKey);
         }
         if ((peerNotifySettings.flags & 64) != 0) {
-            edit.putBoolean(v7.j.g("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
+            edit.putBoolean(t8.b.i("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
         } else {
             edit.remove("stories_" + sharedPrefKey);
         }
@@ -187,7 +187,7 @@ public class NotificationsSettingsFacade {
     public void setSettingsForDialog(SharedPreferences.Editor editor, TLRPC.Dialog dialog, TLRPC.PeerNotifySettings peerNotifySettings) {
         long peerId = MessageObject.getPeerId(dialog.peer);
         if ((dialog.notify_settings.flags & 2) != 0) {
-            editor.putBoolean(a4.a.p(peerId, "silent_"), dialog.notify_settings.silent);
+            editor.putBoolean(a4.a.o(peerId, "silent_"), dialog.notify_settings.silent);
         } else {
             editor.remove("silent_" + peerId);
         }
@@ -201,7 +201,7 @@ public class NotificationsSettingsFacade {
                     return;
                 }
                 editor.putInt("notify2_" + peerId, 3);
-                editor.putInt(a4.a.p(peerId, "notifyuntil_"), dialog.notify_settings.mute_until);
+                editor.putInt(a4.a.o(peerId, "notifyuntil_"), dialog.notify_settings.mute_until);
                 return;
             }
             editor.putInt("notify2_" + peerId, 0);

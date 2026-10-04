@@ -1,11 +1,11 @@
 package xh;
 
-import org.telegram.ui.Components.bs0;
+import org.telegram.ui.Components.fs0;
 public final class k2 extends s4.j {
-    public final bs0 F;
+    public final fs0 F;
 
-    public k2(bs0 bs0Var) {
-        this.F = bs0Var;
+    public k2(fs0 fs0Var) {
+        this.F = fs0Var;
     }
 
     @Override

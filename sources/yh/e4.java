@@ -2,15 +2,15 @@ package yh;
 
 import org.telegram.messenger.Utilities;
 public final class e4 implements Utilities.Callback2 {
-    public final int f47333a = 0;
-    public final boolean[] f47334b;
-    public final Utilities.Callback2 f47335c;
+    public final int f51225a = 0;
+    public final boolean[] f51226b;
+    public final Utilities.Callback2 f51227c;
     public final Utilities.Callback d;
 
     public e4(Utilities.Callback callback, boolean[] zArr, Utilities.Callback2 callback2) {
         this.d = callback;
-        this.f47334b = zArr;
-        this.f47335c = callback2;
+        this.f51226b = zArr;
+        this.f51227c = callback2;
     }
 
     @Override
@@ -19,14 +19,14 @@ public final class e4 implements Utilities.Callback2 {
         String str2;
         Long l4 = (Long) obj;
         Boolean bool = (Boolean) obj2;
-        switch (this.f47333a) {
+        switch (this.f51225a) {
             case 0:
                 Utilities.Callback callback = this.d;
                 if (callback != null) {
                     callback.run(Boolean.TRUE);
                 }
-                this.f47334b[0] = true;
-                Utilities.Callback2 callback2 = this.f47335c;
+                this.f51226b[0] = true;
+                Utilities.Callback2 callback2 = this.f51227c;
                 if (callback2 != null) {
                     if (bool.booleanValue()) {
                         str = "paid";
@@ -38,8 +38,8 @@ public final class e4 implements Utilities.Callback2 {
                 }
                 return;
             default:
-                this.f47334b[0] = true;
-                Utilities.Callback2 callback22 = this.f47335c;
+                this.f51226b[0] = true;
+                Utilities.Callback2 callback22 = this.f51227c;
                 if (callback22 != null) {
                     if (bool.booleanValue()) {
                         str2 = "paid";
@@ -58,8 +58,8 @@ public final class e4 implements Utilities.Callback2 {
     }
 
     public e4(boolean[] zArr, Utilities.Callback2 callback2, Utilities.Callback callback) {
-        this.f47334b = zArr;
-        this.f47335c = callback2;
+        this.f51226b = zArr;
+        this.f51227c = callback2;
         this.d = callback;
     }
 }

@@ -5,40 +5,40 @@ import android.graphics.Typeface;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.p90;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.xb;
-import org.telegram.ui.Components.yl0;
-public final class p2 extends w51 {
-    public static final int f46349a = 0;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.q90;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.yb;
+import org.telegram.ui.Components.zl0;
+public final class p2 extends f61 {
+    public static final int f50170a = 0;
 
     static {
-        w51.setup(new w51());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, u61 u61Var, c71 c71Var) {
         Typeface typeface;
-        p90 p90Var = (p90) view;
-        p90Var.setGravity(x51Var.f30291z);
-        p90Var.setTextColor((int) x51Var.B);
-        p90Var.setTextSize(1, x51Var.A);
-        if (x51Var.f30283q) {
+        q90 q90Var = (q90) view;
+        q90Var.setGravity(g61Var.f26681z);
+        q90Var.setTextColor((int) g61Var.B);
+        q90Var.setTextSize(1, g61Var.A);
+        if (g61Var.f26673q) {
             typeface = AndroidUtilities.bold();
         } else {
             typeface = null;
         }
-        p90Var.setTypeface(typeface);
-        int i10 = x51Var.f30275i;
-        p90Var.setPadding(i10, 0, i10, x51Var.f30277k);
-        p90Var.setText(x51Var.f30278l);
+        q90Var.setTypeface(typeface);
+        int i10 = g61Var.f26665i;
+        q90Var.setPadding(i10, 0, i10, g61Var.f26667k);
+        q90Var.setText(g61Var.f26668l);
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, d6 d6Var) {
-        return new xb(context, 5, null);
+    public final View createView(Context context, zl0 zl0Var, int i10, int i11, d6 d6Var) {
+        return new yb(context, 5, null);
     }
 }

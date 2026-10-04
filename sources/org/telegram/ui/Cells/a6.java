@@ -12,14 +12,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.cc0;
+import org.telegram.ui.Components.dc0;
 public final class a6 extends FrameLayout {
-    public final TextView f20023a;
-    public final TextView f20024b;
-    public final ImageView f20025c;
+    public final TextView f21792a;
+    public final TextView f21793b;
+    public final ImageView f21794c;
     public final Switch d;
-    public boolean e;
-    public boolean f20026f;
+    public boolean f21795e;
+    public boolean f21796f;
     public final org.telegram.ui.ActionBar.d6 h;
 
     public a6(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -35,7 +35,7 @@ public final class a6 extends FrameLayout {
         float f12;
         this.h = d6Var;
         ImageView imageView = new ImageView(context);
-        this.f20025c = imageView;
+        this.f21794c = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         if (LocaleController.isRTL) {
@@ -43,10 +43,10 @@ public final class a6 extends FrameLayout {
         } else {
             i10 = 3;
         }
-        addView(imageView, w7.y5.d(28, 28.0f, i10 | 48, 18.0f, 16.0f, 18.0f, 9.0f));
+        addView(imageView, w7.z5.d(28, 28.0f, i10 | 48, 18.0f, 16.0f, 18.0f, 9.0f));
         TextView textView = new TextView(context);
-        this.f20023a = textView;
-        ok.n(org.telegram.ui.ActionBar.h6.G6, d6Var, textView, 1, 16.0f);
+        this.f21792a = textView;
+        ok.n(org.telegram.ui.ActionBar.i6.G6, d6Var, textView, 1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -74,10 +74,10 @@ public final class a6 extends FrameLayout {
         } else {
             f10 = 66.0f;
         }
-        addView(textView, w7.y5.d(-1, -2.0f, i15, f7, 8.0f, f10, 0.0f));
+        addView(textView, w7.z5.d(-1, -2.0f, i15, f7, 8.0f, f10, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f20024b = textView2;
-        ok.n(org.telegram.ui.ActionBar.h6.f19463z6, d6Var, textView2, 1, 13.0f);
+        this.f21793b = textView2;
+        ok.n(org.telegram.ui.ActionBar.i6.f21223z6, d6Var, textView2, 1, 13.0f);
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
@@ -106,27 +106,27 @@ public final class a6 extends FrameLayout {
         } else {
             f12 = 66.0f;
         }
-        addView(textView2, w7.y5.d(-2, -2.0f, i16, f11, 31.0f, f12, 10.0f));
+        addView(textView2, w7.z5.d(-2, -2.0f, i16, f11, 31.0f, f12, 10.0f));
         Switch r32 = new Switch(context, d6Var);
         this.d = r32;
-        int i17 = org.telegram.ui.ActionBar.h6.M6;
-        int i18 = org.telegram.ui.ActionBar.h6.N6;
-        int i19 = org.telegram.ui.ActionBar.h6.f19061d6;
+        int i17 = org.telegram.ui.ActionBar.i6.M6;
+        int i18 = org.telegram.ui.ActionBar.i6.N6;
+        int i19 = org.telegram.ui.ActionBar.i6.f20817d6;
         r32.d(i17, i18, i19, i19);
-        addView(r32, w7.y5.d(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 10.0f, 19.0f, 0.0f));
+        addView(r32, w7.z5.d(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 10.0f, 19.0f, 0.0f));
         r32.setFocusable(false);
     }
 
     public final void a(String str, String str2, int i10, int i11, boolean z10) {
         boolean q6;
-        this.f20023a.setText(str);
+        this.f21792a.setText(str);
         org.telegram.ui.ActionBar.d6 d6Var = this.h;
         if (d6Var != null) {
             q6 = d6Var.a();
         } else {
-            q6 = org.telegram.ui.ActionBar.h6.I.q();
+            q6 = org.telegram.ui.ActionBar.i6.I.q();
         }
-        cc0 cc0Var = new cc0(1);
+        dc0 dc0Var = new dc0(1);
         int i12 = -14899731;
         switch (i10) {
             case 1:
@@ -197,15 +197,15 @@ public final class a6 extends FrameLayout {
             default:
                 throw null;
         }
-        cc0Var.b(i12, i13);
-        cc0Var.f23250b = q6;
-        ImageView imageView = this.f20025c;
-        imageView.setBackground(cc0Var);
+        dc0Var.b(i12, i13);
+        dc0Var.f25693b = q6;
+        ImageView imageView = this.f21794c;
+        imageView.setBackground(dc0Var);
         imageView.setImageResource(i11);
-        boolean z11 = this.e;
+        boolean z11 = this.f21795e;
         Switch r02 = this.d;
         r02.b(0, z10, z11);
-        this.f20024b.setText(str2);
+        this.f21793b.setText(str2);
         r02.setContentDescription(str);
     }
 
@@ -215,15 +215,15 @@ public final class a6 extends FrameLayout {
         float dp;
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f20026f) {
+        if (this.f21796f) {
             org.telegram.ui.ActionBar.d6 d6Var = this.h;
             if (d6Var != null) {
-                paint = d6Var.G("paintDivider");
+                paint = d6Var.H("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.h6.f19182k0;
+                paint = org.telegram.ui.ActionBar.i6.f20940k0;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.h6.f19182k0;
+                paint = org.telegram.ui.ActionBar.i6.f20940k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {
@@ -253,8 +253,8 @@ public final class a6 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f20023a.getText());
-        TextView textView = this.f20024b;
+        sb2.append(this.f21792a.getText());
+        TextView textView = this.f21793b;
         if (textView != null && !TextUtils.isEmpty(textView.getText())) {
             sb2.append("\n");
             sb2.append(textView.getText());
@@ -265,7 +265,7 @@ public final class a6 extends FrameLayout {
     }
 
     public void setAnimationsEnabled(boolean z10) {
-        this.e = z10;
+        this.f21795e = z10;
     }
 
     public void setChecked(boolean z10) {
@@ -273,11 +273,11 @@ public final class a6 extends FrameLayout {
     }
 
     public void setDivider(boolean z10) {
-        this.f20026f = z10;
+        this.f21796f = z10;
         invalidate();
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f20024b.setText(charSequence);
+        this.f21793b.setText(charSequence);
     }
 }

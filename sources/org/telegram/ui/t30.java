@@ -1,20 +1,13 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public final class t30 extends s4.s0 {
-    public final d60 f37955a;
-
-    public t30(d60 d60Var) {
-        this.f37955a = d60Var;
+import android.view.View;
+public final class t30 extends View {
+    public t30(LaunchActivity launchActivity) {
+        super(launchActivity);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        d60 d60Var = this.f37955a;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) d60Var).containerView;
-        viewGroup.invalidate();
-        d60Var.a2.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
     }
 }

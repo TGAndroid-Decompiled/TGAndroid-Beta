@@ -1,94 +1,296 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class re implements Runnable {
-    public final int f37306a = 0;
-    public final boolean f37307b;
-    public final Object f37308c;
-    public final boolean d;
-    public final Object e;
-    public final Object f37309f;
-    public final Object h;
-    public final Object f37310n;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.UndoView;
+public final class re implements org.telegram.ui.Components.g60, org.telegram.ui.Components.j60, org.telegram.ui.ActionBar.a2, MessagesStorage.BooleanCallback, org.telegram.ui.Components.lo, org.telegram.ui.Components.zj0, ResultCallback, li.i, wh.c, jh.a, jh.b, org.telegram.ui.Components.ol0, y60, ps, jh.d {
+    public final int f40101a;
+    public final yn f40102b;
 
-    public re(wn wnVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var, boolean z10, boolean z11) {
-        this.e = wnVar;
-        this.f37308c = str;
-        this.f37309f = characterStyle;
-        this.h = messageObject;
-        this.f37310n = u1Var;
-        this.f37307b = z10;
-        this.d = z11;
+    public re(yn ynVar, int i10) {
+        this.f40101a = i10;
+        this.f40102b = ynVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37306a) {
-            case 0:
-                wn wnVar = (wn) this.e;
-                String str = (String) this.f37308c;
-                CharacterStyle characterStyle = (CharacterStyle) this.f37309f;
-                MessageObject messageObject = (MessageObject) this.h;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f37310n;
-                if (str.startsWith("video?")) {
-                    wnVar.U7(characterStyle, false, messageObject, u1Var);
-                    return;
-                } else if (this.f37307b && !this.d) {
-                    wnVar.getParentActivity();
-                    nf.f.n(str);
-                    return;
-                } else {
-                    wnVar.J9(messageObject, false, false);
-                    wnVar.Z9(characterStyle, str, false, u1Var, messageObject);
-                    return;
-                }
-            case 1:
-                wh.n nVar = (wh.n) this.e;
-                Runnable runnable = (Runnable) this.f37309f;
-                String str2 = (String) this.f37308c;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
-                TLObject tLObject = (TLObject) this.f37310n;
-                nVar.f45409w = false;
-                nVar.f45412z = true;
-                if (this.f37307b) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
-                }
-                wh.n.k(nVar.f45404q, false, false);
-                if (TextUtils.equals(str2, nVar.f45407t) && tL_error == null) {
-                    nVar.f45412z = true;
-                    nVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.d, false);
-                    return;
-                }
+    public void a() {
+        yn ynVar = this.f40102b;
+        if (ynVar.f43541w3 == null && ynVar.getParentActivity() != null) {
+            ynVar.Q7();
+            ynVar.f43541w3.m(ynVar.R5, ynVar.f43326f, 8);
+        }
+    }
+
+    @Override
+    public void b(TLRPC.Document document) {
+        switch (this.f40101a) {
+            case 6:
+                yn.u0(this.f40102b, document);
                 return;
             default:
-                yh.x3.A0((yh.x3) this.e, (TLObject) this.f37308c, this.f37307b, (TLRPC.Document) this.f37309f, this.d, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f37310n);
+                yn.v0(this.f40102b, document);
                 return;
         }
     }
 
-    public re(wh.n nVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
-        this.e = nVar;
-        this.f37307b = z10;
-        this.f37309f = runnable;
-        this.f37308c = str;
-        this.h = tL_error;
-        this.f37310n = tLObject;
-        this.d = z11;
+    @Override
+    public boolean d(int i10, View view) {
+        yn ynVar = this.f40102b;
+        boolean z10 = false;
+        if (ynVar.getParentActivity() != null) {
+            gg.k1 adapter = ynVar.G1.getAdapter();
+            if ((adapter.I != null || adapter.J != null) && i10 != 0) {
+                gg.k1 adapter2 = ynVar.G1.getAdapter();
+                if (adapter2.f10695w0 != null && !adapter2.f10677h0) {
+                    return false;
+                }
+                Object J = ynVar.G1.getAdapter().J(i10 - 1);
+                if (J instanceof gg.h1) {
+                    gg.h1 h1Var = (gg.h1) J;
+                    if (ynVar.G1.getAdapter().J != null && org.telegram.ui.Components.h61.h) {
+                        ynVar.W.setFieldText("");
+                        jk jkVar = ynVar.W;
+                        String str = h1Var.f10604a;
+                        TLRPC.Chat chat = ynVar.f43314e;
+                        if (chat != null && chat.megagroup) {
+                            z10 = true;
+                        }
+                        jkVar.Z0(null, str, true, z10);
+                        return true;
+                    }
+                } else if (J instanceof String) {
+                    if (ynVar.G1.getAdapter().J != null) {
+                        if (org.telegram.ui.Components.h61.h) {
+                            ynVar.W.setFieldText("");
+                            jk jkVar2 = ynVar.W;
+                            String str2 = (String) J;
+                            TLRPC.Chat chat2 = ynVar.f43314e;
+                            if (chat2 != null && chat2.megagroup) {
+                                z10 = true;
+                            }
+                            jkVar2.Z0(null, str2, true, z10);
+                            return true;
+                        }
+                    } else {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ynVar.getParentActivity(), 0, ynVar.f43299ca);
+                        alertDialog$Builder.f20367a.R = LocaleController.getString(R.string.AppName);
+                        alertDialog$Builder.f20367a.T = LocaleController.getString(R.string.ClearSearch);
+                        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new re(ynVar, 10));
+                        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                        ynVar.showDialog(alertDialog$Builder.f20367a);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
-    public re(yh.x3 x3Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
-        this.e = x3Var;
-        this.f37308c = tLObject;
-        this.f37307b = z10;
-        this.f37309f = document;
-        this.d = z11;
-        this.h = tL_error;
-        this.f37310n = savestargift;
+    @Override
+    public void e(boolean z10, boolean z11) {
+        yn ynVar = this.f40102b;
+        ynVar.K0.i(ynVar.f43311da.c(), z10, z11);
+    }
+
+    @Override
+    public void f(ArrayList arrayList) {
+        switch (this.f40101a) {
+            case 12:
+                yn ynVar = this.f40102b;
+                if (ynVar.getParentActivity() != null && ynVar.getParentActivity() != null) {
+                    hi hiVar = new hi(ynVar, ynVar, ynVar.getParentActivity(), ynVar.f43299ca, arrayList);
+                    hiVar.setCalcMandatoryInsets(ynVar.w9());
+                    hiVar.setDimBehind(false);
+                    ynVar.A7(false);
+                    ynVar.showDialog(hiVar);
+                    return;
+                }
+                return;
+            default:
+                yn ynVar2 = this.f40102b;
+                if (ynVar2.getParentActivity() != null && ynVar2.getParentActivity() != null) {
+                    ej ejVar = new ej(ynVar2, ynVar2, ynVar2.getParentActivity(), ynVar2.f43299ca, arrayList);
+                    ejVar.setCalcMandatoryInsets(ynVar2.w9());
+                    ejVar.setDimBehind(false);
+                    ynVar2.A7(false);
+                    ynVar2.showDialog(ejVar);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f40101a) {
+            case 2:
+                qk qkVar = this.f40102b.f43576z0;
+                if (qkVar != null) {
+                    qkVar.callOnClick();
+                    return;
+                }
+                return;
+            case 3:
+                this.f40102b.finishFragment();
+                return;
+            case 4:
+                yn ynVar = this.f40102b;
+                ynVar.getMessagesController().unblockPeer(ynVar.f43326f.f20184id);
+                return;
+            case 5:
+            case 6:
+            case 7:
+            case 12:
+            case 13:
+            case 16:
+            case 17:
+            case 18:
+            default:
+                yn ynVar2 = this.f40102b;
+                MessageObject messageObject = (MessageObject) ynVar2.H4.get(Integer.valueOf(ynVar2.J4));
+                if (messageObject == null) {
+                    messageObject = (MessageObject) ynVar2.f43417m6[0].get(ynVar2.J4);
+                }
+                ynVar2.bc(messageObject);
+                return;
+            case 8:
+                yn ynVar3 = this.f40102b;
+                MessagePreviewParams messagePreviewParams = ynVar3.f43306d5;
+                if (messagePreviewParams != null) {
+                    messagePreviewParams.updateForward(null, ynVar3.R5);
+                }
+                ynVar3.j8();
+                return;
+            case 9:
+                this.f40102b.ba(1);
+                return;
+            case 10:
+                gg.k1 adapter = this.f40102b.G1.getAdapter();
+                adapter.f10694w.c();
+                adapter.I.clear();
+                adapter.l();
+                org.telegram.ui.Components.wa0 wa0Var = adapter.V;
+                if (wa0Var != null) {
+                    wa0Var.a(false);
+                    return;
+                }
+                return;
+            case 11:
+                this.f40102b.finishFragment();
+                return;
+            case 14:
+                yn ynVar4 = this.f40102b;
+                ynVar4.showDialog(new tl(ynVar4, ynVar4.getParentActivity(), ynVar4));
+                return;
+            case 15:
+                yn ynVar5 = this.f40102b;
+                ynVar5.Q7();
+                UndoView undoView = ynVar5.f43541w3;
+                if (undoView != null) {
+                    undoView.j(75, 0L, null);
+                    return;
+                }
+                return;
+            case 19:
+                yn ynVar6 = this.f40102b;
+                MessagePreviewParams messagePreviewParams2 = ynVar6.f43306d5;
+                if (messagePreviewParams2 != null && messagePreviewParams2.quote != null) {
+                    ynVar6.ba(0);
+                    return;
+                }
+                return;
+            case 20:
+                this.f40102b.f9(true);
+                return;
+        }
+    }
+
+    @Override
+    public void h(int i10) {
+        yn ynVar = this.f40102b;
+        if (i10 == 1) {
+            ynVar.T9();
+        } else if (i10 == 2) {
+            ynVar.G9();
+        } else if (i10 == 3) {
+            ynVar.B4 = true;
+            ynVar.getMessagesController().getNextReactionMention(ynVar.R5, ynVar.d(), ynVar.f43377j1, new og(ynVar, 0));
+        } else if (i10 == 4) {
+            ynVar.B4 = true;
+            ynVar.getMessagesController().getNextPollVotesMention(ynVar.R5, ynVar.d(), ynVar.f43389k1, new og(ynVar, 1));
+        } else if (i10 == 6) {
+            ynVar.Z8(true);
+        } else if (i10 == 5) {
+            ynVar.Z8(false);
+        } else if (i10 == 0) {
+            ai.g4 g4Var = ynVar.H1;
+            if (g4Var != null) {
+                g4Var.F1(null, 0);
+            }
+            ynVar.W9();
+        }
+    }
+
+    @Override
+    public void i(int i10, ArrayList arrayList) {
+        yn ynVar = this.f40102b;
+        ynVar.getMessagesController().addUsersToChat(ynVar.f43314e, ynVar, arrayList, i10, null, null, null);
+        ynVar.getMessagesController().hidePeerSettingsBar(ynVar.R5, ynVar.f43326f, ynVar.f43314e);
+        ynVar.Pc(true);
+        ynVar.nc(true);
+    }
+
+    @Override
+    public void k(int i10) {
+        yn.T0(this.f40102b, i10);
+    }
+
+    @Override
+    public void onComplete(Object obj) {
+        boolean z10;
+        org.telegram.ui.ActionBar.c4 c4Var = (org.telegram.ui.ActionBar.c4) obj;
+        yn ynVar = this.f40102b;
+        wn wnVar = ynVar.f43299ca;
+        TLRPC.WallPaper wallPaper = wnVar.h;
+        if (ynVar.N5 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        wnVar.i(c4Var, wallPaper, z10, null, false);
+    }
+
+    @Override
+    public void onError(Throwable th2) {
+        org.telegram.tgnet.l.a(this, th2);
+    }
+
+    @Override
+    public void run(boolean z10) {
+        yn ynVar = this.f40102b;
+        NotificationCenter notificationCenter = ynVar.getNotificationCenter();
+        int i10 = NotificationCenter.closeChats;
+        notificationCenter.removeObserver(ynVar, i10);
+        ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
+        ynVar.finishFragment();
+        ynVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ynVar.R5), ynVar.f43326f, ynVar.f43314e, Boolean.valueOf(z10));
+    }
+
+    @Override
+    public void onError(TLRPC.TL_error tL_error) {
+        org.telegram.tgnet.l.b(this, tL_error);
+    }
+
+    @Override
+    public void c(TLRPC.User user) {
     }
 }

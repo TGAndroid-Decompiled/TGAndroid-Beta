@@ -1,84 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import java.util.Random;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class cr0 extends View {
-    public Random f23371a;
-    public Paint f23372b;
-    public Paint f23373c;
-    public Paint d;
-    public Paint e;
-    public float f23374f;
-    public float h;
-    public float f23375n;
+import org.telegram.messenger.R;
+public final class cr0 extends FrameLayout {
+    public final LinearLayout f25433a;
+    public final ImageView f25434b;
+    public final org.telegram.ui.ActionBar.i5 f25435c;
+    public final org.telegram.ui.ActionBar.i5 d;
+    public final org.telegram.ui.ActionBar.i5 f25436e;
+    public final FrameLayout f25437f;
+    public final w9[] h;
+    public final w9 f25438n;
+    public final ImageView f25439r;
+    public final er0 f25440s;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f23373c;
-        Paint paint2 = this.f23372b;
-        super.onDraw(canvas);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
-        float f10 = 3.0f;
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(3.0f);
-        int i10 = 7;
-        int dp = AndroidUtilities.dp(1.0f) + ((AndroidUtilities.dp(1.0f) + measuredWidth) * 7);
-        sr srVar = sr.f28347g;
-        float f11 = this.f23374f;
-        if (f11 > 0.4f) {
-            f7 = (f11 - 0.4f) / 0.6f;
-        } else {
-            f7 = 0.0f;
+    public cr0(er0 er0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f25440s = er0Var;
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f25433a = linearLayout;
+        linearLayout.setOrientation(0);
+        linearLayout.setBackground(org.telegram.ui.ActionBar.i6.a0(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20908i6, d6Var), 20, 20, 6, 6));
+        w7.b6.b(linearLayout, 0.02f, 1.2f);
+        addView(linearLayout, w7.z5.d(-1, -1.0f, 119, 4.0f, 4.0f, 4.0f, 4.0f));
+        ImageView imageView = new ImageView(context);
+        this.f25434b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21123te, d6Var), PorterDuff.Mode.MULTIPLY));
+        linearLayout.addView(imageView, w7.z5.q(40, 38, 51));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f25437f = frameLayout;
+        linearLayout.addView(frameLayout, w7.z5.t(-2, -1, 115, 6, 0, 0, 0));
+        this.h = new w9[3];
+        for (int i10 = 2; i10 >= 0; i10--) {
+            this.h[i10] = new w9(context);
+            this.h[i10].setRoundRadius(AndroidUtilities.dp(6.0f));
+            this.h[i10].setVisibility(8);
+            int i11 = 32 - (i10 * 4);
+            this.f25437f.addView(this.h[i10], w7.z5.d(i11, i11, 19, i10 * 12, 0.0f, 0.0f, 0.0f));
         }
-        float interpolation = srVar.getInterpolation(f7);
-        float f12 = (this.f23375n * interpolation) + ((1.0f - interpolation) * this.h);
-        canvas.save();
-        canvas.translate(0.0f, (-org.telegram.messenger.f0.A(4.0f, getMeasuredHeight(), dp)) * f12);
-        int i11 = 0;
-        while (i11 < i10) {
-            int dp2 = ((AndroidUtilities.dp(1.0f) + measuredWidth) * i11) + AndroidUtilities.dp(f10);
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = dp2;
-            float f14 = dp2 + measuredWidth;
-            rectF.set(0.0f, f13, measuredWidth, f14);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint2);
-            rectF.set(AndroidUtilities.dp(1.0f) + measuredWidth, f13, org.telegram.messenger.f0.C(1.0f, measuredWidth, measuredWidth), f14);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint2);
-            i11++;
-            i10 = 7;
-            f10 = 3.0f;
-        }
-        canvas.restore();
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.d);
-        canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.dp(4.0f));
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.e);
-        canvas.restore();
-        float measuredHeight = ((getMeasuredHeight() - AndroidUtilities.dp(21.0f)) * f12) + AndroidUtilities.dp(3.0f);
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(getMeasuredWidth() - AndroidUtilities.dp(3.0f), measuredHeight, getMeasuredWidth(), AndroidUtilities.dp(15.0f) + measuredHeight);
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), paint);
-        float centerY = rectF2.centerY();
-        float dp3 = AndroidUtilities.dp(0.5f) + measuredWidth;
-        rectF2.set(dp3 - AndroidUtilities.dp(8.0f), centerY - AndroidUtilities.dp(3.0f), dp3 + AndroidUtilities.dp(8.0f), centerY + AndroidUtilities.dp(3.0f));
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
-        float f15 = this.f23374f + 0.016f;
-        this.f23374f = f15;
-        if (f15 > 1.0f) {
-            this.h = this.f23375n;
-            float e = org.telegram.ui.Cells.c1.e(this.f23371a, 1001) / 1000.0f;
-            this.f23375n = e;
-            if (e > this.h) {
-                this.f23375n = e + 0.3f;
-            } else {
-                this.f23375n = e - 0.3f;
-            }
-            this.f23375n = Math.max(0.0f, Math.min(1.0f, this.f23375n));
-            this.f23374f = 0.0f;
-        }
-        invalidate();
+        w9 w9Var = new w9(context);
+        this.f25438n = w9Var;
+        w9Var.setRoundRadius(AndroidUtilities.dp(4.0f));
+        w9Var.setVisibility(8);
+        this.f25433a.addView(w9Var, w7.z5.t(34, 34, 19, 6, 0, 0, 0));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.f25433a.addView(frameLayout2, w7.z5.o(0, -1, 1.0f, 119));
+        org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
+        this.f25435c = i5Var;
+        i5Var.setTextSize(14);
+        i5Var.setTypeface(AndroidUtilities.bold());
+        i5Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f21159ve, d6Var));
+        frameLayout2.addView(i5Var, w7.z5.d(-1, 18.0f, 51, 8.0f, 2.0f, 8.0f, 0.0f));
+        org.telegram.ui.ActionBar.i5 i5Var2 = new org.telegram.ui.ActionBar.i5(context);
+        this.d = i5Var2;
+        i5Var2.setTextSize(14);
+        int i12 = org.telegram.ui.ActionBar.i6.Xk;
+        i5Var2.setTextColor(org.telegram.ui.ActionBar.i6.v0(i12, d6Var));
+        frameLayout2.addView(i5Var2, w7.z5.d(-1, 18.0f, 51, 8.0f, 20.0f, 8.0f, 0.0f));
+        org.telegram.ui.ActionBar.i5 i5Var3 = new org.telegram.ui.ActionBar.i5(context);
+        this.f25436e = i5Var3;
+        i5Var3.setTextSize(14);
+        i5Var3.setTextColor(org.telegram.ui.ActionBar.i6.v0(i12, d6Var));
+        i5Var3.setAlpha(0.0f);
+        frameLayout2.addView(i5Var3, w7.z5.d(-1, 18.0f, 51, 8.0f, 20.0f, 8.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f25439r = imageView2;
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setImageResource(R.drawable.input_clear);
+        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Wk, d6Var), PorterDuff.Mode.MULTIPLY));
+        imageView2.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f20908i6, d6Var), 1, AndroidUtilities.dp(18.0f)));
+        imageView2.setVisibility(8);
+        imageView2.setOnClickListener(new l80(this, 15));
+        this.f25433a.addView(imageView2, w7.z5.t(36, 36, 21, 0, 0, 4, 0));
     }
 }

@@ -1,187 +1,240 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.graphics.Canvas;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class in0 implements View.OnClickListener {
-    public final int f34560a;
-    public final oo0 f34561b;
+import org.telegram.messenger.SecureDocument;
+import org.telegram.messenger.UserConfig;
+public final class in0 extends FrameLayout implements DownloadController.FileDownloadProgressListener {
+    public final TextView f37466a;
+    public final TextView f37467b;
+    public final org.telegram.ui.Components.w9 f37468c;
+    public final org.telegram.ui.Components.oj0 d;
+    public int f37469e;
+    public SecureDocument f37470f;
+    public final int h;
+    public final kn0 f37471n;
 
-    public in0(oo0 oo0Var, int i10) {
-        this.f34560a = i10;
-        this.f34561b = oo0Var;
+    public in0(kn0 kn0Var, Activity activity) {
+        super(activity);
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        this.f37471n = kn0Var;
+        i10 = ((org.telegram.ui.ActionBar.n2) kn0Var).currentAccount;
+        this.h = DownloadController.getInstance(i10).generateObserverTag();
+        this.d = new org.telegram.ui.Components.oj0(this);
+        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
+        this.f37468c = w9Var;
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(w9Var, w7.z5.d(48, 48.0f, i11 | 48, 21.0f, 8.0f, 21.0f, 0.0f));
+        TextView textView = new TextView(activity);
+        this.f37466a = textView;
+        org.telegram.messenger.ok.t(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        textView.setGravity(i12 | 16);
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            i13 = 5;
+        } else {
+            i13 = 3;
+        }
+        int i18 = i13 | 48;
+        if (z10) {
+            i14 = 21;
+        } else {
+            i14 = 81;
+        }
+        float f7 = i14;
+        if (z10) {
+            i15 = 81;
+        } else {
+            i15 = 21;
+        }
+        addView(textView, w7.z5.d(-2, -2.0f, i18, f7, 10.0f, i15, 0.0f));
+        TextView textView2 = new TextView(activity);
+        this.f37467b = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f21223z6, false));
+        textView2.setTextSize(1, 13.0f);
+        if (LocaleController.isRTL) {
+            i16 = 5;
+        } else {
+            i16 = 3;
+        }
+        textView2.setGravity(i16);
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setPadding(0, 0, 0, 0);
+        boolean z11 = LocaleController.isRTL;
+        int i19 = (z11 ? 5 : 3) | 48;
+        if (z11) {
+            i17 = 21;
+        } else {
+            i17 = 81;
+        }
+        addView(textView2, w7.z5.d(-2, -2.0f, i19, i17, 35.0f, z11 ? 81 : 21, 0.0f));
+        setWillNotDraw(false);
+    }
+
+    public final void a(boolean z10) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        String attachFileName = FileLoader.getAttachFileName(this.f37470f);
+        boolean exists = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.f37470f).exists();
+        boolean isEmpty = TextUtils.isEmpty(attachFileName);
+        org.telegram.ui.Components.oj0 oj0Var = this.d;
+        if (isEmpty) {
+            oj0Var.d(null, false, false);
+            return;
+        }
+        SecureDocument secureDocument = this.f37470f;
+        String str = secureDocument.path;
+        float f7 = 0.0f;
+        kn0 kn0Var = this.f37471n;
+        if (str != null) {
+            if (secureDocument.inputFile != null) {
+                i13 = ((org.telegram.ui.ActionBar.n2) kn0Var).currentAccount;
+                DownloadController.getInstance(i13).removeLoadingFileObserver(this);
+                oj0Var.d(null, false, z10);
+                this.f37469e = -1;
+                return;
+            }
+            i12 = ((org.telegram.ui.ActionBar.n2) kn0Var).currentAccount;
+            DownloadController.getInstance(i12).addLoadingFileObserver(this.f37470f.path, this);
+            this.f37469e = 1;
+            Float fileProgress = ImageLoader.getInstance().getFileProgress(this.f37470f.path);
+            oj0Var.d(getResources().getDrawable(R.drawable.circle), true, z10);
+            if (fileProgress != null) {
+                f7 = fileProgress.floatValue();
+            }
+            oj0Var.e(f7, false);
+            invalidate();
+        } else if (exists) {
+            i11 = ((org.telegram.ui.ActionBar.n2) kn0Var).currentAccount;
+            DownloadController.getInstance(i11).removeLoadingFileObserver(this);
+            this.f37469e = -1;
+            oj0Var.d(null, false, z10);
+            invalidate();
+        } else {
+            i10 = ((org.telegram.ui.ActionBar.n2) kn0Var).currentAccount;
+            DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this);
+            this.f37469e = 1;
+            Float fileProgress2 = ImageLoader.getInstance().getFileProgress(attachFileName);
+            oj0Var.d(getResources().getDrawable(R.drawable.circle), true, z10);
+            if (fileProgress2 != null) {
+                f7 = fileProgress2.floatValue();
+            }
+            oj0Var.e(f7, z10);
+            invalidate();
+        }
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z10;
-        int i10 = this.f34560a;
-        oo0 oo0Var = this.f34561b;
-        switch (i10) {
-            case 0:
-                if (oo0Var.getParentActivity() != null) {
-                    oo0Var.G0(null);
-                    return;
-                }
-                return;
-            case 1:
-                oo0 oo0Var2 = new oo0(oo0Var.f36284b1, oo0Var.C0, oo0Var.N0, oo0Var.O0, 0, oo0Var.E0, oo0Var.G0, oo0Var.H0, null, oo0Var.f36316x0, oo0Var.I0, oo0Var.U0, null, oo0Var.f36307r0, oo0Var.W0);
-                oo0Var2.f36287c1 = oo0Var.f36287c1;
-                oo0Var2.f36289d1 = oo0Var.f36289d1;
-                oo0Var2.T = new tn0(oo0Var);
-                oo0Var.presentFragment(oo0Var2);
-                return;
-            case 2:
-                oo0 oo0Var3 = new oo0(oo0Var.f36284b1, oo0Var.C0, oo0Var.N0, oo0Var.O0, 0, oo0Var.E0, oo0Var.G0, oo0Var.H0, null, oo0Var.f36316x0, oo0Var.I0, oo0Var.U0, null, oo0Var.f36307r0, oo0Var.W0);
-                oo0Var3.f36287c1 = oo0Var.f36287c1;
-                oo0Var3.f36289d1 = oo0Var.f36289d1;
-                oo0Var3.T = new un0(oo0Var);
-                oo0Var.presentFragment(oo0Var3);
-                return;
-            case 3:
-                oo0 oo0Var4 = new oo0(oo0Var.f36284b1, oo0Var.C0, oo0Var.N0, oo0Var.O0, 0, oo0Var.E0, oo0Var.G0, oo0Var.H0, null, oo0Var.f36316x0, oo0Var.I0, oo0Var.U0, null, oo0Var.f36307r0, oo0Var.W0);
-                oo0Var4.f36287c1 = oo0Var.f36287c1;
-                oo0Var4.f36289d1 = oo0Var.f36289d1;
-                oo0Var4.T = new vn0(oo0Var);
-                oo0Var.presentFragment(oo0Var4);
-                return;
-            case 4:
-                oo0 oo0Var5 = new oo0(oo0Var.f36284b1, oo0Var.C0, oo0Var.N0, oo0Var.O0, 0, oo0Var.E0, oo0Var.G0, oo0Var.H0, null, oo0Var.f36316x0, oo0Var.I0, oo0Var.U0, null, oo0Var.f36307r0, oo0Var.W0);
-                oo0Var5.f36287c1 = oo0Var.f36287c1;
-                oo0Var5.f36289d1 = oo0Var.f36289d1;
-                oo0Var5.T = new wn0(oo0Var);
-                oo0Var.presentFragment(oo0Var5);
-                return;
-            case 5:
-                if (!oo0Var.P0) {
-                    boolean z11 = !oo0Var.F;
-                    oo0Var.F = z11;
-                    oo0Var.V.setChecked(z11);
-                    oo0Var.W.a(oo0Var.F, true);
-                    return;
-                }
-                return;
-            case 6:
-                oo0.Z(oo0Var);
-                return;
-            case 7:
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(oo0Var.getParentActivity());
-                String string = LocaleController.getString(R.string.TurnPasswordOffQuestion);
-                if (oo0Var.f36280a0.has_secure_values) {
-                    string = org.telegram.messenger.f0.g(R.string.TurnPasswordOffPassport, v7.j.h(string, "\n\n"));
-                }
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18663a;
-                a2Var.T = string;
-                a2Var.R = LocaleController.getString(R.string.TurnPasswordOffQuestionTitle);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Disable), new mn0(oo0Var, 3));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                oo0Var.showDialog(a2Var);
-                TextView textView = (TextView) a2Var.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(oo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19300q7));
-                    return;
-                }
-                return;
-            case 8:
-                boolean z12 = !oo0Var.T0;
-                oo0Var.T0 = z12;
-                oo0Var.L.setChecked(z12);
-                return;
-            case 9:
-                boolean z13 = !oo0Var.U0;
-                oo0Var.U0 = z13;
-                oo0Var.L.setChecked(z13);
-                return;
-            case 10:
-                boolean z14 = !oo0Var.U0;
-                oo0Var.U0 = z14;
-                oo0Var.L.setChecked(z14);
-                return;
-            case 11:
-                oo0Var.getClass();
-                int intValue = ((Integer) view.getTag()).intValue();
-                int i11 = 0;
-                while (true) {
-                    org.telegram.ui.Cells.k6[] k6VarArr = oo0Var.h;
-                    if (i11 < k6VarArr.length) {
-                        org.telegram.ui.Cells.k6 k6Var = k6VarArr[i11];
-                        if (intValue == i11) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        k6Var.a(z10, true);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
-            case 12:
-                oo0Var.P.setClickable(false);
-                try {
-                    JSONObject put = new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
-                    JSONObject p02 = oo0.p0();
-                    if (oo0Var.K0 != null && oo0Var.M0 == null) {
-                        p02.put("tokenizationSpecification", new bo0(oo0Var, 1));
-                    } else {
-                        p02.put("tokenizationSpecification", new bo0(oo0Var, 3));
-                    }
-                    put.put("allowedPaymentMethods", new JSONArray().put(p02));
-                    JSONObject jSONObject = new JSONObject();
-                    ArrayList arrayList = new ArrayList(oo0Var.C0.invoice.prices);
-                    TLRPC.TL_shippingOption tL_shippingOption = oo0Var.G0;
-                    if (tL_shippingOption != null) {
-                        arrayList.addAll(tL_shippingOption.prices);
-                    }
-                    long j3 = 0;
-                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        j3 += ((TLRPC.TL_labeledPrice) arrayList.get(i12)).amount;
-                    }
-                    jSONObject.put("totalPrice", LocaleController.getInstance().formatCurrencyDecimalString(j3, oo0Var.C0.invoice.currency, false));
-                    jSONObject.put("totalPriceStatus", "FINAL");
-                    if (!TextUtils.isEmpty(oo0Var.L0)) {
-                        jSONObject.put("countryCode", oo0Var.L0);
-                    }
-                    jSONObject.put("currencyCode", oo0Var.C0.invoice.currency);
-                    jSONObject.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
-                    put.put("transactionInfo", jSONObject);
-                    put.put("merchantInfo", new JSONObject().put("merchantName", oo0Var.f36304p0));
-                    String jSONObject2 = put.toString();
-                    ?? obj = new Object();
-                    obj.f44527r = true;
-                    n6.l.i(jSONObject2, "paymentDataRequestJson cannot be null!");
-                    obj.f44528s = jSONObject2;
-                    com.google.android.gms.internal.clearcut.v0 v0Var = oo0Var.e;
-                    v0Var.getClass();
-                    com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
-                    e.f6166c = new k2.u((Object) obj, 29);
-                    e.d = new k6.c[]{v8.p.f44539b};
-                    e.f6165b = true;
-                    e.f6164a = 23707;
-                    v8.a.a(v0Var.e(1, e.a()), oo0Var.getParentActivity());
-                    return;
-                } catch (JSONException e7) {
-                    FileLog.e(e7);
-                    return;
-                }
-            case 13:
-                oo0Var.f36312v0 = false;
-                oo0Var.t0();
-                return;
-            default:
-                oo0Var.f36292f[0].requestFocus();
-                AndroidUtilities.showKeyboard(oo0Var.f36292f[0]);
-                return;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        if (view == this.f37468c) {
+            this.d.a(canvas);
         }
+        return drawChild;
+    }
+
+    @Override
+    public int getObserverTag() {
+        return this.h;
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f37466a.invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (LocaleController.isRTL) {
+            dp = 0.0f;
+        } else {
+            dp = AndroidUtilities.dp(20.0f);
+        }
+        float measuredHeight = getMeasuredHeight() - 1;
+        int measuredWidth = getMeasuredWidth();
+        if (LocaleController.isRTL) {
+            i10 = AndroidUtilities.dp(20.0f);
+        } else {
+            i10 = 0;
+        }
+        canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20940k0);
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z10) {
+        a(false);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        org.telegram.ui.Components.w9 w9Var = this.f37468c;
+        int measuredWidth = ((w9Var.getMeasuredWidth() - AndroidUtilities.dp(24.0f)) / 2) + w9Var.getLeft();
+        int measuredHeight = ((w9Var.getMeasuredHeight() - AndroidUtilities.dp(24.0f)) / 2) + w9Var.getTop();
+        this.d.f(measuredWidth, measuredHeight, AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(24.0f) + measuredHeight);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), org.telegram.messenger.ok.B(64.0f, 1, 1073741824));
+    }
+
+    @Override
+    public final void onProgressDownload(String str, long j3, long j10) {
+        this.d.e(Math.min(1.0f, ((float) j3) / ((float) j10)), true);
+        if (this.f37469e != 1) {
+            a(false);
+        }
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j3, long j10, boolean z10) {
+        this.d.e(Math.min(1.0f, ((float) j3) / ((float) j10)), true);
+    }
+
+    @Override
+    public final void onSuccessDownload(String str) {
+        this.d.e(1.0f, true);
+        a(true);
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.f37467b.setText(charSequence);
     }
 }

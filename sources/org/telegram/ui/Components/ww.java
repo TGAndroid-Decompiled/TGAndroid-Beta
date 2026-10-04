@@ -3,27 +3,27 @@ package org.telegram.ui.Components;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.FileLog;
 public final class ww extends s4.s {
-    public final mz Q;
+    public final nz Q;
 
-    public ww(mz mzVar) {
+    public ww(nz nzVar) {
         super(5);
-        this.Q = mzVar;
+        this.Q = nzVar;
     }
 
     @Override
     public final int o0(int i10, of.e eVar, s4.z0 z0Var) {
         int o02 = super.o0(i10, eVar, z0Var);
-        mz mzVar = this.Q;
-        if (o02 != 0 && mzVar.D0.getScrollState() == 1) {
-            mzVar.X1 = false;
-            mzVar.Y();
+        nz nzVar = this.Q;
+        if (o02 != 0 && nzVar.D0.getScrollState() == 1) {
+            nzVar.X1 = false;
+            nzVar.X();
         }
-        if (mzVar.T0 == null) {
-            gg.g1 g1Var = new gg.g1(mzVar, mzVar.f26531c1, mzVar.f26584t1.a(), mzVar.f26584t1.f(), 1);
-            mzVar.T0 = g1Var;
+        if (nzVar.T0 == null) {
+            gg.g1 g1Var = new gg.g1(nzVar, nzVar.f29091c1, nzVar.f29145t1.a(), nzVar.f29145t1.f(), 1);
+            nzVar.T0 = g1Var;
             g1Var.a();
         }
-        mzVar.T0.b();
+        nzVar.T0.b();
         return o02;
     }
 
@@ -31,10 +31,10 @@ public final class ww extends s4.s {
     public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
         try {
             ji.o oVar = new ji.o(recyclerView.getContext(), 2);
-            oVar.f43112a = i10;
+            oVar.f46691a = i10;
             w0(oVar);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 }

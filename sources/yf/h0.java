@@ -1,23 +1,13 @@
 package yf;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class h0 extends ViewOutlineProvider {
-    public final int f47111a;
-    public final float f47112b;
+import android.view.Window;
+import java.lang.ref.WeakReference;
+public final class h0 {
+    public int f50991a;
+    public boolean f50992b;
+    public final r2.s f50993c;
 
-    public h0(int i10, float f7) {
-        this.f47111a = i10;
-        this.f47112b = f7;
-    }
-
-    @Override
-    public final void getOutline(View view, Outline outline) {
-        int width = view.getWidth();
-        int i10 = this.f47111a;
-        float f7 = this.f47112b;
-        int i11 = this.f47111a;
-        outline.setRoundRect(i11, i11, width - i10, view.getHeight() - i10, f7);
+    public h0(Window window) {
+        this.f50993c = new r2.s(new WeakReference(window), 20);
     }
 }

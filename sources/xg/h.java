@@ -3,54 +3,54 @@ package xg;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import ci.ba;
+import ci.aa;
 import java.util.ArrayList;
 public final class h extends AnimatorListenerAdapter {
-    public final int f46049a;
-    public final ArrayList f46050b;
-    public final ba f46051c;
+    public final int f49847a;
+    public final ArrayList f49848b;
+    public final aa f49849c;
 
-    public h(ba baVar, ArrayList arrayList, int i10) {
-        this.f46049a = i10;
-        this.f46051c = baVar;
-        this.f46050b = arrayList;
+    public h(aa aaVar, ArrayList arrayList, int i10) {
+        this.f49847a = i10;
+        this.f49849c = aaVar;
+        this.f49848b = arrayList;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f46049a) {
+        switch (this.f49847a) {
             case 0:
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f46050b;
+                    ArrayList arrayList = this.f49848b;
                     int size = arrayList.size();
-                    ba baVar = this.f46051c;
+                    aa aaVar = this.f49849c;
                     if (i10 < size) {
-                        baVar.removeView((View) arrayList.get(i10));
+                        aaVar.removeView((View) arrayList.get(i10));
                         i10++;
                     } else {
-                        baVar.getClass();
-                        baVar.h.clear();
-                        baVar.f4417b = null;
-                        baVar.f4418c = false;
-                        ((i) baVar.f4420n).f46053b.setAllowDrawCursor(true);
+                        aaVar.getClass();
+                        aaVar.h.clear();
+                        aaVar.f4709b = null;
+                        aaVar.f4710c = false;
+                        ((i) aaVar.f4713n).f49851b.setAllowDrawCursor(true);
                         return;
                     }
                 }
             default:
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f46050b;
+                    ArrayList arrayList2 = this.f49848b;
                     int size2 = arrayList2.size();
-                    ba baVar2 = this.f46051c;
+                    aa aaVar2 = this.f49849c;
                     if (i11 < size2) {
-                        baVar2.removeView((View) arrayList2.get(i11));
+                        aaVar2.removeView((View) arrayList2.get(i11));
                         i11++;
                     } else {
-                        baVar2.h.clear();
-                        baVar2.f4417b = null;
-                        baVar2.f4418c = false;
-                        ((i) baVar2.f4420n).f46053b.setAllowDrawCursor(true);
+                        aaVar2.h.clear();
+                        aaVar2.f4709b = null;
+                        aaVar2.f4710c = false;
+                        ((i) aaVar2.f4713n).f49851b.setAllowDrawCursor(true);
                         return;
                     }
                 }

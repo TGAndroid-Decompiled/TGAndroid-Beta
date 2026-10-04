@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.v00;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.yl0;
-public final class o extends w51 {
-    public static final int f42082a = 0;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.w00;
+import org.telegram.ui.Components.zl0;
+public final class o extends f61 {
+    public static final int f45490a = 0;
 
     static {
-        w51.setup(new w51());
+        f61.setup(new f61());
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, d6 d6Var) {
-        v00 v00Var = new v00(context, null);
-        v00Var.setViewType(16);
-        v00Var.setMinimumHeight(AndroidUtilities.dp(48.0f));
-        return v00Var;
+    public final View createView(Context context, zl0 zl0Var, int i10, int i11, d6 d6Var) {
+        w00 w00Var = new w00(context, null);
+        w00Var.setViewType(16);
+        w00Var.setMinimumHeight(AndroidUtilities.dp(48.0f));
+        return w00Var;
     }
 }

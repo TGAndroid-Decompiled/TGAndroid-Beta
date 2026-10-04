@@ -1,24 +1,30 @@
 package org.telegram.ui;
-public final class if0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f34512a;
-    public final tf0 f34513b;
 
-    public if0(tf0 tf0Var, int i10) {
-        this.f34512a = i10;
-        this.f34513b = tf0Var;
+import android.content.Intent;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class if0 implements NotificationCenter.NotificationCenterDelegate {
+    public final jf0 f37412a;
+
+    public if0(jf0 jf0Var) {
+        this.f37412a = jf0Var;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f34512a) {
-            case 0:
-                tf0 tf0Var = this.f34513b;
-                tf0Var.c(true);
-                tf0Var.f38098s0.u1(0, true, null, true);
-                return;
-            default:
-                this.f34513b.f38098s0.u1(0, true, null, true);
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        jf0 jf0Var = this.f37412a;
+        int intValue = ((Integer) objArr[0]).intValue();
+        ((Integer) objArr[1]).getClass();
+        Intent intent = (Intent) objArr[2];
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
+        if (intValue == 200) {
+            try {
+                jf0Var.f37681y = (GoogleSignInAccount) w7.h9.b(intent).getResult(com.google.android.gms.common.api.f.class);
+                jf0Var.h(null);
+            } catch (com.google.android.gms.common.api.f e7) {
+                FileLog.e(e7);
+            }
         }
     }
 }

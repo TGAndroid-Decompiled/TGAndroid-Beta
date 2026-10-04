@@ -10,44 +10,44 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class x0 implements RequestDelegate {
-    public final int f9959a = 0;
-    public final boolean f9960b;
-    public final NotificationCenter.NotificationCenterDelegate f9961c;
+    public final int f10846a = 0;
+    public final boolean f10847b;
+    public final NotificationCenter.NotificationCenterDelegate f10848c;
     public final Serializable d;
-    public final Object e;
-    public final Serializable f9962f;
-    public final Object f9963g;
+    public final Object f10849e;
+    public final Serializable f10850f;
+    public final Object f10851g;
     public final Object h;
 
     public x0(k1 k1Var, String str, boolean z10, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
-        this.f9961c = k1Var;
+        this.f10848c = k1Var;
         this.d = str;
-        this.f9960b = z10;
-        this.f9963g = user;
-        this.e = str2;
+        this.f10847b = z10;
+        this.f10851g = user;
+        this.f10849e = str2;
         this.h = messagesStorage;
-        this.f9962f = str3;
+        this.f10850f = str3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f9959a) {
+        switch (this.f10846a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new y0((k1) this.f9961c, (String) this.d, this.f9960b, tLObject, (TLRPC.User) this.f9963g, (String) this.e, (MessagesStorage) this.h, (String) this.f9962f));
+                AndroidUtilities.runOnUIThread(new y0((k1) this.f10848c, (String) this.d, this.f10847b, tLObject, (TLRPC.User) this.f10851g, (String) this.f10849e, (MessagesStorage) this.h, (String) this.f10850f));
                 return;
             default:
-                ((SendMessagesHelper) this.f9961c).lambda$performSendMessageRequestMulti$74((ArrayList) this.d, (TLObject) this.e, (ArrayList) this.f9962f, (ArrayList) this.f9963g, (SendMessagesHelper.DelayedMessage) this.h, this.f9960b, tLObject, tL_error);
+                ((SendMessagesHelper) this.f10848c).lambda$performSendMessageRequestMulti$74((ArrayList) this.d, (TLObject) this.f10849e, (ArrayList) this.f10850f, (ArrayList) this.f10851g, (SendMessagesHelper.DelayedMessage) this.h, this.f10847b, tLObject, tL_error);
                 return;
         }
     }
 
     public x0(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, SendMessagesHelper sendMessagesHelper, TLObject tLObject, boolean z10) {
-        this.f9961c = sendMessagesHelper;
+        this.f10848c = sendMessagesHelper;
         this.d = arrayList;
-        this.e = tLObject;
-        this.f9962f = arrayList2;
-        this.f9963g = arrayList3;
+        this.f10849e = tLObject;
+        this.f10850f = arrayList2;
+        this.f10851g = arrayList3;
         this.h = delayedMessage;
-        this.f9960b = z10;
+        this.f10847b = z10;
     }
 }
