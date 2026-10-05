@@ -21,22 +21,22 @@ public final class k implements Runnable {
                 VoIPPreNotificationService.d();
                 return;
             case 3:
-                VoIPService.lambda$acceptIncomingCall$100();
+                VoIPService.r0();
                 return;
             case 4:
-                VoIPService.lambda$configureDeviceForCall$110();
+                VoIPService.S0();
                 return;
             case 5:
-                VoIPService.lambda$startConferenceGroupCall$35();
+                VoIPService.H();
                 return;
             case 6:
-                VoIPService.lambda$startOutgoingCall$6();
+                VoIPService.R0();
                 return;
             case 7:
-                VoIPService.lambda$startGroupCall$24();
+                VoIPService.S();
                 return;
             default:
-                VoIPService.lambda$onDestroy$97();
+                VoIPService.d1();
                 return;
         }
     }

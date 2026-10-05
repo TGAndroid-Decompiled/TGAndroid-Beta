@@ -12,25 +12,25 @@ public final class q5 implements Runnable {
     public final void run() {
         switch (this.f18956a) {
             case 0:
-                this.f18957b.lambda$onConnected$3();
+                LocationController.p(this.f18957b);
                 return;
             case 1:
-                this.f18957b.lambda$setProximityLocation$13();
+                LocationController.m(this.f18957b);
                 return;
             case 2:
                 this.f18957b.lambda$new$0();
                 return;
             case 3:
-                this.f18957b.lambda$removeAllLocationSharings$23();
+                LocationController.q(this.f18957b);
                 return;
             case 4:
                 this.f18957b.lambda$removeAllLocationSharings$24();
                 return;
             case 5:
-                this.f18957b.lambda$cleanup$9();
+                LocationController.v(this.f18957b);
                 return;
             default:
-                this.f18957b.lambda$loadSharingLocations$17();
+                LocationController.n(this.f18957b);
                 return;
         }
     }

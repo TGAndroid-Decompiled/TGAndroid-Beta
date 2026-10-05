@@ -117,8 +117,10 @@ public final class u5 extends FrameLayout {
         FrameLayout frameLayout;
         int i10;
         Paint e7;
+        float globalXOffset;
         ValueAnimator valueAnimator;
         ValueAnimator valueAnimator2;
+        float globalXOffset2;
         Drawable drawable;
         int i11;
         Drawable drawable2;
@@ -270,10 +272,18 @@ public final class u5 extends FrameLayout {
                         for (View view = this; view != viewGroup; view = (View) view.getParent()) {
                             f10 += view.getY();
                         }
-                        rg.b1.d().f(limitPreviewView.getGlobalXOffset() - getLeft(), -f10, viewGroup.getMeasuredWidth(), viewGroup.getMeasuredHeight());
+                        rg.b1 d = rg.b1.d();
+                        int measuredWidth = viewGroup.getMeasuredWidth();
+                        int measuredHeight = viewGroup.getMeasuredHeight();
+                        globalXOffset2 = limitPreviewView.getGlobalXOffset();
+                        d.f(globalXOffset2 - getLeft(), -f10, measuredWidth, measuredHeight);
                     }
                 } else {
-                    rg.b1.d().f(limitPreviewView.getGlobalXOffset() - getLeft(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
+                    rg.b1 d10 = rg.b1.d();
+                    int measuredWidth2 = limitPreviewView.getMeasuredWidth();
+                    int measuredHeight2 = limitPreviewView.getMeasuredHeight();
+                    globalXOffset = limitPreviewView.getGlobalXOffset();
+                    d10.f(globalXOffset - getLeft(), -getTop(), measuredWidth2, measuredHeight2);
                 }
                 int alpha2 = e7.getAlpha();
                 if (limitPreviewView.V && (valueAnimator2 = limitPreviewView.f24252i0) != null) {
@@ -336,10 +346,10 @@ public final class u5 extends FrameLayout {
                 yh.y3 y3Var = (yh.y3) this.f41106e;
                 y3Var.G(canvas, this);
                 canvas.save();
-                float d = d();
+                float d11 = d();
                 float dp2 = AndroidUtilities.dp(12.0f);
                 RectF rectF5 = (RectF) this.f41104b;
-                rectF5.set(yh.y3.n1(y3Var), d, getWidth() - yh.y3.o1(y3Var), getHeight() + dp2);
+                rectF5.set(yh.y3.n1(y3Var), d11, getWidth() - yh.y3.o1(y3Var), getHeight() + dp2);
                 Paint paint7 = (Paint) this.f41105c;
                 paint7.setColor(y3Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20899h5));
                 Path path2 = (Path) this.d;
